@@ -9,7 +9,7 @@ new
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let group of groups; i: in; index">
+            <tr *ngFor="let group of groups; let index = index; let first = first; let last = last">
                 <td><input type="text" /></td>
                 <td>
                     <div
@@ -23,10 +23,10 @@ new
                     </div>
                 </td>
                 <td>
-                    <div (click)="up()">haut</div>
-                    <div (click)="suppr()">Suppr</div>
-                    <div (click)="down()">bas</div>
-                    <div (click)="ajout()">ajout</div>
+                    <button (click)="up(index)" *ngIf="!first">haut</button>
+                    <button (click)="suppr(index)" *ngIf="!(first && last)">Suppr</button>
+                    <button (click)="down(index)" *ngIf="!last">bas</button>
+                    <button (click)="ajout(index)">ajout</button>
                 </td>
             </tr>
         </tbody>

@@ -34,11 +34,19 @@ export class ClassementEditComponent {
         }
     }
 
-    up() {}
+    up(index: number) {
+        this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
+    }
 
-    down() {}
+    down(index: number) {
+        this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
+    }
 
-    suppr() {}
+    suppr(index: number) {
+        this.list.push(...this.groups.splice(index, 1)[0]);
+    }
 
-    ajout() {}
+    ajout(index: number) {
+        this.groups.splice(index + 1, 0, []);
+    }
 }
