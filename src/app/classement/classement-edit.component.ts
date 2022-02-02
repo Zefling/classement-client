@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+type Group = { name: string; color: string; list: string[] };
+
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
 })
 export class ClassementEditComponent {
-    groups: string[][] = [[]];
+    groups: Group[] = [
+        { name: 'A', color: '#FFFFFF', list: [] },
+        { name: 'B', color: '#FFFFFF', list: [] },
+        { name: 'C', color: '#FFFFFF', list: [] },
+        { name: 'D', color: '#FFFFFF', list: [] },
+        { name: 'E', color: '#FFFFFF', list: [] },
+    ];
     list: string[] = [
         'Element 1',
         'Element 2',
@@ -43,10 +51,10 @@ export class ClassementEditComponent {
     }
 
     suppr(index: number) {
-        this.list.push(...this.groups.splice(index, 1)[0]);
+        this.list.push(...this.groups.splice(index, 1)[0].list);
     }
 
     ajout(index: number) {
-        this.groups.splice(index + 1, 0, []);
+        this.groups.splice(index + 1, 0, { name: 'nv', color: '#FFF', list: [] });
     }
 }

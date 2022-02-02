@@ -1,0 +1,53 @@
+::ng-deep {
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+:host {
+    height: 100%;
+    display: grid;
+    grid-template:
+        'header header' 50px
+        'aside  main' 1fr /
+        150px 1fr;
+}
+
+header {
+    grid-area: header;
+    margin: 15px;
+}
+
+aside {
+    grid-area: aside;
+    overflow: auto;
+
+    li {
+        cursor: pointer;
+        color: #7e3333;
+
+        &:hover {
+            color: #532424;
+            text-decoration: underline;
+        }
+    }
+}
+
+div {
+    grid-area: main;
+    overflow: auto;
+    position: relative;
+
+    &::before {
+        display: block;
+        position: fixed;
+        content: ' ';
+        height: 100%;
+        width: 100%;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3) inset;
+        pointer-events: none;
+    }
+}

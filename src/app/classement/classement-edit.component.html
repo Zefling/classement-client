@@ -1,4 +1,5 @@
-new
+<h3>New</h3>
+
 <div cdkDropListGroup>
     <table>
         <thead>
@@ -10,23 +11,28 @@ new
         </thead>
         <tbody>
             <tr *ngFor="let group of groups; let index = index; let first = first; let last = last">
-                <td><input type="text" /></td>
+                <td [style.background]="group.color">
+                    <input type="text" [(ngModel)]="group.name" />
+                    <input type="color" [(ngModel)]="group.color" />
+                </td>
                 <td>
                     <div
                         cdkDropList
                         cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="group"
+                        [cdkDropListData]="group.list"
                         class="drop-list"
                         (cdkDropListDropped)="drop($event)"
                     >
-                        <div class="content-box" *ngFor="let item of group" cdkDrag>{{ item }}</div>
+                        <div class="content-box" *ngFor="let item of group.list" cdkDrag>{{ item }}</div>
                     </div>
                 </td>
                 <td>
-                    <button (click)="up(index)" *ngIf="!first">haut</button>
-                    <button (click)="suppr(index)" *ngIf="!(first && last)">Suppr</button>
-                    <button (click)="down(index)" *ngIf="!last">bas</button>
-                    <button (click)="ajout(index)">ajout</button>
+                    <div class="button-actions">
+                        <button class="button-up" (click)="up(index)" *ngIf="!first">↑</button>
+                        <button class="button-down" (click)="down(index)" *ngIf="!last">↓</button>
+                        <button class="button-suppr" (click)="suppr(index)" *ngIf="!(first && last)">Suppr</button>
+                        <button class="button-add" (click)="ajout(index)">Add</button>
+                    </div>
                 </td>
             </tr>
         </tbody>
