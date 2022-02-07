@@ -2,6 +2,11 @@
 
 <div cdkDropListGroup>
     <table>
+        <colgroup>
+            <col class="names" />
+            <col class="elements" />
+            <col class="actions" />
+        </colgroup>
         <thead>
             <tr>
                 <td style="width: 150px">Nom</td>
@@ -10,41 +15,63 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let group of groups; let index = index; let first = first; let last = last">
-                <td [style.background]="group.color">
-                    <input type="text" [(ngModel)]="group.name" />
-                    <input type="color" [(ngModel)]="group.color" />
+            <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
+                <td class="names" [style.background]="group.color">
+                    <input class="name" type="text" [(ngModel)]="group.name" />
+                    <input class="color" type="color" [(ngModel)]="group.color" />
                 </td>
-                <td>
-                    <div
-                        cdkDropList
-                        cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="group.list"
-                        class="drop-list"
-                        (cdkDropListDropped)="drop($event)"
-                    >
-                        <div class="content-box" *ngFor="let item of group.list" cdkDrag>{{ item }}</div>
+                <td class="elements">
+                    <div class="drop-list">
+                        <div
+                            *ngFor="let item of group.list; let index = index"
+                            cdkDropList
+                            cdkDropListOrientation="horizontal"
+                            [cdkDropListData]="{ list: group.list, index: index }"
+                            (cdkDropListDropped)="drop(group.list, $event)"
+                        >
+                            <div class="content-box" cdkDrag>{{ item }}</div>
+                        </div>
+                        <div
+                            class="drop-zone-empty-list"
+                            *ngIf="group.list.length === 0"
+                            cdkDropList
+                            cdkDropListOrientation="horizontal"
+                            [cdkDropListData]="{ list: group.list, index: 0 }"
+                            (cdkDropListDropped)="drop(group.list, $event)"
+                        ></div>
                     </div>
                 </td>
-                <td>
+                <td class="actions">
                     <div class="button-actions">
-                        <button class="button-up" (click)="up(index)" *ngIf="!first">↑</button>
-                        <button class="button-down" (click)="down(index)" *ngIf="!last">↓</button>
-                        <button class="button-suppr" (click)="suppr(index)" *ngIf="!(first && last)">Suppr</button>
-                        <button class="button-add" (click)="ajout(index)">Add</button>
+                        <button class="button-up" (click)="up(indexGrp)" *ngIf="!first">↑</button>
+                        <button class="button-down" (click)="down(indexGrp)" *ngIf="!last">↓</button>
+                        <button class="button-suppr" (click)="suppr(indexGrp)" *ngIf="!(first && last)">Suppr</button>
+                        <button class="button-add" (click)="ajout(indexGrp)">Add</button>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <div
-        cdkDropList
-        cdkDropListOrientation="horizontal"
-        [cdkDropListData]="list"
-        class="drop-list"
-        (cdkDropListDropped)="drop($event)"
-    >
-        <div class="content-box" *ngFor="let item of list" cdkDrag>{{ item }}</div>
+    <div class="drop-list">
+        <div
+            *ngFor="let item of list; let index = index"
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            [cdkDropListData]="{ list: list, index: index }"
+            (cdkDropListDropped)="drop(list, $event)"
+        >
+            <div class="content-box" cdkDrag>
+                {{ item }}
+            </div>
+        </div>
+        <div
+            class="drop-zone-empty-list"
+            *ngIf="list.length === 0"
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            [cdkDropListData]="{ list: list, index: 0 }"
+            (cdkDropListDropped)="drop(list, $event)"
+        ></div>
     </div>
 </div>
