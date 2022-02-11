@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClassementEditComponent } from './classement/classement-edit.component';
 import { AppHomeComponent } from './home/app-home.component';
+import { DirectiveModule } from './directives/directive.module';
 
 @NgModule({
     declarations: [AppComponent, AppHomeComponent, ClassementEditComponent],
-    imports: [BrowserModule, AppRoutingModule, DragDropModule, FormsModule],
+    imports: [BrowserModule, AppRoutingModule, DragDropModule, FormsModule, DirectiveModule],
     providers: [],
+    exports: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -29,7 +29,9 @@
                             [cdkDropListData]="{ list: group.list, index: index }"
                             (cdkDropListDropped)="drop(group.list, $event)"
                         >
-                            <div class="content-box" cdkDrag>{{ item }}</div>
+                            <div class="content-box" cdkDrag>
+                                <img src="{{ item.target?.result }}" alt="{{ item.file.name }}" />
+                            </div>
                         </div>
                         <div
                             class="drop-zone-empty-list"
@@ -53,7 +55,9 @@
         </tbody>
     </table>
 
-    <div class="drop-list">
+    <div class="message">Drag'n drop picture here ↓</div>
+
+    <div class="drop-list" drop-image (files)="addFiles($event)">
         <div
             *ngFor="let item of list; let index = index"
             cdkDropList
@@ -62,7 +66,7 @@
             (cdkDropListDropped)="drop(list, $event)"
         >
             <div class="content-box" cdkDrag>
-                {{ item }}
+                <img src="{{ item.target?.result }}" alt="{{ item.file.name }}" />
             </div>
         </div>
         <div

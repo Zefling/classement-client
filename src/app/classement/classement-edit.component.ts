@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { FileHandle } from '../directives/drop-image.directive';
 
-type Group = { name: string; color: string; list: string[] };
+type Group = { name: string; color: string; list: FileHandle[] };
 
 @Component({
     selector: 'classement-edit',
@@ -17,30 +18,9 @@ export class ClassementEditComponent {
         { name: 'D', color: '#8ff0a4', list: [] },
         { name: 'E', color: '#99c1f1', list: [] },
     ];
-    list: string[] = [
-        'Element 1',
-        'Element 2',
-        'Element 3',
-        'Element 4',
-        'Element 5',
-        'Element 6',
-        'Element 7',
-        'Element 8',
-        'Element 9',
-        'Element 10',
-        'Element 11',
-        'Element 12',
-        'Element 13',
-        'Element 14',
-        'Element 15',
-        'Element 16',
-        'Element 17',
-        'Element 18',
-        'Element 19',
-        'Element 20',
-    ];
+    list: FileHandle[] = [];
 
-    drop(list: string[], event: CdkDragDrop<{ list: string[]; index: number }>) {
+    drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
         const indexTarget = event.container.data.index;
         if (event.previousContainer.data.list === event.container.data.list) {
@@ -69,5 +49,10 @@ export class ClassementEditComponent {
 
     ajout(index: number) {
         this.groups.splice(index + 1, 0, { name: 'nv', color: '#FFF', list: [] });
+    }
+
+    addFiles(files: FileHandle[]) {
+        console.log('W>', files);
+        this.list.push(...files);
     }
 }
