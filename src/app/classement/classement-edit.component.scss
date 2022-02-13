@@ -3,11 +3,55 @@
     margin: 0 15px 10px;
 }
 
+// options --------------------------------------------------------------
+
+.options {
+    display: grid;
+    grid-template:
+        'title title  cat'
+        'width height padding'
+        / 1fr 1fr 1fr;
+    gap: 10px;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    background: #f0f0f0;
+    padding: 10px;
+}
+.title {
+    grid-area: title;
+}
+.categories {
+    grid-area: cat;
+}
+.item-width {
+    grid-area: width;
+}
+.item-height {
+    grid-area: height;
+}
+.item-padding {
+    grid-area: padding;
+}
+
+.options label {
+    font-weight: 700;
+    font-size: 80%;
+}
+
+.options input,
+.options select {
+    border: 1px solid #ccccdb;
+    border-radius: 3px;
+    padding: 5px 3px;
+    width: calc(100% - 10px);
+    background-color: #d6e0ec;
+}
+
 // drag'n drop --------------------------------------------------------------
 
 .drop-list {
-    border: solid 1px #ccc;
     min-height: calc(var(--item-height, 150px) + var(--item-padding, 10px) * 2 + 5px);
+    border: solid 1px #ccc;
     background: #f0f0f0;
     border-radius: 4px;
     overflow: hidden;
@@ -73,6 +117,17 @@
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+// drag'n drop file
+
+.drop-image-message {
+    width: 100%;
+}
+.drop-image-zone,
+.drop-image-zone .drop-list {
+    background: #b6c6f5;
+    border-radius: 2px;
+}
+
 // buttons -----------------------------------------------------------------
 
 .button-actions {
@@ -96,14 +151,8 @@
     grid-area: add;
 }
 
-// table --------------------------------------------------------------------
+// images
 
-table {
-    min-width: 100%;
-}
-.names {
-    width: 150px;
-}
 .elements {
     width: 100%;
 }
@@ -114,13 +163,18 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
-.message {
+
+// table --------------------------------------------------------------------
+
+table {
+    min-width: 100%;
+}
+.elements {
     width: 100%;
 }
-.drop-image-zone {
-    background: #b6c6f5;
+.names {
+    width: 150px;
 }
-
 .name {
     border: 0;
     background: transparent;

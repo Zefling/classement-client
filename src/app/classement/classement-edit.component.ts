@@ -3,6 +3,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { FileHandle } from '../directives/drop-image.directive';
 
 type Group = { name: string; color: string; list: FileHandle[] };
+type Category = { value: string; label: string };
 
 @Component({
     selector: 'classement-edit',
@@ -20,6 +21,14 @@ export class ClassementEditComponent {
     ];
     list: FileHandle[] = [];
 
+    categories: Category[] = [
+        { value: 'anime', label: 'Anime' },
+        { value: 'jv', label: 'Video Game' },
+        { value: 'film', label: 'Movie' },
+    ];
+
+    title = '';
+    category = '';
     @HostBinding('style.--item-width.px') itemWidth = 100;
     @HostBinding('style.--item-height.px') itemHeight = 100;
     @HostBinding('style.--item-padding.px') itemPadding = 10;
