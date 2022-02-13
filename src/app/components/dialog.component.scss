@@ -1,0 +1,42 @@
+:host {
+    display: block;
+    margin: 0 15px 10px;
+}
+
+:host {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    background-color: #0006;
+    top: 0;
+    left: -15px;
+    align-items: center;
+    justify-content: center;
+
+    &.open {
+        display: flex;
+    }
+
+    .content {
+        position: relative;
+        background-color: #fff;
+        height: 90%;
+        width: 70%;
+        box-shadow: 0 0 5px 5px #0003;
+    }
+    .close {
+        background: white;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 5px;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        box-shadow: 0 0 2px;
+        cursor: pointer;
+    }
+}

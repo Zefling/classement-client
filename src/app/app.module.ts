@@ -9,10 +9,18 @@ import { ClassementEditComponent } from './content/classement/classement-edit.co
 import { ClassementHomeComponent } from './content/home/classement-home.component';
 import { DirectiveModule } from './directives/directive.module';
 import { ClassementListComponent } from './content/list/classement-list.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
-    declarations: [AppComponent, ClassementHomeComponent, ClassementEditComponent, ClassementListComponent],
-    imports: [BrowserModule, AppRoutingModule, DragDropModule, FormsModule, DirectiveModule],
+    declarations: [
+        AppComponent,
+
+        // page
+        ClassementHomeComponent,
+        ClassementEditComponent,
+        ClassementListComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule, DragDropModule, FormsModule, DirectiveModule, ComponentsModule],
     providers: [],
     exports: [],
     bootstrap: [AppComponent],

@@ -2,6 +2,7 @@ import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FileHandle } from '../../directives/drop-image.directive';
 import html2canvas from 'html2canvas';
+import { DialogComponent } from 'src/app/components/dialog.component';
 
 type Group = { name: string; color: string; list: FileHandle[] };
 type Category = { value: string; label: string };
@@ -35,6 +36,7 @@ export class ClassementEditComponent {
     @HostBinding('style.--item-padding.px') itemPadding = 10;
 
     @ViewChild('image') image!: ElementRef;
+    @ViewChild(DialogComponent) dialog!: DialogComponent;
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
@@ -72,8 +74,15 @@ export class ClassementEditComponent {
     }
 
     saveImage() {
-        html2canvas(document.getElementById('table-classement') as HTMLElement).then(canvas => {
-            this.image.nativeElement.appendChild(canvas);
+        this.dialog.open = true;
+        html2canvas(document.getElementById('table-classement') as HTMLElement, {
+            logging: false,
+            allowTaint: false,
+            useCORS: false,
+        }).then(canvas => {
+            const element = this.image.nativeElement;
+            element.innerHTML = '';
+            element.appendChild(canvas);
         });
     }
 }
