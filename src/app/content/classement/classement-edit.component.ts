@@ -1,6 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { FileHandle } from '../directives/drop-image.directive';
+import { FileHandle } from '../../directives/drop-image.directive';
 
 type Group = { name: string; color: string; list: FileHandle[] };
 type Category = { value: string; label: string };
