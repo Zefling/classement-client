@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FileHandle } from '../directives/drop-image.directive';
 
@@ -19,6 +19,10 @@ export class ClassementEditComponent {
         { name: 'E', color: '#99c1f1', list: [] },
     ];
     list: FileHandle[] = [];
+
+    @HostBinding('style.--item-width.px') itemWidth = 100;
+    @HostBinding('style.--item-height.px') itemHeight = 100;
+    @HostBinding('style.--item-padding.px') itemPadding = 10;
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;

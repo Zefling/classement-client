@@ -9,7 +9,7 @@ export interface FileHandle {
 
 @Directive({ selector: '[drop-image]' })
 export class DropImageDirective {
-    @HostBinding('style.background') background? = '';
+    @HostBinding('class.drop-image-zone') background = false;
 
     @Output() files = new EventEmitter();
 
@@ -18,22 +18,19 @@ export class DropImageDirective {
     @HostListener('dragover', ['$event'])
     onDragOver(evt: DragEvent): void {
         evt.preventDefault();
-        this.background = 'red';
-        console.log('A');
+        this.background = true;
     }
 
     @HostListener('dragleave', ['$event'])
     public onDragLeave(event: DragEvent): void {
         event.preventDefault();
         event.stopPropagation();
-        this.background = '';
-        console.log('B');
+        this.background = false;
     }
 
     @HostListener('drop', ['$event'])
     public onDrop(evt: DragEvent): void {
-        this.background = '';
-        console.log('C');
+        this.background = false;
 
         if (evt.dataTransfer?.files?.length) {
             const files: FileHandle[] = [];

@@ -7,7 +7,7 @@
 
 .drop-list {
     border: solid 1px #ccc;
-    min-height: 150px;
+    min-height: calc(var(--item-height, 150px) + var(--item-padding, 10px) * 2 + 5px);
     background: #f0f0f0;
     border-radius: 4px;
     overflow: hidden;
@@ -17,18 +17,18 @@
 
 .drop-zone-empty-list {
     width: 100%;
-    height: 150px;
+    height: calc(var(--item-height, 150px) + var(--item-padding, 10px) * 2 + 5px);
 }
 
 .content-block {
-    width: 150px;
-    height: 150px;
+    width: calc(var(--item-width, 150px) + var(--item-padding, 10px) * 2 + 5px);
+    height: calc(var(--item-height, 150px) + var(--item-padding, 10px) * 2 + 5px);
 }
 
 .content-box {
-    padding: 10px;
-    width: 150px;
-    height: 150px;
+    padding: var(--item-padding, 10px);
+    width: var(--item-width, 150px);
+    height: var(--item-height, 150px);
     border-bottom: solid 1px #ccc;
     background: #fff;
     color: rgba(0, 0, 0, 0.87);
@@ -36,14 +36,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
+    box-sizing: content-box;
     cursor: move;
     font-size: 14px;
     margin: 2px;
 }
 
 .cdk-drag-preview {
-    box-sizing: border-box;
+    box-sizing: content-box;
     border-radius: 4px;
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
@@ -116,6 +116,9 @@ img {
 }
 .message {
     width: 100%;
+}
+.drop-image-zone {
+    background: #b6c6f5;
 }
 
 .name {
