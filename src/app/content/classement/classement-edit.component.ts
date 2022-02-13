@@ -1,6 +1,7 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FileHandle } from '../../directives/drop-image.directive';
+import html2canvas from 'html2canvas';
 
 type Group = { name: string; color: string; list: FileHandle[] };
 type Category = { value: string; label: string };
@@ -32,6 +33,8 @@ export class ClassementEditComponent {
     @HostBinding('style.--item-width.px') itemWidth = 100;
     @HostBinding('style.--item-height.px') itemHeight = 100;
     @HostBinding('style.--item-padding.px') itemPadding = 10;
+
+    @ViewChild('image') image!: ElementRef;
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
@@ -65,7 +68,12 @@ export class ClassementEditComponent {
     }
 
     addFiles(files: FileHandle[]) {
-        console.log('W>', files);
         this.list.push(...files);
+    }
+
+    saveImage() {
+        html2canvas(document.getElementById('table-classement') as HTMLElement).then(canvas => {
+            this.image.nativeElement.appendChild(canvas);
+        });
     }
 }

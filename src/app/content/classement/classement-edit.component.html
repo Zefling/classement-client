@@ -84,6 +84,8 @@
         </tbody>
     </table>
 
+    <button (click)="saveImage()">Image</button>
+
     <div drop-image (files)="addFiles($event)">
         <div class="drop-image-message">Drag'n drop picture here ↓</div>
         <div class="drop-list">
@@ -109,3 +111,37 @@
         </div>
     </div>
 </div>
+
+<div class="render">
+    <table id="table-classement">
+        <caption>
+            {{
+                title
+            }}
+        </caption>
+        <colgroup>
+            <col class="names" />
+            <col class="elements" />
+        </colgroup>
+
+        <tbody>
+            <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
+                <td class="names" [style.background]="group.color">
+                    {{ group.name }}
+                </td>
+                <td class="elements">
+                    <div class="drop-list">
+                        <div *ngFor="let item of group.list; let index = index">
+                            <div class="content-box">
+                                <img src="{{ item.target?.result }}" alt="{{ item.file.name }}" />
+                            </div>
+                        </div>
+                        <div class="drop-zone-empty-list" *ngIf="group.list.length === 0"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div #image></div>
