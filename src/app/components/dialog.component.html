@@ -1,4 +1,6 @@
 <div class="content" *ngIf="open">
     <div class="close" (click)="close()">×</div>
-    <ng-content></ng-content>
+    <div class="main">
+        <ng-content></ng-content>
+    </div>
 </div>
