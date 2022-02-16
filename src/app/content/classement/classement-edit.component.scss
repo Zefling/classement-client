@@ -190,6 +190,19 @@ table {
     margin: auto;
 }
 
+[drop-image] .content-box {
+    position: relative;
+}
+.btn-suppr {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: red;
+    background: #fffcf538;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
 // render ------------------------------------------------------------------
 
 .render {

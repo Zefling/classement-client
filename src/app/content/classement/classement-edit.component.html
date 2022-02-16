@@ -84,7 +84,9 @@
         </tbody>
     </table>
 
-    <button (click)="saveImage()">Image</button>
+    <div class="action">
+        <button (click)="saveImage()">Image</button>
+    </div>
 
     <div drop-image (files)="addFiles($event)">
         <div class="drop-image-message">Drag'n drop picture here ↓</div>
@@ -97,6 +99,7 @@
                 (cdkDropListDropped)="drop(list, $event)"
             >
                 <div class="content-box" cdkDrag>
+                    <button class="btn-suppr" (click)="remove(index)">×</button>
                     <img src="{{ item.target?.result }}" alt="{{ item.file.name }}" />
                 </div>
             </div>

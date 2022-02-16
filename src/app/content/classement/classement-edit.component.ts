@@ -65,6 +65,10 @@ export class ClassementEditComponent {
         this.list.push(...this.groups.splice(index, 1)[0].list);
     }
 
+    remove(index: number) {
+        this.list.splice(index, 1);
+    }
+
     ajout(index: number) {
         this.groups.splice(index + 1, 0, { name: 'nv', color: '#FFF', list: [] });
     }
