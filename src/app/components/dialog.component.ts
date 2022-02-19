@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
+
 @Component({
     selector: 'dialog-cmp',
     templateUrl: './dialog.component.html',

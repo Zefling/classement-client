@@ -1,9 +1,13 @@
-import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { FileHandle } from '../../directives/drop-image.directive';
-import html2canvas from 'html2canvas';
-import { DialogComponent } from 'src/app/components/dialog.component';
+import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+
 import { Coloration } from 'coloration-lib';
+import html2canvas from 'html2canvas';
+
+import { DialogComponent } from 'src/app/components/dialog.component';
+
+import { FileHandle } from '../../directives/drop-image.directive';
+
 
 type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 type Category = { value: string; label: string };
