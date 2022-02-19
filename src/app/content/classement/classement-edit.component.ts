@@ -3,6 +3,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { FileHandle } from '../../directives/drop-image.directive';
 import html2canvas from 'html2canvas';
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { Coloration } from 'coloration-lib';
 
 type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 type Category = { value: string; label: string };
@@ -70,7 +71,17 @@ export class ClassementEditComponent {
     }
 
     ajout(index: number) {
-        this.groups.splice(index + 1, 0, { name: 'nv', txtColor: '#FFF', bgColor: '#000', list: [] });
+        const mixColor = (color1: string, color2: string) =>
+            new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
+        const bgColor =
+            index < this.groups.length - 1
+                ? mixColor(this.groups[index].bgColor, this.groups[index + 1].bgColor)
+                : this.groups[index].bgColor;
+        const txtColor =
+            index < this.groups.length - 1
+                ? mixColor(this.groups[index].txtColor, this.groups[index + 1].txtColor)
+                : this.groups[index].txtColor;
+        this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
     }
 
     addFiles(files: FileHandle[]) {
