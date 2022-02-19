@@ -45,9 +45,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                <td class="names" [style.background]="group.color">
-                    <input class="name" type="text" [(ngModel)]="group.name" />
-                    <input class="color" type="color" [(ngModel)]="group.color" />
+                <td class="names" [style.background]="group.bgColor">
+                    <input class="name" type="text" [(ngModel)]="group.name" [style.color]="group.txtColor" />
+                    <input class="color" type="color" [(ngModel)]="group.bgColor" />
+                    <input class="color" type="color" [(ngModel)]="group.txtColor" />
                 </td>
                 <td class="elements">
                     <div class="drop-list">
@@ -129,7 +130,7 @@
 
         <tbody>
             <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                <td class="names" [style.background]="group.color">
+                <td class="names" [style.background]="group.bgColor" [style.color]="group.txtColor">
                     {{ group.name }}
                 </td>
                 <td class="elements">

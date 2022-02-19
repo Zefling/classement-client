@@ -4,7 +4,7 @@ import { FileHandle } from '../../directives/drop-image.directive';
 import html2canvas from 'html2canvas';
 import { DialogComponent } from 'src/app/components/dialog.component';
 
-type Group = { name: string; color: string; list: FileHandle[] };
+type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 type Category = { value: string; label: string };
 
 @Component({
@@ -14,12 +14,12 @@ type Category = { value: string; label: string };
 })
 export class ClassementEditComponent {
     groups: Group[] = [
-        { name: 'S', color: '#dc8add', list: [] },
-        { name: 'A', color: '#f66151', list: [] },
-        { name: 'B', color: '#ffbe6f', list: [] },
-        { name: 'C', color: '#f9f06b', list: [] },
-        { name: 'D', color: '#8ff0a4', list: [] },
-        { name: 'E', color: '#99c1f1', list: [] },
+        { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
+        { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
+        { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
+        { name: 'C', bgColor: '#f9f06b', txtColor: '#000000', list: [] },
+        { name: 'D', bgColor: '#8ff0a4', txtColor: '#000000', list: [] },
+        { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
     ];
     list: FileHandle[] = [];
 
@@ -70,7 +70,7 @@ export class ClassementEditComponent {
     }
 
     ajout(index: number) {
-        this.groups.splice(index + 1, 0, { name: 'nv', color: '#FFF', list: [] });
+        this.groups.splice(index + 1, 0, { name: 'nv', txtColor: '#FFF', bgColor: '#000', list: [] });
     }
 
     addFiles(files: FileHandle[]) {

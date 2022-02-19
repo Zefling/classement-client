@@ -182,11 +182,11 @@ table {
     background: transparent;
     text-align: center;
     font-size: 120%;
-    width: 130px;
+    width: 100%;
     display: block;
 }
 .color {
-    display: block;
+    display: inline;
     margin: auto;
 }
 
@@ -210,6 +210,10 @@ table {
     position: absolute;
     top: 0;
     left: -100000px;
+
+    .names {
+        font-size: 120%;
+    }
 
     caption {
         font-size: 120%;
