@@ -98,6 +98,7 @@ export class ClassementEditComponent {
             logging: false,
             allowTaint: false,
             useCORS: false,
+            scale: 2,
         }).then(canvas => {
             const element = this.image.nativeElement;
             element.innerHTML = '';
