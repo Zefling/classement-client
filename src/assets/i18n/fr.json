@@ -1,0 +1,28 @@
+{
+    "classement": "Classement",
+    "menu": {
+        "home": "Accueil",
+        "list": "Liste",
+        "new": "Nouveau"
+    },
+
+    "gererator": {
+        "title": "Nouveau classement",
+        "options": {
+            "group.title": "Options",
+            "title": "Titre :",
+            "group": "Groupe :",
+            "item": {
+                "width": "Largeur d'un objet :",
+                "height": "Hauteur d'un objet :",
+                "padding": "Marge d'un object :"
+            }
+        },
+        "ranking": {
+            "group.title": "Classement",
+            "name": "Nom",
+            "list": "Liste",
+            "drop.image": "Déposez une image ici ↓"
+        }
+    }
+}

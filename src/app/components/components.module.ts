@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { DialogComponent } from './dialog.component';
+
+import { SharedModule } from '../share.module';
 
 
 @NgModule({
     declarations: [DialogComponent],
     exports: [DialogComponent],
-    imports: [BrowserModule],
+    imports: [SharedModule],
 })
 export class ComponentsModule {}

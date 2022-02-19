@@ -1,13 +1,13 @@
-<h2>New ranking</h2>
+<h2>{{ 'gererator.title' | translate }}</h2>
 
-<h3>Options</h3>
+<h3>{{ 'gererator.options.group.title' | translate }}</h3>
 <div class="options">
     <div class="title">
-        <label>Title:</label>
+        <label>{{ 'gererator.options.title' | translate }}</label>
         <div><input type="text" maxlength="150" [(ngModel)]="title" /></div>
     </div>
     <div class="group">
-        <label>Group:</label>
+        <label>{{ 'gererator.options.group' | translate }}</label>
         <div>
             <select type="text" maxlength="150" [(ngModel)]="category">
                 <option *ngFor="let item of categories" [value]="item.value">{{ item.label }}</option>
@@ -15,20 +15,20 @@
         </div>
     </div>
     <div class="item-width">
-        <label>Item width:</label>
+        <label>{{ 'gererator.options.item.width' | translate }}</label>
         <div><input type="number" min="16" max="300" [(ngModel)]="itemWidth" /></div>
     </div>
     <div class="item-height">
-        <label>Item height:</label>
+        <label>{{ 'gererator.options.item.height' | translate }}</label>
         <div><input type="number" min="16" max="300" [(ngModel)]="itemHeight" /></div>
     </div>
     <div class="item-padding">
-        <label>Item padding:</label>
+        <label>{{ 'gererator.options.item.padding' | translate }}</label>
         <div><input type="number" min="0" max="20" [(ngModel)]="itemPadding" /></div>
     </div>
 </div>
 
-<h3>Ranking</h3>
+<h3>{{ 'gererator.ranking.group.title' | translate }}</h3>
 <div cdkDropListGroup>
     <table>
         <colgroup>
@@ -38,8 +38,8 @@
         </colgroup>
         <thead>
             <tr>
-                <td style="width: 150px">Nom</td>
-                <td>List</td>
+                <td style="width: 150px">{{ 'gererator.ranking.name' | translate }}</td>
+                <td>{{ 'gererator.ranking.list' | translate }}</td>
                 <td></td>
             </tr>
         </thead>
@@ -90,7 +90,7 @@
     </div>
 
     <div drop-image (files)="addFiles($event)">
-        <div class="drop-image-message">Drag'n drop picture here ↓</div>
+        <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
         <div class="drop-list">
             <div
                 *ngFor="let item of list; let index = index"

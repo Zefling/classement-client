@@ -1,9 +1,17 @@
-<header>Classement</header>
+<header>
+    <div>{{ 'classement' | translate }}</div>
+    <div>
+        <select [ngModel]="selectedLang" (ngModelChange)="updateLanguage($event)">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+</header>
 <aside>
     <ul>
-        <li routerLink="/" routerLinkActive="active">Home</li>
-        <li routerLink="/list" routerLinkActive="active">List</li>
-        <li routerLink="/classement/edit/new" routerLinkActive="active">New</li>
+        <li routerLink="/" routerLinkActive="active">{{ 'menu.home' | translate }}</li>
+        <li routerLink="/list" routerLinkActive="active">{{ 'menu.list' | translate }}</li>
+        <li routerLink="/classement/edit/new" routerLinkActive="active">{{ 'menu.new' | translate }}</li>
     </ul>
 </aside>
 <div>

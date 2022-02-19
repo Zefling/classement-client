@@ -24,6 +24,9 @@
 header {
     grid-area: header;
     margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 aside {
@@ -41,7 +44,7 @@ aside {
     }
 }
 
-div {
+:host > div {
     grid-area: main;
     overflow: auto;
     position: relative;
