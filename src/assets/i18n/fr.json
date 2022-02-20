@@ -5,7 +5,6 @@
         "list": "Liste",
         "new": "Nouveau"
     },
-
     "gererator": {
         "title": "Nouveau classement",
         "options": {
@@ -22,7 +21,11 @@
             "group.title": "Classement",
             "name": "Nom",
             "list": "Liste",
-            "drop.image": "Déposez une image ici ↓"
+            "drop.image": "Déposez une image ici ↓ (JPG, PNG, GIF, WebP)"
+        },
+        "line": {
+            "add": "Ajout",
+            "delete": "Suppr."
         }
     }
 }

@@ -58,23 +58,23 @@ export class ClassementEditComponent {
         }
     }
 
-    up(index: number) {
+    upLine(index: number) {
         this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
     }
 
-    down(index: number) {
+    downLine(index: number) {
         this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
     }
 
-    suppr(index: number) {
+    deleteLine(index: number) {
         this.list.push(...this.groups.splice(index, 1)[0].list);
     }
 
-    remove(index: number) {
+    removeItem(index: number) {
         this.list.splice(index, 1);
     }
 
-    ajout(index: number) {
+    addLine(index: number) {
         const mixColor = (color1: string, color2: string) =>
             new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
         const bgColor =

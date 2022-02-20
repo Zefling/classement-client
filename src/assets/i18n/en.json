@@ -21,7 +21,11 @@
             "group.title": "Ranking",
             "name": "Name",
             "list": "List",
-            "drop.image": "Drag'n drop picture here ↓"
+            "drop.image": "Drop picture here ↓ (JPG, PNG, GIF, WebP)"
+        },
+        "line": {
+            "add": "Add",
+            "delete": "Del."
         }
     }
 }

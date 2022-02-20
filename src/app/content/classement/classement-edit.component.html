@@ -75,10 +75,14 @@
                 </td>
                 <td class="actions">
                     <div class="button-actions">
-                        <button class="button-up" (click)="up(indexGrp)" *ngIf="!first">↑</button>
-                        <button class="button-down" (click)="down(indexGrp)" *ngIf="!last">↓</button>
-                        <button class="button-suppr" (click)="suppr(indexGrp)" *ngIf="!(first && last)">Suppr</button>
-                        <button class="button-add" (click)="ajout(indexGrp)">Add</button>
+                        <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">↑</button>
+                        <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">↓</button>
+                        <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
+                            {{ 'gererator.line.delete' | translate }}
+                        </button>
+                        <button class="button-add" (click)="addLine(indexGrp)">
+                            {{ 'gererator.line.add' | translate }}
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -100,7 +104,7 @@
                 (cdkDropListDropped)="drop(list, $event)"
             >
                 <div class="content-box" cdkDrag>
-                    <button class="btn-suppr" (click)="remove(index)">×</button>
+                    <button class="btn-suppr" (click)="removeItem(index)">×</button>
                     <img src="{{ item.target?.result }}" alt="{{ item.file.name }}" />
                 </div>
             </div>
