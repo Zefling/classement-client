@@ -8,6 +8,8 @@ export interface FileHandle {
     target?: FileReader | null;
 }
 
+const typesImage: string[] = ['image/png', 'image/gif', 'image/jpeg', 'image/webp'];
+
 @Directive({ selector: '[drop-image]' })
 export class DropImageDirective {
     @HostBinding('class.drop-image-zone') background = false;
@@ -38,18 +40,20 @@ export class DropImageDirective {
 
             for (let i = 0; i < evt.dataTransfer.files.length; i++) {
                 const file = evt.dataTransfer.files[i];
-                const data: FileHandle = {
-                    file,
-                    url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file)),
-                };
+                if (typesImage.includes(file.type)) {
+                    const data: FileHandle = {
+                        file,
+                        url: file.type === this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file)),
+                    };
 
-                let reader = new FileReader();
-                reader.onload = (ev: ProgressEvent<FileReader>) => {
-                    data.target = ev.target;
-                };
-                reader.readAsDataURL(data.file);
+                    let reader = new FileReader();
+                    reader.onload = (ev: ProgressEvent<FileReader>) => {
+                        data.target = ev.target;
+                    };
+                    reader.readAsDataURL(data.file);
 
-                files.push(data);
+                    files.push(data);
+                }
             }
 
             if (files.length > 0) {
