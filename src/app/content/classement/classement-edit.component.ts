@@ -5,12 +5,10 @@ import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { FileHandle } from 'src/app/directives/drop-image.directive';
+import { Category, Data, Group } from 'src/app/interface';
+import { SaveService } from 'src/app/services/save.service';
 
-import { FileHandle } from '../../directives/drop-image.directive';
-
-
-type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
-type Category = { value: string; label: string };
 
 @Component({
     selector: 'classement-edit',
@@ -18,6 +16,8 @@ type Category = { value: string; label: string };
     styleUrls: ['./classement-edit.component.scss'],
 })
 export class ClassementEditComponent {
+    id?: string;
+
     groups: Group[] = [
         { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
         { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
@@ -42,6 +42,8 @@ export class ClassementEditComponent {
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
+
+    constructor(private saveService: SaveService) {}
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
@@ -92,7 +94,7 @@ export class ClassementEditComponent {
         this.list.push(...files);
     }
 
-    saveImage() {
+    exportImage() {
         this.dialog.open = true;
         html2canvas(document.getElementById('table-classement') as HTMLElement, {
             logging: false,
@@ -105,4 +107,25 @@ export class ClassementEditComponent {
             element.appendChild(canvas);
         });
     }
+
+    saveLocal() {
+        const data: Data = {
+            options: {
+                title: this.title,
+                category: this.category,
+                itemWidth: this.itemWidth,
+                itemHeight: this.itemHeight,
+                itemPadding: this.itemPadding,
+            },
+            id: this.id,
+            groups: this.groups,
+            list: this.list,
+        };
+
+        this.saveService.saveLocal(data);
+
+        console.log(data);
+    }
+
+    saveServer() {}
 }

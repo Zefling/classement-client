@@ -26,6 +26,11 @@
         "line": {
             "add": "Ajout",
             "delete": "Suppr."
+        },
+        "actions": {
+            "export.image": "Export en image",
+            "save.local": "Sauvegarde locale",
+            "save.account": "Sauvegarde sur compte (prochainement)"
         }
     }
 }

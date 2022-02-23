@@ -26,6 +26,11 @@
         "line": {
             "add": "Add",
             "delete": "Del."
+        },
+        "actions": {
+            "export.image": "Image export ",
+            "save.local": "Loval save",
+            "save.account": "Save to account (coming soon) "
         }
     }
 }

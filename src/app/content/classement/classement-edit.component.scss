@@ -184,6 +184,7 @@ table {
     font-size: 120%;
     width: 100%;
     display: block;
+    box-sizing: border-box;
 }
 .color {
     display: inline;
@@ -201,6 +202,18 @@ table {
     background: #fffcf538;
     border: 1px solid #888;
     border-radius: 3px;
+}
+
+// actions ------------------------------------------------------------------
+
+.save-actions {
+    text-align: center;
+    padding: 10px;
+
+    button {
+        margin: 5px;
+        padding: 5px;
+    }
 }
 
 // render ------------------------------------------------------------------
