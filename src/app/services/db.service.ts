@@ -14,42 +14,14 @@ export class DBService {
         });
     }
 
-    saveLocal(data: Data): Promise<void> {
+    saveLocal(data: Data): Promise<string | undefined> {
         return new Promise((resolve, reject) => {
             this.formatData(data).then(formatData => {
-                this._getDB().then(db => {
-                    console.log('Save Infos');
-                    const transactionInfos = db.transaction(['classementInfos'], 'readwrite');
-
-                    transactionInfos.onerror = ev => {
-                        console.error('Infos: An error has occurred!', transactionInfos?.error?.message);
-                        reject();
-                    };
-                    transactionInfos.oncomplete = ev => {
-                        console.log('Infos added successfully!');
-                        resolve();
-                    };
-
-                    const objectStoreInfo = transactionInfos.objectStore('classementInfos');
-                    const requestInfos = objectStoreInfo.add(formatData.infos, formatData.infos.id);
-
-                    // ----------------------------------------------------
-
-                    console.log('Save Data');
-                    const transactionData = db.transaction(['classementData'], 'readwrite');
-
-                    transactionData.onerror = ev => {
-                        console.error('Data: An error has occurred!', transactionData?.error?.message);
-                        reject();
-                    };
-                    transactionData.oncomplete = ev => {
-                        console.log('Data added successfully!');
-                        resolve();
-                    };
-
-                    const objectStoreData = transactionData.objectStore('classementData');
-                    const requestData = objectStoreData.add(formatData.data, formatData.data.id);
-                });
+                this._getDB()
+                    .then(db => this._saveInfo(db, formatData))
+                    .then(db => this._saveData(db, formatData))
+                    .then(__ => resolve(formatData.infos.id))
+                    .catch(_ => reject());
             });
         });
     }
@@ -96,6 +68,42 @@ export class DBService {
         const hashBuffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(message));
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    private _saveInfo(db: IDBDatabase, formatData: FormatedData): Promise<IDBDatabase> {
+        return new Promise((resolve, reject) => {
+            console.log('Save Infos');
+            const transactionInfos = db.transaction(['classementInfos'], 'readwrite');
+
+            transactionInfos.onerror = ev => {
+                console.error('Infos: An error has occurred!', transactionInfos?.error?.message);
+                reject();
+            };
+            transactionInfos.oncomplete = ev => {
+                console.log('Infos added successfully!');
+                resolve(db);
+            };
+
+            transactionInfos.objectStore('classementInfos').add(formatData.infos, formatData.infos.id);
+        });
+    }
+
+    private _saveData(db: IDBDatabase, formatData: FormatedData): Promise<IDBDatabase> {
+        return new Promise((resolve, reject) => {
+            console.log('Save Data');
+            const transactionData = db.transaction(['classementData'], 'readwrite');
+
+            transactionData.onerror = ev => {
+                console.error('Data: An error has occurred!', transactionData?.error?.message);
+                reject();
+            };
+            transactionData.oncomplete = ev => {
+                console.log('Data added successfully!');
+                resolve(db);
+            };
+
+            transactionData.objectStore('classementData').add(formatData.data, formatData.data.id);
+        });
     }
 
     private _getDB(): Promise<IDBDatabase> {
