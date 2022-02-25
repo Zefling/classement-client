@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { FileHandle } from 'src/app/directives/drop-image.directive';
 import { Category, Data, Group } from 'src/app/interface';
-import { SaveService } from 'src/app/services/save.service';
+import { DBService } from 'src/app/services/db.service';
 
 
 @Component({
@@ -43,7 +43,7 @@ export class ClassementEditComponent {
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
-    constructor(private saveService: SaveService) {}
+    constructor(private bdService: DBService) {}
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
@@ -122,7 +122,7 @@ export class ClassementEditComponent {
             list: this.list,
         };
 
-        this.saveService.saveLocal(data);
+        this.bdService.saveLocal(data);
 
         console.log(data);
     }

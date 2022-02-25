@@ -20,15 +20,22 @@ export interface Data {
 }
 
 export interface FormatedData {
-    options: {
-        title: string;
-        category: string;
-        itemWidth: number;
-        itemHeight: number;
-        itemPadding: number;
+    infos: {
+        options: {
+            title: string;
+            category: string;
+            itemWidth: number;
+            itemHeight: number;
+            itemPadding: number;
+        };
+        id?: string;
+        date: string;
+        groupsLenght: number;
+        listLenght: number;
     };
-    id?: string;
-    date: string;
-    groups: FormatedGroup[];
-    list: FileString[];
+    data: {
+        id?: string;
+        groups: FormatedGroup[];
+        list: FileString[];
+    };
 }
