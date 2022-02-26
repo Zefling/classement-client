@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 
 import { FileHandle } from '../directives/drop-image.directive';
-import { Data, FileString, FormatedData } from '../interface';
+import { Data, FileString, FormatedInfos, FormatedInfosData } from '../interface';
 
+
+enum Store {
+    infos = 'classementInfos',
+    data = 'classementData',
+}
 
 @Injectable({ providedIn: 'root' })
 export class DBService {
     private _db!: IDBDatabase;
 
-    getLocalList(): Promise<void> {
-        return new Promise((resolve, reject) => {
-            this._getDB().then(db => {});
-        });
+    getLocalList(): Promise<FormatedInfos[]> {
+        return this._getDB().then(db => this._getInfosList(db));
     }
 
     saveLocal(data: Data): Promise<string | undefined> {
@@ -26,7 +29,7 @@ export class DBService {
         });
     }
 
-    async formatData(data: Data): Promise<FormatedData> {
+    async formatData(data: Data): Promise<FormatedInfosData> {
         const id = data.id || (await this.digestMessage(`${new Date()}`));
         return {
             infos: {
@@ -70,39 +73,54 @@ export class DBService {
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    private _saveInfo(db: IDBDatabase, formatData: FormatedData): Promise<IDBDatabase> {
+    private _getInfosList(db: IDBDatabase): Promise<FormatedInfos[]> {
+        return new Promise((resolve, reject) => {
+            console.log('Read Infos');
+            const list = db.transaction([Store.infos], 'readwrite').objectStore(Store.infos).getAll();
+            list.onsuccess = function (this: IDBRequest<FormatedInfos[]>) {
+                console.log('getInfosList', this.result);
+                resolve(this.result);
+            };
+            list.onerror = () => {
+                console.error('getInfosList: An error has occurred!', list?.error?.message);
+                reject();
+            };
+        });
+    }
+
+    private _saveInfo(db: IDBDatabase, formatData: FormatedInfosData): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             console.log('Save Infos');
-            const transactionInfos = db.transaction(['classementInfos'], 'readwrite');
+            const transactionInfos = db.transaction([Store.infos], 'readwrite');
 
-            transactionInfos.onerror = ev => {
+            transactionInfos.onerror = () => {
                 console.error('Infos: An error has occurred!', transactionInfos?.error?.message);
                 reject();
             };
-            transactionInfos.oncomplete = ev => {
+            transactionInfos.oncomplete = e => {
                 console.log('Infos added successfully!');
                 resolve(db);
             };
 
-            transactionInfos.objectStore('classementInfos').add(formatData.infos, formatData.infos.id);
+            transactionInfos.objectStore(Store.infos).add(formatData.infos, formatData.infos.id);
         });
     }
 
-    private _saveData(db: IDBDatabase, formatData: FormatedData): Promise<IDBDatabase> {
+    private _saveData(db: IDBDatabase, formatData: FormatedInfosData): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             console.log('Save Data');
-            const transactionData = db.transaction(['classementData'], 'readwrite');
+            const transactionData = db.transaction([Store.data], 'readwrite');
 
-            transactionData.onerror = ev => {
+            transactionData.onerror = () => {
                 console.error('Data: An error has occurred!', transactionData?.error?.message);
                 reject();
             };
-            transactionData.oncomplete = ev => {
+            transactionData.oncomplete = () => {
                 console.log('Data added successfully!');
                 resolve(db);
             };
 
-            transactionData.objectStore('classementData').add(formatData.data, formatData.data.id);
+            transactionData.objectStore(Store.data).add(formatData.data, formatData.data.id);
         });
     }
 
@@ -114,16 +132,16 @@ export class DBService {
                 const dbReq = indexedDB.open('classementDB', 1);
 
                 dbReq.onerror = () => {
-                    console.error(dbReq.error);
+                    console.error('dbReq', dbReq.error);
                     reject();
                 };
 
                 dbReq.onupgradeneeded = () => {
                     console.log('Upgrade DB');
-                    dbReq.result.createObjectStore('classementInfos').createIndex('infos', 'infos', {
+                    dbReq.result.createObjectStore(Store.infos).createIndex('infos', 'infos', {
                         unique: true,
                     });
-                    dbReq.result.createObjectStore('classementData').createIndex('data', 'data', {
+                    dbReq.result.createObjectStore(Store.data).createIndex('data', 'data', {
                         unique: true,
                     });
                 };

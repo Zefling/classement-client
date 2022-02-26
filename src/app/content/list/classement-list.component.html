@@ -1,2 +1,26 @@
 <h2>{{ 'menu.list' | translate }}</h2>
-<p>intro</p>
+<p>{{ 'list.intro' | translate }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th class="title">{{ 'list.title.name' | translate }}</th>
+            <th class="category">{{ 'list.category.name' | translate }}</th>
+            <th class="date">{{ 'list.date' | translate }}</th>
+            <th class="groups">{{ 'list.count.group' | translate }}</th>
+            <th class="items">{{ 'list.count.item' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of result">
+            <td class="title">{{ item.options.title || ('list.title.undefined' | translate) }}</td>
+            <td class="category">{{ item.options.category || ('list.category.undefined' | translate) }}</td>
+            <td class="date">
+                <span>{{ item.date | date: 'dd/MM/yyyy' }}</span>
+                <span>{{ item.date | date: 'HH:mm' }}</span>
+            </td>
+            <td class="groups">{{ item.groupsLenght }}</td>
+            <td class="items">{{ item.listLenght }}</td>
+        </tr>
+    </tbody>
+</table>

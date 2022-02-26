@@ -5,6 +5,22 @@
         "list": "List",
         "new": "New"
     },
+    "list": {
+        "intro": "List of Classements in memory.",
+        "title": {
+            "name": "Title",
+            "undefined": "No title"
+        },
+        "date": "Date",
+        "category": {
+            "name": "Category",
+            "undefined": "undefined"
+        },
+        "count": {
+            "group": "Number of groups",
+            "item": "Number of items"
+        }
+    },
     "gererator": {
         "title": "New ranking",
         "options": {

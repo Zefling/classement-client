@@ -19,23 +19,26 @@ export interface Data {
     list: FileHandle[];
 }
 
+export interface FormatedInfos {
+    options: {
+        title: string;
+        category: string;
+        itemWidth: number;
+        itemHeight: number;
+        itemPadding: number;
+    };
+    id?: string;
+    date: string | Date;
+    groupsLenght: number;
+    listLenght: number;
+}
+
 export interface FormatedData {
-    infos: {
-        options: {
-            title: string;
-            category: string;
-            itemWidth: number;
-            itemHeight: number;
-            itemPadding: number;
-        };
-        id?: string;
-        date: string;
-        groupsLenght: number;
-        listLenght: number;
-    };
-    data: {
-        id?: string;
-        groups: FormatedGroup[];
-        list: FileString[];
-    };
+    id?: string;
+    groups: FormatedGroup[];
+    list: FileString[];
+}
+export interface FormatedInfosData {
+    infos: FormatedInfos;
+    data: FormatedData;
 }

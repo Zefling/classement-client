@@ -2,3 +2,28 @@
     display: block;
     margin: 0 15px 10px;
 }
+
+table {
+    width: 100%;
+}
+
+.date,
+.groups,
+.items {
+    width: 100px;
+}
+.category {
+    width: 200px;
+}
+
+tbody {
+    date {
+        text-align: center;
+    }
+
+    .groups,
+    .items {
+        text-align: right;
+        padding-right: 10px;
+    }
+}

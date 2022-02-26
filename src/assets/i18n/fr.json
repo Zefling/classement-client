@@ -5,6 +5,22 @@
         "list": "Liste",
         "new": "Nouveau"
     },
+    "list": {
+        "intro": "Liste des Classements en mémoire.",
+        "title": {
+            "name": "Titre",
+            "undefined": "Sans titre"
+        },
+        "date": "Date",
+        "category": {
+            "name": "Categorie",
+            "undefined": "non défini"
+        },
+        "count": {
+            "group": "Nombre de groupes",
+            "item": "Nombre d'élements"
+        }
+    },
     "gererator": {
         "title": "Nouveau classement",
         "options": {
