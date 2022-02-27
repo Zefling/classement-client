@@ -92,7 +92,7 @@
     <div class="save-actions">
         <button (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
         <button (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
-        <button (click)="saveServer()" disabled>{{ 'gererator.actions.export.account' | translate }}</button>
+        <!--<button (click)="saveServer()" disabled>{{ 'gererator.actions.export.account' | translate }}</button>-->
     </div>
 
     <div drop-image (fileLoaded)="addFile($event)">
