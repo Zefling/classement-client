@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "ng build && sed -i -e \"s#<base href=\\\"/\\\">#<base href=\\\"/classement-demo\\\"/>#ig\" ./dist/classement/index.html",
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
     },
