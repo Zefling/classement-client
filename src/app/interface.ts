@@ -1,7 +1,7 @@
 import { FileHandle } from './directives/drop-image.directive';
 
 
-export type FileString = { url?: string; name: string };
+export type FileString = { url?: string; name: string; size: number; realSize: number; type: string; date: number };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
@@ -18,8 +18,8 @@ export interface Data extends IndexedData {
         itemHeight: number;
         itemPadding: number;
     };
-    groups: Group[];
-    list: FileHandle[];
+    groups: FormatedGroup[];
+    list: FileString[];
 }
 
 export interface FormatedInfos extends IndexedData {

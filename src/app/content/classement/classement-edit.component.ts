@@ -8,11 +8,11 @@ import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { FileHandle } from 'src/app/directives/drop-image.directive';
-import { Category, Data, Group } from 'src/app/interface';
+import { Category, Data, FileString, FormatedGroup } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 
 
-const defautGroup: Group[] = [
+const defautGroup: FormatedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
     { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
     { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
@@ -30,8 +30,8 @@ export class ClassementEditComponent implements OnDestroy {
     editMode = false;
     id?: string;
 
-    groups: Group[] = [];
-    list: FileHandle[] = [];
+    groups: FormatedGroup[] = [];
+    list: FileString[] = [];
 
     categories: Category[] = [
         { value: 'anime', label: 'Anime' },
@@ -63,10 +63,8 @@ export class ClassementEditComponent implements OnDestroy {
                             this.itemWidth = data.infos.options.itemWidth;
                             this.itemHeight = data.infos.options.itemHeight;
                             this.itemPadding = data.infos.options.itemPadding;
-                            this.groups = defautGroup;
-                            // todo change modele of data
-                            // this.groups = data.data.groups;
-                            // this.list = data.data.list;
+                            this.groups = data.data.groups;
+                            this.list = data.data.list;
                             this.editMode = true;
                         })
                         .catch(() => {
@@ -89,7 +87,7 @@ export class ClassementEditComponent implements OnDestroy {
         this._sub.forEach(e => e.unsubscribe());
     }
 
-    drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
+    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
         const indexTarget = event.container.data.index;
         if (event.previousContainer.data.list === event.container.data.list) {
@@ -134,8 +132,21 @@ export class ClassementEditComponent implements OnDestroy {
         this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
     }
 
-    addFiles(files: FileHandle[]) {
-        this.list.push(...files);
+    addFile(file: FileHandle) {
+        const url = file.target?.result ? String(file.target?.result) : undefined;
+        if (url) {
+            console.log('Add file:', file.file.name);
+            this.list.push({
+                name: file.file.name,
+                url: url,
+                size: url.length,
+                realSize: file.file.size,
+                type: file.file.type,
+                date: file.file.lastModified,
+            });
+        } else {
+            console.log('Error file:', file.file.name);
+        }
     }
 
     exportImage() {

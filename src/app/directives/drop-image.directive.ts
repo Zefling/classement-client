@@ -14,7 +14,7 @@ const typesImage: string[] = ['image/png', 'image/gif', 'image/jpeg', 'image/web
 export class DropImageDirective {
     @HostBinding('class.drop-image-zone') background = false;
 
-    @Output() files = new EventEmitter();
+    @Output() fileLoaded = new EventEmitter();
 
     constructor(private sanitizer: DomSanitizer) {}
 
@@ -36,8 +36,6 @@ export class DropImageDirective {
         this.background = false;
 
         if (evt.dataTransfer?.files?.length) {
-            const files: FileHandle[] = [];
-
             for (let i = 0; i < evt.dataTransfer.files.length; i++) {
                 const file = evt.dataTransfer.files[i];
                 if (typesImage.includes(file.type)) {
@@ -50,14 +48,11 @@ export class DropImageDirective {
                     reader.onload = (ev: ProgressEvent<FileReader>) => {
                         data.target = ev.target;
                     };
+                    reader.onloadend = (ev: ProgressEvent<FileReader>) => {
+                        this.fileLoaded.emit(data);
+                    };
                     reader.readAsDataURL(data.file);
-
-                    files.push(data);
                 }
-            }
-
-            if (files.length > 0) {
-                this.files.emit(files);
             }
         }
         evt.preventDefault();

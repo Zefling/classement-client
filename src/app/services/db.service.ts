@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FileHandle } from '../directives/drop-image.directive';
-import { Data, FileString, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
+import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
 
 
 enum Store {
@@ -73,10 +72,10 @@ export class DBService {
                         bgColor: e.bgColor,
                         txtColor: e.txtColor,
                         name: e.name,
-                        list: e.list.map(f => this._fileToString(f)),
+                        list: e.list,
                     };
                 }),
-                list: data.list.map(e => this._fileToString(e)),
+                list: data.list,
             },
         };
     }
@@ -85,13 +84,6 @@ export class DBService {
         const hashBuffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(message));
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    private _fileToString(file: FileHandle): FileString {
-        return {
-            url: file.target?.result ? String(file.target?.result) : undefined,
-            name: file.file.name,
-        };
     }
 
     private _getInfosList(db: IDBDatabase): Promise<FormatedInfos[]> {
