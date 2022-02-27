@@ -1,6 +1,8 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+import { FileString } from '../interface';
+
 
 export interface FileHandle {
     file: File;
@@ -14,7 +16,7 @@ const typesImage: string[] = ['image/png', 'image/gif', 'image/jpeg', 'image/web
 export class DropImageDirective {
     @HostBinding('class.drop-image-zone') background = false;
 
-    @Output() fileLoaded = new EventEmitter();
+    @Output() fileLoaded = new EventEmitter<FileString>();
 
     constructor(private sanitizer: DomSanitizer) {}
 
