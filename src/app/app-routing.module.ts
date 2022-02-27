@@ -20,7 +20,7 @@ const routes: Routes = [
         component: ClassementEditComponent,
     },
     {
-        path: 'classement/edit/:id:',
+        path: 'classement/edit/:id',
         component: ClassementEditComponent,
     },
 ];

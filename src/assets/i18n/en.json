@@ -27,7 +27,10 @@
         }
     },
     "gererator": {
-        "title": "New ranking",
+        "title": {
+            "new": "New ranking",
+            "edit": "Edit ranking"
+        },
         "options": {
             "group.title": "Options",
             "title": "Title:",

@@ -1,8 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
+import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { FileHandle } from 'src/app/directives/drop-image.directive';
@@ -10,22 +12,25 @@ import { Category, Data, Group } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 
 
+const defautGroup: Group[] = [
+    { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
+    { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
+    { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
+    { name: 'C', bgColor: '#f9f06b', txtColor: '#000000', list: [] },
+    { name: 'D', bgColor: '#8ff0a4', txtColor: '#000000', list: [] },
+    { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
+];
+
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
 })
-export class ClassementEditComponent {
+export class ClassementEditComponent implements OnDestroy {
+    editMode = false;
     id?: string;
 
-    groups: Group[] = [
-        { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
-        { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
-        { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
-        { name: 'C', bgColor: '#f9f06b', txtColor: '#000000', list: [] },
-        { name: 'D', bgColor: '#8ff0a4', txtColor: '#000000', list: [] },
-        { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
-    ];
+    groups: Group[] = [];
     list: FileHandle[] = [];
 
     categories: Category[] = [
@@ -43,7 +48,46 @@ export class ClassementEditComponent {
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
-    constructor(private bdService: DBService) {}
+    private _sub: Subscription[] = [];
+
+    constructor(private bdService: DBService, private router: Router, private route: ActivatedRoute) {
+        this._sub.push(
+            this.route.params.subscribe(params => {
+                if (params['id'] !== 'new') {
+                    console.log('params', params);
+                    this.bdService
+                        .loadLocal(params['id'])
+                        .then(data => {
+                            this.title = data.infos.options.title;
+                            this.category = data.infos.options.category;
+                            this.itemWidth = data.infos.options.itemWidth;
+                            this.itemHeight = data.infos.options.itemHeight;
+                            this.itemPadding = data.infos.options.itemPadding;
+                            this.groups = defautGroup;
+                            // todo change modele of data
+                            // this.groups = data.data.groups;
+                            // this.list = data.data.list;
+                            this.editMode = true;
+                        })
+                        .catch(() => {
+                            this.router.navigate(['new']);
+                        });
+                } else {
+                    this.title = '';
+                    this.category = '';
+                    this.itemWidth = 100;
+                    this.itemHeight = 100;
+                    this.itemPadding = 10;
+                    this.groups = defautGroup;
+                    this.editMode = false;
+                }
+            }),
+        );
+    }
+
+    ngOnDestroy() {
+        this._sub.forEach(e => e.unsubscribe());
+    }
 
     drop(list: FileHandle[], event: CdkDragDrop<{ list: FileHandle[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;

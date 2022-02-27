@@ -27,6 +27,17 @@ export class DBService {
         });
     }
 
+    loadLocal(id: string): Promise<FormatedInfosData> {
+        const formatData: any = {};
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._getByIdDB(db, Store.infos, id, formatData, 'infos'))
+                .then(db => this._getByIdDB(db, Store.data, id, formatData, 'data'))
+                .then(__ => resolve(formatData))
+                .catch(_ => reject());
+        });
+    }
+
     saveLocal(data: Data): Promise<string | undefined> {
         return new Promise((resolve, reject) => {
             this._formatData(data).then(formatData => {
@@ -93,6 +104,30 @@ export class DBService {
             };
             list.onerror = () => {
                 console.error('getInfosList: An error has occurred!', list?.error?.message);
+                reject();
+            };
+        });
+    }
+
+    private _getByIdDB<T>(
+        db: IDBDatabase,
+        store: Store,
+        id: string,
+        data: FormatedInfosData,
+        attr: 'infos' | 'data',
+    ): Promise<IDBDatabase> {
+        return new Promise((resolve, reject) => {
+            console.log(`Get data in “${store}” for [${id}].`);
+            const transactionData = db.transaction([store], 'readwrite');
+            const item = transactionData.objectStore(store).get(id);
+
+            item.onsuccess = function (this: IDBRequest<T>) {
+                console.log('getInfosList', this.result);
+                (data as any)[attr] = this.result;
+                resolve(db);
+            };
+            item.onerror = () => {
+                console.error('getByIdDB: An error has occurred!', item?.error?.message);
                 reject();
             };
         });

@@ -27,7 +27,10 @@
         }
     },
     "gererator": {
-        "title": "Nouveau classement",
+        "title": {
+            "new": "Nouveau classement",
+            "edit": "Édition d'un classement"
+        },
         "options": {
             "group.title": "Options",
             "title": "Titre :",
