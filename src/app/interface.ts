@@ -6,7 +6,11 @@ export type FormatedGroup = { name: string; bgColor: string; txtColor: string; l
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 
-export interface Data {
+export interface IndexedData {
+    id?: string;
+}
+
+export interface Data extends IndexedData {
     options: {
         title: string;
         category: string;
@@ -14,12 +18,11 @@ export interface Data {
         itemHeight: number;
         itemPadding: number;
     };
-    id?: string;
     groups: Group[];
     list: FileHandle[];
 }
 
-export interface FormatedInfos {
+export interface FormatedInfos extends IndexedData {
     options: {
         title: string;
         category: string;
@@ -27,17 +30,16 @@ export interface FormatedInfos {
         itemHeight: number;
         itemPadding: number;
     };
-    id?: string;
     date: string | Date;
     groupsLenght: number;
     listLenght: number;
 }
 
-export interface FormatedData {
-    id?: string;
+export interface FormatedData extends IndexedData {
     groups: FormatedGroup[];
     list: FileString[];
 }
+
 export interface FormatedInfosData {
     infos: FormatedInfos;
     data: FormatedData;

@@ -9,6 +9,7 @@
             <th class="date">{{ 'list.date' | translate }}</th>
             <th class="groups">{{ 'list.count.group' | translate }}</th>
             <th class="items">{{ 'list.count.item' | translate }}</th>
+            <th class="actions">{{ 'list.action.name' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,10 @@
             </td>
             <td class="groups">{{ item.groupsLenght }}</td>
             <td class="items">{{ item.listLenght }}</td>
+            <td class="actions">
+                <a [routerLink]="'/classement/edit/' + item.id">{{ 'list.action.edit' | translate }}</a>
+                <a (click)="delete(item)">{{ 'list.action.delete' | translate }}</a>
+            </td>
         </tr>
     </tbody>
 </table>

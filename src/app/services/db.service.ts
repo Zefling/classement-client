@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FileHandle } from '../directives/drop-image.directive';
-import { Data, FileString, FormatedInfos, FormatedInfosData } from '../interface';
+import { Data, FileString, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
 
 
 enum Store {
@@ -17,20 +17,30 @@ export class DBService {
         return this._getDB().then(db => this._getInfosList(db));
     }
 
+    delete(id: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._deleteDB(db, Store.infos, id))
+                .then(db => this._deleteDB(db, Store.data, id))
+                .then(__ => resolve())
+                .catch(_ => reject());
+        });
+    }
+
     saveLocal(data: Data): Promise<string | undefined> {
         return new Promise((resolve, reject) => {
-            this.formatData(data).then(formatData => {
+            this._formatData(data).then(formatData => {
                 this._getDB()
-                    .then(db => this._saveInfo(db, formatData))
-                    .then(db => this._saveData(db, formatData))
+                    .then(db => this._saveDB(db, Store.infos, formatData.infos))
+                    .then(db => this._saveDB(db, Store.data, formatData.data))
                     .then(__ => resolve(formatData.infos.id))
                     .catch(_ => reject());
             });
         });
     }
 
-    async formatData(data: Data): Promise<FormatedInfosData> {
-        const id = data.id || (await this.digestMessage(`${new Date()}`));
+    private async _formatData(data: Data): Promise<FormatedInfosData> {
+        const id = data.id || (await this._digestMessage(`${new Date()}`));
         return {
             infos: {
                 id,
@@ -52,25 +62,25 @@ export class DBService {
                         bgColor: e.bgColor,
                         txtColor: e.txtColor,
                         name: e.name,
-                        list: e.list.map(f => this.fileToString(f)),
+                        list: e.list.map(f => this._fileToString(f)),
                     };
                 }),
-                list: data.list.map(e => this.fileToString(e)),
+                list: data.list.map(e => this._fileToString(e)),
             },
         };
     }
 
-    fileToString(file: FileHandle): FileString {
+    private async _digestMessage(message?: string): Promise<string> {
+        const hashBuffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(message));
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    private _fileToString(file: FileHandle): FileString {
         return {
             url: file.target?.result ? String(file.target?.result) : undefined,
             name: file.file.name,
         };
-    }
-
-    async digestMessage(message?: string): Promise<string> {
-        const hashBuffer = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(message));
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
     private _getInfosList(db: IDBDatabase): Promise<FormatedInfos[]> {
@@ -88,39 +98,39 @@ export class DBService {
         });
     }
 
-    private _saveInfo(db: IDBDatabase, formatData: FormatedInfosData): Promise<IDBDatabase> {
+    private _deleteDB(db: IDBDatabase, store: Store, id: string): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            console.log('Save Infos');
-            const transactionInfos = db.transaction([Store.infos], 'readwrite');
-
-            transactionInfos.onerror = () => {
-                console.error('Infos: An error has occurred!', transactionInfos?.error?.message);
-                reject();
-            };
-            transactionInfos.oncomplete = e => {
-                console.log('Infos added successfully!');
-                resolve(db);
-            };
-
-            transactionInfos.objectStore(Store.infos).add(formatData.infos, formatData.infos.id);
-        });
-    }
-
-    private _saveData(db: IDBDatabase, formatData: FormatedInfosData): Promise<IDBDatabase> {
-        return new Promise((resolve, reject) => {
-            console.log('Save Data');
-            const transactionData = db.transaction([Store.data], 'readwrite');
+            console.log(`Remove data in “${store}”.`);
+            const transactionData = db.transaction([store], 'readwrite');
 
             transactionData.onerror = () => {
-                console.error('Data: An error has occurred!', transactionData?.error?.message);
+                console.error(`An error in “${store}” has occurred!`, transactionData?.error?.message);
                 reject();
             };
             transactionData.oncomplete = () => {
-                console.log('Data added successfully!');
+                console.log(`Data removed successfully in “${store}”.`);
                 resolve(db);
             };
 
-            transactionData.objectStore(Store.data).add(formatData.data, formatData.data.id);
+            transactionData.objectStore(store).delete(id);
+        });
+    }
+
+    private _saveDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
+        return new Promise((resolve, reject) => {
+            console.log(`Add Data in “${store}”.`);
+            const transactionData = db.transaction([store], 'readwrite');
+
+            transactionData.onerror = () => {
+                console.error(`An error in “${store}” has occurred!`, transactionData?.error?.message);
+                reject();
+            };
+            transactionData.oncomplete = () => {
+                console.log(`Data added successfully in “${store}”.`);
+                resolve(db);
+            };
+
+            transactionData.objectStore(store).add(data, data.id);
         });
     }
 
@@ -132,7 +142,7 @@ export class DBService {
                 const dbReq = indexedDB.open('classementDB', 1);
 
                 dbReq.onerror = () => {
-                    console.error('dbReq', dbReq.error);
+                    console.error('Error for init Database.', dbReq.error);
                     reject();
                 };
 
@@ -147,7 +157,7 @@ export class DBService {
                 };
 
                 dbReq.onsuccess = () => {
-                    console.log('DB update successfully ');
+                    console.log('DB init successfully.');
                     this._db = dbReq.result;
                     resolve(this._db);
                 };

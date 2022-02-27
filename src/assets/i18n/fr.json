@@ -19,6 +19,11 @@
         "count": {
             "group": "Nombre de groupes",
             "item": "Nombre d'élements"
+        },
+        "action": {
+            "name": "Action",
+            "edit": "Éditer",
+            "delete": "Retirer"
         }
     },
     "gererator": {

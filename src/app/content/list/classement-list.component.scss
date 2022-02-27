@@ -5,6 +5,7 @@
 
 table {
     width: 100%;
+    border-spacing: 0;
 }
 
 .date,
@@ -16,7 +17,20 @@ table {
     width: 200px;
 }
 
+.actions {
+    width: 200px;
+}
+
+thead {
+    background: #c9c9c9;
+}
+
 tbody {
+    tr:hover {
+        background: #ecdfdf;
+        cursor: default;
+    }
+
     date {
         text-align: center;
     }
@@ -26,4 +40,22 @@ tbody {
         text-align: right;
         padding-right: 10px;
     }
+
+    .actions {
+        text-align: center;
+        a {
+            margin: auto 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #4e4ee6;
+
+            &:hover {
+                color: #202081;
+            }
+        }
+    }
+}
+
+td {
+    padding: 10px 5px;
 }

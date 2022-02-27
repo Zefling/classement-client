@@ -19,6 +19,11 @@
         "count": {
             "group": "Number of groups",
             "item": "Number of items"
+        },
+        "action": {
+            "name": "Action",
+            "edit": "Edit",
+            "delete": "Remove"
         }
     },
     "gererator": {

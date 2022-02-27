@@ -19,4 +19,13 @@ export class ClassementListComponent {
             this.result = result;
         });
     }
+
+    delete(item: FormatedInfos) {
+        if (item.id) {
+            this.dbservice.delete(item.id).then(() => {
+                console.log('Remove line');
+                this.result.splice(this.result.indexOf(item), 1);
+            });
+        }
+    }
 }
