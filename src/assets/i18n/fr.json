@@ -8,7 +8,8 @@
     "home": {
         "intro": "Application web pour faire un classement par images.",
         "source.code": "Code source",
-        "source.licence": "Licence publique générale GNU (GNU GPL), version 3"
+        "source.license": "Licence",
+        "source.gpl3": "Licence publique générale GNU (GNU GPL), version 3"
     },
     "list": {
         "intro": "Liste des Classements en mémoire.",
@@ -28,7 +29,9 @@
             "name": "Action",
             "edit": "Éditer",
             "delete": "Retirer"
-        }
+        },
+        "no.result": "Pas de résultats.",
+        "create.new": "Créez votre classement."
     },
     "category": {
         "anime": "Anime",

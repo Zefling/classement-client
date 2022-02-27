@@ -1,7 +1,7 @@
 <h2>{{ 'menu.list' | translate }}</h2>
 <p>{{ 'list.intro' | translate }}</p>
 
-<table>
+<table *ngIf="result?.length; else noResult">
     <thead>
         <tr>
             <th class="title">{{ 'list.title.name' | translate }}</th>
@@ -29,3 +29,10 @@
         </tr>
     </tbody>
 </table>
+
+<ng-template #noResult>
+    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p>
+        <a routerLink="/classement/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+    </p>
+</ng-template>

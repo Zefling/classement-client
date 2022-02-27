@@ -8,7 +8,8 @@
     "home": {
         "intro": "AWeb application to make a classification by images.",
         "source.code": "Code source",
-        "source.licence": "GNU General Public License v3.0"
+        "source.license": "License",
+        "source.gpl3": "GNU General Public License v3.0"
     },
     "list": {
         "intro": "List of Classements in memory.",
