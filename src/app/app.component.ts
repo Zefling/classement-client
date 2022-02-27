@@ -15,18 +15,17 @@ const languages = [
 })
 export class AppComponent {
     languages = languages;
-    selectedLang = 'en';
+    selectedLang!: string;
 
     constructor(private _translate: TranslateService) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
-        if (l.length) {
-            this.selectedLang = l[0].value;
-        }
-        this._translate.reloadLang(this.selectedLang);
+        this.selectedLang = l.length ? l[0].value : 'en';
+        this.updateLanguage(this.selectedLang);
     }
 
     updateLanguage(event: string) {
+        console.log('Update language: ' + event);
         this._translate.use(event);
     }
 }

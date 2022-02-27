@@ -31,8 +31,11 @@ tbody {
         cursor: default;
     }
 
-    date {
+    .date {
         text-align: center;
+        span {
+            margin: auto 5px;
+        }
     }
 
     .groups,
