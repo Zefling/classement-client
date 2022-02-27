@@ -33,11 +33,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Roadmap
 
 -   Soon
-    -   Save in IndexedDB (partial)
-    -   Read in IndexedDB (in progress)
-    -   Edit data in IndexedDB (future)
+    -   Clone a classification
 -   Later
     -   Server save
     -   Account management (server)
-    -   Clone a classification (client/server)
+    -   Clone a classification (server)
     -   Admin space (client/server)

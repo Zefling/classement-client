@@ -5,6 +5,11 @@
         "list": "List",
         "new": "New"
     },
+    "home": {
+        "intro": "AWeb application to make a classification by images.",
+        "source.code": "Code source",
+        "source.licence": "GNU General Public License v3.0"
+    },
     "list": {
         "intro": "List of Classements in memory.",
         "title": {

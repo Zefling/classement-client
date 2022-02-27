@@ -2,3 +2,22 @@
     display: block;
     margin: 0 15px 10px;
 }
+
+.infos {
+    display: flex;
+
+    & > div {
+        flex: 1;
+    }
+    padding: 100px 10px;
+}
+
+.source,
+.licence {
+    text-align: center;
+}
+
+.licence svg {
+    height: 85px;
+    margin: -20px 0;
+}

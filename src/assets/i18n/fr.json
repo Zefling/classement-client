@@ -5,6 +5,11 @@
         "list": "Liste",
         "new": "Nouveau"
     },
+    "home": {
+        "intro": "Application web pour faire un classement par images.",
+        "source.code": "Code source",
+        "source.licence": "Licence publique générale GNU (GNU GPL), version 3"
+    },
     "list": {
         "intro": "Liste des Classements en mémoire.",
         "title": {
