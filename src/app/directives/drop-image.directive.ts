@@ -49,7 +49,7 @@ export class DropImageDirective {
                         data.target = ev.target;
                     };
                     reader.onloadend = (ev: ProgressEvent<FileReader>) => {
-                        this.fileLoaded.emit(data);
+                        this._format(data);
                     };
                     reader.readAsDataURL(data.file);
                 }
@@ -57,5 +57,22 @@ export class DropImageDirective {
         }
         evt.preventDefault();
         evt.stopPropagation();
+    }
+
+    private _format(file: FileHandle) {
+        const url = file.target?.result ? String(file.target?.result) : undefined;
+        if (url) {
+            console.log('Add file:', file.file.name);
+            this.fileLoaded.emit({
+                name: file.file.name,
+                url: url,
+                size: url.length,
+                realSize: file.file.size,
+                type: file.file.type,
+                date: file.file.lastModified,
+            });
+        } else {
+            console.log('Error file:', file.file.name);
+        }
     }
 }

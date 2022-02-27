@@ -7,8 +7,7 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { FileHandle } from 'src/app/directives/drop-image.directive';
-import { Category, Data, FileString, FormatedGroup } from 'src/app/interface';
+import { Data, FileString, FormatedGroup } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 
 
@@ -33,11 +32,7 @@ export class ClassementEditComponent implements OnDestroy {
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
 
-    categories: Category[] = [
-        { value: 'anime', label: 'Anime' },
-        { value: 'jv', label: 'Video Game' },
-        { value: 'film', label: 'Movie' },
-    ];
+    categories: String[] = ['anime', 'video.game', 'movie'];
 
     title = '';
     category = '';
@@ -54,7 +49,7 @@ export class ClassementEditComponent implements OnDestroy {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] !== 'new') {
-                    console.log('params', params);
+                    this.id = params['id'];
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {
@@ -132,21 +127,8 @@ export class ClassementEditComponent implements OnDestroy {
         this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
     }
 
-    addFile(file: FileHandle) {
-        const url = file.target?.result ? String(file.target?.result) : undefined;
-        if (url) {
-            console.log('Add file:', file.file.name);
-            this.list.push({
-                name: file.file.name,
-                url: url,
-                size: url.length,
-                realSize: file.file.size,
-                type: file.file.type,
-                date: file.file.lastModified,
-            });
-        } else {
-            console.log('Error file:', file.file.name);
-        }
+    addFile(file: FileString) {
+        this.list.push(file);
     }
 
     exportImage() {
@@ -177,9 +159,7 @@ export class ClassementEditComponent implements OnDestroy {
             list: this.list,
         };
 
-        this.bdService.saveLocal(data);
-
-        console.log(data);
+        this.bdService.saveLocal(data).then(id => this.id);
     }
 
     saveServer() {}

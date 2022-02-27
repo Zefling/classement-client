@@ -13,8 +13,7 @@
         },
         "date": "Date",
         "category": {
-            "name": "Categorie",
-            "undefined": "non défini"
+            "name": "Catégorie"
         },
         "count": {
             "group": "Nombre de groupes",
@@ -25,6 +24,12 @@
             "edit": "Éditer",
             "delete": "Retirer"
         }
+    },
+    "category": {
+        "anime": "Anime",
+        "video.game": "Jeu vidéo",
+        "movie": "Film",
+        "undefined": "non défini"
     },
     "gererator": {
         "title": {

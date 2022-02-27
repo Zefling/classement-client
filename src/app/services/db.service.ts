@@ -41,8 +41,16 @@ export class DBService {
         return new Promise((resolve, reject) => {
             this._formatData(data).then(formatData => {
                 this._getDB()
-                    .then(db => this._saveDB(db, Store.infos, formatData.infos))
-                    .then(db => this._saveDB(db, Store.data, formatData.data))
+                    .then(db =>
+                        data.id
+                            ? this._updateDB(db, Store.infos, formatData.infos)
+                            : this._saveDB(db, Store.infos, formatData.infos),
+                    )
+                    .then(db =>
+                        data.id
+                            ? this._updateDB(db, Store.data, formatData.data)
+                            : this._saveDB(db, Store.data, formatData.data),
+                    )
                     .then(__ => resolve(formatData.infos.id))
                     .catch(_ => reject());
             });
@@ -54,27 +62,16 @@ export class DBService {
         return {
             infos: {
                 id,
-                options: {
-                    title: data.options.title,
-                    category: data.options.category,
-                    itemWidth: data.options.itemWidth,
-                    itemHeight: data.options.itemHeight,
-                    itemPadding: data.options.itemPadding,
-                },
+                options: data.options,
                 date: `${new Date()}`,
                 groupsLenght: data.groups?.length || 0,
-                listLenght: data.list?.length || 0,
+                listLenght:
+                    (data.list?.length || 0) +
+                    (data.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0),
             },
             data: {
                 id,
-                groups: data.groups.map(e => {
-                    return {
-                        bgColor: e.bgColor,
-                        txtColor: e.txtColor,
-                        name: e.name,
-                        list: e.list,
-                    };
-                }),
+                groups: data.groups,
                 list: data.list,
             },
         };
@@ -148,16 +145,37 @@ export class DBService {
             console.log(`Add Data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
 
-            transactionData.onerror = () => {
-                console.error(`An error in “${store}” has occurred!`, transactionData?.error?.message);
-                reject();
-            };
-            transactionData.oncomplete = () => {
+            const save = transactionData.objectStore(store).add(data, data.id);
+            save.onsuccess = function () {
                 console.log(`Data added successfully in “${store}”.`);
                 resolve(db);
             };
+            save.onerror = () => {
+                console.error(`An error in “${store}” has occurred!`, transactionData);
+                reject();
+            };
+        });
+    }
 
-            transactionData.objectStore(store).add(data, data.id);
+    private _updateDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
+        return new Promise((resolve, reject) => {
+            console.log(`Add Data in “${store}”.`);
+            const transactionData = db.transaction([store], 'readwrite');
+
+            transactionData.objectStore(store).openCursor(data.id).onsuccess = function () {
+                const cursor = this.result;
+                if (cursor) {
+                    const request = cursor.update(data);
+                    request.onsuccess = function () {
+                        console.log(`Data updated successfully in “${store}”.`);
+                        resolve(db);
+                    };
+                    request.onerror = function () {
+                        console.error(`An error in “${store}” has occurred!`, request);
+                        reject();
+                    };
+                }
+            };
         });
     }
 
