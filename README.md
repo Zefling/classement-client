@@ -8,7 +8,7 @@ Currently only classifications backup mode is in a browser database (IndexedDB)
 
 ## Demo
 
-Coming soon. Sorry.
+[See a demonstration](http://test.ikilote.net/classement-demo/)
 
 ## Development
 
