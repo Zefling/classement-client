@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, HostBinding, OnDestroy, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnDestroy, Renderer2, RendererStyleFlags2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Coloration } from 'coloration-lib';
@@ -25,7 +25,7 @@ const defautGroup: FormatedGroup[] = [
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
 })
-export class ClassementEditComponent implements OnDestroy {
+export class ClassementEditComponent implements OnDestroy, DoCheck {
     editMode = false;
     id?: string;
 
@@ -36,16 +36,21 @@ export class ClassementEditComponent implements OnDestroy {
 
     title = '';
     category = '';
-    @HostBinding('style.--item-width.px') itemWidth = 100;
-    @HostBinding('style.--item-height.px') itemHeight = 100;
-    @HostBinding('style.--item-padding.px') itemPadding = 10;
+    itemWidth = 100;
+    itemHeight = 100;
+    itemPadding = 10;
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
     private _sub: Subscription[] = [];
 
-    constructor(private bdService: DBService, private router: Router, private route: ActivatedRoute) {
+    constructor(
+        private bdService: DBService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private renderer: Renderer2,
+    ) {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] !== 'new') {
@@ -76,6 +81,12 @@ export class ClassementEditComponent implements OnDestroy {
                 }
             }),
         );
+    }
+
+    ngDoCheck() {
+        this.renderer.setStyle(document.body, '--item-width', this.itemWidth + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(document.body, '--item-height', this.itemHeight + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(document.body, '--item-padding', this.itemPadding + 'px', RendererStyleFlags2.DashCase);
     }
 
     ngOnDestroy() {
