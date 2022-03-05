@@ -94,7 +94,7 @@
 }
 
 .cdk-drag-placeholder {
-    opacity: 0;
+    opacity: 0.3;
 }
 
 .cdk-drag-animating {
@@ -107,6 +107,10 @@
 
 .cdk-drop-list-dragging {
     background: rgba(0, 0, 0, 0.512);
+}
+
+.cdk-drop-list {
+    display: flex;
 }
 
 .cdk-drop-list:last-child {
