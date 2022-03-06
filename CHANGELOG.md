@@ -1,4 +1,9 @@
+# 0.0.2 (2022-03-06)
 
-# 0.0.1 (in progress)
+-   fix drag'n drop size and alignment.
+-   added warning on deletion.
+-   button design.
 
-- initial version
+# 0.0.1 (2022-02-27)
+
+-   initial version
