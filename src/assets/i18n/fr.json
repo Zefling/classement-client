@@ -40,8 +40,13 @@
     },
     "category": {
         "anime": "Anime",
+        "game": "Jeu",
         "video.game": "Jeu vidéo",
+        "board.game": "Jeu de plateau",
         "movie": "Film",
+        "series": "Séries",
+        "vehicle ": "Véhicule",
+        "other  ": "Autre",
         "undefined": "non défini"
     },
     "gererator": {

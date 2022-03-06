@@ -6,7 +6,7 @@
         "new": "New"
     },
     "home": {
-        "intro": "AWeb application to make a classification by images.",
+        "intro": "A Web application to make a classification by images.",
         "source.code": "Code source",
         "source.license": "License",
         "source.gpl3": "GNU General Public License v3.0"
@@ -38,8 +38,13 @@
     },
     "category": {
         "anime": "Anime",
+        "game": "Game",
         "video.game": "Video game",
+        "board.game": "Board game",
         "movie": "Movie",
+        "series": "Series",
+        "vehicle ": "Vehicle",
+        "other  ": "Other",
         "undefined": "undefined"
     },
     "gererator": {
