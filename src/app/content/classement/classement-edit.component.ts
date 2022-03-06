@@ -32,7 +32,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
 
-    categories: String[] = ['anime', 'video.game', 'movie'];
+    categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
 
     title = '';
     category = '';

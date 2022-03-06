@@ -38,13 +38,13 @@
     },
     "category": {
         "anime": "Anime",
-        "game": "Game",
-        "video.game": "Video game",
-        "board.game": "Board game",
-        "movie": "Movie",
+        "game": "Games",
+        "video.game": "Video games",
+        "board.game": "Board games",
+        "movie": "Movies",
         "series": "Series",
-        "vehicle ": "Vehicle",
-        "other  ": "Other",
+        "vehicle": "Vehicle",
+        "other": "Other",
         "undefined": "undefined"
     },
     "gererator": {
