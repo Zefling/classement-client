@@ -1,3 +1,9 @@
+# 0.0.3 (2022-03-06)
+
+-   add dark mode.
+-   change color selector buttons.
+-   more categories.
+
 # 0.0.2 (2022-03-06)
 
 -   fix drag'n drop size and alignment.
@@ -6,4 +12,4 @@
 
 # 0.0.1 (2022-02-27)
 
--   initial version
+-   initial version.
