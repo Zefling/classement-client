@@ -36,3 +36,12 @@
         <a routerLink="/classement/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
 </ng-template>
+
+<dialog-cmp #dialogSuppr class="dialog-suppr">
+    <p>{{ 'list.delete.question' | translate }}</p>
+    <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+    <div>
+        <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
+        <button class="primary" (click)="deleteCurrent(true)">{{ 'list.delete.validate' | translate }}</button>
+    </div>
+</dialog-cmp>

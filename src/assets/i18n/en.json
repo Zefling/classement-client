@@ -29,6 +29,11 @@
             "name": "Action",
             "edit": "Edit",
             "delete": "Remove"
+        },
+        "delete": {
+            "question": "Are you sure you want to delete:",
+            "validate": "Validate",
+            "cancel": "Cancel"
         }
     },
     "category": {

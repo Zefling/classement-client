@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+button {
+    padding: 10px;
+    font-size: 110%;
+    border: 2px solid #e2e2e2;
+    background: #fff;
+    box-shadow: 0 0 12px #c5c5c5;
+    border-radius: 5px;
+    margin: 0 5px;
+    outline: none;
+
+    &:hover {
+        background: #dddfe2;
+        box-shadow: 0 0 12px #474747;
+    }
+
+    &:focus {
+        border-color: #888;
+    }
+
+    &.primary {
+        border: 2px solid #b0a8ea;
+        background: #468eff;
+        box-shadow: 0 0 12px #d6dfee;
+        color: #fff;
+        font-weight: 700;
+
+        &:hover {
+            background: #3162b1;
+            border: 2px solid #706a97;
+            box-shadow: 0 0 12px #1e2025;
+        }
+
+        &:focus {
+            border-color: #1b3663;
+        }
+    }
+}

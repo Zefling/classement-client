@@ -90,9 +90,8 @@
     </table>
 
     <div class="save-actions">
-        <button (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
-        <button (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
-        <!--<button (click)="saveServer()" disabled>{{ 'gererator.actions.export.account' | translate }}</button>-->
+        <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
+        <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
     </div>
 
     <div drop-image (fileLoaded)="addFile($event)">
@@ -154,6 +153,6 @@
     </table>
 </div>
 
-<dialog-cmp>
+<dialog-cmp closeButton>
     <div #image></div>
 </dialog-cmp>

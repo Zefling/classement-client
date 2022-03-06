@@ -143,7 +143,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     exportImage() {
-        this.dialog.open = true;
+        this.dialog.open();
         html2canvas(document.getElementById('table-classement') as HTMLElement, {
             logging: false,
             allowTaint: false,

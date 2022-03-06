@@ -31,7 +31,12 @@
             "delete": "Retirer"
         },
         "no.result": "Pas de résultats.",
-        "create.new": "Créez votre classement."
+        "create.new": "Créez votre classement.",
+        "delete": {
+            "question": "Êtes-vous sûr de vouloir supprimer\u00A0:",
+            "validate": "Valider",
+            "cancel": "Annuler"
+        }
     },
     "category": {
         "anime": "Anime",
@@ -49,9 +54,9 @@
             "title": "Titre :",
             "group": "Groupe :",
             "item": {
-                "width": "Largeur d'un objet :",
-                "height": "Hauteur d'un objet :",
-                "padding": "Marge d'un object :"
+                "width": "Largeur d'un objet\u00A0:",
+                "height": "Hauteur d'un objet\u00A0:",
+                "padding": "Marge d'un object\u00A0:"
             }
         },
         "ranking": {

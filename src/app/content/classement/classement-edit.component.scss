@@ -138,9 +138,13 @@
     display: grid;
     gap: 3px;
     grid-template:
-        'up suppr' 30px
-        'down add' 30px /
-        30px 50px;
+        'up suppr' auto
+        'down add' auto /
+        auto 1fr;
+
+    button {
+        margin: 0;
+    }
 }
 .button-up {
     grid-area: up;
@@ -212,12 +216,7 @@ table {
 
 .save-actions {
     text-align: center;
-    padding: 10px;
-
-    button {
-        margin: 5px;
-        padding: 5px;
-    }
+    padding: 20px;
 }
 
 // render ------------------------------------------------------------------

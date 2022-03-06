@@ -19,7 +19,7 @@
     display: flex;
     position: relative;
     background-color: #fff;
-    min-height: 50%;
+    min-height: 150px;
     max-height: 90%;
     min-width: 50%;
     max-width: 90%;
@@ -42,4 +42,5 @@
 .main {
     overflow: auto;
     scrollbar-gutter: stable;
+    width: 100%;
 }
