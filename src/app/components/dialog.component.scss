@@ -4,7 +4,7 @@
     height: 100%;
     width: 100%;
     z-index: 3;
-    background-color: #0006;
+    background-color: var (--dialog-backdrop-background);
     top: 0;
     left: -15px;
     align-items: center;
@@ -18,25 +18,18 @@
 .content {
     display: flex;
     position: relative;
-    background-color: #fff;
+    background: var(--dialog-background);
     min-height: 150px;
     max-height: 90%;
     min-width: 50%;
     max-width: 90%;
-    box-shadow: 0 0 5px 5px #0003;
+    box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
 }
 .close {
-    background: white;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 5px;
     position: absolute;
     top: -10px;
     right: -10px;
-    box-shadow: 0 0 2px;
-    cursor: pointer;
+    padding: 5px;
 }
 
 .main {

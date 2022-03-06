@@ -1,6 +1,7 @@
 <header>
     <div class="title">{{ 'classement' | translate }}</div>
     <div>
+        <light-dark></light-dark>
         <select [ngModel]="selectedLang" (ngModelChange)="updateLanguage($event)">
             <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
         </select>

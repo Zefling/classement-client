@@ -13,8 +13,8 @@
         / 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
-    border: solid 1px #ccc;
-    background: #f0f0f0;
+    border: solid 1px var(--options-border-color);
+    background: var(--options-background);
     padding: 10px;
 }
 .title {
@@ -33,26 +33,12 @@
     grid-area: padding;
 }
 
-.options label {
-    font-weight: 700;
-    font-size: 80%;
-}
-
-.options input,
-.options select {
-    border: 1px solid #ccccdb;
-    border-radius: 3px;
-    padding: 5px 3px;
-    width: calc(100% - 10px);
-    background-color: #d6e0ec;
-}
-
 // drag'n drop --------------------------------------------------------------
 
 .drop-list {
     min-height: calc(var(--item-height, 150px) + var(--item-padding, 10px) * 2 + 5px);
-    border: solid 1px #ccc;
-    background: #f0f0f0;
+    border: solid 1px var(--drop-list-border-color);
+    background: var(--drop-list-background);
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -73,9 +59,9 @@
     padding: var(--item-padding, 10px);
     width: var(--item-width, 150px);
     height: var(--item-height, 150px);
-    border-bottom: solid 1px #ccc;
-    background: #fff;
-    color: rgba(0, 0, 0, 0.87);
+    border-bottom: solid 1px var(--content-box-border-bottom);
+    background: var(--content-box-background);
+    color: var(--content-box-color);
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -128,7 +114,7 @@
 }
 .drop-image-zone,
 .drop-image-zone .drop-list {
-    background: #b6c6f5;
+    background: var(--drop-image-zone-background);
     border-radius: 2px;
 }
 
@@ -202,14 +188,13 @@ table {
 [drop-image] .content-box {
     position: relative;
 }
-.btn-suppr {
+
+.btn-delete {
     position: absolute;
     bottom: 0;
     right: 0;
-    color: red;
-    background: #fffcf538;
-    border: 1px solid #888;
-    border-radius: 3px;
+    color: var(--alert-color);
+    padding: 2px;
 }
 
 // actions ------------------------------------------------------------------
@@ -226,6 +211,10 @@ table {
     position: absolute;
     top: 0;
     left: -100000px;
+
+    table {
+        background: var(--bakcground);
+    }
 
     .names {
         font-size: 120%;

@@ -23,28 +23,49 @@
 
 header {
     grid-area: header;
-    margin: 15px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: var(--header-background);
 
     .title {
         font-size: 37px;
         font-weight: 700;
+    }
+    light-dark {
+        margin: 0 10px;
+    }
+
+    select {
+        width: auto;
     }
 }
 
 aside {
     grid-area: aside;
     overflow: auto;
+    background: var(--aside-background);
 
+    ul {
+        margin: 0;
+        padding: 0;
+    }
     li {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid var(--menu-border-color);
+        list-style: none;
         cursor: pointer;
-        color: #7e3333;
+        font-weight: 700;
+
+        color: var(--menu-color);
+        background: var(--menu-background);
+        border-radius: 5px;
 
         &:hover {
-            color: #532424;
-            text-decoration: underline;
+            color: var(--menu-hover-color);
+            background-color: var(--menu-hover-background);
         }
     }
 }
@@ -60,7 +81,7 @@ aside {
         content: ' ';
         height: 100%;
         width: 100%;
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3) inset;
+        box-shadow: 10px 10px 10px var(--menu-box-shadow-color) inset;
         pointer-events: none;
     }
 }

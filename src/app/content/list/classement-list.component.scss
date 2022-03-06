@@ -22,12 +22,12 @@ table {
 }
 
 thead {
-    background: #c9c9c9;
+    background: var(--list-header-background);
 }
 
 tbody {
     tr:hover {
-        background: #ecdfdf;
+        background: var(--list-line-hover-background);
         cursor: default;
     }
 
@@ -46,16 +46,6 @@ tbody {
 
     .actions {
         text-align: center;
-        a {
-            margin: auto 10px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #4e4ee6;
-
-            &:hover {
-                color: #202081;
-            }
-        }
     }
 }
 
@@ -66,7 +56,7 @@ td {
 .no-result {
     padding: 10px 5px;
     text-align: center;
-    background: #ecdfdf;
+    background: var(--no-result-background);
 }
 
 .dialog-suppr {

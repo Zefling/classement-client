@@ -105,7 +105,7 @@
                 (cdkDropListDropped)="drop(list, $event)"
             >
                 <div class="content-box" cdkDrag>
-                    <button class="btn-suppr" (click)="removeItem(index)">×</button>
+                    <button class="btn-delete" (click)="removeItem(index)">×</button>
                     <img src="{{ item.url }}" alt="{{ item.name }}" />
                 </div>
             </div>

@@ -1,0 +1,23 @@
+:host {
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--input-border-color);
+    padding: 2px;
+    display: inline-flex;
+    width: 60px;
+    justify-content: space-between;
+    vertical-align: middle;
+
+    &.light {
+        background: linear-gradient(-90deg, #b8b8b8 55%, #ffffff 65%);
+    }
+    &.dark {
+        background: linear-gradient(90deg, #000000 55%, #3f3f3f 65%);
+    }
+}
+.light,
+.dark {
+    fill: var(--text-color);
+    height: 20px;
+    width: 20px;
+}
