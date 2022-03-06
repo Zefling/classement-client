@@ -170,8 +170,19 @@ table {
     width: 150px;
     min-width: 150px;
     text-align: center;
+
+    div {
+        display: grid;
+        margin-top: 30px;
+        grid-template:
+            'a a a a a' 60px
+            '. b . c .' auto /
+            1fr auto 1fr auto 1fr;
+        height: 100%;
+    }
 }
 .name {
+    grid-area: a;
     border: 0;
     background: transparent;
     text-align: center;
@@ -179,10 +190,27 @@ table {
     width: 100%;
     display: block;
     box-sizing: border-box;
+    resize: none;
 }
-.color {
+input.color {
     display: inline;
     margin: auto;
+    height: 0.1px;
+    width: 0.1px;
+    opacity: 0;
+}
+svg.color {
+    grid-area: b;
+    width: 30px;
+    border: 1px solid #888;
+    background-color: #fff8;
+    border-radius: 5px;
+    padding: 2px 5px;
+    cursor: pointer;
+    display: block;
+}
+svg.color + svg {
+    grid-area: c;
 }
 
 [drop-image] .content-box {
