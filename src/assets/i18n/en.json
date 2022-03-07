@@ -59,7 +59,9 @@
             "item": {
                 "width": "Item width:",
                 "height": "Item height:",
-                "padding": "Item padding:"
+                "padding": "Item padding:",
+                "border": "Item border:",
+                "margin": "Item margin:"
             }
         },
         "ranking": {

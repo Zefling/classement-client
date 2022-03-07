@@ -61,7 +61,9 @@
             "item": {
                 "width": "Largeur d'un objet\u00A0:",
                 "height": "Hauteur d'un objet\u00A0:",
-                "padding": "Marge d'un object\u00A0:"
+                "padding": "Rembourrage d'un object\u00A0:",
+                "border": "Bordure d'un object\u00A0:",
+                "margin": "Marge d'un object\u00A0:"
             }
         },
         "ranking": {

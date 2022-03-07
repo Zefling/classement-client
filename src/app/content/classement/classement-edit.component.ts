@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { Data, FileString, FormatedGroup } from 'src/app/interface';
+import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 
 
@@ -34,11 +34,15 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
 
-    title = '';
-    category = '';
-    itemWidth = 100;
-    itemHeight = 100;
-    itemPadding = 10;
+    options: Options = {
+        title: '',
+        category: '',
+        itemWidth: 100,
+        itemHeight: 100,
+        itemPadding: 10,
+        itemBorder: 1,
+        itemMargin: 2,
+    };
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
@@ -58,11 +62,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {
-                            this.title = data.infos.options.title;
-                            this.category = data.infos.options.category;
-                            this.itemWidth = data.infos.options.itemWidth;
-                            this.itemHeight = data.infos.options.itemHeight;
-                            this.itemPadding = data.infos.options.itemPadding;
+                            this.options = data.infos.options;
                             this.groups = data.data.groups;
                             this.list = data.data.list;
                             this.editMode = true;
@@ -71,11 +71,15 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             this.router.navigate(['new']);
                         });
                 } else {
-                    this.title = '';
-                    this.category = '';
-                    this.itemWidth = 100;
-                    this.itemHeight = 100;
-                    this.itemPadding = 10;
+                    this.options = {
+                        title: '',
+                        category: '',
+                        itemWidth: 100,
+                        itemHeight: 100,
+                        itemPadding: 10,
+                        itemBorder: 1,
+                        itemMargin: 2,
+                    };
                     this.groups = defautGroup;
                     this.editMode = false;
                 }
@@ -84,9 +88,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     ngDoCheck() {
-        this.renderer.setStyle(document.body, '--item-width', this.itemWidth + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(document.body, '--item-height', this.itemHeight + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(document.body, '--item-padding', this.itemPadding + 'px', RendererStyleFlags2.DashCase);
+        const body = document.body;
+        const options = this.options;
+        this.renderer.setStyle(body, '--item-width', (options.itemWidth || 100) + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(body, '--item-height', (options.itemHeight || 100) + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(body, '--item-padding', (options.itemPadding || 0) + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(body, '--item-border', (options.itemBorder || 0) + 'px', RendererStyleFlags2.DashCase);
+        this.renderer.setStyle(body, '--item-margin', (options.itemMargin || 0) + 'px', RendererStyleFlags2.DashCase);
     }
 
     ngOnDestroy() {
@@ -158,13 +166,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     saveLocal() {
         const data: Data = {
-            options: {
-                title: this.title,
-                category: this.category,
-                itemWidth: this.itemWidth,
-                itemHeight: this.itemHeight,
-                itemPadding: this.itemPadding,
-            },
+            options: this.options,
             id: this.id,
             groups: this.groups,
             list: this.list,

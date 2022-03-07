@@ -4,27 +4,35 @@
 <div class="options">
     <div class="title">
         <label>{{ 'gererator.options.title' | translate }}</label>
-        <div><input type="text" maxlength="150" [(ngModel)]="title" /></div>
+        <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
     </div>
     <div class="group">
         <label>{{ 'gererator.options.group' | translate }}</label>
         <div>
-            <select type="text" maxlength="150" [(ngModel)]="category">
+            <select type="text" maxlength="150" [(ngModel)]="options.category">
                 <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
             </select>
         </div>
     </div>
     <div class="item-width">
         <label>{{ 'gererator.options.item.width' | translate }}</label>
-        <div><input type="number" min="16" max="300" [(ngModel)]="itemWidth" /></div>
+        <div><input type="number" min="16" max="300" [(ngModel)]="options.itemWidth" /></div>
     </div>
     <div class="item-height">
         <label>{{ 'gererator.options.item.height' | translate }}</label>
-        <div><input type="number" min="16" max="300" [(ngModel)]="itemHeight" /></div>
+        <div><input type="number" min="16" max="300" [(ngModel)]="options.itemHeight" /></div>
     </div>
     <div class="item-padding">
         <label>{{ 'gererator.options.item.padding' | translate }}</label>
-        <div><input type="number" min="0" max="20" [(ngModel)]="itemPadding" /></div>
+        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemPadding" /></div>
+    </div>
+    <div class="item-border">
+        <label>{{ 'gererator.options.item.border' | translate }}</label>
+        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemBorder" /></div>
+    </div>
+    <div class="item-border">
+        <label>{{ 'gererator.options.item.margin' | translate }}</label>
+        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemMargin" /></div>
     </div>
 </div>
 
@@ -138,9 +146,9 @@
 
 <div class="render">
     <table id="table-classement">
-        <caption *ngIf="title">
+        <caption *ngIf="options.title">
             {{
-                title
+                options.title
             }}
         </caption>
         <colgroup>

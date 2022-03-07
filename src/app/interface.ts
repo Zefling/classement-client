@@ -5,31 +5,28 @@ export type FileString = { url?: string; name: string; size: number; realSize: n
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
+export type Options = {
+    title: string;
+    category: string;
+    itemWidth: number;
+    itemHeight: number;
+    itemPadding: number;
+    itemBorder: number;
+    itemMargin: number;
+};
 
 export interface IndexedData {
     id?: string;
 }
 
 export interface Data extends IndexedData {
-    options: {
-        title: string;
-        category: string;
-        itemWidth: number;
-        itemHeight: number;
-        itemPadding: number;
-    };
+    options: Options;
     groups: FormatedGroup[];
     list: FileString[];
 }
 
 export interface FormatedInfos extends IndexedData {
-    options: {
-        title: string;
-        category: string;
-        itemWidth: number;
-        itemHeight: number;
-        itemPadding: number;
-    };
+    options: Options;
     date: string | Date;
     groupsLenght: number;
     listLenght: number;
