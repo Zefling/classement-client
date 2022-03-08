@@ -56,12 +56,15 @@
             "group.title": "Options",
             "title": "Title:",
             "group": "Group:",
+            "sizes": "Sizes:",
+            "margin": "Margin",
+            "padding": "Padding",
             "item": {
-                "width": "Item width:",
-                "height": "Item height:",
-                "padding": "Item padding:",
-                "border": "Item border:",
-                "margin": "Item margin:"
+                "width": "Item width",
+                "height": "Item height",
+                "padding": "Item padding",
+                "border": "Item border",
+                "margin": "Item margin"
             }
         },
         "ranking": {

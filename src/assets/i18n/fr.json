@@ -56,14 +56,17 @@
         },
         "options": {
             "group.title": "Options",
-            "title": "Titre :",
-            "group": "Groupe :",
+            "title": "Titre\u00A0:",
+            "group": "Groupe\u00A0",
+            "sizes": "Dimentions\u00A0:",
+            "margin": "Margin",
+            "padding": "Padding",
             "item": {
-                "width": "Largeur d'un objet\u00A0:",
-                "height": "Hauteur d'un objet\u00A0:",
-                "padding": "Rembourrage d'un object\u00A0:",
-                "border": "Bordure d'un object\u00A0:",
-                "margin": "Marge d'un object\u00A0:"
+                "width": "Largeur d'un objet",
+                "height": "Hauteur d'un objet",
+                "padding": "Rembourrage d'un object",
+                "border": "Bordure d'un object",
+                "margin": "Marge d'un object"
             }
         },
         "ranking": {

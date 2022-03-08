@@ -45,6 +45,12 @@ body:not(.dark-mode) {
     // option block
     --options-border-color: #f0f0f0;
     --options-background: #f0f0f0;
+    --options-sizes-border-color: rgb(145, 145, 43);
+    --options-sizes-margin-color: #ddd;
+    --options-sizes-padding-color: #e6e6e6;
+    --options-sizes-box-color: #eee;
+    --options-sizes-height-color: #00941b;
+    --options-sizes-width-color: #5e00aa;
     // input
     --input-border-color: #ccccdb;
     --input-background: #d6e0ec;
@@ -107,6 +113,12 @@ body:not(.dark-mode) {
         // option block
         --options-border-color: #2b2b2b;
         --options-background: #1a1a1a;
+        --options-sizes-border-color: yellow;
+        --options-sizes-margin-color: #444;
+        --options-sizes-padding-color: #222;
+        --options-sizes-box-color: #111;
+        --options-sizes-height-color: #00ff34;
+        --options-sizes-width-color: #a12dff;
         // input
         --input-border-color: #3c3c41;
         --input-background: #282f36;

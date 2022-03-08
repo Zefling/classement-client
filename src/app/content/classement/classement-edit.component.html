@@ -14,25 +14,56 @@
             </select>
         </div>
     </div>
-    <div class="item-width">
-        <label>{{ 'gererator.options.item.width' | translate }}</label>
-        <div><input type="number" min="16" max="300" [(ngModel)]="options.itemWidth" /></div>
-    </div>
-    <div class="item-height">
-        <label>{{ 'gererator.options.item.height' | translate }}</label>
-        <div><input type="number" min="16" max="300" [(ngModel)]="options.itemHeight" /></div>
-    </div>
-    <div class="item-padding">
-        <label>{{ 'gererator.options.item.padding' | translate }}</label>
-        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemPadding" /></div>
-    </div>
-    <div class="item-border">
-        <label>{{ 'gererator.options.item.border' | translate }}</label>
-        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemBorder" /></div>
-    </div>
-    <div class="item-border">
-        <label>{{ 'gererator.options.item.margin' | translate }}</label>
-        <div><input type="number" min="0" max="20" [(ngModel)]="options.itemMargin" /></div>
+    <div class="item">
+        <label>{{ 'gererator.options.sizes' | translate }}</label>
+        <div class="item-options">
+            <div class="box-border"></div>
+            <div class="box-in"></div>
+            <div class="margin">{{ 'gererator.options.margin' | translate }}</div>
+            <div class="padding">{{ 'gererator.options.padding' | translate }}</div>
+            <div class="height"></div>
+            <div class="width"></div>
+            <input
+                type="number"
+                min="16"
+                max="300"
+                class="item-width"
+                [(ngModel)]="options.itemWidth"
+                title="{{ 'gererator.options.item.width' | translate }}"
+            />
+            <input
+                type="number"
+                min="16"
+                max="300"
+                class="item-height"
+                [(ngModel)]="options.itemHeight"
+                title="{{ 'gererator.options.item.height' | translate }}"
+            />
+            <input
+                type="number"
+                min="0"
+                max="20"
+                class="item-padding"
+                [(ngModel)]="options.itemPadding"
+                title="{{ 'gererator.options.item.padding' | translate }}"
+            />
+            <input
+                type="number"
+                min="0"
+                max="20"
+                class="item-border"
+                [(ngModel)]="options.itemBorder"
+                title="{{ 'gererator.options.item.border' | translate }}"
+            />
+            <input
+                type="number"
+                min="0"
+                max="20"
+                class="item-margin"
+                [(ngModel)]="options.itemMargin"
+                title="{{ 'gererator.options.item.margin' | translate }}"
+            />
+        </div>
     </div>
 </div>
 
