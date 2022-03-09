@@ -13,6 +13,14 @@ export type Options = {
     itemPadding: number;
     itemBorder: number;
     itemMargin: number;
+    itemBackgroundColor: string;
+    itemBorderColor: string;
+    itemBackgroundOpacity: number;
+    itemBorderOpacity: number;
+    lineBackgroundColor: string;
+    lineBorderColor: string;
+    lineBackgroundOpacity: number;
+    lineBorderOpacity: number;
 };
 
 export interface IndexedData {

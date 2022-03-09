@@ -14,7 +14,7 @@
             </select>
         </div>
     </div>
-    <div class="item">
+    <div class="sizes">
         <label>{{ 'gererator.options.sizes' | translate }}</label>
         <div class="item-options">
             <div class="box-border"></div>
@@ -25,27 +25,11 @@
             <div class="width"></div>
             <input
                 type="number"
-                min="16"
-                max="300"
-                class="item-width"
-                [(ngModel)]="options.itemWidth"
-                title="{{ 'gererator.options.item.width' | translate }}"
-            />
-            <input
-                type="number"
-                min="16"
-                max="300"
-                class="item-height"
-                [(ngModel)]="options.itemHeight"
-                title="{{ 'gererator.options.item.height' | translate }}"
-            />
-            <input
-                type="number"
                 min="0"
                 max="20"
-                class="item-padding"
-                [(ngModel)]="options.itemPadding"
-                title="{{ 'gererator.options.item.padding' | translate }}"
+                class="item-margin"
+                [(ngModel)]="options.itemMargin"
+                title="{{ 'gererator.options.item.margin' | translate }}"
             />
             <input
                 type="number"
@@ -59,10 +43,90 @@
                 type="number"
                 min="0"
                 max="20"
-                class="item-margin"
-                [(ngModel)]="options.itemMargin"
-                title="{{ 'gererator.options.item.margin' | translate }}"
+                class="item-padding"
+                [(ngModel)]="options.itemPadding"
+                title="{{ 'gererator.options.item.padding' | translate }}"
             />
+            <input
+                type="number"
+                min="16"
+                max="300"
+                class="item-height"
+                [(ngModel)]="options.itemHeight"
+                title="{{ 'gererator.options.item.height' | translate }}"
+            />
+            <input
+                type="number"
+                min="16"
+                max="300"
+                class="item-width"
+                [(ngModel)]="options.itemWidth"
+                title="{{ 'gererator.options.item.width' | translate }}"
+            />
+        </div>
+    </div>
+    <div class="colors-item">
+        <div>
+            <div class="input-button">
+                <div>
+                    <label>{{ 'gererator.options.item.background.color' | translate }}</label>
+                    <input type="color" [(ngModel)]="options.itemBackgroundColor" />
+                </div>
+                <div>
+                    <label>{{ 'gererator.options.item.background.opacity' | translate }}</label>
+                    <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.itemBackgroundOpacity" />
+                </div>
+                <button (click)="options.itemBackgroundColor = ''; options.itemBackgroundOpacity = 0">
+                    {{ 'gererator.options.clear' | translate }}
+                </button>
+            </div>
+        </div>
+        <div>
+            <div class="input-button">
+                <div>
+                    <label>{{ 'gererator.options.item.border.color' | translate }}</label>
+                    <input type="color" [(ngModel)]="options.itemBorderColor" />
+                </div>
+                <div>
+                    <label>{{ 'gererator.options.item.border.opacity' | translate }}</label>
+                    <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.itemBorderOpacity" />
+                </div>
+                <button (click)="options.itemBorderColor = ''; options.itemBorderOpacity = 0">
+                    {{ 'gererator.options.clear' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="colors-line">
+        <div>
+            <div class="input-button">
+                <div>
+                    <label>{{ 'gererator.options.line.background.color' | translate }}</label>
+                    <input type="color" [(ngModel)]="options.lineBackgroundColor" />
+                </div>
+                <div>
+                    <label>{{ 'gererator.options.line.background.opacity' | translate }}</label>
+                    <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.lineBackgroundOpacity" />
+                </div>
+                <button (click)="options.lineBackgroundColor = ''; options.lineBackgroundOpacity = 0">
+                    {{ 'gererator.options.clear' | translate }}
+                </button>
+            </div>
+        </div>
+        <div>
+            <div class="input-button">
+                <div>
+                    <label>{{ 'gererator.options.line.border.color' | translate }}</label>
+                    <input type="color" [(ngModel)]="options.lineBorderColor" />
+                </div>
+                <div>
+                    <label>{{ 'gererator.options.line.border.opacity' | translate }}</label>
+                    <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.lineBorderOpacity" />
+                </div>
+                <button (click)="options.lineBorderColor = ''; options.lineBorderOpacity = 0">
+                    {{ 'gererator.options.clear' | translate }}
+                </button>
+            </div>
         </div>
     </div>
 </div>

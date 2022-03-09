@@ -58,15 +58,26 @@
             "group.title": "Options",
             "title": "Titre\u00A0:",
             "group": "Groupe\u00A0",
-            "sizes": "Dimentions\u00A0:",
+            "sizes": "Dimentions d'une tuile\u00A0:",
             "margin": "Margin",
             "padding": "Padding",
+            "clear": "Effacer",
             "item": {
                 "width": "Largeur d'un objet",
                 "height": "Hauteur d'un objet",
                 "padding": "Rembourrage d'un object",
                 "border": "Bordure d'un object",
-                "margin": "Marge d'un object"
+                "margin": "Marge d'un object",
+                "background.color": "Couleur du fond d'une tuile\u00A0:",
+                "border.color": "Couleur de bordure d'une tuile\u00A0:",
+                "background.opacity": "Opacité du fond d'une tuile\u00A0:",
+                "border.opacity": "Opacité de bordure d'une tuile\u00A0:"
+            },
+            "line": {
+                "background.color": "Couleur du fond d'une ligne\u00A0:",
+                "border.color": "Couleur de bordure d'une ligne\u00A0:",
+                "background.opacity": "Opacité du fond d'une ligne\u00A0:",
+                "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
             }
         },
         "ranking": {

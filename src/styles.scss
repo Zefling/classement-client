@@ -60,7 +60,7 @@ body:not(.dark-mode) {
     // drop list (add image)
     --drop-image-zone-background: #b6c6f5;
     // item content-box
-    --content-box-border-bottom: #ccc;
+    --content-box-border: #ccc;
     --content-box-background: #fff;
     --content-box-color: #000000de;
     // info
@@ -128,7 +128,7 @@ body:not(.dark-mode) {
         // drop list (add image)
         --drop-image-zone-background: #13141a;
         // item content-box
-        --content-box-border-bottom: #333;
+        --content-box-border: #333;
         --content-box-background: #242424;
         --content-box-color: #000000de;
         // info

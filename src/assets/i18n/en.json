@@ -56,15 +56,26 @@
             "group.title": "Options",
             "title": "Title:",
             "group": "Group:",
-            "sizes": "Sizes:",
+            "sizes": "Tile sizes:",
             "margin": "Margin",
             "padding": "Padding",
+            "clear": "Clear",
             "item": {
                 "width": "Item width",
                 "height": "Item height",
                 "padding": "Item padding",
                 "border": "Item border",
-                "margin": "Item margin"
+                "margin": "Item margin",
+                "background.color": "Tile background color:",
+                "border.color": "Tile border color:",
+                "background.opacity": "Tile border opacity:",
+                "border.opacity": "Tile border opacity:"
+            },
+            "line": {
+                "background.color": "Line background color:",
+                "border.color": "Line border color:",
+                "background.opacity": "Line background opacity:",
+                "border.opacity": "Line border opacity:"
             }
         },
         "ranking": {

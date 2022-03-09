@@ -34,15 +34,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
 
-    options: Options = {
-        title: '',
-        category: '',
-        itemWidth: 100,
-        itemHeight: 100,
-        itemPadding: 10,
-        itemBorder: 1,
-        itemMargin: 2,
-    };
+    options!: Options;
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
@@ -79,6 +71,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         itemPadding: 10,
                         itemBorder: 1,
                         itemMargin: 2,
+                        itemBackgroundColor: '',
+                        itemBorderColor: '',
+                        lineBackgroundColor: '',
+                        lineBorderColor: '',
+                        itemBackgroundOpacity: 0,
+                        itemBorderOpacity: 0,
+                        lineBackgroundOpacity: 0,
+                        lineBorderOpacity: 0,
                     };
                     this.groups = defautGroup;
                     this.editMode = false;
@@ -89,12 +89,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     ngDoCheck() {
         const body = document.body;
-        const options = this.options;
-        this.renderer.setStyle(body, '--item-width', (options.itemWidth || 100) + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(body, '--item-height', (options.itemHeight || 100) + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(body, '--item-padding', (options.itemPadding || 0) + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(body, '--item-border', (options.itemBorder || 0) + 'px', RendererStyleFlags2.DashCase);
-        this.renderer.setStyle(body, '--item-margin', (options.itemMargin || 0) + 'px', RendererStyleFlags2.DashCase);
+        const o = this.options;
+        const render = this.renderer;
+        const dash = RendererStyleFlags2.DashCase;
+        const color = (c: string, opacity: number): string | null => {
+            return c ? new Coloration(c).addColor({ alpha: (-1 * opacity) / 100 }).toHEX() : null;
+        };
+        render.setStyle(body, '--item-width', (o.itemWidth || 100) + 'px', dash);
+        render.setStyle(body, '--item-height', (o.itemHeight || 100) + 'px', dash);
+        render.setStyle(body, '--item-padding', (o.itemPadding || 0) + 'px', dash);
+        render.setStyle(body, '--item-border', (o.itemBorder || 0) + 'px', dash);
+        render.setStyle(body, '--item-margin', (o.itemMargin || 0) + 'px', dash);
+        render.setStyle(body, '--content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
+        render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBackgroundOpacity), dash);
+        render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.itemBackgroundOpacity), dash);
+        render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.itemBackgroundOpacity), dash);
     }
 
     ngOnDestroy() {
