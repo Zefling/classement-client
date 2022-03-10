@@ -1,295 +1,309 @@
 <h2>{{ 'gererator.title.' + (editMode ? 'edit' : 'new') | translate }}</h2>
 
-<h3>{{ 'gererator.options.group.title' | translate }}</h3>
-<div class="options">
-    <div class="title">
-        <label>{{ 'gererator.options.title' | translate }}</label>
-        <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
-    </div>
-    <div class="group">
-        <label>{{ 'gererator.options.group' | translate }}</label>
-        <div>
-            <select type="text" maxlength="150" [(ngModel)]="options.category">
-                <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
-            </select>
+<ng-container *ngIf="options">
+    <h3>{{ 'gererator.options.group.title' | translate }}</h3>
+    <div class="options">
+        <div class="title">
+            <label>{{ 'gererator.options.title' | translate }}</label>
+            <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
         </div>
-    </div>
-    <div class="sizes" *ngIf="!advenceOptions">
-        <a (click)="switchOptions()">{{ 'gererator.options.advence' | translate }}</a>
-    </div>
-    <ng-container *ngIf="advenceOptions">
-        <div class="sizes">
-            <label>{{ 'gererator.options.sizes' | translate }}</label>
-            <div class="item-options">
-                <div class="box-border"></div>
-                <div class="box-in"></div>
-                <div class="margin">{{ 'gererator.options.margin' | translate }}</div>
-                <div class="padding">{{ 'gererator.options.padding' | translate }}</div>
-                <div class="height"></div>
-                <div class="width"></div>
-                <input
-                    type="number"
-                    min="0"
-                    max="20"
-                    class="item-margin"
-                    [(ngModel)]="options.itemMargin"
-                    title="{{ 'gererator.options.item.margin' | translate }}"
-                />
-                <input
-                    type="number"
-                    min="0"
-                    max="20"
-                    class="item-border"
-                    [(ngModel)]="options.itemBorder"
-                    title="{{ 'gererator.options.item.border' | translate }}"
-                />
-                <input
-                    type="number"
-                    min="0"
-                    max="20"
-                    class="item-padding"
-                    [(ngModel)]="options.itemPadding"
-                    title="{{ 'gererator.options.item.padding' | translate }}"
-                />
-                <input
-                    type="number"
-                    min="16"
-                    max="300"
-                    class="item-height"
-                    [(ngModel)]="options.itemHeight"
-                    title="{{ 'gererator.options.item.height' | translate }}"
-                />
-                <input
-                    type="number"
-                    min="16"
-                    max="300"
-                    class="item-width"
-                    [(ngModel)]="options.itemWidth"
-                    title="{{ 'gererator.options.item.width' | translate }}"
-                />
+        <div class="group">
+            <label>{{ 'gererator.options.group' | translate }}</label>
+            <div>
+                <select type="text" maxlength="150" [(ngModel)]="options.category">
+                    <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
+                </select>
             </div>
         </div>
-        <div class="colors-item">
-            <div>
-                <div class="input-button">
-                    <div>
-                        <label>{{ 'gererator.options.item.background.color' | translate }}</label>
-                        <input type="color" [(ngModel)]="options.itemBackgroundColor" />
-                    </div>
-                    <div>
-                        <label>{{ 'gererator.options.item.background.opacity' | translate }}</label>
-                        <input
-                            type="number"
-                            max="100"
-                            min="0"
-                            maxlength="3"
-                            [(ngModel)]="options.itemBackgroundOpacity"
-                        />
-                    </div>
-                    <button (click)="options.itemBackgroundColor = ''; options.itemBackgroundOpacity = 0">
-                        {{ 'gererator.options.clear' | translate }}
-                    </button>
+        <div class="sizes" *ngIf="!advenceOptions">
+            <a (click)="switchOptions()">{{ 'gererator.options.advence' | translate }}</a>
+        </div>
+        <ng-container *ngIf="advenceOptions">
+            <div class="sizes">
+                <label>{{ 'gererator.options.sizes' | translate }}</label>
+                <div class="item-options">
+                    <div class="box-border"></div>
+                    <div class="box-in"></div>
+                    <div class="margin">{{ 'gererator.options.margin' | translate }}</div>
+                    <div class="padding">{{ 'gererator.options.padding' | translate }}</div>
+                    <div class="height"></div>
+                    <div class="width"></div>
+                    <input
+                        type="number"
+                        min="0"
+                        max="20"
+                        class="item-margin"
+                        [(ngModel)]="options.itemMargin"
+                        title="{{ 'gererator.options.item.margin' | translate }}"
+                    />
+                    <input
+                        type="number"
+                        min="0"
+                        max="20"
+                        class="item-border"
+                        [(ngModel)]="options.itemBorder"
+                        title="{{ 'gererator.options.item.border' | translate }}"
+                    />
+                    <input
+                        type="number"
+                        min="0"
+                        max="20"
+                        class="item-padding"
+                        [(ngModel)]="options.itemPadding"
+                        title="{{ 'gererator.options.item.padding' | translate }}"
+                    />
+                    <input
+                        type="number"
+                        min="16"
+                        max="300"
+                        class="item-height"
+                        [(ngModel)]="options.itemHeight"
+                        title="{{ 'gererator.options.item.height' | translate }}"
+                    />
+                    <input
+                        type="number"
+                        min="16"
+                        max="300"
+                        class="item-width"
+                        [(ngModel)]="options.itemWidth"
+                        title="{{ 'gererator.options.item.width' | translate }}"
+                    />
                 </div>
             </div>
-            <div>
-                <div class="input-button">
-                    <div>
-                        <label>{{ 'gererator.options.item.border.color' | translate }}</label>
-                        <input type="color" [(ngModel)]="options.itemBorderColor" />
-                    </div>
-                    <div>
-                        <label>{{ 'gererator.options.item.border.opacity' | translate }}</label>
-                        <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.itemBorderOpacity" />
-                    </div>
-                    <button (click)="options.itemBorderColor = ''; options.itemBorderOpacity = 0">
-                        {{ 'gererator.options.clear' | translate }}
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="colors-line">
-            <div>
-                <div class="input-button">
-                    <div>
-                        <label>{{ 'gererator.options.line.background.color' | translate }}</label>
-                        <input type="color" [(ngModel)]="options.lineBackgroundColor" />
-                    </div>
-                    <div>
-                        <label>{{ 'gererator.options.line.background.opacity' | translate }}</label>
-                        <input
-                            type="number"
-                            max="100"
-                            min="0"
-                            maxlength="3"
-                            [(ngModel)]="options.lineBackgroundOpacity"
-                        />
-                    </div>
-                    <button (click)="options.lineBackgroundColor = ''; options.lineBackgroundOpacity = 0">
-                        {{ 'gererator.options.clear' | translate }}
-                    </button>
-                </div>
-            </div>
-            <div>
-                <div class="input-button">
-                    <div>
-                        <label>{{ 'gererator.options.line.border.color' | translate }}</label>
-                        <input type="color" [(ngModel)]="options.lineBorderColor" />
-                    </div>
-                    <div>
-                        <label>{{ 'gererator.options.line.border.opacity' | translate }}</label>
-                        <input type="number" max="100" min="0" maxlength="3" [(ngModel)]="options.lineBorderOpacity" />
-                    </div>
-                    <button (click)="options.lineBorderColor = ''; options.lineBorderOpacity = 0">
-                        {{ 'gererator.options.clear' | translate }}
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="simple">
-            <a (click)="switchOptions()">{{ 'gererator.options.simple' | translate }}</a>
-        </div>
-    </ng-container>
-</div>
-
-<h3>{{ 'gererator.ranking.group.title' | translate }}</h3>
-<div cdkDropListGroup>
-    <table>
-        <colgroup>
-            <col class="names" />
-            <col class="elements" />
-            <col class="actions" />
-        </colgroup>
-        <thead>
-            <tr>
-                <td style="width: 150px">{{ 'gererator.ranking.name' | translate }}</td>
-                <td>{{ 'gererator.ranking.list' | translate }}</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                <td class="names" [style.background]="group.bgColor">
-                    <div>
-                        <textarea class="name" [(ngModel)]="group.name" [style.color]="group.txtColor"></textarea>
-                        <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
-                        <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
-
-                        <svg class="color txtColor" viewBox="0 0 1000 1000" (click)="inputTxtColor.click()">
-                            <path
-                                d="M225.8,255.2L10,744.8h79.6l62.1-134.1h224.8l59.8,134.1h85L313.4,255.2H225.8z M174.6,544.2l91.7-216.3l88.2,216.3H174.6z"
-                            />
-                            <path d="M733.4,438.2L861.7,562L990,438.2H733.4z" />
-                        </svg>
-
-                        <svg class="color bgColor" viewBox="0 0 1000 1000" (click)="inputBgColor.click()">
-                            <path
-                                d="M948.3,410.1c-54.1-59.7-247.6-91.9-247.6-91.9L552.8,148V40.8H177.4v375.4h1L30.9,549.1C7.4,570.2,3.1,603.8,21.2,624l288.7,320.6c18.1,20.2,52,19.5,75.4-1.6l369.8-333v217.4C755.1,827.4,1108.6,586.8,948.3,410.1z M240,353.7V285V103.4h250.3v35.9c-4.9,2.5-9.9,5-14.2,8.9L240,360.8V353.7z M755.1,537.2L369.4,884.5c-7.1,6.4-17.3,6.6-22.8,0.5L84.3,593.6c-5.6-6.1-4.3-16.3,2.8-22.7l403.2-363.1V285v68.6v62.6h62.6v-168l202.2,224.6V537.2z"
-                            />
-                        </svg>
-                    </div>
-                </td>
-                <td class="elements">
-                    <div class="drop-list">
-                        <div
-                            *ngFor="let item of group.list; let index = index"
-                            cdkDropList
-                            cdkDropListOrientation="horizontal"
-                            [cdkDropListData]="{ list: group.list, index: index }"
-                            (cdkDropListDropped)="drop(group.list, $event)"
-                        >
-                            <div class="content-box" cdkDrag>
-                                <img src="{{ item.url }}" alt="{{ item.name }}" />
-                            </div>
+            <div class="colors-item">
+                <div>
+                    <div class="input-button">
+                        <div>
+                            <label>{{ 'gererator.options.item.background.color' | translate }}</label>
+                            <input type="color" [(ngModel)]="options.itemBackgroundColor" />
                         </div>
-                        <div
-                            class="drop-zone-empty-list"
-                            *ngIf="group.list.length === 0"
-                            cdkDropList
-                            cdkDropListOrientation="horizontal"
-                            [cdkDropListData]="{ list: group.list, index: 0 }"
-                            (cdkDropListDropped)="drop(group.list, $event)"
-                        ></div>
-                    </div>
-                </td>
-                <td class="actions">
-                    <div class="button-actions">
-                        <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">↑</button>
-                        <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">↓</button>
-                        <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
-                            {{ 'gererator.line.delete' | translate }}
-                        </button>
-                        <button class="button-add" (click)="addLine(indexGrp)">
-                            {{ 'gererator.line.add' | translate }}
+                        <div>
+                            <label>{{ 'gererator.options.item.background.opacity' | translate }}</label>
+                            <input
+                                type="number"
+                                max="100"
+                                min="0"
+                                maxlength="3"
+                                [(ngModel)]="options.itemBackgroundOpacity"
+                            />
+                        </div>
+                        <button (click)="options.itemBackgroundColor = ''; options.itemBackgroundOpacity = 0">
+                            {{ 'gererator.options.clear' | translate }}
                         </button>
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="save-actions">
-        <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
-        <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
-    </div>
-
-    <div drop-image (fileLoaded)="addFile($event)">
-        <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
-        <div class="drop-list">
-            <div
-                *ngFor="let item of list; let index = index"
-                cdkDropList
-                cdkDropListOrientation="horizontal"
-                [cdkDropListData]="{ list: list, index: index }"
-                (cdkDropListDropped)="drop(list, $event)"
-            >
-                <div class="content-box" cdkDrag>
-                    <button class="btn-delete" (click)="removeItem(index)">×</button>
-                    <img src="{{ item.url }}" alt="{{ item.name }}" />
+                </div>
+                <div>
+                    <div class="input-button">
+                        <div>
+                            <label>{{ 'gererator.options.item.border.color' | translate }}</label>
+                            <input type="color" [(ngModel)]="options.itemBorderColor" />
+                        </div>
+                        <div>
+                            <label>{{ 'gererator.options.item.border.opacity' | translate }}</label>
+                            <input
+                                type="number"
+                                max="100"
+                                min="0"
+                                maxlength="3"
+                                [(ngModel)]="options.itemBorderOpacity"
+                            />
+                        </div>
+                        <button (click)="options.itemBorderColor = ''; options.itemBorderOpacity = 0">
+                            {{ 'gererator.options.clear' | translate }}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div
-                class="drop-zone-empty-list"
-                *ngIf="list.length === 0"
-                cdkDropList
-                cdkDropListOrientation="horizontal"
-                [cdkDropListData]="{ list: list, index: 0 }"
-                (cdkDropListDropped)="drop(list, $event)"
-            ></div>
+            <div class="colors-line">
+                <div>
+                    <div class="input-button">
+                        <div>
+                            <label>{{ 'gererator.options.line.background.color' | translate }}</label>
+                            <input type="color" [(ngModel)]="options.lineBackgroundColor" />
+                        </div>
+                        <div>
+                            <label>{{ 'gererator.options.line.background.opacity' | translate }}</label>
+                            <input
+                                type="number"
+                                max="100"
+                                min="0"
+                                maxlength="3"
+                                [(ngModel)]="options.lineBackgroundOpacity"
+                            />
+                        </div>
+                        <button (click)="options.lineBackgroundColor = ''; options.lineBackgroundOpacity = 0">
+                            {{ 'gererator.options.clear' | translate }}
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-button">
+                        <div>
+                            <label>{{ 'gererator.options.line.border.color' | translate }}</label>
+                            <input type="color" [(ngModel)]="options.lineBorderColor" />
+                        </div>
+                        <div>
+                            <label>{{ 'gererator.options.line.border.opacity' | translate }}</label>
+                            <input
+                                type="number"
+                                max="100"
+                                min="0"
+                                maxlength="3"
+                                [(ngModel)]="options.lineBorderOpacity"
+                            />
+                        </div>
+                        <button (click)="options.lineBorderColor = ''; options.lineBorderOpacity = 0">
+                            {{ 'gererator.options.clear' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="simple">
+                <a (click)="switchOptions()">{{ 'gererator.options.simple' | translate }}</a>
+            </div>
+        </ng-container>
+    </div>
+
+    <h3>{{ 'gererator.ranking.group.title' | translate }}</h3>
+    <div cdkDropListGroup>
+        <table>
+            <colgroup>
+                <col class="names" />
+                <col class="elements" />
+                <col class="actions" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <td style="width: 150px">{{ 'gererator.ranking.name' | translate }}</td>
+                    <td>{{ 'gererator.ranking.list' | translate }}</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
+                    <td class="names" [style.background]="group.bgColor">
+                        <div>
+                            <textarea class="name" [(ngModel)]="group.name" [style.color]="group.txtColor"></textarea>
+                            <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
+                            <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
+
+                            <svg class="color txtColor" viewBox="0 0 1000 1000" (click)="inputTxtColor.click()">
+                                <path
+                                    d="M225.8,255.2L10,744.8h79.6l62.1-134.1h224.8l59.8,134.1h85L313.4,255.2H225.8z M174.6,544.2l91.7-216.3l88.2,216.3H174.6z"
+                                />
+                                <path d="M733.4,438.2L861.7,562L990,438.2H733.4z" />
+                            </svg>
+
+                            <svg class="color bgColor" viewBox="0 0 1000 1000" (click)="inputBgColor.click()">
+                                <path
+                                    d="M948.3,410.1c-54.1-59.7-247.6-91.9-247.6-91.9L552.8,148V40.8H177.4v375.4h1L30.9,549.1C7.4,570.2,3.1,603.8,21.2,624l288.7,320.6c18.1,20.2,52,19.5,75.4-1.6l369.8-333v217.4C755.1,827.4,1108.6,586.8,948.3,410.1z M240,353.7V285V103.4h250.3v35.9c-4.9,2.5-9.9,5-14.2,8.9L240,360.8V353.7z M755.1,537.2L369.4,884.5c-7.1,6.4-17.3,6.6-22.8,0.5L84.3,593.6c-5.6-6.1-4.3-16.3,2.8-22.7l403.2-363.1V285v68.6v62.6h62.6v-168l202.2,224.6V537.2z"
+                                />
+                            </svg>
+                        </div>
+                    </td>
+                    <td class="elements">
+                        <div class="drop-list">
+                            <div
+                                *ngFor="let item of group.list; let index = index"
+                                cdkDropList
+                                cdkDropListOrientation="horizontal"
+                                [cdkDropListData]="{ list: group.list, index: index }"
+                                (cdkDropListDropped)="drop(group.list, $event)"
+                            >
+                                <div class="content-box" cdkDrag>
+                                    <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                </div>
+                            </div>
+                            <div
+                                class="drop-zone-empty-list"
+                                *ngIf="group.list.length === 0"
+                                cdkDropList
+                                cdkDropListOrientation="horizontal"
+                                [cdkDropListData]="{ list: group.list, index: 0 }"
+                                (cdkDropListDropped)="drop(group.list, $event)"
+                            ></div>
+                        </div>
+                    </td>
+                    <td class="actions">
+                        <div class="button-actions">
+                            <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">↑</button>
+                            <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">↓</button>
+                            <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
+                                {{ 'gererator.line.delete' | translate }}
+                            </button>
+                            <button class="button-add" (click)="addLine(indexGrp)">
+                                {{ 'gererator.line.add' | translate }}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="save-actions">
+            <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
+            <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
+        </div>
+
+        <div drop-image (fileLoaded)="addFile($event)">
+            <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
+            <div class="drop-list">
+                <div
+                    *ngFor="let item of list; let index = index"
+                    cdkDropList
+                    cdkDropListOrientation="horizontal"
+                    [cdkDropListData]="{ list: list, index: index }"
+                    (cdkDropListDropped)="drop(list, $event)"
+                >
+                    <div class="content-box" cdkDrag>
+                        <button class="btn-delete" (click)="removeItem(index)">×</button>
+                        <img src="{{ item.url }}" alt="{{ item.name }}" />
+                    </div>
+                </div>
+                <div
+                    class="drop-zone-empty-list"
+                    *ngIf="list.length === 0"
+                    cdkDropList
+                    cdkDropListOrientation="horizontal"
+                    [cdkDropListData]="{ list: list, index: 0 }"
+                    (cdkDropListDropped)="drop(list, $event)"
+                ></div>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="render">
-    <table id="table-classement">
-        <caption *ngIf="options.title">
-            {{
-                options.title
-            }}
-        </caption>
-        <colgroup>
-            <col class="names" />
-            <col class="elements" />
-        </colgroup>
+    <div class="render">
+        <table id="table-classement">
+            <caption *ngIf="options.title">
+                {{
+                    options.title
+                }}
+            </caption>
+            <colgroup>
+                <col class="names" />
+                <col class="elements" />
+            </colgroup>
 
-        <tbody>
-            <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                <td class="names" [style.background]="group.bgColor" [style.color]="group.txtColor">
-                    {{ group.name }}
-                </td>
-                <td class="elements">
-                    <div class="drop-list">
-                        <div *ngFor="let item of group.list; let index = index">
-                            <div class="content-box">
-                                <img src="{{ item.url }}" alt="{{ item.name }}" />
+            <tbody>
+                <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
+                    <td class="names" [style.background]="group.bgColor" [style.color]="group.txtColor">
+                        {{ group.name }}
+                    </td>
+                    <td class="elements">
+                        <div class="drop-list">
+                            <div *ngFor="let item of group.list; let index = index">
+                                <div class="content-box">
+                                    <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                </div>
                             </div>
+                            <div class="drop-zone-empty-list" *ngIf="group.list.length === 0"></div>
                         </div>
-                        <div class="drop-zone-empty-list" *ngIf="group.list.length === 0"></div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
 
 <dialog-cmp closeButton>
     <div #image></div>

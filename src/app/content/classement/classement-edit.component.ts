@@ -92,6 +92,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     ngDoCheck() {
+        if (!this.options) {
+            return;
+        }
         const body = document.body;
         const o = this.options;
         const render = this.renderer;
