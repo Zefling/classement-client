@@ -86,7 +86,7 @@
             "group.title": "Classement",
             "name": "Nom",
             "list": "Liste",
-            "drop.image": "Déposez une image ici ↓ (JPG, PNG, GIF, WebP)"
+            "drop.image": "Déposez une ou un groupe d'images ici ↓ (JPG, PNG, GIF, WebP)"
         },
         "line": {
             "add": "Ajout",
