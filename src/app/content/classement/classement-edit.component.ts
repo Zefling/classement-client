@@ -108,9 +108,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         render.setStyle(body, '--item-border', (o.itemBorder || 0) + 'px', dash);
         render.setStyle(body, '--item-margin', (o.itemMargin || 0) + 'px', dash);
         render.setStyle(body, '--content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
-        render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBackgroundOpacity), dash);
-        render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.itemBackgroundOpacity), dash);
-        render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.itemBackgroundOpacity), dash);
+        render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
+        render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
     }
 
     ngOnDestroy() {
