@@ -1,3 +1,9 @@
+# 0.0.4 (2022-03-10)
+
+-   add advendced options: more sizes and colors
+-   change dark/light button.
+-   fix wording
+
 # 0.0.3 (2022-03-06)
 
 -   add dark mode.
