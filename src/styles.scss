@@ -7,6 +7,7 @@ body:not(.dark-mode) {
     --header-background: #fff;
     --aside-background: #fff;
     --licence-color: #000;
+    --color-mode-border-color: #444;
     // menu
     --menu-border-color: #6096c9;
     --menu-color: #1f3c57;
@@ -75,6 +76,7 @@ body:not(.dark-mode) {
         --header-background: #111;
         --aside-background: #111;
         --licence-color: #fff;
+        --color-mode-border-color: #bbb;
         // menu
         --menu-border-color: #1d2c3a;
         --menu-color: #e7eff7;
