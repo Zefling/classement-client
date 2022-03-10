@@ -10,6 +10,7 @@
     grid-template:
         'title  title        cat'
         'sizes  colors-item  colors-line'
+        'sizes  .            simple'
         / 200px 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -17,11 +18,13 @@
     background: var(--options-background);
     padding: 10px;
 }
-
+.simple {
+    grid-area: simple;
+    text-align: end;
+}
 .title {
     grid-area: title;
 }
-
 .categories {
     grid-area: cat;
 }

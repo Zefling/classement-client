@@ -60,6 +60,8 @@
             "margin": "Margin",
             "padding": "Padding",
             "clear": "Clear",
+            "simple": "Simplified options",
+            "advence": "Advenced options",
             "item": {
                 "width": "Item width",
                 "height": "Item height",

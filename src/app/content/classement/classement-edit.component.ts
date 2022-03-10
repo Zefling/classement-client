@@ -20,6 +20,24 @@ const defautGroup: FormatedGroup[] = [
     { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
 ];
 
+const defaultOptions: Options = {
+    title: '',
+    category: '',
+    itemWidth: 100,
+    itemHeight: 100,
+    itemPadding: 10,
+    itemBorder: 1,
+    itemMargin: 2,
+    itemBackgroundColor: '',
+    itemBorderColor: '',
+    lineBackgroundColor: '',
+    lineBorderColor: '',
+    itemBackgroundOpacity: 100,
+    itemBorderOpacity: 100,
+    lineBackgroundOpacity: 100,
+    lineBorderOpacity: 100,
+};
+
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
@@ -35,6 +53,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
 
     options!: Options;
+
+    advenceOptions = false;
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
@@ -54,7 +74,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {
-                            this.options = data.infos.options;
+                            this.options = { ...defaultOptions, ...data.infos.options };
                             this.groups = data.data.groups;
                             this.list = data.data.list;
                             this.editMode = true;
@@ -63,23 +83,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             this.router.navigate(['new']);
                         });
                 } else {
-                    this.options = {
-                        title: '',
-                        category: '',
-                        itemWidth: 100,
-                        itemHeight: 100,
-                        itemPadding: 10,
-                        itemBorder: 1,
-                        itemMargin: 2,
-                        itemBackgroundColor: '',
-                        itemBorderColor: '',
-                        lineBackgroundColor: '',
-                        lineBorderColor: '',
-                        itemBackgroundOpacity: 0,
-                        itemBorderOpacity: 0,
-                        lineBackgroundOpacity: 0,
-                        lineBorderOpacity: 0,
-                    };
+                    this.options = { ...defaultOptions };
                     this.groups = defautGroup;
                     this.editMode = false;
                 }
@@ -93,7 +97,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const render = this.renderer;
         const dash = RendererStyleFlags2.DashCase;
         const color = (c: string, opacity: number): string | null => {
-            return c ? new Coloration(c).addColor({ alpha: (-1 * opacity) / 100 }).toHEX() : null;
+            return c ? new Coloration(c).addColor({ alpha: (-1 * (100 - opacity)) / 100 }).toHEX() : null;
         };
         render.setStyle(body, '--item-width', (o.itemWidth || 100) + 'px', dash);
         render.setStyle(body, '--item-height', (o.itemHeight || 100) + 'px', dash);
@@ -108,6 +112,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     ngOnDestroy() {
         this._sub.forEach(e => e.unsubscribe());
+    }
+
+    switchOptions() {
+        this.advenceOptions = !this.advenceOptions;
     }
 
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {

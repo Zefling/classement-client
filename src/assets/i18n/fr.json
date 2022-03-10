@@ -62,6 +62,8 @@
             "margin": "Margin",
             "padding": "Padding",
             "clear": "Effacer",
+            "simple": "Options simplifiées",
+            "advence": "Options avancées",
             "item": {
                 "width": "Largeur d'un objet",
                 "height": "Hauteur d'un objet",
