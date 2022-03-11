@@ -203,4 +203,8 @@ select {
     width: 100%;
     background: var(--input-background);
     color: var(--text-color);
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }

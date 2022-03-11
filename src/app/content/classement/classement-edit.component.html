@@ -78,16 +78,22 @@
                 <div>
                     <div class="input-button">
                         <div>
-                            <label>{{ 'gererator.options.item.background.color' | translate }}</label>
-                            <input type="color" [(ngModel)]="options.itemBackgroundColor" />
+                            <label for="itemBackgroundColor">{{
+                                'gererator.options.item.background.color' | translate
+                            }}</label>
+                            <input id="itemBackgroundColor" type="color" [(ngModel)]="options.itemBackgroundColor" />
                         </div>
                         <div>
-                            <label>{{ 'gererator.options.item.background.opacity' | translate }}</label>
+                            <label for="itemBackgroundOpacity">{{
+                                'gererator.options.item.background.opacity' | translate
+                            }}</label>
                             <input
+                                id="itemBackgroundOpacity"
                                 type="number"
                                 max="100"
                                 min="0"
                                 maxlength="3"
+                                [disabled]="!options.itemBackgroundColor"
                                 [(ngModel)]="options.itemBackgroundOpacity"
                             />
                         </div>
@@ -99,16 +105,20 @@
                 <div>
                     <div class="input-button">
                         <div>
-                            <label>{{ 'gererator.options.item.border.color' | translate }}</label>
-                            <input type="color" [(ngModel)]="options.itemBorderColor" />
+                            <label for="itemBorderColor">{{ 'gererator.options.item.border.color' | translate }}</label>
+                            <input id="itemBorderColor" type="color" [(ngModel)]="options.itemBorderColor" />
                         </div>
                         <div>
-                            <label>{{ 'gererator.options.item.border.opacity' | translate }}</label>
+                            <label for="itemBorderOpacity">{{
+                                'gererator.options.item.border.opacity' | translate
+                            }}</label>
                             <input
+                                id="itemBorderOpacity"
                                 type="number"
                                 max="100"
                                 min="0"
                                 maxlength="3"
+                                [disabled]="!options.itemBorderColor"
                                 [(ngModel)]="options.itemBorderOpacity"
                             />
                         </div>
@@ -122,8 +132,10 @@
                 <div>
                     <div class="input-button">
                         <div>
-                            <label>{{ 'gererator.options.line.background.color' | translate }}</label>
-                            <input type="color" [(ngModel)]="options.lineBackgroundColor" />
+                            <label for="lineBackgroundColor">{{
+                                'gererator.options.line.background.color' | translate
+                            }}</label>
+                            <input id="lineBackgroundColor" type="color" [(ngModel)]="options.lineBackgroundColor" />
                         </div>
                         <div>
                             <label>{{ 'gererator.options.line.background.opacity' | translate }}</label>
@@ -132,6 +144,7 @@
                                 max="100"
                                 min="0"
                                 maxlength="3"
+                                [disabled]="!options.lineBackgroundColor"
                                 [(ngModel)]="options.lineBackgroundOpacity"
                             />
                         </div>
@@ -143,16 +156,20 @@
                 <div>
                     <div class="input-button">
                         <div>
-                            <label>{{ 'gererator.options.line.border.color' | translate }}</label>
-                            <input type="color" [(ngModel)]="options.lineBorderColor" />
+                            <label for="lineBorderColor">{{ 'gererator.options.line.border.color' | translate }}</label>
+                            <input id="lineBorderColor" type="color" [(ngModel)]="options.lineBorderColor" />
                         </div>
                         <div>
-                            <label>{{ 'gererator.options.line.border.opacity' | translate }}</label>
+                            <label for="lineBorderOpacity">{{
+                                'gererator.options.line.border.opacity' | translate
+                            }}</label>
                             <input
+                                id="lineBorderOpacity"
                                 type="number"
                                 max="100"
                                 min="0"
                                 maxlength="3"
+                                [disabled]="!options.lineBorderColor"
                                 [(ngModel)]="options.lineBorderOpacity"
                             />
                         </div>
