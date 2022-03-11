@@ -21,22 +21,28 @@ export class LightDarkComponent {
     }
 
     constructor(private renderer: Renderer2) {
-        this.browserShema =
-            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        this.changeClass();
+
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             this.browserShema = event.matches ? 'dark' : 'light';
+            this.changeClass();
         });
     }
 
     @HostListener('click')
     click() {
         this.userShema = this.thisCurrent() === 'light' ? 'dark' : 'light';
-
-        this.renderer.addClass(document.body, this.userShema === 'light' ? 'light-mode' : 'dark-mode');
-        this.renderer.removeClass(document.body, this.userShema !== 'light' ? 'light-mode' : 'dark-mode');
+        this.changeClass();
     }
 
     thisCurrent(): 'dark' | 'light' {
         return this.userShema ?? this.browserShema ?? 'light';
+    }
+
+    changeClass() {
+        console.log('color theme:', this.userShema);
+        this.renderer.addClass(document.body, this.thisCurrent() === 'light' ? 'light-mode' : 'dark-mode');
+        this.renderer.removeClass(document.body, this.thisCurrent() !== 'light' ? 'light-mode' : 'dark-mode');
     }
 }

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-body:not(.dark-mode) {
-    --bakcground: #fff;
+body.light-mode {
+    --background: #fff;
     --text-color: #000;
     --menu-box-shadow-color: #0000004d;
     --header-background: #fff;
@@ -69,79 +69,77 @@ body:not(.dark-mode) {
     --alert-color: #b00;
 }
 
-@media (prefers-color-scheme: dark) {
-    body:not(.light-mode) {
-        --bakcground: #000;
-        --text-color: #fff;
-        --menu-box-shadow-color: #3d3d3d4d;
-        --header-background: #111;
-        --aside-background: #111;
-        --licence-color: #fff;
-        --color-mode-border-color: #bbb;
-        // menu
-        --menu-border-color: #1d2c3a;
-        --menu-color: #e7eff7;
-        --menu-background: #1f2d3b;
-        --menu-hover-color: #fff;
-        --menu-hover-background: #334a61;
-        // defaut button
-        --button-defaut-border-color: #303030;
-        --button-defaut-background: #202020;
-        --button-defaut-box-shadow: #181818;
-        --button-defaut-color: #fff;
-        --button-defaut-hover-border-color: #1f1f1f;
-        --button-defaut-hover-background: #474747;
-        --button-defaut-hover-box-shadow: #474747;
-        --button-defaut-focus-border-color: #888;
-        // primary button
-        --button-primary-border-color: #454261;
-        --button-primary-background: #203c69;
-        --button-primary-box-shadow: #12151a;
-        --button-primary-color: #b6bbc9;
-        --button-primary-hover-border-color: #706a97;
-        --button-primary-hover-background: #3162b1;
-        --button-primary-hover-box-shadow: #1e2025;
-        --button-primary-focus-border-color: #9ba9c2;
-        // link
-        --link-color: #9898e6;
-        --link-hover-color: #d8d8f0;
-        // dialog
-        --dialog-backdrop-background: #b9b9b966;
-        --dialog-background: #202020;
-        --dialog-shadow-color: #1b1b1b33;
-        // list
-        --list-header-background: #111;
-        --list-line-hover-background: #312f2f;
-        --no-result-background: #312f2f;
-        // option block
-        --options-border-color: #2b2b2b;
-        --options-background: #1a1a1a;
-        --options-sizes-border-color: yellow;
-        --options-sizes-border-text: #000;
-        --options-sizes-margin-color: #444;
-        --options-sizes-padding-color: #222;
-        --options-sizes-box-color: #111;
-        --options-sizes-height-color: #00ff34;
-        --options-sizes-width-color: #a12dff;
-        // input
-        --input-border-color: #3c3c41;
-        --input-background: #282f36;
-        // drop list
-        --drop-list-border-color: #3f3f3f;
-        --drop-list-background: #2e2e2e;
-        // drop list (add image)
-        --drop-image-zone-background: #13141a;
-        // item content-box
-        --content-box-border: #333;
-        --content-box-background: #242424;
-        --content-box-color: #000000de;
-        // info
-        --alert-color: #ca5f5f;
-    }
+body.dark-mode {
+    --background: #000;
+    --text-color: #fff;
+    --menu-box-shadow-color: #3d3d3d4d;
+    --header-background: #111;
+    --aside-background: #111;
+    --licence-color: #fff;
+    --color-mode-border-color: #bbb;
+    // menu
+    --menu-border-color: #1d2c3a;
+    --menu-color: #e7eff7;
+    --menu-background: #1f2d3b;
+    --menu-hover-color: #fff;
+    --menu-hover-background: #334a61;
+    // defaut button
+    --button-defaut-border-color: #303030;
+    --button-defaut-background: #202020;
+    --button-defaut-box-shadow: #181818;
+    --button-defaut-color: #fff;
+    --button-defaut-hover-border-color: #1f1f1f;
+    --button-defaut-hover-background: #474747;
+    --button-defaut-hover-box-shadow: #474747;
+    --button-defaut-focus-border-color: #888;
+    // primary button
+    --button-primary-border-color: #454261;
+    --button-primary-background: #203c69;
+    --button-primary-box-shadow: #12151a;
+    --button-primary-color: #b6bbc9;
+    --button-primary-hover-border-color: #706a97;
+    --button-primary-hover-background: #3162b1;
+    --button-primary-hover-box-shadow: #1e2025;
+    --button-primary-focus-border-color: #9ba9c2;
+    // link
+    --link-color: #9898e6;
+    --link-hover-color: #d8d8f0;
+    // dialog
+    --dialog-backdrop-background: #b9b9b966;
+    --dialog-background: #202020;
+    --dialog-shadow-color: #1b1b1b33;
+    // list
+    --list-header-background: #111;
+    --list-line-hover-background: #312f2f;
+    --no-result-background: #312f2f;
+    // option block
+    --options-border-color: #2b2b2b;
+    --options-background: #1a1a1a;
+    --options-sizes-border-color: yellow;
+    --options-sizes-border-text: #000;
+    --options-sizes-margin-color: #444;
+    --options-sizes-padding-color: #222;
+    --options-sizes-box-color: #111;
+    --options-sizes-height-color: #00ff34;
+    --options-sizes-width-color: #a12dff;
+    // input
+    --input-border-color: #3c3c41;
+    --input-background: #282f36;
+    // drop list
+    --drop-list-border-color: #3f3f3f;
+    --drop-list-background: #2e2e2e;
+    // drop list (add image)
+    --drop-image-zone-background: #13141a;
+    // item content-box
+    --content-box-border: #333;
+    --content-box-background: #242424;
+    --content-box-color: #000000de;
+    // info
+    --alert-color: #ca5f5f;
 }
 
 body {
-    background: var(--bakcground);
+    background: var(--background);
     color: var(--text-color);
 }
 
