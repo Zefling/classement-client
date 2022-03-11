@@ -59,6 +59,8 @@
             "sizes": "Tile sizes:",
             "margin": "Margin",
             "padding": "Padding",
+            "border": "Border",
+            "image": "Image",
             "clear": "Clear",
             "simple": "Simplified options",
             "advence": "Advenced options",

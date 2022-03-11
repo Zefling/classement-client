@@ -47,6 +47,7 @@ body:not(.dark-mode) {
     --options-border-color: #f0f0f0;
     --options-background: #f0f0f0;
     --options-sizes-border-color: #8b441b;
+    --options-sizes-border-text: #fff;
     --options-sizes-margin-color: #bbb;
     --options-sizes-padding-color: #ccc;
     --options-sizes-box-color: #eee;
@@ -116,6 +117,7 @@ body:not(.dark-mode) {
         --options-border-color: #2b2b2b;
         --options-background: #1a1a1a;
         --options-sizes-border-color: yellow;
+        --options-sizes-border-text: #000;
         --options-sizes-margin-color: #444;
         --options-sizes-padding-color: #222;
         --options-sizes-box-color: #111;
