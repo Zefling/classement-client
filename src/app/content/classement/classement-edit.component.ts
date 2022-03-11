@@ -83,9 +83,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             this.router.navigate(['new']);
                         });
                 } else {
+                    // reset all
                     this.options = { ...defaultOptions };
-                    this.groups = defautGroup;
+                    this.groups = JSON.parse(JSON.stringify(defautGroup));
+                    this.list = [];
+                    this.advenceOptions = false;
                     this.editMode = false;
+                    this.id = undefined;
                 }
             }),
         );
