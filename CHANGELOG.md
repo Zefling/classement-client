@@ -1,3 +1,11 @@
+# 0.0.5 (2022-03-11)
+
+-   better options render
+-   fix light theme
+-   fix id for new classification
+-   fix opacity
+-   fix wording
+
 # 0.0.4 (2022-03-10)
 
 -   add advendced options: more sizes and colors
