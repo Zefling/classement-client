@@ -192,7 +192,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             list: this.list,
         };
 
-        this.bdService.saveLocal(data).then(id => this.id);
+        this.bdService.saveLocal(data).then(id => (this.id = id));
     }
 
     saveServer() {}
