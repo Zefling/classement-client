@@ -2,6 +2,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, DoCheck, ElementRef, OnDestroy, Renderer2, RendererStyleFlags2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
@@ -59,6 +61,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
+    private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
 
     constructor(
@@ -66,6 +69,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private router: Router,
         private route: ActivatedRoute,
         private renderer: Renderer2,
+        private translate: TranslateService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -185,7 +189,33 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             const element = this.image.nativeElement;
             element.innerHTML = '';
             element.appendChild(canvas);
+            this._canvas = canvas;
         });
+    }
+
+    saveImage(type: string) {
+        const title = this.options.title.trim() || this.translate.instant('list.title.undefined');
+        if (this._canvas) {
+            switch (type) {
+                case 'PNG':
+                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    break;
+                case 'JPG':
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    break;
+                case 'WEBP':
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    break;
+            }
+        }
+    }
+
+    downloadImage(data: string, filename: string) {
+        var a = document.createElement('a');
+        a.href = data;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
     }
 
     saveLocal() {

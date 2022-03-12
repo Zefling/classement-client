@@ -97,7 +97,8 @@
         "actions": {
             "export.image": "Export en image",
             "save.local": "Sauvegarde locale",
-            "save.account": "Sauvegarde sur compte (prochainement)"
+            "save.account": "Sauvegarde sur compte (prochainement)",
+            "save.image": "Sauvegarder au format\u00A0:"
         }
     }
 }

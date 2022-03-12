@@ -327,5 +327,11 @@
 </ng-container>
 
 <dialog-cmp closeButton>
+    <div class="button-image-save">
+        {{ 'gererator.actions.save.image' | translate }}
+        <button class="button-add" (click)="saveImage('PNG')">PNG</button>
+        <button class="button-add" (click)="saveImage('JPG')">Jpeg</button>
+        <button class="button-add" (click)="saveImage('WEBP')">WebP</button>
+    </div>
     <div #image></div>
 </dialog-cmp>

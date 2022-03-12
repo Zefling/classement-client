@@ -95,7 +95,8 @@
         "actions": {
             "export.image": "Image export ",
             "save.local": "Loval save",
-            "save.account": "Save to account (coming soon) "
+            "save.account": "Save to account (coming soon)",
+            "save.image": "Save as\u00A0:"
         }
     }
 }
