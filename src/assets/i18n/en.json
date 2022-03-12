@@ -96,7 +96,11 @@
             "export.image": "Image export ",
             "save.local": "Loval save",
             "save.account": "Save to account (coming soon)",
-            "save.image": "Save as\u00A0:"
+            "save.image": "Save as:"
+        },
+        "change": {
+            "warning": "You have made changes!",
+            "question": "Are you sure you want to leave this page? "
         }
     }
 }

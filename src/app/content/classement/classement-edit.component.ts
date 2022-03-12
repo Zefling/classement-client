@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
+import { GlobalService } from 'src/app/services/global.service';
+import { Utils } from 'src/app/tools/utils';
 
 import { defaultOptions, defautGroup } from './classement-default';
 
@@ -25,23 +27,19 @@ const color = (c: string, opacity: number): string | null => {
     styleUrls: ['./classement-edit.component.scss'],
 })
 export class ClassementEditComponent implements OnDestroy, DoCheck {
-    editMode = false;
     id?: string;
 
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
 
-    categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
-
     options!: Options;
-
-    advenceOptions = false;
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
+    private _optionsCache?: Options;
 
     constructor(
         private bdService: DBService,
@@ -49,18 +47,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private route: ActivatedRoute,
         private renderer: Renderer2,
         private translate: TranslateService,
+        private globalService: GlobalService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] !== 'new') {
                     this.id = params['id'];
+                    this.globalService.withChange = false;
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {
                             this.options = { ...defaultOptions, ...data.infos.options };
+                            this._optionsCache = Utils.jsonCopy(this.options);
                             this.groups = data.data.groups;
                             this.list = data.data.list;
-                            this.editMode = true;
                         })
                         .catch(() => {
                             this.router.navigate(['new']);
@@ -68,11 +68,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 } else {
                     // reset all
                     this.options = { ...defaultOptions };
-                    this.groups = JSON.parse(JSON.stringify(defautGroup));
+                    this._optionsCache = Utils.jsonCopy(this.options);
+                    this.groups = Utils.jsonCopy(defautGroup);
                     this.list = [];
-                    this.advenceOptions = false;
-                    this.editMode = false;
                     this.id = undefined;
+                    this.globalService.withChange = false;
                 }
             }),
         );
@@ -97,6 +97,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
         render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+
+        if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
+            this.globalService.withChange = true;
+            console.log('Option change');
+        }
     }
 
     ngOnDestroy() {
@@ -116,22 +121,27 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 indexTarget + event.currentIndex,
             );
         }
+        this.globalService.withChange = true;
     }
 
     upLine(index: number) {
         this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
+        this.globalService.withChange = true;
     }
 
     downLine(index: number) {
         this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
+        this.globalService.withChange = true;
     }
 
     deleteLine(index: number) {
         this.list.push(...this.groups.splice(index, 1)[0].list);
+        this.globalService.withChange = true;
     }
 
     removeItem(index: number) {
         this.list.splice(index, 1);
+        this.globalService.withChange = true;
     }
 
     addLine(index: number) {
@@ -146,10 +156,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ? mixColor(this.groups[index].txtColor, this.groups[index + 1].txtColor)
                 : this.groups[index].txtColor;
         this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
+        this.globalService.withChange = true;
     }
 
     addFile(file: FileString) {
         this.list.push(file);
+        this.globalService.withChange = true;
     }
 
     exportImage() {
@@ -192,7 +204,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             list: this.list,
         };
 
-        this.bdService.saveLocal(data).then(id => (this.id = id));
+        this.bdService.saveLocal(data).then(id => {
+            this.id = id;
+            this.globalService.withChange = false;
+        });
     }
 
     private _downloadImage(data: string, filename: string) {

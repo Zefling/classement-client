@@ -99,6 +99,10 @@
             "save.local": "Sauvegarde locale",
             "save.account": "Sauvegarde sur compte (prochainement)",
             "save.image": "Sauvegarder au format\u00A0:"
+        },
+        "change": {
+            "warning": "Vous avez-effectué des changements\u00A0!",
+            "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
         }
     }
 }

@@ -11,6 +11,7 @@ export const defautGroup: FormatedGroup[] = [
 ];
 
 export const defaultOptions: Options = {
+    showAdvancedOptions: false,
     title: '',
     category: '',
     itemWidth: 100,
@@ -27,3 +28,14 @@ export const defaultOptions: Options = {
     lineBackgroundOpacity: 100,
     lineBorderOpacity: 100,
 };
+
+export const categories: String[] = [
+    'anime',
+    'game',
+    'video.game',
+    'board.game',
+    'movie',
+    'series',
+    'vehicle',
+    'other',
+];

@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 
 import { Options } from 'src/app/interface';
 
+import { categories } from './classement-default';
+
 
 @Component({
     selector: 'classement-options',
@@ -9,16 +11,16 @@ import { Options } from 'src/app/interface';
     styleUrls: ['./classement-options.component.scss'],
 })
 export class ClassementOptionsComponent {
-    categories: String[] = ['anime', 'game', 'video.game', 'board.game', 'movie', 'series', 'vehicle', 'other'];
+    categories = categories;
 
     @Input()
     options?: Options;
 
-    advenceOptions = false;
-
     constructor() {}
 
     switchOptions() {
-        this.advenceOptions = !this.advenceOptions;
+        if (this.options) {
+            this.options.showAdvancedOptions = !this.options.showAdvancedOptions;
+        }
     }
 }

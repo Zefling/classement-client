@@ -6,6 +6,7 @@ export type FormatedGroup = { name: string; bgColor: string; txtColor: string; l
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = {
+    showAdvancedOptions: boolean;
     title: string;
     category: string;
     itemWidth: number;

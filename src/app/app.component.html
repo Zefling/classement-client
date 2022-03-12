@@ -23,3 +23,12 @@
 <div>
     <router-outlet></router-outlet>
 </div>
+
+<dialog-cmp #warningExit>
+    <p class="title">{{ 'gererator.change.warning' | translate }}</p>
+    <p>{{ 'gererator.change.question' | translate }}</p>
+    <div>
+        <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
+        <button class="primary" (click)="exit(true)">{{ 'list.delete.validate' | translate }}</button>
+    </div>
+</dialog-cmp>
