@@ -12,32 +12,11 @@ import { DialogComponent } from 'src/app/components/dialog.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 
+import { defaultOptions, defautGroup } from './classement-default';
 
-const defautGroup: FormatedGroup[] = [
-    { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
-    { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
-    { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
-    { name: 'C', bgColor: '#f9f06b', txtColor: '#000000', list: [] },
-    { name: 'D', bgColor: '#8ff0a4', txtColor: '#000000', list: [] },
-    { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
-];
 
-const defaultOptions: Options = {
-    title: '',
-    category: '',
-    itemWidth: 100,
-    itemHeight: 100,
-    itemPadding: 10,
-    itemBorder: 1,
-    itemMargin: 2,
-    itemBackgroundColor: '',
-    itemBorderColor: '',
-    lineBackgroundColor: '',
-    lineBorderColor: '',
-    itemBackgroundOpacity: 100,
-    itemBorderOpacity: 100,
-    lineBackgroundOpacity: 100,
-    lineBorderOpacity: 100,
+const color = (c: string, opacity: number): string | null => {
+    return c ? new Coloration(c).addColor({ alpha: (-1 * (100 - opacity)) / 100 }).toHEX() : null;
 };
 
 @Component({
@@ -103,13 +82,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (!this.options) {
             return;
         }
+
         const body = document.body;
         const o = this.options;
         const render = this.renderer;
         const dash = RendererStyleFlags2.DashCase;
-        const color = (c: string, opacity: number): string | null => {
-            return c ? new Coloration(c).addColor({ alpha: (-1 * (100 - opacity)) / 100 }).toHEX() : null;
-        };
+
         render.setStyle(body, '--item-width', (o.itemWidth || 100) + 'px', dash);
         render.setStyle(body, '--item-height', (o.itemHeight || 100) + 'px', dash);
         render.setStyle(body, '--item-padding', (o.itemPadding || 0) + 'px', dash);
@@ -194,24 +172,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (this._canvas) {
             switch (type) {
                 case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    this._downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
                     break;
                 case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    this._downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
                     break;
                 case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    this._downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
                     break;
             }
         }
-    }
-
-    downloadImage(data: string, filename: string) {
-        var a = document.createElement('a');
-        a.href = data;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
     }
 
     saveLocal() {
@@ -225,5 +195,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService.saveLocal(data).then(id => (this.id = id));
     }
 
-    saveServer() {}
+    private _downloadImage(data: string, filename: string) {
+        var a = document.createElement('a');
+        a.href = data;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+    }
 }
