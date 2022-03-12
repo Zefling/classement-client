@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { ClassementEditComponent } from './content/classement/classement-edit.component';
+import { ClassementOptionsComponent } from './content/classement/classement-options.component';
 import { ClassementHomeComponent } from './content/home/classement-home.component';
 import { ClassementListComponent } from './content/list/classement-list.component';
 import { DirectiveModule } from './directives/directive.module';
@@ -26,6 +27,7 @@ export function createTranslateLoader(http: HttpClient) {
 
         // page
         ClassementHomeComponent,
+        ClassementOptionsComponent,
         ClassementEditComponent,
         ClassementListComponent,
     ],

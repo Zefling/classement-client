@@ -125,10 +125,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this._sub.forEach(e => e.unsubscribe());
     }
 
-    switchOptions() {
-        this.advenceOptions = !this.advenceOptions;
-    }
-
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
         const indexTarget = event.container.data.index;
