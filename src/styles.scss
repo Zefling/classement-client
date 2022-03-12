@@ -37,6 +37,7 @@ body.light-mode {
     --link-hover-color: #202081;
     // dialog
     --dialog-backdrop-background: #0006;
+    --dialog-backdrop-background-no-filter: #000b;
     --dialog-background: #fff;
     --dialog-shadow-color: #0003;
     // list
@@ -105,7 +106,8 @@ body.dark-mode {
     --link-color: #9898e6;
     --link-hover-color: #d8d8f0;
     // dialog
-    --dialog-backdrop-background: #b9b9b966;
+    --dialog-backdrop-background: #0006;
+    --dialog-backdrop-background-no-filter: #000b;
     --dialog-background: #202020;
     --dialog-shadow-color: #1b1b1b33;
     // list

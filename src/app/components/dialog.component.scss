@@ -4,11 +4,16 @@
     height: 100%;
     width: 100%;
     z-index: 3;
-    background-color: var (--dialog-backdrop-background);
+    background: var(--dialog-backdrop-background);
     top: 0;
     left: -15px;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(2px);
+
+    @supports not (backdrop-filter: blur(2px)) {
+        background: var(--dialog-backdrop-background-no-filter);
+    }
 
     &.open {
         display: flex;
