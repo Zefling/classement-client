@@ -14,6 +14,8 @@ body.light-mode {
     --menu-background: #afd1f1;
     --menu-hover-color: #122333;
     --menu-hover-background: #83a9cc;
+    --menu-active-color: #122333;
+    --menu-active-background: #5f88af;
     // defaut button
     --button-defaut-border-color: #e2e2e2;
     --button-defaut-background: #fff;
@@ -84,6 +86,8 @@ body.dark-mode {
     --menu-background: #1f2d3b;
     --menu-hover-color: #fff;
     --menu-hover-background: #334a61;
+    --menu-active-color: #fff;
+    --menu-active-background: #4f6983;
     // defaut button
     --button-defaut-border-color: #303030;
     --button-defaut-background: #202020;

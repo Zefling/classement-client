@@ -56,19 +56,19 @@ aside {
         padding: 5px;
         border: 1px solid var(--menu-border-color);
         list-style: none;
-        cursor: pointer;
         font-weight: 700;
-
+        cursor: default;
         color: var(--menu-color);
         background: var(--menu-background);
         border-radius: 5px;
 
         &.active {
-            color: var(--menu-hover-color);
-            background-color: var(--menu-hover-background);
+            color: var(--menu-active-color);
+            background-color: var(--menu-active-background);
         }
 
-        &:hover {
+        &:not(.active):hover {
+            cursor: pointer;
             color: var(--menu-hover-color);
             background-color: var(--menu-hover-background);
         }
