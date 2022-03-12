@@ -1,3 +1,9 @@
+# 0.0.6 (2022-03-12)
+
+-   buttons to save the generated image: PNG, Jpeg or WebP
+-   warning popup on change
+-   fix minor bugs
+
 # 0.0.5 (2022-03-11)
 
 -   better options render
