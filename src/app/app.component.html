@@ -9,9 +9,15 @@
 </header>
 <aside>
     <ul>
-        <li routerLink="/" routerLinkActive="active">{{ 'menu.home' | translate }}</li>
-        <li routerLink="/list" routerLinkActive="active">{{ 'menu.list' | translate }}</li>
-        <li routerLink="/classement/edit/new" routerLinkActive="active">{{ 'menu.new' | translate }}</li>
+        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            {{ 'menu.home' | translate }}
+        </li>
+        <li routerLink="/list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            {{ 'menu.list' | translate }}
+        </li>
+        <li routerLink="/classement/edit/new" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            {{ 'menu.new' | translate }}
+        </li>
     </ul>
 </aside>
 <div>

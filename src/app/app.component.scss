@@ -63,6 +63,11 @@ aside {
         background: var(--menu-background);
         border-radius: 5px;
 
+        &.active {
+            color: var(--menu-hover-color);
+            background-color: var(--menu-hover-background);
+        }
+
         &:hover {
             color: var(--menu-hover-color);
             background-color: var(--menu-hover-background);
