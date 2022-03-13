@@ -212,3 +212,19 @@ select {
         opacity: 0.5;
     }
 }
+
+dialog-cmp {
+    .title {
+        font-weight: 700;
+    }
+
+    p,
+    div {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    input {
+        width: 80%;
+    }
+}

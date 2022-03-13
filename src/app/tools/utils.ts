@@ -14,7 +14,7 @@ export class Utils {
         );
     }
 
-    static jsonCopy(o: any) {
+    static jsonCopy<T>(o: T): T {
         return JSON.parse(JSON.stringify(o));
     }
 }

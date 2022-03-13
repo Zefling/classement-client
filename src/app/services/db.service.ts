@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
+import { Utils } from '../tools/utils';
 
 
 enum Store {
@@ -23,6 +24,27 @@ export class DBService {
                 .then(db => this._deleteDB(db, Store.data, id))
                 .then(__ => resolve())
                 .catch(_ => reject());
+        });
+    }
+
+    clone(item: FormatedInfos, title: string): Promise<FormatedInfos> {
+        return new Promise((resolve, reject) => {
+            const formatData: any = {};
+            const cloneItem = Utils.jsonCopy(item);
+            cloneItem.date = `${new Date()}`;
+            cloneItem.options.title = title;
+            this._digestMessage(cloneItem.date).then(id => {
+                cloneItem.id = id;
+                this._getDB()
+                    .then(db => this._saveDB(db, Store.infos, cloneItem))
+                    .then(db => this._getByIdDB(db, Store.data, item.id as string, formatData, 'data'))
+                    .then(db => {
+                        (formatData as FormatedInfosData).data.id = cloneItem.id;
+                        return this._saveDB(db, Store.data, formatData.data);
+                    })
+                    .then(__ => resolve(cloneItem))
+                    .catch(_ => reject());
+            });
         });
     }
 

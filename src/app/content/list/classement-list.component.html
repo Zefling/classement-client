@@ -25,6 +25,7 @@
             <td class="actions">
                 <a [routerLink]="'/classement/edit/' + item.id">{{ 'list.action.edit' | translate }}</a>
                 <a (click)="delete(item)">{{ 'list.action.delete' | translate }}</a>
+                <a (click)="clone(item)">{{ 'list.action.clone' | translate }}</a>
             </td>
         </tr>
     </tbody>
@@ -37,11 +38,29 @@
     </p>
 </ng-template>
 
-<dialog-cmp #dialogSuppr class="dialog-suppr">
+<dialog-cmp #dialogDelete class="dialog-delete">
     <p>{{ 'list.delete.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>
         <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
         <button class="primary" (click)="deleteCurrent(true)">{{ 'list.delete.validate' | translate }}</button>
+    </div>
+</dialog-cmp>
+
+<dialog-cmp #dialogClone class="dialog-clone">
+    <p>{{ 'list.clone.question' | translate }}</p>
+    <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+    <div>
+        <label>{{ 'list.clone.title' | translate }}</label>
+        <div><input type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
+    </div>
+    <div>
+        <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
+        <button class="primary" (click)="cloneCurrent(true, title.value)">
+            {{ 'list.clone.validate' | translate }}
+        </button>
+        <button class="primary" (click)="cloneCurrent(true, title.value, true)">
+            {{ 'list.clone.edit' | translate }}
+        </button>
     </div>
 </dialog-cmp>

@@ -28,11 +28,19 @@
         "action": {
             "name": "Action",
             "edit": "Edit",
-            "delete": "Remove"
+            "delete": "Remove",
+            "clone": "Clone"
         },
         "delete": {
-            "question": "Are you sure you want to delete:",
+            "question": "Are you sure you want to delete?",
             "validate": "Validate",
+            "cancel": "Cancel"
+        },
+        "clone": {
+            "question": "Are you sure you want to clone?",
+            "title": "Change title\u00A0:",
+            "validate": "Clone",
+            "edit": "Clone & edit",
             "cancel": "Cancel"
         }
     },

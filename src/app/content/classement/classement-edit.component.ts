@@ -53,12 +53,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.route.params.subscribe(params => {
                 if (params['id'] !== 'new') {
                     this.id = params['id'];
-                    this.globalService.withChange = false;
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {
                             this.options = { ...defaultOptions, ...data.infos.options };
-                            this._optionsCache = Utils.jsonCopy(this.options);
+                            this.resetCache();
                             this.groups = data.data.groups;
                             this.list = data.data.list;
                         })
@@ -68,11 +67,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 } else {
                     // reset all
                     this.options = { ...defaultOptions };
-                    this._optionsCache = Utils.jsonCopy(this.options);
+                    this.resetCache();
                     this.groups = Utils.jsonCopy(defautGroup);
                     this.list = [];
                     this.id = undefined;
-                    this.globalService.withChange = false;
                 }
             }),
         );
@@ -106,6 +104,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     ngOnDestroy() {
         this._sub.forEach(e => e.unsubscribe());
+    }
+
+    resetCache() {
+        this.globalService.withChange = false;
+        this._optionsCache = Utils.jsonCopy(this.options);
     }
 
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
@@ -206,7 +209,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.bdService.saveLocal(data).then(id => {
             this.id = id;
-            this.globalService.withChange = false;
+            this.resetCache();
         });
     }
 
