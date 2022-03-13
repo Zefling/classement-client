@@ -1,3 +1,9 @@
+# 0.0.7 (2022-03-13)
+
+-   add option to clone classifications
+-   fix dark/light via cookie
+-   fix minor bugs
+
 # 0.0.6 (2022-03-12)
 
 -   buttons to save the generated image: PNG, Jpeg or WebP
