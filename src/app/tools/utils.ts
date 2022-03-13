@@ -17,4 +17,10 @@ export class Utils {
     static jsonCopy<T>(o: T): T {
         return JSON.parse(JSON.stringify(o));
     }
+
+    static getCookie(name: string): string | null {
+        const cookies = document.cookie;
+        const parts = cookies.match(`(?!; )?${name}=([^;]*);?`);
+        return parts ? parts[1] : null;
+    }
 }

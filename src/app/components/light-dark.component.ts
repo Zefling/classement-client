@@ -1,5 +1,9 @@
 import { Component, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
+import { Utils } from '../tools/utils';
+
+
+type DarkLight = 'dark' | 'light';
 
 @Component({
     selector: 'light-dark',
@@ -7,8 +11,8 @@ import { Component, HostBinding, HostListener, Renderer2 } from '@angular/core';
     styleUrls: ['./light-dark.component.scss'],
 })
 export class LightDarkComponent {
-    browserShema!: 'dark' | 'light';
-    userShema!: 'dark' | 'light';
+    browserShema!: DarkLight;
+    userShema!: DarkLight;
 
     @HostBinding('class.light')
     get classLight() {
@@ -22,6 +26,10 @@ export class LightDarkComponent {
 
     constructor(private renderer: Renderer2) {
         this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = Utils.getCookie('theme') as DarkLight;
+        if (['dark', 'light'].includes(theme)) {
+            this.userShema = theme;
+        }
         this.changeClass();
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
@@ -33,10 +41,11 @@ export class LightDarkComponent {
     @HostListener('click')
     click() {
         this.userShema = this.thisCurrent() === 'light' ? 'dark' : 'light';
+        document.cookie = 'theme=' + this.userShema;
         this.changeClass();
     }
 
-    thisCurrent(): 'dark' | 'light' {
+    thisCurrent(): DarkLight {
         return this.userShema ?? this.browserShema ?? 'light';
     }
 
