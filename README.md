@@ -33,7 +33,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Roadmap
 
 -   Soon
-    -   Clone a classification
+    -   Predefined themes
 -   Later
     -   Server save
     -   Account management (server)
