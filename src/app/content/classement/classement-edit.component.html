@@ -84,7 +84,7 @@
             <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
         </div>
 
-        <div drop-image (fileLoaded)="addFile($event)">
+        <div drop-image>
             <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
             <div class="drop-list">
                 <div
@@ -107,6 +107,9 @@
                     [cdkDropListData]="{ list: list, index: 0 }"
                     (cdkDropListDropped)="drop(list, $event)"
                 ></div>
+                <div class="content-box add-file" (click)="addFiles()">
+                    <span>{{ 'gererator.ranking.add.image' | translate }}</span>
+                </div>
             </div>
         </div>
     </div>

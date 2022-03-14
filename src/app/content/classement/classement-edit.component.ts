@@ -40,6 +40,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
     private _optionsCache?: Options;
+    private _inputFile!: HTMLInputElement;
 
     constructor(
         private bdService: DBService,
@@ -72,6 +73,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.list = [];
                     this.id = undefined;
                 }
+            }),
+            globalService.onFileLoaded.subscribe(file => {
+                this.addFile(file);
             }),
         );
     }
@@ -125,6 +129,27 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             );
         }
         this.globalService.withChange = true;
+    }
+
+    addFiles() {
+        if (!this._inputFile) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.multiple = true;
+            document.body.appendChild(input);
+            input.addEventListener(
+                'change',
+                (event: Event) => {
+                    console.log('change', (event.target as any).files);
+                    this.globalService.addFiles((event.target as any).files);
+                    input.outerHTML = '';
+                },
+                false,
+            );
+            this._inputFile = input;
+        }
+
+        this._inputFile.click();
     }
 
     upLine(index: number) {
@@ -214,10 +239,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     private _downloadImage(data: string, filename: string) {
-        var a = document.createElement('a');
+        const a = document.createElement('a');
         a.href = data;
         a.download = filename;
         document.body.appendChild(a);
         a.click();
+        // remove link
+        a.outerHTML = '';
     }
 }

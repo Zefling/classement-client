@@ -18,10 +18,11 @@
 }
 
 .drop-zone-empty-list {
-    width: 100%;
+    flex: 1;
     height: calc(
         var(--item-height, 150px) + (var(--item-padding, 10px) + var(--item-border, 1px) + var(--item-margin, 2px)) * 2
     );
+    order: 2;
 }
 
 .content-box {
@@ -39,6 +40,16 @@
     cursor: move;
     font-size: 14px;
     margin: var(--item-margin);
+}
+
+.add-file {
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+}
+
+.drop-zone-empty-list + .add-file {
+    width: calc(var(--item-width, 150px) * 2);
 }
 
 .cdk-drag-preview {

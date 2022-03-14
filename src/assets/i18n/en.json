@@ -94,7 +94,8 @@
             "group.title": "Ranking",
             "name": "Name",
             "list": "List",
-            "drop.image": "Drop one or a set of images here ↓ (JPG, PNG, GIF, WebP)"
+            "drop.image": "Drop one or a set of images here ↓ (JPG, PNG, GIF, WebP)",
+            "add.image": "Click here to add one or a group of images "
         },
         "line": {
             "add": "Add",

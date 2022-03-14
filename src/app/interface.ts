@@ -1,5 +1,11 @@
-import { FileHandle } from './directives/drop-image.directive';
+import { SafeUrl } from '@angular/platform-browser';
 
+
+export interface FileHandle {
+    file: File;
+    url: SafeUrl;
+    target?: FileReader | null;
+}
 
 export type FileString = { url?: string; name: string; size: number; realSize: number; type: string; date: number };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
