@@ -6,6 +6,7 @@
 table {
     width: 100%;
     border-spacing: 0;
+    position: relative;
 }
 
 .date,
@@ -23,6 +24,12 @@ table {
 
 thead {
     background: var(--list-header-background);
+    position: sticky;
+    top: 0;
+}
+
+th {
+    padding: 7px 0;
 }
 
 tbody {
@@ -40,7 +47,7 @@ tbody {
 
     .groups,
     .items {
-        text-align: right;
+        text-align: center;
         padding-right: 10px;
     }
 
@@ -57,4 +64,50 @@ td {
     padding: 10px 5px;
     text-align: center;
     background: var(--no-result-background);
+}
+
+@media screen and (max-width: 1400px) {
+    .date {
+        width: 100px;
+        max-width: 100px;
+        word-wrap: break-word;
+    }
+
+    .category {
+        width: 100px;
+    }
+
+    .actions {
+        width: 100px;
+        word-wrap: break-word;
+
+        a {
+            display: block;
+            padding: 7px 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    table {
+        margin: 0 -30px;
+        width: calc(100% + 50px);
+    }
+
+    th {
+        padding: 15px 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .groups,
+    .items {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .date {
+        display: none;
+    }
 }

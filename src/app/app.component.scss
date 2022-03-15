@@ -136,7 +136,7 @@ aside {
     position: relative;
 
     &::before {
-        display: block;
+        display: var(--main-shadow, block);
         position: fixed;
         content: ' ';
         height: 100%;
@@ -159,6 +159,7 @@ aside {
         --aside-content-backdrop-width-open: 100vw;
         --aside-content-backdrop-color-open: #000c;
         --menu-item-padding: 25px;
+        --main-shadow: none;
     }
 }
 
