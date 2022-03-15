@@ -68,6 +68,8 @@ body.light-mode {
     --content-box-border: #ccc;
     --content-box-background: #fff;
     --content-box-color: #000000de;
+    --tile-add-file-background: #fff;
+    --tile-add-file-color: #000000de;
     // info
     --alert-color: #b00;
 }
@@ -140,6 +142,8 @@ body.dark-mode {
     --content-box-border: #333;
     --content-box-background: #242424;
     --content-box-color: #ffffffde;
+    --tile-add-file-background: #242424;
+    --tile-add-file-color: #ffffffde;
     // info
     --alert-color: #ca5f5f;
 }
