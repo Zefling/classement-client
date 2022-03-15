@@ -148,21 +148,6 @@ body.dark-mode {
     --alert-color: #ca5f5f;
 }
 
-@media screen and (max-width: 1024px) {
-    :root {
-        --aside-width: 0;
-        --show-mobile: display;
-        --menu-transition: left 0.5s;
-        --aside-transition: background-color 0.5s;
-        --aside-content-width: 90vw;
-        --aside-content-left: -90vw;
-        --aside-content-left-open: 0;
-        --aside-content-position: absolute;
-        --aside-content-backdrop-width-open: 100vw;
-        --aside-content-backdrop-color-open: #000c;
-    }
-}
-
 body,
 html {
     height: 100%;

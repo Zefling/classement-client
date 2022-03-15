@@ -36,6 +36,10 @@ header {
 
     .actions {
         display: flex;
+
+        & > :not(.buton-menu-mobile) {
+            display: var(--header-actions-display, flex);
+        }
     }
 
     .buton-menu-mobile {
@@ -71,15 +75,20 @@ aside {
         height: 100%;
         width: var(--aside-content-width, 100%);
         z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     ul {
         margin: 0;
         padding: 0;
     }
+
     li {
         margin: 5px;
-        padding: 5px;
+        padding: var(--menu-item-padding, 5px);
         border: 1px solid var(--menu-border-color);
         list-style: none;
         font-weight: 700;
@@ -99,6 +108,26 @@ aside {
             background-color: var(--menu-hover-background);
         }
     }
+
+    .actions-mobile {
+        display: var(--aside-actions-display, none);
+        flex-direction: column;
+
+        & > * {
+            margin: var(--menu-item-padding);
+            justify-content: center;
+            width: auto;
+        }
+
+        light-dark {
+            transform: scale(1.72);
+        }
+
+        select {
+            padding: var(--menu-item-padding, 5px);
+            font-weight: 700;
+        }
+    }
 }
 
 :host > div {
@@ -114,5 +143,28 @@ aside {
         width: 100%;
         box-shadow: 10px 10px 10px var(--menu-box-shadow-color) inset;
         pointer-events: none;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    :host {
+        --aside-width: 0;
+        --show-mobile: display;
+        --menu-transition: left 0.5s;
+        --aside-transition: background-color 0.5s;
+        --aside-content-width: 90vw;
+        --aside-content-left: -90vw;
+        --aside-content-left-open: 0;
+        --aside-content-position: absolute;
+        --aside-content-backdrop-width-open: 100vw;
+        --aside-content-backdrop-color-open: #000c;
+        --menu-item-padding: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :host {
+        --aside-actions-display: flex;
+        --header-actions-display: none;
     }
 }

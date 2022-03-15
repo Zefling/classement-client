@@ -2,7 +2,7 @@
     <div class="title">{{ 'classement' | translate }}</div>
     <div class="actions">
         <light-dark></light-dark>
-        <select [ngModel]="selectedLang" (ngModelChange)="updateLanguage($event)">
+        <select [(ngModel)]="selectedLang" (ngModelChange)="updateLanguage($event)">
             <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
         </select>
         <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
@@ -37,6 +37,12 @@
                 {{ 'menu.new' | translate }}
             </li>
         </ul>
+        <div class="actions-mobile">
+            <light-dark></light-dark>
+            <select [(ngModel)]="selectedLang" (ngModelChange)="updateLanguage($event)">
+                <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
+            </select>
+        </div>
     </div>
 </aside>
 <div>
