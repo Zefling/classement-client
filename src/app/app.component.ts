@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostBinding, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -23,6 +23,9 @@ export class AppComponent {
     languages = languages;
     selectedLang!: string;
 
+    @HostBinding('class.show-menu')
+    asideOpen = false;
+
     private _route?: string;
 
     constructor(private _translate: TranslateService, private _globalService: GlobalService, private _router: Router) {
@@ -35,6 +38,10 @@ export class AppComponent {
             this.warningExit.open();
             this._route = route;
         });
+    }
+
+    toggleMenu() {
+        this.asideOpen = !this.asideOpen;
     }
 
     updateLanguage(event: string) {

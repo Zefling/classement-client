@@ -1,24 +1,16 @@
-::ng-deep {
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    * {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-}
-
 :host {
     height: 100%;
     display: grid;
     grid-template:
         'header header' 50px
         'aside  main' 1fr /
-        150px 1fr;
+        var(--aside-width, 150px) 1fr;
+
+    &.show-menu {
+        --aside-content-left: var(--aside-content-left-open);
+        --aside-content-backdrop-color: var(--aside-content-backdrop-color-open);
+        --aside-content-backdrop-width: var(--aside-content-backdrop-width-open);
+    }
 }
 
 header {
@@ -33,6 +25,7 @@ header {
         font-size: 37px;
         font-weight: 700;
     }
+
     light-dark {
         margin: 0 10px;
     }
@@ -40,12 +33,45 @@ header {
     select {
         width: auto;
     }
+
+    .actions {
+        display: flex;
+    }
+
+    .buton-menu-mobile {
+        display: var(--show-mobile, none);
+        cursor: pointer;
+        font-size: 30px;
+        margin: 0 0 0 20px;
+    }
 }
 
 aside {
     grid-area: aside;
-    overflow: auto;
     background: var(--aside-background);
+    position: relative;
+
+    .backdrop {
+        display: var(--show-mobile, none);
+        transition: var(--aside-transition);
+        content: ' ';
+        position: absolute;
+        width: var(--aside-content-backdrop-width, 0);
+        height: 100%;
+        background-color: var(--aside-content-backdrop-color, transparent);
+        z-index: 1;
+    }
+
+    .menu {
+        overflow: auto;
+        transition: var(--menu-transition);
+        position: var(--aside-content-position);
+        left: var(--aside-content-left, -100vw);
+        background: var(--header-background);
+        height: 100%;
+        width: var(--aside-content-width, 100%);
+        z-index: 2;
+    }
 
     ul {
         margin: 0;

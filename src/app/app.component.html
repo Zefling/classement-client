@@ -1,24 +1,43 @@
 <header>
     <div class="title">{{ 'classement' | translate }}</div>
-    <div>
+    <div class="actions">
         <light-dark></light-dark>
         <select [ngModel]="selectedLang" (ngModelChange)="updateLanguage($event)">
             <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
         </select>
+        <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
     </div>
 </header>
 <aside>
-    <ul>
-        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            {{ 'menu.home' | translate }}
-        </li>
-        <li routerLink="/list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            {{ 'menu.list' | translate }}
-        </li>
-        <li routerLink="/classement/edit/new" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            {{ 'menu.new' | translate }}
-        </li>
-    </ul>
+    <div class="backdrop" (click)="toggleMenu()"></div>
+    <div class="menu">
+        <ul>
+            <li
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleMenu()"
+            >
+                {{ 'menu.home' | translate }}
+            </li>
+            <li
+                routerLink="/list"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleMenu()"
+            >
+                {{ 'menu.list' | translate }}
+            </li>
+            <li
+                routerLink="/classement/edit/new"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleMenu()"
+            >
+                {{ 'menu.new' | translate }}
+            </li>
+        </ul>
+    </div>
 </aside>
 <div>
     <router-outlet></router-outlet>
