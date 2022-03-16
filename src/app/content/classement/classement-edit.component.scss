@@ -253,3 +253,43 @@ svg.color + svg {
     padding: 5px;
     text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+    :host {
+        margin: 0 0 30px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .table-classement,
+    .table-classement tbody {
+        display: block;
+    }
+
+    .table-classement .button-actions,
+    .table-classement .names > div {
+        display: flex;
+    }
+
+    .table-classement .names {
+        width: auto;
+        min-width: auto;
+    }
+
+    .table-classement tr {
+        display: grid;
+        grid-template:
+            'name options'
+            'list list' /
+            auto auto;
+        align-items: center;
+    }
+
+    .elements {
+        grid-area: list;
+    }
+
+    .table-classement thead {
+        display: none;
+    }
+}

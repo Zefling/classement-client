@@ -205,3 +205,15 @@
         text-align: right;
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .options {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .input-button {
+        display: block;
+    }
+}

@@ -23,7 +23,7 @@
             <td class="groups">{{ item.groupsLenght }}</td>
             <td class="items">{{ item.listLenght }}</td>
             <td class="actions">
-                <a [routerLink]="'/classement/edit/' + item.id">{{ 'list.action.edit' | translate }}</a>
+                <a [routerLink]="'/edit/' + item.id">{{ 'list.action.edit' | translate }}</a>
                 <a (click)="delete(item)">{{ 'list.action.delete' | translate }}</a>
                 <a (click)="clone(item)">{{ 'list.action.clone' | translate }}</a>
             </td>
@@ -34,7 +34,7 @@
 <ng-template #noResult>
     <p class="no-result">{{ 'list.no.result' | translate }}</p>
     <p>
-        <a routerLink="/classement/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+        <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
 </ng-template>
 

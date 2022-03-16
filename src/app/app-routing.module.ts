@@ -19,12 +19,12 @@ const routes: Routes = [
         canActivate: [DataChange],
     },
     {
-        path: 'classement/new',
+        path: 'new',
         component: ClassementEditComponent,
         canActivate: [DataChange],
     },
     {
-        path: 'classement/edit/:id',
+        path: 'edit/:id',
         component: ClassementEditComponent,
         canActivate: [DataChange],
     },

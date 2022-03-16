@@ -67,7 +67,7 @@ export class ClassementListComponent {
                 this.itemCurrent = undefined;
                 this.dialogClone.close();
                 if (edit) {
-                    this.router.navigate([' ' + item.id]);
+                    this.router.navigate(['/edit/' + item.id]);
                 } else {
                     this.result.push(item);
                 }
