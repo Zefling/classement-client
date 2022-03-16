@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '0.0.7';
+    version = '0.1.0';
 }

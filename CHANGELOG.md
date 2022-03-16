@@ -1,3 +1,10 @@
+# 0.1.0 (2022-03-16)
+
+-   add tiles for add images
+-   tablet and mobile interface (for testing)
+-   remove `/classement` in routes
+-   fix minor bugs
+
 # 0.0.7 (2022-03-13)
 
 -   add option to clone classifications
