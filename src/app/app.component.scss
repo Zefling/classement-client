@@ -67,7 +67,7 @@ aside {
     }
 
     .menu {
-        overflow: auto;
+        overflow: hidden auto;
         transition: var(--menu-transition);
         position: var(--aside-content-position);
         left: var(--aside-content-left, -100vw);
