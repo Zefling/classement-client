@@ -145,6 +145,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (!this._inputFile) {
             const input = document.createElement('input');
             input.type = 'file';
+            input.accept = '.jpg, .jpeg, .png, .gif, .webp';
             input.multiple = true;
             document.body.appendChild(input);
             input.addEventListener(

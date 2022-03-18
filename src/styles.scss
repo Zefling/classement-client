@@ -162,7 +162,8 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-button {
+button,
+input::file-selector-button {
     padding: 10px;
     font-size: 110%;
     border: 2px solid var(--button-defaut-border-color);
@@ -183,17 +184,17 @@ button {
     &:focus {
         border-color: var(--button-defaut-focus-border-color);
     }
+}
 
-    &.primary {
-        --button-defaut-border-color: var(--button-primary-border-color);
-        --button-defaut-background: var(--button-primary-background);
-        --button-defaut-box-shadow: var(--button-primary-box-shadow);
-        --button-defaut-color: var(--button-primary-color);
-        --button-defaut-hover-border-color: var(--button-primary-hover-border-color);
-        --button-defaut-hover-background: var(--button-primary-hover-background);
-        --button-defaut-hover-box-shadow: var(--button-primary-hover-box-shadow);
-        --button-defaut-focus-border-color: var(--button-primary-focus-border-color);
-    }
+button.primary {
+    --button-defaut-border-color: var(--button-primary-border-color);
+    --button-defaut-background: var(--button-primary-background);
+    --button-defaut-box-shadow: var(--button-primary-box-shadow);
+    --button-defaut-color: var(--button-primary-color);
+    --button-defaut-hover-border-color: var(--button-primary-hover-border-color);
+    --button-defaut-hover-background: var(--button-primary-hover-background);
+    --button-defaut-hover-box-shadow: var(--button-primary-hover-box-shadow);
+    --button-defaut-focus-border-color: var(--button-primary-focus-border-color);
 }
 
 a {

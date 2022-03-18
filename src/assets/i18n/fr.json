@@ -113,6 +113,16 @@
         "change": {
             "warning": "Vous avez effectué des changements\u00A0!",
             "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
+        },
+        "json": {
+            "import.list": "Importer un classement\u00A0:",
+            "title": "Titre\u00A0:",
+            "category": "Categorie\u00A0:",
+            "count.group": "Nombre de groupes\u00A0:",
+            "count.item": "Nombre d'élements\u00A0:",
+            "cancel": "Annuler",
+            "import.replace": "Importer et remplacer",
+            "import.new": "Importer dans un nouveau classement"
         }
     }
 }

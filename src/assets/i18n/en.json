@@ -105,11 +105,23 @@
             "export.image": "Image export ",
             "save.local": "Loval save",
             "save.account": "Save to account (coming soon)",
+            "export.json": "Save Json",
+            "import.json": "Import Json",
             "save.image": "Save as:"
         },
         "change": {
             "warning": "You have made changes!",
             "question": "Are you sure you want to leave this page? "
+        },
+        "json": {
+            "import.list": "Import a classification:",
+            "title": "Title:",
+            "category": "Category:",
+            "count.group": "Number of groups:",
+            "count.item": "Number of items:",
+            "cancel": "Cancel",
+            "import.replace": "Import and replace",
+            "import.new": "Import into a new classification"
         }
     }
 }
