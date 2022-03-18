@@ -3,18 +3,28 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs';
 
-import { FileHandle, FileString } from '../interface';
+import { Data, FileHandle, FileStream } from '../interface';
 
 
-const typesImage: string[] = ['image/png', 'image/gif', 'image/jpeg', 'image/webp'];
+export enum TypeFile {
+    image = 'image',
+    json = 'json',
+}
+
+export const typesMine: { [key: string]: string[] } = {
+    image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp'],
+    json: ['application/json'],
+};
 
 @Injectable({ providedIn: 'root' })
 export class GlobalService {
     readonly onForceExit = new Subject<string | undefined>();
 
-    readonly onFileLoaded = new Subject<FileString>();
+    readonly onFileLoaded = new Subject<FileStream>();
 
     withChange = false;
+
+    jsonTmp?: Data;
 
     constructor(private sanitizer: DomSanitizer) {}
 
@@ -22,10 +32,10 @@ export class GlobalService {
         this.onForceExit.next(route);
     }
 
-    addFiles(files: FileList) {
+    addFiles(files: FileList, filter: TypeFile) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            if (typesImage.includes(file.type)) {
+            if (typesMine[filter].includes(file.type)) {
                 const data: FileHandle = {
                     file,
                     url: file.type === this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file)),
@@ -35,25 +45,28 @@ export class GlobalService {
                 reader.onload = (ev: ProgressEvent<FileReader>) => {
                     data.target = ev.target;
                 };
-                reader.onloadend = (ev: ProgressEvent<FileReader>) => {
-                    this._format(data);
+                reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
+                    this._format(data, filter);
                 };
                 reader.readAsDataURL(data.file);
             }
         }
     }
 
-    private _format(file: FileHandle) {
+    private _format(file: FileHandle, filter: TypeFile) {
         const url = file.target?.result ? String(file.target?.result) : undefined;
         if (url) {
             console.log('Add file:', file.file.name);
             this.onFileLoaded.next({
-                name: file.file.name,
-                url: url,
-                size: url.length,
-                realSize: file.file.size,
-                type: file.file.type,
-                date: file.file.lastModified,
+                filter,
+                file: {
+                    name: file.file.name,
+                    url: url,
+                    size: url.length,
+                    realSize: file.file.size,
+                    type: file.file.type,
+                    date: file.file.lastModified,
+                },
             });
         } else {
             console.log('Error file:', file.file.name);

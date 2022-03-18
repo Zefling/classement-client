@@ -1,5 +1,7 @@
 import { SafeUrl } from '@angular/platform-browser';
 
+import { TypeFile } from './services/global.service';
+
 
 export interface FileHandle {
     file: File;
@@ -7,6 +9,7 @@ export interface FileHandle {
     target?: FileReader | null;
 }
 
+export type FileStream = { filter: TypeFile; file: FileString };
 export type FileString = { url?: string; name: string; size: number; realSize: number; type: string; date: number };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };

@@ -79,11 +79,6 @@
             </tbody>
         </table>
 
-        <div class="save-actions">
-            <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
-            <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
-        </div>
-
         <div drop-image>
             <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
             <div class="drop-list">
@@ -111,6 +106,15 @@
                     <span>{{ 'gererator.ranking.add.image' | translate }}</span>
                 </div>
             </div>
+        </div>
+
+        <div class="save-actions">
+            <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
+            <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
+            <button class="primary" (click)="saveJson()">{{ 'gererator.actions.export.json' | translate }}</button>
+            <button class="primary" (click)="dialogImport.open()">
+                {{ 'gererator.actions.import.json' | translate }}
+            </button>
         </div>
     </div>
 
@@ -147,7 +151,7 @@
     </div>
 </ng-container>
 
-<dialog-cmp closeButton>
+<dialog-cmp #dialogImage closeButton>
     <div class="button-image-save">
         {{ 'gererator.actions.save.image' | translate }}
         <button class="button-add" (click)="saveImage('PNG')">PNG</button>
@@ -155,4 +159,29 @@
         <button class="button-add" (click)="saveImage('WEBP')">WebP</button>
     </div>
     <div #image></div>
+</dialog-cmp>
+
+<dialog-cmp #dialogImport>
+    <div>Importer une liste :</div>
+
+    <div>
+        <input type="file" #fileImport (change)="importJsonFile($event)" />
+    </div>
+
+    <div *ngIf="jsonTmp">
+        <div>Title : {{ jsonTmp.options.title || ('list.title.undefined' | translate) }}</div>
+        <div>Category : {{ 'category.' + (jsonTmp.options.category || 'undefined') | translate }}</div>
+        <div>Groups : {{ jsonTmp.groups.length || 0 }}</div>
+        <div>Items : {{ countItem() }}</div>
+    </div>
+
+    <div class="button-image-save">
+        <button class="button-add" (click)="cancelJson()">Annuler</button>
+        <button class="button-add primary" (click)="importJson('replace')" *ngIf="jsonTmp">
+            Importer et remplacer
+        </button>
+        <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+            Importer dans une nouvelle liste
+        </button>
+    </div>
 </dialog-cmp>

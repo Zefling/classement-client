@@ -64,8 +64,8 @@
         },
         "options": {
             "group.title": "Options",
-            "title": "Titre\u00A0:",
-            "group": "Groupe\u00A0",
+            "title": "Titre du classement\u00A0:",
+            "group": "Groupe\u00A0:",
             "sizes": "Dimentions d'une tuile\u00A0:",
             "margin": "Marge",
             "padding": "Rembourrage",
@@ -106,7 +106,8 @@
         "actions": {
             "export.image": "Export en image",
             "save.local": "Sauvegarde locale",
-            "save.account": "Sauvegarde sur compte (prochainement)",
+            "export.json": "Sauvegarde en Json",
+            "import.json": "Importer un Json",
             "save.image": "Sauvegarder au format\u00A0:"
         },
         "change": {

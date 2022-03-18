@@ -1,6 +1,6 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
-import { GlobalService } from '../services/global.service';
+import { GlobalService, TypeFile } from '../services/global.service';
 
 
 @Directive({ selector: '[drop-image]' })
@@ -27,7 +27,7 @@ export class DropImageDirective {
         this.background = false;
 
         if (evt.dataTransfer?.files?.length) {
-            this.globalService.addFiles(evt.dataTransfer.files);
+            this.globalService.addFiles(evt.dataTransfer.files, TypeFile.image);
         }
 
         evt.preventDefault();

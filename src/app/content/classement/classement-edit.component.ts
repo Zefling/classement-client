@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
 import { defaultOptions, defautGroup } from './classement-default';
@@ -27,6 +27,7 @@ const color = (c: string, opacity: number): string | null => {
     styleUrls: ['./classement-edit.component.scss'],
 })
 export class ClassementEditComponent implements OnDestroy, DoCheck {
+    new = false;
     id?: string;
 
     groups: FormatedGroup[] = [];
@@ -35,7 +36,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     options!: Options;
 
     @ViewChild('image') image!: ElementRef;
-    @ViewChild(DialogComponent) dialog!: DialogComponent;
+    @ViewChild('dialogImage') dialogImage!: DialogComponent;
+    @ViewChild('dialogImport') dialogImport!: DialogComponent;
+
+    jsonTmp?: Data;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -67,15 +71,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         });
                 } else {
                     // reset all
-                    this.options = { ...defaultOptions };
+                    this.new = true;
+                    this.options = { ...(this.globalService.jsonTmp?.options || defaultOptions) };
                     this.resetCache();
-                    this.groups = Utils.jsonCopy(defautGroup);
-                    this.list = [];
+                    this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
+                    this.list = this.globalService.jsonTmp?.list || [];
                     this.id = undefined;
+                    this.globalService.jsonTmp = undefined;
                 }
             }),
             globalService.onFileLoaded.subscribe(file => {
-                this.addFile(file);
+                if (file.filter === TypeFile.image) {
+                    this.addFile(file.file);
+                } else if (file.filter === TypeFile.json) {
+                    this.addJsonTemp(file.file);
+                }
             }),
         );
     }
@@ -140,8 +150,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             input.addEventListener(
                 'change',
                 (event: Event) => {
-                    console.log('change', (event.target as any).files);
-                    this.globalService.addFiles((event.target as any).files);
+                    console.log('change - add file', (event.target as any).files);
+                    this.globalService.addFiles((event.target as any).files, TypeFile.image);
                     input.outerHTML = '';
                 },
                 false,
@@ -193,7 +203,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     exportImage() {
-        this.dialog.open();
+        this.dialogImage.open();
         html2canvas(document.getElementById('table-classement') as HTMLElement, {
             logging: false,
             allowTaint: false,
@@ -206,9 +216,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this._canvas = canvas;
         });
     }
-
     saveImage(type: string) {
-        const title = this.options.title.trim() || this.translate.instant('list.title.undefined');
+        const title = this._getFileName();
         if (this._canvas) {
             switch (type) {
                 case 'PNG':
@@ -225,26 +234,88 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveLocal() {
-        const data: Data = {
+        this.bdService.saveLocal(this._getData()).then(id => {
+            this.id = id;
+            this.resetCache();
+        });
+    }
+
+    saveJson() {
+        this._downloadFile(JSON.stringify(this._getData()), this._getFileName() + '.json', 'text/plain');
+    }
+
+    importJsonFile(event: Event) {
+        this.jsonTmp = undefined;
+        this.globalService.addFiles((event.target as any).files, TypeFile.json);
+    }
+
+    addJsonTemp(file: FileString) {
+        try {
+            const fileString = file.url?.replace('data:application/json;base64,', '');
+            const json = JSON.parse(atob(fileString!)) as Data;
+
+            if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
+                this.jsonTmp = json;
+            }
+        } catch (e) {
+            console.error('json error:', e);
+        }
+    }
+
+    countItem(): number {
+        return (
+            (this.jsonTmp?.list?.length || 0) +
+            (this.jsonTmp?.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0)
+        );
+    }
+
+    importJson(type: 'replace' | 'new') {
+        switch (this.new && type === 'new' ? 'replace' : type) {
+            case 'replace': {
+                this.groups = this.jsonTmp?.groups!;
+                this.list = this.jsonTmp?.list!;
+                this.options = this.jsonTmp?.options!;
+                break;
+            }
+            case 'new': {
+                this.globalService.jsonTmp = this.jsonTmp;
+                this.router.navigate(['/edit', 'new']);
+                break;
+            }
+        }
+        this.cancelJson();
+    }
+
+    cancelJson() {
+        this.jsonTmp = undefined;
+        this.dialogImport.close();
+    }
+
+    private _getData(): Data {
+        return {
             options: this.options,
             id: this.id,
             groups: this.groups,
             list: this.list,
         };
+    }
 
-        this.bdService.saveLocal(data).then(id => {
-            this.id = id;
-            this.resetCache();
-        });
+    private _getFileName(): Data {
+        return this.options.title.trim() || this.translate.instant('list.title.undefined');
+    }
+
+    private _downloadFile(content: string, fileName: string, contentType: string) {
+        var a = document.createElement('a');
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
     }
 
     private _downloadImage(data: string, filename: string) {
         const a = document.createElement('a');
         a.href = data;
         a.download = filename;
-        document.body.appendChild(a);
         a.click();
-        // remove link
-        a.outerHTML = '';
     }
 }

@@ -12,10 +12,14 @@ export class DataChange implements CanActivate {
 
     canActivate(
         route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot,
+        _state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         if (this.global.withChange) {
-            this.router.navigate([route.url]);
+            let path = route.routeConfig?.path;
+            for (const id in route.params) {
+                path = path?.replace(':' + id, route.params[id]);
+            }
+            this.router.navigate([path]);
             this.global.forceExit(route.routeConfig?.path);
             return false;
         }
