@@ -1,3 +1,9 @@
+# 0.1.1 (2022-03-18)
+
+-   added json import and export (import and replace / import and new)
+-   predefine files for input:file
+-   fix minor bugs
+
 # 0.1.0 (2022-03-16)
 
 -   add tiles for add images
