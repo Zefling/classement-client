@@ -186,6 +186,10 @@ input::file-selector-button {
     }
 }
 
+input[type='file'] {
+    cursor: pointer;
+}
+
 button.primary {
     --button-defaut-border-color: var(--button-primary-border-color);
     --button-defaut-background: var(--button-primary-background);

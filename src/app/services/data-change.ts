@@ -19,7 +19,6 @@ export class DataChange implements CanActivate {
             for (const id in route.params) {
                 path = path?.replace(':' + id, route.params[id]);
             }
-            this.router.navigate([path]);
             this.global.forceExit(route.routeConfig?.path);
             return false;
         }
