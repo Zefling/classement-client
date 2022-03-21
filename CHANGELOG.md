@@ -1,3 +1,9 @@
+# 0.1.2 (2022-03-21)
+
+-   added options for final image background color and size
+-   change options UI
+-   fix minor bugs
+
 # 0.1.1 (2022-03-18)
 
 -   added json import and export (import and replace / import and new)
