@@ -88,6 +88,10 @@
                 "border.color": "Line border color:",
                 "background.opacity": "Line background opacity:",
                 "border.opacity": "Line border opacity:"
+            },
+            "global": {
+                "background": "Background color:",
+                "width": "Image width:"
             }
         },
         "ranking": {

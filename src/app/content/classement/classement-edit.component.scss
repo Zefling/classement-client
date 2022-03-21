@@ -224,13 +224,13 @@ svg.color + svg {
 // render ------------------------------------------------------------------
 
 .render {
-    width: 1000px;
+    width: var(--image-width, 1200px);
     position: absolute;
     top: 0;
     left: -100000px;
 
     table {
-        background: var(--background);
+        background: var(--image-background, var(--background));
     }
 
     .names {

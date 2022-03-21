@@ -1,10 +1,10 @@
 .options {
     display: grid;
     grid-template:
-        'title  title        cat'
-        'sizes  colors-item  colors-line'
-        'sizes  .            simple'
-        / auto 1fr 1fr;
+        'title  title             title               title             categories'
+        'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
+        'sizes  global-border     global-width         .                 simple'
+        / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
     border: solid 1px var(--options-border-color);
@@ -14,21 +14,34 @@
 .simple {
     grid-area: simple;
     text-align: end;
+    align-self: flex-end;
 }
 .title {
     grid-area: title;
 }
 .categories {
-    grid-area: cat;
+    grid-area: categories;
 }
 .sizes {
     grid-area: sizes;
 }
-.colors-item {
-    grid-area: colors-item;
+.colors-item-back {
+    grid-area: colors-item-back;
 }
-.colors-line {
-    grid-area: colors-line;
+.colors-item-line {
+    grid-area: colors-item-line;
+}
+.colors-line-back {
+    grid-area: colors-line-back;
+}
+.colors-line-border {
+    grid-area: colors-line-border;
+}
+.global-border {
+    grid-area: global-border;
+}
+.global-width {
+    grid-area: global-width;
 }
 .item-options {
     display: grid;
@@ -193,8 +206,6 @@
 }
 
 .input-button {
-    display: grid;
-    grid-template: 'a b c' / 1fr 1fr auto;
     align-items: center;
     gap: 0 10px;
 
@@ -207,14 +218,19 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .options {
-        display: block;
-    }
+.input-image {
+    grid-template: 'a b c' / 1fr auto 1fr;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1200px) {
     .input-button {
+        display: grid;
+        grid-template: 'a b c' / 1fr 1fr auto;
+    }
+    .global-color {
+        grid-template: 'a b c' / 1fr auto 1fr;
+    }
+    .options {
         display: block;
     }
 }

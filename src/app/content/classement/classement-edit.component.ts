@@ -109,6 +109,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
         render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+        render.setStyle(body, '--image-background', o.imageBackgroundColor, dash);
+        render.setStyle(body, '--image-width', (o.imageWidth || 1170) + 'px', dash);
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;

@@ -90,6 +90,10 @@
                 "border.color": "Couleur de bordure d'une ligne\u00A0:",
                 "background.opacity": "Opacité du fond d'une ligne\u00A0:",
                 "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
+            },
+            "global": {
+                "background": "Couleur du fond\u00A0:",
+                "width": "Largeur de l'image\u00A0:"
             }
         },
         "ranking": {

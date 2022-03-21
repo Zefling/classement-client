@@ -27,6 +27,8 @@ export const defaultOptions: Options = {
     itemBorderOpacity: 100,
     lineBackgroundOpacity: 100,
     lineBorderOpacity: 100,
+    imageBackgroundColor: '',
+    imageWidth: 1170,
 };
 
 export const categories: String[] = [

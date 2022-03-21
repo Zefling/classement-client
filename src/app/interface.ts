@@ -31,6 +31,8 @@ export type Options = {
     lineBorderColor: string;
     lineBackgroundOpacity: number;
     lineBorderOpacity: number;
+    imageBackgroundColor: string;
+    imageWidth: number;
 };
 
 export interface IndexedData {
