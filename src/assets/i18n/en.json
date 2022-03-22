@@ -92,6 +92,10 @@
             "global": {
                 "background": "Background color:",
                 "width": "Image width:"
+            },
+            "name": {
+                "width": "Group name width:",
+                "font-size": "Group name text size:"
             }
         },
         "ranking": {
@@ -109,8 +113,8 @@
             "export.image": "Image export ",
             "save.local": "Loval save",
             "save.account": "Save to account (coming soon)",
-            "export.json": "Save Json",
-            "import.json": "Import Json",
+            "export.json": "Export",
+            "import.json": "Import",
             "save.image": "Save as:"
         },
         "change": {

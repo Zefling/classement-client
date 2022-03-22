@@ -94,6 +94,10 @@
             "global": {
                 "background": "Couleur du fond\u00A0:",
                 "width": "Largeur de l'image\u00A0:"
+            },
+            "name": {
+                "width": "Largeur des noms de groupe\u00A0:",
+                "font-size": "Taille du texte des noms de groupe\u00A0:"
             }
         },
         "ranking": {
@@ -110,8 +114,8 @@
         "actions": {
             "export.image": "Export en image",
             "save.local": "Sauvegarde locale",
-            "export.json": "Sauvegarde en Json",
-            "import.json": "Importer un Json",
+            "export.json": "Exporter",
+            "import.json": "Importer",
             "save.image": "Sauvegarder au format\u00A0:"
         },
         "change": {

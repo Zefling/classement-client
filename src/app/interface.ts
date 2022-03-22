@@ -33,6 +33,8 @@ export type Options = {
     lineBorderOpacity: number;
     imageBackgroundColor: string;
     imageWidth: number;
+    nameWidth: number;
+    nameFontSize: number;
 };
 
 export interface IndexedData {

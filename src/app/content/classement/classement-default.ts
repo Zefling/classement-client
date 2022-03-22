@@ -29,6 +29,8 @@ export const defaultOptions: Options = {
     lineBorderOpacity: 100,
     imageBackgroundColor: '',
     imageWidth: 1170,
+    nameWidth: 150,
+    nameFontSize: 120,
 };
 
 export const categories: String[] = [

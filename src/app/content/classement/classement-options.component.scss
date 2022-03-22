@@ -3,7 +3,8 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  global-color      global-width         .                simple'
+        'sizes  global-color      global-width        width-input       simple'
+        'sizes  global-color      .                   font-size         simple'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -47,6 +48,12 @@
 }
 .global-width {
     grid-area: global-width;
+}
+.width-input {
+    grid-area: gwidth-input;
+}
+.font-size {
+    grid-area: font-size;
 }
 .item-options {
     display: grid;

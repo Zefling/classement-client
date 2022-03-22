@@ -152,8 +152,8 @@ table {
 }
 
 .names {
-    width: 150px;
-    min-width: 150px;
+    width: var(--name-width, 150px);
+    min-width: var(--name-width, 150px);
     text-align: center;
 
     div {
@@ -172,7 +172,7 @@ table {
     border: 0;
     background: transparent;
     text-align: center;
-    font-size: 120%;
+    font-size: var(--name-font-size, 120%);
     width: 100%;
     display: block;
     box-sizing: border-box;
@@ -234,7 +234,7 @@ svg.color + svg {
     }
 
     .names {
-        font-size: 120%;
+        font-size: var(--name-font-size, 120%);
     }
 
     caption {

@@ -100,17 +100,19 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const render = this.renderer;
         const dash = RendererStyleFlags2.DashCase;
 
-        render.setStyle(body, '--item-width', (o.itemWidth || 100) + 'px', dash);
-        render.setStyle(body, '--item-height', (o.itemHeight || 100) + 'px', dash);
-        render.setStyle(body, '--item-padding', (o.itemPadding || 0) + 'px', dash);
-        render.setStyle(body, '--item-border', (o.itemBorder || 0) + 'px', dash);
-        render.setStyle(body, '--item-margin', (o.itemMargin || 0) + 'px', dash);
+        render.setStyle(body, '--item-width', (o.itemWidth || defaultOptions.imageWidth) + 'px', dash);
+        render.setStyle(body, '--item-height', (o.itemHeight || defaultOptions.itemHeight) + 'px', dash);
+        render.setStyle(body, '--item-padding', (o.itemPadding || defaultOptions.itemPadding) + 'px', dash);
+        render.setStyle(body, '--item-border', (o.itemBorder || defaultOptions.itemBorder) + 'px', dash);
+        render.setStyle(body, '--item-margin', (o.itemMargin || defaultOptions.itemMargin) + 'px', dash);
         render.setStyle(body, '--content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
         render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
         render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
         render.setStyle(body, '--image-background', o.imageBackgroundColor, dash);
-        render.setStyle(body, '--image-width', (o.imageWidth || 1170) + 'px', dash);
+        render.setStyle(body, '--image-width', (o.imageWidth || defaultOptions.imageWidth) + 'px', dash);
+        render.setStyle(body, '--name-width', (o.nameWidth || defaultOptions.nameWidth) + 'px', dash);
+        render.setStyle(body, '--name-font-size', (o.nameFontSize || defaultOptions.nameFontSize) + '%', dash);
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;
