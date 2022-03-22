@@ -1,3 +1,8 @@
+# 0.1.3 (2022-03-22)
+
+-   added options for group name sizes
+-   fix minor bugs
+
 # 0.1.2 (2022-03-21)
 
 -   added options for final image background color and size
