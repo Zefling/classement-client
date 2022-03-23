@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { MessageService } from 'src/app/components/info-messages.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
@@ -53,6 +54,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private renderer: Renderer2,
         private translate: TranslateService,
         private globalService: GlobalService,
+        private messageService: MessageService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -221,6 +223,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this._canvas = canvas;
         });
     }
+
     saveImage(type: string) {
         const title = this._getFileName();
         if (this._canvas) {
@@ -241,6 +244,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     saveLocal() {
         this.bdService.saveLocal(this._getData()).then(id => {
             this.id = id;
+            this.messageService.addMessage('Sauvegarder réussi');
             this.resetCache();
         });
     }

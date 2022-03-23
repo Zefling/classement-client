@@ -1,0 +1,53 @@
+:host {
+    display: block;
+    border: 1px solid rgb(223, 199, 199);
+    background-color: rgb(229, 147, 147);
+    padding: 5px 10px;
+    min-width: 100px;
+    position: relative;
+    box-sizing: border-box;
+
+    &.close {
+        animation: 0.7s linear both moveTop;
+        overflow: hidden;
+    }
+}
+
+.progress {
+    height: 3px;
+    background-color: blue;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    animation: 3s linear slidein;
+}
+
+@keyframes slidein {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@keyframes moveTop {
+    from {
+        top: 0;
+        max-height: var(--current-height);
+        padding: 5px 10px;
+        opacity: 1;
+    }
+    75% {
+        top: calc(var(--current-pos) * -1 - 62px);
+        max-height: var(--current-height);
+        padding: 5px 10px;
+    }
+    to {
+        top: calc(var(--current-pos) * -1 - 62px);
+        max-height: 0;
+        padding: 0 10px;
+        opacity: 0;
+    }
+}
