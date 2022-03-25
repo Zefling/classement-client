@@ -1,3 +1,8 @@
+# 0.1.4 (2022-03-25)
+
+-   added clear bouton
+-   added message for infos, successes or errors
+
 # 0.1.3 (2022-03-22)
 
 -   added options for group name sizes
