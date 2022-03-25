@@ -3,7 +3,10 @@ import { Component, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 
-export type MessageType = 'info' | 'error';
+export enum MessageType {
+    info = 'info',
+    error = 'error',
+}
 
 export interface Message {
     message: string;
@@ -14,7 +17,7 @@ export interface Message {
 export class MessageService {
     readonly onAddMessage = new Subject<Message>();
 
-    addMessage(message: string, type: MessageType = 'info') {
+    addMessage(message: string, type: MessageType = MessageType.info) {
         this.onAddMessage.next({ message, type });
     }
 }
@@ -29,7 +32,6 @@ export class InfoMessagesComponent {
 
     constructor(messsageService: MessageService) {
         messsageService.onAddMessage.subscribe((message: Message) => {
-            console.log('Message');
             this.messages.push(message);
         });
     }

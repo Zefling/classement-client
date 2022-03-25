@@ -72,6 +72,15 @@ body.light-mode {
     --tile-add-file-color: #000000de;
     // info
     --alert-color: #b00;
+    // message
+    --info-message-border-color: #ccc;
+    --info-message-background: #ddd;
+    --info-message-box-shadow-color: #0008;
+    --info-message-progress-background: #666;
+    --error-message-border-color: #d67e7e;
+    --error-message-background: #e07b7b;
+    --info-message-box-shadow-color: #0008;
+    --error-message-progress-background: #f03636;
 }
 
 body.dark-mode {
@@ -146,6 +155,15 @@ body.dark-mode {
     --tile-add-file-color: #ffffffde;
     // info
     --alert-color: #ca5f5f;
+    // message
+    --info-message-border-color: #ddd;
+    --info-message-background: #666;
+    --info-message-box-shadow-color: #000;
+    --info-message-progress-background: #ccc;
+    --error-message-border-color: #855e5e;
+    --error-message-background: #5e1b1b;
+    --error-message-box-shadow-color: #000;
+    --error-message-progress-background: #cc2121;
 }
 
 body,

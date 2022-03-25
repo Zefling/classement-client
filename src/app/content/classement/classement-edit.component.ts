@@ -9,7 +9,7 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService } from 'src/app/components/info-messages.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
@@ -242,11 +242,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveLocal() {
-        this.bdService.saveLocal(this._getData()).then(id => {
-            this.id = id;
-            this.messageService.addMessage('Sauvegarder réussi');
-            this.resetCache();
-        });
+        this.bdService.saveLocal(this._getData()).then(
+            id => {
+                this.id = id;
+                this.messageService.addMessage(this.translate.instant('message.save.succes'));
+                this.resetCache();
+            },
+            _ => {
+                this.messageService.addMessage(this.translate.instant('message.save.echec'), MessageType.error);
+            },
+        );
     }
 
     saveJson() {
@@ -265,9 +270,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
             if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
                 this.jsonTmp = json;
+            } else {
+                this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
             }
         } catch (e) {
             console.error('json error:', e);
+            this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
         }
     }
 
@@ -284,11 +292,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.groups = this.jsonTmp?.groups!;
                 this.list = this.jsonTmp?.list!;
                 this.options = this.jsonTmp?.options!;
+                this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
                 break;
             }
             case 'new': {
                 this.globalService.jsonTmp = this.jsonTmp;
                 this.router.navigate(['/edit', 'new']);
+                this.messageService.addMessage(this.translate.instant('message.json.read.new'));
                 break;
             }
         }

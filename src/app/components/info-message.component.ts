@@ -15,13 +15,9 @@ export class InfoMessageComponent {
     @Output()
     destruct = new EventEmitter<Message>();
 
-    @HostBinding('ngClass')
+    @HostBinding('class')
     get classes() {
-        return this.message?.type;
-    }
-    @HostBinding('class.close')
-    get closeClass() {
-        return this._closeClass;
+        return [this.message?.type, this._closeClass ? 'close' : null];
     }
 
     @HostBinding('style.--current-pos.px')

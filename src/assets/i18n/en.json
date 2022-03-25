@@ -131,5 +131,22 @@
             "import.replace": "Import and replace",
             "import.new": "Import into a new classification"
         }
+    },
+    "message": {
+        "save": {
+            "success": "😊 Successfully saved in browser.",
+            "failed": "⚠️ Failed to save in browser."
+        },
+        "json.read": {
+            "failed": "⚠️ Failed to read file. The format is not recognized.",
+            "replace": "😊 Uploaded file successful. Replaced successfully.",
+            "new": "😊 Successfully uploaded file to new classification."
+        },
+        "remove": {
+            "success": "🗑 Removed from classification “%title%” successful."
+        },
+        "clone": {
+            "success": "😊 Successfully duplicated classification as “%title%”."
+        }
     }
 }

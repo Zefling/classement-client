@@ -132,5 +132,22 @@
             "import.replace": "Importer et remplacer",
             "import.new": "Importer dans un nouveau classement"
         }
+    },
+    "message": {
+        "save": {
+            "succes": "😊 Sauvegarde réussi dans le navigateur.",
+            "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
+        },
+        "json.read": {
+            "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
+            "replace": "😊 Chagement du fichier réussi. Remplacement réussi.",
+            "new": "😊 Chagement du fichier réussi dans un nouveau classement."
+        },
+        "remove": {
+            "succes": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
+        },
+        "clone": {
+            "succes": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
+        }
     }
 }
