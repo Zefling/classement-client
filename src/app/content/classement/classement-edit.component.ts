@@ -224,6 +224,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         });
     }
 
+    reset() {
+        for (const ligne of this.groups) {
+            this.list.push(...ligne.list);
+            ligne.list = [];
+        }
+        this.messageService.addMessage(this.translate.instant('message.reset.groups'));
+    }
+
     saveImage(type: string) {
         const title = this._getFileName();
         if (this._canvas) {

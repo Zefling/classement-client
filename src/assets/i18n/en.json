@@ -110,9 +110,9 @@
             "delete": "Del."
         },
         "actions": {
+            "reset.groups": "Clear Groups",
             "export.image": "Image export ",
-            "save.local": "Loval save",
-            "save.account": "Save to account (coming soon)",
+            "save.local": "Browser save",
             "export.json": "Export",
             "import.json": "Import",
             "save.image": "Save as:"
@@ -147,6 +147,9 @@
         },
         "clone": {
             "success": "😊 Successfully duplicated classification as “%title%”."
+        },
+        "reset": {
+            "groups": "😊 Reset groups."
         }
     }
 }

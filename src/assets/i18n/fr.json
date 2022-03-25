@@ -112,8 +112,9 @@
             "delete": "Suppr."
         },
         "actions": {
+            "reset.groups": "Vider les groupes",
             "export.image": "Export en image",
-            "save.local": "Sauvegarde locale",
+            "save.local": "Sauvegarde navigateur",
             "export.json": "Exporter",
             "import.json": "Importer",
             "save.image": "Sauvegarder au format\u00A0:"
@@ -148,6 +149,9 @@
         },
         "clone": {
             "succes": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
+        },
+        "reset": {
+            "groups": "😊 Remise à zéro des groupes."
         }
     }
 }

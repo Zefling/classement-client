@@ -110,11 +110,16 @@
 
         <div class="save-actions">
             <button class="primary" (click)="exportImage()">{{ 'gererator.actions.export.image' | translate }}</button>
+        </div>
+        <div class="save-actions">
             <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
             <button class="primary" (click)="saveJson()">{{ 'gererator.actions.export.json' | translate }}</button>
             <button class="primary" (click)="dialogImport.open()">
                 {{ 'gererator.actions.import.json' | translate }}
             </button>
+        </div>
+        <div class="save-actions">
+            <button class="primary" (click)="reset()">{{ 'gererator.actions.reset.groups' | translate }}</button>
         </div>
     </div>
 
