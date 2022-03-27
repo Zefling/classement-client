@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
-
 @Component({
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '0.1.4';
+    version = '0.2.0';
 }

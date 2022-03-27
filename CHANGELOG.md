@@ -1,22 +1,28 @@
+# 0.2.0 (2022-03-28)
+
+-   add theme selection
+-   add SVG background images
+-   fix minor bugs and code refactoring
+
 # 0.1.4 (2022-03-25)
 
--   added clear bouton
--   added message for infos, successes or errors
+-   add clear bouton
+-   add message for infos, successes or errors
 
 # 0.1.3 (2022-03-22)
 
--   added options for group name sizes
+-   add options for group name sizes
 -   fix minor bugs
 
 # 0.1.2 (2022-03-21)
 
--   added options for final image background color and size
+-   add options for final image background color and size
 -   change options UI
 -   fix minor bugs
 
 # 0.1.1 (2022-03-18)
 
--   added json import and export (import and replace / import and new)
+-   add json import and export (import and replace / import and new)
 -   predefine files for input:file
 -   fix minor bugs
 
