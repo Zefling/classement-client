@@ -91,7 +91,12 @@
             },
             "global": {
                 "background": "Background color:",
-                "width": "Image width:"
+                "width": "Render image width:",
+                "image": "Background image:",
+                "name.image": {
+                    "none": "Default",
+                    "sakura": "Sakura"
+                }
             },
             "name": {
                 "width": "Group name width:",

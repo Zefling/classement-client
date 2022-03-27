@@ -3,8 +3,8 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  global-color      global-width        width-input       .'
-        'sizes  global-color      .                   font-size         simple'
+        'sizes  glabal-image      global-width        width-input       .'
+        'sizes  glabal-image      global-color        font-size         simple'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -32,11 +32,11 @@
 }
 .colors-item-back {
     grid-area: colors-item-back;
-    --color-section: var(--over-content-box-background);
+    --color-section: var(--over-item-background);
 }
 .colors-item-border {
     grid-area: colors-item-border;
-    --color-section: var(--over-content-box-border);
+    --color-section: var(--over-item-border);
 }
 .colors-line-back {
     grid-area: colors-line-back;
@@ -58,6 +58,9 @@
 }
 .font-size {
     grid-area: font-size;
+}
+.background-image {
+    grid-area: glabal-image;
 }
 .item-options {
     display: grid;
@@ -272,6 +275,61 @@
 
 .input-image {
     grid-template: 'a a' 'c d' / 1fr 1fr;
+}
+
+.image-list {
+    position: relative;
+
+    .select,
+    li {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        cursor: default;
+
+        .label {
+            flex: 1;
+        }
+
+        .image {
+            width: 40px;
+            height: 40px;
+            background-color: var(--over-image-background, var(--background));
+            background-image: var(--url);
+            background-size: contain;
+        }
+    }
+
+    .select::after {
+        content: '🮦';
+        font-size: 70%;
+        font-weight: bold;
+    }
+
+    ul {
+        display: none;
+        position: absolute;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        &.open-list {
+            display: block;
+        }
+
+        li {
+            padding: 5px 3px;
+
+            &:hover {
+                background-color: #8883;
+            }
+
+            &.selected {
+                font-weight: bold;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1200px) {

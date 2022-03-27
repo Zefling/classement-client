@@ -23,4 +23,24 @@ export class Utils {
         const parts = cookies.match(`(?!; )?${name}=([^;]*);?`);
         return parts ? parts[1] : null;
     }
+
+    static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
+        return Utils.containClasses(element, cssClass.trim().split(/\s+/))
+            ? element
+            : element.parentElement
+            ? Utils.getParentElementByClass(element.parentElement, cssClass)
+            : null;
+    }
+
+    static containClasses(element: HTMLElement, cssClasses: string[]): boolean {
+        if (!element.classList) {
+            return false;
+        }
+        for (const cssClass of cssClasses) {
+            if (!element.classList.contains(cssClass)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

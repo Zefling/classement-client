@@ -1,6 +1,5 @@
 import { FormatedGroup, Options, Theme } from 'src/app/interface';
 
-
 export const defautGroup: FormatedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
     { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
@@ -31,6 +30,7 @@ export const defaultOptions: Options = {
     imageWidth: 1170,
     nameWidth: 150,
     nameFontSize: 120,
+    imageBackgroundImage: 'none',
 };
 
 export const themesList: Theme[] = [
@@ -66,12 +66,13 @@ export const themesList: Theme[] = [
             lineBorderColor: '#e97697',
             itemBackgroundOpacity: 40,
             itemBorderOpacity: 30,
-            lineBackgroundOpacity: 100,
-            lineBorderOpacity: 95,
+            lineBackgroundOpacity: 60,
+            lineBorderOpacity: 60,
             imageBackgroundColor: '#e1b6b6',
             imageWidth: 1170,
             nameWidth: 150,
             nameFontSize: 120,
+            imageBackgroundImage: 'sakura',
         },
     },
 ];

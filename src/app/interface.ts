@@ -2,7 +2,6 @@ import { SafeUrl } from '@angular/platform-browser';
 
 import { TypeFile } from './services/global.service';
 
-
 export interface FileHandle {
     file: File;
     url: SafeUrl;
@@ -34,6 +33,7 @@ export type ThemeOptions = {
     lineBackgroundOpacity: number;
     lineBorderOpacity: number;
     imageBackgroundColor: string;
+    imageBackgroundImage: string;
     imageWidth: number;
     nameWidth: number;
     nameFontSize: number;

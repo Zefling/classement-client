@@ -18,7 +18,6 @@ import { Utils } from 'src/app/tools/utils';
 
 import { defaultOptions, defautGroup } from './classement-default';
 
-
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
@@ -99,19 +98,29 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const r = this.renderer;
         const dash = RendererStyleFlags2.DashCase;
 
+        // item
         r.setStyle(body, '--over-item-width', (o.itemWidth ?? defaultOptions.imageWidth) + 'px', dash);
         r.setStyle(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
         r.setStyle(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r.setStyle(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
         r.setStyle(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
-        r.setStyle(body, '--over-content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
-        r.setStyle(body, '--over-content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        r.setStyle(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
+        r.setStyle(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        // drop zone group
         r.setStyle(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         r.setStyle(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
-        r.setStyle(body, '--over-image-background', o.imageBackgroundColor, dash);
-        r.setStyle(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        // name group
         r.setStyle(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
         r.setStyle(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
+        // image background
+        r.setStyle(body, '--over-image-background', o.imageBackgroundColor, dash);
+        r.setStyle(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        r.setStyle(
+            body,
+            '--over-image-url',
+            o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
+            dash,
+        );
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;

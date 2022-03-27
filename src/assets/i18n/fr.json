@@ -93,7 +93,12 @@
             },
             "global": {
                 "background": "Couleur du fond\u00A0:",
-                "width": "Largeur de l'image\u00A0:"
+                "width": "Largeur de l'image rendue\u00A0:",
+                "image": "Image de fond\u00A0:",
+                "name.image": {
+                    "none": "Défault",
+                    "sakura": "Sakura"
+                }
             },
             "name": {
                 "width": "Largeur des noms de groupe\u00A0:",
