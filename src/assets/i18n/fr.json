@@ -100,6 +100,17 @@
                 "font-size": "Taille du texte des noms de groupe\u00A0:"
             }
         },
+        "theme": {
+            "link": "Choisir un thème",
+            "info": "Selection de thème prédéfini\u00A0:",
+            "cancel": "Annuler",
+            "validate": "Valider",
+            "name": {
+                "default": "Défaut",
+                "compact": "Défaut compact",
+                "sakura": "Sakura"
+            }
+        },
         "ranking": {
             "group.title": "Classement",
             "name": "Nom",

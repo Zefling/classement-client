@@ -14,10 +14,12 @@ export type FileString = { url?: string; name: string; size: number; realSize: n
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
-export type Options = {
+export type Options = ThemeOptions & {
     showAdvancedOptions: boolean;
     title: string;
     category: string;
+};
+export type ThemeOptions = {
     itemWidth: number;
     itemHeight: number;
     itemPadding: number;
@@ -35,6 +37,11 @@ export type Options = {
     imageWidth: number;
     nameWidth: number;
     nameFontSize: number;
+};
+
+export type Theme = {
+    name: string;
+    options: ThemeOptions;
 };
 
 export interface IndexedData {

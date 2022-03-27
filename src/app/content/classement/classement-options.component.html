@@ -12,9 +12,11 @@
             </select>
         </div>
     </div>
-    <div class="sizes" *ngIf="!options.showAdvancedOptions">
-        <a (click)="switchOptions()">{{ 'gererator.options.advence' | translate }}</a>
-    </div>
+    <ng-container *ngIf="!options.showAdvancedOptions">
+        <div class="sizes">
+            <a (click)="switchOptions()">{{ 'gererator.options.advence' | translate }}</a>
+        </div>
+    </ng-container>
     <ng-container *ngIf="options.showAdvancedOptions">
         <div class="sizes">
             <label>{{ 'gererator.options.sizes' | translate }}</label>
@@ -190,4 +192,9 @@
             <a (click)="switchOptions()">{{ 'gererator.options.simple' | translate }}</a>
         </div>
     </ng-container>
+    <div class="themes">
+        <a (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
+    </div>
 </div>
+
+<classement-themes (change)="changeTheme($event)"></classement-themes>

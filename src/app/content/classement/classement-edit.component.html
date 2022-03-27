@@ -20,9 +20,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                    <td class="names" [style.background]="group.bgColor">
+                    <td class="names" [style.--name-background]="group.bgColor" [style.--text-color]="group.txtColor">
                         <div>
-                            <textarea class="name" [(ngModel)]="group.name" [style.color]="group.txtColor"></textarea>
+                            <textarea class="name" [(ngModel)]="group.name"></textarea>
                             <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
                             <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
 
@@ -137,7 +137,7 @@
 
             <tbody>
                 <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                    <td class="names" [style.background]="group.bgColor" [style.color]="group.txtColor">
+                    <td class="names" [style.--name-background]="group.bgColor" [style.--text-color]="group.txtColor">
                         {{ group.name }}
                     </td>
                     <td class="elements">

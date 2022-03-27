@@ -1,4 +1,4 @@
-import { FormatedGroup, Options } from 'src/app/interface';
+import { FormatedGroup, Options, Theme } from 'src/app/interface';
 
 
 export const defautGroup: FormatedGroup[] = [
@@ -32,6 +32,49 @@ export const defaultOptions: Options = {
     nameWidth: 150,
     nameFontSize: 120,
 };
+
+export const themesList: Theme[] = [
+    {
+        name: 'default',
+        options: defaultOptions,
+    },
+    {
+        name: 'compact',
+        options: {
+            ...defaultOptions,
+            itemWidth: 80,
+            itemHeight: 100,
+            itemPadding: 0,
+            itemBorder: 0,
+            itemMargin: 0,
+            imageWidth: 1170,
+            nameWidth: 100,
+            nameFontSize: 100,
+        },
+    },
+    {
+        name: 'sakura',
+        options: {
+            itemWidth: 100,
+            itemHeight: 100,
+            itemPadding: 10,
+            itemBorder: 1,
+            itemMargin: 2,
+            itemBackgroundColor: '#f66151',
+            itemBorderColor: '#ed333b',
+            lineBackgroundColor: '#f39d9d',
+            lineBorderColor: '#e97697',
+            itemBackgroundOpacity: 40,
+            itemBorderOpacity: 30,
+            lineBackgroundOpacity: 100,
+            lineBorderOpacity: 95,
+            imageBackgroundColor: '#e1b6b6',
+            imageWidth: 1170,
+            nameWidth: 150,
+            nameFontSize: 120,
+        },
+    },
+];
 
 export const categories: String[] = [
     'anime',

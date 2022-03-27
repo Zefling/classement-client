@@ -98,6 +98,17 @@
                 "font-size": "Group name text size:"
             }
         },
+        "theme": {
+            "link": "Choose a theme ",
+            "info": "Predefined theme selection:",
+            "cancel": "Cancel",
+            "validate": "Validate",
+            "name": {
+                "default": "Default",
+                "compact": "Default compact",
+                "sakura": "Sakura"
+            }
+        },
         "ranking": {
             "group.title": "Ranking",
             "name": "Name",

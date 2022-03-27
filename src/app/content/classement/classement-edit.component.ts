@@ -13,14 +13,11 @@ import { MessageService, MessageType } from 'src/app/components/info-messages.co
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
+import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 
 import { defaultOptions, defautGroup } from './classement-default';
 
-
-const color = (c: string, opacity: number): string | null => {
-    return c ? new Coloration(c).addColor({ alpha: (-1 * (100 - opacity)) / 100 }).toHEX() : null;
-};
 
 @Component({
     selector: 'classement-edit',
@@ -99,22 +96,22 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         const body = document.body;
         const o = this.options;
-        const render = this.renderer;
+        const r = this.renderer;
         const dash = RendererStyleFlags2.DashCase;
 
-        render.setStyle(body, '--item-width', (o.itemWidth || defaultOptions.imageWidth) + 'px', dash);
-        render.setStyle(body, '--item-height', (o.itemHeight || defaultOptions.itemHeight) + 'px', dash);
-        render.setStyle(body, '--item-padding', (o.itemPadding || defaultOptions.itemPadding) + 'px', dash);
-        render.setStyle(body, '--item-border', (o.itemBorder || defaultOptions.itemBorder) + 'px', dash);
-        render.setStyle(body, '--item-margin', (o.itemMargin || defaultOptions.itemMargin) + 'px', dash);
-        render.setStyle(body, '--content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
-        render.setStyle(body, '--content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
-        render.setStyle(body, '--drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
-        render.setStyle(body, '--drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
-        render.setStyle(body, '--image-background', o.imageBackgroundColor, dash);
-        render.setStyle(body, '--image-width', (o.imageWidth || defaultOptions.imageWidth) + 'px', dash);
-        render.setStyle(body, '--name-width', (o.nameWidth || defaultOptions.nameWidth) + 'px', dash);
-        render.setStyle(body, '--name-font-size', (o.nameFontSize || defaultOptions.nameFontSize) + '%', dash);
+        r.setStyle(body, '--over-item-width', (o.itemWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        r.setStyle(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
+        r.setStyle(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
+        r.setStyle(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
+        r.setStyle(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
+        r.setStyle(body, '--over-content-box-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
+        r.setStyle(body, '--over-content-box-border', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        r.setStyle(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
+        r.setStyle(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+        r.setStyle(body, '--over-image-background', o.imageBackgroundColor, dash);
+        r.setStyle(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        r.setStyle(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
+        r.setStyle(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;

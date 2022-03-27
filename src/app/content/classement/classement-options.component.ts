@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
-import { Options } from 'src/app/interface';
+import { Options, Theme } from 'src/app/interface';
 
 import { categories } from './classement-default';
+import { ClassemenThemesComponent } from './classement-themes.component';
 
 
 @Component({
@@ -16,11 +17,21 @@ export class ClassementOptionsComponent {
     @Input()
     options?: Options;
 
+    @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
+
     constructor() {}
 
     switchOptions() {
         if (this.options) {
             this.options.showAdvancedOptions = !this.options.showAdvancedOptions;
         }
+    }
+
+    themesOpen() {
+        this.classemenThemes.dialog.open();
+    }
+
+    changeTheme(theme: Theme) {
+        Object.assign(this.options, theme.options);
     }
 }

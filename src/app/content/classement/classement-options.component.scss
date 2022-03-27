@@ -3,7 +3,7 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  global-color      global-width        width-input       simple'
+        'sizes  global-color      global-width        width-input       .'
         'sizes  global-color      .                   font-size         simple'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
@@ -14,6 +14,10 @@
 }
 .simple {
     grid-area: simple;
+    text-align: end;
+    align-self: flex-end;
+}
+.themes {
     text-align: end;
     align-self: flex-end;
 }
@@ -28,23 +32,23 @@
 }
 .colors-item-back {
     grid-area: colors-item-back;
-    --color-section: var(--content-box-background);
+    --color-section: var(--over-content-box-background);
 }
 .colors-item-border {
     grid-area: colors-item-border;
-    --color-section: var(--content-box-border);
+    --color-section: var(--over-content-box-border);
 }
 .colors-line-back {
     grid-area: colors-line-back;
-    --color-section: var(--drop-list-background);
+    --color-section: var(--over-drop-list-background);
 }
 .colors-line-border {
     grid-area: colors-line-border;
-    --color-section: var(--drop-list-border-color);
+    --color-section: var(--over-drop-list-border-color);
 }
 .global-color {
     grid-area: global-color;
-    --color-section: var(--image-background, var(--background));
+    --color-section: var(--over-image-background, var(--background));
 }
 .global-width {
     grid-area: global-width;

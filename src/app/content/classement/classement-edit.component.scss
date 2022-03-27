@@ -7,10 +7,11 @@
 
 .drop-list {
     min-height: calc(
-        var(--item-height, 150px) + (var(--item-padding, 10px) + var(--item-border, 1px) + var(--item-margin, 2px)) * 2
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
     );
-    border: solid 1px var(--drop-list-border-color);
-    background: var(--drop-list-background);
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+    background: var(--over-drop-list-background, var(--drop-list-background));
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -20,18 +21,20 @@
 .drop-zone-empty-list {
     flex: 1;
     height: calc(
-        var(--item-height, 150px) + (var(--item-padding, 10px) + var(--item-border, 1px) + var(--item-margin, 2px)) * 2
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
     );
     order: 2;
 }
 
 .content-box {
-    padding: var(--item-padding, 10px);
-    width: var(--item-width, 150px);
-    height: var(--item-height, 150px);
-    border: var(--item-border, 1px) solid var(--content-box-border);
-    background: var(--content-box-background);
-    color: var(--content-box-color);
+    padding: var(--over-item-padding, 10px);
+    margin: var(--over-item-margin, 2px);
+    width: var(--over-item-width, 150px);
+    height: var(--over-item-height, 150px);
+    border: var(--over-item-border, 1px) solid var(--over-content-box-border, var(--content-box-border));
+    background: var(--over-content-box-background, var(--content-box-background));
+    color: var(--over-content-box-colorh, var(--content-box-color));
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -39,7 +42,6 @@
     box-sizing: content-box;
     cursor: move;
     font-size: 14px;
-    margin: var(--item-margin);
 }
 
 .add-file {
@@ -51,7 +53,7 @@
 }
 
 .drop-zone-empty-list + .add-file {
-    width: calc(var(--item-width, 150px) * 2);
+    width: calc(var(--over-item-width, var(--item-width, 150px)) * 2);
 }
 
 .cdk-drag-preview {
@@ -60,9 +62,9 @@
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
     // fix size
-    padding: var(--item-padding, 10px) !important;
-    width: var(--item-width, 150px) !important;
-    height: var(--item-height, 150px) !important;
+    padding: var(--over-item-padding, 10px) !important;
+    width: var(--over-item-width, 150px) !important;
+    height: var(--over-item-height, 150px) !important;
 }
 
 .cdk-drag-placeholder {
@@ -152,9 +154,17 @@ table {
 }
 
 .names {
-    width: var(--name-width, 150px);
-    min-width: var(--name-width, 150px);
+    width: var(--over-name-width, 150px);
+    min-width: var(--over-name-width, 150px);
     text-align: center;
+    border-radius: 4px;
+    color: var(--text-color);
+    background: var(--name-background);
+    border: 1px solid var(--name-border-color);
+
+    textarea {
+        color: var(--text-color);
+    }
 
     div {
         display: grid;
@@ -172,7 +182,7 @@ table {
     border: 0;
     background: transparent;
     text-align: center;
-    font-size: var(--name-font-size, 120%);
+    font-size: var(--over-name-font-size, 120%);
     width: 100%;
     display: block;
     box-sizing: border-box;
@@ -230,11 +240,11 @@ svg.color + svg {
     left: -100000px;
 
     table {
-        background: var(--image-background, var(--background));
+        background: var(--over-image-background, var(--background));
     }
 
     .names {
-        font-size: var(--name-font-size, 120%);
+        font-size: var(--over-name-font-size, 120%);
     }
 
     caption {

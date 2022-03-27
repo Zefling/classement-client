@@ -1,0 +1,19 @@
+<dialog-cmp>
+    <p>{{ 'gererator.theme.info' | translate }}</p>
+
+    <div class="themes">
+        <theme-icon
+            *ngFor="let theme of themes"
+            [theme]="theme"
+            (select)="changeTheme($event)"
+            [class.selected]="theme === currentTheme"
+        ></theme-icon>
+    </div>
+
+    <div>
+        <button (click)="cancel()">{{ 'gererator.theme.cancel' | translate }}</button>
+        <button *ngIf="currentTheme" class="primary" (click)="validate()">
+            {{ 'gererator.theme.validate' | translate }}
+        </button>
+    </div>
+</dialog-cmp>

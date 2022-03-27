@@ -1,0 +1,65 @@
+:host {
+    display: block;
+    width: 130px;
+
+    &.selected .block {
+        outline: 1px solid yellow;
+        box-shadow: 0 0 20px #0008;
+    }
+}
+
+.block {
+    --n-item-width: var(--o-item-width, var(--item-width));
+    --n-item-height: var(--o-item-height, var(--item-height));
+    --n-item-padding: var(--o-item-padding, var(--item-padding));
+    --n-item-border: var(--o-item-border, var(--item-border));
+    --n-item-margin: var(--o-item-margin, var(--item-margin));
+    --n-content-box-background: var(--o-content-box-background, var(--content-box-background));
+    --n-content-box-border: var(--o-content-box-border, var(--content-box-border));
+    --n-drop-list-background: var(--o-drop-list-background, var(--drop-list-background));
+    --n-drop-list-border-color: var(--o-drop-list-border-color, var(--drop-list-border-color));
+    --n-image-background: var(--o-image-background, var(--image-background));
+    --n-image-width: var(--o-image-width, var(--image-width));
+    --n-name-width: var(--o-name-width, var(--name-width));
+    --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
+
+    box-shadow: 0 0 10px #0008;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--n-image-background, var(--background));
+    padding: 0;
+    height: 130px;
+}
+
+.group {
+    height: 100px;
+    width: 120px;
+    padding: 0;
+    border: solid 1px var(--n-drop-list-border-color);
+    background: var(--n-drop-list-background);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.item {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    margin: var(--n-item-margin);
+    padding: var(--n-item-padding);
+    width: 100px;
+    //width: var(--n-item-width);
+    //height: var(-n-item-height);
+    border: var(--n-item-border) solid var(--n-content-box-border);
+    background: var(--n-content-box-background);
+    color: var(--n-content-box-color);
+    box-sizing: border-box;
+}
+.image {
+    background-color: azure;
+    flex: 1;
+    padding: 0;
+}
