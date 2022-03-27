@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Theme } from '../interface';
 import { color } from '../tools/function';
 
-
 @Component({
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',
@@ -44,6 +43,8 @@ export class ThemeIconComponent implements OnInit {
             '--o-drop-list-border-color': color(o.lineBorderColor, o.lineBorderOpacity),
             '--o-image-background': o.imageBackgroundColor,
             '--o-image-width': o.imageWidth + 'px',
+            '--o-image-url':
+                o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
             '--o-name-width': o.nameWidth + 'px',
             '--o-name-font-size': o.nameFontSize + '%',
         };

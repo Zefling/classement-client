@@ -19,6 +19,7 @@
     --n-drop-list-background: var(--o-drop-list-background, var(--drop-list-background));
     --n-drop-list-border-color: var(--o-drop-list-border-color, var(--drop-list-border-color));
     --n-image-background: var(--o-image-background, var(--image-background));
+    --n-image-url: var(--o-image-url);
     --n-image-width: var(--o-image-width, var(--image-width));
     --n-name-width: var(--o-name-width, var(--name-width));
     --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
@@ -28,7 +29,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--n-image-background, var(--background));
+    background-color: var(--n-image-background, var(--background));
+    background-image: var(--n-image-url);
+    background-repeat: repeat;
     padding: 0;
     height: 130px;
 }

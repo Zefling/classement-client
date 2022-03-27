@@ -3,8 +3,8 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  glabal-image      global-width        width-input       .'
-        'sizes  glabal-image      global-color        font-size         simple'
+        'sizes  glabal-image      global-width        width-input       links'
+        'sizes  glabal-image      global-color        font-size         links'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -13,9 +13,13 @@
     padding: 10px;
 }
 .simple {
-    grid-area: simple;
+    grid-area: links;
     text-align: end;
     align-self: flex-end;
+
+    div {
+        padding: 10px;
+    }
 }
 .themes {
     text-align: end;
