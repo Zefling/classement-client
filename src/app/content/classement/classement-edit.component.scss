@@ -251,7 +251,12 @@ svg.color + svg {
     .drop-list {
         display: table-cell; // fix chromium
         div {
-            display: inline-block; // fix chromium
+            display: inline-flex; // fix chromium
+            text-align: center;
+            vertical-align: bottom;
+            div {
+                display: flex;
+            }
         }
     }
 
