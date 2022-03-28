@@ -269,6 +269,8 @@ svg.color + svg {
         // fix html2canvas
         margin: auto;
         position: relative;
+        // fix chromium (see : https://github.com/niklasvh/html2canvas/issues/2829)
+        display: initial !important;
     }
 }
 
