@@ -173,7 +173,6 @@ table {
             'a a a a a' 60px
             '. b . c .' auto /
             1fr auto 1fr auto 1fr;
-        height: 100%;
     }
 }
 
@@ -247,6 +246,13 @@ svg.color + svg {
 
     .names {
         font-size: var(--over-name-font-size, 120%);
+    }
+
+    .drop-list {
+        display: table-cell; // fix chromium
+        div {
+            display: inline-block; // fix chromium
+        }
     }
 
     caption {
