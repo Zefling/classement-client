@@ -34,6 +34,8 @@ export const defaultOptions: Options = {
     imageBackgroundImage: 'none',
 };
 
+export const imagesThemes = ['none', 'sakura', 'etoile'];
+
 export const themesList: Theme[] = [
     {
         name: 'default',
@@ -75,6 +77,30 @@ export const themesList: Theme[] = [
             nameFontSize: 120,
             nameBackgroundOpacity: 80,
             imageBackgroundImage: 'sakura',
+        },
+    },
+    {
+        name: 'night',
+        options: {
+            itemWidth: 100,
+            itemHeight: 100,
+            itemPadding: 10,
+            itemBorder: 1,
+            itemMargin: 2,
+            itemBackgroundColor: '#0a0e34',
+            itemBorderColor: '#000000',
+            lineBackgroundColor: '#0c124d',
+            lineBorderColor: '#020118',
+            itemBackgroundOpacity: 40,
+            itemBorderOpacity: 30,
+            lineBackgroundOpacity: 60,
+            lineBorderOpacity: 60,
+            imageBackgroundColor: '#010415',
+            imageWidth: 1170,
+            nameWidth: 150,
+            nameFontSize: 120,
+            nameBackgroundOpacity: 80,
+            imageBackgroundImage: 'etoile',
         },
     },
 ];

@@ -3,7 +3,7 @@ import { Component, HostBinding, HostListener, Input, ViewChild } from '@angular
 import { Options, Theme } from 'src/app/interface';
 import { Utils } from 'src/app/tools/utils';
 
-import { categories } from './classement-default';
+import { categories, imagesThemes } from './classement-default';
 import { ClassemenThemesComponent } from './classement-themes.component';
 
 @Component({
@@ -19,7 +19,7 @@ export class ClassementOptionsComponent {
 
     imageListOpen = false;
 
-    listThemes = ['none', 'sakura'];
+    listThemes = imagesThemes;
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
 

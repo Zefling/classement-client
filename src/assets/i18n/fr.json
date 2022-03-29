@@ -97,7 +97,8 @@
                 "image": "Image de fond\u00A0:",
                 "name.image": {
                     "none": "Défault",
-                    "sakura": "Sakura"
+                    "sakura": "Sakura",
+                    "etoile": "Étoile"
                 }
             },
             "name": {
@@ -114,7 +115,8 @@
             "name": {
                 "default": "Défaut",
                 "compact": "Défaut compact",
-                "sakura": "Sakura"
+                "sakura": "Sakura",
+                "night": "Nuit"
             }
         },
         "ranking": {
