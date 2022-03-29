@@ -37,6 +37,7 @@ export type ThemeOptions = {
     imageWidth: number;
     nameWidth: number;
     nameFontSize: number;
+    nameBackgroundOpacity: number;
 };
 
 export type Theme = {

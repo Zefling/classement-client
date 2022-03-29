@@ -100,7 +100,8 @@
             },
             "name": {
                 "width": "Group name width:",
-                "font-size": "Group name text size:"
+                "font-size": "Group name text size:",
+                "opacity": "Group name background opacity:"
             }
         },
         "theme": {

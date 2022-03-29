@@ -3,7 +3,7 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  glabal-image      global-width        width-input       links'
+        'sizes  glabal-image      global-width        width-input       name-opacity'
         'sizes  glabal-image      global-color        font-size         links'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
@@ -65,6 +65,9 @@
 }
 .background-image {
     grid-area: glabal-image;
+}
+.name-opacity {
+    grid-area: name-opacity;
 }
 .item-options {
     display: grid;

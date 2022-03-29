@@ -147,6 +147,9 @@ img {
 
 table {
     min-width: 100%;
+    background-color: var(--over-image-background, var(--background));
+    background-image: var(--over-image-url);
+    background-repeat: repeat;
 }
 
 .elements {
@@ -237,12 +240,6 @@ svg.color + svg {
     position: absolute;
     top: 0;
     left: -100000px;
-
-    table {
-        background-color: var(--over-image-background, var(--background));
-        background-image: var(--over-image-url);
-        background-repeat: repeat;
-    }
 
     .names {
         font-size: var(--over-name-font-size, 120%);

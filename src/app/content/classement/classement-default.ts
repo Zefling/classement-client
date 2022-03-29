@@ -30,6 +30,7 @@ export const defaultOptions: Options = {
     imageWidth: 1170,
     nameWidth: 150,
     nameFontSize: 120,
+    nameBackgroundOpacity: 100,
     imageBackgroundImage: 'none',
 };
 
@@ -47,7 +48,7 @@ export const themesList: Theme[] = [
             itemPadding: 0,
             itemBorder: 0,
             itemMargin: 0,
-            imageWidth: 1170,
+            imageWidth: 1155,
             nameWidth: 100,
             nameFontSize: 100,
         },
@@ -72,6 +73,7 @@ export const themesList: Theme[] = [
             imageWidth: 1170,
             nameWidth: 150,
             nameFontSize: 120,
+            nameBackgroundOpacity: 80,
             imageBackgroundImage: 'sakura',
         },
     },

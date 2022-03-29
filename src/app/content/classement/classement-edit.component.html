@@ -11,16 +11,13 @@
                 <col class="elements" />
                 <col class="actions" />
             </colgroup>
-            <thead>
-                <tr>
-                    <td style="width: 150px">{{ 'gererator.ranking.name' | translate }}</td>
-                    <td>{{ 'gererator.ranking.list' | translate }}</td>
-                    <td></td>
-                </tr>
-            </thead>
             <tbody>
                 <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                    <td class="names" [style.--name-background]="group.bgColor" [style.--text-color]="group.txtColor">
+                    <td
+                        class="names"
+                        [style.--name-background]="group.bgColor + nameOpacity"
+                        [style.--text-color]="group.txtColor"
+                    >
                         <div>
                             <textarea class="name" [(ngModel)]="group.name"></textarea>
                             <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
@@ -137,7 +134,11 @@
 
             <tbody>
                 <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                    <td class="names" [style.--name-background]="group.bgColor" [style.--text-color]="group.txtColor">
+                    <td
+                        class="names"
+                        [style.--name-background]="group.bgColor + nameOpacity"
+                        [style.--text-color]="group.txtColor"
+                    >
                         {{ group.name }}
                     </td>
                     <td class="elements drop-list">

@@ -31,6 +31,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     list: FileString[] = [];
 
     options!: Options;
+    nameOpacity!: string;
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
@@ -121,6 +122,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
             dash,
         );
+
+        this.nameOpacity =
+            Math.round(o.nameBackgroundOpacity * 2.55)
+                ?.toString(16)
+                .padStart(2, '0') ?? 'FF';
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;

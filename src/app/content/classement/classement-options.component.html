@@ -191,6 +191,12 @@
                 <input id="nameFontSize" type="number" min="50" max="300" [(ngModel)]="options.nameFontSize" />
             </div>
         </div>
+        <div class="name-opacity input-button">
+            <div class="width-input">
+                <label for="nameFontSize">{{ 'gererator.options.name.opacity' | translate }}</label>
+                <input id="nameFontSize" type="number" min="0" max="100" [(ngModel)]="options.nameBackgroundOpacity" />
+            </div>
+        </div>
         <div class="background-image">
             <div class="width-input">
                 <label for="nameFontSize">{{ 'gererator.options.global.image' | translate }}</label>
