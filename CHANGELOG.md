@@ -1,3 +1,10 @@
+# 0.2.1 (2022-03-29)
+
+-   add the “night” theme
+-   add group name background opacity
+-   fix rendering with Chromium browsers
+-   fix minor bugs
+
 # 0.2.0 (2022-03-28)
 
 -   add theme selection
