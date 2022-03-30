@@ -99,7 +99,7 @@ export const themesList: Theme[] = [
             imageWidth: 1170,
             nameWidth: 150,
             nameFontSize: 120,
-            nameBackgroundOpacity: 80,
+            nameBackgroundOpacity: 90,
             imageBackgroundImage: 'etoile',
         },
     },
