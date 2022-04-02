@@ -114,6 +114,7 @@
             <button class="primary" (click)="dialogImport.open()">
                 {{ 'gererator.actions.import.json' | translate }}
             </button>
+            <button class="primary" (click)="dialogOptimise.open()">Optimise</button>
         </div>
         <div class="save-actions">
             <button class="primary" (click)="reset()">{{ 'gererator.actions.reset.groups' | translate }}</button>
@@ -192,4 +193,8 @@
             {{ 'gererator.json.import.new' | translate }}
         </button>
     </div>
+</dialog-cmp>
+
+<dialog-cmp #dialogOptimise closeButton>
+    <classement-optimise [list]="list" [groups]="groups"></classement-optimise>
 </dialog-cmp>

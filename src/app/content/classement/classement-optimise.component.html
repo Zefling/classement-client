@@ -1,0 +1,22 @@
+<button class="primary" (click)="optimise()">Optimise (300×300)</button>
+
+<div>
+    size : {{ totalSize }} - {{ totalResize }} - {{ progress }} ({{ countResize }}) / {{ total }} ({{ reduceSize }})
+</div>
+
+<button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">Optimise (300×300)</button>
+
+<div>
+    Afficher les détails :
+    <div class="list">
+        <div *ngFor="let item of listOptimise; let index = index">
+            <img
+                src="{{ (item.reduceFile || item.sourceFile).url }}"
+                alt="{{ (item.reduceFile || item.sourceFile).name }}"
+            />
+            <div>
+                {{ item.reduce }}
+            </div>
+        </div>
+    </div>
+</div>

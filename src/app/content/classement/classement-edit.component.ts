@@ -1,5 +1,17 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, DoCheck, ElementRef, OnDestroy, Renderer2, RendererStyleFlags2, ViewChild } from '@angular/core';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+import {
+  Component,
+  DoCheck,
+  ElementRef,
+  OnDestroy,
+  Renderer2,
+  RendererStyleFlags2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +21,10 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
+import {
+  MessageService,
+  MessageType,
+} from 'src/app/components/info-messages.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
@@ -17,6 +32,7 @@ import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 
 import { defaultOptions, defautGroup } from './classement-default';
+
 
 @Component({
     selector: 'classement-edit',
@@ -36,6 +52,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
+    @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
 
     jsonTmp?: Data;
 
@@ -245,24 +262,24 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveImage(type: string) {
-        const title = this._getFileName();
+        const title = this.getFileName();
         if (this._canvas) {
             switch (type) {
                 case 'PNG':
-                    this._downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
                     break;
                 case 'JPG':
-                    this._downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
                     break;
                 case 'WEBP':
-                    this._downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
                     break;
             }
         }
     }
 
     saveLocal() {
-        this.bdService.saveLocal(this._getData()).then(
+        this.bdService.saveLocal(this.getData()).then(
             id => {
                 this.id = id;
                 this.messageService.addMessage(this.translate.instant('message.save.succes'));
@@ -275,7 +292,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveJson() {
-        this._downloadFile(JSON.stringify(this._getData()), this._getFileName() + '.json', 'text/plain');
+        this.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
     }
 
     importJsonFile(event: Event) {
@@ -330,7 +347,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.dialogImport.close();
     }
 
-    private _getData(): Data {
+    private getData(): Data {
         return {
             options: this.options,
             id: this.id,
@@ -339,11 +356,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         };
     }
 
-    private _getFileName(): Data {
+    private getFileName(): Data {
         return this.options.title.trim() || this.translate.instant('list.title.undefined');
     }
 
-    private _downloadFile(content: string, fileName: string, contentType: string) {
+    private downloadFile(content: string, fileName: string, contentType: string) {
         var a = document.createElement('a');
         var file = new Blob([content], { type: contentType });
         a.href = URL.createObjectURL(file);
@@ -351,7 +368,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         a.click();
     }
 
-    private _downloadImage(data: string, filename: string) {
+    private downloadImage(data: string, filename: string) {
         const a = document.createElement('a');
         a.href = data;
         a.download = filename;

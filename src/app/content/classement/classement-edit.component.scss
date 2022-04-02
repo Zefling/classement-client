@@ -150,6 +150,7 @@ table {
     background-color: var(--over-image-background, var(--background));
     background-image: var(--over-image-url);
     background-repeat: repeat;
+    border-spacing: 1px;
 }
 
 .elements {

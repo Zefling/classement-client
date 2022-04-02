@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs';
 
@@ -26,8 +25,6 @@ export class GlobalService {
 
     jsonTmp?: Data;
 
-    constructor(private sanitizer: DomSanitizer) {}
-
     forceExit(route: string | undefined) {
         this.onForceExit.next(route);
     }
@@ -38,7 +35,6 @@ export class GlobalService {
             if (typesMine[filter].includes(file.type)) {
                 const data: FileHandle = {
                     file,
-                    url: file.type === this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file)),
                 };
 
                 let reader = new FileReader();
