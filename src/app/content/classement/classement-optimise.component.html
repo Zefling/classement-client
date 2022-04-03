@@ -19,7 +19,7 @@
                 | translate
                     : {
                           finalSize: (finalSize | numFormat),
-                          percent: (1 - finalSize / reduceSize) * -1 | numFormat: { style: 'percent' }
+                          percent: (finalSize - totalSize) / totalSize | numFormat: { style: 'percent' }
                       }
         }}
     </div>
@@ -50,8 +50,8 @@
 
                     <span class="percent">
                         {{
-                            (1 - (item.reduceFile?.realSize || 0) / item.sourceFile.realSize) * -1
-                                | numFormat: { style: 'percent' }
+                            ((item.reduceFile?.realSize || item.sourceFile.realSize) - item.sourceFile.realSize) /
+                                item.sourceFile.realSize | numFormat: { style: 'percent' }
                         }}
                     </span>
                 </span>
