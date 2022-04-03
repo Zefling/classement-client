@@ -31,7 +31,7 @@ export class AppComponent {
     constructor(private _translate: TranslateService, private _globalService: GlobalService, private _router: Router) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
-        this.selectedLang = l.length ? l[0].value : 'en';
+        this._globalService.lang = this.selectedLang = l.length ? l[0].value : 'en';
         this.updateLanguage(this.selectedLang);
 
         this._globalService.onForceExit.subscribe((route?: string) => {
@@ -44,9 +44,10 @@ export class AppComponent {
         this.asideOpen = !this.asideOpen;
     }
 
-    updateLanguage(event: string) {
-        console.log('Update language: ' + event);
-        this._translate.use(event);
+    updateLanguage(lang: string) {
+        console.log('Update language: ' + lang);
+        this._translate.use(lang);
+        this._globalService.lang = lang;
     }
 
     exit(ok: boolean) {

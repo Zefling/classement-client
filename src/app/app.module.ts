@@ -29,6 +29,7 @@ import {
   ClassementListComponent,
 } from './content/list/classement-list.component';
 import { DirectiveModule } from './directives/directive.module';
+import { PipesModule } from './pipes/pipes.module';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -54,6 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
         FormsModule,
         DirectiveModule,
         ComponentsModule,
+        PipesModule,
         HttpClientModule,
         TranslateModule.forRoot({
             defaultLanguage: 'en',

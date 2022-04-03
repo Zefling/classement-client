@@ -6,4 +6,7 @@ img {
 .list {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
 }

@@ -23,6 +23,8 @@ export class GlobalService {
 
     withChange = false;
 
+    lang!: string;
+
     jsonTmp?: Data;
 
     forceExit(route: string | undefined) {

@@ -1,21 +1,33 @@
-<button class="primary" (click)="optimise()">Optimise (300×300)</button>
+<div>Convert image to WebP 300×300.</div>
 
-<div>
-    size : {{ totalSize }} - {{ totalResize }} - {{ progress }} ({{ countResize }}) / {{ total }} ({{ reduceSize }})
-</div>
+<button class="primary" (click)="optimise()">Optimise</button>
 
-<button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">Optimise (300×300)</button>
+<div>Current size : {{ totalSize | numFormat }} octects for {{ total }} images.</div>
 
-<div>
-    Afficher les détails :
-    <div class="list">
+<div *ngIf="progress">
+    <div><progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}</div>
+    <div>
+        <a (click)="toggle()">{{ !detail ? 'Afficher les détails' : 'Cacher les détails' }}</a>
+    </div>
+    <div>
+        Number reduce file : {{ countResize }}<br />
+        Total reduce size : {{ reduceSize | numFormat }} octects
+    </div>
+
+    <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">Accepter</button>
+
+    <div *ngIf="detail" class="list">
         <div *ngFor="let item of listOptimise; let index = index">
             <img
                 src="{{ (item.reduceFile || item.sourceFile).url }}"
                 alt="{{ (item.reduceFile || item.sourceFile).name }}"
             />
             <div>
-                {{ item.reduce }}
+                {{ item.sourceFile.realSize | numFormat }}<br />
+                ↓<br />
+                {{ item.reduceFile?.realSize || item.sourceFile.realSize | numFormat }} <br />
+                {{ -1 * item.reduce | numFormat }} octects<br />
+                {{ -100 + ((item.reduceFile?.realSize || 0) / item.sourceFile.realSize) * 100 | numFormat }} %
             </div>
         </div>
     </div>

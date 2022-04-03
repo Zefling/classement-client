@@ -28,7 +28,13 @@ export class ClassementOptimiseComponent implements DoCheck {
 
     listOptimise: OptimisedFile[] = [];
 
+    detail = false;
+
     constructor(private optimiseImage: OptimiseImageService) {}
+
+    toggle() {
+        this.detail = !this.detail;
+    }
 
     ngDoCheck() {
         let taille = 0;
