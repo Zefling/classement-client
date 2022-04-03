@@ -1,5 +1,6 @@
 import { Component, DoCheck, Input } from '@angular/core';
 
+import { DialogComponent } from 'src/app/components/dialog.component';
 import { FileString, FormatedGroup } from 'src/app/interface';
 import {
   OptimisedFile,
@@ -19,18 +20,30 @@ export class ClassementOptimiseComponent implements DoCheck {
     @Input()
     list?: FileString[];
 
+    @Input()
+    dialog?: DialogComponent;
+
     totalSize!: number;
     total!: number;
-    progress = 0;
-    totalResize = 0;
-    countResize = 0;
-    reduceSize = 0;
+    progress: number;
+    totalResize: number;
+    countResize: number;
+    reduceSize: number;
+    finalSize: number;
 
-    listOptimise: OptimisedFile[] = [];
+    listOptimise: OptimisedFile[];
 
     detail = false;
 
-    constructor(private optimiseImage: OptimiseImageService) {}
+    constructor(private optimiseImage: OptimiseImageService) {
+        this.progress = 0;
+        this.totalResize = 0;
+        this.countResize = 0;
+        this.reduceSize = 0;
+        this.finalSize = 0;
+
+        this.listOptimise = [];
+    }
 
     toggle() {
         this.detail = !this.detail;
@@ -72,6 +85,7 @@ export class ClassementOptimiseComponent implements DoCheck {
                     this.totalResize += file.reduceFile?.realSize || 0;
                     this.countResize += file.reduce > 0 ? 1 : 0;
                     this.reduceSize += file.reduce;
+                    this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
                     this.listOptimise.push(file);
                 }),
             );
@@ -83,6 +97,7 @@ export class ClassementOptimiseComponent implements DoCheck {
                 this.totalResize += file.reduceFile?.realSize || 0;
                 this.countResize += file.reduce > 0 ? 1 : 0;
                 this.reduceSize += file.reduce;
+                this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
                 this.listOptimise.push(file);
             });
         }
@@ -97,5 +112,6 @@ export class ClassementOptimiseComponent implements DoCheck {
                 e.sourceFile.url = e.reduceFile.url;
             }
         });
+        this.dialog?.close();
     }
 }

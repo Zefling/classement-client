@@ -149,6 +149,18 @@
             "cancel": "Cancel",
             "import.replace": "Import and replace",
             "import.new": "Import into a new classification"
+        },
+        "optimise": {
+            "info": "Convert image to WebP 300×300.",
+            "button.optimise": "Optimise",
+            "current": "Current size: {{ totalSize }}\u00A0bytes for {{ totalImage }}\u00A0images.",
+            "show.detail": "Show details",
+            "hide.detail": "Hide details",
+            "reduce.files": "Reduced number of files: {{ countResize }}",
+            "reduce.size": "Total reduce size: {{ reduceSize }}\u00A0bytes",
+            "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
+            "size": "{{ size }}\u00A0bytes",
+            "validate": "Validate"
         }
     },
     "message": {

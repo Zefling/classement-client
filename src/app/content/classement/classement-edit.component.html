@@ -196,5 +196,10 @@
 </dialog-cmp>
 
 <dialog-cmp #dialogOptimise closeButton>
-    <classement-optimise [list]="list" [groups]="groups"></classement-optimise>
+    <classement-optimise
+        *ngIf="dialogOptimise._open"
+        [list]="list"
+        [groups]="groups"
+        [dialog]="dialogOptimise"
+    ></classement-optimise>
 </dialog-cmp>

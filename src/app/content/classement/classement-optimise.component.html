@@ -1,20 +1,32 @@
-<div>Convert image to WebP 300×300.</div>
+<div>{{ 'gererator.optimise.info' | translate }}</div>
 
-<button class="primary" (click)="optimise()">Optimise</button>
+<button class="primary" (click)="optimise()">{{ 'gererator.optimise.button.optimise' | translate }}</button>
 
-<div>Current size : {{ totalSize | numFormat }} octects for {{ total }} images.</div>
+<div>{{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}</div>
 
 <div *ngIf="progress">
     <div><progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}</div>
     <div>
-        <a (click)="toggle()">{{ !detail ? 'Afficher les détails' : 'Cacher les détails' }}</a>
+        <a (click)="toggle()">{{
+            (!detail ? 'gererator.optimise.show.detail' : 'gererator.optimise.hide.detail') | translate
+        }}</a>
     </div>
     <div>
-        Number reduce file : {{ countResize }}<br />
-        Total reduce size : {{ reduceSize | numFormat }} octects
+        {{ 'gererator.optimise.reduce.files' | translate: { countResize: countResize } }}<br />
+        {{ 'gererator.optimise.reduce.size' | translate: { reduceSize: (reduceSize | numFormat) } }}<br />
+        {{
+            'gererator.optimise.final.size'
+                | translate
+                    : {
+                          finalSize: (finalSize | numFormat),
+                          percent: (1 - finalSize / reduceSize) * -1 | numFormat: { style: 'percent' }
+                      }
+        }}
     </div>
 
-    <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">Accepter</button>
+    <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">
+        {{ 'gererator.optimise.validate' | translate }}
+    </button>
 
     <div *ngIf="detail" class="list">
         <div *ngFor="let item of listOptimise; let index = index">
@@ -22,12 +34,27 @@
                 src="{{ (item.reduceFile || item.sourceFile).url }}"
                 alt="{{ (item.reduceFile || item.sourceFile).name }}"
             />
-            <div>
-                {{ item.sourceFile.realSize | numFormat }}<br />
-                ↓<br />
-                {{ item.reduceFile?.realSize || item.sourceFile.realSize | numFormat }} <br />
-                {{ -1 * item.reduce | numFormat }} octects<br />
-                {{ -100 + ((item.reduceFile?.realSize || 0) / item.sourceFile.realSize) * 100 | numFormat }} %
+            <div class="info-reduce">
+                <span class="reduce-source">
+                    {{ 'gererator.optimise.size' | translate: { size: (item.sourceFile.realSize | numFormat) } }}
+                </span>
+                <span class="arrow">↓</span>
+                <span class="reduce-target">
+                    {{
+                        'gererator.optimise.size'
+                            | translate: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
+                    }}
+                </span>
+                <span class="reduce-size">
+                    {{ 'gererator.optimise.size' | translate: { size: (-1 * item.reduce | numFormat) } }}
+
+                    <span class="percent">
+                        {{
+                            (1 - (item.reduceFile?.realSize || 0) / item.sourceFile.realSize) * -1
+                                | numFormat: { style: 'percent' }
+                        }}
+                    </span>
+                </span>
             </div>
         </div>
     </div>

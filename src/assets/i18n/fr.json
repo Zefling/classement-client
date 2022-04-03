@@ -151,6 +151,18 @@
             "cancel": "Annuler",
             "import.replace": "Importer et remplacer",
             "import.new": "Importer dans un nouveau classement"
+        },
+        "optimise": {
+            "info": "Convertir l'image en WebP 300×300.",
+            "button.optimise": "Optimiser",
+            "current": "Taille actuelle\u00A0: {{ totalSize }}\u00A0octects pour {{ totalImage }}\u00A0images.",
+            "show.detail": "Afficher les détails",
+            "hide.detail": "Cacher les détails",
+            "reduce.files": "Nombre de fichiers réduits\u00A0: {{ countResize }}",
+            "reduce.size": "Taille totale réduite\u00A0: {{ reduceSize }}\u00A0octects",
+            "final.size": "Taille finale\u00A0: {{ finalSize }}\u00A0octects ({{percent}})",
+            "size": "{{ size }}\u00A0octets",
+            "validate": "Valider"
         }
     },
     "message": {

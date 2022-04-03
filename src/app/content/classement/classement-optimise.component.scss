@@ -8,5 +8,36 @@ img {
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: center;
-    gap: 5px;
+    gap: 0 10px;
+}
+
+.info-reduce {
+    display: flex;
+    flex-direction: column;
+}
+
+.reduce-source,
+.reduce-target,
+.reduce-size {
+    text-align: right;
+}
+.arrow {
+    font-size: 120%;
+}
+
+.reduce-source,
+.reduce-target {
+    padding: 0 5px;
+}
+
+.reduce-size {
+    background: #0005;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.percent {
+    display: block;
+    text-align: center;
+    font-size: 80%;
 }
