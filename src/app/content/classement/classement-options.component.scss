@@ -3,7 +3,8 @@
     grid-template:
         'title  title             title               title             categories'
         'sizes  colors-item-back  colors-item-border  colors-line-back  colors-line-border'
-        'sizes  glabal-image      global-width        width-input       name-opacity'
+        'sizes  colors-item-text  global-width        width-input       name-opacity'
+        'sizes  glabal-image      global-color        font-size         .'
         'sizes  glabal-image      global-color        font-size         links'
         / auto 1fr 1fr 1fr 1fr;
     gap: 10px;
@@ -34,6 +35,10 @@
 .sizes {
     grid-area: sizes;
 }
+.colors-item-text {
+    grid-area: colors-item-text;
+}
+
 .colors-item-back {
     grid-area: colors-item-back;
     --color-section: var(--over-item-background);

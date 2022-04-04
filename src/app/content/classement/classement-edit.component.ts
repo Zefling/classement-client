@@ -124,6 +124,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         r.setStyle(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
         r.setStyle(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
         r.setStyle(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        r.setStyle(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
         // drop zone group
         r.setStyle(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         r.setStyle(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);

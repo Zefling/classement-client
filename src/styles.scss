@@ -59,6 +59,7 @@ body.light-mode {
     // input
     --input-border-color: #ccccdb;
     --input-background: #d6e0ec;
+    --input-background-transparent: #d6e0ec82;
     // drop list
     --drop-list-border-color: #ccc;
     --drop-list-background: #f0f0f0;
@@ -68,6 +69,7 @@ body.light-mode {
     --content-box-border: #ccc;
     --content-box-background: #fff;
     --content-box-color: #000000de;
+    --content-box-text: #000;
     --tile-add-file-background: #fff;
     --tile-add-file-color: #000000de;
     // info
@@ -142,6 +144,7 @@ body.dark-mode {
     // input
     --input-border-color: #3c3c41;
     --input-background: #282f36;
+    --input-background-transparent: #282f3682;
     // drop list
     --drop-list-border-color: #3f3f3f;
     --drop-list-background: #2e2e2e;
@@ -151,6 +154,7 @@ body.dark-mode {
     --content-box-border: #333;
     --content-box-background: #242424;
     --content-box-color: #ffffffde;
+    --content-box-text: #fff;
     --tile-add-file-background: #242424;
     --tile-add-file-color: #ffffffde;
     // info

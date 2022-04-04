@@ -64,6 +64,7 @@ export class GlobalService {
                     realSize: file.file.size,
                     type: file.file.type,
                     date: file.file.lastModified,
+                    title: '',
                 },
             });
         } else {

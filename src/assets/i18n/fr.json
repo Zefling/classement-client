@@ -83,7 +83,8 @@
                 "background.color": "Couleur du fond d'une tuile\u00A0:",
                 "border.color": "Couleur de bordure d'une tuile\u00A0:",
                 "background.opacity": "Opacité du fond d'une tuile\u00A0:",
-                "border.opacity": "Opacité de bordure d'une tuile\u00A0:"
+                "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
+                "text.color": "Couleur du text d'une tuile\u00A0:"
             },
             "line": {
                 "background.color": "Couleur du fond d'une ligne\u00A0:",

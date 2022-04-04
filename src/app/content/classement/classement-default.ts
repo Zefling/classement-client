@@ -1,5 +1,6 @@
 import { FormatedGroup, Options, Theme } from 'src/app/interface';
 
+
 export const defautGroup: FormatedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
     { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
@@ -18,6 +19,7 @@ export const defaultOptions: Options = {
     itemPadding: 10,
     itemBorder: 1,
     itemMargin: 2,
+    itemTextColor: '',
     itemBackgroundColor: '',
     itemBorderColor: '',
     lineBackgroundColor: '',
@@ -63,6 +65,7 @@ export const themesList: Theme[] = [
             itemPadding: 10,
             itemBorder: 1,
             itemMargin: 2,
+            itemTextColor: '#000000',
             itemBackgroundColor: '#f66151',
             itemBorderColor: '#ed333b',
             lineBackgroundColor: '#f39d9d',
@@ -87,6 +90,7 @@ export const themesList: Theme[] = [
             itemPadding: 10,
             itemBorder: 1,
             itemMargin: 2,
+            itemTextColor: '#ffffff',
             itemBackgroundColor: '#0a0e34',
             itemBorderColor: '#000000',
             lineBackgroundColor: '#0c124d',

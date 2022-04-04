@@ -36,12 +36,28 @@
     background: var(--over-item-background, var(--content-box-background));
     color: var(--over-item-color, var(--content-box-color));
     display: inline-flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
     cursor: move;
     font-size: 14px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    .image {
+        flex: 1 1 100%;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .add-file {
@@ -227,6 +243,23 @@ svg.color + svg {
     padding: 2px;
 }
 
+.title {
+    text-align: center;
+    color: var(--over-item-text-color, var(--content-box-text));
+    font-size: 85%;
+}
+
+.input-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 30px);
+    text-align: center;
+    border: 0;
+    font-size: 75%;
+    background: var(--input-background-transparent);
+}
+
 // actions ------------------------------------------------------------------
 
 .save-actions {
@@ -248,13 +281,13 @@ svg.color + svg {
 
     .drop-list {
         display: table-cell; // fix chromium
-        div {
+        & > div {
             display: inline-flex; // fix chromium
             text-align: center;
             vertical-align: bottom;
-            div {
-                display: flex;
-            }
+        }
+        .content-box {
+            display: flex;
         }
     }
 

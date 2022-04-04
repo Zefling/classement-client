@@ -7,7 +7,15 @@ export interface FileHandle {
 }
 
 export type FileStream = { filter: TypeFile; file: FileString };
-export type FileString = { url?: string; name: string; size: number; realSize: number; type: string; date: number };
+export type FileString = {
+    url?: string;
+    name: string;
+    size: number;
+    realSize: number;
+    type: string;
+    date: number;
+    title: string;
+};
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
@@ -26,6 +34,7 @@ export type ThemeOptions = {
     itemBorderColor: string;
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
+    itemTextColor: string;
     lineBackgroundColor: string;
     lineBorderColor: string;
     lineBackgroundOpacity: number;

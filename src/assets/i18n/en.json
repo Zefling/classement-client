@@ -81,7 +81,8 @@
                 "background.color": "Tile background color:",
                 "border.color": "Tile border color:",
                 "background.opacity": "Tile border opacity:",
-                "border.opacity": "Tile border opacity:"
+                "border.opacity": "Tile border opacity:",
+                "text.color": "Tile text color:"
             },
             "line": {
                 "background.color": "Line background color:",
