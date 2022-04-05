@@ -243,10 +243,22 @@ svg.color + svg {
     padding: 2px;
 }
 
-.title {
+// text only
+.title:first-child:last-child {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+// image, text only
+.title:last-child:not(:first-child),
+.title:first-child:last-child span {
     text-align: center;
     color: var(--over-item-text-color, var(--content-box-text));
     font-size: 85%;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .input-title {

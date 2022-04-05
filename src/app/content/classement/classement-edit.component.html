@@ -48,8 +48,12 @@
                             >
                                 <div class="content-box" cdkDrag>
                                     <div class="content">
-                                        <div class="image"><img src="{{ item.url }}" alt="{{ item.name }}" /></div>
-                                        <div *ngIf="item.title" class="title">{{ item.title }}</div>
+                                        <div *ngIf="item.url" class="image">
+                                            <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                        </div>
+                                        <div *ngIf="item.title" class="title">
+                                            <span>{{ item.title }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -150,8 +154,12 @@
                         <div *ngFor="let item of group.list; let index = index">
                             <div class="content-box">
                                 <div class="content">
-                                    <div class="image"><img src="{{ item.url }}" alt="{{ item.name }}" /></div>
-                                    <div *ngIf="item.title" class="title">{{ item.title }}</div>
+                                    <div *ngIf="item.url" class="image">
+                                        <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                    </div>
+                                    <div *ngIf="item.title" class="title">
+                                        <span>{{ item.title }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

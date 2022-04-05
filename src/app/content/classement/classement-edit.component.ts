@@ -97,7 +97,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 }
             }),
             globalService.onFileLoaded.subscribe(file => {
-                if (file.filter === TypeFile.image) {
+                if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
                     this.addFile(file.file);
                 } else if (file.filter === TypeFile.json) {
                     this.addJsonTemp(file.file);

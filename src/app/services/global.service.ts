@@ -8,6 +8,7 @@ import { Data, FileHandle, FileStream } from '../interface';
 export enum TypeFile {
     image = 'image',
     json = 'json',
+    text = 'text',
 }
 
 export const typesMine: { [key: string]: string[] } = {
@@ -29,6 +30,25 @@ export class GlobalService {
 
     forceExit(route: string | undefined) {
         this.onForceExit.next(route);
+    }
+
+    addTexts(text: string) {
+        const lines = text.split('\n');
+        for (const line of lines) {
+            const trimString = line.trim();
+            this.onFileLoaded.next({
+                filter: TypeFile.text,
+                file: {
+                    name: '',
+                    url: '',
+                    size: trimString.length,
+                    realSize: trimString.length,
+                    type: 'plain/text',
+                    date: new Date().getTime(),
+                    title: trimString,
+                },
+            });
+        }
     }
 
     addFiles(files: FileList, filter: TypeFile) {

@@ -28,6 +28,8 @@ export class DropImageDirective {
 
         if (evt.dataTransfer?.files?.length) {
             this.globalService.addFiles(evt.dataTransfer.files, TypeFile.image);
+        } else if (evt.dataTransfer?.getData('text')) {
+            this.globalService.addTexts(evt.dataTransfer?.getData('text'));
         }
 
         evt.preventDefault();

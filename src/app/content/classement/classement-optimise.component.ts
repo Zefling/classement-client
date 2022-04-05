@@ -54,15 +54,19 @@ export class ClassementOptimiseComponent implements DoCheck {
         let count = 0;
         if (this.list) {
             this.list.forEach(e => {
-                taille += e.realSize;
-                count++;
+                if (e.url) {
+                    taille += e.realSize;
+                    count++;
+                }
             });
         }
         if (this.groups) {
             this.groups.forEach(f =>
                 f?.list.forEach(e => {
-                    taille += e.realSize;
-                    count++;
+                    if (e.url) {
+                        taille += e.realSize;
+                        count++;
+                    }
                 }),
             );
         }
