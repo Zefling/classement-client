@@ -1,3 +1,9 @@
+# 0.4.0 (2022-04-06)
+
+-   add text below the image or just text
+-   Add text for the drop (one tile per line)
+-   Copy/paste images or text (one tile per line)
+
 # 0.3.0 (2022-04-03)
 
 -   add image optimization dialog (with pica)
