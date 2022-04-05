@@ -122,7 +122,7 @@
             "group.title": "Ranking",
             "name": "Name",
             "list": "List",
-            "drop.image": "Drop one or a set of images here ↓ (JPG, PNG, GIF, WebP)",
+            "drop.image": "Copy/paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
             "add.image": "Click here to add one or a group of images "
         },
         "line": {

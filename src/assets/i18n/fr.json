@@ -124,7 +124,7 @@
             "group.title": "Classement",
             "name": "Nom",
             "list": "Liste",
-            "drop.image": "Déposez une ou un groupe d'images ici ↓ (JPG, PNG, GIF, WebP)",
+            "drop.image": "Copier/coller ou déposez ici ↓ une ou un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
             "add.image": "Cliquez ici pour ajouter une ou un groupe d'images"
         },
         "line": {
