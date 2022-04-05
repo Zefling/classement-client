@@ -23,16 +23,26 @@ export class DropImageDirective {
     }
 
     @HostListener('drop', ['$event'])
-    public onDrop(evt: DragEvent): void {
+    public onDrop(event: DragEvent): void {
         this.background = false;
 
-        if (evt.dataTransfer?.files?.length) {
-            this.globalService.addFiles(evt.dataTransfer.files, TypeFile.image);
-        } else if (evt.dataTransfer?.getData('text')) {
-            this.globalService.addTexts(evt.dataTransfer?.getData('text'));
+        if (event.dataTransfer?.files?.length) {
+            this.globalService.addFiles(event.dataTransfer.files, TypeFile.image);
+        } else if (event.dataTransfer?.getData('text')) {
+            this.globalService.addTexts(event.dataTransfer?.getData('text'));
         }
 
-        evt.preventDefault();
-        evt.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    @HostListener('window:paste', ['$event'])
+    onCtrlV(event: ClipboardEvent) {
+        if (event.clipboardData?.files?.length) {
+            this.globalService.addFiles(event.clipboardData?.files, TypeFile.image);
+        }
+        if (event.clipboardData?.getData('text')) {
+            this.globalService.addTexts(event.clipboardData?.getData('text'));
+        }
     }
 }
