@@ -13,7 +13,6 @@ export class LicensesComponent {
     constructor(private http: HttpClient) {
         this.http.get('./3rdpartylicenses.txt', { responseType: 'text' }).subscribe(data => {
             this.data = data;
-            console.log(data);
         });
     }
 }
