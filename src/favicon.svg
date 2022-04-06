@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="40" height="40" version="1.1" viewBox="0 0 10.583 10.583" xmlns="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <g stroke-linejoin="bevel">
+  <rect x=".32442" y=".51464" width="2.3167" height="2.1211" color="#000000" fill="#d88cd6" stroke-width=".24508"/>
+  <rect x="2.625" y=".51367" width="7.686" height="2.123" color="#000000" fill="#cecece" stroke-width=".25434"/>
+  <rect x=".32442" y="2.9951" width="2.3167" height="2.1211" color="#000000" fill="#d6775f" stroke-width=".24508"/>
+  <rect x="2.625" y="2.9941" width="7.6912" height="2.123" color="#000000" fill="#cecece" stroke-width=".25443"/>
+  <rect x=".32442" y="5.4755" width="2.3167" height="2.1211" color="#000000" fill="#fffc97" stroke-width=".24508"/>
+  <rect x="2.625" y="5.4746" width="7.7132" height="2.123" color="#000000" fill="#cecece" stroke-width=".25479"/>
+  <rect x=".32442" y="7.956" width="2.3167" height="2.1211" color="#000000" fill="#98ffb0" stroke-width=".24508"/>
+  <rect x="2.625" y="7.955" width="7.7063" height="2.123" color="#000000" fill="#cecece" stroke-width=".25468"/>
+  <g fill="#7e7e7e" stroke-width=".265">
+   <rect x="2.7821" y=".70851" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="4.77" y=".68371" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="2.7821" y="5.6824" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="4.77" y="5.6576" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="2.7821" y="8.1697" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="4.77" y="8.1449" width="1.7734" height="1.7334" color="#000000"/>
+   <rect x="6.781" y="8.1449" width="1.7734" height="1.7334" color="#000000"/>
+  </g>
+ </g>
+ <metadata>
+  <rdf:RDF/>
+ </metadata>
+</svg>
