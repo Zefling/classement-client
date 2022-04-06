@@ -25,6 +25,7 @@ import {
 import {
   ClassementHomeComponent,
 } from './content/home/classement-home.component';
+import { LicensesComponent } from './content/licenses/licenses.component';
 import {
   ClassementListComponent,
 } from './content/list/classement-list.component';
@@ -47,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
         ClassementEditComponent,
         ClassementListComponent,
         ClassementOptimiseComponent,
+        LicensesComponent,
     ],
     imports: [
         BrowserModule,

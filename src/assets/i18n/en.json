@@ -3,13 +3,17 @@
     "menu": {
         "home": "Home",
         "list": "List",
-        "new": "New"
+        "new": "New",
+        "licences": "Licenses"
     },
     "home": {
         "intro": "A Web application to make a classification by images.",
         "source.code": "Code source",
         "source.license": "License",
         "source.gpl3": "GNU General Public License v3.0"
+    },
+    "licenses": {
+        "title": "Third-Party licenses overview"
     },
     "list": {
         "intro": "List of Classements in memory.",

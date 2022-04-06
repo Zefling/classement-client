@@ -36,6 +36,15 @@
             >
                 {{ 'menu.new' | translate }}
             </li>
+            <li
+                class="licences"
+                routerLink="/licences"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="toggleMenu()"
+            >
+                {{ 'menu.licences' | translate }}
+            </li>
         </ul>
         <div class="actions-mobile">
             <light-dark></light-dark>

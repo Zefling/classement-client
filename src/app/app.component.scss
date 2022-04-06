@@ -84,10 +84,13 @@ aside {
     ul {
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
     li {
-        margin: 5px;
+        margin: 5px 5px 0;
         padding: var(--menu-item-padding, 5px);
         border: 1px solid var(--menu-border-color);
         list-style: none;
@@ -107,6 +110,11 @@ aside {
             color: var(--menu-hover-color);
             background-color: var(--menu-hover-background);
         }
+    }
+
+    .licences {
+        margin-top: auto;
+        margin-bottom: 10px;
     }
 
     .actions-mobile {

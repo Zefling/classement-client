@@ -3,7 +3,11 @@
     "menu": {
         "home": "Accueil",
         "list": "Liste",
-        "new": "Nouveau"
+        "new": "Nouveau",
+        "licences": "Licences"
+    },
+    "licenses": {
+        "title": "Présentation des licences tierces"
     },
     "home": {
         "intro": "Application web pour faire un classement par images.",
