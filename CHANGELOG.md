@@ -1,8 +1,14 @@
+# 0.4.1 (2022-04-06)
+
+-   add page for third-Party licenses
+-   fix copy/paste in input
+-   change favicon
+
 # 0.4.0 (2022-04-06)
 
 -   add text below the image or just text
 -   Add text for the drop (one tile per line)
--   Copy/paste images or text (one tile per line)
+-   copy/paste images or text (one tile per line)
 
 # 0.3.0 (2022-04-03)
 
