@@ -1,3 +1,7 @@
+# 0.4.2 (2022-04-08)
+
+-   add the sky theme
+
 # 0.4.1 (2022-04-06)
 
 -   add page for third-Party licenses
