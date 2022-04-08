@@ -110,9 +110,6 @@ export const themesList: Theme[] = [
     {
         name: 'ciel',
         options: {
-            showAdvancedOptions: true,
-            title: '',
-            category: '',
             itemWidth: 100,
             itemHeight: 100,
             itemPadding: 10,
