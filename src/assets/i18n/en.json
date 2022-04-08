@@ -101,7 +101,8 @@
                 "name.image": {
                     "none": "Default",
                     "sakura": "Sakura",
-                    "etoile": "Etoile"
+                    "etoile": "Etoile",
+                    "ciel": "Sky"
                 }
             },
             "name": {
@@ -119,7 +120,8 @@
                 "default": "Default",
                 "compact": "Default compact",
                 "sakura": "Sakura",
-                "night": "Night"
+                "night": "Night",
+                "ciel": "Sky"
             }
         },
         "ranking": {

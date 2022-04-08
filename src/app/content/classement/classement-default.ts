@@ -36,7 +36,7 @@ export const defaultOptions: Options = {
     imageBackgroundImage: 'none',
 };
 
-export const imagesThemes = ['none', 'sakura', 'etoile'];
+export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel'];
 
 export const themesList: Theme[] = [
     {
@@ -105,6 +105,34 @@ export const themesList: Theme[] = [
             nameFontSize: 120,
             nameBackgroundOpacity: 90,
             imageBackgroundImage: 'etoile',
+        },
+    },
+    {
+        name: 'ciel',
+        options: {
+            showAdvancedOptions: true,
+            title: '',
+            category: '',
+            itemWidth: 100,
+            itemHeight: 100,
+            itemPadding: 10,
+            itemBorder: 1,
+            itemMargin: 2,
+            itemTextColor: '#0c124d',
+            itemBackgroundColor: '#1a5fb4',
+            itemBorderColor: '#1c71d8',
+            lineBackgroundColor: '#62a0ea',
+            lineBorderColor: '#3584e4',
+            itemBackgroundOpacity: 50,
+            itemBorderOpacity: 50,
+            lineBackgroundOpacity: 70,
+            lineBorderOpacity: 70,
+            imageBackgroundColor: '#99c1f1',
+            imageWidth: 1170,
+            nameWidth: 150,
+            nameFontSize: 120,
+            nameBackgroundOpacity: 85,
+            imageBackgroundImage: 'ciel',
         },
     },
 ];
