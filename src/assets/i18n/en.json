@@ -7,7 +7,7 @@
         "licences": "Licenses"
     },
     "home": {
-        "intro": "A Web application to make a classification by images.",
+        "intro": "A Web application to make a tierlist by images.",
         "source.code": "Code source",
         "source.license": "License",
         "source.gpl3": "GNU General Public License v3.0"
@@ -16,7 +16,7 @@
         "title": "Third-Party licenses overview"
     },
     "list": {
-        "intro": "List of Classements in memory.",
+        "intro": "List of tierlists in memory.",
         "title": {
             "name": "Title",
             "undefined": "No title"
@@ -66,7 +66,7 @@
         },
         "options": {
             "group.title": "Options",
-            "title": "Classement title:",
+            "title": "Tierlist title:",
             "group": "Group:",
             "sizes": "Tile sizes:",
             "margin": "Margin",
@@ -148,14 +148,14 @@
             "question": "Are you sure you want to leave this page? "
         },
         "json": {
-            "import.list": "Import a classification:",
+            "import.list": "Import a tierlist:",
             "title": "Title:",
             "category": "Category:",
             "count.group": "Number of groups:",
             "count.item": "Number of items:",
             "cancel": "Cancel",
             "import.replace": "Import and replace",
-            "import.new": "Import into a new classification"
+            "import.new": "Import into a new tierlist"
         },
         "optimise": {
             "info": "Convert image to WebP 300×300.",
@@ -178,13 +178,13 @@
         "json.read": {
             "failed": "⚠️ Failed to read file. The format is not recognized.",
             "replace": "😊 Uploaded file successful. Replaced successfully.",
-            "new": "😊 Successfully uploaded file to new classification."
+            "new": "😊 Successfully uploaded file to new tierlist."
         },
         "remove": {
-            "success": "🗑 Removed from classification “%title%” successful."
+            "success": "🗑 Removed from tierlist “%title%” successful."
         },
         "clone": {
-            "success": "😊 Successfully duplicated classification as “%title%”."
+            "success": "😊 Successfully duplicated tierlist as “%title%”."
         },
         "reset": {
             "groups": "😊 Reset groups."

@@ -2,9 +2,19 @@
 
 ## Purpose
 
-This application aims to manage classifications by groups of elements in the form of an image.
+This application aims to manage tierlists by groups of elements in the form of an image.
 
-Currently only classifications backup mode is in a browser database (IndexedDB)
+Currently only tierlists backup mode is in a browser database (IndexedDB)
+
+## Features
+
+- Adding images by drag'n drop or copy-paste
+- Adding text under images.
+- Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
+- Advanced customization of tiles, lines, background, etc.
+- Backup in browser or in Json.
+- Image export (PNG, JPG or WebP).
+- In-memory tierlists clone.
 
 ## Demo
 
