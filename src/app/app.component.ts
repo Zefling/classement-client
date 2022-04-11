@@ -10,6 +10,7 @@ import { GlobalService } from './services/global.service';
 const languages = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
+    { value: 'ja', label: '日本語' },
 ];
 
 @Component({

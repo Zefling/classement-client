@@ -196,6 +196,7 @@ input::file-selector-button {
     margin: 0 5px;
     outline: none;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
         background: var(--button-defaut-hover-background);

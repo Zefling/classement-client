@@ -8,17 +8,17 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
 
 ## Features
 
-- Adding images by drag'n drop or copy-paste
-- Adding text under images.
-- Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
-- Advanced customization of tiles, lines, background, etc.
-- Backup in browser or in Json.
-- Image export (PNG, JPG or WebP).
-- In-memory tierlists clone.
+-   Adding images by drag'n drop or copy-paste
+-   Adding text under images.
+-   Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
+-   Advanced customization of tiles, lines, background, etc.
+-   Backup in browser or in Json.
+-   Image export (PNG, JPG or WebP).
+-   In-memory tierlists clone.
 
 ## Demo
 
-[See a demonstration](https://test.ikilote.net/classement-demo/)
+[See a demonstration](https://classement.ikilote.net/)
 
 ## Development
 
