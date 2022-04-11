@@ -1,3 +1,9 @@
+# 0.4.3 (2022-04-11)
+
+-   change demo path: https://classement.ikilote.net/
+-   add japanese
+-   fix minor bugs
+
 # 0.4.2 (2022-04-08)
 
 -   add the sky theme
