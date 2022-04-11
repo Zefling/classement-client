@@ -3,7 +3,7 @@
     "menu": {
         "home": "ホーム",
         "list": "リスト",
-        "new": "New",
+        "new": "new",
         "licences": "ライセンス"
     },
     "home": {
@@ -35,6 +35,8 @@
             "delete": "削除する",
             "clone": "複製する"
         },
+        "no.result": "結果なし。",
+        "create.new": "ティアリストを作成します。",
         "delete": {
             "question": "消去してもよろしいですか？",
             "validate": "検証する",

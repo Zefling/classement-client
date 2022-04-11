@@ -35,6 +35,8 @@
             "delete": "Remove",
             "clone": "Clone"
         },
+        "no.result": "No results.",
+        "create.new": "Create your tierlist.",
         "delete": {
             "question": "Are you sure you want to delete?",
             "validate": "Validate",
