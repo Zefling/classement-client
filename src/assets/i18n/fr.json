@@ -174,7 +174,7 @@
     },
     "message": {
         "save": {
-            "succes": "😊 Sauvegarde réussie dans le navigateur.",
+            "success": "😊 Sauvegarde réussie dans le navigateur.",
             "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
         },
         "json.read": {
