@@ -80,6 +80,7 @@
             "advence": "Advenced options",
             "item": {
                 "width": "Tile width",
+                "width.auto": "Automatic width",
                 "height": "Tile height",
                 "padding": "Tile padding",
                 "border": "Tile border",

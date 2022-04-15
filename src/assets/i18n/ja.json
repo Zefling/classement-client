@@ -80,6 +80,7 @@
             "advence": "高度なオプション",
             "item": {
                 "width": "タイル幅",
+                "width.auto": "自動幅",
                 "height": "タイルの高さ",
                 "padding": "タイルパディング",
                 "border": "タイルボーダー",
