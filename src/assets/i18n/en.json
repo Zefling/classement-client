@@ -92,13 +92,13 @@
                 "border.opacity": "Tile border opacity:",
                 "text": {
                     "color": "Tile text color:",
-                    "background.color": "Text background color\u00A0:",
-                    "background.opacity": "Text background opacity\u00A0:",
-                    "position": "Text position in the tile\u00A0:",
+                    "background.color": "Text background color:",
+                    "background.opacity": "Text background opacity:",
+                    "position": "Text position in the tile:",
                     "position.bottom": "On bottom",
-                    "position.bottom.above": "On bottom and above",
+                    "position.bottom.over": "On bottom and over",
                     "position.top": "On top",
-                    "position.top.above": "On top and above"
+                    "position.top.over": "On top and over"
                 }
             },
             "line": {

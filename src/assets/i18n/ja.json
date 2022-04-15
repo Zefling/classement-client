@@ -96,9 +96,9 @@
                     "background.opacity": "テキストの背景の不透明度：",
                     "position": "タイル内のテキストの位置：",
                     "position.bottom": "下部に",
-                    "position.bottom.above": "下部にその上",
+                    "position.bottom.over": "下部にその上",
                     "position.top": "上部に",
-                    "position.top.above": "上部にその上"
+                    "position.top.over": "上部にその上"
                 }
             },
             "line": {

@@ -96,9 +96,9 @@
                     "background.opacity": "Opacité de fond du texte\u00A0:",
                     "position": "Position texte dans la tuile\u00A0:",
                     "position.bottom": "En dessous",
-                    "position.bottom.above": "En dessous et par dessus",
+                    "position.bottom.over": "En dessous et par dessus",
                     "position.top": "Au dessus",
-                    "position.top.above": "Au dessus  et par dessus"
+                    "position.top.over": "Au dessus et par dessus"
                 }
             },
             "line": {
