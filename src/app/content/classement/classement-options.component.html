@@ -233,10 +233,10 @@
                 <label for="imageBackgroundColor">{{ 'gererator.options.global.background' | translate }}</label>
                 <input id="imageBackgroundColor" type="color" [(ngModel)]="options.imageBackgroundColor" />
             </div>
-            <button (click)="options.imageBackgroundColor = ''">
+            <button (click)="options.imageBackgroundColor = ''" [disabled]="!options.imageBackgroundColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
-            <div class="color-render"></div>
+            <div class="color-render" *ngIf="options.imageBackgroundColor"></div>
         </div>
         <div class="global-width input-button">
             <div class="width-input">

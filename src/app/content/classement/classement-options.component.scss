@@ -9,8 +9,7 @@
         'colors-line-back  colors-line-border  name-bg-opacity     font-size           '
         'colors-line-back  colors-line-border  name-width          .                   '
         'title-other       title-other         title-other         title-other         '
-        'global-width      global-image        global-color        theme               '
-        '.                 global-image        global-color        links               '
+        'global-width      global-image        global-color        links               '
         / 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -279,7 +278,7 @@ span.item-width {
 
 .input-button {
     display: grid;
-    grid-template: 'a a' 'b b' 'c d' / 1fr 1fr;
+    grid-template: 'a a' 'b b' auto 'c d' / 1fr 1fr;
     align-items: center;
     gap: 5px 10px;
 
