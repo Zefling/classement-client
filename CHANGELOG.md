@@ -1,3 +1,11 @@
+# 0.5.0 (2022-04-15)
+
+-   add auto tile width
+-   add text position in tiles
+-   add options for tile text
+-   change the interface of advanced options
+-   fix minor bugs
+
 # 0.4.3 (2022-04-11)
 
 -   change demo path: https://classement.ikilote.net/
