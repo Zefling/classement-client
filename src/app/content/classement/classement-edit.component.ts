@@ -1,17 +1,5 @@
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-import {
-  Component,
-  DoCheck,
-  ElementRef,
-  OnDestroy,
-  Renderer2,
-  RendererStyleFlags2,
-  ViewChild,
-} from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, DoCheck, ElementRef, OnDestroy, Renderer2, RendererStyleFlags2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -21,10 +9,7 @@ import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import {
-  MessageService,
-  MessageType,
-} from 'src/app/components/info-messages.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
@@ -117,7 +102,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const dash = RendererStyleFlags2.DashCase;
 
         // item
-        r.setStyle(body, '--over-item-width', (o.itemWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.imageWidth) + 'px';
+        r.setStyle(body, '--over-item-width', itemWidth, dash);
         r.setStyle(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
         r.setStyle(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r.setStyle(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);

@@ -46,6 +46,7 @@ export class GlobalService {
                     type: 'plain/text',
                     date: new Date().getTime(),
                     title: trimString,
+                    width: 150,
                 },
             });
         }
@@ -75,20 +76,47 @@ export class GlobalService {
         const url = file.target?.result ? String(file.target?.result) : undefined;
         if (url) {
             console.log('Add file:', file.file.name);
-            this.onFileLoaded.next({
-                filter,
-                file: {
-                    name: file.file.name,
-                    url: url,
-                    size: url.length,
-                    realSize: file.file.size,
-                    type: file.file.type,
-                    date: file.file.lastModified,
-                    title: '',
-                },
-            });
+            this._imageDimensions(file.file)
+                .then(size => {
+                    this.onFileLoaded.next({
+                        filter,
+                        file: {
+                            name: file.file.name,
+                            url: url,
+                            size: url.length,
+                            realSize: file.file.size,
+                            type: file.file.type,
+                            date: file.file.lastModified,
+                            title: '',
+                            width: size.width,
+                            height: size.height,
+                        },
+                    });
+                })
+                .catch(e => console.log('Error file:', file.file.name, e));
         } else {
             console.log('Error file:', file.file.name);
         }
+    }
+
+    // helper to get dimensions of an image
+    private _imageDimensions(file: File) {
+        return new Promise<{ width: number; height: number }>((resolve, reject) => {
+            const img = new Image();
+
+            // the following handler will fire after the successful loading of the image
+            img.onload = () => {
+                const { naturalWidth: width, naturalHeight: height } = img;
+                resolve({ width, height });
+            };
+
+            // and this handler will fire if there was an error with the image (like if it's not really an image or a
+            // corrupted one)
+            img.onerror = () => {
+                reject('There was some problem with the image.');
+            };
+
+            img.src = URL.createObjectURL(file);
+        });
     }
 }

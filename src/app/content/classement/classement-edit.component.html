@@ -47,7 +47,14 @@
                                 (cdkDropListDropped)="drop(group.list, $event)"
                             >
                                 <div class="content-box" cdkDrag>
-                                    <div class="content">
+                                    <div
+                                        class="content"
+                                        [style.width.px]="
+                                            options.itemWidthAuto
+                                                ? (item.width / (item.height || 150)) * options.itemHeight
+                                                : null
+                                        "
+                                    >
                                         <div *ngIf="item.url" class="image">
                                             <img src="{{ item.url }}" alt="{{ item.name }}" />
                                         </div>
@@ -94,9 +101,16 @@
                     (cdkDropListDropped)="drop(list, $event)"
                 >
                     <div class="content-box" cdkDrag>
-                        <button class="btn-delete" (click)="removeItem(index)">×</button>
-                        <img src="{{ item.url }}" alt="{{ item.name }}" />
-                        <input class="input-title" input="text" [(ngModel)]="item.title" />
+                        <div
+                            class="content"
+                            [style.width.px]="
+                                options.itemWidthAuto ? (item.width / (item.height || 150)) * options.itemHeight : null
+                            "
+                        >
+                            <button class="btn-delete" (click)="removeItem(index)">×</button>
+                            <img src="{{ item.url }}" alt="{{ item.name }}" />
+                            <input class="input-title" input="text" [(ngModel)]="item.title" />
+                        </div>
                     </div>
                 </div>
                 <div

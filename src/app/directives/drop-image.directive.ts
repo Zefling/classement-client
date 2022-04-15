@@ -25,7 +25,6 @@ export class DropImageDirective {
     @HostListener('drop', ['$event'])
     public onDrop(event: DragEvent): void {
         this.background = false;
-
         if (event.dataTransfer?.files?.length) {
             this.globalService.addFiles(event.dataTransfer.files, TypeFile.image);
         } else if (event.dataTransfer?.getData('text')) {

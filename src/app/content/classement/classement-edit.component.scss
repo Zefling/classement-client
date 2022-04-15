@@ -66,6 +66,7 @@
     font-weight: 600;
     background: var(--tile-add-file-background);
     color: var(--tile-add-file-color);
+    max-width: 200px;
 }
 
 .drop-zone-empty-list + .add-file {

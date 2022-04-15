@@ -67,6 +67,7 @@
                     title="{{ 'gererator.options.item.height' | translate }}"
                 />
                 <input
+                    *ngIf="!options.itemWidthAuto; else itemWidthAuto"
                     type="number"
                     min="16"
                     max="300"
@@ -74,6 +75,13 @@
                     [(ngModel)]="options.itemWidth"
                     title="{{ 'gererator.options.item.width' | translate }}"
                 />
+                <ng-template #itemWidthAuto><span class="item-width input">auto</span></ng-template>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
+                    {{ 'gererator.options.item.width.auto' | translate }}
+                </label>
             </div>
         </div>
         <div class="colors-item-back input-button">

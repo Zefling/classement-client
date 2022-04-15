@@ -49,6 +49,8 @@ export class OptimiseImageService {
                                         type: resizedBlob.type,
                                         date: sourceFile.date,
                                         title: sourceFile.title,
+                                        width: width,
+                                        height: height,
                                     },
                                     reduce: sourceFile.realSize - data.file.size,
                                 });

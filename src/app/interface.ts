@@ -10,6 +10,8 @@ export type FileStream = { filter: TypeFile; file: FileString };
 export type FileString = {
     url?: string;
     name: string;
+    height?: number;
+    width: number;
     size: number;
     realSize: number;
     type: string;
@@ -26,6 +28,7 @@ export type Options = ThemeOptions & {
 };
 export type ThemeOptions = {
     itemWidth: number;
+    itemWidthAuto: boolean;
     itemHeight: number;
     itemPadding: number;
     itemBorder: number;

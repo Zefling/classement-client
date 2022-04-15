@@ -15,6 +15,7 @@ export const defaultOptions: Options = {
     title: '',
     category: '',
     itemWidth: 100,
+    itemWidthAuto: false,
     itemHeight: 100,
     itemPadding: 10,
     itemBorder: 1,
@@ -61,6 +62,7 @@ export const themesList: Theme[] = [
         name: 'sakura',
         options: {
             itemWidth: 100,
+            itemWidthAuto: false,
             itemHeight: 100,
             itemPadding: 10,
             itemBorder: 1,
@@ -86,6 +88,7 @@ export const themesList: Theme[] = [
         name: 'night',
         options: {
             itemWidth: 100,
+            itemWidthAuto: false,
             itemHeight: 100,
             itemPadding: 10,
             itemBorder: 1,
@@ -111,6 +114,7 @@ export const themesList: Theme[] = [
         name: 'ciel',
         options: {
             itemWidth: 100,
+            itemWidthAuto: false,
             itemHeight: 100,
             itemPadding: 10,
             itemBorder: 1,

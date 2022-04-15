@@ -240,7 +240,7 @@ label {
     font-size: 80%;
 }
 
-input,
+input:not([type='checkbox']),
 .input,
 select {
     border: 1px solid var(--input-border-color);

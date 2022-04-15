@@ -216,6 +216,12 @@
     grid-area: width;
     margin-left: -20px;
 }
+span.item-width {
+    font-size: 11px;
+    line-height: 4px;
+    z-index: 1;
+    width: 35px;
+}
 
 .item-height {
     grid-area: height;

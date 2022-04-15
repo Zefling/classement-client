@@ -80,6 +80,7 @@
             "advence": "Options avancées",
             "item": {
                 "width": "Largeur d'une tuile",
+                "width.auto": "Largeur automatique",
                 "height": "Hauteur d'une tuile",
                 "padding": "Rembourrage d'une tuile",
                 "border": "Bordure d'uen tuile",
