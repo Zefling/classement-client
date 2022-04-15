@@ -51,7 +51,7 @@ export const themesList: Theme[] = [
         name: 'compact',
         options: {
             ...defaultOptions,
-            itemTextPosition: 'bottom-above',
+            itemTextPosition: 'bottom-over',
             itemWidth: 80,
             itemHeight: 100,
             itemPadding: 0,

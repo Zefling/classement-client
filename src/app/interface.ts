@@ -38,7 +38,7 @@ export type ThemeOptions = {
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
     itemTextColor: string;
-    itemTextPosition: 'bottom' | 'bottom-above' | 'top' | 'top-above';
+    itemTextPosition: 'bottom' | 'bottom-over' | 'top' | 'top-over';
     itemTextBackgroundColor: string;
     itemTextBackgroundOpacity: number;
     lineBackgroundColor: string;
