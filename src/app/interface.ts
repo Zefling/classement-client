@@ -38,6 +38,9 @@ export type ThemeOptions = {
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
     itemTextColor: string;
+    itemTextPosition: 'bottom' | 'bottom-above' | 'top' | 'top-above';
+    itemTextBackgroundColor: string;
+    itemTextBackgroundOpacity: number;
     lineBackgroundColor: string;
     lineBorderColor: string;
     lineBackgroundOpacity: number;

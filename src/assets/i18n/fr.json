@@ -79,6 +79,7 @@
             "simple": "Options simplifiées",
             "advence": "Options avancées",
             "item": {
+                "title": "Options des tuiles",
                 "width": "Largeur d'une tuile",
                 "width.auto": "Largeur automatique",
                 "height": "Hauteur d'une tuile",
@@ -86,18 +87,29 @@
                 "border": "Bordure d'uen tuile",
                 "margin": "Marge d'une tuile",
                 "background.color": "Couleur du fond d'une tuile\u00A0:",
-                "border.color": "Couleur de bordure d'une tuile\u00A0:",
                 "background.opacity": "Opacité du fond d'une tuile\u00A0:",
+                "border.color": "Couleur de bordure d'une tuile\u00A0:",
                 "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
-                "text.color": "Couleur du text d'une tuile\u00A0:"
+                "text": {
+                    "color": "Couleur du text d'une tuile\u00A0:",
+                    "background.color": "Couleur de fond du texte\u00A0:",
+                    "background.opacity": "Opacité de fond du texte\u00A0:",
+                    "position": "Position texte dans la tuile\u00A0:",
+                    "position.bottom": "En dessous",
+                    "position.bottom.above": "En dessous et par dessus",
+                    "position.top": "Au dessus",
+                    "position.top.above": "Au dessus  et par dessus"
+                }
             },
             "line": {
+                "title": "Options des lignes",
                 "background.color": "Couleur du fond d'une ligne\u00A0:",
                 "border.color": "Couleur de bordure d'une ligne\u00A0:",
                 "background.opacity": "Opacité du fond d'une ligne\u00A0:",
                 "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
             },
             "global": {
+                "title": "Autres options",
                 "background": "Couleur du fond\u00A0:",
                 "width": "Largeur de l'image rendue\u00A0:",
                 "image": "Image de fond\u00A0:",

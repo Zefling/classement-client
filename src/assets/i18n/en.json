@@ -79,6 +79,7 @@
             "simple": "Simplified options",
             "advence": "Advenced options",
             "item": {
+                "title": "Tile options",
                 "width": "Tile width",
                 "width.auto": "Automatic width",
                 "height": "Tile height",
@@ -86,18 +87,29 @@
                 "border": "Tile border",
                 "margin": "Tile margin",
                 "background.color": "Tile background color:",
-                "border.color": "Tile border color:",
                 "background.opacity": "Tile background opacity:",
+                "border.color": "Tile border color:",
                 "border.opacity": "Tile border opacity:",
-                "text.color": "Tile text color:"
+                "text": {
+                    "color": "Tile text color:",
+                    "background.color": "Text background color\u00A0:",
+                    "background.opacity": "Text background opacity\u00A0:",
+                    "position": "Text position in the tile\u00A0:",
+                    "position.bottom": "On bottom",
+                    "position.bottom.above": "On bottom and above",
+                    "position.top": "On top",
+                    "position.top.above": "On top and above"
+                }
             },
             "line": {
+                "title": "Line options",
                 "background.color": "Line background color:",
                 "border.color": "Line border color:",
                 "background.opacity": "Line background opacity:",
                 "border.opacity": "Line border opacity:"
             },
             "global": {
+                "title": "Other options",
                 "background": "Background color:",
                 "width": "Render image width:",
                 "image": "Background image:",

@@ -262,6 +262,27 @@ svg.color + svg {
     max-width: 100%;
 }
 
+.content-render {
+    position: relative;
+    &.top {
+        flex-direction: column-reverse;
+    }
+
+    &.bottom-above .title:last-child:not(:first-child),
+    &.top-above .title:last-child:not(:first-child) {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        background: var(--over-item-text-background, var(--content-box-text-background));
+    }
+    &.bottom-above .title:last-child:not(:first-child) {
+        bottom: 0;
+    }
+    &.top-above .title:last-child:not(:first-child) {
+        top: 0;
+    }
+}
+
 .input-title {
     position: absolute;
     bottom: 0;

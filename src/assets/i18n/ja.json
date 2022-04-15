@@ -79,6 +79,7 @@
             "simple": "簡易なオプション",
             "advence": "高度なオプション",
             "item": {
+                "title": "タイルのオプション",
                 "width": "タイル幅",
                 "width.auto": "自動幅",
                 "height": "タイルの高さ",
@@ -86,19 +87,30 @@
                 "border": "タイルボーダー",
                 "margin": "タイルマージン",
                 "background.color": "タイルの背景の色：",
-                "border.color": "タイルのボーダーの色：",
                 "background.opacity": "タイルの背景の不透明度：",
+                "border.color": "タイルのボーダーの色：",
                 "border.opacity": "タイルのボーダーの不透明度：",
-                "text.color": "タイルのテキストの色："
+                "text": {
+                    "text.color": "タイルのテキストの色：",
+                    "background.color": "テキストの背景の色：",
+                    "background.opacity": "テキストの背景の不透明度：",
+                    "position": "タイル内のテキストの位置：",
+                    "position.bottom": "下部に",
+                    "position.bottom.above": "下部にその上",
+                    "position.top": "上部に",
+                    "position.top.above": "上部にその上"
+                }
             },
             "line": {
+                "title": "ラインのオプション",
                 "background.color": "ラインの背景の色：",
                 "border.color": "ラインボーダーの色：",
                 "background.opacity": "ラインの背景の不透明度：",
                 "border.opacity": "ラインボーダーの不透明度："
             },
             "global": {
-                "background": "背景色：",
+                "title": "別のオプション",
+                "background": "背景の色：",
                 "width": "レンダリング画像の幅：",
                 "image": "背景画像：",
                 "name.image": {

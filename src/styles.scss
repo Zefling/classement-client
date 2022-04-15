@@ -68,10 +68,11 @@ body.light-mode {
     // item content-box
     --content-box-border: #ccc;
     --content-box-background: #fff;
-    --content-box-color: #000000de;
+    --content-box-color: #000d;
     --content-box-text: #000;
+    --content-box-text-background: #fff8;
     --tile-add-file-background: #fff;
-    --tile-add-file-color: #000000de;
+    --tile-add-file-color: #000d;
     // info
     --alert-color: #b00;
     // message
@@ -153,10 +154,11 @@ body.dark-mode {
     // item content-box
     --content-box-border: #333;
     --content-box-background: #242424;
-    --content-box-color: #ffffffde;
+    --content-box-color: #fffd;
     --content-box-text: #fff;
+    --content-box-text-background: #0008;
     --tile-add-file-background: #242424;
-    --tile-add-file-color: #ffffffde;
+    --tile-add-file-color: #fffd;
     // info
     --alert-color: #ca5f5f;
     // message
@@ -206,6 +208,16 @@ input::file-selector-button {
 
     &:focus {
         border-color: var(--button-defaut-focus-border-color);
+    }
+}
+
+button:disabled {
+    opacity: 0.25;
+
+    &:hover {
+        background: var(--button-defaut-background);
+        border: 2px solid var(--button-defaut-border-color);
+        box-shadow: 0 0 12px var(--button-defaut-box-shadow);
     }
 }
 

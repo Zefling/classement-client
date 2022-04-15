@@ -99,29 +99,30 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         const body = document.body;
         const o = this.options;
-        const r = this.renderer;
+        const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;
 
         // item
         const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
-        r.setStyle(body, '--over-item-width', itemWidth, dash);
-        r.setStyle(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
-        r.setStyle(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
-        r.setStyle(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
-        r.setStyle(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
-        r.setStyle(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
-        r.setStyle(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
-        r.setStyle(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
+        r(body, '--over-item-width', itemWidth, dash);
+        r(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
+        r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
+        r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
+        r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
+        r(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
+        r(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        r(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
+        r(body, '--over-item-text-background', color(o.itemTextBackgroundColor, o.itemTextBackgroundOpacity), dash);
         // drop zone group
-        r.setStyle(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
-        r.setStyle(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+        r(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
+        r(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
         // name group
-        r.setStyle(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
-        r.setStyle(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
+        r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
+        r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
         // image background
-        r.setStyle(body, '--over-image-background', o.imageBackgroundColor, dash);
-        r.setStyle(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
-        r.setStyle(
+        r(body, '--over-image-background', o.imageBackgroundColor, dash);
+        r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        r(
             body,
             '--over-image-url',
             o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
