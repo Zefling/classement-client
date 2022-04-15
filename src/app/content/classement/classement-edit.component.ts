@@ -103,7 +103,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const dash = RendererStyleFlags2.DashCase;
 
         // item
-        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.imageWidth) + 'px';
+        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r.setStyle(body, '--over-item-width', itemWidth, dash);
         r.setStyle(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
         r.setStyle(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
