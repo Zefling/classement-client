@@ -66,6 +66,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             this.resetCache();
                             this.groups = data.data.groups;
                             this.list = data.data.list;
+                            this.globalService.fixImageSize(this.groups, this.list);
                         })
                         .catch(() => {
                             this.router.navigate(['new']);
