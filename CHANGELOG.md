@@ -1,3 +1,7 @@
+# 0.5.2 (2022-04-16)
+
+-   fix import (decode UTF-8)
+
 # 0.5.1 (2022-04-16)
 
 -   fix import
