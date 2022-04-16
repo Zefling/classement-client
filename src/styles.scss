@@ -225,6 +225,10 @@ input[type='file'] {
     cursor: pointer;
 }
 
+input:not(:focus-visible):invalid {
+    text-decoration: underline wavy red;
+}
+
 button.primary {
     --button-defaut-border-color: var(--button-primary-border-color);
     --button-defaut-background: var(--button-primary-background);
