@@ -1,3 +1,7 @@
+# 0.5.1 (2022-04-16)
+
+-   fix import
+
 # 0.5.0 (2022-04-15)
 
 -   add auto tile width
