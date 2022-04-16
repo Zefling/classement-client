@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
+import { decode } from 'utf8';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
@@ -292,7 +293,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     addJsonTemp(file: FileString) {
         try {
             const fileString = file.url?.replace('data:application/json;base64,', '');
-            const json = JSON.parse(atob(fileString!)) as Data;
+            const json = JSON.parse(decode(atob(fileString!))) as Data;
 
             if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
                 this.jsonTmp = json;
