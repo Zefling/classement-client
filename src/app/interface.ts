@@ -11,12 +11,12 @@ export type FileString = {
     url?: string;
     name: string;
     height?: number;
-    width: number;
+    width?: number;
     size: number;
     realSize: number;
     type: string;
     date: number;
-    title: string;
+    title?: string;
 };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };

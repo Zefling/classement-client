@@ -98,24 +98,38 @@ export class GlobalService {
         const url = file.target?.result ? String(file.target?.result) : undefined;
         if (url) {
             console.log('Add file:', file.file.name);
-            this._imageDimensions(file.file)
-                .then(size => {
-                    this.onFileLoaded.next({
-                        filter,
-                        file: {
-                            name: file.file.name,
-                            url: url,
-                            size: url.length,
-                            realSize: file.file.size,
-                            type: file.file.type,
-                            date: file.file.lastModified,
-                            title: '',
-                            width: size.width,
-                            height: size.height,
-                        },
-                    });
-                })
-                .catch(e => console.log('Error file:', file.file.name, e));
+            if (filter === TypeFile.image) {
+                this._imageDimensions(file.file)
+                    .then(size => {
+                        this.onFileLoaded.next({
+                            filter,
+                            file: {
+                                name: file.file.name,
+                                url: url,
+                                size: url.length,
+                                realSize: file.file.size,
+                                type: file.file.type,
+                                date: file.file.lastModified,
+                                title: '',
+                                width: size.width,
+                                height: size.height,
+                            },
+                        });
+                    })
+                    .catch(e => console.log('Error file:', file.file.name, e));
+            } else {
+                this.onFileLoaded.next({
+                    filter,
+                    file: {
+                        name: file.file.name,
+                        url: url,
+                        size: url.length,
+                        realSize: file.file.size,
+                        type: file.file.type,
+                        date: file.file.lastModified,
+                    },
+                });
+            }
         } else {
             console.log('Error file:', file.file.name);
         }
