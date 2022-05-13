@@ -318,7 +318,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             case 'replace': {
                 this.groups = this.jsonTmp?.groups!;
                 this.list = this.jsonTmp?.list!;
-                this.options = this.jsonTmp?.options!;
+                this.options = { ...defaultOptions, ...this.jsonTmp?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
                 break;
             }
