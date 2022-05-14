@@ -21,10 +21,17 @@
 
 <div class="button-image-save">
     <button class="button-add" (click)="cancelJson()">{{ 'gererator.json.cancel' | translate }}</button>
-    <button class="button-add primary" (click)="importJson('replace')" *ngIf="jsonTmp">
-        {{ 'gererator.json.import.replace' | translate }}
-    </button>
-    <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
-        {{ 'gererator.json.import.new' | translate }}
-    </button>
+    <ng-container *ngIf="actions === 'all'">
+        <button class="button-add primary" (click)="importJson('replace')" *ngIf="jsonTmp">
+            {{ 'gererator.json.import.replace' | translate }}
+        </button>
+        <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+            {{ 'gererator.json.import.new' | translate }}
+        </button>
+    </ng-container>
+    <ng-container *ngIf="actions === 'importOnly'">
+        <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+            {{ 'gererator.json.import.add' | translate }}
+        </button>
+    </ng-container>
 </div>

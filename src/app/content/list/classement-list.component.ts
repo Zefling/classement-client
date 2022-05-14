@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { ImportJsonEvent } from 'src/app/components/import-json.component';
 import { MessageService } from 'src/app/components/info-messages.component';
 import { FormatedInfos } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
@@ -17,6 +18,7 @@ import { DBService } from 'src/app/services/db.service';
 export class ClassementListComponent {
     @ViewChild('dialogDelete') dialogDelete!: DialogComponent;
     @ViewChild('dialogClone') dialogClone!: DialogComponent;
+    @ViewChild('dialogImport') dialogImport!: DialogComponent;
 
     result!: FormatedInfos[];
 
@@ -76,7 +78,7 @@ export class ClassementListComponent {
             this.dialogClone.close();
         } else if (this.itemCurrent?.id) {
             this.dbservice.clone(this.itemCurrent, value || '').then(item => {
-                console.log(`Clone line: ${this.itemCurrent?.id} en ${item.id}`);
+                console.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
                 this.messageService.addMessage(
                     this.translate
@@ -92,6 +94,26 @@ export class ClassementListComponent {
                 }
             });
         }
+    }
+
+    importJson(event: ImportJsonEvent) {
+        switch (event.action) {
+            case 'new':
+                this.dbservice.saveLocal(event.data!).then(item => {
+                    console.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
+
+                    this.messageService.addMessage(
+                        this.translate
+                            .instant('message.add.succes')
+                            .replace('%title%', this._getTitle(this.itemCurrent!)),
+                    );
+                    this.itemCurrent = undefined;
+                    this.dialogClone.close();
+                    this.result.push(item.infos);
+                });
+                break;
+        }
+        this.dialogImport.close();
     }
 
     private _getTitle(info: FormatedInfos) {

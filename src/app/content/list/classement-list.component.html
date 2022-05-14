@@ -1,5 +1,10 @@
 <h2>{{ 'menu.list' | translate }}</h2>
-<p>{{ 'list.intro' | translate }}</p>
+<div class="infos">
+    <p>{{ 'list.intro' | translate }}</p>
+    <button class="primary" (click)="dialogImport.open()">
+        {{ 'gererator.actions.import.json' | translate }}
+    </button>
+</div>
 
 <table *ngIf="result?.length; else noResult">
     <thead>
@@ -37,6 +42,10 @@
         <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
 </ng-template>
+
+<dialog-cmp #dialogImport>
+    <import-json (load)="importJson($event)" actions="importOnly"></import-json>
+</dialog-cmp>
 
 <dialog-cmp #dialogDelete class="dialog-delete">
     <p>{{ 'list.delete.question' | translate }}</p>

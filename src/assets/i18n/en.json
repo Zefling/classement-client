@@ -170,7 +170,8 @@
             "count.item": "Number of items:",
             "cancel": "Cancel",
             "import.replace": "Import and replace",
-            "import.new": "Import into a new tierlist"
+            "import.new": "Import into a new tierlist",
+            "import.add": "Import this tierlist"
         },
         "optimise": {
             "info": "Convert image to WebP 300×300.",
@@ -204,6 +205,9 @@
         },
         "reset": {
             "groups": "😊 Reset groups."
+        },
+        "add": {
+            "succes": "😊 Successfully added “%title%” tierlist."
         }
     }
 }

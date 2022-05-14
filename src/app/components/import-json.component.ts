@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -22,6 +22,9 @@ export class ImportJsonComponent implements OnDestroy {
     jsonTmp?: Data;
 
     onLoad = false;
+
+    @Input()
+    actions: 'importOnly' | 'all' = 'all';
 
     @Output()
     load = new EventEmitter<ImportJsonEvent>();

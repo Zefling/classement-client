@@ -59,7 +59,7 @@ export class DBService {
         });
     }
 
-    saveLocal(data: Data): Promise<string | undefined> {
+    saveLocal(data: Data): Promise<FormatedInfosData> {
         return new Promise((resolve, reject) => {
             this._formatData(data).then(formatData => {
                 this._getDB()
@@ -73,7 +73,7 @@ export class DBService {
                             ? this._updateDB(db, Store.data, formatData.data)
                             : this._saveDB(db, Store.data, formatData.data),
                     )
-                    .then(__ => resolve(formatData.infos.id))
+                    .then(__ => resolve(formatData))
                     .catch(_ => reject());
             });
         });

@@ -266,8 +266,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     saveLocal() {
         this.bdService.saveLocal(this.getData()).then(
-            id => {
-                this.id = id;
+            item => {
+                this.id = item.data.id;
                 this.messageService.addMessage(this.translate.instant('message.save.success'));
                 this.resetCache();
             },

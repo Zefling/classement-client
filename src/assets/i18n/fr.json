@@ -170,7 +170,8 @@
             "count.item": "Nombre d'élements\u00A0:",
             "cancel": "Annuler",
             "import.replace": "Importer et remplacer",
-            "import.new": "Importer dans un nouveau classement"
+            "import.new": "Importer dans un nouveau classement",
+            "import.add": "Importer ce classement"
         },
         "optimise": {
             "info": "Convertir l'image en WebP 300×300.",
@@ -204,6 +205,9 @@
         },
         "reset": {
             "groups": "😊 Remise à zéro des groupes."
+        },
+        "add": {
+            "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
         }
     }
 }
