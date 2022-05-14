@@ -7,9 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
-import { decode } from 'utf8';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { ImportJsonEvent } from 'src/app/components/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
@@ -39,8 +39,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
-
-    jsonTmp?: Data;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -86,8 +84,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             globalService.onFileLoaded.subscribe(file => {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
                     this.addFile(file.file);
-                } else if (file.filter === TypeFile.json) {
-                    this.addJsonTemp(file.file);
                 }
             }),
         );
@@ -285,55 +281,22 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
     }
 
-    importJsonFile(event: Event) {
-        this.jsonTmp = undefined;
-        this.globalService.addFiles((event.target as any).files, TypeFile.json);
-    }
-
-    addJsonTemp(file: FileString) {
-        try {
-            const fileString = file.url?.replace('data:application/json;base64,', '');
-            const json = JSON.parse(decode(atob(fileString!))) as Data;
-
-            if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
-                this.jsonTmp = json;
-            } else {
-                this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
-            }
-        } catch (e) {
-            console.error('json error:', e);
-            this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
-        }
-    }
-
-    countItem(): number {
-        return (
-            (this.jsonTmp?.list?.length || 0) +
-            (this.jsonTmp?.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0)
-        );
-    }
-
-    importJson(type: 'replace' | 'new') {
-        switch (this.new && type === 'new' ? 'replace' : type) {
+    importJson(event: ImportJsonEvent) {
+        switch (this.new && event.action === 'new' ? 'replace' : event.action) {
             case 'replace': {
-                this.groups = this.jsonTmp?.groups!;
-                this.list = this.jsonTmp?.list!;
-                this.options = { ...defaultOptions, ...this.jsonTmp?.options! };
+                this.groups = event.data?.groups!;
+                this.list = event.data?.list!;
+                this.options = { ...defaultOptions, ...event.data?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
                 break;
             }
             case 'new': {
-                this.globalService.jsonTmp = this.jsonTmp;
+                this.globalService.jsonTmp = event.data;
                 this.router.navigate(['/edit', 'new']);
                 this.messageService.addMessage(this.translate.instant('message.json.read.new'));
                 break;
             }
         }
-        this.cancelJson();
-    }
-
-    cancelJson() {
-        this.jsonTmp = undefined;
         this.dialogImport.close();
     }
 

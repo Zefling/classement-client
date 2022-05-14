@@ -1,0 +1,30 @@
+<div>{{ 'gererator.json.import.list' | translate }}</div>
+
+<div>
+    <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
+</div>
+
+<div *ngIf="onLoad">
+    <span><loading-cmp size="30px" tickWidth="1px"></loading-cmp>{{ 'gererator.loading' | translate }}</span>
+</div>
+
+<div *ngIf="jsonTmp" class="json-infos">
+    <span>{{ 'gererator.json.title' | translate }}</span>
+    <span>{{ jsonTmp.options.title || ('list.title.undefined' | translate) }}</span>
+    <span>{{ 'gererator.json.category' | translate }}</span>
+    <span>{{ 'category.' + (jsonTmp.options.category || 'undefined') | translate }}</span>
+    <span>{{ 'gererator.json.count.group' | translate }}</span>
+    <span>{{ jsonTmp.groups.length || 0 }}</span>
+    <span>{{ 'gererator.json.count.item' | translate }}</span>
+    <span>{{ countItem() }}</span>
+</div>
+
+<div class="button-image-save">
+    <button class="button-add" (click)="cancelJson()">{{ 'gererator.json.cancel' | translate }}</button>
+    <button class="button-add primary" (click)="importJson('replace')" *ngIf="jsonTmp">
+        {{ 'gererator.json.import.replace' | translate }}
+    </button>
+    <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+        {{ 'gererator.json.import.new' | translate }}
+    </button>
+</div>

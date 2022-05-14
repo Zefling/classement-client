@@ -183,7 +183,8 @@
             "final.size": "ファイルサイズ：{{ finalSize }}バイト({{percent}})",
             "size": "{{ size }}バイト",
             "validate": "検証"
-        }
+        },
+        "loading": "ロード中…"
     },
     "message": {
         "save": {

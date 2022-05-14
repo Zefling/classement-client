@@ -1,0 +1,16 @@
+.json-infos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    gap: 0 10px;
+
+    :nth-child(2n-1) {
+        font-weight: 700;
+        text-align: right;
+    }
+}
+
+loading-cmp {
+    vertical-align: middle;
+    padding: 5px;
+}

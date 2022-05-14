@@ -183,7 +183,8 @@
             "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
             "size": "{{ size }}\u00A0bytes",
             "validate": "Validate"
-        }
+        },
+        "loading": "Loading in progress…"
     },
     "message": {
         "save": {

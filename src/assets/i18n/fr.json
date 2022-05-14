@@ -183,7 +183,8 @@
             "final.size": "Taille finale\u00A0: {{ finalSize }}\u00A0octects ({{percent}})",
             "size": "{{ size }}\u00A0octets",
             "validate": "Valider"
-        }
+        },
+        "loading": "Chargement en cours…"
     },
     "message": {
         "save": {
