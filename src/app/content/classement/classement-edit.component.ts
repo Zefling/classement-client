@@ -1,5 +1,14 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, DoCheck, ElementRef, OnDestroy, Renderer2, RendererStyleFlags2, ViewChild } from '@angular/core';
+import {
+    Component,
+    DoCheck,
+    ElementRef,
+    HostListener,
+    OnDestroy,
+    Renderer2,
+    RendererStyleFlags2,
+    ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -139,6 +148,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     ngOnDestroy() {
         this._sub.forEach(e => e.unsubscribe());
+    }
+
+    @HostListener('window:beforeunload', ['$event'])
+    canDeactivate(event: BeforeUnloadEvent): void {
+        // apply logic
+        // if blocking is required -> show message to the user
+        // if the user decide to stay in the page:
+        event.returnValue = true;
     }
 
     resetCache() {
