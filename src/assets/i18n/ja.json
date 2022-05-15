@@ -1,213 +1,213 @@
 {
-    "classement": "Classement",
-    "menu": {
-        "home": "ホーム",
-        "list": "リスト",
-        "new": "new",
-        "licences": "ライセンス"
+  "classement": "Classement",
+  "menu": {
+    "home": "ホーム",
+    "list": "リスト",
+    "new": "new",
+    "licences": "ライセンス"
+  },
+  "home": {
+    "intro": "画像でティアリストを作成するWebアプリケーションです。",
+    "source.code": "ソースコード",
+    "source.license": "ライセンス",
+    "source.gpl3": "GNU General Public License v3.0"
+  },
+  "licenses": {
+    "title": "サードパーティライセンスの概要"
+  },
+  "list": {
+    "intro": "メモリ内のティアリストのリスト。",
+    "title": {
+      "name": "タイトル",
+      "undefined": "タイトルなし"
     },
-    "home": {
-        "intro": "画像でティアリストを作成するWebアプリケーションです。",
-        "source.code": "ソースコード",
-        "source.license": "ライセンス",
-        "source.gpl3": "GNU General Public License v3.0"
-    },
-    "licenses": {
-        "title": "サードパーティライセンスの概要"
-    },
-    "list": {
-        "intro": "メモリ内のティアリストのリスト。",
-        "title": {
-            "name": "タイトル",
-            "undefined": "タイトルなし"
-        },
-        "date": "日付",
-        "category": {
-            "name": "カテゴリー"
-        },
-        "count": {
-            "group": "グループの数",
-            "item": "アイテム数"
-        },
-        "action": {
-            "name": "アクション",
-            "edit": "編集する",
-            "delete": "削除する",
-            "clone": "複製する"
-        },
-        "no.result": "結果なし。",
-        "create.new": "ティアリストを作成します。",
-        "delete": {
-            "question": "消去してもよろしいですか？",
-            "validate": "検証する",
-            "cancel": "拒否する"
-        },
-        "clone": {
-            "question": "複製してもよろしいですか？",
-            "title": "タイトルを変更する：",
-            "validate": "複製する",
-            "edit": "複製して編集する",
-            "cancel": "拒否する"
-        }
-    },
+    "date": "日付",
     "category": {
-        "anime": "アニメ",
-        "game": "ゲーム",
-        "video.game": "ビデオゲーム",
-        "board.game": "ボードゲーム",
-        "movie": "映画",
-        "series": "シリーズ",
-        "vehicle": "車両",
-        "other": "他",
-        "undefined": "未定義"
+      "name": "カテゴリー"
     },
-    "gererator": {
-        "title": {
-            "new": "新しいティアリストを編集する",
-            "edit": "ティアリストを編集する"
-        },
-        "options": {
-            "group.title": "オプション",
-            "title": "ティアリストのタイトル：",
-            "group": "グループ：",
-            "sizes": "タイルサイズ：",
-            "margin": "マージン",
-            "padding": "パディング",
-            "border": "ボーダー",
-            "image": "画像",
-            "clear": "クリア",
-            "simple": "簡易なオプション",
-            "advence": "高度なオプション",
-            "item": {
-                "title": "タイルのオプション",
-                "width": "タイル幅",
-                "width.auto": "自動幅",
-                "height": "タイルの高さ",
-                "padding": "タイルパディング",
-                "border": "タイルボーダー",
-                "margin": "タイルマージン",
-                "background.color": "タイルの背景の色：",
-                "background.opacity": "タイルの背景の不透明度：",
-                "border.color": "タイルのボーダーの色：",
-                "border.opacity": "タイルのボーダーの不透明度：",
-                "text": {
-                    "text.color": "タイルのテキストの色：",
-                    "background.color": "テキストの背景の色：",
-                    "background.opacity": "テキストの背景の不透明度：",
-                    "position": "タイル内のテキストの位置：",
-                    "position.bottom": "下部に",
-                    "position.bottom.over": "下部にその上",
-                    "position.top": "上部に",
-                    "position.top.over": "上部にその上"
-                }
-            },
-            "line": {
-                "title": "ラインのオプション",
-                "background.color": "ラインの背景の色：",
-                "border.color": "ラインボーダーの色：",
-                "background.opacity": "ラインの背景の不透明度：",
-                "border.opacity": "ラインボーダーの不透明度："
-            },
-            "global": {
-                "title": "別のオプション",
-                "background": "背景の色：",
-                "width": "レンダリング画像の幅：",
-                "image": "背景画像：",
-                "name.image": {
-                    "none": "デフォルト",
-                    "sakura": "桜",
-                    "etoile": "エトワール",
-                    "ciel": "空"
-                }
-            },
-            "name": {
-                "width": "グループ名の幅：",
-                "font-size": "グループ名のテキストサイズ：",
-                "opacity": "グループ名の背景の不透明度："
-            }
-        },
-        "theme": {
-            "link": "テーマを選ぶ",
-            "info": "定義済みのテーマの選択：",
-            "cancel": "拒否する",
-            "validate": "複製する",
-            "name": {
-                "default": "デフォルト",
-                "compact": "デフォルトのコンパクト",
-                "sakura": "桜",
-                "night": "エトワール",
-                "ciel": "空"
-            }
-        },
-        "ranking": {
-            "group.title": "ランキング",
-            "name": "名前",
-            "list": "リスト",
-            "drop.image": "画像（JPG、PNG、GIF、WebP）またはテキストの1つまたはグループをコピペするかここにドロップします",
-            "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください"
-        },
-        "line": {
-            "add": "追加",
-            "delete": "削除"
-        },
-        "actions": {
-            "reset.groups": "クリアグループ",
-            "export.image": "画像のエクスポート",
-            "save.local": "ブラウザセーブ",
-            "export.json": "エクスポート",
-            "import.json": "インポート",
-            "save.image": "Save as:"
-        },
-        "change": {
-            "warning": "変更を加えました！",
-            "question": "このページを離れてもよろしいですか？"
-        },
-        "json": {
-            "import.list": "ティアリストをインポートします：",
-            "title": "タイトル：",
-            "category": "カテゴリー：",
-            "count.group": "グループ数：",
-            "count.item": "アイテム数：",
-            "cancel": "キャンセル",
-            "import.replace": "インポートして置換",
-            "import.new": "新しいティアリストにインポートします",
-            "import.add": "このティアリストをインポートします"
-        },
-        "optimise": {
-            "info": "WebP 300×300に画像を変換します。",
-            "button.optimise": "最適化",
-            "current": "今のサイズ：{{ totalImage }}枚の画像に対して{{ totalSize }}バイト。",
-            "show.detail": "詳細を表示",
-            "hide.detail": "詳細を非表示",
-            "reduce.files": "ファイル数の縮小：{{ countResize }}",
-            "reduce.size": "合計サイズを縮小：{{ reduceSize }}バイト",
-            "final.size": "ファイルサイズ：{{ finalSize }}バイト({{percent}})",
-            "size": "{{ size }}バイト",
-            "validate": "検証"
-        },
-        "loading": "ロード中…"
+    "count": {
+      "group": "グループの数",
+      "item": "アイテム数"
     },
-    "message": {
-        "save": {
-            "success": "😊 ブラウザに正常にセーブされました。",
-            "failed": "⚠️ ブラウザにセーブできませんでした。"
-        },
-        "json.read": {
-            "failed": "⚠️ ファイルの読み取りに失敗しました。 フォーマットが認識されません。",
-            "replace": "😊 アップロードされたファイルは成功しました。 正常に置き換えられました。",
-            "new": "😊 ファイルを新しいティアリストに正常にアップロードしました。"
-        },
-        "remove": {
-            "success": "🗑 「%title%」のティアリストから削除されました。"
-        },
-        "clone": {
-            "success": "😊 「%title%」のティアリストをして正常に作成しました。"
-        },
-        "reset": {
-            "groups": "😊 グループをリセットします。"
-        },
-        "add": {
-            "succes": "😊 「％title％」のティアリストを追加しました。"
-        }
+    "action": {
+      "name": "アクション",
+      "edit": "編集する",
+      "delete": "削除する",
+      "clone": "複製する"
+    },
+    "no.result": "結果なし。",
+    "create.new": "ティアリストを作成します。",
+    "delete": {
+      "question": "消去してもよろしいですか？",
+      "validate": "検証する",
+      "cancel": "拒否する"
+    },
+    "clone": {
+      "question": "複製してもよろしいですか？",
+      "title": "タイトルを変更する：",
+      "validate": "複製する",
+      "edit": "複製して編集する",
+      "cancel": "拒否する"
     }
+  },
+  "category": {
+    "anime": "アニメ",
+    "game": "ゲーム",
+    "video.game": "ビデオゲーム",
+    "board.game": "ボードゲーム",
+    "movie": "映画",
+    "series": "シリーズ",
+    "vehicle": "車両",
+    "other": "他",
+    "undefined": "未定義"
+  },
+  "gererator": {
+    "title": {
+      "new": "新しいティアリストを編集する",
+      "edit": "ティアリストを編集する"
+    },
+    "options": {
+      "group.title": "オプション",
+      "title": "ティアリストのタイトル：",
+      "group": "グループ：",
+      "sizes": "タイルサイズ：",
+      "margin": "マージン",
+      "padding": "パディング",
+      "border": "ボーダー",
+      "image": "画像",
+      "clear": "クリア",
+      "simple": "簡易なオプション",
+      "advence": "高度なオプション",
+      "item": {
+        "title": "タイルのオプション",
+        "width": "タイル幅",
+        "width.auto": "自動幅",
+        "height": "タイルの高さ",
+        "padding": "タイルパディング",
+        "border": "タイルボーダー",
+        "margin": "タイルマージン",
+        "background.color": "タイルの背景の色：",
+        "background.opacity": "タイルの背景の不透明度：",
+        "border.color": "タイルのボーダーの色：",
+        "border.opacity": "タイルのボーダーの不透明度：",
+        "text": {
+          "text.color": "タイルのテキストの色：",
+          "background.color": "テキストの背景の色：",
+          "background.opacity": "テキストの背景の不透明度：",
+          "position": "タイル内のテキストの位置：",
+          "position.bottom": "下部に",
+          "position.bottom.over": "下部にその上",
+          "position.top": "上部に",
+          "position.top.over": "上部にその上"
+        }
+      },
+      "line": {
+        "title": "ラインのオプション",
+        "background.color": "ラインの背景の色：",
+        "border.color": "ラインボーダーの色：",
+        "background.opacity": "ラインの背景の不透明度：",
+        "border.opacity": "ラインボーダーの不透明度："
+      },
+      "global": {
+        "title": "別のオプション",
+        "background": "背景の色：",
+        "width": "レンダリング画像の幅：",
+        "image": "背景画像：",
+        "name.image": {
+          "none": "デフォルト",
+          "sakura": "桜",
+          "etoile": "エトワール",
+          "ciel": "空"
+        }
+      },
+      "name": {
+        "width": "グループ名の幅：",
+        "font-size": "グループ名のテキストサイズ：",
+        "opacity": "グループ名の背景の不透明度："
+      }
+    },
+    "theme": {
+      "link": "テーマを選ぶ",
+      "info": "定義済みのテーマの選択：",
+      "cancel": "拒否する",
+      "validate": "複製する",
+      "name": {
+        "default": "デフォルト",
+        "compact": "デフォルトのコンパクト",
+        "sakura": "桜",
+        "night": "エトワール",
+        "ciel": "空"
+      }
+    },
+    "ranking": {
+      "group.title": "ランキング",
+      "name": "名前",
+      "list": "リスト",
+      "drop.image": "画像（JPG、PNG、GIF、WebP）またはテキストの1つまたはグループをコピペするかここにドロップします",
+      "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください"
+    },
+    "line": {
+      "add": "追加",
+      "delete": "削除"
+    },
+    "actions": {
+      "reset.groups": "クリアグループ",
+      "export.image": "画像のエクスポート",
+      "save.local": "ブラウザセーブ",
+      "export.json": "エクスポート",
+      "import.json": "インポート",
+      "save.image": "Save as:"
+    },
+    "change": {
+      "warning": "変更を加えました！",
+      "question": "このページを離れてもよろしいですか？"
+    },
+    "json": {
+      "import.list": "ティアリストをインポートします：",
+      "title": "タイトル：",
+      "category": "カテゴリー：",
+      "count.group": "グループ数：",
+      "count.item": "アイテム数：",
+      "cancel": "キャンセル",
+      "import.replace": "インポートして置換",
+      "import.new": "新しいティアリストにインポートします",
+      "import.add": "このティアリストをインポートします"
+    },
+    "optimise": {
+      "info": "WebP 300×300に画像を変換します。",
+      "button.optimise": "最適化",
+      "current": "今のサイズ：{{ totalImage }}枚の画像に対して{{ totalSize }}バイト。",
+      "show.detail": "詳細を表示",
+      "hide.detail": "詳細を非表示",
+      "reduce.files": "ファイル数の縮小：{{ countResize }}",
+      "reduce.size": "合計サイズを縮小：{{ reduceSize }}バイト",
+      "final.size": "ファイルサイズ：{{ finalSize }}バイト({{percent}})",
+      "size": "{{ size }}バイト",
+      "validate": "検証"
+    },
+    "loading": "ロード中…"
+  },
+  "message": {
+    "save": {
+      "success": "😊 ブラウザに正常にセーブされました。",
+      "failed": "⚠️ ブラウザにセーブできませんでした。"
+    },
+    "json.read": {
+      "failed": "⚠️ ファイルの読み取りに失敗しました。 フォーマットが認識されません。",
+      "replace": "😊 アップロードされたファイルは成功しました。 正常に置き換えられました。",
+      "new": "😊 ファイルを新しいティアリストに正常にアップロードしました。"
+    },
+    "remove": {
+      "success": "🗑 「%title%」のティアリストから削除されました。"
+    },
+    "clone": {
+      "success": "😊 「%title%」のティアリストをして正常に作成しました。"
+    },
+    "reset": {
+      "groups": "😊 グループをリセットします。"
+    },
+    "add": {
+      "succes": "😊 「％title％」のティアリストを追加しました。"
+    }
+  }
 }

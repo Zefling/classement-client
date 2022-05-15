@@ -1,3 +1,9 @@
+# 0.5.3 (2022-05-15)
+
+-   add import in list page
+-   block page reload in edit mode
+-   fix minor bugs
+
 # 0.5.2 (2022-04-16)
 
 -   fix import (decode UTF-8)

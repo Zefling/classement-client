@@ -5,5 +5,14 @@
     "printWidth": 120,
     "arrowParens": "avoid",
     "trailingComma": "all",
-    "bracketSpacing": true
+    "bracketSpacing": true,
+
+    "overrides": [
+        {
+            "files": "*.json",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }

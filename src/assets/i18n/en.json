@@ -1,213 +1,213 @@
 {
-    "classement": "Classement",
-    "menu": {
-        "home": "Home",
-        "list": "List",
-        "new": "New",
-        "licences": "Licenses"
+  "classement": "Classement",
+  "menu": {
+    "home": "Home",
+    "list": "List",
+    "new": "New",
+    "licences": "Licenses"
+  },
+  "home": {
+    "intro": "A Web application to make a tierlist by images.",
+    "source.code": "Source code",
+    "source.license": "License",
+    "source.gpl3": "GNU General Public License v3.0"
+  },
+  "licenses": {
+    "title": "Third-Party licenses overview"
+  },
+  "list": {
+    "intro": "List of tierlists in memory.",
+    "title": {
+      "name": "Title",
+      "undefined": "No title"
     },
-    "home": {
-        "intro": "A Web application to make a tierlist by images.",
-        "source.code": "Source code",
-        "source.license": "License",
-        "source.gpl3": "GNU General Public License v3.0"
-    },
-    "licenses": {
-        "title": "Third-Party licenses overview"
-    },
-    "list": {
-        "intro": "List of tierlists in memory.",
-        "title": {
-            "name": "Title",
-            "undefined": "No title"
-        },
-        "date": "Date",
-        "category": {
-            "name": "Category"
-        },
-        "count": {
-            "group": "Number of groups",
-            "item": "Number of items"
-        },
-        "action": {
-            "name": "Action",
-            "edit": "Edit",
-            "delete": "Remove",
-            "clone": "Clone"
-        },
-        "no.result": "No results.",
-        "create.new": "Create your tierlist.",
-        "delete": {
-            "question": "Are you sure you want to delete?",
-            "validate": "Validate",
-            "cancel": "Cancel"
-        },
-        "clone": {
-            "question": "Are you sure you want to clone?",
-            "title": "Change title:",
-            "validate": "Clone",
-            "edit": "Clone & edit",
-            "cancel": "Cancel"
-        }
-    },
+    "date": "Date",
     "category": {
-        "anime": "Anime",
-        "game": "Games",
-        "video.game": "Video games",
-        "board.game": "Board games",
-        "movie": "Movies",
-        "series": "Series",
-        "vehicle": "Vehicle",
-        "other": "Other",
-        "undefined": "undefined"
+      "name": "Category"
     },
-    "gererator": {
-        "title": {
-            "new": "New tierlist",
-            "edit": "Edit tierlist"
-        },
-        "options": {
-            "group.title": "Options",
-            "title": "Tierlist title:",
-            "group": "Group:",
-            "sizes": "Tile sizes:",
-            "margin": "Margin",
-            "padding": "Padding",
-            "border": "Border",
-            "image": "Image",
-            "clear": "Clear",
-            "simple": "Simplified options",
-            "advence": "Advenced options",
-            "item": {
-                "title": "Tile options",
-                "width": "Tile width",
-                "width.auto": "Automatic width",
-                "height": "Tile height",
-                "padding": "Tile padding",
-                "border": "Tile border",
-                "margin": "Tile margin",
-                "background.color": "Tile background color:",
-                "background.opacity": "Tile background opacity:",
-                "border.color": "Tile border color:",
-                "border.opacity": "Tile border opacity:",
-                "text": {
-                    "color": "Tile text color:",
-                    "background.color": "Text background color:",
-                    "background.opacity": "Text background opacity:",
-                    "position": "Text position in the tile:",
-                    "position.bottom": "On bottom",
-                    "position.bottom.over": "On bottom and over",
-                    "position.top": "On top",
-                    "position.top.over": "On top and over"
-                }
-            },
-            "line": {
-                "title": "Line options",
-                "background.color": "Line background color:",
-                "border.color": "Line border color:",
-                "background.opacity": "Line background opacity:",
-                "border.opacity": "Line border opacity:"
-            },
-            "global": {
-                "title": "Other options",
-                "background": "Background color:",
-                "width": "Render image width:",
-                "image": "Background image:",
-                "name.image": {
-                    "none": "Default",
-                    "sakura": "Sakura",
-                    "etoile": "Etoile",
-                    "ciel": "Sky"
-                }
-            },
-            "name": {
-                "width": "Group name width:",
-                "font-size": "Group name text size:",
-                "opacity": "Group name background opacity:"
-            }
-        },
-        "theme": {
-            "link": "Choose a theme",
-            "info": "Predefined theme selection:",
-            "cancel": "Cancel",
-            "validate": "Validate",
-            "name": {
-                "default": "Default",
-                "compact": "Default compact",
-                "sakura": "Sakura",
-                "night": "Night",
-                "ciel": "Sky"
-            }
-        },
-        "ranking": {
-            "group.title": "Tierlist",
-            "name": "Name",
-            "list": "List",
-            "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
-            "add.image": "Click here to add one or a group of images"
-        },
-        "line": {
-            "add": "Add",
-            "delete": "Del."
-        },
-        "actions": {
-            "reset.groups": "Clear Groups",
-            "export.image": "Image export",
-            "save.local": "Browser save",
-            "export.json": "Export",
-            "import.json": "Import",
-            "save.image": "Save as:"
-        },
-        "change": {
-            "warning": "You have made changes!",
-            "question": "Are you sure you want to leave this page?"
-        },
-        "json": {
-            "import.list": "Import a tierlist:",
-            "title": "Title:",
-            "category": "Category:",
-            "count.group": "Number of groups:",
-            "count.item": "Number of items:",
-            "cancel": "Cancel",
-            "import.replace": "Import and replace",
-            "import.new": "Import into a new tierlist",
-            "import.add": "Import this tierlist"
-        },
-        "optimise": {
-            "info": "Convert image to WebP 300×300.",
-            "button.optimise": "Optimise",
-            "current": "Current size: {{ totalSize }}\u00A0bytes for {{ totalImage }}\u00A0images.",
-            "show.detail": "Show details",
-            "hide.detail": "Hide details",
-            "reduce.files": "Reduced number of files: {{ countResize }}",
-            "reduce.size": "Total reduce size: {{ reduceSize }}\u00A0bytes",
-            "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
-            "size": "{{ size }}\u00A0bytes",
-            "validate": "Validate"
-        },
-        "loading": "Loading in progress…"
+    "count": {
+      "group": "Number of groups",
+      "item": "Number of items"
     },
-    "message": {
-        "save": {
-            "success": "😊 Successfully saved in browser.",
-            "failed": "⚠️ Failed to save in browser."
-        },
-        "json.read": {
-            "failed": "⚠️ Failed to read file. The format is not recognized.",
-            "replace": "😊 Uploaded file successful. Replaced successfully.",
-            "new": "😊 Successfully uploaded file to new tierlist."
-        },
-        "remove": {
-            "success": "🗑 Removed from tierlist “%title%” successful."
-        },
-        "clone": {
-            "success": "😊 Successfully duplicated tierlist as “%title%”."
-        },
-        "reset": {
-            "groups": "😊 Reset groups."
-        },
-        "add": {
-            "succes": "😊 Successfully added “%title%” tierlist."
-        }
+    "action": {
+      "name": "Action",
+      "edit": "Edit",
+      "delete": "Remove",
+      "clone": "Clone"
+    },
+    "no.result": "No results.",
+    "create.new": "Create your tierlist.",
+    "delete": {
+      "question": "Are you sure you want to delete?",
+      "validate": "Validate",
+      "cancel": "Cancel"
+    },
+    "clone": {
+      "question": "Are you sure you want to clone?",
+      "title": "Change title:",
+      "validate": "Clone",
+      "edit": "Clone & edit",
+      "cancel": "Cancel"
     }
+  },
+  "category": {
+    "anime": "Anime",
+    "game": "Games",
+    "video.game": "Video games",
+    "board.game": "Board games",
+    "movie": "Movies",
+    "series": "Series",
+    "vehicle": "Vehicle",
+    "other": "Other",
+    "undefined": "undefined"
+  },
+  "gererator": {
+    "title": {
+      "new": "New tierlist",
+      "edit": "Edit tierlist"
+    },
+    "options": {
+      "group.title": "Options",
+      "title": "Tierlist title:",
+      "group": "Group:",
+      "sizes": "Tile sizes:",
+      "margin": "Margin",
+      "padding": "Padding",
+      "border": "Border",
+      "image": "Image",
+      "clear": "Clear",
+      "simple": "Simplified options",
+      "advence": "Advenced options",
+      "item": {
+        "title": "Tile options",
+        "width": "Tile width",
+        "width.auto": "Automatic width",
+        "height": "Tile height",
+        "padding": "Tile padding",
+        "border": "Tile border",
+        "margin": "Tile margin",
+        "background.color": "Tile background color:",
+        "background.opacity": "Tile background opacity:",
+        "border.color": "Tile border color:",
+        "border.opacity": "Tile border opacity:",
+        "text": {
+          "color": "Tile text color:",
+          "background.color": "Text background color:",
+          "background.opacity": "Text background opacity:",
+          "position": "Text position in the tile:",
+          "position.bottom": "On bottom",
+          "position.bottom.over": "On bottom and over",
+          "position.top": "On top",
+          "position.top.over": "On top and over"
+        }
+      },
+      "line": {
+        "title": "Line options",
+        "background.color": "Line background color:",
+        "border.color": "Line border color:",
+        "background.opacity": "Line background opacity:",
+        "border.opacity": "Line border opacity:"
+      },
+      "global": {
+        "title": "Other options",
+        "background": "Background color:",
+        "width": "Render image width:",
+        "image": "Background image:",
+        "name.image": {
+          "none": "Default",
+          "sakura": "Sakura",
+          "etoile": "Etoile",
+          "ciel": "Sky"
+        }
+      },
+      "name": {
+        "width": "Group name width:",
+        "font-size": "Group name text size:",
+        "opacity": "Group name background opacity:"
+      }
+    },
+    "theme": {
+      "link": "Choose a theme",
+      "info": "Predefined theme selection:",
+      "cancel": "Cancel",
+      "validate": "Validate",
+      "name": {
+        "default": "Default",
+        "compact": "Default compact",
+        "sakura": "Sakura",
+        "night": "Night",
+        "ciel": "Sky"
+      }
+    },
+    "ranking": {
+      "group.title": "Tierlist",
+      "name": "Name",
+      "list": "List",
+      "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
+      "add.image": "Click here to add one or a group of images"
+    },
+    "line": {
+      "add": "Add",
+      "delete": "Del."
+    },
+    "actions": {
+      "reset.groups": "Clear Groups",
+      "export.image": "Image export",
+      "save.local": "Browser save",
+      "export.json": "Export",
+      "import.json": "Import",
+      "save.image": "Save as:"
+    },
+    "change": {
+      "warning": "You have made changes!",
+      "question": "Are you sure you want to leave this page?"
+    },
+    "json": {
+      "import.list": "Import a tierlist:",
+      "title": "Title:",
+      "category": "Category:",
+      "count.group": "Number of groups:",
+      "count.item": "Number of items:",
+      "cancel": "Cancel",
+      "import.replace": "Import and replace",
+      "import.new": "Import into a new tierlist",
+      "import.add": "Import this tierlist"
+    },
+    "optimise": {
+      "info": "Convert image to WebP 300×300.",
+      "button.optimise": "Optimise",
+      "current": "Current size: {{ totalSize }}\u00A0bytes for {{ totalImage }}\u00A0images.",
+      "show.detail": "Show details",
+      "hide.detail": "Hide details",
+      "reduce.files": "Reduced number of files: {{ countResize }}",
+      "reduce.size": "Total reduce size: {{ reduceSize }}\u00A0bytes",
+      "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
+      "size": "{{ size }}\u00A0bytes",
+      "validate": "Validate"
+    },
+    "loading": "Loading in progress…"
+  },
+  "message": {
+    "save": {
+      "success": "😊 Successfully saved in browser.",
+      "failed": "⚠️ Failed to save in browser."
+    },
+    "json.read": {
+      "failed": "⚠️ Failed to read file. The format is not recognized.",
+      "replace": "😊 Uploaded file successful. Replaced successfully.",
+      "new": "😊 Successfully uploaded file to new tierlist."
+    },
+    "remove": {
+      "success": "🗑 Removed from tierlist “%title%” successful."
+    },
+    "clone": {
+      "success": "😊 Successfully duplicated tierlist as “%title%”."
+    },
+    "reset": {
+      "groups": "😊 Reset groups."
+    },
+    "add": {
+      "succes": "😊 Successfully added “%title%” tierlist."
+    }
+  }
 }

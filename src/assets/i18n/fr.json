@@ -1,213 +1,213 @@
 {
-    "classement": "Classement",
-    "menu": {
-        "home": "Accueil",
-        "list": "Liste",
-        "new": "Nouveau",
-        "licences": "Licences"
+  "classement": "Classement",
+  "menu": {
+    "home": "Accueil",
+    "list": "Liste",
+    "new": "Nouveau",
+    "licences": "Licences"
+  },
+  "licenses": {
+    "title": "Présentation des licences tierces"
+  },
+  "home": {
+    "intro": "Application web pour faire un classement par images.",
+    "source.code": "Code source",
+    "source.license": "Licence",
+    "source.gpl3": "Licence publique générale GNU (GNU GPL), version 3"
+  },
+  "list": {
+    "intro": "Liste des Classements en mémoire.",
+    "title": {
+      "name": "Titre",
+      "undefined": "Sans titre"
     },
-    "licenses": {
-        "title": "Présentation des licences tierces"
-    },
-    "home": {
-        "intro": "Application web pour faire un classement par images.",
-        "source.code": "Code source",
-        "source.license": "Licence",
-        "source.gpl3": "Licence publique générale GNU (GNU GPL), version 3"
-    },
-    "list": {
-        "intro": "Liste des Classements en mémoire.",
-        "title": {
-            "name": "Titre",
-            "undefined": "Sans titre"
-        },
-        "date": "Date",
-        "category": {
-            "name": "Catégorie"
-        },
-        "count": {
-            "group": "Nombre de groupes",
-            "item": "Nombre d'élements"
-        },
-        "action": {
-            "name": "Action",
-            "edit": "Éditer",
-            "delete": "Retirer",
-            "clone": "Cloner"
-        },
-        "no.result": "Pas de résultats.",
-        "create.new": "Créez votre classement.",
-        "delete": {
-            "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
-            "validate": "Valider",
-            "cancel": "Annuler"
-        },
-        "clone": {
-            "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
-            "title": "Changer de titre\u00A0:",
-            "validate": "Cloner",
-            "edit": "Cloner et éditer",
-            "cancel": "Annuler"
-        }
-    },
+    "date": "Date",
     "category": {
-        "anime": "Anime",
-        "game": "Jeux",
-        "video.game": "Jeux vidéo",
-        "board.game": "Jeux de plateau",
-        "movie": "Films",
-        "series": "Séries",
-        "vehicle": "Véhicules",
-        "other": "Autre",
-        "undefined": "non défini"
+      "name": "Catégorie"
     },
-    "gererator": {
-        "title": {
-            "new": "Nouveau classement",
-            "edit": "Édition d'un classement"
-        },
-        "options": {
-            "group.title": "Options",
-            "title": "Titre du classement\u00A0:",
-            "group": "Groupe\u00A0:",
-            "sizes": "Dimentions d'une tuile\u00A0:",
-            "margin": "Marge",
-            "padding": "Rembourrage",
-            "border": "Bordure",
-            "image": "Image",
-            "clear": "Effacer",
-            "simple": "Options simplifiées",
-            "advence": "Options avancées",
-            "item": {
-                "title": "Options des tuiles",
-                "width": "Largeur d'une tuile",
-                "width.auto": "Largeur automatique",
-                "height": "Hauteur d'une tuile",
-                "padding": "Rembourrage d'une tuile",
-                "border": "Bordure d'uen tuile",
-                "margin": "Marge d'une tuile",
-                "background.color": "Couleur du fond d'une tuile\u00A0:",
-                "background.opacity": "Opacité du fond d'une tuile\u00A0:",
-                "border.color": "Couleur de bordure d'une tuile\u00A0:",
-                "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
-                "text": {
-                    "color": "Couleur du text d'une tuile\u00A0:",
-                    "background.color": "Couleur de fond du texte\u00A0:",
-                    "background.opacity": "Opacité de fond du texte\u00A0:",
-                    "position": "Position texte dans la tuile\u00A0:",
-                    "position.bottom": "En dessous",
-                    "position.bottom.over": "En dessous et par dessus",
-                    "position.top": "Au dessus",
-                    "position.top.over": "Au dessus et par dessus"
-                }
-            },
-            "line": {
-                "title": "Options des lignes",
-                "background.color": "Couleur du fond d'une ligne\u00A0:",
-                "border.color": "Couleur de bordure d'une ligne\u00A0:",
-                "background.opacity": "Opacité du fond d'une ligne\u00A0:",
-                "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
-            },
-            "global": {
-                "title": "Autres options",
-                "background": "Couleur du fond\u00A0:",
-                "width": "Largeur de l'image rendue\u00A0:",
-                "image": "Image de fond\u00A0:",
-                "name.image": {
-                    "none": "Défault",
-                    "sakura": "Sakura",
-                    "etoile": "Étoile",
-                    "ciel": "Ciel"
-                }
-            },
-            "name": {
-                "width": "Largeur des noms de groupe\u00A0:",
-                "font-size": "Taille du texte des noms de groupe\u00A0:",
-                "opacity": "Opacité du fond des noms de groupe\u00A0:"
-            }
-        },
-        "theme": {
-            "link": "Choisir un thème",
-            "info": "Selection de thème prédéfini\u00A0:",
-            "cancel": "Annuler",
-            "validate": "Valider",
-            "name": {
-                "default": "Défaut",
-                "compact": "Défaut compact",
-                "sakura": "Sakura",
-                "night": "Nuit",
-                "ciel": "Ciel"
-            }
-        },
-        "ranking": {
-            "group.title": "Classement",
-            "name": "Nom",
-            "list": "Liste",
-            "drop.image": "Copier-coller ou déposez ici ↓ une ou un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
-            "add.image": "Cliquez ici pour ajouter une ou un groupe d'images"
-        },
-        "line": {
-            "add": "Ajout",
-            "delete": "Suppr."
-        },
-        "actions": {
-            "reset.groups": "Vider les groupes",
-            "export.image": "Export en image",
-            "save.local": "Sauvegarde navigateur",
-            "export.json": "Exporter",
-            "import.json": "Importer",
-            "save.image": "Sauvegarder au format\u00A0:"
-        },
-        "change": {
-            "warning": "Vous avez effectué des changements\u00A0!",
-            "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
-        },
-        "json": {
-            "import.list": "Importer un classement\u00A0:",
-            "title": "Titre\u00A0:",
-            "category": "Categorie\u00A0:",
-            "count.group": "Nombre de groupes\u00A0:",
-            "count.item": "Nombre d'élements\u00A0:",
-            "cancel": "Annuler",
-            "import.replace": "Importer et remplacer",
-            "import.new": "Importer dans un nouveau classement",
-            "import.add": "Importer ce classement"
-        },
-        "optimise": {
-            "info": "Convertir l'image en WebP 300×300.",
-            "button.optimise": "Optimiser",
-            "current": "Taille actuelle\u00A0: {{ totalSize }}\u00A0octects pour {{ totalImage }}\u00A0images.",
-            "show.detail": "Afficher les détails",
-            "hide.detail": "Cacher les détails",
-            "reduce.files": "Nombre de fichiers réduits\u00A0: {{ countResize }}",
-            "reduce.size": "Taille totale réduite\u00A0: {{ reduceSize }}\u00A0octects",
-            "final.size": "Taille finale\u00A0: {{ finalSize }}\u00A0octects ({{percent}})",
-            "size": "{{ size }}\u00A0octets",
-            "validate": "Valider"
-        },
-        "loading": "Chargement en cours…"
+    "count": {
+      "group": "Nombre de groupes",
+      "item": "Nombre d'élements"
     },
-    "message": {
-        "save": {
-            "success": "😊 Sauvegarde réussie dans le navigateur.",
-            "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
-        },
-        "json.read": {
-            "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
-            "replace": "😊 Chagement du fichier réussi. Remplacement réussi.",
-            "new": "😊 Chagement du fichier réussi dans un nouveau classement."
-        },
-        "remove": {
-            "succes": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
-        },
-        "clone": {
-            "succes": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
-        },
-        "reset": {
-            "groups": "😊 Remise à zéro des groupes."
-        },
-        "add": {
-            "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
-        }
+    "action": {
+      "name": "Action",
+      "edit": "Éditer",
+      "delete": "Retirer",
+      "clone": "Cloner"
+    },
+    "no.result": "Pas de résultats.",
+    "create.new": "Créez votre classement.",
+    "delete": {
+      "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
+      "validate": "Valider",
+      "cancel": "Annuler"
+    },
+    "clone": {
+      "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
+      "title": "Changer de titre\u00A0:",
+      "validate": "Cloner",
+      "edit": "Cloner et éditer",
+      "cancel": "Annuler"
     }
+  },
+  "category": {
+    "anime": "Anime",
+    "game": "Jeux",
+    "video.game": "Jeux vidéo",
+    "board.game": "Jeux de plateau",
+    "movie": "Films",
+    "series": "Séries",
+    "vehicle": "Véhicules",
+    "other": "Autre",
+    "undefined": "non défini"
+  },
+  "gererator": {
+    "title": {
+      "new": "Nouveau classement",
+      "edit": "Édition d'un classement"
+    },
+    "options": {
+      "group.title": "Options",
+      "title": "Titre du classement\u00A0:",
+      "group": "Groupe\u00A0:",
+      "sizes": "Dimentions d'une tuile\u00A0:",
+      "margin": "Marge",
+      "padding": "Rembourrage",
+      "border": "Bordure",
+      "image": "Image",
+      "clear": "Effacer",
+      "simple": "Options simplifiées",
+      "advence": "Options avancées",
+      "item": {
+        "title": "Options des tuiles",
+        "width": "Largeur d'une tuile",
+        "width.auto": "Largeur automatique",
+        "height": "Hauteur d'une tuile",
+        "padding": "Rembourrage d'une tuile",
+        "border": "Bordure d'uen tuile",
+        "margin": "Marge d'une tuile",
+        "background.color": "Couleur du fond d'une tuile\u00A0:",
+        "background.opacity": "Opacité du fond d'une tuile\u00A0:",
+        "border.color": "Couleur de bordure d'une tuile\u00A0:",
+        "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
+        "text": {
+          "color": "Couleur du text d'une tuile\u00A0:",
+          "background.color": "Couleur de fond du texte\u00A0:",
+          "background.opacity": "Opacité de fond du texte\u00A0:",
+          "position": "Position texte dans la tuile\u00A0:",
+          "position.bottom": "En dessous",
+          "position.bottom.over": "En dessous et par dessus",
+          "position.top": "Au dessus",
+          "position.top.over": "Au dessus et par dessus"
+        }
+      },
+      "line": {
+        "title": "Options des lignes",
+        "background.color": "Couleur du fond d'une ligne\u00A0:",
+        "border.color": "Couleur de bordure d'une ligne\u00A0:",
+        "background.opacity": "Opacité du fond d'une ligne\u00A0:",
+        "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
+      },
+      "global": {
+        "title": "Autres options",
+        "background": "Couleur du fond\u00A0:",
+        "width": "Largeur de l'image rendue\u00A0:",
+        "image": "Image de fond\u00A0:",
+        "name.image": {
+          "none": "Défault",
+          "sakura": "Sakura",
+          "etoile": "Étoile",
+          "ciel": "Ciel"
+        }
+      },
+      "name": {
+        "width": "Largeur des noms de groupe\u00A0:",
+        "font-size": "Taille du texte des noms de groupe\u00A0:",
+        "opacity": "Opacité du fond des noms de groupe\u00A0:"
+      }
+    },
+    "theme": {
+      "link": "Choisir un thème",
+      "info": "Selection de thème prédéfini\u00A0:",
+      "cancel": "Annuler",
+      "validate": "Valider",
+      "name": {
+        "default": "Défaut",
+        "compact": "Défaut compact",
+        "sakura": "Sakura",
+        "night": "Nuit",
+        "ciel": "Ciel"
+      }
+    },
+    "ranking": {
+      "group.title": "Classement",
+      "name": "Nom",
+      "list": "Liste",
+      "drop.image": "Copier-coller ou déposez ici ↓ une ou un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
+      "add.image": "Cliquez ici pour ajouter une ou un groupe d'images"
+    },
+    "line": {
+      "add": "Ajout",
+      "delete": "Suppr."
+    },
+    "actions": {
+      "reset.groups": "Vider les groupes",
+      "export.image": "Export en image",
+      "save.local": "Sauvegarde navigateur",
+      "export.json": "Exporter",
+      "import.json": "Importer",
+      "save.image": "Sauvegarder au format\u00A0:"
+    },
+    "change": {
+      "warning": "Vous avez effectué des changements\u00A0!",
+      "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
+    },
+    "json": {
+      "import.list": "Importer un classement\u00A0:",
+      "title": "Titre\u00A0:",
+      "category": "Categorie\u00A0:",
+      "count.group": "Nombre de groupes\u00A0:",
+      "count.item": "Nombre d'élements\u00A0:",
+      "cancel": "Annuler",
+      "import.replace": "Importer et remplacer",
+      "import.new": "Importer dans un nouveau classement",
+      "import.add": "Importer ce classement"
+    },
+    "optimise": {
+      "info": "Convertir l'image en WebP 300×300.",
+      "button.optimise": "Optimiser",
+      "current": "Taille actuelle\u00A0: {{ totalSize }}\u00A0octects pour {{ totalImage }}\u00A0images.",
+      "show.detail": "Afficher les détails",
+      "hide.detail": "Cacher les détails",
+      "reduce.files": "Nombre de fichiers réduits\u00A0: {{ countResize }}",
+      "reduce.size": "Taille totale réduite\u00A0: {{ reduceSize }}\u00A0octects",
+      "final.size": "Taille finale\u00A0: {{ finalSize }}\u00A0octects ({{percent}})",
+      "size": "{{ size }}\u00A0octets",
+      "validate": "Valider"
+    },
+    "loading": "Chargement en cours…"
+  },
+  "message": {
+    "save": {
+      "success": "😊 Sauvegarde réussie dans le navigateur.",
+      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
+    },
+    "json.read": {
+      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
+      "replace": "😊 Chagement du fichier réussi. Remplacement réussi.",
+      "new": "😊 Chagement du fichier réussi dans un nouveau classement."
+    },
+    "remove": {
+      "succes": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
+    },
+    "clone": {
+      "succes": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
+    },
+    "reset": {
+      "groups": "😊 Remise à zéro des groupes."
+    },
+    "add": {
+      "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
+    }
+  }
 }
