@@ -73,7 +73,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 } else {
                     // reset all
                     this.new = true;
-                    this.options = { ...(this.globalService.jsonTmp?.options || defaultOptions) };
+                    this.options = { ...defaultOptions, ...(this.globalService.jsonTmp?.options || defaultOptions) };
                     this.resetCache();
                     this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
                     this.list = this.globalService.jsonTmp?.list || [];
