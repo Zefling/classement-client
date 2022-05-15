@@ -155,7 +155,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         // apply logic
         // if blocking is required -> show message to the user
         // if the user decide to stay in the page:
-        event.returnValue = true;
+        if (this.globalService.withChange) {
+            event.returnValue = true;
+        }
     }
 
     resetCache() {
