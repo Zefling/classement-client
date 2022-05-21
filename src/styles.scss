@@ -84,6 +84,8 @@ body.light-mode {
     --error-message-background: #e07b7b;
     --info-message-box-shadow-color: #0008;
     --error-message-progress-background: #f03636;
+    // loading
+    --loading-color: #000;
 }
 
 body.dark-mode {
@@ -170,6 +172,8 @@ body.dark-mode {
     --error-message-background: #5e1b1b;
     --error-message-box-shadow-color: #000;
     --error-message-progress-background: #cc2121;
+    // loading
+    --loading-color: #fff;
 }
 
 body,

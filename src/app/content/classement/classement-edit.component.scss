@@ -190,7 +190,7 @@ table {
 
     div {
         display: grid;
-        margin-top: 20px;
+        margin-top: min(20px, 5%);
         grid-template:
             'a a a a a' 60px
             '. b . c .' auto /
