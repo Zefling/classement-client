@@ -1,10 +1,11 @@
-import { Component, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, HostListener, Input, ViewChild } from '@angular/core';
 
 import { Options, Theme } from 'src/app/interface';
 import { Utils } from 'src/app/tools/utils';
 
 import { categories, imagesThemes } from './classement-default';
 import { ClassemenThemesComponent } from './classement-themes.component';
+
 
 @Component({
     selector: 'classement-options',
@@ -36,7 +37,7 @@ export class ClassementOptionsComponent {
     }
 
     changeTheme(theme: Theme) {
-        Object.assign(this.options, theme.options);
+        Object.assign(this.options!, theme.options);
     }
 
     toggleImageList() {
