@@ -1,3 +1,8 @@
+# 0.5.4 (2022-06-03)
+
+-   update to Angular 14
+-   fix minor css bugs
+
 # 0.5.3 (2022-05-15)
 
 -   add import in list page
