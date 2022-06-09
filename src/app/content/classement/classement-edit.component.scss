@@ -1,6 +1,13 @@
 :host {
-    display: block;
-    margin: 0 15px 30px 30px;
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+
+    & > div {
+        padding: 0 15px 30px 30px;
+        position: relative;
+        flex: 1;
+    }
 }
 
 // drag'n drop --------------------------------------------------------------
@@ -115,8 +122,7 @@
     width: 100%;
 }
 
-.drop-image-zone,
-.drop-image-zone .drop-list {
+.drop-image-zone {
     background: var(--drop-image-zone-background);
     border-radius: 2px;
 }
