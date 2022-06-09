@@ -1,3 +1,7 @@
+# 0.5.5 (2022-06-09)
+
+-   drop content in all the page
+
 # 0.5.4 (2022-06-03)
 
 -   update to Angular 14
