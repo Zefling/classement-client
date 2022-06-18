@@ -1,44 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {
-  ClassementEditComponent,
-} from './content/classement/classement-edit.component';
-import {
-  ClassementHomeComponent,
-} from './content/home/classement-home.component';
-import { LicensesComponent } from './content/licenses/licenses.component';
-import {
-  ClassementListComponent,
-} from './content/list/classement-list.component';
-import { DataChange } from './services/data-change';
-
 
 const routes: Routes = [
     {
         path: '',
-        component: ClassementHomeComponent,
-        canActivate: [DataChange],
+        loadChildren: () => import('./content/home/classement-home.module').then(m => m.ClassementHomeModule),
     },
     {
         path: 'list',
-        component: ClassementListComponent,
-        canActivate: [DataChange],
+        loadChildren: () => import('./content/list/classement-list.module').then(m => m.ClassementListModule),
     },
     {
         path: 'licences',
-        component: LicensesComponent,
-        canActivate: [DataChange],
+        loadChildren: () => import('./content/licenses/licenses.module').then(m => m.LicensesModule),
     },
     {
-        path: 'new',
-        component: ClassementEditComponent,
-        canActivate: [DataChange],
-    },
-    {
-        path: 'edit/:id',
-        component: ClassementEditComponent,
-        canActivate: [DataChange],
+        path: 'edit',
+        loadChildren: () => import('./content/classement/classement.module').then(m => m.ClassementModule),
     },
 ];
 

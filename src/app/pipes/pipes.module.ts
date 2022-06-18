@@ -2,12 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { NumFormatPipe } from './numFormat';
 
-import { SharedModule } from '../share.module';
-
 
 @NgModule({
     declarations: [NumFormatPipe],
     exports: [NumFormatPipe],
-    imports: [SharedModule],
+    imports: [],
 })
 export class PipesModule {}

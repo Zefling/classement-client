@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
+import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogComponent } from './dialog.component';
 import { ImportJsonComponent } from './import-json.component';
@@ -7,8 +10,6 @@ import { InfoMessagesComponent } from './info-messages.component';
 import { LightDarkComponent } from './light-dark.component';
 import { LoadingComponent } from './loading.component';
 import { ThemeIconComponent } from './theme-icon.component';
-
-import { SharedModule } from '../share.module';
 
 
 @NgModule({
@@ -30,6 +31,6 @@ import { SharedModule } from '../share.module';
         ImportJsonComponent,
         LoadingComponent,
     ],
-    imports: [SharedModule],
+    imports: [CommonModule, TranslateModule],
 })
 export class ComponentsModule {}
