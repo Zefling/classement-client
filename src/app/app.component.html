@@ -28,6 +28,26 @@
             >
                 {{ 'menu.list' | translate }}
             </li>
+            <ng-container *ngIf="modeApi">
+                <li
+                    *ngIf="!userService.logged"
+                    routerLink="/user/login"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.login' | translate }}
+                </li>
+                <li
+                    *ngIf="userService.logged"
+                    routerLink="/user/profile"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.profile' | translate }}
+                </li>
+            </ng-container>
             <li
                 routerLink="/edit/new"
                 routerLinkActive="active"

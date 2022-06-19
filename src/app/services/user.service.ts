@@ -1,0 +1,97 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { TranslateService } from '@ngx-translate/core';
+
+import { Subject } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+
+import { Login, Message, MessageError } from '../content/user/user.interface';
+import { User } from '../interface';
+import { Utils } from '../tools/utils';
+
+
+@Injectable({ providedIn: 'root' })
+export class UserService {
+    afterLoggin = new Subject<void>();
+
+    logged = false;
+
+    user?: User;
+
+    token?: string;
+
+    constructor(private http: HttpClient, private router: Router, private translate: TranslateService) {}
+
+    initProfile(first: boolean = false): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.token = Utils.getCookie('x-token') || undefined;
+
+            if (this.token) {
+                this.http
+                    .get<Message<User>>(environment.api.path + 'api/user/current', {
+                        withCredentials: true,
+                        headers: new HttpHeaders({
+                            'X-AUTH-TOKEN': this.token ?? '',
+                            // 'Access-Control-Allow-Origin': '*',
+                            // 'Content-Type': 'application/json',
+                            // userLoginToken: 'Content-Type',
+                            // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                            // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                            // 'Access-Control-Allow-Credentials': 'false',
+                            // 'strict-origin-when-cross-origin': environment.api.domain,
+                        }),
+                    })
+                    .subscribe({
+                        next: result => {
+                            console.log('valide token', result.message);
+                            this.user = result.message;
+                            this.logged = true;
+                            resolve();
+                        },
+                        error: (result: HttpErrorResponse) => {
+                            console.error('invalide token', result);
+                            reject(
+                                this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode),
+                            );
+                        },
+                        complete: () => {
+                            this.afterLoggin.next();
+                        },
+                    });
+            }
+        });
+    }
+
+    login(username: string, password: string) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<Login>>(environment.api.path + 'api/login', {
+                    username: username,
+                    password: password,
+                })
+                .subscribe({
+                    next: result => {
+                        this.token = result.message.token;
+                        this.logged = true;
+
+                        Utils.setCookie('x-token', this.token);
+
+                        this.initProfile()
+                            .then(() => {
+                                resolve();
+                            })
+                            .catch(errorCode => {
+                                reject(this.translate.instant('error.api-code.' + errorCode));
+                            });
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('login', result);
+                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    },
+                });
+        });
+    }
+}

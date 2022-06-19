@@ -19,6 +19,10 @@ const routes: Routes = [
         path: 'edit',
         loadChildren: () => import('./content/classement/classement.module').then(m => m.ClassementModule),
     },
+    {
+        path: 'user',
+        loadChildren: () => import('./content/user/user.module').then(m => m.UserModule),
+    },
 ];
 
 @NgModule({

@@ -1,6 +1,22 @@
 import { TypeFile } from './services/global.service';
 
 
+export interface User {
+    classements: {
+        banner: string;
+        data: Data;
+        groupName: string;
+        name: string;
+        rankingId: string;
+        templateId: string;
+        dateCreate: Date;
+        dateChange: Date;
+    }[];
+    dateCreate: Date;
+    id: number;
+    username: string;
+}
+
 export interface FileHandle {
     file: File;
     target?: FileReader | null;

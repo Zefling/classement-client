@@ -4,6 +4,11 @@
 
 export const environment = {
     production: false,
+    api: {
+        active: true,
+        domain: 'localhost:8000',
+        path: 'http://localhost:8000/',
+    },
 };
 
 /*

@@ -4,6 +4,8 @@
     "home": "Accueil",
     "list": "Liste",
     "new": "Nouveau",
+    "login": "Connexion",
+    "profile": "Mon profil",
     "licences": "Licences"
   },
   "licenses": {
@@ -186,6 +188,31 @@
       "validate": "Valider"
     },
     "loading": "Chargement en cours…"
+  },
+  "user": {
+    "login": {
+      "title": "Me connecter",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "login": "Connexion",
+      "password.lost": "J'ai perdu mon mot de passe",
+      "singup": "Créer un compte",
+      "profile": "Mon profil"
+    }
+  },
+  "error.api-code": {
+    "1001": "Pas de nom d'utilisateur.",
+    "1002": "Pas de mot de passe.",
+    "1003": "Pas d'e-mail.",
+    "1010": "Jeton de connexion invalide.",
+    "2000": "Sauvegarde impossible : Contenu dubliqué.",
+    "3000": "Utilisateur non trouvé.",
+    "3001": "Permission impossible.",
+    "3101": "Classement non trouvé.",
+    "3102": "Pas de classement trouvé.",
+    "3003": "Jeton non trouvé.",
+    "4001": "Ce nom d'utilisateur existe déjà.",
+    "4002": "Ce email existe déjà."
   },
   "message": {
     "save": {

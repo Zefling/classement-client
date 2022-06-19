@@ -1,0 +1,25 @@
+<h1>{{ 'user.login.title' | translate }}</h1>
+
+<form class="form">
+    <label for="username">{{ 'user.login.username' | translate }}</label>
+    <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
+    <label for="password">{{ 'user.login.password' | translate }}</label>
+    <input id="password" type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" />
+
+    <div *ngIf="showError" class="error">
+        {{ showError }}
+    </div>
+
+    <div class="button">
+        <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
+    </div>
+</form>
+
+<div class="links">
+    <div>
+        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    </div>
+    <div>
+        <a routerLink="/user/singup">{{ 'user.login.singup' | translate }}</a>
+    </div>
+</div>

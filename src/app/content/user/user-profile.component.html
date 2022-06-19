@@ -1,0 +1,47 @@
+<h1>{{ 'user.login.profile' | translate }}</h1>
+
+<div *ngIf="user">
+    <div>Username : {{ user.username }}</div>
+    <div>Since : {{ user.dateCreate | date: 'dd/MM/yyyy HH:mm' }}</div>
+
+    <h2>Mes classements</h2>
+
+    <table *ngIf="user.classements?.length; else noResult">
+        <thead>
+            <tr>
+                <th class="title">{{ 'list.title.name' | translate }}</th>
+                <th class="category">{{ 'list.category.name' | translate }}</th>
+                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="groups">{{ 'list.count.group' | translate }}</th>
+                <th class="items">{{ 'list.count.item' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let classement of user.classements">
+                <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
+                <td class="category">
+                    {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                </td>
+                <td class="date">
+                    <span>{{ classement.dateCreate | date: 'dd/MM/yyyy' }}</span>
+                    <span>{{ classement.dateCreate | date: 'HH:mm' }}</span>
+                </td>
+                <td class="groups"></td>
+                <td class="datas"></td>
+                <td class="actions">
+                    <!-- <a [routerLink]="'/edit/' + classement.data.id">{{ 'list.action.edit' | translate }}</a>
+                    <a (click)="delete(classement.data)">{{ 'list.action.delete' | translate }}</a>
+                    <a (click)="clone(classement.data)">{{ 'list.action.clone' | translate }}</a> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noResult>
+        <p class="no-result">{{ 'list.no.result' | translate }}</p>
+        <p>
+            <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+        </p>
+    </ng-template>
+</div>

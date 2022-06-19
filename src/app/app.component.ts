@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from 'src/environments/environment';
+
 import { DialogComponent } from './components/dialog.component';
 import { GlobalService } from './services/global.service';
+import { UserService } from './services/user.service';
 
 
 const languages = [
@@ -27,9 +30,16 @@ export class AppComponent {
     @HostBinding('class.show-menu')
     asideOpen = false;
 
+    modeApi = environment.api?.active ?? false;
+
     private _route?: string;
 
-    constructor(private _translate: TranslateService, private _globalService: GlobalService, private _router: Router) {
+    constructor(
+        private _translate: TranslateService,
+        private _globalService: GlobalService,
+        private _router: Router,
+        public userService: UserService,
+    ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
         this._globalService.lang = this.selectedLang = l.length ? l[0].value : 'en';
@@ -39,6 +49,12 @@ export class AppComponent {
             this.warningExit.open();
             this._route = route;
         });
+
+        if (environment.api?.active) {
+            userService.initProfile(true).then(() => {
+                console.log('Auto logged !!');
+            });
+        }
     }
 
     toggleMenu() {

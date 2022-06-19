@@ -18,10 +18,14 @@ export class Utils {
         return JSON.parse(JSON.stringify(o));
     }
 
-    static getCookie(name: string): string | null {
+    static getCookie<T extends string>(name: string): T | null {
         const cookies = document.cookie;
         const parts = cookies.match(`(?!; )?${name}=([^;]*);?`);
-        return parts ? parts[1] : null;
+        return parts ? (parts[1] as T) : null;
+    }
+
+    static setCookie(name: string, value: string) {
+        document.cookie = `${name}=${value}`;
     }
 
     static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {

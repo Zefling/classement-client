@@ -26,22 +26,24 @@ export class LightDarkComponent {
 
     constructor(private renderer: Renderer2) {
         this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const theme = Utils.getCookie('theme') as DarkLight;
-        if (['dark', 'light'].includes(theme)) {
-            this.userShema = theme;
-        }
-        this.changeClass();
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            this.browserShema = event.matches ? 'dark' : 'light';
+        const theme = Utils.getCookie<DarkLight>('theme');
+        if (theme) {
+            if (['dark', 'light'].includes(theme)) {
+                this.userShema = theme;
+            }
             this.changeClass();
-        });
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                this.browserShema = event.matches ? 'dark' : 'light';
+                this.changeClass();
+            });
+        }
     }
 
     @HostListener('click')
     click() {
         this.userShema = this.thisCurrent() === 'light' ? 'dark' : 'light';
-        document.cookie = 'theme=' + this.userShema;
+        Utils.setCookie('theme', this.userShema);
         this.changeClass();
     }
 
