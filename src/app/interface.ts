@@ -1,17 +1,19 @@
 import { TypeFile } from './services/global.service';
 
 
+export interface Classement {
+    banner: string;
+    data: Data;
+    groupName: string;
+    name: string;
+    rankingId: string;
+    templateId: string;
+    dateCreate: Date;
+    dateChange: Date;
+}
+
 export interface User {
-    classements: {
-        banner: string;
-        data: Data;
-        groupName: string;
-        name: string;
-        rankingId: string;
-        templateId: string;
-        dateCreate: Date;
-        dateChange: Date;
-    }[];
+    classements: Classement[];
     dateCreate: Date;
     id: number;
     username: string;

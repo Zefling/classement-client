@@ -23,6 +23,7 @@ import { MessageService, MessageType } from 'src/app/components/info-messages.co
 import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
+import { UserService } from 'src/app/services/user.service';
 import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 
@@ -37,6 +38,9 @@ import { defaultOptions, defautGroup } from './classement-default';
 export class ClassementEditComponent implements OnDestroy, DoCheck {
     new = false;
     id?: string;
+
+    templateId?: string;
+    rankingId?: string;
 
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
@@ -62,11 +66,29 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private translate: TranslateService,
         private globalService: GlobalService,
         private messageService: MessageService,
+        private userService: UserService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] !== 'new') {
                     this.id = params['id'];
+
+                    // test in local
+                    if (this.userService.logged) {
+                        const classement = this.userService.user?.classements.find(e => e.rankingId === this.id);
+                        if (classement) {
+                            this.templateId = classement.rankingId;
+                            this.templateId = classement.templateId;
+
+                            this.options = { ...defaultOptions, ...classement.data.options };
+                            this.resetCache();
+                            this.groups = classement.data.groups;
+                            this.list = classement.data.list;
+                            this.globalService.fixImageSize(this.groups, this.list);
+                            return;
+                        }
+                    }
+
                     this.bdService
                         .loadLocal(params['id'])
                         .then(data => {

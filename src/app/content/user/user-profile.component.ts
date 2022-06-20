@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { User } from 'src/app/interface';
+import { Classement, User } from 'src/app/interface';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -33,5 +33,11 @@ export class UserProfileComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this.listener.forEach(e => e.unsubscribe());
+    }
+
+    delete(classement: Classement) {
+        this.userService.deleteClassement(classement.rankingId).then(() => {
+            this.user?.classements.splice(this.user?.classements.indexOf(classement), 1);
+        });
     }
 }

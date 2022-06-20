@@ -2,7 +2,7 @@
   "classement": "Classement",
   "menu": {
     "home": "ホーム",
-    "list": "リスト",
+    "list": "ローカルリスト",
     "new": "new",
     "licences": "ライセンス"
   },

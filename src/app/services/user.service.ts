@@ -30,37 +30,21 @@ export class UserService {
             this.token = Utils.getCookie('x-token') || undefined;
 
             if (this.token) {
-                this.http
-                    .get<Message<User>>(environment.api.path + 'api/user/current', {
-                        withCredentials: true,
-                        headers: new HttpHeaders({
-                            'X-AUTH-TOKEN': this.token ?? '',
-                            // 'Access-Control-Allow-Origin': '*',
-                            // 'Content-Type': 'application/json',
-                            // userLoginToken: 'Content-Type',
-                            // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                            // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                            // 'Access-Control-Allow-Credentials': 'false',
-                            // 'strict-origin-when-cross-origin': environment.api.domain,
-                        }),
-                    })
-                    .subscribe({
-                        next: result => {
-                            console.log('valide token', result.message);
-                            this.user = result.message;
-                            this.logged = true;
-                            resolve();
-                        },
-                        error: (result: HttpErrorResponse) => {
-                            console.error('invalide token', result);
-                            reject(
-                                this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode),
-                            );
-                        },
-                        complete: () => {
-                            this.afterLoggin.next();
-                        },
-                    });
+                this.http.get<Message<User>>(environment.api.path + 'api/user/current', this.header()).subscribe({
+                    next: result => {
+                        console.log('valide token', result.message);
+                        this.user = result.message;
+                        this.logged = true;
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('invalide token', result);
+                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    },
+                    complete: () => {
+                        this.afterLoggin.next();
+                    },
+                });
             }
         });
     }
@@ -93,5 +77,37 @@ export class UserService {
                     },
                 });
         });
+    }
+
+    deleteClassement(rankingId: string) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<void>>(environment.api.path + 'api/classement/' + rankingId, this.header())
+                .subscribe({
+                    next: _ => {
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('login', result);
+                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    },
+                });
+        });
+    }
+
+    private header(): {} {
+        return {
+            withCredentials: true,
+            headers: new HttpHeaders({
+                'X-AUTH-TOKEN': this.token ?? '',
+                // 'Access-Control-Allow-Origin': '*',
+                // 'Content-Type': 'application/json',
+                // userLoginToken: 'Content-Type',
+                // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                // 'Access-Control-Allow-Credentials': 'false',
+                // 'strict-origin-when-cross-origin': environment.api.domain,
+            }),
+        };
     }
 }
