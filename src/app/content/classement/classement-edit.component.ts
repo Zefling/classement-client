@@ -20,12 +20,13 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
-import { Data, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { Classement, Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { UserService } from 'src/app/services/user.service';
 import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
+import { environment } from 'src/environments/environment';
 
 import { defaultOptions, defautGroup } from './classement-default';
 
@@ -70,37 +71,29 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
-                if (params['id'] !== 'new') {
+                if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
 
-                    // test in local
-                    if (this.userService.logged) {
-                        const classement = this.userService.user?.classements.find(e => e.rankingId === this.id);
-                        if (classement) {
-                            this.templateId = classement.rankingId;
-                            this.templateId = classement.templateId;
-
-                            this.options = { ...defaultOptions, ...classement.data.options };
-                            this.resetCache();
-                            this.groups = classement.data.groups;
-                            this.list = classement.data.list;
-                            this.globalService.fixImageSize(this.groups, this.list);
-                            return;
-                        }
-                    }
-
-                    this.bdService
-                        .loadLocal(params['id'])
-                        .then(data => {
-                            this.options = { ...defaultOptions, ...data.infos.options };
-                            this.resetCache();
-                            this.groups = data.data.groups;
-                            this.list = data.data.list;
-                            this.globalService.fixImageSize(this.groups, this.list);
-                        })
-                        .catch(() => {
-                            this.router.navigate(['/edit', 'new']);
+                    if (environment.api?.active) {
+                        this.userService.isLogged().then(() => {
+                            const classement = this.userService.user?.classements.find(e => e.rankingId === this.id);
+                            if (classement) {
+                                this.loadServerClassement(classement);
+                            } else {
+                                debugger;
+                                this.userService
+                                    .getClassement(this.id!)
+                                    .then(classement => {
+                                        this.loadServerClassement(classement);
+                                    })
+                                    .catch(() => {
+                                        this.loadLocalClassement();
+                                    });
+                            }
                         });
+                    } else {
+                        this.loadLocalClassement();
+                    }
                 } else {
                     // reset all
                     this.new = true;
@@ -118,6 +111,31 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 }
             }),
         );
+    }
+
+    loadLocalClassement() {
+        this.bdService
+            .loadLocal(this.id!)
+            .then(data => {
+                this.options = { ...defaultOptions, ...data.infos.options };
+                this.resetCache();
+                this.groups = data.data.groups;
+                this.list = data.data.list;
+                this.globalService.fixImageSize(this.groups, this.list);
+            })
+            .catch(() => {
+                this.router.navigate(['/edit', 'new']);
+            });
+    }
+
+    loadServerClassement(classement: Classement) {
+        this.templateId = classement.rankingId;
+        this.templateId = classement.templateId;
+
+        this.options = { ...defaultOptions, ...classement.data.options };
+        this.resetCache();
+        this.groups = classement.data.groups;
+        this.list = classement.data.list;
     }
 
     ngDoCheck() {

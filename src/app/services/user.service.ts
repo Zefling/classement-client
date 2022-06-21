@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Login, Message, MessageError } from '../content/user/user.interface';
-import { User } from '../interface';
+import { Classement, User } from '../interface';
 import { Utils } from '../tools/utils';
 
 
@@ -24,6 +24,18 @@ export class UserService {
     token?: string;
 
     constructor(private http: HttpClient, private router: Router, private translate: TranslateService) {}
+
+    isLogged(): Promise<void> {
+        return new Promise<void>(resolve => {
+            if (this.logged) {
+                resolve();
+            } else {
+                this.afterLoggin.subscribe(() => {
+                    resolve();
+                });
+            }
+        });
+    }
 
     initProfile(first: boolean = false): Promise<void> {
         return new Promise<void>((resolve, reject) => {
@@ -49,7 +61,7 @@ export class UserService {
         });
     }
 
-    login(username: string, password: string) {
+    login(username: string, password: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
                 .post<Message<Login>>(environment.api.path + 'api/login', {
@@ -79,10 +91,26 @@ export class UserService {
         });
     }
 
-    deleteClassement(rankingId: string) {
+    getClassement(rankingId: string): Promise<Classement> {
+        return new Promise<Classement>((resolve, reject) => {
+            this.http
+                .get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('login', result);
+                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    },
+                });
+        });
+    }
+
+    deleteClassement(rankingId: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<void>>(environment.api.path + 'api/classement/' + rankingId, this.header())
+                .delete<Message<void>>(environment.api.path + 'api/classement/' + rankingId, this.header())
                 .subscribe({
                     next: _ => {
                         resolve();
