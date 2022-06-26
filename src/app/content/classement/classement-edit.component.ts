@@ -80,7 +80,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             if (classement) {
                                 this.loadServerClassement(classement);
                             } else {
-                                debugger;
                                 this.userService
                                     .getClassement(this.id!)
                                     .then(classement => {

@@ -4,7 +4,7 @@ import { TypeFile } from './services/global.service';
 export interface Classement {
     banner: string;
     data: Data;
-    groupName: string;
+    category: string;
     name: string;
     rankingId: string;
     templateId: string;

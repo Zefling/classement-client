@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -95,6 +95,24 @@ export class UserService {
         return new Promise<Classement>((resolve, reject) => {
             this.http
                 .get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('login', result);
+                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    },
+                });
+        });
+    }
+
+    getClassementsByName(name: string): Promise<Classement[]> {
+        return new Promise<Classement[]>((resolve, reject) => {
+            let params = new HttpParams().set('name', name);
+
+            this.http
+                .get<Message<Classement[]>>(environment.api.path + 'api/classements/', { params: params })
                 .subscribe({
                     next: result => {
                         resolve(result.message);

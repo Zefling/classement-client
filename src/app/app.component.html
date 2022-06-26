@@ -47,6 +47,15 @@
                 >
                     {{ 'menu.profile' | translate }}
                 </li>
+                <li
+                    *ngIf="userService.logged"
+                    routerLink="/navigate"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.navigate' | translate }}
+                </li>
             </ng-container>
             <li
                 routerLink="/edit/new"

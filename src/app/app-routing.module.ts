@@ -23,6 +23,11 @@ const routes: Routes = [
         path: 'user',
         loadChildren: () => import('./content/user/user.module').then(m => m.UserModule),
     },
+    {
+        path: 'navigate',
+        loadChildren: () =>
+            import('./content/navigate/classement-navigate.module').then(m => m.ClassementNavigateModule),
+    },
 ];
 
 @NgModule({

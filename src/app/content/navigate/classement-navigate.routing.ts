@@ -4,21 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { APIRequired } from 'src/app/services/api-required';
 import { DataChange } from 'src/app/services/data-change';
 
-import { UserLoginComponent } from './user-login.component';
-import { UserProfileComponent } from './user-profile.component';
+import { ClassementNavigateComponent } from './classement-navigate.component';
 
 
 const routes: Routes = [
     {
-        path: 'login',
+        path: '',
         pathMatch: 'full',
-        component: UserLoginComponent,
-        canActivate: [DataChange, APIRequired],
-    },
-    {
-        path: 'profile',
-        pathMatch: 'full',
-        component: UserProfileComponent,
+        component: ClassementNavigateComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];
@@ -27,4 +20,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class UserRoutingModule {}
+export class ClassementNavigatetRoutingModule {}
