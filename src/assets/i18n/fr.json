@@ -201,6 +201,9 @@
       "profile": "Mon profil"
     }
   },
+  "navigate": {
+    "search": "Rechercher"
+  },
   "error.api-code": {
     "1001": "Pas de nom d'utilisateur.",
     "1002": "Pas de mot de passe.",

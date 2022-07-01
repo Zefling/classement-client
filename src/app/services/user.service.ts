@@ -107,21 +107,39 @@ export class UserService {
         });
     }
 
-    getClassementsByName(name: string): Promise<Classement[]> {
+    getClassementsByOptions(options: { name?: string; category?: string }): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
-            let params = new HttpParams().set('name', name);
+            let params = new HttpParams();
+            for (const i in options) {
+                if ((options as any)[i] !== undefined) {
+                    params = params.set(i, (options as any)[i]);
+                }
+            }
+            console.log('options', options, 'params', params);
 
-            this.http
-                .get<Message<Classement[]>>(environment.api.path + 'api/classements/', { params: params })
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                    },
-                });
+            this.http.get<Message<Classement[]>>(environment.api.path + 'api/classements', { params }).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('login', result);
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
+        });
+    }
+
+    getClassementsHome(): Promise<Classement[]> {
+        return new Promise<Classement[]>((resolve, reject) => {
+            this.http.get<Message<Classement[]>>(environment.api.path + 'api/categories/home').subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('login', result);
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
         });
     }
 

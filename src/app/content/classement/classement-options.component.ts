@@ -24,8 +24,6 @@ export class ClassementOptionsComponent {
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
 
-    constructor() {}
-
     switchOptions() {
         if (this.options) {
             this.options.showAdvancedOptions = !this.options.showAdvancedOptions;
