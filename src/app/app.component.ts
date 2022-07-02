@@ -32,22 +32,22 @@ export class AppComponent {
 
     modeApi = environment.api?.active ?? false;
 
-    private _route?: string;
+    private route?: string;
 
     constructor(
-        private _translate: TranslateService,
-        private _globalService: GlobalService,
-        private _router: Router,
+        private translate: TranslateService,
+        private globalService: GlobalService,
+        private router: Router,
         public userService: UserService,
     ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
-        this._globalService.lang = this.selectedLang = l.length ? l[0].value : 'en';
+        this.globalService.lang = this.selectedLang = l.length ? l[0].value : 'en';
         this.updateLanguage(this.selectedLang);
 
-        this._globalService.onForceExit.subscribe((route?: string) => {
+        this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit.open();
-            this._route = route;
+            this.route = route;
         });
 
         if (environment.api?.active) {
@@ -63,14 +63,23 @@ export class AppComponent {
 
     updateLanguage(lang: string) {
         console.log('Update language: ' + lang);
-        this._translate.use(lang);
-        this._globalService.lang = lang;
+        this.translate.use(lang);
+        this.globalService.lang = lang;
+    }
+
+    logout() {
+        if (environment.api?.active) {
+            this.userService.isLogged().then(() => {
+                console.log('logout');
+                this.userService.logout().then(() => {});
+            });
+        }
     }
 
     exit(ok: boolean) {
         if (ok) {
-            this._globalService.withChange = false;
-            this._router.navigate([this._route]);
+            this.globalService.withChange = false;
+            this.router.navigate([this.route]);
         }
         this.warningExit.close();
     }

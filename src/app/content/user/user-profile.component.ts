@@ -26,7 +26,14 @@ export class UserProfileComponent implements OnDestroy {
                     this.user = this.userService.user;
                 }
             }),
+            this.userService.afterLogout.subscribe(() => {
+                this.router.navigate(['/user/login']);
+            }),
         );
+
+        if (!this.userService.token) {
+            this.router.navigate(['/user/login']);
+        }
 
         this.user = this.userService.user;
     }

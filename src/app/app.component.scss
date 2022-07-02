@@ -112,9 +112,17 @@ aside {
         }
     }
 
+    .logout {
+        margin-top: auto;
+
+        & ~ * {
+            margin-top: 5px;
+        }
+    }
+
     .licences {
         margin-top: auto;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     .actions-mobile {

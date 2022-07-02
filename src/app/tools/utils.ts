@@ -28,6 +28,10 @@ export class Utils {
         document.cookie = `${name}=${value}`;
     }
 
+    static removeCookie(name: string) {
+        document.cookie = `${name}=; Max-Age=0`;
+    }
+
     static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
         return Utils.containClasses(element, cssClass.trim().split(/\s+/))
             ? element

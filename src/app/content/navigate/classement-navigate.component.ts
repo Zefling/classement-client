@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Classement } from 'src/app/interface';
 import { UserService } from 'src/app/services/user.service';
@@ -21,7 +22,7 @@ export class ClassementNavigateComponent {
 
     isCatagoryList = false;
 
-    constructor(private userSerice: UserService) {
+    constructor(private userSerice: UserService, private router: Router) {
         this.showChatList();
     }
 
@@ -47,5 +48,7 @@ export class ClassementNavigateComponent {
         });
     }
 
-    openClassement(classement: Classement) {}
+    openClassement(classement: Classement) {
+        this.router.navigate(['edit', classement.rankingId]);
+    }
 }

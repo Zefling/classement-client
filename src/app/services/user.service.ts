@@ -16,6 +16,7 @@ import { Utils } from '../tools/utils';
 @Injectable({ providedIn: 'root' })
 export class UserService {
     afterLoggin = new Subject<void>();
+    afterLogout = new Subject<void>();
 
     logged = false;
 
@@ -85,9 +86,30 @@ export class UserService {
                     },
                     error: (result: HttpErrorResponse) => {
                         console.error('login', result);
+                        this.afterLogout.next();
                         reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
                     },
                 });
+        });
+    }
+
+    logout() {
+        return new Promise<void>((resolve, reject) => {
+            this.http.delete<Message<Login>>(environment.api.path + 'api/logout', this.header()).subscribe({
+                next: () => {
+                    this.token = undefined;
+                    this.logged = false;
+
+                    Utils.removeCookie('x-token');
+
+                    this.afterLogout.next();
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('logout', result);
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
         });
     }
 
