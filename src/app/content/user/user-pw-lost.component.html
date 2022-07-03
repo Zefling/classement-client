@@ -1,0 +1,25 @@
+<h1>{{ 'user.password.lost.title' | translate }}</h1>
+
+<form class="form">
+    <p>{{ 'user.password.lost.info' | translate }}</p>
+
+    <label for="email">{{ 'user.login.email' | translate }}</label>
+    <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
+
+    <div *ngIf="showError" class="error">
+        {{ showError }}
+    </div>
+
+    <div class="button">
+        <button (click)="submit()">{{ 'user.password.lost.action' | translate }}</button>
+    </div>
+</form>
+
+<div class="links">
+    <div>
+        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    </div>
+    <div>
+        <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+    </div>
+</div>

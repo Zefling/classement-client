@@ -4,6 +4,10 @@
     "home": "Home",
     "list": "Local list",
     "new": "New",
+    "login": "Login",
+    "profile": "My profile",
+    "navigate": "Navigate",
+    "logout": "Logout",
     "licences": "Licenses"
   },
   "home": {
@@ -16,7 +20,7 @@
     "title": "Third-Party licenses overview"
   },
   "list": {
-    "intro": "List of tierlists in memory.",
+    "intro": "List of tierlists in memory in your Interne browser.",
     "title": {
       "name": "Title",
       "undefined": "No title"

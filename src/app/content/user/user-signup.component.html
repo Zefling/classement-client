@@ -1,0 +1,32 @@
+<h1>{{ 'user.signup.title' | translate }}</h1>
+
+<form class="form">
+    <label for="username">{{ 'user.login.username' | translate }}</label>
+    <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
+
+    <label for="password">{{ 'user.login.password' | translate }}</label>
+    <input id="password" type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" />
+
+    <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
+    <input id="password2" type="password" [(ngModel)]="password2" [ngModelOptions]="{ standalone: true }" />
+
+    <label for="email">{{ 'user.login.password' | translate }}</label>
+    <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
+
+    <ul *ngIf="showError?.length" class="error">
+        <li *ngFor="let error of showError">{{ error }}</li>
+    </ul>
+
+    <div class="button">
+        <button (click)="submit()">{{ 'user.signup.action' | translate }}</button>
+    </div>
+</form>
+
+<div class="links">
+    <div>
+        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    </div>
+    <div>
+        <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+    </div>
+</div>

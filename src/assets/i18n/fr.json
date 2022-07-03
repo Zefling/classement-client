@@ -20,7 +20,7 @@
     "source.gpl3": "Licence publique générale GNU (GNU GPL), version 3"
   },
   "list": {
-    "intro": "Liste des Classements en mémoire.",
+    "intro": "Liste des Classements en mémoire dans votre navigateur Internet.",
     "title": {
       "name": "Titre",
       "undefined": "Sans titre"
@@ -196,28 +196,50 @@
       "title": "Me connecter",
       "username": "Nom d'utilisateur",
       "password": "Mot de passe",
+      "password.bis": "Mot de passe (confirmation)",
       "login": "Connexion",
+      "email": "Couriel",
       "password.lost": "J'ai perdu mon mot de passe",
-      "singup": "Créer un compte",
+      "signup": "Créer un compte",
       "profile": "Mon profil"
+    },
+    "password.lost": {
+      "title": "J'ai perdu mon mot de passe",
+      "info": "Envoyer un couriel de renouvellement de mot de passe.",
+      "action": "Envoyer"
+    },
+    "signup": {
+      "title": "Créer mon compte",
+      "action": "Envoyer"
     }
   },
   "navigate": {
     "search": "Rechercher"
   },
-  "error.api-code": {
-    "1001": "Pas de nom d'utilisateur.",
-    "1002": "Pas de mot de passe.",
-    "1003": "Pas d'e-mail.",
-    "1010": "Jeton de connexion invalide.",
-    "2000": "Sauvegarde impossible : Contenu dubliqué.",
-    "3000": "Utilisateur non trouvé.",
-    "3001": "Permission impossible.",
-    "3101": "Classement non trouvé.",
-    "3102": "Pas de classement trouvé.",
-    "3003": "Jeton non trouvé.",
-    "4001": "Ce nom d'utilisateur existe déjà.",
-    "4002": "Ce email existe déjà."
+  "error": {
+    "api-code": {
+      "1001": "Pas de nom d'utilisateur.",
+      "1002": "Pas de mot de passe.",
+      "1003": "Pas d'e-mail.",
+      "1010": "Jeton de connexion invalide.",
+      "2000": "Sauvegarde impossible : Contenu dubliqué.",
+      "3000": "Utilisateur non trouvé.",
+      "3001": "Permission impossible.",
+      "3101": "Classement non trouvé.",
+      "3102": "Pas de classement trouvé.",
+      "3003": "Jeton non trouvé.",
+      "4001": "Ce nom d'utilisateur existe déjà.",
+      "4002": "Ce email existe déjà."
+    },
+    "pw.duplicate": "Les mots des passe ne sont pas itendiques.",
+    "owasp": {
+      "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
+      "The password must be fewer than * characters.": "Le mot de passe doit faire au moins % caractères.",
+      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenur au moins une minuscile.",
+      "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenur au moins une majuscule.",
+      "The password must contain at least one number.": "Le mot de passe doit contenur au moins un chiffre.",
+      "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,)."
+    }
   },
   "message": {
     "save": {

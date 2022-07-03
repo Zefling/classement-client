@@ -6,6 +6,8 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
+import { UserPwLostComponent } from './user-pw-lost.component';
+import { UserSignupComponent } from './user-signup.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,18 @@ const routes: Routes = [
         path: 'profile',
         pathMatch: 'full',
         component: UserProfileComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'sign-up',
+        pathMatch: 'full',
+        component: UserSignupComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'password-lost',
+        pathMatch: 'full',
+        component: UserPwLostComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];
