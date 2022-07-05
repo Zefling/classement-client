@@ -238,7 +238,8 @@
       "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenur au moins une minuscile.",
       "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenur au moins une majuscule.",
       "The password must contain at least one number.": "Le mot de passe doit contenur au moins un chiffre.",
-      "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,)."
+      "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,).",
+      "The password may not contain sequences of three or more repeated characters.": "Le mot de passe ne doit pas contenir de séquence de 3 caractères ou plus."
     }
   },
   "message": {

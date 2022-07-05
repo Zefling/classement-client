@@ -1,17 +1,28 @@
 <h1>{{ 'user.signup.title' | translate }}</h1>
 
 <form class="form">
-    <label for="username">{{ 'user.login.username' | translate }}</label>
-    <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
+    <ng-container [formGroup]="profileForm">
+        <label for="username">{{ 'user.login.username' | translate }}</label>
+        <input id="username" type="text" formControlName="username" />
 
-    <label for="password">{{ 'user.login.password' | translate }}</label>
-    <input id="password" type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" />
+        <label for="password">{{ 'user.login.password' | translate }}</label>
+        <input id="password" type="password" formControlName="password" />
+        <div class="level-strong">
+            <ng-container *ngIf="!strong">
+                <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
+            </ng-container>
+            <span class="strong" *ngIf="strong"></span>
+        </div>
 
-    <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
-    <input id="password2" type="password" [(ngModel)]="password2" [ngModelOptions]="{ standalone: true }" />
+        <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
+        <input id="password2" type="password" formControlName="password2" />
+        <div class="level-strong">
+            <span class="strong" *ngIf="confirm"></span>
+        </div>
 
-    <label for="email">{{ 'user.login.password' | translate }}</label>
-    <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
+        <label for="email">{{ 'user.login.password' | translate }}</label>
+        <input id="email" type="email" formControlName="email" />
+    </ng-container>
 
     <ul *ngIf="showError?.length" class="error">
         <li *ngFor="let error of showError">{{ error }}</li>

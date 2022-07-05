@@ -1,10 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import owasp from 'owasp-password-strength-test';
-import { Subscription } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,15 +16,22 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['./user-signup.component.scss'],
 })
 export class UserSignupComponent implements OnDestroy {
-    username = '';
-    password = '';
-    password2 = '';
-    email = '';
+    profileForm: FormGroup;
     showError: string[] = [];
+    passedTests: number[] = [];
+    strong = false;
+    confirm = false;
 
     listener: Subscription[] = [];
 
     constructor(private router: Router, private userService: UserService, private translate: TranslateService) {
+        this.profileForm = new FormGroup({
+            username: new FormControl(''),
+            password: new FormControl(''),
+            password2: new FormControl(''),
+            email: new FormControl(''),
+        });
+
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (this.userService.logged) {
@@ -32,9 +40,26 @@ export class UserSignupComponent implements OnDestroy {
             }),
         );
 
+        this.profileForm
+            .get('username')
+            ?.valueChanges.pipe(debounceTime(500))
+            .subscribe(value => {
+                console.log('username', value);
+            });
+
+        this.profileForm.get('password')?.valueChanges.subscribe(value => {
+            const test = owasp.test(value);
+            console.log('test', test);
+            this.passedTests = test.passedTests;
+            this.strong = test.strong || test.isPassphrase;
+        });
+        this.profileForm.get('password2')?.valueChanges.subscribe(value => {
+            this.confirm = this.strong && this.profileForm.get('password')?.value === value;
+        });
+
         owasp.config({
             allowPassphrases: true,
-            minLength: 8,
+            minLength: 10,
             minPhraseLength: 20,
             minOptionalTestsToPass: 4,
         });
@@ -45,11 +70,13 @@ export class UserSignupComponent implements OnDestroy {
     }
 
     submit() {
-        const test = owasp.test(this.password);
+        const value = this.profileForm.value;
+
+        const test = owasp.test(value.password);
 
         this.showError = [];
 
-        if (this.password !== this.password2) {
+        if (value.password !== value.password2) {
             this.showError.push(this.translate.instant('error.pw.duplicate'));
         }
         if (test.errors?.length) {

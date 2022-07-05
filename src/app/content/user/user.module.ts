@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/share.module';
 
@@ -17,7 +18,7 @@ import { UserRoutingModule } from './user.routing';
         UserSignupComponent,
         UserPwLostComponent,
     ],
-    imports: [SharedModule, UserRoutingModule],
+    imports: [SharedModule, UserRoutingModule, ReactiveFormsModule],
     providers: [],
     exports: [],
 })
