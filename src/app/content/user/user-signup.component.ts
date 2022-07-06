@@ -17,6 +17,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserSignupComponent implements OnDestroy {
     profileForm: FormGroup;
+    usernameExist = false;
+    emailExist = false;
     showError: string[] = [];
     passedTests: number[] = [];
     strong = false;
@@ -44,18 +46,36 @@ export class UserSignupComponent implements OnDestroy {
             .get('username')
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
-                console.log('username', value);
+                this.userService
+                    .test('username', value)
+                    .then(test => {
+                        this.usernameExist = test;
+                    })
+                    .catch(e => {
+                        this.showError = e;
+                    });
             });
-
         this.profileForm.get('password')?.valueChanges.subscribe(value => {
             const test = owasp.test(value);
-            console.log('test', test);
             this.passedTests = test.passedTests;
             this.strong = test.strong || test.isPassphrase;
         });
         this.profileForm.get('password2')?.valueChanges.subscribe(value => {
             this.confirm = this.strong && this.profileForm.get('password')?.value === value;
         });
+        this.profileForm
+            .get('email')
+            ?.valueChanges.pipe(debounceTime(500))
+            .subscribe(value => {
+                this.userService
+                    .test('email', value)
+                    .then(test => {
+                        this.usernameExist = test;
+                    })
+                    .catch(e => {
+                        this.showError = e;
+                    });
+            });
 
         owasp.config({
             allowPassphrases: true,
@@ -76,6 +96,12 @@ export class UserSignupComponent implements OnDestroy {
 
         this.showError = [];
 
+        if (this.usernameExist) {
+            this.showError.push(this.translate.instant('error.username.exist'));
+        }
+        if (this.emailExist) {
+            this.showError.push(this.translate.instant('error.email.exist'));
+        }
         if (value.password !== value.password2) {
             this.showError.push(this.translate.instant('error.pw.duplicate'));
         }

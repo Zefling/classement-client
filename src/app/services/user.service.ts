@@ -113,6 +113,22 @@ export class UserService {
         });
     }
 
+    test(type: 'username' | 'email', value: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            let param: any = {};
+            param[type] = value;
+            this.http.post<Message<boolean>>(environment.api.path + 'api/test', param).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('login', result);
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
+        });
+    }
+
     getClassement(rankingId: string): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
             this.http

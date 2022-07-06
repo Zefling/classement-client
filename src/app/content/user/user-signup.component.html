@@ -3,7 +3,10 @@
 <form class="form">
     <ng-container [formGroup]="profileForm">
         <label for="username">{{ 'user.login.username' | translate }}</label>
-        <input id="username" type="text" formControlName="username" />
+        <input id="username" type="text" formControlName="username" #username />
+        <div class="level-strong">
+            <span class="strong" [class.error-block]="usernameExist" *ngIf="username.value"></span>
+        </div>
 
         <label for="password">{{ 'user.login.password' | translate }}</label>
         <input id="password" type="password" formControlName="password" />
@@ -20,8 +23,11 @@
             <span class="strong" *ngIf="confirm"></span>
         </div>
 
-        <label for="email">{{ 'user.login.password' | translate }}</label>
-        <input id="email" type="email" formControlName="email" />
+        <label for="email">{{ 'user.login.email' | translate }}</label>
+        <input id="email" type="email" formControlName="email" #email />
+        <div class="level-strong">
+            <span class="strong" [class.error-block]="emailExist" *ngIf="email.value"></span>
+        </div>
     </ng-container>
 
     <ul *ngIf="showError?.length" class="error">

@@ -231,6 +231,8 @@
       "4001": "Ce nom d'utilisateur existe déjà.",
       "4002": "Ce email existe déjà."
     },
+    "username.exist": "Ce nom d'utilisateur existe déjà.",
+    "email.exist": "Cet email a déjà été utilisé.",
     "pw.duplicate": "Les mots des passe ne sont pas itendiques.",
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
