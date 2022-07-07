@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Classement, User } from 'src/app/interface';
-import { UserService } from 'src/app/services/user.service';
+import { APIClassementService } from 'src/app/services/api.classement.service';
+import { APIUserService } from 'src/app/services/api.user.service';
 
 
 @Component({
@@ -17,7 +18,11 @@ export class UserProfileComponent implements OnDestroy {
 
     listener: Subscription[] = [];
 
-    constructor(private router: Router, private userService: UserService) {
+    constructor(
+        private router: Router,
+        private userService: APIUserService,
+        private classementService: APIClassementService,
+    ) {
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (!this.userService.logged) {
@@ -43,7 +48,7 @@ export class UserProfileComponent implements OnDestroy {
     }
 
     delete(classement: Classement) {
-        this.userService.deleteClassement(classement.rankingId).then(() => {
+        this.classementService.deleteClassement(classement.rankingId).then(() => {
             this.user?.classements.splice(this.user?.classements.indexOf(classement), 1);
         });
     }

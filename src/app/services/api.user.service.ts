@@ -1,6 +1,5 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,13 +7,15 @@ import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
+import { APICommon } from './api.common';
+
 import { Login, Message, MessageError } from '../content/user/user.interface';
-import { Classement, User } from '../interface';
+import { User } from '../interface';
 import { Utils } from '../tools/utils';
 
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class APIUserService extends APICommon {
     afterLoggin = new Subject<void>();
     afterLogout = new Subject<void>();
 
@@ -24,7 +25,9 @@ export class UserService {
 
     token?: string;
 
-    constructor(private http: HttpClient, private router: Router, private translate: TranslateService) {}
+    constructor(private http: HttpClient, private translate: TranslateService) {
+        super();
+    }
 
     isLogged(): Promise<void> {
         return new Promise<void>(resolve => {
@@ -38,7 +41,7 @@ export class UserService {
         });
     }
 
-    initProfile(first: boolean = false): Promise<void> {
+    initProfile(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.token = Utils.getCookie('x-token') || undefined;
 
@@ -127,89 +130,5 @@ export class UserService {
                 },
             });
         });
-    }
-
-    getClassement(rankingId: string): Promise<Classement> {
-        return new Promise<Classement>((resolve, reject) => {
-            this.http
-                .get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId, this.header())
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                    },
-                });
-        });
-    }
-
-    getClassementsByOptions(options: { name?: string; category?: string }): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
-            let params = new HttpParams();
-            for (const i in options) {
-                if ((options as any)[i] !== undefined) {
-                    params = params.set(i, (options as any)[i]);
-                }
-            }
-            console.log('options', options, 'params', params);
-
-            this.http.get<Message<Classement[]>>(environment.api.path + 'api/classements', { params }).subscribe({
-                next: result => {
-                    resolve(result.message);
-                },
-                error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                },
-            });
-        });
-    }
-
-    getClassementsHome(): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
-            this.http.get<Message<Classement[]>>(environment.api.path + 'api/categories/home').subscribe({
-                next: result => {
-                    resolve(result.message);
-                },
-                error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                },
-            });
-        });
-    }
-
-    deleteClassement(rankingId: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            this.http
-                .delete<Message<void>>(environment.api.path + 'api/classement/' + rankingId, this.header())
-                .subscribe({
-                    next: _ => {
-                        resolve();
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                    },
-                });
-        });
-    }
-
-    private header(): {} {
-        return {
-            withCredentials: true,
-            headers: new HttpHeaders({
-                'X-AUTH-TOKEN': this.token ?? '',
-                // 'Access-Control-Allow-Origin': '*',
-                // 'Content-Type': 'application/json',
-                // userLoginToken: 'Content-Type',
-                // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                // 'Access-Control-Allow-Credentials': 'false',
-                // 'strict-origin-when-cross-origin': environment.api.domain,
-            }),
-        };
     }
 }

@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 
 import { DialogComponent } from './components/dialog.component';
+import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
-import { UserService } from './services/user.service';
 
 
 const languages = [
@@ -38,7 +38,7 @@ export class AppComponent {
         private translate: TranslateService,
         private globalService: GlobalService,
         private router: Router,
-        public userService: UserService,
+        public userService: APIUserService,
     ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
@@ -51,7 +51,7 @@ export class AppComponent {
         });
 
         if (environment.api?.active) {
-            userService.initProfile(true).then(() => {
+            userService.initProfile().then(() => {
                 console.log('Auto logged !!');
             });
         }

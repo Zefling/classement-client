@@ -21,9 +21,10 @@ import { DialogComponent } from 'src/app/components/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Classement, Data, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { APIClassementService } from 'src/app/services/api.classement.service';
+import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
-import { UserService } from 'src/app/services/user.service';
 import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
@@ -67,7 +68,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private translate: TranslateService,
         private globalService: GlobalService,
         private messageService: MessageService,
-        private userService: UserService,
+        private userService: APIUserService,
+        private classementService: APIClassementService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -80,7 +82,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             if (classement) {
                                 this.loadServerClassement(classement);
                             } else {
-                                this.userService
+                                this.classementService
                                     .getClassement(this.id!)
                                     .then(classement => {
                                         this.loadServerClassement(classement);

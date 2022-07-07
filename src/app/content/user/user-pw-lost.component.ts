@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { UserService } from 'src/app/services/user.service';
+import { APIUserService } from 'src/app/services/api.user.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class UserPwLostComponent implements OnDestroy {
 
     listener: Subscription[] = [];
 
-    constructor(private router: Router, private userService: UserService) {
+    constructor(private router: Router, private userService: APIUserService) {
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (this.userService.logged) {

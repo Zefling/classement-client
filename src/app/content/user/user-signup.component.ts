@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import owasp from 'owasp-password-strength-test';
 import { debounceTime, Subscription } from 'rxjs';
 
-import { UserService } from 'src/app/services/user.service';
+import { APIUserService } from 'src/app/services/api.user.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class UserSignupComponent implements OnDestroy {
 
     listener: Subscription[] = [];
 
-    constructor(private router: Router, private userService: UserService, private translate: TranslateService) {
+    constructor(private router: Router, private userService: APIUserService, private translate: TranslateService) {
         this.profileForm = new FormGroup({
             username: new FormControl(''),
             password: new FormControl(''),
@@ -115,7 +115,7 @@ export class UserSignupComponent implements OnDestroy {
 
         if (!this.showError.length) {
             // this.userService
-            //     .login(this.username, this.password)
+            //     .signup(value.username, value.password, value.email)
             //     .then(() => {
             //         this.router.navigate(['/user/profile']);
             //     })
