@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import owasp from 'owasp-password-strength-test';
 import { debounceTime, Subscription } from 'rxjs';
 
+import { MessageService } from 'src/app/components/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 
@@ -26,7 +27,12 @@ export class UserSignupComponent implements OnDestroy {
 
     listener: Subscription[] = [];
 
-    constructor(private router: Router, private userService: APIUserService, private translate: TranslateService) {
+    constructor(
+        private router: Router,
+        private userService: APIUserService,
+        private translate: TranslateService,
+        private messageService: MessageService,
+    ) {
         this.profileForm = new FormGroup({
             username: new FormControl(''),
             password: new FormControl(''),
@@ -70,7 +76,7 @@ export class UserSignupComponent implements OnDestroy {
                 this.userService
                     .test('email', value)
                     .then(test => {
-                        this.usernameExist = test;
+                        this.emailExist = test;
                     })
                     .catch(e => {
                         this.showError = e;
@@ -114,14 +120,15 @@ export class UserSignupComponent implements OnDestroy {
         }
 
         if (!this.showError.length) {
-            // this.userService
-            //     .signup(value.username, value.password, value.email)
-            //     .then(() => {
-            //         this.router.navigate(['/user/profile']);
-            //     })
-            //     .catch(e => {
-            //         this.showError = e;
-            //     });
+            this.userService
+                .signup(value.username, value.password, value.email)
+                .then(() => {
+                    this.messageService.addMessage(this.translate.instant('message.user.singup.succes'));
+                    this.router.navigate(['/user/login']);
+                })
+                .catch(e => {
+                    this.showError = e;
+                });
         }
     }
 }

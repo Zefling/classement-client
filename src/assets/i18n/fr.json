@@ -15,9 +15,13 @@
   },
   "home": {
     "intro": "Application web pour faire un classement par images.",
-    "source.code": "Code source",
-    "source.license": "Licence",
-    "source.gpl3": "Licence publique générale GNU (GNU GPL), version 3"
+    "source": {
+      "code": "Code source",
+      "license": "Licence",
+      "gpl3": "Licence publique générale GNU (GNU GPL), version 3",
+      "client": "Client",
+      "server": "Serveur"
+    }
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet.",
@@ -265,6 +269,9 @@
     },
     "add": {
       "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
+    },
+    "user.singup": {
+      "succes": "😊 Utilisateur créé."
     }
   }
 }

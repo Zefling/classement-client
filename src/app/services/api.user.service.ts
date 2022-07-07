@@ -19,7 +19,7 @@ export class APIUserService extends APICommon {
     afterLoggin = new Subject<void>();
     afterLogout = new Subject<void>();
 
-    logged = false;
+    logged?: boolean;
 
     user?: User;
 
@@ -31,7 +31,7 @@ export class APIUserService extends APICommon {
 
     isLogged(): Promise<void> {
         return new Promise<void>(resolve => {
-            if (this.logged) {
+            if (this.logged !== undefined) {
                 resolve();
             } else {
                 this.afterLoggin.subscribe(() => {
@@ -55,6 +55,7 @@ export class APIUserService extends APICommon {
                     },
                     error: (result: HttpErrorResponse) => {
                         console.error('invalide token', result);
+                        this.logged = false;
                         reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
                     },
                     complete: () => {
@@ -65,34 +66,46 @@ export class APIUserService extends APICommon {
         });
     }
 
-    login(username: string, password: string): Promise<void> {
+    signup(username: string, password: string, email: string) {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(environment.api.path + 'api/login', {
-                    username: username,
-                    password: password,
-                })
+                .post<Message<Login>>(environment.api.path + 'api/signup', { username, password, email })
                 .subscribe({
                     next: result => {
-                        this.token = result.message.token;
-                        this.logged = true;
-
-                        Utils.setCookie('x-token', this.token);
-
-                        this.initProfile()
-                            .then(() => {
-                                resolve();
-                            })
-                            .catch(errorCode => {
-                                reject(this.translate.instant('error.api-code.' + errorCode));
-                            });
+                        console.log(result);
+                        resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        this.afterLogout.next();
+                        console.error('signup', result);
                         reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
                     },
                 });
+        });
+    }
+
+    login(username: string, password: string): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.http.post<Message<Login>>(environment.api.path + 'api/login', { username, password }).subscribe({
+                next: result => {
+                    this.token = result.message.token;
+                    this.logged = true;
+
+                    Utils.setCookie('x-token', this.token);
+
+                    this.initProfile()
+                        .then(() => {
+                            resolve();
+                        })
+                        .catch(errorCode => {
+                            reject(this.translate.instant('error.api-code.' + errorCode));
+                        });
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('login', result);
+                    this.afterLogout.next();
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
         });
     }
 
