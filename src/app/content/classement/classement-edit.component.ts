@@ -251,21 +251,25 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     upLine(index: number) {
         this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
         this.globalService.withChange = true;
+        this.change();
     }
 
     downLine(index: number) {
         this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
         this.globalService.withChange = true;
+        this.change();
     }
 
     deleteLine(index: number) {
         this.list.push(...this.groups.splice(index, 1)[0].list);
         this.globalService.withChange = true;
+        this.change();
     }
 
     removeItem(index: number) {
         this.list.splice(index, 1);
         this.globalService.withChange = true;
+        this.change();
     }
 
     addLine(index: number) {
@@ -281,11 +285,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 : this.groups[index].txtColor;
         this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
         this.globalService.withChange = true;
+        this.change();
     }
 
     addFile(file: FileString) {
         this.list.push(file);
         this.globalService.withChange = true;
+        this.change();
     }
 
     exportImage() {
