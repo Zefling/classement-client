@@ -69,6 +69,7 @@ export type ThemeOptions = {
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;
+    autoSave?: boolean;
 };
 
 export type Theme = {

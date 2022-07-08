@@ -50,6 +50,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     options!: Options;
     nameOpacity!: string;
 
+    changeTimer: any[] = [];
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
@@ -184,6 +186,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;
             console.log('Option change');
+            this.change();
         }
     }
 
@@ -220,6 +223,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             );
         }
         this.globalService.withChange = true;
+        this.change();
     }
 
     addFiles() {
@@ -299,6 +303,23 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         });
     }
 
+    change() {
+        if (this.changeTimer.length) {
+            for (let i = this.changeTimer.length - 1; i === 0; i--) {
+                clearTimeout(this.changeTimer[i]);
+                this.changeTimer.splice(i);
+            }
+        }
+
+        this.changeTimer.push(
+            setTimeout(() => {
+                if (this.options.autoSave) {
+                    this.saveLocal(true);
+                }
+            }, 2000),
+        );
+    }
+
     reset() {
         for (const ligne of this.groups) {
             this.list.push(...ligne.list);
@@ -324,11 +345,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    saveLocal() {
+    saveLocal(silence: boolean = false) {
         this.bdService.saveLocal(this.getData()).then(
             item => {
                 this.id = item.data.id;
-                this.messageService.addMessage(this.translate.instant('message.save.success'));
+                if (!silence) {
+                    this.messageService.addMessage(this.translate.instant('message.save.success'));
+                }
                 this.resetCache();
             },
             _ => {

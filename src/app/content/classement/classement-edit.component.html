@@ -113,7 +113,7 @@
                             >
                                 <button class="btn-delete" (click)="removeItem(index)">×</button>
                                 <img src="{{ item.url }}" alt="{{ item.name }}" />
-                                <input class="input-title" input="text" [(ngModel)]="item.title" />
+                                <input class="input-title" input="text" [(ngModel)]="item.title" (blur)="change()" />
                             </div>
                         </div>
                     </div>
@@ -143,9 +143,14 @@
                     {{ 'gererator.actions.import.json' | translate }}
                 </button>
                 <button class="primary" (click)="dialogOptimise.open()">
-                    {{ 'gererator.optimise.button.optimise' | translate }}
-                </button>
+                    {{ 'gererator.optimise.button.optimise' | translate }}</button
+                ><br />
+                <label *ngIf="options">
+                    <input type="checkbox" [(ngModel)]="options.autoSave" />
+                    {{ 'gererator.actions.save.local.auto' | translate }}
+                </label>
             </div>
+
             <div class="save-actions">
                 <button class="primary" (click)="reset()">{{ 'gererator.actions.reset.groups' | translate }}</button>
             </div>
