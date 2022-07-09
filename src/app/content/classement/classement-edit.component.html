@@ -212,7 +212,7 @@
     </ng-container>
 </div>
 
-<dialog-cmp #dialogImage closeButton>
+<dialog-cmp class="auto-format" #dialogImage closeButton>
     <div class="button-image-save">
         {{ 'gererator.actions.save.image' | translate }}
         <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
@@ -222,11 +222,11 @@
     <div #image></div>
 </dialog-cmp>
 
-<dialog-cmp #dialogImport>
+<dialog-cmp class="auto-format" #dialogImport>
     <import-json (load)="importJson($event)"></import-json>
 </dialog-cmp>
 
-<dialog-cmp #dialogOptimise closeButton>
+<dialog-cmp class="auto-format" #dialogOptimise closeButton>
     <classement-optimise
         *ngIf="dialogOptimise._open"
         [list]="list"

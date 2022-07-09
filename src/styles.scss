@@ -86,6 +86,8 @@ body.light-mode {
     --error-message-progress-background: #f03636;
     // loading
     --loading-color: #000;
+    // cropper
+    --cropper-overlay-color: #fff;
 }
 
 body.dark-mode {
@@ -174,6 +176,8 @@ body.dark-mode {
     --error-message-progress-background: #cc2121;
     // loading
     --loading-color: #fff;
+    // cropper
+    --cropper-overlay-color: #000;
 }
 
 body,
@@ -255,7 +259,8 @@ a {
     }
 }
 
-label {
+label,
+.label {
     font-weight: 700;
     font-size: 80%;
 }
@@ -276,11 +281,10 @@ select {
     }
 }
 
-dialog-cmp {
+dialog-cmp.auto-format {
     .title {
         font-weight: 700;
     }
-
     p,
     div {
         text-align: center;

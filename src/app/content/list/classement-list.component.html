@@ -43,11 +43,11 @@
     </p>
 </ng-template>
 
-<dialog-cmp #dialogImport>
+<dialog-cmp class="auto-format" #dialogImport>
     <import-json (load)="importJson($event)" actions="importOnly"></import-json>
 </dialog-cmp>
 
-<dialog-cmp #dialogDelete class="dialog-delete">
+<dialog-cmp class="auto-format" #dialogDelete class="dialog-delete">
     <p>{{ 'list.delete.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>
@@ -56,7 +56,7 @@
     </div>
 </dialog-cmp>
 
-<dialog-cmp #dialogClone class="dialog-clone">
+<dialog-cmp class="auto-format" #dialogClone class="dialog-clone">
     <p>{{ 'list.clone.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>

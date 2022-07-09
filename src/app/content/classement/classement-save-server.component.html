@@ -2,28 +2,52 @@
 
 <div>{{ update ? 'update' : 'new' }}</div>
 
-<div class="themes"></div>
+<ng-container *ngIf="options">
+    <div class="title">
+        <label>{{ 'gererator.options.title' | translate }}</label>
+        <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
+    </div>
 
-<input type="file" (change)="fileChangeEvent($event)" />
+    <div class="categories">
+        <label>{{ 'gererator.options.group' | translate }}</label>
+        <div>
+            <select type="text" maxlength="150" [(ngModel)]="options.category">
+                <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
+            </select>
+        </div>
+    </div>
 
-<image-cropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [aspectRatio]="1 / 1"
-    [cropperMinWidth]="300"
-    [cropperMinHeight]="300"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded($event)"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-></image-cropper>
+    <div class="banner">
+        <label class="required"> Selectionner une images de bannière </label>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" />
+    </div>
 
-<img [src]="croppedImage" />
+    <div class="cropper-line" *ngIf="imageChangedEvent">
+        <div class="cropper">
+            <div class="label">cropper</div>
+            <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [cropperMinWidth]="300"
+                [cropperMinHeight]="300"
+                [aspectRatio]="1 / 1"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+        </div>
+        <div class="image">
+            <div class="label">final</div>
+            <img [src]="croppedImage" />
+        </div>
+    </div>
+</ng-container>
 
-<div>
+<p>
     <button (click)="cancel()">{{ 'gererator.theme.cancel' | translate }}</button>
     <button class="primary" (click)="validate()">
         {{ 'gererator.theme.validate' | translate }}
     </button>
-</div>
+</p>

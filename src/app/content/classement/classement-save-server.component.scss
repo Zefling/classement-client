@@ -1,0 +1,30 @@
+:host {
+    padding: 0 10px;
+    display: block;
+}
+
+p {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.cropper-line {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    width: 800px;
+
+    .cropper {
+        flex: 1;
+    }
+
+    .image {
+        width: 300px;
+        margin: 15px;
+
+        img {
+            border: 1px solid #ccc;
+            box-shadow: 0 0 4px #888;
+        }
+    }
+}
