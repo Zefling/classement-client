@@ -150,6 +150,11 @@
                     {{ 'gererator.actions.save.local.auto' | translate }}
                 </label>
             </div>
+            <div class="save-actions" *ngIf="logged">
+                <button class="primary" (click)="saveServer()">
+                    {{ 'gererator.actions.save.server' | translate }}
+                </button>
+            </div>
 
             <div class="save-actions">
                 <button class="primary" (click)="reset()">{{ 'gererator.actions.reset.groups' | translate }}</button>
@@ -228,4 +233,14 @@
         [groups]="groups"
         [dialog]="dialogOptimise"
     ></classement-optimise>
+</dialog-cmp>
+
+<dialog-cmp #dialogSaveServer>
+    <classement-save-server
+        *ngIf="logged && dialogSaveServer._open"
+        [classement]="classement"
+        [options]="options"
+        [groups]="groups"
+        [dialog]="dialogSaveServer"
+    ></classement-save-server>
 </dialog-cmp>

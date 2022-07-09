@@ -69,7 +69,7 @@ export class AppComponent {
 
     logout() {
         if (environment.api?.active) {
-            this.userService.isLogged().then(() => {
+            this.userService.loggedStatus().then(() => {
                 console.log('logout');
                 this.userService.logout().then(() => {});
             });

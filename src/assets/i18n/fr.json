@@ -163,6 +163,7 @@
       "export.image": "Export en image",
       "save.local": "Sauvegarde navigateur",
       "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
+      "save.server": "Sauvegarde sur votre compte",
       "export.json": "Exporter",
       "import.json": "Importer",
       "save.image": "Sauvegarder au format\u00A0:"

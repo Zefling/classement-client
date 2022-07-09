@@ -10,6 +10,7 @@ export interface Classement {
     templateId: string;
     dateCreate: Date;
     dateChange: Date;
+    user: string;
 }
 
 export interface User {

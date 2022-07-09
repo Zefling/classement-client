@@ -24,17 +24,15 @@ export class APIClassementService extends APICommon {
 
     getClassement(rankingId: string): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
-            this.http
-                .get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId, this.header())
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
-                    },
-                });
+            this.http.get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.error('login', result);
+                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                },
+            });
         });
     }
 

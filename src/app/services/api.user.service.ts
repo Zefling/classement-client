@@ -29,7 +29,7 @@ export class APIUserService extends APICommon {
         super();
     }
 
-    isLogged(): Promise<void> {
+    loggedStatus(): Promise<void> {
         return new Promise<void>(resolve => {
             if (this.logged !== undefined) {
                 resolve();

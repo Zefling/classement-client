@@ -41,8 +41,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     new = false;
     id?: string;
 
-    templateId?: string;
-    rankingId?: string;
+    classement?: Classement;
 
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
@@ -52,10 +51,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     changeTimer: any[] = [];
 
+    logged = false;
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
+    @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -79,17 +81,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.id = params['id'];
 
                     if (environment.api?.active) {
-                        this.userService.isLogged().then(() => {
+                        this.userService.loggedStatus().then(() => {
+                            this.logged = this.userService.logged ?? false;
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
                             if (classement) {
+                                console.log('loadServerClassement (user)');
                                 this.loadServerClassement(classement);
                             } else {
                                 this.classementService
                                     .getClassement(this.id!)
                                     .then(classement => {
+                                        console.log('loadServerClassement (server)');
                                         this.loadServerClassement(classement);
                                     })
                                     .catch(() => {
+                                        console.log('loadLocalClassement (browser)');
                                         this.loadLocalClassement();
                                     });
                             }
@@ -98,6 +104,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         this.loadLocalClassement();
                     }
                 } else {
+                    if (environment.api?.active) {
+                        this.userService.loggedStatus().then(() => {
+                            this.logged = this.userService.logged ?? false;
+                        });
+                    }
                     // reset all
                     this.new = true;
                     this.options = { ...defaultOptions, ...(this.globalService.jsonTmp?.options || defaultOptions) };
@@ -113,6 +124,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.addFile(file.file);
                 }
             }),
+            userService.afterLogout.subscribe(() => {
+                this.logged = false;
+            }),
         );
     }
 
@@ -120,6 +134,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService
             .loadLocal(this.id!)
             .then(data => {
+                this.classement = undefined;
+
                 this.options = { ...defaultOptions, ...data.infos.options };
                 this.resetCache();
                 this.groups = data.data.groups;
@@ -132,8 +148,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     loadServerClassement(classement: Classement) {
-        this.templateId = classement.rankingId;
-        this.templateId = classement.templateId;
+        this.classement = classement;
 
         this.options = { ...defaultOptions, ...classement.data.options };
         this.resetCache();
@@ -310,20 +325,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     change() {
-        if (this.changeTimer.length) {
-            for (let i = this.changeTimer.length - 1; i === 0; i--) {
-                clearTimeout(this.changeTimer[i]);
-                this.changeTimer.splice(i);
-            }
-        }
-
-        this.changeTimer.push(
-            setTimeout(() => {
-                if (this.options.autoSave) {
-                    this.saveLocal(true);
+        if (this.options.autoSave) {
+            if (this.changeTimer.length) {
+                for (let i = this.changeTimer.length - 1; i === 0; i--) {
+                    clearTimeout(this.changeTimer[i]);
+                    this.changeTimer.splice(i);
                 }
-            }, 2000),
-        );
+            }
+
+            this.changeTimer.push(
+                setTimeout(() => {
+                    this.saveLocal(true);
+                }, 2000),
+            );
+        }
     }
 
     reset() {
@@ -364,6 +379,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.messageService.addMessage(this.translate.instant('message.save.echec'), MessageType.error);
             },
         );
+    }
+
+    saveServer() {
+        if (this.logged) {
+            this.dialogSaveServer.open();
+        }
     }
 
     saveJson() {

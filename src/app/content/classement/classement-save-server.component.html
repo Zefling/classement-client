@@ -1,0 +1,29 @@
+<p>{{ 'gererator.theme.info' | translate }}</p>
+
+<div>{{ update ? 'update' : 'new' }}</div>
+
+<div class="themes"></div>
+
+<input type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    [cropperMinWidth]="300"
+    [cropperMinHeight]="300"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<img [src]="croppedImage" />
+
+<div>
+    <button (click)="cancel()">{{ 'gererator.theme.cancel' | translate }}</button>
+    <button class="primary" (click)="validate()">
+        {{ 'gererator.theme.validate' | translate }}
+    </button>
+</div>
