@@ -1,1 +1,8 @@
 @import '../list/classement-list.component.scss';
+
+label {
+    display: block;
+    text-align: left;
+    width: 80%;
+    margin: auto;
+}

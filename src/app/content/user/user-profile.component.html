@@ -1,10 +1,14 @@
-<h1>{{ 'user.login.profile' | translate }}</h1>
+<h1>{{ 'user.profile.title' | translate }}</h1>
 
 <div *ngIf="user">
-    <div>Username : {{ user.username }}</div>
-    <div>Since : {{ user.dateCreate | date: 'dd/MM/yyyy HH:mm' }}</div>
+    <div>
+        <strong>{{ 'user.profile.username' | translate }}</strong> {{ user.username }}
+    </div>
+    <div>
+        <strong>{{ 'user.profile.since' | translate }}</strong> {{ user.dateCreate | date: 'dd/MM/yyyy HH:mm' }}
+    </div>
 
-    <h2>Mes classements</h2>
+    <h2>{{ 'user.profile.my.tierlists' | translate }}</h2>
 
     <table *ngIf="user.classements?.length; else noResult">
         <thead>
@@ -27,8 +31,8 @@
                     <span>{{ classement.dateCreate | date: 'dd/MM/yyyy' }}</span>
                     <span>{{ classement.dateCreate | date: 'HH:mm' }}</span>
                 </td>
-                <td class="groups"></td>
-                <td class="datas"></td>
+                <td class="groups">{{ classement.totalGroups }}</td>
+                <td class="datas">{{ classement.totalItems }}</td>
                 <td class="actions">
                     <a [routerLink]="'/edit/' + classement.rankingId">{{ 'list.action.edit' | translate }}</a>
                     <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
@@ -43,4 +47,73 @@
             <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
         </p>
     </ng-template>
+
+    <h2>{{ 'user.profile.actions' | translate }}</h2>
+
+    <p class="action">
+        <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
+        <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
+        <button (click)="changeEmail()">{{ 'user.profile.remove.profile' | translate }}</button>
+    </p>
 </div>
+
+<dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
+    <p>{{ 'user.password.change' | translate }}</p>
+    <label for="password">{{ 'user.login.password' | translate }}</label>
+
+    <input id="password" type="password" formControlName="password" />
+    <!-- <div class="level-strong">
+        <ng-container *ngIf="!strong">
+            <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
+        </ng-container>
+        <span class="strong" *ngIf="strong"></span>
+    </div>
+
+    <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
+    <input id="password2" type="password" formControlName="password2" />
+    <div class="level-strong">
+        <span class="strong" *ngIf="confirm"></span>
+    </div> -->
+    <div>
+        <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | translate }}</button>
+        <button class="primary">{{ 'user.password.change.ok' | translate }}</button>
+    </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
+    <p>{{ 'user.email.change' | translate }}</p>
+    <label for="email">{{ 'user.email.old' | translate }}</label>
+    <input id="email" type="email" formControlName="emailOld" />
+    <div class="level-strong">
+        <span class="strong" *ngIf="changeEmailForm.get('emailOld')?.value"></span>
+    </div>
+
+    <label for="email">{{ 'user.email.new' | translate }}</label>
+    <input id="email" type="email" formControlName="emailNew" />
+    <div class="level-strong">
+        <span class="strong" *ngIf="changeEmailForm.get('emailNew')?.value" [class.error-block]="emailExist"></span>
+    </div>
+    <div>
+        <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | translate }}</button>
+        <button class="primary">{{ 'user.email.change.ok' | translate }}</button>
+    </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogRemoveClassement>
+    <p>{{ 'list.delete.question' | translate }}</p>
+    <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+    <div>
+        <button (click)="deleteCurrentClassement(false)">{{ 'list.delete.cancel' | translate }}</button>
+        <button class="primary" (click)="deleteCurrentClassement(true)">
+            {{ 'list.delete.validate' | translate }}
+        </button>
+    </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogRemoveProfile>
+    <p>{{ 'user.profile.remove.question' | translate }}</p>
+    <div>
+        <button (click)="dialogChangeEmail.close()">{{ 'user.profile.remove.cancel' | translate }}</button>
+        <button class="primary">{{ 'user.profile.remove.ok' | translate }}</button>
+    </div>
+</dialog-cmp>

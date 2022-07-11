@@ -58,6 +58,11 @@ export class APIUserService extends APICommon {
                     next: result => {
                         console.log('valide token', result.message);
                         this.user = result.message;
+                        if (this.user.classements?.length) {
+                            this.user.classements = this.user.classements.sort(
+                                (a, b) => new Date(b.dateCreate).getTime() - new Date(a.dateCreate).getTime(),
+                            );
+                        }
                         this.logged = true;
                         resolve();
                     },
