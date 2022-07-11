@@ -289,6 +289,10 @@
     },
     "user.singup": {
       "succes": "😊 Utilisateur créé."
-    }
+    },
+    "server": {
+      "save.success": "😊 La sauvegarde s'est effectuée correctement."
+    },
+    "undefied": "⚠️ Une erreur serveur s'est produite. "
   }
 }

@@ -90,6 +90,8 @@ export class DBService {
                 listLenght:
                     (data.list?.length || 0) +
                     (data.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0),
+                // server link
+                rankingId: data.rankingId,
             },
             data: {
                 id,

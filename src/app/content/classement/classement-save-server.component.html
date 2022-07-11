@@ -1,6 +1,6 @@
 <h2>{{ (update ? 'gererator.server.update' : 'gererator.server.new') | translate }}</h2>
 
-<div *ngIf="classement && classement.user" class="info-classement">
+<div *ngIf="classement && classement.user && !update" class="info-classement">
     <h3>{{ 'gererator.server.from' | translate }}</h3>
     <div>
         <strong>{{ 'gererator.server.username' | translate }}</strong> {{ classement.user }}

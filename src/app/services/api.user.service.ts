@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 import { APICommon } from './api.common';
 
 import { Login, Message, MessageError } from '../content/user/user.interface';
-import { User } from '../interface';
+import { Classement, User } from '../interface';
 import { Utils } from '../tools/utils';
 
 
@@ -27,6 +27,15 @@ export class APIUserService extends APICommon {
 
     constructor(private http: HttpClient, private translate: TranslateService) {
         super();
+    }
+
+    updateClassement(classement: Classement) {
+        if (this.user && Array.isArray(this.user.classements)) {
+            let index = this.user.classements.findIndex(e => e.rankingId === classement.rankingId);
+            if (index !== -1) {
+                this.user.classements[index] = classement;
+            }
+        }
     }
 
     loggedStatus(): Promise<void> {

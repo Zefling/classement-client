@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,6 +33,9 @@ export class ClassementSaveServerComponent {
 
     @Input()
     dialog?: DialogComponent;
+
+    @Output()
+    save = new EventEmitter<Classement>();
 
     update = false;
 
@@ -82,7 +85,9 @@ export class ClassementSaveServerComponent {
 
         this.classementService
             .saveClassement(classement)
-            .then(() => {
+            .then(classementSave => {
+                this.save.emit(classementSave);
+                this.userService.updateClassement(classementSave);
                 this.messageService.addMessage(this.translate.instant('message.server.save.success'));
                 this.cancel();
             })

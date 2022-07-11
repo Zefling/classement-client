@@ -83,6 +83,8 @@ export type Theme = {
 
 export interface IndexedData {
     id?: string;
+    /** server link */
+    rankingId?: string | null;
 }
 
 export interface Data extends IndexedData {

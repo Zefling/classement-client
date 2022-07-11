@@ -84,7 +84,7 @@ export class GlobalService {
     }
 
     private _fixImage(item: FileString) {
-        if (item.type.startsWith('image') && !item.width) {
+        if (item.type?.startsWith('image') && !item.width) {
             this._imageDimensions(item.url!)
                 .then(size => {
                     item.width = size.width;

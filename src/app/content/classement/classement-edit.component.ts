@@ -134,9 +134,24 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService
             .loadLocal(this.id!)
             .then(data => {
+                console.log('local found');
+
+                const rankingId = data.infos.rankingId;
+
                 this.classement = {
                     localId: this.id!,
+                    rankingId: rankingId,
                 } as any;
+
+                if (rankingId && this.userService.logged) {
+                    const classement = this.userService.user?.classements.find(e => e.rankingId === rankingId);
+                    if (classement) {
+                        this.classement!.user = classement.user;
+                        this.classement!.name = classement.name;
+                        this.classement!.category = classement.category;
+                        this.classement!.banner = classement.banner;
+                    }
+                }
 
                 this.options = { ...defaultOptions, ...data.infos.options };
                 this.resetCache();
@@ -145,13 +160,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.globalService.fixImageSize(this.groups, this.list);
             })
             .catch(() => {
+                console.log('local not found');
                 this.router.navigate(['/edit', 'new']);
             });
     }
 
     loadServerClassement(classement: Classement) {
         this.classement = classement;
-
         this.options = { ...defaultOptions, ...classement.data.options };
         this.resetCache();
         this.groups = classement.data.groups;
@@ -392,6 +407,19 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
+    updateAfterServerSave(classement: Classement) {
+        // update local data
+        this.classement = classement;
+        this.list = classement.data.list;
+        this.groups = classement.data.groups;
+        this.options = classement.data.options;
+
+        if (classement.localId) {
+            // persist data
+            this.saveLocal();
+        }
+    }
+
     saveJson() {
         this.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
     }
@@ -418,9 +446,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private getData(): Data {
         return {
             options: this.options,
-            id: this.id,
+            id: this.classement?.localId || this.id,
             groups: this.groups,
             list: this.list,
+            rankingId: this.classement?.localId && this.classement?.rankingId ? this.classement?.rankingId : null,
         };
     }
 

@@ -38,6 +38,10 @@ figure {
     border-radius: 5px;
     cursor: pointer;
 
+    img {
+        max-width: 100%;
+    }
+
     &:hover {
         color: var(--menu-hover-color);
         background: var(--menu-hover-background);
