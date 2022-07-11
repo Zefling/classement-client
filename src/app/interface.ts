@@ -8,9 +8,12 @@ export interface Classement {
     name: string;
     rankingId: string;
     templateId: string;
+    localId: string;
     dateCreate: Date;
     dateChange: Date;
     user: string;
+    totalGroups: number;
+    totalItems: number;
 }
 
 export interface User {

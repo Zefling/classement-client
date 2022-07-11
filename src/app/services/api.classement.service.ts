@@ -24,13 +24,13 @@ export class APIClassementService extends APICommon {
 
     getClassement(rankingId: string): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
-            this.http.get<Message<Classement>>(environment.api.path + 'api/classement/' + rankingId).subscribe({
+            this.http.get<Message<Classement>>(`${environment.api.path}api/classement/${rankingId}`).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
         });
@@ -46,13 +46,13 @@ export class APIClassementService extends APICommon {
             }
             console.log('options', options, 'params', params);
 
-            this.http.get<Message<Classement[]>>(environment.api.path + 'api/classements', { params }).subscribe({
+            this.http.get<Message<Classement[]>>(`${environment.api.path}api/classements`, { params }).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
         });
@@ -60,29 +60,45 @@ export class APIClassementService extends APICommon {
 
     getClassementsHome(): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
-            this.http.get<Message<Classement[]>>(environment.api.path + 'api/categories/home').subscribe({
+            this.http.get<Message<Classement[]>>(`${environment.api.path}api/categories/home`).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
+        });
+    }
+
+    saveClassement(classement: Classement) {
+        return new Promise<Classement>((resolve, reject) => {
+            this.http
+                .post<Message<Classement>>(`${environment.api.path}api/classement`, classement, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('login', result);
+                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    },
+                });
         });
     }
 
     deleteClassement(rankingId: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .delete<Message<void>>(environment.api.path + 'api/classement/' + rankingId, this.header())
+                .delete<Message<void>>(`${environment.api.path}api/classement/${rankingId}`, this.header())
                 .subscribe({
                     next: _ => {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
                         console.error('login', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                     },
                 });
         });

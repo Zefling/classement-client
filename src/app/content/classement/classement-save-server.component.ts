@@ -1,11 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Classement, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
-import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
 import { categories } from './classement-default';
 
@@ -35,10 +38,17 @@ export class ClassementSaveServerComponent {
 
     categories = categories;
 
-    imageChangedEvent: any = '';
-    croppedImage: any = '';
+    @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
 
-    constructor(private userService: APIUserService, private optimiseImage: OptimiseImageService) {
+    imageChangedEvent: any = '';
+    croppedImage?: string;
+
+    constructor(
+        private userService: APIUserService,
+        private classementService: APIClassementService,
+        private messageService: MessageService,
+        private translate: TranslateService,
+    ) {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {
                 if (this.userService.user!.username === this.classement?.user) {
@@ -55,7 +65,36 @@ export class ClassementSaveServerComponent {
     }
 
     validate() {
-        this.cancel();
+        // format data
+        const classement = {
+            // save only for save user
+            rankingId:
+                this.userService.user?.username === this.classement?.user ? this.classement?.rankingId ?? null : null,
+            templateId: this.classement?.templateId || null,
+            localId: this.classement?.localId || null,
+            name: this.options?.title,
+            category: this.classement?.category ?? this.options?.category,
+            data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
+            banner: this.croppedImage || this.classement?.banner,
+        } as any;
+
+        console.log('classement', classement);
+
+        this.classementService
+            .saveClassement(classement)
+            .then(() => {
+                this.messageService.addMessage(this.translate.instant('message.server.save.success'));
+                this.cancel();
+            })
+            .catch(e => {
+                this.messageService.addMessage(e, MessageType.error);
+            });
+    }
+
+    resetBanner() {
+        this.croppedImage = undefined;
+        this.imageChangedEvent = undefined;
+        this.bannerInput.nativeElement.value = '';
     }
 
     fileChangeEvent(event: any): void {
@@ -63,22 +102,7 @@ export class ClassementSaveServerComponent {
     }
 
     async imageCropped(event: ImageCroppedEvent) {
-        if (this.classement && event.base64) {
-            const banner = await this.optimiseImage.resize(
-                {
-                    name: 'banner',
-                    url: event.base64,
-                    realSize: event.base64.length,
-                    date: new Date().getTime(),
-                    size: 0,
-                    type: 'image/png',
-                },
-                300,
-                300,
-            );
-            this.classement.banner = banner.reduceFile?.url || banner.sourceFile.url!;
-            this.croppedImage = this.classement.banner;
-        }
+        this.croppedImage = event.base64!;
     }
 
     imageLoaded(image: LoadedImage) {

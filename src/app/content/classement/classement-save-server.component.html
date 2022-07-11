@@ -1,14 +1,27 @@
-<p>{{ 'gererator.theme.info' | translate }}</p>
+<h2>{{ (update ? 'gererator.server.update' : 'gererator.server.new') | translate }}</h2>
 
-<div>{{ update ? 'update' : 'new' }}</div>
+<div *ngIf="classement && classement.user" class="info-classement">
+    <h3>{{ 'gererator.server.from' | translate }}</h3>
+    <div>
+        <strong>{{ 'gererator.server.username' | translate }}</strong> {{ classement.user }}
+    </div>
+    <div>
+        <strong>{{ 'gererator.options.title' | translate }}</strong> {{ classement.name }}
+    </div>
+    <div class="category">
+        <strong>{{ 'gererator.options.group' | translate }}</strong>
+        {{ 'category.' + (classement.category || 'undefined') | translate }}
+    </div>
+</div>
 
 <ng-container *ngIf="options">
+    <h3>{{ 'gererator.server.edit' | translate }}</h3>
     <div class="title">
         <label>{{ 'gererator.options.title' | translate }}</label>
         <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
     </div>
 
-    <div class="categories">
+    <div class="categories" *ngIf="!classement?.user">
         <label>{{ 'gererator.options.group' | translate }}</label>
         <div>
             <select type="text" maxlength="150" [(ngModel)]="options.category">
@@ -18,36 +31,42 @@
     </div>
 
     <div class="banner">
-        <label class="required"> Selectionner une images de bannière </label>
-        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" />
+        <label class="required">{{ 'gererator.server.banner.select' | translate }}</label>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
     </div>
 
-    <div class="cropper-line" *ngIf="imageChangedEvent">
-        <div class="cropper">
-            <div class="label">cropper</div>
+    <div class="cropper-line">
+        <div class="cropper" *ngIf="imageChangedEvent">
+            <div class="label">{{ 'gererator.server.banner.cropper' | translate }}</div>
             <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="true"
                 [cropperMinWidth]="300"
                 [cropperMinHeight]="300"
+                [resizeToWidth]="300"
+                [resizeToHeight]="300"
                 [aspectRatio]="1 / 1"
-                format="png"
+                [onlyScaleDown]="true"
+                format="webp"
                 (imageCropped)="imageCropped($event)"
                 (imageLoaded)="imageLoaded($event)"
                 (cropperReady)="cropperReady()"
                 (loadImageFailed)="loadImageFailed()"
             ></image-cropper>
         </div>
-        <div class="image">
-            <div class="label">final</div>
-            <img [src]="croppedImage" />
+        <div class="image" *ngIf="croppedImage || classement?.banner">
+            <div class="label">{{ 'gererator.server.banner.image' | translate }}</div>
+            <img [src]="croppedImage || classement?.banner" />
+            <button *ngIf="croppedImage" (click)="resetBanner()">
+                {{ 'gererator.server.banner.reset' | translate }}
+            </button>
         </div>
     </div>
 </ng-container>
 
 <p>
-    <button (click)="cancel()">{{ 'gererator.theme.cancel' | translate }}</button>
+    <button (click)="cancel()">{{ 'gererator.server.cancel' | translate }}</button>
     <button class="primary" (click)="validate()">
-        {{ 'gererator.theme.validate' | translate }}
+        {{ 'gererator.server.save' | translate }}
     </button>
 </p>

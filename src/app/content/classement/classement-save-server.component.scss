@@ -3,9 +3,18 @@
     display: block;
 }
 
+h2 {
+    text-align: center;
+}
+
 p {
     text-align: center;
     padding: 15px 0;
+}
+
+.info-classement strong {
+    display: inline-block;
+    width: 200px;
 }
 
 .cropper-line {
@@ -20,7 +29,10 @@ p {
 
     .image {
         width: 300px;
-        margin: 15px;
+
+        &:not(:first-child) {
+            margin: 15px;
+        }
 
         img {
             border: 1px solid #ccc;

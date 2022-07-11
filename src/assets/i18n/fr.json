@@ -195,7 +195,22 @@
       "size": "{{ size }}\u00A0octets",
       "validate": "Valider"
     },
-    "loading": "Chargement en cours…"
+    "loading": "Chargement en cours…",
+    "server": {
+      "update": "Mettre à jour votre classement",
+      "new": "Savegerder un nouveau classement",
+      "from": "Classement d'origine",
+      "username": "Nom d'utilisateur\u00A0:",
+      "edit": "Éditer",
+      "banner": {
+        "select": "Selectionner une images de bannière",
+        "cropper": "Découper",
+        "image": "Image de la bannière",
+        "reset": "Réinitialiser"
+      },
+      "cancel": "Annuler",
+      "save": "Sauvegarder"
+    }
   },
   "user": {
     "login": {

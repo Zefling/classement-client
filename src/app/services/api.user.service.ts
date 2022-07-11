@@ -44,9 +44,8 @@ export class APIUserService extends APICommon {
     initProfile(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.token = Utils.getCookie('x-token') || undefined;
-
             if (this.token) {
-                this.http.get<Message<User>>(environment.api.path + 'api/user/current', this.header()).subscribe({
+                this.http.get<Message<User>>(`${environment.api.path}api/user/current`, this.header()).subscribe({
                     next: result => {
                         console.log('valide token', result.message);
                         this.user = result.message;
@@ -56,7 +55,7 @@ export class APIUserService extends APICommon {
                     error: (result: HttpErrorResponse) => {
                         console.error('invalide token', result);
                         this.logged = false;
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                     },
                     complete: () => {
                         this.afterLoggin.next();
@@ -69,7 +68,7 @@ export class APIUserService extends APICommon {
     signup(username: string, password: string, email: string) {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(environment.api.path + 'api/signup', { username, password, email })
+                .post<Message<Login>>(`${environment.api.path}api/signup`, { username, password, email })
                 .subscribe({
                     next: result => {
                         console.log(result);
@@ -77,7 +76,7 @@ export class APIUserService extends APICommon {
                     },
                     error: (result: HttpErrorResponse) => {
                         console.error('signup', result);
-                        reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                     },
                 });
         });
@@ -85,7 +84,7 @@ export class APIUserService extends APICommon {
 
     login(username: string, password: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.post<Message<Login>>(environment.api.path + 'api/login', { username, password }).subscribe({
+            this.http.post<Message<Login>>(`${environment.api.path}api/login`, { username, password }).subscribe({
                 next: result => {
                     this.token = result.message.token;
                     this.logged = true;
@@ -97,13 +96,13 @@ export class APIUserService extends APICommon {
                             resolve();
                         })
                         .catch(errorCode => {
-                            reject(this.translate.instant('error.api-code.' + errorCode));
+                            reject(this.translate.instant(`error.api-code.${errorCode}`));
                         });
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('login', result);
                     this.afterLogout.next();
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
         });
@@ -111,7 +110,7 @@ export class APIUserService extends APICommon {
 
     logout() {
         return new Promise<void>((resolve, reject) => {
-            this.http.delete<Message<Login>>(environment.api.path + 'api/logout', this.header()).subscribe({
+            this.http.delete<Message<Login>>(`${environment.api.path}api/logout`, this.header()).subscribe({
                 next: () => {
                     this.token = undefined;
                     this.logged = false;
@@ -123,7 +122,7 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('logout', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
         });
@@ -133,13 +132,13 @@ export class APIUserService extends APICommon {
         return new Promise<boolean>((resolve, reject) => {
             let param: any = {};
             param[type] = value;
-            this.http.post<Message<boolean>>(environment.api.path + 'api/test', param).subscribe({
+            this.http.post<Message<boolean>>(`${environment.api.path}api/test`, param).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
                     console.error('login', result);
-                    reject(this.translate.instant('error.api-code.' + (result.error as MessageError).errorCode));
+                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
                 },
             });
         });

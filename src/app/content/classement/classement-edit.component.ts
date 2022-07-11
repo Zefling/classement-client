@@ -134,7 +134,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService
             .loadLocal(this.id!)
             .then(data => {
-                this.classement = undefined;
+                this.classement = {
+                    localId: this.id!,
+                } as any;
 
                 this.options = { ...defaultOptions, ...data.infos.options };
                 this.resetCache();
@@ -370,6 +372,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService.saveLocal(this.getData()).then(
             item => {
                 this.id = item.data.id;
+                if (this.classement) {
+                    this.classement.localId = this.id!;
+                }
                 if (!silence) {
                     this.messageService.addMessage(this.translate.instant('message.save.success'));
                 }
