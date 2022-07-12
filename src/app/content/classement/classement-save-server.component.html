@@ -64,6 +64,10 @@
     </div>
 </ng-container>
 
+<ul *ngIf="showError?.length" class="list-error">
+    <li *ngFor="let error of showError">{{ error }}</li>
+</ul>
+
 <p>
     <button (click)="cancel()">{{ 'gererator.server.cancel' | translate }}</button>
     <button class="primary" (click)="validate()">

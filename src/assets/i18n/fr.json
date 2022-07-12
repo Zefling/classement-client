@@ -289,6 +289,11 @@
       "4002": "Ce email existe déjà.",
       "5000": "Erreur de categorie."
     },
+    "classement": {
+      "name.empty": "Le titre ne peut pas être vide.",
+      "category.empty": "La categorie ne peut pas être vide.",
+      "banner.empty": "La bannière ne peut pas être vide."
+    },
     "username.exist": "Ce nom d'utilisateur existe déjà.",
     "email": {
       "exist": "Cet couriel a déjà été utilisé.",

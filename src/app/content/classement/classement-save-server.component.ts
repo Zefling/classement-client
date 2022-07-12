@@ -46,6 +46,8 @@ export class ClassementSaveServerComponent {
     imageChangedEvent: any = '';
     croppedImage?: string;
 
+    showError: string[] = [];
+
     constructor(
         private userService: APIUserService,
         private classementService: APIClassementService,
@@ -68,6 +70,7 @@ export class ClassementSaveServerComponent {
     }
 
     validate() {
+        this.showError = [];
         // format data
         const classement = {
             // save only for save user
@@ -75,25 +78,37 @@ export class ClassementSaveServerComponent {
                 this.userService.user?.username === this.classement?.user ? this.classement?.rankingId ?? null : null,
             templateId: this.classement?.templateId || null,
             localId: this.classement?.localId || null,
-            name: this.options?.title,
+            name: this.options?.title?.trim(),
             category: this.classement?.category ?? this.options?.category,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
         } as any;
 
-        console.log('classement', classement);
+        if (!classement.name) {
+            this.showError.push(this.translate.instant('error.classement.name.empty'));
+        }
 
-        this.classementService
-            .saveClassement(classement)
-            .then(classementSave => {
-                this.save.emit(classementSave);
-                this.userService.updateClassement(classementSave);
-                this.messageService.addMessage(this.translate.instant('message.server.save.success'));
-                this.cancel();
-            })
-            .catch(e => {
-                this.messageService.addMessage(e, MessageType.error);
-            });
+        if (!classement.category) {
+            this.showError.push(this.translate.instant('error.classement.category.empty'));
+        }
+
+        if (!classement.banner) {
+            this.showError.push(this.translate.instant('error.classement.banner.empty'));
+        }
+
+        if (!this.showError.length) {
+            this.classementService
+                .saveClassement(classement)
+                .then(classementSave => {
+                    this.save.emit(classementSave);
+                    this.userService.updateClassement(classementSave);
+                    this.messageService.addMessage(this.translate.instant('message.server.save.success'));
+                    this.cancel();
+                })
+                .catch(e => {
+                    this.messageService.addMessage(e, MessageType.error);
+                });
+        }
     }
 
     resetBanner() {

@@ -84,6 +84,7 @@ body.light-mode {
     --tile-add-file-color: #000d;
     // info
     --alert-color: #b00;
+    --alert-background: #bb00004f;
     // message
     --info-message-border-color: #ccc;
     --info-message-background: #ddd;
@@ -184,6 +185,7 @@ body.dark-mode {
     --tile-add-file-color: #fffd;
     // info
     --alert-color: #ca5f5f;
+    --alert-background: #8c000014;
     // message
     --info-message-border-color: #ddd;
     --info-message-background: #666;
@@ -324,4 +326,13 @@ dialog-cmp.auto-format {
     input {
         width: 80%;
     }
+}
+
+.list-error {
+    padding: 15px 40px;
+    text-align: left;
+    color: var(--alert-color);
+    border: 1px solid var(--alert-color);
+    margin: 30px;
+    background: var(--alert-background);
 }

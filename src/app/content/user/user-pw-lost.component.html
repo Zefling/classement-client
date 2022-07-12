@@ -6,7 +6,7 @@
     <label for="email">{{ 'user.login.email' | translate }}</label>
     <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
 
-    <div *ngIf="showError" class="error">
+    <div *ngIf="showError" class="list-error">
         {{ showError }}
     </div>
 

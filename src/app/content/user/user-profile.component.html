@@ -78,7 +78,7 @@
         <span class="strong" *ngIf="confirm"></span>
     </div>
 
-    <ul *ngIf="showError?.length" class="error">
+    <ul *ngIf="showError?.length" class="list-error">
         <li *ngFor="let error of showError">{{ error }}</li>
     </ul>
 
@@ -102,7 +102,7 @@
         <span class="strong" *ngIf="changeEmailForm.get('emailNew')?.value" [class.error-block]="!emailNewValid"></span>
     </div>
 
-    <ul *ngIf="showError?.length" class="error">
+    <ul *ngIf="showError?.length" class="list-error">
         <ng-container *ngFor="let error of showError">
             <li *ngIf="error">{{ error }}</li>
         </ng-container>
