@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
+import owasp from 'owasp-password-strength-test';
+import { debounceTime, Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService } from 'src/app/components/info-messages.component';
 import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Utils } from 'src/app/tools/utils';
 
 
 @Component({
@@ -23,12 +25,18 @@ export class UserProfileComponent implements OnDestroy {
 
     listener: Subscription[] = [];
 
+    showError: string[] = [];
+
     @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
     changePasswordForm: FormGroup;
+    strong = false;
+    confirm = false;
+    passedTests: number[] = [];
 
     @ViewChild('dialogChangeEmail') dialogChangeEmail!: DialogComponent;
     changeEmailForm: FormGroup;
-    emailExist = false;
+    emailOldValid = false;
+    emailNewValid = false;
 
     @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
     currentClassement?: Classement;
@@ -61,22 +69,68 @@ export class UserProfileComponent implements OnDestroy {
 
         this.user = this.userService.user;
 
+        // password
+
         this.changePasswordForm = new FormGroup({
             passwordOld: new FormControl(''),
             password: new FormControl(''),
             password2: new FormControl(''),
         });
+
+        this.changePasswordForm.get('password')?.valueChanges.subscribe(value => {
+            const test = owasp.test(value);
+            this.passedTests = test.passedTests;
+            this.strong = test.strong || test.isPassphrase;
+        });
+        this.changePasswordForm.get('password2')?.valueChanges.subscribe(value => {
+            this.confirm = this.strong && this.changePasswordForm.get('password')?.value === value;
+        });
+
+        // email
+
         this.changeEmailForm = new FormGroup({
             emailOld: new FormControl(''),
             emailNew: new FormControl(''),
         });
+
+        this.changeEmailForm.get('emailOld')?.valueChanges.subscribe(value => {
+            this.emailOldValid = Utils.testEmail(value);
+            this.showError[0] = value && !this.emailOldValid ? 'email old invalide' : '';
+        });
+        this.changeEmailForm
+            .get('emailNew')
+            ?.valueChanges.pipe(debounceTime(500))
+            .subscribe(value => {
+                if (Utils.testEmail(value)) {
+                    this.userService
+                        .test('email', value)
+                        .then(test => {
+                            this.emailNewValid = !test;
+                            this.showError[1] = test ? 'Email déja utilisé' : '';
+                        })
+                        .catch(e => {
+                            this.emailNewValid = false;
+                            this.showError[1] = e;
+                        });
+                } else if (value) {
+                    this.emailNewValid = false;
+                    this.showError[1] = 'Email new invalide';
+                }
+            });
     }
 
     changePassword(): void {
+        this.showError = [];
+        this.changePasswordForm.get('passwordOld')?.setValue('');
+        this.changePasswordForm.get('password')?.setValue('');
+        this.changePasswordForm.get('password2')?.setValue('');
         this.dialogChangePassword.open();
     }
 
     changeEmail(): void {
+        this.showError = [];
+        this.changeEmailForm.get('emailOld')?.setValue('');
+        this.changeEmailForm.get('emailNew')?.setValue('');
         this.dialogChangeEmail.open();
     }
 
@@ -84,9 +138,17 @@ export class UserProfileComponent implements OnDestroy {
         this.listener.forEach(e => e.unsubscribe());
     }
 
+    valideChangePassword() {}
+    valideChangeEmail() {}
+    valideRemoveProfile() {}
+
     delete(classement: Classement): void {
         this.currentClassement = classement;
         this.dialogRemoveClassement.open();
+    }
+
+    removeProfile() {
+        this.dialogRemoveProfile.open();
     }
 
     deleteCurrentClassement(remove: boolean): void {

@@ -8,18 +8,34 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
 
 ## Features
 
--   server less
-    -   Adding images by drag'n drop or copy-paste
-    -   Adding text under images.
-    -   Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
-    -   Advanced customization of tiles, lines, background, etc.
-    -   Backup in browser or in Json.
-    -   Image export (PNG, JPG or WebP).
-    -   In-memory tierlists clone.
--   with server (in progress)
-    -   connection user
-    -   save tierlists on server
-    -   search in public tierlists
+-   ✅ server less
+    -   ✅ Adding images by drag'n drop or copy-paste
+    -   ✅ Adding text under images.
+    -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
+    -   ✅ Advanced customization of tiles, lines, background, etc.
+    -   ✅ Backup in browser or in Json.
+    -   ✅ Image export (PNG, JPG or WebP).
+    -   ✅ In-memory tierlists clone.
+-   ⌛ [With server](https://git.ikilote.net/classement/serveur) (in progress)
+    -   ⌛ Create user
+        -   ✅ Simple create
+        -   ❌ Email confirmation
+        -   ❌ OAuth connection
+        -   ✅ Connection user
+    -   ⌛ Profile
+        -   ✅ See personal tierlists
+        -   ✅ Remove tierslist
+        -   ❌ Change email
+        -   ❌ Change password
+        -   ❌ Remove user
+    -   ⌛ Tierlists
+        -   ✅ save tierlists on server
+        -   ✅ search in public tierlists
+        -   ❌ see tierlists form template
+    -   ❌ Admin
+        -   ❌ edit/remove profil
+        -   ❌ remove tierlists
+        -   ❌ change roles
 
 ## Demo
 

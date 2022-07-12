@@ -1,0 +1,33 @@
+.level-strong {
+    margin-top: 4px;
+    display: flex;
+    gap: 2px;
+    height: 3px;
+
+    span {
+        width: calc(100% / 7);
+        background-color: hsl(calc(var(--level) * 20), 100%, 50%);
+    }
+
+    .strong {
+        width: 100%;
+        background-color: hsl(150, 100%, 50%);
+    }
+
+    .error-block {
+        background-color: hsl(0, 100%, 50%);
+    }
+}
+
+.error {
+    padding-top: 15px;
+    text-align: center;
+    color: var(--alert-color);
+}
+
+.alert {
+    width: 80%;
+    margin: auto;
+    border: 1px solid var(--alert-color);
+    color: var(--alert-color);
+}

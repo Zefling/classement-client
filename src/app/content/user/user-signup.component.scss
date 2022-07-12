@@ -1,3 +1,5 @@
+@import './user-profile.errors.scss';
+
 :host {
     display: block;
     margin: 0 15px 30px 30px;
@@ -21,31 +23,4 @@
 .button {
     margin-top: 50px;
     text-align: center;
-}
-
-.error {
-    padding-top: 15px;
-    text-align: center;
-    color: var(--alert-color);
-}
-
-.level-strong {
-    margin-top: 4px;
-    display: flex;
-    gap: 2px;
-    height: 3px;
-
-    span {
-        width: calc(100% / 7);
-        background-color: hsl(calc(var(--level) * 20), 100%, 50%);
-    }
-
-    .strong {
-        width: 100%;
-        background-color: hsl(150, 100%, 50%);
-    }
-
-    .error-block {
-        background-color: hsl(0, 100%, 50%);
-    }
 }

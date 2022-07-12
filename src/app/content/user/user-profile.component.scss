@@ -1,8 +1,15 @@
 @import '../list/classement-list.component.scss';
+@import './user-profile.errors.scss';
 
 label {
     display: block;
     text-align: left;
     width: 80%;
     margin: auto;
+}
+
+.level-strong {
+    width: 80%;
+    margin: auto;
+    padding: 0;
 }
