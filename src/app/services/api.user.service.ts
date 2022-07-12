@@ -157,4 +157,23 @@ export class APIUserService extends APICommon {
             });
         });
     }
+
+    update(oldValue: string, newValue: string, type: 'email' | 'password'): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            let param: any = {};
+            param[type + 'Old'] = oldValue;
+            param[type + 'New'] = newValue;
+            this.http
+                .post<Message<void>>(`${environment.api.path}api/user/update/${type}`, param, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        console.error('update', result);
+                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    },
+                });
+        });
+    }
 }

@@ -25,8 +25,8 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
     -   ⌛ Profile
         -   ✅ See personal tierlists
         -   ✅ Remove tierslist
-        -   ⌛ Change email
-        -   ⌛ Change password
+        -   ✅ Change email
+        -   ✅ Change password
         -   ⌛ Remove user
     -   ⌛ Tierlists
         -   ✅ save tierlists on server

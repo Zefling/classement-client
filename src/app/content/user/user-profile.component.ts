@@ -8,7 +8,7 @@ import owasp from 'owasp-password-strength-test';
 import { debounceTime, Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService } from 'src/app/components/info-messages.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -138,8 +138,52 @@ export class UserProfileComponent implements OnDestroy {
         this.listener.forEach(e => e.unsubscribe());
     }
 
-    valideChangePassword() {}
-    valideChangeEmail() {}
+    valideChangePassword() {
+        var value = this.changePasswordForm.value;
+
+        const test = owasp.test(value.password);
+
+        if (value.password !== value.password2) {
+            this.showError.push(this.translate.instant('error.pw.duplicate'));
+        }
+
+        if (test.errors?.length) {
+            test.errors.forEach(e =>
+                this.showError.push(
+                    this.translate.instant('error.owasp.' + e.replace(/\d+/, '*')).replace('%', e.match(/\d+/)?.[0]),
+                ),
+            );
+        }
+
+        if (!this.showError.length) {
+            this.userService
+                .update(value.passwordOld, value.password, 'password')
+                .then(() => {
+                    this.dialogChangePassword.close();
+                    this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
+                })
+                .catch(e => {
+                    this.messageService.addMessage(e, MessageType.error);
+                });
+        }
+    }
+
+    valideChangeEmail() {
+        var value = this.changeEmailForm.value;
+
+        if (this.emailNewValid) {
+            this.userService
+                .update(value.emailOld, value.emailNew, 'email')
+                .then(() => {
+                    this.dialogChangePassword.close();
+                    this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
+                })
+                .catch(e => {
+                    this.messageService.addMessage(e, MessageType.error);
+                });
+        }
+    }
+
     valideRemoveProfile() {}
 
     delete(classement: Classement): void {
