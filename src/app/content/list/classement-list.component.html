@@ -43,20 +43,20 @@
     </p>
 </ng-template>
 
-<dialog-cmp class="auto-format" #dialogImport>
+<dialog-cmp #dialogImport class="auto-format">
     <import-json (load)="importJson($event)" actions="importOnly"></import-json>
 </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogDelete class="dialog-delete">
+<dialog-cmp #dialogDelete class="auto-format dialog-delete">
     <p>{{ 'list.delete.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>
         <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
-        <button class="primary" (click)="deleteCurrent(true)">{{ 'list.delete.validate' | translate }}</button>
+        <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.validate' | translate }}</button>
     </div>
 </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogClone class="dialog-clone">
+<dialog-cmp #dialogClone class="auto-format dialog-clone">
     <p>{{ 'list.clone.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>

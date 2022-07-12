@@ -34,6 +34,15 @@ body.light-mode {
     --button-primary-hover-background: #3162b1;
     --button-primary-hover-box-shadow: #1e2025;
     --button-primary-focus-border-color: #1b3663;
+    // warn button
+    --button-warn-border-color: #eaa8a8;
+    --button-warn-background: #ff7676;
+    --button-warn-box-shadow: #eed6d6;
+    --button-warn-color: #fff;
+    --button-warn-hover-border-color: #976a6a;
+    --button-warn-hover-background: #eb3f3f;
+    --button-warn-hover-box-shadow: #251e1e;
+    --button-warn-focus-border-color: #a02929;
     // link
     --link-color: #4e4ee6;
     --link-hover-color: #202081;
@@ -125,6 +134,15 @@ body.dark-mode {
     --button-primary-hover-background: #3162b1;
     --button-primary-hover-box-shadow: #1e2025;
     --button-primary-focus-border-color: #9ba9c2;
+    // warn button
+    --button-warn-border-color: #614242;
+    --button-warn-background: #692020;
+    --button-warn-box-shadow: #1a1212;
+    --button-warn-color: #c9b6b6;
+    --button-warn-hover-border-color: #976a6a;
+    --button-warn-hover-background: #b13131;
+    --button-warn-hover-box-shadow: #251e1e;
+    --button-warn-focus-border-color: #c29b9b;
     // link
     --link-color: #9898e6;
     --link-hover-color: #d8d8f0;
@@ -248,6 +266,16 @@ button.primary {
     --button-defaut-hover-background: var(--button-primary-hover-background);
     --button-defaut-hover-box-shadow: var(--button-primary-hover-box-shadow);
     --button-defaut-focus-border-color: var(--button-primary-focus-border-color);
+}
+button.warn {
+    --button-defaut-border-color: var(--button-warn-border-color);
+    --button-defaut-background: var(--button-warn-background);
+    --button-defaut-box-shadow: var(--button-warn-box-shadow);
+    --button-defaut-color: var(--button-warn-color);
+    --button-defaut-hover-border-color: var(--button-warn-hover-border-color);
+    --button-defaut-hover-background: var(--button-warn-hover-background);
+    --button-defaut-hover-box-shadow: var(--button-warn-hover-box-shadow);
+    --button-defaut-focus-border-color: var(--button-warn-focus-border-color);
 }
 
 a {
