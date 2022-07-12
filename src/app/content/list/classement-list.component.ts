@@ -36,7 +36,7 @@ export class ClassementListComponent {
     showList() {
         this.dbservice.getLocalList().then(result => {
             result.forEach(d => (d.date = new Date(d.date)));
-            result.sort((e, f) => (e.date as Date).getTime() - (f.date as Date).getTime());
+            result.sort((e, f) => (f.date as Date).getTime() - (e.date as Date).getTime());
             this.result = result;
         });
     }

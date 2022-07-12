@@ -22,6 +22,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
         -   ❌ Email confirmation
         -   ❌ OAuth connection
         -   ✅ Connection user
+        -   ⌛ Password lost
     -   ⌛ Profile
         -   ✅ See personal tierlists
         -   ✅ Remove tierslist
