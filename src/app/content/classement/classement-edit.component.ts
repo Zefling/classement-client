@@ -137,10 +137,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 console.log('local found');
 
                 const rankingId = data.infos.rankingId;
+                const templateId = data.infos.templateId;
 
                 this.classement = {
                     localId: this.id!,
-                    rankingId: rankingId,
+                    rankingId,
+                    templateId,
                 } as any;
 
                 if (rankingId && this.userService.logged) {
@@ -450,6 +452,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             groups: this.groups,
             list: this.list,
             rankingId: this.classement?.localId && this.classement?.rankingId ? this.classement?.rankingId : null,
+            templateId: this.classement?.templateId,
         };
     }
 

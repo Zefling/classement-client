@@ -85,6 +85,7 @@ export interface IndexedData {
     id?: string;
     /** server link */
     rankingId?: string | null;
+    templateId?: string | null;
 }
 
 export interface Data extends IndexedData {
