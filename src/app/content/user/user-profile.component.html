@@ -53,7 +53,7 @@
     <p class="action">
         <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
         <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
-        <button class="warn" (click)="removeProfile()">{{ 'user.profile.remove.profile' | translate }}</button>
+        <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
     </p>
 </div>
 
