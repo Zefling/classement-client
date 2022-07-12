@@ -95,7 +95,7 @@ export class UserProfileComponent implements OnDestroy {
 
         this.changeEmailForm.get('emailOld')?.valueChanges.subscribe(value => {
             this.emailOldValid = Utils.testEmail(value);
-            this.showError[0] = value && !this.emailOldValid ? 'email old invalide' : '';
+            this.showError[0] = value && !this.emailOldValid ? this.translate.instant('error.email.old.invalid') : '';
         });
         this.changeEmailForm
             .get('emailNew')
@@ -106,7 +106,7 @@ export class UserProfileComponent implements OnDestroy {
                         .test('email', value)
                         .then(test => {
                             this.emailNewValid = !test;
-                            this.showError[1] = test ? 'Email déja utilisé' : '';
+                            this.showError[1] = test ? this.translate.instant('error.email.already.used') : '';
                         })
                         .catch(e => {
                             this.emailNewValid = false;
@@ -114,7 +114,7 @@ export class UserProfileComponent implements OnDestroy {
                         });
                 } else if (value) {
                     this.emailNewValid = false;
-                    this.showError[1] = 'Email new invalide';
+                    this.showError[1] = this.translate.instant('error.email.new.invalid');
                 }
             });
     }
@@ -181,6 +181,8 @@ export class UserProfileComponent implements OnDestroy {
                 .catch(e => {
                     this.messageService.addMessage(e, MessageType.error);
                 });
+        } else if (!value.emailOld && !value.emailNew) {
+            this.showError[0] = this.translate.instant('error.email.old.invalid');
         }
     }
 

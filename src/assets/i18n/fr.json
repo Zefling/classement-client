@@ -271,9 +271,14 @@
   "error": {
     "api-code": {
       "1001": "Pas de nom d'utilisateur.",
-      "1002": "Pas de mot de passe.",
-      "1003": "Pas d'e-mail.",
-      "1010": "Jeton de connexion invalide.",
+      "1010": "Pas de mot de passe.",
+      "1011": "Pas d'ancien mot de passe.",
+      "1012": "Pas de nouveau mot de passe.",
+      "1013": "Mot de passe invalide.",
+      "1020": "Pas de couriel.",
+      "1021": "L'ancien couriel ne correspond pas.",
+      "1030": "Jeton de connexion invalide.",
+      "1031": "Test invalide.",
       "2000": "Sauvegarde impossible : Contenu dubliqué.",
       "3000": "Utilisateur non trouvé.",
       "3001": "Permission impossible.",
@@ -281,10 +286,16 @@
       "3102": "Pas de classement trouvé.",
       "3003": "Jeton non trouvé.",
       "4001": "Ce nom d'utilisateur existe déjà.",
-      "4002": "Ce email existe déjà."
+      "4002": "Ce email existe déjà.",
+      "5000": "Erreur de categorie."
     },
     "username.exist": "Ce nom d'utilisateur existe déjà.",
-    "email.exist": "Cet email a déjà été utilisé.",
+    "email": {
+      "exist": "Cet couriel a déjà été utilisé.",
+      "old.invalid": "L'ancien couriel est invalide.",
+      "new.invalid": "Le nouveau couriel est invalide.",
+      "already.used": "Ce couriel déja utilisé par un autre utilisateur."
+    },
     "pw.duplicate": "Les mots des passe ne sont pas itendiques.",
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
