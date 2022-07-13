@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 
-import { Message, MessageError } from '../content/user/user.interface';
+import { Message } from '../content/user/user.interface';
 import { Classement } from '../interface';
 
 
@@ -18,8 +18,8 @@ export class APIClassementService extends APICommon {
         return this.userService.token!;
     }
 
-    constructor(private http: HttpClient, private userService: APIUserService, private translate: TranslateService) {
-        super();
+    constructor(private http: HttpClient, private userService: APIUserService, translate: TranslateService) {
+        super(translate);
     }
 
     getClassement(rankingId: string): Promise<Classement> {
@@ -29,8 +29,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('classement', result));
                 },
             });
         });
@@ -51,8 +50,20 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('byOptions', result));
+                },
+            });
+        });
+    }
+
+    getClassementsByTemplateId(id: string): Promise<Classement[]> {
+        return new Promise<Classement[]>((resolve, reject) => {
+            this.http.get<Message<Classement[]>>(`${environment.api.path}api/classements/template/${id}`).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('templateId', result));
                 },
             });
         });
@@ -65,8 +76,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('home', result));
                 },
             });
         });
@@ -81,8 +91,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                        reject(this.error('save', result));
                     },
                 });
         });
@@ -97,8 +106,7 @@ export class APIClassementService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('login', result);
-                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                        reject(this.error('delete', result));
                     },
                 });
         });

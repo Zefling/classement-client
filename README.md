@@ -32,7 +32,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
     -   ⌛ Tierlists
         -   ✅ save tierlists on server
         -   ✅ search in public tierlists
-        -   ❌ see tierlists form template
+        -   ⌛ see tierlists form template
     -   ❌ Admin
         -   ❌ edit/remove profil
         -   ❌ remove tierlists

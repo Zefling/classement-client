@@ -53,4 +53,8 @@ export class ClassementNavigateComponent {
     openClassement(classement: Classement) {
         this.router.navigate(['edit', classement.rankingId]);
     }
+
+    seeTemplate(classement: Classement) {
+        this.router.navigate(['navigate', 'template', classement.templateId]);
+    }
 }

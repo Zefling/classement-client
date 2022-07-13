@@ -266,7 +266,8 @@
     }
   },
   "navigate": {
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "template": "Recherche par templète"
   },
   "error": {
     "api-code": {

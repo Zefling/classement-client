@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
 
-import { Login, Message, MessageError } from '../content/user/user.interface';
+import { Login, Message } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
 import { Utils } from '../tools/utils';
 
@@ -25,8 +25,8 @@ export class APIUserService extends APICommon {
 
     token?: string;
 
-    constructor(private http: HttpClient, private translate: TranslateService) {
-        super();
+    constructor(private http: HttpClient, translate: TranslateService) {
+        super(translate);
     }
 
     updateClassement(classement: Classement) {
@@ -67,9 +67,8 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('invalide token', result);
                         this.logged = false;
-                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                        reject(this.error('invalide token', result));
                     },
                     complete: () => {
                         this.afterLoggin.next();
@@ -89,8 +88,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('signup', result);
-                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                        reject(this.error('signup', result));
                     },
                 });
         });
@@ -114,9 +112,8 @@ export class APIUserService extends APICommon {
                         });
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
                     this.afterLogout.next();
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('login', result));
                 },
             });
         });
@@ -135,8 +132,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('logout', result);
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('logout', result));
                 },
             });
         });
@@ -151,8 +147,7 @@ export class APIUserService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    console.error('login', result);
-                    reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                    reject(this.error('login', result));
                 },
             });
         });
@@ -170,8 +165,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        console.error('update', result);
-                        reject(this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`));
+                        reject(this.error('update', result));
                     },
                 });
         });

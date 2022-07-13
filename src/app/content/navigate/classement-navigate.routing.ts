@@ -5,9 +5,16 @@ import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
 import { ClassementNavigateComponent } from './classement-navigate.component';
+import { ClassementTemplateComponent } from './classement-template.component';
 
 
 const routes: Routes = [
+    {
+        path: 'template/:id',
+        pathMatch: 'full',
+        component: ClassementTemplateComponent,
+        canActivate: [DataChange, APIRequired],
+    },
     {
         path: '',
         pathMatch: 'full',
