@@ -48,6 +48,10 @@ export class ClassementTemplateComponent {
         );
     }
 
+    ngOnDistroy() {
+        this._sub.forEach(e => e.unsubscribe());
+    }
+
     openClassement(classement: Classement) {
         this.router.navigate(['edit', classement.rankingId]);
     }

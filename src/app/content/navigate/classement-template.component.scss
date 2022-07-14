@@ -1,57 +1,6 @@
-:host {
-    display: block;
-    margin: 0 15px 30px 30px;
-}
-
-.search {
-    display: flex;
-    gap: 5px;
-}
-
-.result {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.name {
-    flex: 1;
-}
-
-.categories {
-    width: 250px;
-}
+@import './classement-navigate.scss';
 
 .return {
     margin-bottom: 15px;
     text-align: center;
-}
-
-figure,
-.template {
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-    color: var(--menu-color);
-    background: var(--menu-background);
-    border-radius: 5px;
-    cursor: pointer;
-
-    img {
-        max-width: 100%;
-    }
-
-    &:hover {
-        color: var(--menu-hover-color);
-        background: var(--menu-hover-background);
-    }
-}
-
-.classement {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr auto;
-    gap: 2px;
 }

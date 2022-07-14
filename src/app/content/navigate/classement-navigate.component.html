@@ -19,10 +19,9 @@
     <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
 </div>
 
-<h3>
-    {{ isCatagoryList ? 'categories' : 'classement' }}
-</h3>
-<div class="result">
+<h3>{{ isCatagoryList ? 'categories' : 'classement' }} ({{ classements?.length }})</h3>
+
+<div *ngIf="classements?.length; else noResult" class="result">
     <div class="classement" *ngFor="let category of classements">
         <figure (click)="isCatagoryList ? openCategory(category) : openClassement(category)">
             <img [src]="category.banner" />
@@ -35,3 +34,6 @@
         <div *ngIf="!isCatagoryList" class="template" (click)="seeTemplate(category)">See derivate</div>
     </div>
 </div>
+<ng-template #noResult>
+    <div class="no-result">Rien n'a été trouvé.</div>
+</ng-template>
