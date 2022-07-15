@@ -111,4 +111,26 @@ export class APIClassementService extends APICommon {
                 });
         });
     }
+
+    getAdminClassements(page: number = 1): Promise<{ total: number; list: Classement[] }> {
+        return new Promise<{ total: number; list: Classement[] }>((resolve, reject) => {
+            let params = new HttpParams().set('page', page);
+
+            console.log('params', params);
+
+            this.http
+                .get<Message<{ total: number; list: Classement[] }>>(`${environment.api.path}api/admin/classements`, {
+                    params,
+                    ...this.header(),
+                })
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('adminClassements', result));
+                    },
+                });
+        });
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, HostBinding, ViewChild } from '@angular/core';
+import { Component, DoCheck, HostBinding, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ const languages = [
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
     @ViewChild('warningExit') warningExit!: DialogComponent;
 
     languages = languages;

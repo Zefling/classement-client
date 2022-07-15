@@ -1,0 +1,13 @@
+<ng-container *ngFor="let item of pages">
+    <div
+        *ngIf="!item.separator; else separator"
+        [class.current]="item.current"
+        [routerLink]="[base]"
+        [queryParams]="{ page: item.page }"
+    >
+        {{ item.page }}
+    </div>
+</ng-container>
+<ng-template #separator>
+    <div class="separator">...</div>
+</ng-template>

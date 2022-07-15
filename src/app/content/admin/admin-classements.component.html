@@ -1,1 +1,49 @@
 <h3>{{ 'menu.admin.classements' | translate }}</h3>
+
+<ng-container *ngIf="classements[page]?.length; else noResult">
+    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+    <table>
+        <thead>
+            <tr>
+                <th class="title">{{ 'list.title.name' | translate }}</th>
+                <th class="category">{{ 'list.category.name' | translate }}</th>
+                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="groups">{{ 'list.count.group' | translate }}</th>
+                <th class="items">{{ 'list.count.item' | translate }}</th>
+                <th class="stats">{{ 'list.stats.list' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let classement of classements[page]">
+                <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
+                <td class="category">
+                    {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                </td>
+                <td class="date">
+                    <span>{{ classement.dateCreate | date: 'dd/MM/yyyy' }}</span>
+                    <span>{{ classement.dateCreate | date: 'HH:mm' }}</span>
+                </td>
+                <td class="groups">{{ classement.totalGroups }}</td>
+                <td class="datas">{{ classement.totalItems }}</td>
+                <td class="datas">
+                    {{ classement.deleted ? ('list.stats.deleted' | translate) : '' }}
+                    {{ classement.hide ? ('list.stats.hide' | translate) : '' }}
+                    {{ classement.parent ? ('list.stats.parent' | translate) : '' }}
+                </td>
+                <td class="actions">
+                    <a (click)="see(classement)">{{ 'list.action.see' | translate }}</a>
+                    <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="admin/classement"></paginate-cmp>
+</ng-container>
+
+<ng-template #noResult>
+    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p>
+        <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+    </p>
+</ng-template>

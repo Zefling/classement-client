@@ -40,11 +40,18 @@
       "group": "Nombre de groupes",
       "item": "Nombre d'élements"
     },
+    "stats": {
+      "list": "Status",
+      "deleted": "Supprimé",
+      "hide": "Caché",
+      "parent": "Parent"
+    },
     "action": {
       "name": "Action",
       "edit": "Éditer",
       "delete": "Retirer",
-      "clone": "Cloner"
+      "clone": "Cloner",
+      "see": "Voir"
     },
     "no.result": "Pas de résultats.",
     "create.new": "Créez votre classement.",

@@ -1,0 +1,29 @@
+:host {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 5px;
+}
+
+div:not(.separator) {
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.current {
+        color: #9797ff;
+        background: #9797ff20;
+        font-weight: 700;
+    }
+
+    &:hover {
+        background: #fff2;
+    }
+}
+
+.separator {
+    min-width: 20px;
+    text-align: center;
+}

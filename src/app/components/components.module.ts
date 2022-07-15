@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,6 +10,7 @@ import { InfoMessageComponent } from './info-message.component';
 import { InfoMessagesComponent } from './info-messages.component';
 import { LightDarkComponent } from './light-dark.component';
 import { LoadingComponent } from './loading.component';
+import { PaginationComponent } from './paginate.component';
 import { ThemeIconComponent } from './theme-icon.component';
 
 
@@ -21,6 +23,7 @@ import { ThemeIconComponent } from './theme-icon.component';
         ThemeIconComponent,
         ImportJsonComponent,
         LoadingComponent,
+        PaginationComponent,
     ],
     exports: [
         DialogComponent,
@@ -30,7 +33,8 @@ import { ThemeIconComponent } from './theme-icon.component';
         ThemeIconComponent,
         ImportJsonComponent,
         LoadingComponent,
+        PaginationComponent,
     ],
-    imports: [CommonModule, TranslateModule],
+    imports: [CommonModule, RouterModule, TranslateModule],
 })
 export class ComponentsModule {}

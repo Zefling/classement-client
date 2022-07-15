@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { categories } from '../classement/classement-default';
     templateUrl: './classement-navigate.component.html',
     styleUrls: ['./classement-navigate.component.scss'],
 })
-export class ClassementNavigateComponent {
+export class ClassementNavigateComponent implements OnDestroy {
     categories = categories;
 
     searchKey = '';
@@ -50,7 +50,8 @@ export class ClassementNavigateComponent {
             }),
         );
     }
-    ngOnDistroy() {
+
+    ngOnDestroy() {
         this._sub.forEach(e => e.unsubscribe());
     }
 

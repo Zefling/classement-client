@@ -14,6 +14,10 @@ export interface Classement {
     user: string;
     totalGroups: number;
     totalItems: number;
+    // status
+    hide?: boolean;
+    deleted?: boolean;
+    parent?: boolean;
 }
 
 export interface User {
