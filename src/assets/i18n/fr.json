@@ -7,6 +7,9 @@
     "login": "Connexion",
     "profile": "Mon profil",
     "navigate": "Naviger",
+    "admin": "Administation",
+    "admin.users": "Utilisateurs",
+    "admin.classements": "Classements",
     "logout": "Déconnexion",
     "licences": "Licences"
   },

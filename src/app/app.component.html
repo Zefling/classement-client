@@ -50,7 +50,7 @@
                 <li
                     routerLink="/navigate"
                     routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLinkActiveOptions]="{ exact: false }"
                     (click)="toggleMenu()"
                 >
                     {{ 'menu.navigate' | translate }}
@@ -63,6 +63,15 @@
                 (click)="toggleMenu()"
             >
                 {{ 'menu.new' | translate }}
+            </li>
+            <li
+                *ngIf="modeApi && modeModerator"
+                routerLink="/admin"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: false }"
+                (click)="toggleMenu()"
+            >
+                {{ 'menu.admin' | translate }}
             </li>
             <ng-container *ngIf="modeApi">
                 <li *ngIf="userService.logged" class="logout" (click)="logout()">

@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () =>
             import('./content/navigate/classement-navigate.module').then(m => m.ClassementNavigateModule),
     },
+    {
+        path: 'admin',
+        loadChildren: () => import('./content/admin/admin.module').then(m => m.AdminModule),
+    },
 ];
 
 @NgModule({

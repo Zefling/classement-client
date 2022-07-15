@@ -29,14 +29,14 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
         -   ✅ Change email
         -   ✅ Change password
         -   ⌛ Remove user
-    -   ⌛ Tierlists
+    -   ✅ Tierlists
         -   ✅ save tierlists on server
         -   ✅ search in public tierlists
-        -   ⌛ see tierlists form template
-    -   ❌ Admin
-        -   ❌ edit/remove profil
-        -   ❌ remove tierlists
-        -   ❌ change roles
+        -   ✅ see tierlists form template
+    -   ⌛ Admin
+        -   ⌛ edit/remove profil
+        -   ⌛ change roles
+        -   ⌛ remove tierlists
 
 ## Demo
 

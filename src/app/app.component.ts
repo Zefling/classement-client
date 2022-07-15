@@ -30,7 +30,8 @@ export class AppComponent {
     @HostBinding('class.show-menu')
     asideOpen = false;
 
-    modeApi = environment.api?.active ?? false;
+    modeApi = false;
+    modeModerator = false;
 
     private route?: string;
 
@@ -54,6 +55,17 @@ export class AppComponent {
             userService.initProfile().then(() => {
                 console.log('Auto logged !!');
             });
+        }
+    }
+
+    ngDoCheck() {
+        const modeApi = environment.api?.active || false;
+        if (this.modeApi !== modeApi) {
+            this.modeApi = modeApi;
+        }
+        const modeModerator = this.userService?.isModerator || this.userService?.isAdmin || false;
+        if (this.modeModerator !== modeModerator) {
+            this.modeModerator = modeModerator;
         }
     }
 

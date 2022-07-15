@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
+import { Role } from './api.moderation';
 
 import { Login, Message } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
@@ -22,6 +23,8 @@ export class APIUserService extends APICommon {
     logged?: boolean;
 
     user?: User;
+    isModerator = false;
+    isAdmin = false;
 
     token?: string;
 
@@ -64,6 +67,8 @@ export class APIUserService extends APICommon {
                             );
                         }
                         this.logged = true;
+                        this.isModerator = this.user.roles?.includes(Role.MODERATOR) || false;
+                        this.isAdmin = this.user.roles?.includes(Role.ADMIN) || false;
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {

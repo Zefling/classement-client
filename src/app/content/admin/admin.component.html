@@ -1,0 +1,12 @@
+<h2>{{ 'menu.admin' | translate }}</h2>
+
+<menu class="menu">
+    <li routerLink="/admin/users" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+        {{ 'menu.admin.users' | translate }}
+    </li>
+    <li routerLink="/admin/classements" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+        {{ 'menu.admin.classements' | translate }}
+    </li>
+</menu>
+
+<router-outlet></router-outlet>

@@ -21,6 +21,7 @@ export interface User {
     dateCreate: Date;
     id: number;
     username: string;
+    roles: string[];
 }
 
 export interface FileHandle {
