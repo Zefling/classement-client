@@ -22,12 +22,16 @@ export class AdminClassementsComponent implements OnDestroy {
     constructor(private classementService: APIClassementService, private route: ActivatedRoute) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
-                console.log('params', params);
-                this.classementService.getAdminClassements(params['page']).then(result => {
-                    this.total = result.total;
-                    this.page = params['page'] || 1;
-                    this.classements[this.page] = result.list;
-                });
+                const page = params['page'] || 1;
+                if (!this.classements[page]) {
+                    this.classementService.getAdminClassements(page).then(result => {
+                        this.total = result.total;
+                        this.page = page;
+                        this.classements[page] = result.list;
+                    });
+                } else {
+                    this.page = page;
+                }
             }),
         );
     }

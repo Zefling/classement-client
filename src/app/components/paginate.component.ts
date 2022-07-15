@@ -45,14 +45,6 @@ export class PaginationComponent implements DoCheck {
         for (let i = 1; i <= page; i++) {
             const fin = this.total - this.end;
 
-            console.log(
-                i,
-                i <= this.start,
-                this.start,
-                i >= currentPage - this.middleStart && i <= currentPage + this.middleEnd,
-                i > page - this.end,
-                page - this.end,
-            );
             if (
                 i <= this.start ||
                 (i >= currentPage - this.middleStart && i <= currentPage + this.middleEnd) ||
