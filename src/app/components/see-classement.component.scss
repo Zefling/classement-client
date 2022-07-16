@@ -1,0 +1,141 @@
+:host {
+    display: block;
+    margin: 15px;
+}
+
+// content --------------------------------------------------------------------
+
+.content-box {
+    padding: var(--over-item-padding, 10px);
+    margin: var(--over-item-margin, 2px);
+    width: var(--over-item-width, 150px);
+    height: var(--over-item-height, 150px);
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
+    background: var(--over-item-background, var(--content-box-background));
+    color: var(--over-item-color, var(--content-box-color));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    font-size: 14px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    .image {
+        flex: 1 1 100%;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+// images
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+// table --------------------------------------------------------------------
+
+.render {
+    width: var(--over-image-width, 1200px);
+}
+
+table {
+    min-width: 100%;
+    background-color: var(--over-image-background, var(--background));
+    background-image: var(--over-image-url);
+    background-repeat: repeat;
+    border-spacing: 1px;
+}
+
+.elements {
+    width: 100%;
+}
+
+.names {
+    width: var(--over-name-width, 150px);
+    min-width: var(--over-name-width, 150px);
+    text-align: center;
+    border-radius: 4px;
+    color: var(--text-color);
+    background: var(--name-background);
+    border: 1px solid var(--name-border-color);
+    font-size: var(--over-name-font-size, 120%);
+}
+
+// text only
+.title:first-child:last-child {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+// image, text only
+.title:last-child:not(:first-child),
+.title:first-child:last-child span {
+    text-align: center;
+    color: var(--over-item-text-color, var(--content-box-text));
+    font-size: 85%;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.content-render {
+    position: relative;
+    &.top {
+        flex-direction: column-reverse;
+    }
+
+    &.bottom-over .title:last-child:not(:first-child),
+    &.top-over .title:last-child:not(:first-child) {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        background: var(--over-item-text-background, var(--content-box-text-background));
+    }
+    &.bottom-over .title:last-child:not(:first-child) {
+        bottom: 0;
+    }
+    &.top-over .title:last-child:not(:first-child) {
+        top: 0;
+    }
+}
+
+.drop-list {
+    display: table-cell; // fix chromium
+    & > div {
+        display: inline-flex; // fix chromium
+        text-align: center;
+        vertical-align: bottom;
+    }
+    .content-box {
+        display: flex;
+    }
+}
+
+caption {
+    font-size: 120%;
+    padding: 10px;
+}
+
+img {
+    // fix html2canvas
+    margin: auto;
+    position: relative;
+    // fix chromium (see : https://github.com/niklasvh/html2canvas/issues/2829)
+    display: initial !important;
+}

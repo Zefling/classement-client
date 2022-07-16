@@ -11,6 +11,7 @@ import { InfoMessagesComponent } from './info-messages.component';
 import { LightDarkComponent } from './light-dark.component';
 import { LoadingComponent } from './loading.component';
 import { PaginationComponent } from './paginate.component';
+import { SeeClassementComponent } from './see-classement.component';
 import { ThemeIconComponent } from './theme-icon.component';
 
 
@@ -24,6 +25,7 @@ import { ThemeIconComponent } from './theme-icon.component';
         ImportJsonComponent,
         LoadingComponent,
         PaginationComponent,
+        SeeClassementComponent,
     ],
     exports: [
         DialogComponent,
@@ -34,6 +36,7 @@ import { ThemeIconComponent } from './theme-icon.component';
         ImportJsonComponent,
         LoadingComponent,
         PaginationComponent,
+        SeeClassementComponent,
     ],
     imports: [CommonModule, RouterModule, TranslateModule],
 })

@@ -74,6 +74,9 @@
       "validate": "Cloner",
       "edit": "Cloner et éditer",
       "cancel": "Annuler"
+    },
+    "user": {
+      "name": "Utilisateur"
     }
   },
   "category": {

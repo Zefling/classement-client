@@ -6,6 +6,7 @@
         <thead>
             <tr>
                 <th class="title">{{ 'list.title.name' | translate }}</th>
+                <th class="user">{{ 'list.user.name' | translate }}</th>
                 <th class="category">{{ 'list.category.name' | translate }}</th>
                 <th class="date">{{ 'list.date' | translate }}</th>
                 <th class="groups">{{ 'list.count.group' | translate }}</th>
@@ -17,6 +18,9 @@
         <tbody>
             <tr *ngFor="let classement of classements[page]">
                 <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
+                <td class="category">
+                    {{ classement.user }}
+                </td>
                 <td class="category">
                     {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
                 </td>
@@ -70,4 +74,13 @@
             </button>
         </div>
     </ng-container>
+</dialog-cmp>
+
+<dialog-cmp #dialogSeeClassement closeButton>
+    <see-classement
+        *ngIf="currentClassement"
+        [options]="currentClassement.data.options"
+        [groups]="currentClassement.data.groups"
+        [list]="currentClassement.data.list"
+    ></see-classement>
 </dialog-cmp>

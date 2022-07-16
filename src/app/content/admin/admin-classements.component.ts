@@ -24,6 +24,8 @@ export class AdminClassementsComponent implements OnDestroy {
     page = 0;
 
     @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
+    @ViewChild('dialogSeeClassement') dialogSeeClassement!: DialogComponent;
+
     currentClassement?: Classement;
 
     constructor(
@@ -56,7 +58,10 @@ export class AdminClassementsComponent implements OnDestroy {
         }
     }
 
-    see(classement: Classement) {}
+    see(classement: Classement) {
+        this.currentClassement = classement;
+        this.dialogSeeClassement.open();
+    }
 
     update(classement: Classement): void {
         this.currentClassement = classement;
