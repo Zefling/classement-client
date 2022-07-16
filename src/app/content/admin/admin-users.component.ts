@@ -30,8 +30,6 @@ export class AdminUsersComponent implements DoCheck {
     @ViewChild('dialogActionsUser') dialogActionsUser!: DialogComponent;
     currentUser?: User;
     userForm?: FormGroup;
-    usernameExist = false;
-    emailExist = false;
     isAdmin = false;
     showError?: string;
 
@@ -103,11 +101,13 @@ export class AdminUsersComponent implements DoCheck {
     changeStatus() {
         this.userService
             .adminUpdateUser(this.currentUser!.id, this.userForm?.value)
-            .then(() => {
+            .then(user => {
+                Object.assign(this.currentUser!, user);
                 this.messageService.addMessage(this.translate.instant('message.user.update.succes'));
                 this.changeStatusCancel();
             })
             .catch(e => {
+                console.log(e);
                 this.showError = e;
             });
     }

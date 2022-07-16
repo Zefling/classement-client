@@ -6,7 +6,7 @@
     <label for="password">{{ 'user.login.password' | translate }}</label>
     <input id="password" type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" />
 
-    <div *ngIf="showError" class="error">
+    <div *ngIf="showError" class="list-error">
         {{ showError }}
     </div>
 

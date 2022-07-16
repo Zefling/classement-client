@@ -199,9 +199,9 @@ export class APIUserService extends APICommon {
     }
 
     adminUpdateUser(id: number, param: {}) {
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<User>((resolve, reject) => {
             this.http
-                .post<Message<void>>(`${environment.api.path}api/admin/user/${id}`, param, this.header())
+                .post<Message<User>>(`${environment.api.path}api/admin/user/${id}`, param, this.header())
                 .subscribe({
                     next: result => {
                         resolve(result.message);

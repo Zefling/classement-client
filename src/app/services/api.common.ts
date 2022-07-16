@@ -28,6 +28,6 @@ export abstract class APICommon {
 
     protected error(message: string, result: HttpErrorResponse) {
         console.error(message, result);
-        this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`);
+        return this.translate.instant(`error.api-code.${(result.error as MessageError).errorCode}`);
     }
 }
