@@ -112,7 +112,29 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    getAdminClassements(page: number = 1): Promise<{ total: number; list: Classement[] }> {
+    adminStatusClassement(rankingId: string, status: boolean, type: 'delete' | 'hide') {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<void>>(
+                    `${environment.api.path}api/admin/classement/status/${rankingId}`,
+                    {
+                        type,
+                        status,
+                    },
+                    this.header(),
+                )
+                .subscribe({
+                    next: _ => {
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('adminStatusClassement', result));
+                    },
+                });
+        });
+    }
+
+    adminGetClassements(page: number = 1): Promise<{ total: number; list: Classement[] }> {
         return new Promise<{ total: number; list: Classement[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page);
 
@@ -128,7 +150,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('adminClassements', result));
+                        reject(this.error('adminGetClassements', result));
                     },
                 });
         });

@@ -10,7 +10,7 @@
                 <th class="date">{{ 'list.date' | translate }}</th>
                 <th class="groups">{{ 'list.count.group' | translate }}</th>
                 <th class="items">{{ 'list.count.item' | translate }}</th>
-                <th class="stats">{{ 'list.stats.list' | translate }}</th>
+                <th class="status">{{ 'list.status.list' | translate }}</th>
                 <th class="actions">{{ 'list.action.name' | translate }}</th>
             </tr>
         </thead>
@@ -27,13 +27,13 @@
                 <td class="groups">{{ classement.totalGroups }}</td>
                 <td class="datas">{{ classement.totalItems }}</td>
                 <td class="datas">
-                    {{ classement.deleted ? ('list.stats.deleted' | translate) : '' }}
-                    {{ classement.hide ? ('list.stats.hide' | translate) : '' }}
-                    {{ classement.parent ? ('list.stats.parent' | translate) : '' }}
+                    {{ classement.deleted ? ('list.status.deleted' | translate) : '' }}
+                    {{ classement.hidden ? ('list.status.hidden' | translate) : '' }}
+                    {{ classement.parent ? ('list.status.parent' | translate) : '' }}
                 </td>
                 <td class="actions">
                     <a (click)="see(classement)">{{ 'list.action.see' | translate }}</a>
-                    <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
+                    <a (click)="update(classement)">{{ 'list.action.update' | translate }}</a>
                 </td>
             </tr>
         </tbody>
@@ -47,3 +47,27 @@
         <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
 </ng-template>
+
+<dialog-cmp class="auto-format" #dialogRemoveClassement>
+    <ng-container *ngIf="currentClassement">
+        <p>{{ 'list.status.question' | translate }}</p>
+        <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+        <div>
+            <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | translate }}</button>
+            <button
+                (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
+                [class.warn]="!currentClassement!.hidden"
+                [class.primary]="currentClassement!.hidden"
+            >
+                {{ (!currentClassement!.hidden ? 'list.hide.hide' : 'list.hide.show') | translate }}
+            </button>
+            <button
+                (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
+                [class.warn]="!currentClassement!.deleted"
+                [class.primary]="currentClassement!.deleted"
+            >
+                {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | translate }}
+            </button>
+        </div>
+    </ng-container>
+</dialog-cmp>

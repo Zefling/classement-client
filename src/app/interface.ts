@@ -15,7 +15,7 @@ export interface Classement {
     totalGroups: number;
     totalItems: number;
     // status
-    hide?: boolean;
+    hidden?: boolean;
     deleted?: boolean;
     parent?: boolean;
 }

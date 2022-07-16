@@ -40,25 +40,33 @@
       "group": "Nombre de groupes",
       "item": "Nombre d'élements"
     },
-    "stats": {
+    "status": {
       "list": "Status",
       "deleted": "Supprimé",
-      "hide": "Caché",
-      "parent": "Parent"
+      "hidden": "Caché",
+      "parent": "Parent",
+      "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?"
     },
     "action": {
       "name": "Action",
       "edit": "Éditer",
       "delete": "Retirer",
       "clone": "Cloner",
-      "see": "Voir"
+      "see": "Voir",
+      "update": "Changer"
     },
     "no.result": "Pas de résultats.",
     "create.new": "Créez votre classement.",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
       "validate": "Valider",
-      "cancel": "Annuler"
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "restore": "Restaurer"
+    },
+    "hide": {
+      "hide": "Cacher",
+      "show": "Afficher"
     },
     "clone": {
       "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
@@ -350,7 +358,10 @@
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",
-      "remove.success": "😲 Le classement a été effacé avec succès."
+      "deleted.success": "🗑 Le classement a été effacé avec succès.",
+      "restored.success": "😊 La classement a été restauré avec succès.",
+      "hidden.success": "🫣 Le classement a été caché avec success.",
+      "showed.success": "😊 La classement a été rendu public avec succès."
     },
     "undefied": "⚠️ Une erreur serveur s'est produite. "
   }

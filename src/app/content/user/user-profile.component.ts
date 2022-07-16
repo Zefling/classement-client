@@ -186,26 +186,27 @@ export class UserProfileComponent implements OnDestroy {
         }
     }
 
-    valideRemoveProfile() {}
-
     delete(classement: Classement): void {
         this.currentClassement = classement;
         this.dialogRemoveClassement.open();
-    }
-
-    removeProfile() {
-        this.dialogRemoveProfile.open();
     }
 
     deleteCurrentClassement(remove: boolean): void {
         if (remove) {
             this.classementService.deleteClassement(this.currentClassement!.rankingId).then(() => {
                 this.user?.classements.splice(this.user?.classements.indexOf(this.currentClassement!), 1);
-                this.messageService.addMessage(this.translate.instant('message.server.remove.success'));
+                this.messageService.addMessage(this.translate.instant('message.server.deleted.success'));
+                this.currentClassement = undefined;
             });
         } else {
             this.currentClassement = undefined;
         }
         this.dialogRemoveClassement.close();
     }
+
+    removeProfile() {
+        this.dialogRemoveProfile.open();
+    }
+
+    valideRemoveProfile() {}
 }
