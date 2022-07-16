@@ -1,0 +1,73 @@
+<table>
+    <thead>
+        <tr>
+            <th class="title">{{ 'list.title.name' | translate }}</th>
+            <th class="user">{{ 'list.user.name' | translate }}</th>
+            <th class="category">{{ 'list.category.name' | translate }}</th>
+            <th class="date">{{ 'list.date' | translate }}</th>
+            <th class="groups">{{ 'list.count.group' | translate }}</th>
+            <th class="items">{{ 'list.count.item' | translate }}</th>
+            <th class="status">{{ 'list.status.list' | translate }}</th>
+            <th class="actions">{{ 'list.action.name' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let classement of classements">
+            <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
+            <td class="category">
+                {{ classement.user }}
+            </td>
+            <td class="category">
+                {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+            </td>
+            <td class="date">
+                <span>{{ classement.dateCreate | date: 'dd/MM/yyyy' }}</span>
+                <span>{{ classement.dateCreate | date: 'HH:mm' }}</span>
+            </td>
+            <td class="groups">{{ classement.totalGroups }}</td>
+            <td class="datas">{{ classement.totalItems }}</td>
+            <td class="datas">
+                {{ classement.deleted ? ('list.status.deleted' | translate) : '' }}
+                {{ classement.hidden ? ('list.status.hidden' | translate) : '' }}
+                {{ classement.parent ? ('list.status.parent' | translate) : '' }}
+            </td>
+            <td class="actions">
+                <a (click)="see(classement)">{{ 'list.action.see' | translate }}</a>
+                <a (click)="update(classement)">{{ 'list.action.update' | translate }}</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<dialog-cmp class="auto-format" #dialogActionsClassement>
+    <ng-container *ngIf="currentClassement">
+        <p>{{ 'list.status.question' | translate }}</p>
+        <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+        <div>
+            <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | translate }}</button>
+            <button
+                (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
+                [class.warn]="!currentClassement!.hidden"
+                [class.primary]="currentClassement!.hidden"
+            >
+                {{ (!currentClassement!.hidden ? 'list.hide.hide' : 'list.hide.show') | translate }}
+            </button>
+            <button
+                (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
+                [class.warn]="!currentClassement!.deleted"
+                [class.primary]="currentClassement!.deleted"
+            >
+                {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | translate }}
+            </button>
+        </div>
+    </ng-container>
+</dialog-cmp>
+
+<dialog-cmp #dialogSeeClassement closeButton>
+    <see-classement
+        *ngIf="currentClassement"
+        [options]="currentClassement.data.options"
+        [groups]="currentClassement.data.groups"
+        [list]="currentClassement.data.list"
+    ></see-classement>
+</dialog-cmp>

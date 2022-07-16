@@ -6,6 +6,7 @@ import { AdminClassementsComponent } from './admin-classements.component';
 import { AdminUsersComponent } from './admin-users.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin.routing';
+import { ListClassementsComponent } from './list-classements.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AdminRoutingModule } from './admin.routing';
         AdminComponent,
         AdminUsersComponent,
         AdminClassementsComponent,
+        ListClassementsComponent,
     ],
     imports: [SharedModule, AdminRoutingModule],
     providers: [],

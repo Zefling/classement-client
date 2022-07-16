@@ -36,7 +36,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
     -   ⌛ Admin
         -   ⌛ edit/remove profil
         -   ⌛ change roles
-        -   ⌛ remove tierlists
+        -   ✅ tierlists change status
 
 ## Demo
 

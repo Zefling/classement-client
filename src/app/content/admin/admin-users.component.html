@@ -30,7 +30,7 @@
                     {{ user.deleted ? ('list.status.deleted' | translate) : '' }}
                 </td>
                 <td class="actions">
-                    <a (click)="see(user)">{{ 'list.action.see' | translate }}</a>
+                    <a (click)="see(user)" *ngIf="user.classements?.length">{{ 'list.action.see' | translate }}</a>
                     <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
                 </td>
             </tr>
@@ -45,3 +45,7 @@
         <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
 </ng-template>
+
+<dialog-cmp #dialogListClassements closeButton>
+    <list-classements [classements]="currentUser?.classements"></list-classements>
+</dialog-cmp>

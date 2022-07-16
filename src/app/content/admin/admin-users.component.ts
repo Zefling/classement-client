@@ -25,8 +25,7 @@ export class AdminUsersComponent {
     total?: number = 0;
     page = 0;
 
-    @ViewChild('dialogClassementsUser') dialogClassementsUser!: DialogComponent;
-    @ViewChild('dialogSeeUser') dialogSeeUser!: DialogComponent;
+    @ViewChild('dialogListClassements') dialogListClassements!: DialogComponent;
 
     constructor(
         private userService: APIUserService,
@@ -56,11 +55,11 @@ export class AdminUsersComponent {
 
     see(user: User) {
         this.currentUser = user;
-        this.dialogClassementsUser.open();
+        this.dialogListClassements.open();
     }
 
     update(user: User): void {
         this.currentUser = user;
-        this.dialogSeeUser.open();
+        this.dialogListClassements.open();
     }
 }
