@@ -23,7 +23,7 @@ export class AdminClassementsComponent implements OnDestroy {
     total?: number = 0;
     page = 0;
 
-    @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
+    @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
     @ViewChild('dialogSeeClassement') dialogSeeClassement!: DialogComponent;
 
     currentClassement?: Classement;
@@ -65,7 +65,7 @@ export class AdminClassementsComponent implements OnDestroy {
 
     update(classement: Classement): void {
         this.currentClassement = classement;
-        this.dialogRemoveClassement.open();
+        this.dialogActionsClassement.open();
     }
 
     changeStatusCurrentClassement(status: boolean, type: 'delete' | 'hide'): void {
@@ -82,15 +82,13 @@ export class AdminClassementsComponent implements OnDestroy {
             }
 
             this.currentClassement![stat!] = status;
-            this.currentClassement = undefined;
-
             this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
-            this.dialogRemoveClassement.close();
+            this.changeStatusCancel();
         });
     }
 
     changeStatusCancel() {
         this.currentClassement = undefined;
-        this.dialogRemoveClassement.close();
+        this.dialogActionsClassement.close();
     }
 }

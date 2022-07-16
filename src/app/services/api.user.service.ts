@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -171,6 +171,28 @@ export class APIUserService extends APICommon {
                     },
                     error: (result: HttpErrorResponse) => {
                         reject(this.error('update', result));
+                    },
+                });
+        });
+    }
+
+    adminGetUsers(page: number = 1): Promise<{ total: number; list: User[] }> {
+        return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
+            let params = new HttpParams().set('page', page);
+
+            console.log('params', params);
+
+            this.http
+                .get<Message<{ total: number; list: User[] }>>(`${environment.api.path}api/admin/users`, {
+                    params,
+                    ...this.header(),
+                })
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('adminGetUser', result));
                     },
                 });
         });

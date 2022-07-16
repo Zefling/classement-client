@@ -1,1 +1,47 @@
 <h3>{{ 'menu.admin.users' | translate }}</h3>
+
+<ng-container *ngIf="users[page]?.length; else noResult">
+    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+    <table>
+        <thead>
+            <tr>
+                <th class="user">{{ 'list.user.name' | translate }}</th>
+                <th class="user">{{ 'list.roles.name' | translate }}</th>
+
+                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="classements">{{ 'list.count.classements' | translate }}</th>
+                <th class="status">{{ 'list.status.list' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users[page]">
+                <td class="username">{{ user.username || ('list.title.undefined' | translate) }}</td>
+                <td class="role">
+                    {{ user.roles }}
+                </td>
+                <td class="date">
+                    <span>{{ user.dateCreate | date: 'dd/MM/yyyy' }}</span>
+                    <span>{{ user.dateCreate | date: 'HH:mm' }}</span>
+                </td>
+                <td class="classements">{{ user.classements?.length || 0 }}</td>
+                <td class="status">
+                    {{ user.isValidated ? 'list.status.validated' : ('list.status.notValidated' | translate) }}
+                    {{ user.deleted ? ('list.status.deleted' | translate) : '' }}
+                </td>
+                <td class="actions">
+                    <a (click)="see(user)">{{ 'list.action.see' | translate }}</a>
+                    <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="admin/classement"></paginate-cmp>
+</ng-container>
+
+<ng-template #noResult>
+    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p>
+        <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+    </p>
+</ng-template>

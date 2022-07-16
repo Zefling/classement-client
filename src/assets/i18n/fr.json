@@ -36,16 +36,23 @@
     "category": {
       "name": "Catégorie"
     },
+    "roles": {
+      "name": "Rôles"
+    },
     "count": {
       "group": "Nombre de groupes",
-      "item": "Nombre d'élements"
+      "item": "Nombre d'élements",
+      "classements": "Nombre de classements"
     },
     "status": {
       "list": "Status",
       "deleted": "Supprimé",
       "hidden": "Caché",
       "parent": "Parent",
-      "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?"
+      "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?",
+      "validated": "validé",
+      "notValidated": "non validé",
+      "deteled": " / supprimé"
     },
     "action": {
       "name": "Action",

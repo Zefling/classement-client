@@ -26,6 +26,9 @@ export interface User {
     id: number;
     username: string;
     roles: string[];
+    // status
+    isValidated?: boolean;
+    deleted?: boolean;
 }
 
 export interface FileHandle {
