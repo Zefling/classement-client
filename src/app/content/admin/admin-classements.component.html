@@ -3,8 +3,7 @@
 <ng-container *ngIf="classements[page]?.length; else noResult">
     <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
     <list-classements [classements]="classements[page]"></list-classements>
-
-    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="admin/classement"></paginate-cmp>
+    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
 </ng-container>
 
 <ng-template #noResult>
