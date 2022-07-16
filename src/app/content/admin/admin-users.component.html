@@ -49,3 +49,48 @@
 <dialog-cmp #dialogListClassements closeButton>
     <list-classements [classements]="currentUser?.classements"></list-classements>
 </dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogActionsUser>
+    <ng-container *ngIf="currentUser && userForm" [formGroup]="userForm">
+        <p>{{ 'user.status.warning' | translate }}</p>
+        <p class="title">{{ currentUser?.username }}</p>
+
+        <label for="username">{{ 'user.login.username' | translate }}</label>
+        <input id="username" type="text" formControlName="username" #username />
+        <div class="level-strong" *ngIf="username.value">
+            <span class="strong" [class.error-block]="usernameExist"></span>
+        </div>
+
+        <label for="password">{{ 'user.login.password' | translate }}</label>
+        <input id="password" type="password" formControlName="password" />
+
+        <label for="email">{{ 'user.login.email' | translate }}</label>
+        <input id="email" type="email" formControlName="email" #email />
+        <div class="level-strong" *ngIf="email.value">
+            <span class="strong" [class.error-block]="emailExist"></span>
+        </div>
+
+        <div class="label">{{ 'user.status.list' | translate }}</div>
+        <label for="moderator" *ngIf="isAdmin">
+            <input id="moderator" type="checkbox" formControlName="moderator" />
+            {{ 'user.status.moderator' | translate }}
+        </label>
+        <label for="admin" *ngIf="isAdmin">
+            <input id="admin" type="checkbox" formControlName="admin" #adminCheckbox />
+            {{ 'user.status.admin' | translate }}
+        </label>
+        <label for="banned">
+            <input id="banned" type="checkbox" formControlName="banned" />
+            {{ 'user.status.banned' | translate }}
+        </label>
+
+        <div *ngIf="showError" class="error">
+            {{ showError }}
+        </div>
+
+        <div>
+            <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | translate }}</button>
+            <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | translate }}</button>
+        </div>
+    </ng-container>
+</dialog-cmp>

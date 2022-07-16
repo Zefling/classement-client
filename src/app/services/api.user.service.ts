@@ -197,4 +197,19 @@ export class APIUserService extends APICommon {
                 });
         });
     }
+
+    adminUpdateUser(id: number, param: {}) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<void>>(`${environment.api.path}api/admin/user/${id}`, param, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('adminUpdateUser', result));
+                    },
+                });
+        });
+    }
 }

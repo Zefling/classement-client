@@ -8,7 +8,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
 
 ## Features
 
--   ✅ server less
+-   ✅ Stand-alone (without server)
     -   ✅ Adding images by drag'n drop or copy-paste
     -   ✅ Adding text under images.
     -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
@@ -30,13 +30,13 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
         -   ✅ Change password
         -   ⌛ Remove user
     -   ✅ Tierlists
-        -   ✅ save tierlists on server
-        -   ✅ search in public tierlists
-        -   ✅ see tierlists form template
-    -   ⌛ Admin
-        -   ⌛ edit/remove profil
-        -   ⌛ change roles
-        -   ✅ tierlists change status
+        -   ✅ Save tierlists on server
+        -   ✅ Search in public tierlists
+        -   ✅ See tierlists form template
+    -   ✅ Admin
+        -   ✅ Edit profil & change roles
+        -   ✅ Tierlists change status
+        -   ❌ Remove user
 
 ## Demo
 

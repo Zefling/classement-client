@@ -40,22 +40,25 @@ export class ListClassementsComponent {
     }
 
     changeStatusCurrentClassement(status: boolean, type: 'delete' | 'hide'): void {
-        this.classementService.adminStatusClassement(this.currentClassement!.rankingId, status, type).then(() => {
-            let typeName: string;
-            let stat: 'deleted' | 'hidden';
+        this.classementService
+            .adminStatusClassement(this.currentClassement!.rankingId, status, type)
+            .then(() => {
+                let typeName: string;
+                let stat: 'deleted' | 'hidden';
 
-            if (type === 'delete') {
-                typeName = status ? 'deleted' : 'restored';
-                stat = 'deleted';
-            } else if (type === 'hide') {
-                typeName = status ? 'hidden' : 'showed';
-                stat = 'hidden';
-            }
+                if (type === 'delete') {
+                    typeName = status ? 'deleted' : 'restored';
+                    stat = 'deleted';
+                } else if (type === 'hide') {
+                    typeName = status ? 'hidden' : 'showed';
+                    stat = 'hidden';
+                }
 
-            this.currentClassement![stat!] = status;
-            this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
-            this.changeStatusCancel();
-        });
+                this.currentClassement![stat!] = status;
+                this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
+                this.changeStatusCancel();
+            })
+            .catch(e => {});
     }
 
     changeStatusCancel() {

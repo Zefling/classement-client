@@ -10,6 +10,7 @@ export enum Role {
     USER = 'ROLE_USER',
     MODERATOR = 'ROLE_MODERATOR',
     ADMIN = 'ROLE_ADMIN',
+    BANNED = 'ROLE_BANNED',
 }
 export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 

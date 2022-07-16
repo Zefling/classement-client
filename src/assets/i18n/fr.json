@@ -291,6 +291,15 @@
       "new": "Nouveau courriel",
       "change.cancel": "Annuler",
       "change.ok": "Valider"
+    },
+    "status": {
+      "warning": "Attention : Vous êtes en train de change les informations d'un utilisateur.",
+      "list": "Les des rôles",
+      "moderator": "Moderaeur",
+      "admin": "Admin",
+      "banned": "Banni",
+      "change.cancel": "Annuler",
+      "change.edit": "Modifier"
     }
   },
   "navigate": {
@@ -363,8 +372,9 @@
     "add": {
       "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
     },
-    "user.singup": {
-      "succes": "😊 Utilisateur créé."
+    "user": {
+      "singup.succes": "😊 Utilisateur créé.",
+      "update.succes": "😊 Utilisateur mise à jour avec succès."
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",

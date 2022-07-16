@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, DoCheck, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -8,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService } from 'src/app/components/info-messages.component';
 import { User } from 'src/app/interface';
+import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 
@@ -16,16 +18,22 @@ import { APIUserService } from 'src/app/services/api.user.service';
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
 })
-export class AdminUsersComponent {
+export class AdminUsersComponent implements DoCheck {
     private _sub: Subscription[] = [];
-
-    currentUser?: User;
 
     users: { [key: number]: User[] } = {};
     total?: number = 0;
     page = 0;
 
     @ViewChild('dialogListClassements') dialogListClassements!: DialogComponent;
+
+    @ViewChild('dialogActionsUser') dialogActionsUser!: DialogComponent;
+    currentUser?: User;
+    userForm?: FormGroup;
+    usernameExist = false;
+    emailExist = false;
+    isAdmin = false;
+    showError?: string;
 
     constructor(
         private userService: APIUserService,
@@ -39,6 +47,20 @@ export class AdminUsersComponent {
                 this.pageUpdate(page);
             }),
         );
+        this.isAdmin = this.userService.isAdmin;
+    }
+
+    ngDoCheck(): void {
+        if (this.userForm?.get('banned') && this.currentUser) {
+            if (
+                (this.disabledBanned() && this.userForm.get('banned')!.enabled) ||
+                this.currentUser.id === this.userService.user!.id
+            ) {
+                this.userForm.get('banned')!.disable();
+            } else if (!this.disabledBanned() && this.userForm.get('banned')!.disabled) {
+                this.userForm.get('banned')!.enable();
+            }
+        }
     }
 
     pageUpdate(page: number) {
@@ -60,6 +82,39 @@ export class AdminUsersComponent {
 
     update(user: User): void {
         this.currentUser = user;
-        this.dialogListClassements.open();
+        this.userForm = new FormGroup({
+            username: new FormControl(''),
+            password: new FormControl(''),
+            email: new FormControl(''),
+            moderator: new FormControl(this.currentUser.roles.includes(Role.MODERATOR)),
+            admin: new FormControl(this.currentUser.roles.includes(Role.ADMIN)),
+            banned: new FormControl(this.currentUser.roles.includes(Role.BANNED)),
+        });
+        this.dialogActionsUser.open();
+    }
+
+    disabledBanned() {
+        return (
+            (this.isAdmin && this.userForm?.get('admin')?.value) ||
+            (!this.isAdmin && this.currentUser?.roles.includes('ROLE_ADMIN'))
+        );
+    }
+
+    changeStatus() {
+        this.userService
+            .adminUpdateUser(this.currentUser!.id, this.userForm?.value)
+            .then(() => {
+                this.messageService.addMessage(this.translate.instant('message.user.update.succes'));
+                this.changeStatusCancel();
+            })
+            .catch(e => {
+                this.showError = e;
+            });
+    }
+
+    changeStatusCancel() {
+        this.userForm = undefined;
+        this.currentUser = undefined;
+        this.dialogActionsUser.close();
     }
 }
