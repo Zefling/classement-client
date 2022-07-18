@@ -102,7 +102,7 @@
         <span class="strong" *ngIf="changeEmailForm.get('emailNew')?.value" [class.error-block]="!emailNewValid"></span>
     </div>
 
-    <ul *ngIf="showError?.length" class="list-error">
+    <ul *ngIf="showError?.[0] || showError?.[1]" class="list-error">
         <ng-container *ngFor="let error of showError">
             <li *ngIf="error">{{ error }}</li>
         </ng-container>

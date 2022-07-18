@@ -265,7 +265,7 @@
         "question": "Are you sure you want to delete your account?",
         "question.admin": "Are you sure you want to delete this account?",
         "warning": "Please note that this action will be irreversible.",
-        "warning2": "Your account will be anonymized and unrecoverable: deletion of username and email.",
+        "warning2": "This account will be anonymized and unrecoverable: deletion of username and email.",
         "cancel": "Cancel",
         "ok": "Ok"
       }

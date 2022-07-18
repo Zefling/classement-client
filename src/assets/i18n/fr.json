@@ -7,7 +7,7 @@
     "login": "Connexion",
     "profile": "Mon profil",
     "navigate": "Naviger",
-    "admin": "Administation",
+    "admin": "Administration",
     "admin.users": "Utilisateurs",
     "admin.classements": "Classements",
     "logout": "Déconnexion",
@@ -227,7 +227,7 @@
     "loading": "Chargement en cours…",
     "server": {
       "update": "Mettre à jour votre classement",
-      "new": "Savegerder un nouveau classement",
+      "new": "Sauvegarder un nouveau classement",
       "from": "Classement d'origine",
       "username": "Nom d'utilisateur\u00A0:",
       "edit": "Éditer",
@@ -248,7 +248,7 @@
       "password": "Mot de passe",
       "password.bis": "Mot de passe (confirmation)",
       "login": "Connexion",
-      "email": "Couriel",
+      "email": "Courriel",
       "password.lost": "J'ai perdu mon mot de passe",
       "signup": "Créer un compte"
     },
@@ -258,14 +258,14 @@
       "username": "Utilisateur\u00A0:",
       "since": "Depuis\u00A0:",
       "actions": "Actions",
-      "change.email": "Changer de couriel",
+      "change.email": "Changer de courriel",
       "change.password": "Changer de mot de passe",
       "remove": {
         "profile": "Supprimer votre profil",
         "question": "Êtes-vous sûr de vouloir supprimer votre compte\u00A0?",
         "question.admin": "Êtes-vous sûr de vouloir supprimer ce compte\u00A0?",
         "warning": "Attention, cette action sera irreversible.",
-        "warning2": "Votre compte sera anonymisé et irrécupérable : suppression du nom d'utilisateur et email.",
+        "warning2": "Ce compte sera anonymisé et irrécupérable : suppression du nom d'utilisateur et email.",
         "cancel": "Annuler",
         "ok": "Valider"
       }
@@ -315,8 +315,8 @@
       "1011": "Pas d'ancien mot de passe.",
       "1012": "Pas de nouveau mot de passe.",
       "1013": "Mot de passe invalide.",
-      "1020": "Pas de couriel.",
-      "1021": "L'ancien couriel ne correspond pas.",
+      "1020": "Pas de courriel.",
+      "1021": "L'ancien courriel ne correspond pas.",
       "1030": "Jeton de connexion invalide.",
       "1031": "Test invalide.",
       "2000": "Sauvegarde impossible : Contenu dubliqué.",
@@ -336,18 +336,18 @@
     },
     "username.exist": "Ce nom d'utilisateur existe déjà.",
     "email": {
-      "exist": "Cet couriel a déjà été utilisé.",
-      "old.invalid": "L'ancien couriel est invalide.",
-      "new.invalid": "Le nouveau couriel est invalide.",
-      "already.used": "Ce couriel déja utilisé par un autre utilisateur."
+      "exist": "Cet courriel a déjà été utilisé.",
+      "old.invalid": "L'ancien courriel est invalide.",
+      "new.invalid": "Le nouveau courriel est invalide.",
+      "already.used": "Ce courriel déja utilisé par un autre utilisateur."
     },
     "pw.duplicate": "Les mots de passe ne sont pas identiques.",
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
-      "The password must be fewer than * characters.": "Le mot de passe doit faire au moins % caractères.",
-      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenur au moins une minuscile.",
-      "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenur au moins une majuscule.",
-      "The password must contain at least one number.": "Le mot de passe doit contenur au moins un chiffre.",
+      "The password must be fewer than * characters.": "Le mot de passe doit faire moins de % caractères.",
+      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenir au moins une minuscile.",
+      "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenir au moins une majuscule.",
+      "The password must contain at least one number.": "Le mot de passe doit contenir au moins un chiffre.",
       "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,).",
       "The password may not contain sequences of three or more repeated characters.": "Le mot de passe ne doit pas contenir de séquence de 3 caractères ou plus."
     }
