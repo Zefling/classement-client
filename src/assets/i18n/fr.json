@@ -233,7 +233,7 @@
       "edit": "Éditer",
       "banner": {
         "select": "Selectionner une images de bannière",
-        "cropper": "Découper",
+        "crop": "Recadrer",
         "image": "Image de la bannière",
         "reset": "Réinitialiser"
       },
@@ -272,7 +272,7 @@
     },
     "password.lost": {
       "title": "J'ai perdu mon mot de passe",
-      "info": "Envoyer un couriel de renouvellement de mot de passe.",
+      "info": "Envoyer un courriel de renouvellement de mot de passe.",
       "action": "Envoyer"
     },
     "signup": {
@@ -295,9 +295,9 @@
       "change.ok": "Valider"
     },
     "status": {
-      "warning": "Attention : Vous êtes en train de change les informations d'un utilisateur.",
-      "list": "Les des rôles",
-      "moderator": "Moderaeur",
+      "warning": "Attention : Vous êtes en train de changer les informations d'un utilisateur.",
+      "list": "Liste des rôles",
+      "moderator": "Modérateur",
       "admin": "Admin",
       "banned": "Banni",
       "change.cancel": "Annuler",
@@ -341,7 +341,7 @@
       "new.invalid": "Le nouveau couriel est invalide.",
       "already.used": "Ce couriel déja utilisé par un autre utilisateur."
     },
-    "pw.duplicate": "Les mots des passe ne sont pas itendiques.",
+    "pw.duplicate": "Les mots de passe ne sont pas identiques.",
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
       "The password must be fewer than * characters.": "Le mot de passe doit faire au moins % caractères.",
@@ -385,6 +385,6 @@
       "hidden.success": "🫣 Le classement a été caché avec success.",
       "showed.success": "😊 La classement a été rendu public avec succès."
     },
-    "undefied": "⚠️ Une erreur serveur s'est produite. "
+    "undefied": "⚠️ Une erreur serveur s'est produite."
   }
 }
