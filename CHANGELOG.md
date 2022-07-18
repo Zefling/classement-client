@@ -1,3 +1,16 @@
+# next version
+
+-   add auto save
+-   add an API switch in the environment configuration
+
+## With API activited only
+
+-   sign up / login
+-   profil management
+-   save tierlists with account
+-   search/browse tierslists on server
+-   admin pages management: users / tierlists
+
 # 0.5.5 (2022-06-09)
 
 -   drop content in all the page
