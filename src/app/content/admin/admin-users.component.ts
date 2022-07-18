@@ -33,6 +33,8 @@ export class AdminUsersComponent implements DoCheck {
     isAdmin = false;
     showError?: string;
 
+    @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
+
     constructor(
         private userService: APIUserService,
         private route: ActivatedRoute,
@@ -116,5 +118,19 @@ export class AdminUsersComponent implements DoCheck {
         this.userForm = undefined;
         this.currentUser = undefined;
         this.dialogActionsUser.close();
+    }
+
+    removeProfile(user: User) {
+        this.currentUser = user;
+        this.dialogRemoveProfile.open();
+    }
+
+    valideRemoveProfile() {
+        this.cancelRemoveProfile();
+    }
+
+    cancelRemoveProfile() {
+        this.currentUser = undefined;
+        this.dialogRemoveProfile.close();
     }
 }

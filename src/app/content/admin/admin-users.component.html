@@ -32,6 +32,7 @@
                 <td class="actions">
                     <a (click)="see(user)" *ngIf="user.classements?.length">{{ 'list.action.see' | translate }}</a>
                     <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
+                    <a (click)="removeProfile(user)">{{ 'list.action.remove' | translate }}</a>
                 </td>
             </tr>
         </tbody>
@@ -87,4 +88,19 @@
             <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | translate }}</button>
         </div>
     </ng-container>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogRemoveProfile>
+    <p>{{ 'user.profile.remove.question.admin' | translate }}</p>
+    <p>
+        <strong>{{ currentUser?.username }}</strong>
+    </p>
+    <p class="alert">
+        {{ 'user.profile.remove.warning' | translate }}<br />
+        {{ 'user.profile.remove.warning2' | translate }}
+    </p>
+    <div>
+        <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | translate }}</button>
+        <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
+    </div>
 </dialog-cmp>

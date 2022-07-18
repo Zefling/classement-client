@@ -60,7 +60,8 @@
       "delete": "Retirer",
       "clone": "Cloner",
       "see": "Voir",
-      "update": "Changer"
+      "update": "Changer",
+      "remove": "Supprimer"
     },
     "no.result": "Pas de résultats.",
     "create.new": "Créez votre classement.",
@@ -262,6 +263,7 @@
       "remove": {
         "profile": "Supprimer votre profil",
         "question": "Êtes-vous sûr de vouloir supprimer votre compte\u00A0?",
+        "question.admin": "Êtes-vous sûr de vouloir supprimer ce compte\u00A0?",
         "warning": "Attention, cette action sera irreversible.",
         "warning2": "Votre compte sera anonymisé et irrécupérable : suppression du nom d'utilisateur et email.",
         "cancel": "Annuler",

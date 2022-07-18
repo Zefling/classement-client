@@ -16,3 +16,10 @@ label,
         width: auto;
     }
 }
+
+.alert {
+    width: 80%;
+    margin: auto;
+    border: 1px solid var(--alert-color);
+    color: var(--alert-color);
+}
