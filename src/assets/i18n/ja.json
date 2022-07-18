@@ -7,17 +7,24 @@
     "login": "ログイン",
     "profile": "プロフィール",
     "navigate": "ナビゲート",
+    "admin": "管理",
+    "admin.users": "ユーザー",
+    "admin.classements": "ティアリスト",
     "logout": "ログアウト",
     "licences": "ライセンス"
   },
-  "home": {
-    "intro": "画像でティアリストを作成するWebアプリケーションです。",
-    "source.code": "ソースコード",
-    "source.license": "ライセンス",
-    "source.gpl3": "GNU General Public License v3.0"
-  },
   "licenses": {
     "title": "サードパーティライセンスの概要"
+  },
+  "home": {
+    "intro": "画像でティアリストを作成するWebアプリケーションです。",
+    "source": {
+      "code": "ソースコード",
+      "license": "ライセンス",
+      "gpl3": "GNU General Public License v3.0",
+      "client": "クライアント",
+      "server": "サーバー"
+    }
   },
   "list": {
     "intro": "インターネットブラウザでメモリ内のティアリストのリスト。",
@@ -29,22 +36,45 @@
     "category": {
       "name": "カテゴリー"
     },
+    "roles": {
+      "name": "ロール"
+    },
     "count": {
       "group": "グループの数",
-      "item": "アイテム数"
+      "item": "アイテムの数",
+      "classements": "ティアリストの数"
+    },
+    "status": {
+      "list": "ステータス",
+      "deleted": "削除された",
+      "hidden": "隠れた",
+      "parent": "親",
+      "question": "ステータスの一つを変更してもよろしいですか？",
+      "validated": "有効",
+      "notValidated": "無効",
+      "deteled": " / 削除"
     },
     "action": {
       "name": "アクション",
       "edit": "編集する",
       "delete": "削除する",
-      "clone": "複製する"
+      "clone": "複製する",
+      "see": "見る",
+      "update": "変更する",
+      "remove": "削除する"
     },
     "no.result": "結果なし。",
     "create.new": "ティアリストを作成します。",
     "delete": {
       "question": "消去してもよろしいですか？",
       "validate": "検証する",
-      "cancel": "拒否する"
+      "cancel": "拒否する",
+      "delete": "削除する",
+      "restore": "復元する"
+    },
+    "hide": {
+      "hide": "隠れる",
+      "show": "表示する"
     },
     "clone": {
       "question": "複製してもよろしいですか？",
@@ -52,6 +82,9 @@
       "validate": "複製する",
       "edit": "複製して編集する",
       "cancel": "拒否する"
+    },
+    "user": {
+      "name": "ユーザー"
     }
   },
   "category": {
@@ -158,6 +191,8 @@
       "reset.groups": "クリアグループ",
       "export.image": "画像のエクスポート",
       "save.local": "ブラウザセーブ",
+      "save.local.auto": "変更するたびに、ブラウザに自動的にセーブされます。",
+      "save.server": "アカウントにセーブする",
       "export.json": "エクスポート",
       "import.json": "インポート",
       "save.image": "Save as:"
@@ -189,7 +224,133 @@
       "size": "{{ size }}バイト",
       "validate": "検証"
     },
-    "loading": "ロード中…"
+    "loading": "ロード中…",
+    "server": {
+      "update": "ティアリストを更新する",
+      "new": "新しいティアリストをセーブする",
+      "from": "元のティアリスト",
+      "username": "ユーザー名：",
+      "edit": "編集する",
+      "banner": {
+        "select": "バナー画像を選択する",
+        "crop": "切り抜く",
+        "image": "バナー画像",
+        "reset": "リセット"
+      },
+      "cancel": "キャンセルする",
+      "save": "セーブする"
+    }
+  },
+  "user": {
+    "login": {
+      "title": "ログインする",
+      "username": "ユーザー名",
+      "password": "パスワード",
+      "password.bis": "パスワード（確認）",
+      "login": "ログイン",
+      "email": "電子メール",
+      "password.lost": "パスワードを紛失してしまいました",
+      "signup": "アカウントを作成する"
+    },
+    "profile": {
+      "title": "私のプロフィール",
+      "my.tierlists": "私のティアリスト",
+      "username": "ユーザー：",
+      "since": "以来：",
+      "actions": "アクション",
+      "change.email": "電子メールアドレスを変更する",
+      "change.password": "パスワードを変更する",
+      "remove": {
+        "profile": "プロフィールを削除する",
+        "question": "アカウントを削除してもよろしいですか？",
+        "question.admin": "このアカウントを削除してもよろしいですか？",
+        "warning": "注意、このアクションは元に戻せません。",
+        "warning2": "このアカウントは匿名化され、回復できなくなります。ユーザー名と電子メールアドレスの削除になります。",
+        "cancel": "キャンセル",
+        "ok": "OK"
+      }
+    },
+    "password.lost": {
+      "title": "パスワードをなくしてしまいました",
+      "info": "電子メールのパスワードを変更するを送信する",
+      "action": "送信する"
+    },
+    "signup": {
+      "title": "アカウントを作成する",
+      "action": "作成する"
+    },
+    "password": {
+      "change": "パスワードを変更する",
+      "old": "現在のパスワード",
+      "new": "新しいパスワード",
+      "confirm": "新しいパスワードを確認",
+      "change.cancel": "キャンセル",
+      "change.ok": "OK"
+    },
+    "email": {
+      "change": "電子メールアドレスを変更する",
+      "old": "現在の電子メールアドレス",
+      "new": "新しい電子メールアドレス",
+      "change.cancel": "キャンセル",
+      "change.ok": "OK"
+    },
+    "status": {
+      "warning": "警告：ユーザーの情報を変更しています。",
+      "list": "ロールのリスト",
+      "moderator": "モデレータ",
+      "admin": "管理者",
+      "banned": "禁止された",
+      "change.cancel": "キャンセルする",
+      "change.edit": "編集する"
+    }
+  },
+  "navigate": {
+    "search": "検索",
+    "template": "テンプレートで検索"
+  },
+  "error": {
+    "api-code": {
+      "1001": "ユーザー名なしです。",
+      "1010": "パスワードなしです。",
+      "1011": "現在のパスワードなしです。",
+      "1012": "新しいパスワードなしです。",
+      "1013": "無効なパスワードです。",
+      "1020": "電子メールアドレスなしです。",
+      "1021": "現在の電子メールアドレスが一致しません。",
+      "1030": "無効なログイントークンです。",
+      "1031": "テストが無効です。",
+      "2000": "保存できません：コンテンツが重複しています。",
+      "3000": "ユーザーが見つかりません。",
+      "3001": "許可できません。",
+      "3101": "評価が見つかりません。",
+      "3102": "評価が見つかりません。",
+      "3003": "トークンが見つかりません。",
+      "4001": "このユーザー名は既に存在します。",
+      "4002": "この電子メールアドレスは既に存在します。",
+      "5000": "カテゴリエラーです。"
+    },
+    "classement": {
+      "name.empty": "タイトルを空にすることはできません。",
+      "category.empty": "カテゴリを空にすることはできません。",
+      "banner.empty": "バナーを空にすることはできません。"
+    },
+    "username.exist": "このユーザー名は既に存在します。",
+    "email": {
+      "exist": "この電子メールアドレスはすでに使用されています。",
+      "old.invalid": "現在の電子メールアドレスは無効です。",
+      "new.invalid": "新しい電子メールアドレスは無効です。",
+      "already.used": "この電子メールアドレスはすでに別のユーザーが使用しています。"
+    },
+    "pw.duplicate": "パスワードは同一ではありません。",
+    "owasp": {
+      "The password must be at least * characters long.": "パスワードは少なくとも%文字である必要があります。",
+      "The password must be fewer than * characters.": "パスワードは%文字未満である必要があります。",
+      "The password must contain at least one lowercase letter.": "パスワードには、少なくとも1つの小文字が含まれている必要があります。",
+      "The password must contain at least one uppercase letter.": "パスワードには、少なくとも1つの大文字が含まれている必要があります。",
+      "The password must contain at least one number.": "パスワードには、少なくとも1つの数字が含まれている必要があります。",
+      "The password must contain at least one special character.": "パスワードには、少なくとも1つの特殊文字が含まれている必要があります。（例：&!#,）",
+      "The password may not contain sequences of three or more repeated characters.": "パスワードには、3文字以上のシーケンスを含めることはできません。"
+    }
   },
   "message": {
     "save": {
@@ -212,6 +373,18 @@
     },
     "add": {
       "succes": "😊 「％title％」のティアリストを追加しました。"
-    }
+    },
+    "user": {
+      "singup.succes": "😊 ユーザーが作成しました。",
+      "update.succes": "😊 ユーザーが正常に更新されました。"
+    },
+    "server": {
+      "save.success": "😊 セーブは成功しました。",
+      "deleted.success": "🗑 ティアリストは正常に消去されました。",
+      "restored.success": "😊 ティアリストは正常に復元されました。",
+      "hidden.success": "🫣  ティアリストは正常に隠されています。",
+      "showed.success": "😊 ティアリストは公開に成功しました。"
+    },
+    "undefied": "⚠️ サーバーエラーが発生しました。"
   }
 }
