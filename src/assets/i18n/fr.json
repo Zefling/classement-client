@@ -306,7 +306,15 @@
   },
   "navigate": {
     "search": "Rechercher",
-    "template": "Recherche par templète"
+    "search.nothing": "Rien n'a été trouvé.",
+    "template": "Recherche par templète",
+    "back.category": "Revenir à la liste des categories",
+    "back.search": "Revenir à la recherche",
+    "title": "Titre",
+    "category": "Categorie",
+    "categories": "Categories",
+    "classements": "Classements",
+    "see.derivatives": "Voir les dérivés"
   },
   "error": {
     "api-code": {

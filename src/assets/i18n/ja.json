@@ -306,7 +306,15 @@
   },
   "navigate": {
     "search": "検索",
-    "template": "テンプレートで検索"
+    "search.nothing": "何も見つかりませんでした。",
+    "template": "テンプレートで検索",
+    "back.category": "カテゴリのリストに戻る",
+    "back.search": "検索に戻る",
+    "title": "タイトル",
+    "category": "カテゴリー",
+    "categories": "カテゴリー",
+    "classements": "ティアリスト",
+    "see.derivatives": "デリバティブを見る"
   },
   "error": {
     "api-code": {

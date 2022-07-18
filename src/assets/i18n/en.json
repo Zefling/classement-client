@@ -306,7 +306,15 @@
   },
   "navigate": {
     "search": "Search",
-    "template": "Search by template"
+    "search.nothing": "Nothing was found.",
+    "template": "Search by template",
+    "back.category": "Return to the list of categories",
+    "back.search": "Return to search",
+    "title": "Title",
+    "category": "Category",
+    "categories": "tierlist",
+    "classements": "Tierlists",
+    "see.derivatives": "See derivatives"
   },
   "error": {
     "api-code": {
