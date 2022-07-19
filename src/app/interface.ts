@@ -6,12 +6,16 @@ export interface Classement {
     data: Data;
     category: string;
     name: string;
+    user: string;
+    // ids
     rankingId: string;
     templateId: string;
+    parentId: string;
     localId: string;
+    // date
     dateCreate: Date;
     dateChange: Date;
-    user: string;
+    // items count
     totalGroups: number;
     totalItems: number;
     // status
@@ -82,7 +86,6 @@ export type ThemeOptions = {
     nameFontSize: number;
     nameBackgroundOpacity: number;
     autoSave?: boolean;
-    notPublic?: boolean;
 };
 
 export type Theme = {
@@ -95,6 +98,7 @@ export interface IndexedData {
     /** server link */
     rankingId?: string | null;
     templateId?: string | null;
+    parentId?: string | null;
 }
 
 export interface Data extends IndexedData {

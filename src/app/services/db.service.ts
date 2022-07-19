@@ -93,6 +93,7 @@ export class DBService {
                 // server link
                 rankingId: data.rankingId,
                 templateId: data.templateId,
+                parentId: data.parentId,
             },
             data: {
                 id,

@@ -71,18 +71,22 @@ export class ClassementSaveServerComponent {
 
     validate() {
         this.showError = [];
-        // format data
+
+        const sameUserEdit = this.userService.user?.username === this.classement?.user;
+
+        // format data for server save
         const classement: Classement = {
-            // save only for save user
-            rankingId:
-                this.userService.user?.username === this.classement?.user ? this.classement?.rankingId ?? null : null,
-            templateId: this.classement?.templateId || null,
+            rankingId: sameUserEdit ? this.classement?.rankingId ?? null : null,
+            parendId: sameUserEdit
+                ? this.classement?.parentId ?? this.classement?.templateId ?? null
+                : this.classement?.rankingId ?? null,
+            templateId: this.classement?.templateId ?? null,
             localId: this.classement?.localId || null,
             name: this.options?.title?.trim(),
             category: this.classement?.category ?? this.options?.category,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
-            hidden: this.options?.notPublic || false,
+            hidden: this.classement?.hidden || false,
         } as any;
 
         if (!classement.name) {
