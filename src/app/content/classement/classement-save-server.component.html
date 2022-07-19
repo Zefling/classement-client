@@ -62,11 +62,18 @@
             </button>
         </div>
     </div>
-</ng-container>
 
-<ul *ngIf="showError?.length" class="list-error">
-    <li *ngFor="let error of showError">{{ error }}</li>
-</ul>
+    <ul *ngIf="showError?.length" class="list-error">
+        <li *ngFor="let error of showError">{{ error }}</li>
+    </ul>
+
+    <div class="public">
+        <label>
+            <input type="checkbox" [(ngModel)]="options.notPublic" />
+            {{ 'gererator.server.not.public' | translate }}
+        </label>
+    </div>
+</ng-container>
 
 <p>
     <button (click)="cancel()">{{ 'gererator.server.cancel' | translate }}</button>

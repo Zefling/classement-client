@@ -72,7 +72,7 @@ export class ClassementSaveServerComponent {
     validate() {
         this.showError = [];
         // format data
-        const classement = {
+        const classement: Classement = {
             // save only for save user
             rankingId:
                 this.userService.user?.username === this.classement?.user ? this.classement?.rankingId ?? null : null,
@@ -82,6 +82,7 @@ export class ClassementSaveServerComponent {
             category: this.classement?.category ?? this.options?.category,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
+            hidden: this.options?.notPublic || false,
         } as any;
 
         if (!classement.name) {

@@ -237,6 +237,7 @@
         "image": "Image de la bannière",
         "reset": "Réinitialiser"
       },
+      "not.public": "Ne pas rendre public.",
       "cancel": "Annuler",
       "save": "Sauvegarder"
     }
