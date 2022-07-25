@@ -27,11 +27,14 @@ export class PaginationComponent implements DoCheck {
 
     pages: Page[] = [];
 
+    private _test: number;
+
     constructor(private route: Router) {}
 
     ngDoCheck() {
         const pages = [];
         let currentPage = +this.page;
+        let test = 0;
 
         const page = this.size ? Math.ceil((this.total ?? 0) / this.size) : 0;
 
@@ -43,12 +46,10 @@ export class PaginationComponent implements DoCheck {
 
         let separator = false;
         for (let i = 1; i <= page; i++) {
-            const fin = this.total - this.end;
-
             if (
                 i <= this.start ||
                 (i >= currentPage - this.middleStart && i <= currentPage + this.middleEnd) ||
-                i > page - this.end
+                i >= page - this.end
             ) {
                 const link: Page = {};
 
@@ -61,12 +62,17 @@ export class PaginationComponent implements DoCheck {
                 link.view = `${i}`;
                 link.page = i;
 
+                test += i;
+
                 pages.push(link);
             } else if (!separator) {
                 separator = true;
             }
         }
 
-        this.pages = pages;
+        if (this._test != test) {
+            this._test = test;
+            this.pages = pages;
+        }
     }
 }
