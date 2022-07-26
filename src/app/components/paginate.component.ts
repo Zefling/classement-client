@@ -36,38 +36,43 @@ export class PaginationComponent implements DoCheck {
         let currentPage = +this.page;
         let test = 0;
 
-        const page = this.size ? Math.ceil((this.total ?? 0) / this.size) : 0;
+        const nbPages = this.size ? Math.ceil((this.total ?? 0) / this.size) : 0;
 
         if (currentPage < 1) {
             currentPage = 1;
-        } else if (currentPage > page) {
-            currentPage = page;
+        } else if (currentPage > nbPages) {
+            currentPage = nbPages;
         }
 
-        let separator = false;
-        for (let i = 1; i <= page; i++) {
-            if (
-                i <= this.start ||
-                (i >= currentPage - this.middleStart && i <= currentPage + this.middleEnd) ||
-                i >= page - this.end
-            ) {
-                const link: Page = {};
+        const addPage = i => {
+            const link: Page = {};
+            link.current = currentPage === i;
+            link.view = `${i}`;
+            link.page = i;
+            test += i;
+            pages.push(link);
+        };
 
-                if (separator) {
-                    link.separator = true;
-                    separator = false;
-                }
+        let i: number;
+        const startPos = this.start;
+        const middleStartPos = currentPage - this.middleStart;
+        const middleEndPos = currentPage + this.middleEnd;
+        const endPos = nbPages - this.end + 1;
 
-                link.current = currentPage === i;
-                link.view = `${i}`;
-                link.page = i;
-
-                test += i;
-
-                pages.push(link);
-            } else if (!separator) {
-                separator = true;
-            }
+        for (i = 1; i <= Math.min(startPos, nbPages); i++) {
+            addPage(i);
+        }
+        if (startPos < middleStartPos) {
+            pages.push({ separator: true });
+        }
+        for (i = Math.max(startPos + 1, middleStartPos); i <= Math.min(middleEndPos, nbPages); i++) {
+            addPage(i);
+        }
+        if (middleEndPos < endPos) {
+            pages.push({ separator: true });
+        }
+        for (let i = Math.max(middleEndPos + 1, endPos); i <= nbPages; i++) {
+            addPage(i);
         }
 
         if (this._test != test) {
