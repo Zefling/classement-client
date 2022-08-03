@@ -27,7 +27,7 @@ export class PaginationComponent implements DoCheck {
 
     pages: Page[] = [];
 
-    private _test: number;
+    private _test = 0;
 
     constructor(private route: Router) {}
 
@@ -44,12 +44,12 @@ export class PaginationComponent implements DoCheck {
             currentPage = nbPages;
         }
 
-        const addPage = i => {
+        const addPage = (index: number) => {
             const link: Page = {};
-            link.current = currentPage === i;
-            link.view = `${i}`;
-            link.page = i;
-            test += i;
+            link.current = currentPage === index;
+            link.view = `${index}`;
+            link.page = index;
+            test += index;
             pages.push(link);
         };
 
@@ -62,13 +62,13 @@ export class PaginationComponent implements DoCheck {
         for (i = 1; i <= Math.min(startPos, nbPages); i++) {
             addPage(i);
         }
-        if (startPos < middleStartPos) {
+        if (startPos + 1 < middleStartPos) {
             pages.push({ separator: true });
         }
         for (i = Math.max(startPos + 1, middleStartPos); i <= Math.min(middleEndPos, nbPages); i++) {
             addPage(i);
         }
-        if (middleEndPos < endPos) {
+        if (middleEndPos + 1 < endPos) {
             pages.push({ separator: true });
         }
         for (let i = Math.max(middleEndPos + 1, endPos); i <= nbPages; i++) {
