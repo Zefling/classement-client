@@ -56,7 +56,7 @@
         </div>
         <div class="image" *ngIf="croppedImage || classement.banner">
             <div class="label">{{ 'gererator.server.banner.image' | translate }}</div>
-            <img [src]="croppedImage || classement?.banner" />
+            <img [src]="croppedImage || classement.banner" />
             <button *ngIf="croppedImage" (click)="resetBanner()">
                 {{ 'gererator.server.banner.reset' | translate }}
             </button>

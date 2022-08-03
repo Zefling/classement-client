@@ -123,3 +123,5 @@ export interface FormatedInfosData {
     infos: FormatedInfos;
     data: FormatedData;
 }
+
+export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };

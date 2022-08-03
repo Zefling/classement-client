@@ -31,7 +31,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.svg", "src/.htaccess", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["pica", "utf8", "html2canvas", "owasp-password-strength-test"]
           },
           "configurations": {
             "production": {

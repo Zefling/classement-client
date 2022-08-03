@@ -1,11 +1,8 @@
 import { Component, DoCheck, Input } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { FileString, FormatedGroup } from 'src/app/interface';
-import {
-  OptimisedFile,
-  OptimiseImageService,
-} from 'src/app/services/optimise-image.service';
+import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
+import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
 
 @Component({
@@ -82,27 +79,29 @@ export class ClassementOptimiseComponent implements DoCheck {
         this.reduceSize = 0;
         this.listOptimise = [];
         if (this.groups) {
-            this.groups.forEach(async f =>
-                f?.list.forEach(async e => {
-                    const file = await this.optimiseImage.resize(e, 300, 300);
+            this.groups.forEach(f =>
+                f?.list.forEach(e => {
+                    this.optimiseImage.resize(e, 300, 300).then(file => {
+                        this.progress++;
+                        this.totalResize += file.reduceFile?.realSize || 0;
+                        this.countResize += file.reduce > 0 ? 1 : 0;
+                        this.reduceSize += file.reduce;
+                        this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
+                        this.listOptimise.push(file);
+                    });
+                }),
+            );
+        }
+        if (this.list) {
+            this.list.forEach(e => {
+                this.optimiseImage.resize(e, 300, 300).then(file => {
                     this.progress++;
                     this.totalResize += file.reduceFile?.realSize || 0;
                     this.countResize += file.reduce > 0 ? 1 : 0;
                     this.reduceSize += file.reduce;
                     this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
                     this.listOptimise.push(file);
-                }),
-            );
-        }
-        if (this.list) {
-            this.list.forEach(async e => {
-                const file = await this.optimiseImage.resize(e, 300, 300);
-                this.progress++;
-                this.totalResize += file.reduceFile?.realSize || 0;
-                this.countResize += file.reduce > 0 ? 1 : 0;
-                this.reduceSize += file.reduce;
-                this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
-                this.listOptimise.push(file);
+                });
             });
         }
     }

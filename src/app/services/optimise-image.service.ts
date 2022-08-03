@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 
 import Pica from 'pica';
 
-import { FileHandle, FileString } from '../interface';
+import { FileHandle, FileString, OptimisedFile } from '../interface';
 
-
-export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
 @Injectable({ providedIn: 'root' })
 export class OptimiseImageService {

@@ -42,7 +42,7 @@
 <dialog-cmp class="auto-format" #dialogActionsClassement>
     <ng-container *ngIf="currentClassement">
         <p>{{ 'list.status.question' | translate }}</p>
-        <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+        <p class="title">{{ currentClassement.name || ('list.title.undefined' | translate) }}</p>
         <div>
             <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | translate }}</button>
             <button

@@ -44,12 +44,12 @@ export class PaginationComponent implements DoCheck {
             currentPage = nbPages;
         }
 
-        const addPage = (index: number) => {
+        const addPage = (pageNbr: number) => {
             const link: Page = {};
-            link.current = currentPage === index;
-            link.view = `${index}`;
-            link.page = index;
-            test += index;
+            link.current = currentPage === pageNbr;
+            link.view = `${pageNbr}`;
+            link.page = pageNbr;
+            test += pageNbr;
             pages.push(link);
         };
 
