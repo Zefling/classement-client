@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -23,6 +23,9 @@ export class ListClassementsComponent {
 
     class?: Classement;
 
+    @Output()
+    updateClassements = new EventEmitter<Classement[]>();
+
     constructor(
         private classementService: APIClassementService,
         private messageService: MessageService,
@@ -42,19 +45,15 @@ export class ListClassementsComponent {
     changeStatusCurrentClassement(status: boolean, type: 'delete' | 'hide'): void {
         this.classementService
             .adminStatusClassement(this.currentClassement!.rankingId, status, type)
-            .then(() => {
+            .then(classements => {
+                this.updateClassements.next(classements);
                 let typeName: string;
-                let stat: 'deleted' | 'hidden';
 
                 if (type === 'delete') {
                     typeName = status ? 'deleted' : 'restored';
-                    stat = 'deleted';
                 } else if (type === 'hide') {
                     typeName = status ? 'hidden' : 'showed';
-                    stat = 'hidden';
                 }
-
-                this.currentClassement![stat!] = status;
                 this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
                 this.changeStatusCancel();
             })

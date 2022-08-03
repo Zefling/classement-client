@@ -112,10 +112,10 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    adminStatusClassement(rankingId: string, status: boolean, type: 'delete' | 'hide') {
-        return new Promise<void>((resolve, reject) => {
+    adminStatusClassement(rankingId: string, status: boolean, type: 'delete' | 'hide'): Promise<Classement[]> {
+        return new Promise<Classement[]>((resolve, reject) => {
             this.http
-                .post<Message<void>>(
+                .post<Message<Classement[]>>(
                     `${environment.api.path}api/admin/classement/status/${rankingId}`,
                     {
                         type,
@@ -124,8 +124,8 @@ export class APIClassementService extends APICommon {
                     this.header(),
                 )
                 .subscribe({
-                    next: _ => {
-                        resolve();
+                    next: result => {
+                        resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
                         reject(this.error('adminStatusClassement', result));

@@ -43,4 +43,18 @@ export class AdminClassementsComponent implements OnDestroy {
             this.page = page;
         }
     }
+
+    updateClassements(classements: Classement[]) {
+        if (classements?.length) {
+            for (let classement of classements) {
+                for (let page in this.classements) {
+                    this.classements[page]?.forEach((c, index) => {
+                        if (classement.rankingId === c.rankingId) {
+                            this.classements[page][index] = classement;
+                        }
+                    });
+                }
+            }
+        }
+    }
 }
