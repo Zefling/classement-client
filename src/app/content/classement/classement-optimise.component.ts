@@ -71,7 +71,7 @@ export class ClassementOptimiseComponent implements DoCheck {
         this.total = count;
     }
 
-    optimise() {
+    async optimise() {
         console.log('optimise');
         this.progress = 0;
         this.totalResize = 0;
@@ -81,27 +81,13 @@ export class ClassementOptimiseComponent implements DoCheck {
         if (this.groups) {
             this.groups.forEach(f =>
                 f?.list.forEach(e => {
-                    this.optimiseImage.resize(e, 300, 300).then(file => {
-                        this.progress++;
-                        this.totalResize += file.reduceFile?.realSize || 0;
-                        this.countResize += file.reduce > 0 ? 1 : 0;
-                        this.reduceSize += file.reduce;
-                        this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
-                        this.listOptimise.push(file);
-                    });
+                    this.optimiseImg(e);
                 }),
             );
         }
         if (this.list) {
             this.list.forEach(e => {
-                this.optimiseImage.resize(e, 300, 300).then(file => {
-                    this.progress++;
-                    this.totalResize += file.reduceFile?.realSize || 0;
-                    this.countResize += file.reduce > 0 ? 1 : 0;
-                    this.reduceSize += file.reduce;
-                    this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
-                    this.listOptimise.push(file);
-                });
+                this.optimiseImg(e);
             });
         }
     }
@@ -116,5 +102,15 @@ export class ClassementOptimiseComponent implements DoCheck {
             }
         });
         this.dialog?.close();
+    }
+
+    private async optimiseImg(fileString: FileString) {
+        const file = await this.optimiseImage.resize(fileString, 300, 300);
+        this.progress++;
+        this.totalResize += file.reduceFile?.realSize || 0;
+        this.countResize += file.reduce > 0 ? 1 : 0;
+        this.reduceSize += file.reduce;
+        this.finalSize += file.reduceFile?.realSize || file.sourceFile?.realSize || 0;
+        this.listOptimise.push(file);
     }
 }
