@@ -24,7 +24,7 @@
                     <span>{{ user.dateCreate | date: 'dd/MM/yyyy' }}</span>
                     <span>{{ user.dateCreate | date: 'HH:mm' }}</span>
                 </td>
-                <td class="classements">{{ user.classements.length || 0 }}</td>
+                <td class="classements">{{ user.classements?.length || 0 }}</td>
                 <td class="status">
                     {{ user.isValidated ? 'list.status.validated' : ('list.status.notValidated' | translate) }}
                     {{ user.deleted ? ('list.status.deleted' | translate) : '' }}

@@ -25,7 +25,7 @@ export interface Classement {
 }
 
 export interface User {
-    classements: Classement[];
+    classements?: Classement[];
     dateCreate: Date;
     id: number;
     username: string;
