@@ -8,6 +8,7 @@ import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
 import { UserSignupComponent } from './user-signup.component';
+import { UserValidateComponent } from './user-validate.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,12 @@ const routes: Routes = [
         path: 'password-lost',
         pathMatch: 'full',
         component: UserPwLostComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'validate/:token',
+        pathMatch: 'full',
+        component: UserValidateComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];

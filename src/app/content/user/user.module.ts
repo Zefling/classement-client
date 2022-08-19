@@ -7,6 +7,7 @@ import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
 import { UserSignupComponent } from './user-signup.component';
+import { UserValidateComponent } from './user-validate.component';
 import { UserRoutingModule } from './user.routing';
 
 
@@ -17,6 +18,7 @@ import { UserRoutingModule } from './user.routing';
         UserProfileComponent,
         UserSignupComponent,
         UserPwLostComponent,
+        UserValidateComponent,
     ],
     imports: [SharedModule, UserRoutingModule, ReactiveFormsModule],
     providers: [],

@@ -394,6 +394,10 @@
       "hidden.success": "🫣 Le classement a été caché avec success.",
       "showed.success": "😊 La classement a été rendu public avec succès."
     },
+    "token": {
+      "invalid": "Jeton de création de compte invalide.",
+      "not": "Pas de jeton de création de compte."
+    },
     "undefied": "⚠️ Une erreur serveur s'est produite."
   }
 }

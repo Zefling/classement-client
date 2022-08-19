@@ -83,19 +83,31 @@ export class APIUserService extends APICommon {
         });
     }
 
-    signup(username: string, password: string, email: string) {
+    signup(username: string, password: string, email: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
                 .post<Message<Login>>(`${environment.api.path}api/signup`, { username, password, email })
                 .subscribe({
-                    next: result => {
-                        console.log(result);
+                    next: _ => {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
                         reject(this.error('signup', result));
                     },
                 });
+        });
+    }
+
+    userValidate(token: string): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.http.get<Message<Login>>(`${environment.api.path}api/signup/validity/${token}`).subscribe({
+                next: _ => {
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('userValidate', result));
+                },
+            });
         });
     }
 

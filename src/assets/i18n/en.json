@@ -394,6 +394,10 @@
       "hidden.success": "🫣 The tierlist has been successfully hidden.",
       "showed.success": "😊 The tierlist has been successfully made public."
     },
+    "token": {
+      "invalid": "Invalid account creation token.",
+      "not": "No account creation token."
+    },
     "undefied": "⚠️ A server error has occurred."
   }
 }
