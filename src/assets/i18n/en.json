@@ -385,6 +385,7 @@
     },
     "user": {
       "singup.succes": "😊 User created.",
+      "validate.succes": "😊 User validated successfully. You can now login.",
       "update.succes": "😊 User updated successfully."
     },
     "server": {
@@ -398,6 +399,8 @@
       "invalid": "Invalid account creation token.",
       "not": "No account creation token."
     },
-    "undefied": "⚠️ A server error has occurred."
+    "api-code": {
+      "undefied": "⚠️ A server error has occurred."
+    }
   }
 }

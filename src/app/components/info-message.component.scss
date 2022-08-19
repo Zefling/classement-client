@@ -31,7 +31,7 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    animation: 3s linear slidein;
+    animation: var(--info-message-progress-time, 3s) linear slidein;
 }
 
 @keyframes slidein {

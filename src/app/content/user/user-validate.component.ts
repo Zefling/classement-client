@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 
@@ -19,6 +20,7 @@ export class UserValidateComponent {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private translate: TranslateService,
+        private messageService: MessageService,
     ) {
         this.activatedRoute.paramMap.subscribe(params => {
             const token = params.get('token');
@@ -26,6 +28,11 @@ export class UserValidateComponent {
                 this.userService
                     .userValidate(token)
                     .then(() => {
+                        this.messageService.addMessage(
+                            this.translate.instant('message.user.validate.succes'),
+                            MessageType.info,
+                            '7s',
+                        );
                         this.router.navigate(['/user/login']);
                     })
                     .catch(() => {

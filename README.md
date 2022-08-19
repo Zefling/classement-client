@@ -19,7 +19,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
 -   ⌛ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     -   ⌛ Create user
         -   ✅ Simple create
-        -   ⌛ Email confirmation
+        -   ✅ Email confirmation
         -   ❌ OAuth connection
         -   ✅ Connection user
         -   ⌛ Password lost

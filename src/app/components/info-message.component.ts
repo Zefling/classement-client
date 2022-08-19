@@ -30,6 +30,11 @@ export class InfoMessageComponent {
         return this._height ?? null;
     }
 
+    @HostBinding('style.--info-message-progress-time')
+    get progressTime() {
+        return this.message?.time;
+    }
+
     private _closeClass = false;
     private _pos!: number;
     private _height!: number;

@@ -11,14 +11,15 @@ export enum MessageType {
 export interface Message {
     message: string;
     type: MessageType;
+    time: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
     readonly onAddMessage = new Subject<Message>();
 
-    addMessage(message: string, type: MessageType = MessageType.info) {
-        this.onAddMessage.next({ message, type });
+    addMessage(message: string, type: MessageType = MessageType.info, time: string = '3s') {
+        this.onAddMessage.next({ message, type, time });
     }
 }
 

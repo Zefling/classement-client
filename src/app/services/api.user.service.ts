@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
+import { GlobalService } from './global.service';
 
 import { Login, Message } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
@@ -28,7 +29,7 @@ export class APIUserService extends APICommon {
 
     token?: string;
 
-    constructor(private http: HttpClient, translate: TranslateService) {
+    constructor(private http: HttpClient, translate: TranslateService, private globalService: GlobalService) {
         super(translate);
     }
 
@@ -86,7 +87,11 @@ export class APIUserService extends APICommon {
     signup(username: string, password: string, email: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(`${environment.api.path}api/signup`, { username, password, email })
+                .post<Message<Login>>(`${environment.api.path}api/${this.globalService.lang}/signup`, {
+                    username,
+                    password,
+                    email,
+                })
                 .subscribe({
                     next: _ => {
                         resolve();
