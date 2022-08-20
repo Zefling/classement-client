@@ -23,12 +23,12 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
         -   ❌ OAuth connection
         -   ✅ Connection user
         -   ⌛ Password lost
-    -   ⌛ Profile
+    -   ✅ Profile
         -   ✅ See personal tierlists
         -   ✅ Remove tierslist
         -   ✅ Change email
         -   ✅ Change password
-        -   ⌛ Remove user
+        -   ✅ Remove user
     -   ✅ Tierlists
         -   ✅ Save tierlists on server
         -   ✅ Search in public tierlists
@@ -36,7 +36,7 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
     -   ✅ Admin
         -   ✅ Edit profil & change roles
         -   ✅ Tierlists change status
-        -   ⌛ Remove user
+        -   ✅ Remove user
 
 ## Demo
 

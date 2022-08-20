@@ -384,9 +384,10 @@
       "succes": "😊 「％title％」のティアリストを追加しました。"
     },
     "user": {
-      "singup.succes": "😊 ユーザーが作成しました。",
-      "validate.succes": "😊 ユーザーの検証に成功しました。ログインできるようになりました。",
-      "update.succes": "😊 ユーザーが正常に更新されました。"
+      "singup.success": "😊 ユーザーが作成しました。",
+      "validate.success": "😊 ユーザーの検証に成功しました。ログインできるようになりました。",
+      "update.success": "😊 ユーザーが正常に更新されました。",
+      "remove.success": "😲 ユーザーの匿名化に成功しました。"
     },
     "server": {
       "save.success": "😊 セーブは成功しました。",

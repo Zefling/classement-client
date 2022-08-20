@@ -15,7 +15,7 @@
         <tr *ngFor="let classement of classements">
             <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
             <td class="category">
-                {{ classement.user }}
+                {{ classement.user || ('list.user.anonymous' | translate) }}
             </td>
             <td class="category">
                 {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}

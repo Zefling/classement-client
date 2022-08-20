@@ -33,6 +33,14 @@ export class APIUserService extends APICommon {
         super(translate);
     }
 
+    reset() {
+        this.token = undefined;
+        this.logged = false;
+        this.isModerator = false;
+        this.isAdmin = false;
+        this.user = undefined;
+    }
+
     updateClassement(classement: Classement) {
         if (this.user && Array.isArray(this.user.classements)) {
             let index = this.user.classements.findIndex(e => e.rankingId === classement.rankingId);
@@ -145,8 +153,7 @@ export class APIUserService extends APICommon {
         return new Promise<void>((resolve, reject) => {
             this.http.delete<Message<Login>>(`${environment.api.path}api/logout`, this.header()).subscribe({
                 next: () => {
-                    this.token = undefined;
-                    this.logged = false;
+                    this.reset();
 
                     Utils.removeCookie('x-token');
 
@@ -193,12 +200,22 @@ export class APIUserService extends APICommon {
         });
     }
 
+    remove(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.http.delete<Message<User>>(`${environment.api.path}api/user`, this.header()).subscribe({
+                next: _ => {
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('remove', result));
+                },
+            });
+        });
+    }
+
     adminGetUsers(page: number = 1): Promise<{ total: number; list: User[] }> {
         return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page);
-
-            console.log('params', params);
-
             this.http
                 .get<Message<{ total: number; list: User[] }>>(`${environment.api.path}api/admin/users`, {
                     params,
@@ -227,6 +244,19 @@ export class APIUserService extends APICommon {
                         reject(this.error('adminUpdateUser', result));
                     },
                 });
+        });
+    }
+
+    adminRemoveUser(id: number): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.http.delete<Message<User>>(`${environment.api.path}api/admin/user/${id}`, this.header()).subscribe({
+                next: _ => {
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('adminRemoveUser', result));
+                },
+            });
         });
     }
 }

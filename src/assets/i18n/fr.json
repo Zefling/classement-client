@@ -84,7 +84,8 @@
       "cancel": "Annuler"
     },
     "user": {
-      "name": "Utilisateur"
+      "name": "Utilisateur",
+      "anonymous": "Anonyme"
     }
   },
   "category": {
@@ -384,9 +385,10 @@
       "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
     },
     "user": {
-      "singup.succes": "😊 Utilisateur créé.",
-      "validate.succes": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
-      "update.succes": "😊 Utilisateur mise à jour avec succès."
+      "singup.success": "😊 Utilisateur créé.",
+      "validate.success": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
+      "update.success": "😊 Utilisateur mise à jour avec succès.",
+      "remove.success": "😲 Utilisateur anonymisé avec succès."
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",

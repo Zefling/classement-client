@@ -208,5 +208,17 @@ export class UserProfileComponent implements OnDestroy {
         this.dialogRemoveProfile.open();
     }
 
-    valideRemoveProfile() {}
+    valideRemoveProfile() {
+        this.userService
+            .remove()
+            .then(() => {
+                this.userService.reset();
+                this.dialogRemoveProfile.close();
+                this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
+                this.router.navigate(['/user/login']);
+            })
+            .catch(e => {
+                this.messageService.addMessage(e, MessageType.error);
+            });
+    }
 }

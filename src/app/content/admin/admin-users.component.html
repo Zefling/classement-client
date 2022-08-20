@@ -16,7 +16,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users[page]">
-                <td class="username">{{ user.username || ('list.title.undefined' | translate) }}</td>
+                <td class="username" [class.anonymous]="!user.username">
+                    {{ user.username || ('list.user.anonymous' | translate) }}
+                </td>
                 <td class="role">
                     {{ user.roles }}
                 </td>
@@ -54,7 +56,9 @@
 <dialog-cmp class="auto-format" #dialogActionsUser>
     <ng-container *ngIf="currentUser && userForm" [formGroup]="userForm">
         <p>{{ 'user.status.warning' | translate }}</p>
-        <p class="title">{{ currentUser.username }}</p>
+        <p class="title" [class.anonymous]="!currentUser.username">
+            {{ currentUser.username || ('list.user.anonymous' | translate) }}
+        </p>
 
         <label for="username">{{ 'user.login.username' | translate }}</label>
         <input id="username" type="text" formControlName="username" #username />

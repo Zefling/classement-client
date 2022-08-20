@@ -384,9 +384,10 @@
       "succes": "😊 Successfully added “%title%” tierlist."
     },
     "user": {
-      "singup.succes": "😊 User created.",
-      "validate.succes": "😊 User validated successfully. You can now login.",
-      "update.succes": "😊 User updated successfully."
+      "singup.success": "😊 User created.",
+      "validate.success": "😊 User validated successfully. You can now login.",
+      "update.success": "😊 User updated successfully.",
+      "remove.success": "😲 User anonymized successfully."
     },
     "server": {
       "save.success": "😊 The save was successful.",

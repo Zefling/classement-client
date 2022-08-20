@@ -105,7 +105,7 @@ export class AdminUsersComponent implements DoCheck {
             .adminUpdateUser(this.currentUser!.id, this.userForm?.value)
             .then(user => {
                 Object.assign(this.currentUser!, user);
-                this.messageService.addMessage(this.translate.instant('message.user.update.succes'));
+                this.messageService.addMessage(this.translate.instant('message.user.update.success'));
                 this.changeStatusCancel();
             })
             .catch(e => {
@@ -126,7 +126,18 @@ export class AdminUsersComponent implements DoCheck {
     }
 
     valideRemoveProfile() {
-        this.cancelRemoveProfile();
+        this.userService
+            .adminRemoveUser(this.currentUser!.id)
+            .then(_ => {
+                this.currentUser!.username = '';
+                this.currentUser!.roles = [];
+                this.cancelRemoveProfile();
+                this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
+            })
+            .catch(e => {
+                console.log(e);
+                this.showError = e;
+            });
     }
 
     cancelRemoveProfile() {

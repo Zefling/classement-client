@@ -29,7 +29,7 @@ export class UserValidateComponent {
                     .userValidate(token)
                     .then(() => {
                         this.messageService.addMessage(
-                            this.translate.instant('message.user.validate.succes'),
+                            this.translate.instant('message.user.validate.success'),
                             MessageType.info,
                             '7s',
                         );

@@ -3,14 +3,16 @@
 <div *ngIf="classement && classement.user && !update" class="info-classement">
     <h3>{{ 'gererator.server.from' | translate }}</h3>
     <div>
-        <strong>{{ 'gererator.server.username' | translate }}</strong> {{ classement.user }}
+        <strong>{{ 'gererator.server.username' | translate }}</strong>
+        <span [class.anonymous]="!classement.user">{{ classement.user || ('list.user.anonymous' | translate) }}</span>
     </div>
     <div>
-        <strong>{{ 'gererator.options.title' | translate }}</strong> {{ classement.name }}
+        <strong>{{ 'gererator.options.title' | translate }}</strong>
+        <span>{{ classement.name }}</span>
     </div>
     <div class="category">
         <strong>{{ 'gererator.options.group' | translate }}</strong>
-        {{ 'category.' + (classement.category || 'undefined') | translate }}
+        <span>{{ 'category.' + (classement.category || 'undefined') | translate }}</span>
     </div>
 </div>
 

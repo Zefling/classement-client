@@ -2,7 +2,8 @@
 
 <div *ngIf="user">
     <div>
-        <strong>{{ 'user.profile.username' | translate }}</strong> {{ user.username }}
+        <strong>{{ 'user.profile.username' | translate }}</strong>
+        {{ user.username || ('list.user.anonymous' | translate) }}
     </div>
     <div>
         <strong>{{ 'user.profile.since' | translate }}</strong> {{ user.dateCreate | date: 'dd/MM/yyyy HH:mm' }}
