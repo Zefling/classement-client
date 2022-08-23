@@ -2,9 +2,15 @@
 
 ## Purpose
 
-This application aims to manage tierlists by groups of elements in the form of an image.
+This application aims to manage tierlists by groups of elements in the form of images or texts.
+The lists are modifiable and configurable by options or drag'n drop.
 
-Currently only tierlists backup mode is in a browser database (IndexedDB)
+Currently 2 mode are possible:
+
+-   Stand-alone: backup mode is in a browser database (IndexedDB).
+-   With API: Back on serveur with [PHP](https://git.ikilote.net/classement/serveur).
+
+See `src/environments/environment*.ts` for change.
 
 ## Features
 
@@ -16,13 +22,13 @@ Currently only tierlists backup mode is in a browser database (IndexedDB)
     -   ✅ Backup in browser or in Json.
     -   ✅ Image export (PNG, JPG or WebP).
     -   ✅ In-memory tierlists clone.
--   ⌛ [With server](https://git.ikilote.net/classement/serveur) (in progress)
-    -   ⌛ Create user
+-   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
+    -   ✅ Create user
         -   ✅ Simple create
         -   ✅ Email confirmation
-        -   ❌ OAuth connection
+        -   ❌ OAuth connection (soon)
         -   ✅ Connection user
-        -   ⌛ Password lost
+        -   ✅ Password lost
     -   ✅ Profile
         -   ✅ See personal tierlists
         -   ✅ Remove tierslist
