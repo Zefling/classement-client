@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import owasp from 'owasp-password-strength-test';
 import { debounceTime, Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
@@ -14,24 +13,20 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 
+import { UserPassword } from './user-password';
+
 
 @Component({
     selector: 'user-profile',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss'],
 })
-export class UserProfileComponent implements OnDestroy {
+export class UserProfileComponent extends UserPassword implements OnDestroy {
     user?: User;
 
     listener: Subscription[] = [];
 
-    showError: string[] = [];
-
     @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
-    changePasswordForm: FormGroup;
-    strong = false;
-    confirm = false;
-    passedTests: number[] = [];
 
     @ViewChild('dialogChangeEmail') dialogChangeEmail!: DialogComponent;
     changeEmailForm: FormGroup;
@@ -45,11 +40,13 @@ export class UserProfileComponent implements OnDestroy {
 
     constructor(
         private router: Router,
-        private userService: APIUserService,
         private classementService: APIClassementService,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        userService: APIUserService,
+        messageService: MessageService,
+        translate: TranslateService,
     ) {
+        super(userService, messageService, translate);
+
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (!this.userService.logged) {
@@ -68,23 +65,6 @@ export class UserProfileComponent implements OnDestroy {
         }
 
         this.user = this.userService.user;
-
-        // password
-
-        this.changePasswordForm = new FormGroup({
-            passwordOld: new FormControl(''),
-            password: new FormControl(''),
-            password2: new FormControl(''),
-        });
-
-        this.changePasswordForm.get('password')?.valueChanges.subscribe(value => {
-            const test = owasp.test(value);
-            this.passedTests = test.passedTests;
-            this.strong = test.strong || test.isPassphrase;
-        });
-        this.changePasswordForm.get('password2')?.valueChanges.subscribe(value => {
-            this.confirm = this.strong && this.changePasswordForm.get('password')?.value === value;
-        });
 
         // email
 
@@ -138,22 +118,16 @@ export class UserProfileComponent implements OnDestroy {
         this.listener.forEach(e => e.unsubscribe());
     }
 
-    valideChangePassword() {
-        var value = this.changePasswordForm.value;
+    override formGroupPasswordForm() {
+        return {
+            passwordOld: new FormControl(''),
+            password: new FormControl(''),
+            password2: new FormControl(''),
+        };
+    }
 
-        const test = owasp.test(value.password);
-
-        if (value.password !== value.password2) {
-            this.showError.push(this.translate.instant('error.pw.duplicate'));
-        }
-
-        if (test.errors?.length) {
-            test.errors.forEach(e =>
-                this.showError.push(
-                    this.translate.instant('error.owasp.' + e.replace(/\d+/, '*')).replace('%', e.match(/\d+/)?.[0]),
-                ),
-            );
-        }
+    override valideChangePassword() {
+        var value = super.valideChangePassword();
 
         if (!this.showError.length) {
             this.userService
@@ -163,7 +137,7 @@ export class UserProfileComponent implements OnDestroy {
                     this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, MessageType.error);
+                    this.messageService.addMessage(e, { type: MessageType.error });
                 });
         }
     }
@@ -179,7 +153,7 @@ export class UserProfileComponent implements OnDestroy {
                     this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, MessageType.error);
+                    this.messageService.addMessage(e, { type: MessageType.error });
                 });
         } else if (!value.emailOld && !value.emailNew) {
             this.showError[0] = this.translate.instant('error.email.old.invalid');
@@ -218,7 +192,7 @@ export class UserProfileComponent implements OnDestroy {
                 this.router.navigate(['/user/login']);
             })
             .catch(e => {
-                this.messageService.addMessage(e, MessageType.error);
+                this.messageService.addMessage(e, { type: MessageType.error });
             });
     }
 }

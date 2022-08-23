@@ -18,8 +18,8 @@ export interface Message {
 export class MessageService {
     readonly onAddMessage = new Subject<Message>();
 
-    addMessage(message: string, type: MessageType = MessageType.info, time: string = '3s') {
-        this.onAddMessage.next({ message, type, time });
+    addMessage(message: string, options: { type?: MessageType; time?: string } = {}) {
+        this.onAddMessage.next({ message, type: options.type || MessageType.info, time: options.time || '3s' });
     }
 }
 

@@ -5,9 +5,10 @@ import { SharedModule } from 'src/app/share.module';
 
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
+import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
+import { UserSignupValidateComponent } from './user-signup-validate.component';
 import { UserSignupComponent } from './user-signup.component';
-import { UserValidateComponent } from './user-validate.component';
 import { UserRoutingModule } from './user.routing';
 
 
@@ -17,8 +18,9 @@ import { UserRoutingModule } from './user.routing';
         UserLoginComponent,
         UserProfileComponent,
         UserSignupComponent,
+        UserSignupValidateComponent,
         UserPwLostComponent,
-        UserValidateComponent,
+        UserPwLostChangeComponent,
     ],
     imports: [SharedModule, UserRoutingModule, ReactiveFormsModule],
     providers: [],

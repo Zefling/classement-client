@@ -6,9 +6,10 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
+import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
+import { UserSignupValidateComponent } from './user-signup-validate.component';
 import { UserSignupComponent } from './user-signup.component';
-import { UserValidateComponent } from './user-validate.component';
 
 
 const routes: Routes = [
@@ -31,15 +32,21 @@ const routes: Routes = [
         canActivate: [DataChange, APIRequired],
     },
     {
+        path: 'validate/:token',
+        pathMatch: 'full',
+        component: UserSignupValidateComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
         path: 'password-lost',
         pathMatch: 'full',
         component: UserPwLostComponent,
         canActivate: [DataChange, APIRequired],
     },
     {
-        path: 'validate/:token',
+        path: 'password-lost/:token',
         pathMatch: 'full',
-        component: UserValidateComponent,
+        component: UserPwLostChangeComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];

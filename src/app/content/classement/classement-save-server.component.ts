@@ -111,7 +111,7 @@ export class ClassementSaveServerComponent {
                     this.cancel();
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, MessageType.error);
+                    this.messageService.addMessage(e, { type: MessageType.error });
                 });
         }
     }

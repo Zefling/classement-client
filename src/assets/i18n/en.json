@@ -271,22 +271,26 @@
         "ok": "Ok"
       }
     },
-    "password.lost": {
-      "title": "I have lost my password",
-      "info": "Send password renewal email.",
-      "action": "Send"
-    },
     "signup": {
       "title": "Create my account",
       "action": "Submit"
     },
     "password": {
-      "change": "Change password",
       "old": "Old password",
       "new": "New password",
       "confirm": "Confirm the new password",
+      "change": "Change password",
       "change.cancel": "Cancel",
-      "change.ok": "Ok"
+      "change.ok": "Ok",
+      "lost": {
+        "title": "I have lost my password",
+        "info": "Send password renewal email.",
+        "action": "Send",
+        "change": {
+          "title": "Change your password",
+          "intro": "Enter your new password"
+        }
+      }
     },
     "email": {
       "change": "Change email",
@@ -336,7 +340,8 @@
       "3003": "Token not found.",
       "4001": "This username already exists.",
       "4002": "This email already exists.",
-      "5000": "Category error."
+      "5000": "Category error.",
+      "undefied": "⚠️ A server error has occurred."
     },
     "classement": {
       "name.empty": "The title cannot be empty.",
@@ -399,9 +404,6 @@
     "token": {
       "invalid": "Invalid account creation token.",
       "not": "No account creation token."
-    },
-    "api-code": {
-      "undefied": "⚠️ A server error has occurred."
     }
   }
 }

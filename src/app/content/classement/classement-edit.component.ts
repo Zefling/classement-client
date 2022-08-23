@@ -400,7 +400,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.resetCache();
             },
             _ => {
-                this.messageService.addMessage(this.translate.instant('message.save.echec'), MessageType.error);
+                this.messageService.addMessage(this.translate.instant('message.save.echec'), {
+                    type: MessageType.error,
+                });
             },
         );
     }

@@ -149,14 +149,47 @@ export class APIUserService extends APICommon {
         });
     }
 
+    passwordLost(identifier: string) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<Login>>(`${environment.api.path}api/${this.globalService.lang}/password-lost`, {
+                    identifier,
+                })
+                .subscribe({
+                    next: _ => {
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('passwordLost', result));
+                    },
+                });
+        });
+    }
+
+    passwordChange(password: string, token: string) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .post<Message<Login>>(`${environment.api.path}api/password-change`, {
+                    password,
+                    token,
+                })
+                .subscribe({
+                    next: _ => {
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('passwordLost', result));
+                    },
+                });
+        });
+    }
+
     logout() {
         return new Promise<void>((resolve, reject) => {
             this.http.delete<Message<Login>>(`${environment.api.path}api/logout`, this.header()).subscribe({
                 next: () => {
                     this.reset();
-
                     Utils.removeCookie('x-token');
-
                     this.afterLogout.next();
                     resolve();
                 },

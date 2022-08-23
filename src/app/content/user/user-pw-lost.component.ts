@@ -14,6 +14,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 export class UserPwLostComponent implements OnDestroy {
     email = '';
     showError = '';
+    valide = false;
 
     listener: Subscription[] = [];
 
@@ -32,13 +33,13 @@ export class UserPwLostComponent implements OnDestroy {
     }
 
     submit() {
-        // this.userService
-        //     .login(this.username, this.password)
-        //     .then(() => {
-        //         this.router.navigate(['/user/profile']);
-        //     })
-        //     .catch(e => {
-        //         this.showError = e;
-        //     });
+        this.userService
+            .passwordLost(this.email)
+            .then(() => {
+                this.valide = true;
+            })
+            .catch(e => {
+                this.showError = e;
+            });
     }
 }

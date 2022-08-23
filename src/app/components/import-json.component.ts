@@ -68,11 +68,15 @@ export class ImportJsonComponent implements OnDestroy {
             if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
                 this.jsonTmp = json;
             } else {
-                this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
+                this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+                    type: MessageType.error,
+                });
             }
         } catch (e) {
             console.error('json error:', e);
-            this.messageService.addMessage(this.translate.instant('message.json.read.echec'), MessageType.error);
+            this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+                type: MessageType.error,
+            });
         }
     }
 

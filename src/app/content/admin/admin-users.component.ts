@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService } from 'src/app/components/info-messages.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { User } from 'src/app/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -135,8 +135,7 @@ export class AdminUsersComponent implements DoCheck {
                 this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
             })
             .catch(e => {
-                console.log(e);
-                this.showError = e;
+                this.messageService.addMessage(e, { type: MessageType.error });
             });
     }
 

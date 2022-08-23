@@ -3,16 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
+import { MessageService } from 'src/app/components/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 
 @Component({
-    selector: 'user-validate',
-    templateUrl: './user-validate.component.html',
-    styleUrls: ['./user-validate.component.scss'],
+    selector: 'user-signup-validate',
+    templateUrl: './user-signup-validate.component.html',
+    styleUrls: ['./user-signup-validate.component.scss'],
 })
-export class UserValidateComponent {
+export class UserSignupValidateComponent {
     error = '';
 
     constructor(
@@ -28,11 +28,9 @@ export class UserValidateComponent {
                 this.userService
                     .userValidate(token)
                     .then(() => {
-                        this.messageService.addMessage(
-                            this.translate.instant('message.user.validate.success'),
-                            MessageType.info,
-                            '7s',
-                        );
+                        this.messageService.addMessage(this.translate.instant('message.user.validate.success'), {
+                            time: '7s',
+                        });
                         this.router.navigate(['/user/login']);
                     })
                     .catch(() => {
