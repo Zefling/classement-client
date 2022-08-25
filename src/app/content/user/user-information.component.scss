@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    margin: 0 15px 30px 30px;
+}
+
+form {
+    display: grid;
+    grid-template: 'a b' 'c c' 'd d';
+    gap: 5px;
+
+    .message {
+        grid-area: c;
+    }
+
+    p {
+        grid-area: d;
+        text-align: center;
+    }
+
+    span {
+        color: var(--alert-color);
+    }
+}

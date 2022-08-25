@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
+import { UserInformationComponent } from './user-information.component';
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
@@ -47,6 +48,12 @@ const routes: Routes = [
         path: 'password-lost/:token',
         pathMatch: 'full',
         component: UserPwLostChangeComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'information',
+        pathMatch: 'full',
+        component: UserInformationComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];

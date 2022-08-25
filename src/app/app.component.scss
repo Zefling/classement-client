@@ -112,7 +112,8 @@ aside {
         }
     }
 
-    .logout {
+    .logout,
+    .information {
         margin-top: auto;
 
         & ~ * {

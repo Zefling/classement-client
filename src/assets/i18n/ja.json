@@ -11,6 +11,7 @@
     "admin.users": "ユーザー",
     "admin.classements": "ティアリスト",
     "logout": "ログアウト",
+    "information": "情報",
     "licences": "ライセンス"
   },
   "licenses": {
@@ -307,6 +308,26 @@
       "banned": "禁止された",
       "change.cancel": "キャンセルする",
       "change.edit": "編集する"
+    },
+    "information": {
+      "title": "情報",
+      "data.privacy": {
+        "title": "データプライバシー",
+        "text": "サードパーティ・サービスを介して接続する際に要求されるデータは、アカウントの作成に必要な最小限のデータ (メール アドレスと仮名または名) に限定されます。"
+      },
+      "data.deletion": {
+        "title": "データ削除",
+        "text": "アカウントを削除しても、自分のティアリストは匿名になります。 それらを完全に破棄したい場合は、管理者に連絡してください。"
+      },
+      "contact.admin": {
+        "title": "管理者に連絡",
+        "text": "識別するのために、メッセージにユーザー名またはメールアドレスを追加してください。",
+        "username": "ユーザー名",
+        "email": "メール",
+        "message": "メッセージ",
+        "required": "必須フィールド",
+        "send": "送信する"
+      }
     }
   },
   "navigate": {

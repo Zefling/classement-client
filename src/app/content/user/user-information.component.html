@@ -1,0 +1,31 @@
+<h1>{{ 'user.information.title' | translate }}</h1>
+
+<h2>{{ 'user.information.data.privacy.title' | translate }}</h2>
+<p [innerText]="'user.information.data.privacy.text' | translate"></p>
+
+<h2>{{ 'user.information.data.deletion.title' | translate }}</h2>
+<p [innerText]="'user.information.data.deletion.text' | translate"></p>
+
+<h2>{{ 'user.information.contact.admin.title' | translate }}</h2>
+<p [innerText]="'user.information.contact.admin.text' | translate"></p>
+
+<form>
+    <div class="username">
+        <label for="username">{{ 'user.information.contact.admin.username' | translate }}<span>*</span></label>
+        <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="email">
+        <label for="email">{{ 'user.information.contact.admin.email' | translate }}<span>*</span></label>
+        <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="message">
+        <label for="text">{{ 'user.information.contact.admin.message' | translate }}<span>*</span></label>
+        <textarea name="text" [(ngModel)]="text" rows="5" [ngModelOptions]="{ standalone: true }"></textarea>
+        <span>*</span> {{ 'user.information.contact.admin.required' | translate }}
+    </div>
+    <p>
+        <button (click)="send()" [disabled]="invalideMessage()">
+            {{ 'user.information.contact.admin.send' | translate }}
+        </button>
+    </p>
+</form>

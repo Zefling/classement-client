@@ -11,6 +11,7 @@
     "admin.users": "Users",
     "admin.classements": "Tierlists",
     "logout": "Logout",
+    "information": "Information",
     "licences": "Licenses"
   },
   "licenses": {
@@ -307,6 +308,26 @@
       "banned": "Banned",
       "change.cancel": "Cancel",
       "change.edit": "Edit"
+    },
+    "information": {
+      "title": "Information",
+      "data.privacy": {
+        "title": "Data Privacy",
+        "text": "Data requested when connecting via a third-party service is limited to the minimum for account creation: email and pseudonym or first name."
+      },
+      "data.deletion": {
+        "title": "Data deletion",
+        "text": "If you delete your account, your creations will still be available anonymously. If you want them completely destroyed, contact the administrator."
+      },
+      "contact.admin": {
+        "title": "Contact the administrator",
+        "text": "Add identifying information, username or email, to your message.",
+        "username": "Username",
+        "email": "Email",
+        "message": "Message",
+        "required": "Required fields",
+        "send": "Send"
+      }
     }
   },
   "navigate": {
@@ -408,6 +429,9 @@
       "restored.success": "😊 The tierlist has been successfully restored.",
       "hidden.success": "🫣 The tierlist has been successfully hidden.",
       "showed.success": "😊 The tierlist has been successfully made public."
+    },
+    "contact": {
+      "sent.success": "😊 Message has been successfully sent to the administrator."
     },
     "token": {
       "invalid": "Invalid account creation token.",
