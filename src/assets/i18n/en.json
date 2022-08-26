@@ -369,8 +369,9 @@
       "3400": "Save failed. Contact administrator if this persists.",
       "4001": "This username already exists.",
       "4002": "This email already exists.",
+      "4100": "Cannot send email.",
       "5000": "Category error.",
-      "undefied": "⚠️ A server error has occurred."
+      "undefined": "⚠️ A server error has occurred."
     },
     "classement": {
       "name.empty": "The title cannot be empty.",

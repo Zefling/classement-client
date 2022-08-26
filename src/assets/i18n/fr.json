@@ -314,7 +314,7 @@
       "title": "Information",
       "data.privacy": {
         "title": "Confidentialité des données",
-        "text": "Les données demandées lors de la connexion via un service tier se limite au minimun pour la création de compte\u00A0: couriel et pseudonyme ou prénom."
+        "text": "Les données demandées lors de la connexion via un service tier se limite au minimun pour la création de compte\u00A0: courriel et pseudonyme ou prénom."
       },
       "data.deletion": {
         "title": "Suppression des données",
@@ -370,8 +370,9 @@
       "3400": "Sauvegarde en échec. Contactez l'administrateur si cela persiste.",
       "4001": "Ce nom d'utilisateur existe déjà.",
       "4002": "Ce email existe déjà.",
+      "4100": "Envoi de courriel impossible.",
       "5000": "Erreur de categorie.",
-      "undefied": "⚠️ Une erreur serveur s'est produite."
+      "undefined": "⚠️ Une erreur serveur s'est produite."
     },
     "classement": {
       "name.empty": "Le titre ne peut pas être vide.",
