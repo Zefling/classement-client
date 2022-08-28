@@ -1,0 +1,17 @@
+<h1>{{ 'user.login.title' | translate }}</h1>
+
+<div *ngIf="showError" class="list-error">
+    {{ showError }}
+</div>
+
+<div class="links">
+    <div>
+        <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+    </div>
+    <div>
+        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    </div>
+    <div>
+        <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+    </div>
+</div>

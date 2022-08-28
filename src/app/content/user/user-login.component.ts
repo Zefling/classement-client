@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { APIUserService } from 'src/app/services/api.user.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class UserLoginComponent implements OnDestroy {
     password = '';
     showError = '';
 
-    listener: Subscription[] = [];
+    private listener: Subscription[] = [];
 
     constructor(private router: Router, private userService: APIUserService) {
         this.listener.push(
@@ -41,5 +42,9 @@ export class UserLoginComponent implements OnDestroy {
             .catch(e => {
                 this.showError = e;
             });
+    }
+
+    oauth(service: string) {
+        window.location.href = `${environment.api.path}connect/${service}`;
     }
 }

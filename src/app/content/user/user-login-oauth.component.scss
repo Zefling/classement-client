@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    margin: 0 15px 30px 30px;
+}
+
+.form,
+.links {
+    max-width: 50%;
+    margin: auto;
+}
+
+.links {
+    margin-top: 50px;
+    text-align: center;
+
+    div {
+        padding: 10px;
+    }
+}
+
+.button {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.error {
+    padding-top: 15px;
+    text-align: center;
+    color: var(--alert-color);
+}

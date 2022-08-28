@@ -253,7 +253,13 @@
       "login": "Connexion",
       "email": "Courriel",
       "password.lost": "J'ai perdu mon mot de passe",
-      "signup": "Créer un compte"
+      "signup": "Créer un compte",
+      "oauth": {
+        "label": "Connexion avec",
+        "discord": "Discord",
+        "facebook": "Facebook",
+        "google": "Google"
+      }
     },
     "profile": {
       "title": "Mon profil",
@@ -354,6 +360,7 @@
       "1021": "L'ancien courriel ne correspond pas.",
       "1030": "Jeton de connexion invalide.",
       "1031": "Jeton non trouvé.",
+      "1040": "Ce service de connexion associé n'existe pas.",
       "1100": "Test invalide.",
       "2000": "Sauvegarde impossible : Contenu dubliqué.",
       "3000": "Utilisateur non trouvé.",

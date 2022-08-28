@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/share.module';
 
 import { UserInformationComponent } from './user-information.component';
+import { UserLoginAouthComponent } from './user-login-oauth.component';
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
@@ -17,6 +18,7 @@ import { UserRoutingModule } from './user.routing';
     declarations: [
         // page
         UserLoginComponent,
+        UserLoginAouthComponent,
         UserProfileComponent,
         UserSignupComponent,
         UserSignupValidateComponent,

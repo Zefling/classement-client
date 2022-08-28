@@ -1,15 +1,17 @@
-# next version
+# 0.9.0 (next version)
 
+-   update to Angular 14.2
 -   add auto save
 -   add an API switch in the environment configuration
 
 ## With API activited only
 
--   sign up / login
+-   sign up / login / oauth (Discord / Facebook / Google)
 -   profil management
 -   save tierlists with account
 -   search/browse tierslists on server
 -   admin pages management: users / tierlists
+-   contact
 
 # 0.5.5 (2022-06-09)
 

@@ -13,6 +13,15 @@
     <div class="button">
         <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
     </div>
+
+    <div class="button">
+        <p>
+            {{ 'user.login.oauth.label' | translate }}
+        </p>
+        <button (click)="oauth('discord')">{{ 'user.login.oauth.discord' | translate }}</button>
+        <button (click)="oauth('facebook')">{{ 'user.login.oauth.facebook' | translate }}</button>
+        <button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>
+    </div>
 </form>
 
 <div class="links">

@@ -252,7 +252,13 @@
       "login": "Login",
       "email": "Email",
       "password.lost": "I have lost my password",
-      "signup": "Create an account"
+      "signup": "Create an account",
+      "oauth": {
+        "label": "Connection with",
+        "discord": "Discord",
+        "facebook": "Facebook",
+        "google": "Google"
+      }
     },
     "profile": {
       "title": "My profile",
@@ -353,6 +359,7 @@
       "1021": "Old email does not match.",
       "1030": "Invalid login token.",
       "1031": "Token not found.",
+      "1040": "This associated login service does not exist.",
       "1100": "Invalid test.",
       "2000": "Unable to save: Duplicate content.",
       "3000": "User not found.",

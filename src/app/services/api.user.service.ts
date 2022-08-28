@@ -11,7 +11,7 @@ import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
 
-import { Login, Message } from '../content/user/user.interface';
+import { Login, Message, MessageError } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
 import { Utils } from '../tools/utils';
 
@@ -82,6 +82,9 @@ export class APIUserService extends APICommon {
                     },
                     error: (result: HttpErrorResponse) => {
                         this.logged = false;
+                        if ((result.error as MessageError).errorCode === 1030) {
+                            Utils.removeCookie('x-token');
+                        }
                         reject(this.error('invalide token', result));
                     },
                     complete: () => {
@@ -138,7 +141,38 @@ export class APIUserService extends APICommon {
                             resolve();
                         })
                         .catch(errorCode => {
-                            reject(this.translate.instant(`error.api-code.${errorCode}`));
+                            if ((errorCode.error as MessageError).errorCode === 1030) {
+                                Utils.removeCookie('x-token');
+                            }
+                            reject(errorCode);
+                        });
+                },
+                error: (result: HttpErrorResponse) => {
+                    this.afterLogout.next();
+                    reject(this.error('login', result));
+                },
+            });
+        });
+    }
+
+    loginOauth(token: string, service: string): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.http.post<Message<Login>>(`${environment.api.path}api/login/oauth`, { token, service }).subscribe({
+                next: result => {
+                    this.token = result.message.token;
+                    this.logged = true;
+
+                    Utils.setCookie('x-token', this.token);
+
+                    this.initProfile()
+                        .then(() => {
+                            resolve();
+                        })
+                        .catch((errorCode: HttpErrorResponse) => {
+                            if ((errorCode.error as MessageError).errorCode === 1030) {
+                                Utils.removeCookie('x-token');
+                            }
+                            reject(errorCode);
                         });
                 },
                 error: (result: HttpErrorResponse) => {
