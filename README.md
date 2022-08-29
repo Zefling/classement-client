@@ -5,7 +5,7 @@
 This application aims to manage tierlists by groups of elements in the form of images or texts.
 The lists are modifiable and configurable by options or drag'n drop.
 
-Currently 2 mode are possible:
+Currently 2 modes are possible:
 
 -   Stand-alone: backup mode is in a browser database (IndexedDB).
 -   With API: Back on serveur with [PHP](https://git.ikilote.net/classement/serveur).

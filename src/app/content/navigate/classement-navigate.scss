@@ -13,6 +13,9 @@ figure,
     background: var(--menu-background);
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
 
     img {
         max-width: 100%;
@@ -24,9 +27,50 @@ figure,
     }
 }
 
+.result {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 10px;
+
+    figcaption {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .name {
+            flex: 1;
+        }
+
+        .username {
+            border-top: 1px solid var(--menu-separator);
+            margin-top: 5px;
+            padding-top: 5px;
+            font-weight: 700;
+            font-size: 80%;
+        }
+        .date {
+            font-size: 80%;
+        }
+    }
+}
+
 .classement {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1fr auto;
-    gap: 2px;
+    gap: 10px;
+}
+
+.category {
+    &:first-child {
+        font-size: 120%;
+        font-weight: 700;
+        padding-top: 10px;
+    }
+
+    &:not(:first-child) {
+        padding-top: 10px;
+        font-weight: 700;
+    }
 }

@@ -14,6 +14,9 @@
     "information": "Information",
     "licences": "Licences"
   },
+  "date": {
+    "dd/MM/yyy": "dd/MM/yyy"
+  },
   "licenses": {
     "title": "Présentation des licences tierces"
   },
@@ -245,6 +248,7 @@
     }
   },
   "user": {
+    "by": "Par {{ autor }}",
     "login": {
       "title": "Me connecter",
       "username": "Nom d'utilisateur",

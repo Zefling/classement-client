@@ -9,9 +9,10 @@
         <figure (click)="openClassement(category)">
             <img [src]="category.banner" />
             <figcaption>
-                <div class="category">{{ 'category.' + (category.category || 'undefined') | translate }}</div>
                 <div class="name">{{ category.name }}</div>
-                <div class="date">{{ category.dateCreate | date: 'dd/MM/yyy' }}</div>
+                <div class="category">{{ 'category.' + (category.category || 'undefined') | translate }}</div>
+                <div class="username">{{ 'user.by' | translate: { autor: category.user } }}</div>
+                <div class="date">{{ category.dateCreate | date: ('date.dd/MM/yyy' | translate) }}</div>
             </figcaption>
         </figure>
     </div>

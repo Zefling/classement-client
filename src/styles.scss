@@ -11,6 +11,7 @@ body.light-mode {
     // menu
     --menu-border-color: #6096c9;
     --menu-color: #1f3c57;
+    --menu-separator: #6096c9;
     --menu-background: #afd1f1;
     --menu-hover-color: #122333;
     --menu-hover-background: #83a9cc;
@@ -98,13 +99,13 @@ body.light-mode {
     --loading-color: #000;
     // cropper
     --cropper-overlay-color: #fff;
-    --cropper-outline-color: rgba(255, 255, 255, 0.3);
+    --cropper-outline-color: #ffffff4d;
 }
 
 body.dark-mode {
-    --background: #000;
-    --text-color: #fff;
-    --menu-box-shadow-color: #3d3d3d4d;
+    --background: #0d0d0f;
+    --text-color: #d1d2d4;
+    --menu-box-shadow-color: #00000018;
     --header-background: #111;
     --aside-background: #111;
     --licence-color: #fff;
@@ -112,6 +113,7 @@ body.dark-mode {
     // menu
     --menu-border-color: #1d2c3a;
     --menu-color: #e7eff7;
+    --menu-separator: #406486;
     --menu-background: #1f2d3b;
     --menu-hover-color: #fff;
     --menu-hover-background: #334a61;
@@ -199,7 +201,7 @@ body.dark-mode {
     --loading-color: #fff;
     // cropper
     --cropper-overlay-color: #000;
-    --cropper-outline-color: rgba(0, 0, 0, 0.3);
+    --cropper-outline-color: #0000004d;
 }
 
 body,
