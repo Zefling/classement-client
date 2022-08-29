@@ -6,7 +6,8 @@
         {{ user.username || ('list.user.anonymous' | translate) }}
     </div>
     <div>
-        <strong>{{ 'user.profile.since' | translate }}</strong> {{ user.dateCreate | date: 'dd/MM/yyyy HH:mm' }}
+        <strong>{{ 'user.profile.since' | translate }}</strong>
+        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
     </div>
 
     <h2>{{ 'user.profile.my.tierlists' | translate }}</h2>
@@ -29,8 +30,8 @@
                     {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
                 </td>
                 <td class="date">
-                    <span>{{ classement.dateCreate | date: 'dd/MM/yyyy' }}</span>
-                    <span>{{ classement.dateCreate | date: 'HH:mm' }}</span>
+                    <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="groups">{{ classement.totalGroups }}</td>
                 <td class="datas">{{ classement.totalItems }}</td>

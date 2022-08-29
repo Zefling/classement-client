@@ -15,7 +15,9 @@
     "licences": "Licenses"
   },
   "date": {
-    "dd/MM/yyy": "dd/MM/yyy"
+    "dd/MM/yyyy": "dd/MM/yyyy",
+    "dd/MM/yyyy HH:mm": "dd/MM/yyyy HH:mm",
+    "HH:mm": "HH:mm"
   },
   "licenses": {
     "title": "Overview of third-party licenses"

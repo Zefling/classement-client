@@ -29,7 +29,9 @@
                 <div class="name" *ngIf="!isCatagoryList">{{ category.name }}</div>
                 <div class="category">{{ 'category.' + (category.category || 'undefined') | translate }}</div>
                 <div class="username" *ngIf="!isCatagoryList">{{ category.user }}</div>
-                <div class="date" *ngIf="!isCatagoryList">{{ category.dateCreate | date: 'dd/MM/yyy' }}</div>
+                <div class="date" *ngIf="!isCatagoryList">
+                    {{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                </div>
             </figcaption>
         </figure>
         <div *ngIf="!isCatagoryList" class="template" (click)="seeTemplate(category)">

@@ -12,7 +12,7 @@
                 <div class="name">{{ category.name }}</div>
                 <div class="category">{{ 'category.' + (category.category || 'undefined') | translate }}</div>
                 <div class="username">{{ 'user.by' | translate: { autor: category.user } }}</div>
-                <div class="date">{{ category.dateCreate | date: ('date.dd/MM/yyy' | translate) }}</div>
+                <div class="date">{{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}</div>
             </figcaption>
         </figure>
     </div>

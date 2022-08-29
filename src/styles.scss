@@ -343,3 +343,11 @@ dialog-cmp.auto-format {
 .anonymous {
     text-decoration: line-through;
 }
+
+.date > span {
+    display: inline-block;
+
+    & + span {
+        font-size: 80%;
+    }
+}

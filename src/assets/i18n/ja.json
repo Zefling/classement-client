@@ -15,7 +15,9 @@
     "licences": "ライセンス"
   },
   "date": {
-    "dd/MM/yyy": "yyyy/MM/dd"
+    "dd/MM/yyyy": "yyyy/MM/dd",
+    "dd/MM/yyyy HH:mm": "yyyy/MM/dd HH:mm",
+    "HH:mm": "HH:mm"
   },
   "licenses": {
     "title": "サードパーティライセンスの概要"
