@@ -26,10 +26,10 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Create user
         -   ✅ Simple create
         -   ✅ Email confirmation
-        -   ⌛ OAuth connection
-            -   ⌛ Discord
+        -   ✅ OAuth connection
+            -   ✅ Discord
             -   ✅ Facebook
-            -   ⌛ Google
+            -   ✅ Google
         -   ✅ Connection user
         -   ✅ Password lost
     -   ✅ Profile

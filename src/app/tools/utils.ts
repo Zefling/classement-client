@@ -28,11 +28,11 @@ export class Utils {
     }
 
     static setCookie(name: string, value: string) {
-        document.cookie = `${name}=${value}; path= /`;
+        document.cookie = `${name}=${value}; path=/`;
     }
 
     static removeCookie(name: string) {
-        document.cookie = `${name}=; path= /; Max-Age=0`;
+        document.cookie = `${name}=; path=/; Max-Age=0`;
     }
 
     static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
