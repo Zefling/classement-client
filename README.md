@@ -26,11 +26,11 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Create user
         -   ✅ Simple create
         -   ✅ Email confirmation
-        -   ✅ OAuth connection
+        -   ✅ Normal connection
+        -   ✅ OAuth2 connection
             -   ✅ Discord
             -   ✅ Facebook
             -   ✅ Google
-        -   ✅ Connection user
         -   ✅ Password lost
     -   ✅ Profile
         -   ✅ See personal tierlists
@@ -46,6 +46,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Edit profil & change roles
         -   ✅ Tierlists change status
         -   ✅ Remove user
+    -   ✅ Contact form
 
 ## Demo
 
