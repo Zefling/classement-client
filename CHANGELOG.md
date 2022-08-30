@@ -1,4 +1,4 @@
-# 0.9.0 (next version)
+# 0.9.0 beta (2022-08-30)
 
 -   update to Angular 14.2
 -   add auto save
