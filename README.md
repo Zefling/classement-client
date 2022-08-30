@@ -15,10 +15,11 @@ See `src/environments/environment*.ts` for change.
 ## Features
 
 -   ✅ Stand-alone (without server)
-    -   ✅ Adding images by drag'n drop or copy-paste
+    -   ✅ Adding images by drag'n drop or copy-paste.
     -   ✅ Adding text under images.
     -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
     -   ✅ Advanced customization of tiles, lines, background, etc.
+    -   ✅ Image reduce size.
     -   ✅ Backup in browser or in Json.
     -   ✅ Image export (PNG, JPG or WebP).
     -   ✅ In-memory tierlists clone.
