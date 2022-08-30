@@ -37,6 +37,8 @@ export class LightDarkComponent {
                 this.browserShema = event.matches ? 'dark' : 'light';
                 this.changeClass();
             });
+        } else {
+            this.changeClass();
         }
     }
 
