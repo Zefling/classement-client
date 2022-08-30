@@ -35,9 +35,8 @@ export class ClassementListComponent {
 
     showList() {
         this.dbservice.getLocalList().then(result => {
-            result.forEach(d => (d.date = new Date(d.date)));
-            result.sort((e, f) => (f.date as Date).getTime() - (e.date as Date).getTime());
             this.result = result;
+            this._sort();
         });
     }
 
@@ -111,7 +110,13 @@ export class ClassementListComponent {
                         );
                         this.itemCurrent = undefined;
                         this.dialogClone.close();
-                        this.result.push(item.infos);
+                        const index = this.result.findIndex(e => e.id === item.infos.id);
+                        if (index === -1) {
+                            this.result.push(item.infos);
+                            this._sort();
+                        } else {
+                            this.result[index] = item.infos;
+                        }
                     })
                     .catch(() => {
                         this.messageService.addMessage(this.translate.instant('message.add.error'));
@@ -123,5 +128,10 @@ export class ClassementListComponent {
 
     private _getTitle(info: FormatedInfos) {
         return info?.options?.title.trim() || this.translate.instant('list.title.undefined');
+    }
+
+    private _sort() {
+        this.result.forEach(d => (d.date = new Date(d.date)));
+        this.result.sort((e, f) => (f.date as Date).getTime() - (e.date as Date).getTime());
     }
 }
