@@ -99,18 +99,23 @@ export class ClassementListComponent {
     importJson(event: ImportJsonEvent) {
         switch (event.action) {
             case 'new':
-                this.dbservice.saveLocal(event.data!).then(item => {
-                    console.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
+                this.dbservice
+                    .saveLocal(event.data!)
+                    .then(item => {
+                        console.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
 
-                    this.messageService.addMessage(
-                        this.translate
-                            .instant('message.add.succes')
-                            .replace('%title%', this._getTitle(this.itemCurrent!)),
-                    );
-                    this.itemCurrent = undefined;
-                    this.dialogClone.close();
-                    this.result.push(item.infos);
-                });
+                        this.messageService.addMessage(
+                            this.translate
+                                .instant('message.add.succes')
+                                .replace('%title%', this._getTitle(this.itemCurrent!)),
+                        );
+                        this.itemCurrent = undefined;
+                        this.dialogClone.close();
+                        this.result.push(item.infos);
+                    })
+                    .catch(() => {
+                        this.messageService.addMessage(this.translate.instant('message.add.error'));
+                    });
                 break;
         }
         this.dialogImport.close();

@@ -120,6 +120,7 @@ export interface FormatedData extends IndexedData {
 }
 
 export interface FormatedInfosData {
+    update: boolean;
     infos: FormatedInfos;
     data: FormatedData;
 }

@@ -64,12 +64,12 @@ export class DBService {
             this._formatData(data).then(formatData => {
                 this._getDB()
                     .then(db =>
-                        data.id
+                        formatData.update
                             ? this._updateDB(db, Store.infos, formatData.infos)
                             : this._saveDB(db, Store.infos, formatData.infos),
                     )
                     .then(db =>
-                        data.id
+                        formatData.update
                             ? this._updateDB(db, Store.data, formatData.data)
                             : this._saveDB(db, Store.data, formatData.data),
                     )
@@ -80,8 +80,16 @@ export class DBService {
     }
 
     private async _formatData(data: Data): Promise<FormatedInfosData> {
-        const id = data.id || (await this._digestMessage(`${new Date()}`));
+        let exist = false;
+        if (data.id) {
+            const db = await this._getDB();
+            exist =
+                (await this._testByIdDB(db, Store.infos, data.id)) && (await this._testByIdDB(db, Store.data, data.id));
+        }
+        const id = !data.id ? await this._digestMessage(`${new Date()}`) : data.id;
+        console.log('Existing data', exist);
         return {
+            update: exist,
             infos: {
                 id,
                 options: data.options,
@@ -148,6 +156,23 @@ export class DBService {
         });
     }
 
+    private _testByIdDB(db: IDBDatabase, store: Store, id: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            console.log(`Test data in “${store}” for [${id}].`);
+            const transactionData = db.transaction([store], 'readwrite');
+            const item = transactionData.objectStore(store).get(id);
+
+            item.onsuccess = function () {
+                console.log(`Test data found in “${store}” for [${id}].`);
+                resolve(!!this.result);
+            };
+            item.onerror = () => {
+                console.log(`Test data not found in “${store}” for [${id}].`);
+                resolve(false);
+            };
+        });
+    }
+
     private _deleteDB(db: IDBDatabase, store: Store, id: string): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             console.log(`Remove data in “${store}”.`);
@@ -168,24 +193,29 @@ export class DBService {
 
     private _saveDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            console.log(`Add Data in “${store}”.`);
+            console.log(`Add data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
-
-            const save = transactionData.objectStore(store).add(data, data.id);
-            save.onsuccess = function () {
-                console.log(`Data added successfully in “${store}”.`);
-                resolve(db);
-            };
-            save.onerror = () => {
-                console.error(`An error in “${store}” has occurred!`, transactionData);
+            try {
+                const save = transactionData.objectStore(store).add(data, data.id);
+                save.onsuccess = function () {
+                    console.log(`Data added successfully in “${store}”.`);
+                    resolve(db);
+                };
+                save.onerror = () => {
+                    console.error(`An error in “${store}” has occurred!`, transactionData);
+                    reject();
+                };
+            } catch (e) {
+                console.log(`An error in “${store}” has occurred!`, e);
                 reject();
-            };
+            }
         });
     }
 
     private _updateDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
+        const that = this;
         return new Promise((resolve, reject) => {
-            console.log(`Add Data in “${store}”.`);
+            console.log(`Update data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
 
             transactionData.objectStore(store).openCursor(data.id).onsuccess = function () {
@@ -200,6 +230,9 @@ export class DBService {
                         console.error(`An error in “${store}” has occurred!`, request);
                         reject();
                     };
+                } else {
+                    // if data not existe with this id
+                    console.log(`No data found in “${store}”. ${data.id}`);
                 }
             };
         });
