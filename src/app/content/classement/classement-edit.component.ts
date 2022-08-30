@@ -53,6 +53,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     logged = false;
 
+    hasItems = false;
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
@@ -224,6 +226,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             console.log('Option change');
             this.change();
         }
+
+        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
     }
 
     ngOnDestroy() {
@@ -409,6 +413,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     saveServer() {
         if (this.logged) {
+            this.classement;
             this.dialogSaveServer.open();
         }
     }

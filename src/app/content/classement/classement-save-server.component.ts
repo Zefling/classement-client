@@ -46,6 +46,9 @@ export class ClassementSaveServerComponent {
     imageChangedEvent: any = '';
     croppedImage?: string;
 
+    hidden = false;
+    loading = false;
+
     showError: string[] = [];
 
     constructor(
@@ -63,6 +66,10 @@ export class ClassementSaveServerComponent {
                 this.dialog?.close();
             }
         });
+
+        if (this.classement?.hidden) {
+            this.hidden = this.classement?.hidden;
+        }
     }
 
     cancel() {
@@ -86,7 +93,7 @@ export class ClassementSaveServerComponent {
             category: this.classement?.category ?? this.options?.category,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
-            hidden: this.classement?.hidden || false,
+            hidden: this.hidden ?? this.classement?.hidden ?? false,
         } as any;
 
         if (!classement.name) {
@@ -102,6 +109,7 @@ export class ClassementSaveServerComponent {
         }
 
         if (!this.showError.length) {
+            this.loading = true;
             this.classementService
                 .saveClassement(classement)
                 .then(classementSave => {
@@ -112,6 +120,9 @@ export class ClassementSaveServerComponent {
                 })
                 .catch(e => {
                     this.messageService.addMessage(e, { type: MessageType.error });
+                })
+                .finally(() => {
+                    this.loading = false;
                 });
         }
     }

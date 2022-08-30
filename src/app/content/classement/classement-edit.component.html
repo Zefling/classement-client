@@ -137,27 +137,33 @@
                 </button>
             </div>
             <div class="save-actions">
-                <button class="primary" (click)="saveLocal()">{{ 'gererator.actions.save.local' | translate }}</button>
-                <button class="primary" (click)="saveJson()">{{ 'gererator.actions.export.json' | translate }}</button>
+                <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
+                    {{ 'gererator.actions.save.local' | translate }}
+                </button>
+                <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
+                    {{ 'gererator.actions.export.json' | translate }}
+                </button>
                 <button class="primary" (click)="dialogImport.open()">
                     {{ 'gererator.actions.import.json' | translate }}
                 </button>
-                <button class="primary" (click)="dialogOptimise.open()">
+                <button class="primary" (click)="dialogOptimise.open()" [disabled]="!hasItems">
                     {{ 'gererator.optimise.button.optimise' | translate }}</button
                 ><br />
-                <label *ngIf="options">
+                <label *ngIf="options && hasItems">
                     <input type="checkbox" [(ngModel)]="options.autoSave" />
                     {{ 'gererator.actions.save.local.auto' | translate }}
                 </label>
             </div>
             <div class="save-actions" *ngIf="logged">
-                <button class="primary" (click)="saveServer()">
+                <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
                     {{ 'gererator.actions.save.server' | translate }}
                 </button>
             </div>
 
             <div class="save-actions">
-                <button class="primary" (click)="reset()">{{ 'gererator.actions.reset.groups' | translate }}</button>
+                <button class="primary" (click)="reset()" [disabled]="!hasItems">
+                    {{ 'gererator.actions.reset.groups' | translate }}
+                </button>
             </div>
         </div>
 

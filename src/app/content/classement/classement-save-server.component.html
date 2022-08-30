@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<ng-container *ngIf="options && classement">
+<ng-container *ngIf="options">
     <h3>{{ 'gererator.server.edit' | translate }}</h3>
     <div class="title">
         <label>{{ 'gererator.options.title' | translate }}</label>
@@ -56,9 +56,9 @@
                 (loadImageFailed)="loadImageFailed()"
             ></image-cropper>
         </div>
-        <div class="image" *ngIf="croppedImage || classement.banner">
+        <div class="image" *ngIf="croppedImage || classement?.banner">
             <div class="label">{{ 'gererator.server.banner.image' | translate }}</div>
-            <img [src]="croppedImage || classement.banner" />
+            <img [src]="croppedImage || classement?.banner" />
             <button *ngIf="croppedImage" (click)="resetBanner()">
                 {{ 'gererator.server.banner.reset' | translate }}
             </button>
@@ -71,7 +71,7 @@
 
     <div class="public">
         <label>
-            <input type="checkbox" [(ngModel)]="classement.hidden" />
+            <input type="checkbox" [(ngModel)]="hidden" />
             {{ 'gererator.server.not.public' | translate }}
         </label>
     </div>
@@ -83,3 +83,5 @@
         {{ 'gererator.server.save' | translate }}
     </button>
 </p>
+
+<loader-cmp *ngIf="loading" message="Sauvegarde en cours"></loader-cmp>

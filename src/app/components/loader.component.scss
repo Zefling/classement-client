@@ -1,0 +1,19 @@
+:host {
+    background: #201f1f3a;
+    height: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+    font-weight: 700;
+
+    div {
+        padding-top: 5px;
+    }
+}
