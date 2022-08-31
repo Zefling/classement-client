@@ -421,16 +421,16 @@
       "new": "😊 Chagement du fichier réussi dans un nouveau classement."
     },
     "remove": {
-      "succes": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
+      "success": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
     },
     "clone": {
-      "succes": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
+      "success": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
     },
     "reset": {
       "groups": "😊 Remise à zéro des groupes."
     },
     "add": {
-      "succes": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
+      "success": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
     },
     "user": {
       "singup.success": "😊 Utilisateur créé.",

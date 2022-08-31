@@ -411,25 +411,25 @@
   },
   "message": {
     "save": {
-      "success": "😊 Successfully saved in browser.",
+      "success": "😊 successfully saved in browser.",
       "failed": "⚠️ Failed to save in browser."
     },
     "json.read": {
       "failed": "⚠️ Failed to read file. The format is not recognized.",
       "replace": "😊 Uploaded file successful. Replaced successfully.",
-      "new": "😊 Successfully uploaded file to new tierlist."
+      "new": "😊 successfully uploaded file to new tierlist."
     },
     "remove": {
       "success": "🗑 Removed from tierlist “%title%” successful."
     },
     "clone": {
-      "success": "😊 Successfully duplicated tierlist as “%title%”."
+      "success": "😊 successfully duplicated tierlist as “%title%”."
     },
     "reset": {
       "groups": "😊 Reset groups."
     },
     "add": {
-      "succes": "😊 Successfully added “%title%” tierlist."
+      "success": "😊 successfully added “%title%” tierlist."
     },
     "user": {
       "singup.success": "😊 User created.",

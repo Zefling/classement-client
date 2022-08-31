@@ -61,7 +61,7 @@ export class ClassementListComponent {
                 this.result.splice(this.result.indexOf(this.itemCurrent as FormatedInfos), 1);
                 this.messageService.addMessage(
                     this.translate
-                        .instant('message.remove.succes')
+                        .instant('message.remove.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
@@ -81,7 +81,7 @@ export class ClassementListComponent {
 
                 this.messageService.addMessage(
                     this.translate
-                        .instant('message.clone.succes')
+                        .instant('message.clone.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
@@ -105,7 +105,7 @@ export class ClassementListComponent {
 
                         this.messageService.addMessage(
                             this.translate
-                                .instant('message.add.succes')
+                                .instant('message.add.success')
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
                         );
                         this.itemCurrent = undefined;

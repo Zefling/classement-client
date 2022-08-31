@@ -28,7 +28,7 @@
                 </td>
                 <td class="classements">{{ user.classements?.length || 0 }}</td>
                 <td class="status">
-                    {{ user.isValidated ? 'list.status.validated' : ('list.status.notValidated' | translate) }}
+                    {{ (user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate }}
                     {{ user.deleted ? ('list.status.deleted' | translate) : '' }}
                 </td>
                 <td class="actions">
