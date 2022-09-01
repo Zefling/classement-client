@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 0.9.2 beta (2022-09-01)
+
+### Standalone web app
+
+-   fix minor bugs
+
 ## 0.9.1 beta (2022-08-31)
 
 ### Standalone web app
