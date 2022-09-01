@@ -5,36 +5,55 @@
     <table>
         <thead>
             <tr>
+                <th class="status">{{ 'list.status.list' | translate }}</th>
                 <th class="user">{{ 'list.user.name' | translate }}</th>
                 <th class="user">{{ 'list.roles.name' | translate }}</th>
-
                 <th class="date">{{ 'list.date' | translate }}</th>
                 <th class="classements">{{ 'list.count.classements' | translate }}</th>
-                <th class="status">{{ 'list.status.list' | translate }}</th>
                 <th class="actions">{{ 'list.action.name' | translate }}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of users[page]">
+                <td class="status">
+                    <span
+                        class="icon"
+                        *ngIf="!user.deleted"
+                        [class.icon-validated]="user.isValidated"
+                        [class.icon-user]="!user.isValidated"
+                        [title]="(user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate"
+                    ></span>
+                    <span
+                        *ngIf="user.deleted"
+                        class="icon icon-deleted"
+                        [title]="'list.status.deleted' | translate"
+                    ></span>
+                </td>
                 <td class="username" [class.anonymous]="!user.username">
                     {{ user.username || ('list.user.anonymous' | translate) }}
                 </td>
                 <td class="role">
-                    {{ user.roles }}
+                    <span
+                        *ngFor="let role of user.roles"
+                        class="icon"
+                        [class.icon-user]="role === 'ROLE_USER'"
+                        [class.icon-moderator]="role === 'ROLE_MODERATOR'"
+                        [class.icon-admin]="role === 'ROLE_ADMIN'"
+                        [title]="role"
+                    ></span>
                 </td>
                 <td class="date">
                     <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
                     <span>{{ user.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="classements">{{ user.classements?.length || 0 }}</td>
-                <td class="status">
-                    {{ (user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate }}
-                    {{ user.deleted ? ('list.status.deleted' | translate) : '' }}
-                </td>
+
                 <td class="actions">
                     <a (click)="see(user)" *ngIf="user.classements?.length">{{ 'list.action.see' | translate }}</a>
-                    <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
-                    <a (click)="removeProfile(user)">{{ 'list.action.remove' | translate }}</a>
+                    <ng-container *ngIf="!user.deleted">
+                        <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
+                        <a (click)="removeProfile(user)">{{ 'list.action.remove' | translate }}</a>
+                    </ng-container>
                 </td>
             </tr>
         </tbody>

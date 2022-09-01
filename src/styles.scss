@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import './fonts.scss';
+
 body.light-mode {
     --background: #fff;
     --text-color: #000;
@@ -100,6 +102,13 @@ body.light-mode {
     // cropper
     --cropper-overlay-color: #fff;
     --cropper-outline-color: #ffffff4d;
+    // icons
+    --color-icon-deleted: #940d0d;
+    --color-icon-admin: #9e7900;
+    --color-icon-moderator: #8d3411;
+    --color-icon-banned: #6b6b6b;
+    --color-icon-validated: #176b0c;
+    --color-icon-user: #162d79;
 }
 
 body.dark-mode {
@@ -202,6 +211,13 @@ body.dark-mode {
     // cropper
     --cropper-overlay-color: #000;
     --cropper-outline-color: #0000004d;
+    // icons
+    --color-icon-deleted: #912e2e;
+    --color-icon-admin: #dfbd00;
+    --color-icon-moderator: #a56235;
+    --color-icon-banned: #8f8f8f;
+    --color-icon-validated: #47963d;
+    --color-icon-user: #4767cf;
 }
 
 body,

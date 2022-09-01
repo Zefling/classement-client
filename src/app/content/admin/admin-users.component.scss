@@ -16,10 +16,27 @@ label,
         width: auto;
     }
 }
-
 .alert {
     width: 80%;
     margin: auto;
     border: 1px solid var(--alert-color);
     color: var(--alert-color);
+}
+
+.status {
+    width: 70px;
+    text-align: center;
+}
+
+.role {
+    width: 140px;
+}
+
+.icon {
+    font-size: 40px;
+}
+
+.classements {
+    text-align: center;
+    width: 40px;
 }
