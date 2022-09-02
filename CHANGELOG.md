@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 0.9.3 beta (2022-09-02)
+
+### With API activited only
+
+-   improve the rendering of roles and statuses in the admin
+
 ## 0.9.2 beta (2022-09-01)
 
 ### Standalone web app
