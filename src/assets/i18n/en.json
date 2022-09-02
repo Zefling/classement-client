@@ -112,6 +112,7 @@
     "options": {
       "group.title": "Options",
       "title": "Tierlist title:",
+      "title.color": "Title text color:",
       "group": "Group:",
       "sizes": "Tile sizes:",
       "margin": "Margin",

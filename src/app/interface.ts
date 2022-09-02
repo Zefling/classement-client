@@ -61,6 +61,7 @@ export type Options = ThemeOptions & {
     category: string;
 };
 export type ThemeOptions = {
+    titleTextColor: string;
     itemWidth: number;
     itemWidthAuto: boolean;
     itemHeight: number;

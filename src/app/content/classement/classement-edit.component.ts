@@ -1,14 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import {
-    Component,
-    DoCheck,
-    ElementRef,
-    HostListener,
-    OnDestroy,
-    Renderer2,
-    RendererStyleFlags2,
-    ViewChild,
-} from '@angular/core';
+import { Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +16,6 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
-import { color } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -70,7 +60,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private bdService: DBService,
         private router: Router,
         private route: ActivatedRoute,
-        private renderer: Renderer2,
         private translate: TranslateService,
         private globalService: GlobalService,
         private messageService: MessageService,
@@ -184,42 +173,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             return;
         }
 
-        const body = document.body;
-        const o = this.options;
-        const r = this.renderer.setStyle;
-        const dash = RendererStyleFlags2.DashCase;
-
-        // item
-        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
-        r(body, '--over-item-width', itemWidth, dash);
-        r(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
-        r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
-        r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
-        r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
-        r(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
-        r(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
-        r(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
-        r(body, '--over-item-text-background', color(o.itemTextBackgroundColor, o.itemTextBackgroundOpacity), dash);
-        // drop zone group
-        r(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
-        r(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
-        // name group
-        r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
-        r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
-        // image background
-        r(body, '--over-image-background', o.imageBackgroundColor, dash);
-        r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
-        r(
-            body,
-            '--over-image-url',
-            o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
-            dash,
-        );
-
-        this.nameOpacity =
-            Math.round(o.nameBackgroundOpacity * 2.55)
-                ?.toString(16)
-                .padStart(2, '0') ?? 'FF';
+        const val = this.globalService.updateVarCss(this.options);
+        this.nameOpacity = val.nameOpacity;
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;

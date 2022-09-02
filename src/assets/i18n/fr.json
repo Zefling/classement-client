@@ -113,6 +113,7 @@
     "options": {
       "group.title": "Options",
       "title": "Titre du classement\u00A0:",
+      "title.color": "Couleur du text du titre\u00A0:",
       "group": "Groupe\u00A0:",
       "sizes": "Dimentions d'une tuile\u00A0:",
       "margin": "Marge",

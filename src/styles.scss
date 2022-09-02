@@ -78,6 +78,7 @@ body.light-mode {
     // drop list (add image)
     --drop-image-zone-background: #b6c6f5;
     // item content-box
+    --content-title-text-color: #000;
     --content-box-border: #ccc;
     --content-box-background: #fff;
     --content-box-color: #000d;
@@ -187,6 +188,7 @@ body.dark-mode {
     // drop list (add image)
     --drop-image-zone-background: #13141a;
     // item content-box
+    --content-title-text-color: #fff;
     --content-box-border: #333;
     --content-box-background: #242424;
     --content-box-color: #fffd;

@@ -258,19 +258,31 @@
         </div>
         <div class="name-bg-opacity input-button">
             <div class="width-input">
-                <label for="nameFontSize">{{ 'gererator.options.name.opacity' | translate }}</label>
-                <input id="nameFontSize" type="number" min="0" max="100" [(ngModel)]="options.nameBackgroundOpacity" />
+                <label for="nameBackgroundOpacity">{{ 'gererator.options.name.opacity' | translate }}</label>
+                <input
+                    id="nameBackgroundOpacity"
+                    type="number"
+                    min="0"
+                    max="100"
+                    [(ngModel)]="options.nameBackgroundOpacity"
+                />
             </div>
         </div>
-        <div class="colors-item-text input-button">
+        <div class="colors-title-text">
             <div class="width-input">
-                <label for="nameFontSize">{{ 'gererator.options.item.text.color' | translate }}</label>
-                <input id="nameFontSize" type="color" [(ngModel)]="options.itemTextColor" />
+                <label for="titleTextColor">{{ 'gererator.options.title.color' | translate }}</label>
+                <input id="titleTextColor" type="color" [(ngModel)]="options.titleTextColor" />
+            </div>
+        </div>
+        <div class="colors-item-text">
+            <div class="width-input">
+                <label for="itemTextColor">{{ 'gererator.options.item.text.color' | translate }}</label>
+                <input id="itemTextColor" type="color" [(ngModel)]="options.itemTextColor" />
             </div>
         </div>
         <div class="background-image">
             <div class="width-input">
-                <label for="nameFontSize">{{ 'gererator.options.global.image' | translate }}</label>
+                <label for="backgroundImage">{{ 'gererator.options.global.image' | translate }}</label>
                 <div class="image-list">
                     <div class="select input list-options" (click)="toggleImageList()">
                         <div

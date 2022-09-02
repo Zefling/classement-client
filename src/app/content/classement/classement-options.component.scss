@@ -4,7 +4,7 @@
         'title             title               title               categories          '
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  item-text-back      '
-        'sizes             .                   colors-item-text    item-text-pos       '
+        'sizes             colors-title-text   colors-item-text    item-text-pos       '
         'title-line        title-line          title-line          title-line          '
         'colors-line-back  colors-line-border  name-bg-opacity     font-size           '
         'colors-line-back  colors-line-border  name-width          .                   '
@@ -68,6 +68,9 @@ h4 {
 }
 .colors-item-text {
     grid-area: colors-item-text;
+}
+.colors-title-text {
+    grid-area: colors-title-text;
 }
 
 .colors-item-back {

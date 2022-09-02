@@ -11,6 +11,7 @@ export const defautGroup: FormatedGroup[] = [
 ];
 
 export const defaultOptions: Options = {
+    titleTextColor: '',
     showAdvancedOptions: false,
     title: '',
     category: '',
@@ -65,6 +66,7 @@ export const themesList: Theme[] = [
     {
         name: 'sakura',
         options: {
+            titleTextColor: '#000000',
             itemWidth: 100,
             itemWidthAuto: false,
             itemHeight: 100,
@@ -94,6 +96,7 @@ export const themesList: Theme[] = [
     {
         name: 'night',
         options: {
+            titleTextColor: '#ffffff',
             itemWidth: 100,
             itemWidthAuto: false,
             itemHeight: 100,
@@ -123,6 +126,7 @@ export const themesList: Theme[] = [
     {
         name: 'ciel',
         options: {
+            titleTextColor: '#0c124d',
             itemWidth: 100,
             itemWidthAuto: false,
             itemHeight: 100,

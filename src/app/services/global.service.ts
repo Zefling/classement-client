@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
-import { Data, FileHandle, FileStream, FileString, FormatedGroup } from '../interface';
+import { defaultOptions } from '../content/classement/classement-default';
+import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options } from '../interface';
+import { color } from '../tools/function';
 
 
 export enum TypeFile {
@@ -27,6 +29,12 @@ export class GlobalService {
     lang!: string;
 
     jsonTmp?: Data;
+
+    private renderer: Renderer2;
+
+    constructor(rendererFactory: RendererFactory2) {
+        this.renderer = rendererFactory.createRenderer(null, null);
+    }
 
     forceExit(route: string | undefined) {
         this.onForceExit.next(route);
@@ -81,6 +89,47 @@ export class GlobalService {
                 this._fixImage(item);
             }),
         );
+    }
+
+    updateVarCss(o: Options) {
+        const body = document.body;
+        const r = this.renderer.setStyle;
+        const dash = RendererStyleFlags2.DashCase;
+        // title
+        r(body, '--over-title-text-color', o.titleTextColor ?? defaultOptions.titleTextColor, dash);
+        // item
+        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
+        r(body, '--over-item-width', itemWidth, dash);
+        r(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
+        r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
+        r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
+        r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
+        r(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
+        r(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
+        r(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
+        r(body, '--over-item-text-background', color(o.itemTextBackgroundColor, o.itemTextBackgroundOpacity), dash);
+        // drop zone group
+        r(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
+        r(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+        // name group
+        r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
+        r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
+        // image background
+        r(body, '--over-image-background', o.imageBackgroundColor, dash);
+        r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        r(
+            body,
+            '--over-image-url',
+            o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
+            dash,
+        );
+
+        return {
+            nameOpacity:
+                Math.round(o.nameBackgroundOpacity * 2.55)
+                    ?.toString(16)
+                    .padStart(2, '0') ?? 'FF',
+        };
     }
 
     private _fixImage(item: FileString) {

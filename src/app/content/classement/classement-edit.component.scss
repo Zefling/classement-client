@@ -335,6 +335,7 @@ svg.color + svg {
     caption {
         font-size: 120%;
         padding: 10px;
+        color: var(--over-title-text-color, var(--content-title-text-color));
     }
 
     img {

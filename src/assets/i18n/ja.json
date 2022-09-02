@@ -112,6 +112,7 @@
     "options": {
       "group.title": "オプション",
       "title": "ティアリストのタイトル：",
+      "title.color": "タイトルのテキストの色：",
       "group": "グループ：",
       "sizes": "タイルサイズ：",
       "margin": "マージン",
@@ -134,7 +135,7 @@
         "border.color": "タイルのボーダーの色：",
         "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
-          "text.color": "タイルのテキストの色：",
+          "color": "タイルのテキストの色：",
           "background.color": "テキストの背景の色：",
           "background.opacity": "テキストの背景の不透明度：",
           "position": "タイル内のテキストの位置：",
