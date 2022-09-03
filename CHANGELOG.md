@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 0.9.5 beta (2022-09-03)
+
+### Standalone web app
+
+-   add navigation in home page
+
 ## 0.9.4 beta (2022-09-03)
 
 ### Standalone web app
