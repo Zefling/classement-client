@@ -9,7 +9,7 @@
     & > div {
         flex: 1;
     }
-    padding: 100px 10px;
+    padding: 40px 10px;
 }
 
 .source,
@@ -24,4 +24,37 @@
 
 .licence path {
     fill: var(--licence-color);
+}
+
+.tiles-navigate {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    font-size: 30px;
+}
+
+.tile-navigate {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    color: var(--menu-color);
+    background: var(--menu-background);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
+
+    &:hover {
+        color: var(--menu-hover-color);
+        background: var(--menu-hover-background);
+    }
+
+    .icon {
+        font-size: 100px;
+    }
 }

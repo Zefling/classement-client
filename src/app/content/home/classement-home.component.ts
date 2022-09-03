@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { environment } from 'src/environments/environment';
+
 
 @Component({
     selector: 'classement-home',
@@ -8,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class ClassementHomeComponent {
     version = '0.9.4 beta';
+
+    modeApi = environment.api?.active || false;
 }

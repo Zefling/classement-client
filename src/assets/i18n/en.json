@@ -23,7 +23,11 @@
     "title": "Overview of third-party licenses"
   },
   "home": {
-    "intro": "A Web application to make a tierlist by images.",
+    "navigation": "Navigation",
+    "info": "Information",
+    "intro": "A Web application to make a tierlist by images or texts.",
+    "philosophy": "This is a libre and open source project, you can help the project by giving feedback.",
+    "feedback": "Make feedback",
     "source": {
       "code": "Source code",
       "license": "License",

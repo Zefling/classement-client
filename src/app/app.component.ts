@@ -30,7 +30,7 @@ export class AppComponent implements DoCheck {
     @HostBinding('class.show-menu')
     asideOpen = false;
 
-    modeApi = false;
+    modeApi = environment.api?.active || false;
     modeModerator = false;
 
     private route?: string;
@@ -59,10 +59,6 @@ export class AppComponent implements DoCheck {
     }
 
     ngDoCheck() {
-        const modeApi = environment.api?.active || false;
-        if (this.modeApi !== modeApi) {
-            this.modeApi = modeApi;
-        }
         const modeModerator = this.userService?.isModerator || this.userService?.isAdmin || false;
         if (this.modeModerator !== modeModerator) {
             this.modeModerator = modeModerator;
