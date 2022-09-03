@@ -7,7 +7,7 @@
         'sizes             colors-title-text   colors-item-text    item-text-pos       '
         'title-line        title-line          title-line          title-line          '
         'colors-line-back  colors-line-border  name-bg-opacity     font-size           '
-        'colors-line-back  colors-line-border  name-width          .                   '
+        'colors-line-back  colors-line-border  .                   name-width          '
         'title-other       title-other         title-other         title-other         '
         'global-width      global-image        global-color        links               '
         / 1fr 1fr 1fr 1fr;
@@ -62,6 +62,7 @@ h4 {
 }
 .item-text-back {
     grid-area: item-text-back;
+    --color-section: var(--over-item-text-background);
 }
 .sizes {
     grid-area: sizes;
@@ -72,7 +73,6 @@ h4 {
 .colors-title-text {
     grid-area: colors-title-text;
 }
-
 .colors-item-back {
     grid-area: colors-item-back;
     --color-section: var(--over-item-background);

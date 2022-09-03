@@ -112,10 +112,10 @@
                 }}</label>
                 <input
                     id="itemTextBackgroundOpacity"
-                    type="number"
+                    type="range"
                     max="100"
                     min="0"
-                    maxlength="3"
+                    step="1"
                     [disabled]="!options.itemTextBackgroundColor"
                     [(ngModel)]="options.itemTextBackgroundOpacity"
                 />
@@ -138,10 +138,10 @@
                 <label for="itemBackgroundOpacity">{{ 'gererator.options.item.background.opacity' | translate }}</label>
                 <input
                     id="itemBackgroundOpacity"
-                    type="number"
+                    type="range"
                     max="100"
                     min="0"
-                    maxlength="3"
+                    step="1"
                     [disabled]="!options.itemBackgroundColor"
                     [(ngModel)]="options.itemBackgroundOpacity"
                 />
@@ -163,10 +163,10 @@
                 <label for="itemBorderOpacity">{{ 'gererator.options.item.border.opacity' | translate }}</label>
                 <input
                     id="itemBorderOpacity"
-                    type="number"
+                    type="range"
                     max="100"
                     min="0"
-                    maxlength="3"
+                    step="1"
                     [disabled]="!options.itemBorderColor"
                     [(ngModel)]="options.itemBorderOpacity"
                 />
@@ -187,10 +187,10 @@
             <div class="opacity">
                 <label>{{ 'gererator.options.line.background.opacity' | translate }}</label>
                 <input
-                    type="number"
+                    type="range"
                     max="100"
                     min="0"
-                    maxlength="3"
+                    step="1"
                     [disabled]="!options.lineBackgroundColor"
                     [(ngModel)]="options.lineBackgroundOpacity"
                 />
@@ -212,10 +212,10 @@
                 <label for="lineBorderOpacity">{{ 'gererator.options.line.border.opacity' | translate }}</label>
                 <input
                     id="lineBorderOpacity"
-                    type="number"
+                    type="range"
                     max="100"
                     min="0"
-                    maxlength="3"
+                    step="1"
                     [disabled]="!options.lineBorderColor"
                     [(ngModel)]="options.lineBorderOpacity"
                 />
@@ -261,9 +261,10 @@
                 <label for="nameBackgroundOpacity">{{ 'gererator.options.name.opacity' | translate }}</label>
                 <input
                     id="nameBackgroundOpacity"
-                    type="number"
-                    min="0"
+                    type="range"
                     max="100"
+                    min="0"
+                    step="1"
                     [(ngModel)]="options.nameBackgroundOpacity"
                 />
             </div>
