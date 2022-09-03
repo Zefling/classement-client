@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 0.9.4 beta (2022-09-03)
+
+### Standalone web app
+
+-   add `titleTextColor` option
+-   option opacity change to input range
+-   reduce default padding for tiles
+-   show “Automatic tile width” all the time
+-   improve rendre for input toggle
+-   fix minor bugs
+
 ## 0.9.3 beta (2022-09-02)
 
 ### With API activited only
@@ -28,7 +39,7 @@
 
 ### Standalone web app
 
--   update to Angular 14.2
+-   update to Angular `14.2`
 -   add auto save
 -   add an API switch in the environment configuration
 
@@ -49,7 +60,7 @@
 
 ## 0.5.4 (2022-06-03)
 
--   update to Angular 14
+-   update to Angular `14.0`
 -   fix minor css bugs
 
 ## 0.5.3 (2022-05-15)
