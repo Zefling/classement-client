@@ -125,7 +125,7 @@
       "item": {
         "title": "Tile options",
         "width": "Tile width",
-        "width.auto": "Automatic width",
+        "width.auto": "Automatic tile width",
         "height": "Tile height",
         "padding": "Tile padding",
         "border": "Tile border",

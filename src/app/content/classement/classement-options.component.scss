@@ -20,7 +20,7 @@
     &.simplified {
         grid-template:
             'title             title               title               categories          '
-            'links             theme               .                   .                   '
+            'links             theme               width-auto          .                   '
             / 1fr 1fr 1fr 1fr;
     }
 }
@@ -41,6 +41,9 @@ h4 {
 }
 .themes {
     grid-area: theme;
+}
+.width-auto {
+    grid-area: width-auto;
 }
 .title {
     grid-area: title;
@@ -318,10 +321,6 @@ span.item-width {
     }
     button {
         grid-area: c;
-    }
-
-    [type='color'] {
-        height: 30px;
     }
 
     [type='number'] {

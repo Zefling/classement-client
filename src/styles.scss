@@ -72,6 +72,9 @@ body.light-mode {
     --input-border-color: #ccccdb;
     --input-background: #d6e0ec;
     --input-background-transparent: #d6e0ec82;
+    --input-item-color: #777;
+    --input-item-active-color: #333;
+    --input-focus-border-color: #888;
     // drop list
     --drop-list-border-color: #ccc;
     --drop-list-background: #f0f0f0;
@@ -182,6 +185,9 @@ body.dark-mode {
     --input-border-color: #3c3c41;
     --input-background: #282f36;
     --input-background-transparent: #282f3682;
+    --input-item-color: #777;
+    --input-item-active-color: #ddd;
+    --input-focus-border-color: #888;
     // drop list
     --drop-list-border-color: #3f3f3f;
     --drop-list-background: #2e2e2e;
@@ -332,6 +338,13 @@ select {
     &:disabled {
         opacity: 0.5;
     }
+    &:focus {
+        outline: 1px solid var(--input-focus-border-color);
+    }
+}
+
+[type='color'] {
+    height: 30px;
 }
 
 dialog-cmp.auto-format {
@@ -367,5 +380,53 @@ dialog-cmp.auto-format {
 
     & + span {
         font-size: 80%;
+    }
+}
+
+.toogle-switch {
+    position: relative;
+    input {
+        opacity: 0.01;
+        height: 0.1px;
+        width: 0.1px;
+        position: absolute;
+    }
+
+    span {
+        margin: 3px 0;
+        display: inline-block;
+        line-height: 21px;
+    }
+
+    span::before {
+        content: '';
+        display: inline-block;
+        height: 20px;
+        width: 40px;
+        border-radius: 10px;
+        background-color: var(--input-border-color);
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
+    span::after {
+        content: '';
+        display: block;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-color: var(--input-item-color);
+        position: absolute;
+        left: 2px;
+        top: 0;
+        transition: all 0.2s;
+    }
+
+    input:checked + ::after {
+        left: 20px;
+        background-color: var(--input-item-active-color);
+    }
+
+    input:focus + ::before {
+        outline: 1px solid var(--input-focus-border-color);
     }
 }

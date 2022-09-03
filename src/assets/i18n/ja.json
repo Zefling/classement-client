@@ -125,7 +125,7 @@
       "item": {
         "title": "タイルのオプション",
         "width": "タイル幅",
-        "width.auto": "自動幅",
+        "width.auto": "自動タイル幅",
         "height": "タイルの高さ",
         "padding": "タイルパディング",
         "border": "タイルボーダー",

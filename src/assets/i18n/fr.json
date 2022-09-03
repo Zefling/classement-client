@@ -126,7 +126,7 @@
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
-        "width.auto": "Largeur automatique",
+        "width.auto": "Largeur automatique des tuiles",
         "height": "Hauteur d'une tuile",
         "padding": "Rembourrage d'une tuile",
         "border": "Bordure d'uen tuile",
