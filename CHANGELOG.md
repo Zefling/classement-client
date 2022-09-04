@@ -1,5 +1,9 @@
 # Changelog - Standalone web app & API
 
+## 0.9.8 beta (2022-09-05)
+
+-   Fix image render with https images (fix the type mine)
+
 ## 0.9.7 beta (2022-09-04)
 
 ### Standalone web app
