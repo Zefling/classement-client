@@ -75,4 +75,9 @@
     </div>
 </div>
 
-<div>Classement : version {{ version }}</div>
+<div>
+    {{ 'home.app.name' | translate }}
+    <a href="https://git.ikilote.net/classement/classement/-/blob/master/CHANGELOG.md">{{
+        'home.app.version' | translate: { version: version }
+    }}</a>
+</div>

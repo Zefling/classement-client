@@ -34,6 +34,10 @@
       "gpl3": "GNU General Public License v3.0",
       "client": "クライアント",
       "server": "サーバー"
+    },
+    "app": {
+      "name": "Classement(クラスメント)：",
+      "version": "バージョン {{ version }}"
     }
   },
   "list": {

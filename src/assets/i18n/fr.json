@@ -34,6 +34,10 @@
       "gpl3": "Licence publique générale GNU (GNU GPL), version 3",
       "client": "Client",
       "server": "Serveur"
+    },
+    "app": {
+      "name": "Classement : ",
+      "version": "version {{ version }}"
     }
   },
   "list": {
