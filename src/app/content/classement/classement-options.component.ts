@@ -35,7 +35,12 @@ export class ClassementOptionsComponent {
     }
 
     changeTheme(theme: Theme) {
-        Object.assign(this.options!, theme.options);
+        Object.assign(this.options!, theme.options, {
+            title: this.options!.title,
+            category: this.options!.category,
+            autoSave: this.options!.autoSave,
+            itemWidthAuto: this.options!.itemWidthAuto,
+        });
     }
 
     toggleImageList() {
