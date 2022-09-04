@@ -48,6 +48,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
 
+    classScreenMode: 'default' | 'enlarge' | 'fullscreen' = 'default';
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
@@ -418,6 +420,25 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }
         }
         this.dialogImport.close();
+    }
+
+    screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
+        this.classScreenMode = mode;
+
+        if (div) {
+            if (mode === 'fullscreen') {
+                div.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    }
+
+    @HostListener('window:fullscreenchange')
+    screenModeFullscren() {
+        if (!document.fullscreenElement) {
+            this.screenMode('default');
+        }
     }
 
     private getData(): Data {

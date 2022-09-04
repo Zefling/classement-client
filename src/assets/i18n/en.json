@@ -178,6 +178,11 @@
         "opacity": "Group name background opacity:"
       }
     },
+    "screen": {
+      "default": "Default display",
+      "window": "Maximize to window",
+      "fullscreen": "Full screen"
+    },
     "theme": {
       "link": "Choose a theme",
       "info": "Predefined theme selection:",

@@ -179,6 +179,11 @@
         "opacity": "Opacité du fond des noms de groupe\u00A0:"
       }
     },
+    "screen": {
+      "default": "Affiche par défaut",
+      "window": "Aggrandir à la fenêtre",
+      "fullscreen": "Plein écran"
+    },
     "theme": {
       "link": "Choisir un thème",
       "info": "Selection de thème prédéfini\u00A0:",
