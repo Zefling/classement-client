@@ -16,6 +16,7 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -65,6 +66,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private messageService: MessageService,
         private userService: APIUserService,
         private classementService: APIClassementService,
+        private logger: Logger,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -76,17 +78,17 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             this.logged = this.userService.logged ?? false;
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
                             if (classement) {
-                                console.log('loadServerClassement (user)');
+                                this.logger.log('loadServerClassement (user)');
                                 this.loadServerClassement(classement);
                             } else {
                                 this.classementService
                                     .getClassement(this.id!)
                                     .then(classement => {
-                                        console.log('loadServerClassement (server)');
+                                        this.logger.log('loadServerClassement (server)');
                                         this.loadServerClassement(classement);
                                     })
                                     .catch(() => {
-                                        console.log('loadLocalClassement (browser)');
+                                        this.logger.log('loadLocalClassement (browser)');
                                         this.loadLocalClassement();
                                     });
                             }
@@ -126,7 +128,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService
             .loadLocal(this.id!)
             .then(data => {
-                console.log('local found');
+                this.logger.log('local found');
 
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
@@ -156,7 +158,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.globalService.fixImageSize(this.groups, this.list);
             })
             .catch(() => {
-                console.log('local not found');
+                this.logger.log('local not found');
                 this.router.navigate(['/edit', 'new']);
             });
     }
@@ -179,7 +181,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;
-            console.log('Option change');
+            this.logger.log('Option change');
             this.change();
         }
 
@@ -232,7 +234,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             input.addEventListener(
                 'change',
                 (event: Event) => {
-                    console.log('change - add file', (event.target as any).files);
+                    this.logger.log('change - add file', LoggerLevel.log, (event.target as any).files);
                     this.globalService.addFiles((event.target as any).files, TypeFile.image);
                     input.outerHTML = '';
                 },

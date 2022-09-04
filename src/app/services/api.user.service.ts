@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
+import { Logger, LoggerLevel } from './logger';
 
 import { Login, Message, MessageError } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
@@ -29,8 +30,13 @@ export class APIUserService extends APICommon {
 
     token?: string;
 
-    constructor(private http: HttpClient, translate: TranslateService, private globalService: GlobalService) {
-        super(translate);
+    constructor(
+        private http: HttpClient,
+        private globalService: GlobalService,
+        translate: TranslateService,
+        logger: Logger,
+    ) {
+        super(translate, logger);
     }
 
     reset() {
@@ -68,7 +74,7 @@ export class APIUserService extends APICommon {
             if (this.token) {
                 this.http.get<Message<User>>(`${environment.api.path}api/user/current`, this.header()).subscribe({
                     next: result => {
-                        console.log('valide token', result.message);
+                        this.logger.log('valide token', LoggerLevel.log, result.message);
                         this.user = result.message;
                         if (this.user.classements?.length) {
                             this.user.classements = this.user.classements.sort(

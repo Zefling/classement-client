@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
+import { Logger, LoggerLevel } from './logger';
 
 import { Message } from '../content/user/user.interface';
 import { Classement } from '../interface';
@@ -18,8 +19,13 @@ export class APIClassementService extends APICommon {
         return this.userService.token!;
     }
 
-    constructor(private http: HttpClient, private userService: APIUserService, translate: TranslateService) {
-        super(translate);
+    constructor(
+        private http: HttpClient,
+        private userService: APIUserService,
+        translate: TranslateService,
+        logger: Logger,
+    ) {
+        super(translate, logger);
     }
 
     getClassement(rankingId: string): Promise<Classement> {
@@ -43,7 +49,7 @@ export class APIClassementService extends APICommon {
                     params = params.set(i, (options as any)[i]);
                 }
             }
-            console.log('options', options, 'params', params);
+            this.logger.log('options', LoggerLevel.log, options, 'params', params);
 
             this.http.get<Message<Classement[]>>(`${environment.api.path}api/classements`, { params }).subscribe({
                 next: result => {
@@ -138,7 +144,7 @@ export class APIClassementService extends APICommon {
         return new Promise<{ total: number; list: Classement[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page);
 
-            console.log('params', params);
+            this.logger.log('params', LoggerLevel.log, params);
 
             this.http
                 .get<Message<{ total: number; list: Classement[] }>>(`${environment.api.path}api/admin/classements`, {

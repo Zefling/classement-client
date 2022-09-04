@@ -2,6 +2,7 @@ import { Component, DoCheck, Input } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
+import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
 
@@ -32,7 +33,7 @@ export class ClassementOptimiseComponent implements DoCheck {
 
     detail = false;
 
-    constructor(private optimiseImage: OptimiseImageService) {
+    constructor(private optimiseImage: OptimiseImageService, private logger: Logger) {
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;
@@ -72,7 +73,7 @@ export class ClassementOptimiseComponent implements DoCheck {
     }
 
     async optimise() {
-        console.log('optimise');
+        this.logger.log('optimise');
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;
@@ -93,7 +94,7 @@ export class ClassementOptimiseComponent implements DoCheck {
     }
 
     optimiseAccept() {
-        console.log('optimise accept');
+        this.logger.log('optimise accept');
         this.listOptimise.forEach(e => {
             if (e.reduceFile) {
                 e.sourceFile.realSize = e.reduceFile.realSize;

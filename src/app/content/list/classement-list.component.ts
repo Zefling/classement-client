@@ -8,6 +8,7 @@ import { ImportJsonEvent } from 'src/app/components/import-json.component';
 import { MessageService } from 'src/app/components/info-messages.component';
 import { FormatedInfos } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
+import { Logger } from 'src/app/services/logger';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class ClassementListComponent {
         private router: Router,
         private translate: TranslateService,
         private messageService: MessageService,
+        private logger: Logger,
     ) {
         this.showList();
     }
@@ -52,12 +54,12 @@ export class ClassementListComponent {
 
     deleteCurrent(action: boolean) {
         if (!action) {
-            console.log(`Not remove line: ${this.itemCurrent?.id}`);
+            this.logger.log(`Not remove line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
             this.dialogDelete.close();
         } else if (this.itemCurrent?.id) {
             this.dbservice.delete(this.itemCurrent.id).then(() => {
-                console.log(`Remove line: ${this.itemCurrent?.id}`);
+                this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
                 this.result.splice(this.result.indexOf(this.itemCurrent as FormatedInfos), 1);
                 this.messageService.addMessage(
                     this.translate
@@ -72,12 +74,12 @@ export class ClassementListComponent {
 
     cloneCurrent(action: boolean, value?: string, edit: boolean = false) {
         if (!action) {
-            console.log(`Not clone line: ${this.itemCurrent?.id}`);
+            this.logger.log(`Not clone line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
             this.dialogClone.close();
         } else if (this.itemCurrent?.id) {
             this.dbservice.clone(this.itemCurrent, value || '').then(item => {
-                console.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
+                this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
                 this.messageService.addMessage(
                     this.translate
@@ -101,7 +103,7 @@ export class ClassementListComponent {
                 this.dbservice
                     .saveLocal(event.data!)
                     .then(item => {
-                        console.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
+                        this.logger.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
 
                         this.messageService.addMessage(
                             this.translate

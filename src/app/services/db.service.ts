@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Logger, LoggerLevel } from './logger';
+
 import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
 import { Utils } from '../tools/utils';
 
@@ -12,6 +14,8 @@ enum Store {
 @Injectable({ providedIn: 'root' })
 export class DBService {
     private _db!: IDBDatabase;
+
+    constructor(private logger: Logger) {}
 
     getLocalList(): Promise<FormatedInfos[]> {
         return this._getDB().then(db => this._getInfosList(db));
@@ -87,7 +91,7 @@ export class DBService {
                 (await this._testByIdDB(db, Store.infos, data.id)) && (await this._testByIdDB(db, Store.data, data.id));
         }
         const id = !data.id ? await this._digestMessage(`${new Date()}`) : data.id;
-        console.log('Existing data', exist);
+        this.logger.log('Existing data', LoggerLevel.log, exist);
         return {
             update: exist,
             infos: {
@@ -119,14 +123,15 @@ export class DBService {
 
     private _getInfosList(db: IDBDatabase): Promise<FormatedInfos[]> {
         return new Promise((resolve, reject) => {
-            console.log('Read Infos');
+            this.logger.log('Read Infos');
+            const _this = this;
             const list = db.transaction([Store.infos], 'readwrite').objectStore(Store.infos).getAll();
             list.onsuccess = function (this: IDBRequest<FormatedInfos[]>) {
-                console.log('getInfosList', this.result);
+                _this.logger.log('getInfosList', LoggerLevel.log, this.result);
                 resolve(this.result);
             };
             list.onerror = () => {
-                console.error('getInfosList: An error has occurred!', list?.error?.message);
+                this.logger.log('getInfosList: An error has occurred!', LoggerLevel.error, list?.error?.message);
                 reject();
             };
         });
@@ -140,17 +145,18 @@ export class DBService {
         attr: 'infos' | 'data',
     ): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            console.log(`Get data in “${store}” for [${id}].`);
+            this.logger.log(`Get data in “${store}” for [${id}].`);
             const transactionData = db.transaction([store], 'readwrite');
             const item = transactionData.objectStore(store).get(id);
+            const _this = this;
 
             item.onsuccess = function (this: IDBRequest<T>) {
-                console.log('getInfosList', this.result);
+                _this.logger.log('getInfosList', LoggerLevel.log, this.result);
                 (data as any)[attr] = this.result;
                 resolve(db);
             };
             item.onerror = () => {
-                console.error('getByIdDB: An error has occurred!', item?.error?.message);
+                this.logger.log('getByIdDB: An error has occurred!', LoggerLevel.error, item?.error?.message);
                 reject();
             };
         });
@@ -158,16 +164,17 @@ export class DBService {
 
     private _testByIdDB(db: IDBDatabase, store: Store, id: string): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            console.log(`Test data in “${store}” for [${id}].`);
+            this.logger.log(`Test data in “${store}” for [${id}].`);
             const transactionData = db.transaction([store], 'readwrite');
             const item = transactionData.objectStore(store).get(id);
+            const _this = this;
 
             item.onsuccess = function () {
-                console.log(`Test data found in “${store}” for [${id}].`);
+                _this.logger.log(`Test data found in “${store}” for [${id}].`);
                 resolve(!!this.result);
             };
             item.onerror = () => {
-                console.log(`Test data not found in “${store}” for [${id}].`);
+                this.logger.log(`Test data not found in “${store}” for [${id}].`);
                 resolve(false);
             };
         });
@@ -175,15 +182,19 @@ export class DBService {
 
     private _deleteDB(db: IDBDatabase, store: Store, id: string): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            console.log(`Remove data in “${store}”.`);
+            this.logger.log(`Remove data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
 
             transactionData.onerror = () => {
-                console.error(`An error in “${store}” has occurred!`, transactionData?.error?.message);
+                this.logger.log(
+                    `An error in “${store}” has occurred!`,
+                    LoggerLevel.error,
+                    transactionData?.error?.message,
+                );
                 reject();
             };
             transactionData.oncomplete = () => {
-                console.log(`Data removed successfully in “${store}”.`);
+                this.logger.log(`Data removed successfully in “${store}”.`);
                 resolve(db);
             };
 
@@ -193,20 +204,21 @@ export class DBService {
 
     private _saveDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            console.log(`Add data in “${store}”.`);
+            this.logger.log(`Add data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
             try {
                 const save = transactionData.objectStore(store).add(data, data.id);
+                const _this = this;
                 save.onsuccess = function () {
-                    console.log(`Data added successfully in “${store}”.`);
+                    _this.logger.log(`Data added successfully in “${store}”.`);
                     resolve(db);
                 };
                 save.onerror = () => {
-                    console.error(`An error in “${store}” has occurred!`, transactionData);
+                    this.logger.log(`An error in “${store}” has occurred!`, LoggerLevel.error, transactionData);
                     reject();
                 };
             } catch (e) {
-                console.log(`An error in “${store}” has occurred!`, e);
+                this.logger.log(`An error in “${store}” has occurred!`, LoggerLevel.error, e);
                 reject();
             }
         });
@@ -215,24 +227,25 @@ export class DBService {
     private _updateDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
         const that = this;
         return new Promise((resolve, reject) => {
-            console.log(`Update data in “${store}”.`);
+            this.logger.log(`Update data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
+            const _this = this;
 
             transactionData.objectStore(store).openCursor(data.id).onsuccess = function () {
                 const cursor = this.result;
                 if (cursor) {
                     const request = cursor.update(data);
                     request.onsuccess = function () {
-                        console.log(`Data updated successfully in “${store}”.`);
+                        _this.logger.log(`Data updated successfully in “${store}”.`);
                         resolve(db);
                     };
                     request.onerror = function () {
-                        console.error(`An error in “${store}” has occurred!`, request);
+                        _this.logger.log(`An error in “${store}” has occurred!`, LoggerLevel.error, request);
                         reject();
                     };
                 } else {
                     // if data not existe with this id
-                    console.log(`No data found in “${store}”. ${data.id}`);
+                    _this.logger.log(`No data found in “${store}”. ${data.id}`);
                 }
             };
         });
@@ -246,12 +259,12 @@ export class DBService {
                 const dbReq = indexedDB.open('classementDB', 1);
 
                 dbReq.onerror = () => {
-                    console.error('Error for init Database.', dbReq.error);
+                    this.logger.log('Error for init Database.', LoggerLevel.error, dbReq.error);
                     reject();
                 };
 
                 dbReq.onupgradeneeded = () => {
-                    console.log('Upgrade DB');
+                    this.logger.log('Upgrade DB');
                     dbReq.result.createObjectStore(Store.infos).createIndex('infos', 'infos', {
                         unique: true,
                     });
@@ -261,7 +274,7 @@ export class DBService {
                 };
 
                 dbReq.onsuccess = () => {
-                    console.log('DB init successfully.');
+                    this.logger.log('DB init successfully.');
                     this._db = dbReq.result;
                     resolve(this._db);
                 };

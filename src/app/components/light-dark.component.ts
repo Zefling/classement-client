@@ -1,5 +1,6 @@
 import { Component, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
+import { Logger, LoggerLevel } from '../services/logger';
 import { Utils } from '../tools/utils';
 
 
@@ -24,7 +25,7 @@ export class LightDarkComponent {
         return this.thisCurrent() === 'dark';
     }
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2, private logger: Logger) {
         this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const theme = Utils.getCookie<DarkLight>('theme');
         if (theme) {
@@ -54,7 +55,7 @@ export class LightDarkComponent {
     }
 
     changeClass() {
-        console.log('color theme:', this.userShema);
+        this.logger.log('color theme:', LoggerLevel.log, this.userShema);
         this.renderer.addClass(document.body, this.thisCurrent() === 'light' ? 'light-mode' : 'dark-mode');
         this.renderer.removeClass(document.body, this.thisCurrent() !== 'light' ? 'light-mode' : 'dark-mode');
     }

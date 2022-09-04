@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { NavigateService } from 'src/app/services/navigate.service';
 
 import { categories } from '../classement/classement-default';
@@ -32,10 +33,11 @@ export class ClassementNavigateComponent implements OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private navigate: NavigateService,
+        private logger: Logger,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
-                console.log('params', params);
+                this.logger.log('params', LoggerLevel.log, params);
                 this.searchKey = params['name'] || '';
                 this.category = params['category'] || '';
                 if (this.searchKey || this.category) {

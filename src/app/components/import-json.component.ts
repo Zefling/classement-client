@@ -9,6 +9,7 @@ import { MessageService, MessageType } from './info-messages.component';
 
 import { Data, FileString } from '../interface';
 import { GlobalService, TypeFile } from '../services/global.service';
+import { Logger, LoggerLevel } from '../services/logger';
 
 
 export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Data };
@@ -38,6 +39,7 @@ export class ImportJsonComponent implements OnDestroy {
         private translate: TranslateService,
         private globalService: GlobalService,
         private messageService: MessageService,
+        private logger: Logger,
     ) {
         this._sub.push(
             globalService.onFileLoaded.subscribe(file => {
@@ -73,7 +75,7 @@ export class ImportJsonComponent implements OnDestroy {
                 });
             }
         } catch (e) {
-            console.error('json error:', e);
+            this.logger.log('json error:', LoggerLevel.error, e);
             this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
                 type: MessageType.error,
             });

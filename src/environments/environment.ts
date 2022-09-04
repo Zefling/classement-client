@@ -4,6 +4,7 @@
 
 export const environment = {
     production: false,
+    minLogLevel: 'log',
     api: {
         active: true,
         domain: 'localhost:8000',

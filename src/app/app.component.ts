@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { DialogComponent } from './components/dialog.component';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
+import { Logger } from './services/logger';
 
 
 const languages = [
@@ -39,6 +40,7 @@ export class AppComponent implements DoCheck {
         private translate: TranslateService,
         private globalService: GlobalService,
         private router: Router,
+        private logger: Logger,
         public userService: APIUserService,
     ) {
         // autodetect language
@@ -53,7 +55,7 @@ export class AppComponent implements DoCheck {
 
         if (environment.api?.active) {
             userService.initProfile().then(() => {
-                console.log('Auto logged !!');
+                this.logger.log('Auto logged !!');
             });
         }
     }
@@ -70,7 +72,7 @@ export class AppComponent implements DoCheck {
     }
 
     updateLanguage(lang: string) {
-        console.log('Update language: ' + lang);
+        this.logger.log('Update language: ' + lang);
         this.translate.use(lang);
         this.globalService.lang = lang;
     }
@@ -78,7 +80,7 @@ export class AppComponent implements DoCheck {
     logout() {
         if (environment.api?.active) {
             this.userService.loggedStatus().then(() => {
-                console.log('logout');
+                this.logger.log('logout');
                 this.userService.logout().then(() => {});
             });
         }

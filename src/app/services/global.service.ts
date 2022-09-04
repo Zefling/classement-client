@@ -2,6 +2,8 @@ import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@a
 
 import { Subject } from 'rxjs';
 
+import { Logger, LoggerLevel } from './logger';
+
 import { defaultOptions } from '../content/classement/classement-default';
 import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options } from '../interface';
 import { color } from '../tools/function';
@@ -32,7 +34,7 @@ export class GlobalService {
 
     private renderer: Renderer2;
 
-    constructor(rendererFactory: RendererFactory2) {
+    constructor(rendererFactory: RendererFactory2, private logger: Logger) {
         this.renderer = rendererFactory.createRenderer(null, null);
     }
 
@@ -139,14 +141,14 @@ export class GlobalService {
                     item.width = size.width;
                     item.height = size.height;
                 })
-                .catch(e => console.log('Error file:', item.name, e));
+                .catch(e => this.logger.log('Error file:', LoggerLevel.error, item.name, e));
         }
     }
 
     private _format(file: FileHandle, filter: TypeFile) {
         const url = file.target?.result ? String(file.target?.result) : undefined;
         if (url) {
-            console.log('Add file:', file.file.name);
+            this.logger.log('Add file:', LoggerLevel.log, file.file.name);
             if (filter === TypeFile.image) {
                 this._imageDimensions(file.file)
                     .then(size => {
@@ -165,7 +167,7 @@ export class GlobalService {
                             },
                         });
                     })
-                    .catch(e => console.log('Error file:', file.file.name, e));
+                    .catch(e => this.logger.log('Error file:', LoggerLevel.error, file.file.name, e));
             } else {
                 this.onFileLoaded.next({
                     filter,
@@ -180,7 +182,7 @@ export class GlobalService {
                 });
             }
         } else {
-            console.log('Error file:', file.file.name);
+            this.logger.log('Error file:', LoggerLevel.error, file.file.name);
         }
     }
 

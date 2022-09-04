@@ -11,6 +11,7 @@ import { MessageService, MessageType } from 'src/app/components/info-messages.co
 import { User } from 'src/app/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class AdminUsersComponent implements DoCheck {
         private route: ActivatedRoute,
         private messageService: MessageService,
         private translate: TranslateService,
+        private logger: Logger,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -109,7 +111,7 @@ export class AdminUsersComponent implements DoCheck {
                 this.changeStatusCancel();
             })
             .catch(e => {
-                console.log(e);
+                this.logger.log(e, LoggerLevel.warn);
                 this.showError = e;
             });
     }
