@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 0.9.6 beta (2022-09-04)
+
+### Standalone web app
+
+-   fix saving if an edit and replace with "new"
+
+### With API activited only
+
+-   fix connection if never connected
+
 ## 0.9.5 beta (2022-09-03)
 
 ### Standalone web app
