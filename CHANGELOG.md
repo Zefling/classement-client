@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 0.9.7 beta (2022-09-04)
+
+### Standalone web app
+
+-   Add enlarge et fullscreen modes
+-   Add a link to the changelog
+-   Implement a log service
+-   Fixed theme change (do not overwrite: title, category, autoSave, itemWidthAuto)
+
+### With API activited only
+
+-   Fix image render with https images
+
 ## 0.9.6 beta (2022-09-04)
 
 ### Standalone web app
