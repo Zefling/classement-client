@@ -107,6 +107,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
                     this.list = this.globalService.jsonTmp?.list || [];
                     this.id = undefined;
+                    this.classement = undefined;
                     this.globalService.jsonTmp = undefined;
                 }
             }),
