@@ -78,7 +78,15 @@ export class Utils {
                 var reader = new FileReader();
                 reader.readAsDataURL(imageBlob);
                 reader.onloadend = function () {
-                    var base64data = reader.result;
+                    const base64data = reader.result;
+                    if (base64data instanceof ArrayBuffer) {
+                        resolve(base64data);
+                    } else if (base64data) {
+                        // fix typemine
+                        resolve(base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'));
+                    } else {
+                        reject('Imaage error');
+                    }
                     resolve(base64data);
                 };
                 reader.onerror = () => {
