@@ -91,6 +91,9 @@ export class APIUserService extends APICommon {
                         this.afterLoggin.next();
                     },
                 });
+            } else {
+                this.logged = false;
+                resolve();
             }
         });
     }
