@@ -58,4 +58,35 @@ export class Utils {
     static testEmail(email: string): boolean {
         return email ? String(email).match(emailTest) !== null : false;
     }
+
+    static async ulrToBase64(url: string): Promise<string | ArrayBuffer | null> {
+        return new Promise<string | ArrayBuffer | null>(async (resolve, reject) => {
+            const response = await fetch(url, {
+                method: 'GET',
+                credentials: 'omit',
+                headers: {
+                    'Sec-Fetch-Dest': 'image',
+                    'Sec-Fetch-Mode': 'no-cors',
+                    'Sec-Fetch-Site': 'same-site',
+                },
+            });
+
+            if (response.status === 200) {
+                const imageBlob = await response.blob();
+                const imageObjectURL = URL.createObjectURL(imageBlob);
+
+                var reader = new FileReader();
+                reader.readAsDataURL(imageBlob);
+                reader.onloadend = function () {
+                    var base64data = reader.result;
+                    resolve(base64data);
+                };
+                reader.onerror = () => {
+                    reject('Imaage error');
+                };
+            } else {
+                reject('HTTP-Error: ' + response.status);
+            }
+        });
+    }
 }

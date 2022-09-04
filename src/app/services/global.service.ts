@@ -7,6 +7,7 @@ import { Logger, LoggerLevel } from './logger';
 import { defaultOptions } from '../content/classement/classement-default';
 import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options } from '../interface';
 import { color } from '../tools/function';
+import { Utils } from '../tools/utils';
 
 
 export enum TypeFile {
@@ -91,6 +92,32 @@ export class GlobalService {
                 this._fixImage(item);
             }),
         );
+    }
+
+    /**
+     * fix for html2canavas (not work with https? images)
+     * @param groups groups
+     * @param list list
+     * @returns cache image in base64 `[url : base64]`
+     */
+    async imagesCache(
+        groups: FormatedGroup[],
+        list: FileString[],
+    ): Promise<{ [key: string]: string | ArrayBuffer | null }> {
+        const cache: { [key: string]: string | ArrayBuffer | null } = {};
+        for (const item of list) {
+            if (item.url) {
+                cache[item.url] = await Utils.ulrToBase64(item.url);
+            }
+        }
+        for (const group of groups) {
+            for (const item of group.list) {
+                if (item.url) {
+                    cache[item.url] = await Utils.ulrToBase64(item.url);
+                }
+            }
+        }
+        return cache;
     }
 
     updateVarCss(o: Options) {

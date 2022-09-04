@@ -46,6 +46,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     hasItems = false;
 
+    imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
@@ -156,6 +158,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.groups = data.data.groups;
                 this.list = data.data.list;
                 this.globalService.fixImageSize(this.groups, this.list);
+                setTimeout(() => {
+                    this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
+                });
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -169,6 +174,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
+        setTimeout(() => {
+            this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
+        });
     }
 
     ngDoCheck() {
