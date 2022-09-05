@@ -32,10 +32,11 @@
     text-align: center;
     gap: 20px;
     font-size: 30px;
+    justify-content: flex-start;
 }
 
 .tile-navigate {
-    width: 200px;
+    flex: 1 0 200px;
     height: 200px;
     text-align: center;
     padding: 10px;
@@ -56,5 +57,18 @@
 
     .icon {
         font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .tiles-navigate {
+        scroll-snap-type: x proximity;
+        max-width: 100%;
+        overflow: auto;
+        padding: 0 min(20%, 30px);
+        margin: 0 -15px 0 -30px;
+    }
+    .tile-navigate {
+        scroll-snap-align: center;
     }
 }
