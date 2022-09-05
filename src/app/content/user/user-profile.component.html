@@ -34,7 +34,7 @@
                     <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="groups">{{ classement.totalGroups }}</td>
-                <td class="datas">{{ classement.totalItems }}</td>
+                <td class="items">{{ classement.totalItems }}</td>
                 <td class="actions">
                     <a [routerLink]="'/edit/' + classement.rankingId">{{ 'list.action.edit' | translate }}</a>
                     <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
