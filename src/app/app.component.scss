@@ -87,10 +87,11 @@ aside {
         display: flex;
         flex-direction: column;
         height: 100%;
+        gap: 5px;
     }
 
     li {
-        margin: 5px 5px 0;
+        margin: 0 5px;
         padding: var(--menu-item-padding, 5px);
         border: 1px solid var(--menu-border-color);
         list-style: none;
@@ -112,17 +113,11 @@ aside {
         }
     }
 
-    .logout,
-    .information {
+    .section-top + :not(.section-top) {
         margin-top: auto;
-
-        & ~ * {
-            margin-top: 5px;
-        }
     }
 
     .licences {
-        margin-top: auto;
         margin-bottom: 15px;
     }
 

@@ -13,6 +13,7 @@
     <div class="menu">
         <ul>
             <li
+                class="section-top"
                 routerLink="/"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -21,6 +22,7 @@
                 {{ 'menu.home' | translate }}
             </li>
             <li
+                class="section-top"
                 routerLink="/list"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -31,6 +33,7 @@
             <ng-container *ngIf="modeApi">
                 <li
                     *ngIf="!userService.logged"
+                    class="section-top"
                     routerLink="/user/login"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
@@ -40,6 +43,7 @@
                 </li>
                 <li
                     *ngIf="userService.logged"
+                    class="section-top"
                     routerLink="/user/profile"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
@@ -48,6 +52,7 @@
                     {{ 'menu.profile' | translate }}
                 </li>
                 <li
+                    class="section-top"
                     routerLink="/navigate"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: false }"
@@ -57,6 +62,7 @@
                 </li>
             </ng-container>
             <li
+                class="section-top"
                 routerLink="/edit/new"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -66,6 +72,7 @@
             </li>
             <li
                 *ngIf="modeApi && modeModerator"
+                class="section-top"
                 routerLink="/admin"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: false }"
