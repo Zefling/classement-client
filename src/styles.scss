@@ -103,6 +103,8 @@ body.light-mode {
     --error-message-progress-background: #f03636;
     // loading
     --loading-color: #000;
+    --loading-tile-color: #d0dde9;
+    --loading-line-animation-color: 0 0 0;
     // cropper
     --cropper-overlay-color: #fff;
     --cropper-outline-color: #ffffff4d;
@@ -216,6 +218,8 @@ body.dark-mode {
     --error-message-progress-background: #cc2121;
     // loading
     --loading-color: #fff;
+    --loading-tile-color: #181c20;
+    --loading-line-animation-color: 255 255 255;
     // cropper
     --cropper-overlay-color: #000;
     --cropper-outline-color: #0000004d;

@@ -24,6 +24,8 @@ export class ClassementNavigateComponent implements OnDestroy {
 
     classements: Classement[] = [];
 
+    loading = false;
+
     isCatagoryList = false;
 
     private _sub: Subscription[] = [];
@@ -68,6 +70,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     submit() {
+        this.loading = true;
         this.classementService
             .getClassementsByOptions({ name: this.searchKey, category: this.category })
             .then(classements => {
@@ -83,6 +86,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.router.navigate(['navigate'], { queryParams: { name: this.searchKey, category: this.category } });
                 this.navigate.category = this.category;
                 this.navigate.searchKey = this.searchKey;
+                this.loading = false;
             });
     }
 

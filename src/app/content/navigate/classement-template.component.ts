@@ -21,6 +21,8 @@ export class ClassementTemplateComponent {
 
     isCatagoryList = false;
 
+    loading = false;
+
     private _sub: Subscription[] = [];
 
     constructor(
@@ -31,6 +33,7 @@ export class ClassementTemplateComponent {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id']) {
+                    this.loading = true;
                     this.classementService
                         .getClassementsByTemplateId(params['id'])
                         .then(classements => {
@@ -42,6 +45,9 @@ export class ClassementTemplateComponent {
                         })
                         .catch(() => {
                             this.router.navigate(['navigate']);
+                        })
+                        .finally(() => {
+                            this.loading = false;
                         });
                 }
             }),

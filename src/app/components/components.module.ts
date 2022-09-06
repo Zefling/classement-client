@@ -9,6 +9,7 @@ import { ImportJsonComponent } from './import-json.component';
 import { InfoMessageComponent } from './info-message.component';
 import { InfoMessagesComponent } from './info-messages.component';
 import { LightDarkComponent } from './light-dark.component';
+import { LoaderItemComponent } from './loader-item.component';
 import { LoaderComponent } from './loader.component';
 import { LoadingComponent } from './loading.component';
 import { PaginationComponent } from './paginate.component';
@@ -26,6 +27,7 @@ import { ThemeIconComponent } from './theme-icon.component';
         ImportJsonComponent,
         LoadingComponent,
         LoaderComponent,
+        LoaderItemComponent,
         PaginationComponent,
         SeeClassementComponent,
     ],
@@ -38,6 +40,7 @@ import { ThemeIconComponent } from './theme-icon.component';
         ImportJsonComponent,
         LoadingComponent,
         LoaderComponent,
+        LoaderItemComponent,
         PaginationComponent,
         SeeClassementComponent,
     ],
