@@ -6,7 +6,7 @@
     z-index: 3;
     background: var(--dialog-backdrop-background);
     top: 0;
-    left: -15px;
+    left: 0;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(2px);
@@ -26,8 +26,8 @@
     background: var(--dialog-background);
     min-height: 150px;
     max-height: 90%;
-    min-width: 50%;
-    max-width: 90%;
+    min-width: min(700px, calc(100% - 20px));
+    max-width: calc(100% - 20px);
     box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
 }
 
