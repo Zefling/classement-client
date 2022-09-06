@@ -209,9 +209,9 @@
                 {{ 'gererator.actions.import.json' | translate }}
             </button>
             <button class="primary" (click)="dialogOptimise.open()" [disabled]="!hasItems">
-                {{ 'gererator.optimise.button.optimise' | translate }}</button
-            ><br />
-            <label *ngIf="options && hasItems">
+                {{ 'gererator.optimise.button.optimise' | translate }}
+            </button>
+            <label class="line" *ngIf="options && hasItems">
                 <input type="checkbox" [(ngModel)]="options.autoSave" />
                 {{ 'gererator.actions.save.local.auto' | translate }}
             </label>
