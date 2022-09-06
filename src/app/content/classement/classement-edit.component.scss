@@ -304,6 +304,8 @@ svg.color + svg {
 .classement-top {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 
     :first-child {
         flex: 1;

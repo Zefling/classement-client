@@ -50,7 +50,7 @@
 <dialog-cmp #dialogDelete class="auto-format dialog-delete">
     <p>{{ 'list.delete.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
-    <div>
+    <div class="buttons">
         <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
         <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.validate' | translate }}</button>
     </div>
@@ -63,7 +63,7 @@
         <label>{{ 'list.clone.title' | translate }}</label>
         <div><input type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
     </div>
-    <div>
+    <div class="buttons">
         <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
         <button class="primary" (click)="cloneCurrent(true, title.value)">
             {{ 'list.clone.validate' | translate }}

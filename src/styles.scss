@@ -310,6 +310,17 @@ button.warn {
     --button-defaut-focus-border-color: var(--button-warn-focus-border-color);
 }
 
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    button {
+        margin: 0;
+    }
+}
+
 a {
     margin: auto 10px;
     cursor: pointer;

@@ -52,7 +52,7 @@
 
     <h2>{{ 'user.profile.actions' | translate }}</h2>
 
-    <p class="action">
+    <p class="action buttons">
         <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
         <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
         <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
@@ -84,7 +84,7 @@
         <li *ngFor="let error of showError">{{ error }}</li>
     </ul>
 
-    <div>
+    <div class="buttons">
         <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | translate }}</button>
         <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
     </div>
@@ -110,7 +110,7 @@
         </ng-container>
     </ul>
 
-    <div>
+    <div class="buttons">
         <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | translate }}</button>
         <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | translate }}</button>
     </div>
@@ -119,7 +119,7 @@
 <dialog-cmp class="auto-format" #dialogRemoveClassement>
     <p>{{ 'list.delete.question' | translate }}</p>
     <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
-    <div>
+    <div class="buttons">
         <button (click)="deleteCurrentClassement(false)">{{ 'list.delete.cancel' | translate }}</button>
         <button (click)="deleteCurrentClassement(true)" class="warn">
             {{ 'list.delete.validate' | translate }}
@@ -133,7 +133,7 @@
         {{ 'user.profile.remove.warning' | translate }}<br />
         {{ 'user.profile.remove.warning2' | translate }}
     </p>
-    <div>
+    <div class="buttons">
         <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | translate }}</button>
         <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
     </div>

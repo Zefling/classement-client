@@ -193,12 +193,12 @@
         </div>
     </div>
     <div>
-        <div class="save-actions">
+        <div class="save-actions buttons">
             <button class="primary" (click)="exportImage()">
                 {{ 'gererator.actions.export.image' | translate }}
             </button>
         </div>
-        <div class="save-actions">
+        <div class="save-actions buttons">
             <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
                 {{ 'gererator.actions.save.local' | translate }}
             </button>
@@ -216,13 +216,13 @@
                 {{ 'gererator.actions.save.local.auto' | translate }}
             </label>
         </div>
-        <div class="save-actions" *ngIf="logged">
+        <div class="save-actions buttons" *ngIf="logged">
             <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
                 {{ 'gererator.actions.save.server' | translate }}
             </button>
         </div>
 
-        <div class="save-actions">
+        <div class="save-actions buttons">
             <button class="primary" (click)="reset()" [disabled]="!hasItems">
                 {{ 'gererator.actions.reset.groups' | translate }}
             </button>
