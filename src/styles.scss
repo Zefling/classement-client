@@ -316,11 +316,11 @@ button.warn {
     gap: 10px;
     justify-content: center;
 
-    button {
+    & > button {
         margin: 0;
     }
 
-    .line {
+    & > .line {
         flex: 1 1 100%;
     }
 }
@@ -415,6 +415,7 @@ dialog-cmp.auto-format {
         margin: 3px 0;
         display: inline-block;
         line-height: 21px;
+        position: relative;
     }
 
     span::before {
@@ -436,7 +437,7 @@ dialog-cmp.auto-format {
         background-color: var(--input-item-color);
         position: absolute;
         left: 2px;
-        top: 0;
+        top: 2px;
         transition: all 0.2s;
     }
 
