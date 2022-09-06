@@ -1,23 +1,33 @@
 # Changelog - Standalone web app & API
 
+## 0.9.9 beta (2022-09-06)
+
+### Standalone web app
+
+-   improve responsive display
+
+### With API activited only
+
+-   add laoder on navige page
+
 ## 0.9.8 beta (2022-09-05)
 
 ### With API activited only
 
--   Fix image render with https images (fix the type mine)
+-   fix image render with https images (fix the type mine)
 
 ## 0.9.7 beta (2022-09-04)
 
 ### Standalone web app
 
--   Add enlarge et fullscreen modes
--   Add a link to the changelog
--   Implement a log service
--   Fixed theme change (do not overwrite: title, category, autoSave, itemWidthAuto)
+-   add enlarge et fullscreen modes
+-   add a link to the changelog
+-   implement a log service
+-   fixed theme change (do not overwrite: title, category, autoSave, itemWidthAuto)
 
 ### With API activited only
 
--   Fix image render with https images
+-   fix image render with https images
 
 ## 0.9.6 beta (2022-09-04)
 
