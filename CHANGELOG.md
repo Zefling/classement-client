@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 0.9.10 beta (2022-09-07)
+
+### Standalone web app
+
+-   add global laoder
+-   add loading in edit page
+
+### With API activited only
+
+-   improve loading in admin pages
+-   fix CORS for Chromium
+-   Google OAuth2 connection temporarily hidden
+
 ## 0.9.9 beta (2022-09-06)
 
 ### Standalone web app
