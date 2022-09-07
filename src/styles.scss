@@ -105,6 +105,9 @@ body.light-mode {
     --loading-color: #000;
     --loading-tile-color: #d0dde9;
     --loading-line-animation-color: 0 0 0;
+    --loading-background: #e9e3e33a;
+    --loading-text-color: #000;
+    --loading-text-shadow-color: #fff;
     // cropper
     --cropper-overlay-color: #fff;
     --cropper-outline-color: #ffffff4d;
@@ -220,6 +223,9 @@ body.dark-mode {
     --loading-color: #fff;
     --loading-tile-color: #181c20;
     --loading-line-animation-color: 255 255 255;
+    --loading-background: #201f1f3a;
+    --loading-text-color: #fff;
+    --loading-text-shadow-color: #000;
     // cropper
     --cropper-overlay-color: #000;
     --cropper-outline-color: #0000004d;

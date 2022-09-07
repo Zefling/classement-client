@@ -1,3 +1,5 @@
+<loader-cmp *ngIf="!options" [message]="'gererator.loading' | translate"></loader-cmp>
+
 <div drop-image>
     <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
 

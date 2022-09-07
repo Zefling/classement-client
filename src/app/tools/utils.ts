@@ -62,11 +62,10 @@ export class Utils {
     static async ulrToBase64(url: string): Promise<string | ArrayBuffer | null> {
         return new Promise<string | ArrayBuffer | null>(async (resolve, reject) => {
             try {
-                // Firefox
                 const response = await fetch(url, {
                     method: 'GET',
                     credentials: 'omit',
-                    mode: 'cors',
+                    mode: 'cors', // Chromium
                     headers: {
                         'Sec-Fetch-Dest': 'image',
                         'Sec-Fetch-Mode': 'cors',

@@ -1,5 +1,5 @@
 :host {
-    background: #201f1f3a;
+    background: var(--loading-background);
     height: 100%;
     top: 0;
     left: 0;
@@ -12,8 +12,11 @@
     flex-direction: column;
     backdrop-filter: blur(2px);
     font-weight: 700;
+    z-index: 1;
 
     div {
         padding-top: 5px;
+        color: var(--loading-text-color);
+        text-shadow: 0 0 3px var(--loading-text-shadow-color);
     }
 }
