@@ -61,39 +61,45 @@ export class Utils {
 
     static async ulrToBase64(url: string): Promise<string | ArrayBuffer | null> {
         return new Promise<string | ArrayBuffer | null>(async (resolve, reject) => {
-            const response = await fetch(url, {
-                method: 'GET',
-                credentials: 'omit',
-                headers: {
-                    'Sec-Fetch-Dest': 'image',
-                    'Sec-Fetch-Mode': 'no-cors',
-                    'Sec-Fetch-Site': 'same-site',
-                },
-            });
+            try {
+                // Firefox
+                const response = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'omit',
+                    mode: 'cors',
+                    headers: {
+                        'Sec-Fetch-Dest': 'image',
+                        'Sec-Fetch-Mode': 'cors',
+                        'Sec-Fetch-Site': 'same-site',
+                    },
+                });
+                if (response.status === 200) {
+                    const imageBlob = await response.blob();
 
-            if (response.status === 200) {
-                const imageBlob = await response.blob();
-                const imageObjectURL = URL.createObjectURL(imageBlob);
-
-                var reader = new FileReader();
-                reader.readAsDataURL(imageBlob);
-                reader.onloadend = function () {
-                    const base64data = reader.result;
-                    if (base64data instanceof ArrayBuffer) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(imageBlob);
+                    reader.onloadend = function () {
+                        const base64data = reader.result;
+                        if (base64data instanceof ArrayBuffer) {
+                            resolve(base64data);
+                        } else if (base64data) {
+                            // fix typemine
+                            resolve(
+                                base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'),
+                            );
+                        } else {
+                            reject('Imaage error');
+                        }
                         resolve(base64data);
-                    } else if (base64data) {
-                        // fix typemine
-                        resolve(base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'));
-                    } else {
+                    };
+                    reader.onerror = () => {
                         reject('Imaage error');
-                    }
-                    resolve(base64data);
-                };
-                reader.onerror = () => {
-                    reject('Imaage error');
-                };
-            } else {
-                reject('HTTP-Error: ' + response.status);
+                    };
+                } else {
+                    reject('HTTP-Error: ' + response.status);
+                }
+            } catch (e) {
+                reject('HTTP-Error: CORS');
             }
         });
     }
