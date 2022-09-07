@@ -16,16 +16,25 @@ export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 
 @Injectable({ providedIn: 'root' })
 export class APIModeration implements CanActivate {
-    constructor(@Optional() private usernameService: APIUserService) {}
+    constructor(@Optional() private userService: APIUserService) {}
 
     canActivate(
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        return (
-            this.usernameService?.user?.roles?.includes(Role.MODERATOR) ||
-            this.usernameService?.user?.roles?.includes(Role.ADMIN) ||
-            false
-        );
+        return new Promise<boolean>(resolve => {
+            this.userService
+                .initProfile()
+                .then(() => {
+                    resolve(
+                        this.userService?.user?.roles?.includes(Role.MODERATOR) ||
+                            this.userService?.user?.roles?.includes(Role.ADMIN) ||
+                            false,
+                    );
+                })
+                .catch(() => {
+                    resolve(false);
+                });
+        });
     }
 }

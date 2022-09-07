@@ -28,6 +28,8 @@ export class AppComponent implements DoCheck {
     languages = languages;
     selectedLang!: string;
 
+    loading = environment.api?.active;
+
     @HostBinding('class.show-menu')
     asideOpen = false;
 
@@ -56,6 +58,7 @@ export class AppComponent implements DoCheck {
         if (environment.api?.active) {
             userService.initProfile().then(() => {
                 this.logger.log('Auto logged !!');
+                this.loading = false;
             });
         }
     }
