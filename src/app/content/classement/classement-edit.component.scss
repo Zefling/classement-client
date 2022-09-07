@@ -282,9 +282,11 @@ svg.color + svg {
         width: 100%;
         background: var(--over-item-text-background, var(--content-box-text-background));
     }
+
     &.bottom-over .title:last-child:not(:first-child) {
         bottom: 0;
     }
+
     &.top-over .title:last-child:not(:first-child) {
         top: 0;
     }
@@ -345,11 +347,13 @@ svg.color + svg {
 
     .drop-list {
         display: table-cell; // fix chromium
+
         & > div {
             display: inline-flex; // fix chromium
             text-align: center;
             vertical-align: bottom;
         }
+
         .content-box {
             display: flex;
         }

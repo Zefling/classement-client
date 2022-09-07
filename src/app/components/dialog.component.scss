@@ -24,6 +24,7 @@
     display: flex;
     position: relative;
     background: var(--dialog-background);
+    padding: 0 30px;
     min-height: 150px;
     max-height: 90%;
     min-width: min(700px, calc(100% - 20px));

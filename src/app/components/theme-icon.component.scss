@@ -2,9 +2,13 @@
     display: block;
     width: 130px;
 
+    .block {
+        margin: 5px;
+    }
+
     &.selected .block {
-        outline: 1px solid yellow;
-        box-shadow: 0 0 20px #0008;
+        outline: 5px solid var(--theme-selection);
+        box-shadow: 0 0 20px var(--theme-shadow-color);
     }
 }
 
@@ -24,7 +28,7 @@
     --n-name-width: var(--o-name-width, var(--name-width));
     --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
 
-    box-shadow: 0 0 10px #0008;
+    box-shadow: 0 0 10px var(--theme-shadow-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,8 +58,6 @@
     margin: var(--n-item-margin);
     padding: var(--n-item-padding);
     width: 100px;
-    //width: var(--n-item-width);
-    //height: var(-n-item-height);
     border: var(--n-item-border) solid var(--n-content-box-border);
     background: var(--n-content-box-background);
     color: var(--n-content-box-color);

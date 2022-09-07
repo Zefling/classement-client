@@ -5,11 +5,11 @@
 
 .infos {
     display: flex;
+    padding: 40px 10px;
 
     & > div {
         flex: 1;
     }
-    padding: 40px 10px;
 }
 
 .source,
@@ -68,6 +68,7 @@
         padding: 0 min(20%, 30px);
         margin: 0 -15px 0 -30px;
     }
+
     .tile-navigate {
         scroll-snap-align: center;
     }

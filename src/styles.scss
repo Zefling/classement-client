@@ -118,6 +118,9 @@ body.light-mode {
     --color-icon-banned: #6b6b6b;
     --color-icon-validated: #176b0c;
     --color-icon-user: #162d79;
+    // theme
+    --theme-selection: #8e94ec;
+    --theme-shadow-color: #0006;
 }
 
 body.dark-mode {
@@ -236,6 +239,9 @@ body.dark-mode {
     --color-icon-banned: #8f8f8f;
     --color-icon-validated: #47963d;
     --color-icon-user: #4767cf;
+    // theme
+    --theme-selection: #3742d9;
+    --theme-shadow-color: #5556;
 }
 
 body,
@@ -287,8 +293,12 @@ button:disabled {
     }
 }
 
-input[type='file'] {
+[type='file'] {
     cursor: pointer;
+}
+
+[type='color'] {
+    height: 30px;
 }
 
 input:not(:focus-visible):invalid {
@@ -305,6 +315,7 @@ button.primary {
     --button-defaut-hover-box-shadow: var(--button-primary-hover-box-shadow);
     --button-defaut-focus-border-color: var(--button-primary-focus-border-color);
 }
+
 button.warn {
     --button-defaut-border-color: var(--button-warn-border-color);
     --button-defaut-background: var(--button-warn-background);
@@ -332,13 +343,16 @@ button.warn {
 }
 
 a {
-    margin: auto 10px;
     cursor: pointer;
     text-decoration: none;
     color: var(--link-color);
 
     &:hover {
         color: var(--link-hover-color);
+    }
+
+    table & {
+        margin: auto 10px;
     }
 }
 
@@ -363,19 +377,17 @@ select {
     &:disabled {
         opacity: 0.5;
     }
+
     &:focus {
         outline: 1px solid var(--input-focus-border-color);
     }
-}
-
-[type='color'] {
-    height: 30px;
 }
 
 dialog-cmp.auto-format {
     .title {
         font-weight: 700;
     }
+
     p,
     div {
         text-align: center;
@@ -422,29 +434,30 @@ dialog-cmp.auto-format {
         display: inline-block;
         line-height: 21px;
         position: relative;
-    }
 
-    span::before {
-        content: '';
-        display: inline-block;
-        height: 20px;
-        width: 40px;
-        border-radius: 10px;
-        background-color: var(--input-border-color);
-        vertical-align: bottom;
-        margin-right: 5px;
-    }
-    span::after {
-        content: '';
-        display: block;
-        height: 18px;
-        width: 18px;
-        border-radius: 50%;
-        background-color: var(--input-item-color);
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        transition: all 0.2s;
+        &::before {
+            content: '';
+            display: inline-block;
+            height: 20px;
+            width: 40px;
+            border-radius: 10px;
+            background-color: var(--input-border-color);
+            vertical-align: bottom;
+            margin-right: 5px;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background-color: var(--input-item-color);
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            transition: all 0.2s;
+        }
     }
 
     input:checked + ::after {

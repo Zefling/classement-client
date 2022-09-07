@@ -24,6 +24,7 @@
             / 1fr 1fr 1fr 1fr;
     }
 }
+
 .simple {
     grid-area: links;
     text-align: end;
@@ -39,78 +40,101 @@ h4 {
     margin: 0;
     border-bottom: 1px solid #4f4f88;
 }
+
 .themes {
     grid-area: theme;
 }
+
 .width-auto {
     grid-area: width-auto;
 }
+
 .title {
     grid-area: title;
 }
+
 .categories {
     grid-area: categories;
 }
+
 .title-item {
     grid-area: title-item;
 }
+
 .title-line {
     grid-area: title-line;
 }
+
 .title-other {
     grid-area: title-other;
 }
+
 .item-text-position {
     grid-area: item-text-pos;
 }
+
 .item-text-back {
     grid-area: item-text-back;
     --color-section: var(--over-item-text-background);
 }
+
 .sizes {
     grid-area: sizes;
 }
+
 .colors-item-text {
     grid-area: colors-item-text;
 }
+
 .colors-title-text {
     grid-area: colors-title-text;
 }
+
 .colors-item-back {
     grid-area: colors-item-back;
     --color-section: var(--over-item-background);
 }
+
 .colors-item-border {
     grid-area: colors-item-border;
     --color-section: var(--over-item-border-color);
 }
+
 .colors-line-back {
     grid-area: colors-line-back;
     --color-section: var(--over-drop-list-background);
 }
+
 .colors-line-border {
     grid-area: colors-line-border;
     --color-section: var(--over-drop-list-border-color);
 }
+
 .global-color {
     grid-area: global-color;
     --color-section: var(--over-image-background, var(--background));
 }
+
 .global-width {
     grid-area: global-width;
 }
+
 .width-input {
     grid-area: width-input;
 }
+
 .font-size {
     grid-area: font-size;
 }
+
 .background-image {
     grid-area: global-image;
 }
+
 .name-width {
     grid-area: name-width;
 }
+
 .name-bg-opacity {
     grid-area: name-bg-opacity;
 }
@@ -256,6 +280,7 @@ h4 {
     grid-area: width;
     margin-left: -20px;
 }
+
 span.item-width {
     font-size: 11px;
     line-height: 4px;
@@ -392,9 +417,11 @@ span.item-width {
         display: grid;
         grid-template: 'a b c d' / 1fr 1fr auto;
     }
+
     .global-color {
         grid-template: 'a b d' / 1fr auto 1fr;
     }
+
     .options {
         display: block;
     }
