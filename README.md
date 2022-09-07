@@ -31,7 +31,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ OAuth2 connection
             -   ✅ Discord
             -   ✅ Facebook
-            -   ✅ Google
+            -   ❓ Google
         -   ✅ Password lost
     -   ✅ Profile
         -   ✅ See personal tierlists
