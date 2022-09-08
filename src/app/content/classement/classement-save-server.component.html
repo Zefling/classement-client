@@ -41,6 +41,7 @@
         <div class="cropper" *ngIf="imageChangedEvent">
             <div class="label">{{ 'gererator.server.banner.crop' | translate }}</div>
             <image-cropper
+                #imageCropper
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="true"
                 [cropperMinWidth]="300"

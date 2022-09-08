@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
@@ -42,6 +42,7 @@ export class ClassementSaveServerComponent {
     categories = categories;
 
     @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
     imageChangedEvent: any = '';
     croppedImage?: string;
@@ -143,6 +144,10 @@ export class ClassementSaveServerComponent {
 
     imageLoaded(image: LoadedImage) {
         // show cropper
+        setTimeout(() => {
+            // fix init position for the cropper
+            this.imageCropper.resetCropperPosition();
+        });
     }
 
     cropperReady() {
