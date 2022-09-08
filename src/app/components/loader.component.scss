@@ -13,10 +13,27 @@
     backdrop-filter: blur(2px);
     font-weight: 700;
     z-index: 1;
+}
 
-    div {
-        padding-top: 5px;
-        color: var(--loading-text-color);
-        text-shadow: 0 0 3px var(--loading-text-shadow-color);
+.message {
+    padding-top: 5px;
+    color: var(--loading-text-color);
+    text-shadow: 0 0 3px var(--loading-text-shadow-color);
+}
+
+.progress {
+    width: 300px;
+    height: 10px;
+    border: 2px solid var(--loading-text-color);
+    text-shadow: 0 0 3px var(--loading-text-shadow-color);
+    padding: 2px;
+    background-color: #0b0b0b80;
+
+    &::before {
+        content: '';
+        width: calc(var(--progress) * 1%);
+        height: 10px;
+        display: block;
+        background: #fff;
     }
 }

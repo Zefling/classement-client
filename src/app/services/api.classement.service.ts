@@ -1,7 +1,17 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import {
+    HttpClient,
+    HttpErrorResponse,
+    HttpEvent,
+    HttpEventType,
+    HttpParams,
+    HttpRequest,
+    HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
+
+import { last, map, Subject, tap } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -13,8 +23,13 @@ import { Message } from '../content/user/user.interface';
 import { Classement } from '../interface';
 
 
+type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
+type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
+
 @Injectable({ providedIn: 'root' })
 export class APIClassementService extends APICommon {
+    progressValue = new Subject<number>();
+
     get token(): string {
         return this.userService.token!;
     }
@@ -90,17 +105,56 @@ export class APIClassementService extends APICommon {
 
     saveClassement(classement: Classement) {
         return new Promise<Classement>((resolve, reject) => {
-            this.http
-                .post<Message<Classement>>(`${environment.api.path}api/classement`, classement, this.header())
+            const req = new HttpRequest('POST', `${environment.api.path}api/classement`, classement, {
+                ...this.header(),
+                reportProgress: true,
+                responseType: 'json',
+            });
+            return this.http
+                .request<Message<Classement>>(req)
+                .pipe<EventMessage<Classement>, EventMessage<Classement>, ResponseMessage<Classement>>(
+                    map(event => this.getEventMessage(event, classement)),
+                    tap(message => this.showProgress(message)),
+                    last<any>(), // return last (completed) message to caller
+                )
                 .subscribe({
                     next: result => {
-                        resolve(result.message);
+                        if (result.event.body) {
+                            resolve(result.event.body.message);
+                        } else {
+                            reject(this.error('save', { error: 0 } as HttpErrorResponse));
+                        }
                     },
                     error: (result: HttpErrorResponse) => {
                         reject(this.error('save', result));
                     },
                 });
         });
+    }
+
+    private getEventMessage(
+        event: HttpEvent<Message<Classement>> | HttpResponse<Message<Classement>>,
+        classement: Classement,
+    ): EventMessage<Classement> {
+        switch (event.type) {
+            case HttpEventType.Sent:
+                return { event, message: `Uploading classement “${classement.name}”.` };
+
+            case HttpEventType.UploadProgress:
+                const percentDone = event.total ? Math.round((100 * event.loaded) / event.total) : 0;
+                this.progressValue.next(percentDone);
+                return { event, message: `Classement “${classement.name}” is ${percentDone}% uploaded.` };
+
+            case HttpEventType.Response:
+                return { event, message: `Classement “${classement.name}” was completely uploaded!` };
+
+            default:
+                return { event, message: `Classement “${classement.name}” surprising upload event: ${event.type}.` };
+        }
+    }
+
+    private showProgress(message: EventMessage<Classement>): void {
+        this.logger.log('showProgress', LoggerLevel.log, message);
     }
 
     deleteClassement(rankingId: string): Promise<void> {

@@ -1,8 +1,9 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
+import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
@@ -18,7 +19,7 @@ import { categories } from './classement-default';
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
 })
-export class ClassementSaveServerComponent {
+export class ClassementSaveServerComponent implements OnDestroy {
     @Input()
     classement?: Classement;
 
@@ -49,8 +50,11 @@ export class ClassementSaveServerComponent {
 
     hidden = false;
     loading = false;
+    progress = 0;
 
     showError: string[] = [];
+
+    private _sub: Subscription[] = [];
 
     constructor(
         private userService: APIUserService,
@@ -71,6 +75,18 @@ export class ClassementSaveServerComponent {
         if (this.classement?.hidden) {
             this.hidden = this.classement?.hidden;
         }
+
+        this._sub.push(
+            this.classementService.progressValue.subscribe(value => {
+                if (this.loading) {
+                    this.progress = value;
+                }
+            }),
+        );
+    }
+
+    ngOnDestroy() {
+        this._sub.forEach(e => e.unsubscribe());
     }
 
     cancel() {
@@ -111,6 +127,7 @@ export class ClassementSaveServerComponent {
 
         if (!this.showError.length) {
             this.loading = true;
+            this.progress = 0;
             this.classementService
                 .saveClassement(classement)
                 .then(classementSave => {

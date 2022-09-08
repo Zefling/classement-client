@@ -1,4 +1,5 @@
 <loading-cmp></loading-cmp>
-<div>
+<div class="message">
     {{ message }}
 </div>
+<div *ngIf="progress !== undefined" class="progress" [style.--progress]="progress"></div>
