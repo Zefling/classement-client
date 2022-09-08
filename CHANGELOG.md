@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 0.9.11 beta (2022-09-08)
+
+### Standalone web app
+
+-   refacto CSS
+
+### With API activited only
+
+-   add progressbar for tierlist save
+-   fix bad initialization for image cropper
+
 ## 0.9.10 beta (2022-09-07)
 
 ### Standalone web app
