@@ -16,6 +16,8 @@ import { PaginationComponent } from './paginate.component';
 import { SeeClassementComponent } from './see-classement.component';
 import { ThemeIconComponent } from './theme-icon.component';
 
+import { PipesModule } from '../pipes/pipes.module';
+
 
 @NgModule({
     declarations: [
@@ -44,6 +46,6 @@ import { ThemeIconComponent } from './theme-icon.component';
         PaginationComponent,
         SeeClassementComponent,
     ],
-    imports: [CommonModule, RouterModule, TranslateModule],
+    imports: [CommonModule, PipesModule, RouterModule, TranslateModule],
 })
 export class ComponentsModule {}

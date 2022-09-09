@@ -25,10 +25,11 @@ import { Classement } from '../interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
+export type UploadProgress = { percent: number; loaded: number; total: number };
 
 @Injectable({ providedIn: 'root' })
 export class APIClassementService extends APICommon {
-    progressValue = new Subject<number>();
+    progressValue = new Subject<UploadProgress>();
 
     get token(): string {
         return this.userService.token!;
@@ -142,7 +143,7 @@ export class APIClassementService extends APICommon {
 
             case HttpEventType.UploadProgress:
                 const percentDone = event.total ? Math.round((100 * event.loaded) / event.total) : 0;
-                this.progressValue.next(percentDone);
+                this.progressValue.next({ percent: percentDone, loaded: event.loaded, total: event.total || 0 });
                 return { event, message: `Classement “${classement.name}” is ${percentDone}% uploaded.` };
 
             case HttpEventType.Response:

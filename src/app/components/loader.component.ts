@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { UploadProgress } from '../services/api.classement.service';
+
 
 @Component({
     selector: 'loader-cmp',
@@ -11,5 +13,5 @@ export class LoaderComponent {
     message!: string;
 
     @Input()
-    progress!: number;
+    progress?: UploadProgress;
 }

@@ -2,4 +2,7 @@
 <div class="message">
     {{ message }}
 </div>
-<div *ngIf="progress !== undefined" class="progress" [style.--progress]="progress"></div>
+<div *ngIf="progress !== undefined">
+    <div class="progress" [style.--progress]="progress.percent"></div>
+    <div class="progress-text">{{ progress.loaded | filesize }} / {{ progress.total | filesize }}</div>
+</div>

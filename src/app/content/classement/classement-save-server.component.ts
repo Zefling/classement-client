@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Classement, FileString, FormatedGroup, Options } from 'src/app/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
+import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 import { categories } from './classement-default';
@@ -50,7 +50,7 @@ export class ClassementSaveServerComponent implements OnDestroy {
 
     hidden = false;
     loading = false;
-    progress = 0;
+    progress?: UploadProgress;
 
     showError: string[] = [];
 
@@ -127,7 +127,7 @@ export class ClassementSaveServerComponent implements OnDestroy {
 
         if (!this.showError.length) {
             this.loading = true;
-            this.progress = 0;
+            this.progress = undefined;
             this.classementService
                 .saveClassement(classement)
                 .then(classementSave => {

@@ -13,10 +13,20 @@
     backdrop-filter: blur(2px);
     font-weight: 700;
     z-index: 1;
+
+    // text
+    color: var(--loading-text-color);
+    text-shadow: 0 0 3px var(--loading-text-shadow-color);
 }
 
 .message {
     padding-top: 5px;
+}
+
+.progress-text {
+    text-align: end;
+    font-size: 12px;
+    margin: 0 3px;
     color: var(--loading-text-color);
     text-shadow: 0 0 3px var(--loading-text-shadow-color);
 }

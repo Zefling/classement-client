@@ -19,6 +19,13 @@
     "dd/MM/yyyy HH:mm": "dd/MM/yyyy HH:mm",
     "HH:mm": "HH:mm"
   },
+  "unit": {
+    "file": {
+      "B0": "\u00A0o",
+      "B1": "\u00A0Kio",
+      "B2": "\u00A0Mio"
+    }
+  },
   "licenses": {
     "title": "Présentation des licences tierces"
   },
