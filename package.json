@@ -1,6 +1,6 @@
 {
   "name": "classement",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

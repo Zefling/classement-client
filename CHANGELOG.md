@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 0.9.12 beta (2022-09-09)
+
+### Standalone web app
+
+-   fix double optimization error
+-   fix CSS
+
+### With API activited only
+
+-   add share button
+-   add icons
+-   improve upload rendering
+
 ## 0.9.11 beta (2022-09-08)
 
 ### Standalone web app
