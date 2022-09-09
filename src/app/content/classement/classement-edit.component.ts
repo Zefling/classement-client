@@ -46,6 +46,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     hasItems = false;
 
+    shareUrl: string = '';
+
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
 
     classScreenMode: 'default' | 'enlarge' | 'fullscreen' = 'default';
@@ -196,6 +198,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
+
+        this.shareUrl = this.classement?.rankingId
+            ? `https://${window.location.host}/edit/${this.classement.rankingId}`
+            : '';
     }
 
     ngOnDestroy() {
@@ -215,6 +221,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     resetCache() {
         this.globalService.withChange = false;
         this._optionsCache = Utils.jsonCopy(this.options);
+    }
+
+    copyLink() {
+        Utils.copy(this.shareUrl)
+            .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
+            .catch(e =>
+                this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
+                    type: MessageType.error,
+                }),
+            );
     }
 
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
@@ -363,8 +379,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.bdService.saveLocal(this.getData()).then(
             item => {
                 this.id = item.data.id;
-                if (this.classement) {
-                    this.classement.localId = this.id!;
+                if (this.new) {
+                    this.router.navigate(['/edit', this.id]);
+                }
+                this.new = false;
+                if (this.classement && this.id) {
+                    this.classement.localId = this.id;
                 }
                 if (!silence) {
                     this.messageService.addMessage(this.translate.instant('message.save.success'));

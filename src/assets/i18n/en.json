@@ -208,7 +208,10 @@
       "name": "Name",
       "list": "List",
       "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
-      "add.image": "Click here to add one or a group of images"
+      "add.image": "Click here to add one or a group of images",
+      "share.link": "Share this ranking with your friends",
+      "copy.link.success": "The link was successfully copied to the clipboard",
+      "copy.link.error": "Failed to copy link to clipboard"
     },
     "line": {
       "add": "Add",

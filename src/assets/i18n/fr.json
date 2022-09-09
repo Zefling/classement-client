@@ -209,7 +209,10 @@
       "name": "Nom",
       "list": "Liste",
       "drop.image": "Copier-coller ou déposez ici ↓ une ou un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
-      "add.image": "Cliquez ici pour ajouter une ou un groupe d'images"
+      "add.image": "Cliquez ici pour ajouter une ou un groupe d'images",
+      "share.link": "Partagez ce classement à vos amis",
+      "copy.link.success": "Le lien a été copier dans le presse-papiers  pier avec succès",
+      "copy.link.error": "Impossible de copier le lien dans le presse-papiers "
     },
     "line": {
       "add": "Ajout",

@@ -102,4 +102,17 @@ export class Utils {
             }
         });
     }
+
+    static copy(text: string): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            navigator.clipboard.writeText(text).then(
+                () => {
+                    resolve();
+                },
+                () => {
+                    reject();
+                },
+            );
+        });
+    }
 }

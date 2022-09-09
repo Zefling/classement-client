@@ -196,10 +196,14 @@
     </div>
     <div>
         <div class="save-actions buttons">
+            <button [disabled]="!shareUrl" class="primary" (click)="copyLink()">
+                🔗 {{ 'gererator.ranking.share.link' | translate }}
+            </button>
             <button class="primary" (click)="exportImage()">
                 <span class="icon-share"></span> {{ 'gererator.actions.export.image' | translate }}
             </button>
         </div>
+
         <div class="save-actions buttons">
             <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
                 {{ 'gererator.actions.save.local' | translate }}
