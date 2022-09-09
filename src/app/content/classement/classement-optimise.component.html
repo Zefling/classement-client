@@ -1,6 +1,8 @@
 <div>{{ 'gererator.optimise.info' | translate }}</div>
 
-<button class="primary" (click)="optimise()">{{ 'gererator.optimise.button.optimise' | translate }}</button>
+<button class="primary" (click)="optimise()" [disabled]="progress">
+    {{ 'gererator.optimise.button.optimise' | translate }}
+</button>
 
 <div>{{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}</div>
 
