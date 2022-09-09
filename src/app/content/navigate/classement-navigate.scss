@@ -25,6 +25,10 @@ figure,
         color: var(--menu-hover-color);
         background: var(--menu-hover-background);
     }
+
+    @media screen and (max-width: 800px) {
+        width: 150px;
+    }
 }
 
 .result {
@@ -72,5 +76,16 @@ figure,
     &:not(:first-child) {
         padding-top: 10px;
         font-weight: 700;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    figure,
+    .template {
+        width: 135px;
+    }
+
+    .result {
+        gap: 5px;
     }
 }

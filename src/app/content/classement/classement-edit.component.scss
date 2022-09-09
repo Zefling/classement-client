@@ -380,6 +380,10 @@ svg.color + svg {
     }
 }
 
+.button-image-save span {
+    display: inline-block;
+}
+
 @media screen and (max-width: 1024px) {
     :host {
         margin: 0 0 30px 0;

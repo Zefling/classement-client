@@ -1,8 +1,10 @@
 <div>{{ 'gererator.optimise.info' | translate }}</div>
 
-<button class="primary" (click)="optimise()" [disabled]="progress">
-    {{ 'gererator.optimise.button.optimise' | translate }}
-</button>
+<div>
+    <button class="primary" (click)="optimise()" [disabled]="progress">
+        {{ 'gererator.optimise.button.optimise' | translate }}
+    </button>
+</div>
 
 <div>{{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}</div>
 
@@ -26,9 +28,11 @@
         }}
     </div>
 
-    <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">
-        {{ 'gererator.optimise.validate' | translate }}
-    </button>
+    <div>
+        <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">
+            {{ 'gererator.optimise.validate' | translate }}
+        </button>
+    </div>
 
     <div *ngIf="detail" class="list">
         <div *ngFor="let item of listOptimise; let index = index">

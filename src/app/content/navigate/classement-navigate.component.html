@@ -1,6 +1,6 @@
 <h2>{{ 'menu.navigate' | translate }}</h2>
 
-<div class="return">
+<div class="return" *ngIf="!isCatagoryList">
     <button (click)="showChatList()">{{ 'navigate.back.category' | translate }}</button>
 </div>
 
@@ -22,7 +22,7 @@
 <h3>{{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }} ({{ classements.length }})</h3>
 
 <ng-container *ngIf="!loading">
-    <div *ngIf="classements?.length; else noResult" class="result">
+    <div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
         <div class="classement" *ngFor="let category of classements">
             <figure (click)="isCatagoryList ? openCategory(category) : openClassement(category)">
                 <img [src]="category.banner" />

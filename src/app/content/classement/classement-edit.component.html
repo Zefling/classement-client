@@ -239,9 +239,11 @@
 <dialog-cmp class="auto-format" #dialogImage closeButton>
     <div class="button-image-save">
         {{ 'gererator.actions.save.image' | translate }}
-        <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
-        <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
-        <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
+        <span>
+            <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
+            <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
+            <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
+        </span>
     </div>
     <div #image></div>
 </dialog-cmp>
