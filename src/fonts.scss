@@ -24,6 +24,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-share:before {
+    content: '\e906';
+}
 .icon-deleted:before {
     content: '\e900';
     color: var(--color-icon-deleted);

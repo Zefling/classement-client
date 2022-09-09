@@ -6,10 +6,6 @@
         <div class="icon">➕</div>
         <div class="label">{{ 'menu.new' | translate }}</div>
     </div>
-    <div class="tile-navigate" routerLink="/list">
-        <div class="icon">🔖</div>
-        <div class="label">{{ 'menu.list' | translate }}</div>
-    </div>
     <div class="tile-navigate" routerLink="/navigate" *ngIf="modeApi">
         <div class="icon">🌐</div>
         <div class="label">{{ 'menu.navigate' | translate }}</div>
@@ -17,6 +13,10 @@
     <div class="tile-navigate" routerLink="/user/profile" *ngIf="modeApi">
         <div class="icon">👤</div>
         <div class="label">{{ 'menu.profile' | translate }}</div>
+    </div>
+    <div class="tile-navigate" routerLink="/list">
+        <div class="icon">🔖</div>
+        <div class="label">{{ 'menu.list' | translate }}</div>
     </div>
 </div>
 

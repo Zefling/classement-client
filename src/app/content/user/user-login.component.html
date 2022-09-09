@@ -18,8 +18,12 @@
         <p>
             {{ 'user.login.oauth.label' | translate }}
         </p>
-        <button (click)="oauth('discord')">{{ 'user.login.oauth.discord' | translate }}</button>
-        <button (click)="oauth('facebook')">{{ 'user.login.oauth.facebook' | translate }}</button>
+        <button (click)="oauth('discord')">
+            <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
+        </button>
+        <button (click)="oauth('facebook')">
+            <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
+        </button>
         <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
     </div>
 </form>
