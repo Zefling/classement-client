@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 0.9.13 beta (2022-09-09)
+
+### Standalone web app
+
+-   add more categories
+-   improve responsive display
+
 ## 0.9.12 beta (2022-09-09)
 
 ### Standalone web app
