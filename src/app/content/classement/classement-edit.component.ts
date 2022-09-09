@@ -199,9 +199,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
 
-        this.shareUrl = this.classement?.rankingId
-            ? `https://${window.location.host}/edit/${this.classement.rankingId}`
-            : '';
+        this.shareUrl =
+            environment.api?.active && this.classement?.rankingId
+                ? `https://${window.location.host}/edit/${this.classement.rankingId}`
+                : '';
     }
 
     ngOnDestroy() {
