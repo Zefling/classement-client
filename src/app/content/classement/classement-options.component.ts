@@ -1,5 +1,7 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { Options, Theme } from 'src/app/interface';
 import { Utils } from 'src/app/tools/utils';
 
@@ -15,6 +17,8 @@ import { ClassemenThemesComponent } from './classement-themes.component';
 export class ClassementOptionsComponent {
     categories = categories;
 
+    categoriesList: { value: string; label: string }[] = [];
+
     @Input()
     options?: Options;
 
@@ -23,6 +27,23 @@ export class ClassementOptionsComponent {
     listThemes = imagesThemes;
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
+
+    constructor(private translate: TranslateService) {
+        this.sort();
+        this.translate.onLangChange.subscribe(() => {
+            this.sort();
+        });
+    }
+
+    sort() {
+        this.categoriesList = categories.map<{ value: string; label: string }>(category => ({
+            value: category,
+            label: this.translate.instant(`category.${category}`),
+        }));
+        this.categoriesList.sort((a, b) =>
+            a.value === 'other' ? 1 : b.value === 'other' ? -1 : a.label.localeCompare(b.label),
+        );
+    }
 
     switchOptions() {
         if (this.options) {
