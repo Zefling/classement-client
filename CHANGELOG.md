@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 0.9.14 beta (2022-09-11)
+
+### With API activited only
+
+-   add counters in navigation results
+-   fix navigation result order
+-   fix first save ranking
+
 ## 0.9.13 beta (2022-09-09)
 
 ### Standalone web app
