@@ -18,6 +18,7 @@ export interface Classement {
     // items count
     totalGroups: number;
     totalItems: number;
+    templateTotal: number;
     // status
     hidden?: boolean;
     deleted?: boolean;
