@@ -12,20 +12,20 @@
             </select>
         </div>
     </div>
-    <ng-container *ngIf="!options.showAdvancedOptions">
-        <div class="links">
-            <a (click)="switchOptions()">{{ 'gererator.options.advence' | translate }}</a>
-        </div>
-        <div class="themes">
-            <a (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
-        </div>
-        <div class="width-auto">
-            <label class="toogle-switch">
-                <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
-                <span>{{ 'gererator.options.item.width.auto' | translate }}</span>
-            </label>
-        </div>
-    </ng-container>
+    <div class="links">
+        <a (click)="switchOptions()">{{
+            (options.showAdvancedOptions ? 'gererator.options.simple' : 'gererator.options.advence') | translate
+        }}</a>
+    </div>
+    <div class="themes">
+        <a (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
+    </div>
+    <div class="width-auto">
+        <label class="toogle-switch">
+            <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
+            <span>{{ 'gererator.options.item.width.auto' | translate }}</span>
+        </label>
+    </div>
     <ng-container *ngIf="options.showAdvancedOptions">
         <h4 class="title-item">{{ 'gererator.options.item.title' | translate }}</h4>
         <h4 class="title-line">{{ 'gererator.options.line.title' | translate }}</h4>
@@ -318,14 +318,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="simple">
-            <div>
-                <a (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
-            </div>
-            <div>
-                <a (click)="switchOptions()">{{ 'gererator.options.simple' | translate }}</a>
             </div>
         </div>
     </ng-container>

@@ -2,6 +2,7 @@
     display: grid;
     grid-template:
         'title             title               title               categories          '
+        'links             theme               width-auto          .                   '
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  item-text-back      '
         'sizes             colors-title-text   colors-item-text    item-text-pos       '
@@ -9,7 +10,7 @@
         'colors-line-back  colors-line-border  name-bg-opacity     font-size           '
         'colors-line-back  colors-line-border  .                   name-width          '
         'title-other       title-other         title-other         title-other         '
-        'global-width      global-image        global-color        links               '
+        'global-width      global-image        global-color        .                   '
         / 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
