@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 0.9.15 beta (2022-09-13)
+
+### With API activited only
+
+-   fix options interface
+-   fix css
+
+### Standalone web app
+
+-   add link to template in ranking edit
+
 ## 0.9.14 beta (2022-09-11)
 
 ### With API activited only
