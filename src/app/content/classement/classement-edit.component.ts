@@ -224,6 +224,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this._optionsCache = Utils.jsonCopy(this.options);
     }
 
+    toTemplateNavigation() {
+        this.router.navigate(['navigate', 'template', this.classement!.templateId]);
+    }
+
     copyLink() {
         Utils.copy(this.shareUrl)
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))

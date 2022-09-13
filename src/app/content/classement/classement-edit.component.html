@@ -2,6 +2,11 @@
 
 <div drop-image>
     <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
+    <div *ngIf="classement && classement.totalItems > 1">
+        <button class="button-add primary" (click)="toTemplateNavigation()">
+            {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+        </button>
+    </div>
 
     <classement-options [options]="options"></classement-options>
 
