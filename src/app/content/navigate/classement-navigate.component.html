@@ -1,9 +1,5 @@
 <h2>{{ 'menu.navigate' | translate }}</h2>
 
-<div class="return" *ngIf="!isCatagoryList">
-    <button (click)="showChatList()">{{ 'navigate.back.category' | translate }}</button>
-</div>
-
 <div class="search">
     <div class="name">
         <label>{{ 'navigate.title' | translate }}</label>
@@ -20,6 +16,10 @@
 </div>
 
 <h3>{{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }} ({{ classements.length }})</h3>
+
+<div class="return" *ngIf="!isCatagoryList">
+    <a (click)="showChatList()">🢀 {{ 'navigate.back.category' | translate }}</a>
+</div>
 
 <ng-container *ngIf="!loading">
     <div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
