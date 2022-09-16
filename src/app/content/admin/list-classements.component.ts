@@ -54,6 +54,14 @@ export class ListClassementsComponent {
                 } else if (type === 'hide') {
                     typeName = status ? 'hidden' : 'showed';
                 }
+
+                for (const classement of classements) {
+                    const index = this.classements?.findIndex(e => e.rankingId === classement?.rankingId);
+                    if (this.classements && index !== undefined && index > 0) {
+                        this.classements[index] = classement;
+                    }
+                }
+
                 this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
                 this.changeStatusCancel();
             })
