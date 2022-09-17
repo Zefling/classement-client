@@ -59,6 +59,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
+    @ViewChild('dialogDerivates') dialogDerivates!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -174,7 +175,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             });
     }
 
-    loadServerClassement(classement: Classement) {
+    loadServerClassement(classement: Classement, withDerivate: boolean = true) {
         this.classement = classement;
         this.options = { ...defaultOptions, ...classement.data.options };
         this.resetCache();
@@ -184,11 +185,22 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
         });
 
-        this.classementService
-            .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
-            .then(classements => {
-                this.derivates = classements;
-            });
+        if (withDerivate) {
+            this.classementService
+                .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
+                .then(classements => {
+                    this.derivates = classements;
+                });
+        }
+    }
+
+    loadDerivateClassement(classement: Classement) {
+        const temp = this.classement;
+        this.loadServerClassement(classement, false);
+        if (temp && this.classement) {
+            this.classement.templateTotal = temp.templateTotal;
+        }
+        this.dialogDerivates.close();
     }
 
     ngDoCheck() {
@@ -227,7 +239,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    showDerivate() {}
+    showDerivate() {
+        this.dialogDerivates.open();
+    }
 
     resetCache() {
         this.globalService.withChange = false;

@@ -175,7 +175,7 @@ img {
 
 // table --------------------------------------------------------------------
 
-table {
+.table-classement {
     min-width: 100%;
     background-color: var(--over-image-background, var(--background));
     background-image: var(--over-image-url);
@@ -382,6 +382,56 @@ svg.color + svg {
 
 .button-image-save span {
     display: inline-block;
+}
+
+// derivates ------------------------------------------------------------------
+
+.table-derivates {
+    border-spacing: 0;
+    position: relative;
+    margin: 0 -30px;
+
+    thead {
+        background: var(--list-header-background);
+        position: sticky;
+        top: 0;
+    }
+
+    th {
+        padding: 7px;
+    }
+
+    td {
+        padding: 10px 5px;
+
+        a {
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr:hover {
+            background: var(--list-line-hover-background);
+            cursor: default;
+        }
+
+        .date {
+            text-align: center;
+            span {
+                margin: auto 5px;
+            }
+        }
+
+        .groups,
+        .items {
+            text-align: center;
+            padding-right: 10px;
+        }
+
+        .actions {
+            text-align: center;
+        }
+    }
 }
 
 @media screen and (max-width: 1024px) {

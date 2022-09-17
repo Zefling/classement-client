@@ -82,7 +82,8 @@
       "clone": "Cloner",
       "see": "Voir",
       "update": "Changer",
-      "remove": "Supprimer"
+      "remove": "Supprimer",
+      "replace": "Remplacer"
     },
     "no.result": "Pas de résultats.",
     "create.new": "Créez votre classement.",
@@ -395,7 +396,8 @@
     "category": "Categorie",
     "categories": "Categories",
     "classements": "Classements",
-    "see.derivatives": "Voir les dérivés"
+    "see.derivatives": "Voir les dérivés",
+    "my.derivatives": "Mes dérivés"
   },
   "error": {
     "api-code": {

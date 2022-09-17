@@ -82,7 +82,8 @@
       "clone": "Clone",
       "see": "See",
       "update": "Update",
-      "remove": "Remove"
+      "remove": "Remove",
+      "replace": "Replace"
     },
     "no.result": "No results.",
     "create.new": "Create your tierlist.",
@@ -394,7 +395,8 @@
     "category": "Category",
     "categories": "tierlist",
     "classements": "Tierlists",
-    "see.derivatives": "See derivatives"
+    "see.derivatives": "See derivatives",
+    "my.derivatives": "My derivatives"
   },
   "error": {
     "api-code": {

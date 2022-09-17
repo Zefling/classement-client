@@ -83,7 +83,8 @@
       "clone": "複製する",
       "see": "見る",
       "update": "変更する",
-      "remove": "削除する"
+      "remove": "削除する",
+      "replace": "交換する"
     },
     "no.result": "結果なし。",
     "create.new": "ティアリストを作成します。",
@@ -395,7 +396,8 @@
     "category": "カテゴリー",
     "categories": "カテゴリー",
     "classements": "ティアリスト",
-    "see.derivatives": "デリバティブを見る"
+    "see.derivatives": "デリバティブを見る",
+    "my.derivatives": "自分のデリバティブ"
   },
   "error": {
     "api-code": {
