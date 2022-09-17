@@ -1,7 +1,9 @@
-import { Component, DoCheck, HostBinding, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { Event, Router, Scroll } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
+
+import { filter } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -24,6 +26,7 @@ const languages = [
 })
 export class AppComponent implements DoCheck {
     @ViewChild('warningExit') warningExit!: DialogComponent;
+    @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
     languages = languages;
     selectedLang!: string;
@@ -44,6 +47,7 @@ export class AppComponent implements DoCheck {
         private router: Router,
         private logger: Logger,
         public userService: APIUserService,
+        changeDetectorRef: ChangeDetectorRef,
     ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
@@ -53,6 +57,11 @@ export class AppComponent implements DoCheck {
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit.open();
             this.route = route;
+        });
+
+        router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
+            changeDetectorRef.detectChanges();
+            this.main.nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
         if (environment.api?.active) {
