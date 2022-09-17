@@ -133,7 +133,11 @@ export class ClassementListComponent {
     }
 
     private _sort() {
-        this.result.forEach(d => (d.date = new Date(d.date)));
+        this.result.forEach(d => {
+            if (typeof d.date === 'string') {
+                d.date = new Date(d.date);
+            }
+        });
         this.result.sort((e, f) => (f.date as Date).getTime() - (e.date as Date).getTime());
     }
 }

@@ -6,6 +6,7 @@ import { DialogComponent } from 'src/app/components/dialog.component';
 import { MessageService } from 'src/app/components/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { Utils } from 'src/app/tools/utils';
 
 
 @Component({
@@ -55,12 +56,7 @@ export class ListClassementsComponent {
                     typeName = status ? 'hidden' : 'showed';
                 }
 
-                for (const classement of classements) {
-                    const index = this.classements?.findIndex(e => e.rankingId === classement?.rankingId);
-                    if (this.classements && index !== undefined && index > 0) {
-                        this.classements[index] = classement;
-                    }
-                }
+                Utils.updateClassements(this.classements, classements);
 
                 this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
                 this.changeStatusCancel();

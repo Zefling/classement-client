@@ -48,11 +48,14 @@ export class APIUserService extends APICommon {
     }
 
     updateClassement(classement: Classement) {
-        if (this.user && Array.isArray(this.user.classements)) {
-            let index = this.user.classements.findIndex(e => e.rankingId === classement.rankingId);
-            if (index !== -1) {
-                this.user.classements[index] = classement;
-            }
+        Utils.updateClassements(this.user?.classements, [classement]);
+        if (this.user?.classements) {
+            this.user.classements.forEach(d => {
+                if (typeof d.dateCreate === 'string') {
+                    d.dateCreate = new Date(d.dateCreate);
+                }
+            });
+            this.user.classements.sort((e, f) => new Date(f.dateCreate).getTime() - (e.dateCreate as Date).getTime());
         }
     }
 
