@@ -107,8 +107,10 @@
       "cancel": "拒否する"
     },
     "user": {
-      "name": "ユーザー"
-    }
+      "name": "ユーザー",
+      "anonymous": "匿名"
+    },
+    "current": "現在"
   },
   "category": {
     "animal": "動物",

@@ -195,11 +195,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     loadDerivateClassement(classement: Classement) {
-        const temp = this.classement;
-        this.loadServerClassement(classement, false);
-        if (temp && this.classement) {
-            this.classement.templateTotal = temp.templateTotal;
-        }
+        this.router.navigate(['/edit', classement.rankingId]);
         this.dialogDerivates.close();
     }
 

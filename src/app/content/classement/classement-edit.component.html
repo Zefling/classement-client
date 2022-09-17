@@ -293,16 +293,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let classement of derivates">
-                <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
-                <td class="date">
-                    <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+            <tr *ngFor="let derivate of derivates">
+                <td class="title">
+                    {{ derivate.data.options.title || ('list.title.undefined' | translate) }}
+                    <ng-container *ngIf="derivate.rankingId === classement?.rankingId">
+                        🢀 {{ 'list.current' | translate }}
+                    </ng-container>
                 </td>
-                <td class="groups">{{ classement.totalGroups }}</td>
-                <td class="datas">{{ classement.totalItems }}</td>
+                <td class="date">
+                    <span>{{ derivate.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ derivate.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                </td>
+                <td class="groups">{{ derivate.totalGroups }}</td>
+                <td class="datas">{{ derivate.totalItems }}</td>
                 <td class="actions">
-                    <a (click)="loadDerivateClassement(classement)">{{ 'list.action.replace' | translate }}</a>
+                    <a (click)="loadDerivateClassement(derivate)">{{ 'list.action.replace' | translate }}</a>
                 </td>
             </tr>
         </tbody>

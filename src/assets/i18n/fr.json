@@ -108,7 +108,8 @@
     "user": {
       "name": "Utilisateur",
       "anonymous": "Anonyme"
-    }
+    },
+    "current": "Courant"
   },
   "category": {
     "animal": "Animal",

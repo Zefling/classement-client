@@ -106,8 +106,10 @@
       "cancel": "Cancel"
     },
     "user": {
-      "name": "User"
-    }
+      "name": "User",
+      "anonymous": "Anonymous"
+    },
+    "current": "Current"
   },
   "category": {
     "animal": "Animal",
