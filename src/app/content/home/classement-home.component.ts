@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '0.9.15 beta';
+    version = '0.9.16 beta';
 
     modeApi = environment.api?.active || false;
 }
