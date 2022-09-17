@@ -417,8 +417,10 @@ svg.color + svg {
 
         .date {
             text-align: center;
+
             span {
                 margin: auto 5px;
+                display: block;
             }
         }
 
