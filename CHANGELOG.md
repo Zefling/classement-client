@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+## 0.9.17 beta (2022-09-17)
+
+### Standalone web app
+
+-   fix scrolling top when changing page
+
+### With API activited only
+
+-   add list “my derivate” on edit page
+-   fix css
+-   improve texts
+
 ## 0.9.16 beta (2022-09-17)
 
 ### With API activited only
