@@ -34,6 +34,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     classement?: Classement;
 
+    derivates?: Classement[];
+
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
 
@@ -181,6 +183,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         setTimeout(() => {
             this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
         });
+
+        this.classementService
+            .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
+            .then(classements => {
+                this.derivates = classements;
+            });
     }
 
     ngDoCheck() {
@@ -218,6 +226,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             event.returnValue = true;
         }
     }
+
+    showDerivate() {}
 
     resetCache() {
         this.globalService.withChange = false;

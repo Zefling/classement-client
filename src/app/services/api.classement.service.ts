@@ -78,16 +78,20 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    getClassementsByTemplateId(id: string): Promise<Classement[]> {
+    getClassementsByTemplateId(id: string, userId?: number): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
-            this.http.get<Message<Classement[]>>(`${environment.api.path}api/classements/template/${id}`).subscribe({
-                next: result => {
-                    resolve(result.message);
-                },
-                error: (result: HttpErrorResponse) => {
-                    reject(this.error('templateId', result));
-                },
-            });
+            this.http
+                .get<Message<Classement[]>>(
+                    `${environment.api.path}api/classements/template/${id}${userId ? '?userId=' + userId : ''}`,
+                )
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('templateId', result));
+                    },
+                });
         });
     }
 

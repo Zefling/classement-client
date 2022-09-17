@@ -6,6 +6,9 @@
         <button class="button-add primary" (click)="toTemplateNavigation()">
             {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
         </button>
+        <button class="button-add primary" (click)="showDerivate()" *ngIf="derivates">
+            {{ 'navigate.my.derivatives' | translate }}
+        </button>
     </div>
 
     <classement-options [options]="options"></classement-options>
