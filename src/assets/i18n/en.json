@@ -387,7 +387,7 @@
   "navigate": {
     "search": "Search",
     "search.nothing": "Nothing was found.",
-    "template": "Search by template",
+    "template": "Search by derivative",
     "back.category": "Return to the list of categories",
     "back.search": "Return to search",
     "title": "Title",
@@ -418,7 +418,7 @@
       "3020": "Your account has not been validated. If the validation token is expired, request a password change.",
       "3101": "Rating not found.",
       "3102": "No ratings found.",
-      "3201": "Template not found.",
+      "3201": "Original ranking not found.",
       "3202": "No rating found with this id.",
       "3301": "Status error.",
       "3400": "Save failed. Contact administrator if this persists.",

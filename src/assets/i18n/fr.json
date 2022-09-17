@@ -78,7 +78,7 @@
     "action": {
       "name": "Action",
       "edit": "Éditer",
-      "delete": "Retirer",
+      "delete": "Suppr.",
       "clone": "Cloner",
       "see": "Voir",
       "update": "Changer",
@@ -388,7 +388,7 @@
   "navigate": {
     "search": "Rechercher",
     "search.nothing": "Rien n'a été trouvé.",
-    "template": "Recherche par templète",
+    "template": "Recherche par dérivés",
     "back.category": "Revenir à la liste des categories",
     "back.search": "Revenir à la recherche",
     "title": "Titre",
@@ -419,7 +419,7 @@
       "3020": "Votre compte n'a pas été validé. Si le jeton de validation est périmé, demandez un changement de mot de passe.",
       "3101": "Classement non trouvé.",
       "3102": "Pas de classement trouvé.",
-      "3201": "Templète non trouvé.",
+      "3201": "Classement d'origine non trouvé.",
       "3202": "Pas de classement trouvé avec cet identifiant.",
       "3301": "Erreur de status.",
       "3400": "Sauvegarde en échec. Contactez l'administrateur si cela persiste.",
