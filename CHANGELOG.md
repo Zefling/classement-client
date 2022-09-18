@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 0.9.18 beta (2022-09-18)
+
+### With API activited only
+
+-   add the different tiles of derivate
+-   improve list “my derivate” on edit page
+
 ## 0.9.17 beta (2022-09-17)
 
 ### Standalone web app
