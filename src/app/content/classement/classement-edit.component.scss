@@ -415,6 +415,10 @@ svg.color + svg {
             cursor: default;
         }
 
+        .current {
+            color: var(--list-selected-text);
+        }
+
         .date {
             text-align: center;
 
@@ -435,6 +439,33 @@ svg.color + svg {
         }
     }
 }
+
+// diff tile ------------------------------------------------------------------
+
+.content-diff {
+    .container {
+        padding: 30px 0;
+    }
+
+    .drop-list {
+        border: none;
+        background: none;
+    }
+
+    .content-box {
+        cursor: pointer;
+
+        &:hover {
+            filter: var(--tile-add-filter);
+        }
+    }
+
+    .buttons {
+        padding-top: 30px;
+    }
+}
+
+// tablet / mobile ------------------------------------------------------------------
 
 @media screen and (max-width: 1024px) {
     :host {

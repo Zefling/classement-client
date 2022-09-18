@@ -232,7 +232,11 @@
       "add.image": "Click here to add one or a group of images",
       "share.link": "Share this ranking with your friends",
       "copy.link.success": "The link was successfully copied to the clipboard",
-      "copy.link.error": "Failed to copy link to clipboard"
+      "copy.link.error": "Failed to copy link to clipboard",
+      "diff": "Tiles in other derivates",
+      "add.tile": "Click on the tiles you want to add to your list.",
+      "no.tile": "There are no tiles.",
+      "close": "Close"
     },
     "line": {
       "add": "Add",

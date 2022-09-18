@@ -232,7 +232,11 @@
       "add.image": "Cliquez ici pour ajouter une ou un groupe d'images",
       "share.link": "Partagez ce classement à vos amis",
       "copy.link.success": "Le lien a été copier dans le presse-papiers  pier avec succès",
-      "copy.link.error": "Impossible de copier le lien dans le presse-papiers "
+      "copy.link.error": "Impossible de copier le lien dans le presse-papiers",
+      "diff": "Tuiles dans d'autres dérivés",
+      "add.tile": "Cliquer sur les tuiles que vous voulez ajouter à votre liste.",
+      "no.tile": "Il n'y a aucune tuile.",
+      "close": "Fermer"
     },
     "line": {
       "add": "Ajout",

@@ -2,12 +2,15 @@
 
 <div drop-image>
     <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
-    <div *ngIf="classement && classement.templateTotal > 1">
+    <div *ngIf="apiActive && classement && classement.templateTotal > 1">
         <button class="button-add primary" (click)="toTemplateNavigation()">
             {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
         </button>
-        <button class="button-add primary" (click)="showDerivate()" *ngIf="derivates">
+        <button class="button-add primary" (click)="showDerivate()" *ngIf="derivates && derivates.length > 1">
             {{ 'navigate.my.derivatives' | translate }} ({{ derivates.length }})
+        </button>
+        <button class="button-add primary" (click)="showRankingDiff()">
+            {{ 'gererator.ranking.diff' | translate }}
         </button>
     </div>
 
@@ -293,7 +296,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let derivate of derivates">
+            <tr *ngFor="let derivate of derivates" [class.current]="derivate.rankingId === classement?.rankingId">
                 <td class="title">
                     {{ derivate.data.options.title || ('list.title.undefined' | translate) }}
                     <ng-container *ngIf="derivate.rankingId === classement?.rankingId">
@@ -312,4 +315,42 @@
             </tr>
         </tbody>
     </table>
+</dialog-cmp>
+
+<dialog-cmp class="content-diff" #dialogRankingDiff>
+    <div class="container">
+        <ng-container *ngIf="diff?.length; else noTiles">
+            <div class="label">
+                {{ 'gererator.ranking.add.tile' | translate }}
+            </div>
+            <div class="elements drop-list">
+                <div class="content-box" *ngFor="let item of diff" (click)="addTile(item)">
+                    <div
+                        class="content content-render"
+                        [ngClass]="options.itemTextPosition"
+                        [style.width.px]="
+                            options.itemWidthAuto
+                                ? ((item.width || 150) / (item.height || 150)) * options.itemHeight
+                                : null
+                        "
+                    >
+                        <div *ngIf="item.url" class="image">
+                            <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
+                        </div>
+                        <div *ngIf="item.title" class="title">
+                            <span>{{ item.title }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noTiles>
+            <div class="content-diff">{{ 'gererator.ranking.no.tile' | translate }}</div>
+        </ng-template>
+        <div class="buttons">
+            <button class="primary" (click)="dialogRankingDiff.close()">
+                {{ 'gererator.ranking.close' | translate }}
+            </button>
+        </div>
+    </div>
 </dialog-cmp>

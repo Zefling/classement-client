@@ -39,6 +39,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
 
+    diff?: FileString[];
+
     options!: Options;
     nameOpacity!: string;
 
@@ -54,12 +56,15 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     classScreenMode: 'default' | 'enlarge' | 'fullscreen' = 'default';
 
+    apiActive = environment.api?.active;
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
     @ViewChild('dialogDerivates') dialogDerivates!: DialogComponent;
+    @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -82,7 +87,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
 
-                    if (environment.api?.active) {
+                    if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
                             this.logged = this.userService.logged ?? false;
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
@@ -106,7 +111,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         this.loadLocalClassement();
                     }
                 } else {
-                    if (environment.api?.active) {
+                    if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
                             this.logged = this.userService.logged ?? false;
                         });
@@ -216,7 +221,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
 
         this.shareUrl =
-            environment.api?.active && this.classement?.rankingId
+            this.apiActive && this.classement?.rankingId
                 ? `https://${window.location.host}/edit/${this.classement.rankingId}`
                 : '';
     }
@@ -237,6 +242,60 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     showDerivate() {
         this.dialogDerivates.open();
+    }
+
+    showRankingDiff() {
+        if (this.classement) {
+            //this.loading = true;
+            this.classementService
+                .getClassementsByTemplateId(this.classement.templateId)
+                .then(classements => {
+                    this.diff = [];
+                    // current tiles
+                    const list: FileString[] = [];
+                    list.push(...this.list);
+                    this.groups.forEach(e => list.push(...e.list));
+
+                    if (classements?.length) {
+                        classements.forEach(c => {
+                            const listCompare = [];
+                            listCompare.push(...c.data.list);
+                            c.data.groups.forEach(e => listCompare.push(...e.list));
+
+                            listCompare.forEach(tile => {
+                                // compare with exist
+                                for (const item of list) {
+                                    if (item.url === tile.url || (!item.url && item.title == tile.title)) {
+                                        return;
+                                    }
+                                }
+                                // compare with previous added
+                                for (const item of this.diff!) {
+                                    if (item.url === tile.url || (!item.url && item.title == tile.title)) {
+                                        return;
+                                    }
+                                }
+                                this.diff?.push(tile);
+                            });
+                        });
+                    }
+                })
+                .catch(e => {
+                    this.messageService.addMessage(e, {
+                        type: MessageType.error,
+                    });
+                })
+                .finally(() => {
+                    //  this.loading = false;
+                });
+
+            this.dialogRankingDiff.open();
+        }
+    }
+
+    addTile(tile: FileString) {
+        this.list.push(tile);
+        this.diff!.splice(this.diff!.indexOf(tile), 1);
     }
 
     resetCache() {
