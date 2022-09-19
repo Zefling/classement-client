@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 0.9.19 beta (2022-09-20)
+
+### Standalone web app
+
+-   fix image render
+
 ## 0.9.18 beta (2022-09-18)
 
 ### With API activited only
