@@ -4,7 +4,13 @@
     <label for="username">{{ 'user.login.username' | translate }}</label>
     <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
     <label for="password">{{ 'user.login.password' | translate }}</label>
-    <input id="password" type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" />
+    <input
+        id="password"
+        type="password"
+        spellcheck="false"
+        [(ngModel)]="password"
+        [ngModelOptions]="{ standalone: true }"
+    />
 
     <div *ngIf="showError" class="list-error">
         {{ showError }}

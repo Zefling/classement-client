@@ -63,10 +63,10 @@
     <p>{{ 'user.password.change' | translate }}</p>
 
     <label for="password">{{ 'user.password.old' | translate }}</label>
-    <input id="password" type="password" formControlName="passwordOld" />
+    <input id="password" type="password" spellcheck="false" formControlName="passwordOld" />
 
     <label for="password">{{ 'user.password.new' | translate }}</label>
-    <input id="password" type="password" formControlName="password" />
+    <input id="password" type="password" spellcheck="false" formControlName="password" />
     <div class="level-strong">
         <ng-container *ngIf="!strong">
             <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
@@ -75,7 +75,7 @@
     </div>
 
     <label for="password2">{{ 'user.password.confirm' | translate }}</label>
-    <input id="password2" type="password" formControlName="password2" />
+    <input id="password2" type="password" spellcheck="false" formControlName="password2" />
     <div class="level-strong">
         <span class="strong" *ngIf="confirm"></span>
     </div>
