@@ -9,6 +9,7 @@ import { debounceTime, Subscription } from 'rxjs';
 
 import { MessageService } from 'src/app/components/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Utils } from 'src/app/tools/utils';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class UserSignupComponent implements OnDestroy {
     profileForm: FormGroup;
     usernameExist = false;
     emailExist = false;
+    emailInvalide = false;
     showError: string[] = [];
     passedTests: number[] = [];
     strong = false;
@@ -52,14 +54,11 @@ export class UserSignupComponent implements OnDestroy {
             .get('username')
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
-                this.userService
-                    .test('username', value)
-                    .then(test => {
+                if (value) {
+                    this.userService.test('username', value).then(test => {
                         this.usernameExist = test;
-                    })
-                    .catch(e => {
-                        this.showError = e;
                     });
+                }
             });
         this.profileForm.get('password')?.valueChanges.subscribe(value => {
             const test = owasp.test(value);
@@ -73,14 +72,14 @@ export class UserSignupComponent implements OnDestroy {
             .get('email')
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
-                this.userService
-                    .test('email', value)
-                    .then(test => {
+                if (Utils.testEmail(value)) {
+                    this.emailInvalide = true;
+                    this.userService.test('email', value).then(test => {
                         this.emailExist = test;
-                    })
-                    .catch(e => {
-                        this.showError = e;
                     });
+                } else if (value) {
+                    this.emailInvalide = true;
+                }
             });
 
         owasp.config({
@@ -102,14 +101,23 @@ export class UserSignupComponent implements OnDestroy {
 
         this.showError = [];
 
-        if (this.usernameExist) {
+        if (value.username.trim() === '') {
+            this.showError.push(this.translate.instant('error.api-code.1001'));
+        } else if (this.usernameExist) {
             this.showError.push(this.translate.instant('error.username.exist'));
+            this.usernameExist = true;
         }
-        if (this.emailExist) {
+        if (value.email.trim() === '') {
+            this.showError.push(this.translate.instant('error.api-code.1020'));
+        } else if (this.emailInvalide) {
+            this.showError.push(this.translate.instant('error.email.invalid'));
+        } else if (this.emailExist) {
             this.showError.push(this.translate.instant('error.email.exist'));
+            this.emailExist = true;
         }
         if (value.password !== value.password2) {
             this.showError.push(this.translate.instant('error.pw.duplicate'));
+            this.confirm = false;
         }
         if (test.errors?.length) {
             test.errors.forEach(e =>
@@ -127,7 +135,7 @@ export class UserSignupComponent implements OnDestroy {
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {
-                    this.showError = e;
+                    this.showError = [e];
                 });
         }
     }

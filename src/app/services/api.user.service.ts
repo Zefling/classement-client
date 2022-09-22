@@ -250,12 +250,12 @@ export class APIUserService extends APICommon {
         return new Promise<boolean>((resolve, reject) => {
             let param: any = {};
             param[type] = value;
-            this.http.post<Message<boolean>>(`${environment.api.path}api/test`, param).subscribe({
+            this.http.post<boolean>(`${environment.api.path}api/test`, param).subscribe({
                 next: result => {
-                    resolve(result.message);
+                    resolve(result);
                 },
-                error: (result: HttpErrorResponse) => {
-                    reject(this.error('login', result));
+                error: () => {
+                    reject();
                 },
             });
         });

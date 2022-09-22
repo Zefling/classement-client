@@ -26,7 +26,7 @@
         <label for="email">{{ 'user.login.email' | translate }}</label>
         <input id="email" type="email" formControlName="email" #email />
         <div class="level-strong">
-            <span class="strong" [class.error-block]="emailExist" *ngIf="email.value"></span>
+            <span class="strong" [class.error-block]="emailExist || emailInvalide" *ngIf="email.value"></span>
         </div>
     </ng-container>
 

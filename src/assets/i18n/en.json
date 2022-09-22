@@ -444,6 +444,7 @@
     "username.exist": "This username already exists.",
     "email": {
       "exist": "This email has already been used.",
+      "invalid": "The email is invalid.",
       "old.invalid": "The old email is invalid.",
       "new.invalid": "The new email is invalid.",
       "already.used": "This email is already used by another user."
