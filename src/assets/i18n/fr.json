@@ -383,7 +383,7 @@
       },
       "contact.admin": {
         "title": "Contacter l'administrateur",
-        "text": "Faire un réclamation, demander une information, reporter une bug, etc.\nAjoutez une information qui permet de vous identifier, nom d'utilisateur ou email, dans votre message si votre demande à fin de pouvoir vous répondre ou nous identifier.",
+        "text": "Faire un réclamation, demander une information, reporter une bug, etc.\nAjoutez une information qui permet de vous identifier, nom d'utilisateur ou email, dans votre message si votre demande à fin de pouvoir vous répondre ou vous identifier.",
         "username": "Nom d'utilisateur",
         "email": "Courriel",
         "message": "Message",
