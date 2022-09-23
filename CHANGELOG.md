@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+## 0.9.20 beta (2022-09-23)
+
+### With API activited only
+
+-   improve create account form
+-   improve password lost form
+-   fix a possible password leak with Chrome and Edge
+-   update texts
+
 ## 0.9.19 beta (2022-09-20)
 
 ### Standalone web app
