@@ -351,7 +351,8 @@
         "change": {
           "title": "Changement votre mot de passe",
           "intro": "Inscrivez votre nouveau mot de passe"
-        }
+        },
+        "send": "Si ce courriel existe, un courriel de changement de mot de passe y sera envoyé."
       }
     },
     "email": {

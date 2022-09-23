@@ -1,6 +1,6 @@
 <h1>{{ 'user.password.lost.title' | translate }}</h1>
 
-<form class="form">
+<form class="form" *ngIf="!valide; else valideBlock">
     <p>{{ 'user.password.lost.info' | translate }}</p>
 
     <label for="email">{{ 'user.login.email' | translate }}</label>
@@ -14,6 +14,12 @@
         <button (click)="submit()">{{ 'user.password.lost.action' | translate }}</button>
     </div>
 </form>
+
+<ng-template #valideBlock>
+    <div>
+        {{ 'user.password.lost.send' | translate }}
+    </div>
+</ng-template>
 
 <div class="links">
     <div>
