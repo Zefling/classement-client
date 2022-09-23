@@ -383,7 +383,7 @@
       },
       "contact.admin": {
         "title": "Contact the administrator",
-        "text": "Add identifying information, username or email, to your message.",
+        "text": "Make a complaint, request information, report a bug, etc.\nAdd information that identifies you, username or email, in your message if your request in order to be able to respond to you or identify us.",
         "username": "Username",
         "email": "Email",
         "message": "Message",
