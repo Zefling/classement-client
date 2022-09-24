@@ -40,7 +40,10 @@ export class DropImageDirective {
         if (event.clipboardData?.files?.length) {
             this.globalService.addFiles(event.clipboardData?.files, TypeFile.image);
         }
-        if (event.clipboardData?.getData('text') && (event.target as HTMLInputElement).tagName !== 'INPUT') {
+        if (
+            event.clipboardData?.getData('text') &&
+            !['INPUT', 'TEXTAREA'].includes((event.target as HTMLInputElement).tagName)
+        ) {
             this.globalService.addTexts(event.clipboardData?.getData('text'));
         }
     }
