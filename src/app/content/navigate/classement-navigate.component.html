@@ -15,7 +15,10 @@
     <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
 </div>
 
-<h3>{{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }} ({{ classements.length }})</h3>
+<h3>
+    {{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
+    <ng-container *ngIf="!loading">({{ classements.length }})</ng-container>
+</h3>
 
 <div class="return" *ngIf="!isCatagoryList">
     <a (click)="showChatList()">🢀 {{ 'navigate.back.category' | translate }}</a>
