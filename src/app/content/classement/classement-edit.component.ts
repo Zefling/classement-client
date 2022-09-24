@@ -190,7 +190,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
         });
 
-        if (withDerivate) {
+        if (withDerivate && this.logged) {
             this.classementService
                 .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
                 .then(classements => {
