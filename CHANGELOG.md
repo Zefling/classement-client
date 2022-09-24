@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 0.9.21 beta (2022-09-24)
+
+### With API activited only
+
+-   improve navigation cards
+-   add icons
+-   fix when text is pasted in textarea
+
 ## 0.9.20 beta (2022-09-23)
 
 ### With API activited only
