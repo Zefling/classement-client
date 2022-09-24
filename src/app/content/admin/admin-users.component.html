@@ -20,7 +20,7 @@
                         class="icon"
                         *ngIf="!user.deleted"
                         [class.icon-validated]="user.isValidated"
-                        [class.icon-user]="!user.isValidated"
+                        [class.icon-not-validated]="!user.isValidated"
                         [title]="(user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate"
                     ></span>
                     <span

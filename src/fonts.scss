@@ -24,6 +24,15 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-not-validated:before {
+    content: '\e907';
+}
+.icon-group:before {
+    content: '\e908';
+}
+.icon-tile:before {
+    content: '\e909';
+}
 .icon-share:before {
     content: '\e906';
 }

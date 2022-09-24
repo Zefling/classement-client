@@ -42,6 +42,13 @@ figure,
         flex-direction: column;
         flex: 1;
 
+        .groups {
+            padding-top: 3px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
         .name {
             flex: 1;
         }

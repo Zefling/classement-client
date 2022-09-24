@@ -32,7 +32,17 @@
                         {{ 'category.' + (category.category || 'undefined') | translate }}
                         <ng-container *ngIf="isCatagoryList"> ({{ category.templateTotal }}) </ng-container>
                     </div>
-                    <div class="username" *ngIf="!isCatagoryList">{{ category.user }}</div>
+                    <div class="groups" *ngIf="!isCatagoryList">
+                        <div [title]="'list.count.group' | translate">
+                            <span class="icon-group"></span> {{ category.totalGroups }}
+                        </div>
+                        <div [title]="'list.count.item' | translate">
+                            <span class="icon-tile"></span> {{ category.totalItems }}
+                        </div>
+                    </div>
+                    <div class="username" *ngIf="!isCatagoryList">
+                        {{ 'user.by' | translate: { autor: category.user || ('list.user.anonymous' | translate) } }}
+                    </div>
                     <div class="date" *ngIf="!isCatagoryList">
                         {{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
                     </div>
