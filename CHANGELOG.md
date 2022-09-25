@@ -1,5 +1,21 @@
 # Changelog - Standalone web app & API
 
+## 0.9.22 beta (2022-09-25)
+
+### Standalone web app
+
+-   do not show advanced options on open
+
+### With API activited only
+
+-   do not load personal derivative when not connected
+
+### With API activited only
+
+-   improve navigation cards
+-   add icons
+-   fix when text is pasted in textarea
+
 ## 0.9.21 beta (2022-09-24)
 
 ### With API activited only
