@@ -118,7 +118,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     }
                     // reset all
                     this.new = true;
-                    this.options = { ...defaultOptions, ...(this.globalService.jsonTmp?.options || defaultOptions) };
+                    this.options = {
+                        ...defaultOptions,
+                        ...(this.globalService.jsonTmp?.options || defaultOptions),
+                        ...{ showAdvancedOptions: false },
+                    };
                     this.resetCache();
                     this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
                     this.list = this.globalService.jsonTmp?.list || [];
@@ -165,7 +169,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     }
                 }
 
-                this.options = { ...defaultOptions, ...data.infos.options };
+                this.options = { ...defaultOptions, ...data.infos.options, ...{ showAdvancedOptions: false } };
                 this.resetCache();
                 this.groups = data.data.groups;
                 this.list = data.data.list;
@@ -182,7 +186,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     loadServerClassement(classement: Classement, withDerivate: boolean = true) {
         this.classement = classement;
-        this.options = { ...defaultOptions, ...classement.data.options };
+        this.options = { ...defaultOptions, ...classement.data.options, ...{ showAdvancedOptions: false } };
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
