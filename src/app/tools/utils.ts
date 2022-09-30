@@ -30,8 +30,10 @@ export class Utils {
         return parts ? (parts[1] as T) : null;
     }
 
-    static setCookie(name: string, value: string) {
-        document.cookie = `${name}=${value}; path=/`;
+    static setCookie(name: string, value: string, days: number = 7) {
+        var date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
     }
 
     static removeCookie(name: string) {
