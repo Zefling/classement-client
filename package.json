@@ -2,6 +2,7 @@
   "name": "classement",
   "version": "0.9.22",
   "scripts": {
+    "postinstall": "npm audit fix",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
