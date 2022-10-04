@@ -44,7 +44,7 @@
                             [style.--text-color]="group.txtColor"
                         >
                             <div>
-                                <textarea class="name" [(ngModel)]="group.name"></textarea>
+                                <textarea class="name" [(ngModel)]="group.name" maxlength="500"></textarea>
                                 <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
                                 <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
 

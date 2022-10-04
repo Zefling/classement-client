@@ -20,7 +20,14 @@
     </div>
     <div class="message">
         <label for="text">{{ 'user.information.contact.admin.message' | translate }}<span>*</span></label>
-        <textarea name="text" [(ngModel)]="text" rows="5" [ngModelOptions]="{ standalone: true }"></textarea>
+        <textarea
+            autosize
+            maxlength="5000"
+            name="text"
+            [(ngModel)]="text"
+            rows="5"
+            [ngModelOptions]="{ standalone: true }"
+        ></textarea>
         <span>*</span> {{ 'user.information.contact.admin.required' | translate }}
     </div>
     <p>
