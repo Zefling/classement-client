@@ -500,8 +500,11 @@
       "sent.success": "😊 Message has been successfully sent to the administrator."
     },
     "token": {
-      "invalid": "Invalid account creation token.",
-      "not": "No account creation token."
+      "invalid": "⚠️ Invalid account creation token.",
+      "not": "⚠️ No account creation token."
+    },
+    "navigate": {
+      "access.error": "⚠️ Unable to retrieve tier lists."
     }
   }
 }

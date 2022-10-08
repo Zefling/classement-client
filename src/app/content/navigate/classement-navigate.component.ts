@@ -1,8 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { Subscription } from 'rxjs';
 
+import { MessageService } from 'src/app/components/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
@@ -36,6 +39,8 @@ export class ClassementNavigateComponent implements OnDestroy {
         private route: ActivatedRoute,
         private navigate: NavigateService,
         private logger: Logger,
+        private messageService: MessageService,
+        private translate: TranslateService,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -49,7 +54,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                     this.category = this.navigate.category || '';
                     this.submit();
                 } else {
-                    this.showChatList();
+                    this.showCategoriesList();
                 }
             }),
         );
@@ -59,14 +64,24 @@ export class ClassementNavigateComponent implements OnDestroy {
         this._sub.forEach(e => e.unsubscribe());
     }
 
-    showChatList() {
+    showCategoriesList() {
         this.isCatagoryList = true;
-        this.classementService.getClassementsHome().then(classements => {
-            this.classements = classements;
-            this.navigate.category = '';
-            this.navigate.searchKey = '';
-            this.router.navigate(['navigate']);
-        });
+        this.loading = true;
+        this.classementService
+            .getClassementsHome()
+            .then(classements => {
+                this.classements = classements;
+            })
+            .catch(() => {
+                this.classements = [];
+                this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
+            })
+            .finally(() => {
+                this.navigate.category = '';
+                this.navigate.searchKey = '';
+                this.router.navigate(['navigate']);
+                this.loading = false;
+            });
     }
 
     submit() {
@@ -81,6 +96,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             })
             .catch(() => {
                 this.classements = [];
+                this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
             })
             .finally(() => {
                 this.router.navigate(['navigate'], { queryParams: { name: this.searchKey, category: this.category } });
