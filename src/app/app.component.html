@@ -116,7 +116,7 @@
     </div>
 </aside>
 <div #main>
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="!loading"></router-outlet>
     <info-messages></info-messages>
 </div>
 

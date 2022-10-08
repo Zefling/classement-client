@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 import { DialogComponent } from './components/dialog.component';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
-import { Logger } from './services/logger';
+import { Logger, LoggerLevel } from './services/logger';
 
 
 const languages = [
@@ -65,10 +65,17 @@ export class AppComponent implements DoCheck {
         });
 
         if (environment.api?.active) {
-            userService.initProfile().then(() => {
-                this.logger.log('Auto logged !!');
-                this.loading = false;
-            });
+            userService
+                .initProfile()
+                .then(() => {
+                    this.logger.log('Auto login success!!');
+                })
+                .catch(() => {
+                    this.logger.log('Auto login error!!', LoggerLevel.error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 
@@ -92,8 +99,10 @@ export class AppComponent implements DoCheck {
     logout() {
         if (environment.api?.active) {
             this.userService.loggedStatus().then(() => {
-                this.logger.log('logout');
-                this.userService.logout().then(() => {});
+                this.logger.log('logout start');
+                this.userService.logout().then(() => {
+                    this.logger.log('logout ok');
+                });
             });
         }
     }
