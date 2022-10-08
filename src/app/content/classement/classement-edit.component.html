@@ -44,9 +44,9 @@
                             [style.--text-color]="group.txtColor"
                         >
                             <div>
-                                <textarea class="name" [(ngModel)]="group.name" maxlength="500"></textarea>
-                                <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
-                                <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
+                                <label class="name">
+                                    <textarea autosize [(ngModel)]="group.name" maxlength="500"></textarea>
+                                </label>
 
                                 <svg class="color txtColor" viewBox="0 0 1000 1000" (click)="inputTxtColor.click()">
                                     <path
@@ -60,6 +60,10 @@
                                         d="M948.3,410.1c-54.1-59.7-247.6-91.9-247.6-91.9L552.8,148V40.8H177.4v375.4h1L30.9,549.1C7.4,570.2,3.1,603.8,21.2,624l288.7,320.6c18.1,20.2,52,19.5,75.4-1.6l369.8-333v217.4C755.1,827.4,1108.6,586.8,948.3,410.1z M240,353.7V285V103.4h250.3v35.9c-4.9,2.5-9.9,5-14.2,8.9L240,360.8V353.7z M755.1,537.2L369.4,884.5c-7.1,6.4-17.3,6.6-22.8,0.5L84.3,593.6c-5.6-6.1-4.3-16.3,2.8-22.7l403.2-363.1V285v68.6v62.6h62.6v-168l202.2,224.6V537.2z"
                                     />
                                 </svg>
+                                <div class="colors">
+                                    <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
+                                    <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
+                                </div>
                             </div>
                         </td>
                         <td class="elements">
@@ -175,7 +179,7 @@
                             [style.--name-background]="group.bgColor + nameOpacity"
                             [style.--text-color]="group.txtColor"
                         >
-                            {{ group.name }}
+                            <pre>{{ group.name }}</pre>
                         </td>
                         <td class="elements drop-list">
                             <div *ngFor="let item of group.list; let index = index">

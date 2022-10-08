@@ -202,24 +202,28 @@ img {
 
     div {
         display: grid;
-        margin-top: min(20px, 5%);
+        height: 100%;
         grid-template:
-            'a a a a a' 60px
-            '. b . c .' auto /
+            'a a a a a' auto
+            '. b . c d' 35px /
             1fr auto 1fr auto 1fr;
     }
 }
 
 .name {
     grid-area: a;
-    border: 0;
-    background: transparent;
-    text-align: center;
-    font-size: var(--over-name-font-size, 120%);
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    resize: none;
+    display: flex;
+    align-items: center;
+
+    textarea {
+        border: 0;
+        background: transparent;
+        text-align: center;
+        font-size: var(--over-name-font-size, 120%);
+        width: 100%;
+        box-sizing: border-box;
+        resize: none;
+    }
 }
 
 input.color {
@@ -228,6 +232,10 @@ input.color {
     height: 0.1px;
     width: 0.1px;
     opacity: 0;
+}
+
+.colors {
+    grid-area: d;
 }
 
 svg.color {

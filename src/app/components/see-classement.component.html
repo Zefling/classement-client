@@ -17,7 +17,7 @@
                     [style.--name-background]="group.bgColor + nameOpacity"
                     [style.--text-color]="group.txtColor"
                 >
-                    {{ group.name }}
+                    <pre>{{ group.name }}</pre>
                 </td>
                 <td class="elements drop-list">
                     <div *ngFor="let item of group.list; let index = index">
