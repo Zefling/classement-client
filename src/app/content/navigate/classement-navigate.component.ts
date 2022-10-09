@@ -118,7 +118,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     openClassement(classement: Classement) {
-        this.router.navigate(['edit', classement.rankingId]);
+        this.router.navigate(['navigate', 'view', classement.rankingId]);
     }
 
     seeTemplate(classement: Classement) {

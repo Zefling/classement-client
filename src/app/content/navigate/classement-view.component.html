@@ -1,0 +1,14 @@
+<h2>{{ 'navigate.visualization' | translate }}</h2>
+
+<ng-container *ngIf="!loading && classement && classement.data">
+    <div>
+        <button (click)="openClassement()">{{ 'gererator.server.edit' | translate }}</button>
+    </div>
+    <see-classement
+        [options]="classement.data.options"
+        [groups]="classement.data.groups"
+        [list]="classement.data.list"
+    ></see-classement>
+</ng-container>
+
+<loader-item *ngIf="loading"></loader-item>

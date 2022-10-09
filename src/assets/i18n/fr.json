@@ -403,7 +403,8 @@
     "categories": "Categories",
     "classements": "Classements",
     "see.derivatives": "Voir les dérivés",
-    "my.derivatives": "Mes dérivés"
+    "my.derivatives": "Mes dérivés",
+    "visualization": "Visualisation"
   },
   "error": {
     "api-code": {

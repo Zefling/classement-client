@@ -6,6 +6,7 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { ClassementNavigateComponent } from './classement-navigate.component';
 import { ClassementTemplateComponent } from './classement-template.component';
+import { ClassementViewComponent } from './classement-view.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,12 @@ const routes: Routes = [
         path: 'template/:id',
         pathMatch: 'full',
         component: ClassementTemplateComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'view/:id',
+        pathMatch: 'full',
+        component: ClassementViewComponent,
         canActivate: [DataChange, APIRequired],
     },
     {

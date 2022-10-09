@@ -404,7 +404,8 @@
     "categories": "カテゴリー",
     "classements": "ティアリスト",
     "see.derivatives": "デリバティブを見る",
-    "my.derivatives": "自分のデリバティブ"
+    "my.derivatives": "自分のデリバティブ",
+    "visualization": "視覚化"
   },
   "error": {
     "api-code": {

@@ -403,7 +403,8 @@
     "categories": "tierlist",
     "classements": "Tierlists",
     "see.derivatives": "See derivatives",
-    "my.derivatives": "My derivatives"
+    "my.derivatives": "My derivatives",
+    "visualization": "Visualization"
   },
   "error": {
     "api-code": {
