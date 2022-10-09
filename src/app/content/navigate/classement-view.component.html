@@ -1,9 +1,30 @@
 <h2>{{ 'navigate.visualization' | translate }}</h2>
 
 <ng-container *ngIf="!loading && classement && classement.data">
-    <div>
-        <button (click)="openClassement()">{{ 'gererator.server.edit' | translate }}</button>
+    <div class="infos">
+        <h3 class="name">{{ classement.name }}</h3>
+        <div class="category">
+            {{ 'category.' + (classement.category || 'undefined') | translate }}
+        </div>
+        <div class="groups">
+            <div [title]="'list.count.group' | translate">
+                <span class="icon-group"></span> {{ classement.totalGroups }}
+            </div>
+            <div [title]="'list.count.item' | translate">
+                <span class="icon-tile"></span> {{ classement.totalItems }}
+            </div>
+        </div>
+        <div class="username">
+            {{ 'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) } }}
+        </div>
+        <div class="date">
+            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+        </div>
+        <div class="buttons">
+            <button (click)="openClassement()">{{ 'gererator.server.edit' | translate }}</button>
+        </div>
     </div>
+
     <see-classement
         [options]="classement.data.options"
         [groups]="classement.data.groups"

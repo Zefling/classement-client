@@ -1,1 +1,21 @@
-@import './classement-navigate.scss';
+.infos {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid var(--menu-separator);
+}
+
+.groups {
+    padding-top: 3px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.name {
+    margin-top: 0;
+}
+
+.category,
+.username {
+    font-weight: 700;
+}
