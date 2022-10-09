@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-## 1.0.0 beta (2022-10-09)
+## 1.0.0 (2022-10-09)
 
 ### Standalone web app
 
