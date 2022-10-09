@@ -1,5 +1,21 @@
 # Changelog - Standalone web app & API
 
+## 1.0.0 beta (2022-10-09)
+
+### Standalone web app
+
+-   improve group naming
+    -   added support for line breaks
+    -   autoresize instead of scrollbar
+
+### With API activited only
+
+-   add an expiration days for cookies
+-   do not show advanced options on open
+-   improve textarea with autoresize (contact page)
+-   fix loading issues in navigate
+-   fix auto login
+
 ## 0.9.22 beta (2022-09-25)
 
 ### Standalone web app
@@ -214,7 +230,10 @@
 
 ### With API activited only
 
--   sign up / login / oauth (Discord / Facebook / Google)
+-   sign up / login / oauth
+    -   Discord
+    -   Facebook
+    -   Google
 -   profil management
 -   save tierlists with account
 -   search/browse tierslists on server
