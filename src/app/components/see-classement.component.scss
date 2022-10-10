@@ -74,6 +74,10 @@ table {
     background: var(--name-background);
     border: 1px solid var(--name-border-color);
     font-size: var(--over-name-font-size, 120%);
+
+    pre {
+        white-space: pre-line;
+    }
 }
 
 // text only

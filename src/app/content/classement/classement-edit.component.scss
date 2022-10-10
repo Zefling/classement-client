@@ -357,6 +357,10 @@ svg.color + svg {
 
     .names {
         font-size: var(--over-name-font-size, 120%);
+
+        pre {
+            white-space: pre-line;
+        }
     }
 
     .drop-list {
