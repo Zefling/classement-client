@@ -73,7 +73,7 @@ export class UserSignupComponent implements OnDestroy {
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
                 if (Utils.testEmail(value)) {
-                    this.emailInvalide = true;
+                    this.emailInvalide = false;
                     this.userService.test('email', value).then(test => {
                         this.emailExist = test;
                     });
