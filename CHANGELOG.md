@@ -1,6 +1,16 @@
 # Changelog - Standalone web app & API
 
-## 1.0.0 beta (2022-10-09)
+## 1.0.1 (2022-10-11)
+
+### Standalone web app
+
+-   fix group naming
+
+### With API activited only
+
+-   fix email validation
+
+## 1.0.0 (2022-10-09)
 
 ### Standalone web app
 
