@@ -251,7 +251,12 @@
       "save.server": "アカウントにセーブする",
       "export.json": "エクスポート",
       "import.json": "インポート",
-      "save.image": "Save as:"
+      "save.image": "新規保管：",
+      "edit.local": "ローカル版を編集する",
+      "edit.server": "サーバー版を編集する",
+      "see.my.derivative": "私のデリバティブを見る",
+      "make.my.derivative": "私のデリバティブを作る",
+      "edit.my.derivative": "私のデリバティブを編集する"
     },
     "change": {
       "warning": "変更を加えました！",
@@ -498,12 +503,12 @@
       "hidden.success": "🫣  ティアリストは正常に隠されています。",
       "showed.success": "😊 ティアリストは公開に成功しました。"
     },
-    "contact": {
-      "sent.success": "😊 メッセージは管理者に正常に送信されました。"
-    },
     "token": {
       "invalid": "⚠️ アカウント作成トークンが無効です。",
       "not": "⚠️ アカウント作成トークンがありません。"
+    },
+    "contact": {
+      "sent.success": "😊 メッセージは管理者に正常に送信されました。"
     },
     "navigate": {
       "access.error": "⚠️ ティア リストを取得できません。"

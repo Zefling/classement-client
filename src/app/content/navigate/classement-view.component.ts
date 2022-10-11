@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -16,10 +16,14 @@ import { environment } from 'src/environments/environment';
     templateUrl: './classement-view.component.html',
     styleUrls: ['./classement-view.component.scss'],
 })
-export class ClassementViewComponent {
+export class ClassementViewComponent implements OnDestroy {
     classement?: Classement;
+    myClassement?: Classement;
 
     loading = false;
+
+    currentUser = false;
+    logged? = false;
 
     apiActive = environment.api?.active;
 
@@ -33,6 +37,8 @@ export class ClassementViewComponent {
         private logger: Logger,
         private bdService: DBService,
     ) {
+        this.logged = this.userService.logged;
+
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] && params['id'] !== 'new') {
@@ -43,13 +49,13 @@ export class ClassementViewComponent {
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === id);
                             if (classement) {
                                 this.logger.log('loadServerClassement (user)');
-                                this.classement = classement;
+                                this.loadClassement(classement);
                             } else {
                                 this.classementService
                                     .getClassement(id!)
                                     .then(classement => {
                                         this.logger.log('loadServerClassement (server)');
-                                        this.classement = classement;
+                                        this.loadClassement(classement);
                                     })
                                     .catch(() => {
                                         this.logger.log('loadLocalClassement (browser)');
@@ -67,12 +73,33 @@ export class ClassementViewComponent {
         );
     }
 
-    ngOnDistroy() {
+    ngOnDestroy(): void {
         this._sub.forEach(e => e.unsubscribe());
+    }
+
+    loadClassement(classement: Classement) {
+        this.classement = classement;
+        this.currentUser = this.userService.user?.username === classement.user;
+
+        this.classementService.getClassementsByTemplateId(classement?.templateId).then(classements => {
+            if (classements?.length) {
+                this.myClassement = classements.find(
+                    e => this.userService.user?.username === e.user && this.classement?.rankingId !== e.rankingId,
+                );
+            }
+        });
     }
 
     openClassement() {
         this.router.navigate(['edit', this.classement!.rankingId]);
+    }
+
+    seeMyClassement() {
+        this.router.navigate(['navigate', 'view', this.myClassement!.rankingId]);
+    }
+
+    openMyClassement() {
+        this.router.navigate(['edit', this.myClassement!.rankingId]);
     }
 
     loadLocalClassement(id: string) {
@@ -84,6 +111,8 @@ export class ClassementViewComponent {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+
+                this.currentUser = true;
 
                 this.classement = {
                     localId: id,

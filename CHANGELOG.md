@@ -53,8 +53,8 @@
 
 ### With API activited only
 
--   add the different tiles of derivate
--   improve list “my derivate” on edit page
+-   add the different tiles of derivative
+-   improve list “my derivative” on edit page
 
 ## 0.9.17 beta (2022-09-17)
 
@@ -64,7 +64,7 @@
 
 ### With API activited only
 
--   add list “my derivate” on edit page
+-   add list “my derivative” on edit page
 -   fix css
 -   improve texts
 
@@ -75,7 +75,7 @@
 -   fix update profile on save
 -   fix update rankings list on change
 -   fix navigation design
--   fix derivate button on save
+-   fix derivative button on save
 
 ## 0.9.15 beta (2022-09-13)
 

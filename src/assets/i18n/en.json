@@ -233,7 +233,7 @@
       "share.link": "Share this ranking with your friends",
       "copy.link.success": "The link was successfully copied to the clipboard",
       "copy.link.error": "Failed to copy link to clipboard",
-      "diff": "Tiles in other derivates",
+      "diff": "Tiles in other derivatives",
       "add.tile": "Click on the tiles you want to add to your list.",
       "no.tile": "There are no tiles.",
       "close": "Close"
@@ -250,7 +250,12 @@
       "save.server": "Save to your account",
       "export.json": "Export",
       "import.json": "Import",
-      "save.image": "Save as:"
+      "save.image": "Save as:",
+      "edit.local": "Edit local version",
+      "edit.server": "Edit server version",
+      "see.my.derivative": "See my derivatives",
+      "make.my.derivative": "Make my derivatives",
+      "edit.my.derivative": "Edit my derivatives"
     },
     "change": {
       "warning": "You have made changes!",

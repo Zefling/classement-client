@@ -34,7 +34,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     classement?: Classement;
 
-    derivates?: Classement[];
+    derivatives?: Classement[];
 
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
@@ -63,7 +63,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
-    @ViewChild('dialogDerivates') dialogDerivates!: DialogComponent;
+    @ViewChild('dialogderivatives') dialogderivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
@@ -184,7 +184,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             });
     }
 
-    loadServerClassement(classement: Classement, withDerivate: boolean = true) {
+    loadServerClassement(classement: Classement, withderivative: boolean = true) {
         this.classement = classement;
         this.options = { ...defaultOptions, ...classement.data.options, ...{ showAdvancedOptions: false } };
         this.resetCache();
@@ -194,18 +194,18 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
         });
 
-        if (withDerivate && this.logged) {
+        if (withderivative && this.logged) {
             this.classementService
                 .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
                 .then(classements => {
-                    this.derivates = classements;
+                    this.derivatives = classements;
                 });
         }
     }
 
-    loadDerivateClassement(classement: Classement) {
+    loadderivativeClassement(classement: Classement) {
         this.router.navigate(['/edit', classement.rankingId]);
-        this.dialogDerivates.close();
+        this.dialogderivatives.close();
     }
 
     ngDoCheck() {
@@ -244,8 +244,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    showDerivate() {
-        this.dialogDerivates.open();
+    showderivative() {
+        this.dialogderivatives.open();
     }
 
     showRankingDiff() {

@@ -9,7 +9,6 @@ import { MessageService } from 'src/app/components/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
-import { NavigateService } from 'src/app/services/navigate.service';
 
 import { categories } from '../classement/classement-default';
 
@@ -22,8 +21,8 @@ import { categories } from '../classement/classement-default';
 export class ClassementNavigateComponent implements OnDestroy {
     categories = categories;
 
-    searchKey = '';
-    category = '';
+    searchKey?: string;
+    category?: string;
 
     classements: Classement[] = [];
 
@@ -37,7 +36,6 @@ export class ClassementNavigateComponent implements OnDestroy {
         private classementService: APIClassementService,
         private router: Router,
         private route: ActivatedRoute,
-        private navigate: NavigateService,
         private logger: Logger,
         private messageService: MessageService,
         private translate: TranslateService,
@@ -45,13 +43,9 @@ export class ClassementNavigateComponent implements OnDestroy {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.logger.log('params', LoggerLevel.log, params);
-                this.searchKey = params['name'] || '';
-                this.category = params['category'] || '';
-                if (this.searchKey || this.category) {
-                    this.submit();
-                } else if (this.navigate.category || this.navigate.searchKey) {
-                    this.searchKey = this.navigate.searchKey || '';
-                    this.category = this.navigate.category || '';
+                this.searchKey = params['name'];
+                this.category = params['category'];
+                if (this.searchKey !== undefined || this.category !== undefined) {
                     this.submit();
                 } else {
                     this.showCategoriesList();
@@ -77,8 +71,6 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
             })
             .finally(() => {
-                this.navigate.category = '';
-                this.navigate.searchKey = '';
                 this.router.navigate(['navigate']);
                 this.loading = false;
             });
@@ -99,9 +91,15 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
             })
             .finally(() => {
-                this.router.navigate(['navigate'], { queryParams: { name: this.searchKey, category: this.category } });
-                this.navigate.category = this.category;
-                this.navigate.searchKey = this.searchKey;
+                this.router.navigate(
+                    ['navigate'],
+                    this.searchKey === undefined && this.category === undefined
+                        ? {}
+                        : {
+                              queryParams: { name: this.searchKey, category: this.category },
+                          },
+                );
+
                 this.loading = false;
             });
     }
@@ -112,8 +110,6 @@ export class ClassementNavigateComponent implements OnDestroy {
             this.category = classement.category;
             this.isCatagoryList = false;
             this.router.navigate(['navigate'], { queryParams: { category: classement.category } });
-            this.navigate.category = this.category;
-            this.navigate.searchKey = '';
         });
     }
 

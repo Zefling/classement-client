@@ -6,8 +6,8 @@
         <button class="button-add primary" (click)="toTemplateNavigation()">
             {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
         </button>
-        <button class="button-add primary" (click)="showDerivate()" *ngIf="derivates && derivates.length > 1">
-            {{ 'navigate.my.derivatives' | translate }} ({{ derivates.length }})
+        <button class="button-add primary" (click)="showderivative()" *ngIf="derivatives && derivatives.length > 1">
+            {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
         </button>
         <button class="button-add primary" (click)="showRankingDiff()">
             {{ 'gererator.ranking.diff' | translate }}
@@ -288,8 +288,8 @@
     ></classement-save-server>
 </dialog-cmp>
 
-<dialog-cmp #dialogDerivates closeButton>
-    <table class="table-derivates" *ngIf="derivates">
+<dialog-cmp #dialogderivatives closeButton>
+    <table class="table-derivatives" *ngIf="derivatives">
         <thead>
             <tr>
                 <th class="title">{{ 'list.title.name' | translate }}</th>
@@ -300,21 +300,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let derivate of derivates" [class.current]="derivate.rankingId === classement?.rankingId">
+            <tr *ngFor="let derivative of derivatives" [class.current]="derivative.rankingId === classement?.rankingId">
                 <td class="title">
-                    {{ derivate.data.options.title || ('list.title.undefined' | translate) }}
-                    <ng-container *ngIf="derivate.rankingId === classement?.rankingId">
+                    {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+                    <ng-container *ngIf="derivative.rankingId === classement?.rankingId">
                         🢀 {{ 'list.current' | translate }}
                     </ng-container>
                 </td>
                 <td class="date">
-                    <span>{{ derivate.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ derivate.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
-                <td class="groups">{{ derivate.totalGroups }}</td>
-                <td class="items">{{ derivate.totalItems }}</td>
+                <td class="groups">{{ derivative.totalGroups }}</td>
+                <td class="items">{{ derivative.totalItems }}</td>
                 <td class="actions">
-                    <a (click)="loadDerivateClassement(derivate)">{{ 'list.action.replace' | translate }}</a>
+                    <a (click)="loadderivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
                 </td>
             </tr>
         </tbody>
