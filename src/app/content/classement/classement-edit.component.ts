@@ -63,7 +63,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
-    @ViewChild('dialogderivatives') dialogderivatives!: DialogComponent;
+    @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
@@ -184,7 +184,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             });
     }
 
-    loadServerClassement(classement: Classement, withderivative: boolean = true) {
+    loadServerClassement(classement: Classement, withDerivative: boolean = true) {
         this.classement = classement;
         this.options = { ...defaultOptions, ...classement.data.options, ...{ showAdvancedOptions: false } };
         this.resetCache();
@@ -194,7 +194,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
         });
 
-        if (withderivative && this.logged) {
+        if (withDerivative && this.logged) {
             this.classementService
                 .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
                 .then(classements => {
@@ -203,9 +203,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    loadderivativeClassement(classement: Classement) {
+    loadDerivativeClassement(classement: Classement) {
         this.router.navigate(['/edit', classement.rankingId]);
-        this.dialogderivatives.close();
+        this.dialogDerivatives.close();
     }
 
     ngDoCheck() {
@@ -244,8 +244,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    showderivative() {
-        this.dialogderivatives.open();
+    showDerivative() {
+        this.dialogDerivatives.open();
     }
 
     showRankingDiff() {

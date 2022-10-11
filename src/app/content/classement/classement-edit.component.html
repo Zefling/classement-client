@@ -6,7 +6,7 @@
         <button class="button-add primary" (click)="toTemplateNavigation()">
             {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
         </button>
-        <button class="button-add primary" (click)="showderivative()" *ngIf="derivatives && derivatives.length > 1">
+        <button class="button-add primary" (click)="showDerivative()" *ngIf="derivatives && derivatives.length > 1">
             {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
         </button>
         <button class="button-add primary" (click)="showRankingDiff()">
@@ -288,7 +288,7 @@
     ></classement-save-server>
 </dialog-cmp>
 
-<dialog-cmp #dialogderivatives closeButton>
+<dialog-cmp #dialogDerivatives closeButton>
     <table class="table-derivatives" *ngIf="derivatives">
         <thead>
             <tr>
@@ -314,7 +314,7 @@
                 <td class="groups">{{ derivative.totalGroups }}</td>
                 <td class="items">{{ derivative.totalItems }}</td>
                 <td class="actions">
-                    <a (click)="loadderivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
+                    <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
                 </td>
             </tr>
         </tbody>
