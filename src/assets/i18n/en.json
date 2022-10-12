@@ -253,9 +253,11 @@
       "save.image": "Save as:",
       "edit.local": "Edit local version",
       "edit.server": "Edit server version",
-      "see.my.derivative": "See my derivatives",
-      "make.my.derivative": "Make my derivatives",
-      "edit.my.derivative": "Edit my derivatives"
+      "see.my.derivative": "See my derivative",
+      "make.my.derivative": "Make my derivative",
+      "edit.my.derivative": "Edit my derivative",
+      "new.derivative": "New derivative from this tierlist",
+      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist."
     },
     "change": {
       "warning": "You have made changes!",

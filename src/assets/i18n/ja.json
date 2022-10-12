@@ -256,7 +256,9 @@
       "edit.server": "サーバー版を編集する",
       "see.my.derivative": "私のデリバティブを見る",
       "make.my.derivative": "私のデリバティブを作る",
-      "edit.my.derivative": "私のデリバティブを編集する"
+      "edit.my.derivative": "私のデリバティブを編集する",
+      "new.derivative": "このティアリストからの新しい派生物",
+      "my.derivative.count": "注: 現在、このティアリストからデリバティブをした{{ count }}つを持っています。"
     },
     "change": {
       "warning": "変更を加えました！",

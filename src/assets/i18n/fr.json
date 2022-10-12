@@ -255,7 +255,9 @@
       "edit.server": "Éditer la version serveur",
       "see.my.derivative": "Voir mon dérivé",
       "make.my.derivative": "Faire mon dérivé",
-      "edit.my.derivative": "Éditer mon dérivé"
+      "edit.my.derivative": "Éditer mon dérivé",
+      "new.derivative": "Nouveau dérivé à partir de ce classement",
+      "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement."
     },
     "change": {
       "warning": "Vous avez effectué des changements\u00A0!",

@@ -21,23 +21,28 @@
             {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
         </div>
         <div class="buttons">
-            <button (click)="openClassement()">
+            <button (click)="openClassement()" *ngIf="!currentUser">
                 {{
                     (!apiActive
                         ? 'gererator.actions.edit.local'
                         : !currentUser && logged
-                        ? 'gererator.actions.edit.server'
+                        ? myClassement
+                            ? 'gererator.actions.new.derivative'
+                            : 'gererator.actions.edit.server'
                         : 'gererator.actions.make.my.derivative'
                     ) | translate
                 }}
             </button>
 
-            <button *ngIf="myClassement" (click)="seeMyClassement()">
+            <button *ngIf="myClassement && !currentUser" (click)="seeMyClassement()" class="primary">
                 {{ 'gererator.actions.see.my.derivative' | translate }}
             </button>
-            <button *ngIf="myClassement" (click)="openMyClassement()">
+            <button *ngIf="myClassement" (click)="openMyClassement()" class="primary">
                 {{ 'gererator.actions.edit.my.derivative' | translate }}
             </button>
+            <div class="note" *ngIf="myClassementCount > 1">
+                {{ 'gererator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
+            </div>
         </div>
     </div>
 

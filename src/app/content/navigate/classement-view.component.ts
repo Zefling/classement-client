@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 export class ClassementViewComponent implements OnDestroy {
     classement?: Classement;
     myClassement?: Classement;
+    myClassementCount = 0;
 
     loading = false;
 
@@ -79,15 +80,20 @@ export class ClassementViewComponent implements OnDestroy {
 
     loadClassement(classement: Classement) {
         this.classement = classement;
-        this.currentUser = this.userService.user?.username === classement.user;
+        if (this.userService.logged) {
+            this.currentUser = this.userService.user?.username === classement.user;
 
-        this.classementService.getClassementsByTemplateId(classement?.templateId).then(classements => {
-            if (classements?.length) {
-                this.myClassement = classements.find(
-                    e => this.userService.user?.username === e.user && this.classement?.rankingId !== e.rankingId,
-                );
-            }
-        });
+            this.classementService
+                .getClassementsByTemplateId(classement?.templateId, this.userService.user?.id)
+                .then(classements => {
+                    this.myClassementCount = classements?.length || 0;
+                    if (this.myClassementCount) {
+                        // last on first
+                        classements.sort((e, f) => new Date(f.dateCreate).getTime() - new Date(e.dateCreate).getTime());
+                        this.myClassement = classements[0];
+                    }
+                });
+        }
     }
 
     openClassement() {
