@@ -9,6 +9,7 @@ import { MessageService } from 'src/app/components/info-messages.component';
 import { FormatedInfos } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
+import { Utils } from 'src/app/tools/utils';
 
 
 @Component({
@@ -33,6 +34,12 @@ export class ClassementListComponent {
         private logger: Logger,
     ) {
         this.showList();
+    }
+
+    exportAll() {
+        this.dbservice.getLocalData().then(result => {
+            Utils.downloadFile(JSON.stringify(result), 'classements.json', 'text/plain');
+        });
     }
 
     showList() {

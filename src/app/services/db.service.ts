@@ -21,6 +21,17 @@ export class DBService {
         return this._getDB().then(db => this._getInfosList(db));
     }
 
+    getLocalData(): Promise<FormatedInfosData[]> {
+        return this.getLocalList().then(async infos => {
+            const list: FormatedInfosData[] = [];
+            for (const info of infos) {
+                list.push(await this.loadLocal(info.id!));
+            }
+
+            return list;
+        });
+    }
+
     delete(id: string): Promise<void> {
         return new Promise((resolve, reject) => {
             this._getDB()

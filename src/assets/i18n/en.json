@@ -249,6 +249,7 @@
       "save.local.auto": "Automatic browser save on every change.",
       "save.server": "Save to your account",
       "export.json": "Export",
+      "export.all.json": "Export all",
       "import.json": "Import",
       "save.image": "Save as:",
       "edit.local": "Edit local version",

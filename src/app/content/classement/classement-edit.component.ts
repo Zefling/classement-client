@@ -508,7 +508,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveJson() {
-        this.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
+        Utils.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
     }
 
     importJson(event: ImportJsonEvent) {
@@ -563,14 +563,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     private getFileName(): Data {
         return this.options.title.trim() || this.translate.instant('list.title.undefined');
-    }
-
-    private downloadFile(content: string, fileName: string, contentType: string) {
-        var a = document.createElement('a');
-        var file = new Blob([content], { type: contentType });
-        a.href = URL.createObjectURL(file);
-        a.download = fileName;
-        a.click();
     }
 
     private downloadImage(data: string, filename: string) {

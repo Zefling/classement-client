@@ -1,9 +1,14 @@
 <h2>{{ 'menu.list' | translate }}</h2>
 <div class="infos">
     <p>{{ 'list.intro' | translate }}</p>
-    <button class="primary" (click)="dialogImport.open()">
-        {{ 'gererator.actions.import.json' | translate }}
-    </button>
+    <div>
+        <button class="primary" (click)="exportAll()">
+            {{ 'gererator.actions.export.all.json' | translate }}
+        </button>
+        <button class="primary" (click)="dialogImport.open()">
+            {{ 'gererator.actions.import.json' | translate }}
+        </button>
+    </div>
 </div>
 
 <table *ngIf="result?.length; else noResult">

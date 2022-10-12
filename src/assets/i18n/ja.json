@@ -250,6 +250,7 @@
       "save.local.auto": "変更するたびに、ブラウザに自動的にセーブされます。",
       "save.server": "アカウントにセーブする",
       "export.json": "エクスポート",
+      "export.all.json": "すべてエクスポート",
       "import.json": "インポート",
       "save.image": "新規保管：",
       "edit.local": "ローカル版を編集する",
