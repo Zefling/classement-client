@@ -76,7 +76,7 @@ export class ImportJsonComponent implements OnDestroy {
 
             if (!Array.isArray(data)) {
                 if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
-                    this.jsonTmp = [{ data: data }];
+                    this.jsonTmp = [{ data: data, selected: true }];
                 } else {
                     this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
                         type: MessageType.error,
@@ -84,19 +84,11 @@ export class ImportJsonComponent implements OnDestroy {
                 }
             } else if (this.multi) {
                 for (const json of data) {
-                    const item: importData = {};
-                    if (
-                        Array.isArray(json.groups) &&
-                        json.groups.length > 0 &&
-                        Array.isArray(json.list) &&
-                        json.options
-                    ) {
-                        item.data = json;
-                        item.selected = true;
-                    } else {
-                        item.error = true;
-                    }
-                    this.jsonTmp?.push(item);
+                    this.jsonTmp?.push(
+                        Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options
+                            ? { data: json, selected: true }
+                            : { error: true },
+                    );
                 }
             } else {
                 this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
@@ -124,6 +116,7 @@ export class ImportJsonComponent implements OnDestroy {
     }
 
     async importMultiJson(type: 'replace' | 'new') {
+        this.dbService.accessState = true;
         const list = this.jsonTmp!.filter(e => !e.error && e.selected);
         for (const jsonTmp of list) {
             await this.dbService.access();
