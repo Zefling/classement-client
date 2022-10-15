@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -38,7 +38,25 @@ export class ClassementListComponent {
 
     exportAll() {
         this.dbservice.getLocalData().then(result => {
-            Utils.downloadFile(JSON.stringify(result), 'classements.json', 'text/plain');
+            const list: Data[] = [];
+
+            if (result.length) {
+                result.forEach(info => {
+                    list.push({
+                        // info
+                        options: info.infos.options,
+                        id: info.infos.id,
+                        rankingId: info.infos.rankingId,
+                        templateId: info.infos.templateId,
+                        parentId: info.infos.parentId,
+                        // data
+                        groups: info.data.groups,
+                        list: info.data.list,
+                    });
+                });
+            }
+
+            Utils.downloadFile(JSON.stringify(list), 'classements.json', 'text/plain');
         });
     }
 
@@ -107,6 +125,12 @@ export class ClassementListComponent {
     importJson(event: ImportJsonEvent) {
         switch (event.action) {
             case 'new':
+            case 'replace':
+                if (event.action === 'new') {
+                    event.data!.id = undefined;
+                    event.action;
+                }
+
                 this.dbservice
                     .saveLocal(event.data!)
                     .then(item => {

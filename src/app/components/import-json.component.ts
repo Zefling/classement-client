@@ -7,7 +7,8 @@ import { decode } from 'utf8';
 
 import { MessageService, MessageType } from './info-messages.component';
 
-import { Data, FileString } from '../interface';
+import { Data, FileString, importData } from '../interface';
+import { DBService } from '../services/db.service';
 import { GlobalService, TypeFile } from '../services/global.service';
 import { Logger, LoggerLevel } from '../services/logger';
 
@@ -20,9 +21,12 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     styleUrls: ['./import-json.component.scss'],
 })
 export class ImportJsonComponent implements OnDestroy {
-    jsonTmp?: Data;
+    jsonTmp?: importData[];
 
     onLoad = false;
+
+    @Input()
+    multi = false;
 
     @Input()
     actions: 'importOnly' | 'all' = 'all';
@@ -39,6 +43,7 @@ export class ImportJsonComponent implements OnDestroy {
         private translate: TranslateService,
         private globalService: GlobalService,
         private messageService: MessageService,
+        private dbService: DBService,
         private logger: Logger,
     ) {
         this._sub.push(
@@ -65,10 +70,34 @@ export class ImportJsonComponent implements OnDestroy {
     addJsonTemp(file: FileString) {
         try {
             const fileString = file.url?.replace('data:application/json;base64,', '');
-            const json = JSON.parse(decode(atob(fileString!))) as Data;
+            const data = JSON.parse(decode(atob(fileString!))) as Data | Data[];
 
-            if (Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options) {
-                this.jsonTmp = json;
+            this.jsonTmp = [];
+
+            if (!Array.isArray(data)) {
+                if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
+                    this.jsonTmp = [{ data: data }];
+                } else {
+                    this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+                        type: MessageType.error,
+                    });
+                }
+            } else if (this.multi) {
+                for (const json of data) {
+                    const item: importData = {};
+                    if (
+                        Array.isArray(json.groups) &&
+                        json.groups.length > 0 &&
+                        Array.isArray(json.list) &&
+                        json.options
+                    ) {
+                        item.data = json;
+                        item.selected = true;
+                    } else {
+                        item.error = true;
+                    }
+                    this.jsonTmp?.push(item);
+                }
             } else {
                 this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
                     type: MessageType.error,
@@ -82,15 +111,25 @@ export class ImportJsonComponent implements OnDestroy {
         }
     }
 
-    countItem(): number {
+    countItem(jsonTmp: importData): number {
         return (
-            (this.jsonTmp?.list?.length || 0) +
-            (this.jsonTmp?.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0)
+            (jsonTmp?.data?.list?.length || 0) +
+            (jsonTmp?.data?.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0)
         );
     }
 
-    importJson(type: 'replace' | 'new') {
-        this.load.emit({ action: type, data: this.jsonTmp });
+    importJson(jsonTmp: importData, type: 'replace' | 'new') {
+        this.load.emit({ action: type, data: jsonTmp.data });
+        this.clear();
+    }
+
+    async importMultiJson(type: 'replace' | 'new') {
+        const list = this.jsonTmp!.filter(e => !e.error && e.selected);
+        for (const jsonTmp of list) {
+            await this.dbService.access();
+            this.dbService.accessState = false;
+            this.load.emit({ action: type, data: jsonTmp.data });
+        }
         this.clear();
     }
 

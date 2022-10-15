@@ -8,6 +8,16 @@
         font-weight: 700;
         text-align: right;
     }
+
+    .input {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        text-align: center;
+
+        input {
+            width: auto;
+        }
+    }
 }
 
 loading-cmp {

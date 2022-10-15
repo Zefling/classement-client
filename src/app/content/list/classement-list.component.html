@@ -49,7 +49,7 @@
 </ng-template>
 
 <dialog-cmp #dialogImport class="auto-format">
-    <import-json (load)="importJson($event)" actions="importOnly"></import-json>
+    <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
 </dialog-cmp>
 
 <dialog-cmp #dialogDelete class="auto-format dialog-delete">

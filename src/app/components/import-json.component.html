@@ -1,4 +1,4 @@
-<div>{{ 'gererator.json.import.list' | translate }}</div>
+<div>{{ 'gererator.json.import.list' + (multi ? '.multi' : '') | translate }}</div>
 
 <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
@@ -8,30 +8,48 @@
     <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'gererator.loading' | translate }}</span>
 </div>
 
-<div *ngIf="jsonTmp" class="json-infos">
-    <span>{{ 'gererator.json.title' | translate }}</span>
-    <span>{{ jsonTmp.options.title || ('list.title.undefined' | translate) }}</span>
-    <span>{{ 'gererator.json.category' | translate }}</span>
-    <span>{{ 'category.' + (jsonTmp.options.category || 'undefined') | translate }}</span>
-    <span>{{ 'gererator.json.count.group' | translate }}</span>
-    <span>{{ jsonTmp.groups.length || 0 }}</span>
-    <span>{{ 'gererator.json.count.item' | translate }}</span>
-    <span>{{ countItem() }}</span>
-</div>
+<ng-container *ngIf="jsonTmp">
+    <label *ngFor="let file of jsonTmp" class="json-infos">
+        <ng-container *ngIf="!file.error">
+            <ng-container *ngIf="multi">
+                <span class="input">
+                    <input type="checkbox" [(ngModel)]="file.selected" />
+                    Selectionner ce classement:
+                </span>
+            </ng-container>
+            <span>{{ 'gererator.json.title' | translate }}</span>
+            <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
+            <span>{{ 'gererator.json.category' | translate }}</span>
+            <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
+            <span>{{ 'gererator.json.count.group' | translate }}</span>
+            <span>{{ file.data!.groups.length || 0 }}</span>
+            <span>{{ 'gererator.json.count.item' | translate }}</span>
+            <span>{{ countItem(file) }}</span>
+        </ng-container>
+    </label>
+</ng-container>
 
 <div class="button-image-save">
     <button class="button-add" (click)="cancelJson()">{{ 'gererator.json.cancel' | translate }}</button>
-    <ng-container *ngIf="actions === 'all'">
-        <button class="button-add primary" (click)="importJson('replace')" *ngIf="jsonTmp">
+    <ng-container *ngIf="!multi && actions === 'all'">
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')" *ngIf="jsonTmp">
             {{ 'gererator.json.import.replace' | translate }}
         </button>
-        <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
             {{ 'gererator.json.import.new' | translate }}
         </button>
     </ng-container>
-    <ng-container *ngIf="actions === 'importOnly'">
-        <button class="button-add primary" (click)="importJson('new')" *ngIf="jsonTmp">
+    <ng-container *ngIf="!multi && actions === 'importOnly'">
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
             {{ 'gererator.json.import.add' | translate }}
+        </button>
+    </ng-container>
+    <ng-container *ngIf="multi">
+        <button class="button-add primary" (click)="importMultiJson('replace')" *ngIf="jsonTmp">
+            {{ 'gererator.json.import.multi.replace' | translate }}
+        </button>
+        <button class="button-add primary" (click)="importMultiJson('new')" *ngIf="jsonTmp">
+            {{ 'gererator.json.import.multi.add' | translate }}
         </button>
     </ng-container>
 </div>

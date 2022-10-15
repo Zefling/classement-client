@@ -265,15 +265,20 @@
       "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
     },
     "json": {
-      "import.list": "Importer un classement\u00A0:",
       "title": "Titre\u00A0:",
       "category": "Categorie\u00A0:",
       "count.group": "Nombre de groupes\u00A0:",
       "count.item": "Nombre d'élements\u00A0:",
       "cancel": "Annuler",
-      "import.replace": "Importer et remplacer",
-      "import.new": "Importer dans un nouveau classement",
-      "import.add": "Importer ce classement"
+      "import": {
+        "list": "Importer un classement\u00A0:",
+        "list.multi": "Importer un ou des classements\u00A0:",
+        "replace": "Importer et remplacer",
+        "new": "Importer dans un nouveau classement",
+        "add": "Importer ce classement",
+        "multi.replace": "Importer et remplacer si existe",
+        "multi.add": "Ajouter"
+      }
     },
     "optimise": {
       "info": "Convertir l'image en WebP 300×300.",

@@ -109,6 +109,12 @@ export interface Data extends IndexedData {
     list: FileString[];
 }
 
+export interface importData {
+    data?: Data;
+    error?: boolean;
+    selected?: boolean;
+}
+
 export interface FormatedInfos extends IndexedData {
     options: Options;
     date: string | Date;

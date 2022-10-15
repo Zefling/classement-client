@@ -265,15 +265,20 @@
       "question": "Are you sure you want to leave this page?"
     },
     "json": {
-      "import.list": "Import a tierlist:",
       "title": "Title:",
       "category": "Category:",
       "count.group": "Number of groups:",
       "count.item": "Number of items:",
       "cancel": "Cancel",
-      "import.replace": "Import and replace",
-      "import.new": "Import into a new tierlist",
-      "import.add": "Import this tierlist"
+      "import": {
+        "list": "Import a tierlist:",
+        "list.multi": "Import one or more rankings:",
+        "replace": "Import and replace",
+        "new": "Import into a new tierlist",
+        "add": "Import this tierlist",
+        "multi.replace": "Import and replace if exists",
+        "multi.add": "Add import"
+      }
     },
     "optimise": {
       "info": "Convert image to WebP 300×300.",

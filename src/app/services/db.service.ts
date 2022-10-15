@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Subject } from 'rxjs';
+
 import { Logger, LoggerLevel } from './logger';
 
 import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
@@ -15,7 +17,24 @@ enum Store {
 export class DBService {
     private _db!: IDBDatabase;
 
+    accessState = true;
+    private accessSubject = new Subject<void>();
+
     constructor(private logger: Logger) {}
+
+    access(): Promise<void> {
+        return new Promise(resolve => {
+            if (this.accessState) {
+                resolve();
+            } else {
+                const sub = this.accessSubject.subscribe(() => {
+                    this.accessState = true;
+                    sub.unsubscribe();
+                    resolve();
+                });
+            }
+        });
+    }
 
     getLocalList(): Promise<FormatedInfos[]> {
         return this._getDB().then(db => this._getInfosList(db));
@@ -27,7 +46,6 @@ export class DBService {
             for (const info of infos) {
                 list.push(await this.loadLocal(info.id!));
             }
-
             return list;
         });
     }
@@ -75,6 +93,7 @@ export class DBService {
     }
 
     saveLocal(data: Data): Promise<FormatedInfosData> {
+        this.accessState = false;
         return new Promise((resolve, reject) => {
             this._formatData(data).then(formatData => {
                 this._getDB()
@@ -89,7 +108,10 @@ export class DBService {
                             : this._saveDB(db, Store.data, formatData.data),
                     )
                     .then(__ => resolve(formatData))
-                    .catch(_ => reject());
+                    .catch(_ => reject())
+                    .finally(() => {
+                        this.accessSubject.next();
+                    });
             });
         });
     }
@@ -101,7 +123,7 @@ export class DBService {
             exist =
                 (await this._testByIdDB(db, Store.infos, data.id)) && (await this._testByIdDB(db, Store.data, data.id));
         }
-        const id = !data.id ? await this._digestMessage(`${new Date()}`) : data.id;
+        const id = !data.id ? await this._digestMessage(`${Date.now()}`) : data.id;
         this.logger.log('Existing data', LoggerLevel.log, exist);
         return {
             update: exist,

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -46,6 +47,6 @@ import { PipesModule } from '../pipes/pipes.module';
         PaginationComponent,
         SeeClassementComponent,
     ],
-    imports: [CommonModule, PipesModule, RouterModule, TranslateModule],
+    imports: [CommonModule, FormsModule, PipesModule, RouterModule, TranslateModule],
 })
 export class ComponentsModule {}
