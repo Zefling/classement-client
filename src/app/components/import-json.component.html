@@ -9,22 +9,32 @@
 </div>
 
 <ng-container *ngIf="jsonTmp">
+    <div class="button-image-save" *ngIf="jsonTmp.length > 1">
+        <button class="button-add primary" (click)="selectAll(true)" *ngIf="jsonTmp">
+            {{ 'gererator.json.select.all' | translate }}
+        </button>
+        <button class="button-add primary" (click)="selectAll(false)" *ngIf="jsonTmp">
+            {{ 'gererator.json.unselect.all' | translate }}
+        </button>
+    </div>
+
     <label *ngFor="let file of jsonTmp" class="json-infos">
         <ng-container *ngIf="!file.error">
             <ng-container *ngIf="multi">
                 <span class="input">
                     <input type="checkbox" [(ngModel)]="file.selected" />
-                    Selectionner ce classement:
                 </span>
             </ng-container>
-            <span>{{ 'gererator.json.title' | translate }}</span>
-            <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
-            <span>{{ 'gererator.json.category' | translate }}</span>
-            <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
-            <span>{{ 'gererator.json.count.group' | translate }}</span>
-            <span>{{ file.data!.groups.length || 0 }}</span>
-            <span>{{ 'gererator.json.count.item' | translate }}</span>
-            <span>{{ countItem(file) }}</span>
+            <div class="infos-list">
+                <span>{{ 'gererator.json.title' | translate }}</span>
+                <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
+                <span>{{ 'gererator.json.category' | translate }}</span>
+                <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
+                <span>{{ 'gererator.json.count.group' | translate }}</span>
+                <span>{{ file.data!.groups.length || 0 }}</span>
+                <span>{{ 'gererator.json.count.item' | translate }}</span>
+                <span>{{ countItem(file) }}</span>
+            </div>
         </ng-container>
     </label>
 </ng-container>

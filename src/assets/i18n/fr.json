@@ -278,7 +278,9 @@
         "add": "Importer ce classement",
         "multi.replace": "Importer et remplacer si existe",
         "multi.add": "Ajouter"
-      }
+      },
+      "select.all": "Tout sélectionner",
+      "unselect.all": "Tout désélectionner"
     },
     "optimise": {
       "info": "Convertir l'image en WebP 300×300.",

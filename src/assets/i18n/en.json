@@ -278,7 +278,9 @@
         "add": "Import this tierlist",
         "multi.replace": "Import and replace if exists",
         "multi.add": "Add import"
-      }
+      },
+      "select.all": "Select all",
+      "unselect.all": "Unselect all"
     },
     "optimise": {
       "info": "Convert image to WebP 300×300.",

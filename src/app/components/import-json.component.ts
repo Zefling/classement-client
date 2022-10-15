@@ -103,6 +103,10 @@ export class ImportJsonComponent implements OnDestroy {
         }
     }
 
+    selectAll(select: boolean) {
+        this.jsonTmp!.forEach(e => (e.selected = select));
+    }
+
     countItem(jsonTmp: importData): number {
         return (
             (jsonTmp?.data?.list?.length || 0) +
