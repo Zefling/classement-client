@@ -1,5 +1,20 @@
 # Changelog - Standalone web app & API
 
+## 1.1.0 (2022-10-16)
+
+### Standalone web app
+
+-   add import / export all #8
+-   add annotation #7
+-   add maxlength for textarea
+-   improve dark mode
+
+### With API activited only
+
+-   rewrite navigation
+-   add page preview #3
+-   better visibility for personnal derivatives
+
 ## 1.0.1 (2022-10-11)
 
 ### Standalone web app

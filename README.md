@@ -21,6 +21,7 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Advanced customization of tiles, lines, background, etc.
     -   ✅ Image reduce size.
     -   ✅ Backup in browser or in Json.
+        -   ✅ Import / export all
     -   ✅ Image export (PNG, JPG or WebP).
     -   ✅ In-memory tierlists clone.
 -   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
@@ -43,6 +44,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Save tierlists on server
         -   ✅ Search in public tierlists
         -   ✅ See tierlists form template
+        -   ✅ Tierlist view
     -   ✅ Admin
         -   ✅ Edit profil & change roles
         -   ✅ Tierlists change status
