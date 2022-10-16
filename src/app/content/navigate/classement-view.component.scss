@@ -3,6 +3,8 @@
     margin: 0 15px 30px 30px;
 }
 
+// info block
+
 .infos {
     margin: 15px;
     padding: 15px;
@@ -29,6 +31,13 @@
     width: 100%;
     text-align: center;
     font-size: 80%;
+}
+
+// preview
+
+.preview {
+    display: flex;
+    justify-content: center;
 }
 
 // render
