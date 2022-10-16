@@ -13,6 +13,7 @@ import { GlobalService } from '../services/global.service';
 export class SeeClassementComponent {
     @Input() groups: FormatedGroup[] = [];
     @Input() list: FileString[] = [];
+    @Input() imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
 
     @Input() options!: Options;
 

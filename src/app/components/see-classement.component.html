@@ -32,7 +32,7 @@
                                 "
                             >
                                 <div *ngIf="item.url" class="image">
-                                    <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                    <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
                                 </div>
                                 <div *ngIf="item.title" class="title">
                                     <span>{{ item.title }}</span>

@@ -178,7 +178,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = data.data.list;
                 this.globalService.fixImageSize(this.groups, this.list);
                 setTimeout(() => {
-                    this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
+                    this.globalService
+                        .imagesCache(this.groups, this.list)
+                        .then(cache => Object.assign(this.imagesCache, cache));
                 });
             })
             .catch(() => {
@@ -194,7 +196,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.groups = classement.data.groups;
         this.list = classement.data.list;
         setTimeout(() => {
-            this.globalService.imagesCache(this.groups, this.list).then(cache => (this.imagesCache = cache));
+            this.globalService
+                .imagesCache(this.groups, this.list)
+                .then(cache => Object.assign(this.imagesCache, cache));
         });
 
         if (withDerivative && this.logged) {

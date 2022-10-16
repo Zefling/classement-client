@@ -12,6 +12,7 @@ import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
@@ -34,6 +35,8 @@ export class ClassementViewComponent implements OnDestroy {
 
     apiActive = environment.api?.active;
 
+    imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
 
@@ -50,6 +53,7 @@ export class ClassementViewComponent implements OnDestroy {
         private bdService: DBService,
         private messageService: MessageService,
         private translate: TranslateService,
+        private globalService: GlobalService,
     ) {
         this.logged = this.userService.logged;
 
@@ -106,6 +110,12 @@ export class ClassementViewComponent implements OnDestroy {
                         this.myClassement = classements[0];
                     }
                 });
+
+            setTimeout(() => {
+                this.globalService
+                    .imagesCache(this.classement!.data.groups!, this.classement!.data.list!)
+                    .then(cache => Object.assign(this.imagesCache, cache));
+            });
         }
     }
 
