@@ -124,6 +124,11 @@ body.light-mode {
     // theme
     --theme-selection: #8e94ec;
     --theme-shadow-color: #0006;
+    // tooltip
+    --tooltip-text-color: #000;
+    --tooltip-background: #d9e1f0ee;
+    --tooltip-shadow-color: rgb(66, 66, 66);
+    --tooltip-border-color: #b8bbd1;
 }
 
 body.dark-mode {
@@ -248,6 +253,11 @@ body.dark-mode {
     // theme
     --theme-selection: #3742d9;
     --theme-shadow-color: #5556;
+    // tooltip
+    --tooltip-text-color: #fff;
+    --tooltip-background: #202329ee;
+    --tooltip-shadow-color: #000;
+    --tooltip-border-color: #292a31;
 
     color-scheme: dark;
 }
@@ -477,5 +487,34 @@ dialog-cmp.auto-format .main {
 
     input:focus + ::before {
         outline: 1px solid var(--input-focus-border-color);
+    }
+}
+
+// tooltip
+
+.tooltip-container {
+    box-shadow: 2px 2px 5px var(--tooltip-shadow-color);
+    border: 1px solid var(--tooltip-border-color);
+    color: var(--tooltip-text-color);
+    background: var(--tooltip-background);
+    text-align: center;
+    position: fixed;
+    padding: 6px;
+    opacity: 0;
+    z-index: 4;
+    transform: translate(-50%, -30%);
+    animation: tooltip-slide 0.18s ease-out 0.5s;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+}
+
+@keyframes tooltip-slide {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
     }
 }

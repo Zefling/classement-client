@@ -17,6 +17,7 @@ import { PaginationComponent } from './paginate.component';
 import { SeeClassementComponent } from './see-classement.component';
 import { ThemeIconComponent } from './theme-icon.component';
 
+import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
 
 
@@ -47,6 +48,6 @@ import { PipesModule } from '../pipes/pipes.module';
         PaginationComponent,
         SeeClassementComponent,
     ],
-    imports: [CommonModule, FormsModule, PipesModule, RouterModule, TranslateModule],
+    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule],
 })
 export class ComponentsModule {}
