@@ -376,42 +376,6 @@ svg.color + svg {
     position: absolute;
     top: 0;
     left: -100000px;
-
-    .names {
-        font-size: var(--over-name-font-size, 120%);
-
-        pre {
-            white-space: pre-line;
-        }
-    }
-
-    .drop-list {
-        display: table-cell; // fix chromium
-
-        & > div {
-            display: inline-flex; // fix chromium
-            text-align: center;
-            vertical-align: bottom;
-        }
-
-        .content-box {
-            display: flex;
-        }
-    }
-
-    caption {
-        font-size: 120%;
-        padding: 10px;
-        color: var(--over-title-text-color, var(--content-title-text-color));
-    }
-
-    img {
-        // fix html2canvas
-        margin: auto;
-        position: relative;
-        // fix chromium (see : https://github.com/niklasvh/html2canvas/issues/2829)
-        display: initial !important;
-    }
 }
 
 .button-image-save span {

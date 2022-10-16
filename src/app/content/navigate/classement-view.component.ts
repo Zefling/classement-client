@@ -1,13 +1,19 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
+
+import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
+import { DialogComponent } from 'src/app/components/dialog.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
+import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 
@@ -28,6 +34,11 @@ export class ClassementViewComponent implements OnDestroy {
 
     apiActive = environment.api?.active;
 
+    @ViewChild('image') image!: ElementRef;
+    @ViewChild('dialogImage') dialogImage!: DialogComponent;
+
+    private _canvas?: HTMLCanvasElement;
+
     private _sub: Subscription[] = [];
 
     constructor(
@@ -37,6 +48,8 @@ export class ClassementViewComponent implements OnDestroy {
         private route: ActivatedRoute,
         private logger: Logger,
         private bdService: DBService,
+        private messageService: MessageService,
+        private translate: TranslateService,
     ) {
         this.logged = this.userService.logged;
 
@@ -96,6 +109,16 @@ export class ClassementViewComponent implements OnDestroy {
         }
     }
 
+    copyLink() {
+        Utils.copy(`${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`)
+            .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
+            .catch(e =>
+                this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
+                    type: MessageType.error,
+                }),
+            );
+    }
+
     openClassement() {
         this.router.navigate(['edit', this.classement!.rankingId]);
     }
@@ -141,5 +164,48 @@ export class ClassementViewComponent implements OnDestroy {
                 this.logger.log('local not found');
                 this.router.navigate(['navigate']);
             });
+    }
+
+    exportImage() {
+        this.dialogImage.open();
+        html2canvas(document.getElementById('table-classement') as HTMLElement, {
+            logging: false,
+            allowTaint: false,
+            useCORS: false,
+            scale: 2,
+        }).then(canvas => {
+            const element = this.image.nativeElement;
+            element.innerHTML = '';
+            element.appendChild(canvas);
+            this._canvas = canvas;
+        });
+    }
+
+    saveImage(type: string) {
+        const title = this.getFileName();
+        if (this._canvas) {
+            switch (type) {
+                case 'PNG':
+                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    break;
+                case 'JPG':
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    break;
+                case 'WEBP':
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    break;
+            }
+        }
+    }
+
+    private getFileName(): Data {
+        return this.classement!.data.options.title.trim() || this.translate.instant('list.title.undefined');
+    }
+
+    private downloadImage(data: string, filename: string) {
+        const a = document.createElement('a');
+        a.href = data;
+        a.download = filename;
+        a.click();
     }
 }

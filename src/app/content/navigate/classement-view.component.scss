@@ -30,3 +30,12 @@
     text-align: center;
     font-size: 80%;
 }
+
+// render
+
+.render {
+    width: var(--over-image-width, 1200px);
+    position: absolute;
+    top: 0;
+    left: -100000px;
+}

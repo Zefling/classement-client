@@ -16,6 +16,8 @@ export class SeeClassementComponent {
 
     @Input() options!: Options;
 
+    @Input() withAnotation = false;
+
     nameOpacity!: string;
 
     constructor(private globalService: GlobalService) {}

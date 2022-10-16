@@ -47,10 +47,38 @@
     </div>
 
     <see-classement
+        class="render"
         [options]="classement.data.options"
         [groups]="classement.data.groups"
         [list]="classement.data.list"
+        [withAnotation]="false"
     ></see-classement>
+
+    <see-classement
+        [options]="classement.data.options"
+        [groups]="classement.data.groups"
+        [list]="classement.data.list"
+        [withAnotation]="true"
+    ></see-classement>
+
+    <div class="save-actions buttons">
+        <button class="primary" (click)="copyLink()">🔗 {{ 'gererator.ranking.share.link' | translate }}</button>
+        <button class="primary" (click)="exportImage()">
+            <span class="icon-share"></span> {{ 'gererator.actions.export.image' | translate }}
+        </button>
+    </div>
 </ng-container>
 
 <loader-item *ngIf="loading"></loader-item>
+
+<dialog-cmp class="auto-format" #dialogImage closeButton>
+    <div class="button-image-save">
+        {{ 'gererator.actions.save.image' | translate }}
+        <span>
+            <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
+            <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
+            <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
+        </span>
+    </div>
+    <div #image></div>
+</dialog-cmp>

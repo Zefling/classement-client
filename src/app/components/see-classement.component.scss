@@ -5,6 +5,18 @@
 
 // content --------------------------------------------------------------------
 
+.table-classement {
+    min-width: 100%;
+    background-color: var(--over-image-background, var(--background));
+    background-image: var(--over-image-url);
+    background-repeat: repeat;
+    border-spacing: 1px;
+}
+
+.elements {
+    width: 100%;
+}
+
 .content-box {
     padding: var(--over-item-padding, 10px);
     margin: var(--over-item-margin, 2px);
@@ -122,6 +134,14 @@ table {
 }
 
 .drop-list {
+    min-height: calc(
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
+    );
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+    background: var(--over-drop-list-background, var(--drop-list-background));
+    border-radius: 4px;
+    overflow: hidden;
     display: table-cell; // fix chromium
 
     & > div {
@@ -133,6 +153,15 @@ table {
     .content-box {
         display: flex;
     }
+}
+
+.drop-zone-empty-list {
+    flex: 1;
+    height: calc(
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
+    );
+    order: 2;
 }
 
 caption {

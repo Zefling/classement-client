@@ -229,7 +229,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.shareUrl =
             this.apiActive && this.classement?.rankingId
-                ? `https://${window.location.host}/edit/${this.classement.rankingId}`
+                ? `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement.rankingId}`
                 : '';
     }
 
@@ -424,6 +424,23 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         });
     }
 
+    saveImage(type: string) {
+        const title = this.getFileName();
+        if (this._canvas) {
+            switch (type) {
+                case 'PNG':
+                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    break;
+                case 'JPG':
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    break;
+                case 'WEBP':
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    break;
+            }
+        }
+    }
+
     change() {
         if (this.options.autoSave) {
             if (this.changeTimer.length) {
@@ -447,23 +464,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             ligne.list = [];
         }
         this.messageService.addMessage(this.translate.instant('message.reset.groups'));
-    }
-
-    saveImage(type: string) {
-        const title = this.getFileName();
-        if (this._canvas) {
-            switch (type) {
-                case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
-                    break;
-                case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
-                    break;
-                case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
-                    break;
-            }
-        }
     }
 
     saveLocal(silence: boolean = false) {
