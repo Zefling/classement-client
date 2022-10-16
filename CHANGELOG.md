@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.1.1 (2022-10-16)
+
+### With API activited only
+
+-   fix image render
+
 ## 1.1.0 (2022-10-16)
 
 ### Standalone web app
