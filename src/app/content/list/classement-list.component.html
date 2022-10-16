@@ -65,8 +65,8 @@
     <p>{{ 'list.clone.question' | translate }}</p>
     <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
     <div>
-        <label>{{ 'list.clone.title' | translate }}</label>
-        <div><input type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
+        <label for="clone-title">{{ 'list.clone.title' | translate }}</label>
+        <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
     </div>
     <div class="buttons">
         <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>

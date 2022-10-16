@@ -58,6 +58,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     apiActive = environment.api?.active;
 
+    currentTile?: FileString;
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
@@ -65,6 +67,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
+    @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];
@@ -540,6 +543,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 document.exitFullscreen();
             }
         }
+    }
+
+    openTileInfo(item: FileString) {
+        this.currentTile = item;
+        this.dialogInfo.open();
     }
 
     @HostListener('window:fullscreenchange')

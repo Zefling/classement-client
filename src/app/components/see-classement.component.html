@@ -37,6 +37,7 @@
                                 <div *ngIf="item.title" class="title">
                                     <span>{{ item.title }}</span>
                                 </div>
+                                <div *ngIf="item.annotation" class="tile-info" [title]="item.annotation"></div>
                             </div>
                         </div>
                     </div>

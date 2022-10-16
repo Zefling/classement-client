@@ -91,6 +91,7 @@
                                             <div *ngIf="item.title" class="title">
                                                 <span>{{ item.title }}</span>
                                             </div>
+                                            <div class="tile-info" (click)="openTileInfo(item)"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +142,14 @@
                             >
                                 <button class="btn-delete" (click)="removeItem(index)">×</button>
                                 <img [src]="item.url" [alt]="item.name" />
-                                <input class="input-title" input="text" [(ngModel)]="item.title" (blur)="change()" />
+                                <input
+                                    class="input-title"
+                                    input="text"
+                                    maxlength="150"
+                                    [(ngModel)]="item.title"
+                                    (blur)="change()"
+                                />
+                                <div class="tile-info" (click)="openTileInfo(item)"></div>
                             </div>
                         </div>
                     </div>
@@ -357,4 +365,19 @@
             </button>
         </div>
     </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogInfo closeButton>
+    <ng-container *ngIf="currentTile">
+        <div>
+            <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label
+            ><br />
+            <input maxlength="150" id="ranking-title" type="text" [(ngModel)]="currentTile.title" />
+        </div>
+        <div>
+            <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label
+            ><br />
+            <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
+        </div>
+    </ng-container>
 </dialog-cmp>

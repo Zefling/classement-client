@@ -236,7 +236,9 @@
       "diff": "Tuiles dans d'autres dérivés",
       "add.tile": "Cliquer sur les tuiles que vous voulez ajouter à votre liste.",
       "no.tile": "Il n'y a aucune tuile.",
-      "close": "Fermer"
+      "close": "Fermer",
+      "title": "Titre",
+      "annotation": "Annotation"
     },
     "line": {
       "add": "Ajout",

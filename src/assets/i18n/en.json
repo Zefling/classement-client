@@ -236,7 +236,9 @@
       "diff": "Tiles in other derivatives",
       "add.tile": "Click on the tiles you want to add to your list.",
       "no.tile": "There are no tiles.",
-      "close": "Close"
+      "close": "Close",
+      "title": "Title",
+      "annotation": "Annotation"
     },
     "line": {
       "add": "Add",

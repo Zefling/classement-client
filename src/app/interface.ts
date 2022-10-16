@@ -52,6 +52,7 @@ export type FileString = {
     type: string;
     date: number;
     title?: string;
+    annotation?: string;
 };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };

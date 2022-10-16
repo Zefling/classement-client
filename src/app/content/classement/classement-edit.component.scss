@@ -320,6 +320,25 @@ svg.color + svg {
         -1px -1px 2px var(--input-color-shadow), 1px 1px 2px var(--input-color-shadow);
 }
 
+.tile-info {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+
+    &::before {
+        content: 'i';
+        display: block;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        background: var(--input-background-transparent);
+        border: 1px solid var(--text-color);
+        text-align: center;
+        line-height: 16px;
+        cursor: pointer;
+    }
+}
+
 .classement-top {
     display: flex;
     align-items: center;
