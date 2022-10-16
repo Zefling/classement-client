@@ -315,6 +315,9 @@ svg.color + svg {
     border: 0;
     font-size: 75%;
     background: var(--input-background-transparent);
+    text-shadow: 0 -1px var(--input-color-shadow), 0 1px var(--input-color-shadow), -1px -1px var(--input-color-shadow),
+        1px 1px var(--input-color-shadow), 0 -1px 2px var(--input-color-shadow), 0 1px 2px var(--input-color-shadow),
+        -1px -1px 2px var(--input-color-shadow), 1px 1px 2px var(--input-color-shadow);
 }
 
 .classement-top {
