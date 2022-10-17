@@ -333,7 +333,13 @@
         <div>
             <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label
             ><br />
-            <input maxlength="150" id="ranking-title" type="text" [(ngModel)]="currentTile.title" />
+            <input
+                maxlength="150"
+                id="ranking-title"
+                type="text"
+                [(ngModel)]="currentTile.title"
+                (ngModelChange)="onTitleChange()"
+            />
         </div>
         <div>
             <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label

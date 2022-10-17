@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -84,6 +84,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private userService: APIUserService,
         private classementService: APIClassementService,
         private logger: Logger,
+        private cd: ChangeDetectorRef,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -246,6 +247,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                   element?.scrollWidth,
               )
             : null;
+    }
+
+    onTitleChange() {
+        this.cd.detectChanges();
     }
 
     ngOnDestroy() {
