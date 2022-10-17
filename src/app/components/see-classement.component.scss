@@ -196,3 +196,12 @@ img {
         cursor: default;
     }
 }
+
+.title-item-width-auto {
+    text-align: center;
+
+    span {
+        white-space: nowrap;
+        display: inline-block;
+    }
+}

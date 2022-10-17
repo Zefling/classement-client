@@ -283,6 +283,15 @@ svg.color + svg {
     max-width: 100%;
 }
 
+.title-item-width-auto {
+    text-align: center;
+
+    span {
+        white-space: nowrap;
+        display: inline-block;
+    }
+}
+
 .content-render {
     position: relative;
     &.top {

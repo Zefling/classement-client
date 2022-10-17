@@ -31,4 +31,15 @@ export class SeeClassementComponent {
         const val = this.globalService.updateVarCss(this.options);
         this.nameOpacity = val.nameOpacity;
     }
+
+    calcWidth(item: FileString, element: HTMLElement | null) {
+        return this.options.itemWidthAuto && !item.title
+            ? ((item.width || 150) / (item.height || 150)) * this.options.itemHeight
+            : this.options.itemWidthAuto && element
+            ? Math.max(
+                  (((item.width || 150) - 16) / (item.height || 150)) * this.options.itemHeight,
+                  element?.scrollWidth,
+              )
+            : null;
+    }
 }
