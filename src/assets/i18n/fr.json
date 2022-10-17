@@ -472,8 +472,8 @@
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
       "The password must be fewer than * characters.": "Le mot de passe doit faire moins de % caractères.",
-      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenir au moins une minuscule.",
-      "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenir au moins une majuscule.",
+      "The password must contain at least one lowercase letter.": "Le mot de passe doit contenir au moins une minuscule.",
+      "The password must contain at least one uppercase letter.": "Le mot de passe doit contenir au moins une majuscule.",
       "The password must contain at least one number.": "Le mot de passe doit contenir au moins un chiffre.",
       "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,).",
       "The password may not contain sequences of three or more repeated characters.": "Le mot de passe ne doit pas contenir de séquence de 3 caractères ou plus."
