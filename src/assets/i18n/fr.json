@@ -85,7 +85,7 @@
       "remove": "Supprimer",
       "replace": "Remplacer"
     },
-    "no.result": "Pas de résultats.",
+    "no.result": "Pas de résultat.",
     "create.new": "Créez votre classement.",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
@@ -150,7 +150,7 @@
       "title": "Titre du classement\u00A0:",
       "title.color": "Couleur du text du titre\u00A0:",
       "group": "Groupe\u00A0:",
-      "sizes": "Dimentions d'une tuile\u00A0:",
+      "sizes": "Dimensions d'une tuile\u00A0:",
       "margin": "Marge",
       "padding": "Rembourrage",
       "border": "Bordure",
@@ -228,13 +228,13 @@
       "group.title": "Classement",
       "name": "Nom",
       "list": "Liste",
-      "drop.image": "Copier-coller ou déposez ici ↓ une ou un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
-      "add.image": "Cliquez ici pour ajouter une ou un groupe d'images",
+      "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
+      "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
       "share.link": "Partagez ce classement à vos amis",
-      "copy.link.success": "Le lien a été copier dans le presse-papiers  pier avec succès",
+      "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
       "copy.link.error": "Impossible de copier le lien dans le presse-papiers",
       "diff": "Tuiles dans d'autres dérivés",
-      "add.tile": "Cliquer sur les tuiles que vous voulez ajouter à votre liste.",
+      "add.tile": "Cliquez sur les tuiles que vous voulez ajouter à votre liste.",
       "no.tile": "Il n'y a aucune tuile.",
       "close": "Fermer",
       "title": "Titre",
@@ -392,15 +392,15 @@
       "title": "Information",
       "data.privacy": {
         "title": "Confidentialité des données",
-        "text": "Les données demandées lors de la connexion via un service tier se limite au minimun pour la création de compte\u00A0: courriel et pseudonyme ou prénom."
+        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimun pour la création de compte\u00A0: courriel et pseudonyme ou prénom."
       },
       "data.deletion": {
         "title": "Suppression des données",
-        "text": "Si vous supprimer votre compte, vos création seront toujours disponible de façon anonimisé. Si vous voulez leur destruction complète, contactez l'administrateur."
+        "text": "Si vous supprimez votre compte, vos créations seront toujours disponibles de façon anonymisées. Si vous voulez leur destruction complète, contactez l'administrateur."
       },
       "contact.admin": {
         "title": "Contacter l'administrateur",
-        "text": "Faire un réclamation, demander une information, reporter une bug, etc.\nAjoutez une information qui permet de vous identifier, nom d'utilisateur ou email, dans votre message de demande afin de pouvoir vous répondre ou vous identifier.",
+        "text": "Faire une réclamation, demander une information, reporter un bug, etc.\nAjoutez une information qui permet de vous identifier, nom d'utilisateur ou email, dans votre message de demande afin de pouvoir vous répondre ou vous identifier.",
         "username": "Nom d'utilisateur",
         "email": "Courriel",
         "message": "Message",
@@ -436,12 +436,12 @@
       "1031": "Jeton non trouvé.",
       "1040": "Ce service de connexion associé n'existe pas.",
       "1100": "Test invalide.",
-      "2000": "Sauvegarde impossible : Contenu dubliqué.",
+      "2000": "Sauvegarde impossible : Contenu dupliqué.",
       "3000": "Utilisateur non trouvé.",
       "3001": "Permission impossible. (Niveau modérateur requis)",
       "3002": "Permission impossible. (Niveau administrateur requis)",
-      "3003": "Information utilisateur non trouvé pour cette action.",
-      "3010": "Votre compte à été banni. Contacter l'administrateur pour plus d'information.",
+      "3003": "Information utilisateur non trouvée pour cette action.",
+      "3010": "Votre compte à été banni. Contactez l'administrateur pour plus d'informations.",
       "3020": "Votre compte n'a pas été validé. Si le jeton de validation est périmé, demandez un changement de mot de passe.",
       "3101": "Classement non trouvé.",
       "3102": "Pas de classement trouvé.",
@@ -472,7 +472,7 @@
     "owasp": {
       "The password must be at least * characters long.": "Le mot de passe doit faire au moins % caractères.",
       "The password must be fewer than * characters.": "Le mot de passe doit faire moins de % caractères.",
-      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenir au moins une minuscile.",
+      "The password must contain at least one lowercase letter.": "Le mot de passe doit doit contenir au moins une minuscule.",
       "The password must contain at least one uppercase letter.": "Le mot de passe doit mot de passe doit contenir au moins une majuscule.",
       "The password must contain at least one number.": "Le mot de passe doit contenir au moins un chiffre.",
       "The password must contain at least one special character.": "Le mot de passe doit contenir au moins un caractère spécial (ex. : &!#,).",
@@ -504,14 +504,14 @@
     "user": {
       "singup.success": "😊 Utilisateur créé.",
       "validate.success": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
-      "update.success": "😊 Utilisateur mise à jour avec succès.",
+      "update.success": "😊 Utilisateur mis à jour avec succès.",
       "remove.success": "😲 Utilisateur anonymisé avec succès."
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",
       "deleted.success": "🗑 Le classement a été effacé avec succès.",
       "restored.success": "😊 La classement a été restauré avec succès.",
-      "hidden.success": "🫣 Le classement a été caché avec success.",
+      "hidden.success": "🫣 Le classement a été caché avec succès.",
       "showed.success": "😊 La classement a été rendu public avec succès."
     },
     "token": {
@@ -519,7 +519,7 @@
       "not": "⚠️ Pas de jeton de création de compte."
     },
     "contact": {
-      "sent.success": "😊 Message a été envoyé à l'administrateur avec succès."
+      "sent.success": "😊 Le message a été envoyé à l'administrateur avec succès."
     },
     "navigate": {
       "access.error": "⚠️ Impossible de récupérer les listes de classements."
