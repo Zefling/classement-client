@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+## 1.1.2 (2022-10-18)
+
+### Standalone web app
+
+-   fix title width in tile when “automatic tile width” is activated
+-   improve langage FR & EN (Thanks Ambroise Croizat)
+
+### With API activited only
+
+-   fix crash when canceling Oauth authentication
+-   fix on save tierlist
+
 ## 1.1.1 (2022-10-16)
 
 ### With API activited only
@@ -46,6 +58,7 @@
 -   improve textarea with autoresize (contact page)
 -   fix loading issues in navigate
 -   fix auto login
+-   show hidden tierlist for current user
 
 ## 0.9.22 beta (2022-09-25)
 
@@ -86,6 +99,7 @@
 
 -   add the different tiles of derivative
 -   improve list “my derivative” on edit page
+-   add search by template and userId
 
 ## 0.9.17 beta (2022-09-17)
 
