@@ -243,13 +243,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             ? ((item.width || 150) / (item.height || 150)) * this.options.itemHeight
             : this.options.itemWidthAuto && element
             ? Math.max(
-                  (((item.width || 150) - 16) / (item.height || 150)) * this.options.itemHeight,
+                  (((item.width || 150) - 18 * 2) / (item.height || 150)) * this.options.itemHeight,
                   element?.scrollWidth,
               )
             : null;
     }
 
-    onTitleChange() {
+    detectChanges() {
         this.cd.detectChanges();
     }
 
@@ -358,6 +358,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             );
         }
         this.globalService.withChange = true;
+
+        this.detectChanges();
         this.change();
     }
 

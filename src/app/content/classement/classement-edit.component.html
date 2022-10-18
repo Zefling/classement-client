@@ -87,10 +87,13 @@
                                             </div>
                                             <div
                                                 *ngIf="item.title"
+                                                #title
                                                 class="title"
                                                 [class.title-item-width-auto]="options.itemWidthAuto"
                                             >
-                                                <span class="title-span">{{ item.title }}</span>
+                                                <span class="title-span" (ngInit)="detectChanges()">{{
+                                                    item.title
+                                                }}</span>
                                             </div>
                                             <div class="tile-info" (click)="openTileInfo(item)"></div>
                                         </div>
@@ -338,7 +341,7 @@
                 id="ranking-title"
                 type="text"
                 [(ngModel)]="currentTile.title"
-                (ngModelChange)="onTitleChange()"
+                (ngModelChange)="detectChanges()"
             />
         </div>
         <div>
