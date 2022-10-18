@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 
 import { FileString, FormatedGroup, Options } from 'src/app/interface';
 
@@ -21,7 +21,7 @@ export class SeeClassementComponent {
 
     nameOpacity!: string;
 
-    constructor(private globalService: GlobalService) {}
+    constructor(private globalService: GlobalService, private cd: ChangeDetectorRef) {}
 
     ngDoCheck() {
         if (!this.options) {
@@ -30,6 +30,10 @@ export class SeeClassementComponent {
 
         const val = this.globalService.updateVarCss(this.options);
         this.nameOpacity = val.nameOpacity;
+    }
+
+    detectChanges() {
+        this.cd.detectChanges();
     }
 
     calcWidth(item: FileString, element: HTMLElement | null) {

@@ -83,7 +83,11 @@
                                             [style.width.px]="calcWidth(item, tile.querySelector('.title-span'))"
                                         >
                                             <div *ngIf="item.url" class="image">
-                                                <img src="{{ item.url }}" alt="{{ item.name }}" />
+                                                <img
+                                                    (ngInit)="detectChanges()"
+                                                    src="{{ item.url }}"
+                                                    alt="{{ item.name }}"
+                                                />
                                             </div>
                                             <div
                                                 *ngIf="item.title"
