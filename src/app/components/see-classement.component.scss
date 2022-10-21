@@ -73,6 +73,16 @@ table {
     border-spacing: 1px;
 }
 
+// fix the preview background
+:host.preview .render {
+    background-color: var(--over-image-background, var(--background));
+    background-image: var(--over-image-url);
+
+    table {
+        background: none;
+    }
+}
+
 .elements {
     width: 100%;
 }
@@ -93,7 +103,7 @@ table {
 }
 
 // text only
-.title:first-child:last-child {
+.title:first-child {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -101,13 +111,16 @@ table {
 }
 
 // image, text only
-.title:last-child:not(:first-child),
-.title:first-child:last-child span {
+.title:not(:first-child),
+.title:first-child span {
     text-align: center;
-    color: var(--over-item-text-color, var(--content-box-text));
     font-size: 85%;
     word-wrap: break-word;
     max-width: 100%;
+}
+
+.title {
+    color: var(--over-item-text-color, var(--content-box-text));
 }
 
 .content-render {

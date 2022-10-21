@@ -266,7 +266,7 @@ svg.color + svg {
 }
 
 // text only
-.title:first-child:last-child {
+.title:first-child {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -274,13 +274,16 @@ svg.color + svg {
 }
 
 // image, text only
-.title:last-child:not(:first-child),
-.title:first-child:last-child span {
+.title:not(:first-child),
+.title:first-child span {
     text-align: center;
-    color: var(--over-item-text-color, var(--content-box-text));
     font-size: 85%;
     word-wrap: break-word;
     max-width: 100%;
+}
+
+.title {
+    color: var(--over-item-text-color, var(--content-box-text));
 }
 
 .title-item-width-auto {
