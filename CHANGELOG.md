@@ -1,5 +1,19 @@
 # Changelog - Standalone web app & API
 
+## 1.2.0 (2022-10-22)
+
+### Standalone web app
+
+-   add change date #9
+-   make a empty derivatives #10
+-   add popup with all "my derivatives"
+-   change URL of tierlist on save if id change
+-   review all buttons on page view
+
+### With API activited only
+
+-   add change date
+
 ## 1.1.3 (2022-10-22)
 
 ### Standalone web app
