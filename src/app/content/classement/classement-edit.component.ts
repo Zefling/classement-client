@@ -88,6 +88,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
+                const fork = params['fork'] === 'fork';
+
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
 
@@ -97,13 +99,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
                             if (classement) {
                                 this.logger.log('loadServerClassement (user)');
-                                this.loadServerClassement(classement);
+                                this.loadServerClassement(classement, fork);
                             } else {
                                 this.classementService
                                     .getClassement(this.id!)
                                     .then(classement => {
                                         this.logger.log('loadServerClassement (server)');
-                                        this.loadServerClassement(classement);
+                                        this.loadServerClassement(classement, fork);
                                     })
                                     .catch(() => {
                                         this.logger.log('loadLocalClassement (browser)');
@@ -186,11 +188,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             })
             .catch(() => {
                 this.logger.log('local not found');
-                this.router.navigate(['/edit', 'new']);
+                this.router.navigate(['edit', 'new']);
             });
     }
 
-    loadServerClassement(classement: Classement, withDerivative: boolean = true) {
+    loadServerClassement(classement: Classement, fork: boolean, withDerivative: boolean = true) {
         this.classement = classement;
         this.options = { ...defaultOptions, ...classement.data.options, ...{ showAdvancedOptions: false } };
         this.resetCache();
@@ -209,10 +211,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.derivatives = classements;
                 });
         }
+
+        if (fork) {
+            this.reset();
+        }
     }
 
     loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['/edit', classement.rankingId]);
+        this.router.navigate(['edit', classement.rankingId]);
         this.dialogDerivatives.close();
     }
 
@@ -491,9 +497,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     saveLocal(silence: boolean = false) {
         this.bdService.saveLocal(this.getData()).then(
             item => {
+                this.resetCache();
                 this.id = item.data.id;
                 if (this.new) {
-                    this.router.navigate(['/edit', this.id]);
+                    this.router.navigate(['edit', this.id]);
                 }
                 this.new = false;
                 if (this.classement && this.id) {
@@ -502,7 +509,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (!silence) {
                     this.messageService.addMessage(this.translate.instant('message.save.success'));
                 }
-                this.resetCache();
             },
             _ => {
                 this.messageService.addMessage(this.translate.instant('message.save.echec'), {
@@ -520,6 +526,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     updateAfterServerSave(classement: Classement) {
+        const navigate = this.classement?.rankingId !== classement.rankingId;
+
         // update local data
         this.classement = classement;
         this.list = classement.data.list;
@@ -529,6 +537,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (classement.localId) {
             // persist data
             this.saveLocal();
+        }
+
+        if (!this.new && navigate) {
+            this.resetCache();
+            this.router.navigate(['edit', classement.rankingId]);
         }
     }
 
@@ -547,7 +560,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }
             case 'new': {
                 this.globalService.jsonTmp = event.data;
-                this.router.navigate(['/edit', 'new']);
+                this.router.navigate(['edit', 'new']);
                 this.messageService.addMessage(this.translate.instant('message.json.read.new'));
                 break;
             }

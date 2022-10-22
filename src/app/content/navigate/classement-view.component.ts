@@ -26,6 +26,7 @@ import { environment } from 'src/environments/environment';
 export class ClassementViewComponent implements OnDestroy {
     classement?: Classement;
     myClassement?: Classement;
+    myClassements?: Classement[];
     myClassementCount = 0;
 
     loading = false;
@@ -39,6 +40,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
+    @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
 
@@ -107,6 +109,7 @@ export class ClassementViewComponent implements OnDestroy {
             this.classementService
                 .getClassementsByTemplateId(classement?.templateId, this.userService.user?.id)
                 .then(classements => {
+                    this.myClassements = classements;
                     this.myClassementCount = classements?.length || 0;
                     if (this.myClassementCount) {
                         // last on first
@@ -137,8 +140,21 @@ export class ClassementViewComponent implements OnDestroy {
         this.router.navigate(['edit', this.classement!.rankingId]);
     }
 
+    openClassementFork() {
+        this.router.navigate(['edit', this.classement!.rankingId, 'fork']);
+    }
+
     seeMyClassement() {
         this.router.navigate(['navigate', 'view', this.myClassement!.rankingId]);
+    }
+
+    seeMyClassements() {
+        this.dialogDerivatives.open();
+    }
+
+    loadDerivativeClassement(classement: Classement) {
+        this.router.navigate(['navigate', 'view', classement.rankingId]);
+        this.dialogDerivatives.close();
     }
 
     openMyClassement() {

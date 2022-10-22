@@ -41,6 +41,10 @@
     font-size: 80%;
 }
 
+.buttons {
+    margin-top: 15px;
+}
+
 // preview
 
 .preview {
@@ -55,4 +59,60 @@
     position: absolute;
     top: 0;
     left: -100000px;
+}
+
+// derivatives ------------------------------------------------------------------
+
+.table-derivatives {
+    border-spacing: 0;
+    position: relative;
+    margin: 0 -30px;
+
+    thead {
+        background: var(--list-header-background);
+        position: sticky;
+        top: 0;
+    }
+
+    th {
+        padding: 7px;
+    }
+
+    td {
+        padding: 10px 5px;
+
+        a {
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr:hover {
+            background: var(--list-line-hover-background);
+            cursor: default;
+        }
+
+        .current {
+            color: var(--list-selected-text);
+        }
+
+        .date {
+            text-align: center;
+
+            span {
+                margin: auto 5px;
+                display: block;
+            }
+        }
+
+        .groups,
+        .items {
+            text-align: center;
+            padding-right: 10px;
+        }
+
+        .actions {
+            text-align: center;
+        }
+    }
 }

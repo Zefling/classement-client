@@ -8,6 +8,12 @@ import { ClassementEditComponent } from './classement-edit.component';
 
 const routes: Routes = [
     {
+        path: ':id/:fork',
+        pathMatch: 'full',
+        component: ClassementEditComponent,
+        canActivate: [DataChange],
+    },
+    {
         path: ':id',
         pathMatch: 'full',
         component: ClassementEditComponent,

@@ -257,11 +257,16 @@
       "import.json": "Importer",
       "save.image": "Sauvegarder au format\u00A0:",
       "edit.local": "Éditer la version locale",
-      "edit.server": "Éditer la version serveur",
+      "edit.local.empty": "Éditer la version locale vidé",
       "see.my.derivative": "Voir mon dérivé",
+      "see.my.last.derivative": "Voir mon dernier dérivé",
+      "see.this.derivative": "Voir ce dérivé",
       "make.my.derivative": "Faire mon dérivé",
+      "make.my.derivative.empty": "Faire mon dérivé vidé",
       "edit.my.derivative": "Éditer mon dérivé",
+      "edit.my.last.derivative": "Éditer mon dernier dérivé",
       "new.derivative": "Nouveau dérivé à partir de ce classement",
+      "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
       "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement."
     },
     "change": {

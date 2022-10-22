@@ -36,29 +36,58 @@
             </div>
         </div>
         <div class="buttons">
+            <button (click)="openClassementFork()" *ngIf="!currentUser" class="primary">
+                {{
+                    (!apiActive
+                        ? 'gererator.actions.edit.local.empty'
+                        : !logged
+                        ? 'gererator.actions.make.my.derivative.empty'
+                        : 'gererator.actions.new.derivative.empty'
+                    ) | translate
+                }}
+            </button>
             <button (click)="openClassement()" *ngIf="!currentUser">
                 {{
                     (!apiActive
                         ? 'gererator.actions.edit.local'
-                        : !currentUser && logged
-                        ? myClassement
-                            ? 'gererator.actions.new.derivative'
-                            : 'gererator.actions.edit.server'
-                        : 'gererator.actions.make.my.derivative'
+                        : !logged
+                        ? 'gererator.actions.make.my.derivative'
+                        : 'gererator.actions.new.derivative'
                     ) | translate
                 }}
             </button>
-
+        </div>
+        <div class="buttons">
             <button *ngIf="myClassement && !currentUser" (click)="seeMyClassement()" class="primary">
-                {{ 'gererator.actions.see.my.derivative' | translate }}
+                {{
+                    (myClassementCount > 1
+                        ? 'gererator.actions.see.my.last.derivative'
+                        : 'gererator.actions.see.my.derivative'
+                    ) | translate
+                }}
             </button>
             <button *ngIf="myClassement" (click)="openMyClassement()" class="primary">
-                {{ 'gererator.actions.edit.my.derivative' | translate }}
+                {{
+                    (myClassementCount > 1
+                        ? 'gererator.actions.edit.my.last.derivative'
+                        : 'gererator.actions.edit.my.derivative'
+                    ) | translate
+                }}
+            </button>
+            <button *ngIf="myClassementCount > 1" (click)="seeMyClassements()" class="primary">
+                {{ 'navigate.my.derivatives' | translate }}
             </button>
             <div class="note" *ngIf="myClassementCount > 1">
                 {{ 'gererator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
             </div>
         </div>
+    </div>
+
+    <div class="save-actions buttons">
+        <button class="primary" (click)="copyLink()">🔗 {{ 'gererator.ranking.share.link' | translate }}</button>
+        <button class="primary" (click)="exportImage()">
+            <span class="icon-share"></span> {{ 'gererator.actions.export.image' | translate }}
+        </button>
     </div>
 
     <see-classement
@@ -77,13 +106,6 @@
         [list]="classement.data.list"
         [withAnotation]="true"
     ></see-classement>
-
-    <div class="save-actions buttons">
-        <button class="primary" (click)="copyLink()">🔗 {{ 'gererator.ranking.share.link' | translate }}</button>
-        <button class="primary" (click)="exportImage()">
-            <span class="icon-share"></span> {{ 'gererator.actions.export.image' | translate }}
-        </button>
-    </div>
 </ng-container>
 
 <loader-item *ngIf="loading"></loader-item>
@@ -98,4 +120,46 @@
         </span>
     </div>
     <div #image></div>
+</dialog-cmp>
+
+<dialog-cmp #dialogDerivatives closeButton>
+    <table class="table-derivatives" *ngIf="myClassements">
+        <thead>
+            <tr>
+                <th class="title">{{ 'list.title.name' | translate }}</th>
+                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="groups">{{ 'list.count.group' | translate }}</th>
+                <th class="items">{{ 'list.count.item' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let derivative of myClassements"
+                [class.current]="derivative.rankingId === classement?.rankingId"
+            >
+                <td class="title">
+                    {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+                </td>
+                <td class="date">
+                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                </td>
+                <td class="groups">{{ derivative.totalGroups }}</td>
+                <td class="items">{{ derivative.totalItems }}</td>
+                <td class="actions">
+                    <button
+                        class="primary"
+                        *ngIf="derivative.rankingId !== classement?.rankingId"
+                        (click)="loadDerivativeClassement(derivative)"
+                    >
+                        {{ 'gererator.actions.see.this.derivative' | translate }}
+                    </button>
+                    <ng-container *ngIf="derivative.rankingId === classement?.rankingId">
+                        {{ 'list.current' | translate }}
+                    </ng-container>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </dialog-cmp>

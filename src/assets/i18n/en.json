@@ -257,11 +257,16 @@
       "import.json": "Import",
       "save.image": "Save as:",
       "edit.local": "Edit local version",
-      "edit.server": "Edit server version",
+      "edit.local.empty": "Edit empty local version",
       "see.my.derivative": "See my derivative",
+      "see.my.last.derivative": "See my last derivative",
+      "see.this.derivative": "See this derivative",
       "make.my.derivative": "Make my derivative",
+      "make.my.derivative.empty": "Make my empty derivative",
       "edit.my.derivative": "Edit my derivative",
+      "edit.my.last.derivative": "Edit my last derivative",
       "new.derivative": "New derivative from this tierlist",
+      "new.derivative.empty": "New empty derivative from this tierlist",
       "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist."
     },
     "change": {
