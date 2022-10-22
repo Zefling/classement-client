@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+## 1.1.3 (2022-10-22)
+
+### Standalone web app
+
+-   fix tile title color with annotation
+-   fix tile title position without image
+-   fix background preview
+
+### With API activited only
+
+-   remove url for tile with no image
+
 ## 1.1.2 (2022-10-18)
 
 ### Standalone web app
