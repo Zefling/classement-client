@@ -1,5 +1,9 @@
 <h2>{{ 'navigate.visualization' | translate }}</h2>
 
+<div class="return">
+    <a (click)="retrun()">🢀 {{ 'navigate.see.derivatives' | translate }}</a>
+</div>
+
 <ng-container *ngIf="!loading && classement && classement.data">
     <div class="infos">
         <h3 class="name">{{ classement.name }}</h3>
@@ -17,8 +21,19 @@
         <div class="username">
             {{ 'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) } }}
         </div>
-        <div class="date">
-            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+        <div class="dates">
+            <div class="date">
+                {{
+                    'gererator.ranking.create'
+                        | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+                }}
+            </div>
+            <div class="date" *ngIf="classement.dateChange">
+                {{
+                    'gererator.ranking.change'
+                        | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+                }}
+            </div>
         </div>
         <div class="buttons">
             <button (click)="openClassement()" *ngIf="!currentUser">

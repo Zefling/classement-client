@@ -239,7 +239,9 @@
       "no.tile": "タイルがありません。",
       "close": "閉じる",
       "title": "タイトル",
-      "annotation": "注釈"
+      "annotation": "注釈",
+      "create": "Created on {{ DATE }}に作成",
+      "change": "Changed on {{ DATE }}に変更"
     },
     "line": {
       "add": "追加",

@@ -35,20 +35,31 @@
                         {{ 'category.' + (category.category || 'undefined') | translate }}
                         <ng-container *ngIf="isCatagoryList"> ({{ category.templateTotal }}) </ng-container>
                     </div>
-                    <div class="groups" *ngIf="!isCatagoryList">
-                        <div [title]="'list.count.group' | translate">
-                            <span class="icon-group"></span> {{ category.totalGroups }}
+                    <ng-container *ngIf="!isCatagoryList">
+                        <div class="groups">
+                            <div [title]="'list.count.group' | translate">
+                                <span class="icon-group"></span> {{ category.totalGroups }}
+                            </div>
+                            <div [title]="'list.count.item' | translate">
+                                <span class="icon-tile"></span> {{ category.totalItems }}
+                            </div>
                         </div>
-                        <div [title]="'list.count.item' | translate">
-                            <span class="icon-tile"></span> {{ category.totalItems }}
+                        <div class="username">
+                            {{ 'user.by' | translate: { autor: category.user || ('list.user.anonymous' | translate) } }}
                         </div>
-                    </div>
-                    <div class="username" *ngIf="!isCatagoryList">
-                        {{ 'user.by' | translate: { autor: category.user || ('list.user.anonymous' | translate) } }}
-                    </div>
-                    <div class="date" *ngIf="!isCatagoryList">
-                        {{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
-                    </div>
+                        <div class="date">
+                            {{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                        </div>
+                        <div class="date change">
+                            <ng-container *ngIf="category.dateChange">{{
+                                'gererator.ranking.change'
+                                    | translate
+                                        : {
+                                              DATE: category.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
+                                          }
+                            }}</ng-container>
+                        </div>
+                    </ng-container>
                 </figcaption>
             </figure>
             <div

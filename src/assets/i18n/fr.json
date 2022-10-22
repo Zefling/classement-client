@@ -238,7 +238,9 @@
       "no.tile": "Il n'y a aucune tuile.",
       "close": "Fermer",
       "title": "Titre",
-      "annotation": "Annotation"
+      "annotation": "Annotation",
+      "create": "Créé le {{ DATE }}",
+      "change": "Modifié le {{ DATE }}"
     },
     "line": {
       "add": "Ajout",

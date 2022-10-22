@@ -238,7 +238,9 @@
       "no.tile": "There are no tiles.",
       "close": "Close",
       "title": "Title",
-      "annotation": "Annotation"
+      "annotation": "Annotation",
+      "create": "Created on {{ DATE }}",
+      "change": "Changed on {{ DATE }}"
     },
     "line": {
       "add": "Add",

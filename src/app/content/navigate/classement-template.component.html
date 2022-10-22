@@ -24,6 +24,12 @@
                         {{ 'user.by' | translate: { autor: category.user || ('list.user.anonymous' | translate) } }}
                     </div>
                     <div class="date">{{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}</div>
+                    <div class="date">
+                        <ng-container *ngIf="category.dateChange">{{
+                            'gererator.ranking.change'
+                                | translate: { DATE: category.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+                        }}</ng-container>
+                    </div>
                 </figcaption>
             </figure>
         </div>
