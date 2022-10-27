@@ -152,6 +152,7 @@ export const categories: string[] = [
     'people',
     'politics',
     'programming',
+    'roleplaying',
     'science',
     'series',
     'show',
