@@ -506,6 +506,7 @@ dialog-cmp.auto-format .main {
     animation: tooltip-slide 0.18s ease-out 0.5s;
     animation-fill-mode: forwards;
     pointer-events: none;
+    white-space: pre-wrap;
 }
 
 @keyframes tooltip-slide {
