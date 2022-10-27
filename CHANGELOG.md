@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 1.2.1 (2022-10-27)
+
+### Standalone web app
+
+-   add categories: food, brand and role-playing
+-   fix minor bugs
+
+### With API activited only
+
+-   navigate:
+    -   fix derivatives when empty search (but not null)
+    -   remove invalide case in tierlist search
+
 ## 1.2.0 (2022-10-22)
 
 ### With API activited only
