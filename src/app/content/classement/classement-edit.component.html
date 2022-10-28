@@ -190,8 +190,10 @@
             <button [disabled]="!shareUrl" class="primary" (click)="copyLink()">
                 🔗 {{ 'gererator.ranking.share.link' | translate }}
             </button>
-            <button class="primary" (click)="exportImage()">
-                <span class="icon-share"></span> {{ 'gererator.actions.export.image' | translate }}
+            <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+                <span *ngIf="!exportImageDisabled" class="icon-share"></span>
+                <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageDisabled"></loading-cmp>
+                {{ 'gererator.actions.export.image' | translate }}
             </button>
         </div>
 

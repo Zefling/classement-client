@@ -33,6 +33,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     currentUser = false;
     logged? = false;
+    exportImageDisabled = true;
 
     apiActive = environment.api?.active;
 
@@ -67,6 +68,7 @@ export class ClassementViewComponent implements OnDestroy {
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
                             const classement = this.userService.user?.classements?.find(e => e.rankingId === id);
+                            this.exportImageDisabled = true;
                             if (classement) {
                                 this.logger.log('loadServerClassement (user)');
                                 this.loadClassement(classement);
@@ -121,7 +123,8 @@ export class ClassementViewComponent implements OnDestroy {
             setTimeout(() => {
                 this.globalService
                     .imagesCache(this.classement!.data.groups!, this.classement!.data.list!)
-                    .then(cache => Object.assign(this.imagesCache, cache));
+                    .then(cache => Object.assign(this.imagesCache, cache))
+                    .finally(() => (this.exportImageDisabled = false));
             });
         }
     }

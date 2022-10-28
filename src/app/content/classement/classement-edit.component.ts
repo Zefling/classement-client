@@ -50,6 +50,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     hasItems = false;
 
+    exportImageDisabled = true;
+
     shareUrl: string = '';
 
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
@@ -92,6 +94,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
+                    this.exportImageDisabled = true;
 
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
@@ -180,11 +183,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.groups = data.data.groups;
                 this.list = data.data.list;
                 this.globalService.fixImageSize(this.groups, this.list);
-                setTimeout(() => {
-                    this.globalService
-                        .imagesCache(this.groups, this.list)
-                        .then(cache => Object.assign(this.imagesCache, cache));
-                });
+                this._html2canavasImagesCacheUpdate();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -198,11 +197,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
-        setTimeout(() => {
-            this.globalService
-                .imagesCache(this.groups, this.list)
-                .then(cache => Object.assign(this.imagesCache, cache));
-        });
+        this._html2canavasImagesCacheUpdate();
 
         if (withDerivative && this.logged) {
             this.classementService
@@ -534,6 +529,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.groups = classement.data.groups;
         this.options = classement.data.options;
 
+        this._html2canavasImagesCacheUpdate();
+
         if (classement.localId) {
             // persist data
             this.saveLocal();
@@ -556,6 +553,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = event.data?.list!;
                 this.options = { ...defaultOptions, ...event.data?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
+                this._html2canavasImagesCacheUpdate();
                 break;
             }
             case 'new': {
@@ -590,6 +588,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (!document.fullscreenElement) {
             this.screenMode('default');
         }
+    }
+
+    private _html2canavasImagesCacheUpdate() {
+        this.exportImageDisabled = true;
+        setTimeout(() => {
+            this.globalService
+                .imagesCache(this.groups, this.list)
+                .then(cache => Object.assign(this.imagesCache, cache))
+                .finally(() => (this.exportImageDisabled = false));
+        });
     }
 
     private getData(): Data {
