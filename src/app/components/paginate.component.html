@@ -3,7 +3,8 @@
         *ngIf="!item.separator; else separator"
         [class.current]="item.current"
         [routerLink]="[base]"
-        [queryParams]="{ page: item.page }"
+        [queryParams]="pageQueryParams(item.page!)"
+        (click)="update(item.page!)"
     >
         {{ item.view }}
     </div>

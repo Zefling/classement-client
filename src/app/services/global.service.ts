@@ -27,6 +27,8 @@ export class GlobalService {
 
     readonly onFileLoaded = new Subject<FileStream>();
 
+    readonly onPageUpdate = new Subject<number>();
+
     withChange = false;
 
     lang!: string;

@@ -25,6 +25,7 @@ import { Classement } from '../interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
+type SearchResult = { list: Classement[]; total: number };
 export type UploadProgress = { percent: number; loaded: number; total: number };
 
 @Injectable({ providedIn: 'root' })
@@ -57,17 +58,17 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    getClassementsByOptions(options: { name?: string; category?: string }): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
+    getClassementsByCriterion(criterion: { name?: string; category?: string; page?: number }): Promise<SearchResult> {
+        return new Promise<SearchResult>((resolve, reject) => {
             let params = new HttpParams();
-            for (const i in options) {
-                if ((options as any)[i] !== undefined) {
-                    params = params.set(i, (options as any)[i]);
+            for (const i in criterion) {
+                if ((criterion as any)[i] !== undefined) {
+                    params = params.set(i, (criterion as any)[i]);
                 }
             }
-            this.logger.log('options', LoggerLevel.log, options, 'params', params);
+            this.logger.log('options', LoggerLevel.log, criterion, 'params', params);
 
-            this.http.get<Message<Classement[]>>(`${environment.api.path}api/classements`, { params }).subscribe({
+            this.http.get<Message<SearchResult>>(`${environment.api.path}api/classements`, { params }).subscribe({
                 next: result => {
                     resolve(result.message);
                 },

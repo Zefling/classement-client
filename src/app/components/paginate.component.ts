@@ -1,5 +1,8 @@
-import { Component, DoCheck, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, DoCheck, Input, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
+import { GlobalService } from '../services/global.service';
 
 
 interface Page {
@@ -14,11 +17,12 @@ interface Page {
     templateUrl: './paginate.component.html',
     styleUrls: ['./paginate.component.scss'],
 })
-export class PaginationComponent implements DoCheck {
+export class PaginationComponent implements DoCheck, OnDestroy {
     @Input() page = 1;
     @Input() total = 0;
     @Input() base?: string;
     @Input() size = 25;
+    @Input() queryParams: {} = {};
 
     @Input() start = 3;
     @Input() middleStart = 3;
@@ -29,9 +33,19 @@ export class PaginationComponent implements DoCheck {
 
     private _test = 0;
 
-    constructor(private route: Router) {}
+    onPageUpdate: Subscription;
 
-    ngDoCheck() {
+    constructor(private global: GlobalService) {
+        this.onPageUpdate = this.global.onPageUpdate.subscribe(page => {
+            this.update(page);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.onPageUpdate.unsubscribe();
+    }
+
+    ngDoCheck(): void {
         const pages = [];
         let currentPage = +this.page;
         let test = 0;
@@ -79,5 +93,19 @@ export class PaginationComponent implements DoCheck {
             this._test = test;
             this.pages = pages;
         }
+    }
+
+    update(page: number, event: boolean = true): void {
+        if (this.page !== page) {
+            this.page = page;
+            this.pages.forEach(e => (e.current = e.page === page));
+            if (event) {
+                this.global.onPageUpdate.next(page);
+            }
+        }
+    }
+
+    pageQueryParams(page: number): {} {
+        return { page: page, ...this.queryParams };
     }
 }

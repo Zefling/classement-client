@@ -12,17 +12,25 @@
             <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
         </select>
     </div>
-    <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
+    <button (click)="submit(true)">{{ 'navigate.search' | translate }}</button>
 </div>
 
 <h3>
     {{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
-    <ng-container *ngIf="!loading">({{ classements.length }})</ng-container>
+    <ng-container *ngIf="!loading">({{ total }})</ng-container>
 </h3>
 
 <div class="return" *ngIf="!isCatagoryList">
     <a (click)="showCategoriesList()">🢀 {{ 'navigate.back.category' | translate }}</a>
 </div>
+
+<paginate-cmp
+    *ngIf="!isCatagoryList && total && page > 1"
+    [total]="total"
+    [page]="page"
+    [base]="url"
+    [queryParams]="queryParams"
+></paginate-cmp>
 
 <ng-container *ngIf="!loading">
     <div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
@@ -76,5 +84,13 @@
         <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
     </ng-template>
 </ng-container>
+
+<paginate-cmp
+    *ngIf="!isCatagoryList && total && page > 1"
+    [total]="total"
+    [page]="page"
+    [base]="url"
+    [queryParams]="queryParams"
+></paginate-cmp>
 
 <loader-item *ngIf="loading"></loader-item>
