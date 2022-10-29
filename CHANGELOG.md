@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 1.2.2 (2022-10-29)
+
+### With API activited only
+
+-   navigate: add pagination
+-   improve pagination component
+-   improve pagination for search by criterion
+
 ## 1.2.1 (2022-10-27)
 
 ### Standalone web app
