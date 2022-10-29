@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 1.2.3 (2022-10-29)
+
+### With API activited only
+
+-   navigate:
+    -   fix pagination when no criterion
+    -   fix pagination display
+
 ## 1.2.2 (2022-10-29)
 
 ### With API activited only
