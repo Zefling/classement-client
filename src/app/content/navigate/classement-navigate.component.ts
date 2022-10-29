@@ -53,8 +53,8 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.searchKey = params['name'];
                 this.category = params['category'];
                 this.page = params['page'] || 1;
-                this.queryParams = Object.assign(this.queryParams, { name: this.searchKey, category: this.category });
-                if (this.searchKey !== undefined || this.category !== undefined) {
+                this.queryParams = { name: this.searchKey, category: this.category };
+                if (this.searchKey !== undefined || this.category !== undefined || params['page']) {
                     this.submit();
                 } else {
                     this.showCategoriesList();
@@ -108,10 +108,14 @@ export class ClassementNavigateComponent implements OnDestroy {
             .finally(() => {
                 this.router.navigate(
                     ['navigate'],
-                    this.searchKey === undefined && this.category === undefined
+                    this.searchKey === undefined && this.category === undefined && this.page === undefined
                         ? {}
                         : {
-                              queryParams: { name: this.searchKey, category: this.category, page: this.page },
+                              queryParams: {
+                                  name: this.searchKey,
+                                  category: this.category,
+                                  page: this.page,
+                              },
                           },
                 );
 

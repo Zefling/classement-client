@@ -25,7 +25,7 @@
 </div>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && page > 1"
+    *ngIf="!isCatagoryList && total && total / 25 > 1"
     [total]="total"
     [page]="page"
     [base]="url"
@@ -86,7 +86,7 @@
 </ng-container>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && page > 1"
+    *ngIf="!isCatagoryList && total && total / 25 > 1"
     [total]="total"
     [page]="page"
     [base]="url"
