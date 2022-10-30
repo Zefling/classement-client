@@ -1,4 +1,4 @@
-import { Component, ContentChildren, DoCheck, QueryList } from '@angular/core';
+import { Component, ContentChildren, DoCheck, EventEmitter, Output, QueryList } from '@angular/core';
 
 import { TabTitleComponent } from './tab-content.component';
 import { TabContentComponent } from './tab-title.component';
@@ -12,6 +12,8 @@ import { TabContentComponent } from './tab-title.component';
 export class TabsComponent implements DoCheck {
     @ContentChildren(TabTitleComponent) titles?: QueryList<TabTitleComponent>;
     @ContentChildren(TabContentComponent) content?: QueryList<TabContentComponent>;
+
+    @Output() tabChange = new EventEmitter<string>();
 
     ngAfterContentChecked(): void {}
 
@@ -51,5 +53,6 @@ export class TabsComponent implements DoCheck {
             }
         });
         this.ngAfterContentInit();
+        this.tabChange.emit(id);
     }
 }

@@ -1,6 +1,6 @@
 <h2>{{ 'menu.my.lists' | translate }}</h2>
 
-<tabs>
+<tabs (tabChange)="tabChange($event)">
     <!-- browser -->
     <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
     <tab-content id="browser">
