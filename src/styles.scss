@@ -129,6 +129,13 @@ body.light-mode {
     --tooltip-background: #d9e1f0ee;
     --tooltip-shadow-color: rgb(66, 66, 66);
     --tooltip-border-color: #b8bbd1;
+    // tabs
+    --tabs-line-color: #dbcdcd;
+    --tab-border-color: #c5b8b8;
+    --tab-text-color: #181616;
+    --tab-select-border-color: #141313;
+    --tab-text-border-color: #494343;
+    --tab-hover-border-color: #494343;
 }
 
 body.dark-mode {
@@ -258,6 +265,13 @@ body.dark-mode {
     --tooltip-background: #202329ee;
     --tooltip-shadow-color: #000;
     --tooltip-border-color: #292a31;
+    // tabs
+    --tabs-line-color: #1d1b1b;
+    --tab-border-color: #201e1e;
+    --tab-text-color: #363232;
+    --tab-select-border-color: #4b4545;
+    --tab-text-border-color: #fff;
+    --tab-hover-border-color: #fff;
 
     color-scheme: dark;
 }

@@ -1,21 +1,21 @@
 :host {
     display: block;
-    border-bottom: 5px solid #201e1e;
+    border-bottom: 5px solid var(--tab-border-color);
     padding: 5px 20px;
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
 
     &:not(.selected) {
-        color: #363232;
+        color: var(--tab-text-color);
     }
 
     &.selected {
-        border-color: #4b4545;
+        border-color: var(--tab-select-border-color);
     }
 
     &:hover {
-        color: #fff;
-        border-color: #fff;
+        color: var(--tab-text-border-color);
+        border-color: var(--tab-hover-border-color);
     }
 }
