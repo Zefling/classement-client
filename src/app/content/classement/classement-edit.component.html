@@ -191,8 +191,8 @@
                 🔗 {{ 'gererator.ranking.share.link' | translate }}
             </button>
             <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-                <span *ngIf="!exportImageDisabled" class="icon-share"></span>
-                <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageDisabled"></loading-cmp>
+                <span *ngIf="!exportImageLoading" class="icon-share"></span>
+                <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageLoading"></loading-cmp>
                 {{ 'gererator.actions.export.image' | translate }}
             </button>
         </div>

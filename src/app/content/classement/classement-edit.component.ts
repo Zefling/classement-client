@@ -50,7 +50,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     hasItems = false;
 
-    exportImageDisabled = true;
+    exportImageLoading = false;
+    exportImageDisabled = false;
 
     shareUrl: string = '';
 
@@ -94,6 +95,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
+                    this.exportImageLoading = true;
                     this.exportImageDisabled = true;
 
                     if (this.apiActive) {
@@ -138,6 +140,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.id = undefined;
                     this.classement = undefined;
                     this.globalService.jsonTmp = undefined;
+
+                    this.exportImageLoading = false;
                 }
             }),
             globalService.onFileLoaded.subscribe(file => {
@@ -596,7 +600,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService
                 .imagesCache(this.groups, this.list)
                 .then(cache => Object.assign(this.imagesCache, cache))
-                .finally(() => (this.exportImageDisabled = false));
+                .finally(() => {
+                    this.exportImageDisabled = false;
+                    this.exportImageLoading = false;
+                });
         });
     }
 
