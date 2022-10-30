@@ -8,9 +8,9 @@ import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { ImportJsonEvent } from 'src/app/components/import-json.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, Data, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';

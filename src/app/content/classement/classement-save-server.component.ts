@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';

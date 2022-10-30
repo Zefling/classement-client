@@ -3,6 +3,7 @@
   "menu": {
     "home": "Accueil",
     "list": "Liste locale",
+    "my.lists": "Mes listes",
     "new": "Nouveau",
     "login": "Connexion",
     "profile": "Mon profil",
@@ -48,7 +49,7 @@
     }
   },
   "list": {
-    "intro": "Liste des Classements en mémoire dans votre navigateur Internet.",
+    "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",
     "title": {
       "name": "Titre",
       "undefined": "Sans titre"
@@ -344,7 +345,6 @@
     },
     "profile": {
       "title": "Mon profil",
-      "my.tierlists": "Mes classements",
       "username": "Utilisateur\u00A0:",
       "since": "Depuis\u00A0:",
       "actions": "Actions",
@@ -358,7 +358,10 @@
         "warning2": "Ce compte sera anonymisé et irrécupérable : suppression du nom d'utilisateur et email.",
         "cancel": "Annuler",
         "ok": "Valider"
-      }
+      },
+      "list.browser.tab": "Liste navigateur",
+      "list.server.tab": "Liste serveur",
+      "list.server.intro": "Liste des Classements sauvegardés sur votre compte."
     },
     "signup": {
       "title": "Créer mon compte",

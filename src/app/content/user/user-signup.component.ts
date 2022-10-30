@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import owasp from 'owasp-password-strength-test';
 import { debounceTime, Subscription } from 'rxjs';
 
-import { MessageService } from 'src/app/components/info-messages.component';
+import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 

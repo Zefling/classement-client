@@ -6,10 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { debounceTime, Subscription } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
-import { Classement, User } from 'src/app/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
+import { User } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 
@@ -33,14 +32,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     emailOldValid = false;
     emailNewValid = false;
 
-    @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
-    currentClassement?: Classement;
-
     @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
 
     constructor(
         private router: Router,
-        private classementService: APIClassementService,
         userService: APIUserService,
         messageService: MessageService,
         translate: TranslateService,
@@ -158,24 +153,6 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         } else if (!value.emailOld && !value.emailNew) {
             this.showError[0] = this.translate.instant('error.email.old.invalid');
         }
-    }
-
-    delete(classement: Classement): void {
-        this.currentClassement = classement;
-        this.dialogRemoveClassement.open();
-    }
-
-    deleteCurrentClassement(remove: boolean): void {
-        if (remove) {
-            this.classementService.deleteClassement(this.currentClassement!.rankingId).then(() => {
-                this.user?.classements?.splice(this.user?.classements?.indexOf(this.currentClassement!), 1);
-                this.messageService.addMessage(this.translate.instant('message.server.deleted.success'));
-                this.currentClassement = undefined;
-            });
-        } else {
-            this.currentClassement = undefined;
-        }
-        this.dialogRemoveClassement.close();
     }
 
     removeProfile() {

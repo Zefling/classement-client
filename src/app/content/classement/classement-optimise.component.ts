@@ -1,6 +1,6 @@
 import { Component, DoCheck, Input } from '@angular/core';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';

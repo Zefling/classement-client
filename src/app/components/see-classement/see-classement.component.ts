@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 
 import { FileString, FormatedGroup, Options } from 'src/app/interface';
 
-import { GlobalService } from '../services/global.service';
+import { GlobalService } from '../../services/global.service';
 
 
 @Component({

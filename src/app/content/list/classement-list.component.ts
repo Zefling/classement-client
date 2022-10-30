@@ -1,11 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, ViewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { ImportJsonEvent } from 'src/app/components/import-json.component';
-import { MessageService } from 'src/app/components/info-messages.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
+import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { FormatedInfos } from 'src/app/interface';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
@@ -18,6 +18,10 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./classement-list.component.scss'],
 })
 export class ClassementListComponent {
+    @HostBinding('class.page')
+    @Input()
+    pageMode = true;
+
     @ViewChild('dialogDelete') dialogDelete!: DialogComponent;
     @ViewChild('dialogClone') dialogClone!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;

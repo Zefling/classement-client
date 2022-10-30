@@ -5,12 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { decode } from 'utf8';
 
-import { MessageService, MessageType } from './info-messages.component';
-
-import { Data, FileString, importData } from '../interface';
-import { DBService } from '../services/db.service';
-import { GlobalService, TypeFile } from '../services/global.service';
-import { Logger, LoggerLevel } from '../services/logger';
+import { Data, FileString, importData } from '../../interface';
+import { DBService } from '../../services/db.service';
+import { GlobalService, TypeFile } from '../../services/global.service';
+import { Logger, LoggerLevel } from '../../services/logger';
+import { MessageService, MessageType } from '../info-messages/info-messages.component';
 
 
 export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Data };

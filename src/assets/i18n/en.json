@@ -3,6 +3,7 @@
   "menu": {
     "home": "Home",
     "list": "Local list",
+    "my.lists": "My lists",
     "new": "New",
     "login": "Login",
     "profile": "My profile",
@@ -48,7 +49,7 @@
     }
   },
   "list": {
-    "intro": "List of tierlists in memory in your Web browser.",
+    "intro": "List of tierlists in memory in your Web browser only.",
     "title": {
       "name": "Title",
       "undefined": "No title"
@@ -344,7 +345,6 @@
     },
     "profile": {
       "title": "My profile",
-      "my.tierlists": "My tierlists",
       "username": "User:",
       "since": "Since:",
       "actions": "Actions",
@@ -358,7 +358,10 @@
         "warning2": "This account will be anonymized and unrecoverable: deletion of username and email.",
         "cancel": "Cancel",
         "ok": "Ok"
-      }
+      },
+      "list.browser.tab": "Browser list",
+      "list.server.tab": "Server list",
+      "list.server.intro": "List of tierlists saved on your account."
     },
     "signup": {
       "title": "Create my account",

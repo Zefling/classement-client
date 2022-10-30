@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService } from 'src/app/components/info-messages.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Utils } from 'src/app/tools/utils';

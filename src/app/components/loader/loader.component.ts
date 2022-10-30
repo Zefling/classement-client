@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { UploadProgress } from '../services/api.classement.service';
+import { UploadProgress } from '../../services/api.classement.service';
 
 
 @Component({

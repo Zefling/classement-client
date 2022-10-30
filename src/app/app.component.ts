@@ -7,7 +7,7 @@ import { filter } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { DialogComponent } from './components/dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';

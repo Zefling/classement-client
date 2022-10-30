@@ -24,6 +24,7 @@
                 {{ 'menu.home' | translate }}
             </li>
             <li
+                *ngIf="!modeApi || !userService.logged"
                 class="section-top"
                 routerLink="/list"
                 routerLinkActive="active"
@@ -33,6 +34,17 @@
                 {{ 'menu.list' | translate }}
             </li>
             <ng-container *ngIf="modeApi">
+                <li
+                    *ngIf="userService.logged"
+                    class="section-top"
+                    routerLink="/user/lists"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.my.lists' | translate }}
+                </li>
+
                 <li
                     *ngIf="!userService.logged"
                     class="section-top"

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Theme } from '../interface';
-import { color } from '../tools/function';
+import { Theme } from '../../interface';
+import { color } from '../../tools/function';
+
 
 @Component({
     selector: 'theme-icon',

@@ -5,6 +5,7 @@ import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
 import { UserInformationComponent } from './user-information.component';
+import { UserListComponent } from './user-list.component';
 import { UserLoginAouthComponent } from './user-login-oauth.component';
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
@@ -61,6 +62,18 @@ const routes: Routes = [
         path: 'information',
         pathMatch: 'full',
         component: UserInformationComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'lists',
+        pathMatch: 'full',
+        component: UserListComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'lists/:page',
+        pathMatch: 'full',
+        component: UserListComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];

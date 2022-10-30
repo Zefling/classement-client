@@ -13,6 +13,6 @@ import { ClassementListRoutingModule } from './classement-list.routing';
     ],
     imports: [SharedModule, ClassementListRoutingModule],
     providers: [],
-    exports: [],
+    exports: [ClassementListComponent],
 })
 export class ClassementListModule {}

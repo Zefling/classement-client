@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages.component';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';

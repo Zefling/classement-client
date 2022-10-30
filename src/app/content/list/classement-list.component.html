@@ -1,6 +1,7 @@
-<h2>{{ 'menu.list' | translate }}</h2>
+<h2 *ngIf="pageMode">{{ 'menu.list' | translate }}</h2>
+
 <div class="infos">
-    <p>{{ 'list.intro' | translate }}</p>
+    <p>ℹ️ {{ 'list.intro' | translate }}</p>
     <div>
         <button class="primary" (click)="exportAll()">
             {{ 'gererator.actions.export.all.json' | translate }}

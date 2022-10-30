@@ -1,7 +1,7 @@
 import { Component, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
-import { Logger, LoggerLevel } from '../services/logger';
-import { Utils } from '../tools/utils';
+import { Logger, LoggerLevel } from '../../services/logger';
+import { Utils } from '../../tools/utils';
 
 
 type DarkLight = 'dark' | 'light';

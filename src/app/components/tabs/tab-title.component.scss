@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    border-bottom: 5px solid #201e1e;
+    padding: 5px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:not(.selected) {
+        color: #363232;
+    }
+
+    &.selected {
+        border-color: #4b4545;
+    }
+
+    &:hover {
+        color: #fff;
+        border-color: #fff;
+    }
+}

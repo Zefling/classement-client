@@ -1,0 +1,66 @@
+<h2>{{ 'menu.my.lists' | translate }}</h2>
+
+<tabs>
+    <!-- browser -->
+    <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
+    <tab-content id="browser">
+        <classement-list [pageMode]="false"></classement-list>
+    </tab-content>
+
+    <!-- server -->
+    <tab-title id="server">{{ 'user.profile.list.server.tab' | translate }}</tab-title>
+    <tab-content id="server">
+        <p>ℹ️ {{ 'user.profile.list.server.intro' | translate }}</p>
+
+        <table *ngIf="user && user.classements?.length; else noResult">
+            <thead>
+                <tr>
+                    <th class="title">{{ 'list.title.name' | translate }}</th>
+                    <th class="category">{{ 'list.category.name' | translate }}</th>
+                    <th class="date">{{ 'list.date' | translate }}</th>
+                    <th class="groups">{{ 'list.count.group' | translate }}</th>
+                    <th class="items">{{ 'list.count.item' | translate }}</th>
+                    <th class="actions">{{ 'list.action.name' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let classement of user.classements">
+                    <td class="title">
+                        {{ classement.data.options.title || ('list.title.undefined' | translate) }}
+                    </td>
+                    <td class="category">
+                        {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                    </td>
+                    <td class="date">
+                        <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                        <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                    </td>
+                    <td class="groups">{{ classement.totalGroups }}</td>
+                    <td class="items">{{ classement.totalItems }}</td>
+                    <td class="actions">
+                        <a [routerLink]="'/edit/' + classement.rankingId">{{ 'list.action.edit' | translate }}</a>
+                        <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #noResult>
+            <p class="no-result">{{ 'list.no.result' | translate }}</p>
+            <p>
+                <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+            </p>
+        </ng-template>
+    </tab-content>
+</tabs>
+
+<dialog-cmp class="auto-format" #dialogRemoveClassement>
+    <p>{{ 'list.delete.question' | translate }}</p>
+    <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+    <div class="buttons">
+        <button (click)="deleteCurrentClassement(false)">{{ 'list.delete.cancel' | translate }}</button>
+        <button (click)="deleteCurrentClassement(true)" class="warn">
+            {{ 'list.delete.validate' | translate }}
+        </button>
+    </div>
+</dialog-cmp>

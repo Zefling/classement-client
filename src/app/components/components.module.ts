@@ -5,17 +5,20 @@ import { RouterModule } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DialogComponent } from './dialog.component';
-import { ImportJsonComponent } from './import-json.component';
-import { InfoMessageComponent } from './info-message.component';
-import { InfoMessagesComponent } from './info-messages.component';
-import { LightDarkComponent } from './light-dark.component';
-import { LoaderItemComponent } from './loader-item.component';
-import { LoaderComponent } from './loader.component';
-import { LoadingComponent } from './loading.component';
-import { PaginationComponent } from './paginate.component';
-import { SeeClassementComponent } from './see-classement.component';
-import { ThemeIconComponent } from './theme-icon.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { ImportJsonComponent } from './import-json/import-json.component';
+import { InfoMessageComponent } from './info-messages/info-message.component';
+import { InfoMessagesComponent } from './info-messages/info-messages.component';
+import { LightDarkComponent } from './light-dark/light-dark.component';
+import { LoaderItemComponent } from './loader/loader-item.component';
+import { LoaderComponent } from './loader/loader.component';
+import { LoadingComponent } from './loader/loading.component';
+import { PaginationComponent } from './paginate/paginate.component';
+import { SeeClassementComponent } from './see-classement/see-classement.component';
+import { TabTitleComponent } from './tabs/tab-content.component';
+import { TabContentComponent } from './tabs/tab-title.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { ThemeIconComponent } from './theme-icon/theme-icon.component';
 
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
@@ -34,6 +37,9 @@ import { PipesModule } from '../pipes/pipes.module';
         LoaderItemComponent,
         PaginationComponent,
         SeeClassementComponent,
+        TabTitleComponent,
+        TabContentComponent,
+        TabsComponent,
     ],
     exports: [
         DialogComponent,
@@ -47,6 +53,9 @@ import { PipesModule } from '../pipes/pipes.module';
         LoaderItemComponent,
         PaginationComponent,
         SeeClassementComponent,
+        TabTitleComponent,
+        TabContentComponent,
+        TabsComponent,
     ],
     imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule],
 })

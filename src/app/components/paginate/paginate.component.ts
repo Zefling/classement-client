@@ -2,7 +2,7 @@ import { Component, DoCheck, Input, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
-import { GlobalService } from '../services/global.service';
+import { GlobalService } from '../../services/global.service';
 
 
 interface Page {

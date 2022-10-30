@@ -1,5 +1,9 @@
-@import '../list/classement-list.component.scss';
 @import './user-profile.errors.scss';
+
+:host {
+    display: block;
+    margin: 0 15px 30px 30px;
+}
 
 label {
     display: block;

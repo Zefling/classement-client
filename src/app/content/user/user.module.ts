@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/share.module';
 
 import { UserInformationComponent } from './user-information.component';
+import { UserListComponent } from './user-list.component';
 import { UserLoginAouthComponent } from './user-login-oauth.component';
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
@@ -12,6 +13,8 @@ import { UserPwLostComponent } from './user-pw-lost.component';
 import { UserSignupValidateComponent } from './user-signup-validate.component';
 import { UserSignupComponent } from './user-signup.component';
 import { UserRoutingModule } from './user.routing';
+
+import { ClassementListModule } from '../list/classement-list.module';
 
 
 @NgModule({
@@ -25,8 +28,9 @@ import { UserRoutingModule } from './user.routing';
         UserPwLostComponent,
         UserPwLostChangeComponent,
         UserInformationComponent,
+        UserListComponent,
     ],
-    imports: [SharedModule, UserRoutingModule, ReactiveFormsModule],
+    imports: [SharedModule, UserRoutingModule, ClassementListModule, ReactiveFormsModule],
     providers: [],
     exports: [],
 })
