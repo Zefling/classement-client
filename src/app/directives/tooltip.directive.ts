@@ -50,11 +50,13 @@ export class TooltipDirective implements OnDestroy {
 
         const tooltipElement = document.createElement('div');
         tooltipElement.innerHTML = this.tooltip;
+        document.body.appendChild(tooltipElement);
         tooltipElement.setAttribute('class', 'tooltip-container');
         tooltipElement.style.top = y.toString() + 'px';
-        tooltipElement.style.left = x.toString() + 'px';
 
-        document.body.appendChild(tooltipElement);
+        const rect = tooltipElement.getBoundingClientRect();
+        tooltipElement.style.left = Math.max(Math.abs(rect.left) + 5, x).toString() + 'px';
+
         this.tooltipElement = tooltipElement;
 
         if (this.delayLeave) {
