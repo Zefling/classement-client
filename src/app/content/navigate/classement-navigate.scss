@@ -3,8 +3,7 @@
     margin: 0 15px 30px 30px;
 }
 
-figure,
-.template {
+:where(figure, .template) {
     width: 200px;
     text-align: center;
     padding: 10px;
@@ -20,14 +19,18 @@ figure,
         max-width: 100%;
     }
 
-    &:hover {
-        color: var(--menu-hover-color);
-        background: var(--menu-hover-background);
-    }
-
     @media screen and (max-width: 800px) {
         width: 150px;
     }
+}
+
+a:hover :where(figure, .template) {
+    color: var(--menu-hover-color);
+    background: var(--menu-hover-background);
+}
+
+.template {
+    margin-top: 5px;
 }
 
 .result {
@@ -91,8 +94,7 @@ figure,
 }
 
 @media screen and (max-width: 800px) {
-    figure,
-    .template {
+    :wxhere(figure, .template) {
         width: 135px;
     }
 

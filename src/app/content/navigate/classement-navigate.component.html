@@ -36,7 +36,13 @@
     <div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
         <div class="classement" *ngFor="let classement of classements">
             <a
-                [routerLink]="isCatagoryList ? ['/navigate'] : ['/navigate/view', classement.rankingId]"
+                [routerLink]="
+                    isCatagoryList
+                        ? ['/navigate']
+                        : classement.templateTotal === 1
+                        ? ['/navigate/view', classement.rankingId]
+                        : ['/navigate/template', classement.templateId]
+                "
                 [queryParams]="isCatagoryList ? { category: classement.category } : {}"
             >
                 <figure>
@@ -79,14 +85,9 @@
                         </ng-container>
                     </figcaption>
                 </figure>
-            </a>
-            <a
-                *ngIf="!isCatagoryList"
-                class="template"
-                [class.hide]="classement.templateTotal === 1"
-                [routerLink]="['/navigate/template', classement.templateId]"
-            >
-                {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+                <div *ngIf="!isCatagoryList" class="template" [class.hide]="classement.templateTotal === 1">
+                    {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+                </div>
             </a>
         </div>
     </div>
