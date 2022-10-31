@@ -5,21 +5,22 @@
     padding: 5px;
 }
 
-div:not(.separator) {
+a {
     min-width: 40px;
     text-align: center;
-    border: 1px solid;
+    color: var(--page-item-text-color);
+    border: 1px solid var(--page-item-border-color);
     border-radius: 5px;
     cursor: pointer;
 
     &.current {
-        color: #9797ff;
-        background: #9797ff20;
+        color: var(--page-item-current-test-color);
+        background: var(--page-item-current-background);
         font-weight: 700;
     }
 
     &:hover {
-        background: #fff2;
+        background: var(--page-item-hover-background);
     }
 }
 

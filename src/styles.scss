@@ -129,6 +129,12 @@ body.light-mode {
     --tooltip-background: #d9e1f0ee;
     --tooltip-shadow-color: rgb(66, 66, 66);
     --tooltip-border-color: #b8bbd1;
+    // page
+    --page-item-text-color: #222;
+    --page-item-border-color: #222;
+    --page-item-current-test-color: #323250;
+    --page-item-current-background: #8282dd2d;
+    --page-item-hover-background: #0002;
     // tabs
     --tabs-line-color: #dbcdcd;
     --tab-border-color: #c5b8b8;
@@ -265,6 +271,12 @@ body.dark-mode {
     --tooltip-background: #202329ee;
     --tooltip-shadow-color: #000;
     --tooltip-border-color: #292a31;
+    // page
+    --page-item-text-color: #aaa;
+    --page-item-border-color: #aaa;
+    --page-item-current-test-color: #7d7dd3;
+    --page-item-current-background: #8282dd2d;
+    --page-item-hover-background: #fff2;
     // tabs
     --tabs-line-color: #1d1b1b;
     --tab-border-color: #201e1e;

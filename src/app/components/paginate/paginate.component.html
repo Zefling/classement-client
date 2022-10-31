@@ -1,5 +1,5 @@
 <ng-container *ngFor="let item of pages">
-    <div
+    <a
         *ngIf="!item.separator; else separator"
         [class.current]="item.current"
         [routerLink]="[base]"
@@ -7,7 +7,7 @@
         (click)="update(item.page!)"
     >
         {{ item.view }}
-    </div>
+    </a>
 </ng-container>
 <ng-template #separator>
     <div class="separator">...</div>
