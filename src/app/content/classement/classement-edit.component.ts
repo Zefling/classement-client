@@ -174,6 +174,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     parentId,
                 } as any;
 
+                debugger;
+                this.lockCategory = !!data.infos.parentId;
+
                 if (rankingId && this.userService.logged) {
                     const classement = this.userService.user?.classements?.find(e => e.rankingId === rankingId);
                     if (classement) {
@@ -522,7 +525,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     saveServer() {
         if (this.logged) {
-            this.classement;
             this.dialogSaveServer.open();
         }
     }

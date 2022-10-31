@@ -107,7 +107,7 @@ export class ClassementSaveServerComponent implements OnDestroy {
             templateId: this.classement?.templateId ?? null,
             localId: this.classement?.localId || null,
             name: this.options?.title?.trim(),
-            category: this.classement?.category ?? this.options?.category,
+            category: this.options?.category,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
             hidden: this.hidden ?? this.classement?.hidden ?? false,

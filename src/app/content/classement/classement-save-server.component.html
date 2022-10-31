@@ -23,7 +23,7 @@
         <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
     </div>
 
-    <div class="categories" *ngIf="!classement?.user">
+    <div class="categories" *ngIf="!classement?.user || classement?.parent">
         <label>{{ 'gererator.options.group' | translate }}</label>
         <div>
             <select type="text" maxlength="150" [(ngModel)]="options.category">
