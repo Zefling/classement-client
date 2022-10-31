@@ -71,7 +71,7 @@ a:hover :where(figure, .template) {
     }
 }
 
-.classement {
+.classement a {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1fr auto;
