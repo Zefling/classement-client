@@ -62,9 +62,11 @@ a:hover :where(figure, .template) {
             font-weight: 700;
             font-size: 80%;
         }
+
         .date {
             font-size: 80%;
             height: 16px;
+            white-space: nowrap;
         }
     }
 }
@@ -94,11 +96,13 @@ a:hover :where(figure, .template) {
 }
 
 @media screen and (max-width: 800px) {
-    :wxhere(figure, .template) {
-        width: 135px;
-    }
-
     .result {
         gap: 20px 5px;
+
+        figcaption .date {
+            margin-top: 4px;
+            font-size: 60%;
+            height: 12px;
+        }
     }
 }
