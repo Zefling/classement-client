@@ -88,6 +88,8 @@
     },
     "no.result": "No results.",
     "create.new": "Create your tierlist.",
+    "server.link": "This tierlist is linked to a tierlist of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
+    "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
     "delete": {
       "question": "Are you sure you want to delete?",
       "validate": "Validate",

@@ -27,6 +27,12 @@
                 <tr *ngFor="let classement of user.classements">
                     <td class="title">
                         {{ classement.data.options.title || ('list.title.undefined' | translate) }}
+                        <a
+                            *ngIf="classement.localId && localIds.includes(classement.localId)"
+                            [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                            [routerLink]="['/edit', classement.localId]"
+                            >🔄</a
+                        >
                     </td>
                     <td class="category">
                         {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}

@@ -88,6 +88,8 @@
     },
     "no.result": "Pas de résultat.",
     "create.new": "Créez votre classement.",
+    "server.link": "Ce classement est lié un classement de votre compte.\nCliquez ici pour voir la version sauvegardé sur votre compte.\nId : {{ id }}",
+    "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
       "validate": "Valider",

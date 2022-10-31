@@ -11,6 +11,7 @@ import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { DBService } from 'src/app/services/db.service';
 
 
 @Component({
@@ -26,9 +27,12 @@ export class UserListComponent implements OnDestroy {
 
     user?: User;
 
+    localIds: string[] = [];
+
     private listener: Subscription[] = [];
 
     constructor(
+        private dbservice: DBService,
         private classementService: APIClassementService,
         private userService: APIUserService,
         private messageService: MessageService,
@@ -51,6 +55,15 @@ export class UserListComponent implements OnDestroy {
         if (!this.userService.logged) {
             this.router.navigate(['/list']);
         }
+
+        // list of browser ranking
+        this.dbservice.getLocalList().then(result => {
+            result.forEach(e => {
+                if (e.id) {
+                    this.localIds.push(e.id);
+                }
+            });
+        });
     }
 
     ngOnDestroy(): void {

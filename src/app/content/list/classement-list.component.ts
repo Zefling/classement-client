@@ -33,6 +33,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     itemCurrent?: FormatedInfos;
 
+    serverIds: string[] = [];
+
     private listener: Subscription[] = [];
 
     constructor(
@@ -47,8 +49,17 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (this.pageMode && this.userService.logged) {
-            this.router.navigate(['/user/lists/browser']);
+        if (this.userService.logged) {
+            if (this.pageMode) {
+                this.router.navigate(['/user/lists/browser']);
+            } else {
+                // list of server ranking
+                this.userService.user!.classements?.forEach(e => {
+                    if (e.rankingId) {
+                        this.serverIds.push(e.rankingId);
+                    }
+                });
+            }
         }
     }
 
