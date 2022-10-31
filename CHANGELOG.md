@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.3.1 (2022-10-31)
+
+### Standalone web app
+
+-   fix CSS mobile
+
 ## 1.3.0 (2022-10-31)
 
 ### Standalone web app
