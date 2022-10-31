@@ -88,7 +88,6 @@ aside {
         flex-direction: column;
         height: 100%;
         gap: 5px;
-        margin-bottom: 130px;
     }
 
     li {
@@ -182,5 +181,9 @@ aside {
     :host {
         --aside-actions-display: flex;
         --header-actions-display: none;
+    }
+
+    aside ul {
+        height: auto;
     }
 }

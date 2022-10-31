@@ -76,6 +76,7 @@ a:hover :where(figure, .template) {
     grid-template-columns: auto;
     grid-template-rows: 1fr auto;
     gap: 10px;
+    height: 100%;
 }
 
 .category {
