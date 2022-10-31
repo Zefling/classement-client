@@ -91,25 +91,29 @@ aside {
     }
 
     li {
-        margin: 0 5px;
-        padding: var(--menu-item-padding, 5px);
-        border: 1px solid var(--menu-border-color);
         list-style: none;
-        font-weight: 700;
-        cursor: default;
-        color: var(--menu-color);
-        background: var(--menu-background);
-        border-radius: 5px;
 
-        &.active {
-            color: var(--menu-active-color);
-            background-color: var(--menu-active-background);
-        }
+        a {
+            display: block;
+            margin: 0 5px;
+            padding: var(--menu-item-padding, 5px);
+            border: 1px solid var(--menu-border-color);
+            font-weight: 700;
+            background: var(--menu-background);
+            border-radius: 5px;
+            color: var(--menu-color);
+            cursor: default;
 
-        &:not(.active):hover {
-            cursor: pointer;
-            color: var(--menu-hover-color);
-            background-color: var(--menu-hover-background);
+            &.active {
+                color: var(--menu-active-color);
+                background-color: var(--menu-active-background);
+            }
+
+            &:not(.active):hover {
+                cursor: pointer;
+                color: var(--menu-hover-color);
+                background-color: var(--menu-hover-background);
+            }
         }
     }
 

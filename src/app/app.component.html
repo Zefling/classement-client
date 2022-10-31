@@ -14,109 +14,116 @@
     <div class="backdrop" (click)="toggleMenu()"></div>
     <div class="menu">
         <ul>
-            <li
-                class="section-top"
-                routerLink="/"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="toggleMenu()"
-            >
-                {{ 'menu.home' | translate }}
+            <li class="section-top">
+                <a
+                    routerLink="/"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.home' | translate }}
+                </a>
             </li>
-            <li
-                *ngIf="!modeApi || !userService.logged"
-                class="section-top"
-                routerLink="/list"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="toggleMenu()"
-            >
-                {{ 'menu.list' | translate }}
+            <li *ngIf="!modeApi || !userService.logged" class="section-top">
+                <a
+                    routerLink="/list"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="toggleMenu()"
+                >
+                    {{ 'menu.list' | translate }}
+                </a>
             </li>
             <ng-container *ngIf="modeApi">
-                <li
-                    *ngIf="userService.logged"
-                    class="section-top"
-                    routerLink="/user/lists"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="toggleMenu()"
-                >
-                    {{ 'menu.my.lists' | translate }}
+                <li *ngIf="userService.logged" class="section-top">
+                    <a
+                        routerLink="/user/lists"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.my.lists' | translate }}
+                    </a>
                 </li>
 
-                <li
-                    *ngIf="!userService.logged"
-                    class="section-top"
-                    routerLink="/user/login"
+                <li *ngIf="!userService.logged" class="section-top">
+                    <a
+                        routerLink="/user/login"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.login' | translate }}
+                    </a>
+                </li>
+                <li *ngIf="userService.logged" class="section-top">
+                    <a
+                        routerLink="/user/profile"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.profile' | translate }}
+                    </a>
+                </li>
+                <li class="section-top">
+                    <a
+                        routerLink="/navigate"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: false }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.navigate' | translate }}
+                    </a>
+                </li>
+            </ng-container>
+            <li class="section-top">
+                <a
+                    routerLink="/edit/new"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
                     (click)="toggleMenu()"
                 >
-                    {{ 'menu.login' | translate }}
-                </li>
-                <li
-                    *ngIf="userService.logged"
-                    class="section-top"
-                    routerLink="/user/profile"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="toggleMenu()"
-                >
-                    {{ 'menu.profile' | translate }}
-                </li>
-                <li
-                    class="section-top"
-                    routerLink="/navigate"
+                    {{ 'menu.new' | translate }}
+                </a>
+            </li>
+            <li *ngIf="modeApi && modeModerator" class="section-top">
+                <a
+                    routerLink="/admin"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: false }"
                     (click)="toggleMenu()"
                 >
-                    {{ 'menu.navigate' | translate }}
-                </li>
-            </ng-container>
-            <li
-                class="section-top"
-                routerLink="/edit/new"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="toggleMenu()"
-            >
-                {{ 'menu.new' | translate }}
-            </li>
-            <li
-                *ngIf="modeApi && modeModerator"
-                class="section-top"
-                routerLink="/admin"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: false }"
-                (click)="toggleMenu()"
-            >
-                {{ 'menu.admin' | translate }}
+                    {{ 'menu.admin' | translate }}
+                </a>
             </li>
             <ng-container *ngIf="modeApi">
-                <li *ngIf="userService.logged" class="logout" (click)="logout()">
-                    {{ 'menu.logout' | translate }}
+                <li>
+                    <a *ngIf="userService.logged" class="logout" (click)="logout()">
+                        {{ 'menu.logout' | translate }}
+                    </a>
                 </li>
-                <li
-                    class="information"
-                    routerLink="/user/information"
+                <li class="information">
+                    <a
+                        routerLink="/user/information"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.information' | translate }}
+                    </a>
+                </li>
+            </ng-container>
+
+            <li class="licences">
+                <a
+                    routerLink="/licences"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
                     (click)="toggleMenu()"
                 >
-                    {{ 'menu.information' | translate }}
-                </li>
-            </ng-container>
-
-            <li
-                class="licences"
-                routerLink="/licences"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="toggleMenu()"
-            >
-                {{ 'menu.licences' | translate }}
+                    {{ 'menu.licences' | translate }}
+                </a>
             </li>
         </ul>
         <div class="actions-mobile">
