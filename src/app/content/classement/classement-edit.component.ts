@@ -38,6 +38,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     groups: FormatedGroup[] = [];
     list: FileString[] = [];
+    lockCategory = false;
 
     diff?: FileString[];
 
@@ -92,6 +93,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this._sub.push(
             this.route.params.subscribe(params => {
                 const fork = params['fork'] === 'fork';
+                this.lockCategory = false;
 
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
@@ -201,6 +203,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
+        this.lockCategory = !classement.parent;
         this._html2canavasImagesCacheUpdate();
 
         if (withDerivative && this.logged) {

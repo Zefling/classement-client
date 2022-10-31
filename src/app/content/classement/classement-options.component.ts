@@ -19,8 +19,9 @@ export class ClassementOptionsComponent {
 
     categoriesList: { value: string; label: string }[] = [];
 
-    @Input()
-    options?: Options;
+    @Input() options?: Options;
+
+    @Input() lockCategory = false;
 
     imageListOpen = false;
 
