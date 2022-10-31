@@ -58,10 +58,6 @@ export class ClassementTemplateComponent {
         this._sub.forEach(e => e.unsubscribe());
     }
 
-    openClassement(classement: Classement) {
-        this.router.navigate(['navigate', 'view', classement.rankingId]);
-    }
-
     retrun() {
         this.router.navigate(['navigate']);
     }

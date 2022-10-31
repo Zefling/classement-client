@@ -1,37 +1,44 @@
 <h2>{{ 'navigate.template' | translate }}</h2>
 
 <div class="return">
-    <a (click)="retrun()">🢀 {{ 'navigate.back.search' | translate }}</a>
+    <a [routerLink]="['/navigate']">🢀 {{ 'navigate.back.search' | translate }}</a>
 </div>
 
 <ng-container *ngIf="!loading">
     <div class="result">
-        <div class="classement" *ngFor="let category of classements">
-            <figure (click)="openClassement(category)">
-                <img [src]="category.banner" />
-                <figcaption>
-                    <div class="name">{{ category.name }}</div>
-                    <div class="category">{{ 'category.' + (category.category || 'undefined') | translate }}</div>
-                    <div class="groups">
-                        <div [title]="'list.count.group' | translate">
-                            <span class="icon-group"></span> {{ category.totalGroups }}
+        <div class="classement" *ngFor="let classement of classements">
+            <a [routerLink]="['/navigate/view', classement.rankingId]">
+                <figure>
+                    <img [src]="classement.banner" />
+                    <figcaption>
+                        <div class="name">{{ classement.name }}</div>
+                        <div class="category">{{ 'category.' + (classement.category || 'undefined') | translate }}</div>
+                        <div class="groups">
+                            <div [title]="'list.count.group' | translate">
+                                <span class="icon-group"></span> {{ classement.totalGroups }}
+                            </div>
+                            <div [title]="'list.count.item' | translate">
+                                <span class="icon-tile"></span> {{ classement.totalItems }}
+                            </div>
                         </div>
-                        <div [title]="'list.count.item' | translate">
-                            <span class="icon-tile"></span> {{ category.totalItems }}
+                        <div class="username">
+                            {{
+                                'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) }
+                            }}
                         </div>
-                    </div>
-                    <div class="username">
-                        {{ 'user.by' | translate: { autor: category.user || ('list.user.anonymous' | translate) } }}
-                    </div>
-                    <div class="date">{{ category.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}</div>
-                    <div class="date">
-                        <ng-container *ngIf="category.dateChange">{{
-                            'gererator.ranking.change'
-                                | translate: { DATE: category.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
-                        }}</ng-container>
-                    </div>
-                </figcaption>
-            </figure>
+                        <div class="date">
+                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                        </div>
+                        <div class="date">
+                            <ng-container *ngIf="classement.dateChange">{{
+                                'gererator.ranking.change'
+                                    | translate
+                                        : { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+                            }}</ng-container>
+                        </div>
+                    </figcaption>
+                </figure>
+            </a>
         </div>
     </div>
 </ng-container>

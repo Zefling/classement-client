@@ -52,7 +52,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.logger.log('params', LoggerLevel.log, params);
                 this.searchKey = params['name'];
                 this.category = params['category'];
-                this.page = params['page'] || 1;
+                this.page = params['page'];
                 this.queryParams = { name: this.searchKey, category: this.category };
                 if (this.searchKey !== undefined || this.category !== undefined || params['page']) {
                     this.submit();
@@ -81,7 +81,6 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
             })
             .finally(() => {
-                this.router.navigate(['navigate']);
                 this.loading = false;
             });
     }
@@ -121,23 +120,5 @@ export class ClassementNavigateComponent implements OnDestroy {
 
                 this.loading = false;
             });
-    }
-
-    openCategory(classement: Classement) {
-        this.classementService.getClassementsByCriterion({ category: classement.category }).then(classements => {
-            this.classements = classements.list;
-            this.total = classements.total;
-            this.category = classement.category;
-            this.isCatagoryList = false;
-            this.router.navigate(['navigate'], { queryParams: { category: classement.category } });
-        });
-    }
-
-    openClassement(classement: Classement) {
-        this.router.navigate(['navigate', 'view', classement.rankingId]);
-    }
-
-    seeTemplate(classement: Classement) {
-        this.router.navigate(['navigate', 'template', classement.templateId]);
     }
 }

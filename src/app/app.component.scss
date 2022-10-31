@@ -102,7 +102,6 @@ aside {
             background: var(--menu-background);
             border-radius: 5px;
             color: var(--menu-color);
-            cursor: default;
 
             &.active {
                 color: var(--menu-active-color);
@@ -110,7 +109,6 @@ aside {
             }
 
             &:not(.active):hover {
-                cursor: pointer;
                 color: var(--menu-hover-color);
                 background-color: var(--menu-hover-background);
             }
