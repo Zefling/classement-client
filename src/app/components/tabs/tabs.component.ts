@@ -1,4 +1,4 @@
-import { Component, ContentChildren, DoCheck, EventEmitter, Output, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, EventEmitter, Output, QueryList } from '@angular/core';
 
 import { TabTitleComponent } from './tab-content.component';
 import { TabContentComponent } from './tab-title.component';
@@ -9,13 +9,11 @@ import { TabContentComponent } from './tab-title.component';
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss'],
 })
-export class TabsComponent implements DoCheck {
+export class TabsComponent implements AfterContentInit {
     @ContentChildren(TabTitleComponent) titles?: QueryList<TabTitleComponent>;
     @ContentChildren(TabContentComponent) content?: QueryList<TabContentComponent>;
 
     @Output() tabChange = new EventEmitter<string>();
-
-    ngAfterContentChecked(): void {}
 
     ngAfterContentInit(): void {
         if (this.titles?.length) {
@@ -43,16 +41,16 @@ export class TabsComponent implements DoCheck {
         }
     }
 
-    ngDoCheck(): void {}
-
-    update(id: string) {
-        console.log('test', id);
+    update(id: string, emit: boolean = true) {
+        console.error('test', id);
         this.titles?.forEach(e => {
             if (e.id) {
                 e.selected = e.id == id;
             }
         });
         this.ngAfterContentInit();
-        this.tabChange.emit(id);
+        if (emit) {
+            this.tabChange.emit(id);
+        }
     }
 }

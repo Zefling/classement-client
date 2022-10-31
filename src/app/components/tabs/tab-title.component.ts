@@ -19,7 +19,7 @@ export class TabContentComponent {
 
     @HostListener('click')
     onclick() {
-        if (this.id) {
+        if (this.tabs && this.id) {
             this.tabs.update(this.id);
         }
     }

@@ -4,11 +4,12 @@
 
 export const environment = {
     production: false,
+    debugRouter: false,
     minLogLevel: 'log',
     api: {
         active: true,
-        domain: 'localhost:8000',
         path: 'http://localhost:8000/',
+        // path: 'https://api.classement.ikilote.net/',
     },
 };
 

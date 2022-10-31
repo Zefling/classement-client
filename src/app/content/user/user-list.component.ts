@@ -42,7 +42,7 @@ export class UserListComponent implements OnDestroy {
             this.route.params.subscribe(params => {
                 if (params['page']) {
                     setTimeout(() => {
-                        this.tabs?.update(params['page']);
+                        this.tabs?.update(params['page'], false);
                     });
                 }
             }),

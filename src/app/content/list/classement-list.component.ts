@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import { Utils } from 'src/app/tools/utils';
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
 })
-export class ClassementListComponent implements OnDestroy {
+export class ClassementListComponent implements OnInit, OnDestroy {
     @HostBinding('class.page')
     @Input()
     pageMode = true;
@@ -44,8 +44,10 @@ export class ClassementListComponent implements OnDestroy {
         private logger: Logger,
     ) {
         this.showList();
+    }
 
-        if (this.userService.logged) {
+    ngOnInit() {
+        if (this.pageMode && this.userService.logged) {
             this.router.navigate(['/user/lists/browser']);
         }
     }

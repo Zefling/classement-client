@@ -57,8 +57,4 @@ export class ClassementTemplateComponent {
     ngOnDestroy() {
         this._sub.forEach(e => e.unsubscribe());
     }
-
-    retrun() {
-        this.router.navigate(['navigate']);
-    }
 }
