@@ -174,7 +174,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     parentId,
                 } as any;
 
-                debugger;
                 this.lockCategory = !!data.infos.parentId;
 
                 if (rankingId && this.userService.logged) {
@@ -206,7 +205,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
-        this.lockCategory = !classement.parent;
+        this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
         this._html2canavasImagesCacheUpdate();
 
         if (withDerivative && this.logged) {
