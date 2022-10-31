@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '1.2.3';
+    version = '1.3.0';
 
     modeApi = environment.api?.active || false;
 

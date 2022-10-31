@@ -1,5 +1,27 @@
 # Changelog - Standalone web app & API
 
+## 1.3.0 (2022-10-31)
+
+### Standalone web app
+
+-   fix tooltip position on left
+-   fix CSS mobile
+
+### With API activited only
+
+-   merge “**local list**” and “**profile**” into a “**personal list**” #14
+-   add tierlist relationships between local and server #15
+-   update category only if parent tierlist #12
+    -   lock category if not parent tierlist
+    -   update listlist children catagory when is parent template (server)
+    -   required: API 1.0.4
+-   fix export image loading
+-   fix routing (add `a:href` for a better tag structure )
+    -   menu
+    -   pagination
+    -   navigation
+    -   view
+
 ## 1.2.3 (2022-10-29)
 
 ### With API activited only
@@ -15,6 +37,7 @@
 -   navigate: add pagination
 -   improve pagination component
 -   improve pagination for search by criterion
+-   required: API 1.0.3
 
 ## 1.2.1 (2022-10-27)
 
@@ -38,6 +61,7 @@
 -   add popup with all "my derivatives"
 -   change URL of tierlist on save if id change
 -   review all buttons on page view
+-   required: API 1.0.2
 
 ## 1.1.3 (2022-10-22)
 
@@ -83,6 +107,7 @@
 -   rewrite navigation
 -   add page preview #3
 -   better visibility for personnal derivatives
+-   required: API 1.0.1
 
 ## 1.0.1 (2022-10-11)
 
@@ -110,6 +135,7 @@
 -   fix loading issues in navigate
 -   fix auto login
 -   show hidden tierlist for current user
+-   required: API 1.0.0
 
 ## 0.9.22 beta (2022-09-25)
 
