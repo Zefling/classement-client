@@ -99,10 +99,6 @@ export class ClassementViewComponent implements OnDestroy {
         this._sub.forEach(e => e.unsubscribe());
     }
 
-    retrun() {
-        this.router.navigate(['navigate', 'template', this.classement!.templateId]);
-    }
-
     loadClassement(classement: Classement) {
         this.classement = classement;
         if (this.userService.logged) {
