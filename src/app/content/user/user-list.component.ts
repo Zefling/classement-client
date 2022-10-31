@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
+
+import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -16,13 +18,15 @@ import { APIUserService } from 'src/app/services/api.user.service';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent {
+export class UserListComponent implements OnDestroy {
     @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
     @ViewChild(TabsComponent) tabs!: TabsComponent;
 
     currentClassement?: Classement;
 
     user?: User;
+
+    private listener: Subscription[] = [];
 
     constructor(
         private classementService: APIClassementService,
@@ -34,16 +38,26 @@ export class UserListComponent {
     ) {
         this.user = this.userService.user;
 
-        this.route.params.subscribe(params => {
-            if (params['page']) {
-                setTimeout(() => {
-                    this.tabs?.update(params['page']);
-                });
-            }
-        });
+        this.listener.push(
+            this.route.params.subscribe(params => {
+                if (params['page']) {
+                    setTimeout(() => {
+                        this.tabs?.update(params['page']);
+                    });
+                }
+            }),
+        );
+
+        if (!this.userService.logged) {
+            this.router.navigate(['/list']);
+        }
     }
 
-    tabChange(id: string) {
+    ngOnDestroy(): void {
+        this.listener.forEach(e => e.unsubscribe());
+    }
+
+    tabChange(id: string): void {
         this.router.navigate(['/user/lists/' + id]);
     }
 

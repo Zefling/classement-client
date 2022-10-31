@@ -1,12 +1,15 @@
-import { Component, HostBinding, Input, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
+
+import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { FormatedInfos } from 'src/app/interface';
+import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
@@ -17,7 +20,7 @@ import { Utils } from 'src/app/tools/utils';
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
 })
-export class ClassementListComponent {
+export class ClassementListComponent implements OnDestroy {
     @HostBinding('class.page')
     @Input()
     pageMode = true;
@@ -30,14 +33,25 @@ export class ClassementListComponent {
 
     itemCurrent?: FormatedInfos;
 
+    private listener: Subscription[] = [];
+
     constructor(
         private dbservice: DBService,
+        private userService: APIUserService,
         private router: Router,
         private translate: TranslateService,
         private messageService: MessageService,
         private logger: Logger,
     ) {
         this.showList();
+
+        if (this.userService.logged) {
+            this.router.navigate(['/user/lists/browser']);
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.listener.forEach(e => e.unsubscribe());
     }
 
     exportAll() {

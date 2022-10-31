@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { Subscription } from 'rxjs';
+
+import { APIUserService } from 'src/app/services/api.user.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -12,4 +15,16 @@ export class ClassementHomeComponent {
     version = '1.2.3';
 
     modeApi = environment.api?.active || false;
+
+    logged = false;
+
+    private listener: Subscription[] = [];
+
+    constructor(private userService: APIUserService) {
+        this.logged = !!this.userService.logged;
+    }
+
+    ngOnDestroy(): void {
+        this.listener.forEach(e => e.unsubscribe());
+    }
 }
