@@ -66,6 +66,15 @@
         justify-content: center;
         align-items: center;
     }
+
+    .tile-info {
+        display: none;
+    }
+
+    &:hover .tile-info,
+    &.with-annotation .tile-info {
+        display: block;
+    }
 }
 
 .add-file {

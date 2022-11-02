@@ -79,6 +79,7 @@
                                         <div
                                             class="content content-render"
                                             [ngClass]="options.itemTextPosition"
+                                            [class.with-annotation]="item.annotation"
                                             #tile
                                             [style.width.px]="calcWidth(item, tile.querySelector('.title-span'))"
                                         >
@@ -142,6 +143,7 @@
                         <div class="content-box" cdkDrag>
                             <div
                                 class="content"
+                                [class.with-annotation]="item.annotation"
                                 [style.width.px]="
                                     options.itemWidthAuto
                                         ? ((item.width || 150) / (item.height || 150)) * options.itemHeight
