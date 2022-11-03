@@ -163,26 +163,16 @@ export class APIClassementService extends APICommon {
         this.logger.log('showProgress', LoggerLevel.log, message);
     }
 
-    deleteClassement(rankingId: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            this.http
-                .delete<Message<void>>(`${environment.api.path}api/classement/${rankingId}`, this.header())
-                .subscribe({
-                    next: _ => {
-                        resolve();
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        reject(this.error('delete', result));
-                    },
-                });
-        });
-    }
-
-    adminStatusClassement(rankingId: string, status: boolean, type: 'delete' | 'hide'): Promise<Classement[]> {
+    statusClassement(
+        rankingId: string,
+        status: boolean,
+        type: 'delete' | 'hide',
+        admin = false,
+    ): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http
                 .post<Message<Classement[]>>(
-                    `${environment.api.path}api/admin/classement/status/${rankingId}`,
+                    `${environment.api.path}api/${admin ? 'admin/' : ''}classement/status/${rankingId}`,
                     {
                         type,
                         status,

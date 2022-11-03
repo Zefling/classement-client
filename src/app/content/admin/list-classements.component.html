@@ -50,7 +50,7 @@
                 [class.warn]="!currentClassement!.hidden"
                 [class.primary]="currentClassement!.hidden"
             >
-                {{ (!currentClassement!.hidden ? 'list.hide.hide' : 'list.hide.show') | translate }}
+                {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
             </button>
             <button
                 (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"

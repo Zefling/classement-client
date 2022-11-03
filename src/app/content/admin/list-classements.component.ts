@@ -45,7 +45,7 @@ export class ListClassementsComponent {
 
     changeStatusCurrentClassement(status: boolean, type: 'delete' | 'hide'): void {
         this.classementService
-            .adminStatusClassement(this.currentClassement!.rankingId, status, type)
+            .statusClassement(this.currentClassement!.rankingId, status, type, true)
             .then(classements => {
                 this.updateClassements.next(classements);
                 let typeName: string;

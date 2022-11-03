@@ -26,13 +26,22 @@
             <tbody>
                 <tr *ngFor="let classement of user.classements">
                     <td class="title">
-                        {{ classement.data.options.title || ('list.title.undefined' | translate) }}
-                        <a
-                            *ngIf="classement.localId && localIds.includes(classement.localId)"
-                            [tooltip]="'list.local.link' | translate: { id: classement.localId }"
-                            [routerLink]="['/edit', classement.localId]"
-                            >🔄</a
-                        >
+                        <div>
+                            <a [routerLink]="['/navigate/view', classement.localId]">
+                                {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
+                            >
+                            <a
+                                *ngIf="classement.localId && localIds.includes(classement.localId)"
+                                [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                                [routerLink]="['/edit', classement.localId]"
+                                >🔄</a
+                            >
+                        </div>
+                        <div *ngIf="classement.hidden">
+                            <span class="private" [tooltip]="'list.hide.note' | translate">
+                                {{ 'list.status.hidden' | translate }}
+                            </span>
+                        </div>
                     </td>
                     <td class="category">
                         {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
@@ -44,8 +53,10 @@
                     <td class="groups">{{ classement.totalGroups }}</td>
                     <td class="items">{{ classement.totalItems }}</td>
                     <td class="actions">
-                        <a [routerLink]="'/edit/' + classement.rankingId">{{ 'list.action.edit' | translate }}</a>
-                        <a (click)="delete(classement)">{{ 'list.action.delete' | translate }}</a>
+                        <button [routerLink]="'/edit/' + classement.rankingId">
+                            {{ 'list.action.edit' | translate }}
+                        </button>
+                        <button (click)="actions(classement)">{{ 'list.action.update' | translate }}</button>
                     </td>
                 </tr>
             </tbody>
@@ -60,13 +71,33 @@
     </tab-content>
 </tabs>
 
-<dialog-cmp class="auto-format" #dialogRemoveClassement>
-    <p>{{ 'list.delete.question' | translate }}</p>
+<dialog-cmp class="auto-format" #dialogActionsClassement>
     <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+
     <div class="buttons">
-        <button (click)="deleteCurrentClassement(false)">{{ 'list.delete.cancel' | translate }}</button>
-        <button (click)="deleteCurrentClassement(true)" class="warn">
-            {{ 'list.delete.validate' | translate }}
+        <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
+    </div>
+
+    <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
+
+    <div class="buttons">
+        <button
+            (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
+            [class.warn]="!currentClassement?.hidden"
+            [class.primary]="currentClassement?.hidden"
+        >
+            {{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
+        </button>
+    </div>
+    <div class="note">
+        {{ 'list.hide.note' | translate }}<br />
+        {{ 'list.hide.note2' | translate }}
+    </div>
+
+    <h3>{{ 'list.delete.question' | translate }}</h3>
+    <div>
+        <button (click)="actionForCurrentClassement('delete')" class="warn">
+            {{ 'list.delete.delete' | translate }}
         </button>
     </div>
 </dialog-cmp>

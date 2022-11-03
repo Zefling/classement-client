@@ -69,7 +69,7 @@
     "status": {
       "list": "Status",
       "deleted": "Supprimé",
-      "hidden": "Caché",
+      "hidden": "Privé",
       "parent": "Parent",
       "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?",
       "validated": "validé",
@@ -91,15 +91,21 @@
     "server.link": "Ce classement est lié un classement de votre compte.\nCliquez ici pour voir la version sauvegardé sur votre compte.\nId : {{ id }}",
     "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
-      "question": "Êtes-vous sûr de vouloir supprimer\u00A0?",
+      "question": "Êtes-vous sûr de vouloir supprimer ce classement\u00A0?",
       "validate": "Valider",
       "cancel": "Annuler",
       "delete": "Supprimer",
       "restore": "Restaurer"
     },
+    "show": {
+      "question": "Êtes-vous sûr de vouloir rendre public ce classement\u00A0?",
+      "public": "Rendre public"
+    },
     "hide": {
-      "hide": "Cacher",
-      "show": "Afficher"
+      "question": "Êtes-vous sûr de vouloir rendre privé ce classement\u00A0?",
+      "private": "Rendre privé",
+      "note": "Un classement privé ne pourra pas être trouvé avec la navigation ou la recherche.",
+      "note2": "Mais vous pouvez le partager avec son lien de partage."
     },
     "clone": {
       "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
@@ -526,7 +532,7 @@
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",
       "deleted.success": "🗑 Le classement a été effacé avec succès.",
       "restored.success": "😊 La classement a été restauré avec succès.",
-      "hidden.success": "🫣 Le classement a été caché avec succès.",
+      "hidden.success": "🫣 Le classement a été rendu privé avec succès.",
       "showed.success": "😊 La classement a été rendu public avec succès."
     },
     "token": {

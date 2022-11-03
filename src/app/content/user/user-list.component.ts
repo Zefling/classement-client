@@ -12,6 +12,7 @@ import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { Utils } from 'src/app/tools/utils';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { DBService } from 'src/app/services/db.service';
     styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnDestroy {
-    @ViewChild('dialogRemoveClassement') dialogRemoveClassement!: DialogComponent;
+    @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
+
     @ViewChild(TabsComponent) tabs!: TabsComponent;
 
     currentClassement?: Classement;
@@ -74,21 +76,32 @@ export class UserListComponent implements OnDestroy {
         this.router.navigate(['/user/lists/' + id]);
     }
 
-    delete(classement: Classement): void {
+    actions(classement: Classement): void {
         this.currentClassement = classement;
-        this.dialogRemoveClassement.open();
+        this.dialogActionsClassement.open();
     }
 
-    deleteCurrentClassement(remove: boolean): void {
-        if (remove) {
-            this.classementService.deleteClassement(this.currentClassement!.rankingId).then(() => {
-                this.user?.classements?.splice(this.user?.classements?.indexOf(this.currentClassement!), 1);
-                this.messageService.addMessage(this.translate.instant('message.server.deleted.success'));
-                this.currentClassement = undefined;
-            });
+    actionForCurrentClassement(type: 'delete' | 'hide' | 'close', status: boolean = true): void {
+        if (type === 'delete' || type === 'hide') {
+            this.classementService
+                .statusClassement(this.currentClassement!.rankingId, status, type)
+                .then(classements => {
+                    let typeName: string;
+
+                    if (type === 'delete') {
+                        typeName = 'deleted';
+                        Utils.removeClassement(this.user!.classements, this.currentClassement!);
+                    } else if (type === 'hide') {
+                        typeName = status ? 'hidden' : 'showed';
+                        Utils.updateClassements(this.user!.classements, classements);
+                    }
+
+                    this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
+                    this.currentClassement = undefined;
+                });
         } else {
             this.currentClassement = undefined;
         }
-        this.dialogRemoveClassement.close();
+        this.dialogActionsClassement.close();
     }
 }

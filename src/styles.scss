@@ -400,16 +400,12 @@ a {
     }
 }
 
-label,
-.label {
+:where(label, .label) {
     font-weight: 700;
     font-size: 80%;
 }
 
-input:not([type='checkbox']),
-.input,
-textarea,
-select {
+:where(input:not([type='checkbox']), .input, textarea, select) {
     border: 1px solid var(--input-border-color);
     border-radius: 3px;
     padding: 5px 3px;
@@ -432,16 +428,19 @@ dialog-cmp.auto-format .main {
         font-weight: 700;
     }
 
-    p,
-    div {
+    :where(h3, p, div) {
         text-align: center;
         padding: 15px 0;
+        margin: 0;
     }
 
-    input,
-    textarea {
+    :where(input, textarea) {
         width: 80%;
         resize: vertical;
+    }
+
+    .note {
+        font-size: 90%;
     }
 }
 
@@ -468,6 +467,7 @@ dialog-cmp.auto-format .main {
 
 .toogle-switch {
     position: relative;
+
     input {
         opacity: 0.01;
         height: 0.1px;
@@ -517,6 +517,10 @@ dialog-cmp.auto-format .main {
 }
 
 // tooltip
+
+[ng-reflect-tooltip] {
+    cursor: help;
+}
 
 .tooltip-container {
     box-shadow: 2px 2px 5px var(--tooltip-shadow-color);

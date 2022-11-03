@@ -129,6 +129,15 @@ export class Utils {
         });
     }
 
+    static removeClassement(classementsSource: Classement[] | undefined, classementsChange: Classement) {
+        if (classementsSource && Array.isArray(classementsSource)) {
+            const index = classementsSource.findIndex(e => e.rankingId === classementsChange.rankingId);
+            if (index > -1) {
+                classementsSource.splice(index, 1);
+            }
+        }
+    }
+
     static updateClassements(classementsSource: Classement[] | undefined, classementsChange: Classement[]) {
         if (classementsSource && Array.isArray(classementsSource)) {
             for (const classement of classementsChange) {

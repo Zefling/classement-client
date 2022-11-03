@@ -69,7 +69,7 @@
     "status": {
       "list": "Status",
       "deleted": "Deleted",
-      "hidden": "Hidden",
+      "hidden": "Private",
       "parent": "Parent",
       "question": "Are you sure you want to edit one of statuses?",
       "validated": "validated",
@@ -91,15 +91,21 @@
     "server.link": "This tierlist is linked to a tierlist of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
     "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
     "delete": {
-      "question": "Are you sure you want to delete?",
+      "question": "Are you sure you want to delete this tierlist?",
       "validate": "Validate",
       "cancel": "Cancel",
       "delete": "Delete",
       "restore": "Restore"
     },
+    "show": {
+      "question": "Are you sure you want to make this tierlist public?",
+      "public": "Make public"
+    },
     "hide": {
-      "hide": "Hide",
-      "show": "Show"
+      "question": "Are you sure you want to make this tierlist private?",
+      "private": "Make private",
+      "note": "A private tierlist will not be able to be found with navigation or search.",
+      "note2": "But you can share it with its share link."
     },
     "clone": {
       "question": "Are you sure you want to clone?",
@@ -526,7 +532,7 @@
       "save.success": "😊 The save was successful.",
       "deleted.success": "🗑 The tierlist has been successfully removed.",
       "restored.success": "😊 The tierlist has been successfully restored.",
-      "hidden.success": "🫣 The tierlist has been successfully hidden.",
+      "hidden.success": "🫣 The tierlist has been successfully made private.",
       "showed.success": "😊 The tierlist has been successfully made public."
     },
     "contact": {

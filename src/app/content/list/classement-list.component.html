@@ -42,9 +42,9 @@
             <td class="groups">{{ item.groupsLenght }}</td>
             <td class="items">{{ item.listLenght }}</td>
             <td class="actions">
-                <a [routerLink]="'/edit/' + item.id">{{ 'list.action.edit' | translate }}</a>
-                <a (click)="delete(item)">{{ 'list.action.delete' | translate }}</a>
-                <a (click)="clone(item)">{{ 'list.action.clone' | translate }}</a>
+                <button [routerLink]="'/edit/' + item.id">{{ 'list.action.edit' | translate }}</button>
+                <button (click)="delete(item)">{{ 'list.action.delete' | translate }}</button>
+                <button (click)="clone(item)">{{ 'list.action.clone' | translate }}</button>
             </td>
         </tr>
     </tbody>
