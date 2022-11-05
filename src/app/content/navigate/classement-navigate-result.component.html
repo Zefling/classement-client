@@ -1,0 +1,58 @@
+<div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
+    <div class="classement" *ngFor="let classement of classements">
+        <a
+            [routerLink]="
+                isCatagoryList
+                    ? ['/navigate']
+                    : classement.templateTotal <= 1
+                    ? ['/navigate/view', classement.rankingId]
+                    : ['/navigate/template', classement.templateId]
+            "
+            [queryParams]="isCatagoryList ? { category: classement.category } : {}"
+        >
+            <figure>
+                <img [src]="classement.banner" [alt]="classement.name" />
+                <figcaption>
+                    <div class="name" *ngIf="!isCatagoryList">{{ classement.name }}</div>
+                    <div class="category">
+                        {{ 'category.' + (classement.category || 'undefined') | translate }}
+                        <ng-container *ngIf="isCatagoryList"> ({{ classement.templateTotal }}) </ng-container>
+                    </div>
+                    <ng-container *ngIf="!isCatagoryList">
+                        <div class="groups">
+                            <div [title]="'list.count.group' | translate">
+                                <span class="icon-group"></span> {{ classement.totalGroups }}
+                            </div>
+                            <div [title]="'list.count.item' | translate">
+                                <span class="icon-tile"></span> {{ classement.totalItems }}
+                            </div>
+                        </div>
+                        <div class="username">
+                            {{
+                                'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) }
+                            }}
+                        </div>
+                        <div class="date">
+                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                        </div>
+                        <div class="date change">
+                            <ng-container *ngIf="classement.dateChange">{{
+                                'gererator.ranking.change'
+                                    | translate
+                                        : {
+                                              DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
+                                          }
+                            }}</ng-container>
+                        </div>
+                    </ng-container>
+                </figcaption>
+            </figure>
+            <div *ngIf="!isCatagoryList" class="template" [class.hide]="classement.templateTotal <= 1">
+                {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+            </div>
+        </a>
+    </div>
+</div>
+<ng-template #noResult>
+    <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
+</ng-template>

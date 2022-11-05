@@ -5,42 +5,7 @@
 </div>
 
 <ng-container *ngIf="!loading">
-    <div class="result">
-        <div class="classement" *ngFor="let classement of classements">
-            <a [routerLink]="['/navigate/view', classement.rankingId]">
-                <figure>
-                    <img [src]="classement.banner" />
-                    <figcaption>
-                        <div class="name">{{ classement.name }}</div>
-                        <div class="category">{{ 'category.' + (classement.category || 'undefined') | translate }}</div>
-                        <div class="groups">
-                            <div [title]="'list.count.group' | translate">
-                                <span class="icon-group"></span> {{ classement.totalGroups }}
-                            </div>
-                            <div [title]="'list.count.item' | translate">
-                                <span class="icon-tile"></span> {{ classement.totalItems }}
-                            </div>
-                        </div>
-                        <div class="username">
-                            {{
-                                'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) }
-                            }}
-                        </div>
-                        <div class="date">
-                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
-                        </div>
-                        <div class="date">
-                            <ng-container *ngIf="classement.dateChange">{{
-                                'gererator.ranking.change'
-                                    | translate
-                                        : { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
-                            }}</ng-container>
-                        </div>
-                    </figcaption>
-                </figure>
-            </a>
-        </div>
-    </div>
+    <classement-navigate-result [classements]="classements"></classement-navigate-result>
 </ng-container>
 
 <loader-item *ngIf="loading"></loader-item>

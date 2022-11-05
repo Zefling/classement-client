@@ -1,7 +1,4 @@
-:host {
-    display: block;
-    margin: 0 15px 30px 30px;
-}
+@import './classement-navigate.scss';
 
 .search {
     display: flex;
@@ -12,10 +9,6 @@
         flex: 1;
         min-width: 160px;
     }
-}
-
-.categories {
-    width: 250px;
 }
 
 .hide {
