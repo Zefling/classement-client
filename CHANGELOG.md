@@ -1,5 +1,23 @@
 # Changelog - Standalone web app & API
 
+## 1.4.0 (2022-11-06)
+
+### Standalone web app
+
+-   update font and add more icon in interface #18
+    -   update classicon to `1.4`
+-   show (i) only if annotation content
+-   advanced options less visible
+
+### With API activited only
+
+-   redesign of the status change dialog for server tierlists #17
+    -   add status
+    -   add tooltips
+    -   change of links to buttons
+-   add last tierlists on home page #16
+-   required: API 1.0.5
+
 ## 1.3.1 (2022-10-31)
 
 ### Standalone web app
