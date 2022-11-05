@@ -33,11 +33,12 @@
                         </div>
                         <div>
                             <a
+                                class="from"
                                 *ngIf="classement.localId && localIds.includes(classement.localId)"
                                 [tooltip]="'list.local.link' | translate: { id: classement.localId }"
                                 [routerLink]="['/edit', classement.localId]"
-                                >🔄</a
-                            >
+                                >➡ <span class="icon-browser"></span
+                            ></a>
                             <span *ngIf="classement.hidden" class="private" [tooltip]="'list.hide.note' | translate">
                                 <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
                             </span>

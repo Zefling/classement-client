@@ -72,6 +72,11 @@ td {
     }
 }
 
+.from,
+.from * {
+    vertical-align: -1px;
+}
+
 @media screen and (max-width: 1400px) {
     .date {
         width: 100px;

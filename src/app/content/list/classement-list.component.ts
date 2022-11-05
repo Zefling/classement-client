@@ -13,6 +13,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -35,6 +36,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     serverIds: string[] = [];
 
+    modeApi = environment.api?.active || false;
+
     private listener: Subscription[] = [];
 
     constructor(
@@ -49,7 +52,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (this.userService.logged) {
+        if (this.modeApi && this.userService.logged) {
             if (this.pageMode) {
                 this.router.navigate(['/user/lists/browser']);
             } else {

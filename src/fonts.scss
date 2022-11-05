@@ -24,6 +24,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-server:before {
+    content: '\e91c';
+}
 .icon-save-server:before {
     content: '\e90a';
 }
