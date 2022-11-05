@@ -2,7 +2,7 @@
     display: grid;
     grid-template:
         'title             title               title               categories          '
-        'links             theme               width-auto          .                   '
+        'theme             width-auto          .                   links               '
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  item-text-back      '
         'sizes             colors-title-text   colors-item-text    item-text-pos       '
@@ -21,19 +21,15 @@
     &.simplified {
         grid-template:
             'title             title               title               categories          '
-            'links             theme               width-auto          .                   '
+            'theme             width-auto          .                   links               '
             / 1fr 1fr 1fr 1fr;
     }
 }
 
-.simple {
+.links {
     grid-area: links;
     text-align: end;
     align-self: flex-end;
-
-    div {
-        padding: 10px;
-    }
 }
 
 h4 {
