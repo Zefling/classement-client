@@ -3,19 +3,19 @@
 <h3>{{ 'home.navigation' | translate }}</h3>
 <div class="tiles-navigate">
     <a class="tile-navigate" routerLink="/edit/new">
-        <span class="icon">➕</span>
+        <span class="icon icon-add"></span>
         <span class="label">{{ 'menu.new' | translate }}</span>
     </a>
     <a class="tile-navigate" routerLink="/navigate" *ngIf="modeApi">
-        <span class="icon">🌐</span>
+        <span class="icon icon-search"></span>
         <span class="label">{{ 'menu.navigate' | translate }}</span>
     </a>
     <a class="tile-navigate" routerLink="/user/profile" *ngIf="modeApi">
-        <span class="icon">👤</span>
+        <span class="icon icon-profile"></span>
         <span class="label">{{ 'menu.profile' | translate }}</span>
     </a>
     <a class="tile-navigate" [routerLink]="logged ? '/user/lists' : '/list'">
-        <span class="icon">🔖</span>
+        <span class="icon icon-bookmark"></span>
         <span class="label">{{ (logged ? 'menu.my.lists' : 'menu.list') | translate }}</span>
     </a>
 </div>

@@ -10,7 +10,7 @@
     <!-- server -->
     <tab-title id="server">{{ 'user.profile.list.server.tab' | translate }}</tab-title>
     <tab-content id="server">
-        <p>ℹ️ {{ 'user.profile.list.server.intro' | translate }}</p>
+        <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | translate }}</p>
 
         <table *ngIf="user && user.classements?.length; else noResult">
             <thead>
@@ -27,19 +27,19 @@
                 <tr *ngFor="let classement of user.classements">
                     <td class="title">
                         <div>
-                            <a [routerLink]="['/navigate/view', classement.localId]">
+                            <a [routerLink]="['/navigate/view', classement.rankingId]">
                                 {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
                             >
+                        </div>
+                        <div>
                             <a
                                 *ngIf="classement.localId && localIds.includes(classement.localId)"
                                 [tooltip]="'list.local.link' | translate: { id: classement.localId }"
                                 [routerLink]="['/edit', classement.localId]"
                                 >🔄</a
                             >
-                        </div>
-                        <div *ngIf="classement.hidden">
-                            <span class="private" [tooltip]="'list.hide.note' | translate">
-                                {{ 'list.status.hidden' | translate }}
+                            <span *ngIf="classement.hidden" class="private" [tooltip]="'list.hide.note' | translate">
+                                <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
                             </span>
                         </div>
                     </td>
@@ -53,8 +53,12 @@
                     <td class="groups">{{ classement.totalGroups }}</td>
                     <td class="items">{{ classement.totalItems }}</td>
                     <td class="actions">
-                        <button [routerLink]="'/edit/' + classement.rankingId">
-                            {{ 'list.action.edit' | translate }}
+                        <button
+                            class="primary"
+                            [routerLink]="'/edit/' + classement.rankingId"
+                            title="{{ 'list.action.edit' | translate }}"
+                        >
+                            <span class="icon-edit"></span>
                         </button>
                         <button (click)="actions(classement)">{{ 'list.action.update' | translate }}</button>
                     </td>

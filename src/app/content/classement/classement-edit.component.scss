@@ -247,18 +247,20 @@ input.color {
     grid-area: d;
 }
 
-svg.color {
+span.color {
     grid-area: b;
+    font-size: 24px;
     width: 30px;
     border: 1px solid #888;
     background-color: #fff8;
+    color: #000;
     border-radius: 5px;
     padding: 2px 5px;
     cursor: pointer;
     display: block;
 }
 
-svg.color + svg {
+span.color + span {
     grid-area: c;
 }
 

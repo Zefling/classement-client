@@ -1,7 +1,7 @@
 <h2 *ngIf="pageMode">{{ 'menu.list' | translate }}</h2>
 
 <div class="infos">
-    <p>ℹ️ {{ 'list.intro' | translate }}</p>
+    <p><span class="icon-info"></span> {{ 'list.intro' | translate }}</p>
     <div>
         <button class="primary" (click)="exportAll()">
             {{ 'gererator.actions.export.all.json' | translate }}
@@ -42,9 +42,15 @@
             <td class="groups">{{ item.groupsLenght }}</td>
             <td class="items">{{ item.listLenght }}</td>
             <td class="actions">
-                <button [routerLink]="'/edit/' + item.id">{{ 'list.action.edit' | translate }}</button>
-                <button (click)="delete(item)">{{ 'list.action.delete' | translate }}</button>
-                <button (click)="clone(item)">{{ 'list.action.clone' | translate }}</button>
+                <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | translate }}">
+                    <span class="icon-edit"></span>
+                </button>
+                <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
+                    <span class="icon-clone"></span>
+                </button>
+                <button class="warn" (click)="delete(item)" title="{{ 'list.action.delete' | translate }}">
+                    <span class="icon-remove"></span>
+                </button>
             </td>
         </tr>
     </tbody>

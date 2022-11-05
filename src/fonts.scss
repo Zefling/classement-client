@@ -24,6 +24,60 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-save-server:before {
+    content: '\e90a';
+}
+.icon-text-color:before {
+    content: '\e90b';
+}
+.icon-background-color:before {
+    content: '\e90c';
+}
+.icon-moon:before {
+    content: '\e90d';
+}
+.icon-sun:before {
+    content: '\e90e';
+}
+.icon-public-search:before {
+    content: '\e90f';
+}
+.icon-private-search:before {
+    content: '\e910';
+}
+.icon-public:before {
+    content: '\e911';
+}
+.icon-private:before {
+    content: '\e912';
+}
+.icon-browser:before {
+    content: '\e913';
+}
+.icon-info:before {
+    content: '\e914';
+}
+.icon-bookmark:before {
+    content: '\e915';
+}
+.icon-search:before {
+    content: '\e916';
+}
+.icon-edit:before {
+    content: '\e917';
+}
+.icon-profile:before {
+    content: '\e918';
+}
+.icon-clone:before {
+    content: '\e919';
+}
+.icon-remove:before {
+    content: '\e91a';
+}
+.icon-add:before {
+    content: '\e91b';
+}
 .icon-not-validated:before {
     content: '\e907';
 }
