@@ -1,4 +1,4 @@
-<div *ngIf="classements?.length; else noResult" class="result" [class.cateories]="isCatagoryList">
+<ng-container *ngIf="classements?.length; else noResult" [class.cateories]="isCatagoryList">
     <div class="classement" *ngFor="let classement of classements">
         <a
             [routerLink]="
@@ -47,12 +47,16 @@
                     </ng-container>
                 </figcaption>
             </figure>
-            <div *ngIf="!isCatagoryList" class="template" [class.hide]="classement.templateTotal <= 1">
+            <div
+                *ngIf="!isCatagoryList && !hideDerivatives"
+                class="template"
+                [class.hide]="classement.templateTotal <= 1"
+            >
                 {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
             </div>
         </a>
     </div>
-</div>
+</ng-container>
 <ng-template #noResult>
     <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
 </ng-template>

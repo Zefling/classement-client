@@ -20,12 +20,23 @@
     </a>
 </div>
 
+<ng-container *ngIf="modeApi">
+    <h3>{{ 'home.last' | translate }}</h3>
+
+    <ng-container *ngIf="!loading">
+        <navigate-result [classements]="classements" [hideDerivatives]="true"></navigate-result>
+    </ng-container>
+
+    <loader-item *ngIf="loading"></loader-item>
+</ng-container>
+
 <h3>{{ 'home.info' | translate }}</h3>
 <p>{{ 'home.intro' | translate }}</p>
 <p>{{ 'home.philosophy' | translate }}</p>
 <p *ngIf="modeApi">
     <a routerLink="/user/information"> {{ 'home.feedback' | translate }}</a>
 </p>
+
 <div class="infos">
     <div class="licence">
         <div class="logo">

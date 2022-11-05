@@ -13,6 +13,7 @@ import { LightDarkComponent } from './light-dark/light-dark.component';
 import { LoaderItemComponent } from './loader/loader-item.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoadingComponent } from './loader/loading.component';
+import { NavigateResultComponent } from './navigate-result/navigate-result.component';
 import { PaginationComponent } from './paginate/paginate.component';
 import { SeeClassementComponent } from './see-classement/see-classement.component';
 import { TabTitleComponent } from './tabs/tab-content.component';
@@ -40,6 +41,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TabTitleComponent,
         TabContentComponent,
         TabsComponent,
+        NavigateResultComponent,
     ],
     exports: [
         DialogComponent,
@@ -56,6 +58,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TabTitleComponent,
         TabContentComponent,
         TabsComponent,
+        NavigateResultComponent,
     ],
     imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule],
 })

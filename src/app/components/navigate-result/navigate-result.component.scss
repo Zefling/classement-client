@@ -28,7 +28,7 @@ a:hover :where(figure, .template) {
     margin-top: 5px;
 }
 
-.result {
+:host {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -87,8 +87,15 @@ a:hover :where(figure, .template) {
     }
 }
 
-.return {
-    margin-bottom: 15px;
+.hide {
+    visibility: hidden;
+}
+
+.no-result {
+    padding: 10px 5px;
+    text-align: center;
+    background: var(--no-result-background);
+    width: 100%;
 }
 
 @media screen and (max-width: 800px) {

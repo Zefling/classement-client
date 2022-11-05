@@ -3,6 +3,10 @@
     margin: 0 15px 30px 30px;
 }
 
+.return {
+    margin-bottom: 15px;
+}
+
 .search {
     display: flex;
     flex-wrap: wrap;
@@ -16,8 +20,4 @@
 
 .categories {
     width: 250px;
-}
-
-.hide {
-    visibility: hidden;
 }

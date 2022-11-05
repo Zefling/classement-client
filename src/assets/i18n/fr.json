@@ -46,7 +46,8 @@
     "app": {
       "name": "Classement : ",
       "version": "version {{ version }}"
-    }
+    },
+    "last": "Derniers classements"
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",

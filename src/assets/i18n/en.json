@@ -46,7 +46,8 @@
     "app": {
       "name": "Classement: ",
       "version": "version {{ version }}"
-    }
+    },
+    "last": "Latest tierlists"
   },
   "list": {
     "intro": "List of tierlists in memory in your Web browser only.",

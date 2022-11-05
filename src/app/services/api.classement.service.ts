@@ -96,6 +96,21 @@ export class APIClassementService extends APICommon {
         });
     }
 
+    getClassementsLast(limit: number = 8): Promise<Classement[]> {
+        return new Promise<Classement[]>((resolve, reject) => {
+            this.http
+                .get<Message<Classement[]>>(`${environment.api.path}api/classements/last?limit=${limit}`)
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('last', result));
+                    },
+                });
+        });
+    }
+
     getClassementsHome(): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http.get<Message<Classement[]>>(`${environment.api.path}api/categories/home`).subscribe({

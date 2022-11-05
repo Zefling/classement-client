@@ -33,10 +33,7 @@
 ></paginate-cmp>
 
 <ng-container *ngIf="!loading">
-    <classement-navigate-result
-        [classements]="classements"
-        [isCatagoryList]="isCatagoryList"
-    ></classement-navigate-result>
+    <navigate-result [classements]="classements" [isCatagoryList]="isCatagoryList"></navigate-result>
 </ng-container>
 
 <paginate-cmp
