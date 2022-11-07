@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
@@ -11,7 +11,7 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
     templateUrl: './classement-optimise.component.html',
     styleUrls: ['./classement-optimise.component.scss'],
 })
-export class ClassementOptimiseComponent implements DoCheck {
+export class ClassementOptimiseComponent implements OnInit {
     @Input()
     groups?: FormatedGroup[];
 
@@ -28,6 +28,8 @@ export class ClassementOptimiseComponent implements DoCheck {
     countResize: number;
     reduceSize: number;
     finalSize: number;
+
+    start = false;
 
     listOptimise: OptimisedFile[];
 
@@ -47,12 +49,12 @@ export class ClassementOptimiseComponent implements DoCheck {
         this.detail = !this.detail;
     }
 
-    ngDoCheck() {
+    ngOnInit() {
         let taille = 0;
         let count = 0;
         if (this.list) {
             this.list.forEach(e => {
-                if (e.url) {
+                if (e.url?.startsWith('data')) {
                     taille += e.realSize;
                     count++;
                 }
@@ -61,7 +63,7 @@ export class ClassementOptimiseComponent implements DoCheck {
         if (this.groups) {
             this.groups.forEach(f =>
                 f?.list.forEach(e => {
-                    if (e.url) {
+                    if (e.url?.startsWith('data')) {
                         taille += e.realSize;
                         count++;
                     }
@@ -74,6 +76,7 @@ export class ClassementOptimiseComponent implements DoCheck {
 
     async optimise() {
         this.logger.log('optimise');
+        this.start = true;
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;

@@ -1,15 +1,20 @@
 <div>{{ 'gererator.optimise.info' | translate }}</div>
 
 <div>
-    <button class="primary" (click)="optimise()" [disabled]="progress">
+    <button class="primary" (click)="optimise()" [disabled]="start">
         {{ 'gererator.optimise.button.optimise' | translate }}
     </button>
 </div>
 
-<div>{{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}</div>
+<div>
+    {{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}
+</div>
 
-<div *ngIf="progress">
-    <div><progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}</div>
+<div *ngIf="start">
+    <div>
+        <loading-cmp class="loading" *ngIf="progress !== total" size="20px" tickWidth="2px"></loading-cmp>
+        <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
+    </div>
     <div>
         <a (click)="toggle()">{{
             (!detail ? 'gererator.optimise.show.detail' : 'gererator.optimise.hide.detail') | translate
