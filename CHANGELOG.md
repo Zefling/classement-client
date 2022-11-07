@@ -1,5 +1,20 @@
 # Changelog - Standalone web app & API
 
+## 1.4.1 (2022-11-06)
+
+### Standalone web app
+
+-   fix loading to optimize images #23
+    -   fix test `url`
+    -   add loading component
+-   fix group tile coloration UX
+
+### With API activited only
+
+-   don't clone rankingID #22
+-   add an option to not clone templateId #22
+-   fix latest tierlists on homepage #24
+
 ## 1.4.0 (2022-11-06)
 
 ### Standalone web app
