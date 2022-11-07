@@ -214,8 +214,9 @@ img {
         height: 100%;
         grid-template:
             'a a a a a' auto
-            '. b . c d' 35px /
-            1fr auto 1fr auto 1fr;
+            '. b . c .' 35px
+            'd d d d d' 0
+            /1fr auto 1fr auto 1fr;
     }
 }
 
