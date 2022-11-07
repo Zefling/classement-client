@@ -434,7 +434,7 @@ dialog-cmp.auto-format .main {
         margin: 0;
     }
 
-    :where(input, textarea) {
+    :where(input:not([type='checkbox']), textarea) {
         width: 80%;
         resize: vertical;
     }

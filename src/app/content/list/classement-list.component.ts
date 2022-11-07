@@ -38,6 +38,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     modeApi = environment.api?.active || false;
 
+    changeTemplate = false;
+
     private listener: Subscription[] = [];
 
     constructor(
@@ -109,6 +111,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     clone(item: FormatedInfos) {
         this.dialogClone.open();
         this.itemCurrent = item;
+        this.changeTemplate = false;
     }
 
     deleteCurrent(action: boolean) {
@@ -137,7 +140,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.itemCurrent = undefined;
             this.dialogClone.close();
         } else if (this.itemCurrent?.id) {
-            this.dbservice.clone(this.itemCurrent, value || '').then(item => {
+            this.dbservice.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
                 this.messageService.addMessage(

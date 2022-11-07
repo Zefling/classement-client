@@ -110,6 +110,7 @@
     },
     "clone": {
       "question": "Are you sure you want to clone?",
+      "new.template": "New template: The new tierlist will have no link to the old one, otherwise it will be considered as a derivative.",
       "title": "Change title:",
       "validate": "Clone",
       "edit": "Clone & edit",

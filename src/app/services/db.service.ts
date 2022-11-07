@@ -60,12 +60,16 @@ export class DBService {
         });
     }
 
-    clone(item: FormatedInfos, title: string): Promise<FormatedInfos> {
+    clone(item: FormatedInfos, title: string, newTemplate: boolean = false): Promise<FormatedInfos> {
         return new Promise((resolve, reject) => {
             const formatData: any = {};
             const cloneItem = Utils.jsonCopy(item);
             cloneItem.date = `${new Date()}`;
             cloneItem.options.title = title;
+            cloneItem.rankingId = undefined;
+            if (newTemplate) {
+                cloneItem.templateId = undefined;
+            }
             this._digestMessage(cloneItem.date).then(id => {
                 cloneItem.id = id;
                 this._getDB()

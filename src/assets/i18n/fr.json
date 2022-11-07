@@ -110,6 +110,7 @@
     },
     "clone": {
       "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
+      "new.template": "Nouveau template\u00A0: Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera concidérer comme un dérivé.",
       "title": "Changer de titre\u00A0:",
       "validate": "Cloner",
       "edit": "Cloner et éditer",

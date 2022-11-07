@@ -88,6 +88,12 @@
         <label for="clone-title">{{ 'list.clone.title' | translate }}</label>
         <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
     </div>
+
+    <label>
+        <input type="checkbox" [(ngModel)]="changeTemplate" />
+        {{ 'list.clone.new.template' | translate }}
+    </label>
+
     <div class="buttons">
         <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
         <button class="primary" (click)="cloneCurrent(true, title.value)">
