@@ -63,6 +63,7 @@
 navigate-result {
     flex-wrap: nowrap;
     position: relative;
+    overflow: hidden;
 
     &::before {
         content: '';
