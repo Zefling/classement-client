@@ -15,6 +15,7 @@ export const defaultOptions: Options = {
     showAdvancedOptions: false,
     title: '',
     category: '',
+    description: '',
     itemWidth: 100,
     itemWidthAuto: false,
     itemHeight: 100,

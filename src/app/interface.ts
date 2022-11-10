@@ -61,6 +61,7 @@ export type Options = ThemeOptions & {
     showAdvancedOptions: boolean;
     title: string;
     category: string;
+    description: string;
 };
 export type ThemeOptions = {
     titleTextColor: string;

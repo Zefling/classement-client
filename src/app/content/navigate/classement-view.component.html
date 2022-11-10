@@ -21,6 +21,10 @@
         <div class="username">
             {{ 'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) } }}
         </div>
+
+        <div class="desc" *ngIf="classement.data.options.description">
+            {{ classement.data.options.description }}
+        </div>
         <div class="dates">
             <div class="date">
                 {{

@@ -165,6 +165,7 @@
       "title": "ティアリストのタイトル：",
       "title.color": "タイトルのテキストの色：",
       "group": "グループ：",
+      "description": "説明:",
       "sizes": "タイルサイズ：",
       "margin": "マージン",
       "padding": "パディング",

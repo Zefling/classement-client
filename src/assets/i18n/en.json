@@ -164,6 +164,7 @@
       "title": "Tierlist title:",
       "title.color": "Title text color:",
       "group": "Group:",
+      "description": "Description:",
       "sizes": "Tile sizes:",
       "margin": "Margin",
       "padding": "Padding",
