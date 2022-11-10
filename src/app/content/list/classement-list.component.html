@@ -12,14 +12,25 @@
     </div>
 </div>
 
-<table *ngIf="result?.length; else noResult">
+<table [sortable]="result" *ngIf="result?.length; else noResult">
     <thead>
         <tr>
-            <th class="title">{{ 'list.title.name' | translate }}</th>
-            <th class="category">{{ 'list.category.name' | translate }}</th>
-            <th class="date">{{ 'list.date' | translate }}</th>
-            <th class="groups">{{ 'list.count.group' | translate }}</th>
-            <th class="items">{{ 'list.count.item' | translate }}</th>
+            <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+                {{ 'list.title.name' | translate }}
+            </th>
+            <th
+                class="category"
+                [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
+            >
+                {{ 'list.category.name' | translate }}
+            </th>
+            <th class="date" [sort-rule]="{ type: 'date', attr: 'date' }">{{ 'list.date' | translate }}</th>
+            <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLenght' }">
+                {{ 'list.count.group' | translate }}
+            </th>
+            <th class="items" [sort-rule]="{ type: 'number', attr: 'listLenght' }">
+                {{ 'list.count.item' | translate }}
+            </th>
             <th class="actions">{{ 'list.action.name' | translate }}</th>
         </tr>
     </thead>

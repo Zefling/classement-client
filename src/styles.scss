@@ -142,6 +142,8 @@ body.light-mode {
     --tab-select-border-color: #141313;
     --tab-text-border-color: #494343;
     --tab-hover-border-color: #494343;
+    // table
+    --table-header-sortabel-cell: #ecececee;
 }
 
 body.dark-mode {
@@ -284,6 +286,8 @@ body.dark-mode {
     --tab-select-border-color: #4b4545;
     --tab-text-border-color: #fff;
     --tab-hover-border-color: #fff;
+    // table
+    --table-header-sortabel-cell: #202329ee;
 
     color-scheme: dark;
 }
@@ -548,4 +552,24 @@ dialog-cmp.auto-format .main {
         opacity: 1;
         transform: translate(-50%, 0);
     }
+}
+
+// table / sortable
+
+.sort-cell {
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--tooltip-background);
+    }
+}
+
+.sort-asc::after {
+    display: inline;
+    content: '⮟';
+}
+
+.sort-desc::after {
+    display: inline;
+    content: '⮝';
 }
