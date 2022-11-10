@@ -51,6 +51,7 @@
   },
   "list": {
     "intro": "List of tierlists in memory in your Web browser only.",
+    "filter": "Filter:",
     "title": {
       "name": "Title",
       "undefined": "No title"

@@ -38,6 +38,7 @@ export class GlobalService {
     private renderer: Renderer2;
 
     constructor(rendererFactory: RendererFactory2, private logger: Logger) {
+        // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
     }
 

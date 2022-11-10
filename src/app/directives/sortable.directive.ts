@@ -1,4 +1,15 @@
-import { ChangeDetectorRef, Directive, Host, HostBinding, HostListener, Input } from '@angular/core';
+import {
+    Directive,
+    Host,
+    HostBinding,
+    HostListener,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Renderer2,
+    SimpleChanges,
+} from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -43,16 +54,48 @@ export class SortRuleDirective {
 @Directive({
     selector: '[sortable]',
 })
-export class SortableDirective {
+export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     @Input()
     sortable?: any[] = [];
+
+    @Input('sortable-filter-input')
+    sortableFilterInput?: HTMLInputElement;
+
+    @Input('sortable-filter')
+    sortableFilter?: (key: string, item: any, index: number) => boolean;
 
     currentRule?: SortRule;
     currentRuleOrder = false;
 
-    constructor(private translate: TranslateService, private cd: ChangeDetectorRef) {}
+    private sortableComplete: any[] = [];
+    private inputListener?: () => void;
+    private input = '';
 
-    sort(rule?: SortRule): { order: boolean; rule?: SortRule } {
+    constructor(private translate: TranslateService, private renderer: Renderer2) {}
+
+    ngOnInit(): void {
+        if (this.sortableFilterInput) {
+            this.inputListener = this.renderer.listen(this.sortableFilterInput, 'input', (inputEvent: any) => {
+                this.filter((inputEvent.target as HTMLInputElement).value);
+            });
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['sortable']) {
+            if (this.sortableFilterInput && this.sortable) {
+                this.sortableComplete.splice(0, this.sortable.length);
+                this.sortableComplete.push(...this.sortable);
+                this.filter(this.sortableFilterInput?.value || '');
+            }
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.inputListener?.();
+    }
+
+    sort(rule?: SortRule) {
         // change of reinit order if different
         if (this.currentRule === rule) {
             this.currentRuleOrder = !this.currentRuleOrder;
@@ -61,6 +104,10 @@ export class SortableDirective {
             this.currentRuleOrder = true;
         }
 
+        this._sort(rule);
+    }
+
+    private _sort(rule?: SortRule) {
         // sort
         if (rule && rule.type !== 'none' && Array.isArray(this.sortable) && this.sortable.length > 1) {
             this.sortable.sort((a, b) => {
@@ -82,8 +129,18 @@ export class SortableDirective {
                 return test * (this.currentRuleOrder ? 1 : -1);
             });
         }
+    }
 
-        return { order: this.currentRuleOrder, rule };
+    private filter(input: string = '') {
+        if (this.input !== input && this.sortable && this.sortableComplete && this.sortableFilter) {
+            this.sortable.splice(0, this.sortable.length);
+            const result = !!input?.trim()
+                ? this.sortableComplete.filter((item, index) => this.sortableFilter!(input, item, index))
+                : this.sortableComplete;
+            this.sortable.push(...result);
+            this._sort(this.currentRule);
+            this.input = input;
+        }
     }
 }
 

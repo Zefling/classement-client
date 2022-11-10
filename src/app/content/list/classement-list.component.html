@@ -2,7 +2,12 @@
 
 <div class="infos">
     <p><span class="icon-info"></span> {{ 'list.intro' | translate }}</p>
-    <div>
+    <div class="list-actions">
+        <div class="filter">
+            <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
+            <div><input id="browser-list-filter" type="search" maxlength="150" #filter /></div>
+        </div>
+
         <button class="primary" (click)="exportAll()">
             {{ 'gererator.actions.export.all.json' | translate }}
         </button>
@@ -12,65 +17,71 @@
     </div>
 </div>
 
-<table [sortable]="result" *ngIf="result?.length; else noResult">
-    <thead>
-        <tr>
-            <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
-                {{ 'list.title.name' | translate }}
-            </th>
-            <th
-                class="category"
-                [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
-            >
-                {{ 'list.category.name' | translate }}
-            </th>
-            <th class="date" [sort-rule]="{ type: 'date', attr: 'date' }">{{ 'list.date' | translate }}</th>
-            <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLenght' }">
-                {{ 'list.count.group' | translate }}
-            </th>
-            <th class="items" [sort-rule]="{ type: 'number', attr: 'listLenght' }">
-                {{ 'list.count.item' | translate }}
-            </th>
-            <th class="actions">{{ 'list.action.name' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of result">
-            <td class="title">
-                <div>
-                    {{ item.options.title || ('list.title.undefined' | translate) }}
-                </div>
-                <div>
-                    <a
-                        class="from"
-                        *ngIf="modeApi && item.rankingId && serverIds.includes(item.rankingId)"
-                        [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
-                        [routerLink]="['/navigate/view', item.rankingId]"
-                        >➡ <span class="icon-server"></span
-                    ></a>
-                </div>
-            </td>
-            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
-            <td class="date">
-                <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
-            </td>
-            <td class="groups">{{ item.groupsLenght }}</td>
-            <td class="items">{{ item.listLenght }}</td>
-            <td class="actions">
-                <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | translate }}">
-                    <span class="icon-edit"></span>
-                </button>
-                <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
-                    <span class="icon-clone"></span>
-                </button>
-                <button class="warn" (click)="delete(item)" title="{{ 'list.action.delete' | translate }}">
-                    <span class="icon-remove"></span>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ng-container [sortable]="result" [sortable-filter-input]="filter" [sortable-filter]="sortableFilter">
+    <table *ngIf="result?.length; else noResult">
+        <thead>
+            <tr>
+                <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+                    {{ 'list.title.name' | translate }}
+                </th>
+                <th
+                    class="category"
+                    [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
+                >
+                    {{ 'list.category.name' | translate }}
+                </th>
+                <th class="date" [sort-rule]="{ type: 'date', attr: 'date' }">{{ 'list.date' | translate }}</th>
+                <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLenght' }">
+                    {{ 'list.count.group' | translate }}
+                </th>
+                <th class="items" [sort-rule]="{ type: 'number', attr: 'listLenght' }">
+                    {{ 'list.count.item' | translate }}
+                </th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of result">
+                <td class="title">
+                    <div>
+                        {{ item.options.title || ('list.title.undefined' | translate) }}
+                    </div>
+                    <div>
+                        <a
+                            class="from"
+                            *ngIf="modeApi && item.rankingId && serverIds.includes(item.rankingId)"
+                            [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
+                            [routerLink]="['/navigate/view', item.rankingId]"
+                            >➡ <span class="icon-server"></span
+                        ></a>
+                    </div>
+                </td>
+                <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
+                <td class="date">
+                    <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
+                </td>
+                <td class="groups">{{ item.groupsLenght }}</td>
+                <td class="items">{{ item.listLenght }}</td>
+                <td class="actions">
+                    <button
+                        class="primary"
+                        [routerLink]="'/edit/' + item.id"
+                        title="{{ 'list.action.edit' | translate }}"
+                    >
+                        <span class="icon-edit"></span>
+                    </button>
+                    <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
+                        <span class="icon-clone"></span>
+                    </button>
+                    <button class="warn" (click)="delete(item)" title="{{ 'list.action.delete' | translate }}">
+                        <span class="icon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
 
 <ng-template #noResult>
     <p class="no-result">{{ 'list.no.result' | translate }}</p>

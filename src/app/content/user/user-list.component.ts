@@ -68,6 +68,10 @@ export class UserListComponent implements OnDestroy {
         });
     }
 
+    sortableFilter = (key: string, item: Classement, index: number): boolean => {
+        return Utils.normalizeString(item.name).includes(Utils.normalizeString(key));
+    };
+
     ngOnDestroy(): void {
         this.listener.forEach(e => e.unsubscribe());
     }

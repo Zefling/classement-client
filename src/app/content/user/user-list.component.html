@@ -10,86 +10,105 @@
     <!-- server -->
     <tab-title id="server">{{ 'user.profile.list.server.tab' | translate }}</tab-title>
     <tab-content id="server">
-        <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | translate }}</p>
+        <div class="infos">
+            <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | translate }}</p>
+            <div class="list-actions">
+                <div class="filter">
+                    <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
+                    <div><input id="browser-list-filter" type="search" maxlength="150" #filter /></div>
+                </div>
+            </div>
+        </div>
 
-        <table *ngIf="user && user.classements?.length; else noResult" [sortable]="user.classements">
-            <thead>
-                <tr>
-                    <th class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
-                        {{ 'list.title.name' | translate }}
-                    </th>
-                    <th
-                        class="category"
-                        [sort-rule]="{
-                            type: 'translate',
-                            attr: 'category',
-                            translate: 'category.%value%'
-                        }"
-                    >
-                        {{ 'list.category.name' | translate }}
-                    </th>
-                    <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate' }">
-                        {{ 'list.date' | translate }}
-                    </th>
-                    <th class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
-                        {{ 'list.count.group' | translate }}
-                    </th>
-                    <th class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
-                        {{ 'list.count.item' | translate }}
-                    </th>
-                    <th class="actions">{{ 'list.action.name' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let classement of user.classements">
-                    <td class="title">
-                        <div>
-                            <a [routerLink]="['/navigate/view', classement.rankingId]">
-                                {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
-                            >
-                        </div>
-                        <div>
-                            <a
-                                class="from"
-                                *ngIf="classement.localId && localIds.includes(classement.localId)"
-                                [tooltip]="'list.local.link' | translate: { id: classement.localId }"
-                                [routerLink]="['/edit', classement.localId]"
-                                >➡ <span class="icon-browser"></span
-                            ></a>
-                            <span *ngIf="classement.hidden" class="private" [tooltip]="'list.hide.note' | translate">
-                                <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
-                            </span>
-                        </div>
-                    </td>
-                    <td class="category">
-                        {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
-                    </td>
-                    <td class="date">
-                        <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                        <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
-                    </td>
-                    <td class="groups">{{ classement.totalGroups }}</td>
-                    <td class="items">{{ classement.totalItems }}</td>
-                    <td class="actions">
-                        <button
-                            class="primary"
-                            [routerLink]="'/edit/' + classement.rankingId"
-                            title="{{ 'list.action.edit' | translate }}"
+        <ng-container
+            *ngIf="user"
+            [sortable]="user.classements"
+            [sortable-filter-input]="filter"
+            [sortable-filter]="sortableFilter"
+        >
+            <table *ngIf="user.classements?.length; else noResult">
+                <thead>
+                    <tr>
+                        <th class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
+                            {{ 'list.title.name' | translate }}
+                        </th>
+                        <th
+                            class="category"
+                            [sort-rule]="{
+                                type: 'translate',
+                                attr: 'category',
+                                translate: 'category.%value%'
+                            }"
                         >
-                            <span class="icon-edit"></span>
-                        </button>
-                        <button (click)="actions(classement)">{{ 'list.action.update' | translate }}</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            {{ 'list.category.name' | translate }}
+                        </th>
+                        <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate' }">
+                            {{ 'list.date' | translate }}
+                        </th>
+                        <th class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
+                            {{ 'list.count.group' | translate }}
+                        </th>
+                        <th class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
+                            {{ 'list.count.item' | translate }}
+                        </th>
+                        <th class="actions">{{ 'list.action.name' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let classement of user.classements">
+                        <td class="title">
+                            <div>
+                                <a [routerLink]="['/navigate/view', classement.rankingId]">
+                                    {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
+                                >
+                            </div>
+                            <div>
+                                <a
+                                    class="from"
+                                    *ngIf="classement.localId && localIds.includes(classement.localId)"
+                                    [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                                    [routerLink]="['/edit', classement.localId]"
+                                    >➡ <span class="icon-browser"></span
+                                ></a>
+                                <span
+                                    *ngIf="classement.hidden"
+                                    class="private"
+                                    [tooltip]="'list.hide.note' | translate"
+                                >
+                                    <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
+                                </span>
+                            </div>
+                        </td>
+                        <td class="category">
+                            {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                        </td>
+                        <td class="date">
+                            <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                            <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                        </td>
+                        <td class="groups">{{ classement.totalGroups }}</td>
+                        <td class="items">{{ classement.totalItems }}</td>
+                        <td class="actions">
+                            <button
+                                class="primary"
+                                [routerLink]="'/edit/' + classement.rankingId"
+                                title="{{ 'list.action.edit' | translate }}"
+                            >
+                                <span class="icon-edit"></span>
+                            </button>
+                            <button (click)="actions(classement)">{{ 'list.action.update' | translate }}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <ng-template #noResult>
-            <p class="no-result">{{ 'list.no.result' | translate }}</p>
-            <p>
-                <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
-            </p>
-        </ng-template>
+            <ng-template #noResult>
+                <p class="no-result">{{ 'list.no.result' | translate }}</p>
+                <p>
+                    <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+                </p>
+            </ng-template>
+        </ng-container>
     </tab-content>
 </tabs>
 

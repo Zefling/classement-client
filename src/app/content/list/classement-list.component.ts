@@ -53,6 +53,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.showList();
     }
 
+    sortableFilter = (key: string, item: FormatedInfos, index: number): boolean => {
+        return Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key));
+    };
+
     ngOnInit() {
         if (this.modeApi && this.userService.logged) {
             if (this.pageMode) {

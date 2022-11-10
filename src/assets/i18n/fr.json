@@ -44,13 +44,14 @@
       "server": "Serveur"
     },
     "app": {
-      "name": "Classement : ",
+      "name": "Classement\u00A0:",
       "version": "version {{ version }}"
     },
     "last": "Derniers classements"
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",
+    "filter": "Filtrer\u00A0:",
     "title": {
       "name": "Titre",
       "undefined": "Sans titre"
