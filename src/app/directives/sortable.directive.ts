@@ -15,14 +15,14 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 export type SortRule =
-    | { type: 'string' | 'number' | 'date'; attr: string }
-    | { type: 'translate'; attr: string; translate: string }
+    | { type: 'string' | 'number' | 'date'; attr: string; init?: 'asc' | 'desc' }
+    | { type: 'translate'; attr: string; translate: string; init?: 'asc' | 'desc' }
     | { type: 'none' };
 
 @Directive({
     selector: '[sort-rule]',
 })
-export class SortRuleDirective {
+export class SortRuleDirective implements OnInit {
     @Input('sort-rule')
     sortRule?: SortRule;
 
@@ -45,9 +45,15 @@ export class SortRuleDirective {
 
     constructor(@Host() private sortable: SortableDirective) {}
 
+    ngOnInit(): void {
+        if (this.sortRule && this.sortRule.type !== 'none' && this.sortRule.init) {
+            this.sortable.sortWithRule(this.sortRule, this.sortRule.init);
+        }
+    }
+
     @HostListener('click')
     onClick() {
-        this.sortable.sort(this.sortRule);
+        this.sortable.sortWithRule(this.sortRule);
     }
 }
 
@@ -95,20 +101,19 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
         this.inputListener?.();
     }
 
-    sort(rule?: SortRule) {
-        // change of reinit order if different
+    sortWithRule(rule?: SortRule, order: 'asc' | 'desc' = 'asc') {
         if (this.currentRule === rule) {
             this.currentRuleOrder = !this.currentRuleOrder;
         } else {
             this.currentRule = rule;
-            this.currentRuleOrder = true;
+            this.currentRuleOrder = order === 'asc';
         }
 
-        this._sort(rule);
+        this.sortLines();
     }
 
-    private _sort(rule?: SortRule) {
-        // sort
+    sortLines() {
+        const rule = this.currentRule;
         if (rule && rule.type !== 'none' && Array.isArray(this.sortable) && this.sortable.length > 1) {
             this.sortable.sort((a, b) => {
                 // todo replace eval by a more secure method
@@ -138,7 +143,7 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
                 ? this.sortableComplete.filter((item, index) => this.sortableFilter!(input, item, index))
                 : this.sortableComplete;
             this.sortable.push(...result);
-            this._sort(this.currentRule);
+            this.sortLines();
             this.input = input;
         }
     }

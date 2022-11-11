@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
+import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { FormatedInfos } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -29,6 +30,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     @ViewChild('dialogDelete') dialogDelete!: DialogComponent;
     @ViewChild('dialogClone') dialogClone!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
+    @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
 
     result!: FormatedInfos[];
 
@@ -103,7 +105,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     showList() {
         this.dbservice.getLocalList().then(result => {
             this.result = result;
-            this._sort();
+            this.sortableDirective.sortLines();
         });
     }
 
@@ -158,6 +160,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/edit/' + item.id]);
                 } else {
                     this.result.push(item);
+                    this.sortableDirective.sortLines();
                 }
             });
         }
@@ -187,7 +190,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         const index = this.result.findIndex(e => e.id === item.infos.id);
                         if (index === -1) {
                             this.result.push(item.infos);
-                            this._sort();
+                            this.sortableDirective.sortLines();
                         } else {
                             this.result[index] = item.infos;
                         }
@@ -202,14 +205,5 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     private _getTitle(info: FormatedInfos) {
         return info?.options?.title.trim() || this.translate.instant('list.title.undefined');
-    }
-
-    private _sort() {
-        this.result.forEach(d => {
-            if (typeof d.date === 'string') {
-                d.date = new Date(d.date);
-            }
-        });
-        this.result.sort((e, f) => (f.date as Date).getTime() - (e.date as Date).getTime());
     }
 }

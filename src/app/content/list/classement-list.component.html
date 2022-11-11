@@ -30,7 +30,9 @@
                 >
                     {{ 'list.category.name' | translate }}
                 </th>
-                <th class="date" [sort-rule]="{ type: 'date', attr: 'date' }">{{ 'list.date' | translate }}</th>
+                <th class="date" [sort-rule]="{ type: 'date', attr: 'date', init: 'desc' }">
+                    {{ 'list.date' | translate }}
+                </th>
                 <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLenght' }">
                     {{ 'list.count.group' | translate }}
                 </th>

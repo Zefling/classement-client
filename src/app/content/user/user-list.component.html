@@ -42,7 +42,7 @@
                         >
                             {{ 'list.category.name' | translate }}
                         </th>
-                        <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate' }">
+                        <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
                             {{ 'list.date' | translate }}
                         </th>
                         <th class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
