@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,7 +29,7 @@ import { categories } from './classement-default';
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
 })
-export class ClassementSaveServerComponent implements OnDestroy {
+export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     @Input()
     classement?: Classement;
 
@@ -74,10 +84,6 @@ export class ClassementSaveServerComponent implements OnDestroy {
             }
         });
 
-        if (this.classement?.hidden) {
-            this.hidden = this.classement?.hidden;
-        }
-
         this._sub.push(
             this.classementService.progressValue.subscribe(value => {
                 if (this.loading) {
@@ -85,6 +91,14 @@ export class ClassementSaveServerComponent implements OnDestroy {
                 }
             }),
         );
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['classement']) {
+            if (this.classement?.hidden) {
+                this.hidden = this.classement?.hidden;
+            }
+        }
     }
 
     ngOnDestroy() {
