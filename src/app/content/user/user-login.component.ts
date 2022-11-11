@@ -17,6 +17,8 @@ export class UserLoginComponent implements OnDestroy {
     password = '';
     showError = '';
 
+    loader = false;
+
     private listener: Subscription[] = [];
 
     constructor(private router: Router, private userService: APIUserService) {
@@ -34,6 +36,7 @@ export class UserLoginComponent implements OnDestroy {
     }
 
     submit() {
+        this.loader = true;
         this.userService
             .login(this.username, this.password)
             .then(() => {
@@ -41,6 +44,9 @@ export class UserLoginComponent implements OnDestroy {
             })
             .catch(e => {
                 this.showError = e;
+            })
+            .finally(() => {
+                this.loader = false;
             });
     }
 

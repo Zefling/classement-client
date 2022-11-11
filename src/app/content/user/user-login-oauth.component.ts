@@ -14,6 +14,8 @@ import { APIUserService } from 'src/app/services/api.user.service';
 export class UserLoginAouthComponent implements OnDestroy {
     showError = '';
 
+    loader = true;
+
     private listener: Subscription[] = [];
 
     constructor(private router: Router, private userService: APIUserService, private activatedRoute: ActivatedRoute) {
@@ -36,6 +38,9 @@ export class UserLoginAouthComponent implements OnDestroy {
                     })
                     .catch(e => {
                         this.showError = e;
+                    })
+                    .finally(() => {
+                        this.loader = false;
                     });
             }
         });
@@ -43,5 +48,6 @@ export class UserLoginAouthComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this.listener.forEach(e => e.unsubscribe());
+        this.loader = false;
     }
 }
