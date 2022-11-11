@@ -169,3 +169,21 @@
         </tbody>
     </table>
 </dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogPassword>
+    <div class="button-image-save">
+        {{ 'navigate.password.required' | translate }}
+        <div>
+            <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
+        </div>
+        <ul *ngIf="showError" class="list-error">
+            <li>{{ showError }}</li>
+        </ul>
+        <span>
+            <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | translate }}</button>
+            <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
+                {{ 'navigate.password.ok' | translate }}
+            </button>
+        </span>
+    </div>
+</dialog-cmp>

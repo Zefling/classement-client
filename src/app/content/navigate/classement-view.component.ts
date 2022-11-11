@@ -13,9 +13,11 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger } from 'src/app/services/logger';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
+
+import { MessageError } from '../user/user.interface';
 
 
 @Component({
@@ -39,12 +41,15 @@ export class ClassementViewComponent implements OnDestroy {
 
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
 
+    showError: string = '';
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
+    @ViewChild('dialogPassword') dialogPassword!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
-
+    private _id?: string;
     private _sub: Subscription[] = [];
 
     constructor(
@@ -63,36 +68,66 @@ export class ClassementViewComponent implements OnDestroy {
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] && params['id'] !== 'new') {
-                    const id = params['id'];
+                    this._id = params['id'];
 
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
-                            const classement = this.userService.user?.classements?.find(e => e.rankingId === id);
+                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this._id);
                             this.exportImageDisabled = true;
+                            if (!classement) {
+                                classement = this.userService.getByIdFormCache(this._id!);
+                            }
                             if (classement) {
                                 this.logger.log('loadServerClassement (user)');
                                 this.loadClassement(classement);
                             } else {
                                 this.classementService
-                                    .getClassement(id!)
+                                    .getClassement(this._id!)
                                     .then(classement => {
                                         this.logger.log('loadServerClassement (server)');
                                         this.loadClassement(classement);
                                     })
-                                    .catch(() => {
-                                        this.logger.log('loadLocalClassement (browser)');
-                                        this.loadLocalClassement(id);
+                                    .catch(e => {
+                                        this.logger.log('loadLocalClassement (browser)', LoggerLevel.info, e);
+                                        if ((e as MessageError)?.code === 401) {
+                                            this.dialogPassword.open();
+                                        } else {
+                                            this.loadLocalClassement(this._id!);
+                                        }
                                     });
                             }
                         });
                     } else {
-                        this.loadLocalClassement(id);
+                        this.loadLocalClassement(this._id!);
                     }
                 } else {
                     this.router.navigate(['navigate']);
                 }
             }),
         );
+    }
+
+    openClassementWithPassword(password: string) {
+        this.classementService
+            .getClassement(this._id!, password)
+            .then(classement => {
+                this.logger.log('loadServerClassement (server)');
+                this.userService.addCache(classement);
+                this.loadClassement(classement);
+                this.dialogPassword.close();
+            })
+            .catch(e => {
+                this.logger.log('loadLocalClassement (browser)', LoggerLevel.info, e);
+                // password required
+                if ((e as MessageError)?.code === 401) {
+                    this.showError = this.translate.instant(`error.api-code.${(e as MessageError).errorCode}`);
+                }
+            });
+    }
+
+    cancelPassword() {
+        this.dialogPassword.close();
+        this.router.navigate(['navigate']);
     }
 
     ngOnDestroy(): void {

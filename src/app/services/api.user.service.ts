@@ -30,6 +30,8 @@ export class APIUserService extends APICommon {
 
     token?: string;
 
+    private cache: Classement[] = [];
+
     constructor(
         private http: HttpClient,
         private globalService: GlobalService,
@@ -45,6 +47,14 @@ export class APIUserService extends APICommon {
         this.isModerator = false;
         this.isAdmin = false;
         this.user = undefined;
+    }
+
+    addCache(classement: Classement) {
+        this.cache.push(classement);
+    }
+
+    getByIdFormCache(id: string): Classement | undefined {
+        return this.cache.find(e => e.rankingId === id);
     }
 
     updateClassement(classement: Classement) {

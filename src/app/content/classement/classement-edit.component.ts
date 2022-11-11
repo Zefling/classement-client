@@ -103,7 +103,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
                             this.logged = this.userService.logged ?? false;
-                            const classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
+                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
+                            if (!classement) {
+                                classement = this.userService.getByIdFormCache(this.id!);
+                            }
                             if (classement) {
                                 this.logger.log('loadServerClassement (user)');
                                 this.loadServerClassement(classement, fork);

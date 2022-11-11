@@ -450,7 +450,12 @@
     "classements": "Classements",
     "see.derivatives": "Voir les dérivés",
     "my.derivatives": "Mes dérivés",
-    "visualization": "Visualisation"
+    "visualization": "Visualisation",
+    "password": {
+      "required": "Mot de passe requis pour voir ce classement",
+      "cancel": "Annuler",
+      "ok": "Ok"
+    }
   },
   "error": {
     "api-code": {
@@ -474,6 +479,7 @@
       "3020": "Votre compte n'a pas été validé. Si le jeton de validation est périmé, demandez un changement de mot de passe.",
       "3101": "Classement non trouvé.",
       "3102": "Pas de classement trouvé.",
+      "3110": "Mot de passe invalide.",
       "3201": "Classement d'origine non trouvé.",
       "3202": "Pas de classement trouvé avec cet identifiant.",
       "3301": "Erreur de status.",

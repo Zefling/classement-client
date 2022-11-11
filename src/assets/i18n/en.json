@@ -450,7 +450,12 @@
     "classements": "Tierlists",
     "see.derivatives": "See derivatives",
     "my.derivatives": "My derivatives",
-    "visualization": "Visualization"
+    "visualization": "Visualization",
+    "password": {
+      "required": "Password required to view this tierlist",
+      "cancel": "Cancel",
+      "ok": "Ok"
+    }
   },
   "error": {
     "api-code": {
@@ -474,6 +479,7 @@
       "3020": "Your account has not been validated. If the validation token is expired, request a password change.",
       "3101": "Rating not found.",
       "3102": "No ratings found.",
+      "3110": "Invalid password.",
       "3201": "Original ranking not found.",
       "3202": "No rating found with this id.",
       "3301": "Status error.",

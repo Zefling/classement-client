@@ -3,6 +3,7 @@ import {
     HttpErrorResponse,
     HttpEvent,
     HttpEventType,
+    HttpHeaders,
     HttpParams,
     HttpRequest,
     HttpResponse,
@@ -19,7 +20,7 @@ import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
-import { Message } from '../content/user/user.interface';
+import { Message, MessageError } from '../content/user/user.interface';
 import { Classement } from '../interface';
 
 
@@ -45,16 +46,26 @@ export class APIClassementService extends APICommon {
         super(translate, logger);
     }
 
-    getClassement(rankingId: string): Promise<Classement> {
+    getClassement(rankingId: string, password?: string): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
-            this.http.get<Message<Classement>>(`${environment.api.path}api/classement/${rankingId}`).subscribe({
-                next: result => {
-                    resolve(result.message);
-                },
-                error: (result: HttpErrorResponse) => {
-                    reject(this.error('classement', result));
-                },
-            });
+            this.http
+                .get<Message<Classement>>(
+                    `${environment.api.path}api/classement/${rankingId}`,
+                    password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined,
+                )
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        // password required
+                        if ((result.error as MessageError)?.code === 401) {
+                            reject(result.error as MessageError);
+                        } else {
+                            reject(this.error('classement', result));
+                        }
+                    },
+                });
         });
     }
 
