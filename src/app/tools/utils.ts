@@ -1,4 +1,4 @@
-import { Classement } from '../interface';
+import { Classement, User } from '../interface';
 
 
 const emailTest =
@@ -138,13 +138,17 @@ export class Utils {
         }
     }
 
-    static updateClassements(classementsSource: Classement[] | undefined, classementsChange: Classement[]) {
+    static updateClassements(
+        classementsSource: Classement[] | undefined,
+        classementsChange: Classement[],
+        user?: User,
+    ) {
         if (classementsSource && Array.isArray(classementsSource)) {
             for (const classement of classementsChange) {
                 const index = classementsSource?.findIndex(e => e.rankingId === classement?.rankingId);
-                if (index !== undefined && index >= 0) {
+                if (index !== -1) {
                     classementsSource[index] = classement;
-                } else {
+                } else if (!user || classement.user === user.username) {
                     classementsSource.push(classement);
                 }
             }

@@ -100,7 +100,7 @@ export class UserListComponent implements OnDestroy {
                         Utils.removeClassement(this.user!.classements, this.currentClassement!);
                     } else if (type === 'hide') {
                         typeName = status ? 'hidden' : 'showed';
-                        Utils.updateClassements(this.user!.classements, classements);
+                        Utils.updateClassements(this.user!.classements, classements, this.user);
                     }
 
                     this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));

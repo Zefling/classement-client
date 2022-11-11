@@ -48,7 +48,7 @@ export class APIUserService extends APICommon {
     }
 
     updateClassement(classement: Classement) {
-        Utils.updateClassements(this.user?.classements, [classement]);
+        Utils.updateClassements(this.user?.classements, [classement], this.user);
         if (this.user?.classements) {
             this.user.classements.forEach(d => {
                 if (typeof d.dateCreate === 'string') {
