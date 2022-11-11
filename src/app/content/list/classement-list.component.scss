@@ -5,12 +5,21 @@
 
 .infos {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding-bottom: 15px;
 }
 
 .list-actions {
     display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    gap: 10px 0;
+}
+
+.filter {
+    min-width: 200px;
 }
 
 table {
