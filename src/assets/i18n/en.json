@@ -350,6 +350,9 @@
       "signup": "Create an account",
       "oauth": {
         "label": "Connection with",
+        "label.after": "",
+        "create": "Create with",
+        "create.after": "",
         "discord": "Discord",
         "facebook": "Facebook",
         "google": "Google"

@@ -10,6 +10,7 @@ import { debounceTime, Subscription } from 'rxjs';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -138,5 +139,9 @@ export class UserSignupComponent implements OnDestroy {
                     this.showError = [e];
                 });
         }
+    }
+
+    oauth(service: string) {
+        window.location.href = `${environment.api.path}connect/${service}`;
     }
 }

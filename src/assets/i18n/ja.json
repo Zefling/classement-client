@@ -4,7 +4,7 @@
     "home": "ホーム",
     "list": "ローカルリスト",
     "my.lists": "自分のリスト",
-    "new": "new",
+    "new": "NEW",
     "login": "ログイン",
     "profile": "プロフィール",
     "sign-up": "登録する",
@@ -245,7 +245,7 @@
       "group.title": "ランキング",
       "name": "名前",
       "list": "リスト",
-      "drop.image": "画像（JPG、PNG、GIF、WebP）またはテキストの1つまたはグループをコピペするかここにドロップします",
+      "drop.image": "画像（JPG、PNG、GIF、WEBP）またはテキストの1つまたはグループをコピペするかここにドロップします",
       "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください",
       "share.link": "このランキングを友達と共有します",
       "copy.link.success": "リンクは正常にクリップボードにコピーされました",
@@ -350,10 +350,13 @@
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
-        "label": "～でログイン",
-        "discord": "Discord",
-        "facebook": "Facebook",
-        "google": "Google"
+        "label": "",
+        "label.after": "でログインします。",
+        "create": "",
+        "create.after": "で作成します。",
+        "discord": "DISCORD",
+        "facebook": "FACEBOOK",
+        "google": "GOOGLE"
       }
     },
     "profile": {
