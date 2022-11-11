@@ -41,7 +41,8 @@
       "license": "Licence",
       "gpl3": "Licence publique générale GNU (GNU GPL), version 3",
       "client": "Client",
-      "server": "Serveur"
+      "server": "Serveur",
+      "icons": "Icônes"
     },
     "app": {
       "name": "Classement\u00A0:",

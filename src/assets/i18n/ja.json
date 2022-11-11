@@ -42,7 +42,8 @@
       "license": "ライセンス",
       "gpl3": "GNU General Public License v3.0",
       "client": "クライアント",
-      "server": "サーバー"
+      "server": "サーバー",
+      "icons": "アイコン"
     },
     "app": {
       "name": "Classement(クラスメント)：",

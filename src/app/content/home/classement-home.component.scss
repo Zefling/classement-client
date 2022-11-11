@@ -77,6 +77,12 @@ navigate-result {
     }
 }
 
+.source-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
 @media screen and (max-width: 800px) {
     .tiles-navigate {
         padding: 0 min(20%, 30px);
