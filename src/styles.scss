@@ -331,6 +331,12 @@ input::file-selector-button {
     }
 }
 
+button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
 button:disabled {
     opacity: 0.25;
 

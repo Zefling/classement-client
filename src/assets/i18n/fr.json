@@ -81,7 +81,6 @@
     "action": {
       "name": "Action",
       "edit": "Éditer",
-      "delete": "Suppr.",
       "clone": "Cloner",
       "see": "Voir",
       "update": "Changer",

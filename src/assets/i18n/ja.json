@@ -82,7 +82,6 @@
     "action": {
       "name": "アクション",
       "edit": "編集する",
-      "delete": "削除する",
       "clone": "複製する",
       "see": "見る",
       "update": "変更する",

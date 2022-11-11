@@ -96,7 +96,23 @@
                             >
                                 <span class="icon-edit"></span>
                             </button>
-                            <button (click)="actions(classement)">{{ 'list.action.update' | translate }}</button>
+                            <button
+                                (click)="action(classement, 'change')"
+                                title="  {{
+                                    (!classement?.hidden ? 'list.hide.private' : 'list.show.public') | translate
+                                }}"
+                            >
+                                <span
+                                    class=" {{ !classement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"
+                                ></span>
+                            </button>
+                            <button
+                                class="warn"
+                                (click)="action(classement, 'delete')"
+                                title="{{ 'list.action.remove' | translate }}"
+                            >
+                                <span class="icon-remove"></span>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -119,26 +135,31 @@
         <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
     </div>
 
-    <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
+    <ng-container *ngIf="currentAction === 'change'">
+        <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
 
-    <div class="buttons">
-        <button
-            (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
-            [class.warn]="!currentClassement?.hidden"
-            [class.primary]="currentClassement?.hidden"
-        >
-            {{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
-        </button>
-    </div>
-    <div class="note">
-        {{ 'list.hide.note' | translate }}<br />
-        {{ 'list.hide.note2' | translate }}
-    </div>
+        <div class="buttons">
+            <button
+                (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
+                [class.warn]="!currentClassement?.hidden"
+                [class.primary]="currentClassement?.hidden"
+            >
+                <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
+                <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
+            </button>
+        </div>
+        <div class="note">
+            {{ 'list.hide.note' | translate }}<br />
+            {{ 'list.hide.note2' | translate }}
+        </div>
+    </ng-container>
 
-    <h3>{{ 'list.delete.question' | translate }}</h3>
-    <div>
-        <button (click)="actionForCurrentClassement('delete')" class="warn">
-            {{ 'list.delete.delete' | translate }}
-        </button>
-    </div>
+    <ng-container *ngIf="currentAction === 'delete'">
+        <h3>{{ 'list.delete.question' | translate }}</h3>
+        <div>
+            <button (click)="actionForCurrentClassement('delete')" class="warn">
+                {{ 'list.delete.delete' | translate }}
+            </button>
+        </div>
+    </ng-container>
 </dialog-cmp>

@@ -31,6 +31,8 @@ export class UserListComponent implements OnDestroy {
 
     localIds: string[] = [];
 
+    currentAction?: 'change' | 'delete';
+
     private listener: Subscription[] = [];
 
     constructor(
@@ -80,7 +82,8 @@ export class UserListComponent implements OnDestroy {
         this.router.navigate(['/user/lists/' + id]);
     }
 
-    actions(classement: Classement): void {
+    action(classement: Classement, action: 'change' | 'delete'): void {
+        this.currentAction = action;
         this.currentClassement = classement;
         this.dialogActionsClassement.open();
     }
