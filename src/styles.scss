@@ -441,12 +441,14 @@ dialog-cmp.auto-format .main {
     :where(h3, p, div) {
         text-align: center;
         padding: 15px 0;
-        margin: 0;
+        margin: 0 auto;
     }
 
     :where(input:not([type='checkbox']), textarea) {
         width: 80%;
         resize: vertical;
+        margin: auto;
+        display: block;
     }
 
     .note {
