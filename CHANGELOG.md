@@ -1,5 +1,38 @@
 # Changelog - Standalone web app & API
 
+## 1.5.0 (2022-11-11)
+
+### Standalone web app
+
+-   tierlist edit:
+    -   fix line title heigth
+    -   add description field #25
+-   homepage
+    -   remove an unnecessary title
+    -   Add link to source icon font
+-   personnal lists:
+    -   add a directive to sort tables #21
+    -   add filter on personal lists #21
+    -   fix responsive for actions
+-   change menu order
+-   set language on HTML tag
+-   fix dialog input position
+
+### With API activited only
+
+-   tierlist avec password
+    -   add a password dialog for protected tierlist #30
+    -   add password field for in save from #30
+-   for server personal tierlists
+    -   split actions private/public and remove #28
+    -   fix bad update status
+-   update profile
+    -   add OAuth2 in sign-up page.
+    -   add email in profile page
+    -   add loader on login pages
+-   add “sign up” in menu
+-   fix hidden status on save form
+
 ## 1.4.1 (2022-11-06)
 
 ### Standalone web app
