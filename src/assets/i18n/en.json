@@ -362,6 +362,7 @@
       "title": "My profile",
       "username": "User:",
       "since": "Since:",
+      "email": "Email:",
       "actions": "Actions",
       "change.email": "Change email",
       "change.password": "Change password",

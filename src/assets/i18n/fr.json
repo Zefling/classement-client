@@ -362,6 +362,7 @@
       "title": "Mon profil",
       "username": "Utilisateur\u00A0:",
       "since": "Depuis\u00A0:",
+      "email": "Courriel\u00A0:",
       "actions": "Actions",
       "change.email": "Changer de courriel",
       "change.password": "Changer de mot de passe",

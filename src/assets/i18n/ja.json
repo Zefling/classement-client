@@ -363,6 +363,7 @@
       "title": "私のプロフィール",
       "username": "ユーザー：",
       "since": "以来：",
+      "email": "電子メール：",
       "actions": "アクション",
       "change.email": "電子メールアドレスを変更する",
       "change.password": "パスワードを変更する",

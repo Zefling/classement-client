@@ -31,6 +31,7 @@ export interface User {
     id: number;
     username: string;
     roles: string[];
+    email: string;
     // status
     isValidated?: boolean;
     deleted?: boolean;
