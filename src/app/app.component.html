@@ -46,17 +46,6 @@
                     </a>
                 </li>
 
-                <li *ngIf="!userService.logged" class="section-top">
-                    <a
-                        routerLink="/user/login"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        (click)="toggleMenu()"
-                    >
-                        {{ 'menu.login' | translate }}
-                    </a>
-                </li>
-
                 <li class="section-top">
                     <a
                         routerLink="/navigate"
@@ -97,6 +86,26 @@
                         (click)="toggleMenu()"
                     >
                         {{ 'menu.profile' | translate }}
+                    </a>
+                </li>
+                <li *ngIf="!userService.logged">
+                    <a
+                        routerLink="/user/login"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.login' | translate }}
+                    </a>
+                </li>
+                <li *ngIf="!userService.logged">
+                    <a
+                        routerLink="/user/sign-up"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="toggleMenu()"
+                    >
+                        {{ 'menu.sign-up' | translate }}
                     </a>
                 </li>
                 <li>
