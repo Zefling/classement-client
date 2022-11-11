@@ -23,6 +23,7 @@ export interface Classement {
     hidden?: boolean;
     deleted?: boolean;
     parent?: boolean;
+    password?: string;
 }
 
 export interface User {

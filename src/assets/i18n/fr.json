@@ -74,6 +74,7 @@
       "deleted": "Supprimé",
       "hidden": "Privé",
       "parent": "Parent",
+      "with.password": "Avec mot de passe",
       "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?",
       "validated": "validé",
       "notValidated": "non validé",
@@ -334,7 +335,8 @@
       },
       "not.public": "Ne pas rendre public.",
       "cancel": "Annuler",
-      "save": "Sauvegarder"
+      "save": "Sauvegarder",
+      "password": "Définir un mot de passe (facultatif)"
     }
   },
   "user": {

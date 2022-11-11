@@ -74,6 +74,7 @@
       "deleted": "Deleted",
       "hidden": "Private",
       "parent": "Parent",
+      "with.password": "With password",
       "question": "Are you sure you want to edit one of statuses?",
       "validated": "validated",
       "notValidated": "not validated",
@@ -454,7 +455,8 @@
     "password": {
       "required": "Password required to view this tierlist",
       "cancel": "Cancel",
-      "ok": "Ok"
+      "ok": "Ok",
+      "password": "Define a password (facultatif)"
     }
   },
   "error": {

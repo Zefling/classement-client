@@ -77,6 +77,9 @@
                                 >
                                     <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
                                 </span>
+                                <span *ngIf="classement.password === 'true'" class="password">
+                                    {{ 'list.status.with.password' | translate }}
+                                </span>
                             </div>
                         </td>
                         <td class="category">

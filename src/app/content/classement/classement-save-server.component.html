@@ -77,6 +77,11 @@
         </label>
         <span [tooltip]="'list.hide.note' | translate" class="icon-info"></span>
     </div>
+
+    <div class="password" *ngIf="hidden">
+        <label>{{ 'gererator.server.password' | translate }}</label>
+        <div><input type="password" [(ngModel)]="password" /></div>
+    </div>
 </ng-container>
 
 <p>

@@ -42,6 +42,8 @@ export class ClassementSaveServerComponent implements OnDestroy {
 
     categories = categories;
 
+    password = '';
+
     @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
@@ -111,6 +113,7 @@ export class ClassementSaveServerComponent implements OnDestroy {
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
             hidden: this.hidden ?? this.classement?.hidden ?? false,
+            password: this.password,
         } as any;
 
         if (!classement.name) {

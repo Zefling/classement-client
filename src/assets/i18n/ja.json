@@ -75,6 +75,7 @@
       "deleted": "削除された",
       "hidden": "非公開",
       "parent": "親",
+      "with.password": "パスワードあり",
       "question": "ステータスの一つを変更してもよろしいですか？",
       "validated": "有効",
       "notValidated": "無効",
@@ -335,7 +336,8 @@
       },
       "not.public": "公開しないでください。",
       "cancel": "キャンセルする",
-      "save": "セーブする"
+      "save": "セーブする",
+      "password": "パスワードを設定します (任意)"
     }
   },
   "user": {
