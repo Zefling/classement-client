@@ -93,6 +93,7 @@ export class AppComponent implements DoCheck {
     updateLanguage(lang: string) {
         this.logger.log('Update language: ' + lang);
         this.translate.use(lang);
+        document.documentElement.setAttribute('lang', lang);
         this.globalService.lang = lang;
     }
 
