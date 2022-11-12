@@ -4,14 +4,14 @@
 
 ### Standalone web app
 
--   tierlist edit:
+-   tierlist edit
     -   fix line title heigth
     -   add description field #25
 -   homepage
     -   remove an unnecessary title
-    -   Add link to source icon font
+    -   add link to icon font source
 -   personnal lists:
-    -   add a directive to sort tables #21
+    -   add a new directive to sort tables #21
     -   add filter on personal lists #21
     -   fix responsive for actions
 -   change menu order
@@ -20,18 +20,18 @@
 
 ### With API activited only
 
--   tierlist avec password
+-   tierlist with password
     -   add a password dialog for protected tierlist #30
-    -   add password field for in save from #30
+    -   add password field in save form dialog #30
 -   for server personal tierlists
     -   split actions private/public and remove #28
-    -   fix bad update status
+    -   fix bad update after switch status private/public
 -   update profile
-    -   add OAuth2 in sign-up page.
+    -   add OAuth2 in sign-up page
     -   add email in profile page
     -   add loader on login pages
 -   add “sign up” in menu
--   fix hidden status on save form
+-   fix hidden status on save form dialog
 -   required: API `1.0.6`
 
 ## 1.4.1 (2022-11-06)
