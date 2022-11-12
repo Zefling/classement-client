@@ -32,6 +32,7 @@
     -   add loader on login pages
 -   add “sign up” in menu
 -   fix hidden status on save form
+-   required: API `1.0.6`
 
 ## 1.4.1 (2022-11-06)
 
@@ -64,7 +65,7 @@
     -   add tooltips
     -   change of links to buttons
 -   add last tierlists on home page #16
--   required: API 1.0.5
+-   required: API `1.0.5`
 
 ## 1.3.1 (2022-10-31)
 
@@ -86,7 +87,7 @@
 -   update category only if parent tierlist #12
     -   lock category if not parent tierlist
     -   update listlist children catagory when is parent template (server)
-    -   required: API 1.0.4
+    -   required: API `1.0.4`
 -   fix export image loading
 -   fix routing (add `a:href` for a better tag structure )
     -   menu
@@ -109,7 +110,7 @@
 -   navigate: add pagination
 -   improve pagination component
 -   improve pagination for search by criterion
--   required: API 1.0.3
+-   required: API ``1.0.3
 
 ## 1.2.1 (2022-10-27)
 
@@ -133,7 +134,7 @@
 -   add popup with all "my derivatives"
 -   change URL of tierlist on save if id change
 -   review all buttons on page view
--   required: API 1.0.2
+-   required: API `1.0.2`
 
 ## 1.1.3 (2022-10-22)
 
@@ -179,7 +180,7 @@
 -   rewrite navigation
 -   add page preview #3
 -   better visibility for personnal derivatives
--   required: API 1.0.1
+-   required: API `1.0.1`
 
 ## 1.0.1 (2022-10-11)
 
@@ -207,7 +208,7 @@
 -   fix loading issues in navigate
 -   fix auto login
 -   show hidden tierlist for current user
--   required: API 1.0.0
+-   required: API `1.0.0`
 
 ## 0.9.22 beta (2022-09-25)
 
