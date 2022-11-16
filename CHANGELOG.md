@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.5.1 (2022-11-16)
+
+### Standalone web app
+
+-   fix id when fork
+-   add a dialog to prevent errors when clicking on Clear Groups
+
 ## 1.5.0 (2022-11-11)
 
 ### Standalone web app
