@@ -264,7 +264,6 @@
       "delete": "Del."
     },
     "actions": {
-      "reset.groups": "Clear Groups",
       "export.image": "Image export",
       "save.local": "Browser save",
       "save.local.auto": "Automatic browser save on every change.",
@@ -284,7 +283,13 @@
       "edit.my.last.derivative": "Edit my last derivative",
       "new.derivative": "New derivative from this tierlist",
       "new.derivative.empty": "New empty derivative from this tierlist",
-      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist."
+      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist.",
+      "reset.groups": {
+        "button": "Clear Groups",
+        "question": "Are you sure you want to clear groups?",
+        "ok": "Ok",
+        "cancel": "Cancel"
+      }
     },
     "change": {
       "warning": "You have made changes!",

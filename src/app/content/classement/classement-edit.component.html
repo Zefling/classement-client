@@ -214,8 +214,8 @@
         </div>
 
         <div class="save-actions buttons">
-            <button class="primary" (click)="reset()" [disabled]="!hasItems">
-                {{ 'gererator.actions.reset.groups' | translate }}
+            <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
+                {{ 'gererator.actions.reset.groups.button' | translate }}
             </button>
         </div>
     </div>
@@ -348,4 +348,18 @@
             <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
         </div>
     </ng-container>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogClear>
+    <p>
+        {{ 'gererator.actions.reset.groups.question' | translate }}
+    </p>
+    <div class="buttons">
+        <button (click)="dialogClear.close()">
+            {{ 'gererator.actions.reset.groups.cancel' | translate }}
+        </button>
+        <button class="warn" (click)="reset(); dialogClear.close()">
+            {{ 'gererator.actions.reset.groups.ok' | translate }}
+        </button>
+    </div>
 </dialog-cmp>

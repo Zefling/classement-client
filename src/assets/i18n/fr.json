@@ -263,8 +263,8 @@
       "add": "Ajout",
       "delete": "Suppr."
     },
+
     "actions": {
-      "reset.groups": "Vider les groupes",
       "export.image": "Export en image",
       "save.local": "Sauvegarde navigateur",
       "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
@@ -284,7 +284,13 @@
       "edit.my.last.derivative": "Éditer mon dernier dérivé",
       "new.derivative": "Nouveau dérivé à partir de ce classement",
       "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
-      "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement."
+      "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement.",
+      "reset.groups": {
+        "button": "Vider les groupes",
+        "question": "Êtes-vous sûr de vouloir vider les groupes\u00A0?",
+        "ok": "Ok",
+        "cancel": "Annuler"
+      }
     },
     "change": {
       "warning": "Vous avez effectué des changements\u00A0!",
