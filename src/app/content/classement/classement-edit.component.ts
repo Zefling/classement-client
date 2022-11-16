@@ -221,6 +221,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         if (fork) {
             this.reset();
+            this.id = undefined;
+            this.new = true;
         }
     }
 
