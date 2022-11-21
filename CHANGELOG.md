@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.5.2 (2022-11-21)
+
+### Standalone web app
+
+-   update to Angular `15.0`
+
 ## 1.5.1 (2022-11-16)
 
 ### Standalone web app
