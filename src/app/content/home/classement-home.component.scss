@@ -74,6 +74,8 @@ navigate-result {
         right: -15px;
         pointer-events: none;
         background: linear-gradient(to left, var(--background) 10px, transparent);
+        mask-image: linear-gradient(to left, var(--background) 10px, transparent);
+        backdrop-filter: blur(8px);
     }
 }
 

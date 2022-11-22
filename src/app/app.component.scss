@@ -56,14 +56,15 @@ aside {
     position: relative;
 
     .backdrop {
+        content: ' ';
+        z-index: 1;
+        position: absolute;
         display: var(--show-mobile, none);
         transition: var(--aside-transition);
-        content: ' ';
-        position: absolute;
         width: var(--aside-content-backdrop-width, 0);
         height: 100%;
         background-color: var(--aside-content-backdrop-color, transparent);
-        z-index: 1;
+        backdrop-filter: blur(2px);
     }
 
     .menu {
