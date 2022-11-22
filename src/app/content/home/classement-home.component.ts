@@ -37,7 +37,7 @@ export class ClassementHomeComponent {
     ) {
         if (this.modeApi) {
             this.logged = !!this.userService.logged;
-
+            this.loading = true;
             this.classementService
                 .getClassementsLast()
                 .then(classements => {
