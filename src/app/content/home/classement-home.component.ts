@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '1.5.2';
+    version = '1.5.3';
 
     modeApi = environment.api?.active || false;
 

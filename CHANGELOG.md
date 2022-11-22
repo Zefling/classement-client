@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 1.5.3 (2022-11-22)
+
+### Standalone web app
+
+-   add backdrop filter
+
+### With API activited only
+
+-   fix loading tiles on homepage
+-   don't load unnecessary images
+
 ## 1.5.2 (2022-11-21)
 
 ### Standalone web app
