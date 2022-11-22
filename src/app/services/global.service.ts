@@ -105,12 +105,14 @@ export class GlobalService {
      */
     async imagesCache(
         groups: FormatedGroup[],
-        list: FileString[],
+        list?: FileString[],
     ): Promise<{ [key: string]: string | ArrayBuffer | null }> {
         const cache: { [key: string]: string | ArrayBuffer | null } = {};
-        for (const item of list) {
-            if (item.url) {
-                cache[item.url] = await Utils.ulrToBase64(item.url);
+        if (list) {
+            for (const item of list) {
+                if (item.url) {
+                    cache[item.url] = await Utils.ulrToBase64(item.url);
+                }
             }
         }
         for (const group of groups) {
