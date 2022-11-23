@@ -17,7 +17,7 @@ export const defaultOptions: Options = {
     category: '',
     description: '',
     itemWidth: 100,
-    itemWidthAuto: false,
+    itemWidthAuto: true,
     itemHeight: 100,
     itemPadding: 3,
     itemBorder: 1,
