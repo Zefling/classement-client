@@ -1,14 +1,4 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "tsImportSorter.configuration.emptyLinesAfterAllImports": 2,
-    "tsImportSorter.configuration.emptyLinesBetweenGroups": 1,
-    "tsImportSorter.configuration.groupRules": ["^@angular/", "^[@]", "^(?!src|[.])", "^[^.]", "^[.]/", "^[..]/"],
-    "tsImportSorter.configuration.wrappingStyle": {
-        "maxBindingNamesPerLine": 0,
-        "maxDefaultAndBindingNamesPerLine": 0,
-        "maxExportNamesPerLine": 0,
-        "maxNamesPerWrappedLine": 1,
-        "ignoreComments": false
-    }
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
