@@ -10,14 +10,13 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
-    version = '1.5.3';
+    version = environment.version;
 
     modeApi = environment.api?.active || false;
 

@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.5.4 (2022-12-04)
+
+### Standalone web app
+
+-   `itemWidthAuto:true` by default
+
+### With API activited only
+
+-   fix export image when not logged.
+
 ## 1.5.3 (2022-11-22)
 
 ### Standalone web app

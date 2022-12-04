@@ -1,6 +1,5 @@
 import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
 
-
 @Directive({ selector: '[tooltip]' })
 export class TooltipDirective implements OnDestroy {
     @Input() tooltip = '';
@@ -8,7 +7,7 @@ export class TooltipDirective implements OnDestroy {
     @Input() delayLeave? = 0; // 0 to infini
 
     private tooltipElement?: HTMLDivElement;
-    private timer?: number;
+    private timer?: NodeJS.Timeout;
 
     constructor(private element: ElementRef<HTMLElement>) {}
 
