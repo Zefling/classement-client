@@ -1,14 +1,13 @@
-import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
-
-import { Subject } from 'rxjs';
-
-import { Logger, LoggerLevel } from './logger';
-
 import { defaultOptions } from '../content/classement/classement-default';
 import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options } from '../interface';
 import { color } from '../tools/function';
 import { Utils } from '../tools/utils';
 
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
+
+import { Subject } from 'rxjs';
+
+import { Logger, LoggerLevel } from './logger';
 
 export enum TypeFile {
     image = 'image',
@@ -105,14 +104,12 @@ export class GlobalService {
      */
     async imagesCache(
         groups: FormatedGroup[],
-        list?: FileString[],
+        list: FileString[] = [],
     ): Promise<{ [key: string]: string | ArrayBuffer | null }> {
         const cache: { [key: string]: string | ArrayBuffer | null } = {};
-        if (list) {
-            for (const item of list) {
-                if (item.url) {
-                    cache[item.url] = await Utils.ulrToBase64(item.url);
-                }
+        for (const item of list) {
+            if (item.url) {
+                cache[item.url] = await Utils.ulrToBase64(item.url);
             }
         }
         for (const group of groups) {

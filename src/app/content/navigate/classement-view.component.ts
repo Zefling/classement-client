@@ -1,3 +1,5 @@
+import { MessageError } from '../user/user.interface';
+
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
@@ -16,9 +18,6 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
-
-import { MessageError } from '../user/user.interface';
-
 
 @Component({
     selector: 'classement-view',
@@ -136,9 +135,9 @@ export class ClassementViewComponent implements OnDestroy {
 
     loadClassement(classement: Classement) {
         this.classement = classement;
+
         if (this.userService.logged) {
             this.currentUser = this.userService.user?.username === classement.user;
-
             this.classementService
                 .getClassementsByTemplateId(classement?.templateId, this.userService.user?.id)
                 .then(classements => {
@@ -150,14 +149,14 @@ export class ClassementViewComponent implements OnDestroy {
                         this.myClassement = classements[0];
                     }
                 });
-
-            setTimeout(() => {
-                this.globalService
-                    .imagesCache(this.classement!.data.groups!)
-                    .then(cache => Object.assign(this.imagesCache, cache))
-                    .finally(() => (this.exportImageDisabled = false));
-            });
         }
+
+        setTimeout(() => {
+            this.globalService
+                .imagesCache(this.classement!.data.groups!)
+                .then(cache => Object.assign(this.imagesCache, cache))
+                .finally(() => (this.exportImageDisabled = false));
+        });
     }
 
     copyLink() {
