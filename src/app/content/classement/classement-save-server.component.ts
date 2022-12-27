@@ -17,12 +17,11 @@ import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 import { categories } from './classement-default';
-
 
 @Component({
     selector: 'classement-save-server',
@@ -57,7 +56,8 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
-    imageChangedEvent: any = '';
+    imageChangedEvent?: Event;
+    imageBase64: string = '';
     croppedImage?: string;
 
     hidden = false;
@@ -168,8 +168,14 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         this.bannerInput.nativeElement.value = '';
     }
 
-    fileChangeEvent(event: any): void {
+    fileChangeEvent(event: Event): void {
         this.imageChangedEvent = event;
+    }
+
+    fileChange(event: FileHandle | string) {
+        if ((event as FileHandle).target) {
+            this.imageBase64 = (event as FileHandle).target?.result as string;
+        }
     }
 
     async imageCropped(event: ImageCroppedEvent) {

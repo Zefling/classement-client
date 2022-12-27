@@ -45,3 +45,9 @@ p {
     text-align: center;
     margin: 20px 0 0;
 }
+
+.drop-image-zone {
+    background: var(--drop-image-zone-background);
+    padding: 0.02px 40px;
+    margin: 0 -40px;
+}
