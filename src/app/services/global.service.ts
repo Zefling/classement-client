@@ -127,7 +127,7 @@ export class GlobalService {
         const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;
         // title
-        r(body, '--over-title-text-color', o.titleTextColor ?? defaultOptions.titleTextColor, dash);
+        r(body, '--over-title-text-color', color(o.titleTextColor, o.titleTextOpacity), dash);
         // item
         const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
@@ -137,7 +137,7 @@ export class GlobalService {
         r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
         r(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
         r(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
-        r(body, '--over-item-text-color', o.itemTextColor ?? defaultOptions.itemTextColor, dash);
+        r(body, '--over-item-text-color', color(o.itemTextColor, o.itemTextOpacity), dash);
         r(body, '--over-item-text-background', color(o.itemTextBackgroundColor, o.itemTextBackgroundOpacity), dash);
         // drop zone group
         r(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);

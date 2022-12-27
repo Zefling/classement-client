@@ -1,6 +1,5 @@
 import { TypeFile } from './services/global.service';
 
-
 export interface Classement {
     banner: string;
     data: Data;
@@ -67,6 +66,7 @@ export type Options = ThemeOptions & {
 };
 export type ThemeOptions = {
     titleTextColor: string;
+    titleTextOpacity: number;
     itemWidth: number;
     itemWidthAuto: boolean;
     itemHeight: number;
@@ -78,6 +78,7 @@ export type ThemeOptions = {
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
     itemTextColor: string;
+    itemTextOpacity: number;
     itemTextPosition: 'bottom' | 'bottom-over' | 'top' | 'top-over';
     itemTextBackgroundColor: string;
     itemTextBackgroundOpacity: number;

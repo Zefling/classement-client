@@ -165,6 +165,7 @@
       "group.title": "Options",
       "title": "Titre du classement\u00A0:",
       "title.color": "Couleur du texte du titre\u00A0:",
+      "title.opacity": "Opacité du texte du titre\u00A0:",
       "group": "Groupe\u00A0:",
       "description": "Description\u00A0:",
       "sizes": "Dimensions d'une tuile\u00A0:",
@@ -189,6 +190,7 @@
         "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
         "text": {
           "color": "Couleur du texte d'une tuile\u00A0:",
+          "opacity": "Opacité du texte d'une tuile\u00A0:",
           "background.color": "Couleur de fond du texte\u00A0:",
           "background.opacity": "Opacité de fond du texte\u00A0:",
           "position": "Position texte dans la tuile\u00A0:",
@@ -201,8 +203,8 @@
       "line": {
         "title": "Options des lignes",
         "background.color": "Couleur du fond d'une ligne\u00A0:",
-        "border.color": "Couleur de bordure d'une ligne\u00A0:",
         "background.opacity": "Opacité du fond d'une ligne\u00A0:",
+        "border.color": "Couleur de bordure d'une ligne\u00A0:",
         "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
       },
       "global": {

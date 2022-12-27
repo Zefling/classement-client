@@ -4,14 +4,17 @@
         'title             title               title               categories          '
         'description       description         description         description         '
         'theme             width-auto          .                   links               '
+        // ----------------------------------------------------------------------------
         'title-item        title-item          title-item          title-item          '
-        'sizes             colors-item-back    colors-item-border  item-text-back      '
-        'sizes             colors-title-text   colors-item-text    item-text-pos       '
+        'sizes             colors-item-back    colors-item-border  .                   '
+        'sizes             colors-item-text    item-text-pos       item-text-back      '
+        // ----------------------------------------------------------------------------
         'title-line        title-line          title-line          title-line          '
-        'colors-line-back  colors-line-border  name-bg-opacity     font-size           '
-        'colors-line-back  colors-line-border  .                   name-width          '
+        'colors-line-back  colors-line-border  name-bg-opacity     .                   '
+        'font-size         name-width          .                   .                   '
+        // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
-        'global-width      global-image        global-color        .                   '
+        'colors-title-text global-width        global-image        global-color        '
         / 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -87,10 +90,12 @@ h4 {
 
 .colors-item-text {
     grid-area: colors-item-text;
+    --color-section: var(--over-item-text-color);
 }
 
 .colors-title-text {
     grid-area: colors-title-text;
+    --color-section: var(--over-title-text-color);
 }
 
 .colors-item-back {
@@ -309,22 +314,42 @@ span.item-width {
 
 .input-button {
     display: grid;
-    grid-template: 'a a' 'b b' auto 'c d' / 1fr 1fr;
+    grid-template:
+        'a a e' 20px
+        'b c d' 50px / 1.5fr 2fr 1fr;
     align-items: center;
     gap: 5px 10px;
 
+    & > div {
+        display: contents;
+    }
+
     .color,
     .width-input {
-        grid-area: a;
-        display: f;
+        label,
+        .label {
+            grid-area: a;
+        }
+        input {
+            grid-area: b;
+        }
     }
     .opacity {
-        grid-area: b;
+        label,
+        .label {
+            display: none;
+        }
+        input {
+            grid-area: c;
+        }
+    }
+    button {
+        grid-area: d;
     }
 
     .color-render {
-        grid-area: d;
-        border: 1px solid --input-border-color;
+        grid-area: e;
+        border: 1px solid var(--input-border-color);
         box-shadow: 0 0 3px;
         border-radius: 3px;
         background-color: #fff;
@@ -333,8 +358,9 @@ span.item-width {
             linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%);
         background-size: 25px 25px;
         background-position: 0 0, 12.5px 12.5px;
-        height: 30px;
+        height: 100%;
         overflow: hidden;
+        display: block;
 
         &::before {
             display: block;
@@ -343,9 +369,6 @@ span.item-width {
             height: 100%;
             background: var(--color-section);
         }
-    }
-    button {
-        grid-area: c;
     }
 
     [type='number'] {

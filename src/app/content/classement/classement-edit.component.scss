@@ -308,23 +308,24 @@ span.color + span {
 
 .content-render {
     position: relative;
+
     &.top {
         flex-direction: column-reverse;
     }
 
-    &.bottom-over .title:last-child:not(:first-child),
-    &.top-over .title:last-child:not(:first-child) {
+    &.bottom-over .title,
+    &.top-over .title {
         position: absolute;
         text-align: center;
         width: 100%;
         background: var(--over-item-text-background, var(--content-box-text-background));
     }
 
-    &.bottom-over .title:last-child:not(:first-child) {
+    &.bottom-over .title {
         bottom: 0;
     }
 
-    &.top-over .title:last-child:not(:first-child) {
+    &.top-over .title {
         top: 0;
     }
 }

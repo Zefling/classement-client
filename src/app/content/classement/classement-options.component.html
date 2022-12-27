@@ -124,7 +124,7 @@
                 <option value="top-over">{{ 'gererator.options.item.text.position.top.over' | translate }}</option>
             </select>
         </div>
-        <div class="item-text-back input-button">
+        <div class="item-text-back input-button" *ngIf="options.itemTextPosition?.endsWith('over')">
             <div class="color">
                 <label for="option-item-text-background-color">{{
                     'gererator.options.item.text.background.color' | translate
@@ -157,7 +157,6 @@
             </button>
             <div class="color-render" *ngIf="options.itemTextBackgroundColor"></div>
         </div>
-
         <div class="colors-item-back input-button">
             <div class="color">
                 <label for="itemBackgroundColor">{{ 'gererator.options.item.background.color' | translate }}</label>
@@ -307,17 +306,55 @@
                 />
             </div>
         </div>
-        <div class="colors-title-text">
+        <div class="colors-title-text input-button">
             <div class="width-input">
                 <label for="option-title-color">{{ 'gererator.options.title.color' | translate }}</label>
                 <input id="option-title-color" type="color" [(ngModel)]="options.titleTextColor" />
             </div>
+            <div class="opacity">
+                <label for="option-title-opacity">{{ 'gererator.options.title.opacity' | translate }}</label>
+                <input
+                    for="option-title-opacity"
+                    type="range"
+                    max="100"
+                    min="0"
+                    step="1"
+                    [disabled]="!options.titleTextColor"
+                    [(ngModel)]="options.titleTextOpacity"
+                />
+            </div>
+            <button
+                (click)="options.titleTextColor = ''; options.titleTextOpacity = 100"
+                [disabled]="!options.titleTextColor"
+            >
+                {{ 'gererator.options.clear' | translate }}
+            </button>
+            <div class="color-render" *ngIf="options.titleTextColor"></div>
         </div>
-        <div class="colors-item-text">
+        <div class="colors-item-text input-button">
             <div class="width-input">
                 <label for="option-item-text-color">{{ 'gererator.options.item.text.color' | translate }}</label>
                 <input id="option-item-text-color" type="color" [(ngModel)]="options.itemTextColor" />
             </div>
+            <div class="opacity">
+                <label for="option-item-text-opacity">{{ 'gererator.options.item.text.opacity' | translate }}</label>
+                <input
+                    for="option-item-text-opacity"
+                    type="range"
+                    max="100"
+                    min="0"
+                    step="1"
+                    [disabled]="!options.itemTextColor"
+                    [(ngModel)]="options.itemTextOpacity"
+                />
+            </div>
+            <button
+                (click)="options.itemTextColor = ''; options.itemTextOpacity = 100"
+                [disabled]="!options.itemTextColor"
+            >
+                {{ 'gererator.options.clear' | translate }}
+            </button>
+            <div class="color-render" *ngIf="options.itemTextColor"></div>
         </div>
         <div class="background-image">
             <div class="width-input">

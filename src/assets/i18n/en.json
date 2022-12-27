@@ -165,6 +165,7 @@
       "group.title": "Options",
       "title": "Tierlist title:",
       "title.color": "Title text color:",
+      "title.opacity": "Title text opacity:",
       "group": "Group:",
       "description": "Description:",
       "sizes": "Tile sizes:",
@@ -189,6 +190,7 @@
         "border.opacity": "Tile border opacity:",
         "text": {
           "color": "Tile text color:",
+          "opacity": "Tile text opacity:",
           "background.color": "Text background color:",
           "background.opacity": "Text background opacity:",
           "position": "Text position in the tile:",
@@ -201,8 +203,8 @@
       "line": {
         "title": "Line options",
         "background.color": "Line background color:",
-        "border.color": "Line border color:",
         "background.opacity": "Line background opacity:",
+        "border.color": "Line border color:",
         "border.opacity": "Line border opacity:"
       },
       "global": {

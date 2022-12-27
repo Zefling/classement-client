@@ -166,6 +166,7 @@
       "group.title": "オプション",
       "title": "ティアリストのタイトル：",
       "title.color": "タイトルのテキストの色：",
+      "title.opacity": "タイトルのテキストの不透明度：",
       "group": "グループ：",
       "description": "説明:",
       "sizes": "タイルサイズ：",
@@ -190,6 +191,7 @@
         "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
           "color": "タイルのテキストの色：",
+          "opacity": "タイルのテキストの不透明度：",
           "background.color": "テキストの背景の色：",
           "background.opacity": "テキストの背景の不透明度：",
           "position": "タイル内のテキストの位置：",
@@ -202,8 +204,8 @@
       "line": {
         "title": "ラインのオプション",
         "background.color": "ラインの背景の色：",
-        "border.color": "ラインボーダーの色：",
         "background.opacity": "ラインの背景の不透明度：",
+        "border.color": "ラインボーダーの色：",
         "border.opacity": "ラインボーダーの不透明度："
       },
       "global": {
