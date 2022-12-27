@@ -22,7 +22,6 @@ import { environment } from 'src/environments/environment';
 
 import { defaultOptions, defautGroup } from './classement-default';
 
-
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
@@ -549,7 +548,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.saveLocal();
         }
 
-        if (!this.new && navigate) {
+        if (navigate) {
             this.resetCache();
             this.router.navigate(['edit', classement.rankingId]);
         }
