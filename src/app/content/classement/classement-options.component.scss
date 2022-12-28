@@ -421,6 +421,7 @@ span.item-width {
         margin: 0;
         padding: 0;
         width: 100%;
+        z-index: 1;
 
         &.open-list {
             display: block;
