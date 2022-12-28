@@ -1,12 +1,11 @@
+import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
+import { Utils } from '../tools/utils';
+
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
-
-import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
-import { Utils } from '../tools/utils';
-
 
 enum Store {
     infos = 'classementInfos',
@@ -126,6 +125,12 @@ export class DBService {
             const db = await this._getDB();
             exist =
                 (await this._testByIdDB(db, Store.infos, data.id)) && (await this._testByIdDB(db, Store.data, data.id));
+
+            // case with saved on server, but not in local
+            if (data.templateId && !data.rankingId) {
+                data.rankingId = data.id;
+                data.id = undefined;
+            }
         }
         const id = !data.id ? await this._digestMessage(`${Date.now()}`) : data.id;
         this.logger.log('Existing data', LoggerLevel.log, exist);

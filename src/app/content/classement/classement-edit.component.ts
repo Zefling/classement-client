@@ -1,4 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -88,6 +89,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private classementService: APIClassementService,
         private logger: Logger,
         private cd: ChangeDetectorRef,
+        private location: Location,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -502,14 +504,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.messageService.addMessage(this.translate.instant('message.reset.groups'));
     }
 
-    saveLocal(silence: boolean = false) {
+    saveLocal(silence: boolean = false, route: boolean = true) {
         this.bdService.saveLocal(this.getData()).then(
             item => {
                 this.resetCache();
-                this.id = item.data.id;
-                if (this.new) {
-                    this.router.navigate(['edit', this.id]);
+                if (route && (this.new || this.id !== item.data.id)) {
+                    this.location.replaceState('/edit/' + item.data.id);
                 }
+                this.id = item.data.id;
                 this.new = false;
                 if (this.classement && this.id) {
                     this.classement.localId = this.id;
@@ -533,7 +535,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     updateAfterServerSave(classement: Classement) {
-        const navigate = this.classement?.rankingId !== classement.rankingId;
+        const navigate = this.classement?.rankingId !== classement.rankingId || this.id !== classement.rankingId;
 
         // update local data
         this.classement = classement;
@@ -545,12 +547,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         if (classement.localId) {
             // persist data
-            this.saveLocal();
+            this.saveLocal(false, false);
         }
 
         if (navigate) {
+            this.id = classement.rankingId;
             this.resetCache();
-            this.router.navigate(['edit', classement.rankingId]);
+            this.location.replaceState('/edit/' + classement.rankingId);
         }
     }
 
