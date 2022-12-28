@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.6.1 (2022-12-28)
+
+### Standalone web app
+
+-   fix background selection
+
+### With API activited only
+
+-   fix custom background on render
+
 ## 1.6.0 (2022-12-28)
 
 ### Standalone web app
