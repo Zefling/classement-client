@@ -4,7 +4,6 @@ import Pica from 'pica';
 
 import { FileHandle, FileString, OptimisedFile } from '../interface';
 
-
 @Injectable({ providedIn: 'root' })
 export class OptimiseImageService {
     resize(

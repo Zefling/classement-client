@@ -24,7 +24,6 @@ import { ThemeIconComponent } from './theme-icon/theme-icon.component';
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
 
-
 @NgModule({
     declarations: [
         DialogComponent,

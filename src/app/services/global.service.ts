@@ -1,13 +1,13 @@
-import { defaultOptions } from '../content/classement/classement-default';
-import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options, ThemeOptions } from '../interface';
-import { color } from '../tools/function';
-import { Utils } from '../tools/utils';
-
 import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
+
+import { defaultOptions } from '../content/classement/classement-default';
+import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options, ThemeOptions } from '../interface';
+import { color } from '../tools/function';
+import { Utils } from '../tools/utils';
 
 export enum TypeFile {
     image = 'image',

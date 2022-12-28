@@ -1,5 +1,3 @@
-import { MessageError } from '../user/user.interface';
-
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
@@ -18,6 +16,8 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
+
+import { MessageError } from '../user/user.interface';
 
 @Component({
     selector: 'classement-view',

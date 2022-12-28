@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 
-
 @Component({
     selector: 'user-pw-lost',
     templateUrl: './user-pw-lost.component.html',

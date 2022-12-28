@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-
 @Component({
     selector: 'loader-item',
     templateUrl: './loader-item.component.html',

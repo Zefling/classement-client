@@ -5,7 +5,6 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { ClassementListComponent } from './classement-list.component';
 
-
 const routes: Routes = [
     {
         path: '',

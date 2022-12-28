@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 
 import { GlobalService } from '../../services/global.service';
 
-
 interface Page {
     page?: number;
     view?: string;

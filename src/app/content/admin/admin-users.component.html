@@ -43,8 +43,8 @@
                     ></span>
                 </td>
                 <td class="date">
-                    <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ user.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                    <span>{{ user.dateCreate | date : ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ user.dateCreate | date : ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="classements">{{ user.classements?.length || 0 }}</td>
 

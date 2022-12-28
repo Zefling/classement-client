@@ -5,7 +5,6 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { LicensesComponent } from './licenses.component';
 
-
 const routes: Routes = [
     {
         path: '',

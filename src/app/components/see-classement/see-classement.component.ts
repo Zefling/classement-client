@@ -1,8 +1,8 @@
-import { GlobalService } from '../../services/global.service';
-
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FileString, FormatedGroup, Options } from 'src/app/interface';
+
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'see-classement',

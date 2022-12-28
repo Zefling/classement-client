@@ -3,7 +3,6 @@ import { AfterContentInit, Component, ContentChildren, EventEmitter, Output, Que
 import { TabTitleComponent } from './tab-content.component';
 import { TabContentComponent } from './tab-title.component';
 
-
 @Component({
     selector: 'tabs',
     templateUrl: './tabs.component.html',

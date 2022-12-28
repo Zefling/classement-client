@@ -66,7 +66,7 @@
                                 <a
                                     class="from"
                                     *ngIf="classement.localId && localIds.includes(classement.localId)"
-                                    [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                                    [tooltip]="'list.local.link' | translate : { id: classement.localId }"
                                     [routerLink]="['/edit', classement.localId]"
                                     >➡ <span class="icon-browser"></span
                                 ></a>
@@ -86,8 +86,8 @@
                             {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
                         </td>
                         <td class="date">
-                            <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                            <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                            <span>{{ classement.dateCreate | date : ('date.dd/MM/yyyy' | translate) }}</span>
+                            <span>{{ classement.dateCreate | date : ('date.HH:mm' | translate) }}</span>
                         </td>
                         <td class="groups">{{ classement.totalGroups }}</td>
                         <td class="items">{{ classement.totalItems }}</td>

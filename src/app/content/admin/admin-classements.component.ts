@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 
-
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',

@@ -7,7 +7,7 @@
     "trailingComma": "all",
     "bracketSpacing": true,
     "importOrderParserPlugins": ["typescript", "decorators-legacy"],
-    "importOrder": ["^@angular/", "^[@]", "^(?!src|[.])", "^[^.]", "^[.]/", "^[..]/"],
+    "importOrder": ["^@angular/", "^[@]", "^(?!src|[.])", "^[^.]", "^[.]/", "^[..]/", ".*"],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true,
     "overrides": [

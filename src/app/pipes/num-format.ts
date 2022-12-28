@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { GlobalService } from '../services/global.service';
 
-
 @Pipe({ name: 'numFormat' })
 export class NumFormatPipe implements PipeTransform {
     constructor(private _globalService: GlobalService) {}

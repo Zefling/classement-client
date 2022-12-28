@@ -5,7 +5,6 @@ import { Theme } from 'src/app/interface';
 
 import { themesList } from './classement-default';
 
-
 @Component({
     selector: 'classement-themes',
     templateUrl: './classement-themes.component.html',

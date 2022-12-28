@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Theme } from '../../interface';
 import { color } from '../../tools/function';
 
-
 @Component({
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',

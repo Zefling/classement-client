@@ -8,7 +8,6 @@ import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Utils } from 'src/app/tools/utils';
 
-
 @Component({
     selector: 'list-classements',
     templateUrl: './list-classements.component.html',

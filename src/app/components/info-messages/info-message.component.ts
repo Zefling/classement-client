@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, 
 
 import { Message } from './info-messages.component';
 
-
 @Component({
     selector: 'info-message',
     templateUrl: './info-message.component.html',

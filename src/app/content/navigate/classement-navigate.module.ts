@@ -7,7 +7,6 @@ import { ClassementNavigatetRoutingModule } from './classement-navigate.routing'
 import { ClassementTemplateComponent } from './classement-template.component';
 import { ClassementViewComponent } from './classement-view.component';
 
-
 @NgModule({
     declarations: [
         // page

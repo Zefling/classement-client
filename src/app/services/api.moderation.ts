@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 import { APIUserService } from './api.user.service';
 
-
 export enum Role {
     USER = 'ROLE_USER',
     MODERATOR = 'ROLE_MODERATOR',

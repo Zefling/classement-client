@@ -9,7 +9,6 @@ import { ComponentsModule } from './components/components.module';
 import { DirectiveModule } from './directives/directive.module';
 import { PipesModule } from './pipes/pipes.module';
 
-
 @NgModule({
     exports: [
         // external

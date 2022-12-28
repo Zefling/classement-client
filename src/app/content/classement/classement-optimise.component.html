@@ -7,7 +7,7 @@
 </div>
 
 <div>
-    {{ 'gererator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}
+    {{ 'gererator.optimise.current' | translate : { totalSize: (totalSize | numFormat), totalImage: total } }}
 </div>
 
 <div *ngIf="start">
@@ -21,14 +21,14 @@
         }}</a>
     </div>
     <div>
-        {{ 'gererator.optimise.reduce.files' | translate: { countResize: countResize } }}<br />
-        {{ 'gererator.optimise.reduce.size' | translate: { reduceSize: (reduceSize | numFormat) } }}<br />
+        {{ 'gererator.optimise.reduce.files' | translate : { countResize: countResize } }}<br />
+        {{ 'gererator.optimise.reduce.size' | translate : { reduceSize: (reduceSize | numFormat) } }}<br />
         {{
             'gererator.optimise.final.size'
                 | translate
                     : {
                           finalSize: (finalSize | numFormat),
-                          percent: (finalSize - totalSize) / totalSize | numFormat: { style: 'percent' }
+                          percent: (finalSize - totalSize) / totalSize | numFormat : { style: 'percent' }
                       }
         }}
     </div>
@@ -47,22 +47,22 @@
             />
             <div class="info-reduce">
                 <span class="reduce-source">
-                    {{ 'gererator.optimise.size' | translate: { size: (item.sourceFile.realSize | numFormat) } }}
+                    {{ 'gererator.optimise.size' | translate : { size: (item.sourceFile.realSize | numFormat) } }}
                 </span>
                 <span class="arrow">↓</span>
                 <span class="reduce-target">
                     {{
                         'gererator.optimise.size'
-                            | translate: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
+                            | translate : { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
                     }}
                 </span>
                 <span class="reduce-size">
-                    {{ 'gererator.optimise.size' | translate: { size: (-1 * item.reduce | numFormat) } }}
+                    {{ 'gererator.optimise.size' | translate : { size: (-1 * item.reduce | numFormat) } }}
 
                     <span class="percent">
                         {{
                             ((item.reduceFile?.realSize || item.sourceFile.realSize) - item.sourceFile.realSize) /
-                                item.sourceFile.realSize | numFormat: { style: 'percent' }
+                                item.sourceFile.realSize | numFormat : { style: 'percent' }
                         }}
                     </span>
                 </span>

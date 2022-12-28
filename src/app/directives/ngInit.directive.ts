@@ -1,6 +1,5 @@
 import { Directive, EventEmitter, OnInit, Output } from '@angular/core';
 
-
 @Directive({
     selector: '[ngInit]',
 })

@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { GlobalService } from '../services/global.service';
 
-
 @Pipe({ name: 'filesize', pure: false })
 export class FilesizePipe implements PipeTransform {
     constructor(private globalService: GlobalService, private translate: TranslateService) {}

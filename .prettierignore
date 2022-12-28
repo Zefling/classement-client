@@ -1,8 +1,9 @@
 
 # Add files here to ignore them from prettier formatting
 
-/.history
+/.angular
 /dist
 /coverage
 /documentation
 /node_modules
+/**/polyfills.ts

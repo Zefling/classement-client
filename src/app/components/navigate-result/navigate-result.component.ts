@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 
 import { Classement } from 'src/app/interface';
 
-
 @Component({
     selector: 'navigate-result',
     templateUrl: './navigate-result.component.html',

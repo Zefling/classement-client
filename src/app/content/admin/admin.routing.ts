@@ -9,7 +9,6 @@ import { AdminClassementsComponent } from './admin-classements.component';
 import { AdminUsersComponent } from './admin-users.component';
 import { AdminComponent } from './admin.component';
 
-
 const routes: Routes = [
     {
         path: '',

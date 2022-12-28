@@ -14,7 +14,6 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Utils } from 'src/app/tools/utils';
 
-
 @Component({
     selector: 'user-list',
     templateUrl: './user-list.component.html',

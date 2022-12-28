@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 
-
 @Component({
     selector: 'user-login-oauth',
     templateUrl: './user-login-oauth.component.html',

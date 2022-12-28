@@ -8,7 +8,6 @@ import { ClassementNavigateComponent } from './classement-navigate.component';
 import { ClassementTemplateComponent } from './classement-template.component';
 import { ClassementViewComponent } from './classement-view.component';
 
-
 const routes: Routes = [
     {
         path: 'template/:id',

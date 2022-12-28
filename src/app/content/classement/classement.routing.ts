@@ -5,7 +5,6 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
-
 const routes: Routes = [
     {
         path: ':id/:fork',

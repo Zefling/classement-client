@@ -42,9 +42,9 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Remove user
     -   ✅ Tierlists
         -   ✅ Save tierlists on server
-             -   ✅ Public
-             -   ✅ Private
-             -   ✅ Private with password
+            -   ✅ Public
+            -   ✅ Private
+            -   ✅ Private with password
         -   ✅ Search in public tierlists
         -   ✅ See tierlists form template
         -   ✅ Tierlist view

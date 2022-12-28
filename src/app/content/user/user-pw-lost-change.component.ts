@@ -9,7 +9,6 @@ import { APIUserService } from 'src/app/services/api.user.service';
 
 import { UserPassword } from './user-password';
 
-
 @Component({
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',

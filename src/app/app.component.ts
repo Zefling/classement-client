@@ -12,7 +12,6 @@ import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';
 
-
 const languages = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },

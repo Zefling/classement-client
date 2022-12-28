@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
-
 @Component({
     selector: 'third-party-licenses',
     templateUrl: './licenses.component.html',

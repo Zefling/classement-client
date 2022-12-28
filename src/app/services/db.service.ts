@@ -1,11 +1,11 @@
-import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
-import { Utils } from '../tools/utils';
-
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
+
+import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
+import { Utils } from '../tools/utils';
 
 enum Store {
     infos = 'classementInfos',

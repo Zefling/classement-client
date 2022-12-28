@@ -52,7 +52,7 @@
                         <a
                             class="from"
                             *ngIf="modeApi && item.rankingId && serverIds.includes(item.rankingId)"
-                            [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
+                            [tooltip]="'list.server.link' | translate : { id: item.rankingId }"
                             [routerLink]="['/navigate/view', item.rankingId]"
                             >➡ <span class="icon-server"></span
                         ></a>
@@ -60,8 +60,8 @@
                 </td>
                 <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
                 <td class="date">
-                    <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
+                    <span>{{ item.date | date : ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ item.date | date : ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="groups">{{ item.groupsLenght }}</td>
                 <td class="items">{{ item.listLenght }}</td>

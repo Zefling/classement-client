@@ -7,7 +7,6 @@ import owasp from 'owasp-password-strength-test';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
-
 export abstract class UserPassword {
     showError: string[] = [];
     changePasswordForm: FormGroup;

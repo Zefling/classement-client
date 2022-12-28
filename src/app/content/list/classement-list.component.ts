@@ -16,7 +16,6 @@ import { Logger } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-
 /**
  * @link from https://stackoverflow.com/questions/50250361/how-to-elegantly-get-full-url-from-the-activatedroutesnapshot
  * @param route ActivatedRouteSnapshot

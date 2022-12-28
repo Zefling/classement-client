@@ -2,7 +2,6 @@ import { Directive, ElementRef, OnDestroy } from '@angular/core';
 
 import autosize from '@github/textarea-autosize';
 
-
 @Directive({ selector: 'textarea[autosize]' })
 export class TextareaAutosizeDirective implements OnDestroy {
     autosize?: { unsubscribe(): void };

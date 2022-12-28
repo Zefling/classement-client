@@ -13,7 +13,6 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 
-
 export type SortRule =
     | { type: 'string' | 'number' | 'date'; attr: string; init?: 'asc' | 'desc' }
     | { type: 'translate'; attr: string; translate: string; init?: 'asc' | 'desc' }

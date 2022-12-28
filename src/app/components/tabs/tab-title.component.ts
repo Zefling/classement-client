@@ -2,7 +2,6 @@ import { Component, Host, HostBinding, HostListener, Input } from '@angular/core
 
 import { TabsComponent } from './tabs.component';
 
-
 @Component({
     selector: 'tab-title',
     templateUrl: './tab-title.component.html',

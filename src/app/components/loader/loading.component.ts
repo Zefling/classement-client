@@ -1,6 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
-
 @Component({
     selector: 'loading-cmp',
     templateUrl: './loading.component.html',

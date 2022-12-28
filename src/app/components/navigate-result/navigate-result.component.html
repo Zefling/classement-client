@@ -29,18 +29,19 @@
                         </div>
                         <div class="username">
                             {{
-                                'user.by' | translate: { autor: classement.user || ('list.user.anonymous' | translate) }
+                                'user.by'
+                                    | translate : { autor: classement.user || ('list.user.anonymous' | translate) }
                             }}
                         </div>
                         <div class="date">
-                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                            {{ classement.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }}
                         </div>
                         <div class="date change">
                             <ng-container *ngIf="classement.dateChange">{{
                                 'gererator.ranking.change'
                                     | translate
                                         : {
-                                              DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
+                                              DATE: classement.dateChange | date : ('date.dd/MM/yyyy HH:mm' | translate)
                                           }
                             }}</ng-container>
                         </div>

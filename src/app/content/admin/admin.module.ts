@@ -9,7 +9,6 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin.routing';
 import { ListClassementsComponent } from './list-classements.component';
 
-
 @NgModule({
     declarations: [
         // page

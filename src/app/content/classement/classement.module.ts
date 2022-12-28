@@ -12,7 +12,6 @@ import { ClassementSaveServerComponent } from './classement-save-server.componen
 import { ClassemenThemesComponent } from './classement-themes.component';
 import { ClassementRoutingModule } from './classement.routing';
 
-
 @NgModule({
     declarations: [
         // page

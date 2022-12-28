@@ -16,7 +16,6 @@ import { UserRoutingModule } from './user.routing';
 
 import { ClassementListModule } from '../list/classement-list.module';
 
-
 @NgModule({
     declarations: [
         // page

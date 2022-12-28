@@ -6,7 +6,6 @@ import { MessageService, MessageType } from 'src/app/components/info-messages/in
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 
-
 @Component({
     selector: 'user-information',
     templateUrl: './user-information.component.html',

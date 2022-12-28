@@ -16,7 +16,6 @@ import { Login, Message, MessageError } from '../content/user/user.interface';
 import { Classement, User } from '../interface';
 import { Utils } from '../tools/utils';
 
-
 @Injectable({ providedIn: 'root' })
 export class APIUserService extends APICommon {
     afterLoggin = new Subject<void>();

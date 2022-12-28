@@ -13,7 +13,6 @@ import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 
-
 @Component({
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',

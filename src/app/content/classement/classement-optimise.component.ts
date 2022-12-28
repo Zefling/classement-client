@@ -5,7 +5,6 @@ import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
-
 @Component({
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',

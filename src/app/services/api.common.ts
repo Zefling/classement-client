@@ -6,7 +6,6 @@ import { Logger, LoggerLevel } from './logger';
 
 import { MessageError } from '../content/user/user.interface';
 
-
 export abstract class APICommon {
     abstract token?: string;
 

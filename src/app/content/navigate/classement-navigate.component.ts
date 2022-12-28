@@ -13,7 +13,6 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 
 import { categories } from '../classement/classement-default';
 
-
 @Component({
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
