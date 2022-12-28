@@ -1,16 +1,15 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
-
-import { FileString, FormatedGroup, Options } from 'src/app/interface';
-
 import { GlobalService } from '../../services/global.service';
 
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+
+import { FileString, FormatedGroup, Options } from 'src/app/interface';
 
 @Component({
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
 })
-export class SeeClassementComponent {
+export class SeeClassementComponent implements OnInit {
     @Input() groups: FormatedGroup[] = [];
     @Input() list: FileString[] = [];
     @Input() imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
@@ -23,13 +22,13 @@ export class SeeClassementComponent {
 
     constructor(private globalService: GlobalService, private cd: ChangeDetectorRef) {}
 
-    ngDoCheck() {
+    ngOnInit() {
         if (!this.options) {
             return;
         }
+        const val = this.globalService.updateVarCss(this.options, this.imagesCache);
 
-        const val = this.globalService.updateVarCss(this.options);
-        this.nameOpacity = val.nameOpacity;
+        this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;
     }
 
     detectChanges() {

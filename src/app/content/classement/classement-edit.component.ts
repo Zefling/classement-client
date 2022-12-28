@@ -237,8 +237,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             return;
         }
 
-        const val = this.globalService.updateVarCss(this.options);
-        this.nameOpacity = val.nameOpacity;
+        const val = this.globalService.updateVarCss(this.options, this.imagesCache);
+        this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;
 
         if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
             this.globalService.withChange = true;
@@ -609,7 +609,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.exportImageDisabled = true;
         setTimeout(() => {
             this.globalService
-                .imagesCache(this.groups, this.list)
+                .imagesCache(this.options, this.groups, this.list)
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => {
                     this.exportImageDisabled = false;

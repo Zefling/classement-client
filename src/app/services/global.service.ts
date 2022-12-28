@@ -1,5 +1,5 @@
 import { defaultOptions } from '../content/classement/classement-default';
-import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options } from '../interface';
+import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options, ThemeOptions } from '../interface';
 import { color } from '../tools/function';
 import { Utils } from '../tools/utils';
 
@@ -103,6 +103,7 @@ export class GlobalService {
      * @returns cache image in base64 `[url : base64]`
      */
     async imagesCache(
+        options: ThemeOptions,
         groups: FormatedGroup[],
         list: FileString[] = [],
     ): Promise<{ [key: string]: string | ArrayBuffer | null }> {
@@ -119,10 +120,13 @@ export class GlobalService {
                 }
             }
         }
+        if (options.imageBackgroundCustom) {
+            cache[options.imageBackgroundCustom] = await Utils.ulrToBase64(options.imageBackgroundCustom);
+        }
         return cache;
     }
 
-    updateVarCss(o: Options) {
+    updateVarCss(o: Options, cache: { [key: string]: string | ArrayBuffer | null }): void {
         const body = document.body;
         const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;
@@ -153,12 +157,14 @@ export class GlobalService {
             '--over-image-url',
             o.imageBackgroundImage !== 'none'
                 ? o.imageBackgroundImage === 'custom'
-                    ? `url(${o.imageBackgroundCustom})`
+                    ? `url(${cache[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
                     : `url(./assets/themes/${o.imageBackgroundImage}.svg)`
                 : null,
             dash,
         );
+    }
 
+    getValuesFromOptions(o: Options) {
         return {
             nameOpacity:
                 Math.round(o.nameBackgroundOpacity * 2.55)

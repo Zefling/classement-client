@@ -153,7 +153,7 @@ export class ClassementViewComponent implements OnDestroy {
 
         setTimeout(() => {
             this.globalService
-                .imagesCache(this.classement!.data.groups!)
+                .imagesCache(this.classement!.data.options, this.classement!.data.groups!)
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => (this.exportImageDisabled = false));
         });
