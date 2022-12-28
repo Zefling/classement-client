@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FileHandle, Options, Theme } from 'src/app/interface';
 import { typesMine } from 'src/app/services/global.service';
+import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -32,7 +33,7 @@ export class ClassementOptionsComponent {
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
 
-    constructor(private translate: TranslateService) {
+    constructor(private optimiseImage: OptimiseImageService, private translate: TranslateService) {
         this.sort();
         this.translate.onLangChange.subscribe(() => {
             this.sort();
@@ -97,7 +98,7 @@ export class ClassementOptionsComponent {
 
     changeCustomeBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
-            this.options!.imageBackgroundCustom = (event as FileHandle).target?.result as string;
+            this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
         }
     }
 
@@ -115,10 +116,29 @@ export class ClassementOptionsComponent {
                     data.target = ev.target;
                 };
                 reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
-                    this.options!.imageBackgroundCustom = String(data.target?.result);
+                    this.updateImageBackgroundCustom(String(data.target?.result));
                 };
                 reader.readAsDataURL(data.file);
             }
         }
+    }
+
+    private updateImageBackgroundCustom(image: string) {
+        this.optimiseImage
+            .resize(
+                {
+                    url: image,
+                    name: 'background',
+                    size: image.length,
+                    realSize: image.length,
+                    type: 'image',
+                    date: 0,
+                },
+                1000,
+                1000,
+            )
+            .then(file => {
+                this.options!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
+            });
     }
 }
