@@ -41,9 +41,10 @@ export const defaultOptions: Options = {
     nameFontSize: 120,
     nameBackgroundOpacity: 100,
     imageBackgroundImage: 'none',
+    imageBackgroundCustom: '',
 };
 
-export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel'];
+export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 
 export const themesList: Theme[] = [
     {

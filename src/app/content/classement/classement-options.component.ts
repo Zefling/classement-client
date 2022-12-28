@@ -2,12 +2,13 @@ import { Component, HostListener, Input, ViewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Options, Theme } from 'src/app/interface';
+import { FileHandle, Options, Theme } from 'src/app/interface';
+import { typesMine } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
+import { environment } from 'src/environments/environment';
 
 import { categories, imagesThemes } from './classement-default';
 import { ClassemenThemesComponent } from './classement-themes.component';
-
 
 @Component({
     selector: 'classement-options',
@@ -15,6 +16,8 @@ import { ClassemenThemesComponent } from './classement-themes.component';
     styleUrls: ['./classement-options.component.scss'],
 })
 export class ClassementOptionsComponent {
+    api = environment.api?.active || false;
+
     categories = categories;
 
     categoriesList: { value: string; label: string }[] = [];
@@ -78,6 +81,44 @@ export class ClassementOptionsComponent {
     onClickOver(event: MouseEvent) {
         if (this.imageListOpen && !Utils.getParentElementByClass(event.target as HTMLElement, 'list-options')) {
             this.toggleImageList();
+        }
+    }
+
+    getImageUrl(item: string) {
+        switch (item) {
+            case 'none':
+                return null;
+            case 'custom':
+                return `url(${this.options!.imageBackgroundCustom})`;
+            default:
+                return `url(./assets/themes/${item}.mini.svg)`;
+        }
+    }
+
+    changeCustomeBackground(event: string | FileHandle) {
+        if ((event as FileHandle).target) {
+            this.options!.imageBackgroundCustom = (event as FileHandle).target?.result as string;
+        }
+    }
+
+    changeCustomeBackgroundEvent(event: Event) {
+        const files = (event.target as any).files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (typesMine['image'].includes(file.type)) {
+                const data: FileHandle = {
+                    file,
+                };
+
+                let reader = new FileReader();
+                reader.onload = (ev: ProgressEvent<FileReader>) => {
+                    data.target = ev.target;
+                };
+                reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
+                    this.options!.imageBackgroundCustom = String(data.target?.result);
+                };
+                reader.readAsDataURL(data.file);
+            }
         }
     }
 }

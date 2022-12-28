@@ -287,7 +287,7 @@
                 <input id="option-name-width" type="number" [(ngModel)]="options.nameWidth" />
             </div>
         </div>
-        <div class="font-size input-button">
+        <div class="font-size">
             <div class="width-input">
                 <label for="option-name-font-size">{{ 'gererator.options.name.font-size' | translate }}</label>
                 <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="options.nameFontSize" />
@@ -361,14 +361,7 @@
                 <label for="backgroundImage">{{ 'gererator.options.global.image' | translate }}</label>
                 <div class="image-list">
                     <div class="select input list-options" (click)="toggleImageList()">
-                        <div
-                            class="image"
-                            [style.--url]="
-                                options.imageBackgroundImage !== 'none'
-                                    ? 'url(./assets/themes/' + options.imageBackgroundImage + '.mini.svg)'
-                                    : null
-                            "
-                        ></div>
+                        <div class="image" [style.--url]="getImageUrl(options.imageBackgroundImage)"></div>
                         <div class="label">
                             {{ 'gererator.options.global.name.image.' + options.imageBackgroundImage | translate }}
                         </div>
@@ -379,14 +372,26 @@
                             (click)="changeImage(item)"
                             [class.selected]="item === options.imageBackgroundImage"
                         >
-                            <div
-                                class="image"
-                                [style.--url]="item !== 'none' ? 'url(./assets/themes/' + item + '.mini.svg)' : null"
-                            ></div>
+                            <div class="image" [style.--url]="getImageUrl(item)"></div>
                             <div class="label">{{ 'gererator.options.global.name.image.' + item | translate }}</div>
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+        <div
+            class="background-image-custom"
+            *ngIf="options.imageBackgroundImage === 'custom'"
+            drop-image
+            mode="local"
+            (file)="changeCustomeBackground($event)"
+        >
+            <label class="required">{{
+                'gererator.options.background.custom' + (api ? '.api' : '') | translate
+            }}</label>
+            <input type="file" accept="image/*" required (change)="changeCustomeBackgroundEvent($event)" />
+            <div>
+                <img *ngIf="options.imageBackgroundCustom" [src]="options.imageBackgroundCustom" class="image-custom" />
             </div>
         </div>
     </ng-container>

@@ -88,6 +88,7 @@ export type ThemeOptions = {
     lineBorderOpacity: number;
     imageBackgroundColor: string;
     imageBackgroundImage: string;
+    imageBackgroundCustom: string;
     imageWidth: number;
     nameWidth: number;
     nameFontSize: number;

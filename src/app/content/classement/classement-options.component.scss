@@ -15,6 +15,7 @@
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
+        'image-custom      image-custom        image-custom        image-custom        '
         / 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-radius: 5px;
@@ -121,6 +122,10 @@ h4 {
 .global-color {
     grid-area: global-color;
     --color-section: var(--over-image-background, var(--background));
+}
+
+.background-image-custom {
+    grid-area: image-custom;
 }
 
 .global-width {
@@ -432,6 +437,34 @@ span.item-width {
                 font-weight: bold;
             }
         }
+    }
+}
+
+.background-image-custom {
+    display: grid;
+    grid-template:
+        'a a'
+        'b c' /
+        1fr 150px;
+    gap: 0 30px;
+
+    &.drop-image-zone {
+        background: var(--drop-image-zone-background);
+    }
+
+    label {
+        grid-area: a;
+    }
+
+    input {
+        grid-area: b;
+        align-self: baseline;
+    }
+
+    .image-custom {
+        grid-area: c;
+        max-height: 150px;
+        max-width: 150px;
     }
 }
 

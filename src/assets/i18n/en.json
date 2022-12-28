@@ -216,13 +216,18 @@
           "none": "Default",
           "sakura": "Sakura",
           "etoile": "Etoile",
-          "ciel": "Sky"
+          "ciel": "Sky",
+          "custom": "Custom"
         }
       },
       "name": {
         "width": "Group name width:",
         "font-size": "Group name text size:",
         "opacity": "Group name background opacity:"
+      },
+      "background": {
+        "custom": "Select a custom background image",
+        "custom.api": "Select a custom background image (max 1000×1000)"
       }
     },
     "screen": {

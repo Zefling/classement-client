@@ -217,13 +217,18 @@
           "none": "デフォルト",
           "sakura": "桜",
           "etoile": "エトワール",
-          "ciel": "空"
+          "ciel": "空",
+          "custom": "カスタム"
         }
       },
       "name": {
         "width": "グループ名の幅：",
         "font-size": "グループ名のテキストサイズ：",
         "opacity": "グループ名の背景の不透明度："
+      },
+      "background": {
+        "custom": "カスタム背景画像を選択",
+        "custom.api": "カスタム背景画像を選択 (最大 1000×1000)"
       }
     },
     "screen": {

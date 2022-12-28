@@ -216,13 +216,18 @@
           "none": "Défault",
           "sakura": "Sakura",
           "etoile": "Étoile",
-          "ciel": "Ciel"
+          "ciel": "Ciel",
+          "custom": "Personnalisé"
         }
       },
       "name": {
         "width": "Largeur des noms de groupe\u00A0:",
         "font-size": "Taille du texte des noms de groupe\u00A0:",
         "opacity": "Opacité du fond des noms de groupe\u00A0:"
+      },
+      "background": {
+        "custom": "Sélectionner une image fond personnalisée",
+        "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
       }
     },
     "screen": {
@@ -336,7 +341,7 @@
       "username": "Nom d'utilisateur\u00A0:",
       "edit": "Éditer",
       "banner": {
-        "select": "Selectionner une images de bannière",
+        "select": "Sélectionner une images de bannière",
         "crop": "Recadrer",
         "image": "Image de la bannière",
         "reset": "Réinitialiser"

@@ -151,7 +151,11 @@ export class GlobalService {
         r(
             body,
             '--over-image-url',
-            o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
+            o.imageBackgroundImage !== 'none'
+                ? o.imageBackgroundImage === 'custom'
+                    ? `url(${o.imageBackgroundCustom})`
+                    : `url(./assets/themes/${o.imageBackgroundImage}.svg)`
+                : null,
             dash,
         );
 
