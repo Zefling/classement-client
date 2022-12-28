@@ -1,5 +1,19 @@
 # Changelog - Standalone web app & API
 
+## 1.6.0 (2022-12-28)
+
+### Standalone web app
+
+-   image drop/copy in save dialog #32
+-   add custom background image #5
+-   change advanced options interface
+-   change URLs without reload the current tierlist
+
+### With API activited only
+
+-   fix propagation of ids between client and server
+-   required: API `1.0.7`
+
 ## 1.5.4 (2022-12-04)
 
 ### Standalone web app
