@@ -24,6 +24,7 @@
     "@github/textarea-autosize": "0.3.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "buffer": "^6.0.3",
     "coloration-lib": "^0.2.0",
     "html2canvas": "^1.4.1",
     "ngx-image-cropper": "^6.3.2",
@@ -31,7 +32,6 @@
     "pica": "^9.0.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "utf8": "^3.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -43,7 +43,6 @@
     "@types/node": "^18.11.10",
     "@types/owasp-password-strength-test": "^1.3.0",
     "@types/pica": "^9.0.0",
-    "@types/utf8": "^3.0.1",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

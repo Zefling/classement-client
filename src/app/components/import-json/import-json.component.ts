@@ -2,8 +2,8 @@ import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChil
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { Buffer } from 'buffer';
 import { Subscription } from 'rxjs';
-import { decode } from 'utf8';
 
 import { Data, FileString, importData } from '../../interface';
 import { DBService } from '../../services/db.service';
@@ -68,7 +68,7 @@ export class ImportJsonComponent implements OnDestroy {
     addJsonTemp(file: FileString) {
         try {
             const fileString = file.url?.replace('data:application/json;base64,', '');
-            const data = JSON.parse(decode(atob(fileString!))) as Data | Data[];
+            const data = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Data | Data[];
 
             this.jsonTmp = [];
 
