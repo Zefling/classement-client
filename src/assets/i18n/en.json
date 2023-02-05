@@ -269,6 +269,8 @@
       "change": "Changed on {{ DATE }}",
       "image": "Image",
       "image.drop": "Copy-paste or drop an image (JPG, PNG, GIF, WebP) here",
+      "image.ratio": "Ratio",
+      "image.ratio.help": "(4:3, 4/3 or 1.33)",
       "image.empty": "No image",
       "image.remove": "Removed image",
       "image.edit": "Edit Image",

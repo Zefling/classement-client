@@ -270,6 +270,8 @@
       "change": "{{ DATE }}に変更",
       "image": "画像",
       "image.drop": "ここに画像（JPG、PNG、GIF、WebP）をコピペして貼り付けるか、ドロップします",
+      "image.ratio": "比",
+      "image.ratio.help": "(4:3、4/3、1.33)",
       "image.empty": "画像なし",
       "image.remove": "画像を削除する",
       "image.edit": "画像を編集する",

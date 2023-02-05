@@ -15,7 +15,7 @@
             <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
         </div>
         <div>
-            <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label> <br />
+            <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label>
             <div>
                 <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" />
                 <ng-template #noImage>
@@ -49,22 +49,42 @@
             <div class="image">
                 <img [src]="croppedImage || data" />
             </div>
-            <image-cropper
-                #imageCropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="false"
-                [imageBase64]="data"
-                [cropperMinWidth]="16"
-                [cropperMinHeight]="16"
-                [resizeToWidth]="300"
-                [resizeToHeight]="300"
-                [onlyScaleDown]="true"
-                format="webp"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-            ></image-cropper>
+            <div class="image-edit">
+                <image-cropper
+                    #imageCropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="maintainAspectRatio"
+                    [aspectRatio]="aspectRatio"
+                    [imageBase64]="data"
+                    [cropperMinWidth]="16"
+                    [cropperMinHeight]="16"
+                    [resizeToWidth]="300"
+                    [resizeToHeight]="300"
+                    [onlyScaleDown]="true"
+                    format="webp"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded($event)"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+                <div class="change">
+                    <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
+                    <button [class.selected]="mode === 1" (click)="changeRatio(1, 1)">1:1</button>
+                    <button [class.selected]="mode === 2" (click)="changeRatio(2, 4 / 3)">4:3</button>
+                    <button [class.selected]="mode === 3" (click)="changeRatio(3, 16 / 9)">16:9</button>
+                    <button [class.selected]="mode === 4" (click)="changeRatio(4, 9 / 16)">9:16</button>
+                    <div class="edit-ratio">
+                        <label for="ratio-image">{{ 'gererator.ranking.image.ratio' | translate }}</label>
+                        <input
+                            id="ratio-image"
+                            #ratio
+                            (focus)="changeRatio(6, ratio.value)"
+                            (input)="changeRatio(6, ratio.value)"
+                        />
+                        <div class="sub-input">{{ 'gererator.ranking.image.ratio.help' | translate }}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <ng-template #staticImage>
             <div>

@@ -6,6 +6,8 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString } from 'src/app/interface';
 import { GlobalService } from 'src/app/services/global.service';
 
+const formula = /\d+(\.\d*)?([/:]\d+(\.\d*)?)?/;
+
 @Component({
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
@@ -25,6 +27,10 @@ export class ClassementEditImageComponent {
 
     data?: string;
 
+    maintainAspectRatio = false;
+    aspectRatio = 0;
+    mode = 0;
+
     constructor(private cd: ChangeDetectorRef, private global: GlobalService) {}
 
     open() {
@@ -39,6 +45,17 @@ export class ClassementEditImageComponent {
 
     detectChanges() {
         this.cd.detectChanges();
+    }
+
+    changeRatio(mode: number, aspectRatio: number | string = 0) {
+        this.mode = mode;
+        this.aspectRatio =
+            typeof aspectRatio === 'string' && aspectRatio.match(formula)
+                ? +eval(aspectRatio.replace(':', '/')) || 0
+                : +aspectRatio;
+        this.maintainAspectRatio = aspectRatio !== 0;
+
+        this.imageLoaded();
     }
 
     resetBanner() {
@@ -58,12 +75,16 @@ export class ClassementEditImageComponent {
     }
 
     async imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64!;
+        setTimeout(() => {
+            this.croppedImage = event.base64!;
+        });
     }
 
     async update() {
         if (this.croppedImage) {
-            this.currentTile!.url = this.croppedImage;
+            setTimeout(() => {
+                this.currentTile!.url = this.croppedImage;
+            });
             this.currentTile!.realSize = this.croppedImage.length;
             this.currentTile!.size = this.croppedImage.length;
             this.currentTile!.type = 'image/webp';
@@ -74,7 +95,7 @@ export class ClassementEditImageComponent {
         }
     }
 
-    imageLoaded(image: LoadedImage) {
+    imageLoaded(image?: LoadedImage) {
         // show cropper
         setTimeout(() => {
             // fix init position for the cropper
