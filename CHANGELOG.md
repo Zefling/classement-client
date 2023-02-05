@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.7.0 (2023-2-5)
+
+### Standalone web app
+
+-   fix memory overflow crash with json too heavy
+-   add modify, replace and delete images for tiles
+
 ## 1.6.1 (2022-12-28)
 
 ### Standalone web app

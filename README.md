@@ -19,7 +19,10 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Adding text under images.
     -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
     -   ✅ Advanced customization of tiles, lines, background, etc.
-    -   ✅ Image reduce size.
+    -   ✅ Image tile:
+        -   ✅ Reduce size.
+        -   ✅ Changesize.
+        -   ✅ Resize.
     -   ✅ Backup in browser or in Json.
         -   ✅ Import / export all
     -   ✅ Image export (PNG, JPG or WebP).
