@@ -1,0 +1,14 @@
+.edit-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+        max-height: 300px;
+        max-width: 300px;
+    }
+
+    & > * {
+        flex: 1 1 0%;
+    }
+}

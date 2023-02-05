@@ -175,7 +175,7 @@ export class GlobalService {
 
     private _fixImage(item: FileString) {
         if (item.type?.startsWith('image') && !item.width) {
-            this._imageDimensions(item.url!)
+            this.imageDimensions(item.url!)
                 .then(size => {
                     item.width = size.width;
                     item.height = size.height;
@@ -189,7 +189,7 @@ export class GlobalService {
         if (url) {
             this.logger.log('Add file:', LoggerLevel.log, file.file.name);
             if (filter === TypeFile.image) {
-                this._imageDimensions(file.file)
+                this.imageDimensions(file.file)
                     .then(size => {
                         this.onFileLoaded.next({
                             filter,
@@ -225,7 +225,7 @@ export class GlobalService {
         }
     }
 
-    private _imageDimensions(file: File | string): Promise<{ width: number; height: number }> {
+    imageDimensions(file: File | string): Promise<{ width: number; height: number }> {
         return new Promise<{ width: number; height: number }>((resolve, reject) => {
             const img = new Image();
 

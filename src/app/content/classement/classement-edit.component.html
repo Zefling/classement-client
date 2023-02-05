@@ -1,6 +1,6 @@
 <loader-cmp *ngIf="!options" [message]="'gererator.loading' | translate"></loader-cmp>
 
-<div drop-image [disabled]="dialogSaveServer?._open || false">
+<div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
     <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
     <div *ngIf="apiActive && classement && classement.templateTotal > 1">
         <button class="button-add primary" (click)="toTemplateNavigation()">
@@ -329,27 +329,6 @@
     </div>
 </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogInfo closeButton>
-    <ng-container *ngIf="currentTile">
-        <div>
-            <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label
-            ><br />
-            <input
-                maxlength="150"
-                id="ranking-title"
-                type="text"
-                [(ngModel)]="currentTile.title"
-                (ngModelChange)="detectChanges()"
-            />
-        </div>
-        <div>
-            <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label
-            ><br />
-            <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
-        </div>
-    </ng-container>
-</dialog-cmp>
-
 <dialog-cmp class="auto-format" #dialogClear>
     <p>
         {{ 'gererator.actions.reset.groups.question' | translate }}
@@ -363,3 +342,5 @@
         </button>
     </div>
 </dialog-cmp>
+
+<classement-edit-image [currentTile]="currentTile" #editImage></classement-edit-image>

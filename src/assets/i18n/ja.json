@@ -255,7 +255,7 @@
       "group.title": "ランキング",
       "name": "名前",
       "list": "リスト",
-      "drop.image": "画像（JPG、PNG、GIF、WEBP）またはテキストの1つまたはグループをコピペするかここにドロップします",
+      "drop.image": "ここに画像（JPG、PNG、GIF、WEBP）またはテキストの1つまたはグループをコピペするか、ドロップします",
       "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください",
       "share.link": "このランキングを友達と共有します",
       "copy.link.success": "リンクは正常にクリップボードにコピーされました",
@@ -267,7 +267,14 @@
       "title": "タイトル",
       "annotation": "注釈",
       "create": "{{ DATE }}に作成",
-      "change": "{{ DATE }}に変更"
+      "change": "{{ DATE }}に変更",
+      "image": "画像",
+      "image.drop": "ここに画像（JPG、PNG、GIF、WebP）をコピペして貼り付けるか、ドロップします",
+      "image.empty": "画像なし",
+      "image.remove": "画像を削除する",
+      "image.edit": "画像を編集する",
+      "image.edit.cancel": "キャンセル",
+      "image.edit.ok": "OK"
     },
     "line": {
       "add": "追加",

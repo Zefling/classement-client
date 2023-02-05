@@ -22,6 +22,7 @@ import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 import { defaultOptions, defautGroup } from './classement-default';
+import { ClassementEditImageComponent } from './classement-edit-image.component';
 
 @Component({
     selector: 'classement-edit',
@@ -71,7 +72,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
-    @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
+    @ViewChild(ClassementEditImageComponent) dialogInfo!: ClassementEditImageComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub: Subscription[] = [];

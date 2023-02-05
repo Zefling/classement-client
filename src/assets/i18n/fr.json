@@ -266,7 +266,14 @@
       "title": "Titre",
       "annotation": "Annotation",
       "create": "Créé le {{ DATE }}",
-      "change": "Modifié le {{ DATE }}"
+      "change": "Modifié le {{ DATE }}",
+      "image": "Image",
+      "image.drop": "Copiez-collez ou déposez ici une image (JPG, PNG, GIF, WebP)",
+      "image.empty": "Pas d'image",
+      "image.remove": "Supprimer l'image",
+      "image.edit": "Éditer l'image",
+      "image.edit.cancel": "Annuler",
+      "image.edit.ok": "Valider"
     },
     "line": {
       "add": "Ajout",

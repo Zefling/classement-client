@@ -1,0 +1,84 @@
+<dialog-cmp class="auto-format" #dialogInfo closeButton>
+    <ng-container *ngIf="currentTile">
+        <div>
+            <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label> <br />
+            <input
+                maxlength="150"
+                id="ranking-title"
+                type="text"
+                [(ngModel)]="currentTile.title"
+                (ngModelChange)="detectChanges()"
+            />
+        </div>
+        <div>
+            <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label> <br />
+            <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
+        </div>
+        <div>
+            <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label> <br />
+            <div>
+                <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" />
+                <ng-template #noImage>
+                    <div>
+                        {{ 'gererator.ranking.image.empty' | translate }}
+                    </div>
+                </ng-template>
+                <div>
+                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''">
+                        {{ 'gererator.ranking.image.remove' | translate }}
+                    </button>
+                    <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+                        {{ 'gererator.ranking.image.edit' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="primary" (click)="close()">
+                {{ 'gererator.ranking.close' | translate }}
+            </button>
+        </div>
+    </ng-container>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogImageEdit>
+    <div drop-image mode="local" (file)="fileChange($event)" *ngIf="currentTile && dialogInfo._open">
+        <div class="drop-image-message">{{ 'gererator.ranking.image.drop' | translate }}</div>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
+        <div class="edit-image" *ngIf="data?.startsWith('data'); else staticImage">
+            <div class="image">
+                <img [src]="croppedImage || data" />
+            </div>
+            <image-cropper
+                #imageCropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="false"
+                [imageBase64]="data"
+                [cropperMinWidth]="16"
+                [cropperMinHeight]="16"
+                [resizeToWidth]="300"
+                [resizeToHeight]="300"
+                [onlyScaleDown]="true"
+                format="webp"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+        </div>
+        <ng-template #staticImage>
+            <div>
+                <img [src]="data" />
+            </div>
+        </ng-template>
+
+        <div class="buttons">
+            <button (click)="dialogImageEdit.close()">
+                {{ 'gererator.ranking.image.edit.cancel' | translate }}
+            </button>
+            <button class="primary" (click)="update(); dialogImageEdit.close()">
+                {{ 'gererator.ranking.image.edit.ok' | translate }}
+            </button>
+        </div>
+    </div>
+</dialog-cmp>
