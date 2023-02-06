@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
@@ -6,7 +6,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString } from 'src/app/interface';
 import { GlobalService } from 'src/app/services/global.service';
 
-const formula = /\d+(\.\d*)?([/:]\d+(\.\d*)?)?/;
+const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 
 @Component({
     selector: 'classement-edit-image',
@@ -16,6 +16,7 @@ const formula = /\d+(\.\d*)?([/:]\d+(\.\d*)?)?/;
 export class ClassementEditImageComponent {
     @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
     @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('ratioInput') ratioInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
     @Input() currentTile?: FileString;
@@ -49,11 +50,16 @@ export class ClassementEditImageComponent {
 
     changeRatio(mode: number, aspectRatio: number | string = 0) {
         this.mode = mode;
-        this.aspectRatio =
+        const aspectRatioValue =
             typeof aspectRatio === 'string' && aspectRatio.match(formula)
-                ? +eval(aspectRatio.replace(':', '/')) || 0
-                : +aspectRatio;
-        this.maintainAspectRatio = aspectRatio !== 0;
+                ? +(eval(aspectRatio.replace(':', '/')) || 0)
+                : aspectRatio;
+        this.aspectRatio = isNaN(aspectRatio as number) ? 0 : parseFloat(`${aspectRatio}`.replace('-', '') || '0');
+        this.maintainAspectRatio = this.aspectRatio !== 0;
+
+        if (mode !== 99) {
+            this.ratioInput.nativeElement.value = `${aspectRatio}`;
+        }
 
         this.imageLoaded();
     }

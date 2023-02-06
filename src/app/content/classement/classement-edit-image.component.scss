@@ -1,12 +1,20 @@
 .edit-image {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 830px) {
+        flex-wrap: wrap;
+    }
 
     .image {
         max-height: 300px;
         width: 320px;
+        min-width: 320px;
+    }
+
+    image-cropper {
+        max-height: 600px;
     }
 
     & > * {
@@ -24,7 +32,8 @@
     }
 
     .edit-ratio {
-        min-width: 100px;
+        max-width: 130px;
+        margin: 0;
     }
 
     .sub-input {
