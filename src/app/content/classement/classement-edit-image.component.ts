@@ -54,7 +54,9 @@ export class ClassementEditImageComponent {
             typeof aspectRatio === 'string' && aspectRatio.match(formula)
                 ? +(eval(aspectRatio.replace(':', '/')) || 0)
                 : aspectRatio;
-        this.aspectRatio = isNaN(aspectRatio as number) ? 0 : parseFloat(`${aspectRatio}`.replace('-', '') || '0');
+        this.aspectRatio = isNaN(aspectRatioValue as number)
+            ? 0
+            : parseFloat(`${aspectRatioValue}`.replace('-', '') || '0');
         this.maintainAspectRatio = this.aspectRatio !== 0;
 
         if (mode !== 99) {

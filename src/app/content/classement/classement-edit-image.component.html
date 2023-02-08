@@ -69,10 +69,10 @@
                 ></image-cropper>
                 <div class="change">
                     <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
-                    <button [class.selected]="mode === 1" (click)="changeRatio(1, '1 / 1')">1:1</button>
-                    <button [class.selected]="mode === 2" (click)="changeRatio(2, '4 / 3')">4:3</button>
-                    <button [class.selected]="mode === 3" (click)="changeRatio(3, '16 / 9')">16:9</button>
-                    <button [class.selected]="mode === 4" (click)="changeRatio(4, '9 / 16')">9:16</button>
+                    <button [class.selected]="mode === 1" (click)="changeRatio(1, '1:1')">1:1</button>
+                    <button [class.selected]="mode === 2" (click)="changeRatio(2, '4:3')">4:3</button>
+                    <button [class.selected]="mode === 3" (click)="changeRatio(3, '16:9')">16:9</button>
+                    <button [class.selected]="mode === 4" (click)="changeRatio(4, '9:16')">9:16</button>
                     <div class="edit-ratio">
                         <label for="ratio-image">{{ 'gererator.ranking.image.ratio' | translate }}</label>
                         <input
