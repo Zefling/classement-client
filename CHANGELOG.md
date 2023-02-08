@@ -1,6 +1,10 @@
 # Changelog - Standalone web app & API
 
-## 1.7.0 (2023-2-5)
+## 1.7.1 (2023-02-08)
+
+-   fix ratio field in image edit
+
+## 1.7.0 (2023-02-05)
 
 ### Standalone web app
 
