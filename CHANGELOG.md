@@ -1,5 +1,9 @@
 # Changelog - Standalone web app & API
 
+## 1.7.2 (2023-02-08)
+
+-   fix ratio calculate in image edit
+
 ## 1.7.1 (2023-02-08)
 
 -   fix ratio field in image edit
