@@ -160,7 +160,9 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     copyLink() {
-        Utils.copy(`${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`)
+        Utils.clipboard(
+            `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`,
+        )
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
             .catch(e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
@@ -266,9 +268,6 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     private downloadImage(data: string, filename: string) {
-        const a = document.createElement('a');
-        a.href = data;
-        a.download = filename;
-        a.click();
+        Utils.downloadFile(data, filename);
     }
 }
