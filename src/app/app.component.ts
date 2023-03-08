@@ -50,7 +50,7 @@ export class AppComponent implements DoCheck {
     ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
-        this.globalService.lang = this.selectedLang = l.length ? l[0].value : 'en';
+        this.selectedLang = l.length ? l[0].value : 'en';
         this.updateLanguage(this.selectedLang);
 
         this.globalService.onForceExit.subscribe((route?: string) => {
