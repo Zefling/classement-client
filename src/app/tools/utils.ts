@@ -1,3 +1,5 @@
+import { Classement, User } from '../interface';
+
 const emailTest =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
@@ -17,14 +19,10 @@ export class Utils {
         );
     }
 
-    static downloadFile(content: string, fileName: string, contentType?: string) {
+    static downloadFile(content: string, fileName: string, contentType: string) {
         var a = document.createElement('a');
-        if (content.startsWith('data:')) {
-            a.href = content;
-        } else {
-            var file = new Blob([content], contentType ? { type: contentType } : undefined);
-            a.href = URL.createObjectURL(file);
-        }
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
         a.download = fileName;
         a.click();
     }
@@ -39,14 +37,14 @@ export class Utils {
         return parts ? (parts[1] as T) : null;
     }
 
-    static setCookie(name: string, value: string, days: number = 7, path: string = '/') {
+    static setCookie(name: string, value: string, days: number = 7) {
         var date = new Date();
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = `${name}=${value}; path=${path}; expires=${date.toUTCString()}`;
+        document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
     }
 
-    static removeCookie(name: string, path: string = '/') {
-        document.cookie = `${name}=; path=${path}; Max-Age=0`;
+    static removeCookie(name: string) {
+        document.cookie = `${name}=; path=/; Max-Age=0`;
     }
 
     static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
@@ -101,12 +99,12 @@ export class Utils {
                                 base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'),
                             );
                         } else {
-                            reject('Image error');
+                            reject('Imaage error');
                         }
                         resolve(base64data);
                     };
                     reader.onerror = () => {
-                        reject('Image error');
+                        reject('Imaage error');
                     };
                 } else {
                     reject('HTTP-Error: ' + response.status);
@@ -117,7 +115,7 @@ export class Utils {
         });
     }
 
-    static clipboard(text: string): Promise<void> {
+    static copy(text: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             navigator.clipboard.writeText(text).then(
                 () => {

@@ -45,7 +45,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     options!: Options;
     nameOpacity!: string;
-    tags: string[] = [];
 
     changeTimer: any[] = [];
 
@@ -66,7 +65,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     currentTile?: FileString;
 
-    @ViewChild('image') image!: ElementRef<HTMLDivElement>;
+    @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
@@ -353,7 +352,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     copyLink() {
-        Utils.clipboard(this.shareUrl)
+        Utils.copy(this.shareUrl)
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
             .catch(e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
@@ -387,6 +386,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             input.type = 'file';
             input.accept = '.jpg, .jpeg, .png, .gif, .webp, .avif';
             input.multiple = true;
+            document.body.appendChild(input);
             input.addEventListener(
                 'change',
                 (event: Event) => {
@@ -635,5 +635,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return this.options.title.trim() || this.translate.instant('list.title.undefined');
     }
 
-    private downloadImage(data: string, filename: string) {}
+    private downloadImage(data: string, filename: string) {
+        const a = document.createElement('a');
+        a.href = data;
+        a.download = filename;
+        a.click();
+    }
 }
