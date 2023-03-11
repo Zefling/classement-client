@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.7.3 (2023-03-11)
+
+-   update to Angular `15.2`
+-   add total size in edit page
+-   fix big images in edit tile dialog
+-   fix error in console
+
 ## 1.7.2 (2023-02-08)
 
 -   fix ratio calculate in image edit
