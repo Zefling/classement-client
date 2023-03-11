@@ -42,7 +42,7 @@
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogImageEdit>
-    <div drop-image mode="local" (file)="fileChange($event)" *ngIf="currentTile && dialogInfo._open">
+    <div drop-image mode="local" (file)="fileChange($event)" *ngIf="currentTile && dialogImageEdit._open">
         <div class="drop-image-message">{{ 'gererator.ranking.image.drop' | translate }}</div>
         <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
         <div class="edit-image" *ngIf="data?.startsWith('data'); else staticImage">
