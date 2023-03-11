@@ -2,6 +2,8 @@
 
 ## 1.7.3 (2023-03-11)
 
+### Standalone web app
+
 -   update to Angular `15.2`
 -   add total size in edit page
 -   fix big images in edit tile dialog
@@ -9,9 +11,13 @@
 
 ## 1.7.2 (2023-02-08)
 
+### Standalone web app
+
 -   fix ratio calculate in image edit
 
 ## 1.7.1 (2023-02-08)
+
+### Standalone web app
 
 -   fix ratio field in image edit
 
