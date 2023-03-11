@@ -17,7 +17,7 @@
         <div>
             <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label>
             <div>
-                <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" />
+                <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" class="image-preview" />
                 <ng-template #noImage>
                     <div>
                         {{ 'gererator.ranking.image.empty' | translate }}

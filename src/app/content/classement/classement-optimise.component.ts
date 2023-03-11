@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
+import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
@@ -34,7 +35,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     detail = false;
 
-    constructor(private optimiseImage: OptimiseImageService, private logger: Logger) {
+    constructor(private optimiseImage: OptimiseImageService, private global: GlobalService, private logger: Logger) {
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;
@@ -49,28 +50,9 @@ export class ClassementOptimiseComponent implements OnInit {
     }
 
     ngOnInit() {
-        let taille = 0;
-        let count = 0;
-        if (this.list) {
-            this.list.forEach(e => {
-                if (e.url?.startsWith('data')) {
-                    taille += e.realSize;
-                    count++;
-                }
-            });
-        }
-        if (this.groups) {
-            this.groups.forEach(f =>
-                f?.list.forEach(e => {
-                    if (e.url?.startsWith('data')) {
-                        taille += e.realSize;
-                        count++;
-                    }
-                }),
-            );
-        }
-        this.totalSize = taille;
-        this.total = count;
+        const { size, files } = this.optimiseImage.size(this.list, this.groups);
+        this.totalSize = size;
+        this.total = files;
     }
 
     async optimise() {
@@ -105,6 +87,7 @@ export class ClassementOptimiseComponent implements OnInit {
             }
         });
         this.dialog?.close();
+        this.global.onImageUpdate.next();
     }
 
     private async optimiseImg(fileString: FileString) {

@@ -199,8 +199,8 @@
             <button class="primary" (click)="dialogImport.open()">
                 {{ 'gererator.actions.import.json' | translate }}
             </button>
-            <button class="primary" (click)="dialogOptimise.open()" [disabled]="!hasItems">
-                {{ 'gererator.optimise.button.optimise' | translate }}
+            <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
+                {{ 'gererator.optimise.button.optimise' | translate }} ({{ size | filesize }})
             </button>
             <label class="line" *ngIf="options && hasItems">
                 <input type="checkbox" [(ngModel)]="options.autoSave" />
