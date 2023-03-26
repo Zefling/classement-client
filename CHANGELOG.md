@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.8.0 (2023-03-26)
+
+### With API activited only
+
+-   add history feature #33
+-   required: API `1.0.8`
+
 ## 1.7.3 (2023-03-11)
 
 ### Standalone web app
