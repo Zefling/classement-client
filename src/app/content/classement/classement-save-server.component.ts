@@ -61,6 +61,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     croppedImage?: string;
 
     hidden = false;
+    history = false;
     loading = false;
     progress?: UploadProgress;
 
@@ -78,6 +79,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             if (this.userService.logged) {
                 if (this.userService.user!.username === this.classement?.user) {
                     this.update = true;
+                    this.history = false;
                 }
             } else {
                 this.dialog?.close();
@@ -96,7 +98,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['classement']) {
             if (this.classement?.hidden) {
-                this.hidden = this.classement?.hidden;
+                this.hidden = this.classement.hidden;
             }
         }
     }
@@ -128,6 +130,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             banner: this.croppedImage || this.classement?.banner,
             hidden: this.hidden ?? this.classement?.hidden ?? false,
             password: this.password,
+            history: this.history,
         } as any;
 
         if (!classement.name) {
@@ -182,7 +185,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         this.croppedImage = event.base64!;
     }
 
-    imageLoaded(image: LoadedImage) {
+    imageLoaded(_image: LoadedImage) {
         // show cropper
         setTimeout(() => {
             // fix init position for the cropper

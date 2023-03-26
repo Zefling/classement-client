@@ -20,6 +20,13 @@
 
 .name {
     margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .history {
+        text-align: right;
+    }
 }
 
 .dates {
@@ -72,10 +79,12 @@ loading-cmp {
 
 // derivatives ------------------------------------------------------------------
 
-.table-derivatives {
+.table-derivatives,
+.table-history {
     border-spacing: 0;
     position: relative;
     margin: 0 -30px;
+    width: calc(100% + 60px);
 
     thead {
         background: var(--list-header-background);
@@ -103,6 +112,10 @@ loading-cmp {
 
         .current {
             color: var(--list-selected-text);
+        }
+
+        .title {
+            width: 100%;
         }
 
         .date {

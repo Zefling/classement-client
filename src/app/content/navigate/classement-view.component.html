@@ -6,7 +6,12 @@
 
 <ng-container *ngIf="!loading && classement && classement.data">
     <div class="infos">
-        <h3 class="name">{{ classement.name }}</h3>
+        <h3 class="name">
+            <span>{{ classement.name }}</span>
+            <span *ngIf="classement.historyId" class="history">{{
+                'gererator.actions.history.warning' | translate
+            }}</span>
+        </h3>
         <div class="category">
             {{ 'category.' + (classement.category || 'undefined') | translate }}
         </div>
@@ -62,6 +67,9 @@
             </button>
         </div>
         <div class="buttons">
+            <button *ngIf="history?.length" (click)="seeHistory()" class="primary">
+                {{ 'gererator.actions.history.show' | translate }}
+            </button>
             <button *ngIf="myClassement && !currentUser" (click)="seeMyClassement()" class="primary">
                 {{
                     (myClassementCount > 1
@@ -187,4 +195,39 @@
             </button>
         </span>
     </div>
+</dialog-cmp>
+
+<dialog-cmp #dialogHistory closeButton>
+    <table class="table-history" *ngIf="classement && myClassements">
+        <thead>
+            <tr>
+                <th class="title">{{ 'list.title.name' | translate }}</th>
+                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of history" [class.current]="item.id === classement.historyId">
+                <td class="title">
+                    {{ item.name || ('list.title.undefined' | translate) }}
+                </td>
+                <td class="date">
+                    <span>{{ item.date | date : ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ item.date | date : ('date.HH:mm' | translate) }}</span>
+                </td>
+                <td class="actions">
+                    <button
+                        class="primary"
+                        *ngIf="item.id !== classement.historyId"
+                        (click)="loadHistoryClassement(item)"
+                    >
+                        {{ 'gererator.actions.see.this.derivative' | translate }}
+                    </button>
+                    <span class="current" *ngIf="item.id === classement.historyId">
+                        {{ 'list.current' | translate }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </dialog-cmp>

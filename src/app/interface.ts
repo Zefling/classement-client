@@ -23,6 +23,14 @@ export interface Classement {
     deleted?: boolean;
     parent?: boolean;
     password?: string;
+    history?: boolean;
+    historyId?: string;
+}
+
+export interface ClassementHistory {
+    id?: number;
+    date?: Date;
+    name?: string;
 }
 
 export interface User {

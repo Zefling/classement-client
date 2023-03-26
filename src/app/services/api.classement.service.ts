@@ -21,7 +21,7 @@ import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Message, MessageError } from '../content/user/user.interface';
-import { Classement } from '../interface';
+import { Classement, ClassementHistory } from '../interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
@@ -45,11 +45,11 @@ export class APIClassementService extends APICommon {
         super(translate, logger);
     }
 
-    getClassement(rankingId: string, password?: string): Promise<Classement> {
+    getClassement(rankingId: string, password?: string, history?: number): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
             this.http
                 .get<Message<Classement>>(
-                    `${environment.api.path}api/classement/${rankingId}`,
+                    `${environment.api.path}api/classement/${rankingId}${history ? `?history=${history}` : ''}`,
                     password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined,
                 )
                 .subscribe({
@@ -93,8 +93,23 @@ export class APIClassementService extends APICommon {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http
                 .get<Message<Classement[]>>(
-                    `${environment.api.path}api/classements/template/${id}${userId ? '?userId=' + userId : ''}`,
+                    `${environment.api.path}api/classements/template/${id}${userId ? `?userId=${userId}` : ''}`,
                 )
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('templateId', result));
+                    },
+                });
+        });
+    }
+
+    getClassementsHistory(id: string): Promise<ClassementHistory[]> {
+        return new Promise<ClassementHistory[]>((resolve, reject) => {
+            this.http
+                .get<Message<ClassementHistory[]>>(`${environment.api.path}api/classement/history/${id}`)
                 .subscribe({
                     next: result => {
                         resolve(result.message);

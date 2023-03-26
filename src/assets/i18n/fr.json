@@ -308,6 +308,10 @@
         "question": "Êtes-vous sûr de vouloir vider les groupes\u00A0?",
         "ok": "Ok",
         "cancel": "Annuler"
+      },
+      "history": {
+        "warning": "Ancienne version",
+        "show": "Voir les anciennces versions"
       }
     },
     "change": {
@@ -360,7 +364,11 @@
       "not.public": "Ne pas rendre public.",
       "cancel": "Annuler",
       "save": "Sauvegarder",
-      "password": "Définir un mot de passe (facultatif)"
+      "password": "Définir un mot de passe (facultatif)",
+      "history": {
+        "label": "Historiser l'ancienne version",
+        "info": "Cela permet de garder une trace avant modification du classement."
+      }
     }
   },
   "user": {
@@ -505,6 +513,7 @@
       "3020": "Votre compte n'a pas été validé. Si le jeton de validation est périmé, demandez un changement de mot de passe.",
       "3101": "Classement non trouvé.",
       "3102": "Pas de classement trouvé.",
+      "3103": "Pas de classement archivé trouvé.",
       "3110": "Mot de passe invalide.",
       "3201": "Classement d'origine non trouvé.",
       "3202": "Pas de classement trouvé avec cet identifiant.",
