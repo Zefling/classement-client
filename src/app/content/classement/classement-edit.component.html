@@ -179,9 +179,6 @@
     </div>
     <div>
         <div class="save-actions buttons">
-            <button [disabled]="!shareUrl" class="primary" (click)="copyLink()">
-                🔗 {{ 'gererator.ranking.share.link' | translate }}
-            </button>
             <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
                 <span *ngIf="!exportImageLoading" class="icon-share"></span>
                 <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageLoading"></loading-cmp>
@@ -208,6 +205,12 @@
             </label>
         </div>
         <div class="save-actions buttons" *ngIf="logged">
+            <button [disabled]="!id" class="primary" (click)="copyLink()">
+                🔗 {{ 'gererator.ranking.share.link' | translate }}
+            </button>
+            <button [disabled]="!id" class="primary" (click)="show()">
+                {{ 'gererator.ranking.see' | translate }}
+            </button>
             <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
                 {{ 'gererator.actions.save.server' | translate }}
             </button>

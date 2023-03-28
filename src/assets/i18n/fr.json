@@ -257,6 +257,7 @@
       "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
       "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
       "share.link": "Partagez ce classement à vos amis",
+      "see": "Voir votre classement",
       "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
       "copy.link.error": "Impossible de copier le lien dans le presse-papiers",
       "diff": "Tuiles dans d'autres dérivés",

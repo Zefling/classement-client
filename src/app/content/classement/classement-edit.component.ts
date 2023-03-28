@@ -372,6 +372,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             );
     }
 
+    show() {
+        this.router.navigate([`/navigate/view/${this.classement!.rankingId}`]);
+    }
+
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
         const indexTarget = event.container.data.index;
