@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.8.1 (2023-03-28)
+
+### Standalone web app
+
+-   fix font size for group title
+
+### With API activited only
+
+-   fix sharing in editing
+
 ## 1.8.0 (2023-03-26)
 
 ### With API activited only
