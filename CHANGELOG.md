@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.8.2 (2023-04-23)
+
+### With API activited only
+
+-   fix history
+
 ## 1.8.1 (2023-03-28)
 
 ### Standalone web app
