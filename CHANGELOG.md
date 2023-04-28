@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.8.3 (2023-04-28)
+
+### With API activited only
+
+-   fix links for history lierlist
+
+### Standalone web app
+
+-   fix banner with local save
+
 ## 1.8.2 (2023-04-23)
 
 ### With API activited only
