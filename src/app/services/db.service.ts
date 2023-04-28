@@ -144,10 +144,11 @@ export class DBService {
                 listLenght:
                     (data.list?.length || 0) +
                     (data.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0),
-                // server link
+                // server data
                 rankingId: data.rankingId,
                 templateId: data.templateId,
                 parentId: data.parentId,
+                banner: data.banner,
             },
             data: {
                 id,

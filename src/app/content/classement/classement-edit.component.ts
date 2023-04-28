@@ -179,12 +179,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const banner = data.infos.banner;
 
                 this.classement = {
                     localId: this.id!,
                     rankingId,
                     templateId,
                     parentId,
+                    banner,
                 } as any;
 
                 this.lockCategory = !!data.infos.parentId;
@@ -648,6 +650,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             rankingId: this.classement?.localId && this.classement?.rankingId ? this.classement?.rankingId : null,
             templateId: this.classement?.templateId,
             parentId: this.classement?.parentId,
+            banner: this.classement?.banner,
         };
     }
 

@@ -115,6 +115,7 @@ export interface IndexedData {
     rankingId?: string | null;
     templateId?: string | null;
     parentId?: string | null;
+    banner?: string;
 }
 
 export interface Data extends IndexedData {
