@@ -179,7 +179,11 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     copyLink() {
-        Utils.copy(`${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`)
+        Utils.copy(
+            `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}${
+                this.historyId ? `/${this.historyId}` : ''
+            }`,
+        )
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
             .catch(_e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
@@ -235,6 +239,7 @@ export class ClassementViewComponent implements OnDestroy {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const banner = data.infos.parentId;
 
                 this.currentUser = true;
 
@@ -243,6 +248,7 @@ export class ClassementViewComponent implements OnDestroy {
                     rankingId,
                     templateId,
                     parentId,
+                    banner,
                 } as any;
 
                 if (rankingId && this.userService.logged) {
@@ -281,13 +287,13 @@ export class ClassementViewComponent implements OnDestroy {
         if (this._canvas) {
             switch (type) {
                 case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    this.downloadImage(this._canvas.toDataURL('image/png'), `${title}.png`);
                     break;
                 case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), `${title}.jpeg`);
                     break;
                 case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), `${title}.webp`);
                     break;
             }
         }
