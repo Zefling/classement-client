@@ -2,3 +2,18 @@
     display: block;
     margin: 0 15px 30px 30px;
 }
+
+pre {
+    white-space: pre-wrap;
+}
+
+:host ::ng-deep {
+    h3 {
+        padding-bottom: 3px;
+        margin-bottom: 3px;
+        border-bottom: 1px solid;
+    }
+    .license {
+        font-size: 20px;
+    }
+}
