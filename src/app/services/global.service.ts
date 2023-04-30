@@ -34,6 +34,8 @@ export class GlobalService {
 
     lang!: string;
 
+    licenses!: string;
+
     jsonTmp?: Data;
 
     private renderer: Renderer2;
