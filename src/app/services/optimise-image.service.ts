@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import Pica from 'pica';
 
-import { FileHandle, FileString, OptimisedFile } from '../interface';
+import { FileHandle, FileString, FormatedGroup, OptimisedFile } from '../interface';
 
 @Injectable({ providedIn: 'root' })
 export class OptimiseImageService {
@@ -61,6 +61,30 @@ export class OptimiseImageService {
             };
             image.src = sourceFile.url!;
         });
+    }
+
+    size(list?: FileString[], groups?: FormatedGroup[]) {
+        let size = 0;
+        let files = 0;
+        if (list) {
+            list.forEach(e => {
+                if (e.url?.startsWith('data')) {
+                    size += e.realSize;
+                    files++;
+                }
+            });
+        }
+        if (groups) {
+            groups.forEach(f =>
+                f?.list.forEach(e => {
+                    if (e.url?.startsWith('data')) {
+                        size += e.realSize;
+                        files++;
+                    }
+                }),
+            );
+        }
+        return { size, files };
     }
 
     private resizeDimension(

@@ -16,6 +16,12 @@ const routes: Routes = [
         canActivate: [DataChange, APIRequired],
     },
     {
+        path: 'view/:id/:history',
+        pathMatch: 'full',
+        component: ClassementViewComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
         path: 'view/:id',
         pathMatch: 'full',
         component: ClassementViewComponent,

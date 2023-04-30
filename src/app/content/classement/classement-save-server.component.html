@@ -86,6 +86,14 @@
             <label>{{ 'gererator.server.password' | translate }}</label>
             <div><input type="password" [(ngModel)]="password" /></div>
         </div>
+
+        <div class="public" *ngIf="update">
+            <label>
+                <input type="checkbox" [(ngModel)]="history" />
+                {{ 'gererator.server.history.label' | translate }}
+            </label>
+            <span [tooltip]="'gererator.server.history.info' | translate" class="icon-info"></span>
+        </div>
     </ng-container>
 
     <p>

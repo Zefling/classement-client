@@ -18,6 +18,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -56,6 +57,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     exportImageLoading = false;
     exportImageDisabled = false;
 
+    size = 0;
+
     shareUrl: string = '';
 
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
@@ -89,6 +92,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private messageService: MessageService,
         private userService: APIUserService,
         private classementService: APIClassementService,
+        private optimiseImage: OptimiseImageService,
         private logger: Logger,
         private cd: ChangeDetectorRef,
         private location: Location,
@@ -156,9 +160,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
                     this.addFile(file.file);
                 }
+                this.updateSize();
             }),
             userService.afterLogout.subscribe(() => {
                 this.logged = false;
+            }),
+            globalService.onImageUpdate.subscribe(() => {
+                this.updateSize();
             }),
         );
     }
@@ -172,12 +180,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const banner = data.infos.banner;
 
                 this.classement = {
                     localId: this.id!,
                     rankingId,
                     templateId,
                     parentId,
+                    banner,
                 } as any;
 
                 this.lockCategory = !!data.infos.parentId;
@@ -198,6 +208,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = data.data.list;
                 this.globalService.fixImageSize(this.groups, this.list);
                 this._html2canavasImagesCacheUpdate();
+                this.size = this.optimiseImage.size(this.list, this.groups).size;
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -227,6 +238,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.id = undefined;
             this.new = true;
         }
+
+        this.updateSize();
     }
 
     loadDerivativeClassement(classement: Classement) {
@@ -362,6 +375,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             );
     }
 
+    show() {
+        this.router.navigate([`/navigate/view/${this.classement!.rankingId}`]);
+    }
+
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
         const indexFrom = event.previousContainer.data.index;
         const indexTarget = event.container.data.index;
@@ -423,7 +440,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     removeItem(index: number) {
         this.list.splice(index, 1);
         this.globalService.withChange = true;
+        this.updateSize();
         this.change();
+    }
+
+    updateSize() {
+        this.size = this.optimiseImage.size(this.list, this.groups).size;
     }
 
     addLine(index: number) {
@@ -628,6 +650,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             rankingId: this.classement?.localId && this.classement?.rankingId ? this.classement?.rankingId : null,
             templateId: this.classement?.templateId,
             parentId: this.classement?.parentId,
+            banner: this.classement?.banner,
         };
     }
 

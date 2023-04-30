@@ -28,9 +28,13 @@ export class GlobalService {
 
     readonly onPageUpdate = new Subject<number>();
 
+    readonly onImageUpdate = new Subject<void>();
+
     withChange = false;
 
     lang!: string;
+
+    licenses!: string;
 
     jsonTmp?: Data;
 

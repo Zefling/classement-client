@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement } from 'src/app/interface';
+import { Classement, ClassementHistory } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -42,9 +42,13 @@ export class ClassementViewComponent implements OnDestroy {
 
     showError: string = '';
 
+    history?: ClassementHistory[];
+    historyId?: number;
+
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
+    @ViewChild('dialogHistory') dialogHistory!: DialogComponent;
     @ViewChild('dialogPassword') dialogPassword!: DialogComponent;
 
     private _canvas?: HTMLCanvasElement;
@@ -68,20 +72,21 @@ export class ClassementViewComponent implements OnDestroy {
             this.route.params.subscribe(params => {
                 if (params['id'] && params['id'] !== 'new') {
                     this._id = params['id'];
+                    this.historyId = params['history'] ? +params['history'] : undefined;
 
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
                             let classement = this.userService.user?.classements?.find(e => e.rankingId === this._id);
                             this.exportImageDisabled = true;
-                            if (!classement) {
+                            if (!classement && !this.historyId) {
                                 classement = this.userService.getByIdFormCache(this._id!);
                             }
-                            if (classement) {
+                            if (classement && !this.historyId) {
                                 this.logger.log('loadServerClassement (user)');
                                 this.loadClassement(classement);
                             } else {
                                 this.classementService
-                                    .getClassement(this._id!)
+                                    .getClassement(this._id!, undefined, this.historyId)
                                     .then(classement => {
                                         this.logger.log('loadServerClassement (server)');
                                         this.loadClassement(classement);
@@ -108,7 +113,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     openClassementWithPassword(password: string) {
         this.classementService
-            .getClassement(this._id!, password)
+            .getClassement(this._id!, password, this.historyId)
             .then(classement => {
                 this.logger.log('loadServerClassement (server)');
                 this.userService.addCache(classement);
@@ -157,14 +162,35 @@ export class ClassementViewComponent implements OnDestroy {
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => (this.exportImageDisabled = false));
         });
+
+        // load history
+        this.classementService.getClassementsHistory(classement.rankingId).then(history => {
+            if (history?.length) {
+                history.sort((a, b) => new Date(b.date as any).getTime() - new Date(a.date as any).getTime());
+                this.history = [
+                    {
+                        date: this.classement?.dateChange ?? this.classement?.dateCreate,
+                        name: this.classement?.name,
+                    },
+                    ...history,
+                ];
+            }
+        });
     }
 
     copyLink() {
+<<<<<<< HEAD
         Utils.clipboard(
             `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`,
+=======
+        Utils.copy(
+            `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}${
+                this.historyId ? `/${this.historyId}` : ''
+            }`,
+>>>>>>> master
         )
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
-            .catch(e =>
+            .catch(_e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
                     type: MessageType.error,
                 }),
@@ -181,6 +207,19 @@ export class ClassementViewComponent implements OnDestroy {
 
     seeMyClassement() {
         this.router.navigate(['navigate', 'view', this.myClassement!.rankingId]);
+    }
+
+    seeHistory() {
+        this.dialogHistory.open();
+    }
+
+    loadHistoryClassement(history: ClassementHistory) {
+        this.router.navigate(
+            history.id
+                ? ['navigate', 'view', this.classement!.rankingId, history.id]
+                : ['navigate', 'view', this.classement!.rankingId],
+        );
+        this.dialogHistory.close();
     }
 
     seeMyClassements() {
@@ -205,6 +244,7 @@ export class ClassementViewComponent implements OnDestroy {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const banner = data.infos.parentId;
 
                 this.currentUser = true;
 
@@ -213,6 +253,7 @@ export class ClassementViewComponent implements OnDestroy {
                     rankingId,
                     templateId,
                     parentId,
+                    banner,
                 } as any;
 
                 if (rankingId && this.userService.logged) {
@@ -251,13 +292,13 @@ export class ClassementViewComponent implements OnDestroy {
         if (this._canvas) {
             switch (type) {
                 case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
+                    this.downloadImage(this._canvas.toDataURL('image/png'), `${title}.png`);
                     break;
                 case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), `${title}.jpeg`);
                     break;
                 case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), `${title}.webp`);
                     break;
             }
         }

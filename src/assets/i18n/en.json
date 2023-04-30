@@ -257,6 +257,7 @@
       "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
       "add.image": "Click here to add one or a group of images",
       "share.link": "Share this ranking with your friends",
+      "see": "See your tierlist",
       "copy.link.success": "The link was successfully copied to the clipboard",
       "copy.link.error": "Failed to copy link to clipboard",
       "diff": "Tiles in other derivatives",
@@ -307,6 +308,10 @@
         "question": "Are you sure you want to clear groups?",
         "ok": "Ok",
         "cancel": "Cancel"
+      },
+      "history": {
+        "warning": "Old version",
+        "show": "See old versions"
       }
     },
     "change": {
@@ -358,7 +363,12 @@
       },
       "not.public": "Do not make public.",
       "cancel": "Cancel",
-      "save": "Save"
+      "save": "Save",
+      "password": "Set a password (optional)",
+      "history": {
+        "label": "Historize the old version",
+        "info": "This allows you to keep track before changing the tierlist."
+      }
     }
   },
   "user": {
@@ -502,11 +512,12 @@
       "3003": "User information not found for this action.",
       "3010": "Your account has been banned. Contact the administrator for more information.",
       "3020": "Your account has not been validated. If the validation token is expired, request a password change.",
-      "3101": "Rating not found.",
-      "3102": "No ratings found.",
+      "3101": "Tierlist not found.",
+      "3102": "No tierlists found.",
+      "3103": "No archived tierlists found.",
       "3110": "Invalid password.",
       "3201": "Original ranking not found.",
-      "3202": "No rating found with this id.",
+      "3202": "No tierlist found with this id.",
       "3301": "Status error.",
       "3400": "Save failed. Contact administrator if this persists.",
       "4001": "This username already exists.",

@@ -23,6 +23,14 @@ export interface Classement {
     deleted?: boolean;
     parent?: boolean;
     password?: string;
+    history?: boolean;
+    historyId?: string;
+}
+
+export interface ClassementHistory {
+    id?: number;
+    date?: Date;
+    name?: string;
 }
 
 export interface User {
@@ -107,6 +115,7 @@ export interface IndexedData {
     rankingId?: string | null;
     templateId?: string | null;
     parentId?: string | null;
+    banner?: string;
 }
 
 export interface Data extends IndexedData {

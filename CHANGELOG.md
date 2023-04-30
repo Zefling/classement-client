@@ -1,10 +1,56 @@
 # Changelog - Standalone web app & API
 
+## 1.8.3 (2023-04-28)
+
+### With API activited only
+
+-   fix links for history lierlist
+
+### Standalone web app
+
+-   fix banner with local save
+
+## 1.8.2 (2023-04-23)
+
+### With API activited only
+
+-   fix history
+
+## 1.8.1 (2023-03-28)
+
+### Standalone web app
+
+-   fix font size for group title
+
+### With API activited only
+
+-   fix sharing in editing
+
+## 1.8.0 (2023-03-26)
+
+### With API activited only
+
+-   add history feature #33
+-   required: API `1.0.8`
+
+## 1.7.3 (2023-03-11)
+
+### Standalone web app
+
+-   update to Angular `15.2`
+-   add total size in edit page
+-   fix big images in edit tile dialog
+-   fix error in console
+
 ## 1.7.2 (2023-02-08)
+
+### Standalone web app
 
 -   fix ratio calculate in image edit
 
 ## 1.7.1 (2023-02-08)
+
+### Standalone web app
 
 -   fix ratio field in image edit
 

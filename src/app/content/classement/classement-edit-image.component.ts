@@ -100,6 +100,8 @@ export class ClassementEditImageComponent {
             const image = await this.global.imageDimensions(this.croppedImage);
             this.currentTile!.height = image.height;
             this.currentTile!.width = image.width;
+
+            this.global.onImageUpdate.next();
         }
     }
 
