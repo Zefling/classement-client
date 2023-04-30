@@ -179,15 +179,10 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     copyLink() {
-<<<<<<< HEAD
         Utils.clipboard(
-            `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}`,
-=======
-        Utils.copy(
             `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}${
                 this.historyId ? `/${this.historyId}` : ''
             }`,
->>>>>>> master
         )
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
             .catch(_e =>
