@@ -1,36 +1,56 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+
+import { Subject, debounceTime } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+
+import { Message } from '../info-messages/info-messages.component';
 
 @Component({
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
 })
-export class TagListComponent implements OnInit {
+export class TagListComponent implements OnInit, AfterViewInit {
     @Input() tags: string[] = [];
 
     @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
     proposals: string[] = [];
 
+    private suject = new Subject<void>();
+
     constructor(private http: HttpClient) {}
-
-    ngOnInit(): void {}
-
-    onInput(tag: Event) {
-        this.proposals = ['test1', 'test2', 'test3', 'test4'];
-
-        // this.http.get<Message>(`${environment.api.path}api/tag/${tag}`).subscribe({
-        //     next: result => {
-        //         result.message;
-        //     },
-        //     error: (result: HttpErrorResponse) => {},
-        // });
+    ngAfterViewInit(): void {
+        throw new Error('Method not implemented.');
     }
 
-    onEnter(tag: KeyboardEvent) {
-        if ((tag.target as any)?.value) {
-            this.proposals.push((tag.target as any).value);
+    ngOnInit(): void {
+        this.suject.pipe(debounceTime(500)).subscribe(() => {
+            this.http.get<Message>(`${environment.api.path}api/tag/${this.input.nativeElement.value}`).subscribe({
+                next: () => {
+                    console.log('>>>');
+                },
+                error: (result: HttpErrorResponse) => {
+                    console.log('<<<');
+                },
+            });
+        });
+    }
+
+    onInput(tag: Event) {
+        console.log('>a>');
+        this.suject.next();
+    }
+
+    onEnter() {
+        const input = this.input.nativeElement;
+        const value = input.value;
+        if (!this.tags.includes(value)) {
+            this.tags.push(value);
         }
+        input.value = '';
+        input.focus();
     }
 }

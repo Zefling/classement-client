@@ -24,9 +24,7 @@
             <textarea id="option-description" autosize maxlength="1000" [(ngModel)]="options.description"></textarea>
         </div>
     </div>
-    <div class="tags">
-        <tag-list [tags]="tags" edit></tag-list>
-    </div>
+    <div class="tags">Tags : <tag-list [tags]="tags" edit></tag-list></div>
     <div class="links">
         <a (click)="switchOptions()">{{
             (options.showAdvancedOptions ? 'gererator.options.simple' : 'gererator.options.advence') | translate

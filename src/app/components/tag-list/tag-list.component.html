@@ -1,7 +1,19 @@
-<div><span>Test</span><button>×</button></div>
-<div>
-    <input #input list="data" (input)="onInput($event)" (keyup.enter)="onEnter($event)" />
-    <datalist id="data">
-        <option *ngFor="let proposal of proposals" [value]="proposal"></option>
-    </datalist>
+<div *ngFor="let tag of tags">
+    <span>{{ tag }}</span
+    ><button>×</button>
 </div>
+<div>
+    <label>
+        <input
+            #input
+            list="data"
+            (input)="onInput($event)"
+            (keyup.enter)="onEnter()"
+            size="5"
+            onInput="this.parentNode.dataset.value = this.value"
+        />
+    </label>
+</div>
+<datalist id="data">
+    <option *ngFor="let proposal of proposals" [value]="proposal"></option>
+</datalist>
