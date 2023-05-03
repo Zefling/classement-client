@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ function getResolvedUrl(route: ActivatedRouteSnapshot): string {
 }
 
 @Injectable({ providedIn: 'root' })
-export class APIRequired implements CanActivate {
+export class APIRequired  {
     canActivate(
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,
