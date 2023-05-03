@@ -16,9 +16,11 @@ label {
     border-radius: 15px;
     display: flex;
     justify-content: space-between;
+    font-weight: inherit;
+    font-size: inherit;
 
     span {
-        padding: 3px 10px;
+        padding: 3px 0 3px 10px;
     }
 }
 

@@ -58,6 +58,12 @@ export class ClassementOptionsComponent {
         }
     }
 
+    updateTags(tags: string[]) {
+        if (this.options) {
+            this.options.tags = tags;
+        }
+    }
+
     themesOpen() {
         this.classemenThemes.dialog.open();
     }

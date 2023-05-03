@@ -14,7 +14,7 @@ export enum Role {
 export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 
 @Injectable({ providedIn: 'root' })
-export class APIModeration  {
+export class APIModeration {
     constructor(@Optional() private userService: APIUserService) {}
 
     canActivate(

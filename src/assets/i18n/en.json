@@ -170,6 +170,7 @@
       "title.opacity": "Title text opacity:",
       "group": "Group:",
       "description": "Description:",
+      "tags": "Tags:",
       "sizes": "Tile sizes:",
       "margin": "Margin",
       "padding": "Padding",

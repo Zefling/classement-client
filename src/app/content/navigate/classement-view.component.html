@@ -44,6 +44,10 @@
                 }}
             </div>
         </div>
+        <div class="tags" *ngIf="classement.data.options.tags">
+            {{ 'gererator.options.tags' | translate }}
+            <tag-list [tags]="classement.data.options.tags"></tag-list>
+        </div>
         <div class="buttons">
             <button (click)="openClassementFork()" *ngIf="!currentUser" class="primary">
                 {{

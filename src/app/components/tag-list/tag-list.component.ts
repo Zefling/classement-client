@@ -1,5 +1,6 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -15,11 +16,22 @@ import { Message } from '../info-messages/info-messages.component';
 export class TagListComponent implements OnInit, AfterViewInit {
     @Input() tags: string[] = [];
 
+    @Input()
+    set readOnly(value: any) {
+        this._readOnly = coerceBooleanProperty(value);
+    }
+    get readOnly(): boolean {
+        return this._readOnly;
+    }
+
     @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
     proposals: string[] = [];
 
+    @Output() update = new EventEmitter<string[]>();
+
     private suject = new Subject<void>();
+    private _readOnly = false;
 
     constructor(private http: HttpClient) {}
     ngAfterViewInit(): void {
@@ -52,5 +64,11 @@ export class TagListComponent implements OnInit, AfterViewInit {
         }
         input.value = '';
         input.focus();
+        this.update.next(this.tags);
+    }
+
+    remove(tag: string) {
+        this.tags.splice(this.tags.indexOf(tag), 1);
+        this.update.next(this.tags);
     }
 }
