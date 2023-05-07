@@ -45,22 +45,23 @@ export class TagListComponent implements OnInit {
     constructor(private http: HttpClient) {}
 
     ngOnInit(): void {
-        this.suject.pipe(debounceTime(500)).subscribe(() => {
-            this.http
-                .get<Message<string[]>>(`${environment.api.path}api/tags/${this.input.nativeElement.value}`)
-                .subscribe({
-                    next: proposals => {
-                        this.proposals = proposals.message;
-                    },
-                    error: (_result: HttpErrorResponse) => {
-                        this.proposals = [];
-                    },
-                });
-        });
+        if (environment.api?.active) {
+            this.suject.pipe(debounceTime(500)).subscribe(() => {
+                this.http
+                    .get<Message<string[]>>(`${environment.api.path}api/tags/${this.input.nativeElement.value}`)
+                    .subscribe({
+                        next: proposals => {
+                            this.proposals = proposals.message;
+                        },
+                        error: (_result: HttpErrorResponse) => {
+                            this.proposals = [];
+                        },
+                    });
+            });
+        }
     }
 
-    onInput(tag: Event) {
-        console.log('>a>');
+    onInput() {
         this.suject.next();
     }
 
