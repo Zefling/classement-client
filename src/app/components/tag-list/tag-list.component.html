@@ -1,6 +1,6 @@
 <div *ngFor="let tag of tags">
-    <span>{{ tag }}</span
-    ><button (click)="remove(tag)">×</button>
+    <span class="tag">{{ tag }}</span
+    ><button *ngIf="!readOnly" (click)="remove(tag)">×</button>
 </div>
 <ng-container *ngIf="!readOnly">
     <div>

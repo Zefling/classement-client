@@ -48,6 +48,9 @@
                     <div>
                         {{ item.options.title || ('list.title.undefined' | translate) }}
                     </div>
+                    <div class="tags" *ngIf="item.options.tags?.length">
+                        <tag-list [tags]="item.options.tags" readOnly></tag-list>
+                    </div>
                     <div>
                         <a
                             class="from"

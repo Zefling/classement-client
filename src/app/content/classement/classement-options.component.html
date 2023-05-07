@@ -25,15 +25,16 @@
         </div>
     </div>
     <div class="tags">
-        {{ 'gererator.options.tags' | translate }} <tag-list [tags]="tags" (update)="updateTags($event)"></tag-list>
+        {{ 'gererator.options.tags' | translate }}
+        <tag-list [tags]="options.tags" (update)="updateTags($event)"></tag-list>
     </div>
     <div class="links">
-        <a (click)="switchOptions()">{{
+        <a tabindex="0" (click)="switchOptions()">{{
             (options.showAdvancedOptions ? 'gererator.options.simple' : 'gererator.options.advence') | translate
         }}</a>
     </div>
     <div class="themes">
-        <a (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
+        <a tabindex="0" (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
     </div>
     <div class="width-auto">
         <label class="toogle-switch">

@@ -1,19 +1,18 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
+import { Message } from 'src/app/content/user/user.interface';
 import { environment } from 'src/environments/environment';
-
-import { Message } from '../info-messages/info-messages.component';
 
 @Component({
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
 })
-export class TagListComponent implements OnInit, AfterViewInit {
+export class TagListComponent implements OnInit {
     @Input() tags: string[] = [];
 
     @Input()
@@ -34,20 +33,19 @@ export class TagListComponent implements OnInit, AfterViewInit {
     private _readOnly = false;
 
     constructor(private http: HttpClient) {}
-    ngAfterViewInit(): void {
-        throw new Error('Method not implemented.');
-    }
 
     ngOnInit(): void {
         this.suject.pipe(debounceTime(500)).subscribe(() => {
-            this.http.get<Message>(`${environment.api.path}api/tag/${this.input.nativeElement.value}`).subscribe({
-                next: () => {
-                    console.log('>>>');
-                },
-                error: (result: HttpErrorResponse) => {
-                    console.log('<<<');
-                },
-            });
+            this.http
+                .get<Message<string[]>>(`${environment.api.path}api/tags/${this.input.nativeElement.value}`)
+                .subscribe({
+                    next: proposals => {
+                        this.proposals = proposals.message;
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        this.proposals = [];
+                    },
+                });
         });
     }
 

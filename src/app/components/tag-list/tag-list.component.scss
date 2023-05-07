@@ -18,9 +18,13 @@ label {
     justify-content: space-between;
     font-weight: inherit;
     font-size: inherit;
+}
 
-    span {
-        padding: 3px 0 3px 10px;
+.tag {
+    padding: 3px 0 3px 10px;
+
+    &:only-child {
+        padding: 3px 10px;
     }
 }
 
@@ -29,6 +33,7 @@ label {
     vertical-align: top;
     align-items: center;
     position: relative;
+    background: #574040;
 
     &::after,
     input {
