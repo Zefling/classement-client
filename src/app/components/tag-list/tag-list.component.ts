@@ -23,14 +23,24 @@ export class TagListComponent implements OnInit {
         return this._readOnly;
     }
 
+    @Input()
+    set allowTagClick(value: any) {
+        this._allowTagClick = coerceBooleanProperty(value);
+    }
+    get allowTagClick(): boolean {
+        return this._allowTagClick;
+    }
+
     @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
     proposals: string[] = [];
 
     @Output() update = new EventEmitter<string[]>();
+    @Output() tagClick = new EventEmitter<string>();
 
     private suject = new Subject<void>();
     private _readOnly = false;
+    private _allowTagClick = false;
 
     constructor(private http: HttpClient) {}
 
@@ -42,7 +52,7 @@ export class TagListComponent implements OnInit {
                     next: proposals => {
                         this.proposals = proposals.message;
                     },
-                    error: (result: HttpErrorResponse) => {
+                    error: (_result: HttpErrorResponse) => {
                         this.proposals = [];
                     },
                 });
@@ -62,11 +72,15 @@ export class TagListComponent implements OnInit {
         }
         input.value = '';
         input.focus();
-        this.update.next(this.tags);
+        this.update.emit(this.tags);
     }
 
     remove(tag: string) {
         this.tags.splice(this.tags.indexOf(tag), 1);
-        this.update.next(this.tags);
+        this.update.emit(this.tags);
+    }
+
+    onTagClick(tag: string) {
+        this.tagClick.next(tag);
     }
 }

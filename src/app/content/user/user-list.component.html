@@ -63,7 +63,12 @@
                                 >
                             </div>
                             <div class="tags" *ngIf="classement.data.options.tags?.length">
-                                <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
+                                <tag-list
+                                    [tags]="classement.data.options.tags"
+                                    readOnly
+                                    allowTagClick
+                                    (tagClick)="tagClick($event)"
+                                ></tag-list>
                             </div>
                             <div>
                                 <a

@@ -1,4 +1,4 @@
-<div *ngFor="let tag of tags">
+<div *ngFor="let tag of tags" [class.allow-tag-click]="allowTagClick" (click)="allowTagClick ? onTagClick(tag) : null">
     <span class="tag">{{ tag }}</span
     ><button *ngIf="!readOnly" (click)="remove(tag)">×</button>
 </div>

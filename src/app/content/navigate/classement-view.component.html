@@ -26,11 +26,9 @@
         <div class="username">
             {{ 'user.by' | translate : { autor: classement.user || ('list.user.anonymous' | translate) } }}
         </div>
-
         <div class="desc" *ngIf="classement.data.options.description">
             {{ classement.data.options.description }}
         </div>
-
         <div class="dates">
             <div class="date">
                 {{
@@ -49,7 +47,6 @@
             <span>{{ 'gererator.options.tags' | translate }}</span>
             <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
         </div>
-
         <div class="buttons">
             <button (click)="openClassementFork()" *ngIf="!currentUser" class="primary">
                 {{

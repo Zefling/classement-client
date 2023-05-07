@@ -12,7 +12,7 @@ button {
 
 div,
 label {
-    background: #302828;
+    background: var(--tag-background);
     border-radius: 15px;
     display: flex;
     justify-content: space-between;
@@ -28,12 +28,17 @@ label {
     }
 }
 
+button,
+.allow-tag-click {
+    cursor: pointer;
+}
+
 label {
     display: inline-grid;
     vertical-align: top;
     align-items: center;
     position: relative;
-    background: #574040;
+    background: var(--tag-input-background);
 
     &::after,
     input {
