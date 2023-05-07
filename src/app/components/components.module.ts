@@ -19,6 +19,7 @@ import { SeeClassementComponent } from './see-classement/see-classement.componen
 import { TabTitleComponent } from './tabs/tab-content.component';
 import { TabContentComponent } from './tabs/tab-title.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { TagListComponent } from './tag-list/tag-list.component';
 import { ThemeIconComponent } from './theme-icon/theme-icon.component';
 
 import { DirectiveModule } from '../directives/directive.module';
@@ -41,6 +42,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TabContentComponent,
         TabsComponent,
         NavigateResultComponent,
+        TagListComponent,
     ],
     exports: [
         DialogComponent,
@@ -58,6 +60,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TabContentComponent,
         TabsComponent,
         NavigateResultComponent,
+        TagListComponent,
     ],
     imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule],
 })

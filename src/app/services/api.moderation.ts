@@ -1,5 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,7 @@ export enum Role {
 export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 
 @Injectable({ providedIn: 'root' })
-export class APIModeration implements CanActivate {
+export class APIModeration {
     constructor(@Optional() private userService: APIUserService) {}
 
     canActivate(

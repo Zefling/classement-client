@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
+import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -21,6 +22,8 @@ import { Utils } from 'src/app/tools/utils';
 })
 export class UserListComponent implements OnDestroy {
     @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
+    @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
+    @ViewChild('filter') filter!: ElementRef<HTMLInputElement>;
 
     @ViewChild(TabsComponent) tabs!: TabsComponent;
 
@@ -69,9 +72,20 @@ export class UserListComponent implements OnDestroy {
         });
     }
 
-    sortableFilter = (key: string, item: Classement, index: number): boolean => {
-        return Utils.normalizeString(item.name).includes(Utils.normalizeString(key));
+    sortableFilter = (key: string, item: Classement, _index: number): boolean => {
+        return (
+            (!key.startsWith('#') && Utils.normalizeString(item.name).includes(Utils.normalizeString(key))) ||
+            (key.startsWith('#') &&
+                item?.data?.options?.tags
+                    ?.map(e => `#${Utils.normalizeString(e)}`)
+                    .includes(`${Utils.normalizeString(key)}`))
+        );
     };
+
+    tagClick(event: string) {
+        this.filter.nativeElement.value = `#${event}`;
+        this.sortableDirective.update();
+    }
 
     ngOnDestroy(): void {
         this.listener.forEach(e => e.unsubscribe());

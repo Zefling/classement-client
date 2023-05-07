@@ -77,6 +77,9 @@ body.light-mode {
     --input-item-active-color: #333;
     --input-focus-border-color: #888;
     --input-color-shadow: #fff;
+    // tag
+    --tag-background: #c0acac;
+    --tag-input-background: #e2d2d2;
     // drop list
     --drop-list-border-color: #ccc;
     --drop-list-background: #f0f0f0;
@@ -221,6 +224,9 @@ body.dark-mode {
     --input-item-active-color: #ddd;
     --input-focus-border-color: #888;
     --input-color-shadow: #000;
+    // tag
+    --tag-background: #302828;
+    --tag-input-background: #574040;
     // drop list
     --drop-list-border-color: #3f3f3f;
     --drop-list-background: #2e2e2e;

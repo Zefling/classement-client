@@ -25,6 +25,8 @@ export class ClassementOptionsComponent {
 
     @Input() options?: Options;
 
+    @Input() tags: string[] = [];
+
     @Input() lockCategory = false;
 
     imageListOpen = false;
@@ -53,6 +55,12 @@ export class ClassementOptionsComponent {
     switchOptions() {
         if (this.options) {
             this.options.showAdvancedOptions = !this.options.showAdvancedOptions;
+        }
+    }
+
+    updateTags(tags: string[]) {
+        if (this.options) {
+            this.options.tags = tags;
         }
     }
 

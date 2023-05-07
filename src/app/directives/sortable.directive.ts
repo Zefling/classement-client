@@ -87,13 +87,15 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['sortable']) {
-            if (this.sortableFilterInput && this.sortable) {
-                this.sortableComplete.splice(0, this.sortable.length);
-                this.sortableComplete.push(...this.sortable);
-                this.filter(this.sortableFilterInput?.value || '');
-            }
+        if (changes['sortable'] && this.sortableFilterInput && this.sortable) {
+            this.sortableComplete.splice(0, this.sortable.length);
+            this.sortableComplete.push(...this.sortable);
+            this.update();
         }
+    }
+
+    update() {
+        this.filter(this.sortableFilterInput?.value || '');
     }
 
     ngOnDestroy(): void {

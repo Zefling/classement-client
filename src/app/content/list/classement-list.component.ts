@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -30,6 +30,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     @ViewChild('dialogClone') dialogClone!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
+    @ViewChild('filter') filter!: ElementRef<HTMLInputElement>;
 
     result!: FormatedInfos[];
 
@@ -54,9 +55,18 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.showList();
     }
 
-    sortableFilter = (key: string, item: FormatedInfos, index: number): boolean => {
-        return Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key));
+    sortableFilter = (key: string, item: FormatedInfos, _index: number): boolean => {
+        return (
+            (!key.startsWith('#') && Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key))) ||
+            (key.startsWith('#') &&
+                item.options.tags?.map(e => `#${Utils.normalizeString(e)}`).includes(`${Utils.normalizeString(key)}`))
+        );
     };
+
+    tagClick(event: string) {
+        this.filter.nativeElement.value = `#${event}`;
+        this.sortableDirective.update();
+    }
 
     ngOnInit() {
         if (this.modeApi && this.userService.logged) {

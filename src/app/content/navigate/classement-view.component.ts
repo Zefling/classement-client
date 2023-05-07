@@ -179,7 +179,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     copyLink() {
-        Utils.copy(
+        Utils.clipboard(
             `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}${
                 this.historyId ? `/${this.historyId}` : ''
             }`,
@@ -304,9 +304,6 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     private downloadImage(data: string, filename: string) {
-        const a = document.createElement('a');
-        a.href = data;
-        a.download = filename;
-        a.click();
+        Utils.downloadFile(data, filename);
     }
 }

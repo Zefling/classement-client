@@ -19,10 +19,14 @@ export class Utils {
         );
     }
 
-    static downloadFile(content: string, fileName: string, contentType: string) {
+    static downloadFile(content: string, fileName: string, contentType?: string) {
         var a = document.createElement('a');
-        var file = new Blob([content], { type: contentType });
-        a.href = URL.createObjectURL(file);
+        if (content.startsWith('data:')) {
+            a.href = content;
+        } else {
+            var file = new Blob([content], contentType ? { type: contentType } : undefined);
+            a.href = URL.createObjectURL(file);
+        }
         a.download = fileName;
         a.click();
     }
@@ -37,14 +41,14 @@ export class Utils {
         return parts ? (parts[1] as T) : null;
     }
 
-    static setCookie(name: string, value: string, days: number = 7) {
+    static setCookie(name: string, value: string, days: number = 7, path: string = '/') {
         var date = new Date();
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
+        document.cookie = `${name}=${value}; path=${path}; expires=${date.toUTCString()}`;
     }
 
-    static removeCookie(name: string) {
-        document.cookie = `${name}=; path=/; Max-Age=0`;
+    static removeCookie(name: string, path: string = '/') {
+        document.cookie = `${name}=; path=${path}; Max-Age=0`;
     }
 
     static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
@@ -99,12 +103,12 @@ export class Utils {
                                 base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'),
                             );
                         } else {
-                            reject('Imaage error');
+                            reject('Image error');
                         }
                         resolve(base64data);
                     };
                     reader.onerror = () => {
-                        reject('Imaage error');
+                        reject('Image error');
                     };
                 } else {
                     reject('HTTP-Error: ' + response.status);
@@ -115,7 +119,7 @@ export class Utils {
         });
     }
 
-    static copy(text: string): Promise<void> {
+    static clipboard(text: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             navigator.clipboard.writeText(text).then(
                 () => {
