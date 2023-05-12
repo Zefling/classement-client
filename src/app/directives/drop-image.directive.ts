@@ -15,7 +15,7 @@ export class DropImageDirective {
 
     @Output() file = new EventEmitter<FileHandle | string>();
 
-    constructor(private globalService: GlobalService) {}
+    constructor(private readonly globalService: GlobalService) {}
 
     @HostListener('dragover', ['$event'])
     onDragOver(evt: DragEvent): void {

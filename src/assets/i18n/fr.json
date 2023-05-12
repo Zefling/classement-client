@@ -14,7 +14,8 @@
     "admin.classements": "Classements",
     "logout": "Déconnexion",
     "information": "Information",
-    "licences": "Licences"
+    "licences": "Licences",
+    "preferencies": "Préférences"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -49,6 +50,32 @@
       "version": "version {{ version }}"
     },
     "last": "Derniers classements"
+  },
+  "preferencies": {
+    "title": "Préférences",
+    "close": "Fermer",
+    "tile": {
+      "title": "Titre de tuile",
+      "name.copy": "Copier le nom de l'image (sans l'extension) dans le titre"
+    },
+    "color": {
+      "title": "Couleur",
+      "new.color": {
+        "mixed": "Calculer une couleur intermédiaire à l'ajout d'une ligne",
+        "same": "Prendre la couleur des lignes de référence"
+      }
+    },
+    "group": {
+      "title": "Ajout de groupe",
+      "new.line": {
+        "below": "Ajouter en dessous",
+        "above": "Ajouter au dessus",
+        "ask.me": "Me demander"
+      }
+    },
+    "theme": {
+      "title": "Théme par défaut"
+    }
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",

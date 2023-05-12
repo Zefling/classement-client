@@ -15,8 +15,8 @@ function getResolvedUrl(route: ActivatedRouteSnapshot): string {
 }
 
 @Injectable({ providedIn: 'root' })
-export class DataChange  {
-    constructor(private global: GlobalService) {}
+export class DataChange {
+    constructor(private readonly global: GlobalService) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,

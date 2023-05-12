@@ -29,10 +29,10 @@ export class ClassementHomeComponent {
     private listener: Subscription[] = [];
 
     constructor(
-        private userService: APIUserService,
-        private classementService: APIClassementService,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        private readonly userService: APIUserService,
+        private readonly classementService: APIClassementService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
     ) {
         if (this.modeApi) {
             this.logged = !!this.userService.logged;

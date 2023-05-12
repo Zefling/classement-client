@@ -42,7 +42,7 @@ export class TagListComponent implements OnInit {
     private _readOnly = false;
     private _allowTagClick = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     ngOnInit(): void {
         if (environment.api?.active) {

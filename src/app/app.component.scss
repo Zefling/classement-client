@@ -145,6 +145,16 @@ aside {
     }
 }
 
+.preferences {
+    label {
+        display: block;
+    }
+    .buttons {
+        margin: 20px;
+        text-align: center;
+    }
+}
+
 :host > div {
     grid-area: main;
     overflow: auto;

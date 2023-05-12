@@ -34,7 +34,7 @@ export class PaginationComponent implements DoCheck, OnDestroy {
 
     onPageUpdate: Subscription;
 
-    constructor(private global: GlobalService) {
+    constructor(private readonly global: GlobalService) {
         this.onPageUpdate = this.global.onPageUpdate.subscribe(page => {
             this.update(page);
         });

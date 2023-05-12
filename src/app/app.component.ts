@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Event, Router, Scroll } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -8,9 +9,11 @@ import { filter } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { DialogComponent } from './components/dialog/dialog.component';
+import { themes } from './content/classement/classement-default';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';
+import { PreferenciesService } from './services/preferencies.service';
 
 const languages = [
     { value: 'en', label: 'English' },
@@ -25,6 +28,7 @@ const languages = [
 })
 export class AppComponent implements DoCheck {
     @ViewChild('warningExit') warningExit!: DialogComponent;
+    @ViewChild('preferences') preferences!: DialogComponent;
     @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
     languages = languages;
@@ -38,20 +42,27 @@ export class AppComponent implements DoCheck {
     modeApi = environment.api?.active || false;
     modeModerator = false;
 
+    preferenciesForm?: FormGroup;
+    themes = themes;
+
     private route?: string;
 
     constructor(
-        private translate: TranslateService,
-        private globalService: GlobalService,
-        private router: Router,
-        private logger: Logger,
-        public userService: APIUserService,
+        private readonly translate: TranslateService,
+        private readonly globalService: GlobalService,
+        private readonly router: Router,
+        private readonly logger: Logger,
+        private readonly preferencies: PreferenciesService,
+        public readonly userService: APIUserService,
         changeDetectorRef: ChangeDetectorRef,
     ) {
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
         this.selectedLang = l.length ? l[0].value : 'en';
         this.updateLanguage(this.selectedLang);
+
+        // preferencies
+        this.initPreferencies();
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit.open();
@@ -113,5 +124,24 @@ export class AppComponent implements DoCheck {
             this.router.navigate([this.route]);
         }
         this.warningExit.close();
+    }
+
+    openPreferences() {
+        this.preferences.open();
+    }
+
+    private async initPreferencies() {
+        const initPreferencies = await this.preferencies.init();
+
+        this.preferenciesForm = new FormGroup({
+            nameCopy: new FormControl(initPreferencies.nameCopy),
+            newColor: new FormControl(initPreferencies.newColor),
+            newLine: new FormControl(initPreferencies.newLine),
+            theme: new FormControl(initPreferencies.theme),
+        });
+
+        this.preferenciesForm.valueChanges.subscribe(() => {
+            this.preferencies.saveAndUpdate(this.preferenciesForm!.value);
+        });
     }
 }

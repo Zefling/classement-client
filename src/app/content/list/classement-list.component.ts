@@ -45,12 +45,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private listener: Subscription[] = [];
 
     constructor(
-        private dbservice: DBService,
-        private userService: APIUserService,
-        private router: Router,
-        private translate: TranslateService,
-        private messageService: MessageService,
-        private logger: Logger,
+        private readonly dbservice: DBService,
+        private readonly userService: APIUserService,
+        private readonly router: Router,
+        private readonly translate: TranslateService,
+        private readonly messageService: MessageService,
+        private readonly logger: Logger,
     ) {
         this.showList();
     }

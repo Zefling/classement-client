@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,6 +15,7 @@ import { PipesModule } from './pipes/pipes.module';
         CommonModule,
         TranslateModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         // internal
         DirectiveModule,
@@ -26,6 +27,7 @@ import { PipesModule } from './pipes/pipes.module';
         CommonModule,
         TranslateModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         // internal
         DirectiveModule,

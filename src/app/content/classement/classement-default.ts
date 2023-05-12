@@ -1,4 +1,4 @@
-import { FormatedGroup, Options, Theme } from 'src/app/interface';
+import { FormatedGroup, Options, Theme, ThemeNames } from 'src/app/interface';
 
 export const defautGroup: FormatedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
@@ -46,6 +46,8 @@ export const defaultOptions: Options = {
 };
 
 export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
+
+export const themes: ThemeNames[] = ['default', 'compact', 'sakura', 'night', 'ciel'];
 
 export const themesList: Theme[] = [
     {
@@ -134,6 +136,8 @@ export const themesList: Theme[] = [
         },
     },
 ];
+
+export const defaultTheme = (name: ThemeNames) => themesList.find(e => e.name === name)!;
 
 export const categories: string[] = [
     'animal',

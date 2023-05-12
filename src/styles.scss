@@ -421,7 +421,7 @@ a {
     font-size: 80%;
 }
 
-:where(input:not([type='checkbox']), .input, textarea, select) {
+:where(input:not([type='checkbox'], [type='radio']), .input, textarea, select) {
     border: 1px solid var(--input-border-color);
     border-radius: 3px;
     padding: 5px 3px;
@@ -450,7 +450,7 @@ dialog-cmp.auto-format .main {
         margin: 0 auto;
     }
 
-    :where(input:not([type='checkbox']), textarea) {
+    :where(input:not([type='checkbox'], [type='radio']), textarea) {
         width: 80%;
         resize: vertical;
         margin: auto;

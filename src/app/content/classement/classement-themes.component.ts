@@ -20,8 +20,6 @@ export class ClassemenThemesComponent {
     @Output()
     change = new EventEmitter<Theme>();
 
-    constructor() {}
-
     changeTheme(theme: Theme) {
         this.currentTheme = theme;
     }

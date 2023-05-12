@@ -1,5 +1,4 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
 import { Theme } from '../../interface';
 import { color } from '../../tools/function';
@@ -17,8 +16,6 @@ export class ThemeIconComponent implements OnInit {
     select = new EventEmitter<Theme>();
 
     styles: any;
-
-    constructor(private domSanitizer: DomSanitizer) {}
 
     ngOnInit() {
         this.styles = this.getStyles();

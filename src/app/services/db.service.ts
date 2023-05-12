@@ -4,12 +4,13 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormatedInfos, FormatedInfosData, IndexedData } from '../interface';
+import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferenciesData } from '../interface';
 import { Utils } from '../tools/utils';
 
 enum Store {
     infos = 'classementInfos',
     data = 'classementData',
+    pref = 'preferencies',
 }
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +20,7 @@ export class DBService {
     accessState = true;
     private accessSubject = new Subject<void>();
 
-    constructor(private logger: Logger) {}
+    constructor(private readonly logger: Logger) {}
 
     access(): Promise<void> {
         return new Promise(resolve => {
@@ -119,6 +120,33 @@ export class DBService {
         });
     }
 
+    loadPreferencies(): Promise<PreferenciesData> {
+        const formatData: any = {};
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._getByIdDB(db, Store.pref, 'pref', formatData, 'pref'))
+                .then(__ => resolve(formatData.pref.data))
+                .catch(_ => reject());
+        });
+    }
+
+    savePreferencies(preferencies: PreferenciesData): Promise<PreferenciesData> {
+        const formatData: IndexedData<PreferenciesData> = {
+            id: 'pref',
+            data: preferencies,
+        };
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(async db =>
+                    (await this._testByIdDB(db, Store.pref, 'pref'))
+                        ? this._updateDB(db, Store.pref, formatData)
+                        : this._saveDB(db, Store.pref, formatData),
+                )
+                .then(__ => resolve(formatData.data!))
+                .catch(_ => reject());
+        });
+    }
+
     private async _formatData(data: Data): Promise<FormatedInfosData> {
         let exist = false;
         if (data.id) {
@@ -185,7 +213,7 @@ export class DBService {
         store: Store,
         id: string,
         data: FormatedInfosData,
-        attr: 'infos' | 'data',
+        attr: 'infos' | 'data' | 'pref',
     ): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             this.logger.log(`Get data in “${store}” for [${id}].`);
@@ -245,7 +273,7 @@ export class DBService {
         });
     }
 
-    private _saveDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
+    private _saveDB<T extends IndexedData<any>>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             this.logger.log(`Add data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
@@ -267,7 +295,7 @@ export class DBService {
         });
     }
 
-    private _updateDB<T extends IndexedData>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
+    private _updateDB<T extends IndexedData<any>>(db: IDBDatabase, store: Store, data: T): Promise<IDBDatabase> {
         const that = this;
         return new Promise((resolve, reject) => {
             this.logger.log(`Update data in “${store}”.`);
@@ -299,7 +327,7 @@ export class DBService {
             if (this._db) {
                 resolve(this._db);
             } else {
-                const dbReq = indexedDB.open('classementDB', 1);
+                const dbReq = indexedDB.open('classementDB', 2);
 
                 dbReq.onerror = () => {
                     this.logger.log('Error for init Database.', LoggerLevel.error, dbReq.error);
@@ -308,12 +336,22 @@ export class DBService {
 
                 dbReq.onupgradeneeded = () => {
                     this.logger.log('Upgrade DB');
-                    dbReq.result.createObjectStore(Store.infos).createIndex('infos', 'infos', {
-                        unique: true,
-                    });
-                    dbReq.result.createObjectStore(Store.data).createIndex('data', 'data', {
-                        unique: true,
-                    });
+                    const names = dbReq.result.objectStoreNames;
+                    if (!names.contains(Store.infos)) {
+                        dbReq.result.createObjectStore(Store.infos).createIndex('infos', 'infos', {
+                            unique: true,
+                        });
+                    }
+                    if (!names.contains(Store.data)) {
+                        dbReq.result.createObjectStore(Store.data).createIndex('data', 'data', {
+                            unique: true,
+                        });
+                    }
+                    if (!names.contains(Store.pref)) {
+                        dbReq.result.createObjectStore(Store.pref).createIndex('pref', 'pref', {
+                            unique: true,
+                        });
+                    }
                 };
 
                 dbReq.onsuccess = () => {

@@ -32,7 +32,7 @@ export class ClassementEditImageComponent {
     aspectRatio = 0;
     mode = 0;
 
-    constructor(private cd: ChangeDetectorRef, private global: GlobalService) {}
+    constructor(private readonly cd: ChangeDetectorRef, private readonly global: GlobalService) {}
 
     open() {
         this.dialogInfo.open();

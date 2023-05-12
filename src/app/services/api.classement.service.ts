@@ -37,8 +37,8 @@ export class APIClassementService extends APICommon {
     }
 
     constructor(
-        private http: HttpClient,
-        private userService: APIUserService,
+        private readonly http: HttpClient,
+        private readonly userService: APIUserService,
         translate: TranslateService,
         logger: Logger,
     ) {

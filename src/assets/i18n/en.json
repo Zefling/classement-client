@@ -14,7 +14,8 @@
     "admin.classements": "Tierlists",
     "logout": "Logout",
     "information": "Information",
-    "licences": "Licenses"
+    "licences": "Licenses",
+    "preferencies": "Preferencies"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -49,6 +50,32 @@
       "version": "version {{ version }}"
     },
     "last": "Latest tierlists"
+  },
+  "preferencies": {
+    "title": "Preferencies",
+    "close": "Close",
+    "tile": {
+      "title": "Tile title",
+      "name.copy": "Copy the name of the image (without the extension) in the title"
+    },
+    "color": {
+      "title": "Color",
+      "new.color": {
+        "mixed": "Calculate an intermediate color when adding a line",
+        "same": "Take the color of the reference lines"
+      }
+    },
+    "group": {
+      "title": "Add group",
+      "new.line": {
+        "below": "Add below",
+        "above": "Add above",
+        "ask.me": "Ask me"
+      }
+    },
+    "theme": {
+      "title": "Default theme"
+    }
   },
   "list": {
     "intro": "List of tierlists in memory in your Web browser only.",

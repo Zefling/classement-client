@@ -106,12 +106,13 @@ export type ThemeOptions = {
 };
 
 export type Theme = {
-    name: string;
-    options: ThemeOptions;
+    name: ThemeNames;
+    options: Options;
 };
 
-export interface IndexedData {
+export interface IndexedData<T extends any> {
     id?: string;
+    data?: T;
     /** server link */
     rankingId?: string | null;
     templateId?: string | null;
@@ -119,7 +120,7 @@ export interface IndexedData {
     banner?: string;
 }
 
-export interface Data extends IndexedData {
+export interface Data extends IndexedData<any> {
     options: Options;
     groups: FormatedGroup[];
     list: FileString[];
@@ -131,14 +132,14 @@ export interface importData {
     selected?: boolean;
 }
 
-export interface FormatedInfos extends IndexedData {
+export interface FormatedInfos extends IndexedData<any> {
     options: Options;
     date: string | Date;
     groupsLenght: number;
     listLenght: number;
 }
 
-export interface FormatedData extends IndexedData {
+export interface FormatedData extends IndexedData<any> {
     groups: FormatedGroup[];
     list: FileString[];
 }
@@ -149,4 +150,13 @@ export interface FormatedInfosData {
     data: FormatedData;
 }
 
+export interface PreferenciesData {
+    nameCopy: boolean;
+    newColor: 'mixed' | 'same';
+    newLine: 'below' | 'above' | 'ask-me';
+    theme: ThemeNames;
+}
+
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
+
+export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';

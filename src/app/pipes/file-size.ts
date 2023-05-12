@@ -6,7 +6,7 @@ import { GlobalService } from '../services/global.service';
 
 @Pipe({ name: 'filesize', pure: false })
 export class FilesizePipe implements PipeTransform {
-    constructor(private globalService: GlobalService, private translate: TranslateService) {}
+    constructor(private readonly globalService: GlobalService, private readonly translate: TranslateService) {}
 
     transform(value: number, params: Intl.NumberFormatOptions | undefined = {}): string {
         let unit = 0;

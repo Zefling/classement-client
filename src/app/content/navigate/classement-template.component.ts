@@ -25,9 +25,9 @@ export class ClassementTemplateComponent {
     private _sub: Subscription[] = [];
 
     constructor(
-        private classementService: APIClassementService,
-        private router: Router,
-        private route: ActivatedRoute,
+        private readonly classementService: APIClassementService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {

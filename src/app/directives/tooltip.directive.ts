@@ -9,7 +9,7 @@ export class TooltipDirective implements OnDestroy {
     private tooltipElement?: HTMLDivElement;
     private timer?: NodeJS.Timeout;
 
-    constructor(private element: ElementRef<HTMLElement>) {}
+    constructor(private readonly element: ElementRef<HTMLElement>) {}
 
     ngOnDestroy(): void {
         if (this.tooltipElement) {

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/share.module';
 
@@ -29,7 +28,7 @@ import { ClassementListModule } from '../list/classement-list.module';
         UserInformationComponent,
         UserListComponent,
     ],
-    imports: [SharedModule, UserRoutingModule, ClassementListModule, ReactiveFormsModule],
+    imports: [SharedModule, UserRoutingModule, ClassementListModule],
     providers: [],
     exports: [],
 })

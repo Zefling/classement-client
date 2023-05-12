@@ -27,9 +27,9 @@ export class ListClassementsComponent {
     updateClassements = new EventEmitter<Classement[]>();
 
     constructor(
-        private classementService: APIClassementService,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        private readonly classementService: APIClassementService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
     ) {}
 
     see(classement: Classement) {

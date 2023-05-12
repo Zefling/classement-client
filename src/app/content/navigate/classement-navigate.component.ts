@@ -38,13 +38,13 @@ export class ClassementNavigateComponent implements OnDestroy {
     private _sub: Subscription[] = [];
 
     constructor(
-        private classementService: APIClassementService,
-        private globalService: GlobalService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private logger: Logger,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        private readonly classementService: APIClassementService,
+        private readonly globalService: GlobalService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute,
+        private readonly logger: Logger,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {

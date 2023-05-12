@@ -14,7 +14,8 @@
     "admin.classements": "ティアリスト",
     "logout": "ログアウト",
     "information": "情報",
-    "licences": "ライセンス"
+    "licences": "ライセンス",
+    "preferencies": "環境設定"
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",
@@ -50,6 +51,32 @@
       "version": "バージョン {{ version }}"
     },
     "last": "最後のティアリスト"
+  },
+  "preferencies": {
+    "title": "環境設定",
+    "close": "閉めて",
+    "tile": {
+      "title": "タイルのタイトル",
+      "name.copy": "画像名（拡張子なし）をタイルタイトルにコピーします"
+    },
+    "color": {
+      "title": "色",
+      "new.color": {
+        "mixed": "線を追加するときに中間色を計算します",
+        "same": "基準線の色を取得します"
+      }
+    },
+    "group": {
+      "title": "グループを追加",
+      "new.line": {
+        "below": "以下に追加",
+        "above": "以下に追加",
+        "ask.me": "何が欲しいか聞いてください"
+      }
+    },
+    "theme": {
+      "title": "デフォルトのテーマ"
+    }
   },
   "list": {
     "intro": "インターネットブラウザだけでメモリ内のティアリストのリストです。",

@@ -36,11 +36,11 @@ export class AdminUsersComponent implements DoCheck {
     @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
 
     constructor(
-        private userService: APIUserService,
-        private route: ActivatedRoute,
-        private messageService: MessageService,
-        private translate: TranslateService,
-        private logger: Logger,
+        private readonly userService: APIUserService,
+        private readonly route: ActivatedRoute,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
+        private readonly logger: Logger,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {

@@ -38,7 +38,7 @@ export class InfoMessageComponent {
     private _pos!: number;
     private _height!: number;
 
-    constructor(private element: ElementRef) {}
+    constructor(private readonly element: ElementRef) {}
 
     @HostListener('click')
     click() {

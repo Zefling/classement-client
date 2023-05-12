@@ -20,7 +20,7 @@ export class SeeClassementComponent implements OnInit {
 
     nameOpacity!: string;
 
-    constructor(private globalService: GlobalService, private cd: ChangeDetectorRef) {}
+    constructor(private readonly globalService: GlobalService, private readonly cd: ChangeDetectorRef) {}
 
     ngOnInit() {
         if (!this.options) {

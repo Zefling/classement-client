@@ -32,8 +32,8 @@ export class APIUserService extends APICommon {
     private cache: Classement[] = [];
 
     constructor(
-        private http: HttpClient,
-        private globalService: GlobalService,
+        private readonly http: HttpClient,
+        private readonly globalService: GlobalService,
         translate: TranslateService,
         logger: Logger,
     ) {

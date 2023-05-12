@@ -38,11 +38,11 @@ export class ImportJsonComponent implements OnDestroy {
     private _sub: Subscription[] = [];
 
     constructor(
-        private translate: TranslateService,
-        private globalService: GlobalService,
-        private messageService: MessageService,
-        private dbService: DBService,
-        private logger: Logger,
+        private readonly translate: TranslateService,
+        private readonly globalService: GlobalService,
+        private readonly messageService: MessageService,
+        private readonly dbService: DBService,
+        private readonly logger: Logger,
     ) {
         this._sub.push(
             globalService.onFileLoaded.subscribe(file => {

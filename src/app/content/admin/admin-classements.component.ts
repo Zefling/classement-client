@@ -18,7 +18,7 @@ export class AdminClassementsComponent implements OnDestroy {
     total?: number = 0;
     page = 0;
 
-    constructor(private classementService: APIClassementService, private route: ActivatedRoute) {
+    constructor(private readonly classementService: APIClassementService, private readonly route: ActivatedRoute) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 const page = params['page'] || 1;

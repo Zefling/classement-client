@@ -11,7 +11,7 @@ import { GlobalService } from 'src/app/services/global.service';
 export class LicensesComponent {
     data!: string;
 
-    constructor(private http: HttpClient, private global: GlobalService) {
+    constructor(private readonly http: HttpClient, private readonly global: GlobalService) {
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {

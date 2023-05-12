@@ -24,7 +24,7 @@ export class LightDarkComponent {
         return this.thisCurrent() === 'dark';
     }
 
-    constructor(private renderer: Renderer2, private logger: Logger) {
+    constructor(private readonly renderer: Renderer2, private readonly logger: Logger) {
         this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const theme = Utils.getCookie<DarkLight>('theme');
         if (theme) {

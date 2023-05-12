@@ -15,7 +15,7 @@ export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 
 @Injectable({ providedIn: 'root' })
 export class APIModeration {
-    constructor(@Optional() private userService: APIUserService) {}
+    constructor(@Optional() private readonly userService: APIUserService) {}
 
     canActivate(
         _route: ActivatedRouteSnapshot,

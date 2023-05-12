@@ -35,7 +35,11 @@ export class ClassementOptimiseComponent implements OnInit {
 
     detail = false;
 
-    constructor(private optimiseImage: OptimiseImageService, private global: GlobalService, private logger: Logger) {
+    constructor(
+        private readonly optimiseImage: OptimiseImageService,
+        private readonly global: GlobalService,
+        private readonly logger: Logger,
+    ) {
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;

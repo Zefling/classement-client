@@ -35,7 +35,7 @@ export class ClassementOptionsComponent {
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
 
-    constructor(private optimiseImage: OptimiseImageService, private translate: TranslateService) {
+    constructor(private readonly optimiseImage: OptimiseImageService, private readonly translate: TranslateService) {
         this.sort();
         this.translate.onLangChange.subscribe(() => {
             this.sort();

@@ -70,10 +70,10 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     private _sub: Subscription[] = [];
 
     constructor(
-        private userService: APIUserService,
-        private classementService: APIClassementService,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        private readonly userService: APIUserService,
+        private readonly classementService: APIClassementService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
     ) {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {

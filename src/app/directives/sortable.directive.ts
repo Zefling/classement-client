@@ -76,7 +76,7 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     private inputListener?: () => void;
     private input = '';
 
-    constructor(private translate: TranslateService, private renderer: Renderer2) {}
+    constructor(private readonly translate: TranslateService, private readonly renderer: Renderer2) {}
 
     ngOnInit(): void {
         if (this.sortableFilterInput) {

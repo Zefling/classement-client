@@ -67,6 +67,11 @@
                     {{ 'menu.new' | translate }}
                 </a>
             </li>
+            <li>
+                <a (click)="openPreferences(); toggleMenu()">
+                    {{ 'menu.preferencies' | translate }}
+                </a>
+            </li>
             <li *ngIf="modeApi && modeModerator">
                 <a
                     routerLink="/admin"
@@ -156,4 +161,50 @@
         <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
         <button class="primary" (click)="exit(true)">{{ 'list.delete.validate' | translate }}</button>
     </div>
+</dialog-cmp>
+
+<dialog-cmp class="preferences" #preferences>
+    <ng-container *ngIf="preferenciesForm" [formGroup]="preferenciesForm">
+        <h2>{{ 'preferencies.title' | translate }}</h2>
+
+        <h3>{{ 'preferencies.tile.title' | translate }}</h3>
+        <label>
+            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferencies.tile.name.copy' | translate }}
+        </label>
+
+        <h3>{{ 'preferencies.color.title' | translate }}</h3>
+        <label>
+            <input type="radio" formControlName="newColor" value="mixed" />
+            {{ 'preferencies.color.new.color.mixed' | translate }}
+        </label>
+        <label>
+            <input type="radio" formControlName="newColor" value="same" />
+            {{ 'preferencies.color.new.color.same' | translate }}
+        </label>
+
+        <h3>{{ 'preferencies.group.title' | translate }}</h3>
+        <label
+            ><input type="radio" formControlName="newLine" value="below" />
+            {{ 'preferencies.group.new.line.below' | translate }}
+        </label>
+        <label
+            ><input type="radio" formControlName="newLine" value="above" />
+            {{ 'preferencies.group.new.line.above' | translate }}
+        </label>
+        <!-- <label
+            ><input type="radio" formControlName="newLine" value="ask-me" />
+            {{ 'preferencies.group.new.line.ask.me' | translate }}
+        </label> -->
+
+        <h3>{{ 'preferencies.theme.title' | translate }}</h3>
+        <select formControlName="theme">
+            <option *ngFor="let theme of themes" [value]="theme">
+                {{ 'gererator.theme.name.' + theme | translate }}
+            </option>
+        </select>
+
+        <div class="buttons">
+            <button (click)="preferences.close()">{{ 'preferencies.close' | translate }}</button>
+        </div>
+    </ng-container>
 </dialog-cmp>

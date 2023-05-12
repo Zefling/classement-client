@@ -56,15 +56,15 @@ export class ClassementViewComponent implements OnDestroy {
     private _sub: Subscription[] = [];
 
     constructor(
-        private classementService: APIClassementService,
-        private userService: APIUserService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private logger: Logger,
-        private bdService: DBService,
-        private messageService: MessageService,
-        private translate: TranslateService,
-        private globalService: GlobalService,
+        private readonly classementService: APIClassementService,
+        private readonly userService: APIUserService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute,
+        private readonly logger: Logger,
+        private readonly bdService: DBService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
+        private readonly globalService: GlobalService,
     ) {
         this.logged = this.userService.logged;
 

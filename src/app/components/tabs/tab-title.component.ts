@@ -14,7 +14,7 @@ export class TabContentComponent {
     @Input()
     selected?: boolean;
 
-    constructor(@Host() private tabs: TabsComponent) {}
+    constructor(@Host() private readonly tabs: TabsComponent) {}
 
     @HostListener('click')
     onclick() {

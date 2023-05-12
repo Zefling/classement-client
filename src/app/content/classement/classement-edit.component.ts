@@ -1,13 +1,13 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
-import { Subscription } from 'rxjs';
+import { Subscription, first } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -19,10 +19,11 @@ import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { PreferenciesService } from 'src/app/services/preferencies.service';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { defaultOptions, defautGroup } from './classement-default';
+import { defaultOptions, defaultTheme, defautGroup } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 
 @Component({
@@ -84,76 +85,28 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _inputFile!: HTMLInputElement;
 
     constructor(
-        private bdService: DBService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private translate: TranslateService,
-        private globalService: GlobalService,
-        private messageService: MessageService,
-        private userService: APIUserService,
-        private classementService: APIClassementService,
-        private optimiseImage: OptimiseImageService,
-        private logger: Logger,
-        private cd: ChangeDetectorRef,
-        private location: Location,
+        private readonly bdService: DBService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute,
+        private readonly translate: TranslateService,
+        private readonly globalService: GlobalService,
+        private readonly messageService: MessageService,
+        private readonly userService: APIUserService,
+        private readonly classementService: APIClassementService,
+        private readonly optimiseImage: OptimiseImageService,
+        private readonly logger: Logger,
+        private readonly cd: ChangeDetectorRef,
+        private readonly location: Location,
+        private readonly preferencies: PreferenciesService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
-                const fork = params['fork'] === 'fork';
-                this.lockCategory = false;
-
-                if (params['id'] && params['id'] !== 'new') {
-                    this.id = params['id'];
-                    this.exportImageLoading = true;
-                    this.exportImageDisabled = true;
-
-                    if (this.apiActive) {
-                        this.userService.loggedStatus().then(() => {
-                            this.logged = this.userService.logged ?? false;
-                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
-                            if (!classement) {
-                                classement = this.userService.getByIdFormCache(this.id!);
-                            }
-                            if (classement) {
-                                this.logger.log('loadServerClassement (user)');
-                                this.loadServerClassement(classement, fork);
-                            } else {
-                                this.classementService
-                                    .getClassement(this.id!)
-                                    .then(classement => {
-                                        this.logger.log('loadServerClassement (server)');
-                                        this.loadServerClassement(classement, fork);
-                                    })
-                                    .catch(() => {
-                                        this.logger.log('loadLocalClassement (browser)');
-                                        this.loadLocalClassement();
-                                    });
-                            }
-                        });
-                    } else {
-                        this.loadLocalClassement();
-                    }
+                if (this.preferencies.hasInit) {
+                    this.initWithParams(params);
                 } else {
-                    if (this.apiActive) {
-                        this.userService.loggedStatus().then(() => {
-                            this.logged = this.userService.logged ?? false;
-                        });
-                    }
-                    // reset all
-                    this.new = true;
-                    this.options = {
-                        ...defaultOptions,
-                        ...(this.globalService.jsonTmp?.options || defaultOptions),
-                        ...{ showAdvancedOptions: false },
-                    };
-                    this.resetCache();
-                    this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
-                    this.list = this.globalService.jsonTmp?.list || [];
-                    this.id = undefined;
-                    this.classement = undefined;
-                    this.globalService.jsonTmp = undefined;
-
-                    this.exportImageLoading = false;
+                    this.preferencies.onInit.pipe(first()).subscribe(() => {
+                        this.initWithParams(params);
+                    });
                 }
             }),
             globalService.onFileLoaded.subscribe(file => {
@@ -169,6 +122,66 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.updateSize();
             }),
         );
+    }
+
+    initWithParams(params: Params) {
+        const fork = params['fork'] === 'fork';
+        this.lockCategory = false;
+
+        if (params['id'] && params['id'] !== 'new') {
+            this.id = params['id'];
+            this.exportImageLoading = true;
+            this.exportImageDisabled = true;
+
+            if (this.apiActive) {
+                this.userService.loggedStatus().then(() => {
+                    this.logged = this.userService.logged ?? false;
+                    let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
+                    if (!classement) {
+                        classement = this.userService.getByIdFormCache(this.id!);
+                    }
+                    if (classement) {
+                        this.logger.log('loadServerClassement (user)');
+                        this.loadServerClassement(classement, fork);
+                    } else {
+                        this.classementService
+                            .getClassement(this.id!)
+                            .then(classement => {
+                                this.logger.log('loadServerClassement (server)');
+                                this.loadServerClassement(classement, fork);
+                            })
+                            .catch(() => {
+                                this.logger.log('loadLocalClassement (browser)');
+                                this.loadLocalClassement();
+                            });
+                    }
+                });
+            } else {
+                this.loadLocalClassement();
+            }
+        } else {
+            if (this.apiActive) {
+                this.userService.loggedStatus().then(() => {
+                    this.logged = this.userService.logged ?? false;
+                });
+            }
+            // reset all
+            const defaultOptions = defaultTheme(this.preferencies.preferencies.theme).options;
+            this.new = true;
+            this.options = {
+                ...defaultOptions,
+                ...(this.globalService.jsonTmp?.options || defaultOptions),
+                ...{ showAdvancedOptions: false },
+            };
+            this.resetCache();
+            this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
+            this.list = this.globalService.jsonTmp?.list || [];
+            this.id = undefined;
+            this.classement = undefined;
+            this.globalService.jsonTmp = undefined;
+
+            this.exportImageLoading = false;
+        }
     }
 
     loadLocalClassement() {
@@ -201,8 +214,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         this.classement!.banner = classement.banner;
                     }
                 }
-
-                this.options = { ...defaultOptions, ...data.infos.options, ...{ showAdvancedOptions: false } };
+                this.options = {
+                    ...defaultTheme(this.preferencies.preferencies.theme).options,
+                    ...data.infos.options,
+                    ...{ showAdvancedOptions: false },
+                };
                 this.resetCache();
                 this.groups = data.data.groups;
                 this.list = data.data.list;
@@ -218,7 +234,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     loadServerClassement(classement: Classement, fork: boolean, withDerivative: boolean = true) {
         this.classement = classement;
-        this.options = { ...defaultOptions, ...classement.data.options, ...{ showAdvancedOptions: false } };
+        this.options = {
+            ...defaultTheme(this.preferencies.preferencies.theme).options,
+            ...classement.data.options,
+            ...{ showAdvancedOptions: false },
+        };
         this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
@@ -357,8 +377,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     resetCache() {
-        this.globalService.withChange = false;
         this._optionsCache = Utils.jsonCopy(this.options);
+        this.globalService.withChange = false;
     }
 
     toTemplateNavigation() {
@@ -452,19 +472,30 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const mixColor = (color1: string, color2: string) =>
             new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
         const bgColor =
-            index < this.groups.length - 1
+            index < this.groups.length - 1 && this.preferencies.preferencies.newColor !== 'same'
                 ? mixColor(this.groups[index].bgColor, this.groups[index + 1].bgColor)
                 : this.groups[index].bgColor;
         const txtColor =
-            index < this.groups.length - 1
+            index < this.groups.length - 1 && this.preferencies.preferencies.newColor !== 'same'
                 ? mixColor(this.groups[index].txtColor, this.groups[index + 1].txtColor)
                 : this.groups[index].txtColor;
-        this.groups.splice(index + 1, 0, { name: 'nv', txtColor, bgColor, list: [] });
+        this.groups.splice(this.preferencies.preferencies.newLine === 'above' ? index + 1 : index, 0, {
+            name: this.translate.instant('New'),
+            txtColor,
+            bgColor,
+            list: [],
+        });
+
         this.globalService.withChange = true;
         this.change();
     }
 
     addFile(file: FileString) {
+        if (this.preferencies.preferencies.nameCopy) {
+            // remove extension
+            file.title = (file.name || '').replace(/_/g, ' ').replace(/\.(\w+)$/, '');
+        }
+
         this.list.push(file);
         this.globalService.withChange = true;
         this.change();
