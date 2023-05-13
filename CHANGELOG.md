@@ -2,31 +2,33 @@
 
 ## 1.9.1 (2023-05-14)
 
+### Standalone web app
+
 -   fix typo
 -   fix color un light mode
 
 ## 1.9.0 (2023-05-14)
 
-### With API activited only
+### Standalone web app
 
 -   update to Angular `16.0`
 -   add preferences dialog #34
 -   add tags for tierlist #31
 
-### Standalone web app
+### With API activited only
 
 -   add avatar for user profile #19
 -   required: API `1.0.9`
 
 ## 1.8.3 (2023-04-28)
 
-### With API activited only
-
--   fix links for history lierlist
-
 ### Standalone web app
 
 -   fix banner with local save
+
+### With API activited only
+
+-   fix links for history lierlist
 
 ## 1.8.2 (2023-04-23)
 
