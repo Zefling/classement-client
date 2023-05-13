@@ -80,6 +80,9 @@ body.light-mode {
     // tag
     --tag-background: #c0acac;
     --tag-input-background: #e2d2d2;
+    // avatar
+    --avatar-background: #b6c6f5;
+    --avatar-icon-opacity: 0.35;
     // drop list
     --drop-list-border-color: #ccc;
     --drop-list-background: #f0f0f0;
@@ -227,6 +230,9 @@ body.dark-mode {
     // tag
     --tag-background: #302828;
     --tag-input-background: #574040;
+    // avatar
+    --avatar-background: #13141a;
+    --avatar-icon-opacity: 0.17;
     // drop list
     --drop-list-border-color: #3f3f3f;
     --drop-list-background: #2e2e2e;

@@ -31,7 +31,7 @@ label {
     font-size: 56px;
     text-align: center;
     border-radius: 50%;
-    background-color: #262222;
+    background-color: var(--avatar-background);
     margin: 0 10px;
     cursor: pointer;
 
@@ -41,7 +41,7 @@ label {
 
     span {
         margin-top: -7px;
-        opacity: 0.17;
+        opacity: var(--avatar-icon-opacity);
     }
 
     img {
