@@ -27,6 +27,8 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Import / export all
     -   ✅ Image export (PNG, JPG or WebP).
     -   ✅ In-memory tierlists clone.
+    -   ✅ Tags
+    -   ✅ Preferencies
 -   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     -   ✅ Create user
         -   ✅ Simple create
@@ -42,6 +44,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Remove tierslist
         -   ✅ Change email
         -   ✅ Change password
+        -   ✅ Change avatar
         -   ✅ Remove user
     -   ✅ Tierlists
         -   ✅ Save tierlists on server
@@ -51,6 +54,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Search in public tierlists
         -   ✅ See tierlists form template
         -   ✅ Tierlist view
+            -   ✅ Tierlist history
     -   ✅ Admin
         -   ✅ Edit profil & change roles
         -   ✅ Tierlists change status

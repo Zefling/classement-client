@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 1.9.0 (2023-05-14)
+
+### With API activited only
+
+-   update to Angular `16.0`
+-   add preferencies dialog #34
+-   add tags for tierlist #31
+
+### Standalone web app
+
+-   add avatar for user profile #19
+-   required: API `1.0.9`
+
 ## 1.8.3 (2023-04-28)
 
 ### With API activited only
