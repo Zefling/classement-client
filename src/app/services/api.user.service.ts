@@ -301,6 +301,28 @@ export class APIUserService extends APICommon {
         });
     }
 
+    updateAvatar(avatar: string): Promise<{ avatar: boolean; url: string }> {
+        return new Promise<{ avatar: boolean; url: string }>((resolve, reject) => {
+            let param: any = {
+                avatar,
+            };
+            this.http
+                .post<Message<{ avatar: boolean; url: string }>>(
+                    `${environment.api.path}api/user/update/avatar`,
+                    param,
+                    this.header(),
+                )
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('update', result));
+                    },
+                });
+        });
+    }
+
     adminGetUsers(page: number = 1): Promise<{ total: number; list: User[] }> {
         return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page);

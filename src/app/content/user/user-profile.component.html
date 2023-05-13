@@ -1,17 +1,23 @@
 <h1>{{ 'user.profile.title' | translate }}</h1>
 
 <div *ngIf="user">
-    <div>
-        <strong>{{ 'user.profile.username' | translate }}</strong>
-        {{ user.username || ('list.user.anonymous' | translate) }}
-    </div>
-    <div>
-        <strong>{{ 'user.profile.since' | translate }}</strong>
-        {{ user.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }}
-    </div>
-    <div>
-        <strong>{{ 'user.profile.email' | translate }}</strong>
-        {{ user.email }}
+    <div class="user">
+        <div class="avatar" (click)="avatarEdit()">
+            <span *ngIf="!user.avatar" class="icon icon-profile"></span>
+            <img *ngIf="user.avatar" [src]="user.avatarUrl" />
+        </div>
+        <div>
+            <strong>{{ 'user.profile.username' | translate }}</strong>
+            {{ user.username || ('list.user.anonymous' | translate) }}
+        </div>
+        <div>
+            <strong>{{ 'user.profile.since' | translate }}</strong>
+            {{ user.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }}
+        </div>
+        <div>
+            <strong>{{ 'user.profile.email' | translate }}</strong>
+            {{ user.email }}
+        </div>
     </div>
 
     <h2>{{ 'user.profile.actions' | translate }}</h2>
@@ -89,5 +95,55 @@
     <div class="buttons">
         <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | translate }}</button>
         <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
+    </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
+    <h3>
+        {{ 'user.profile.avatar.title' | translate }}
+    </h3>
+    <div class="banner">
+        <label class="required">{{ 'user.profile.avatar.select' | translate }}</label>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #avatarInput />
+    </div>
+
+    <div class="cropper-line">
+        <div class="cropper" *ngIf="imageChangedEvent || imageBase64">
+            <div class="label">{{ 'user.profile.avatar.crop' | translate }}</div>
+            <image-cropper
+                #imageCropper
+                [imageChangedEvent]="imageChangedEvent"
+                [imageBase64]="imageBase64"
+                [maintainAspectRatio]="true"
+                [cropperMinWidth]="300"
+                [cropperMinHeight]="300"
+                [resizeToWidth]="300"
+                [resizeToHeight]="300"
+                [aspectRatio]="1 / 1"
+                [onlyScaleDown]="true"
+                format="webp"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+        </div>
+        <div class="image" *ngIf="croppedImage || user!.avatarUrl">
+            <div class="label">{{ 'user.profile.avatar.image' | translate }}</div>
+            <img [src]="croppedImage || user!.avatarUrl" />
+            <button *ngIf="croppedImage" (click)="removeAvatar()">
+                {{ 'user.profile.avatar.delete' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button (click)="avatarDialog.close()">{{ 'user.profile.avatar.cancel' | translate }}</button>
+        <button (click)="updateAvatar()" class="primary" *ngIf="croppedImage">
+            {{ 'user.profile.avatar.update' | translate }}
+        </button>
+        <button (click)="updateAvatar()" class="warn" *ngIf="!croppedImage && user?.avatar">
+            {{ 'user.profile.avatar.remove' | translate }}
+        </button>
     </div>
 </dialog-cmp>

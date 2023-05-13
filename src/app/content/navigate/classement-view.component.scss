@@ -41,6 +41,17 @@
 .username {
     font-weight: 700;
 }
+.username {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 50%;
+    height: 40px;
+}
 
 .note {
     width: 100%;

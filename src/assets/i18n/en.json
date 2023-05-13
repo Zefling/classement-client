@@ -437,6 +437,16 @@
         "cancel": "Cancel",
         "ok": "Ok"
       },
+      "avatar": {
+        "title": "Change my avatar",
+        "select": "Select an image for my avatar",
+        "crop": "Crop selected image",
+        "image": "Image for my avatar",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "update": "Update",
+        "remove": "Remove my avatar"
+      },
       "list.browser.tab": "Browser list",
       "list.server.tab": "Server list",
       "list.server.intro": "List of tierlists saved on your account."
@@ -552,6 +562,7 @@
       "4002": "This email already exists.",
       "4100": "Cannot send email.",
       "5000": "Category error.",
+      "9999": "Invalid request.",
       "undefined": "⚠️ A server error has occurred."
     },
     "classement": {
@@ -604,7 +615,8 @@
       "singup.success": "😊 User created.",
       "validate.success": "😊 User validated successfully. You can now login.",
       "update.success": "😊 User updated successfully.",
-      "remove.success": "😲 User anonymized successfully."
+      "remove.success": "😲 User anonymized successfully.",
+      "avatar.update.success": "😊 Avatar has been successfully updated."
     },
     "server": {
       "save.success": "😊 The save was successful.",

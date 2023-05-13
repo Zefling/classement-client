@@ -24,7 +24,8 @@
             </div>
         </div>
         <div class="username">
-            {{ 'user.by' | translate : { autor: classement.user || ('list.user.anonymous' | translate) } }}
+            <div *ngIf="classement.userAvatar"><img class="avatar" [src]="classement.userAvatar" alt="avatar" /></div>
+            <div>{{ 'user.by' | translate : { autor: classement.user || ('list.user.anonymous' | translate) } }}</div>
         </div>
         <div class="desc" *ngIf="classement.data.options.description">
             {{ classement.data.options.description }}

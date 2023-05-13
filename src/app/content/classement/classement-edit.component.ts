@@ -237,7 +237,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.options = {
             ...defaultTheme(this.preferencies.preferencies.theme).options,
             ...classement.data.options,
-            ...{ showAdvancedOptions: false },
+            ...{ showAdvancedOptions: false, category: classement.category },
         };
         this.resetCache();
         this.groups = classement.data.groups;

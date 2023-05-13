@@ -6,6 +6,7 @@ export interface Classement {
     category: string;
     name: string;
     user: string;
+    userAvatar: string;
     // ids
     rankingId: string;
     templateId: string;
@@ -40,6 +41,8 @@ export interface User {
     username: string;
     roles: string[];
     email: string;
+    avatar: boolean;
+    avatarUrl?: string;
     // status
     isValidated?: boolean;
     deleted?: boolean;

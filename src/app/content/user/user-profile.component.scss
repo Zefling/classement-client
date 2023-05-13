@@ -17,3 +17,68 @@ label {
     margin: auto;
     padding: 0;
 }
+
+.user {
+    display: grid;
+    grid-template: 'a b' 'a c' 'a d' / auto 1fr;
+    gap: 0 20px;
+}
+
+.avatar {
+    grid-area: a;
+    height: 80px;
+    width: 80px;
+    font-size: 56px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #262222;
+    margin: 0 10px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        margin-top: -7px;
+        opacity: 0.17;
+    }
+
+    img {
+        max-height: 80px;
+        max-width: 80px;
+        display: block;
+        border-radius: 50%;
+    }
+}
+
+.drop-image-zone {
+    background: var(--drop-image-zone-background);
+    padding: 0.02px 40px;
+    margin: 0 -40px;
+}
+
+.cropper-line {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    width: 800px;
+
+    .cropper {
+        flex: 1;
+    }
+
+    .image {
+        width: 300px;
+
+        &:not(:first-child) {
+            margin: 15px;
+        }
+
+        img {
+            border: 1px solid #ccc;
+            box-shadow: 0 0 4px #888;
+            border-radius: 50%;
+        }
+    }
+}

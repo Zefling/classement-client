@@ -1,14 +1,15 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subscription, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { User } from 'src/app/interface';
+import { FileHandle, User } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Utils } from 'src/app/tools/utils';
 
@@ -24,14 +25,21 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     listener: Subscription[] = [];
 
+    @ViewChild('avatarDialog') avatarDialog!: DialogComponent;
     @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
-
+    @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
     @ViewChild('dialogChangeEmail') dialogChangeEmail!: DialogComponent;
+
+    @ViewChild('avatarInput') avatarInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
+
     changeEmailForm: FormGroup;
     emailOldValid = false;
     emailNewValid = false;
 
-    @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
+    imageChangedEvent?: Event;
+    imageBase64: string = '';
+    croppedImage?: string;
 
     constructor(
         private router: Router,
@@ -166,6 +174,61 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 this.dialogRemoveProfile.close();
                 this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
                 this.router.navigate(['/user/login']);
+            })
+            .catch(e => {
+                this.messageService.addMessage(e, { type: MessageType.error });
+            });
+    }
+
+    fileChangeEvent(event: Event): void {
+        this.imageChangedEvent = event;
+    }
+
+    fileChange(event: FileHandle | string) {
+        if ((event as FileHandle).target) {
+            this.imageBase64 = (event as FileHandle).target?.result as string;
+        }
+    }
+
+    avatarEdit() {
+        this.avatarDialog.open();
+    }
+
+    async imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64!;
+    }
+
+    imageLoaded(_image: LoadedImage) {
+        // show cropper
+        setTimeout(() => {
+            // fix init position for the cropper
+            this.imageCropper.resetCropperPosition();
+        });
+    }
+
+    cropperReady() {
+        // cropper ready
+    }
+
+    loadImageFailed() {
+        // show message
+    }
+
+    removeAvatar() {
+        this.croppedImage = undefined;
+        this.imageChangedEvent = undefined;
+        this.avatarInput.nativeElement.value = '';
+    }
+
+    updateAvatar() {
+        this.userService
+            .updateAvatar(this.croppedImage ?? '')
+            .then(data => {
+                this.user!.avatar = data.avatar;
+                this.user!.avatarUrl = data.url ? data.url + '?time=' + new Date().getTime() : undefined;
+
+                this.avatarDialog.close();
+                this.messageService.addMessage(this.translate.instant('message.user.avatar.update.success'));
             })
             .catch(e => {
                 this.messageService.addMessage(e, { type: MessageType.error });

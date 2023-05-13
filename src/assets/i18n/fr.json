@@ -438,6 +438,16 @@
         "cancel": "Annuler",
         "ok": "Valider"
       },
+      "avatar": {
+        "title": "Changer mon avatar",
+        "select": "Sélectionner une images pour mon avatar",
+        "crop": "Recadrer l'image selectionnée",
+        "image": "Image pour mon avatar",
+        "delete": "Supprimer",
+        "cancel": "Annuler",
+        "update": "Mise à jour",
+        "remove": "Supprimer mon avatar"
+      },
       "list.browser.tab": "Liste navigateur",
       "list.server.tab": "Liste serveur",
       "list.server.intro": "Liste des Classements sauvegardés sur votre compte."
@@ -552,6 +562,7 @@
       "4002": "Ce email existe déjà.",
       "4100": "Envoi de courriel impossible.",
       "5000": "Erreur de categorie.",
+      "9999": "Requête invalide.",
       "undefined": "⚠️ Une erreur serveur s'est produite."
     },
     "classement": {
@@ -600,11 +611,13 @@
     "add": {
       "success": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
     },
+
     "user": {
       "singup.success": "😊 Utilisateur créé.",
       "validate.success": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
       "update.success": "😊 Utilisateur mis à jour avec succès.",
-      "remove.success": "😲 Utilisateur anonymisé avec succès."
+      "remove.success": "😲 Utilisateur anonymisé avec succès.",
+      "avatar.update.success": "😊 Avatar mis à jour avec succès."
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",

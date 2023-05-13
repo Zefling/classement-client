@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 import { SharedModule } from 'src/app/share.module';
 
 import { UserInformationComponent } from './user-information.component';
@@ -28,7 +30,7 @@ import { ClassementListModule } from '../list/classement-list.module';
         UserInformationComponent,
         UserListComponent,
     ],
-    imports: [SharedModule, UserRoutingModule, ClassementListModule],
+    imports: [SharedModule, UserRoutingModule, ClassementListModule, ImageCropperModule],
     providers: [],
     exports: [],
 })
