@@ -15,7 +15,7 @@
     "logout": "ログアウト",
     "information": "情報",
     "licences": "ライセンス",
-    "preferencies": "環境設定"
+    "preferences": "環境設定"
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",
@@ -52,7 +52,7 @@
     },
     "last": "最後のティアリスト"
   },
-  "preferencies": {
+  "preferences": {
     "title": "環境設定",
     "close": "閉めて",
     "tile": {

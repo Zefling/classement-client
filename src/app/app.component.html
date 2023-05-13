@@ -69,7 +69,7 @@
             </li>
             <li>
                 <a (click)="openPreferences(); toggleMenu()">
-                    {{ 'menu.preferencies' | translate }}
+                    {{ 'menu.preferences' | translate }}
                 </a>
             </li>
             <li *ngIf="modeApi && modeModerator">
@@ -164,39 +164,39 @@
 </dialog-cmp>
 
 <dialog-cmp class="preferences" #preferences>
-    <ng-container *ngIf="preferenciesForm" [formGroup]="preferenciesForm">
-        <h2>{{ 'preferencies.title' | translate }}</h2>
+    <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
+        <h2>{{ 'preferences.title' | translate }}</h2>
 
-        <h3>{{ 'preferencies.tile.title' | translate }}</h3>
+        <h3>{{ 'preferences.tile.title' | translate }}</h3>
         <label>
-            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferencies.tile.name.copy' | translate }}
+            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
         </label>
 
-        <h3>{{ 'preferencies.color.title' | translate }}</h3>
+        <h3>{{ 'preferences.color.title' | translate }}</h3>
         <label>
             <input type="radio" formControlName="newColor" value="mixed" />
-            {{ 'preferencies.color.new.color.mixed' | translate }}
+            {{ 'preferences.color.new.color.mixed' | translate }}
         </label>
         <label>
             <input type="radio" formControlName="newColor" value="same" />
-            {{ 'preferencies.color.new.color.same' | translate }}
+            {{ 'preferences.color.new.color.same' | translate }}
         </label>
 
-        <h3>{{ 'preferencies.group.title' | translate }}</h3>
+        <h3>{{ 'preferences.group.title' | translate }}</h3>
         <label
             ><input type="radio" formControlName="newLine" value="below" />
-            {{ 'preferencies.group.new.line.below' | translate }}
+            {{ 'preferences.group.new.line.below' | translate }}
         </label>
         <label
             ><input type="radio" formControlName="newLine" value="above" />
-            {{ 'preferencies.group.new.line.above' | translate }}
+            {{ 'preferences.group.new.line.above' | translate }}
         </label>
         <!-- <label
             ><input type="radio" formControlName="newLine" value="ask-me" />
-            {{ 'preferencies.group.new.line.ask.me' | translate }}
+            {{ 'preferences.group.new.line.ask.me' | translate }}
         </label> -->
 
-        <h3>{{ 'preferencies.theme.title' | translate }}</h3>
+        <h3>{{ 'preferences.theme.title' | translate }}</h3>
         <select formControlName="theme">
             <option *ngFor="let theme of themes" [value]="theme">
                 {{ 'gererator.theme.name.' + theme | translate }}
@@ -204,7 +204,7 @@
         </select>
 
         <div class="buttons">
-            <button (click)="preferences.close()">{{ 'preferencies.close' | translate }}</button>
+            <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
         </div>
     </ng-container>
 </dialog-cmp>

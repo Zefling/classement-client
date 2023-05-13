@@ -19,7 +19,7 @@ import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
-import { PreferenciesService } from 'src/app/services/preferencies.service';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -97,14 +97,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly logger: Logger,
         private readonly cd: ChangeDetectorRef,
         private readonly location: Location,
-        private readonly preferencies: PreferenciesService,
+        private readonly preferencesService: PreferencesService,
     ) {
         this._sub.push(
             this.route.params.subscribe(params => {
-                if (this.preferencies.hasInit) {
+                if (this.preferencesService.hasInit) {
                     this.initWithParams(params);
                 } else {
-                    this.preferencies.onInit.pipe(first()).subscribe(() => {
+                    this.preferencesService.onInit.pipe(first()).subscribe(() => {
                         this.initWithParams(params);
                     });
                 }
@@ -166,7 +166,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 });
             }
             // reset all
-            const defaultOptions = defaultTheme(this.preferencies.preferencies.theme).options;
+            const defaultOptions = defaultTheme(this.preferencesService.preferences.theme).options;
             this.new = true;
             this.options = {
                 ...defaultOptions,
@@ -215,7 +215,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     }
                 }
                 this.options = {
-                    ...defaultTheme(this.preferencies.preferencies.theme).options,
+                    ...defaultTheme(this.preferencesService.preferences.theme).options,
                     ...data.infos.options,
                     ...{ showAdvancedOptions: false },
                 };
@@ -235,7 +235,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     loadServerClassement(classement: Classement, fork: boolean, withDerivative: boolean = true) {
         this.classement = classement;
         this.options = {
-            ...defaultTheme(this.preferencies.preferencies.theme).options,
+            ...defaultTheme(this.preferencesService.preferences.theme).options,
             ...classement.data.options,
             ...{ showAdvancedOptions: false, category: classement.category },
         };
@@ -472,14 +472,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const mixColor = (color1: string, color2: string) =>
             new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
         const bgColor =
-            index < this.groups.length - 1 && this.preferencies.preferencies.newColor !== 'same'
+            index < this.groups.length - 1 && this.preferencesService.preferences.newColor !== 'same'
                 ? mixColor(this.groups[index].bgColor, this.groups[index + 1].bgColor)
                 : this.groups[index].bgColor;
         const txtColor =
-            index < this.groups.length - 1 && this.preferencies.preferencies.newColor !== 'same'
+            index < this.groups.length - 1 && this.preferencesService.preferences.newColor !== 'same'
                 ? mixColor(this.groups[index].txtColor, this.groups[index + 1].txtColor)
                 : this.groups[index].txtColor;
-        this.groups.splice(this.preferencies.preferencies.newLine === 'above' ? index + 1 : index, 0, {
+        this.groups.splice(this.preferencesService.preferences.newLine === 'above' ? index + 1 : index, 0, {
             name: this.translate.instant('New'),
             txtColor,
             bgColor,
@@ -491,7 +491,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     addFile(file: FileString) {
-        if (this.preferencies.preferencies.nameCopy) {
+        if (this.preferencesService.preferences.nameCopy) {
             // remove extension
             file.title = (file.name || '').replace(/_/g, ' ').replace(/\.(\w+)$/, '');
         }

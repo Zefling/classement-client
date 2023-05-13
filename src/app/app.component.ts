@@ -13,7 +13,7 @@ import { themes } from './content/classement/classement-default';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';
-import { PreferenciesService } from './services/preferencies.service';
+import { PreferencesService } from './services/preferences.service';
 
 const languages = [
     { value: 'en', label: 'English' },
@@ -42,7 +42,7 @@ export class AppComponent implements DoCheck {
     modeApi = environment.api?.active || false;
     modeModerator = false;
 
-    preferenciesForm?: FormGroup;
+    preferencesForm?: FormGroup;
     themes = themes;
 
     private route?: string;
@@ -52,7 +52,7 @@ export class AppComponent implements DoCheck {
         private readonly globalService: GlobalService,
         private readonly router: Router,
         private readonly logger: Logger,
-        private readonly preferencies: PreferenciesService,
+        private readonly preferencesService: PreferencesService,
         public readonly userService: APIUserService,
         changeDetectorRef: ChangeDetectorRef,
     ) {
@@ -61,8 +61,8 @@ export class AppComponent implements DoCheck {
         this.selectedLang = l.length ? l[0].value : 'en';
         this.updateLanguage(this.selectedLang);
 
-        // preferencies
-        this.initPreferencies();
+        // preferences
+        this.initPreferences();
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit.open();
@@ -130,18 +130,18 @@ export class AppComponent implements DoCheck {
         this.preferences.open();
     }
 
-    private async initPreferencies() {
-        const initPreferencies = await this.preferencies.init();
+    private async initPreferences() {
+        const initPreferences = await this.preferencesService.init();
 
-        this.preferenciesForm = new FormGroup({
-            nameCopy: new FormControl(initPreferencies.nameCopy),
-            newColor: new FormControl(initPreferencies.newColor),
-            newLine: new FormControl(initPreferencies.newLine),
-            theme: new FormControl(initPreferencies.theme),
+        this.preferencesForm = new FormGroup({
+            nameCopy: new FormControl(initPreferences.nameCopy),
+            newColor: new FormControl(initPreferences.newColor),
+            newLine: new FormControl(initPreferences.newLine),
+            theme: new FormControl(initPreferences.theme),
         });
 
-        this.preferenciesForm.valueChanges.subscribe(() => {
-            this.preferencies.saveAndUpdate(this.preferenciesForm!.value);
+        this.preferencesForm.valueChanges.subscribe(() => {
+            this.preferencesService.saveAndUpdate(this.preferencesForm!.value);
         });
     }
 }

@@ -15,7 +15,7 @@
     "logout": "Déconnexion",
     "information": "Information",
     "licences": "Licences",
-    "preferencies": "Préférences"
+    "preferences": "Préférences"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -51,7 +51,7 @@
     },
     "last": "Derniers classements"
   },
-  "preferencies": {
+  "preferences": {
     "title": "Préférences",
     "close": "Fermer",
     "tile": {

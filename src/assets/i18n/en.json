@@ -15,7 +15,7 @@
     "logout": "Logout",
     "information": "Information",
     "licences": "Licenses",
-    "preferencies": "Preferencies"
+    "preferences": "Preferences"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -51,8 +51,8 @@
     },
     "last": "Latest tierlists"
   },
-  "preferencies": {
-    "title": "Preferencies",
+  "preferences": {
+    "title": "Preferences",
     "close": "Close",
     "tile": {
       "title": "Tile title",

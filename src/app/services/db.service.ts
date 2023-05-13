@@ -4,13 +4,13 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferenciesData } from '../interface';
+import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferencesData } from '../interface';
 import { Utils } from '../tools/utils';
 
 enum Store {
     infos = 'classementInfos',
     data = 'classementData',
-    pref = 'preferencies',
+    pref = 'preferences',
 }
 
 @Injectable({ providedIn: 'root' })
@@ -120,7 +120,7 @@ export class DBService {
         });
     }
 
-    loadPreferencies(): Promise<PreferenciesData> {
+    loadPreferences(): Promise<PreferencesData> {
         const formatData: any = {};
         return new Promise((resolve, reject) => {
             this._getDB()
@@ -130,10 +130,10 @@ export class DBService {
         });
     }
 
-    savePreferencies(preferencies: PreferenciesData): Promise<PreferenciesData> {
-        const formatData: IndexedData<PreferenciesData> = {
+    savePreferences(preferences: PreferencesData): Promise<PreferencesData> {
+        const formatData: IndexedData<PreferencesData> = {
             id: 'pref',
-            data: preferencies,
+            data: preferences,
         };
         return new Promise((resolve, reject) => {
             this._getDB()

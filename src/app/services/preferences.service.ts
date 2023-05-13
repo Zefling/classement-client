@@ -5,37 +5,37 @@ import { Subject } from 'rxjs';
 import { DBService } from './db.service';
 
 import { themes } from '../content/classement/classement-default';
-import { PreferenciesData } from '../interface';
+import { PreferencesData } from '../interface';
 
 /**
  * For persistence during the session of use
  */
 @Injectable({ providedIn: 'root' })
-export class PreferenciesService {
+export class PreferencesService {
     readonly onInit = new Subject<void>();
 
     hasInit = false;
 
-    private initPreferencies: PreferenciesData = {
+    private initPreferences: PreferencesData = {
         nameCopy: false,
         newColor: 'same',
         newLine: 'below',
         theme: themes[0],
     };
 
-    get preferencies(): PreferenciesData {
-        return this.initPreferencies;
+    get preferences(): PreferencesData {
+        return this.initPreferences;
     }
 
     constructor(private readonly dbService: DBService) {}
 
-    init(): Promise<PreferenciesData> {
-        return new Promise<PreferenciesData>(resolve => {
+    init(): Promise<PreferencesData> {
+        return new Promise<PreferencesData>(resolve => {
             this.dbService
-                .loadPreferencies()
-                .then(preferencies => {
-                    if (preferencies) {
-                        Object.assign(this.initPreferencies, preferencies);
+                .loadPreferences()
+                .then(preferences => {
+                    if (preferences) {
+                        Object.assign(this.initPreferences, preferences);
                     }
                 })
                 .catch(() => {
@@ -44,13 +44,13 @@ export class PreferenciesService {
                 .finally(() => {
                     this.hasInit = true;
                     this.onInit.next();
-                    resolve(this.initPreferencies);
+                    resolve(this.initPreferences);
                 });
         });
     }
 
-    saveAndUpdate(data: PreferenciesData) {
-        this.dbService.savePreferencies(data);
-        this.initPreferencies = data;
+    saveAndUpdate(data: PreferencesData) {
+        this.dbService.savePreferences(data);
+        this.initPreferences = data;
     }
 }

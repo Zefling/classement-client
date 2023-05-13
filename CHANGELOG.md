@@ -1,11 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 1.9.1 (2023-05-14)
+
+-   fix typo
+-   fix color un light mode
+
 ## 1.9.0 (2023-05-14)
 
 ### With API activited only
 
 -   update to Angular `16.0`
--   add preferencies dialog #34
+-   add preferences dialog #34
 -   add tags for tierlist #31
 
 ### Standalone web app

@@ -28,7 +28,7 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Image export (PNG, JPG or WebP).
     -   ✅ In-memory tierlists clone.
     -   ✅ Tags
-    -   ✅ Preferencies
+    -   ✅ Preferences
 -   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     -   ✅ Create user
         -   ✅ Simple create

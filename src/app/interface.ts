@@ -153,7 +153,7 @@ export interface FormatedInfosData {
     data: FormatedData;
 }
 
-export interface PreferenciesData {
+export interface PreferencesData {
     nameCopy: boolean;
     newColor: 'mixed' | 'same';
     newLine: 'below' | 'above' | 'ask-me';
