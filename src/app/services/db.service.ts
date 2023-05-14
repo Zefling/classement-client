@@ -327,7 +327,7 @@ export class DBService {
             if (this._db) {
                 resolve(this._db);
             } else {
-                const dbReq = indexedDB.open('classementDB', 2);
+                const dbReq = indexedDB.open('classementDB', 3);
 
                 dbReq.onerror = () => {
                     this.logger.log('Error for init Database.', LoggerLevel.error, dbReq.error);
