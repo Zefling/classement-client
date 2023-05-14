@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.9.2 (2023-05-14)
+
+### Standalone web app
+
+-   add dates in exported data
+-   fix access to indexedDB
+
 ## 1.9.1 (2023-05-14)
 
 ### Standalone web app
