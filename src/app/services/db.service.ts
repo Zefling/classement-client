@@ -64,13 +64,13 @@ export class DBService {
         return new Promise((resolve, reject) => {
             const formatData: any = {};
             const cloneItem = Utils.jsonCopy(item);
-            cloneItem.date = `${new Date()}`;
+            cloneItem.dateCreate = Utils.toISODate();
             cloneItem.options.title = title;
             cloneItem.rankingId = undefined;
             if (newTemplate) {
                 cloneItem.templateId = undefined;
             }
-            this._digestMessage(cloneItem.date).then(id => {
+            this._digestMessage(cloneItem.dateCreate).then(id => {
                 cloneItem.id = id;
                 this._getDB()
                     .then(db => this._saveDB(db, Store.infos, cloneItem))
@@ -167,7 +167,8 @@ export class DBService {
             infos: {
                 id,
                 options: data.options,
-                date: `${new Date()}`,
+                dateCreate: Utils.toISODate(data.dateCreate, true),
+                dateChange: Utils.toISODate(data.dateChange),
                 groupsLenght: data.groups?.length || 0,
                 listLenght:
                     (data.list?.length || 0) +

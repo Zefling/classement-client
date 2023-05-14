@@ -682,6 +682,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             templateId: this.classement?.templateId,
             parentId: this.classement?.parentId,
             banner: this.classement?.banner,
+            dateCreate: Utils.toISODate(this.classement?.dateCreate, true),
+            dateChange: Utils.toISODate(this.classement?.dateChange),
         };
     }
 

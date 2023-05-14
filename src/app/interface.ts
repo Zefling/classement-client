@@ -121,6 +121,8 @@ export interface IndexedData<T extends any> {
     templateId?: string | null;
     parentId?: string | null;
     banner?: string;
+    dateCreate?: string;
+    dateChange?: string;
 }
 
 export interface Data extends IndexedData<any> {
@@ -137,7 +139,10 @@ export interface importData {
 
 export interface FormatedInfos extends IndexedData<any> {
     options: Options;
-    date: string | Date;
+    /**
+     * @deprecated use dateCreate
+     */
+    date?: string | Date;
     groupsLenght: number;
     listLenght: number;
 }

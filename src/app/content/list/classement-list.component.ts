@@ -103,6 +103,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         // data
                         groups: info.data.groups,
                         list: info.data.list,
+                        dateCreate: Utils.toISODate(info.infos.dateCreate || info.infos.data),
+                        dateChange: Utils.toISODate(info.infos.dateChange),
                     });
                 });
             }
