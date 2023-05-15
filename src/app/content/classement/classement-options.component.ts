@@ -25,8 +25,6 @@ export class ClassementOptionsComponent {
 
     @Input() options?: Options;
 
-    @Input() tags: string[] = [];
-
     @Input() lockCategory = false;
 
     imageListOpen = false;

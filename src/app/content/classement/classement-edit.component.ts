@@ -47,7 +47,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     options!: Options;
     nameOpacity!: string;
-    tags: string[] = [];
 
     changeTimer: any[] = [];
 
@@ -166,7 +165,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 });
             }
             // reset all
-            const defaultOptions = defaultTheme(this.preferencesService.preferences.theme).options;
+            const defaultOptions = Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
             this.new = true;
             this.options = {
                 ...defaultOptions,
@@ -216,7 +215,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     }
                 }
                 this.options = {
-                    ...defaultTheme(this.preferencesService.preferences.theme).options,
+                    ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
                     ...data.infos.options,
                     ...{ showAdvancedOptions: false },
                 };
@@ -236,7 +235,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     loadServerClassement(classement: Classement, fork: boolean, withDerivative: boolean = true) {
         this.classement = classement;
         this.options = {
-            ...defaultTheme(this.preferencesService.preferences.theme).options,
+            ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
             ...classement.data.options,
             ...{ showAdvancedOptions: false, category: classement.category },
         };
