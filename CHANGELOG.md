@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.9.3 (2023-05-15)
+
+### Standalone web app
+
+-   improve change detection
+-   tags are incorrectly persisted
+
 ## 1.9.2 (2023-05-14)
 
 ### Standalone web app
