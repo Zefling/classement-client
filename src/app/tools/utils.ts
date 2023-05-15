@@ -3,20 +3,56 @@ import { Classement, User } from '../interface';
 const emailTest =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
+const isObject = (a: { [key: string]: any }, b: { [key: string]: any }) =>
+    typeof a === 'object' && !Array.isArray(a) && !!a && !!b;
+
 export class Utils {
-    static objectChange(o1: any, o2: any): boolean {
-        return (
-            Object.keys(
-                Object.keys(o2).reduce((diff, key) => {
-                    return o1 && o2 && o1[key] === o2[key]
-                        ? diff
-                        : {
-                              ...diff,
-                              [key]: o2[key],
-                          };
-                }, {}),
-            ).length > 0
-        );
+    static objectsAreSame(objA?: { [key: string]: any }, objB?: { [key: string]: any }): boolean {
+        if (objA === objB) {
+            return true;
+        } else if (objA === undefined || objB === undefined) {
+            return false;
+        }
+
+        let areTheSame = true;
+
+        const compareValues = (a: { [key: string]: any }, b: { [key: string]: any }) => {
+            if (Array.isArray(a)) {
+                if (Array.isArray(b)) {
+                    const aCopy = [...a];
+                    const bCopy = [...b];
+                    if (a.length === b.length) {
+                        aCopy.sort();
+                        bCopy.sort();
+                        aCopy.forEach((ele, idx) => compareValues(ele, bCopy[idx]));
+                    } else {
+                        areTheSame = false;
+                    }
+                } else {
+                    areTheSame = false;
+                }
+            } else if (!isObject(a, b) && a !== b) {
+                areTheSame = false;
+            } else if (isObject(a, b) && !Utils.objectsAreSame(a, b)) {
+                areTheSame = false;
+            }
+        };
+
+        const keysA = Object.keys(objA);
+        const keysB = Object.keys(objB);
+
+        if (keysA.length !== keysB.length) {
+            return false;
+        }
+
+        for (let key of keysA) {
+            compareValues(objA[key], objB[key]);
+            if (!areTheSame) {
+                return false;
+            }
+        }
+
+        return areTheSame;
     }
 
     static downloadFile(content: string, fileName: string, contentType?: string) {

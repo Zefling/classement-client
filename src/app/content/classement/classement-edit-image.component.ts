@@ -46,6 +46,11 @@ export class ClassementEditImageComponent {
 
     detectChanges() {
         this.cd.detectChanges();
+        this.globalChange();
+    }
+
+    globalChange() {
+        this.global.withChange = true;
     }
 
     changeRatio(mode: number, aspectRatio: number | string = 0) {
@@ -102,6 +107,7 @@ export class ClassementEditImageComponent {
             this.currentTile!.width = image.width;
 
             this.global.onImageUpdate.next();
+            this.globalChange();
         }
     }
 

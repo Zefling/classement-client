@@ -12,7 +12,14 @@
         </div>
         <div>
             <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label> <br />
-            <textarea autosize maxlength="500" id="ranking-annotation" [(ngModel)]="currentTile.annotation"> </textarea>
+            <textarea
+                autosize
+                maxlength="500"
+                id="ranking-annotation"
+                [(ngModel)]="currentTile.annotation"
+                (ngModelChange)="globalChange()"
+            >
+            </textarea>
         </div>
         <div>
             <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label>
@@ -24,7 +31,7 @@
                     </div>
                 </ng-template>
                 <div>
-                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''">
+                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''; globalChange()">
                         {{ 'gererator.ranking.image.remove' | translate }}
                     </button>
                     <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">

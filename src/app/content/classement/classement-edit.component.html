@@ -45,14 +45,31 @@
                         >
                             <div>
                                 <label class="name">
-                                    <textarea autosize [(ngModel)]="group.name" maxlength="500"></textarea>
+                                    <textarea
+                                        autosize
+                                        [(ngModel)]="group.name"
+                                        (ngModelChange)="globalChange()"
+                                        maxlength="500"
+                                    ></textarea>
                                 </label>
 
                                 <span class="color txtColor icon-text-color" (click)="inputTxtColor.click()"></span>
                                 <span class="color bgColor icon-background-color" (click)="inputBgColor.click()"></span>
                                 <div class="colors">
-                                    <input class="color" type="color" [(ngModel)]="group.bgColor" #inputBgColor />
-                                    <input class="color" type="color" [(ngModel)]="group.txtColor" #inputTxtColor />
+                                    <input
+                                        class="color"
+                                        type="color"
+                                        [(ngModel)]="group.bgColor"
+                                        (ngModelChange)="globalChange()"
+                                        #inputBgColor
+                                    />
+                                    <input
+                                        class="color"
+                                        type="color"
+                                        [(ngModel)]="group.txtColor"
+                                        (ngModelChange)="globalChange()"
+                                        #inputTxtColor
+                                    />
                                 </div>
                             </div>
                         </td>
@@ -147,6 +164,7 @@
                                     input="text"
                                     maxlength="150"
                                     [(ngModel)]="item.title"
+                                    (ngModelChange)="globalChange()"
                                     (blur)="change()"
                                 />
                                 <div class="tile-info" (click)="openTileInfo(item)"></div>
@@ -200,7 +218,7 @@
                 {{ 'gererator.optimise.button.optimise' | translate }} ({{ size | filesize }})
             </button>
             <label class="line" *ngIf="options && hasItems">
-                <input type="checkbox" [(ngModel)]="options.autoSave" />
+                <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
                 {{ 'gererator.actions.save.local.auto' | translate }}
             </label>
         </div>

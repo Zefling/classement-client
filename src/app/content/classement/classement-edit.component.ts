@@ -173,7 +173,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ...(this.globalService.jsonTmp?.options || defaultOptions),
                 ...{ showAdvancedOptions: false },
             };
-            this.resetCache();
+
             this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
             this.list = this.globalService.jsonTmp?.list || [];
             this.id = undefined;
@@ -181,6 +181,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.globalService.jsonTmp = undefined;
 
             this.exportImageLoading = false;
+            this.resetCache();
         }
     }
 
@@ -219,12 +220,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     ...data.infos.options,
                     ...{ showAdvancedOptions: false },
                 };
-                this.resetCache();
                 this.groups = data.data.groups;
                 this.list = data.data.list;
                 this.globalService.fixImageSize(this.groups, this.list);
                 this._html2canavasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups).size;
+                this.resetCache();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -239,7 +240,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             ...classement.data.options,
             ...{ showAdvancedOptions: false, category: classement.category },
         };
-        this.resetCache();
         this.groups = classement.data.groups;
         this.list = classement.data.list;
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
@@ -260,6 +260,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.updateSize();
+        this.resetCache();
     }
 
     loadDerivativeClassement(classement: Classement) {
@@ -275,8 +276,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const val = this.globalService.updateVarCss(this.options, this.imagesCache);
         this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;
 
-        if (this.options && !this.globalService.withChange && Utils.objectChange(this._optionsCache, this.options)) {
-            this.globalService.withChange = true;
+        if (this.options && !this.globalService.withChange && !Utils.objectsAreSame(this._optionsCache, this.options)) {
+            this.globalChange();
             this.logger.log('Option change');
             this.change();
         }
@@ -412,7 +413,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 indexTarget + event.currentIndex,
             );
         }
-        this.globalService.withChange = true;
+        this.globalChange();
 
         this.detectChanges();
         this.change();
@@ -439,27 +440,31 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this._inputFile.click();
     }
 
+    globalChange() {
+        this.globalService.withChange = true;
+    }
+
     upLine(index: number) {
         this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
-        this.globalService.withChange = true;
+        this.globalChange();
         this.change();
     }
 
     downLine(index: number) {
         this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
-        this.globalService.withChange = true;
+        this.globalChange();
         this.change();
     }
 
     deleteLine(index: number) {
         this.list.push(...this.groups.splice(index, 1)[0].list);
-        this.globalService.withChange = true;
+        this.globalChange();
         this.change();
     }
 
     removeItem(index: number) {
         this.list.splice(index, 1);
-        this.globalService.withChange = true;
+        this.globalChange();
         this.updateSize();
         this.change();
     }
@@ -486,7 +491,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             list: [],
         });
 
-        this.globalService.withChange = true;
+        this.globalChange();
         this.change();
     }
 
@@ -497,7 +502,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.list.push(file);
-        this.globalService.withChange = true;
+        this.globalChange();
         this.change();
     }
 
