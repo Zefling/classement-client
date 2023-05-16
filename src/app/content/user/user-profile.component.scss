@@ -1,6 +1,9 @@
 @import './user-profile.errors.scss';
+@import '../../styles/cropper.scss';
 
 :host {
+    --cropper-image-radius: 50%;
+
     display: block;
     margin: var(--main-padding);
 }
@@ -49,62 +52,5 @@ label {
         max-width: 80px;
         display: block;
         border-radius: 50%;
-    }
-}
-
-.drop-image-zone {
-    background: var(--drop-image-zone-background);
-    padding: 0.02px 40px;
-    margin: 0 -40px;
-}
-
-.cropper-line {
-    display: flex;
-    align-items: center;
-    max-width: 800px;
-    width: 800px;
-
-    .cropper {
-        flex: 2;
-    }
-
-    .image {
-        flex: 1;
-
-        &:not(:first-child) {
-            margin: 15px;
-        }
-
-        img {
-            border: 1px solid #ccc;
-            box-shadow: 0 0 4px #888;
-            border-radius: 50%;
-            max-width: 100%;
-        }
-    }
-}
-
-@media screen and (max-width: 850px) {
-    .cropper-line {
-        max-width: 600px;
-        width: 600px;
-    }
-
-    .cropper {
-        width: 50%;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .cropper-line {
-        max-width: 400px;
-        width: 400px;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .cropper-line {
-        max-width: 350px;
-        width: 350px;
     }
 }

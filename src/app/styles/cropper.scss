@@ -1,0 +1,53 @@
+.drop-image-zone {
+    background: var(--drop-image-zone-background);
+    padding: 0.02px 40px;
+    margin: 0 -40px;
+}
+
+.cropper-line {
+    display: flex;
+    align-items: baseline;
+    max-width: 100%;
+    width: 100%;
+    gap: 20px;
+
+    .cropper {
+        flex: 2;
+    }
+
+    .image {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+
+        img {
+            border: 1px solid #ccc;
+            box-shadow: 0 0 4px #888;
+            border-radius: var(--cropper-image-radius);
+            max-width: var(--cropper-max-width, 300px);
+        }
+
+        button {
+            align-self: center;
+        }
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cropper-line {
+        --cropper-max-width: 250px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .cropper-line {
+        --cropper-max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cropper-line {
+        --cropper-max-width: 150px;
+    }
+}
