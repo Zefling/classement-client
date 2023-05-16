@@ -1,6 +1,6 @@
 :host {
     display: block;
-    margin: 0 15px 30px 30px;
+    margin: var(--main-padding);
 }
 
 .return {
@@ -11,13 +11,17 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+}
 
-    .name {
-        flex: 1;
-        min-width: 160px;
-    }
+.name {
+    flex: 5 5 300px;
+}
+
+.line {
+    flex: 1 1 300px;
+    display: flex;
 }
 
 .categories {
-    width: 250px;
+    flex: 1 1 170px;
 }

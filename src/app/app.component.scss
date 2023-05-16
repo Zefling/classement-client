@@ -1,4 +1,6 @@
 :host {
+    --main-padding: 0 15px 30px 30px;
+
     height: 100%;
     display: grid;
     grid-template:
@@ -46,7 +48,7 @@ header {
         display: var(--show-mobile, none);
         cursor: pointer;
         font-size: 30px;
-        margin: 0 0 0 20px;
+        margin: -10px 0 0 20px;
     }
 }
 
@@ -173,6 +175,8 @@ aside {
 
 @media screen and (max-width: 1024px) {
     :host {
+        --main-padding: 0 5px;
+
         --aside-width: 0;
         --show-mobile: display;
         --menu-transition: left 0.5s;

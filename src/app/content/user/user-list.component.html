@@ -62,6 +62,9 @@
                                     {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
                                 >
                             </div>
+                            <div class="category-rwd">
+                                {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                            </div>
                             <div class="tags" *ngIf="classement.data.options.tags?.length">
                                 <tag-list
                                     [tags]="classement.data.options.tags"

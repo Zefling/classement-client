@@ -1,43 +1,16 @@
-:where(figure, .template) {
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-    color: var(--menu-color);
-    background: var(--menu-background);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
-
-    img {
-        max-width: 100%;
-    }
-
-    @media screen and (max-width: 800px) {
-        width: 150px;
-    }
-}
-
-a:hover :where(figure, .template) {
-    color: var(--menu-hover-color);
-    background: var(--menu-hover-background);
-}
-
-.template {
-    margin-top: 5px;
-}
-
 :host {
+    --cell: repeat(auto-fill, minmax(200px, 1fr));
     margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: var(--cell);
     gap: 30px 10px;
 
     figcaption {
         display: flex;
         flex-direction: column;
         flex: 1;
+        justify-content: flex-end;
+        margin-bottom: 5px;
 
         .groups {
             padding-top: 3px;
@@ -60,18 +33,56 @@ a:hover :where(figure, .template) {
 
         .date {
             font-size: 80%;
-            height: 16px;
-            white-space: nowrap;
         }
+    }
+
+    @media screen and (max-width: 800px) {
+        --cell: repeat(4, calc(25% - 4px));
+    }
+
+    @media screen and (max-width: 350px) {
+        --cell: repeat(3, calc(33.3% - 4px));
     }
 }
 
-.classement a {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr auto;
-    gap: 10px;
-    height: 100%;
+:where(figure, .template) {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    color: var(--menu-color);
+    background: var(--menu-background);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
+
+    img {
+        max-width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+        padding: 3px;
+    }
+}
+
+a:hover :where(figure, .template) {
+    color: var(--menu-hover-color);
+    background: var(--menu-hover-background);
+}
+
+.template {
+    margin-top: 5px;
+}
+
+.classement {
+    a {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr auto;
+        gap: 10px;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .category {
@@ -99,13 +110,44 @@ a:hover :where(figure, .template) {
 }
 
 @media screen and (max-width: 800px) {
-    .result {
-        gap: 20px 5px;
+    :host {
+        gap: 10px 5px;
+    }
 
+    .result {
         figcaption .date {
             margin-top: 4px;
             font-size: 60%;
             height: 12px;
         }
+    }
+
+    .category,
+    .category:first-child {
+        font-size: 60%;
+    }
+
+    .groups {
+        font-size: 80%;
+    }
+
+    .change {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    :host {
+        gap: 5px;
+    }
+
+    .result {
+        figcaption .date {
+            font-size: 40%;
+        }
+    }
+
+    .category:first-child {
+        font-size: 50%;
     }
 }

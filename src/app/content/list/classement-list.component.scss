@@ -1,6 +1,6 @@
 :host.page {
     display: block;
-    margin: 0 15px 30px 30px;
+    margin: var(--main-padding);
 }
 
 .infos {
@@ -36,6 +36,10 @@ table {
 
 .category {
     width: 200px;
+}
+
+.category-rwd {
+    display: none;
 }
 
 .tags {
@@ -84,10 +88,6 @@ tbody {
 
 td {
     padding: 10px 5px;
-
-    a {
-        white-space: nowrap;
-    }
 }
 
 .from,
@@ -131,6 +131,17 @@ td {
     .groups,
     .items {
         display: none;
+    }
+    .category {
+        display: none;
+    }
+    .category-rwd {
+        display: block;
+        font-size: 80%;
+        font-weight: 700;
+    }
+    .title a {
+        margin: 0px;
     }
 }
 

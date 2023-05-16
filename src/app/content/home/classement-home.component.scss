@@ -1,6 +1,6 @@
 :host {
     display: block;
-    margin: 0 15px 30px 30px;
+    margin: var(--main-padding);
 }
 
 .infos {
@@ -61,6 +61,7 @@
 }
 
 navigate-result {
+    display: flex;
     flex-wrap: nowrap;
     position: relative;
     overflow: hidden;

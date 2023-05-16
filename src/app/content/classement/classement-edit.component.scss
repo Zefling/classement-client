@@ -4,7 +4,7 @@
     width: 100%;
 
     & > div {
-        padding: 0 15px 30px 30px;
+        padding: var(--main-padding);
         position: relative;
         flex: 1;
     }

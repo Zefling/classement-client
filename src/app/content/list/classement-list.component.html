@@ -47,6 +47,9 @@
                     <div>
                         {{ item.options.title || ('list.title.undefined' | translate) }}
                     </div>
+                    <div class="category-rwd">
+                        {{ 'category.' + (item.options.category || 'undefined') | translate }}
+                    </div>
                     <div class="tags" *ngIf="item.options.tags?.length">
                         <tag-list
                             [tags]="item.options.tags"

@@ -466,6 +466,13 @@ dialog-cmp.auto-format .main {
     .note {
         font-size: 90%;
     }
+
+    .buttons-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
 }
 
 .list-error {

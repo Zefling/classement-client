@@ -5,14 +5,16 @@
         <label>{{ 'navigate.title' | translate }}</label>
         <input type="search" [(ngModel)]="searchKey" />
     </div>
-    <div class="categories">
-        <label>{{ 'navigate.category' | translate }}</label>
-        <select type="text" maxlength="150" [(ngModel)]="category">
-            <option></option>
-            <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
-        </select>
+    <div class="line">
+        <div class="categories">
+            <label>{{ 'navigate.category' | translate }}</label>
+            <select type="text" maxlength="150" [(ngModel)]="category">
+                <option></option>
+                <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
+            </select>
+        </div>
+        <button (click)="submit(true)">{{ 'navigate.search' | translate }}</button>
     </div>
-    <button (click)="submit(true)">{{ 'navigate.search' | translate }}</button>
 </div>
 
 <h3>

@@ -9,7 +9,7 @@
 </div>
 
 <ng-container *ngIf="jsonTmp">
-    <div class="button-image-save" *ngIf="jsonTmp.length > 1">
+    <div class="buttons-list button-image-save" *ngIf="jsonTmp.length > 1">
         <button class="button-add primary" (click)="selectAll(true)" *ngIf="jsonTmp">
             {{ 'gererator.json.select.all' | translate }}
         </button>
@@ -39,7 +39,7 @@
     </label>
 </ng-container>
 
-<div class="button-image-save">
+<div class="buttons-list button-image-save">
     <button class="button-add" (click)="cancelJson()">{{ 'gererator.json.cancel' | translate }}</button>
     <ng-container *ngIf="!multi && actions === 'all'">
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')" *ngIf="jsonTmp">
