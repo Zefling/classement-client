@@ -24,6 +24,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-edit-2:before {
+    content: '\e91d';
+}
 .icon-server:before {
     content: '\e91c';
 }
@@ -81,7 +84,7 @@
 .icon-add:before {
     content: '\e91b';
 }
-.icon-not-validated:before {
+.icon-not-verified:before {
     content: '\e907';
 }
 .icon-group:before {
@@ -95,25 +98,19 @@
 }
 .icon-deleted:before {
     content: '\e900';
-    color: var(--color-icon-deleted);
 }
 .icon-admin:before {
     content: '\e901';
-    color: var(--color-icon-admin);
 }
 .icon-moderator:before {
     content: '\e902';
-    color: var(--color-icon-moderator);
 }
 .icon-banned:before {
     content: '\e903';
-    color: var(--color-icon-banned);
 }
 .icon-validated:before {
     content: '\e904';
-    color: var(--color-icon-validated);
 }
 .icon-user:before {
     content: '\e905';
-    color: var(--color-icon-user);
 }

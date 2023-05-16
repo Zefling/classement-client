@@ -12,7 +12,7 @@ import { Subscription, first } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, Data, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { Classement, Data, FileString, FormatedGroup, GroupOption, Options } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -47,6 +47,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     options!: Options;
     nameOpacity!: string;
+    currentGroup?: GroupOption;
 
     changeTimer: any[] = [];
 
@@ -76,6 +77,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
+    @ViewChild('dialogGroupOption') dialogGroupOption!: DialogComponent;
     @ViewChild(ClassementEditImageComponent) dialogInfo!: ClassementEditImageComponent;
 
     private _canvas?: HTMLCanvasElement;
@@ -466,6 +468,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.globalChange();
         this.updateSize();
         this.change();
+    }
+
+    updateGoupOption(group: GroupOption) {
+        this.currentGroup = group;
+        this.dialogGroupOption.open();
     }
 
     updateSize() {

@@ -65,11 +65,11 @@ label {
     width: 800px;
 
     .cropper {
-        flex: 1;
+        flex: 2;
     }
 
     .image {
-        width: 300px;
+        flex: 1;
 
         &:not(:first-child) {
             margin: 15px;
@@ -79,6 +79,32 @@ label {
             border: 1px solid #ccc;
             box-shadow: 0 0 4px #888;
             border-radius: 50%;
+            max-width: 100%;
         }
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cropper-line {
+        max-width: 600px;
+        width: 600px;
+    }
+
+    .cropper {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .cropper-line {
+        max-width: 400px;
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cropper-line {
+        max-width: 350px;
+        width: 350px;
     }
 }

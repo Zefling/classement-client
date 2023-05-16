@@ -53,8 +53,15 @@
                                     ></textarea>
                                 </label>
 
-                                <span class="color txtColor icon-text-color" (click)="inputTxtColor.click()"></span>
-                                <span class="color bgColor icon-background-color" (click)="inputBgColor.click()"></span>
+                                <span
+                                    class="color group-options icon-edit-2"
+                                    (click)="updateGoupOption({group, indexGrp, first, last})"
+                                ></span>
+                                <span class="color txt-color icon-text-color" (click)="inputTxtColor.click()"></span>
+                                <span
+                                    class="color bg-color icon-background-color"
+                                    (click)="inputBgColor.click()"
+                                ></span>
                                 <div class="colors">
                                     <input
                                         class="color"
@@ -362,6 +369,80 @@
             {{ 'gererator.actions.reset.groups.ok' | translate }}
         </button>
     </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogGroupOption>
+    <ng-container *ngIf="currentGroup">
+        <div class="colors-options">
+            <span class="color txt-color icon-text-color group-options" (click)="inputBgColorGroup.click()"></span>
+            <span
+                class="color bg-color icon-background-color group-options"
+                (click)="inputTxtColorGroup.click()"
+            ></span>
+            <label
+                class="name"
+                [style.color]="currentGroup.group.bgColor"
+                [style.background]="currentGroup.group.txtColor"
+            >
+                <textarea
+                    autosize
+                    [(ngModel)]="currentGroup.group.name"
+                    (ngModelChange)="globalChange()"
+                    maxlength="500"
+                ></textarea>
+            </label>
+        </div>
+        <div class="colors">
+            <input
+                class="color group-options"
+                type="color"
+                [(ngModel)]="currentGroup.group.bgColor"
+                (ngModelChange)="globalChange()"
+                #inputBgColorGroup
+            />
+            <input
+                class="color group-options"
+                type="color"
+                [(ngModel)]="currentGroup.group.txtColor"
+                (ngModelChange)="globalChange()"
+                #inputTxtColorGroup
+            />
+        </div>
+        <div class="button-actions">
+            <button
+                class="button-up group-options"
+                (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()"
+                *ngIf="!currentGroup.first"
+            >
+                ↑
+            </button>
+            <button
+                class="button-down group-options"
+                (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()"
+                *ngIf="!currentGroup.last"
+            >
+                ↓
+            </button>
+            <button
+                class="button-suppr group-options"
+                (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
+                *ngIf="!(currentGroup.first && currentGroup.last)"
+            >
+                {{ 'gererator.line.delete' | translate }}
+            </button>
+            <button
+                class="button-add group-options"
+                (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()"
+            >
+                {{ 'gererator.line.add' | translate }}
+            </button>
+        </div>
+        <div class="buttons">
+            <button class="primary" (click)="dialogGroupOption.close()">
+                {{ 'gererator.actions.reset.groups.ok' | translate }}
+            </button>
+        </div>
+    </ng-container>
 </dialog-cmp>
 
 <classement-edit-image [currentTile]="currentTile" #editImage></classement-edit-image>

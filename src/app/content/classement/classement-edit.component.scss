@@ -141,8 +141,8 @@
     display: grid;
     gap: 3px;
     grid-template:
-        'up suppr' auto
-        'down add' auto /
+        'up suppr' 1fr
+        'down add' 1fr /
         auto 1fr;
 
     button {
@@ -213,7 +213,7 @@ img {
         height: 100%;
         grid-template:
             'a a a a a' auto
-            '. b . c .' 35px
+            '. b e c .' 35px
             'd d d d d' 0
             /1fr auto 1fr auto 1fr;
     }
@@ -247,10 +247,15 @@ input.color {
     grid-area: d;
 }
 
+.group-options {
+    display: none;
+}
+
 span.color {
     grid-area: b;
     font-size: 24px;
     width: 30px;
+    height: 30px;
     border: 1px solid #888;
     background-color: #fff8;
     color: #000;
@@ -260,8 +265,12 @@ span.color {
     display: block;
 }
 
-span.color + span {
+span.txt-color {
     grid-area: c;
+}
+span.group-options {
+    grid-area: e;
+    display: none;
 }
 
 [drop-image] .content-box {
@@ -500,35 +509,64 @@ loading-cmp {
 }
 
 @media screen and (max-width: 768px) {
-    .table-classement,
-    .table-classement tbody {
-        display: block;
+    .names {
+        width: calc(var(--over-name-width, 150px) / 2);
+        min-width: calc(var(--over-name-width, 150px) / 2);
     }
 
-    .table-classement .button-actions,
-    .table-classement .names > div {
-        display: flex;
+    .table-classement {
+        .button-up,
+        .button-down,
+        .button-suppr,
+        .button-add,
+        .txt-color,
+        .bg-color {
+            display: none;
+        }
     }
 
-    .table-classement .names {
-        width: auto;
-        min-width: auto;
-    }
-
-    .table-classement tr {
+    .colors-options {
         display: grid;
-        grid-template:
-            'name options'
-            'list list' /
-            auto auto;
-        align-items: center;
+        grid-template: 'a b' 'c b' / 70px 1fr;
+        width: 100%;
+        gap: 5px;
+
+        .txt-color {
+            grid-area: a;
+            padding: 5px;
+        }
+
+        .bg-color {
+            grid-area: c;
+            padding: 5px;
+        }
+
+        .name {
+            grid-area: b;
+        }
     }
 
-    .elements {
-        grid-area: list;
+    .auto-format .colors {
+        padding: 0;
+    }
+
+    span.group-options {
+        display: inline-block;
+    }
+
+    .button-actions {
+        margin: auto;
+        max-width: 150px;
+        button {
+            display: inline;
+        }
     }
 
     .table-classement thead {
         display: none;
+    }
+
+    .save-actions {
+        padding: 20px 0;
     }
 }
