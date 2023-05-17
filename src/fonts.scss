@@ -98,19 +98,25 @@
 }
 .icon-deleted:before {
     content: '\e900';
+    color: var(--color-icon-deleted);
 }
 .icon-admin:before {
     content: '\e901';
+    color: var(--color-icon-admin);
 }
 .icon-moderator:before {
     content: '\e902';
+    color: var(--color-icon-moderator);
 }
 .icon-banned:before {
     content: '\e903';
+    color: var(--color-icon-banned);
 }
 .icon-validated:before {
     content: '\e904';
+    color: var(--color-icon-validated);
 }
 .icon-user:before {
     content: '\e905';
+    color: var(--color-icon-user);
 }
