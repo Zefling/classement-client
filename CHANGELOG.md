@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.9.6 (2023-05-17)
+
+### Standalone web app
+
+-   fix icons for Android
+
+### With API activited only
+
+-   fix color in admin
+
 ## 1.9.5 (2023-05-17)
 
 ### Standalone web app
