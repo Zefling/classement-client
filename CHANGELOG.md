@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.9.4 (2023-05-17)
+
+### Standalone web app
+
+-   improve mobile #35
+-   fix image download
+
 ## 1.9.3 (2023-05-15)
 
 ### Standalone web app
