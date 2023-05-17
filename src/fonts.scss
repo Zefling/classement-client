@@ -24,6 +24,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-down:before {
+    content: '\e91e';
+}
+.icon-right:before {
+    content: '\e91f';
+}
+.icon-up:before {
+    content: '\e920';
+}
+.icon-left:before {
+    content: '\e921';
+}
 .icon-edit-2:before {
     content: '\e91d';
 }

@@ -23,7 +23,7 @@
 </h3>
 
 <div class="return" *ngIf="!isCatagoryList">
-    <a [routerLink]="['/navigate']">🢀 {{ 'navigate.back.category' | translate }}</a>
+    <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.category' | translate }}</a>
 </div>
 
 <paginate-cmp

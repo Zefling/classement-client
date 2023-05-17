@@ -1,7 +1,9 @@
 <h2>{{ 'navigate.visualization' | translate }}</h2>
 
 <div class="return" *ngIf="classement">
-    <a [routerLink]="['/navigate/template', classement.templateId]"> 🢀 {{ 'navigate.see.derivatives' | translate }} </a>
+    <a [routerLink]="['/navigate/template', classement.templateId]" class="icon-left">
+        {{ 'navigate.see.derivatives' | translate }}
+    </a>
 </div>
 
 <ng-container *ngIf="!loading && classement && classement.data">
