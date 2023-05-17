@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.9.5 (2023-05-17)
+
+### Standalone web app
+
+-   improve mobile #35
+-   fix group options dialog for mobile
+
 ## 1.9.4 (2023-05-17)
 
 ### Standalone web app
