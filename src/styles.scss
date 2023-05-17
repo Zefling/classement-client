@@ -330,7 +330,6 @@ input::file-selector-button {
     margin: 0 5px;
     outline: none;
     cursor: pointer;
-    white-space: nowrap;
 
     &:hover {
         background: var(--button-defaut-hover-background);
@@ -347,6 +346,7 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    max-width: 100%;
 }
 
 button:disabled {
