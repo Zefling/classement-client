@@ -154,3 +154,10 @@ loading-cmp {
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .preview ::ng-deep .names {
+        width: calc(var(--over-name-width, 150px) / 2);
+        min-width: calc(var(--over-name-width, 150px) / 2);
+    }
+}
