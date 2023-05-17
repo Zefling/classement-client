@@ -702,5 +702,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return this.options.title.trim() || this.translate.instant('list.title.undefined');
     }
 
-    private downloadImage(data: string, filename: string) {}
+    private downloadImage(data: string, filename: string) {
+        Utils.downloadFile(data, filename);
+    }
 }
