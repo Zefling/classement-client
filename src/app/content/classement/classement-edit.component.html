@@ -374,17 +374,11 @@
 <dialog-cmp class="auto-format" #dialogGroupOption>
     <ng-container *ngIf="currentGroup">
         <div class="colors-options">
-            <span class="color txt-color icon-text-color group-options" (click)="inputBgColorGroup.click()"></span>
-            <span
-                class="color bg-color icon-background-color group-options"
-                (click)="inputTxtColorGroup.click()"
-            ></span>
-            <label
-                class="name"
-                [style.color]="currentGroup.group.bgColor"
-                [style.background]="currentGroup.group.txtColor"
-            >
+            <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
+            <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
+            <label class="name" [style.background-color]="currentGroup.group.bgColor">
                 <textarea
+                    [style.color]="currentGroup.group.txtColor"
                     autosize
                     [(ngModel)]="currentGroup.group.name"
                     (ngModelChange)="globalChange()"

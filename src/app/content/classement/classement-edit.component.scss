@@ -509,6 +509,10 @@ loading-cmp {
 }
 
 @media screen and (max-width: 768px) {
+    .drop-image-message {
+        font-size: 60%;
+    }
+
     .names {
         width: calc(var(--over-name-width, 150px) / 2);
         min-width: calc(var(--over-name-width, 150px) / 2);

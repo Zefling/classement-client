@@ -65,6 +65,21 @@ navigate-result {
     flex-wrap: nowrap;
     position: relative;
     overflow: hidden;
+    --image-size: 200px;
+
+    ::ng-deep {
+        .classement {
+            min-width: var(--image-size);
+        }
+        figure {
+            flex-direction: column !important;
+        }
+
+        img {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
 
     &::before {
         content: '';
@@ -98,6 +113,10 @@ navigate-result {
         scroll-snap-align: center;
         flex: 1 1 max(150px, 33%);
     }
+
+    navigate-result {
+        --image-size: 175px;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -109,5 +128,9 @@ navigate-result {
         .icon {
             font-size: 60px;
         }
+    }
+
+    navigate-result {
+        --image-size: 150px;
     }
 }

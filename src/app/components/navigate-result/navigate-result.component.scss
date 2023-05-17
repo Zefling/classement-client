@@ -35,14 +35,6 @@
             font-size: 80%;
         }
     }
-
-    @media screen and (max-width: 800px) {
-        --cell: repeat(4, calc(25% - 4px));
-    }
-
-    @media screen and (max-width: 350px) {
-        --cell: repeat(3, calc(33.3% - 4px));
-    }
 }
 
 :where(figure, .template) {
@@ -110,44 +102,70 @@ a:hover :where(figure, .template) {
 }
 
 @media screen and (max-width: 800px) {
-    :host {
-        gap: 10px 5px;
-    }
+    :host.categories {
+        --cell: repeat(4, calc(25% - 4px));
 
-    .result {
-        figcaption .date {
-            margin-top: 4px;
+        gap: 10px 5px;
+
+        .result {
+            figcaption .date {
+                margin-top: 4px;
+                font-size: 60%;
+                height: 12px;
+            }
+        }
+
+        .category,
+        .category:first-child {
             font-size: 60%;
-            height: 12px;
+        }
+
+        .groups {
+            font-size: 80%;
         }
     }
 
-    .category,
-    .category:first-child {
-        font-size: 60%;
-    }
+    :host:not(.categories) {
+        gap: 5px;
+        --cell: repeat(2, calc(50% - 4px));
 
-    .groups {
-        font-size: 80%;
-    }
+        figure {
+            flex-direction: row;
+        }
 
-    .change {
-        display: none;
+        .template {
+            display: none;
+        }
+
+        img {
+            max-width: 40%;
+            width: 40%;
+            align-self: center;
+        }
     }
 }
 
-@media screen and (max-width: 350px) {
-    :host {
+@media screen and (max-width: 450px) {
+    :host.categories {
+        --cell: repeat(3, calc(33.3% - 4px));
+
         gap: 5px;
     }
 
-    .result {
-        figcaption .date {
-            font-size: 40%;
-        }
-    }
+    :host:not(.categories) {
+        gap: 5px;
+        --cell: 100%;
 
-    .category:first-child {
-        font-size: 50%;
+        figure {
+            flex-direction: row;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        img {
+            max-width: 40%;
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 import { Classement } from 'src/app/interface';
 
@@ -9,6 +9,9 @@ import { Classement } from 'src/app/interface';
 })
 export class NavigateResultComponent {
     @Input() classements: Classement[] = [];
-    @Input() isCatagoryList = false;
     @Input() hideDerivatives = false;
+
+    @HostBinding('class.categories')
+    @Input()
+    isCatagoryList = false;
 }
