@@ -13,13 +13,13 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
-import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from './classement-default';
 
@@ -67,7 +67,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     showError: string[] = [];
 
-    private _sub: Subscription[] = [];
+    private _sub = Subscriptions.instance();
 
     constructor(
         private readonly userService: APIUserService,
@@ -104,7 +104,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     }
 
     ngOnDestroy() {
-        this._sub.forEach(e => e.unsubscribe());
+        this._sub.clear();
     }
 
     cancel() {

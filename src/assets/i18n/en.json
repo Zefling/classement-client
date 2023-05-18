@@ -425,6 +425,7 @@
       "username": "User:",
       "since": "Since:",
       "email": "Email:",
+      "total": "Total:",
       "actions": "Actions",
       "change.email": "Change email",
       "change.password": "Change password",
@@ -446,6 +447,11 @@
         "cancel": "Cancel",
         "update": "Update",
         "remove": "Remove my avatar"
+      },
+      "view": {
+        "title": "Profile: ",
+        "rankings": "Tierlists",
+        "empty": "No tierlists for this user at this time."
       },
       "list.browser.tab": "Browser list",
       "list.server.tab": "Server list",

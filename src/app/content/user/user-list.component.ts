@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
-
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
@@ -13,6 +11,7 @@ import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 @Component({
@@ -35,7 +34,7 @@ export class UserListComponent implements OnDestroy {
 
     currentAction?: 'change' | 'delete';
 
-    private listener: Subscription[] = [];
+    private listener = Subscriptions.instance();
 
     constructor(
         private dbservice: DBService,
@@ -88,7 +87,7 @@ export class UserListComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 
     tabChange(id: string): void {

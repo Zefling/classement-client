@@ -13,6 +13,7 @@ import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
 import { UserSignupValidateComponent } from './user-signup-validate.component';
 import { UserSignupComponent } from './user-signup.component';
+import { UserViewComponent } from './user-view.component';
 
 const routes: Routes = [
     {
@@ -73,6 +74,12 @@ const routes: Routes = [
         path: 'lists/:page',
         pathMatch: 'full',
         component: UserListComponent,
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: ':id',
+        pathMatch: 'full',
+        component: UserViewComponent,
         canActivate: [DataChange, APIRequired],
     },
 ];

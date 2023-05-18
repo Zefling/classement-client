@@ -1,0 +1,36 @@
+<ng-container *ngIf="user">
+    <h1>{{ 'user.profile.view.title' | translate }}{{ user.username }}</h1>
+
+    <div>
+        <div class="user">
+            <div class="avatar">
+                <span *ngIf="!user.avatar" class="icon icon-profile"></span>
+                <img *ngIf="user.avatar" [src]="user.avatarUrl" />
+            </div>
+
+            <div>
+                <strong>{{ 'user.profile.since' | translate }}</strong>
+                {{ user.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }}
+            </div>
+            <div>
+                <strong>{{ 'user.profile.total' | translate }}</strong>
+                {{ user.classements?.length || 0 }}
+            </div>
+        </div>
+
+        <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
+
+        <navigate-result
+            *ngIf="user.classements; else noClassement"
+            [classements]="user.classements"
+            hideDerivatives
+            hideUser
+            onlyRanking
+        ></navigate-result>
+        <ng-template #noClassement>
+            <div>
+                {{ 'user.profile.view.empty' | translate }}
+            </div>
+        </ng-template>
+    </div>
+</ng-container>

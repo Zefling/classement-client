@@ -5,7 +5,7 @@
 </div>
 
 <ng-container *ngIf="!loading">
-    <navigate-result [classements]="classements" [hideDerivatives]="true"></navigate-result>
+    <navigate-result [classements]="classements" hideDerivatives></navigate-result>
 </ng-container>
 
 <loader-item *ngIf="loading"></loader-item>

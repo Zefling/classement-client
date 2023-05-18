@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
-import { Subscription, debounceTime } from 'rxjs';
+import { debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { FileHandle, User } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 import { UserPassword } from './user-password';
@@ -23,7 +24,7 @@ import { UserPassword } from './user-password';
 export class UserProfileComponent extends UserPassword implements OnDestroy {
     user?: User;
 
-    listener: Subscription[] = [];
+    listener = Subscriptions.instance();
 
     @ViewChild('avatarDialog') avatarDialog!: DialogComponent;
     @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
@@ -117,7 +118,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 
     override formGroupPasswordForm() {

@@ -13,6 +13,7 @@ import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
 import { UserPwLostComponent } from './user-pw-lost.component';
 import { UserSignupValidateComponent } from './user-signup-validate.component';
 import { UserSignupComponent } from './user-signup.component';
+import { UserViewComponent } from './user-view.component';
 import { UserRoutingModule } from './user.routing';
 
 import { ClassementListModule } from '../list/classement-list.module';
@@ -29,6 +30,7 @@ import { ClassementListModule } from '../list/classement-list.module';
         UserPwLostChangeComponent,
         UserInformationComponent,
         UserListComponent,
+        UserViewComponent,
     ],
     imports: [SharedModule, UserRoutingModule, ClassementListModule, ImageCropperModule],
     providers: [],

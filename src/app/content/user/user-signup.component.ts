@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import owasp from 'owasp-password-strength-test';
-import { Subscription, debounceTime } from 'rxjs';
+import { debounceTime } from 'rxjs';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -27,7 +28,7 @@ export class UserSignupComponent implements OnDestroy {
     strong = false;
     confirm = false;
 
-    listener: Subscription[] = [];
+    listener = Subscriptions.instance();
 
     constructor(
         private router: Router,
@@ -91,7 +92,7 @@ export class UserSignupComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 
     submit() {

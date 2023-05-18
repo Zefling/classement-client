@@ -1,9 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
     selector: 'user-login-oauth',
@@ -15,7 +14,7 @@ export class UserLoginAouthComponent implements OnDestroy {
 
     loader = true;
 
-    private listener: Subscription[] = [];
+    private listener = Subscriptions.instance();
 
     constructor(private router: Router, private userService: APIUserService, private activatedRoute: ActivatedRoute) {
         this.listener.push(
@@ -46,7 +45,7 @@ export class UserLoginAouthComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
         this.loader = false;
     }
 }

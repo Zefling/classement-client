@@ -4,7 +4,7 @@
             [routerLink]="
                 isCatagoryList
                     ? ['/navigate']
-                    : classement.templateTotal <= 1
+                    : classement.templateTotal <= 1 || this.onlyRanking
                     ? ['/navigate/view', classement.rankingId]
                     : ['/navigate/template', classement.templateId]
             "
@@ -27,7 +27,7 @@
                                 <span class="icon-tile"></span> {{ classement.totalItems }}
                             </div>
                         </div>
-                        <div class="username">
+                        <div class="username" *ngIf="!hideUser">
                             {{
                                 'user.by'
                                     | translate : { autor: classement.user || ('list.user.anonymous' | translate) }

@@ -323,6 +323,19 @@ export class APIUserService extends APICommon {
         });
     }
 
+    getUser(userId: string): Promise<User> {
+        return new Promise<User>((resolve, reject) => {
+            this.http.get<Message<User>>(`${environment.api.path}api/profile/${userId}`).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('getUser', result));
+                },
+            });
+        });
+    }
+
     adminGetUsers(page: number = 1): Promise<{ total: number; list: User[] }> {
         return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page);

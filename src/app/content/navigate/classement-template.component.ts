@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from '../classement/classement-default';
 
@@ -22,7 +21,7 @@ export class ClassementTemplateComponent {
 
     loading = false;
 
-    private _sub: Subscription[] = [];
+    private _sub = Subscriptions.instance();
 
     constructor(
         private readonly classementService: APIClassementService,
@@ -54,6 +53,6 @@ export class ClassementTemplateComponent {
     }
 
     ngOnDestroy() {
-        this._sub.forEach(e => e.unsubscribe());
+        this._sub.clear();
     }
 }

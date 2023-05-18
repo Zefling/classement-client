@@ -1,10 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
     selector: 'admin-classements',
@@ -12,7 +11,7 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
     styleUrls: ['./admin-classements.component.scss'],
 })
 export class AdminClassementsComponent implements OnDestroy {
-    private _sub: Subscription[] = [];
+    private _sub = Subscriptions.instance();
 
     classements: { [key: number]: Classement[] } = {};
     total?: number = 0;
@@ -28,7 +27,7 @@ export class AdminClassementsComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
-        this._sub.forEach(e => e.unsubscribe());
+        this._sub.clear();
     }
 
     pageUpdate(page: number) {

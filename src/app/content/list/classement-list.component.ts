@@ -3,8 +3,6 @@ import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
-
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -13,6 +11,7 @@ import { FormatedInfos } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Logger } from 'src/app/services/logger';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -42,7 +41,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     changeTemplate = false;
 
-    private listener: Subscription[] = [];
+    private listener = Subscriptions.instance();
 
     constructor(
         private readonly dbservice: DBService,
@@ -84,7 +83,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 
     exportAll() {

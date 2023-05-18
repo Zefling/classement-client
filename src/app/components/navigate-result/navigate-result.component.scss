@@ -17,6 +17,12 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+
+            & + * {
+                border-top: 1px solid var(--menu-separator);
+                margin-top: 5px;
+                padding-top: 5px;
+            }
         }
 
         .name {
@@ -24,9 +30,6 @@
         }
 
         .username {
-            border-top: 1px solid var(--menu-separator);
-            margin-top: 5px;
-            padding-top: 5px;
             font-weight: 700;
             font-size: 80%;
         }

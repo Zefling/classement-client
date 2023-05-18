@@ -4,7 +4,6 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import html2canvas from 'html2canvas';
-import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -14,6 +13,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -51,9 +51,9 @@ export class ClassementViewComponent implements OnDestroy {
     @ViewChild('dialogHistory') dialogHistory!: DialogComponent;
     @ViewChild('dialogPassword') dialogPassword!: DialogComponent;
 
-    private _canvas?: HTMLCanvasElement;
-    private _id?: string;
-    private _sub: Subscription[] = [];
+    private canvas?: HTMLCanvasElement;
+    private id?: string;
+    private sub = Subscriptions.instance();
 
     constructor(
         private readonly classementService: APIClassementService,
@@ -68,25 +68,25 @@ export class ClassementViewComponent implements OnDestroy {
     ) {
         this.logged = this.userService.logged;
 
-        this._sub.push(
+        this.sub.push(
             this.route.params.subscribe(params => {
                 if (params['id'] && params['id'] !== 'new') {
-                    this._id = params['id'];
+                    this.id = params['id'];
                     this.historyId = params['history'] ? +params['history'] : undefined;
 
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
-                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this._id);
+                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
                             this.exportImageDisabled = true;
                             if (!classement && !this.historyId) {
-                                classement = this.userService.getByIdFormCache(this._id!);
+                                classement = this.userService.getByIdFormCache(this.id!);
                             }
                             if (classement && !this.historyId) {
                                 this.logger.log('loadServerClassement (user)');
                                 this.loadClassement(classement);
                             } else {
                                 this.classementService
-                                    .getClassement(this._id!, undefined, this.historyId)
+                                    .getClassement(this.id!, undefined, this.historyId)
                                     .then(classement => {
                                         this.logger.log('loadServerClassement (server)');
                                         this.loadClassement(classement);
@@ -96,13 +96,13 @@ export class ClassementViewComponent implements OnDestroy {
                                         if ((e as MessageError)?.code === 401) {
                                             this.dialogPassword.open();
                                         } else {
-                                            this.loadLocalClassement(this._id!);
+                                            this.loadLocalClassement(this.id!);
                                         }
                                     });
                             }
                         });
                     } else {
-                        this.loadLocalClassement(this._id!);
+                        this.loadLocalClassement(this.id!);
                     }
                 } else {
                     this.router.navigate(['navigate']);
@@ -113,7 +113,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     openClassementWithPassword(password: string) {
         this.classementService
-            .getClassement(this._id!, password, this.historyId)
+            .getClassement(this.id!, password, this.historyId)
             .then(classement => {
                 this.logger.log('loadServerClassement (server)');
                 this.userService.addCache(classement);
@@ -135,7 +135,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this._sub.forEach(e => e.unsubscribe());
+        this.sub.clear();
     }
 
     loadClassement(classement: Classement) {
@@ -278,22 +278,22 @@ export class ClassementViewComponent implements OnDestroy {
             const element = this.image.nativeElement;
             element.innerHTML = '';
             element.appendChild(canvas);
-            this._canvas = canvas;
+            this.canvas = canvas;
         });
     }
 
     saveImage(type: string) {
         const title = this.getFileName();
-        if (this._canvas) {
+        if (this.canvas) {
             switch (type) {
                 case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), `${title}.png`);
+                    this.downloadImage(this.canvas.toDataURL('image/png'), `${title}.png`);
                     break;
                 case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), `${title}.jpeg`);
+                    this.downloadImage(this.canvas.toDataURL('image/jpeg', 1.0), `${title}.jpeg`);
                     break;
                 case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), `${title}.webp`);
+                    this.downloadImage(this.canvas.toDataURL('image/webp', 1.0), `${title}.webp`);
                     break;
             }
         }

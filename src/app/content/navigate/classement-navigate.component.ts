@@ -3,13 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
-
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from '../classement/classement-default';
 
@@ -35,7 +34,7 @@ export class ClassementNavigateComponent implements OnDestroy {
 
     isCatagoryList = false;
 
-    private _sub: Subscription[] = [];
+    private _sub = Subscriptions.instance();
 
     constructor(
         private readonly classementService: APIClassementService,
@@ -63,7 +62,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
-        this._sub.forEach(e => e.unsubscribe());
+        this._sub.clear();
     }
 
     showCategoriesList() {

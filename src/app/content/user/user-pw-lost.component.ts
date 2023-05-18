@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
-
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 @Component({
@@ -18,7 +17,7 @@ export class UserPwLostComponent implements OnDestroy {
     showError = '';
     valide = false;
 
-    listener: Subscription[] = [];
+    listener = Subscriptions.instance();
 
     constructor(private router: Router, private userService: APIUserService, private translate: TranslateService) {
         this.listener.push(
@@ -31,7 +30,7 @@ export class UserPwLostComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 
     submit() {

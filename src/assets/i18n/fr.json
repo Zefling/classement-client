@@ -426,6 +426,7 @@
       "username": "Utilisateur\u00A0:",
       "since": "Depuis\u00A0:",
       "email": "Courriel\u00A0:",
+      "total": "Total\u00A0:",
       "actions": "Actions",
       "change.email": "Changer de courriel",
       "change.password": "Changer de mot de passe",
@@ -447,6 +448,11 @@
         "cancel": "Annuler",
         "update": "Mise à jour",
         "remove": "Supprimer mon avatar"
+      },
+      "view": {
+        "title": "Profil : ",
+        "rankings": "Classements",
+        "empty": "Aucun classement pour cet utilisateur pour le moment."
       },
       "list.browser.tab": "Liste navigateur",
       "list.server.tab": "Liste serveur",

@@ -26,8 +26,19 @@
             </div>
         </div>
         <div class="username">
-            <div *ngIf="classement.userAvatar"><img class="avatar" [src]="classement.userAvatar" alt="avatar" /></div>
-            <div>{{ 'user.by' | translate : { autor: classement.user || ('list.user.anonymous' | translate) } }}</div>
+            <a *ngIf="classement.user; else noUser" [routerLink]="['/user', '@' + classement.user]">
+                <div *ngIf="classement.userAvatar">
+                    <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
+                </div>
+                <div>
+                    {{ 'user.by' | translate : { autor: classement.user } }}
+                </div>
+            </a>
+            <ng-template #noUser>
+                <div>
+                    {{ 'user.by' | translate : { autor: ('list.user.anonymous' | translate) } }}
+                </div>
+            </ng-template>
         </div>
         <div class="desc" *ngIf="classement.data.options.description">
             {{ classement.data.options.description }}

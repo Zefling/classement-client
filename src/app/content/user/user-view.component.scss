@@ -1,0 +1,38 @@
+:host {
+    display: block;
+    margin: var(--main-padding);
+}
+
+.user {
+    display: grid;
+    grid-template: 'a b' 'a c' 'a d' / auto 1fr;
+    gap: 0 20px;
+}
+
+.avatar {
+    grid-area: a;
+    height: 80px;
+    width: 80px;
+    font-size: 56px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--avatar-background);
+    margin: 0 10px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        margin-top: -7px;
+        opacity: var(--avatar-icon-opacity);
+    }
+
+    img {
+        max-height: 80px;
+        max-width: 80px;
+        display: block;
+        border-radius: 50%;
+    }
+}

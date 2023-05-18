@@ -1,10 +1,8 @@
-import { Component, DoCheck, ViewChild } from '@angular/core';
+import { Component, DoCheck, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
-
-import { Subscription } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -12,14 +10,15 @@ import { User } from 'src/app/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
 })
-export class AdminUsersComponent implements DoCheck {
-    private _sub: Subscription[] = [];
+export class AdminUsersComponent implements DoCheck, OnDestroy {
+    private _sub = Subscriptions.instance();
 
     users: { [key: number]: User[] } = {};
     total?: number = 0;
@@ -62,6 +61,10 @@ export class AdminUsersComponent implements DoCheck {
                 this.userForm.get('banned')!.enable();
             }
         }
+    }
+
+    ngOnDestroy(): void {
+        this._sub.clear();
     }
 
     pageUpdate(page: number) {

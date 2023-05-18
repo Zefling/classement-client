@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
-import { Subscription, first } from 'rxjs';
+import { first } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -20,6 +20,7 @@ import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
@@ -81,7 +82,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild(ClassementEditImageComponent) dialogInfo!: ClassementEditImageComponent;
 
     private _canvas?: HTMLCanvasElement;
-    private _sub: Subscription[] = [];
+    private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
     private _inputFile!: HTMLInputElement;
 
@@ -307,7 +308,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     ngOnDestroy() {
-        this._sub.forEach(e => e.unsubscribe());
+        this._sub.clear();
     }
 
     @HostListener('window:beforeunload', ['$event'])

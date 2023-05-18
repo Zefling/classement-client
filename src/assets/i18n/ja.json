@@ -426,6 +426,7 @@
       "username": "ユーザー：",
       "since": "以来：",
       "email": "電子メール：",
+      "total": "合計：",
       "actions": "アクション",
       "change.email": "電子メールアドレスを変更する",
       "change.password": "パスワードを変更する",
@@ -447,6 +448,12 @@
         "cancel": "キャンセル",
         "update": "更新",
         "remove": "自分のアバターを削除"
+      },
+
+      "view": {
+        "title": "プロフィール：",
+        "rankings": "ティアリスト",
+        "empty": "このユーザーにはまだティアリストがありません。"
       },
       "list.browser.tab": "ブラウザリスト",
       "list.server.tab": "サーバーリスト",

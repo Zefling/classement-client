@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subscription } from 'rxjs';
-
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,7 +25,7 @@ export class ClassementHomeComponent {
 
     classements: Classement[] = [];
 
-    private listener: Subscription[] = [];
+    private listener = Subscriptions.instance();
 
     constructor(
         private readonly userService: APIUserService,
@@ -53,6 +52,6 @@ export class ClassementHomeComponent {
     }
 
     ngOnDestroy(): void {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.clear();
     }
 }
