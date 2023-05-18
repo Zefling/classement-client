@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.9.7 (2023-05-18)
+
+### With API activited only
+
+-   add page for user (@username)
+
 ## 1.9.6 (2023-05-17)
 
 ### Standalone web app
