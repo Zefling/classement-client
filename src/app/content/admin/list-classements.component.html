@@ -17,8 +17,9 @@
             <td class="category">
                 {{ classement.user || ('list.user.anonymous' | translate) }}
             </td>
-            <td class="category">
-                {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+            <td class="category" (click)="editCatagory(classement)">
+                {{ 'category.' + (classement.category || 'undefined') | translate }}
+                <span class="icon-edit-2"></span>
             </td>
             <td class="date">
                 <span>{{ classement.dateCreate | date : ('date.dd/MM/yyyy' | translate) }}</span>
@@ -70,4 +71,38 @@
         [groups]="currentClassement.data.groups"
         [list]="currentClassement.data.list"
     ></see-classement>
+</dialog-cmp>
+
+<dialog-cmp #dialogEditCategory closeButton class="auto-format">
+    <ng-container *ngIf="currentClassement">
+        <h3>{{ 'list.category.edit.title' | translate }}</h3>
+
+        <div>
+            <label for="current-cat">{{ 'list.category.current' | translate }}</label>
+            <input
+                id="current-cat"
+                value="{{ 'category.' + (currentClassement.category || 'undefined') | translate }}"
+                disabled
+            />
+        </div>
+
+        <div>
+            <label for="new-cat">{{ 'list.category.new' | translate }} </label>
+            <select id="new-cat" #newCatagory>
+                <option
+                    *ngFor="let catagory of catagories"
+                    [value]="catagory"
+                    [selected]="currentClassement.category === catagory"
+                >
+                    {{ 'category.' + catagory | translate }}
+                </option>
+            </select>
+        </div>
+        <div>
+            <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | translate }}</button>
+            <button class="primary" (click)="changeStatusCurrentClassement(newCatagory.value, 'category')">
+                {{ 'list.category.edit' | translate }}
+            </button>
+        </div>
+    </ng-container>
 </dialog-cmp>

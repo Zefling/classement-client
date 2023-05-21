@@ -3,3 +3,16 @@
 :host {
     margin: 0;
 }
+
+.category {
+    --hide: hidden;
+
+    &:hover {
+        --hide: visible;
+        cursor: pointer;
+    }
+
+    .icon-edit-2 {
+        visibility: var(--hide);
+    }
+}

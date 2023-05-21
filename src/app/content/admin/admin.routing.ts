@@ -26,6 +26,10 @@ const routes: Routes = [
                 pathMatch: 'full',
                 component: AdminClassementsComponent,
             },
+            {
+                path: '**',
+                redirectTo: 'users',
+            },
         ],
     },
 ];

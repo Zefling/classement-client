@@ -86,7 +86,12 @@
     },
     "date": "Date",
     "category": {
-      "name": "Category"
+      "name": "Category",
+      "edit.title": "Edit a category",
+      "current": "Current Category",
+      "new": "New category",
+      "cancel": "Cancel",
+      "edit": "Edit"
     },
     "roles": {
       "name": "Roles"
