@@ -6,9 +6,21 @@
         <thead>
             <tr>
                 <th class="status">{{ 'list.status.list' | translate }}</th>
-                <th class="user">{{ 'list.user.name' | translate }}</th>
+                <th class="user sort" (click)="sortUpdate('username')">
+                    {{ 'list.user.name' | translate }}
+                    <span
+                        *ngIf="sort === 'username'"
+                        class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"
+                    ></span>
+                </th>
                 <th class="role">{{ 'list.roles.name' | translate }}</th>
-                <th class="date">{{ 'list.date' | translate }}</th>
+                <th class="date sort" (click)="sortUpdate('dateCreate')">
+                    {{ 'list.date' | translate }}
+                    <span
+                        *ngIf="sort === 'dateCreate'"
+                        class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"
+                    ></span>
+                </th>
                 <th class="classements">{{ 'list.count.classements' | translate }}</th>
                 <th class="actions">{{ 'list.action.name' | translate }}</th>
             </tr>

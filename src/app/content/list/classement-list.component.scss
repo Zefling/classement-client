@@ -47,6 +47,14 @@ table {
     font-size: 80%;
 }
 
+.sort {
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--list-header-background-hover);
+    }
+}
+
 .actions {
     width: 200px;
     white-space: nowrap;

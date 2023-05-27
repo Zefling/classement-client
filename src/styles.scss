@@ -56,6 +56,7 @@ body.light-mode {
     --dialog-shadow-color: #0003;
     // list
     --list-header-background: #c9c9c9;
+    --list-header-background-hover: #0002;
     --list-line-hover-background: #ecdfdf;
     --list-selected-text: #703e15;
     --no-result-background: #ecdfdf;
@@ -206,6 +207,7 @@ body.dark-mode {
     --dialog-shadow-color: #1b1b1b33;
     // list
     --list-header-background: #111;
+    --list-header-background-hover: #fff1;
     --list-line-hover-background: #312f2f;
     --list-selected-text: #db9879;
     --no-result-background: #312f2f;
@@ -489,7 +491,7 @@ dialog-cmp.auto-format .main {
 }
 
 .date > span {
-    display: inline-block;
+    display: block;
 
     & + span {
         font-size: 60%;

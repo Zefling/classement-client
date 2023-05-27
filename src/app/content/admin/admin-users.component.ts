@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { User } from 'src/app/interface';
+import { SortDirection, SortUserCol, User } from 'src/app/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
@@ -23,6 +23,9 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     users: { [key: number]: User[] } = {};
     total?: number = 0;
     page = 0;
+
+    sort: SortUserCol = 'dateCreate';
+    direction: SortDirection = 'DESC';
 
     @ViewChild('dialogListClassements') dialogListClassements!: DialogComponent;
 
@@ -43,6 +46,8 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
+                this.sort = params['sort'] || 'dateCreate';
+                this.direction = params['direction'] || 'DESC';
                 const page = params['page'] || 1;
                 this.pageUpdate(page);
             }),
@@ -52,13 +57,11 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     ngDoCheck(): void {
         if (this.userForm?.get('banned') && this.currentUser) {
-            if (
-                (this.disabledBanned() && this.userForm.get('banned')!.enabled) ||
-                this.currentUser.id === this.userService.user!.id
-            ) {
-                this.userForm.get('banned')!.disable();
-            } else if (!this.disabledBanned() && this.userForm.get('banned')!.disabled) {
-                this.userForm.get('banned')!.enable();
+            const banner = this.userForm.get('banned')!;
+            if ((this.disabledBanned() && banner.enabled) || this.currentUser.id === this.userService.user!.id) {
+                banner.disable();
+            } else if (!this.disabledBanned() && banner.disabled) {
+                banner.enable();
             }
         }
     }
@@ -67,9 +70,20 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         this._sub.clear();
     }
 
+    sortUpdate(sort: SortUserCol) {
+        this.users = {};
+        if (this.sort === sort) {
+            this.direction = this.direction === 'DESC' ? 'ASC' : 'DESC';
+        } else {
+            this.sort = sort;
+            this.direction = 'DESC';
+        }
+        this.pageUpdate(1);
+    }
+
     pageUpdate(page: number) {
         if (!this.users[page]) {
-            this.userService.adminGetUsers(page).then(result => {
+            this.userService.adminGetUsers(page, this.sort, this.direction).then(result => {
                 this.total = result.total;
                 this.page = page;
                 this.users[page] = result.list;

@@ -21,7 +21,7 @@ import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Message, MessageError } from '../content/user/user.interface';
-import { Classement, ClassementHistory } from '../interface';
+import { Classement, ClassementHistory, SortClassementCol, SortDirection } from '../interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
@@ -230,9 +230,13 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    adminGetClassements(page: number = 1): Promise<{ total: number; list: Classement[] }> {
+    adminGetClassements(
+        page: number = 1,
+        sort: SortClassementCol,
+        direction: SortDirection,
+    ): Promise<{ total: number; list: Classement[] }> {
         return new Promise<{ total: number; list: Classement[] }>((resolve, reject) => {
-            let params = new HttpParams().set('page', page);
+            let params = new HttpParams().set('page', page).set('order', sort).set('direction', direction);
 
             this.logger.log('params', LoggerLevel.log, params);
 

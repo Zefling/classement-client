@@ -4,7 +4,10 @@
     <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
     <list-classements
         [classements]="classements[page]"
+        [sort]="sort"
+        [direction]="direction"
         (updateClassements)="updateClassements($event)"
+        (sortUpdate)="sortUpdate($event)"
     ></list-classements>
     <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
 </ng-container>

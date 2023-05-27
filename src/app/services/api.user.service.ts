@@ -13,7 +13,7 @@ import { GlobalService } from './global.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Login, Message, MessageError } from '../content/user/user.interface';
-import { Classement, User } from '../interface';
+import { Classement, SortDirection, SortUserCol, User } from '../interface';
 import { Utils } from '../tools/utils';
 
 @Injectable({ providedIn: 'root' })
@@ -336,9 +336,14 @@ export class APIUserService extends APICommon {
         });
     }
 
-    adminGetUsers(page: number = 1): Promise<{ total: number; list: User[] }> {
+    adminGetUsers(
+        page: number = 1,
+        sort: SortUserCol,
+        direction: SortDirection,
+    ): Promise<{ total: number; list: User[] }> {
         return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
-            let params = new HttpParams().set('page', page);
+            let params = new HttpParams().set('page', page).set('order', sort).set('direction', direction);
+
             this.http
                 .get<Message<{ total: number; list: User[] }>>(`${environment.api.path}api/admin/users`, {
                     params,

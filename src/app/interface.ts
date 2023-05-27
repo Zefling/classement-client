@@ -170,3 +170,8 @@ export interface PreferencesData {
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
 export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';
+
+// sort
+export type SortUserCol = 'username' | 'dateCreate';
+export type SortClassementCol = 'name' | 'category' | 'dateCreate';
+export type SortDirection = 'ASC' | 'DESC';

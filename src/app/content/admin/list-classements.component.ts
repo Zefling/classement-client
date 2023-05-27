@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Classement } from 'src/app/interface';
+import { Classement, SortClassementCol, SortDirection } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Utils } from 'src/app/tools/utils';
 
@@ -17,6 +17,8 @@ import { categories } from '../classement/classement-default';
 })
 export class ListClassementsComponent {
     @Input() classements?: Classement[];
+    @Input() sort?: SortClassementCol;
+    @Input() direction?: SortDirection;
 
     @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
     @ViewChild('dialogSeeClassement') dialogSeeClassement!: DialogComponent;
@@ -29,6 +31,9 @@ export class ListClassementsComponent {
 
     @Output()
     updateClassements = new EventEmitter<Classement[]>();
+
+    @Output()
+    sortUpdate = new EventEmitter<SortClassementCol>();
 
     constructor(
         private readonly classementService: APIClassementService,

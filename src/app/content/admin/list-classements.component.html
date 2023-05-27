@@ -1,10 +1,19 @@
 <table>
     <thead>
         <tr>
-            <th class="title">{{ 'list.title.name' | translate }}</th>
+            <th class="title sort" (click)="sortUpdate.emit('name')">
+                {{ 'list.title.name' | translate }}
+                <span *ngIf="sort === 'name'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+            </th>
             <th class="user">{{ 'list.user.name' | translate }}</th>
-            <th class="category">{{ 'list.category.name' | translate }}</th>
-            <th class="date">{{ 'list.date' | translate }}</th>
+            <th class="category sort" (click)="sortUpdate.emit('category')">
+                {{ 'list.category.name' | translate }}
+                <span *ngIf="sort === 'category'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+            </th>
+            <th class="date sort" (click)="sortUpdate.emit('dateCreate')">
+                {{ 'list.date' | translate }}
+                <span *ngIf="sort === 'dateCreate'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+            </th>
             <th class="groups">{{ 'list.count.group' | translate }}</th>
             <th class="items">{{ 'list.count.item' | translate }}</th>
             <th class="status">{{ 'list.status.list' | translate }}</th>
