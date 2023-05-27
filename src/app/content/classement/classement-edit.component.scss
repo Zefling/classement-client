@@ -189,6 +189,10 @@ img {
     background-image: var(--over-image-url);
     background-repeat: repeat;
     border-spacing: 1px;
+
+    tr {
+        height: 100%;
+    }
 }
 
 .elements {
@@ -200,38 +204,62 @@ img {
     min-width: var(--over-name-width, 150px);
     text-align: center;
     border-radius: 4px;
-    color: var(--text-color);
     background: var(--name-background);
     border: 1px solid var(--name-border-color);
+    height: 100%;
 
-    textarea {
-        color: var(--text-color);
-    }
-
-    div {
+    & > div {
         display: grid;
         height: 100%;
         grid-template:
             'a a a a a' auto
-            '. b e c .' 35px
+            '. b e c .' var(--group-option-heigth, 35px)
             'd d d d d' 0
-            /1fr auto 1fr auto 1fr;
+            / 1fr auto 1fr auto 1fr;
+
+        & > div {
+            width: 100%;
+        }
+    }
+
+    .name {
+        grid-area: a;
+        display: flex;
+        align-items: center;
     }
 }
 
-.name {
-    grid-area: a;
-    display: flex;
+.auto-resize {
+    display: inline-grid;
+    vertical-align: middle;
     align-items: center;
+    font-size: inherit;
+    font-weight: inherit;
+    width: 100%;
 
+    &::after,
     textarea {
         border: 0;
-        background: transparent;
+        grid-area: 1 / 1;
         text-align: center;
         font-size: var(--over-name-font-size, 120%);
+        color: var(--text-color);
         width: 100%;
+        height: 100%;
         box-sizing: border-box;
+        min-width: 1em;
+        margin: 0;
+        padding: 0;
         resize: none;
+        background: none;
+        appearance: none;
+        outline: 0;
+    }
+
+    &::after {
+        content: attr(data-value) ' ';
+        visibility: hidden;
+        white-space: pre-wrap;
     }
 }
 
@@ -524,7 +552,8 @@ loading-cmp {
         .button-suppr,
         .button-add,
         .txt-color,
-        .bg-color {
+        .bg-color,
+        .actions {
             display: none;
         }
     }
@@ -561,6 +590,7 @@ loading-cmp {
     .button-actions {
         margin: auto;
         max-width: 150px;
+
         button {
             display: inline;
         }
@@ -572,5 +602,64 @@ loading-cmp {
 
     .save-actions {
         padding: 20px 0;
+    }
+}
+
+// force reduce options ------------------------------------------------------------------
+
+@media screen and (min-width: 769px) {
+    :host.option-reduce {
+        --group-option-heigth: 0;
+
+        .table-classement {
+            .button-up,
+            .button-down,
+            .button-suppr,
+            .button-add,
+            .txt-color,
+            .bg-color,
+            .names .group-options {
+                display: none;
+            }
+        }
+
+        .colors-options {
+            display: grid;
+            grid-template: 'a b' 'c b' / 70px 1fr;
+            width: 100%;
+            gap: 5px;
+
+            .txt-color {
+                grid-area: a;
+                padding: 5px;
+            }
+
+            .bg-color {
+                grid-area: c;
+                padding: 5px;
+            }
+
+            .name {
+                grid-area: b;
+            }
+        }
+
+        .auto-format .colors {
+            padding: 0;
+        }
+
+        span.group-options {
+            display: inline-block;
+            width: 24px;
+        }
+
+        .button-actions {
+            margin: auto;
+            max-width: 150px;
+
+            button {
+                display: inline-block;
+            }
+        }
     }
 }

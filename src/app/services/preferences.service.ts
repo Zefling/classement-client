@@ -21,6 +21,7 @@ export class PreferencesService {
         newColor: 'same',
         newLine: 'below',
         theme: themes[0],
+        lineOption: 'auto',
     };
 
     get preferences(): PreferencesData {

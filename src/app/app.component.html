@@ -196,6 +196,16 @@
             {{ 'preferences.group.new.line.ask.me' | translate }}
         </label> -->
 
+        <h3>{{ 'preferences.group.line.option.title' | translate }}</h3>
+        <label
+            ><input type="radio" formControlName="lineOption" value="auto" />
+            {{ 'preferences.group.line.option.auto' | translate }}
+        </label>
+        <label
+            ><input type="radio" formControlName="lineOption" value="reduce" />
+            {{ 'preferences.group.line.option.reduce' | translate }}
+        </label>
+
         <h3>{{ 'preferences.theme.title' | translate }}</h3>
         <select formControlName="theme">
             <option *ngFor="let theme of themes" [value]="theme">

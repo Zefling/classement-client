@@ -381,13 +381,13 @@
 
 -   improve group naming
     -   added support for line breaks
-    -   autoresize instead of scrollbar
+    -   autosize instead of scrollbar
 
 ### With API activited only
 
 -   add an expiration days for cookies
 -   do not show advanced options on open
--   improve textarea with autoresize (contact page)
+-   improve textarea with autosize (contact page)
 -   fix loading issues in navigate
 -   fix auto login
 -   show hidden tierlist for current user

@@ -163,6 +163,7 @@ export interface PreferencesData {
     nameCopy: boolean;
     newColor: 'mixed' | 'same';
     newLine: 'below' | 'above' | 'ask-me';
+    lineOption: 'auto' | 'reduce';
     theme: ThemeNames;
 }
 

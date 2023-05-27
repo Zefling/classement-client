@@ -71,6 +71,11 @@
         "below": "Add below",
         "above": "Add above",
         "ask.me": "Ask me"
+      },
+      "line.option": {
+        "title": "Group options display mode",
+        "auto": "Automatic: depending on mobile mode or not",
+        "reduce": "Reduced: reduce to the minimum in the interface"
       }
     },
     "theme": {

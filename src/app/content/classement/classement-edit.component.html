@@ -45,12 +45,16 @@
                         >
                             <div>
                                 <label class="name">
-                                    <textarea
-                                        autosize
-                                        [(ngModel)]="group.name"
-                                        (ngModelChange)="globalChange()"
-                                        maxlength="500"
-                                    ></textarea>
+                                    <div class="auto-resize" [attr.data-value]="input?.value">
+                                        <textarea
+                                            #input
+                                            id="name-{{ indexGrp }}"
+                                            rows="1"
+                                            [(ngModel)]="group.name"
+                                            (ngModelChange)="globalChange()"
+                                            maxlength="500"
+                                        ></textarea>
+                                    </div>
                                 </label>
 
                                 <span
@@ -138,6 +142,10 @@
                                 <button class="button-add" (click)="addLine(indexGrp)">
                                     {{ 'gererator.line.add' | translate }}
                                 </button>
+                                <span
+                                    class="color group-options icon-edit-2"
+                                    (click)="updateGoupOption({group, indexGrp, first, last})"
+                                ></span>
                             </div>
                         </td>
                     </tr>
@@ -376,14 +384,18 @@
         <div class="colors-options">
             <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
             <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
+
             <label class="name" [style.background-color]="currentGroup.group.bgColor">
-                <textarea
-                    [style.color]="currentGroup.group.txtColor"
-                    autosize
-                    [(ngModel)]="currentGroup.group.name"
-                    (ngModelChange)="globalChange()"
-                    maxlength="500"
-                ></textarea>
+                <div class="auto-resize" [attr.data-value]="input?.value">
+                    <textarea
+                        #input
+                        rows="1"
+                        [(ngModel)]="currentGroup.group.name"
+                        (ngModelChange)="globalChange()"
+                        maxlength="500"
+                        [style.color]="currentGroup.group.txtColor"
+                    ></textarea>
+                </div>
             </label>
         </div>
         <div class="colors">

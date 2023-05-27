@@ -1,6 +1,15 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    DoCheck,
+    ElementRef,
+    HostBinding,
+    HostListener,
+    OnDestroy,
+    ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -66,10 +75,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
 
     classScreenMode: 'default' | 'enlarge' | 'fullscreen' = 'default';
+    lineOption: 'auto' | 'reduce' = 'auto';
 
     apiActive = environment.api?.active;
 
     currentTile?: FileString;
+
+    @HostBinding('class.option-reduce')
+    get optionReduce() {
+        return this.lineOption === 'reduce';
+    }
 
     @ViewChild('image') image!: ElementRef<HTMLDivElement>;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
@@ -274,6 +289,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (!this.options) {
             return;
         }
+
+        this.lineOption = this.preferencesService.preferences.lineOption;
 
         const val = this.globalService.updateVarCss(this.options, this.imagesCache);
         this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;

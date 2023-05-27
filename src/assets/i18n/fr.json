@@ -71,6 +71,11 @@
         "below": "Ajouter en dessous",
         "above": "Ajouter au dessus",
         "ask.me": "Me demander"
+      },
+      "line.option": {
+        "title": "Mode d'affichage des options des groupes",
+        "auto": "Automatique : en fonction du mode mobile ou non",
+        "reduce": "Reduit : réduire au minimun dans l'interface"
       }
     },
     "theme": {

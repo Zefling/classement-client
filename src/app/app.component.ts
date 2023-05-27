@@ -137,6 +137,7 @@ export class AppComponent implements DoCheck {
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),
+            lineOption: new FormControl(initPreferences.lineOption),
             theme: new FormControl(initPreferences.theme),
         });
 

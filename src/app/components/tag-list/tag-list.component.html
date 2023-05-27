@@ -4,15 +4,8 @@
 </div>
 <ng-container *ngIf="!readOnly">
     <div>
-        <label>
-            <input
-                #input
-                list="data"
-                (input)="onInput()"
-                (keyup.enter)="onEnter()"
-                size="5"
-                onInput="this.parentNode.dataset.value = this.value"
-            />
+        <label [attr.data-value]="input?.value">
+            <input #input list="data" (input)="onInput()" (keyup.enter)="onEnter()" size="5" />
         </label>
     </div>
     <datalist id="data">
