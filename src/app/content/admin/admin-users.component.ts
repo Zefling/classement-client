@@ -88,12 +88,16 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     pageUpdate(page: number) {
         if (!this.users[page]) {
             this.loading = true;
-            this.userService.adminGetUsers(page, this.sort, this.direction, this.searchKey).then(result => {
-                this.total = result.total;
-                this.page = page;
-                this.users[page] = result.list;
-                this.loading = false;
-            });
+            this.userService
+                .adminGetUsers(page, this.sort, this.direction, this.searchKey)
+                .then(result => {
+                    this.total = result.total;
+                    this.page = page;
+                    this.users[page] = result.list;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         } else {
             this.page = page;
         }

@@ -63,6 +63,8 @@ export class AdminClassementsComponent implements OnDestroy {
                     this.total = result.total;
                     this.page = page;
                     this.classements[page] = result.list;
+                })
+                .finally(() => {
                     this.loading = false;
                 });
         } else {
