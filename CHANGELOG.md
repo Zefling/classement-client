@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.10.2 (2023-05-28)
+
+### Standalone web app
+
+-   fix mobile
+
+### With API activited only
+
+-   admin: fix no result
+
 ## 1.10.1 (2023-05-28)
 
 ### Standalone web app

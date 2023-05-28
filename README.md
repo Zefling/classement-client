@@ -15,18 +15,19 @@ See `src/environments/environment*.ts` for change.
 ## Features
 
 -   ✅ Stand-alone (without server)
-    -   ✅ Adding images by drag'n drop or copy-paste.
-    -   ✅ Adding text under images.
-    -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line).
+    -   ✅ Adding images by drag'n drop or copy-paste
+    -   ✅ Adding text under images
+    -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
     -   ✅ Advanced customization of tiles, lines, background, etc.
-    -   ✅ Image tile:
-        -   ✅ Reduce size.
-        -   ✅ Changesize.
-        -   ✅ Resize.
-    -   ✅ Backup in browser or in Json.
-        -   ✅ Import / export all
-    -   ✅ Image export (PNG, JPG or WebP).
-    -   ✅ In-memory tierlists clone.
+    -   ✅ Image tile
+        -   ✅ Reduce size
+        -   ✅ Change size
+        -   ✅ Resize
+    -   ✅ Backup in browser or in Json
+        -   ✅ Import (one or more)
+        -   ✅ Export all
+    -   ✅ Image export (PNG, JPG or WebP)
+    -   ✅ In-memory tierlists clone
     -   ✅ Tags
     -   ✅ Preferences
 -   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
@@ -56,8 +57,10 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Tierlist view
             -   ✅ Tierlist history
     -   ✅ Admin
+        -   ✅ Search users or tierlists
         -   ✅ Edit profil & change roles
         -   ✅ Tierlists change status
+        -   ✅ Tierlists change category
         -   ✅ Remove user
     -   ✅ Contact form
 
