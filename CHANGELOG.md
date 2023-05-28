@@ -15,6 +15,7 @@
     -   add sort by column #38
     -   add filters #38
     -   add loading
+    -   edit category for a tierlist
 -   fix username with avatar
 -   fix cursor on user page
 -   required: API `1.0.10`
