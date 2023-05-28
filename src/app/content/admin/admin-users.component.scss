@@ -1,22 +1,35 @@
 @import '../list/classement-list.component.scss';
 
-label,
-.label {
-    display: block;
-    text-align: left;
-    width: 80%;
-    margin: auto;
-
-    input {
-        width: auto;
-    }
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 15px;
 }
 
-.alert {
-    width: 80%;
-    margin: auto;
-    border: 1px solid var(--alert-color);
-    color: var(--alert-color);
+.name {
+    flex: 5 5 300px;
+}
+
+dialog-cmp {
+    label,
+    .label {
+        display: block;
+        text-align: left;
+        width: 80%;
+        margin: auto;
+
+        input {
+            width: auto;
+        }
+    }
+
+    .alert {
+        width: 80%;
+        margin: auto;
+        border: 1px solid var(--alert-color);
+        color: var(--alert-color);
+    }
 }
 
 .status {

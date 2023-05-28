@@ -340,9 +340,14 @@ export class APIUserService extends APICommon {
         page: number = 1,
         sort: SortUserCol,
         direction: SortDirection,
+        username?: string,
     ): Promise<{ total: number; list: User[] }> {
         return new Promise<{ total: number; list: User[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page).set('order', sort).set('direction', direction);
+
+            if (username) {
+                params = params.set('username', username);
+            }
 
             this.http
                 .get<Message<{ total: number; list: User[] }>>(`${environment.api.path}api/admin/users`, {

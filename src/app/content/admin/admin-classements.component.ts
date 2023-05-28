@@ -5,6 +5,8 @@ import { Classement, SortClassementCol, SortDirection } from 'src/app/interface'
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
+import { categories } from '../classement/classement-default';
+
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
@@ -12,6 +14,12 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 })
 export class AdminClassementsComponent implements OnDestroy {
     private _sub = Subscriptions.instance();
+
+    loading = false;
+
+    categories = categories;
+    searchKey?: string;
+    category?: string;
 
     classements: { [key: number]: Classement[] } = {};
     total?: number = 0;
@@ -48,14 +56,25 @@ export class AdminClassementsComponent implements OnDestroy {
 
     pageUpdate(page: number) {
         if (!this.classements[page]) {
-            this.classementService.adminGetClassements(page, this.sort, this.direction).then(result => {
-                this.total = result.total;
-                this.page = page;
-                this.classements[page] = result.list;
-            });
+            this.loading = true;
+            this.classementService
+                .adminGetClassements(page, this.sort, this.direction, this.searchKey, this.category)
+                .then(result => {
+                    this.total = result.total;
+                    this.page = page;
+                    this.classements[page] = result.list;
+                    this.loading = false;
+                });
         } else {
             this.page = page;
         }
+    }
+
+    submit() {
+        this.classements = {};
+        this.sort = 'dateCreate';
+        this.direction = 'DESC';
+        this.pageUpdate(1);
     }
 
     updateClassements(classements: Classement[]) {

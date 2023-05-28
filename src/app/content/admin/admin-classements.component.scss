@@ -1,0 +1,19 @@
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.name {
+    flex: 5 5 300px;
+}
+
+.line {
+    flex: 1 1 300px;
+    display: flex;
+}
+
+.categories {
+    flex: 1 1 170px;
+}

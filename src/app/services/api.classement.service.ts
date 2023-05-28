@@ -234,10 +234,17 @@ export class APIClassementService extends APICommon {
         page: number = 1,
         sort: SortClassementCol,
         direction: SortDirection,
+        name?: string,
+        category?: string,
     ): Promise<{ total: number; list: Classement[] }> {
         return new Promise<{ total: number; list: Classement[] }>((resolve, reject) => {
             let params = new HttpParams().set('page', page).set('order', sort).set('direction', direction);
-
+            if (name) {
+                params = params.set('name', name);
+            }
+            if (category) {
+                params = params.set('category', category);
+            }
             this.logger.log('params', LoggerLevel.log, params);
 
             this.http

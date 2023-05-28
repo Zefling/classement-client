@@ -20,6 +20,10 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 export class AdminUsersComponent implements DoCheck, OnDestroy {
     private _sub = Subscriptions.instance();
 
+    searchKey?: string;
+
+    loading = false;
+
     users: { [key: number]: User[] } = {};
     total?: number = 0;
     page = 0;
@@ -83,14 +87,23 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     pageUpdate(page: number) {
         if (!this.users[page]) {
-            this.userService.adminGetUsers(page, this.sort, this.direction).then(result => {
+            this.loading = true;
+            this.userService.adminGetUsers(page, this.sort, this.direction, this.searchKey).then(result => {
                 this.total = result.total;
                 this.page = page;
                 this.users[page] = result.list;
+                this.loading = false;
             });
         } else {
             this.page = page;
         }
+    }
+
+    submit() {
+        this.users = {};
+        this.sort = 'dateCreate';
+        this.direction = 'DESC';
+        this.pageUpdate(1);
     }
 
     see(user: User) {

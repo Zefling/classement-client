@@ -1,20 +1,41 @@
 <h3>{{ 'menu.admin.classements' | translate }}</h3>
 
-<ng-container *ngIf="classements[page]?.length; else noResult">
-    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
-    <list-classements
-        [classements]="classements[page]"
-        [sort]="sort"
-        [direction]="direction"
-        (updateClassements)="updateClassements($event)"
-        (sortUpdate)="sortUpdate($event)"
-    ></list-classements>
-    <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
-</ng-container>
+<div class="search">
+    <div class="name">
+        <label>{{ 'navigate.title' | translate }}</label>
+        <input type="search" [(ngModel)]="searchKey" />
+    </div>
+    <div class="line">
+        <div class="categories">
+            <label>{{ 'navigate.category' | translate }}</label>
+            <select type="text" maxlength="150" [(ngModel)]="category">
+                <option></option>
+                <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
+            </select>
+        </div>
+        <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
+    </div>
+</div>
 
-<ng-template #noResult>
-    <p class="no-result">{{ 'list.no.result' | translate }}</p>
-    <p>
-        <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
-    </p>
-</ng-template>
+<loading-cmp *ngIf="loading"></loading-cmp>
+
+<ng-container *ngIf="!loading">
+    <ng-container *ngIf="classements[page]?.length; else noResult">
+        <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+        <list-classements
+            [classements]="classements[page]"
+            [sort]="sort"
+            [direction]="direction"
+            (updateClassements)="updateClassements($event)"
+            (sortUpdate)="sortUpdate($event)"
+        ></list-classements>
+        <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+    </ng-container>
+
+    <ng-template #noResult>
+        <p class="no-result">{{ 'list.no.result' | translate }}</p>
+        <p>
+            <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+        </p>
+    </ng-template>
+</ng-container>
