@@ -498,17 +498,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     addLine(index: number) {
+        const isBelow = this.preferencesService.preferences.newLine === 'below';
+        const nextIndex = isBelow ? index + 1 : index;
+        const colorIndex = isBelow ? Math.min(index + 1, this.groups.length - 1) : Math.max(index - 1, 0);
+
         const mixColor = (color1: string, color2: string) =>
             new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
         const bgColor =
             index < this.groups.length - 1 && this.preferencesService.preferences.newColor !== 'same'
-                ? mixColor(this.groups[index].bgColor, this.groups[index + 1].bgColor)
+                ? mixColor(this.groups[index].bgColor, this.groups[colorIndex].bgColor)
                 : this.groups[index].bgColor;
         const txtColor =
             index < this.groups.length - 1 && this.preferencesService.preferences.newColor !== 'same'
-                ? mixColor(this.groups[index].txtColor, this.groups[index + 1].txtColor)
+                ? mixColor(this.groups[index].txtColor, this.groups[colorIndex].txtColor)
                 : this.groups[index].txtColor;
-        this.groups.splice(this.preferencesService.preferences.newLine === 'above' ? index + 1 : index, 0, {
+        this.groups.splice(nextIndex, 0, {
             name: this.translate.instant('New'),
             txtColor,
             bgColor,
