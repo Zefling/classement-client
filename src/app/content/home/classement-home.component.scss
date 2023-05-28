@@ -104,9 +104,10 @@ navigate-result {
 
 @media screen and (max-width: 800px) {
     .tiles-navigate {
-        padding: 0 min(20%, 30px);
-        margin: 0 -15px 0 -30px;
+        margin: 0 calc(min(20%, 30px) * 0.5);
         flex-wrap: wrap;
+        box-sizing: border-box;
+        width: calc(100% + min(20%, 30px) * -1);
     }
 
     .tile-navigate {
