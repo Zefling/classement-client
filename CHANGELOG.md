@@ -1,5 +1,24 @@
 # Changelog - Standalone web app & API
 
+## 1.10.0 (2023-05-28)
+
+### Standalone web app
+
+-   add line option preference
+-   fix text font with font icon
+-   fix autosize in edit tierlist
+-   autosize refactoring
+
+### With API activited only
+
+-   admin update
+    -   add sort by column #38
+    -   add filters #38
+    -   add loading
+-   fix username with avatar
+-   fix cursor on user page
+-   required: API `1.0.10`
+
 ## 1.9.7 (2023-05-18)
 
 ### With API activited only
