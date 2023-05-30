@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
+import { Subject, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString } from 'src/app/interface';
@@ -32,7 +33,14 @@ export class ClassementEditImageComponent {
     aspectRatio = 0;
     mode = 0;
 
-    constructor(private readonly cd: ChangeDetectorRef, private readonly global: GlobalService) {}
+    private _detectChange = new Subject<void>();
+
+    constructor(private readonly cd: ChangeDetectorRef, private readonly global: GlobalService) {
+        this._detectChange.pipe(debounceTime(10)).subscribe(() => {
+            this.cd.detectChanges();
+            this.globalChange();
+        });
+    }
 
     open() {
         this.dialogInfo.open();
@@ -45,8 +53,7 @@ export class ClassementEditImageComponent {
     }
 
     detectChanges() {
-        this.cd.detectChanges();
-        this.globalChange();
+        this._detectChange.next();
     }
 
     globalChange() {

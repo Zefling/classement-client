@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Coloration } from 'coloration-lib';
 import html2canvas from 'html2canvas';
-import { first } from 'rxjs';
+import { Subject, debounceTime, first } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -100,6 +100,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
     private _inputFile!: HTMLInputElement;
+    private _detectChange = new Subject<void>();
 
     constructor(
         private readonly bdService: DBService,
@@ -137,6 +138,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }),
             globalService.onImageUpdate.subscribe(() => {
                 this.updateSize();
+            }),
+            this._detectChange.pipe(debounceTime(10)).subscribe(() => {
+                this.cd.detectChanges();
             }),
         );
     }
@@ -330,7 +334,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     detectChanges() {
-        this.cd.detectChanges();
+        this._detectChange.next();
     }
 
     ngOnDestroy() {

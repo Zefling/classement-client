@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
+import { Subject, debounceTime } from 'rxjs';
+
 import { FileString, FormatedGroup, Options } from 'src/app/interface';
 import { Utils } from 'src/app/tools/utils';
 
@@ -21,7 +23,13 @@ export class SeeClassementComponent implements OnInit {
 
     nameOpacity!: string;
 
-    constructor(private readonly globalService: GlobalService, private readonly cd: ChangeDetectorRef) {}
+    private _detectChange = new Subject<void>();
+
+    constructor(private readonly globalService: GlobalService, private readonly cd: ChangeDetectorRef) {
+        this._detectChange.pipe(debounceTime(10)).subscribe(() => {
+            this.cd.detectChanges();
+        });
+    }
 
     ngOnInit() {
         if (!this.options) {
@@ -33,7 +41,7 @@ export class SeeClassementComponent implements OnInit {
     }
 
     detectChanges() {
-        this.cd.detectChanges();
+        this._detectChange.next();
     }
 
     calcWidth(item: FileString, element: HTMLElement | null) {
