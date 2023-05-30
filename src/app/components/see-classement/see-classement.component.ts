@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FileString, FormatedGroup, Options } from 'src/app/interface';
+import { Utils } from 'src/app/tools/utils';
 
 import { GlobalService } from '../../services/global.service';
 
@@ -36,13 +37,6 @@ export class SeeClassementComponent implements OnInit {
     }
 
     calcWidth(item: FileString, element: HTMLElement | null) {
-        return this.options.itemWidthAuto && !item.title
-            ? ((item.width || 150) / (item.height || 150)) * this.options.itemHeight
-            : this.options.itemWidthAuto && element
-            ? Math.max(
-                  (((item.width || 150) - 16) / (item.height || 150)) * this.options.itemHeight,
-                  element?.scrollWidth,
-              )
-            : null;
+        return Utils.calcWidth(this.options, item, element);
     }
 }

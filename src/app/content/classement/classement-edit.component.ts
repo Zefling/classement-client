@@ -309,14 +309,23 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 : '';
     }
 
+    trackByFnFileString(index: number, item: FileString) {
+        return item.url;
+    }
+
     calcWidth(item: FileString, element: HTMLElement | null) {
-        return this.options.itemWidthAuto && !item.title
-            ? ((item.width || 150) / (item.height || 150)) * this.options.itemHeight
-            : this.options.itemWidthAuto && element
-            ? Math.max(
-                  (((item.width || 150) - 18 * 2) / (item.height || 150)) * this.options.itemHeight,
-                  element?.scrollWidth,
-              )
+        return Utils.calcWidth(this.options, item, element);
+    }
+
+    calcWidthEdit(item: FileString, element: HTMLElement | null) {
+        if (!item.width) {
+            const image = element?.querySelector('img');
+            item.width = image?.naturalWidth;
+            item.height = image?.naturalHeight;
+        }
+
+        return this.options.itemWidthAuto
+            ? Math.min(300, ((item.width || 100) / (item.height || 100)) * this.options.itemHeight)
             : null;
     }
 

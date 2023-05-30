@@ -87,7 +87,7 @@
                         <td class="elements">
                             <div class="drop-list">
                                 <div
-                                    *ngFor="let item of group.list; let index = index"
+                                    *ngFor="let item of group.list; let index = index; trackBy: trackByFnFileString"
                                     cdkDropList
                                     cdkDropListOrientation="horizontal"
                                     [cdkDropListData]="{ list: group.list, index: index }"
@@ -99,11 +99,12 @@
                                             [ngClass]="options.itemTextPosition"
                                             [class.with-annotation]="item.annotation"
                                             #tile
-                                            [style.width.px]="calcWidth(item, tile.querySelector('.title-span'))"
+                                            [style.width.px]="calcWidth(item, tile)"
                                         >
                                             <div *ngIf="item.url" class="image">
                                                 <img
                                                     (ngInit)="detectChanges()"
+                                                    (load)="detectChanges()"
                                                     src="{{ item.url }}"
                                                     alt="{{ item.name }}"
                                                 />
@@ -156,7 +157,7 @@
                 <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
                 <div class="drop-list">
                     <div
-                        *ngFor="let item of list; let index = index"
+                        *ngFor="let item of list; let index = index; trackBy: trackByFnFileString"
                         cdkDropList
                         cdkDropListOrientation="horizontal"
                         [cdkDropListData]="{ list: list, index: index }"
@@ -164,16 +165,13 @@
                     >
                         <div class="content-box" cdkDrag>
                             <div
+                                #tile
                                 class="content"
                                 [class.with-annotation]="item.annotation"
-                                [style.width.px]="
-                                    options.itemWidthAuto
-                                        ? ((item.width || 150) / (item.height || 150)) * options.itemHeight
-                                        : null
-                                "
+                                [style.width.px]="calcWidthEdit(item, tile)"
                             >
                                 <button class="btn-delete" (click)="removeItem(index)">×</button>
-                                <img [src]="item.url" [alt]="item.name" />
+                                <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
                                 <input
                                     class="input-title"
                                     input="text"

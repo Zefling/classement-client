@@ -1,4 +1,4 @@
-import { Classement, User } from '../interface';
+import { Classement, FileString, Options, User } from '../interface';
 
 const emailTest =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
@@ -209,5 +209,30 @@ export class Utils {
             return date.toISOString();
         }
         return newDate ? new Date().toISOString() : undefined;
+    }
+
+    static calcWidth(options: Options, item: FileString, element: HTMLElement | null) {
+        const title = element?.querySelector('.title-span');
+
+        if (!item.width) {
+            const image = element?.querySelector('img');
+            item.width = image?.naturalWidth;
+            item.height = image?.naturalHeight;
+        }
+
+        return options.itemWidthAuto && !item.title
+            ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * options.itemHeight))
+            : options.itemWidthAuto && element
+            ? Math.min(
+                  300,
+                  Math.round(
+                      Math.max(
+                          (((item.width || 100) - (title?.clientHeight || 16)) / (item.height || 100)) *
+                              options.itemHeight,
+                          element?.scrollWidth,
+                      ),
+                  ),
+              )
+            : null;
     }
 }
