@@ -325,7 +325,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         return this.options.itemWidthAuto
-            ? Math.min(300, ((item.width || 100) / (item.height || 100)) * this.options.itemHeight)
+            ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * this.options.itemHeight))
             : null;
     }
 
