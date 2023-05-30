@@ -31,8 +31,8 @@ export class AdminClassementsComponent implements OnDestroy {
     constructor(private readonly classementService: APIClassementService, private readonly route: ActivatedRoute) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
-                this.sort = params['sort'] || 'dateCreate';
-                this.direction = params['direction'] || 'DESC';
+                this.sort ||= params['sort'] || 'dateCreate';
+                this.direction ||= params['direction'] || 'DESC';
                 const page = params['page'] || 1;
                 this.pageUpdate(page);
             }),

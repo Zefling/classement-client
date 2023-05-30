@@ -417,7 +417,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     copyLink() {
         Utils.clipboard(this.shareUrl)
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
-            .catch(e =>
+            .catch(_e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
                     type: MessageType.error,
                 }),
