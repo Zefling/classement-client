@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.10.3 (2023-05-30)
+
+### Standalone web app
+
+-   rewrite tile size calculation
+
+### With API activited only
+
+-   admin: fix sort with paginate
+
 ## 1.10.2 (2023-05-28)
 
 ### Standalone web app
