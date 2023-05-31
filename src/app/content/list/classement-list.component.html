@@ -5,7 +5,8 @@
     <div class="list-actions">
         <div class="filter">
             <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
-            <div><input id="browser-list-filter" type="search" maxlength="150" #filter /></div>
+            <input id="browser-list-filter" type="search" maxlength="150" #filter [class.empty]="filter.value === ''" />
+            <span (click)="filter.value = ''"></span>
         </div>
         <button class="primary" (click)="exportAll()">
             {{ 'gererator.actions.export.all.json' | translate }}

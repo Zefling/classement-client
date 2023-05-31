@@ -602,3 +602,28 @@ dialog-cmp.auto-format .main {
     display: inline;
     content: '⮝';
 }
+
+@supports not selector(::-webkit-search-cancel-button) {
+    input[type='search']:not(.empty) + span {
+        display: flex;
+        z-index: 1;
+        height: 20px;
+        width: 20px;
+        left: calc(100% - 24px);
+        position: relative;
+        top: -25px;
+        margin-bottom: -20px;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+
+        &::after {
+            content: '×';
+        }
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+    }
+}

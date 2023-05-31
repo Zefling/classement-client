@@ -3,7 +3,8 @@
 <div class="search">
     <div class="name">
         <label>{{ 'navigate.title' | translate }}</label>
-        <input type="search" [(ngModel)]="searchKey" />
+        <input type="search" [(ngModel)]="searchKey" [class.empty]="searchKey === '' || searchKey === undefined" />
+        <span (click)="searchKey = ''"></span>
     </div>
     <div class="line">
         <div class="categories">
