@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.10.5 (2023-06-04)
+
+### Standalone web app
+
+-   Fix date (multi value) sort for Local list
+-   Remove eval (for better security)
+
 ## 1.10.4 (2023-06-04)
 
 ### Standalone web app
