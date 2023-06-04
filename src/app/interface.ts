@@ -141,7 +141,7 @@ export interface importData {
 export interface FormatedInfos extends IndexedData<any> {
     options: Options;
     /**
-     * @deprecated use dateCreate
+     * @deprecated use {@link dateCreate}
      */
     date?: string | Date;
     groupsLenght: number;
