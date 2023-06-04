@@ -1,6 +1,6 @@
 {
   "name": "classement",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "scripts": {
     "postinstall": "npm audit fix",
     "ng": "ng",

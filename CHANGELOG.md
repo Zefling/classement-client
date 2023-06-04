@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.10.4 (2023-06-04)
+
+### Standalone web app
+
+-   Add clear button `×` for search for Firefox (only)
+-   Add space use with IndexedDB in Local list
+-   Add button “Save and validate” when you quit editing without saving
+-   Fix recursive error with debouce
+-   Fix date sort for Local list
+
 ## 1.10.3 (2023-05-30)
 
 ### Standalone web app
