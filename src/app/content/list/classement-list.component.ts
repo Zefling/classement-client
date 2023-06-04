@@ -41,6 +41,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     changeTemplate = false;
 
+    quota?: StorageEstimate;
+
     private listener = Subscriptions.instance();
 
     constructor(
@@ -116,6 +118,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.dbservice.getLocalList().then(result => {
             this.result = result;
             this.sortableDirective.sortLines();
+
+            navigator.storage.estimate().then(quota => {
+                this.quota = quota;
+            });
         });
     }
 

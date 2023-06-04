@@ -1,7 +1,12 @@
 <h2 *ngIf="pageMode">{{ 'menu.list' | translate }}</h2>
 
 <div class="infos">
-    <p><span class="icon-info"></span> {{ 'list.intro' | translate }}</p>
+    <p>
+        <span class="icon-info"></span> {{ 'list.intro' | translate }}<br />
+        <span class="space">
+            {{ 'list.space' | translate }}{{ quota?.usage || 0 | filesize }} / {{ quota?.quota || 0 | filesize }}
+        </span>
+    </p>
     <div class="list-actions">
         <div class="filter">
             <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
