@@ -28,6 +28,10 @@ export class GlobalService {
 
     readonly onPageUpdate = new Subject<number>();
 
+    readonly onLocalSave = new Subject<void>();
+
+    readonly onUpdateList = new Subject<void>();
+
     readonly onImageUpdate = new Subject<void>();
 
     withChange = false;
@@ -47,6 +51,14 @@ export class GlobalService {
 
     forceExit(route: string | undefined) {
         this.onForceExit.next(route);
+    }
+
+    classementSave() {
+        this.onLocalSave.next();
+    }
+
+    updateList() {
+        this.onUpdateList.next();
     }
 
     addTexts(text: string) {

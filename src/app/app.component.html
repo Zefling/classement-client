@@ -159,6 +159,7 @@
     <p>{{ 'gererator.change.question' | translate }}</p>
     <div>
         <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
+        <button class="primary" (click)="exit(true, true)">{{ 'list.delete.validate.save' | translate }}</button>
         <button class="primary" (click)="exit(true)">{{ 'list.delete.validate' | translate }}</button>
     </div>
 </dialog-cmp>

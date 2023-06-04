@@ -118,8 +118,11 @@ export class AppComponent implements DoCheck {
         }
     }
 
-    exit(ok: boolean) {
+    exit(ok: boolean, save?: boolean) {
         if (ok) {
+            if (save) {
+                this.globalService.classementSave();
+            }
             this.globalService.withChange = false;
             this.router.navigate([this.route]);
         }

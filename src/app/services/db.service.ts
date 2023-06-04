@@ -279,6 +279,7 @@ export class DBService {
             this.logger.log(`Add data in “${store}”.`);
             const transactionData = db.transaction([store], 'readwrite');
             try {
+                debugger;
                 const save = transactionData.objectStore(store).add(data, data.id);
                 const _this = this;
                 save.onsuccess = function () {

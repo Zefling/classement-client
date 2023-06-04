@@ -118,7 +118,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly preferencesService: PreferencesService,
     ) {
         this._sub.push(
-            this.route.params.subscribe(params => {
+            route.params.subscribe(params => {
                 if (this.preferencesService.hasInit) {
                     this.initWithParams(params);
                 } else {
@@ -138,6 +138,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }),
             globalService.onImageUpdate.subscribe(() => {
                 this.updateSize();
+            }),
+            globalService.onLocalSave.subscribe(() => {
+                debugger;
+                this.saveLocal(false, false);
             }),
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
                 this.cd.detectChanges();
@@ -619,6 +623,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (!silence) {
                     this.messageService.addMessage(this.translate.instant('message.save.success'));
                 }
+                this.globalService.updateList();
             },
             _ => {
                 this.messageService.addMessage(this.translate.instant('message.save.echec'), {

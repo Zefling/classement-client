@@ -26,7 +26,9 @@
     "file": {
       "B0": "\u00A0o",
       "B1": "\u00A0Kio",
-      "B2": "\u00A0Mio"
+      "B2": "\u00A0Mio",
+      "B3": "\u00A0Gio",
+      "B4": "\u00A0Tio"
     }
   },
   "licenses": {
@@ -84,6 +86,7 @@
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",
+    "space": "Espace utilisé\u00A0: ",
     "filter": "Filtrer\u00A0:",
     "title": {
       "name": "Titre",
@@ -132,6 +135,7 @@
     "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer ce classement\u00A0?",
+      "validate.save": "Sauvegarder et valider",
       "validate": "Valider",
       "cancel": "Annuler",
       "delete": "Supprimer",

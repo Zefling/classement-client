@@ -10,6 +10,7 @@ import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { FormatedInfos } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
@@ -51,9 +52,16 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         private readonly router: Router,
         private readonly translate: TranslateService,
         private readonly messageService: MessageService,
+        private readonly globalService: GlobalService,
         private readonly logger: Logger,
     ) {
         this.showList();
+
+        this.listener.push(
+            this.globalService.onUpdateList.subscribe(() => {
+                this.showList();
+            }),
+        );
     }
 
     sortableFilter = (key: string, item: FormatedInfos, _index: number): boolean => {

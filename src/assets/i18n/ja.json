@@ -27,7 +27,9 @@
     "file": {
       "B0": "\u00A0B",
       "B1": "\u00A0KiB",
-      "B2": "\u00A0MiB"
+      "B2": "\u00A0MiB",
+      "B3": "\u00A0GiB",
+      "B4": "\u00A0TiB"
     }
   },
   "licenses": {
@@ -85,6 +87,7 @@
   },
   "list": {
     "intro": "インターネットブラウザだけでメモリ内のティアリストのリストです。",
+    "space": "使用スペース：",
     "filter": "フィルター：",
     "title": {
       "name": "タイトル",
@@ -134,6 +137,7 @@
     "delete": {
       "question": "このティアリストを消去してもよろしいですか？",
       "validate": "検証する",
+      "validate.save": "セーブして検証する",
       "cancel": "拒否する",
       "delete": "削除する",
       "restore": "復元する"
