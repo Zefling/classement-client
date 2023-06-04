@@ -13,6 +13,8 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { Utils } from '../tools/utils';
+
 export type SortRule =
     | { type: 'string' | 'number' | 'date'; attr: string; init?: 'asc' | 'desc' }
     | { type: 'translate'; attr: string; translate: string; init?: 'asc' | 'desc' }
@@ -117,21 +119,26 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
         const rule = this.currentRule;
         if (rule && rule.type !== 'none' && Array.isArray(this.sortable) && this.sortable.length > 1) {
             this.sortable.sort((a, b) => {
-                // todo replace eval by a more secure method
-                a = eval(`a['${rule.attr.replace('.', "']['")}']`);
-                b = eval(`b['${rule.attr.replace('.', "']['")}']`);
+                let valA;
+                let valB;
+                for (const attr of rule.attr.split(',')) {
+                    valA ??= Utils.getNestedValue(a, attr);
+                    valB ??= Utils.getNestedValue(b, attr);
+                }
+
                 let test = 0;
                 if (rule.type === 'string') {
-                    test = (a as string).localeCompare(b as string);
+                    test = (valA as string).localeCompare(valB as string);
                 } else if (rule.type === 'translate') {
                     test = this.translate
-                        .instant(rule.translate.replace('%value%', a))
-                        .localeCompare(this.translate.instant(rule.translate.replace('%value%', b)));
+                        .instant(rule.translate.replace('%value%', valA))
+                        .localeCompare(this.translate.instant(rule.translate.replace('%value%', valB)));
                 } else if (rule.type === 'number') {
-                    test = a - b;
+                    test = valA - valB;
                 } else if (rule.type === 'date') {
-                    test = new Date(a).getTime() - new Date(b).getTime();
+                    test = new Date(valA).getTime() - new Date(valB).getTime();
                 }
+
                 return test * (this.currentRuleOrder ? 1 : -1);
             });
         }

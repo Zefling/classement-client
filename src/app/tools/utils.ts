@@ -235,4 +235,11 @@ export class Utils {
               )
             : null;
     }
+
+    static getNestedValue(object: any, path: (string | number)[] | string): any {
+        if (typeof path === 'string') {
+            path = path !== '' ? path.split('.') : [];
+        }
+        return path.reduce((obj, key) => (obj ? obj[key] : undefined), object);
+    }
 }
