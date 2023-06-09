@@ -11,7 +11,7 @@
             <label>{{ 'navigate.category' | translate }}</label>
             <select type="text" maxlength="150" [(ngModel)]="category">
                 <option></option>
-                <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
+                <option *ngFor="let item of categoriesList" [value]="item.value">{{ item.label }}</option>
             </select>
         </div>
         <button (click)="submit(true)">{{ 'navigate.search' | translate }}</button>

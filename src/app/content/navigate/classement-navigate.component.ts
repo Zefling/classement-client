@@ -4,13 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Classement } from 'src/app/interface';
+import { Category, Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-
-import { categories } from '../classement/classement-default';
 
 @Component({
     selector: 'classement-navigate',
@@ -18,7 +17,7 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./classement-navigate.component.scss'],
 })
 export class ClassementNavigateComponent implements OnDestroy {
-    categories = categories;
+    categoriesList?: Category[];
 
     searchKey?: string;
     category?: string;
@@ -44,6 +43,7 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly logger: Logger,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
+        private readonly categories: CategoriesService,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -58,7 +58,12 @@ export class ClassementNavigateComponent implements OnDestroy {
                     this.showCategoriesList();
                 }
             }),
+            this.categories.onChange.subscribe(() => {
+                this.categoryUpdate();
+            }),
         );
+
+        this.categoryUpdate();
     }
 
     ngOnDestroy() {
@@ -118,5 +123,9 @@ export class ClassementNavigateComponent implements OnDestroy {
 
                 this.loading = false;
             });
+    }
+
+    private categoryUpdate() {
+        this.categoriesList = this.categories.categoriesList;
     }
 }

@@ -1,11 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Classement, SortClassementCol, SortDirection } from 'src/app/interface';
+import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-
-import { categories } from '../classement/classement-default';
 
 @Component({
     selector: 'admin-classements',
@@ -15,9 +14,10 @@ import { categories } from '../classement/classement-default';
 export class AdminClassementsComponent implements OnDestroy {
     private _sub = Subscriptions.instance();
 
+    categoriesList?: Category[];
+
     loading = false;
 
-    categories = categories;
     searchKey?: string;
     category?: string;
 
@@ -28,7 +28,11 @@ export class AdminClassementsComponent implements OnDestroy {
     sort: SortClassementCol = 'dateCreate';
     direction: SortDirection = 'DESC';
 
-    constructor(private readonly classementService: APIClassementService, private readonly route: ActivatedRoute) {
+    constructor(
+        private readonly classementService: APIClassementService,
+        private readonly route: ActivatedRoute,
+        private readonly categories: CategoriesService,
+    ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.sort ||= params['sort'] || 'dateCreate';
@@ -36,7 +40,12 @@ export class AdminClassementsComponent implements OnDestroy {
                 const page = params['page'] || 1;
                 this.pageUpdate(page);
             }),
+            this.categories.onChange.subscribe(() => {
+                this.categoryUpdate();
+            }),
         );
+
+        this.categoryUpdate();
     }
 
     ngOnDestroy() {
@@ -91,5 +100,9 @@ export class AdminClassementsComponent implements OnDestroy {
                 }
             }
         }
+    }
+
+    private categoryUpdate() {
+        this.categoriesList = this.categories.categoriesList;
     }
 }

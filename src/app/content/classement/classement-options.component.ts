@@ -1,14 +1,14 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
-
-import { FileHandle, Options, Theme } from 'src/app/interface';
+import { Category, FileHandle, Options, Theme } from 'src/app/interface';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { categories, imagesThemes } from './classement-default';
+import { imagesThemes } from './classement-default';
 import { ClassemenThemesComponent } from './classement-themes.component';
 
 @Component({
@@ -16,12 +16,10 @@ import { ClassemenThemesComponent } from './classement-themes.component';
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
 })
-export class ClassementOptionsComponent {
+export class ClassementOptionsComponent implements OnDestroy {
     api = environment.api?.active || false;
 
-    categories = categories;
-
-    categoriesList: { value: string; label: string }[] = [];
+    categoriesList: Category[] = [];
 
     @Input() options?: Options;
 
@@ -33,21 +31,19 @@ export class ClassementOptionsComponent {
 
     @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
 
-    constructor(private readonly optimiseImage: OptimiseImageService, private readonly translate: TranslateService) {
-        this.sort();
-        this.translate.onLangChange.subscribe(() => {
-            this.sort();
-        });
+    private _sub = Subscriptions.instance();
+
+    constructor(private readonly optimiseImage: OptimiseImageService, private readonly categories: CategoriesService) {
+        this.categoryUpdate();
+        this._sub.push(
+            this.categories.onChange.subscribe(() => {
+                this.categoryUpdate();
+            }),
+        );
     }
 
-    sort() {
-        this.categoriesList = categories.map<{ value: string; label: string }>(category => ({
-            value: category,
-            label: this.translate.instant(`category.${category}`),
-        }));
-        this.categoriesList.sort((a, b) =>
-            a.value === 'other' ? 1 : b.value === 'other' ? -1 : a.label.localeCompare(b.label),
-        );
+    ngOnDestroy(): void {
+        this._sub.clear();
     }
 
     switchOptions() {
@@ -127,6 +123,10 @@ export class ClassementOptionsComponent {
                 reader.readAsDataURL(data.file);
             }
         }
+    }
+
+    private categoryUpdate() {
+        this.categoriesList = this.categories.categoriesList;
     }
 
     private updateImageBackgroundCustom(image: string) {
