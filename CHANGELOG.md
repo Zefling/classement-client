@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.10.6 (2023-06-11)
+
+### Standalone web app
+
+-   Fix category sorting
+
+### With API activited only
+
+-   Fix date style in navigate
+
 ## 1.10.5 (2023-06-04)
 
 ### Standalone web app
