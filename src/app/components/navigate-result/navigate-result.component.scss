@@ -35,7 +35,10 @@
         }
 
         .date {
-            font-size: 80%;
+            font-size: 60%;
+            max-height: 13px;
+            min-height: 13px;
+            overflow: hidden;
         }
     }
 }
