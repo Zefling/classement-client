@@ -1,22 +1,27 @@
 <h3>{{ 'menu.admin.classements' | translate }}</h3>
 
-<div class="search">
+<form class="search" (submit)="submit()">
     <div class="name">
         <label>{{ 'navigate.title' | translate }}</label>
-        <input type="search" [(ngModel)]="searchKey" [class.empty]="searchKey === '' || searchKey === undefined" />
+        <input
+            type="search"
+            name="searchKey"
+            [(ngModel)]="searchKey"
+            [class.empty]="searchKey === '' || searchKey === undefined"
+        />
         <span (click)="searchKey = ''"></span>
     </div>
     <div class="line">
         <div class="categories">
             <label>{{ 'navigate.category' | translate }}</label>
-            <select type="text" maxlength="150" [(ngModel)]="category">
+            <select type="text" maxlength="150" name="category" [(ngModel)]="category">
                 <option></option>
                 <option *ngFor="let item of categoriesList" [value]="item.value">{{ item.label }}</option>
             </select>
         </div>
-        <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
+        <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>
-</div>
+</form>
 
 <loading-cmp *ngIf="loading"></loading-cmp>
 

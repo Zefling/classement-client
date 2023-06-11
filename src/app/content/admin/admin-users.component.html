@@ -1,15 +1,20 @@
 <h3>{{ 'menu.admin.users' | translate }}</h3>
 
-<div class="search">
+<form class="search" (submit)="submit()">
     <div class="name">
         <label>{{ 'list.user.name' | translate }}</label>
-        <input type="search" [(ngModel)]="searchKey" [class.empty]="searchKey === '' || searchKey === undefined" />
+        <input
+            type="search"
+            name="searchKey"
+            [(ngModel)]="searchKey"
+            [class.empty]="searchKey === '' || searchKey === undefined"
+        />
         <span (click)="searchKey = ''"></span>
     </div>
     <div>
-        <button (click)="submit()">{{ 'navigate.search' | translate }}</button>
+        <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>
-</div>
+</form>
 
 <loading-cmp *ngIf="loading"></loading-cmp>
 
