@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.10.7 (2023-06-11)
+
+### With API activited only
+
+-   Search forms are now real html forms
+
 ## 1.10.6 (2023-06-11)
 
 ### Standalone web app
