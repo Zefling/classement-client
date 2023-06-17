@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.10.8 (2023-06-18)
+
+### Standalone web app
+
+-   Update to Angular `16.1`
+-   Add tile background color #40
+
 ## 1.10.7 (2023-06-11)
 
 ### With API activited only
