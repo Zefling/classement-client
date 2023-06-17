@@ -48,3 +48,50 @@
 .image-preview {
     max-width: 100%;
 }
+
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+
+    label,
+    .new-color {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .color {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: 1px solid;
+        background: var(
+            --color,
+            linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
+            linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%)
+        );
+        background-color: var(--color, #fff);
+        background-size: 10px 10px;
+        background-size: 25px 25px;
+        background-position: 0 0, 12.5px 12.5px;
+
+        &:hover,
+        &:focus {
+            outline: 2px solid;
+        }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        width: 50px;
+        height: 30px;
+        border-radius: 0;
+    }
+}

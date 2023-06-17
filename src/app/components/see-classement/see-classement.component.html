@@ -20,7 +20,10 @@
                     <pre>{{ group.name }}</pre>
                 </td>
                 <td class="elements drop-list">
-                    <div *ngFor="let item of group.list; let index = index">
+                    <div
+                        *ngFor="let item of group.list; let index = index"
+                        [style.--over-item-background]="item.bgColor"
+                    >
                         <div class="content-box">
                             <div
                                 class="content content-render"

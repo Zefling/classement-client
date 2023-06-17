@@ -65,6 +65,7 @@ export type FileString = {
     date: number;
     title?: string;
     annotation?: string;
+    bgColor?: string;
 };
 export type GroupOption = { group: FormatedGroup; indexGrp: number; first: boolean; last: boolean };
 export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };

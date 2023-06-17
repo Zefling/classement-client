@@ -11,18 +11,18 @@
             />
         </div>
         <div>
-            <label for="ranking-annotation">{{ 'gererator.ranking.annotation' | translate }}</label> <br />
+            <label for="tile-annotation">{{ 'gererator.ranking.annotation' | translate }}</label> <br />
             <textarea
                 autosize
                 maxlength="500"
-                id="ranking-annotation"
+                id="tile-annotation"
                 [(ngModel)]="currentTile.annotation"
                 (ngModelChange)="globalChange()"
             >
             </textarea>
         </div>
         <div>
-            <label for="ranking-image">{{ 'gererator.ranking.image' | translate }}</label>
+            <label for="tile-image">{{ 'gererator.ranking.image' | translate }}</label>
             <div>
                 <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" class="image-preview" />
                 <ng-template #noImage>
@@ -39,6 +39,31 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="colors">
+            <label for="tile-bg-color">{{ 'gererator.ranking.tile.color' | translate }}</label>
+            <div class="new-color">
+                <input
+                    [title]="'gererator.ranking.tile.color.new' | translate"
+                    id="tile-bg-color"
+                    type="color"
+                    [(ngModel)]="currentTile.bgColor"
+                />
+            </div>
+            <div
+                [title]="'gererator.ranking.tile.color.remove' | translate"
+                class="color"
+                (click)="currentTile.bgColor = undefined"
+                tabindex="0"
+            ></div>
+            <div
+                *ngFor="let color of colorList"
+                [style.--color]="color"
+                [title]="'gererator.ranking.tile.color.previous' | translate"
+                class="color"
+                (click)="currentTile.bgColor = color"
+                tabindex="0"
+            ></div>
         </div>
         <div class="buttons">
             <button class="primary" (click)="close()">

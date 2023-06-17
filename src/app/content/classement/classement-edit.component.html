@@ -92,6 +92,7 @@
                                     cdkDropListOrientation="horizontal"
                                     [cdkDropListData]="{ list: group.list, index: index }"
                                     (cdkDropListDropped)="drop(group.list, $event)"
+                                    [style.--over-item-background]="item.bgColor"
                                 >
                                     <div class="content-box" cdkDrag>
                                         <div
@@ -162,6 +163,7 @@
                         cdkDropListOrientation="horizontal"
                         [cdkDropListData]="{ list: list, index: index }"
                         (cdkDropListDropped)="drop(list, $event)"
+                        [style.--over-item-background]="item.bgColor"
                     >
                         <div class="content-box" cdkDrag>
                             <div

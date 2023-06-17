@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    Host,
+    Input,
+    OnChanges,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subject, debounceTime } from 'rxjs';
@@ -7,6 +16,8 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString } from 'src/app/interface';
 import { GlobalService } from 'src/app/services/global.service';
 
+import { ClassementEditComponent } from './classement-edit.component';
+
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 
 @Component({
@@ -14,7 +25,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
 })
-export class ClassementEditImageComponent {
+export class ClassementEditImageComponent implements OnChanges {
     @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
     @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
     @ViewChild('ratioInput') ratioInput!: ElementRef<HTMLInputElement>;
@@ -33,13 +44,29 @@ export class ClassementEditImageComponent {
     aspectRatio = 0;
     mode = 0;
 
+    colorList?: Set<string>;
+
     private _detectChange = new Subject<void>();
 
-    constructor(private readonly cd: ChangeDetectorRef, private readonly global: GlobalService) {
+    constructor(
+        private readonly cd: ChangeDetectorRef,
+        private readonly global: GlobalService,
+        @Host() private readonly editor: ClassementEditComponent,
+    ) {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
             this.globalChange();
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['currentTile']) {
+            // list colors
+            const colors = new Set<string>();
+            this.editor.list.forEach(e => (e.bgColor ? colors.add(e.bgColor) : null));
+            this.editor.groups.forEach(e => e.list.forEach(f => (f.bgColor ? colors.add(f.bgColor) : null)));
+            this.colorList = colors;
+        }
     }
 
     open() {
@@ -102,23 +129,24 @@ export class ClassementEditImageComponent {
 
     async update() {
         if (this.croppedImage) {
+            const tile = this.currentTile!;
             setTimeout(() => {
-                this.currentTile!.url = this.croppedImage;
+                tile.url = this.croppedImage;
             });
-            this.currentTile!.realSize = this.croppedImage.length;
-            this.currentTile!.size = this.croppedImage.length;
-            this.currentTile!.type = 'image/webp';
+            tile.realSize = this.croppedImage.length;
+            tile.size = this.croppedImage.length;
+            tile.type = 'image/webp';
 
             const image = await this.global.imageDimensions(this.croppedImage);
-            this.currentTile!.height = image.height;
-            this.currentTile!.width = image.width;
+            tile.height = image.height;
+            tile.width = image.width;
 
             this.global.onImageUpdate.next();
             this.globalChange();
         }
     }
 
-    imageLoaded(image?: LoadedImage) {
+    imageLoaded(_image?: LoadedImage) {
         // show cropper
         setTimeout(() => {
             // fix init position for the cropper
