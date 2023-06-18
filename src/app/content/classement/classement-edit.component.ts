@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import {
     ChangeDetectorRef,
@@ -118,7 +118,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly preferencesService: PreferencesService,
     ) {
         this._sub.push(
-            route.params.subscribe(params => {
+            this.route.params.subscribe(params => {
                 if (this.preferencesService.hasInit) {
                     this.initWithParams(params);
                 } else {
@@ -201,6 +201,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
             this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
             this.list = this.globalService.jsonTmp?.list || [];
+            this.addIds();
             this.id = undefined;
             this.classement = undefined;
             this.globalService.jsonTmp = undefined;
@@ -247,9 +248,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 };
                 this.groups = data.data.groups;
                 this.list = data.data.list;
+                this.addIds();
                 this.globalService.fixImageSize(this.groups, this.list);
                 this._html2canavasImagesCacheUpdate();
-                this.size = this.optimiseImage.size(this.list, this.groups).size;
+                this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.resetCache();
             })
             .catch(() => {
@@ -267,6 +269,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         };
         this.groups = classement.data.groups;
         this.list = classement.data.list;
+        if (this.options.mode === 'teams') {
+            this.groups.forEach(group => {
+                group.list = group.list.map(tile => this.list.find(t => t.id === tile.id)!);
+            });
+        }
+        this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
         this._html2canavasImagesCacheUpdate();
 
@@ -372,10 +380,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.groups.forEach(e => list.push(...e.list));
 
                     if (classements?.length) {
-                        classements.forEach(c => {
+                        classements.forEach(classement => {
                             const listCompare = [];
-                            listCompare.push(...c.data.list);
-                            c.data.groups.forEach(e => listCompare.push(...e.list));
+                            listCompare.push(...classement.data.list);
+                            classement.data.groups.forEach(e => listCompare.push(...e.list));
 
                             listCompare.forEach(tile => {
                                 // compare with exist
@@ -410,6 +418,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     addTile(tile: FileString) {
         this.list.push(tile);
+        this.addIds();
         this.diff!.splice(this.diff!.indexOf(tile), 1);
     }
 
@@ -442,15 +451,52 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (event.previousContainer.data.list === event.container.data.list) {
             moveItemInArray(list, indexFrom, indexTarget);
         } else {
-            transferArrayItem(
-                event.previousContainer.data.list,
-                event.container.data.list,
-                indexFrom,
-                indexTarget + event.currentIndex,
-            );
+            if (this.options.mode === 'teams') {
+                if (
+                    this.listIsType(event.previousContainer.data.list, 'list') &&
+                    this.listIsType(event.container.data.list, 'group') &&
+                    !event.container.data.list.find(tile => tile.id === event.previousContainer.data.list[indexFrom].id)
+                ) {
+                    copyArrayItem(
+                        event.previousContainer.data.list,
+                        event.container.data.list,
+                        indexFrom,
+                        indexTarget + event.currentIndex,
+                    );
+                } else if (
+                    this.listIsType(event.previousContainer.data.list, 'group') &&
+                    this.listIsType(event.container.data.list, 'group')
+                ) {
+                    if (
+                        !event.container.data.list.find(
+                            tile => tile.id === event.previousContainer.data.list[indexFrom].id,
+                        )
+                    ) {
+                        transferArrayItem(
+                            event.previousContainer.data.list,
+                            event.container.data.list,
+                            indexFrom,
+                            indexTarget + event.currentIndex,
+                        );
+                    } else {
+                        event.previousContainer.data.list.splice(indexFrom, 1);
+                    }
+                } else if (
+                    this.listIsType(event.previousContainer.data.list, 'group') &&
+                    this.listIsType(event.container.data.list, 'list')
+                ) {
+                    event.previousContainer.data.list.splice(indexFrom, 1);
+                }
+            } else {
+                transferArrayItem(
+                    event.previousContainer.data.list,
+                    event.container.data.list,
+                    indexFrom,
+                    indexTarget + event.currentIndex,
+                );
+            }
         }
         this.globalChange();
-
         this.detectChanges();
         this.change();
     }
@@ -482,18 +528,25 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     upLine(index: number) {
         this.groups.splice(index - 1, 0, this.groups.splice(index, 1)[0]);
+        this.addIds();
         this.globalChange();
         this.change();
     }
 
     downLine(index: number) {
         this.groups.splice(index + 1, 0, this.groups.splice(index, 1)[0]);
+        this.addIds();
         this.globalChange();
         this.change();
     }
 
     deleteLine(index: number) {
-        this.list.push(...this.groups.splice(index, 1)[0].list);
+        if (this.options.mode === 'teams') {
+            this.groups.splice(index, 1);
+        } else {
+            this.list.push(...this.groups.splice(index, 1)[0].list);
+        }
+        this.addIds();
         this.globalChange();
         this.change();
     }
@@ -511,7 +564,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     updateSize() {
-        this.size = this.optimiseImage.size(this.list, this.groups).size;
+        this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
     }
 
     addLine(index: number) {
@@ -547,6 +600,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.list.push(file);
+        this.addIds();
         this.globalChange();
         this.change();
     }
@@ -602,9 +656,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     reset() {
         for (const ligne of this.groups) {
-            this.list.push(...ligne.list);
+            if (this.options.mode !== 'teams') {
+                this.list.push(...ligne.list);
+            }
             ligne.list = [];
         }
+        this.addIds();
         this.messageService.addMessage(this.translate.instant('message.reset.groups'));
     }
 
@@ -647,6 +704,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.list = classement.data.list;
         this.groups = classement.data.groups;
         this.options = classement.data.options;
+        this.addIds();
 
         this._html2canavasImagesCacheUpdate();
 
@@ -671,6 +729,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             case 'replace': {
                 this.groups = event.data?.groups!;
                 this.list = event.data?.list!;
+                this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
                 this._html2canavasImagesCacheUpdate();
@@ -744,5 +803,43 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     private downloadImage(data: string, filename: string) {
         Utils.downloadFile(data, filename);
+    }
+
+    private addIds() {
+        // for groups
+        this.groups.forEach(group => {
+            if (!(group.list as any).id) {
+                // add ids to identify lists
+                (group.list as any).type = `group`;
+                (group.list as any).id = `group-${this.randomNumber()}`;
+            }
+            group.list.forEach(tile => {
+                if (!tile.id) {
+                    // add ids to identify tiles
+                    tile.id = `tile-${this.randomNumber()}`;
+                }
+            });
+        });
+
+        // for list
+        if (!(this.list as any).id) {
+            // add ids to identify lists
+            (this.list as any).type = `list`;
+            (this.list as any).id = 'list';
+        }
+        this.list.forEach(tile => {
+            if (!tile.id) {
+                // add ids to identify tiles
+                tile.id = `tile-${this.randomNumber()}`;
+            }
+        });
+    }
+
+    private listIsType(list: FileString[], group: string): boolean {
+        return (list as any).type === group;
+    }
+
+    private randomNumber() {
+        return `${Math.round(Math.random() * 999_999_999)}`.padStart(9, '0');
     }
 }

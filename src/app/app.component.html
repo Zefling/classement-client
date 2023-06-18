@@ -159,15 +159,14 @@
     <p>{{ 'gererator.change.question' | translate }}</p>
     <div>
         <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
-        <button class="primary" (click)="exit(true, true)">{{ 'list.delete.validate.save' | translate }}</button>
-        <button class="primary" (click)="exit(true)">{{ 'list.delete.validate' | translate }}</button>
+        <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | translate }}</button>
+        <button class="warn" (click)="exit(true)">{{ 'list.delete.exit' | translate }}</button>
     </div>
 </dialog-cmp>
 
 <dialog-cmp class="preferences" #preferences>
     <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
         <h2>{{ 'preferences.title' | translate }}</h2>
-
         <h3>{{ 'preferences.tile.title' | translate }}</h3>
         <label>
             <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}

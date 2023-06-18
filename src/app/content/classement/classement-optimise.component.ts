@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileString, FormatedGroup, OptimisedFile } from 'src/app/interface';
+import { FileString, FormatedGroup, ModeNames, OptimisedFile } from 'src/app/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
@@ -20,6 +20,9 @@ export class ClassementOptimiseComponent implements OnInit {
 
     @Input()
     dialog?: DialogComponent;
+
+    @Input()
+    mode?: ModeNames;
 
     totalSize!: number;
     total!: number;
@@ -54,7 +57,7 @@ export class ClassementOptimiseComponent implements OnInit {
     }
 
     ngOnInit() {
-        const { size, files } = this.optimiseImage.size(this.list, this.groups);
+        const { size, files } = this.optimiseImage.size(this.list, this.groups, this.mode);
         this.totalSize = size;
         this.total = files;
     }
@@ -67,16 +70,18 @@ export class ClassementOptimiseComponent implements OnInit {
         this.countResize = 0;
         this.reduceSize = 0;
         this.listOptimise = [];
-        if (this.groups) {
-            this.groups.forEach(f =>
-                f?.list.forEach(e => {
-                    this.optimiseImg(e);
-                }),
-            );
+        if (this.mode !== 'teams') {
+            if (this.groups) {
+                this.groups.forEach(group =>
+                    group?.list.forEach(tile => {
+                        this.optimiseImg(tile);
+                    }),
+                );
+            }
         }
         if (this.list) {
-            this.list.forEach(e => {
-                this.optimiseImg(e);
+            this.list.forEach(tile => {
+                this.optimiseImg(tile);
             });
         }
     }

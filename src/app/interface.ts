@@ -55,6 +55,7 @@ export interface FileHandle {
 
 export type FileStream = { filter: TypeFile; file: FileString };
 export type FileString = {
+    id?: string;
     url?: string;
     name: string;
     height?: number;
@@ -77,6 +78,7 @@ export type Options = ThemeOptions & {
     category: string;
     description: string;
     tags: string[];
+    mode: ModeNames;
 };
 export type ThemeOptions = {
     titleTextColor: string;
@@ -171,6 +173,8 @@ export interface PreferencesData {
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
 export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';
+
+export type ModeNames = 'default' | 'teams';
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';

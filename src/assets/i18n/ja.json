@@ -136,8 +136,8 @@
     "local.link": "このティアリストは、このブラウザのティアリストにリンクされています。\nここをクリックして、このブラウザに保存されているバージョンを確認してください。\nID:{{ id }}",
     "delete": {
       "question": "このティアリストを消去してもよろしいですか？",
-      "validate": "検証する",
-      "validate.save": "セーブして検証する",
+      "exit": "終了する",
+      "exit.save": "セーブして終了する",
       "cancel": "拒否する",
       "delete": "削除する",
       "restore": "復元する"
@@ -212,6 +212,7 @@
       "title.opacity": "タイトルのテキストの不透明度：",
       "group": "グループ：",
       "description": "説明:",
+      "mode": "モード:",
       "tags": "タグ:",
       "sizes": "タイルサイズ：",
       "margin": "マージン",
@@ -293,6 +294,12 @@
         "ciel": "空"
       }
     },
+    "mode": {
+      "name": {
+        "default": "デフォルト",
+        "teams": "チーム"
+      }
+    },
     "ranking": {
       "group.title": "ティアリスト",
       "name": "名前",
@@ -350,6 +357,7 @@
       "new.derivative": "このティアリストからの新しいデリバティブ",
       "new.derivative.empty": "このティアリストからの新しい空のデリバティブ",
       "my.derivative.count": "注: 現在、このティアリストからデリバティブをした{{ count }}つを持っています。",
+      "change.mode.question": "モードを変更するには、グループを空にリセットする必要があります。\n続行してもよろしいですか？",
       "reset.groups": {
         "button": "クリアグループ",
         "question": "グループをクリアしてもよろしいですか？",

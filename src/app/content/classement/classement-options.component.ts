@@ -1,6 +1,7 @@
-import { Component, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Host, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 
-import { Category, FileHandle, Options, Theme } from 'src/app/interface';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
@@ -9,6 +10,7 @@ import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 import { imagesThemes } from './classement-default';
+import { ClassementEditComponent } from './classement-edit.component';
 import { ClassemenThemesComponent } from './classement-themes.component';
 
 @Component({
@@ -29,11 +31,17 @@ export class ClassementOptionsComponent implements OnDestroy {
 
     listThemes = imagesThemes;
 
-    @ViewChild(ClassemenThemesComponent) classemenThemes!: ClassemenThemesComponent;
+    @ViewChild(ClassemenThemesComponent) classementThemes!: ClassemenThemesComponent;
+    @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
 
     private _sub = Subscriptions.instance();
+    private modeTemp?: ModeNames;
 
-    constructor(private readonly optimiseImage: OptimiseImageService, private readonly categories: CategoriesService) {
+    constructor(
+        private readonly optimiseImage: OptimiseImageService,
+        private readonly categories: CategoriesService,
+        @Host() private readonly editor: ClassementEditComponent,
+    ) {
         this.categoryUpdate();
         this._sub.push(
             this.categories.onChange.subscribe(() => {
@@ -44,6 +52,16 @@ export class ClassementOptionsComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this._sub.clear();
+    }
+
+    modeChange(event: ModeNames) {
+        this.dialogChangeMode.open();
+        this.modeTemp = event;
+    }
+
+    modeChangeOk() {
+        this.editor.reset();
+        this.options!.mode = this.modeTemp!;
     }
 
     switchOptions() {
@@ -59,7 +77,7 @@ export class ClassementOptionsComponent implements OnDestroy {
     }
 
     themesOpen() {
-        this.classemenThemes.dialog.open();
+        this.classementThemes.dialog.open();
     }
 
     changeTheme(theme: Theme) {

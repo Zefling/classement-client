@@ -28,6 +28,13 @@
         {{ 'gererator.options.tags' | translate }}
         <tag-list [tags]="options.tags" (update)="updateTags($event)"></tag-list>
     </div>
+    <div class="mode">
+        <label for="option-mode">{{ 'gererator.options.mode' | translate }}</label>
+        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange($event)">
+            <option value="default">{{ 'mode.name.default' | translate }}</option>
+            <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+        </select>
+    </div>
     <div class="links">
         <a tabindex="0" (click)="switchOptions()">{{
             (options.showAdvancedOptions ? 'gererator.options.simple' : 'gererator.options.advence') | translate
@@ -402,3 +409,17 @@
 </div>
 
 <classement-themes (change)="changeTheme($event)"></classement-themes>
+
+<dialog-cmp class="auto-format" #dialogChangeMode>
+    <p class="question">
+        {{ 'gererator.actions.change.mode.question' | translate }}
+    </p>
+    <div class="buttons">
+        <button (click)="dialogChangeMode.close()">
+            {{ 'gererator.actions.reset.groups.cancel' | translate }}
+        </button>
+        <button class="primary" (click)="modeChangeOk(); dialogChangeMode.close()">
+            {{ 'gererator.actions.reset.groups.ok' | translate }}
+        </button>
+    </div>
+</dialog-cmp>

@@ -43,6 +43,7 @@ export const defaultOptions: Options = {
     nameBackgroundOpacity: 100,
     imageBackgroundImage: 'none',
     imageBackgroundCustom: '',
+    mode: 'default',
 };
 
 export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel', 'custom'];

@@ -135,8 +135,8 @@
     "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
     "delete": {
       "question": "Are you sure you want to delete this tierlist?",
-      "validate": "Validate",
-      "validate.save": "Save and validate",
+      "exit": "Exit",
+      "exit.save": "Save and exit",
       "cancel": "Cancel",
       "delete": "Delete",
       "restore": "Restore"
@@ -212,6 +212,7 @@
       "group": "Group:",
       "description": "Description:",
       "tags": "Tags:",
+      "mode": "Mode:",
       "sizes": "Tile sizes:",
       "margin": "Margin",
       "padding": "Padding",
@@ -292,6 +293,12 @@
         "ciel": "Sky"
       }
     },
+    "mode": {
+      "name": {
+        "default": "Default",
+        "teams": "Teams"
+      }
+    },
     "ranking": {
       "group.title": "Tierlist",
       "name": "Name",
@@ -349,6 +356,7 @@
       "new.derivative": "New derivative from this tierlist",
       "new.derivative.empty": "New empty derivative from this tierlist",
       "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist.",
+      "change.mode.question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
       "reset.groups": {
         "button": "Clear Groups",
         "question": "Are you sure you want to clear groups?",

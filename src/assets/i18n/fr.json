@@ -135,8 +135,8 @@
     "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer ce classement\u00A0?",
-      "validate.save": "Sauvegarder et valider",
-      "validate": "Valider",
+      "exit.save": "Sauvegarder et quitter",
+      "exit": "Quitter",
       "cancel": "Annuler",
       "delete": "Supprimer",
       "restore": "Restaurer"
@@ -211,6 +211,7 @@
       "title.opacity": "Opacité du texte du titre\u00A0:",
       "group": "Groupe\u00A0:",
       "description": "Description\u00A0:",
+      "mode": "Mode\u00A0:",
       "tags": "Clefs\u00A0:",
       "sizes": "Dimensions d'une tuile\u00A0:",
       "margin": "Marge",
@@ -292,6 +293,12 @@
         "ciel": "Ciel"
       }
     },
+    "mode": {
+      "name": {
+        "default": "Défaut",
+        "teams": "Équipes"
+      }
+    },
     "ranking": {
       "group.title": "Classement",
       "name": "Nom",
@@ -350,6 +357,7 @@
       "new.derivative": "Nouveau dérivé à partir de ce classement",
       "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
       "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement.",
+      "change.mode.question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer\u00A0?",
       "reset.groups": {
         "button": "Vider les groupes",
         "question": "Êtes-vous sûr de vouloir vider les groupes\u00A0?",
