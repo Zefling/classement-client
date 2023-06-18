@@ -126,6 +126,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             localId: this.classement?.localId || null,
             name: this.options?.title?.trim(),
             category: this.options?.category,
+            mode: this.options?.mode,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
             hidden: this.hidden ?? this.classement?.hidden ?? false,

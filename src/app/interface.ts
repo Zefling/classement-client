@@ -4,6 +4,7 @@ export interface Classement {
     banner: string;
     data: Data;
     category: string;
+    mode: string;
     name: string;
     user: string;
     userAvatar: string;

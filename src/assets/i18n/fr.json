@@ -335,7 +335,6 @@
       "add": "Ajout",
       "delete": "Suppr."
     },
-
     "actions": {
       "export.image": "Export en image",
       "save.local": "Sauvegarde navigateur",

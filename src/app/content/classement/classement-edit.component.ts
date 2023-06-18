@@ -140,7 +140,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.updateSize();
             }),
             globalService.onLocalSave.subscribe(() => {
-                debugger;
                 this.saveLocal(false, false);
             }),
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
