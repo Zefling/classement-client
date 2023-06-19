@@ -200,6 +200,12 @@
     "other": "他",
     "undefined": "未定義"
   },
+  "mode": {
+    "name": {
+      "default": "デフォルト",
+      "teams": "チーム"
+    }
+  },
   "gererator": {
     "title": {
       "new": "新しいティアリストを編集する",
@@ -292,12 +298,6 @@
         "sakura": "桜",
         "night": "エトワール",
         "ciel": "空"
-      }
-    },
-    "mode": {
-      "name": {
-        "default": "デフォルト",
-        "teams": "チーム"
       }
     },
     "ranking": {

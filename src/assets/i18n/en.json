@@ -199,6 +199,12 @@
     "other": "Other",
     "undefined": "undefined"
   },
+  "mode": {
+    "name": {
+      "default": "Default",
+      "teams": "Teams"
+    }
+  },
   "gererator": {
     "title": {
       "new": "New tierlist",
@@ -291,12 +297,6 @@
         "sakura": "Sakura",
         "night": "Night",
         "ciel": "Sky"
-      }
-    },
-    "mode": {
-      "name": {
-        "default": "Default",
-        "teams": "Teams"
       }
     },
     "ranking": {

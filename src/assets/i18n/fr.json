@@ -199,6 +199,12 @@
     "other": "Autre",
     "undefined": "non défini"
   },
+  "mode": {
+    "name": {
+      "default": "Défaut",
+      "teams": "Équipes"
+    }
+  },
   "gererator": {
     "title": {
       "new": "Nouveau classement",
@@ -291,12 +297,6 @@
         "sakura": "Sakura",
         "night": "Nuit",
         "ciel": "Ciel"
-      }
-    },
-    "mode": {
-      "name": {
-        "default": "Défaut",
-        "teams": "Équipes"
       }
     },
     "ranking": {

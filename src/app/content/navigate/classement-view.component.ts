@@ -141,6 +141,8 @@ export class ClassementViewComponent implements OnDestroy {
     loadClassement(classement: Classement) {
         this.classement = classement;
 
+        Utils.formatedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
+
         if (this.userService.logged) {
             this.currentUser = this.userService.user?.username === classement.user;
             this.classementService

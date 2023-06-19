@@ -249,7 +249,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = data.data.list;
                 this.addIds();
                 this.globalService.fixImageSize(this.groups, this.list);
-                this._html2canavasImagesCacheUpdate();
+                this.html2canavasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.resetCache();
             })
@@ -268,14 +268,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         };
         this.groups = classement.data.groups;
         this.list = classement.data.list;
-        if (this.options.mode === 'teams') {
-            this.groups.forEach(group => {
-                group.list = group.list.map(tile => this.list.find(t => t.id === tile.id)!);
-            });
-        }
+        this.teamsModeUpdateTile();
         this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
-        this._html2canavasImagesCacheUpdate();
+        this.html2canavasImagesCacheUpdate();
 
         if (withDerivative && this.logged) {
             this.classementService
@@ -703,9 +699,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.list = classement.data.list;
         this.groups = classement.data.groups;
         this.options = classement.data.options;
+        this.teamsModeUpdateTile();
         this.addIds();
 
-        this._html2canavasImagesCacheUpdate();
+        this.html2canavasImagesCacheUpdate();
 
         if (classement.localId) {
             // persist data
@@ -731,7 +728,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
-                this._html2canavasImagesCacheUpdate();
+                this.html2canavasImagesCacheUpdate();
                 break;
             }
             case 'new': {
@@ -768,7 +765,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    private _html2canavasImagesCacheUpdate() {
+    private teamsModeUpdateTile() {
+        Utils.formatedTilesByMode(this.options, this.groups, this.list);
+    }
+
+    private html2canavasImagesCacheUpdate() {
         this.exportImageDisabled = true;
         setTimeout(() => {
             this.globalService

@@ -43,6 +43,7 @@ export class ListClassementsComponent {
 
     see(classement: Classement) {
         this.currentClassement = classement;
+        Utils.formatedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
         this.dialogSeeClassement.open();
     }
 
