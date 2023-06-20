@@ -142,10 +142,18 @@ export class AppComponent implements DoCheck {
             newLine: new FormControl(initPreferences.newLine),
             lineOption: new FormControl(initPreferences.lineOption),
             theme: new FormControl(initPreferences.theme),
+            pageSize: new FormControl(initPreferences.pageSize),
         });
 
         this.preferencesForm.valueChanges.subscribe(() => {
             this.preferencesService.saveAndUpdate(this.preferencesForm!.value);
+        });
+        this.preferencesForm.get('pageSize')?.valueChanges.subscribe((value: number) => {
+            try {
+                this.preferencesForm!.get('pageSize')?.setValue(Math.min(50, Math.max(9, value)), { emitEvent: false });
+            } catch (e) {
+                this.preferencesForm!.get('pageSize')?.setValue(24, { emitEvent: false });
+            }
         });
     }
 }

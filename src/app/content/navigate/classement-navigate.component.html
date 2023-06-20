@@ -33,11 +33,12 @@
 </div>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && total / 25 > 1"
+    *ngIf="!isCatagoryList && total && total / pageSize > 1"
     [total]="total"
     [page]="page"
     [base]="url"
     [queryParams]="queryParams"
+    [size]="pageSize"
 ></paginate-cmp>
 
 <ng-container *ngIf="!loading">
@@ -45,11 +46,12 @@
 </ng-container>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && total / 25 > 1"
+    *ngIf="!isCatagoryList && total && total / pageSize > 1"
     [total]="total"
     [page]="page"
     [base]="url"
     [queryParams]="queryParams"
+    [size]="pageSize"
 ></paginate-cmp>
 
 <loader-item *ngIf="loading"></loader-item>

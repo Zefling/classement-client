@@ -9,6 +9,7 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
@@ -31,6 +32,10 @@ export class ClassementNavigateComponent implements OnDestroy {
     url = '/navigate';
     queryParams = {};
 
+    get pageSize(): number {
+        return this.preferences.preferences.pageSize;
+    }
+
     isCatagoryList = false;
 
     private _sub = Subscriptions.instance();
@@ -44,6 +49,7 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
         private readonly categories: CategoriesService,
+        private readonly preferences: PreferencesService,
     ) {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -95,7 +101,12 @@ export class ClassementNavigateComponent implements OnDestroy {
         }
         this.loading = true;
         this.classementService
-            .getClassementsByCriterion({ name: this.searchKey, category: this.category, page: this.page })
+            .getClassementsByCriterion({
+                name: this.searchKey,
+                category: this.category,
+                page: this.page,
+                size: this.pageSize,
+            })
             .then(classements => {
                 this.classements = classements.list;
                 this.total = classements.total;

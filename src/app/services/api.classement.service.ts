@@ -68,7 +68,12 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    getClassementsByCriterion(criterion: { name?: string; category?: string; page?: number }): Promise<SearchResult> {
+    getClassementsByCriterion(criterion: {
+        name?: string;
+        category?: string;
+        page?: number;
+        size?: number;
+    }): Promise<SearchResult> {
         return new Promise<SearchResult>((resolve, reject) => {
             let params = new HttpParams();
             for (const i in criterion) {

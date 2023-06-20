@@ -82,6 +82,11 @@
     },
     "theme": {
       "title": "Default theme"
+    },
+    "navigation": {
+      "page.size": "Number of tiles per page in the navigation",
+      "page.size.pre": "",
+      "page.size.per": "tiles per page"
     }
   },
   "list": {

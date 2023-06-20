@@ -22,6 +22,7 @@ export class PreferencesService {
         newLine: 'below',
         theme: themes[0],
         lineOption: 'auto',
+        pageSize: 24,
     };
 
     get preferences(): PreferencesData {

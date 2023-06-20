@@ -82,6 +82,11 @@
     },
     "theme": {
       "title": "Théme par défaut"
+    },
+    "navigation": {
+      "page.size": "Nombre de tuiles par page dans la navigation",
+      "page.size.pre": "",
+      "page.size.per": "tuiles par page"
     }
   },
   "list": {

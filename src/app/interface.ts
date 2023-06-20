@@ -169,6 +169,7 @@ export interface PreferencesData {
     newLine: 'below' | 'above' | 'ask-me';
     lineOption: 'auto' | 'reduce';
     theme: ThemeNames;
+    pageSize: number;
 }
 
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
