@@ -182,7 +182,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     copyLink() {
         Utils.clipboard(
-            `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement!.rankingId}${
+            `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement!)}${
                 this.historyId ? `/${this.historyId}` : ''
             }`,
         )
@@ -195,15 +195,15 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     openClassement() {
-        this.router.navigate(['edit', this.classement!.rankingId]);
+        this.router.navigate(['edit', this.getClassementId(this.classement!)]);
     }
 
     openClassementFork() {
-        this.router.navigate(['edit', this.classement!.rankingId, 'fork']);
+        this.router.navigate(['edit', this.getClassementId(this.classement!), 'fork']);
     }
 
     seeMyClassement() {
-        this.router.navigate(['navigate', 'view', this.myClassement!.rankingId]);
+        this.router.navigate(['navigate', 'view', this.getClassementId(this.myClassement!)]);
     }
 
     seeHistory() {
@@ -213,8 +213,8 @@ export class ClassementViewComponent implements OnDestroy {
     loadHistoryClassement(history: ClassementHistory) {
         this.router.navigate(
             history.id
-                ? ['navigate', 'view', this.classement!.rankingId, history.id]
-                : ['navigate', 'view', this.classement!.rankingId],
+                ? ['navigate', 'view', this.getClassementId(this.classement!), history.id]
+                : ['navigate', 'view', this.getClassementId(this.classement!)],
         );
         this.dialogHistory.close();
     }
@@ -224,12 +224,12 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['navigate', 'view', classement.rankingId]);
+        this.router.navigate(['navigate', 'view', this.getClassementId(classement)]);
         this.dialogDerivatives.close();
     }
 
     openMyClassement() {
-        this.router.navigate(['edit', this.myClassement!.rankingId]);
+        this.router.navigate(['edit', this.classement!.linkId || this.myClassement!.rankingId]);
     }
 
     loadLocalClassement(id: string) {
@@ -241,6 +241,7 @@ export class ClassementViewComponent implements OnDestroy {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const linkId = data.infos.linkId;
                 const banner = data.infos.parentId;
 
                 this.currentUser = true;
@@ -250,6 +251,7 @@ export class ClassementViewComponent implements OnDestroy {
                     rankingId,
                     templateId,
                     parentId,
+                    linkId,
                     banner,
                 } as any;
 
@@ -307,5 +309,9 @@ export class ClassementViewComponent implements OnDestroy {
 
     private downloadImage(data: string, filename: string) {
         Utils.downloadFile(data, filename);
+    }
+
+    private getClassementId(classement: Classement) {
+        return classement!.linkId || classement!.rankingId;
     }
 }

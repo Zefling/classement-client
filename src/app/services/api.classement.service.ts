@@ -183,6 +183,24 @@ export class APIClassementService extends APICommon {
         });
     }
 
+    testLink(linkId: string, rankingId?: string) {
+        return new Promise<boolean>((resolve, reject) => {
+            this.http
+                .post<boolean>(`${environment.api.path}api/testId`, {
+                    linkId,
+                    rankingId,
+                })
+                .subscribe({
+                    next: result => {
+                        resolve(result);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('home', result));
+                    },
+                });
+        });
+    }
+
     private getEventMessage(
         event: HttpEvent<Message<Classement>> | HttpResponse<Message<Classement>>,
         classement: Classement,

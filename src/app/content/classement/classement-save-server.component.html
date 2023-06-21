@@ -74,6 +74,21 @@
             <li *ngFor="let error of showError">{{ error }}</li>
         </ul>
 
+        <div class="link">
+            <label>{{ 'gererator.server.link' | translate }}</label>
+            <div>
+                <input
+                    type="text"
+                    [ngModel]="this.classement?.linkId"
+                    (ngModelChange)="testLink($event)"
+                    (blur)="linkFormat($event)"
+                />
+            </div>
+            <span class="validity" [class.valid]="linkIdValid">
+                {{ linkIdValid !== undefined ? (linkIdValid ? 'Ｏ' : 'Ｘ') : '' }}
+            </span>
+        </div>
+
         <div class="public">
             <label>
                 <input type="checkbox" [(ngModel)]="hidden" />
@@ -98,7 +113,7 @@
 
     <p>
         <button (click)="cancel()">{{ 'gererator.server.cancel' | translate }}</button>
-        <button class="primary" (click)="validate()">
+        <button class="primary" (click)="validate()" [disabled]="linkIdValid === false">
             {{ 'gererator.server.save' | translate }}
         </button>
     </p>

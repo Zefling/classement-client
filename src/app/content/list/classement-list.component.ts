@@ -109,6 +109,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         rankingId: info.infos.rankingId,
                         templateId: info.infos.templateId,
                         parentId: info.infos.parentId,
+                        linkId: info.infos.linkId,
                         // data
                         groups: info.data.groups,
                         list: info.data.list,

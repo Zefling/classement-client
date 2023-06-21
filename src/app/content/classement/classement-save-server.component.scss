@@ -25,3 +25,19 @@ p {
     text-align: center;
     margin: 20px 0 0;
 }
+
+.link {
+    position: relative;
+
+    .validity {
+        position: absolute;
+        bottom: 4px;
+        right: 6px;
+        font-weight: 900;
+        color: var(--color-icon-deleted);
+
+        &.valid {
+            color: var(--color-icon-validated);
+        }
+    }
+}

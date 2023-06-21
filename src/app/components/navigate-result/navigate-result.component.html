@@ -5,7 +5,7 @@
                 isCatagoryList
                     ? ['/navigate']
                     : classement.templateTotal <= 1 || this.onlyRanking
-                    ? ['/navigate/view', classement.rankingId]
+                    ? ['/navigate/view', classement.linkId || classement.rankingId]
                     : ['/navigate/template', classement.templateId]
             "
             [queryParams]="isCatagoryList ? { category: classement.category } : {}"

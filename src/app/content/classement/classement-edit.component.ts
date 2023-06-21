@@ -219,6 +219,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 const rankingId = data.infos.rankingId;
                 const templateId = data.infos.templateId;
                 const parentId = data.infos.parentId;
+                const linkId = data.infos.linkId;
                 const banner = data.infos.banner;
 
                 this.classement = {
@@ -226,6 +227,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     rankingId,
                     templateId,
                     parentId,
+                    linkId,
                     banner,
                 } as any;
 
@@ -292,7 +294,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['edit', classement.rankingId]);
+        this.router.navigate(['edit', this.getClassementId(classement)]);
         this.dialogDerivatives.close();
     }
 
@@ -316,7 +318,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.shareUrl =
             this.apiActive && this.classement?.rankingId
-                ? `${window.location.protocol}//${window.location.host}/navigate/view/${this.classement.rankingId}`
+                ? `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement)}`
                 : '';
     }
 
@@ -437,7 +439,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     show() {
-        this.router.navigate([`/navigate/view/${this.classement!.rankingId}`]);
+        this.router.navigate([`/navigate/view/${this.getClassementId(this.classement!)}`]);
     }
 
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
@@ -692,7 +694,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     updateAfterServerSave(classement: Classement) {
-        const navigate = this.classement?.rankingId !== classement.rankingId || this.id !== classement.rankingId;
+        const navigate =
+            this.classement?.linkId !== classement.linkId ||
+            this.classement?.rankingId !== classement.rankingId ||
+            this.id !== classement.rankingId;
 
         // update local data
         this.classement = classement;
@@ -712,7 +717,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (navigate) {
             this.id = classement.rankingId;
             this.resetCache();
-            this.location.replaceState('/edit/' + classement.rankingId);
+            this.location.replaceState('/edit/' + this.getClassementId(classement));
         }
     }
 
@@ -792,6 +797,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             templateId: this.classement?.templateId,
             parentId: this.classement?.parentId,
             banner: this.classement?.banner,
+            linkId: this.classement?.linkId,
             dateCreate: Utils.toISODate(this.classement?.dateCreate, true),
             dateChange: Utils.toISODate(this.classement?.dateChange),
         };
@@ -841,5 +847,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     private randomNumber() {
         return `${Math.round(Math.random() * 999_999_999)}`.padStart(9, '0');
+    }
+
+    private getClassementId(classement: Classement) {
+        return classement!.linkId || classement!.rankingId;
     }
 }

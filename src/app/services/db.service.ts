@@ -177,6 +177,7 @@ export class DBService {
                 rankingId: data.rankingId,
                 templateId: data.templateId,
                 parentId: data.parentId,
+                linkId: data.linkId,
                 banner: data.banner,
             },
             data: {

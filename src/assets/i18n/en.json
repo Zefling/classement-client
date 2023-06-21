@@ -427,7 +427,8 @@
       "history": {
         "label": "Historize the old version",
         "info": "This allows you to keep track before changing the tierlist."
-      }
+      },
+      "link": "Replace the default ID with a more readable name (optional)"
     }
   },
   "user": {

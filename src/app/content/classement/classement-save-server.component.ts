@@ -52,6 +52,9 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     categories = categories;
 
     password = '';
+    linkId = '';
+    linkIdValid?: boolean;
+    linkChange = false;
 
     @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
@@ -124,6 +127,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                 : this.classement?.rankingId ?? null,
             templateId: this.classement?.templateId ?? null,
             localId: this.classement?.localId || null,
+            linkId: this.linkChange ? this.linkId : this.classement?.linkId || null,
             name: this.options?.title?.trim(),
             category: this.options?.category,
             mode: this.options?.mode,
@@ -169,6 +173,23 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                     this.loading = false;
                 });
         }
+    }
+
+    testLink(linkId: string) {
+        if (linkId.trim()) {
+            this.classementService
+                .testLink(linkId.trim().replace(/\s/g, '_'), this.classement?.rankingId)
+                .then(linkIdValid => {
+                    this.linkIdValid = linkIdValid;
+                });
+        } else {
+            this.linkIdValid = undefined;
+        }
+        this.linkChange = true;
+    }
+
+    linkFormat(event: FocusEvent) {
+        this.linkId = (event.target as HTMLInputElement).value.trim().replace(/\s/g, '_');
     }
 
     resetBanner() {

@@ -13,6 +13,7 @@ export interface Classement {
     templateId: string;
     parentId: string;
     localId: string;
+    linkId: string;
     // date
     dateCreate: Date;
     dateChange: Date;
@@ -125,6 +126,7 @@ export interface IndexedData<T extends any> {
     rankingId?: string | null;
     templateId?: string | null;
     parentId?: string | null;
+    linkId?: string | null;
     banner?: string;
     dateCreate?: string;
     dateChange?: string;

@@ -427,7 +427,8 @@
       "history": {
         "label": "Historiser l'ancienne version",
         "info": "Cela permet de garder une trace avant modification du classement."
-      }
+      },
+      "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif)\u00A0:"
     }
   },
   "user": {
