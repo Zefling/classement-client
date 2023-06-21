@@ -18,7 +18,7 @@ export class PreferencesService {
 
     private initPreferences: PreferencesData = {
         nameCopy: false,
-        newColor: 'same',
+        newColor: 'mixed',
         newLine: 'below',
         theme: themes[0],
         lineOption: 'auto',
