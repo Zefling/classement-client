@@ -24,6 +24,9 @@
             <div [title]="'list.count.item' | translate">
                 <span class="icon-tile"></span> {{ classement.totalItems }}
             </div>
+            <div class="mode">
+                {{ 'mode.name.' + classement.mode | translate }}
+            </div>
         </div>
         <div class="username">
             <a *ngIf="classement.user; else noUser" [routerLink]="['/user', '@' + classement.user]">
