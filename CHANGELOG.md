@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 1.11.0 (2023-06-22)
+
+### Standalone web app
+
+-   Add Teams mode #41
+-   Fix preferences
+
+### With API activited only
+
+-   Add page size preference #39
+-   Id renaming #13
+-   required: API `1.11.0`
+
 ## 1.10.8 (2023-06-18)
 
 ### Standalone web app
