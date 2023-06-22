@@ -206,19 +206,21 @@
             {{ 'preferences.group.line.option.reduce' | translate }}
         </label>
 
-        <h3>{{ 'preferences.navigation.page.size' | translate }}</h3>
-        <label>
-            {{ 'preferences.navigation.page.size.pre' | translate }}
-            <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-            {{ 'preferences.navigation.page.size.per' | translate }}
-        </label>
-
         <h3>{{ 'preferences.theme.title' | translate }}</h3>
         <select formControlName="theme">
             <option *ngFor="let theme of themes" [value]="theme">
                 {{ 'gererator.theme.name.' + theme | translate }}
             </option>
         </select>
+
+        <ng-container *ngIf="modeApi">
+            <h3>{{ 'preferences.navigation.page.size' | translate }}</h3>
+            <label>
+                {{ 'preferences.navigation.page.size.pre' | translate }}
+                <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
+                {{ 'preferences.navigation.page.size.per' | translate }}
+            </label>
+        </ng-container>
 
         <div class="buttons">
             <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
