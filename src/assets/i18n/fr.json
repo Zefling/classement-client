@@ -253,7 +253,8 @@
           "position.bottom": "En dessous",
           "position.bottom.over": "En dessous et par dessus",
           "position.top": "Au dessus",
-          "position.top.over": "Au dessus et par dessus"
+          "position.top.over": "Au dessus et par dessus",
+          "position.hidden": "Caché"
         }
       },
       "line": {

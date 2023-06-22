@@ -97,7 +97,7 @@ export type ThemeOptions = {
     itemBorderOpacity: number;
     itemTextColor: string;
     itemTextOpacity: number;
-    itemTextPosition: 'bottom' | 'bottom-over' | 'top' | 'top-over';
+    itemTextPosition: 'hidden' | 'bottom' | 'bottom-over' | 'top' | 'top-over';
     itemTextBackgroundColor: string;
     itemTextBackgroundOpacity: number;
     lineBackgroundColor: string;

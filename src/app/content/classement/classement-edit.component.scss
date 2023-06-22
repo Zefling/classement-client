@@ -365,6 +365,10 @@ span.group-options {
     &.top-over .title {
         top: 0;
     }
+
+    &.hidden .title {
+        display: none;
+    }
 }
 
 .input-title {

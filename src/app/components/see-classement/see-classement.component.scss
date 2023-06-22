@@ -145,6 +145,10 @@ table {
     &.top-over .title:last-child:not(:first-child) {
         top: 0;
     }
+
+    &.hidden .title {
+        display: none;
+    }
 }
 
 .drop-list {
