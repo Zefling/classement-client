@@ -287,6 +287,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.reset();
             this.id = undefined;
             this.new = true;
+            classement.linkId = '';
         }
 
         this.updateSize();
