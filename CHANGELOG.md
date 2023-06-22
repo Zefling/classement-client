@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+## 1.11.1 (2023-06-22)
+
+### Standalone web app
+
+-   Fix remove tiles in Teams mode
+
+### With API activited only
+
+-   Fix linkId on fork
+
 ## 1.11.0 (2023-06-22)
 
 ### Standalone web app
