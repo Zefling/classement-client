@@ -151,6 +151,9 @@ body.light-mode {
     --tab-hover-border-color: #494343;
     // table
     --table-header-sortabel-cell: #ecececee;
+    // box
+    --box-background: #00000015;
+    --box-border-color: #5f5f5f;
 }
 
 body.dark-mode {
@@ -302,6 +305,9 @@ body.dark-mode {
     --tab-hover-border-color: #fff;
     // table
     --table-header-sortabel-cell: #202329ee;
+    // box
+    --box-background: #ffffff15;
+    --box-border-color: #5c5c5c;
 
     color-scheme: dark;
 }

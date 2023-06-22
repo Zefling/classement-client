@@ -361,7 +361,11 @@
       "new.derivative": "New derivative from this tierlist",
       "new.derivative.empty": "New empty derivative from this tierlist",
       "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist.",
-      "change.mode.question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
+      "change.mode": {
+        "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
+        "default": "Freely move tiles in each group.",
+        "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams."
+      },
       "reset.groups": {
         "button": "Clear Groups",
         "question": "Are you sure you want to clear groups?",

@@ -30,7 +30,7 @@
     </div>
     <div class="mode">
         <label for="option-mode">{{ 'gererator.options.mode' | translate }}</label>
-        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange($event)">
+        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
             <option value="default">{{ 'mode.name.default' | translate }}</option>
             <option value="teams">{{ 'mode.name.teams' | translate }}</option>
         </select>
@@ -414,11 +414,16 @@
     <p class="question">
         {{ 'gererator.actions.change.mode.question' | translate }}
     </p>
+    <p class="info">
+        <strong>{{ 'mode.name.' + _modeTemp | translate }}</strong>
+        <span>{{ 'gererator.actions.change.mode.' + _modeTemp | translate }}</span>
+    </p>
+
     <div class="buttons">
-        <button (click)="dialogChangeMode.close()">
+        <button (click)="modeChangeValid(false)">
             {{ 'gererator.actions.reset.groups.cancel' | translate }}
         </button>
-        <button class="primary" (click)="modeChangeOk(); dialogChangeMode.close()">
+        <button class="primary" (click)="modeChangeValid(true)">
             {{ 'gererator.actions.reset.groups.ok' | translate }}
         </button>
     </div>

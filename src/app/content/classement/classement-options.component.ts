@@ -1,4 +1,4 @@
-import { Component, Host, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, Host, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface';
@@ -33,9 +33,11 @@ export class ClassementOptionsComponent implements OnDestroy {
 
     @ViewChild(ClassemenThemesComponent) classementThemes!: ClassemenThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
+    @ViewChild('mode') mode!: ElementRef<HTMLSelectElement>;
 
     private _sub = Subscriptions.instance();
-    private modeTemp?: ModeNames;
+    _modeTemp?: ModeNames;
+    _previousMode?: ModeNames;
 
     constructor(
         private readonly optimiseImage: OptimiseImageService,
@@ -54,14 +56,20 @@ export class ClassementOptionsComponent implements OnDestroy {
         this._sub.clear();
     }
 
-    modeChange(event: ModeNames) {
+    modeChange(previous: ModeNames, event: ModeNames) {
         this.dialogChangeMode.open();
-        this.modeTemp = event;
+        this._previousMode = previous;
+        this._modeTemp = event;
     }
 
-    modeChangeOk() {
-        this.editor.reset();
-        this.options!.mode = this.modeTemp!;
+    modeChangeValid(ok: boolean) {
+        if (ok) {
+            this.editor.reset();
+            this.options!.mode = this._modeTemp!;
+        } else {
+            this.mode.nativeElement.value = this._previousMode!;
+        }
+        this.dialogChangeMode.close();
     }
 
     switchOptions() {

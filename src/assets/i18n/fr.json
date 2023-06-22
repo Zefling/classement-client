@@ -361,7 +361,11 @@
       "new.derivative": "Nouveau dérivé à partir de ce classement",
       "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
       "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement.",
-      "change.mode.question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer\u00A0?",
+      "change.mode": {
+        "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer\u00A0?",
+        "default": "Déplacer librement les tuiles dans chaque groupes.",
+        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes."
+      },
       "reset.groups": {
         "button": "Vider les groupes",
         "question": "Êtes-vous sûr de vouloir vider les groupes\u00A0?",

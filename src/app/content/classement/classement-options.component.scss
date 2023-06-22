@@ -296,8 +296,26 @@ h4 {
     }
 }
 
-.question {
+.question,
+.info {
     white-space: pre;
+}
+
+.question {
+    font-weight: 700;
+}
+
+.info {
+    span {
+        text-align: center;
+        background: var(--box-background);
+        border: 1px solid var(--box-border-color);
+        margin-top: 15px;
+        padding: 15px;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+    }
 }
 
 .item-width {
