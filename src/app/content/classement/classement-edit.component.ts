@@ -549,7 +549,15 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     removeItem(index: number) {
-        this.list.splice(index, 1);
+        const removeTile = this.list.splice(index, 1);
+        if (this.options.mode === 'teams') {
+            this.groups.forEach(group => {
+                const index = group.list.findIndex(tile => tile.id === removeTile[0].id);
+                if (index !== -1) {
+                    group.list.splice(index, 1);
+                }
+            });
+        }
         this.globalChange();
         this.updateSize();
         this.change();
