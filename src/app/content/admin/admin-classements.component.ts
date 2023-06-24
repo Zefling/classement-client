@@ -52,6 +52,14 @@ export class AdminClassementsComponent implements OnDestroy {
         this._sub.clear();
     }
 
+    resteFilter(filterInput: HTMLInputElement) {
+        this.searchKey = '';
+        setTimeout(() => {
+            filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus();
+        });
+    }
+
     sortUpdate(sort: SortClassementCol) {
         this.classements = {};
         if (this.sort === sort) {

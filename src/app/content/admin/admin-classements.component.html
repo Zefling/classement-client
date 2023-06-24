@@ -7,9 +7,10 @@
             type="search"
             name="searchKey"
             [(ngModel)]="searchKey"
+            #filterInput
             [class.empty]="searchKey === '' || searchKey === undefined"
         />
-        <span (click)="searchKey = ''"></span>
+        <span (click)="resteFilter(filterInput)"></span>
     </div>
     <div class="line">
         <div class="categories">

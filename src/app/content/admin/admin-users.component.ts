@@ -74,6 +74,15 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         this._sub.clear();
     }
 
+    resteFilter(filterInput: HTMLInputElement) {
+        this.searchKey = '';
+        this.ngDoCheck();
+        setTimeout(() => {
+            filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus();
+        });
+    }
+
     sortUpdate(sort: SortUserCol) {
         this.users = {};
         if (this.sort === sort) {

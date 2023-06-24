@@ -10,8 +10,15 @@
     <div class="list-actions">
         <div class="filter">
             <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
-            <input id="browser-list-filter" type="search" maxlength="150" #filter [class.empty]="filter.value === ''" />
-            <span (click)="filter.value = ''"></span>
+            <input
+                id="browser-list-filter"
+                type="search"
+                maxlength="150"
+                [(ngModel)]="filter"
+                #filterInput
+                [class.empty]="filter === ''"
+            />
+            <span (click)="updateFilter(filterInput)"></span>
         </div>
         <button class="primary" (click)="exportAll()">
             {{ 'gererator.actions.export.all.json' | translate }}
@@ -22,7 +29,7 @@
     </div>
 </div>
 
-<ng-container [sortable]="result" [sortable-filter-input]="filter" [sortable-filter]="sortableFilter">
+<ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
     <table *ngIf="result?.length; else noResult">
         <thead>
             <tr>
@@ -61,7 +68,7 @@
                             [tags]="item.options.tags"
                             readOnly
                             allowTagClick
-                            (tagClick)="tagClick($event)"
+                            (tagClick)="tagClick($event, filterInput)"
                         ></tag-list>
                     </div>
                     <div>

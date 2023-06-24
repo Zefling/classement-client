@@ -19,10 +19,11 @@
                         id="browser-list-filter"
                         type="search"
                         maxlength="150"
-                        #filter
-                        [class.empty]="filter.value === ''"
+                        [(ngModel)]="filter"
+                        #inputFilter
+                        [class.empty]="filter === ''"
                     />
-                    <span (click)="filter.value = ''"></span>
+                    <span (click)="updateFilter(inputFilter)"></span>
                 </div>
             </div>
         </div>
@@ -30,7 +31,7 @@
         <ng-container
             *ngIf="user"
             [sortable]="user.classements"
-            [sortable-filter-input]="filter"
+            [sortable-filter-input]="inputFilter"
             [sortable-filter]="sortableFilter"
         >
             <table *ngIf="user.classements?.length; else noResult">
@@ -77,7 +78,7 @@
                                     [tags]="classement.data.options.tags"
                                     readOnly
                                     allowTagClick
-                                    (tagClick)="tagClick($event)"
+                                    (tagClick)="tagClick($event, inputFilter)"
                                 ></tag-list>
                             </div>
                             <div>

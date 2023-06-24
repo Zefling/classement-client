@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -22,9 +22,9 @@ import { Utils } from 'src/app/tools/utils';
 export class UserListComponent implements OnDestroy {
     @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
     @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
-    @ViewChild('filter') filter!: ElementRef<HTMLInputElement>;
-
     @ViewChild(TabsComponent) tabs!: TabsComponent;
+
+    filter = '';
 
     currentClassement?: Classement;
 
@@ -71,6 +71,14 @@ export class UserListComponent implements OnDestroy {
         });
     }
 
+    updateFilter(filterInput: HTMLInputElement, filter: string = '') {
+        this.filter = filter;
+        setTimeout(() => {
+            filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus();
+        });
+    }
+
     sortableFilter = (key: string, item: Classement, _index: number): boolean => {
         return (
             (!key.startsWith('#') && Utils.normalizeString(item.name).includes(Utils.normalizeString(key))) ||
@@ -81,9 +89,8 @@ export class UserListComponent implements OnDestroy {
         );
     };
 
-    tagClick(event: string) {
-        this.filter.nativeElement.value = `#${event}`;
-        this.sortableDirective.update();
+    tagClick(event: string, filterInput: HTMLInputElement) {
+        this.updateFilter(filterInput, `#${event}`);
     }
 
     ngOnDestroy(): void {
