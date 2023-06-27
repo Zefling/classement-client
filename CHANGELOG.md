@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.11.3 (2023-06-27)
+
+### Standalone web app
+
+-   Improve search input
+-   Fix arrow for old system
+
 ## 1.11.2 (2023-06-23)
 
 ### Standalone web app
