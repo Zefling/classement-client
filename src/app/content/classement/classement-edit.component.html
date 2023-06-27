@@ -311,7 +311,7 @@
                 <td class="title">
                     {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
                     <ng-container *ngIf="derivative.rankingId === classement?.rankingId">
-                        🢀 {{ 'list.current' | translate }}
+                        <span class="icon-left"></span> {{ 'list.current' | translate }}
                     </ng-container>
                 </td>
                 <td class="date">

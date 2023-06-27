@@ -1,7 +1,7 @@
 <h2>{{ 'navigate.template' | translate }}</h2>
 
 <div class="return">
-    <a [routerLink]="['/navigate']">🢀 {{ 'navigate.back.search' | translate }}</a>
+    <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.search' | translate }}</a>
 </div>
 
 <ng-container *ngIf="!loading">
