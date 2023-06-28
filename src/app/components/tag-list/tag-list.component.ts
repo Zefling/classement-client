@@ -1,6 +1,5 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, booleanAttribute } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -15,21 +14,9 @@ import { environment } from 'src/environments/environment';
 export class TagListComponent implements OnInit {
     @Input() tags: string[] = [];
 
-    @Input()
-    set readOnly(value: any) {
-        this._readOnly = coerceBooleanProperty(value);
-    }
-    get readOnly(): boolean {
-        return this._readOnly;
-    }
+    @Input({ transform: booleanAttribute }) readOnly = false;
 
-    @Input()
-    set allowTagClick(value: any) {
-        this._allowTagClick = coerceBooleanProperty(value);
-    }
-    get allowTagClick(): boolean {
-        return this._allowTagClick;
-    }
+    @Input({ transform: booleanAttribute }) allowTagClick = false;
 
     @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
@@ -39,8 +26,6 @@ export class TagListComponent implements OnInit {
     @Output() tagClick = new EventEmitter<string>();
 
     private suject = new Subject<void>();
-    private _readOnly = false;
-    private _allowTagClick = false;
 
     constructor(private readonly http: HttpClient) {}
 

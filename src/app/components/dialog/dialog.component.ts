@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, booleanAttribute } from '@angular/core';
 
 @Component({
     selector: 'dialog-cmp',
@@ -6,11 +6,8 @@ import { Component, HostBinding, Input } from '@angular/core';
     styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-    @Input()
-    set closeButton(value: any) {
-        this._closeButton = this._coerceBooleanProperty(value);
-    }
-    _closeButton = false;
+    @Input({ transform: booleanAttribute })
+    closeButton = false;
 
     @HostBinding('class.open')
     _open = false;
@@ -21,9 +18,5 @@ export class DialogComponent {
 
     close() {
         this._open = false;
-    }
-
-    private _coerceBooleanProperty(value: any): boolean {
-        return value != null && `${value}` !== 'false';
     }
 }

@@ -1,5 +1,5 @@
 <div class="content" *ngIf="_open">
-    <button *ngIf="_closeButton" class="close" (click)="close()">×</button>
+    <button *ngIf="closeButton" class="close" (click)="close()">×</button>
     <div class="main">
         <ng-content></ng-content>
     </div>

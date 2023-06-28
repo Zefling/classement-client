@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnDestroy } from '@angular/core';
+import { Component, DoCheck, Input, OnDestroy, numberAttribute } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -17,16 +17,16 @@ interface Page {
     styleUrls: ['./paginate.component.scss'],
 })
 export class PaginationComponent implements DoCheck, OnDestroy {
-    @Input() page = 1;
-    @Input() total = 0;
+    @Input({ transform: numberAttribute }) page = 1;
+    @Input({ transform: numberAttribute }) total = 0;
     @Input() base?: string;
-    @Input() size = 25;
+    @Input({ transform: numberAttribute }) size = 25;
     @Input() queryParams: {} = {};
 
-    @Input() start = 3;
-    @Input() middleStart = 3;
-    @Input() middleEnd = 3;
-    @Input() end = 3;
+    @Input({ transform: numberAttribute }) start = 3;
+    @Input({ transform: numberAttribute }) middleStart = 3;
+    @Input({ transform: numberAttribute }) middleEnd = 3;
+    @Input({ transform: numberAttribute }) end = 3;
 
     pages: Page[] = [];
 

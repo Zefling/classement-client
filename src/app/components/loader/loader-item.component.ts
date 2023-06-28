@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, numberAttribute } from '@angular/core';
 
 @Component({
     selector: 'loader-item',
@@ -9,8 +9,8 @@ export class LoaderItemComponent {
     @Input()
     mode: 'tile' | 'list' = 'tile';
 
-    @Input()
-    nombre: number = 2;
+    @Input({ transform: numberAttribute })
+    nombre = 2;
 
     get list() {
         return new Array(this.nombre);

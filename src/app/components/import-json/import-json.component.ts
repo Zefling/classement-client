@@ -1,4 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    Output,
+    ViewChild,
+    booleanAttribute,
+} from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -23,7 +32,7 @@ export class ImportJsonComponent implements OnDestroy {
 
     onLoad = false;
 
-    @Input()
+    @Input({ transform: booleanAttribute })
     multi = false;
 
     @Input()

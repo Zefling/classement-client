@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, booleanAttribute } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class SeeClassementComponent implements OnInit {
 
     @Input() options!: Options;
 
-    @Input() withAnotation = false;
+    @Input({ transform: booleanAttribute }) withAnotation = false;
 
     nameOpacity!: string;
 
