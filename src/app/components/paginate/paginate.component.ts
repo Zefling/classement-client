@@ -17,16 +17,16 @@ interface Page {
     styleUrls: ['./paginate.component.scss'],
 })
 export class PaginationComponent implements DoCheck, OnDestroy {
-    @Input({ transform: numberAttribute }) page = 1;
-    @Input({ transform: numberAttribute }) total = 0;
+    @Input({ transform: numberAttribute }) page: any = 1;
+    @Input({ transform: numberAttribute }) total: any = 0;
     @Input() base?: string;
-    @Input({ transform: numberAttribute }) size = 25;
+    @Input({ transform: numberAttribute }) size: any = 25;
     @Input() queryParams: {} = {};
 
-    @Input({ transform: numberAttribute }) start = 3;
-    @Input({ transform: numberAttribute }) middleStart = 3;
-    @Input({ transform: numberAttribute }) middleEnd = 3;
-    @Input({ transform: numberAttribute }) end = 3;
+    @Input({ transform: numberAttribute }) start: any = 3;
+    @Input({ transform: numberAttribute }) middleStart: any = 3;
+    @Input({ transform: numberAttribute }) middleEnd: any = 3;
+    @Input({ transform: numberAttribute }) end: any = 3;
 
     pages: Page[] = [];
 

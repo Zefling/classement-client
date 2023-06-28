@@ -33,7 +33,7 @@ export class ImportJsonComponent implements OnDestroy {
     onLoad = false;
 
     @Input({ transform: booleanAttribute })
-    multi = false;
+    multi: any = false;
 
     @Input()
     actions: 'importOnly' | 'all' = 'all';

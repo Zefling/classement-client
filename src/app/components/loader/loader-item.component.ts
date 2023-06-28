@@ -10,7 +10,7 @@ export class LoaderItemComponent {
     mode: 'tile' | 'list' = 'tile';
 
     @Input({ transform: numberAttribute })
-    nombre = 2;
+    nombre: any = 2;
 
     get list() {
         return new Array(this.nombre);

@@ -7,7 +7,7 @@ import { Component, HostBinding, Input, booleanAttribute } from '@angular/core';
 })
 export class DialogComponent {
     @Input({ transform: booleanAttribute })
-    closeButton = false;
+    closeButton: any = false;
 
     @HostBinding('class.open')
     _open = false;
