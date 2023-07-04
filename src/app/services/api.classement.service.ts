@@ -126,7 +126,7 @@ export class APIClassementService extends APICommon {
         });
     }
 
-    getClassementsLast(limit: number = 8): Promise<Classement[]> {
+    getClassementsLast(limit: number = 11): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http
                 .get<Message<Classement[]>>(`${environment.api.path}api/classements/last?limit=${limit}`)
