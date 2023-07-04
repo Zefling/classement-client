@@ -498,6 +498,7 @@ dialog-cmp.auto-format .main {
 
 .date > span {
     display: block;
+    white-space: nowrap;
 
     & + span {
         font-size: 60%;
