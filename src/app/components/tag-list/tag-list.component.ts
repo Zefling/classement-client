@@ -14,9 +14,9 @@ import { environment } from 'src/environments/environment';
 export class TagListComponent implements OnInit {
     @Input() tags: string[] = [];
 
-    @Input({ transform: booleanAttribute }) readOnly: any = false;
+    @Input({ transform: booleanAttribute }) readOnly = false;
 
-    @Input({ transform: booleanAttribute }) allowTagClick: any = false;
+    @Input({ transform: booleanAttribute }) allowTagClick = false;
 
     @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 

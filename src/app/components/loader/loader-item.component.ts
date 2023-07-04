@@ -6,11 +6,9 @@ import { Component, Input, numberAttribute } from '@angular/core';
     styleUrls: ['./loader-item.component.scss'],
 })
 export class LoaderItemComponent {
-    @Input()
-    mode: 'tile' | 'list' = 'tile';
+    @Input() mode: 'tile' | 'list' = 'tile';
 
-    @Input({ transform: numberAttribute })
-    nombre: any = 2;
+    @Input({ transform: numberAttribute }) nombre = 2;
 
     get list() {
         return new Array(this.nombre);

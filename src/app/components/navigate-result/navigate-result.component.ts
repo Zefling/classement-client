@@ -10,13 +10,13 @@ import { Classement } from 'src/app/interface';
 export class NavigateResultComponent {
     @Input() classements: Classement[] = [];
 
-    @Input({ transform: booleanAttribute }) hideDerivatives: any = false;
+    @Input({ transform: booleanAttribute }) hideDerivatives = false;
 
-    @Input({ transform: booleanAttribute }) hideUser: any = false;
+    @Input({ transform: booleanAttribute }) hideUser = false;
 
-    @Input({ transform: booleanAttribute }) onlyRanking: any = false;
+    @Input({ transform: booleanAttribute }) onlyRanking = false;
 
     @HostBinding('class.categories')
     @Input({ transform: booleanAttribute })
-    isCatagoryList: any = false;
+    isCatagoryList = false;
 }

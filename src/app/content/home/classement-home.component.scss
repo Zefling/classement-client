@@ -71,6 +71,8 @@ navigate-result {
     ::ng-deep {
         .classement {
             min-width: var(--image-size);
+            flex: 1;
+            max-width: 320px;
         }
         figure {
             flex-direction: column !important;
