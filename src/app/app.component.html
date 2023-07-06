@@ -3,10 +3,6 @@
 <header>
     <div class="title">{{ 'classement' | translate }}</div>
     <div class="actions">
-        <light-dark></light-dark>
-        <select [(ngModel)]="selectedLang" (ngModelChange)="updateLanguage($event)">
-            <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
-        </select>
         <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
     </div>
 </header>
@@ -141,12 +137,6 @@
                 </a>
             </li>
         </ul>
-        <div class="actions-mobile">
-            <light-dark></light-dark>
-            <select [(ngModel)]="selectedLang" (ngModelChange)="updateLanguage($event)">
-                <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
-            </select>
-        </div>
     </div>
 </aside>
 <div #main>
@@ -167,12 +157,29 @@
 <dialog-cmp class="preferences" #preferences>
     <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
         <h2>{{ 'preferences.title' | translate }}</h2>
-        <h3>{{ 'preferences.tile.title' | translate }}</h3>
+
+        <h3>{{ 'preferences.interface.title' | translate }}</h3>
+
+        <h5>{{ 'preferences.interface.light-dark' | translate }}</h5>
+        <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
+
+        <h5>{{ 'preferences.interface.language' | translate }}</h5>
+        <label for="language">
+            <select id="language" formControlName="interfaceLanguage">
+                <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
+            </select>
+        </label>
+
+        <h3>{{ 'preferences.editor.title' | translate }}</h3>
+        <h4>{{ 'preferences.tiles.title' | translate }}</h4>
+        <h5>{{ 'preferences.tile.title' | translate }}</h5>
         <label>
             <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
         </label>
 
-        <h3>{{ 'preferences.color.title' | translate }}</h3>
+        <h4>{{ 'preferences.groups.title' | translate }}</h4>
+
+        <h5>{{ 'preferences.color.title' | translate }}</h5>
         <label>
             <input type="radio" formControlName="newColor" value="mixed" />
             {{ 'preferences.color.new.color.mixed' | translate }}
@@ -182,9 +189,9 @@
             {{ 'preferences.color.new.color.same' | translate }}
         </label>
 
-        <h3>{{ 'preferences.group.title' | translate }}</h3>
-        <label
-            ><input type="radio" formControlName="newLine" value="below" />
+        <h5>{{ 'preferences.group.title' | translate }}</h5>
+        <label>
+            <input type="radio" formControlName="newLine" value="below" />
             {{ 'preferences.group.new.line.below' | translate }}
         </label>
         <label
@@ -196,17 +203,21 @@
             {{ 'preferences.group.new.line.ask.me' | translate }}
         </label> -->
 
-        <h3>{{ 'preferences.group.line.option.title' | translate }}</h3>
-        <label
-            ><input type="radio" formControlName="lineOption" value="auto" />
+        <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
+        <label>
+            <input type="radio" formControlName="lineOption" value="auto" />
             {{ 'preferences.group.line.option.auto' | translate }}
         </label>
         <label
             ><input type="radio" formControlName="lineOption" value="reduce" />
             {{ 'preferences.group.line.option.reduce' | translate }}
         </label>
+        <label
+            ><input type="radio" formControlName="lineOption" value="hidden" />
+            {{ 'preferences.group.line.option.hidden' | translate }}
+        </label>
 
-        <h3>{{ 'preferences.theme.title' | translate }}</h3>
+        <h4>{{ 'preferences.theme.title' | translate }}</h4>
         <select formControlName="theme">
             <option *ngFor="let theme of themes" [value]="theme">
                 {{ 'gererator.theme.name.' + theme | translate }}

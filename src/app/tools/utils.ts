@@ -71,10 +71,10 @@ export class Utils {
         return JSON.parse(JSON.stringify(o));
     }
 
-    static getCookie<T extends string>(name: string): T | null {
+    static getCookie<T extends string>(name: string): T | undefined {
         const cookies = document.cookie;
         const parts = cookies.match(`(?!; )?${name}=([^;]*);?`);
-        return parts ? (parts[1] as T) : null;
+        return parts ? (parts[1] as T) : undefined;
     }
 
     static setCookie(name: string, value: string, days: number = 7, path: string = '/') {
@@ -87,12 +87,12 @@ export class Utils {
         document.cookie = `${name}=; path=${path}; Max-Age=0`;
     }
 
-    static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | null {
+    static getParentElementByClass(element: HTMLElement, cssClass: string): HTMLElement | undefined {
         return Utils.containClasses(element, cssClass.trim().split(/\s+/))
             ? element
             : element.parentElement
             ? Utils.getParentElementByClass(element.parentElement, cssClass)
-            : null;
+            : undefined;
     }
 
     static containClasses(element: HTMLElement, cssClasses: string[]): boolean {

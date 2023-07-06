@@ -56,6 +56,8 @@
   "preferences": {
     "title": "Préférences",
     "close": "Fermer",
+    "editor.title": "Éditeur",
+    "tiles.title": "Tuiles",
     "tile": {
       "title": "Titre de tuile",
       "name.copy": "Copier le nom de l'image (sans l'extension) dans le titre"
@@ -67,17 +69,19 @@
         "same": "Prendre la couleur des lignes de référence"
       }
     },
+    "groups.title": "Groupes",
     "group": {
-      "title": "Ajout de groupe",
+      "title": "Ajout",
       "new.line": {
         "below": "Ajouter en dessous",
         "above": "Ajouter au dessus",
         "ask.me": "Me demander"
       },
       "line.option": {
-        "title": "Mode d'affichage des options des groupes",
-        "auto": "Automatique : en fonction du mode mobile ou non",
-        "reduce": "Reduit : réduire au minimun dans l'interface"
+        "title": "Mode d'affichage des options",
+        "auto": "Automatique\u00A0: en fonction du mode mobile ou non",
+        "reduce": "Reduit\u00A0: réduire au minimun dans l'interface",
+        "hidden": "Caché\u00A0: aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
       }
     },
     "theme": {
@@ -87,6 +91,11 @@
       "page.size": "Nombre de tuiles par page dans la navigation",
       "page.size.pre": "",
       "page.size.per": "tuiles par page"
+    },
+    "interface": {
+      "title": "Interface",
+      "light-dark": "Thème",
+      "language": "Langue"
     }
   },
   "list": {

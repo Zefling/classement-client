@@ -5,7 +5,16 @@ import { Subject } from 'rxjs';
 import { Logger, LoggerLevel } from './logger';
 
 import { defaultOptions } from '../content/classement/classement-default';
-import { Data, FileHandle, FileStream, FileString, FormatedGroup, Options, ThemeOptions } from '../interface';
+import {
+    Data,
+    FileHandle,
+    FileStream,
+    FileString,
+    FormatedGroup,
+    Options,
+    PreferenceInterfaceTheme,
+    ThemeOptions,
+} from '../interface';
 import { color } from '../tools/function';
 import { Utils } from '../tools/utils';
 
@@ -42,11 +51,22 @@ export class GlobalService {
 
     jsonTmp?: Data;
 
+    browserShema: PreferenceInterfaceTheme;
+    userShema?: PreferenceInterfaceTheme;
+
     private renderer: Renderer2;
 
     constructor(readonly rendererFactory: RendererFactory2, private readonly logger: Logger) {
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
+
+        this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        this.changeThemeClass();
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            this.browserShema = event.matches ? 'dark' : 'light';
+            this.changeThemeClass();
+        });
     }
 
     forceExit(route: string | undefined) {
@@ -256,5 +276,19 @@ export class GlobalService {
 
             img.src = typeof file === 'string' ? file : URL.createObjectURL(file);
         });
+    }
+
+    toggleTheme() {
+        this.userShema = this.currentTheme() === 'light' ? 'dark' : 'light';
+    }
+
+    currentTheme(): PreferenceInterfaceTheme {
+        return this.userShema ?? this.browserShema ?? 'light';
+    }
+
+    changeThemeClass() {
+        this.logger.log('color theme:', LoggerLevel.log, this.userShema);
+        this.renderer.addClass(document.body, this.currentTheme() === 'light' ? 'light-mode' : 'dark-mode');
+        this.renderer.removeClass(document.body, this.currentTheme() !== 'light' ? 'light-mode' : 'dark-mode');
     }
 }

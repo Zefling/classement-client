@@ -32,7 +32,6 @@ export class AppComponent implements DoCheck {
     @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
     languages = languages;
-    selectedLang!: string;
 
     loading = environment.api?.active;
 
@@ -56,13 +55,10 @@ export class AppComponent implements DoCheck {
         public readonly userService: APIUserService,
         changeDetectorRef: ChangeDetectorRef,
     ) {
-        // autodetect language
-        const l = languages.filter(i => navigator.language.startsWith(i.value));
-        this.selectedLang = l.length ? l[0].value : 'en';
-        this.updateLanguage(this.selectedLang);
-
         // preferences
-        this.initPreferences();
+        this.initPreferences().then(() => {
+            this.updateLanguage(this.preferencesForm!.get('interfaceLanguage')!.value);
+        });
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit.open();
@@ -136,7 +132,17 @@ export class AppComponent implements DoCheck {
     private async initPreferences() {
         const initPreferences = await this.preferencesService.init();
 
+        // theme
+        this.globalService.userShema = initPreferences.interfaceTheme;
+        this.globalService.changeThemeClass();
+
+        // autodetect language
+        const l = languages.filter(i => navigator.language.startsWith(i.value));
+        const selectedLang = l.length ? l[0].value : 'en';
+
         this.preferencesForm = new FormGroup({
+            interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
+            interfaceTheme: new FormControl(this.globalService.userShema),
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),
@@ -154,6 +160,9 @@ export class AppComponent implements DoCheck {
             } catch (e) {
                 this.preferencesForm!.get('pageSize')?.setValue(24, { emitEvent: false });
             }
+        });
+        this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: string) => {
+            this.updateLanguage(value);
         });
     }
 }

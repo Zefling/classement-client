@@ -667,3 +667,17 @@ loading-cmp {
         }
     }
 }
+
+:host.option-hidden {
+    .table-classement {
+        .button-up,
+        .button-down,
+        .button-suppr,
+        .button-add,
+        .txt-color,
+        .bg-color,
+        .names .group-options {
+            display: none;
+        }
+    }
+}

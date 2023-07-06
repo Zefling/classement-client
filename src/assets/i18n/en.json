@@ -56,6 +56,8 @@
   "preferences": {
     "title": "Preferences",
     "close": "Close",
+    "editor.title": "Editor",
+    "tiles.title": "Tiles",
     "tile": {
       "title": "Tile title",
       "name.copy": "Copy the name of the image (without the extension) in the title"
@@ -67,17 +69,19 @@
         "same": "Take the color of the reference lines"
       }
     },
+    "groups.title": "Groups",
     "group": {
-      "title": "Add group",
+      "title": "Add",
       "new.line": {
         "below": "Add below",
         "above": "Add above",
         "ask.me": "Ask me"
       },
       "line.option": {
-        "title": "Group options display mode",
+        "title": "Options display mode",
         "auto": "Automatic: depending on mobile mode or not",
-        "reduce": "Reduced: reduce to the minimum in the interface"
+        "reduce": "Reduced: reduce to the minimum in the interface",
+        "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
     "theme": {
@@ -87,6 +91,11 @@
       "page.size": "Number of tiles per page in the navigation",
       "page.size.pre": "",
       "page.size.per": "tiles per page"
+    },
+    "interface": {
+      "title": "Interface",
+      "light-dark": "Theme",
+      "language": "Language"
     }
   },
   "list": {

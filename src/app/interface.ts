@@ -165,11 +165,20 @@ export interface FormatedInfosData {
     data: FormatedData;
 }
 
+export type ScreenMode = 'default' | 'enlarge' | 'fullscreen';
+
+export type PreferenceInterfaceTheme = 'dark' | 'light';
+export type PreferenceNewColor = 'mixed' | 'same';
+export type PreferenceNewLine = 'below' | 'above' | 'ask-me';
+export type PreferenceLineOption = 'auto' | 'reduce' | 'hidden';
+
 export interface PreferencesData {
+    interfaceLanguage?: string;
+    interfaceTheme?: PreferenceInterfaceTheme;
     nameCopy: boolean;
-    newColor: 'mixed' | 'same';
-    newLine: 'below' | 'above' | 'ask-me';
-    lineOption: 'auto' | 'reduce';
+    newColor: PreferenceNewColor;
+    newLine: PreferenceNewLine;
+    lineOption: PreferenceLineOption;
     theme: ThemeNames;
     pageSize: number;
 }
@@ -184,3 +193,5 @@ export type ModeNames = 'default' | 'teams';
 export type SortUserCol = 'username' | 'dateCreate';
 export type SortClassementCol = 'name' | 'category' | 'dateCreate';
 export type SortDirection = 'ASC' | 'DESC';
+
+export type ImageCache = { [key: string]: string | ArrayBuffer | null };

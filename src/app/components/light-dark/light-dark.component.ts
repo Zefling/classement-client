@@ -1,9 +1,7 @@
-import { Component, HostBinding, HostListener, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
 
-import { Logger, LoggerLevel } from '../../services/logger';
-import { Utils } from '../../tools/utils';
-
-type DarkLight = 'dark' | 'light';
+import { PreferenceInterfaceTheme } from 'src/app/interface';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
     selector: 'light-dark',
@@ -11,51 +9,25 @@ type DarkLight = 'dark' | 'light';
     styleUrls: ['./light-dark.component.scss'],
 })
 export class LightDarkComponent {
-    browserShema!: DarkLight;
-    userShema!: DarkLight;
-
     @HostBinding('class.light')
     get classLight() {
-        return this.thisCurrent() === 'light';
+        return this.global.currentTheme() === 'light';
     }
 
     @HostBinding('class.dark')
     get classDark() {
-        return this.thisCurrent() === 'dark';
+        return this.global.currentTheme() === 'dark';
     }
 
-    constructor(private readonly renderer: Renderer2, private readonly logger: Logger) {
-        this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const theme = Utils.getCookie<DarkLight>('theme');
-        if (theme) {
-            if (['dark', 'light'].includes(theme)) {
-                this.userShema = theme;
-            }
-            this.changeClass();
+    @Output()
+    change = new EventEmitter<PreferenceInterfaceTheme>();
 
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-                this.browserShema = event.matches ? 'dark' : 'light';
-                this.changeClass();
-            });
-        } else {
-            this.changeClass();
-        }
-    }
+    constructor(private global: GlobalService) {}
 
     @HostListener('click')
     click() {
-        this.userShema = this.thisCurrent() === 'light' ? 'dark' : 'light';
-        Utils.setCookie('theme', this.userShema);
-        this.changeClass();
-    }
-
-    thisCurrent(): DarkLight {
-        return this.userShema ?? this.browserShema ?? 'light';
-    }
-
-    changeClass() {
-        this.logger.log('color theme:', LoggerLevel.log, this.userShema);
-        this.renderer.addClass(document.body, this.thisCurrent() === 'light' ? 'light-mode' : 'dark-mode');
-        this.renderer.removeClass(document.body, this.thisCurrent() !== 'light' ? 'light-mode' : 'dark-mode');
+        this.global.toggleTheme();
+        this.global.changeThemeClass();
+        this.change.emit(this.global.userShema);
     }
 }

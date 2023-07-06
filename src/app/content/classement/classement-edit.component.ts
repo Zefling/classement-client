@@ -21,7 +21,17 @@ import { Subject, debounceTime, first } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, Data, FileString, FormatedGroup, GroupOption, Options } from 'src/app/interface';
+import {
+    Classement,
+    Data,
+    FileString,
+    FormatedGroup,
+    GroupOption,
+    ImageCache,
+    Options,
+    PreferenceLineOption,
+    ScreenMode,
+} from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -72,10 +82,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     shareUrl: string = '';
 
-    imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
+    imagesCache: ImageCache = {};
 
-    classScreenMode: 'default' | 'enlarge' | 'fullscreen' = 'default';
-    lineOption: 'auto' | 'reduce' = 'auto';
+    classScreenMode: ScreenMode = 'default';
+    lineOption: PreferenceLineOption = 'auto';
 
     apiActive = environment.api?.active;
 
@@ -84,6 +94,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @HostBinding('class.option-reduce')
     get optionReduce() {
         return this.lineOption === 'reduce';
+    }
+
+    @HostBinding('class.option-hidden')
+    get optionHidden() {
+        return this.lineOption === 'hidden';
     }
 
     @ViewChild('image') image!: ElementRef<HTMLDivElement>;
