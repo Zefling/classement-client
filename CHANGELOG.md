@@ -12,7 +12,7 @@
     -   moved language and theme in the dialog
     -   Added hidden mode for group options
     -   Option formatting
--   Minor fix
+-   Minor fixes
 
 ## 1.11.3 (2023-06-27)
 
