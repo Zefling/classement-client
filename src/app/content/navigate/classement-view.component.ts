@@ -38,7 +38,7 @@ export class ClassementViewComponent implements OnDestroy {
 
     apiActive = environment.api?.active;
 
-    imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
+    imagesCache: Record<string, string | ArrayBuffer | null> = {};
 
     showError: string = '';
 

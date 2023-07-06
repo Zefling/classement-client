@@ -16,7 +16,7 @@ export class TabsComponent implements AfterContentInit {
 
     ngAfterContentInit(): void {
         if (this.titles?.length) {
-            const ids: { [key: string]: boolean } = {};
+            const ids: Record<string, boolean> = {};
             let selected = false;
             this.titles.forEach(e => {
                 if (e.id) {

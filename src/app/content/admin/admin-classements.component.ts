@@ -21,7 +21,7 @@ export class AdminClassementsComponent implements OnDestroy {
     searchKey?: string;
     category?: string;
 
-    classements: { [key: number]: Classement[] } = {};
+    classements: Record<number, Classement[]> = {};
     total?: number = 0;
     page = 0;
 

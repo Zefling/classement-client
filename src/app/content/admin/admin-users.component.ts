@@ -24,7 +24,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     loading = false;
 
-    users: { [key: number]: User[] } = {};
+    users: Record<number, User[]> = {};
     total?: number = 0;
     page = 0;
 

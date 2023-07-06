@@ -24,7 +24,7 @@ export enum TypeFile {
     text = 'text',
 }
 
-export const typesMine: { [key: string]: string[] } = {
+export const typesMine: Record<string, string[]> = {
     image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp'],
     json: ['application/json'],
 };
@@ -142,8 +142,8 @@ export class GlobalService {
         options: ThemeOptions,
         groups: FormatedGroup[],
         list: FileString[] = [],
-    ): Promise<{ [key: string]: string | ArrayBuffer | null }> {
-        const cache: { [key: string]: string | ArrayBuffer | null } = {};
+    ): Promise<Record<string, string | ArrayBuffer | null>> {
+        const cache: Record<string, string | ArrayBuffer | null> = {};
         for (const item of list) {
             if (item.url) {
                 cache[item.url] = await Utils.ulrToBase64(item.url);
@@ -162,7 +162,7 @@ export class GlobalService {
         return cache;
     }
 
-    updateVarCss(o: Options, cache: { [key: string]: string | ArrayBuffer | null }): void {
+    updateVarCss(o: Options, cache: Record<string, string | ArrayBuffer | null>): void {
         const body = document.body;
         const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;

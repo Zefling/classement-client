@@ -194,4 +194,4 @@ export type SortUserCol = 'username' | 'dateCreate';
 export type SortClassementCol = 'name' | 'category' | 'dateCreate';
 export type SortDirection = 'ASC' | 'DESC';
 
-export type ImageCache = { [key: string]: string | ArrayBuffer | null };
+export type ImageCache = Record<string, string | ArrayBuffer | null>;

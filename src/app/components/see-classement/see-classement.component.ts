@@ -15,7 +15,7 @@ import { GlobalService } from '../../services/global.service';
 export class SeeClassementComponent implements OnInit {
     @Input() groups: FormatedGroup[] = [];
     @Input() list: FileString[] = [];
-    @Input() imagesCache: { [key: string]: string | ArrayBuffer | null } = {};
+    @Input() imagesCache: Record<string, string | ArrayBuffer | null> = {};
 
     @Input() options!: Options;
 
