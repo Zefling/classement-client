@@ -1,5 +1,19 @@
 # Changelog - Standalone web app & API
 
+## 1.11.4 (2023-07-06)
+
+### Standalone web app
+
+-   Fix homepage with large resolutions
+-   Improve mobile interface
+    -   Add scroll-snap in homepage for touch device
+    -   Fix date render in mobile
+-   Change of preferences
+    -   moved language and theme in the dialog
+    -   Added hidden mode for group options
+    -   Option formatting
+-   Minor fix
+
 ## 1.11.3 (2023-06-27)
 
 ### Standalone web app
