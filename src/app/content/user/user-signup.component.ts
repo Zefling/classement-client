@@ -38,7 +38,7 @@ export class UserSignupComponent implements OnDestroy {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.sign-up')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this.profileForm = new FormGroup({
             username: new FormControl(''),
@@ -52,6 +52,9 @@ export class UserSignupComponent implements OnDestroy {
                 if (this.userService.logged) {
                     this.router.navigate(['/user/profile']);
                 }
+            }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
             }),
         );
 
@@ -93,6 +96,10 @@ export class UserSignupComponent implements OnDestroy {
             minPhraseLength: 20,
             minOptionalTestsToPass: 4,
         });
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.sign-up')} - ${this.translate.instant('classement')}`);
     }
 
     ngOnDestroy(): void {

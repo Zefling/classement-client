@@ -58,15 +58,21 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         private readonly logger: Logger,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.list')} - ${this.translate.instant('classement')}`);
-
+        this.updateTitle();
         this.showList();
 
         this.listener.push(
             this.globalService.onUpdateList.subscribe(() => {
                 this.showList();
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.list')} - ${this.translate.instant('classement')}`);
     }
 
     updateFilter(filterInput: HTMLInputElement, filter: string = '') {

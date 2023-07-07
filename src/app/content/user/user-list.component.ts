@@ -60,6 +60,9 @@ export class UserListComponent implements OnInit, OnDestroy {
             this.userService.afterLogout.subscribe(() => {
                 this.router.navigate(['/list']);
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
 
         if (!this.userService.logged) {
@@ -75,8 +78,11 @@ export class UserListComponent implements OnInit, OnDestroy {
             });
         });
     }
-
     ngOnInit(): void {
+        this.updateTitle();
+    }
+
+    updateTitle() {
         this.title.setTitle(`${this.translate.instant('menu.my.lists')} - ${this.translate.instant('classement')}`);
     }
 

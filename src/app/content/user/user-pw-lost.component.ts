@@ -26,9 +26,7 @@ export class UserPwLostComponent implements OnDestroy {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(
-            `${this.translate.instant('menu.forgot.password')} - ${this.translate.instant('classement')}`,
-        );
+        this.updateTitle();
 
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
@@ -36,6 +34,15 @@ export class UserPwLostComponent implements OnDestroy {
                     this.router.navigate(['/user/profile']);
                 }
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
+        );
+    }
+
+    updateTitle() {
+        this.title.setTitle(
+            `${this.translate.instant('menu.forgot.password')} - ${this.translate.instant('classement')}`,
         );
     }
 

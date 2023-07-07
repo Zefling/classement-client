@@ -33,7 +33,7 @@ export class ClassementTemplateComponent {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -56,7 +56,14 @@ export class ClassementTemplateComponent {
                         });
                 }
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
     }
 
     ngOnDestroy() {

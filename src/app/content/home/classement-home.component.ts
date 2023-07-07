@@ -35,7 +35,7 @@ export class ClassementHomeComponent {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.home')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         if (this.modeApi) {
             this.logged = !!this.userService.logged;
@@ -53,6 +53,16 @@ export class ClassementHomeComponent {
                     this.loading = false;
                 });
         }
+
+        this.listener.push(
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
+        );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.home')} - ${this.translate.instant('classement')}`);
     }
 
     ngOnDestroy(): void {

@@ -50,11 +50,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(
-            `${this.translate.instant('menu.admin.users')} - ${this.translate.instant(
-                'menu.admin',
-            )} - ${this.translate.instant('classement')}`,
-        );
+        this.updateTitle();
 
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -63,8 +59,19 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 const page = params['page'] || 1;
                 this.pageUpdate(page);
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
         this.isAdmin = this.userService.isAdmin;
+    }
+
+    updateTitle() {
+        this.title.setTitle(
+            `${this.translate.instant('menu.admin.users')} - ${this.translate.instant(
+                'menu.admin',
+            )} - ${this.translate.instant('classement')}`,
+        );
     }
 
     ngDoCheck(): void {

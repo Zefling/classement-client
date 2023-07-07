@@ -111,7 +111,16 @@ export class ClassementViewComponent implements OnDestroy {
                     this.router.navigate(['navigate']);
                 }
             }),
+            this.translate.onLangChange.subscribe(() => {
+                if (this.classement) {
+                    this.updateTitle(this.classement);
+                }
+            }),
         );
+    }
+
+    updateTitle(classement: Classement) {
+        this.title.setTitle(`${classement.data.options.title} - ${this.translate.instant('classement')}`);
     }
 
     openClassementWithPassword(password: string) {
@@ -151,7 +160,7 @@ export class ClassementViewComponent implements OnDestroy {
 
         Utils.formatedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
 
-        this.title.setTitle(`${classement.data.options.title} - ${this.translate.instant('classement')}`);
+        this.updateTitle(classement);
 
         this.meta.addTags([
             { name: 'twitter:card', content: 'summary' },

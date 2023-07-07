@@ -53,7 +53,7 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this._sub.push(
             this.route.queryParams.subscribe(params => {
@@ -71,9 +71,16 @@ export class ClassementNavigateComponent implements OnDestroy {
             this.categories.onChange.subscribe(() => {
                 this.categoryUpdate();
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
 
         this.categoryUpdate();
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
     }
 
     ngOnDestroy() {

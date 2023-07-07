@@ -52,7 +52,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     ) {
         super(userService, messageService, translate);
 
-        this.title.setTitle(`${this.translate.instant('menu.profile')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
@@ -64,6 +64,9 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             }),
             this.userService.afterLogout.subscribe(() => {
                 this.router.navigate(['/user/login']);
+            }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
             }),
         );
 
@@ -104,6 +107,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                     this.showError[1] = this.translate.instant('error.email.new.invalid');
                 }
             });
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.profile')} - ${this.translate.instant('classement')}`);
     }
 
     changePassword(): void {

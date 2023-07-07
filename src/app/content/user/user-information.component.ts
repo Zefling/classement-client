@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 @Component({
@@ -17,17 +18,29 @@ export class UserInformationComponent {
     username = '';
     email = '';
 
+    private _sub = Subscriptions.instance();
+
     constructor(
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.information')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         if (this.userService.user) {
             this.username = this.userService.user.username;
         }
+
+        this._sub.push(
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
+        );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.information')} - ${this.translate.instant('classement')}`);
     }
 
     invalideMessage(): boolean {

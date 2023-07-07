@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
 import { GlobalService } from 'src/app/services/global.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
     selector: 'third-party-licenses',
@@ -14,14 +15,14 @@ import { GlobalService } from 'src/app/services/global.service';
 export class LicensesComponent {
     data!: string;
 
+    private listener = Subscriptions.instance();
+
     constructor(
         private readonly http: HttpClient,
         private readonly global: GlobalService,
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.licences')} - ${this.translate.instant('classement')}`);
-
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {
@@ -32,5 +33,14 @@ export class LicensesComponent {
                 );
             });
         }
+        this.listener.push(
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
+        );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.licences')} - ${this.translate.instant('classement')}`);
     }
 }

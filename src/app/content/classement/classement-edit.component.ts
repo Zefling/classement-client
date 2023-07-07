@@ -137,7 +137,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly preferencesService: PreferencesService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.edit')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -167,7 +167,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
                 this.cd.detectChanges();
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.edit')} - ${this.translate.instant('classement')}`);
     }
 
     initWithParams(params: Params) {

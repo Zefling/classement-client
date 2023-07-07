@@ -28,7 +28,7 @@ export class UserLoginComponent implements OnDestroy {
         private readonly translate: TranslateService,
         private readonly title: Title,
     ) {
-        this.title.setTitle(`${this.translate.instant('menu.login')} - ${this.translate.instant('classement')}`);
+        this.updateTitle();
 
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
@@ -36,7 +36,14 @@ export class UserLoginComponent implements OnDestroy {
                     this.router.navigate(['/user/profile']);
                 }
             }),
+            this.translate.onLangChange.subscribe(() => {
+                this.updateTitle();
+            }),
         );
+    }
+
+    updateTitle() {
+        this.title.setTitle(`${this.translate.instant('menu.login')} - ${this.translate.instant('classement')}`);
     }
 
     ngOnDestroy(): void {
