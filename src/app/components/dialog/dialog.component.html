@@ -1,4 +1,4 @@
-<div class="content" *ngIf="_open">
+<div class="content" *ngIf="_open" (click)="_propagationStop($event)">
     <button *ngIf="closeButton" class="close" (click)="close()">×</button>
     <div class="main">
         <ng-content></ng-content>

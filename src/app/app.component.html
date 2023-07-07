@@ -154,7 +154,7 @@
     </div>
 </dialog-cmp>
 
-<dialog-cmp class="preferences" #preferences>
+<dialog-cmp class="preferences" #preferences closeBackdrop>
     <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
         <h2>{{ 'preferences.title' | translate }}</h2>
 
