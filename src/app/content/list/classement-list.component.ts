@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -55,7 +56,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         private readonly messageService: MessageService,
         private readonly globalService: GlobalService,
         private readonly logger: Logger,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.list')} - ${this.translate.instant('classement')}`);
+
         this.showList();
 
         this.listener.push(

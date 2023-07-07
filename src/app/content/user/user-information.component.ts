@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,10 +18,13 @@ export class UserInformationComponent {
     email = '';
 
     constructor(
-        private userService: APIUserService,
-        private messageService: MessageService,
-        private translate: TranslateService,
+        private readonly userService: APIUserService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.information')} - ${this.translate.instant('classement')}`);
+
         if (this.userService.user) {
             this.username = this.userService.user.username;
         }

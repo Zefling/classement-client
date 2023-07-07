@@ -1,4 +1,5 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +20,7 @@ import { Utils } from 'src/app/tools/utils';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnDestroy {
+export class UserListComponent implements OnInit, OnDestroy {
     @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
     @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
     @ViewChild(TabsComponent) tabs!: TabsComponent;
@@ -37,13 +38,14 @@ export class UserListComponent implements OnDestroy {
     private listener = Subscriptions.instance();
 
     constructor(
-        private dbservice: DBService,
-        private classementService: APIClassementService,
-        private userService: APIUserService,
-        private messageService: MessageService,
-        private translate: TranslateService,
-        private route: ActivatedRoute,
-        private router: Router,
+        private readonly dbservice: DBService,
+        private readonly classementService: APIClassementService,
+        private readonly userService: APIUserService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
+        private readonly route: ActivatedRoute,
+        private readonly router: Router,
+        private readonly title: Title,
     ) {
         this.user = this.userService.user;
 
@@ -54,6 +56,9 @@ export class UserListComponent implements OnDestroy {
                         this.tabs?.update(params['page'], false);
                     });
                 }
+            }),
+            this.userService.afterLogout.subscribe(() => {
+                this.router.navigate(['/list']);
             }),
         );
 
@@ -69,6 +74,10 @@ export class UserListComponent implements OnDestroy {
                 }
             });
         });
+    }
+
+    ngOnInit(): void {
+        this.title.setTitle(`${this.translate.instant('menu.my.lists')} - ${this.translate.instant('classement')}`);
     }
 
     updateFilter(filterInput: HTMLInputElement, filter: string = '') {

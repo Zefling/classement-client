@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -31,11 +32,14 @@ export class UserSignupComponent implements OnDestroy {
     listener = Subscriptions.instance();
 
     constructor(
-        private router: Router,
-        private userService: APIUserService,
-        private translate: TranslateService,
-        private messageService: MessageService,
+        private readonly router: Router,
+        private readonly userService: APIUserService,
+        private readonly messageService: MessageService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.sign-up')} - ${this.translate.instant('classement')}`);
+
         this.profileForm = new FormGroup({
             username: new FormControl(''),
             password: new FormControl(''),

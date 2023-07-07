@@ -1,5 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -32,7 +35,15 @@ export class AdminClassementsComponent implements OnDestroy {
         private readonly classementService: APIClassementService,
         private readonly route: ActivatedRoute,
         private readonly categories: CategoriesService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(
+            `${this.translate.instant('menu.admin.classements')} - ${this.translate.instant(
+                'menu.admin',
+            )} - ${this.translate.instant('classement')}`,
+        );
+
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.sort ||= params['sort'] || 'dateCreate';

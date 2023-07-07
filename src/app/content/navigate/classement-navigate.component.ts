@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -47,10 +48,13 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly route: ActivatedRoute,
         private readonly logger: Logger,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
         private readonly categories: CategoriesService,
         private readonly preferences: PreferencesService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.logger.log('params', LoggerLevel.log, params);

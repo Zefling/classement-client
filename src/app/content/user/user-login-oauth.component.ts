@@ -1,5 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -16,7 +19,15 @@ export class UserLoginAouthComponent implements OnDestroy {
 
     private listener = Subscriptions.instance();
 
-    constructor(private router: Router, private userService: APIUserService, private activatedRoute: ActivatedRoute) {
+    constructor(
+        private readonly router: Router,
+        private readonly userService: APIUserService,
+        private readonly activatedRoute: ActivatedRoute,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
+    ) {
+        this.title.setTitle(`${this.translate.instant('menu.login')} - ${this.translate.instant('classement')}`);
+
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (this.userService.logged) {

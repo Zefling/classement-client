@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -27,7 +30,11 @@ export class ClassementTemplateComponent {
         private readonly classementService: APIClassementService,
         private readonly router: Router,
         private readonly route: ActivatedRoute,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (params['id']) {

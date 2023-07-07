@@ -10,6 +10,7 @@ import {
     OnDestroy,
     ViewChild,
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -134,7 +135,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly cd: ChangeDetectorRef,
         private readonly location: Location,
         private readonly preferencesService: PreferencesService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.edit')} - ${this.translate.instant('classement')}`);
+
         this._sub.push(
             this.route.params.subscribe(params => {
                 if (this.preferencesService.hasInit) {

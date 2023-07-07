@@ -1,5 +1,6 @@
 import { Component, DoCheck, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -45,9 +46,16 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         private readonly userService: APIUserService,
         private readonly route: ActivatedRoute,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
         private readonly logger: Logger,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(
+            `${this.translate.instant('menu.admin.users')} - ${this.translate.instant(
+                'menu.admin',
+            )} - ${this.translate.instant('classement')}`,
+        );
+
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.sort ||= params['sort'] || 'dateCreate';

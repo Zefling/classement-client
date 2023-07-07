@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { GlobalService } from 'src/app/services/global.service';
 
@@ -11,7 +14,14 @@ import { GlobalService } from 'src/app/services/global.service';
 export class LicensesComponent {
     data!: string;
 
-    constructor(private readonly http: HttpClient, private readonly global: GlobalService) {
+    constructor(
+        private readonly http: HttpClient,
+        private readonly global: GlobalService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
+    ) {
+        this.title.setTitle(`${this.translate.instant('menu.licences')} - ${this.translate.instant('classement')}`);
+
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {

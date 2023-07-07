@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +20,16 @@ export class UserPwLostComponent implements OnDestroy {
 
     listener = Subscriptions.instance();
 
-    constructor(private router: Router, private userService: APIUserService, private translate: TranslateService) {
+    constructor(
+        private readonly router: Router,
+        private readonly userService: APIUserService,
+        private readonly translate: TranslateService,
+        private readonly title: Title,
+    ) {
+        this.title.setTitle(
+            `${this.translate.instant('menu.forgot.password')} - ${this.translate.instant('classement')}`,
+        );
+
         this.listener.push(
             this.userService.afterLoggin.subscribe(() => {
                 if (this.userService.logged) {

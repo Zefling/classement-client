@@ -15,7 +15,11 @@ export class UserViewComponent {
 
     listener = Subscriptions.instance();
 
-    constructor(private route: ActivatedRoute, private router: Router, private userService: APIUserService) {
+    constructor(
+        private readonly route: ActivatedRoute,
+        private readonly router: Router,
+        private readonly userService: APIUserService,
+    ) {
         this.listener.push(
             this.route.params.subscribe(params => {
                 if (params['id']?.startsWith('@')) {

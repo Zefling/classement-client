@@ -15,11 +15,11 @@ export class UserSignupValidateComponent {
     error = '';
 
     constructor(
-        private userService: APIUserService,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private translate: TranslateService,
-        private messageService: MessageService,
+        private readonly userService: APIUserService,
+        private readonly activatedRoute: ActivatedRoute,
+        private readonly router: Router,
+        private readonly translate: TranslateService,
+        private readonly messageService: MessageService,
     ) {
         this.activatedRoute.paramMap.subscribe(params => {
             const token = params.get('token');

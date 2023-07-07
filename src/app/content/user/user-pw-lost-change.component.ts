@@ -19,8 +19,8 @@ export class UserPwLostChangeComponent extends UserPassword {
     token?: string;
 
     constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
+        private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
         userService: APIUserService,
         messageService: MessageService,
         translate: TranslateService,

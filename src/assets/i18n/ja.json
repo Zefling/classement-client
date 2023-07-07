@@ -5,6 +5,7 @@
     "list": "ローカルリスト",
     "my.lists": "自分のリスト",
     "new": "NEW",
+    "edit": "編集",
     "login": "ログイン",
     "profile": "プロフィール",
     "sign-up": "登録する",
@@ -15,7 +16,8 @@
     "logout": "ログアウト",
     "information": "情報",
     "licences": "ライセンス",
-    "preferences": "環境設定"
+    "preferences": "環境設定",
+    "forgot.password": "パスワードを忘れてしまいました"
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",

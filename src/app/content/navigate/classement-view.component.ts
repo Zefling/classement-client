@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -65,6 +66,8 @@ export class ClassementViewComponent implements OnDestroy {
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
         private readonly globalService: GlobalService,
+        private readonly title: Title,
+        private readonly meta: Meta,
     ) {
         this.logged = this.userService.logged;
 
@@ -136,12 +139,30 @@ export class ClassementViewComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this.sub.clear();
+        ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'].forEach(
+            item => {
+                this.meta.removeTag(`name="${item}"`);
+            },
+        );
     }
 
     loadClassement(classement: Classement) {
         this.classement = classement;
 
         Utils.formatedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
+
+        this.title.setTitle(`${classement.data.options.title} - ${this.translate.instant('classement')}`);
+
+        this.meta.addTags([
+            { name: 'twitter:card', content: 'summary' },
+            { name: 'og:url', content: this.getLink() },
+            { name: 'og:title', content: this.classement.data.options.title },
+            { name: 'og:description', content: this.classement.data.options.description },
+            { name: 'og:image', content: this.classement.banner },
+            { name: 'title', content: this.classement.data.options.title },
+            { name: 'description', content: this.classement.data.options.description },
+            { name: 'image', content: this.classement.banner },
+        ]);
 
         if (this.userService.logged) {
             this.currentUser = this.userService.user?.username === classement.user;
@@ -180,12 +201,14 @@ export class ClassementViewComponent implements OnDestroy {
         });
     }
 
+    getLink() {
+        return `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement!)}${
+            this.historyId ? `/${this.historyId}` : ''
+        }`;
+    }
+
     copyLink() {
-        Utils.clipboard(
-            `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement!)}${
-                this.historyId ? `/${this.historyId}` : ''
-            }`,
-        )
+        Utils.clipboard(this.getLink())
             .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
             .catch(_e =>
                 this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {

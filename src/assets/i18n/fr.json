@@ -5,6 +5,7 @@
     "list": "Liste locale",
     "my.lists": "Mes listes",
     "new": "Nouveau",
+    "edit": "Édition",
     "login": "Connexion",
     "profile": "Mon profil",
     "sign-up": "S'inscrire",
@@ -15,7 +16,8 @@
     "logout": "Déconnexion",
     "information": "Information",
     "licences": "Licences",
-    "preferences": "Préférences"
+    "preferences": "Préférences",
+    "forgot.password": "Mot de passe perdu"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",

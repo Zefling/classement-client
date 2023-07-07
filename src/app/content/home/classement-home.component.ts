@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,7 +33,10 @@ export class ClassementHomeComponent {
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
+        private readonly title: Title,
     ) {
+        this.title.setTitle(`${this.translate.instant('menu.home')} - ${this.translate.instant('classement')}`);
+
         if (this.modeApi) {
             this.logged = !!this.userService.logged;
             this.loading = true;
