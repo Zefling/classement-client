@@ -154,9 +154,12 @@
                 </tbody>
             </table>
 
-            <div>
-                <div class="drop-image-message">{{ 'gererator.ranking.drop.image' | translate }}</div>
-                <div class="drop-list">
+            <div class="current-list">
+                <div class="drop-image-message">
+                    <span>{{ 'gererator.ranking.drop.image' | translate }}</span>
+                    <span class="arrows" *ngIf="scrollArrows">⇄</span>
+                </div>
+                <div class="drop-list" #currentList>
                     <div
                         *ngFor="let item of list; let index = index; trackBy: trackByFnFileString"
                         cdkDropList

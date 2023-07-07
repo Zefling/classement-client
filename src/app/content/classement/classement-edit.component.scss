@@ -84,6 +84,7 @@
     background: var(--tile-add-file-background);
     color: var(--tile-add-file-color);
     max-width: 200px;
+    min-width: 100px;
 }
 
 .drop-zone-empty-list + .add-file {
@@ -538,6 +539,34 @@ loading-cmp {
     :host {
         margin: 0 0 30px 0;
     }
+
+    .current-list {
+        background: var(--background);
+        position: sticky;
+        bottom: 0;
+        overflow: auto;
+        max-width: calc(100vw - 10px);
+    }
+
+    .drop-list {
+        flex-wrap: nowrap;
+        overflow: visible;
+    }
+
+    .drop-image-message {
+        display: flex;
+        height: 30px;
+        max-width: calc(100vw - 10px);
+        justify-content: space-between;
+        align-items: end;
+        position: sticky;
+        left: 0;
+
+        .arrows {
+            right: 8px;
+            font-size: 18px;
+        }
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -668,6 +697,8 @@ loading-cmp {
     }
 }
 
+// mode no options ------------------------------------------------------------------
+
 :host.option-hidden {
     .table-classement {
         .button-up,
@@ -679,5 +710,9 @@ loading-cmp {
         .names .group-options {
             display: none;
         }
+    }
+
+    .names {
+        --group-option-heigth: 0;
     }
 }

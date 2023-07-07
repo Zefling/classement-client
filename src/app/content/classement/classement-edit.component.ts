@@ -80,7 +80,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     size = 0;
 
-    shareUrl: string = '';
+    shareUrl = '';
+
+    scrollArrows = false;
 
     imagesCache: ImageCache = {};
 
@@ -102,6 +104,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     @ViewChild('image') image!: ElementRef<HTMLDivElement>;
+    @ViewChild('currentList') currentList!: ElementRef<HTMLDivElement>;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
     @ViewChild('dialogImport') dialogImport!: DialogComponent;
     @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
@@ -336,6 +339,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.apiActive && this.classement?.rankingId
                 ? `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement)}`
                 : '';
+
+        if (this.currentList) {
+            this.scrollArrows = this.currentList.nativeElement.scrollWidth > this.currentList.nativeElement.clientWidth;
+        }
     }
 
     trackByFnFileString(index: number, item: FileString) {

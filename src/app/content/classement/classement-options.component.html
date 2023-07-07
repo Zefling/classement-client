@@ -18,6 +18,13 @@
             </select>
         </div>
     </div>
+    <div class="mode">
+        <label for="option-mode">{{ 'gererator.options.mode' | translate }}</label>
+        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
+            <option value="default">{{ 'mode.name.default' | translate }}</option>
+            <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+        </select>
+    </div>
     <div class="description">
         <label for="option-description">{{ 'gererator.options.description' | translate }}</label>
         <div>
@@ -27,13 +34,6 @@
     <div class="tags">
         {{ 'gererator.options.tags' | translate }}
         <tag-list [tags]="options.tags" (update)="updateTags($event)"></tag-list>
-    </div>
-    <div class="mode">
-        <label for="option-mode">{{ 'gererator.options.mode' | translate }}</label>
-        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
-            <option value="default">{{ 'mode.name.default' | translate }}</option>
-            <option value="teams">{{ 'mode.name.teams' | translate }}</option>
-        </select>
     </div>
     <div class="links">
         <a tabindex="0" (click)="switchOptions()">{{
