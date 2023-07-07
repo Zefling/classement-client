@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 1.11.5 (2023-07-07)
+
+### Standalone web app
+
+-   Improve preferences dialog
+-   Close preference on backdrop
+-   Improve drag'n drop in mobile
+-   Update titles and add metadata
+
+### With API activited only
+
+-   Fix logout on lists page
+
 ## 1.11.4 (2023-07-06)
 
 ### Standalone web app
