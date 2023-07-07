@@ -88,6 +88,7 @@
       "title": "Default theme"
     },
     "navigation": {
+      "title": "Navigate",
       "page.size": "Number of tiles per page in the navigation",
       "page.size.pre": "",
       "page.size.per": "tiles per page"

@@ -89,6 +89,7 @@
       "title": "デフォルトのテーマ"
     },
     "navigation": {
+      "title": "ナビゲート",
       "page.size": "ナビゲーション内のページごとのタイルの数",
       "page.size.pre": "1ページあたり",
       "page.size.per": "タイル"

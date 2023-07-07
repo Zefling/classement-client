@@ -225,7 +225,8 @@
         </select>
 
         <ng-container *ngIf="modeApi">
-            <h3>{{ 'preferences.navigation.page.size' | translate }}</h3>
+            <h3>{{ 'preferences.navigation.title' | translate }}</h3>
+            <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
             <label>
                 {{ 'preferences.navigation.page.size.pre' | translate }}
                 <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
