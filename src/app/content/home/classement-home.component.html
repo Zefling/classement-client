@@ -22,9 +22,9 @@
 <ng-container *ngIf="modeApi">
     <h3>{{ 'home.last' | translate }}</h3>
 
-    <ng-container *ngIf="!loading">
+    <div class="navigate-result" *ngIf="!loading">
         <navigate-result [classements]="classements" hideDerivatives onlyRanking></navigate-result>
-    </ng-container>
+    </div>
 
     <loader-item *ngIf="loading"></loader-item>
 </ng-container>

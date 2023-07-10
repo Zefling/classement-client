@@ -83,14 +83,19 @@ navigate-result {
             max-width: 100% !important;
         }
     }
+}
+
+.navigate-result {
+    position: relative;
 
     &::before {
         content: '';
-        position: fixed;
+        position: absolute;
         display: block;
         height: 100%;
         width: 150px;
-        right: -15px;
+        right: 0;
+        z-index: 1;
         pointer-events: none;
         background: linear-gradient(to left, var(--background) 10px, transparent);
         mask-image: linear-gradient(to left, var(--background) 10px, transparent);
