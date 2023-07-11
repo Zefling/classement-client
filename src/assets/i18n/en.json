@@ -244,6 +244,8 @@
       "clear": "Clear",
       "simple": "Simplified options",
       "advence": "Advanced options",
+      "stream.mode": "Stream mode",
+      "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
       "item": {
         "title": "Tile options",
         "width": "Tile width",

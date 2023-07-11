@@ -428,6 +428,16 @@ span.group-options {
     overflow: auto;
 }
 
+.stream-mode {
+    .drop-image-message span,
+    .tile-info,
+    .add-file,
+    .btn-delete,
+    .input-title {
+        visibility: hidden;
+    }
+}
+
 // actions ------------------------------------------------------------------
 
 .save-actions {

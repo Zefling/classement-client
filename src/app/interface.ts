@@ -112,6 +112,7 @@ export type ThemeOptions = {
     nameFontSize: number;
     nameBackgroundOpacity: number;
     autoSave?: boolean;
+    streamMode?: boolean;
 };
 
 export type Theme = {

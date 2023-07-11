@@ -515,7 +515,7 @@ dialog-cmp.auto-format .main {
         position: absolute;
     }
 
-    span {
+    input + span {
         margin: 3px 0;
         display: inline-block;
         line-height: 21px;

@@ -3,7 +3,7 @@
     grid-template:
         'title             title               categories          mode                '
         'description       description         description         description         '
-        'theme             width-auto          .                   links               '
+        'theme             width-auto          stream-mode         links               '
         // ----------------------------------------------------------------------------
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  .                   '
@@ -29,7 +29,7 @@
         grid-template:
             'title             title               categories          mode                '
             'description       description         description         description         '
-            'theme             width-auto          .                   links               '
+            'theme             width-auto          stream-mode         links               '
             'tags              tags                tags                tags                '
             / 1fr 1fr 1fr 1fr;
     }
@@ -61,6 +61,10 @@ h4 {
 
 .width-auto {
     grid-area: width-auto;
+}
+
+.stream-mode {
+    grid-area: stream-mode;
 }
 
 .title {
@@ -470,6 +474,12 @@ span.item-width {
             }
         }
     }
+}
+
+.icon-info {
+    padding: 5px;
+    font-size: 16px;
+    vertical-align: -2px;
 }
 
 .background-image-custom {

@@ -93,6 +93,7 @@ export class ClassementOptionsComponent implements OnDestroy {
             title: this.options!.title,
             category: this.options!.category,
             autoSave: this.options!.autoSave,
+            streamMode: this.options!.streamMode,
             itemWidthAuto: this.options!.itemWidthAuto,
         });
     }

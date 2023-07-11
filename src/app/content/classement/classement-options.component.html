@@ -49,6 +49,13 @@
             <span>{{ 'gererator.options.item.width.auto' | translate }}</span>
         </label>
     </div>
+    <div class="stream-mode">
+        <label class="toogle-switch">
+            <input type="checkbox" [(ngModel)]="options.streamMode" />
+            <span>{{ 'gererator.options.stream.mode' | translate }}</span>
+            <span [tooltip]="'gererator.options.stream.mode.info' | translate" class="icon-info"></span>
+        </label>
+    </div>
     <ng-container *ngIf="options.showAdvancedOptions">
         <h4 class="title-item">{{ 'gererator.options.item.title' | translate }}</h4>
         <h4 class="title-line">{{ 'gererator.options.line.title' | translate }}</h4>

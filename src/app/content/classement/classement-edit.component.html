@@ -16,7 +16,7 @@
 
     <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
 
-    <div *ngIf="options" [ngClass]="classScreenMode" #div>
+    <div *ngIf="options" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
         <div class="classement-top">
             <h3>{{ 'gererator.ranking.group.title' | translate }}</h3>
             <button *ngIf="classScreenMode !== 'default'" (click)="screenMode('default', div)">
@@ -170,6 +170,7 @@
                     >
                         <div class="content-box" cdkDrag>
                             <div
+                                *ngIf="!options.streamMode; else streamTile"
                                 #tile
                                 class="content"
                                 [class.with-annotation]="item.annotation"
@@ -187,6 +188,31 @@
                                 />
                                 <div class="tile-info" (click)="openTileInfo(item)"></div>
                             </div>
+                            <ng-template #streamTile>
+                                <div
+                                    class="content content-render"
+                                    [ngClass]="options.itemTextPosition"
+                                    #tile
+                                    [style.width.px]="calcWidth(item, tile)"
+                                >
+                                    <div *ngIf="item.url" class="image">
+                                        <img
+                                            (ngInit)="detectChanges()"
+                                            (load)="detectChanges()"
+                                            src="{{ item.url }}"
+                                            alt="{{ item.name }}"
+                                        />
+                                    </div>
+                                    <div
+                                        *ngIf="item.title"
+                                        #title
+                                        class="title"
+                                        [class.title-item-width-auto]="options.itemWidthAuto"
+                                    >
+                                        <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                                    </div>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                     <div

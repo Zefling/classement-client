@@ -244,6 +244,8 @@
       "clear": "Effacer",
       "simple": "Options simplifiées",
       "advence": "Options avancées",
+      "stream.mode": "Mode streamer",
+      "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l'annotion de tuile.",
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
