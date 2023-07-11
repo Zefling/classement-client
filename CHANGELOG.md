@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.11.6 (2023-07-11)
+
+### Standalone web app
+
+-   Add stream mode
+-   Fix home page
+
 ## 1.11.5 (2023-07-07)
 
 ### Standalone web app
