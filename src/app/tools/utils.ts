@@ -211,29 +211,33 @@ export class Utils {
         return newDate ? new Date().toISOString() : undefined;
     }
 
-    static calcWidth(options: Options, item: FileString, element: HTMLElement | null) {
-        const title = element?.querySelector('.title-span');
+    static calcWidth(options: Options, item: FileString, tile: HTMLElement | null) {
+        const title = tile?.querySelector('.title-span');
 
         if (!item.width) {
-            const image = element?.querySelector('img');
+            const image = tile?.querySelector('img');
             item.width = image?.naturalWidth;
             item.height = image?.naturalHeight;
         }
 
-        return options.itemWidthAuto && !item.title
-            ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * options.itemHeight))
-            : options.itemWidthAuto && element
-            ? Math.min(
-                  300,
-                  Math.round(
-                      Math.max(
-                          (((item.width || 100) - (title?.clientHeight || 16)) / (item.height || 100)) *
-                              options.itemHeight,
-                          element?.scrollWidth,
-                      ),
-                  ),
-              )
-            : null;
+        if (tile) {
+            tile.style.width =
+                options.itemWidthAuto && !item.title
+                    ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * options.itemHeight)) +
+                      'px'
+                    : options.itemWidthAuto && tile
+                    ? Math.min(
+                          300,
+                          Math.round(
+                              Math.max(
+                                  (((item.width || 100) - (title?.clientHeight || 16)) / (item.height || 100)) *
+                                      options.itemHeight,
+                                  title?.clientWidth || 0,
+                              ),
+                          ),
+                      ) + 'px'
+                    : '';
+        }
     }
 
     static getNestedValue(object: any, path: (string | number)[] | string): any {

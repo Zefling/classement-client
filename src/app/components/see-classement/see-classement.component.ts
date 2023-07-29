@@ -45,6 +45,8 @@ export class SeeClassementComponent implements OnInit {
     }
 
     calcWidth(item: FileString, element: HTMLElement | null) {
-        return Utils.calcWidth(this.options, item, element);
+        // hack for calcule de width of the image
+        Utils.calcWidth(this.options, item, element);
+        return true;
     }
 }

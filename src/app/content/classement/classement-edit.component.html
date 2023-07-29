@@ -99,13 +99,13 @@
                                             class="content content-render"
                                             [ngClass]="options.itemTextPosition"
                                             [class.with-annotation]="item.annotation"
+                                            [id]="item.id"
                                             #tile
-                                            [style.width.px]="calcWidth(item, tile)"
                                         >
-                                            <div *ngIf="item.url" class="image">
+                                            <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
                                                 <img
-                                                    (ngInit)="detectChanges()"
-                                                    (load)="detectChanges()"
+                                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                                    (load)="calcWidth(item, tile); detectChanges()"
                                                     src="{{ item.url }}"
                                                     alt="{{ item.name }}"
                                                 />

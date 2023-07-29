@@ -360,8 +360,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return item.url;
     }
 
-    calcWidth(item: FileString, element: HTMLElement | null) {
-        return Utils.calcWidth(this.options, item, element);
+    calcWidth(item: FileString, tile: HTMLElement | null) {
+        // hack for calcule de width of the image
+        Utils.calcWidth(this.options, item, tile);
+        return true;
     }
 
     calcWidthEdit(item: FileString, element: HTMLElement | null) {
