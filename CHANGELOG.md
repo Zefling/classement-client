@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+## 1.11.7 (2023-07-30)
+
+### Standalone web app
+
+-   Improve calculation of width tiles on load and title change
+
 ## 1.11.6 (2023-07-11)
 
 ### Standalone web app
