@@ -11,7 +11,7 @@
         // ----------------------------------------------------------------------------
         'title-line        title-line          title-line          title-line          '
         'colors-line-back  colors-line-border  name-bg-opacity     .                   '
-        'font-size         name-width          .                   .                   '
+        'font-size         name-width          group-direction     .                   '
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
@@ -157,6 +157,10 @@ h4 {
 
 .name-width {
     grid-area: name-width;
+}
+
+.group-direction {
+    grid-area: group-direction;
 }
 
 .name-bg-opacity {
@@ -370,10 +374,12 @@ span.item-width {
         .label {
             grid-area: a;
         }
-        input {
+        input,
+        select {
             grid-area: b;
         }
     }
+
     .opacity {
         label,
         .label {
@@ -413,6 +419,31 @@ span.item-width {
 
     [type='number'] {
         text-align: right;
+    }
+}
+
+.input-value {
+    .number-input,
+    .select-input {
+        display: grid;
+        grid-template:
+            'a' 20px
+            'b' 50px / 1fr;
+        align-items: center;
+        gap: 5px 10px;
+
+        label,
+        .label {
+            grid-area: a;
+        }
+        input,
+        select {
+            grid-area: b;
+        }
+        input {
+            text-align: right;
+            width: 100px;
+        }
     }
 }
 

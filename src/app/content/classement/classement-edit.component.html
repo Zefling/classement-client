@@ -30,7 +30,7 @@
             </button>
         </div>
         <div cdkDropListGroup>
-            <table class="table-classement">
+            <table class="table-classement" [attr.dir]="options.direction">
                 <colgroup>
                     <col class="names" />
                     <col class="elements" />
@@ -159,7 +159,7 @@
                     <span>{{ 'gererator.ranking.drop.image' | translate }}</span>
                     <span class="arrows" *ngIf="scrollArrows">⇄</span>
                 </div>
-                <div class="drop-list" #currentList>
+                <div class="drop-list" #currentList [attr.dir]="options.direction">
                     <div
                         *ngFor="let item of list; let index = index; trackBy: trackByFnFileString"
                         cdkDropList

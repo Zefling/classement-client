@@ -296,6 +296,11 @@
         "font-size": "Taille du texte des noms de groupe\u00A0:",
         "opacity": "Opacité du fond des noms de groupe\u00A0:"
       },
+      "group.direction": {
+        "label": "Direction",
+        "rtl": "Droite à gauche",
+        "ltr": "Gauche à droite"
+      },
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"

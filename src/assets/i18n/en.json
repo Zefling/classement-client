@@ -296,6 +296,11 @@
         "font-size": "Group name text size:",
         "opacity": "Group name background opacity:"
       },
+      "group.direction": {
+        "label": "Direction",
+        "rtl": "Right to left",
+        "ltr": "Left to right"
+      },
       "background": {
         "custom": "Select a custom background image",
         "custom.api": "Select a custom background image (max 1000×1000)"

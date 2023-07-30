@@ -131,17 +131,19 @@
             </div>
         </div>
 
-        <div class="item-text-position">
-            <label for="option-item-text-position">{{ 'gererator.options.item.text.position' | translate }}</label>
-            <select id="option-item-text-position" [(ngModel)]="options.itemTextPosition">
-                <option value="bottom">{{ 'gererator.options.item.text.position.bottom' | translate }}</option>
-                <option value="bottom-over">
-                    {{ 'gererator.options.item.text.position.bottom.over' | translate }}
-                </option>
-                <option value="top">{{ 'gererator.options.item.text.position.top' | translate }}</option>
-                <option value="top-over">{{ 'gererator.options.item.text.position.top.over' | translate }}</option>
-                <option value="hidden">{{ 'gererator.options.item.text.position.hidden' | translate }}</option>
-            </select>
+        <div class="item-text-position input-value">
+            <div class="select-input">
+                <label for="option-item-text-position">{{ 'gererator.options.item.text.position' | translate }}</label>
+                <select id="option-item-text-position" [(ngModel)]="options.itemTextPosition">
+                    <option value="bottom">{{ 'gererator.options.item.text.position.bottom' | translate }}</option>
+                    <option value="bottom-over">
+                        {{ 'gererator.options.item.text.position.bottom.over' | translate }}
+                    </option>
+                    <option value="top">{{ 'gererator.options.item.text.position.top' | translate }}</option>
+                    <option value="top-over">{{ 'gererator.options.item.text.position.top.over' | translate }}</option>
+                    <option value="hidden">{{ 'gererator.options.item.text.position.hidden' | translate }}</option>
+                </select>
+            </div>
         </div>
         <div class="item-text-back input-button" *ngIf="options.itemTextPosition?.endsWith('over')">
             <div class="color">
@@ -300,16 +302,25 @@
                 <input id="option-global-width" type="number" [(ngModel)]="options.imageWidth" />
             </div>
         </div>
-        <div class="name-width input-button">
-            <div class="width-input">
+        <div class="name-width input-value">
+            <div class="number-input">
                 <label for="option-name-width">{{ 'gererator.options.name.width' | translate }}</label>
                 <input id="option-name-width" type="number" [(ngModel)]="options.nameWidth" />
             </div>
         </div>
-        <div class="font-size">
-            <div class="width-input">
+        <div class="font-size input-value">
+            <div class="number-input">
                 <label for="option-name-font-size">{{ 'gererator.options.name.font-size' | translate }}</label>
                 <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="options.nameFontSize" />
+            </div>
+        </div>
+        <div class="group-direction input-value">
+            <div class="select-input">
+                <label for="option-group-direction">{{ 'gererator.options.group.direction.label' | translate }}</label>
+                <select id="option-item-text-position" [(ngModel)]="options.direction">
+                    <option value="rtl">{{ 'gererator.options.group.direction.rtl' | translate }}</option>
+                    <option value="ltr">{{ 'gererator.options.group.direction.ltr' | translate }}</option>
+                </select>
             </div>
         </div>
         <div class="name-bg-opacity input-button">

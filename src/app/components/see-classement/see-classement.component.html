@@ -1,5 +1,5 @@
 <div *ngIf="options" class="render">
-    <table id="table-classement">
+    <table id="table-classement" [attr.dir]="options.direction">
         <caption *ngIf="options.title">
             {{
                 options.title

@@ -44,6 +44,7 @@ export const defaultOptions: Options = {
     imageBackgroundImage: 'none',
     imageBackgroundCustom: '',
     mode: 'default',
+    direction: 'ltr',
 };
 
 export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel', 'custom'];

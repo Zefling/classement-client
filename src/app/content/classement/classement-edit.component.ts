@@ -484,6 +484,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (event.previousContainer.data.list === event.container.data.list) {
             moveItemInArray(list, indexFrom, indexTarget);
         } else {
+            const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
+
             if (this.options.mode === 'teams') {
                 if (
                     this.listIsType(event.previousContainer.data.list, 'list') &&
@@ -494,7 +496,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         event.previousContainer.data.list,
                         event.container.data.list,
                         indexFrom,
-                        indexTarget + event.currentIndex,
+                        indexTarget + indexFix,
                     );
                 } else if (
                     this.listIsType(event.previousContainer.data.list, 'group') &&
@@ -509,7 +511,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             event.previousContainer.data.list,
                             event.container.data.list,
                             indexFrom,
-                            indexTarget + event.currentIndex,
+                            indexTarget + indexFix,
                         );
                     } else {
                         event.previousContainer.data.list.splice(indexFrom, 1);
@@ -521,11 +523,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     event.previousContainer.data.list.splice(indexFrom, 1);
                 }
             } else {
+                debugger;
                 transferArrayItem(
                     event.previousContainer.data.list,
                     event.container.data.list,
                     indexFrom,
-                    indexTarget + event.currentIndex,
+                    indexTarget + indexFix,
                 );
             }
         }
