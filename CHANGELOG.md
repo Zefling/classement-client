@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+## 1.11.8 (2023-07-30)
+
+### Standalone web app
+
+-   Add an option for change direction
+-   Fix tab order in options
+
 ## 1.11.7 (2023-07-30)
 
 ### Standalone web app
