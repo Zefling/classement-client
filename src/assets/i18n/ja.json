@@ -298,7 +298,7 @@
         "opacity": "グループ名の背景の不透明度："
       },
       "group.direction": {
-        "label": "方向",
+        "label": "方向：",
         "rtl": "右から左へ",
         "ltr": "左から右へ"
       },

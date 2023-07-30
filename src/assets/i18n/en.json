@@ -297,7 +297,7 @@
         "opacity": "Group name background opacity:"
       },
       "group.direction": {
-        "label": "Direction",
+        "label": "Direction:",
         "rtl": "Right to left",
         "ltr": "Left to right"
       },

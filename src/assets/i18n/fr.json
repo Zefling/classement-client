@@ -297,7 +297,7 @@
         "opacity": "Opacité du fond des noms de groupe\u00A0:"
       },
       "group.direction": {
-        "label": "Direction",
+        "label": "Direction\u00A0:",
         "rtl": "Droite à gauche",
         "ltr": "Gauche à droite"
       },
