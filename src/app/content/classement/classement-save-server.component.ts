@@ -217,10 +217,11 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     imageLoaded(_image: LoadedImage) {
         // show cropper
+
         setTimeout(() => {
             // fix init position for the cropper
-            this.imageCropper.resetCropperPosition();
-        });
+            window.dispatchEvent(new Event('resize'));
+        }, 500);
     }
 
     cropperReady() {
