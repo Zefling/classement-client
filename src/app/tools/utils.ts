@@ -67,6 +67,14 @@ export class Utils {
         a.click();
     }
 
+    static blobToBase64(blob: Blob): Promise<string> {
+        return new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.readAsDataURL(blob);
+        });
+    }
+
     static jsonCopy<T>(o: T): T {
         return JSON.parse(JSON.stringify(o));
     }

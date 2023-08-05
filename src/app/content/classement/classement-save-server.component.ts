@@ -20,6 +20,7 @@ import { Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { Utils } from 'src/app/tools/utils';
 
 import { categories } from './classement-default';
 
@@ -209,7 +210,9 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     }
 
     async imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64!;
+        if (event.blob) {
+            this.croppedImage = await Utils.blobToBase64(event.blob);
+        }
     }
 
     imageLoaded(_image: LoadedImage) {

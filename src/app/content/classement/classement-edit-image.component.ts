@@ -15,6 +15,7 @@ import { Subject, debounceTime } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString } from 'src/app/interface';
 import { GlobalService } from 'src/app/services/global.service';
+import { Utils } from 'src/app/tools/utils';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
@@ -122,9 +123,9 @@ export class ClassementEditImageComponent implements OnChanges {
     }
 
     async imageCropped(event: ImageCroppedEvent) {
-        setTimeout(() => {
-            this.croppedImage = event.base64!;
-        });
+        if (event.blob) {
+            this.croppedImage = await Utils.blobToBase64(event.blob);
+        }
     }
 
     async update() {

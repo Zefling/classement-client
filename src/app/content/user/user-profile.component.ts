@@ -207,7 +207,9 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     async imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64!;
+        if (event.blob) {
+            this.croppedImage = await Utils.blobToBase64(event.blob);
+        }
     }
 
     imageLoaded(_image: LoadedImage) {
