@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 1.11.9 (2023-08-10)
+
+### Standalone web app
+
+-   Force resizing on cropper sizing error
+-   Update to Angular `16.2`
+-   Update to `ngx-image-cropper` `7.0`
+
 ## 1.11.8 (2023-07-30)
 
 ### Standalone web app
