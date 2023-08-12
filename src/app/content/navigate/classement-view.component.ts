@@ -196,18 +196,20 @@ export class ClassementViewComponent implements OnDestroy {
         });
 
         // load history
-        this.classementService.getClassementsHistory(classement.rankingId).then(history => {
-            if (history?.length) {
-                history.sort((a, b) => new Date(b.date as any).getTime() - new Date(a.date as any).getTime());
-                this.history = [
-                    {
-                        date: this.classement?.dateChange ?? this.classement?.dateCreate,
-                        name: this.classement?.name,
-                    },
-                    ...history,
-                ];
-            }
-        });
+        if (classement.withHistory) {
+            this.classementService.getClassementsHistory(classement.rankingId).then(history => {
+                if (history?.length) {
+                    history.sort((a, b) => new Date(b.date as any).getTime() - new Date(a.date as any).getTime());
+                    this.history = [
+                        {
+                            date: this.classement?.dateChange ?? this.classement?.dateCreate,
+                            name: this.classement?.name,
+                        },
+                        ...history,
+                    ];
+                }
+            });
+        }
     }
 
     getLink() {

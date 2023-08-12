@@ -28,6 +28,7 @@ export interface Classement {
     password?: string;
     history?: boolean;
     historyId?: string;
+    withHistory?: number;
 }
 
 export interface ClassementHistory {

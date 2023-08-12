@@ -87,8 +87,8 @@
             </button>
         </div>
         <div class="buttons">
-            <button *ngIf="history?.length" (click)="seeHistory()" class="primary">
-                {{ 'gererator.actions.history.show' | translate }}
+            <button *ngIf="classement.withHistory" (click)="seeHistory()" class="primary">
+                {{ 'gererator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
             </button>
             <button *ngIf="myClassement && !currentUser" (click)="seeMyClassement()" class="primary">
                 {{
