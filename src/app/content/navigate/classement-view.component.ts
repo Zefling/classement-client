@@ -79,7 +79,9 @@ export class ClassementViewComponent implements OnDestroy {
 
                     if (this.apiActive) {
                         this.userService.loggedStatus().then(() => {
-                            let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
+                            let classement = this.userService.user?.classements?.find(
+                                e => e.rankingId === this.id || this.id === e.linkId,
+                            );
                             this.exportImageDisabled = true;
                             if (!classement && !this.historyId) {
                                 classement = this.userService.getByIdFormCache(this.id!);
