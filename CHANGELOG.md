@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+## 1.11.10 (2023-08-12)
+
+### Standalone web app
+
+-   Update font for fix Windows 10 #45
+
+### With API activited only
+
+-   Don't call history if there is none and show number
+-   required: API `1.11.1`
+
 ## 1.11.9 (2023-08-10)
 
 ### Standalone web app
