@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+## 1.11.11 (2023-08-22)
+
+### Standalone web app
+
+-   Change `select` to `select2` for categories
+-   Improve categories
+-   Fix history when linkId is used
+
 ## 1.11.10 (2023-08-12)
 
 ### Standalone web app
@@ -9,7 +17,7 @@
 ### With API activited only
 
 -   Don't call history if there is none and show number
--   required: API `1.11.1`
+-   Required: API `1.11.1`
 
 ## 1.11.9 (2023-08-10)
 
@@ -100,7 +108,7 @@
 
 -   Add page size preference #39
 -   Id renaming #13
--   required: API `1.11.0`
+-   Required: API `1.11.0`
 
 ## 1.10.8 (2023-06-18)
 
