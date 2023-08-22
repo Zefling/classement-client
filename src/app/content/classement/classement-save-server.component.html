@@ -29,9 +29,7 @@
         <div class="categories" *ngIf="!classement?.user || classement?.parent">
             <label>{{ 'gererator.options.group' | translate }}</label>
             <div>
-                <select type="text" maxlength="150" [(ngModel)]="options.category">
-                    <option *ngFor="let item of categories" [value]="item">{{ 'category.' + item | translate }}</option>
-                </select>
+                <select2 [data]="categoriesList" [(ngModel)]="options.category"></select2>
             </div>
         </div>
 

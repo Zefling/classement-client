@@ -7,15 +7,12 @@
     <div class="categories">
         <label for="option-category">{{ 'gererator.options.group' | translate }}</label>
         <div>
-            <select
+            <select2
                 id="option-category"
-                type="text"
-                maxlength="150"
+                [data]="categoriesList"
                 [disabled]="lockCategory"
                 [(ngModel)]="options.category"
-            >
-                <option *ngFor="let item of categoriesList" [value]="item.value">{{ item.label }}</option>
-            </select>
+            ></select2>
         </div>
     </div>
     <div class="mode">

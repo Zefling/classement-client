@@ -1,6 +1,6 @@
 <h2>{{ 'menu.navigate' | translate }}</h2>
 
-<form class="search" (submit)="submit(true)">
+<form class="search" (submit)="submit(true)" *ngIf="categoriesList">
     <div class="name">
         <label>{{ 'navigate.title' | translate }}</label>
         <input
@@ -14,10 +14,7 @@
     <div class="line">
         <div class="categories">
             <label>{{ 'navigate.category' | translate }}</label>
-            <select type="text" maxlength="150" name="category" [(ngModel)]="category">
-                <option></option>
-                <option *ngFor="let item of categoriesList" [value]="item.value">{{ item.label }}</option>
-            </select>
+            <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
         </div>
         <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>

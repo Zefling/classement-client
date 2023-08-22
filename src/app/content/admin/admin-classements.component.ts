@@ -129,6 +129,6 @@ export class AdminClassementsComponent implements OnDestroy {
     }
 
     private categoryUpdate() {
-        this.categoriesList = this.categories.categoriesList;
+        this.categoriesList = [{ value: '', label: '\u00a0' }, ...this.categories.categoriesList];
     }
 }

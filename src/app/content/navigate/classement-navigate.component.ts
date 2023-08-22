@@ -4,8 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { Select2Data } from 'ng-select2-component';
+
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Category, Classement } from 'src/app/interface';
+import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -19,7 +21,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     styleUrls: ['./classement-navigate.component.scss'],
 })
 export class ClassementNavigateComponent implements OnDestroy {
-    categoriesList?: Category[];
+    categoriesList?: Select2Data;
 
     searchKey?: string;
     category?: string;
@@ -148,6 +150,6 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     private categoryUpdate() {
-        this.categoriesList = this.categories.categoriesList;
+        this.categoriesList = [{ value: '', label: '\u00a0' }, ...this.categories.categoriesList];
     }
 }

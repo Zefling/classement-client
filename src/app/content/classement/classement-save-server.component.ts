@@ -16,13 +16,12 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/app/interface';
+import { Category, Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/app/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-
-import { categories } from './classement-default';
 
 @Component({
     selector: 'classement-save-server',
@@ -50,7 +49,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     update = false;
 
-    categories = categories;
+    categoriesList: Category[] = [];
 
     password = '';
     linkId = '';
@@ -78,6 +77,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
+        private readonly categories: CategoriesService,
     ) {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {
@@ -90,7 +90,12 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             }
         });
 
+        this.categoryUpdate();
+
         this._sub.push(
+            this.categories.onChange.subscribe(() => {
+                this.categoryUpdate();
+            }),
             this.classementService.progressValue.subscribe(value => {
                 if (this.loading) {
                     this.progress = value;
@@ -230,5 +235,9 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     loadImageFailed() {
         // show message
+    }
+
+    private categoryUpdate() {
+        this.categoriesList = this.categories.categoriesList;
     }
 }

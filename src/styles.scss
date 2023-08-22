@@ -78,6 +78,9 @@ body.light-mode {
     --input-item-active-color: #333;
     --input-focus-border-color: #888;
     --input-color-shadow: #fff;
+    // select2
+    --select2-option-selected-background: #6c8dc5;
+    --select2-option-highlighted-background: #7fa3e0;
     // tag
     --tag-background: #c0acac;
     --tag-input-background: #e2d2d2;
@@ -232,6 +235,9 @@ body.dark-mode {
     --input-item-active-color: #ddd;
     --input-focus-border-color: #888;
     --input-color-shadow: #000;
+    // select2
+    --select2-option-selected-background: #546b92;
+    --select2-option-highlighted-background: #314870;
     // tag
     --tag-background: #302828;
     --tag-input-background: #574040;
@@ -320,6 +326,20 @@ html {
     overflow: hidden;
     background: var(--background);
     color: var(--text-color);
+
+    // select2
+    --select2-selection-focus-border-color: var(--input-focus-border-color);
+    --select2-selection-text-color: var(--text-color);
+    --select2-selection-background: var(--input-background);
+    --select2-selection-border-color: var(--input-border-color);
+    --select2-single-height: 29px;
+    --select2-dropdown-background: var(--input-background);
+    --select2-dropdown-border-color: var(--input-border-color);
+    --select2-option-text-color: var(--text-color);
+    --select2-option-selected-text-color: var(--text-color);
+    --select2-option-highlighted-text-color: var(--text-color);
+    --select2-search-border-color: var(--input-border-color);
+    --select2-search-background: var(--text-color);
 }
 
 * {
@@ -348,6 +368,10 @@ input::file-selector-button {
     &:focus {
         border-color: var(--button-defaut-focus-border-color);
     }
+}
+
+select2 [tabindex] {
+    outline: none;
 }
 
 button {
