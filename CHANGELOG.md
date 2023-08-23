@@ -1,5 +1,9 @@
 # Changelog - Standalone web app & API
 
+## 1.11.12 (2023-08-23)
+
+-   Change `select` to `select2` for background selection
+
 ## 1.11.11 (2023-08-22)
 
 ### Standalone web app
