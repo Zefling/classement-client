@@ -1,4 +1,6 @@
-import { Component, ElementRef, Host, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, Host, Input, OnDestroy, ViewChild } from '@angular/core';
+
+import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface';
@@ -6,7 +8,6 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 import { imagesThemes } from './classement-default';
@@ -27,9 +28,7 @@ export class ClassementOptionsComponent implements OnDestroy {
 
     @Input() lockCategory = false;
 
-    imageListOpen = false;
-
-    listThemes = imagesThemes;
+    listThemes!: Select2Data;
 
     @ViewChild(ClassemenThemesComponent) classementThemes!: ClassemenThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
@@ -50,6 +49,19 @@ export class ClassementOptionsComponent implements OnDestroy {
                 this.categoryUpdate();
             }),
         );
+
+        this.updateList();
+    }
+
+    updateList() {
+        this.listThemes = imagesThemes.map<Select2Option>(e => ({
+            value: e,
+            label: e,
+            data: {
+                image: this.getImageUrl(e),
+                label: e,
+            },
+        }));
     }
 
     ngOnDestroy(): void {
@@ -98,36 +110,10 @@ export class ClassementOptionsComponent implements OnDestroy {
         });
     }
 
-    toggleImageList() {
-        this.imageListOpen = !this.imageListOpen;
-    }
-
-    changeImage(image: string) {
-        this.options!.imageBackgroundImage = image;
-        this.toggleImageList();
-    }
-
-    @HostListener('window:click', ['$event'])
-    onClickOver(event: MouseEvent) {
-        if (this.imageListOpen && !Utils.getParentElementByClass(event.target as HTMLElement, 'list-options')) {
-            this.toggleImageList();
-        }
-    }
-
-    getImageUrl(item: string) {
-        switch (item) {
-            case 'none':
-                return null;
-            case 'custom':
-                return `url(${this.options!.imageBackgroundCustom})`;
-            default:
-                return `url(./assets/themes/${item}.mini.svg)`;
-        }
-    }
-
     changeCustomeBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
+            this.updateList();
         }
     }
 
@@ -152,6 +138,17 @@ export class ClassementOptionsComponent implements OnDestroy {
         }
     }
 
+    private getImageUrl(item: string) {
+        switch (item) {
+            case 'none':
+                return null;
+            case 'custom':
+                return this.options ? `url(${this.options.imageBackgroundCustom})` : 'none';
+            default:
+                return `url(./assets/themes/${item}.mini.svg)`;
+        }
+    }
+
     private categoryUpdate() {
         this.categoriesList = this.categories.categoriesList;
     }
@@ -172,6 +169,7 @@ export class ClassementOptionsComponent implements OnDestroy {
             )
             .then(file => {
                 this.options!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
+                this.updateList();
             });
     }
 }

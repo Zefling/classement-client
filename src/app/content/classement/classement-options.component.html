@@ -393,22 +393,21 @@
             <div class="width-input">
                 <label for="backgroundImage">{{ 'gererator.options.global.image' | translate }}</label>
                 <div class="image-list">
-                    <div class="select input list-options" (click)="toggleImageList()" tabindex="0">
-                        <div class="image" [style.--url]="getImageUrl(options.imageBackgroundImage)"></div>
-                        <div class="label">
-                            {{ 'gererator.options.global.name.image.' + options.imageBackgroundImage | translate }}
-                        </div>
-                    </div>
-                    <ul [class.open-list]="imageListOpen" class="input list-options">
-                        <li
-                            *ngFor="let item of listThemes"
-                            (click)="changeImage(item)"
-                            [class.selected]="item === options.imageBackgroundImage"
-                        >
-                            <div class="image" [style.--url]="getImageUrl(item)"></div>
-                            <div class="label">{{ 'gererator.options.global.name.image.' + item | translate }}</div>
-                        </li>
-                    </ul>
+                    <select2
+                        [(ngModel)]="options.imageBackgroundImage"
+                        [data]="listThemes"
+                        [templates]="templates"
+                        resultMaxHeight="300px"
+                    >
+                        <ng-template #templates let-data="data">
+                            <div class="list-option">
+                                <div class="view" [style.--url]="data.image"></div>
+                                <div class="desc">
+                                    {{ 'gererator.options.global.name.image.' + data.label | translate }}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </select2>
                 </div>
             </div>
         </div>
