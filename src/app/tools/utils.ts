@@ -7,7 +7,7 @@ const isObject = (a: Record<string, any>, b: Record<string, any>) =>
     typeof a === 'object' && !Array.isArray(a) && !!a && !!b;
 
 export class Utils {
-    static objectsAreSame(objA?: Record<string, any>, objB?: Record<string, any>): boolean {
+    static objectsAreSame(objA?: Record<string, any>, objB?: Record<string, any>, ignoreKeys: string[] = []): boolean {
         if (objA === objB) {
             return true;
         } else if (objA === undefined || objB === undefined) {
@@ -33,7 +33,7 @@ export class Utils {
                 }
             } else if (!isObject(a, b) && a !== b) {
                 areTheSame = false;
-            } else if (isObject(a, b) && !Utils.objectsAreSame(a, b)) {
+            } else if (isObject(a, b) && !Utils.objectsAreSame(a, b, ignoreKeys)) {
                 areTheSame = false;
             }
         };
@@ -46,9 +46,11 @@ export class Utils {
         }
 
         for (let key of keysA) {
-            compareValues(objA[key], objB[key]);
-            if (!areTheSame) {
-                return false;
+            if (!ignoreKeys.includes(key)) {
+                compareValues(objA[key], objB[key]);
+                if (!areTheSame) {
+                    return false;
+                }
             }
         }
 

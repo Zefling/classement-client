@@ -336,7 +336,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const val = this.global.updateVarCss(this.options, this.imagesCache);
         this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
 
-        if (this.options && !this.global.withChange && !Utils.objectsAreSame(this._optionsCache, this.options)) {
+        // fix category with select2
+        this.options.category ??= '';
+
+        if (
+            this.options &&
+            !this.global.withChange &&
+            !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
+        ) {
             this.globalChange();
             this.logger.log('Option change');
             this.change();
