@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -24,7 +24,7 @@ export class UserPwLostComponent implements OnDestroy {
         private readonly router: Router,
         private readonly userService: APIUserService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -41,9 +41,7 @@ export class UserPwLostComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(
-            `${this.translate.instant('menu.forgot.password')} - ${this.translate.instant('classement')}`,
-        );
+        this.global.setTitle('menu.forgot.password');
     }
 
     ngOnDestroy(): void {

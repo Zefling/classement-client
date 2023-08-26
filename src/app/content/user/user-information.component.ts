@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -24,7 +24,7 @@ export class UserInformationComponent {
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -40,7 +40,7 @@ export class UserInformationComponent {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.information')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.information');
     }
 
     invalideMessage(): boolean {

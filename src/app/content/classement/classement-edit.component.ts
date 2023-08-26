@@ -10,7 +10,6 @@ import {
     OnDestroy,
     ViewChild,
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -126,7 +125,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly router: Router,
         private readonly route: ActivatedRoute,
         private readonly translate: TranslateService,
-        private readonly globalService: GlobalService,
+        private readonly global: GlobalService,
         private readonly messageService: MessageService,
         private readonly userService: APIUserService,
         private readonly classementService: APIClassementService,
@@ -135,7 +134,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly cd: ChangeDetectorRef,
         private readonly location: Location,
         private readonly preferencesService: PreferencesService,
-        private readonly title: Title,
     ) {
         this.updateTitle();
 
@@ -149,7 +147,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     });
                 }
             }),
-            globalService.onFileLoaded.subscribe(file => {
+            global.onFileLoaded.subscribe(file => {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
                     this.addFile(file.file);
                 }
@@ -158,10 +156,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             userService.afterLogout.subscribe(() => {
                 this.logged = false;
             }),
-            globalService.onImageUpdate.subscribe(() => {
+            global.onImageUpdate.subscribe(() => {
                 this.updateSize();
             }),
-            globalService.onLocalSave.subscribe(() => {
+            global.onLocalSave.subscribe(() => {
                 this.saveLocal(false, false);
             }),
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
@@ -174,7 +172,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.edit')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.edit');
     }
 
     initWithParams(params: Params) {
@@ -223,16 +221,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.new = true;
             this.options = {
                 ...defaultOptions,
-                ...(this.globalService.jsonTmp?.options || defaultOptions),
+                ...(this.global.jsonTmp?.options || defaultOptions),
                 ...{ showAdvancedOptions: false },
             };
 
-            this.groups = this.globalService.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
-            this.list = this.globalService.jsonTmp?.list || [];
+            this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
+            this.list = this.global.jsonTmp?.list || [];
             this.addIds();
             this.id = undefined;
             this.classement = undefined;
-            this.globalService.jsonTmp = undefined;
+            this.global.jsonTmp = undefined;
 
             this.exportImageLoading = false;
             this.resetCache();
@@ -279,7 +277,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.groups = data.data.groups;
                 this.list = data.data.list;
                 this.addIds();
-                this.globalService.fixImageSize(this.groups, this.list);
+                this.global.fixImageSize(this.groups, this.list);
                 this.html2canavasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.resetCache();
@@ -335,10 +333,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.lineOption = this.preferencesService.preferences.lineOption;
 
-        const val = this.globalService.updateVarCss(this.options, this.imagesCache);
-        this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;
+        const val = this.global.updateVarCss(this.options, this.imagesCache);
+        this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
 
-        if (this.options && !this.globalService.withChange && !Utils.objectsAreSame(this._optionsCache, this.options)) {
+        if (this.options && !this.global.withChange && !Utils.objectsAreSame(this._optionsCache, this.options)) {
             this.globalChange();
             this.logger.log('Option change');
             this.change();
@@ -356,7 +354,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    trackByFnFileString(index: number, item: FileString) {
+    trackByFnFileString(_index: number, item: FileString) {
         return item.url;
     }
 
@@ -391,7 +389,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         // apply logic
         // if blocking is required -> show message to the user
         // if the user decide to stay in the page:
-        if (this.globalService.withChange) {
+        if (this.global.withChange) {
             event.returnValue = true;
         }
     }
@@ -457,7 +455,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
-        this.globalService.withChange = false;
+        this.global.withChange = false;
     }
 
     toTemplateNavigation() {
@@ -547,7 +545,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 'change',
                 (event: Event) => {
                     this.logger.log('change - add file', LoggerLevel.log, (event.target as any).files);
-                    this.globalService.addFiles((event.target as any).files, TypeFile.image);
+                    this.global.addFiles((event.target as any).files, TypeFile.image);
                     input.outerHTML = '';
                 },
                 false,
@@ -559,7 +557,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     globalChange() {
-        this.globalService.withChange = true;
+        this.global.withChange = true;
     }
 
     upLine(index: number) {
@@ -724,7 +722,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (!silence) {
                     this.messageService.addMessage(this.translate.instant('message.save.success'));
                 }
-                this.globalService.updateList();
+                this.global.updateList();
             },
             _ => {
                 this.messageService.addMessage(this.translate.instant('message.save.echec'), {
@@ -784,7 +782,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 break;
             }
             case 'new': {
-                this.globalService.jsonTmp = event.data;
+                this.global.jsonTmp = event.data;
                 this.router.navigate(['edit', 'new']);
                 this.messageService.addMessage(this.translate.instant('message.json.read.new'));
                 break;
@@ -824,7 +822,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private html2canavasImagesCacheUpdate() {
         this.exportImageDisabled = true;
         setTimeout(() => {
-            this.globalService
+            this.global
                 .imagesCache(this.options, this.groups, this.list)
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => {

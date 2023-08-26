@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,6 +6,7 @@ import { MessageService } from 'src/app/components/info-messages/info-messages.c
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
@@ -33,7 +33,7 @@ export class ClassementHomeComponent {
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -62,7 +62,7 @@ export class ClassementHomeComponent {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.home')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.home');
     }
 
     ngOnDestroy(): void {

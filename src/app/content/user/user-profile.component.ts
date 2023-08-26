@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +11,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { FileHandle, User } from 'src/app/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -45,7 +45,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     constructor(
         private readonly router: Router,
-        private readonly title: Title,
+        private readonly global: GlobalService,
         userService: APIUserService,
         messageService: MessageService,
         translate: TranslateService,
@@ -110,7 +110,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.profile')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.profile');
     }
 
     changePassword(): void {

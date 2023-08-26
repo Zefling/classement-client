@@ -1,4 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { Subject } from 'rxjs';
 
@@ -56,7 +59,12 @@ export class GlobalService {
 
     private renderer: Renderer2;
 
-    constructor(readonly rendererFactory: RendererFactory2, private readonly logger: Logger) {
+    constructor(
+        readonly rendererFactory: RendererFactory2,
+        private readonly logger: Logger,
+        private readonly title: Title,
+        private readonly translate: TranslateService,
+    ) {
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
 
@@ -67,6 +75,14 @@ export class GlobalService {
             this.browserShema = event.matches ? 'dark' : 'light';
             this.changeThemeClass();
         });
+    }
+
+    setTitle(key: string, admin = false) {
+        this.title.setTitle(
+            `${this.translate.instant(key)}${
+                admin ? `- ${this.translate.instant('menu.admin')}` : ''
+            } - ${this.translate.instant('classement')}`,
+        );
     }
 
     forceExit(route: string | undefined) {

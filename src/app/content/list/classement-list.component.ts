@@ -54,7 +54,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         private readonly router: Router,
         private readonly translate: TranslateService,
         private readonly messageService: MessageService,
-        private readonly globalService: GlobalService,
+        private readonly global: GlobalService,
         private readonly logger: Logger,
         private readonly title: Title,
     ) {
@@ -62,7 +62,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.showList();
 
         this.listener.push(
-            this.globalService.onUpdateList.subscribe(() => {
+            this.global.onUpdateList.subscribe(() => {
                 this.showList();
             }),
             this.translate.onLangChange.subscribe(() => {
@@ -72,7 +72,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.list')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.list');
     }
 
     updateFilter(filterInput: HTMLInputElement, filter: string = '') {

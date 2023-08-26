@@ -1,6 +1,5 @@
 import { Component, DoCheck, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +9,7 @@ import { MessageService, MessageType } from 'src/app/components/info-messages/in
 import { SortDirection, SortUserCol, User } from 'src/app/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
@@ -48,7 +48,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         private readonly messageService: MessageService,
         private readonly logger: Logger,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -67,11 +67,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(
-            `${this.translate.instant('menu.admin.users')} - ${this.translate.instant(
-                'menu.admin',
-            )} - ${this.translate.instant('classement')}`,
-        );
+        this.global.setTitle('menu.admin.users', true);
     }
 
     ngDoCheck(): void {

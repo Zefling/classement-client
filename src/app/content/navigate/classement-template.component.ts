@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { Classement } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from '../classement/classement-default';
@@ -31,7 +31,7 @@ export class ClassementTemplateComponent {
         private readonly router: Router,
         private readonly route: ActivatedRoute,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -63,7 +63,7 @@ export class ClassementTemplateComponent {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.navigate');
     }
 
     ngOnDestroy() {

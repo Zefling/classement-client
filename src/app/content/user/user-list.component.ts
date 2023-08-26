@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +11,7 @@ import { Classement, User } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -45,7 +45,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         private readonly translate: TranslateService,
         private readonly route: ActivatedRoute,
         private readonly router: Router,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.user = this.userService.user;
 
@@ -78,12 +78,13 @@ export class UserListComponent implements OnInit, OnDestroy {
             });
         });
     }
+
     ngOnInit(): void {
         this.updateTitle();
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.my.lists')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.my.lists');
     }
 
     updateFilter(filterInput: HTMLInputElement, filter: string = '') {

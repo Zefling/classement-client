@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -65,8 +65,7 @@ export class ClassementViewComponent implements OnDestroy {
         private readonly bdService: DBService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
-        private readonly globalService: GlobalService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
         private readonly meta: Meta,
     ) {
         this.logged = this.userService.logged;
@@ -122,7 +121,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     updateTitle(classement: Classement) {
-        this.title.setTitle(`${classement.data.options.title} - ${this.translate.instant('classement')}`);
+        this.global.setTitle(classement.data.options.title);
     }
 
     openClassementWithPassword(password: string) {
@@ -191,7 +190,7 @@ export class ClassementViewComponent implements OnDestroy {
         }
 
         setTimeout(() => {
-            this.globalService
+            this.global
                 .imagesCache(this.classement!.data.options, this.classement!.data.groups!)
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => (this.exportImageDisabled = false));

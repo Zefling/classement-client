@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
@@ -36,7 +36,7 @@ export class AdminClassementsComponent implements OnDestroy {
         private readonly route: ActivatedRoute,
         private readonly categories: CategoriesService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -59,11 +59,7 @@ export class AdminClassementsComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(
-            `${this.translate.instant('menu.admin.classements')} - ${this.translate.instant(
-                'menu.admin',
-            )} - ${this.translate.instant('classement')}`,
-        );
+        this.global.setTitle('menu.admin.classements', true);
     }
 
     ngOnDestroy() {

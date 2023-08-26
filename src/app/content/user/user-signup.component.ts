@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +9,7 @@ import { debounceTime } from 'rxjs';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
@@ -36,7 +36,7 @@ export class UserSignupComponent implements OnDestroy {
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -99,7 +99,7 @@ export class UserSignupComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.sign-up')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.sign-up');
     }
 
     ngOnDestroy(): void {

@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -45,7 +44,7 @@ export class ClassementNavigateComponent implements OnDestroy {
 
     constructor(
         private readonly classementService: APIClassementService,
-        private readonly globalService: GlobalService,
+        private readonly global: GlobalService,
         private readonly router: Router,
         private readonly route: ActivatedRoute,
         private readonly logger: Logger,
@@ -53,7 +52,6 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly categories: CategoriesService,
         private readonly preferences: PreferencesService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
     ) {
         this.updateTitle();
 
@@ -82,7 +80,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.navigate')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.navigate');
     }
 
     ngOnDestroy() {
@@ -110,7 +108,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     submit(reset: boolean = false) {
         if (reset) {
             this.page = 1;
-            this.globalService.onPageUpdate.next(1);
+            this.global.onPageUpdate.next(1);
         }
         this.loading = true;
         this.classementService

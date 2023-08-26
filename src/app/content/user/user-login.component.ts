@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { APIUserService } from 'src/app/services/api.user.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
@@ -26,7 +26,7 @@ export class UserLoginComponent implements OnDestroy {
         private readonly router: Router,
         private readonly userService: APIUserService,
         private readonly translate: TranslateService,
-        private readonly title: Title,
+        private readonly global: GlobalService,
     ) {
         this.updateTitle();
 
@@ -43,7 +43,7 @@ export class UserLoginComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.title.setTitle(`${this.translate.instant('menu.login')} - ${this.translate.instant('classement')}`);
+        this.global.setTitle('menu.login');
     }
 
     ngOnDestroy(): void {
