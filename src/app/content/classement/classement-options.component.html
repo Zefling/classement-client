@@ -430,12 +430,12 @@
             *ngIf="options.imageBackgroundImage === 'custom'"
             drop-image
             mode="local"
-            (file)="changeCustomeBackground($event)"
+            (file)="changeCustomBackground($event)"
         >
             <label class="required">{{
                 'gererator.options.background.custom' + (api ? '.api' : '') | translate
             }}</label>
-            <input type="file" accept="image/*" required (change)="changeCustomeBackgroundEvent($event)" />
+            <input type="file" accept="image/*" required (change)="changeCustomBackgroundEvent($event)" />
             <div>
                 <img *ngIf="options.imageBackgroundCustom" [src]="options.imageBackgroundCustom" class="image-custom" />
             </div>

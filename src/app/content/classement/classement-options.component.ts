@@ -110,14 +110,14 @@ export class ClassementOptionsComponent implements OnDestroy {
         });
     }
 
-    changeCustomeBackground(event: string | FileHandle) {
+    changeCustomBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
             this.updateList();
         }
     }
 
-    changeCustomeBackgroundEvent(event: Event) {
+    changeCustomBackgroundEvent(event: Event) {
         const files = (event.target as any).files;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
