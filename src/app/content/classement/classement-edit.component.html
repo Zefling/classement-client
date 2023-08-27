@@ -266,11 +266,11 @@
                 {{ 'gererator.actions.save.local.auto' | translate }}
             </label>
         </div>
-        <div class="save-actions buttons" *ngIf="logged">
-            <button [disabled]="!id" class="primary" (click)="copyLink()">
+        <div class="save-actions buttons" *ngIf="apiActive">
+            <button [disabled]="!id" class="primary" (click)="copyLink()" *ngIf="logged">
                 🔗 {{ 'gererator.ranking.share.link' | translate }}
             </button>
-            <button [disabled]="!id" class="primary" (click)="show()">
+            <button [disabled]="!id" class="primary" (click)="show()" *ngIf="logged">
                 {{ 'gererator.ranking.see' | translate }}
             </button>
             <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
@@ -482,3 +482,5 @@
 </dialog-cmp>
 
 <classement-edit-image [currentTile]="currentTile" #editImage></classement-edit-image>
+
+<classement-login></classement-login>

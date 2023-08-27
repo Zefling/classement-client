@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/share.module';
 
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementEditComponent } from './classement-edit.component';
+import { ClassementLoginComponent } from './classement-login.component';
 import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
@@ -22,6 +23,7 @@ import { ClassementRoutingModule } from './classement.routing';
         ClassementOptimiseComponent,
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
+        ClassementLoginComponent,
     ],
     imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule],
     providers: [],

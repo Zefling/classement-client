@@ -1,0 +1,8 @@
+:host dialog-cmp .info {
+    text-align: left;
+    border: 1px solid var(--content-box-border);
+    padding: 15px;
+    margin: 15px 0;
+    background-color: var(--content-box-background);
+    box-shadow: 0 0 10px var(--info-message-box-shadow-color);
+}

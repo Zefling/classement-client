@@ -34,3 +34,8 @@
     text-align: center;
     color: var(--alert-color);
 }
+
+:host .list-error {
+    padding: 15px 40px;
+    margin: 30px;
+}

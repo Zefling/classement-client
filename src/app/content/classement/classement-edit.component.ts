@@ -45,6 +45,7 @@ import { environment } from 'src/environments/environment';
 
 import { defaultOptions, defaultTheme, defautGroup } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
+import { ClassementLoginComponent } from './classement-login.component';
 
 @Component({
     selector: 'classement-edit',
@@ -112,7 +113,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
     @ViewChild('dialogGroupOption') dialogGroupOption!: DialogComponent;
-    @ViewChild(ClassementEditImageComponent) dialogInfo!: ClassementEditImageComponent;
+    @ViewChild(ClassementEditImageComponent) editImage!: ClassementEditImageComponent;
+    @ViewChild(ClassementLoginComponent) login!: ClassementLoginComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -742,6 +744,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     saveServer() {
         if (this.logged) {
             this.dialogSaveServer.open();
+        } else {
+            this.login.open();
         }
     }
 
@@ -812,7 +816,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     openTileInfo(item: FileString) {
         this.currentTile = item;
-        this.dialogInfo.open();
+        this.editImage.open();
     }
 
     @HostListener('window:fullscreenchange')

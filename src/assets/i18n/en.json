@@ -474,6 +474,12 @@
         "discord": "Discord",
         "facebook": "Facebook",
         "google": "Google"
+      },
+      "generator": {
+        "info": "Information",
+        "text1": "To create an account or login with Discord or Facebook requires a page reload.",
+        "text2": "To not lose your tierlist: close this dialog, save your browser and create your account or log in.",
+        "text3": "You can then reload your ranking from “My List” with the “Browser List” tab."
       }
     },
     "profile": {

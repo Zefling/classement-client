@@ -48,7 +48,7 @@ export class UserSignupComponent implements OnDestroy {
         });
 
         this.listener.push(
-            this.userService.afterLoggin.subscribe(() => {
+            this.userService.afterLogin.subscribe(() => {
                 if (this.userService.logged) {
                     this.router.navigate(['/user/profile']);
                 }

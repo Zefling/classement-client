@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,6 +20,8 @@ export class UserLoginComponent implements OnDestroy {
 
     loader = false;
 
+    @Input() popup = false;
+
     private listener = Subscriptions.instance();
 
     constructor(
@@ -31,8 +33,8 @@ export class UserLoginComponent implements OnDestroy {
         this.updateTitle();
 
         this.listener.push(
-            this.userService.afterLoggin.subscribe(() => {
-                if (this.userService.logged) {
+            this.userService.afterLogin.subscribe(() => {
+                if (!this.popup && this.userService.logged) {
                     this.router.navigate(['/user/profile']);
                 }
             }),
@@ -55,7 +57,9 @@ export class UserLoginComponent implements OnDestroy {
         this.userService
             .login(this.username, this.password)
             .then(() => {
-                this.router.navigate(['/user/profile']);
+                if (!this.popup) {
+                    this.router.navigate(['/user/profile']);
+                }
             })
             .catch(e => {
                 this.showError = e;

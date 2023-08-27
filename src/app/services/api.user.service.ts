@@ -18,7 +18,7 @@ import { Utils } from '../tools/utils';
 
 @Injectable({ providedIn: 'root' })
 export class APIUserService extends APICommon {
-    afterLoggin = new Subject<void>();
+    afterLogin = new Subject<void>();
     afterLogout = new Subject<void>();
 
     logged?: boolean;
@@ -73,7 +73,7 @@ export class APIUserService extends APICommon {
             if (this.logged !== undefined) {
                 resolve();
             } else {
-                this.afterLoggin.subscribe(() => {
+                this.afterLogin.subscribe(() => {
                     resolve();
                 });
             }
@@ -106,7 +106,7 @@ export class APIUserService extends APICommon {
                         reject(this.error('invalide token', result));
                     },
                     complete: () => {
-                        this.afterLoggin.next();
+                        this.afterLogin.next();
                     },
                 });
             } else {

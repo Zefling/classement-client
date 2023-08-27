@@ -474,6 +474,12 @@
         "discord": "Discord",
         "facebook": "Facebook",
         "google": "Google"
+      },
+      "generator": {
+        "info": "Informations",
+        "text1": "Pour créer un compte ou vous connecter avec Discord ou Facebook demande un rechargement de page.",
+        "text2": "Pour ne pas perdre votre classement\u00A0: fermez cette dialogue, faites une sauvegarde navigateur et créer votre compte ou connectez-vous.",
+        "text3": "Vous pourrez ensuitre recharger votre classement depuis «\u00A0Mes Liste\u00A0» avec l'onglet «\u00A0Liste navigateur\u00A0»."
       }
     },
     "profile": {

@@ -20,7 +20,7 @@
         <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
     </div>
 
-    <div class="buttons">
+    <div class="buttons" *ngIf="!popup">
         <p>
             {{ 'user.login.oauth.label' | translate }}
         </p>
@@ -37,7 +37,7 @@
     </div>
 </form>
 
-<div class="links">
+<div class="links" *ngIf="!popup">
     <div>
         <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
     </div>

@@ -55,7 +55,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         this.updateTitle();
 
         this.listener.push(
-            this.userService.afterLoggin.subscribe(() => {
+            this.userService.afterLogin.subscribe(() => {
                 if (!this.userService.logged) {
                     this.router.navigate(['/profil/login']);
                 } else {
