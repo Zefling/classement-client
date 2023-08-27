@@ -123,7 +123,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _detectChange = new Subject<void>();
 
     constructor(
-        private readonly bdService: DBService,
+        private readonly dbService: DBService,
         private readonly router: Router,
         private readonly route: ActivatedRoute,
         private readonly translate: TranslateService,
@@ -240,7 +240,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     loadLocalClassement() {
-        this.bdService
+        this.dbService
             .loadLocal(this.id!)
             .then(data => {
                 this.logger.log('local found');
@@ -716,7 +716,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     saveLocal(silence: boolean = false, route: boolean = true) {
-        this.bdService.saveLocal(this.getData()).then(
+        this.dbService.saveLocal(this.getData()).then(
             item => {
                 this.resetCache();
                 if (route && (this.new || this.id !== item.data.id)) {
@@ -748,7 +748,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    updateAfterServerSave(classement: Classement) {
+    updateAfterServerSave(action: { type: 'save' | 'remove'; classement: Classement }) {
+        const classement = action.classement;
+
         const navigate =
             this.classement?.linkId !== classement.linkId ||
             this.classement?.rankingId !== classement.rankingId ||
@@ -765,8 +767,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.html2canavasImagesCacheUpdate();
 
         if (classement.localId) {
-            // persist data
-            this.saveLocal(false, false);
+            if (action.type === 'save') {
+                // persist data
+                this.saveLocal(false, false);
+            } else if (action.type === 'remove') {
+                this.dbService.delete(classement.localId);
+            }
         }
 
         if (navigate) {

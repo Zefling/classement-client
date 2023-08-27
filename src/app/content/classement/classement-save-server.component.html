@@ -95,6 +95,14 @@
             <span [tooltip]="'list.hide.note' | translate" class="icon-info"></span>
         </div>
 
+        <div class="save-local">
+            <label>
+                <input type="checkbox" [(ngModel)]="saveLocal" />
+                {{ 'gererator.server.not.remove.local' | translate }}
+            </label>
+            <span [tooltip]="'gererator.server.not.remove.local.info' | translate" class="icon-info"></span>
+        </div>
+
         <div class="password" *ngIf="hidden">
             <label>{{ 'gererator.server.password' | translate }}</label>
             <div><input type="password" [(ngModel)]="password" /></div>

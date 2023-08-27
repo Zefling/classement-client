@@ -45,7 +45,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     dialog?: DialogComponent;
 
     @Output()
-    save = new EventEmitter<Classement>();
+    action = new EventEmitter<{ type: 'save' | 'remove'; classement: Classement }>();
 
     update = false;
 
@@ -55,6 +55,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     linkId = '';
     linkIdValid?: boolean;
     linkChange = false;
+    saveLocal = false;
 
     @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
@@ -167,7 +168,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             this.classementService
                 .saveClassement(classement)
                 .then(classementSave => {
-                    this.save.emit(classementSave);
+                    this.action.emit({ type: this.saveLocal ? 'save' : 'remove', classement: classementSave });
                     this.userService.updateClassement(classementSave);
                     this.messageService.addMessage(this.translate.instant('message.server.save.success'));
                     this.cancel();

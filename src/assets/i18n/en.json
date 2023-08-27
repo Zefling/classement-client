@@ -445,6 +445,8 @@
         "reset": "Reset"
       },
       "not.public": "Do not make public.",
+      "not.remove.local": "Keep locally.",
+      "not.remove.local.info": "If unchecked, the version saved in the browser will be deleted.",
       "cancel": "Cancel",
       "save": "Save",
       "password": "Set a password (optional)",

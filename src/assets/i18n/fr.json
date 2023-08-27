@@ -445,6 +445,8 @@
         "reset": "Réinitialiser"
       },
       "not.public": "Ne pas rendre public.",
+      "not.remove.local": "Garder localement.",
+      "not.remove.local.info": "Si non coché, la version sauvegardée dans le navigateur sera supprimée.",
       "cancel": "Annuler",
       "save": "Sauvegarder",
       "password": "Définir un mot de passe (facultatif)",
