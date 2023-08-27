@@ -32,9 +32,9 @@ export class TagListComponent implements OnInit {
     ngOnInit(): void {
         if (environment.api?.active) {
             this.suject.pipe(debounceTime(500)).subscribe(() => {
-                this.http
-                    .get<Message<string[]>>(`${environment.api.path}api/tags/${this.input.nativeElement.value}`)
-                    .subscribe({
+                const tag = this.input.nativeElement.value.trim();
+                if (tag) {
+                    this.http.get<Message<string[]>>(`${environment.api.path}api/tags/${tag}`).subscribe({
                         next: proposals => {
                             this.proposals = proposals.message;
                         },
@@ -42,6 +42,7 @@ export class TagListComponent implements OnInit {
                             this.proposals = [];
                         },
                     });
+                }
             });
         }
     }
