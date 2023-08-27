@@ -1,6 +1,19 @@
 # Changelog - Standalone web app & API
 
-## 1.11.13 (2023-08-23)
+## 1.12.0 (2023-08-27)
+
+### Standalone web app
+
+-   Add tile title on hover #43
+
+### With API activited only
+
+-   Add dialog to change username #26
+-   Add option to save locally (breaking change)
+-   No search tag when empty
+-   Required: API `1.12.0`
+
+## 1.11.13 (2023-08-27)
 
 ### Standalone web app
 

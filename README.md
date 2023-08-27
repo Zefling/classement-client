@@ -48,6 +48,7 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Profile
         -   ✅ See personal tierlists
         -   ✅ Remove tierslist
+        -   ✅ Change username
         -   ✅ Change email
         -   ✅ Change password
         -   ✅ Change avatar
