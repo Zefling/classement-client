@@ -99,7 +99,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                             this.showError[0] = test
                                 ? this.translate.instant(
                                       testValue === this.user?.username
-                                          ? 'error.username.same'
+                                          ? 'error.username.yours'
                                           : 'error.username.exist',
                                   )
                                 : '';

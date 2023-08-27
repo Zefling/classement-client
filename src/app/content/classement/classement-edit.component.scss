@@ -352,7 +352,9 @@ span.group-options {
     }
 
     &.bottom-over .title,
-    &.top-over .title {
+    &.bottom-over-hover .title,
+    &.top-over .title,
+    &.top-over-hover .title {
         position: absolute;
         text-align: center;
         width: 100%;
@@ -363,8 +365,34 @@ span.group-options {
         bottom: 0;
     }
 
+    &.bottom-over-hover {
+        overflow: hidden;
+
+        .title {
+            transition: all 0.15s;
+            bottom: -100%;
+        }
+
+        &:hover .title {
+            bottom: 0px;
+        }
+    }
+
     &.top-over .title {
         top: 0;
+    }
+
+    &.top-over-hover {
+        overflow: hidden;
+
+        .title {
+            transition: all 0.15s;
+            top: -100%;
+        }
+
+        &:hover .title {
+            top: 0px;
+        }
     }
 
     &.hidden .title {

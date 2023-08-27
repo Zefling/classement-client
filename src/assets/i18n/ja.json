@@ -267,8 +267,10 @@
           "position": "タイル内のテキストの位置：",
           "position.bottom": "下部に",
           "position.bottom.over": "下部にその上",
+          "position.bottom.over.hover": "オーバーで下部にその上",
           "position.top": "上部に",
           "position.top.over": "上部にその上",
+          "position.top.over.hover": "オーバーで上部にその上",
           "position.hidden": "非表示"
         }
       },

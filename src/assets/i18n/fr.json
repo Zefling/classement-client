@@ -266,8 +266,10 @@
           "position": "Position texte dans la tuile\u00A0:",
           "position.bottom": "En dessous",
           "position.bottom.over": "En dessous et par dessus",
+          "position.bottom.over.hover": "En dessous et par dessus au survol",
           "position.top": "Au dessus",
           "position.top.over": "Au dessus et par dessus",
+          "position.top.over.hover": "En dessous et par dessus au survol",
           "position.hidden": "Caché"
         }
       },
