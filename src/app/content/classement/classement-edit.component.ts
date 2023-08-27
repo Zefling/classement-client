@@ -530,7 +530,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     event.previousContainer.data.list.splice(indexFrom, 1);
                 }
             } else {
-                debugger;
                 transferArrayItem(
                     event.previousContainer.data.list,
                     event.container.data.list,

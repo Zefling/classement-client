@@ -1,4 +1,4 @@
-<dialog-cmp class="auto-format" #dialogInfo closeButton>
+<dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
     <ng-container *ngIf="currentTile">
         <div>
             <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label> <br />
