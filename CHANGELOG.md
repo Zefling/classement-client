@@ -1,6 +1,18 @@
 # Changelog - Standalone web app & API
 
+## 1.11.13 (2023-08-23)
+
+### Standalone web app
+
+-   Fix detect change values and ignore autoSave & showAdvancedOptions
+
+### With API activited only
+
+-   Add log in dialog in editor
+
 ## 1.11.12 (2023-08-23)
+
+### Standalone web app
 
 -   Change `select` to `select2` for background selection
 
