@@ -491,8 +491,11 @@
       "email": "Email:",
       "total": "Total:",
       "actions": "Actions",
-      "change.email": "Change email",
-      "change.password": "Change password",
+      "change": {
+        "email": "Change email",
+        "password": "Change password",
+        "username": "Change username"
+      },
       "remove": {
         "profile": "Delete your profile",
         "question": "Are you sure you want to delete your account?",
@@ -542,6 +545,12 @@
         },
         "send": "If this email exists, a password change email will be sent to it."
       }
+    },
+    "username": {
+      "change": "Change username",
+      "new": "New name",
+      "change.cancel": "Cancel",
+      "change.ok": "Ok"
     },
     "email": {
       "change": "Change email",
@@ -609,6 +618,8 @@
       "1013": "Invalid password.",
       "1020": "No email.",
       "1021": "Old email does not match.",
+      "1025": "This username is already yours.",
+      "1026": "This username already exists.",
       "1030": "Invalid login token.",
       "1031": "Token not found.",
       "1040": "This associated login service does not exist.",
@@ -641,6 +652,7 @@
       "banner.empty": "Banner cannot be empty."
     },
     "username.exist": "This username already exists.",
+    "username.yours": "Ce nom d'utilisateur est déjà le votre.",
     "email": {
       "exist": "This email has already been used.",
       "invalid": "The email is invalid.",
@@ -686,7 +698,8 @@
       "validate.success": "😊 User validated successfully. You can now login.",
       "update.success": "😊 User updated successfully.",
       "remove.success": "😲 User anonymized successfully.",
-      "avatar.update.success": "😊 Avatar has been successfully updated."
+      "avatar.update.success": "😊 Avatar has been successfully updated.",
+      "username.update.success": "😊 Username has been successfully updated."
     },
     "server": {
       "save.success": "😊 The save was successful.",

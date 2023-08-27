@@ -29,6 +29,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     @ViewChild('avatarDialog') avatarDialog!: DialogComponent;
     @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
+    @ViewChild('dialogChangeUsername') dialogChangeUsername!: DialogComponent;
     @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
     @ViewChild('dialogChangeEmail') dialogChangeEmail!: DialogComponent;
 
@@ -38,6 +39,9 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     changeEmailForm: FormGroup;
     emailOldValid = false;
     emailNewValid = false;
+
+    changeUsernameForm: FormGroup;
+    usernameValidity?: boolean;
 
     imageChangedEvent?: Event;
     imageBase64: string = '';
@@ -76,6 +80,39 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
         this.user = this.userService.user;
 
+        // username
+
+        this.changeUsernameForm = new FormGroup({
+            username: new FormControl(''),
+        });
+
+        this.changeUsernameForm
+            .get('username')
+            ?.valueChanges.pipe(debounceTime(500))
+            .subscribe(value => {
+                const testValue = value?.trim();
+                if (value?.trim()) {
+                    this.userService
+                        .test('username', testValue)
+                        .then(test => {
+                            this.usernameValidity = !test;
+                            this.showError[0] = test
+                                ? this.translate.instant(
+                                      testValue === this.user?.username
+                                          ? 'error.username.same'
+                                          : 'error.username.exist',
+                                  )
+                                : '';
+                        })
+                        .catch(e => {
+                            this.usernameValidity = false;
+                            this.showError[0] = e;
+                        });
+                } else {
+                    this.usernameValidity = undefined;
+                }
+            });
+
         // email
 
         this.changeEmailForm = new FormGroup({
@@ -111,6 +148,13 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     updateTitle() {
         this.global.setTitle('menu.profile');
+    }
+
+    changeUsername(): void {
+        this.usernameValidity = undefined;
+        this.showError = [];
+        this.changeUsernameForm.get('username')?.setValue('');
+        this.dialogChangeUsername.open();
     }
 
     changePassword(): void {
@@ -171,6 +215,23 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 });
         } else if (!value.emailOld && !value.emailNew) {
             this.showError[0] = this.translate.instant('error.email.old.invalid');
+        }
+    }
+
+    valideChangeUsername() {
+        var value = this.changeUsernameForm.value;
+
+        if (this.usernameValidity) {
+            this.userService
+                .update('', value.username, 'username')
+                .then(() => {
+                    this.dialogChangeUsername.close();
+                    this.user!.username = value.username;
+                    this.messageService.addMessage(this.translate.instant('message.user.username.update.success'));
+                })
+                .catch(e => {
+                    this.messageService.addMessage(e, { type: MessageType.error });
+                });
         }
     }
 

@@ -23,11 +23,35 @@
     <h2>{{ 'user.profile.actions' | translate }}</h2>
 
     <p class="action buttons">
+        <button (click)="changeUsername()">{{ 'user.profile.change.username' | translate }}</button>
         <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
         <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
         <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
     </p>
 </div>
+
+<dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
+    <p>{{ 'user.username.change' | translate }}</p>
+
+    <label for="username">{{ 'user.username.new' | translate }}</label>
+    <div class="validity-input">
+        <input id="username" spellcheck="false" formControlName="username" />
+        <span class="validity" [class.valid]="usernameValidity">
+            {{ usernameValidity !== undefined ? (usernameValidity ? 'Ｏ' : 'Ｘ') : '' }}
+        </span>
+    </div>
+
+    <ul *ngIf="showError?.[0]" class="list-error">
+        <li *ngFor="let error of showError">{{ error }}</li>
+    </ul>
+
+    <div class="buttons">
+        <button (click)="dialogChangeUsername.close()">{{ 'user.username.change.cancel' | translate }}</button>
+        <button (click)="valideChangeUsername()" class="primary" [disabled]="!usernameValidity">
+            {{ 'user.username.change.ok' | translate }}
+        </button>
+    </div>
+</dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
     <p>{{ 'user.password.change' | translate }}</p>

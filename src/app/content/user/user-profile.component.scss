@@ -54,3 +54,19 @@ label {
         border-radius: 50%;
     }
 }
+
+.validity-input {
+    position: relative;
+
+    .validity {
+        position: absolute;
+        top: 1em;
+        right: calc(10% + 0.3em);
+        font-weight: 900;
+        color: var(--color-icon-deleted);
+
+        &.valid {
+            color: var(--color-icon-validated);
+        }
+    }
+}

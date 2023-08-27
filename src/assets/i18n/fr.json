@@ -491,8 +491,11 @@
       "email": "Courriel\u00A0:",
       "total": "Total\u00A0:",
       "actions": "Actions",
-      "change.email": "Changer de courriel",
-      "change.password": "Changer de mot de passe",
+      "change": {
+        "email": "Changer de courriel",
+        "password": "Changer de mot de passe",
+        "username": "Changer de nom"
+      },
       "remove": {
         "profile": "Supprimer votre profil",
         "question": "Êtes-vous sûr de vouloir supprimer votre compte\u00A0?",
@@ -542,6 +545,12 @@
         },
         "send": "Si ce courriel existe, un courriel de changement de mot de passe y sera envoyé."
       }
+    },
+    "username": {
+      "change": "Changer de nom d'utilisateur",
+      "new": "Nouveau nom",
+      "change.cancel": "Annuler",
+      "change.ok": "Valider"
     },
     "email": {
       "change": "Changer de courriel",
@@ -608,6 +617,8 @@
       "1013": "Mot de passe invalide.",
       "1020": "Pas de courriel.",
       "1021": "L'ancien courriel ne correspond pas.",
+      "1025": "Ce nom d'utilisateur est déjà le votre.",
+      "1026": "Ce nom d'utilisateur existe déjà.",
       "1030": "Jeton de connexion invalide.",
       "1031": "Jeton non trouvé.",
       "1040": "Ce service de connexion associé n'existe pas.",
@@ -640,6 +651,7 @@
       "banner.empty": "La bannière ne peut pas être vide."
     },
     "username.exist": "Ce nom d'utilisateur existe déjà.",
+    "username.yours": "Ce nom d'utilisateur est déjà le votre.",
     "email": {
       "exist": "Cet courriel a déjà été utilisé.",
       "invalid": "Le courriel est invalide.",
@@ -680,13 +692,13 @@
     "add": {
       "success": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
     },
-
     "user": {
       "singup.success": "😊 Utilisateur créé.",
       "validate.success": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
       "update.success": "😊 Utilisateur mis à jour avec succès.",
       "remove.success": "😲 Utilisateur anonymisé avec succès.",
-      "avatar.update.success": "😊 Avatar mis à jour avec succès."
+      "avatar.update.success": "😊 Avatar mis à jour avec succès.",
+      "username.update.success": "😊 Nom d'utilisateur mis à jour avec succès."
     },
     "server": {
       "save.success": "😊 La sauvegarde s'est effectuée correctement.",
