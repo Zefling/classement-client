@@ -8,7 +8,7 @@
 
 ### With API activited only
 
--   Add log in dialog in editor
+-   Add log in dialog in editor #42
 
 ## 1.11.12 (2023-08-23)
 

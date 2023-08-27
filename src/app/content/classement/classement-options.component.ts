@@ -1,4 +1,4 @@
-import { Component, ElementRef, Host, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, Host, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
 
@@ -19,7 +19,7 @@ import { ClassemenThemesComponent } from './classement-themes.component';
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
 })
-export class ClassementOptionsComponent implements OnDestroy {
+export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     api = environment.api?.active || false;
 
     categoriesList: Category[] = [];
@@ -51,6 +51,12 @@ export class ClassementOptionsComponent implements OnDestroy {
         );
 
         this.updateList();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['options']) {
+            this.updateList();
+        }
     }
 
     updateList() {
