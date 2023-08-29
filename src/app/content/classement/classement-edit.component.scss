@@ -624,7 +624,8 @@ loading-cmp {
         .button-add,
         .txt-color,
         .bg-color,
-        .actions {
+        .actions,
+        .colors {
             display: none;
         }
     }
@@ -689,6 +690,7 @@ loading-cmp {
             .button-add,
             .txt-color,
             .bg-color,
+            .colors,
             .names .group-options {
                 display: none;
             }
@@ -745,6 +747,7 @@ loading-cmp {
         .button-add,
         .txt-color,
         .bg-color,
+        .colors,
         .names .group-options {
             display: none;
         }

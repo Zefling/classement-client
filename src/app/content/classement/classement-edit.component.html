@@ -60,11 +60,20 @@
                                 <span
                                     class="color group-options icon-edit-2"
                                     (click)="updateGoupOption({group, indexGrp, first, last})"
+                                    (keydown.enter)="updateGoupOption({group, indexGrp, first, last})"
+                                    tabindex="0"
                                 ></span>
-                                <span class="color txt-color icon-text-color" (click)="inputTxtColor.click()"></span>
                                 <span
                                     class="color bg-color icon-background-color"
                                     (click)="inputBgColor.click()"
+                                    (keydown.enter)="inputBgColor.click()"
+                                    tabindex="0"
+                                ></span>
+                                <span
+                                    class="color txt-color icon-text-color"
+                                    (click)="inputTxtColor.click()"
+                                    (keydown.enter)="inputTxtColor.click()"
+                                    tabindex="0"
                                 ></span>
                                 <div class="colors">
                                     <input
@@ -72,6 +81,7 @@
                                         type="color"
                                         [(ngModel)]="group.bgColor"
                                         (ngModelChange)="globalChange()"
+                                        tabindex="-1"
                                         #inputBgColor
                                     />
                                     <input
@@ -79,6 +89,7 @@
                                         type="color"
                                         [(ngModel)]="group.txtColor"
                                         (ngModelChange)="globalChange()"
+                                        tabindex="-1"
                                         #inputTxtColor
                                     />
                                 </div>
@@ -145,8 +156,10 @@
                                     {{ 'gererator.line.add' | translate }}
                                 </button>
                                 <span
+                                    tabindex="0"
                                     class="color group-options icon-edit-2"
                                     (click)="updateGoupOption({group, indexGrp, first, last})"
+                                    (keydown.enter)="updateGoupOption({group, indexGrp, first, last})"
                                 ></span>
                             </div>
                         </td>
