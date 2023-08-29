@@ -340,6 +340,8 @@ html {
     --select2-option-highlighted-text-color: var(--text-color);
     --select2-search-border-color: var(--input-border-color);
     --select2-search-background: var(--text-color);
+    --select2-selection-disabled-background: var(--input-background);
+    --select2-selection-disabled-border-color: var(--input-border-color);
 }
 
 * {
@@ -372,6 +374,10 @@ input::file-selector-button {
 
 select2 {
     font-size: 14px;
+
+    &[ng-reflect-disabled='true'] {
+        opacity: 0.5;
+    }
 
     [tabindex] {
         outline: none;
