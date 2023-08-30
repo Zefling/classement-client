@@ -346,6 +346,9 @@ html {
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    // color not possible in Chromium (too slow)
+    transition-property: backgound-color, opacity, border-color, box-shadow, text-shadow;
+    transition-duration: 0.3s;
 }
 
 button,
