@@ -144,6 +144,41 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         }
     }
 
+    resetItemTextBackground() {
+        this.options!.itemTextBackgroundColor = '';
+        this.options!.itemTextBackgroundOpacity = 100;
+    }
+
+    resetItemBackground() {
+        this.options!.itemBackgroundColor = '';
+        this.options!.itemBackgroundOpacity = 100;
+    }
+
+    resetLineBackground() {
+        this.options!.lineBackgroundColor = '';
+        this.options!.lineBackgroundOpacity = 100;
+    }
+
+    resetLineBorder() {
+        this.options!.lineBorderColor = '';
+        this.options!.lineBorderOpacity = 100;
+    }
+
+    resetItemBorder() {
+        this.options!.itemBorderColor = '';
+        this.options!.itemBorderOpacity = 100;
+    }
+
+    resetItemText() {
+        this.options!.itemTextColor = '';
+        this.options!.itemTextOpacity = 100;
+    }
+
+    resetTitleText() {
+        this.options!.titleTextColor = '';
+        this.options!.titleTextOpacity = 100;
+    }
+
     private getImageUrl(item: string) {
         switch (item) {
             case 'none':

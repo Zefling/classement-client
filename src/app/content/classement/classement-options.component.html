@@ -1,5 +1,5 @@
 <h3>{{ 'gererator.options.group.title' | translate }}</h3>
-<div class="options" [class.simplified]="!options.showAdvancedOptions" *ngIf="options">
+<div *ngIf="options" class="options" [class.simplified]="!options.showAdvancedOptions">
     <div class="title">
         <label for="option-title">{{ 'gererator.options.title' | translate }}</label>
         <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="options.title" /></div>
@@ -151,10 +151,7 @@
                     [(ngModel)]="options.itemTextBackgroundOpacity"
                 />
             </div>
-            <button
-                (click)="options.itemTextBackgroundColor = ''; options.itemTextBackgroundOpacity = 100"
-                [disabled]="!options.itemTextBackgroundColor"
-            >
+            <button (click)="resetItemTextBackground()" [disabled]="!options.itemTextBackgroundColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemTextBackgroundColor"></div>
@@ -177,10 +174,7 @@
                     [(ngModel)]="options.itemBackgroundOpacity"
                 />
             </div>
-            <button
-                (click)="options.itemBackgroundColor = ''; options.itemBackgroundOpacity = 100"
-                [disabled]="!options.itemBackgroundColor"
-            >
+            <button (click)="resetItemBackground()" [disabled]="!options.itemBackgroundColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemBackgroundColor"></div>
@@ -203,10 +197,7 @@
                     [(ngModel)]="options.itemBorderOpacity"
                 />
             </div>
-            <button
-                (click)="options.itemBorderColor = ''; options.itemBorderOpacity = 100"
-                [disabled]="!options.itemBorderColor"
-            >
+            <button (click)="resetItemBorder()" [disabled]="!options.itemBorderColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemBorderColor"></div>
@@ -229,10 +220,7 @@
                     [(ngModel)]="options.itemTextOpacity"
                 />
             </div>
-            <button
-                (click)="options.itemTextColor = ''; options.itemTextOpacity = 100"
-                [disabled]="!options.itemTextColor"
-            >
+            <button (click)="resetItemText()" [disabled]="!options.itemTextColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemTextColor"></div>
@@ -284,10 +272,7 @@
                     [(ngModel)]="options.lineBackgroundOpacity"
                 />
             </div>
-            <button
-                (click)="options.lineBackgroundColor = ''; options.lineBackgroundOpacity = 100"
-                [disabled]="!options.lineBackgroundColor"
-            >
+            <button (click)="resetLineBackground()" [disabled]="!options.lineBackgroundColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.lineBackgroundColor"></div>
@@ -312,10 +297,7 @@
                     [(ngModel)]="options.lineBorderOpacity"
                 />
             </div>
-            <button
-                (click)="options.lineBorderColor = ''; options.lineBorderOpacity = 100"
-                [disabled]="!options.lineBorderColor"
-            >
+            <button (click)="resetLineBorder()" [disabled]="!options.lineBorderColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.lineBorderColor"></div>
@@ -379,10 +361,7 @@
                     [(ngModel)]="options.titleTextOpacity"
                 />
             </div>
-            <button
-                (click)="options.titleTextColor = ''; options.titleTextOpacity = 100"
-                [disabled]="!options.titleTextColor"
-            >
+            <button (click)="resetTitleText()" [disabled]="!options.titleTextColor">
                 {{ 'gererator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.titleTextColor"></div>
