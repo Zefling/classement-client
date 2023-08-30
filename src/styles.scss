@@ -344,10 +344,12 @@ html {
     --select2-selection-disabled-border-color: var(--input-border-color);
 }
 
-* {
+*,
+*:focus,
+*:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     // color not possible in Chromium (too slow)
-    transition-property: backgound-color, opacity, border-color, box-shadow, text-shadow;
+    transition-property: backgound-color, opacity, border, box-shadow, text-shadow, outline;
     transition-duration: 0.3s;
 }
 
@@ -481,13 +483,14 @@ a {
     color: var(--text-color);
     box-sizing: border-box;
     font-size: 14px;
+    outline: 1px solid transparent;
 
     &:disabled {
         opacity: 0.5;
     }
 
     &:focus {
-        outline: 1px solid var(--input-focus-border-color);
+        outline-color: var(--input-focus-border-color);
     }
 }
 
@@ -580,7 +583,7 @@ dialog-cmp.auto-format .main {
             position: absolute;
             left: 2px;
             top: 2px;
-            transition: all 0.2s;
+            transition: left 0.2s;
         }
     }
 
@@ -589,8 +592,14 @@ dialog-cmp.auto-format .main {
         background-color: var(--input-item-active-color);
     }
 
-    input:focus + ::before {
-        outline: 1px solid var(--input-focus-border-color);
+    input {
+        & + ::before {
+            outline: 1px solid transparent;
+        }
+
+        &:focus + ::before {
+            outline-color: var(--input-focus-border-color);
+        }
     }
 }
 
