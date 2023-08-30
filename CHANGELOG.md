@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 1.12.1 (2023-08-30)
+
+#### Standalone web app
+
+-   Fix select2 render
+-   Fix keyboard navigation on table
+-   Add Switch theme color transition
+
 ### 1.12.0 (2023-08-27)
 
 #### Standalone web app
