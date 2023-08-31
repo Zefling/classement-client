@@ -39,6 +39,7 @@ label {
     align-items: center;
     position: relative;
     background: var(--tag-input-background);
+    outline: 1px solid var(--tag-input-border-color);
 
     &::after,
     input {
@@ -53,6 +54,10 @@ label {
         appearance: none;
         border: none;
         outline: none;
+    }
+
+    &:has(> input:focus) {
+        outline-color: var(--tag-input-focus-border-color);
     }
 
     &::after {

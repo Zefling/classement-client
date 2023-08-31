@@ -81,9 +81,6 @@ body.light-mode {
     // select2
     --select2-option-selected-background: #6c8dc5;
     --select2-option-highlighted-background: #7fa3e0;
-    // tag
-    --tag-background: #c0acac;
-    --tag-input-background: #e2d2d2;
     // avatar
     --avatar-background: #b6c6f5;
     --avatar-icon-opacity: 0.35;
@@ -238,9 +235,6 @@ body.dark-mode {
     // select2
     --select2-option-selected-background: #546b92;
     --select2-option-highlighted-background: #314870;
-    // tag
-    --tag-background: #302828;
-    --tag-input-background: #574040;
     // avatar
     --avatar-background: #13141a;
     --avatar-icon-opacity: 0.17;
@@ -342,6 +336,11 @@ html {
     --select2-search-background: var(--text-color);
     --select2-selection-disabled-background: var(--input-background);
     --select2-selection-disabled-border-color: var(--input-border-color);
+    // tag
+    --tag-background: var(--input-border-color);
+    --tag-input-background: var(--input-background);
+    --tag-input-border-color: var(--input-border-color);
+    --tag-input-focus-border-color: var(--input-focus-border-color);
 }
 
 *,
