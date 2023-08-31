@@ -778,6 +778,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (navigate) {
             this.id = classement.rankingId;
             this.resetCache();
+            this.updateSize();
             this.location.replaceState('/edit/' + this.getClassementId(classement));
         }
     }
