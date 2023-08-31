@@ -4,6 +4,18 @@
 
 #### Standalone web app
 
+-   Fix total size after save
+-   Improve styles: tags, buttons
+-   Improve CCS animations
+
+#### With API activited only
+
+-   Recommended: API `1.12.1`
+
+### 1.12.1 (2023-08-30)
+
+#### Standalone web app
+
 -   Fix select2 render
 -   Fix keyboard navigation on table
 -   Add Switch theme color transition
