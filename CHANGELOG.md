@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 1.12.1 (2023-08-30)
+### 1.12.2 (2023-08-31)
 
 #### Standalone web app
 
