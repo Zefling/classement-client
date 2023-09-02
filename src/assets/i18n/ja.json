@@ -26,11 +26,11 @@
   },
   "unit": {
     "file": {
-      "B0": "\u00A0B",
-      "B1": "\u00A0KiB",
-      "B2": "\u00A0MiB",
-      "B3": "\u00A0GiB",
-      "B4": "\u00A0TiB"
+      "B0": " B",
+      "B1": " KiB",
+      "B2": " MiB",
+      "B3": " GiB",
+      "B4": " TiB"
     }
   },
   "licenses": {
@@ -92,7 +92,7 @@
     "navigation": {
       "title": "ナビゲート",
       "page.size": "ナビゲーション内のページごとのタイルの数",
-      "page.size.pre": "1ページあたり",
+      "page.size.pre": "",
       "page.size.per": "タイル"
     },
     "interface": {
@@ -471,10 +471,10 @@
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
-        "label": "",
-        "label.after": "でログインします。",
-        "create": "",
-        "create.after": "で作成します。",
+        "label": "Connexion avec",
+        "label.after": "",
+        "create": "Créer with",
+        "create.after": "",
         "discord": "DISCORD",
         "facebook": "FACEBOOK",
         "google": "GOOGLE"
@@ -622,8 +622,8 @@
       "1025": "このユーザー名はすでに自分のものです。",
       "1026": "このユーザー名はすでに存在します。",
       "1030": "無効なログイントークンです。",
-      "1040": "この関連付けられたログイン サービスは存在しましません。",
       "1031": "トークンが見つかりません。",
+      "1040": "この関連付けられたログイン サービスは存在しましません。",
       "1100": "無効なテストです。",
       "2000": "保存できません: コンテンツが重複しています。",
       "3000": "ユーザーが見つかりません。",
@@ -675,10 +675,10 @@
   "message": {
     "save": {
       "success": "😊 ブラウザに正常にセーブされました。",
-      "failed": "⚠️ ブラウザにセーブできませんでした。"
+      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
     },
     "json.read": {
-      "failed": "⚠️ ファイルの読み取りに失敗しました。 フォーマットが認識されません。",
+      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
       "replace": "😊 アップロードされたファイルは成功しました。 正常に置き換えられました。",
       "new": "😊 ファイルを新しいティアリストに正常にアップロードしました。"
     },
