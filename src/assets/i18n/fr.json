@@ -709,12 +709,12 @@
       "hidden.success": "🫣 Le classement a été rendu privé avec succès.",
       "showed.success": "😊 La classement a été rendu public avec succès."
     },
+    "contact": {
+      "sent.success": "😊 Le message a été envoyé à l'administrateur avec succès."
+    },
     "token": {
       "invalid": "⚠️ Jeton de création de compte invalide.",
       "not": "⚠️ Pas de jeton de création de compte."
-    },
-    "contact": {
-      "sent.success": "😊 Le message a été envoyé à l'administrateur avec succès."
     },
     "navigate": {
       "access.error": "⚠️ Impossible de récupérer les listes de classements."

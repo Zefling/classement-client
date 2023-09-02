@@ -607,8 +607,7 @@
     "password": {
       "required": "Password required to view this tierlist",
       "cancel": "Cancel",
-      "ok": "Ok",
-      "password": "Define a password (facultatif)"
+      "ok": "Ok"
     }
   },
   "error": {
