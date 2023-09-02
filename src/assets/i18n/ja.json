@@ -26,11 +26,11 @@
   },
   "unit": {
     "file": {
-      "B0": "\u00A0B",
-      "B1": "\u00A0KiB",
-      "B2": "\u00A0MiB",
-      "B3": "\u00A0GiB",
-      "B4": "\u00A0TiB"
+      "B0": " B",
+      "B1": " KiB",
+      "B2": " MiB",
+      "B3": " GiB",
+      "B4": " TiB"
     }
   },
   "licenses": {

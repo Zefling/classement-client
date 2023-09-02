@@ -26,11 +26,11 @@
   },
   "unit": {
     "file": {
-      "B0": "\u00A0B",
-      "B1": "\u00A0KiB",
-      "B2": "\u00A0MiB",
-      "B3": "\u00A0GiB",
-      "B4": "\u00A0TiB"
+      "B0": " B",
+      "B1": " KiB",
+      "B2": " MiB",
+      "B3": " GiB",
+      "B4": " TiB"
     }
   },
   "licenses": {
@@ -424,13 +424,13 @@
     "optimise": {
       "info": "Convert image to WebP 300×300.",
       "button.optimise": "Optimise",
-      "current": "Current size: {{ totalSize }}\u00A0bytes for {{ totalImage }}\u00A0images.",
+      "current": "Current size: {{ totalSize }} bytes for {{ totalImage }} images.",
       "show.detail": "Show details",
       "hide.detail": "Hide details",
       "reduce.files": "Reduced number of files: {{ countResize }}",
-      "reduce.size": "Total reduce size: {{ reduceSize }}\u00A0bytes",
-      "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
-      "size": "{{ size }}\u00A0bytes",
+      "reduce.size": "Total reduce size: {{ reduceSize }} bytes",
+      "final.size": "File size: {{ finalSize }} bytes ({{percent}})",
+      "size": "{{ size }} bytes",
       "validate": "Validate"
     },
     "loading": "Loading…",
