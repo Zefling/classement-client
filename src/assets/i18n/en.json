@@ -675,10 +675,10 @@
   "message": {
     "save": {
       "success": "😊 successfully saved in browser.",
-      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
+      "failed": "⚠️ Échec de la sauvegarde dans le navigateur."
     },
     "json.read": {
-      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
+      "failed": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
       "replace": "😊 Uploaded file successful. Replaced successfully.",
       "new": "😊 successfully uploaded file to new tierlist."
     },
