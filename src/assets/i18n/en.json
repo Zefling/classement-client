@@ -442,7 +442,7 @@
       "edit": "Edit",
       "banner": {
         "select": "Select a banner image",
-        "cropper": "Crop",
+        "crop": "Recadrer",
         "image": "Banner image",
         "reset": "Reset"
       },
