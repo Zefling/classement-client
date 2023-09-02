@@ -675,10 +675,10 @@
   "message": {
     "save": {
       "success": "😊 ブラウザに正常にセーブされました。",
-      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
+      "failed": "⚠️ Échec de la sauvegarde dans le navigateur."
     },
     "json.read": {
-      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
+      "failed": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
       "replace": "😊 アップロードされたファイルは成功しました。 正常に置き換えられました。",
       "new": "😊 ファイルを新しいティアリストに正常にアップロードしました。"
     },
