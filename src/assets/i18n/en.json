@@ -442,7 +442,7 @@
       "edit": "Edit",
       "banner": {
         "select": "Select a banner image",
-        "cropper": "Crop",
+        "crop": "Crop",
         "image": "Banner image",
         "reset": "Reset"
       },
@@ -653,7 +653,7 @@
       "banner.empty": "Banner cannot be empty."
     },
     "username.exist": "This username already exists.",
-    "username.yours": "Ce nom d'utilisateur est déjà le votre.",
+    "username.yours": "This username is already yours.",
     "email": {
       "exist": "This email has already been used.",
       "invalid": "The email is invalid.",
