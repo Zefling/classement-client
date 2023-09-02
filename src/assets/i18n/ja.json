@@ -92,7 +92,7 @@
     "navigation": {
       "title": "ナビゲート",
       "page.size": "ナビゲーション内のページごとのタイルの数",
-      "page.size.pre": "",
+      "page.size.pre": "1ページあたり",
       "page.size.per": "タイル"
     },
     "interface": {
@@ -471,10 +471,10 @@
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
-        "label": "Connexion avec",
-        "label.after": "",
-        "create": "Créer with",
-        "create.after": "",
+        "label": " ",
+        "label.after": "でログインします。",
+        "create": "  ",
+        "create.after": "で作成します。",
         "discord": "DISCORD",
         "facebook": "FACEBOOK",
         "google": "GOOGLE"
