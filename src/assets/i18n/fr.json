@@ -26,11 +26,11 @@
   },
   "unit": {
     "file": {
-      "B0": "\u00A0o",
-      "B1": "\u00A0Kio",
-      "B2": "\u00A0Mio",
-      "B3": "\u00A0Gio",
-      "B4": "\u00A0Tio"
+      "B0": " o",
+      "B1": " Kio",
+      "B2": " Mio",
+      "B3": " Gio",
+      "B4": " Tio"
     }
   },
   "licenses": {
@@ -50,7 +50,7 @@
       "icons": "Icônes"
     },
     "app": {
-      "name": "Classement\u00A0:",
+      "name": "Classement :",
       "version": "version {{ version }}"
     },
     "last": "Derniers classements"
@@ -81,9 +81,9 @@
       },
       "line.option": {
         "title": "Mode d'affichage des options",
-        "auto": "Automatique\u00A0: en fonction du mode mobile ou non",
-        "reduce": "Reduit\u00A0: réduire au minimun dans l'interface",
-        "hidden": "Caché\u00A0: aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
+        "auto": "Automatique : en fonction du mode mobile ou non",
+        "reduce": "Reduit : réduire au minimun dans l'interface",
+        "hidden": "Caché : aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
       }
     },
     "theme": {
@@ -103,8 +103,8 @@
   },
   "list": {
     "intro": "Liste des Classements en mémoire dans votre navigateur Internet uniquement.",
-    "space": "Espace utilisé\u00A0: ",
-    "filter": "Filtrer\u00A0:",
+    "space": "Espace utilisé : ",
+    "filter": "Filtrer :",
     "title": {
       "name": "Titre",
       "undefined": "Sans titre"
@@ -113,8 +113,8 @@
     "category": {
       "name": "Catégorie",
       "edit.title": "Modifier une catégorie",
-      "current": "Catégorie actuelle\u00A0:",
-      "new": "Nouvelle catégorie\u00A0:",
+      "current": "Catégorie actuelle :",
+      "new": "Nouvelle catégorie :",
       "cancel": "Annuler",
       "edit": "Éditer"
     },
@@ -132,7 +132,7 @@
       "hidden": "Privé",
       "parent": "Parent",
       "with.password": "Avec mot de passe",
-      "question": "Êtes-vous sûr de vouloir changer un des status\u00A0?",
+      "question": "Êtes-vous sûr de vouloir changer un des status ?",
       "validated": "validé",
       "notValidated": "non validé",
       "deteled": " / supprimé"
@@ -151,7 +151,7 @@
     "server.link": "Ce classement est lié un classement de votre compte.\nCliquez ici pour voir la version sauvegardé sur votre compte.\nId : {{ id }}",
     "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
-      "question": "Êtes-vous sûr de vouloir supprimer ce classement\u00A0?",
+      "question": "Êtes-vous sûr de vouloir supprimer ce classement ?",
       "exit.save": "Sauvegarder et quitter",
       "exit": "Quitter",
       "cancel": "Annuler",
@@ -159,19 +159,19 @@
       "restore": "Restaurer"
     },
     "show": {
-      "question": "Êtes-vous sûr de vouloir rendre public ce classement\u00A0?",
+      "question": "Êtes-vous sûr de vouloir rendre public ce classement ?",
       "public": "Rendre public"
     },
     "hide": {
-      "question": "Êtes-vous sûr de vouloir rendre privé ce classement\u00A0?",
+      "question": "Êtes-vous sûr de vouloir rendre privé ce classement ?",
       "private": "Rendre privé",
       "note": "Un classement privé ne pourra pas être trouvé avec la navigation ou la recherche.",
       "note2": "Mais vous pouvez le partager avec son lien de partage."
     },
     "clone": {
-      "question": "Êtes-vous sûr de vouloir cloner\u00A0?",
-      "new.template": "Nouveau template\u00A0: Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera concidérer comme un dérivé.",
-      "title": "Changer de titre\u00A0:",
+      "question": "Êtes-vous sûr de vouloir cloner ?",
+      "new.template": "Nouveau template : Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera concidérer comme un dérivé.",
+      "title": "Changer de titre :",
       "validate": "Cloner",
       "edit": "Cloner et éditer",
       "cancel": "Annuler"
@@ -229,14 +229,14 @@
     },
     "options": {
       "group.title": "Options",
-      "title": "Titre du classement\u00A0:",
-      "title.color": "Couleur du texte du titre\u00A0:",
-      "title.opacity": "Opacité du texte du titre\u00A0:",
-      "group": "Catégorie\u00A0:",
-      "description": "Description\u00A0:",
-      "mode": "Mode\u00A0:",
-      "tags": "Clefs\u00A0:",
-      "sizes": "Dimensions d'une tuile\u00A0:",
+      "title": "Titre du classement :",
+      "title.color": "Couleur du texte du titre :",
+      "title.opacity": "Opacité du texte du titre :",
+      "group": "Catégorie :",
+      "description": "Description :",
+      "mode": "Mode :",
+      "tags": "Clefs :",
+      "sizes": "Dimensions d'une tuile :",
       "margin": "Marge",
       "padding": "Rembourrage",
       "border": "Bordure",
@@ -254,16 +254,16 @@
         "padding": "Rembourrage d'une tuile",
         "border": "Bordure d'une tuile",
         "margin": "Marge d'une tuile",
-        "background.color": "Couleur du fond d'une tuile\u00A0:",
-        "background.opacity": "Opacité du fond d'une tuile\u00A0:",
-        "border.color": "Couleur de bordure d'une tuile\u00A0:",
-        "border.opacity": "Opacité de bordure d'une tuile\u00A0:",
+        "background.color": "Couleur du fond d'une tuile :",
+        "background.opacity": "Opacité du fond d'une tuile :",
+        "border.color": "Couleur de bordure d'une tuile :",
+        "border.opacity": "Opacité de bordure d'une tuile :",
         "text": {
-          "color": "Couleur du texte d'une tuile\u00A0:",
-          "opacity": "Opacité du texte d'une tuile\u00A0:",
-          "background.color": "Couleur de fond du texte\u00A0:",
-          "background.opacity": "Opacité de fond du texte\u00A0:",
-          "position": "Position texte dans la tuile\u00A0:",
+          "color": "Couleur du texte d'une tuile :",
+          "opacity": "Opacité du texte d'une tuile :",
+          "background.color": "Couleur de fond du texte :",
+          "background.opacity": "Opacité de fond du texte :",
+          "position": "Position texte dans la tuile :",
           "position.bottom": "En dessous",
           "position.bottom.over": "En dessous et par dessus",
           "position.bottom.over.hover": "En dessous et par dessus au survol",
@@ -275,16 +275,16 @@
       },
       "line": {
         "title": "Options des lignes",
-        "background.color": "Couleur du fond d'une ligne\u00A0:",
-        "background.opacity": "Opacité du fond d'une ligne\u00A0:",
-        "border.color": "Couleur de bordure d'une ligne\u00A0:",
-        "border.opacity": "Opacité de bordure d'une ligne\u00A0:"
+        "background.color": "Couleur du fond d'une ligne :",
+        "background.opacity": "Opacité du fond d'une ligne :",
+        "border.color": "Couleur de bordure d'une ligne :",
+        "border.opacity": "Opacité de bordure d'une ligne :"
       },
       "global": {
         "title": "Autres options",
-        "background": "Couleur du fond\u00A0:",
-        "width": "Largeur de l'image rendue\u00A0:",
-        "image": "Image de fond\u00A0:",
+        "background": "Couleur du fond :",
+        "width": "Largeur de l'image rendue :",
+        "image": "Image de fond :",
         "name.image": {
           "none": "Défault",
           "sakura": "Sakura",
@@ -294,12 +294,12 @@
         }
       },
       "name": {
-        "width": "Largeur des noms de groupe\u00A0:",
-        "font-size": "Taille du texte des noms de groupe\u00A0:",
-        "opacity": "Opacité du fond des noms de groupe\u00A0:"
+        "width": "Largeur des noms de groupe :",
+        "font-size": "Taille du texte des noms de groupe :",
+        "opacity": "Opacité du fond des noms de groupe :"
       },
       "group.direction": {
-        "label": "Direction\u00A0:",
+        "label": "Direction :",
         "rtl": "Droite à gauche",
         "ltr": "Gauche à droite"
       },
@@ -315,7 +315,7 @@
     },
     "theme": {
       "link": "Choisir un thème",
-      "info": "Selection de thème prédéfini\u00A0:",
+      "info": "Selection de thème prédéfini :",
       "cancel": "Annuler",
       "validate": "Valider",
       "name": {
@@ -370,7 +370,7 @@
       "export.json": "Exporter",
       "export.all.json": "Tout exporter",
       "import.json": "Importer",
-      "save.image": "Sauvegarder au format\u00A0:",
+      "save.image": "Sauvegarder au format :",
       "edit.local": "Éditer la version locale",
       "edit.local.empty": "Éditer la version locale vidé",
       "see.my.derivative": "Voir mon dérivé",
@@ -382,15 +382,15 @@
       "edit.my.last.derivative": "Éditer mon dernier dérivé",
       "new.derivative": "Nouveau dérivé à partir de ce classement",
       "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
-      "my.derivative.count": "Note\u00A0: vous avez actuellement {{ count }} dérivés de ce classement.",
+      "my.derivative.count": "Note : vous avez actuellement {{ count }} dérivés de ce classement.",
       "change.mode": {
-        "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer\u00A0?",
+        "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
         "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes."
       },
       "reset.groups": {
         "button": "Vider les groupes",
-        "question": "Êtes-vous sûr de vouloir vider les groupes\u00A0?",
+        "question": "Êtes-vous sûr de vouloir vider les groupes ?",
         "ok": "Ok",
         "cancel": "Annuler"
       },
@@ -400,18 +400,18 @@
       }
     },
     "change": {
-      "warning": "Vous avez effectué des changements\u00A0!",
-      "question": "Êtes-vous sûr de vouloir quitter cette page\u00A0?"
+      "warning": "Vous avez effectué des changements !",
+      "question": "Êtes-vous sûr de vouloir quitter cette page ?"
     },
     "json": {
-      "title": "Titre\u00A0:",
-      "category": "Categorie\u00A0:",
-      "count.group": "Nombre de groupes\u00A0:",
-      "count.item": "Nombre d'élements\u00A0:",
+      "title": "Titre :",
+      "category": "Categorie :",
+      "count.group": "Nombre de groupes :",
+      "count.item": "Nombre d'élements :",
       "cancel": "Annuler",
       "import": {
-        "list": "Importer un classement\u00A0:",
-        "list.multi": "Importer un ou des classements\u00A0:",
+        "list": "Importer un classement :",
+        "list.multi": "Importer un ou des classements :",
         "replace": "Importer et remplacer",
         "new": "Importer dans un nouveau classement",
         "add": "Importer ce classement",
@@ -424,13 +424,13 @@
     "optimise": {
       "info": "Convertir l'image en WebP 300×300.",
       "button.optimise": "Optimiser",
-      "current": "Taille actuelle\u00A0: {{ totalSize }}\u00A0octects pour {{ totalImage }}\u00A0images.",
+      "current": "Taille actuelle : {{ totalSize }} octects pour {{ totalImage }} images.",
       "show.detail": "Afficher les détails",
       "hide.detail": "Cacher les détails",
-      "reduce.files": "Nombre de fichiers réduits\u00A0: {{ countResize }}",
-      "reduce.size": "Taille totale réduite\u00A0: {{ reduceSize }}\u00A0octects",
-      "final.size": "Taille finale\u00A0: {{ finalSize }}\u00A0octects ({{percent}})",
-      "size": "{{ size }}\u00A0octets",
+      "reduce.files": "Nombre de fichiers réduits : {{ countResize }}",
+      "reduce.size": "Taille totale réduite : {{ reduceSize }} octects",
+      "final.size": "Taille finale : {{ finalSize }} octects ({{percent}})",
+      "size": "{{ size }} octets",
       "validate": "Valider"
     },
     "loading": "Chargement en cours…",
@@ -438,7 +438,7 @@
       "update": "Mettre à jour votre classement",
       "new": "Sauvegarder un nouveau classement",
       "from": "Classement d'origine",
-      "username": "Nom d'utilisateur\u00A0:",
+      "username": "Nom d'utilisateur :",
       "edit": "Éditer",
       "banner": {
         "select": "Sélectionner une images de bannière",
@@ -456,7 +456,7 @@
         "label": "Historiser l'ancienne version",
         "info": "Cela permet de garder une trace avant modification du classement."
       },
-      "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif)\u00A0:"
+      "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif) :"
     }
   },
   "user": {
@@ -482,16 +482,16 @@
       "generator": {
         "info": "Informations",
         "text1": "Pour créer un compte ou vous connecter avec Discord ou Facebook demande un rechargement de page.",
-        "text2": "Pour ne pas perdre votre classement\u00A0: fermez cette dialogue, faites une sauvegarde navigateur et créer votre compte ou connectez-vous.",
-        "text3": "Vous pourrez ensuitre recharger votre classement depuis «\u00A0Mes Liste\u00A0» avec l'onglet «\u00A0Liste navigateur\u00A0»."
+        "text2": "Pour ne pas perdre votre classement : fermez cette dialogue, faites une sauvegarde navigateur et créer votre compte ou connectez-vous.",
+        "text3": "Vous pourrez ensuitre recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
       }
     },
     "profile": {
       "title": "Mon profil",
-      "username": "Utilisateur\u00A0:",
-      "since": "Depuis\u00A0:",
-      "email": "Courriel\u00A0:",
-      "total": "Total\u00A0:",
+      "username": "Utilisateur :",
+      "since": "Depuis :",
+      "email": "Courriel :",
+      "total": "Total :",
       "actions": "Actions",
       "change": {
         "email": "Changer de courriel",
@@ -500,8 +500,8 @@
       },
       "remove": {
         "profile": "Supprimer votre profil",
-        "question": "Êtes-vous sûr de vouloir supprimer votre compte\u00A0?",
-        "question.admin": "Êtes-vous sûr de vouloir supprimer ce compte\u00A0?",
+        "question": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+        "question.admin": "Êtes-vous sûr de vouloir supprimer ce compte ?",
         "warning": "Attention, cette action sera irreversible.",
         "warning2": "Ce compte sera anonymisé et irrécupérable : suppression du nom d'utilisateur et email.",
         "cancel": "Annuler",
@@ -574,7 +574,7 @@
       "title": "Information",
       "data.privacy": {
         "title": "Confidentialité des données",
-        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimun pour la création de compte\u00A0: courriel et pseudonyme ou prénom."
+        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimun pour la création de compte : courriel et pseudonyme ou prénom."
       },
       "data.deletion": {
         "title": "Suppression des données",
@@ -675,24 +675,24 @@
   "message": {
     "save": {
       "success": "😊 Sauvegarde réussie dans le navigateur.",
-      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
+      "failed": "⚠️ Échec de la sauvegarde dans le navigateur."
     },
     "json.read": {
-      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
+      "failed": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
       "replace": "😊 Chagement du fichier réussi. Remplacement réussi.",
       "new": "😊 Chagement du fichier réussi dans un nouveau classement."
     },
     "remove": {
-      "success": "🗑 Suppression du classement «\u00A0%title%\u00A0» réussi."
+      "success": "🗑 Suppression du classement « %title% » réussi."
     },
     "clone": {
-      "success": "😊 Duplication du classement réussi sous le nom «\u00A0%title%\u00A0»."
+      "success": "😊 Duplication du classement réussi sous le nom « %title% »."
     },
     "reset": {
       "groups": "😊 Remise à zéro des groupes."
     },
     "add": {
-      "success": "😊 Ajout du classement «\u00A0%title%\u00A0» réussi."
+      "success": "😊 Ajout du classement « %title% » réussi."
     },
     "user": {
       "singup.success": "😊 Utilisateur créé.",
