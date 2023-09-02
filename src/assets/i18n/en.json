@@ -26,11 +26,11 @@
   },
   "unit": {
     "file": {
-      "B0": "\u00A0B",
-      "B1": "\u00A0KiB",
-      "B2": "\u00A0MiB",
-      "B3": "\u00A0GiB",
-      "B4": "\u00A0TiB"
+      "B0": " B",
+      "B1": " KiB",
+      "B2": " MiB",
+      "B3": " GiB",
+      "B4": " TiB"
     }
   },
   "licenses": {
@@ -152,8 +152,8 @@
     "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
     "delete": {
       "question": "Are you sure you want to delete this tierlist?",
-      "exit": "Exit",
       "exit.save": "Save and exit",
+      "exit": "Exit",
       "cancel": "Cancel",
       "delete": "Delete",
       "restore": "Restore"
@@ -202,8 +202,8 @@
     "movie": "Movies",
     "music": "Music",
     "people": "People",
-    "politics": "Politics",
     "place": "Place",
+    "politics": "Politics",
     "programming": "Programming",
     "roleplaying": "Role-playing",
     "science": "Science",
@@ -234,8 +234,8 @@
       "title.opacity": "Title text opacity:",
       "group": "Category:",
       "description": "Description:",
-      "tags": "Tags:",
       "mode": "Mode:",
+      "tags": "Tags:",
       "sizes": "Tile sizes:",
       "margin": "Margin",
       "padding": "Padding",
@@ -424,13 +424,13 @@
     "optimise": {
       "info": "Convert image to WebP 300×300.",
       "button.optimise": "Optimise",
-      "current": "Current size: {{ totalSize }}\u00A0bytes for {{ totalImage }}\u00A0images.",
+      "current": "Current size: {{ totalSize }} bytes for {{ totalImage }} images.",
       "show.detail": "Show details",
       "hide.detail": "Hide details",
       "reduce.files": "Reduced number of files: {{ countResize }}",
-      "reduce.size": "Total reduce size: {{ reduceSize }}\u00A0bytes",
-      "final.size": "File size: {{ finalSize }}\u00A0bytes ({{percent}})",
-      "size": "{{ size }}\u00A0bytes",
+      "reduce.size": "Total reduce size: {{ reduceSize }} bytes",
+      "final.size": "File size: {{ finalSize }} bytes ({{percent}})",
+      "size": "{{ size }} bytes",
       "validate": "Validate"
     },
     "loading": "Loading…",
@@ -442,7 +442,7 @@
       "edit": "Edit",
       "banner": {
         "select": "Select a banner image",
-        "cropper": "Crop",
+        "crop": "Recadrer",
         "image": "Banner image",
         "reset": "Reset"
       },
@@ -675,10 +675,10 @@
   "message": {
     "save": {
       "success": "😊 successfully saved in browser.",
-      "failed": "⚠️ Failed to save in browser."
+      "echec": "⚠️ Échec de la sauvegarde dans le navigateur."
     },
     "json.read": {
-      "failed": "⚠️ Failed to read file. The format is not recognized.",
+      "echec": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
       "replace": "😊 Uploaded file successful. Replaced successfully.",
       "new": "😊 successfully uploaded file to new tierlist."
     },
