@@ -99,6 +99,13 @@
       "title": "インターフェイス",
       "light-dark": "テーマ",
       "language": "言語"
+    },
+    "tab": {
+      "general": "グローバル",
+      "api": "API"
+    },
+    "imdb": {
+      "key": "IMDB認証キー"
     }
   },
   "list": {
@@ -457,6 +464,17 @@
         "info": "これにより、ティアリストを変更する前に追跡できます。"
       },
       "link": "デフォルトのIDを読みやすい名前に置き換えます(オプション)："
+    },
+    "external": {
+      "imbd": {
+        "title": "IMDBで映画を検索します",
+        "name": "映画の名前：",
+        "adult.content": "アダルトコンテンツを追加する",
+        "language": "言語：",
+        "search": "検索",
+        "with.title": "タイトル付きで",
+        "with.year": "年付きで"
+      }
     }
   },
   "user": {

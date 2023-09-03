@@ -99,6 +99,13 @@
       "title": "Interface",
       "light-dark": "Theme",
       "language": "Language"
+    },
+    "tab": {
+      "general": "General",
+      "api": "API"
+    },
+    "imdb": {
+      "key": "IMDB authentication key"
     }
   },
   "list": {
@@ -457,6 +464,17 @@
         "info": "This allows you to keep track before changing the tierlist."
       },
       "link": "Replace the default ID with a more readable name (optional)"
+    },
+    "external": {
+      "imbd": {
+        "title": "Search for a movie on IMDB",
+        "name": "Movie name:",
+        "adult.content": "Include adult content",
+        "language": "Language:",
+        "search": "Search",
+        "with.title": "with the title",
+        "with.year": "with the year"
+      }
     }
   },
   "user": {
