@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
-import { Theme } from '../../interface';
+import { Theme } from '../../interface/interface';
 import { color } from '../../tools/function';
 
 @Component({

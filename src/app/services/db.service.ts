@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferencesData } from '../interface';
+import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferencesData } from '../interface/interface';
 import { Utils } from '../tools/utils';
 
 enum Store {

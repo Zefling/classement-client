@@ -21,7 +21,7 @@ import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Message, MessageError } from '../content/user/user.interface';
-import { Classement, ClassementHistory, SortClassementCol, SortDirection } from '../interface';
+import { Classement, ClassementHistory, SortClassementCol, SortDirection } from '../interface/interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };

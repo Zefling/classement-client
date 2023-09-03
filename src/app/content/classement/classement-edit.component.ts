@@ -31,7 +31,7 @@ import {
     Options,
     PreferenceLineOption,
     ScreenMode,
-} from 'src/app/interface';
+} from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -46,6 +46,7 @@ import { environment } from 'src/environments/environment';
 import { defaultOptions, defaultTheme, defautGroup } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
+import { ExternalImdbComponent } from './external.imdb.component';
 
 @Component({
     selector: 'classement-edit',
@@ -94,6 +95,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     currentTile?: FileString;
 
+    imdbActive = false;
+
     @HostBinding('class.option-reduce')
     get optionReduce() {
         return this.lineOption === 'reduce';
@@ -115,6 +118,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogGroupOption') dialogGroupOption!: DialogComponent;
     @ViewChild(ClassementEditImageComponent) editImage!: ClassementEditImageComponent;
     @ViewChild(ClassementLoginComponent) login!: ClassementLoginComponent;
+    @ViewChild(ExternalImdbComponent) imdb!: ExternalImdbComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -143,11 +147,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.route.params.subscribe(params => {
                 if (this.preferencesService.hasInit) {
                     this.initWithParams(params);
+                    this.initAPI();
                 } else {
                     this.preferencesService.onInit.pipe(first()).subscribe(() => {
                         this.initWithParams(params);
+                        this.initAPI();
                     });
                 }
+            }),
+            this.preferencesService.onInit.subscribe(() => {
+                this.initAPI();
             }),
             global.onFileLoaded.subscribe(file => {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
@@ -175,6 +184,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     updateTitle() {
         this.global.setTitle('menu.edit');
+    }
+
+    initAPI() {
+        this.imdbActive = !!this.preferencesService.preferences.authApiKeys.imdb?.trim();
     }
 
     initWithParams(params: Params) {
@@ -733,7 +746,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.global.updateList();
             },
             _ => {
-                this.messageService.addMessage(this.translate.instant('message.save.echec'), {
+                this.messageService.addMessage(this.translate.instant('message.save.failed'), {
                     type: MessageType.error,
                 });
             },

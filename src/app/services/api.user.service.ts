@@ -13,7 +13,7 @@ import { GlobalService } from './global.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Login, Message, MessageError } from '../content/user/user.interface';
-import { Classement, SortDirection, SortUserCol, User } from '../interface';
+import { Classement, SortDirection, SortUserCol, User } from '../interface/interface';
 import { Utils } from '../tools/utils';
 
 @Injectable({ providedIn: 'root' })

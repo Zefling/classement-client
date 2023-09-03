@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { SortDirection, SortUserCol, User } from 'src/app/interface';
+import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';

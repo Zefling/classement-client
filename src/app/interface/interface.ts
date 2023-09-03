@@ -1,4 +1,4 @@
-import { TypeFile } from './services/global.service';
+import { TypeFile } from '../services/global.service';
 
 export interface Classement {
     banner: string;
@@ -184,6 +184,9 @@ export interface PreferencesData {
     lineOption: PreferenceLineOption;
     theme: ThemeNames;
     pageSize: number;
+    authApiKeys: {
+        imdb: string;
+    };
 }
 
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };

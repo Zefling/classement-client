@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, SortClassementCol, SortDirection } from 'src/app/interface';
+import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Utils } from 'src/app/tools/utils';
 

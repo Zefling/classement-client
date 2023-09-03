@@ -1,0 +1,61 @@
+<dialog-cmp closeButton>
+    <h2>{{ 'gererator.external.imbd.title' | translate }}</h2>
+
+    <div *ngIf="keyApi && languages" class="imdb">
+        <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
+        <form [formGroup]="searchMovieForm" (submit)="search()">
+            <div>
+                <label for="name">{{ 'gererator.external.imbd.name' | translate }}</label>
+                <input id="name" formControlName="query" />
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" formControlName="include_adult" />
+                    {{ 'gererator.external.imbd.adult.content' | translate }}
+                </label>
+            </div>
+            <div>
+                <label for="language">{{ 'gererator.external.imbd.language' | translate }}</label>
+                <select2 overlay id="language" formControlName="language" [data]="languages" />
+            </div>
+
+            <p class="buttons">
+                <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
+                    {{ 'gererator.external.imbd.search' | translate }}
+                </button>
+            </p>
+        </form>
+
+        <div class="options" *ngIf="results?.length">
+            <div>
+                <label>
+                    <input type="checkbox" [(ngModel)]="withTitle" />
+                    {{ 'gererator.external.imbd.with.title' | translate }}
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="withYear" />
+                    {{ 'gererator.external.imbd.with.year' | translate }}
+                </label>
+            </div>
+        </div>
+
+        <div class="movies">
+            <ng-container *ngFor="let movie of results">
+                <div
+                    class="content-box"
+                    [class.disabled]="movie.disabled"
+                    *ngIf="movie.poster_path"
+                    (click)="addTile(movie)"
+                >
+                    <div class="content">
+                        <img [src]="baseImg + movie.poster_path" alt="poster_path" />
+                        <div class="movie-title">
+                            <span *ngIf="withTitle">{{ movie.title }}</span>
+                            <span *ngIf="withYear"> ({{ movie.release_date | date : 'YYYY' }})</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</dialog-cmp>

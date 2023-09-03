@@ -10,6 +10,21 @@
     }
 }
 
+.top-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    .server-api {
+        flex: fit-content;
+        text-align: start;
+    }
+
+    .client-api {
+        flex: fit-content;
+        text-align: end;
+    }
+}
+
 // drag'n drop --------------------------------------------------------------
 
 .drop-list {

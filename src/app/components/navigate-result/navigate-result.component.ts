@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input, booleanAttribute } from '@angular/core';
 
-import { Classement } from 'src/app/interface';
+import { Classement } from 'src/app/interface/interface';
 
 @Component({
     selector: 'navigate-result',

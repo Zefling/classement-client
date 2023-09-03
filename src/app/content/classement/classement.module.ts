@@ -13,6 +13,7 @@ import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
 import { ClassemenThemesComponent } from './classement-themes.component';
 import { ClassementRoutingModule } from './classement.routing';
+import { ExternalImdbComponent } from './external.imdb.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,8 @@ import { ClassementRoutingModule } from './classement.routing';
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
         ClassementLoginComponent,
+        // extention
+        ExternalImdbComponent,
     ],
     imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule],
     providers: [],

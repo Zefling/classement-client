@@ -6,7 +6,7 @@
 
 -   Fix total size after save
 -   Improve styles: tags, buttons
--   Improve CCS animations
+-   Improve CSS animations
 
 #### With API activited only
 

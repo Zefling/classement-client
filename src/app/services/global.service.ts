@@ -17,7 +17,7 @@ import {
     Options,
     PreferenceInterfaceTheme,
     ThemeOptions,
-} from '../interface';
+} from '../interface/interface';
 import { color } from '../tools/function';
 import { Utils } from '../tools/utils';
 

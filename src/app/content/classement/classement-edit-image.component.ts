@@ -13,7 +13,7 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 import { Subject, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileHandle, FileString } from 'src/app/interface';
+import { FileHandle, FileString } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 

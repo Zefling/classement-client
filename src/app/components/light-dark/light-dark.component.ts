@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
 
-import { PreferenceInterfaceTheme } from 'src/app/interface';
+import { PreferenceInterfaceTheme } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({

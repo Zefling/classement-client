@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User } from 'src/app/interface';
+import { User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 

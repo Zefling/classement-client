@@ -3,7 +3,7 @@ import { Component, ElementRef, Host, Input, OnChanges, OnDestroy, SimpleChanges
 import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface';
+import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';

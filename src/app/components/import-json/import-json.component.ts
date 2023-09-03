@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Buffer } from 'buffer';
 import { Subscription } from 'rxjs';
 
-import { Data, FileString, importData } from '../../interface';
+import { Data, FileString, importData } from '../../interface/interface';
 import { DBService } from '../../services/db.service';
 import { GlobalService, TypeFile } from '../../services/global.service';
 import { Logger, LoggerLevel } from '../../services/logger';
@@ -85,7 +85,7 @@ export class ImportJsonComponent implements OnDestroy {
                 if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
                     this.jsonTmp = [{ data: data, selected: true }];
                 } else {
-                    this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+                    this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
                         type: MessageType.error,
                     });
                 }
@@ -98,13 +98,13 @@ export class ImportJsonComponent implements OnDestroy {
                     );
                 }
             } else {
-                this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+                this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
                     type: MessageType.error,
                 });
             }
         } catch (e) {
             this.logger.log('json error:', LoggerLevel.error, e);
-            this.messageService.addMessage(this.translate.instant('message.json.read.echec'), {
+            this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
                 type: MessageType.error,
             });
         }

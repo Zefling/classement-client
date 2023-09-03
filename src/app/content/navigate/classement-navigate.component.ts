@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Select2Data } from 'ng-select2-component';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Classement } from 'src/app/interface';
+import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';

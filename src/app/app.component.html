@@ -154,85 +154,101 @@
     </div>
 </dialog-cmp>
 
-<dialog-cmp class="preferences" #preferences closeBackdrop>
+<dialog-cmp class="preferences" #preferences closeBackdrop closeButton>
     <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
         <h2>{{ 'preferences.title' | translate }}</h2>
+        <tabs>
+            <tab-title id="general"> {{ 'preferences.tab.general' | translate }}</tab-title>
+            <tab-content id="general">
+                <h3>{{ 'preferences.interface.title' | translate }}</h3>
 
-        <h3>{{ 'preferences.interface.title' | translate }}</h3>
+                <h5>{{ 'preferences.interface.light-dark' | translate }}</h5>
+                <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
 
-        <h5>{{ 'preferences.interface.light-dark' | translate }}</h5>
-        <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
+                <h5>{{ 'preferences.interface.language' | translate }}</h5>
+                <label for="language">
+                    <select id="language" formControlName="interfaceLanguage">
+                        <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
+                    </select>
+                </label>
 
-        <h5>{{ 'preferences.interface.language' | translate }}</h5>
-        <label for="language">
-            <select id="language" formControlName="interfaceLanguage">
-                <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
-            </select>
-        </label>
+                <h3>{{ 'preferences.editor.title' | translate }}</h3>
+                <h4>{{ 'preferences.tiles.title' | translate }}</h4>
+                <h5>{{ 'preferences.tile.title' | translate }}</h5>
+                <label>
+                    <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
+                </label>
 
-        <h3>{{ 'preferences.editor.title' | translate }}</h3>
-        <h4>{{ 'preferences.tiles.title' | translate }}</h4>
-        <h5>{{ 'preferences.tile.title' | translate }}</h5>
-        <label>
-            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
-        </label>
+                <h4>{{ 'preferences.groups.title' | translate }}</h4>
 
-        <h4>{{ 'preferences.groups.title' | translate }}</h4>
+                <h5>{{ 'preferences.color.title' | translate }}</h5>
+                <label>
+                    <input type="radio" formControlName="newColor" value="mixed" />
+                    {{ 'preferences.color.new.color.mixed' | translate }}
+                </label>
+                <label>
+                    <input type="radio" formControlName="newColor" value="same" />
+                    {{ 'preferences.color.new.color.same' | translate }}
+                </label>
 
-        <h5>{{ 'preferences.color.title' | translate }}</h5>
-        <label>
-            <input type="radio" formControlName="newColor" value="mixed" />
-            {{ 'preferences.color.new.color.mixed' | translate }}
-        </label>
-        <label>
-            <input type="radio" formControlName="newColor" value="same" />
-            {{ 'preferences.color.new.color.same' | translate }}
-        </label>
+                <h5>{{ 'preferences.group.title' | translate }}</h5>
+                <label>
+                    <input type="radio" formControlName="newLine" value="below" />
+                    {{ 'preferences.group.new.line.below' | translate }}
+                </label>
+                <label
+                    ><input type="radio" formControlName="newLine" value="above" />
+                    {{ 'preferences.group.new.line.above' | translate }}
+                </label>
+                <!-- <label
+                  ><input type="radio" formControlName="newLine" value="ask-me" />
+                  {{ 'preferences.group.new.line.ask.me' | translate }}
+              </label> -->
 
-        <h5>{{ 'preferences.group.title' | translate }}</h5>
-        <label>
-            <input type="radio" formControlName="newLine" value="below" />
-            {{ 'preferences.group.new.line.below' | translate }}
-        </label>
-        <label
-            ><input type="radio" formControlName="newLine" value="above" />
-            {{ 'preferences.group.new.line.above' | translate }}
-        </label>
-        <!-- <label
-            ><input type="radio" formControlName="newLine" value="ask-me" />
-            {{ 'preferences.group.new.line.ask.me' | translate }}
-        </label> -->
+                <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
+                <label>
+                    <input type="radio" formControlName="lineOption" value="auto" />
+                    {{ 'preferences.group.line.option.auto' | translate }}
+                </label>
+                <label
+                    ><input type="radio" formControlName="lineOption" value="reduce" />
+                    {{ 'preferences.group.line.option.reduce' | translate }}
+                </label>
+                <label
+                    ><input type="radio" formControlName="lineOption" value="hidden" />
+                    {{ 'preferences.group.line.option.hidden' | translate }}
+                </label>
 
-        <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
-        <label>
-            <input type="radio" formControlName="lineOption" value="auto" />
-            {{ 'preferences.group.line.option.auto' | translate }}
-        </label>
-        <label
-            ><input type="radio" formControlName="lineOption" value="reduce" />
-            {{ 'preferences.group.line.option.reduce' | translate }}
-        </label>
-        <label
-            ><input type="radio" formControlName="lineOption" value="hidden" />
-            {{ 'preferences.group.line.option.hidden' | translate }}
-        </label>
+                <h4>{{ 'preferences.theme.title' | translate }}</h4>
+                <select formControlName="theme">
+                    <option *ngFor="let theme of themes" [value]="theme">
+                        {{ 'gererator.theme.name.' + theme | translate }}
+                    </option>
+                </select>
 
-        <h4>{{ 'preferences.theme.title' | translate }}</h4>
-        <select formControlName="theme">
-            <option *ngFor="let theme of themes" [value]="theme">
-                {{ 'gererator.theme.name.' + theme | translate }}
-            </option>
-        </select>
+                <ng-container *ngIf="modeApi">
+                    <h3>{{ 'preferences.navigation.title' | translate }}</h3>
+                    <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
+                    <label>
+                        {{ 'preferences.navigation.page.size.pre' | translate }}
+                        <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
+                        {{ 'preferences.navigation.page.size.per' | translate }}
+                    </label>
+                </ng-container>
+            </tab-content>
 
-        <ng-container *ngIf="modeApi">
-            <h3>{{ 'preferences.navigation.title' | translate }}</h3>
-            <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
-            <label>
-                {{ 'preferences.navigation.page.size.pre' | translate }}
-                <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-                {{ 'preferences.navigation.page.size.per' | translate }}
-            </label>
-        </ng-container>
+            <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
+            <tab-content id="api" formGroupName="authApiKeys">
+                <label>{{ 'preferences.imdb.key' | translate }} </label>
+                <input type="text" formControlName="imdb" />
+
+                <div class="info">
+                    <span class="icon-info"></span>
+                    Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
+                    <a href="https://www.themoviedb.org/settings/api">API</a>
+                </div>
+            </tab-content>
+        </tabs>
 
         <div class="buttons">
             <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>

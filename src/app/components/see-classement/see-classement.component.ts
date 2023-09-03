@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit, booleanAttribute } from '@
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { FileString, FormatedGroup, Options } from 'src/app/interface';
+import { FileString, FormatedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
 import { GlobalService } from '../../services/global.service';

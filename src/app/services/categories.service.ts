@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
 import { categories } from '../content/classement/classement-default';
-import { Category } from '../interface';
+import { Category } from '../interface/interface';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {

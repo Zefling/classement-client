@@ -1,6 +1,6 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
-import { FileHandle } from '../interface';
+import { FileHandle } from '../interface/interface';
 import { GlobalService, TypeFile, typesMine } from '../services/global.service';
 
 @Directive({ selector: '[drop-image]' })

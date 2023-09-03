@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { Theme } from 'src/app/interface';
+import { Theme } from 'src/app/interface/interface';
 
 import { themesList } from './classement-default';
 

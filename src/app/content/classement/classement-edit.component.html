@@ -2,16 +2,24 @@
 
 <div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
     <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
-    <div *ngIf="apiActive && classement && classement.templateTotal > 1">
-        <button class="button-add primary" (click)="toTemplateNavigation()">
-            {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
-        </button>
-        <button class="button-add primary" (click)="showDerivative()" *ngIf="derivatives && derivatives.length > 1">
-            {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
-        </button>
-        <button class="button-add primary" (click)="showRankingDiff()">
-            {{ 'gererator.ranking.diff' | translate }}
-        </button>
+
+    <div class="top-actions">
+        <div class="server-api" *ngIf="apiActive && classement && classement.templateTotal > 1">
+            <button class="button-add primary" (click)="toTemplateNavigation()">
+                {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+            </button>
+            <button class="button-add primary" (click)="showDerivative()" *ngIf="derivatives && derivatives.length > 1">
+                {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
+            </button>
+            <button class="button-add primary" (click)="showRankingDiff()">
+                {{ 'gererator.ranking.diff' | translate }}
+            </button>
+        </div>
+        <div class="client-api">
+            <button *ngIf="imdbActive" class="button-add primary" (click)="imdb.open()">
+                {{ 'IMDB' | translate }}
+            </button>
+        </div>
     </div>
 
     <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
@@ -497,3 +505,5 @@
 <classement-edit-image [currentTile]="currentTile" #editImage></classement-edit-image>
 
 <classement-login></classement-login>
+
+<external-imdb></external-imdb>

@@ -149,6 +149,9 @@ export class AppComponent implements DoCheck {
             lineOption: new FormControl(initPreferences.lineOption),
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
+            authApiKeys: new FormGroup({
+                imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
+            }),
         });
 
         this.preferencesForm.valueChanges.subscribe(() => {

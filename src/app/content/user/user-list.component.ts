@@ -7,7 +7,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { SortableDirective } from 'src/app/directives/sortable.directive';
-import { Classement, User } from 'src/app/interface';
+import { Classement, User } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
