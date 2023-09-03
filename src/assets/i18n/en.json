@@ -101,11 +101,11 @@
       "language": "Language"
     },
     "tab": {
-      "general": "Général",
+      "general": "General",
       "api": "API"
     },
     "imdb": {
-      "key": "Clef d'authetification IMDB"
+      "key": "IMDB authentication key"
     }
   },
   "list": {
@@ -467,13 +467,13 @@
     },
     "external": {
       "imbd": {
-        "title": "Rechercher un film sur IMDB",
-        "name": "Nom d'un film :",
-        "adult.content": "Inclure le contenu adulte",
-        "language": "Langue :",
-        "search": "Rechercher",
-        "with.title": "avec le titre",
-        "with.year": "avec l'année"
+        "title": "Search for a movie on IMDB",
+        "name": "Movie name:",
+        "adult.content": "Include adult content",
+        "language": "Language:",
+        "search": "Search",
+        "with.title": "with the title",
+        "with.year": "with the year"
       }
     }
   },
