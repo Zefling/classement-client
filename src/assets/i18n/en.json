@@ -105,7 +105,7 @@
       "api": "API"
     },
     "imdb": {
-      "key": "IMDB authentication key"
+      "key": "Clef d'authentification IMDB"
     }
   },
   "list": {
