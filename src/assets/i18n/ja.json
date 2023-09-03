@@ -101,11 +101,11 @@
       "language": "言語"
     },
     "tab": {
-      "general": "Général",
+      "general": "グローバル",
       "api": "API"
     },
     "imdb": {
-      "key": "Clef d'authetification IMDB"
+      "key": "IMDB認証キー"
     }
   },
   "list": {
@@ -467,13 +467,13 @@
     },
     "external": {
       "imbd": {
-        "title": "Rechercher un film sur IMDB",
-        "name": "Nom d'un film :",
-        "adult.content": "Inclure le contenu adulte",
-        "language": "Langue :",
-        "search": "Rechercher",
-        "with.title": "avec le titre",
-        "with.year": "avec l'année"
+        "title": "IMDBで映画を検索します",
+        "name": "映画の名前：",
+        "adult.content": "アダルトコンテンツを追加する",
+        "language": "言語：",
+        "search": "検索",
+        "with.title": "タイトル付きで",
+        "with.year": "年付きで"
       }
     }
   },
