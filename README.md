@@ -12,6 +12,10 @@ Currently 2 modes are possible:
 
 See `src/environments/environment*.ts` for change.
 
+# language update
+
+-   Crowdin: https://crowdin.com/project/classement
+
 ## Features
 
 -   ✅ Stand-alone (without server)

@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 1.12.3 (2023-08-31)
+
+#### External service
+
+-   Add IMDB API for search movies #44
+-   Use Crowdin for translation
+
 ### 1.12.2 (2023-08-31)
 
 #### Standalone web app
