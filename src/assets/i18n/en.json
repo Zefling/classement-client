@@ -99,6 +99,13 @@
       "title": "Interface",
       "light-dark": "Theme",
       "language": "Language"
+    },
+    "tab": {
+      "general": "Général",
+      "api": "API"
+    },
+    "imdb": {
+      "key": "Clef d'authetification IMDB"
     }
   },
   "list": {
@@ -457,6 +464,17 @@
         "info": "This allows you to keep track before changing the tierlist."
       },
       "link": "Replace the default ID with a more readable name (optional)"
+    },
+    "external": {
+      "imbd": {
+        "title": "Rechercher un film sur IMDB",
+        "name": "Nom d'un film :",
+        "adult.content": "Inclure le contenu adulte",
+        "language": "Langue :",
+        "search": "Rechercher",
+        "with.title": "avec le titre",
+        "with.year": "avec l'année"
+      }
     }
   },
   "user": {
