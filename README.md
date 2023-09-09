@@ -39,6 +39,9 @@ See `src/environments/environment*.ts` for change.
     -   ✅ In-memory tierlists clone
     -   ✅ Tags
     -   ✅ Preferences
+    -   ✅ External API
+        -   ✅ IMDB
+        -   ⬜ MAL
 -   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     -   ✅ Create user
         -   ✅ Simple create

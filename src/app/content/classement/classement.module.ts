@@ -25,7 +25,7 @@ import { ExternalImdbComponent } from './external.imdb.component';
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
         ClassementLoginComponent,
-        // extention
+        // extension
         ExternalImdbComponent,
     ],
     imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule],

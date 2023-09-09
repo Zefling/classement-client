@@ -1,11 +1,11 @@
-<h3>{{ 'gererator.options.group.title' | translate }}</h3>
+<h3>{{ 'generator.options.group.title' | translate }}</h3>
 <div *ngIf="options" class="options" [class.simplified]="!options.showAdvancedOptions">
     <div class="title">
-        <label for="option-title">{{ 'gererator.options.title' | translate }}</label>
+        <label for="option-title">{{ 'generator.options.title' | translate }}</label>
         <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="options.title" /></div>
     </div>
     <div class="categories">
-        <label for="option-category">{{ 'gererator.options.group' | translate }}</label>
+        <label for="option-category">{{ 'generator.options.group' | translate }}</label>
         <div>
             <select2
                 id="option-category"
@@ -16,14 +16,14 @@
         </div>
     </div>
     <div class="mode">
-        <label for="option-mode">{{ 'gererator.options.mode' | translate }}</label>
+        <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
         <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
             <option value="default">{{ 'mode.name.default' | translate }}</option>
             <option value="teams">{{ 'mode.name.teams' | translate }}</option>
         </select>
     </div>
     <div class="description">
-        <label for="option-description">{{ 'gererator.options.description' | translate }}</label>
+        <label for="option-description">{{ 'generator.options.description' | translate }}</label>
         <div>
             <textarea id="option-description" autosize maxlength="1000" [(ngModel)]="options.description"></textarea>
         </div>
@@ -31,38 +31,38 @@
 
     <div class="links">
         <a tabindex="0" (click)="switchOptions()">{{
-            (options.showAdvancedOptions ? 'gererator.options.simple' : 'gererator.options.advence') | translate
+            (options.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advence') | translate
         }}</a>
     </div>
     <div class="themes">
-        <a tabindex="0" (click)="themesOpen()">{{ 'gererator.theme.link' | translate }}</a>
+        <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | translate }}</a>
     </div>
     <div class="width-auto">
         <label class="toogle-switch">
             <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
-            <span>{{ 'gererator.options.item.width.auto' | translate }}</span>
+            <span>{{ 'generator.options.item.width.auto' | translate }}</span>
         </label>
     </div>
     <div class="stream-mode">
         <label class="toogle-switch">
             <input type="checkbox" [(ngModel)]="options.streamMode" />
-            <span>{{ 'gererator.options.stream.mode' | translate }}</span>
-            <span [tooltip]="'gererator.options.stream.mode.info' | translate" class="icon-info"></span>
+            <span>{{ 'generator.options.stream.mode' | translate }}</span>
+            <span [tooltip]="'generator.options.stream.mode.info' | translate" class="icon-info"></span>
         </label>
     </div>
     <ng-container *ngIf="options.showAdvancedOptions">
         <!-- ###############################  tile options ############################### -->
 
-        <h4 class="title-item">{{ 'gererator.options.item.title' | translate }}</h4>
+        <h4 class="title-item">{{ 'generator.options.item.title' | translate }}</h4>
 
         <div class="sizes">
-            <label for="option-item-margin">{{ 'gererator.options.sizes' | translate }}</label>
+            <label for="option-item-margin">{{ 'generator.options.sizes' | translate }}</label>
             <div class="item-options">
                 <div class="box-border"></div>
                 <div class="box-in"></div>
                 <div class="height"></div>
                 <div class="width"></div>
-                <label for="option-item-margin" class="margin">{{ 'gererator.options.margin' | translate }}</label>
+                <label for="option-item-margin" class="margin">{{ 'generator.options.margin' | translate }}</label>
                 <input
                     id="option-item-margin"
                     type="number"
@@ -70,10 +70,10 @@
                     max="20"
                     class="item-margin"
                     [(ngModel)]="options.itemMargin"
-                    title="{{ 'gererator.options.item.margin' | translate }}"
+                    title="{{ 'generator.options.item.margin' | translate }}"
                 />
                 <label for="option-item-border" class="border">
-                    <span>{{ 'gererator.options.border' | translate }}</span>
+                    <span>{{ 'generator.options.border' | translate }}</span>
                 </label>
                 <input
                     id="option-item-border"
@@ -82,9 +82,9 @@
                     max="20"
                     class="item-border"
                     [(ngModel)]="options.itemBorder"
-                    title="{{ 'gererator.options.item.border' | translate }}"
+                    title="{{ 'generator.options.item.border' | translate }}"
                 />
-                <label for="option-item-padding" class="padding">{{ 'gererator.options.padding' | translate }}</label>
+                <label for="option-item-padding" class="padding">{{ 'generator.options.padding' | translate }}</label>
                 <input
                     id="option-item-padding"
                     type="number"
@@ -92,7 +92,7 @@
                     max="20"
                     class="item-padding"
                     [(ngModel)]="options.itemPadding"
-                    title="{{ 'gererator.options.item.padding' | translate }}"
+                    title="{{ 'generator.options.item.padding' | translate }}"
                 />
                 <input
                     id="option-item-height"
@@ -101,9 +101,9 @@
                     max="300"
                     class="item-height"
                     [(ngModel)]="options.itemHeight"
-                    title="{{ 'gererator.options.item.height' | translate }}"
+                    title="{{ 'generator.options.item.height' | translate }}"
                 />
-                <span class="image">{{ 'gererator.options.image' | translate }}</span>
+                <span class="image">{{ 'generator.options.image' | translate }}</span>
                 <input
                     *ngIf="!options.itemWidthAuto; else itemWidthAuto"
                     id="option-item-width"
@@ -112,7 +112,7 @@
                     max="300"
                     class="item-width"
                     [(ngModel)]="options.itemWidth"
-                    title="{{ 'gererator.options.item.width' | translate }}"
+                    title="{{ 'generator.options.item.width' | translate }}"
                 />
                 <ng-template #itemWidthAuto>
                     <span id="option-item-width-auto-info" class="item-width input">auto</span>
@@ -121,7 +121,7 @@
             <div>
                 <label class="toogle-switch">
                     <input id="option-item-width-auto" type="checkbox" [(ngModel)]="options.itemWidthAuto" />
-                    <span>{{ 'gererator.options.item.width.auto' | translate }}</span>
+                    <span>{{ 'generator.options.item.width.auto' | translate }}</span>
                 </label>
             </div>
         </div>
@@ -129,7 +129,7 @@
         <div class="item-text-back input-button" *ngIf="options.itemTextPosition?.endsWith('over')">
             <div class="color">
                 <label for="option-item-text-background-color">{{
-                    'gererator.options.item.text.background.color' | translate
+                    'generator.options.item.text.background.color' | translate
                 }}</label>
                 <input
                     id="option-item-text-background-color"
@@ -139,7 +139,7 @@
             </div>
             <div class="opacity">
                 <label id="option-item-text-background-opacity">{{
-                    'gererator.options.item.text.background.opacity' | translate
+                    'generator.options.item.text.background.opacity' | translate
                 }}</label>
                 <input
                     id="option-item-text-background-opacity"
@@ -152,18 +152,18 @@
                 />
             </div>
             <button (click)="resetItemTextBackground()" [disabled]="!options.itemTextBackgroundColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemTextBackgroundColor"></div>
         </div>
 
         <div class="colors-item-back input-button">
             <div class="color">
-                <label for="itemBackgroundColor">{{ 'gererator.options.item.background.color' | translate }}</label>
+                <label for="itemBackgroundColor">{{ 'generator.options.item.background.color' | translate }}</label>
                 <input id="itemBackgroundColor" type="color" [(ngModel)]="options.itemBackgroundColor" />
             </div>
             <div class="opacity">
-                <label for="itemBackgroundOpacity">{{ 'gererator.options.item.background.opacity' | translate }}</label>
+                <label for="itemBackgroundOpacity">{{ 'generator.options.item.background.opacity' | translate }}</label>
                 <input
                     id="itemBackgroundOpacity"
                     type="range"
@@ -175,18 +175,18 @@
                 />
             </div>
             <button (click)="resetItemBackground()" [disabled]="!options.itemBackgroundColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemBackgroundColor"></div>
         </div>
 
         <div class="colors-item-border input-button">
             <div class="color">
-                <label for="itemBorderColor">{{ 'gererator.options.item.border.color' | translate }}</label>
+                <label for="itemBorderColor">{{ 'generator.options.item.border.color' | translate }}</label>
                 <input id="itemBorderColor" type="color" [(ngModel)]="options.itemBorderColor" />
             </div>
             <div class="opacity">
-                <label for="itemBorderOpacity">{{ 'gererator.options.item.border.opacity' | translate }}</label>
+                <label for="itemBorderOpacity">{{ 'generator.options.item.border.opacity' | translate }}</label>
                 <input
                     id="itemBorderOpacity"
                     type="range"
@@ -198,18 +198,18 @@
                 />
             </div>
             <button (click)="resetItemBorder()" [disabled]="!options.itemBorderColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemBorderColor"></div>
         </div>
 
         <div class="colors-item-text input-button">
             <div class="width-input">
-                <label for="option-item-text-color">{{ 'gererator.options.item.text.color' | translate }}</label>
+                <label for="option-item-text-color">{{ 'generator.options.item.text.color' | translate }}</label>
                 <input id="option-item-text-color" type="color" [(ngModel)]="options.itemTextColor" />
             </div>
             <div class="opacity">
-                <label for="option-item-text-opacity">{{ 'gererator.options.item.text.opacity' | translate }}</label>
+                <label for="option-item-text-opacity">{{ 'generator.options.item.text.opacity' | translate }}</label>
                 <input
                     for="option-item-text-opacity"
                     type="range"
@@ -221,46 +221,46 @@
                 />
             </div>
             <button (click)="resetItemText()" [disabled]="!options.itemTextColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.itemTextColor"></div>
         </div>
 
         <div class="item-text-position input-value">
             <div class="select-input">
-                <label for="option-item-text-position">{{ 'gererator.options.item.text.position' | translate }}</label>
+                <label for="option-item-text-position">{{ 'generator.options.item.text.position' | translate }}</label>
                 <select id="option-item-text-position" [(ngModel)]="options.itemTextPosition">
-                    <option value="bottom">{{ 'gererator.options.item.text.position.bottom' | translate }}</option>
+                    <option value="bottom">{{ 'generator.options.item.text.position.bottom' | translate }}</option>
                     <option value="bottom-over">
-                        {{ 'gererator.options.item.text.position.bottom.over' | translate }}
+                        {{ 'generator.options.item.text.position.bottom.over' | translate }}
                     </option>
                     <option value="bottom-over-hover">
-                        {{ 'gererator.options.item.text.position.bottom.over.hover' | translate }}
+                        {{ 'generator.options.item.text.position.bottom.over.hover' | translate }}
                     </option>
-                    <option value="top">{{ 'gererator.options.item.text.position.top' | translate }}</option>
-                    <option value="top-over">{{ 'gererator.options.item.text.position.top.over' | translate }}</option>
+                    <option value="top">{{ 'generator.options.item.text.position.top' | translate }}</option>
+                    <option value="top-over">{{ 'generator.options.item.text.position.top.over' | translate }}</option>
                     <option value="top-over-hover">
-                        {{ 'gererator.options.item.text.position.top.over.hover' | translate }}
+                        {{ 'generator.options.item.text.position.top.over.hover' | translate }}
                     </option>
-                    <option value="hidden">{{ 'gererator.options.item.text.position.hidden' | translate }}</option>
+                    <option value="hidden">{{ 'generator.options.item.text.position.hidden' | translate }}</option>
                 </select>
             </div>
         </div>
 
         <!-- ###############################  line options ###############################  -->
 
-        <h4 class="title-line">{{ 'gererator.options.line.title' | translate }}</h4>
+        <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
 
         <div class="colors-line-back input-button">
             <div class="color">
                 <label for="option-line-background-color">{{
-                    'gererator.options.line.background.color' | translate
+                    'generator.options.line.background.color' | translate
                 }}</label>
                 <input id="option-line-background-color" type="color" [(ngModel)]="options.lineBackgroundColor" />
             </div>
             <div class="opacity">
                 <label for="option-line-background-opacity">{{
-                    'gererator.options.line.background.opacity' | translate
+                    'generator.options.line.background.opacity' | translate
                 }}</label>
                 <input
                     for="option-line-background-opacity"
@@ -273,19 +273,19 @@
                 />
             </div>
             <button (click)="resetLineBackground()" [disabled]="!options.lineBackgroundColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.lineBackgroundColor"></div>
         </div>
 
         <div class="colors-line-border input-button">
             <div class="color">
-                <label for="option-line-border-color">{{ 'gererator.options.line.border.color' | translate }}</label>
+                <label for="option-line-border-color">{{ 'generator.options.line.border.color' | translate }}</label>
                 <input id="option-line-border-color" type="color" [(ngModel)]="options.lineBorderColor" />
             </div>
             <div class="opacity">
                 <label for="option-line-border-opacity">{{
-                    'gererator.options.line.border.opacity' | translate
+                    'generator.options.line.border.opacity' | translate
                 }}</label>
                 <input
                     id="option-line-border-opacity"
@@ -298,14 +298,14 @@
                 />
             </div>
             <button (click)="resetLineBorder()" [disabled]="!options.lineBorderColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.lineBorderColor"></div>
         </div>
 
         <div class="name-bg-opacity input-value">
             <div class="width-input">
-                <label for="options-name-background-opacity">{{ 'gererator.options.name.opacity' | translate }}</label>
+                <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | translate }}</label>
                 <input
                     id="options-name-background-opacity"
                     type="range"
@@ -319,38 +319,38 @@
 
         <div class="font-size input-value">
             <div class="number-input">
-                <label for="option-name-font-size">{{ 'gererator.options.name.font-size' | translate }}</label>
+                <label for="option-name-font-size">{{ 'generator.options.name.font-size' | translate }}</label>
                 <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="options.nameFontSize" />
             </div>
         </div>
 
         <div class="name-width input-value">
             <div class="number-input">
-                <label for="option-name-width">{{ 'gererator.options.name.width' | translate }}</label>
+                <label for="option-name-width">{{ 'generator.options.name.width' | translate }}</label>
                 <input id="option-name-width" type="number" [(ngModel)]="options.nameWidth" />
             </div>
         </div>
 
         <div class="group-direction input-value">
             <div class="select-input">
-                <label for="option-group-direction">{{ 'gererator.options.group.direction.label' | translate }}</label>
+                <label for="option-group-direction">{{ 'generator.options.group.direction.label' | translate }}</label>
                 <select id="option-item-text-position" [(ngModel)]="options.direction">
-                    <option value="rtl">{{ 'gererator.options.group.direction.rtl' | translate }}</option>
-                    <option value="ltr">{{ 'gererator.options.group.direction.ltr' | translate }}</option>
+                    <option value="rtl">{{ 'generator.options.group.direction.rtl' | translate }}</option>
+                    <option value="ltr">{{ 'generator.options.group.direction.ltr' | translate }}</option>
                 </select>
             </div>
         </div>
 
         <!-- ###############################  other options ###############################  -->
-        <h4 class="title-other">{{ 'gererator.options.global.title' | translate }}</h4>
+        <h4 class="title-other">{{ 'generator.options.global.title' | translate }}</h4>
 
         <div class="colors-title-text input-button">
             <div class="width-input">
-                <label for="option-title-color">{{ 'gererator.options.title.color' | translate }}</label>
+                <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
                 <input id="option-title-color" type="color" [(ngModel)]="options.titleTextColor" />
             </div>
             <div class="opacity">
-                <label for="option-title-opacity">{{ 'gererator.options.title.opacity' | translate }}</label>
+                <label for="option-title-opacity">{{ 'generator.options.title.opacity' | translate }}</label>
                 <input
                     for="option-title-opacity"
                     type="range"
@@ -362,21 +362,21 @@
                 />
             </div>
             <button (click)="resetTitleText()" [disabled]="!options.titleTextColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.titleTextColor"></div>
         </div>
 
         <div class="global-width input-button">
             <div class="width-input">
-                <label for="option-global-width">{{ 'gererator.options.global.width' | translate }}</label>
+                <label for="option-global-width">{{ 'generator.options.global.width' | translate }}</label>
                 <input id="option-global-width" type="number" [(ngModel)]="options.imageWidth" />
             </div>
         </div>
 
         <div class="background-image">
             <div class="width-input">
-                <label for="backgroundImage">{{ 'gererator.options.global.image' | translate }}</label>
+                <label for="backgroundImage">{{ 'generator.options.global.image' | translate }}</label>
                 <div class="image-list">
                     <select2
                         [(ngModel)]="options.imageBackgroundImage"
@@ -388,7 +388,7 @@
                             <div class="list-option">
                                 <div class="view" [style.--url]="data.image"></div>
                                 <div class="desc">
-                                    {{ 'gererator.options.global.name.image.' + data.label | translate }}
+                                    {{ 'generator.options.global.name.image.' + data.label | translate }}
                                 </div>
                             </div>
                         </ng-template>
@@ -400,12 +400,12 @@
         <div class="global-color input-button">
             <div class="color">
                 <label for="option-global-background-color">{{
-                    'gererator.options.global.background' | translate
+                    'generator.options.global.background' | translate
                 }}</label>
                 <input id="option-global-background-color" type="color" [(ngModel)]="options.imageBackgroundColor" />
             </div>
             <button (click)="options.imageBackgroundColor = ''" [disabled]="!options.imageBackgroundColor">
-                {{ 'gererator.options.clear' | translate }}
+                {{ 'generator.options.clear' | translate }}
             </button>
             <div class="color-render" *ngIf="options.imageBackgroundColor"></div>
         </div>
@@ -418,7 +418,7 @@
             (file)="changeCustomBackground($event)"
         >
             <label class="required">{{
-                'gererator.options.background.custom' + (api ? '.api' : '') | translate
+                'generator.options.background.custom' + (api ? '.api' : '') | translate
             }}</label>
             <input type="file" accept="image/*" required (change)="changeCustomBackgroundEvent($event)" />
             <div>
@@ -428,7 +428,7 @@
     </ng-container>
 
     <div class="tags">
-        {{ 'gererator.options.tags' | translate }}
+        {{ 'generator.options.tags' | translate }}
         <tag-list [tags]="options.tags" (update)="updateTags($event)"></tag-list>
     </div>
 </div>
@@ -437,19 +437,19 @@
 
 <dialog-cmp class="auto-format" #dialogChangeMode>
     <p class="question">
-        {{ 'gererator.actions.change.mode.question' | translate }}
+        {{ 'generator.actions.change.mode.question' | translate }}
     </p>
     <p class="info">
         <strong>{{ 'mode.name.' + _modeTemp | translate }}</strong>
-        <span>{{ 'gererator.actions.change.mode.' + _modeTemp | translate }}</span>
+        <span>{{ 'generator.actions.change.mode.' + _modeTemp | translate }}</span>
     </p>
 
     <div class="buttons">
         <button (click)="modeChangeValid(false)">
-            {{ 'gererator.actions.reset.groups.cancel' | translate }}
+            {{ 'generator.actions.reset.groups.cancel' | translate }}
         </button>
         <button class="primary" (click)="modeChangeValid(true)">
-            {{ 'gererator.actions.reset.groups.ok' | translate }}
+            {{ 'generator.actions.reset.groups.ok' | translate }}
         </button>
     </div>
 </dialog-cmp>

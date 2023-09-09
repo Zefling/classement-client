@@ -1,7 +1,7 @@
 <dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
     <ng-container *ngIf="currentTile">
         <div>
-            <label for="ranking-title">{{ 'gererator.ranking.title' | translate }}</label> <br />
+            <label for="ranking-title">{{ 'generator.ranking.title' | translate }}</label> <br />
             <input
                 maxlength="150"
                 id="ranking-title"
@@ -11,7 +11,7 @@
             />
         </div>
         <div>
-            <label for="tile-annotation">{{ 'gererator.ranking.annotation' | translate }}</label> <br />
+            <label for="tile-annotation">{{ 'generator.ranking.annotation' | translate }}</label> <br />
             <textarea
                 autosize
                 maxlength="500"
@@ -22,36 +22,36 @@
             </textarea>
         </div>
         <div>
-            <label for="tile-image">{{ 'gererator.ranking.image' | translate }}</label>
+            <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
             <div>
                 <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" class="image-preview" />
                 <ng-template #noImage>
                     <div>
-                        {{ 'gererator.ranking.image.empty' | translate }}
+                        {{ 'generator.ranking.image.empty' | translate }}
                     </div>
                 </ng-template>
                 <div>
                     <button *ngIf="currentTile.url" (click)="currentTile.url = ''; globalChange()">
-                        {{ 'gererator.ranking.image.remove' | translate }}
+                        {{ 'generator.ranking.image.remove' | translate }}
                     </button>
                     <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
-                        {{ 'gererator.ranking.image.edit' | translate }}
+                        {{ 'generator.ranking.image.edit' | translate }}
                     </button>
                 </div>
             </div>
         </div>
         <div class="colors">
-            <label for="tile-bg-color">{{ 'gererator.ranking.tile.color' | translate }}</label>
+            <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | translate }}</label>
             <div class="new-color">
                 <input
-                    [title]="'gererator.ranking.tile.color.new' | translate"
+                    [title]="'generator.ranking.tile.color.new' | translate"
                     id="tile-bg-color"
                     type="color"
                     [(ngModel)]="currentTile.bgColor"
                 />
             </div>
             <div
-                [title]="'gererator.ranking.tile.color.remove' | translate"
+                [title]="'generator.ranking.tile.color.remove' | translate"
                 class="color"
                 (click)="currentTile.bgColor = undefined"
                 tabindex="0"
@@ -59,7 +59,7 @@
             <div
                 *ngFor="let color of colorList"
                 [style.--color]="color"
-                [title]="'gererator.ranking.tile.color.previous' | translate"
+                [title]="'generator.ranking.tile.color.previous' | translate"
                 class="color"
                 (click)="currentTile.bgColor = color"
                 tabindex="0"
@@ -67,7 +67,7 @@
         </div>
         <div class="buttons">
             <button class="primary" (click)="close()">
-                {{ 'gererator.ranking.close' | translate }}
+                {{ 'generator.ranking.close' | translate }}
             </button>
         </div>
     </ng-container>
@@ -75,7 +75,7 @@
 
 <dialog-cmp class="auto-format" #dialogImageEdit>
     <div drop-image mode="local" (file)="fileChange($event)" *ngIf="currentTile && dialogImageEdit._open">
-        <div class="drop-image-message">{{ 'gererator.ranking.image.drop' | translate }}</div>
+        <div class="drop-image-message">{{ 'generator.ranking.image.drop' | translate }}</div>
         <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
         <div class="edit-image" *ngIf="data?.startsWith('data'); else staticImage">
             <div class="image">
@@ -106,7 +106,7 @@
                     <button [class.selected]="mode === 3" (click)="changeRatio(3, '16:9')">16:9</button>
                     <button [class.selected]="mode === 4" (click)="changeRatio(4, '9:16')">9:16</button>
                     <div class="edit-ratio">
-                        <label for="ratio-image">{{ 'gererator.ranking.image.ratio' | translate }}</label>
+                        <label for="ratio-image">{{ 'generator.ranking.image.ratio' | translate }}</label>
                         <input
                             id="ratio-image"
                             #ratioInput
@@ -114,7 +114,7 @@
                             (focus)="changeRatio(99, ratioInput.value)"
                             (input)="changeRatio(99, ratioInput.value)"
                         />
-                        <div class="sub-input">{{ 'gererator.ranking.image.ratio.help' | translate }}</div>
+                        <div class="sub-input">{{ 'generator.ranking.image.ratio.help' | translate }}</div>
                     </div>
                 </div>
             </div>
@@ -127,10 +127,10 @@
 
         <div class="buttons">
             <button (click)="dialogImageEdit.close()">
-                {{ 'gererator.ranking.image.edit.cancel' | translate }}
+                {{ 'generator.ranking.image.edit.cancel' | translate }}
             </button>
             <button class="primary" (click)="update(); dialogImageEdit.close()">
-                {{ 'gererator.ranking.image.edit.ok' | translate }}
+                {{ 'generator.ranking.image.edit.ok' | translate }}
             </button>
         </div>
     </div>

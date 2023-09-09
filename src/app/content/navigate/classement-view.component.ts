@@ -221,9 +221,9 @@ export class ClassementViewComponent implements OnDestroy {
 
     copyLink() {
         Utils.clipboard(this.getLink())
-            .then(() => this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.success')))
+            .then(() => this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.instant('gererator.ranking.copy.link.error'), {
+                this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.error'), {
                     type: MessageType.error,
                 }),
             );

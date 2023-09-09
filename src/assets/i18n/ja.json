@@ -229,7 +229,7 @@
       "teams": "チーム"
     }
   },
-  "gererator": {
+  "generator": {
     "title": {
       "new": "新しいティアリストを編集する",
       "edit": "ティアリストを編集する"
@@ -478,7 +478,7 @@
     }
   },
   "user": {
-    "by": "{{ autor }}による",
+    "by": "{{ author }}による",
     "login": {
       "title": "ログインする",
       "username": "ユーザー名",

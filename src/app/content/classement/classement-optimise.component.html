@@ -1,13 +1,13 @@
-<div>{{ 'gererator.optimise.info' | translate }}</div>
+<div>{{ 'generator.optimise.info' | translate }}</div>
 
 <div>
     <button class="primary" (click)="optimise()" [disabled]="start">
-        {{ 'gererator.optimise.button.optimise' | translate }}
+        {{ 'generator.optimise.button.optimise' | translate }}
     </button>
 </div>
 
 <div>
-    {{ 'gererator.optimise.current' | translate : { totalSize: (totalSize | numFormat), totalImage: total } }}
+    {{ 'generator.optimise.current' | translate : { totalSize: (totalSize | numFormat), totalImage: total } }}
 </div>
 
 <div *ngIf="start">
@@ -17,14 +17,14 @@
     </div>
     <div>
         <a (click)="toggle()">{{
-            (!detail ? 'gererator.optimise.show.detail' : 'gererator.optimise.hide.detail') | translate
+            (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | translate
         }}</a>
     </div>
     <div>
-        {{ 'gererator.optimise.reduce.files' | translate : { countResize: countResize } }}<br />
-        {{ 'gererator.optimise.reduce.size' | translate : { reduceSize: (reduceSize | numFormat) } }}<br />
+        {{ 'generator.optimise.reduce.files' | translate : { countResize: countResize } }}<br />
+        {{ 'generator.optimise.reduce.size' | translate : { reduceSize: (reduceSize | numFormat) } }}<br />
         {{
-            'gererator.optimise.final.size'
+            'generator.optimise.final.size'
                 | translate
                     : {
                           finalSize: (finalSize | numFormat),
@@ -35,7 +35,7 @@
 
     <div>
         <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">
-            {{ 'gererator.optimise.validate' | translate }}
+            {{ 'generator.optimise.validate' | translate }}
         </button>
     </div>
 
@@ -47,17 +47,17 @@
             />
             <div class="info-reduce">
                 <span class="reduce-source">
-                    {{ 'gererator.optimise.size' | translate : { size: (item.sourceFile.realSize | numFormat) } }}
+                    {{ 'generator.optimise.size' | translate : { size: (item.sourceFile.realSize | numFormat) } }}
                 </span>
                 <span class="arrow">↓</span>
                 <span class="reduce-target">
                     {{
-                        'gererator.optimise.size'
+                        'generator.optimise.size'
                             | translate : { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
                     }}
                 </span>
                 <span class="reduce-size">
-                    {{ 'gererator.optimise.size' | translate : { size: (-1 * item.reduce | numFormat) } }}
+                    {{ 'generator.optimise.size' | translate : { size: (-1 * item.reduce | numFormat) } }}
 
                     <span class="percent">
                         {{

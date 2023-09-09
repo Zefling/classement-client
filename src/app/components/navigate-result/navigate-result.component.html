@@ -30,7 +30,7 @@
                         <div class="username" *ngIf="!hideUser">
                             {{
                                 'user.by'
-                                    | translate : { autor: classement.user || ('list.user.anonymous' | translate) }
+                                    | translate : { author: classement.user || ('list.user.anonymous' | translate) }
                             }}
                         </div>
                         <div class="date">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="date change">
                             <ng-container *ngIf="classement.dateChange">{{
-                                'gererator.ranking.change'
+                                'generator.ranking.change'
                                     | translate
                                         : {
                                               DATE: classement.dateChange | date : ('date.dd/MM/yyyy HH:mm' | translate)

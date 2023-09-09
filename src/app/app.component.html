@@ -1,4 +1,4 @@
-<loader-cmp *ngIf="loading" [message]="'gererator.loading' | translate"></loader-cmp>
+<loader-cmp *ngIf="loading" [message]="'generator.loading' | translate"></loader-cmp>
 
 <header>
     <div class="title">{{ 'classement' | translate }}</div>
@@ -145,8 +145,8 @@
 </div>
 
 <dialog-cmp class="auto-format" #warningExit>
-    <p class="title">{{ 'gererator.change.warning' | translate }}</p>
-    <p>{{ 'gererator.change.question' | translate }}</p>
+    <p class="title">{{ 'generator.change.warning' | translate }}</p>
+    <p>{{ 'generator.change.question' | translate }}</p>
     <div>
         <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
         <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | translate }}</button>
@@ -222,7 +222,7 @@
                 <h4>{{ 'preferences.theme.title' | translate }}</h4>
                 <select formControlName="theme">
                     <option *ngFor="let theme of themes" [value]="theme">
-                        {{ 'gererator.theme.name.' + theme | translate }}
+                        {{ 'generator.theme.name.' + theme | translate }}
                     </option>
                 </select>
 

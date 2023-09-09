@@ -1,27 +1,27 @@
 <dialog-cmp closeButton>
-    <h2>{{ 'gererator.external.imbd.title' | translate }}</h2>
+    <h2>{{ 'generator.external.imbd.title' | translate }}</h2>
 
     <div *ngIf="keyApi && languages" class="imdb">
         <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
         <form [formGroup]="searchMovieForm" (submit)="search()">
             <div>
-                <label for="name">{{ 'gererator.external.imbd.name' | translate }}</label>
+                <label for="name">{{ 'generator.external.imbd.name' | translate }}</label>
                 <input id="name" formControlName="query" />
             </div>
             <div>
                 <label>
                     <input type="checkbox" formControlName="include_adult" />
-                    {{ 'gererator.external.imbd.adult.content' | translate }}
+                    {{ 'generator.external.imbd.adult.content' | translate }}
                 </label>
             </div>
             <div>
-                <label for="language">{{ 'gererator.external.imbd.language' | translate }}</label>
+                <label for="language">{{ 'generator.external.imbd.language' | translate }}</label>
                 <select2 overlay id="language" formControlName="language" [data]="languages" />
             </div>
 
             <p class="buttons">
                 <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
-                    {{ 'gererator.external.imbd.search' | translate }}
+                    {{ 'generator.external.imbd.search' | translate }}
                 </button>
             </p>
         </form>
@@ -30,11 +30,11 @@
             <div>
                 <label>
                     <input type="checkbox" [(ngModel)]="withTitle" />
-                    {{ 'gererator.external.imbd.with.title' | translate }}
+                    {{ 'generator.external.imbd.with.title' | translate }}
                 </label>
                 <label>
                     <input type="checkbox" [(ngModel)]="withYear" />
-                    {{ 'gererator.external.imbd.with.year' | translate }}
+                    {{ 'generator.external.imbd.with.year' | translate }}
                 </label>
             </div>
         </div>

@@ -229,7 +229,7 @@
       "teams": "Teams"
     }
   },
-  "gererator": {
+  "generator": {
     "title": {
       "new": "New tierlist",
       "edit": "Edit tierlist"
@@ -478,7 +478,7 @@
     }
   },
   "user": {
-    "by": "By {{ autor }}",
+    "by": "By {{ author }}",
     "login": {
       "title": "Log in",
       "username": "Username",

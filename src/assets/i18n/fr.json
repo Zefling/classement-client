@@ -82,7 +82,7 @@
       "line.option": {
         "title": "Mode d'affichage des options",
         "auto": "Automatique : en fonction du mode mobile ou non",
-        "reduce": "Reduit : réduire au minimun dans l'interface",
+        "reduce": "Réduit : réduire au minimum dans l'interface",
         "hidden": "Caché : aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
       }
     },
@@ -105,7 +105,12 @@
       "api": "API"
     },
     "imdb": {
-      "key": "Clef d'authentification IMDB"
+      "key": "Clef d'authentification IMDB",
+      "info": "Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :"
+    },
+    "mal": {
+      "key": "Clef d'authentification MAL",
+      "info": "Cette clé nécessite un compte chez MAL et une demande d'accès à l'API. Ici :"
     }
   },
   "list": {
@@ -130,7 +135,7 @@
     },
     "count": {
       "group": "Nombre de groupes",
-      "item": "Nombre d'élements",
+      "item": "Nombre d’éléments",
       "classements": "Nombre de classements"
     },
     "status": {
@@ -177,7 +182,7 @@
     },
     "clone": {
       "question": "Êtes-vous sûr de vouloir cloner ?",
-      "new.template": "Nouveau template : Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera concidérer comme un dérivé.",
+      "new.template": "Nouveau template : Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera considérer comme un dérivé.",
       "title": "Changer de titre :",
       "validate": "Cloner",
       "edit": "Cloner et éditer",
@@ -202,7 +207,7 @@
     "figure": "Figurine",
     "food": "Nourriture",
     "game": "Jeu",
-    "geography": "Geographie",
+    "geography": "Géographie",
     "history": "Histoire",
     "language": "Langue",
     "manga": "Manga",
@@ -229,7 +234,7 @@
       "teams": "Équipes"
     }
   },
-  "gererator": {
+  "generator": {
     "title": {
       "new": "Nouveau classement",
       "edit": "Édition d'un classement"
@@ -252,7 +257,7 @@
       "simple": "Options simplifiées",
       "advence": "Options avancées",
       "stream.mode": "Mode streamer",
-      "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l'annotion de tuile.",
+      "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
@@ -293,7 +298,7 @@
         "width": "Largeur de l'image rendue :",
         "image": "Image de fond :",
         "name.image": {
-          "none": "Défault",
+          "none": "Défaut",
           "sakura": "Sakura",
           "etoile": "Étoile",
           "ciel": "Ciel",
@@ -317,7 +322,7 @@
     },
     "screen": {
       "default": "Affiche par défaut",
-      "window": "Aggrandir à la fenêtre",
+      "window": "Agrandir à la fenêtre",
       "fullscreen": "Plein écran"
     },
     "theme": {
@@ -403,7 +408,7 @@
       },
       "history": {
         "warning": "Ancienne version",
-        "show": "Voir les anciennces versions"
+        "show": "Voir les anciennes versions"
       }
     },
     "change": {
@@ -412,9 +417,9 @@
     },
     "json": {
       "title": "Titre :",
-      "category": "Categorie :",
+      "category": "Catégorie :",
       "count.group": "Nombre de groupes :",
-      "count.item": "Nombre d'élements :",
+      "count.item": "Nombre d’éléments :",
       "cancel": "Annuler",
       "import": {
         "list": "Importer un classement :",
@@ -474,11 +479,16 @@
         "search": "Rechercher",
         "with.title": "avec le titre",
         "with.year": "avec l'année"
+      },
+      "mal": {
+        "title": "Rechercher un film sur MAL",
+        "name": "Nom d'un anime :",
+        "search": "Rechercher"
       }
     }
   },
   "user": {
-    "by": "Par {{ autor }}",
+    "by": "Par {{ author }}",
     "login": {
       "title": "Me connecter",
       "username": "Nom d'utilisateur",
@@ -501,7 +511,7 @@
         "info": "Informations",
         "text1": "Pour créer un compte ou vous connecter avec Discord ou Facebook demande un rechargement de page.",
         "text2": "Pour ne pas perdre votre classement : fermez cette dialogue, faites une sauvegarde navigateur et créer votre compte ou connectez-vous.",
-        "text3": "Vous pourrez ensuitre recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
+        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
       }
     },
     "profile": {
@@ -528,7 +538,7 @@
       "avatar": {
         "title": "Changer mon avatar",
         "select": "Sélectionner une images pour mon avatar",
-        "crop": "Recadrer l'image selectionnée",
+        "crop": "Recadrer l'image sélectionnée",
         "image": "Image pour mon avatar",
         "delete": "Supprimer",
         "cancel": "Annuler",
@@ -592,7 +602,7 @@
       "title": "Information",
       "data.privacy": {
         "title": "Confidentialité des données",
-        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimun pour la création de compte : courriel et pseudonyme ou prénom."
+        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimum pour la création de compte : courriel et pseudonyme ou prénom."
       },
       "data.deletion": {
         "title": "Suppression des données",
@@ -616,8 +626,8 @@
     "back.category": "Revenir à la liste des categories",
     "back.search": "Revenir à la recherche",
     "title": "Titre",
-    "category": "Categorie",
-    "categories": "Categories",
+    "category": "Catégorie",
+    "categories": "Catégories",
     "classements": "Classements",
     "see.derivatives": "Voir les dérivés",
     "my.derivatives": "Mes dérivés",
@@ -661,7 +671,7 @@
       "4001": "Ce nom d'utilisateur existe déjà.",
       "4002": "Ce email existe déjà.",
       "4100": "Envoi de courriel impossible.",
-      "5000": "Erreur de categorie.",
+      "5000": "Erreur de catégorie.",
       "9999": "Requête invalide.",
       "undefined": "⚠️ Une erreur serveur s'est produite."
     },
@@ -697,8 +707,8 @@
     },
     "json.read": {
       "failed": "⚠️ Échec de lecture du fichier. Le format n'est pas reconnu.",
-      "replace": "😊 Chagement du fichier réussi. Remplacement réussi.",
-      "new": "😊 Chagement du fichier réussi dans un nouveau classement."
+      "replace": "😊 Chargement du fichier réussi. Remplacement réussi.",
+      "new": "😊 Chargement du fichier réussi dans un nouveau classement."
     },
     "remove": {
       "success": "🗑 Suppression du classement « %title% » réussi."

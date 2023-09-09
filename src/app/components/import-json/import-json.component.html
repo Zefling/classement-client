@@ -1,20 +1,20 @@
-<div>{{ 'gererator.json.import.list' + (multi ? '.multi' : '') | translate }}</div>
+<div>{{ 'generator.json.import.list' + (multi ? '.multi' : '') | translate }}</div>
 
 <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
 </div>
 
 <div *ngIf="onLoad">
-    <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'gererator.loading' | translate }}</span>
+    <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'generator.loading' | translate }}</span>
 </div>
 
 <ng-container *ngIf="jsonTmp">
     <div class="buttons-list button-image-save" *ngIf="jsonTmp.length > 1">
         <button class="button-add primary" (click)="selectAll(true)" *ngIf="jsonTmp">
-            {{ 'gererator.json.select.all' | translate }}
+            {{ 'generator.json.select.all' | translate }}
         </button>
         <button class="button-add primary" (click)="selectAll(false)" *ngIf="jsonTmp">
-            {{ 'gererator.json.unselect.all' | translate }}
+            {{ 'generator.json.unselect.all' | translate }}
         </button>
     </div>
 
@@ -26,13 +26,13 @@
                 </span>
             </ng-container>
             <div class="infos-list">
-                <span>{{ 'gererator.json.title' | translate }}</span>
+                <span>{{ 'generator.json.title' | translate }}</span>
                 <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
-                <span>{{ 'gererator.json.category' | translate }}</span>
+                <span>{{ 'generator.json.category' | translate }}</span>
                 <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
-                <span>{{ 'gererator.json.count.group' | translate }}</span>
+                <span>{{ 'generator.json.count.group' | translate }}</span>
                 <span>{{ file.data!.groups.length || 0 }}</span>
-                <span>{{ 'gererator.json.count.item' | translate }}</span>
+                <span>{{ 'generator.json.count.item' | translate }}</span>
                 <span>{{ countItem(file) }}</span>
             </div>
         </ng-container>
@@ -40,26 +40,26 @@
 </ng-container>
 
 <div class="buttons-list button-image-save">
-    <button class="button-add" (click)="cancelJson()">{{ 'gererator.json.cancel' | translate }}</button>
+    <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
     <ng-container *ngIf="!multi && actions === 'all'">
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')" *ngIf="jsonTmp">
-            {{ 'gererator.json.import.replace' | translate }}
+            {{ 'generator.json.import.replace' | translate }}
         </button>
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
-            {{ 'gererator.json.import.new' | translate }}
+            {{ 'generator.json.import.new' | translate }}
         </button>
     </ng-container>
     <ng-container *ngIf="!multi && actions === 'importOnly'">
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
-            {{ 'gererator.json.import.add' | translate }}
+            {{ 'generator.json.import.add' | translate }}
         </button>
     </ng-container>
     <ng-container *ngIf="multi">
         <button class="button-add primary" (click)="importMultiJson('replace')" *ngIf="jsonTmp">
-            {{ 'gererator.json.import.multi.replace' | translate }}
+            {{ 'generator.json.import.multi.replace' | translate }}
         </button>
         <button class="button-add primary" (click)="importMultiJson('new')" *ngIf="jsonTmp">
-            {{ 'gererator.json.import.multi.add' | translate }}
+            {{ 'generator.json.import.multi.add' | translate }}
         </button>
     </ng-container>
 </div>

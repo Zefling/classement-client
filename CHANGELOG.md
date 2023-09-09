@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 1.12.3 (2023-08-31)
+### 1.12.3 (2023-09-03)
 
 #### External service
 

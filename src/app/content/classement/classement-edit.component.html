@@ -1,7 +1,7 @@
-<loader-cmp *ngIf="!options" [message]="'gererator.loading' | translate"></loader-cmp>
+<loader-cmp *ngIf="!options" [message]="'generator.loading' | translate"></loader-cmp>
 
 <div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
-    <h2>{{ 'gererator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
+    <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
 
     <div class="top-actions">
         <div class="server-api" *ngIf="apiActive && classement && classement.templateTotal > 1">
@@ -12,7 +12,7 @@
                 {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
             </button>
             <button class="button-add primary" (click)="showRankingDiff()">
-                {{ 'gererator.ranking.diff' | translate }}
+                {{ 'generator.ranking.diff' | translate }}
             </button>
         </div>
         <div class="client-api">
@@ -26,15 +26,15 @@
 
     <div *ngIf="options" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
         <div class="classement-top">
-            <h3>{{ 'gererator.ranking.group.title' | translate }}</h3>
+            <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
             <button *ngIf="classScreenMode !== 'default'" (click)="screenMode('default', div)">
-                {{ 'gererator.screen.default' | translate }}
+                {{ 'generator.screen.default' | translate }}
             </button>
             <button *ngIf="classScreenMode !== 'enlarge'" (click)="screenMode('enlarge', div)">
-                {{ 'gererator.screen.window' | translate }}
+                {{ 'generator.screen.window' | translate }}
             </button>
             <button *ngIf="classScreenMode !== 'fullscreen'" (click)="screenMode('fullscreen', div)">
-                {{ 'gererator.screen.fullscreen' | translate }}
+                {{ 'generator.screen.fullscreen' | translate }}
             </button>
         </div>
         <div cdkDropListGroup>
@@ -158,10 +158,10 @@
                                 <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">↑</button>
                                 <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">↓</button>
                                 <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
-                                    {{ 'gererator.line.delete' | translate }}
+                                    {{ 'generator.line.delete' | translate }}
                                 </button>
                                 <button class="button-add" (click)="addLine(indexGrp)">
-                                    {{ 'gererator.line.add' | translate }}
+                                    {{ 'generator.line.add' | translate }}
                                 </button>
                                 <span
                                     tabindex="0"
@@ -177,7 +177,7 @@
 
             <div class="current-list">
                 <div class="drop-image-message">
-                    <span>{{ 'gererator.ranking.drop.image' | translate }}</span>
+                    <span>{{ 'generator.ranking.drop.image' | translate }}</span>
                     <span class="arrows" *ngIf="scrollArrows">⇄</span>
                 </div>
                 <div class="drop-list" #currentList [attr.dir]="options.direction">
@@ -245,7 +245,7 @@
                         (cdkDropListDropped)="drop(list, $event)"
                     ></div>
                     <div class="content-box add-file" (click)="addFiles()">
-                        <span>{{ 'gererator.ranking.add.image' | translate }}</span>
+                        <span>{{ 'generator.ranking.add.image' | translate }}</span>
                     </div>
                 </div>
             </div>
@@ -265,43 +265,43 @@
             <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
                 <span *ngIf="!exportImageLoading" class="icon-share"></span>
                 <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageLoading"></loading-cmp>
-                {{ 'gererator.actions.export.image' | translate }}
+                {{ 'generator.actions.export.image' | translate }}
             </button>
         </div>
 
         <div class="save-actions buttons">
             <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
-                {{ 'gererator.actions.save.local' | translate }}
+                {{ 'generator.actions.save.local' | translate }}
             </button>
             <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
-                {{ 'gererator.actions.export.json' | translate }}
+                {{ 'generator.actions.export.json' | translate }}
             </button>
             <button class="primary" (click)="dialogImport.open()">
-                {{ 'gererator.actions.import.json' | translate }}
+                {{ 'generator.actions.import.json' | translate }}
             </button>
             <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-                {{ 'gererator.optimise.button.optimise' | translate }} ({{ size | filesize }})
+                {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
             </button>
             <label class="line" *ngIf="options && hasItems">
                 <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-                {{ 'gererator.actions.save.local.auto' | translate }}
+                {{ 'generator.actions.save.local.auto' | translate }}
             </label>
         </div>
         <div class="save-actions buttons" *ngIf="apiActive">
             <button [disabled]="!id" class="primary" (click)="copyLink()" *ngIf="logged">
-                🔗 {{ 'gererator.ranking.share.link' | translate }}
+                🔗 {{ 'generator.ranking.share.link' | translate }}
             </button>
             <button [disabled]="!id" class="primary" (click)="show()" *ngIf="logged">
-                {{ 'gererator.ranking.see' | translate }}
+                {{ 'generator.ranking.see' | translate }}
             </button>
             <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
-                {{ 'gererator.actions.save.server' | translate }}
+                {{ 'generator.actions.save.server' | translate }}
             </button>
         </div>
 
         <div class="save-actions buttons">
             <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
-                {{ 'gererator.actions.reset.groups.button' | translate }}
+                {{ 'generator.actions.reset.groups.button' | translate }}
             </button>
         </div>
     </div>
@@ -309,7 +309,7 @@
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
     <div class="button-image-save">
-        {{ 'gererator.actions.save.image' | translate }}
+        {{ 'generator.actions.save.image' | translate }}
         <span>
             <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
             <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
@@ -382,7 +382,7 @@
     <div class="container">
         <ng-container *ngIf="diff?.length; else noTiles">
             <div class="label">
-                {{ 'gererator.ranking.add.tile' | translate }}
+                {{ 'generator.ranking.add.tile' | translate }}
             </div>
             <div class="elements drop-list">
                 <div class="content-box" *ngFor="let item of diff" (click)="addTile(item)">
@@ -406,11 +406,11 @@
             </div>
         </ng-container>
         <ng-template #noTiles>
-            <div class="content-diff">{{ 'gererator.ranking.no.tile' | translate }}</div>
+            <div class="content-diff">{{ 'generator.ranking.no.tile' | translate }}</div>
         </ng-template>
         <div class="buttons">
             <button class="primary" (click)="dialogRankingDiff.close()">
-                {{ 'gererator.ranking.close' | translate }}
+                {{ 'generator.ranking.close' | translate }}
             </button>
         </div>
     </div>
@@ -418,14 +418,14 @@
 
 <dialog-cmp class="auto-format" #dialogClear>
     <p>
-        {{ 'gererator.actions.reset.groups.question' | translate }}
+        {{ 'generator.actions.reset.groups.question' | translate }}
     </p>
     <div class="buttons">
         <button (click)="dialogClear.close()">
-            {{ 'gererator.actions.reset.groups.cancel' | translate }}
+            {{ 'generator.actions.reset.groups.cancel' | translate }}
         </button>
         <button class="warn" (click)="reset(); dialogClear.close()">
-            {{ 'gererator.actions.reset.groups.ok' | translate }}
+            {{ 'generator.actions.reset.groups.ok' | translate }}
         </button>
     </div>
 </dialog-cmp>
@@ -485,18 +485,18 @@
                 (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
                 *ngIf="!(currentGroup.first && currentGroup.last)"
             >
-                {{ 'gererator.line.delete' | translate }}
+                {{ 'generator.line.delete' | translate }}
             </button>
             <button
                 class="button-add group-options"
                 (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()"
             >
-                {{ 'gererator.line.add' | translate }}
+                {{ 'generator.line.add' | translate }}
             </button>
         </div>
         <div class="buttons">
             <button class="primary" (click)="dialogGroupOption.close()">
-                {{ 'gererator.actions.reset.groups.ok' | translate }}
+                {{ 'generator.actions.reset.groups.ok' | translate }}
             </button>
         </div>
     </ng-container>

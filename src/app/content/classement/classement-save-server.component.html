@@ -1,46 +1,46 @@
 <div drop-image mode="local" (file)="fileChange($event)" class="test">
-    <h2>{{ (update ? 'gererator.server.update' : 'gererator.server.new') | translate }}</h2>
+    <h2>{{ (update ? 'generator.server.update' : 'generator.server.new') | translate }}</h2>
 
     <div *ngIf="classement && classement.user && !update" class="info-classement">
-        <h3>{{ 'gererator.server.from' | translate }}</h3>
+        <h3>{{ 'generator.server.from' | translate }}</h3>
         <div>
-            <strong>{{ 'gererator.server.username' | translate }}</strong>
+            <strong>{{ 'generator.server.username' | translate }}</strong>
             <span [class.anonymous]="!classement.user">{{
                 classement.user || ('list.user.anonymous' | translate)
             }}</span>
         </div>
         <div>
-            <strong>{{ 'gererator.options.title' | translate }}</strong>
+            <strong>{{ 'generator.options.title' | translate }}</strong>
             <span>{{ classement.name }}</span>
         </div>
         <div class="category">
-            <strong>{{ 'gererator.options.group' | translate }}</strong>
+            <strong>{{ 'generator.options.group' | translate }}</strong>
             <span>{{ 'category.' + (classement.category || 'undefined') | translate }}</span>
         </div>
     </div>
 
     <ng-container *ngIf="options">
-        <h3>{{ 'gererator.server.edit' | translate }}</h3>
+        <h3>{{ 'generator.server.edit' | translate }}</h3>
         <div class="title">
-            <label>{{ 'gererator.options.title' | translate }}</label>
+            <label>{{ 'generator.options.title' | translate }}</label>
             <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
         </div>
 
         <div class="categories" *ngIf="!classement?.user || classement?.parent">
-            <label>{{ 'gererator.options.group' | translate }}</label>
+            <label>{{ 'generator.options.group' | translate }}</label>
             <div>
                 <select2 [data]="categoriesList" [(ngModel)]="options.category"></select2>
             </div>
         </div>
 
         <div class="banner">
-            <label class="required">{{ 'gererator.server.banner.select' | translate }}</label>
+            <label class="required">{{ 'generator.server.banner.select' | translate }}</label>
             <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
         </div>
 
         <div class="cropper-line">
             <div class="cropper" *ngIf="imageChangedEvent || imageBase64">
-                <div class="label">{{ 'gererator.server.banner.crop' | translate }}</div>
+                <div class="label">{{ 'generator.server.banner.crop' | translate }}</div>
                 <image-cropper
                     #imageCropper
                     [imageChangedEvent]="imageChangedEvent"
@@ -60,10 +60,10 @@
                 ></image-cropper>
             </div>
             <div class="image" *ngIf="croppedImage || classement?.banner">
-                <div class="label">{{ 'gererator.server.banner.image' | translate }}</div>
+                <div class="label">{{ 'generator.server.banner.image' | translate }}</div>
                 <img [src]="croppedImage || classement?.banner" />
                 <button *ngIf="croppedImage" (click)="resetBanner()">
-                    {{ 'gererator.server.banner.reset' | translate }}
+                    {{ 'generator.server.banner.reset' | translate }}
                 </button>
             </div>
         </div>
@@ -73,7 +73,7 @@
         </ul>
 
         <div class="link">
-            <label>{{ 'gererator.server.link' | translate }}</label>
+            <label>{{ 'generator.server.link' | translate }}</label>
             <div>
                 <input
                     type="text"
@@ -90,7 +90,7 @@
         <div class="public">
             <label>
                 <input type="checkbox" [(ngModel)]="hidden" />
-                {{ 'gererator.server.not.public' | translate }}
+                {{ 'generator.server.not.public' | translate }}
             </label>
             <span [tooltip]="'list.hide.note' | translate" class="icon-info"></span>
         </div>
@@ -98,29 +98,29 @@
         <div class="save-local">
             <label>
                 <input type="checkbox" [(ngModel)]="saveLocal" />
-                {{ 'gererator.server.not.remove.local' | translate }}
+                {{ 'generator.server.not.remove.local' | translate }}
             </label>
-            <span [tooltip]="'gererator.server.not.remove.local.info' | translate" class="icon-info"></span>
+            <span [tooltip]="'generator.server.not.remove.local.info' | translate" class="icon-info"></span>
         </div>
 
         <div class="password" *ngIf="hidden">
-            <label>{{ 'gererator.server.password' | translate }}</label>
+            <label>{{ 'generator.server.password' | translate }}</label>
             <div><input type="password" [(ngModel)]="password" /></div>
         </div>
 
         <div class="public" *ngIf="update">
             <label>
                 <input type="checkbox" [(ngModel)]="history" />
-                {{ 'gererator.server.history.label' | translate }}
+                {{ 'generator.server.history.label' | translate }}
             </label>
-            <span [tooltip]="'gererator.server.history.info' | translate" class="icon-info"></span>
+            <span [tooltip]="'generator.server.history.info' | translate" class="icon-info"></span>
         </div>
     </ng-container>
 
     <p>
-        <button (click)="cancel()">{{ 'gererator.server.cancel' | translate }}</button>
+        <button (click)="cancel()">{{ 'generator.server.cancel' | translate }}</button>
         <button class="primary" (click)="validate()" [disabled]="linkIdValid === false">
-            {{ 'gererator.server.save' | translate }}
+            {{ 'generator.server.save' | translate }}
         </button>
     </p>
 </div>
