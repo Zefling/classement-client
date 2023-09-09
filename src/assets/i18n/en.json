@@ -82,7 +82,7 @@
       "line.option": {
         "title": "Options display mode",
         "auto": "Automatic: depending on mobile mode or not",
-        "reduce": "Reduced: reduce to the minimum in the interface",
+        "reduce": "Réduit : réduire au minimum dans l'interface",
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
@@ -105,7 +105,12 @@
       "api": "API"
     },
     "imdb": {
-      "key": "IMDB authentication key"
+      "key": "IMDB authentication key",
+      "info": "Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :"
+    },
+    "mal": {
+      "key": "Clef d'authentification MAL",
+      "info": "Cette clé nécessite un compte chez MAL et une demande d'accès à l'API. Ici :"
     }
   },
   "list": {
@@ -130,7 +135,7 @@
     },
     "count": {
       "group": "Number of groups",
-      "item": "Number of items",
+      "item": "Nombre d’éléments",
       "classements": "Nombre de tierlists"
     },
     "status": {
@@ -177,7 +182,7 @@
     },
     "clone": {
       "question": "Are you sure you want to clone?",
-      "new.template": "New template: The new tierlist will have no link to the old one, otherwise it will be considered as a derivative.",
+      "new.template": "Nouveau template : Le nouveau classement n'aura aucun lien avec l'ancienne, sinon il sera considérer comme un dérivé.",
       "title": "Change title:",
       "validate": "Clone",
       "edit": "Clone & edit",
@@ -202,7 +207,7 @@
     "figure": "Figure",
     "food": "Food",
     "game": "Game",
-    "geography": "Geography",
+    "geography": "Géographie",
     "history": "History",
     "language": "Language",
     "manga": "Manga",
@@ -231,254 +236,259 @@
   },
   "generator": {
     "title": {
-      "new": "New tierlist",
-      "edit": "Edit tierlist"
+      "new": "Nouveau classement",
+      "edit": "Édition d'un classement"
     },
     "options": {
       "group.title": "Options",
-      "title": "Tierlist title:",
-      "title.color": "Title text color:",
-      "title.opacity": "Title text opacity:",
-      "group": "Category:",
-      "description": "Description:",
-      "mode": "Mode:",
-      "tags": "Tags:",
-      "sizes": "Tile sizes:",
-      "margin": "Margin",
-      "padding": "Padding",
-      "border": "Border",
+      "title": "Titre du classement :",
+      "title.color": "Couleur du texte du titre :",
+      "title.opacity": "Opacité du texte du titre :",
+      "group": "Catégorie :",
+      "description": "Description :",
+      "mode": "Mode :",
+      "tags": "Clefs :",
+      "sizes": "Dimensions d'une tuile :",
+      "margin": "Marge",
+      "padding": "Rembourrage",
+      "border": "Bordure",
       "image": "Image",
-      "clear": "Clear",
-      "simple": "Simplified options",
-      "advence": "Advanced options",
-      "stream.mode": "Stream mode",
-      "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
+      "clear": "Effacer",
+      "simple": "Options simplifiées",
+      "advence": "Options avancées",
+      "stream.mode": "Mode streamer",
+      "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
       "item": {
-        "title": "Tile options",
-        "width": "Tile width",
-        "width.auto": "Automatic tile width",
-        "height": "Tile height",
-        "padding": "Tile padding",
-        "border": "Tile border",
-        "margin": "Tile margin",
-        "background.color": "Tile background color:",
-        "background.opacity": "Tile background opacity:",
-        "border.color": "Tile border color:",
-        "border.opacity": "Tile border opacity:",
+        "title": "Options des tuiles",
+        "width": "Largeur d'une tuile",
+        "width.auto": "Largeur automatique des tuiles",
+        "height": "Hauteur d'une tuile",
+        "padding": "Rembourrage d'une tuile",
+        "border": "Bordure d'une tuile",
+        "margin": "Marge d'une tuile",
+        "background.color": "Couleur du fond d'une tuile :",
+        "background.opacity": "Opacité du fond d'une tuile :",
+        "border.color": "Couleur de bordure d'une tuile :",
+        "border.opacity": "Opacité de bordure d'une tuile :",
         "text": {
-          "color": "Tile text color:",
-          "opacity": "Tile text opacity:",
-          "background.color": "Text background color:",
-          "background.opacity": "Text background opacity:",
-          "position": "Text position in the tile:",
-          "position.bottom": "On bottom",
-          "position.bottom.over": "On bottom and over",
-          "position.bottom.over.hover": "On bottom and over on hover",
-          "position.top": "On top",
-          "position.top.over": "On top and over",
-          "position.top.over.hover": "On top and over on hover",
-          "position.hidden": "Hidden"
+          "color": "Couleur du texte d'une tuile :",
+          "opacity": "Opacité du texte d'une tuile :",
+          "background.color": "Couleur de fond du texte :",
+          "background.opacity": "Opacité de fond du texte :",
+          "position": "Position texte dans la tuile :",
+          "position.bottom": "En dessous",
+          "position.bottom.over": "En dessous et par dessus",
+          "position.bottom.over.hover": "En dessous et par dessus au survol",
+          "position.top": "Au dessus",
+          "position.top.over": "Au dessus et par dessus",
+          "position.top.over.hover": "En dessous et par dessus au survol",
+          "position.hidden": "Caché"
         }
       },
       "line": {
-        "title": "Line options",
-        "background.color": "Line background color:",
-        "background.opacity": "Line background opacity:",
-        "border.color": "Line border color:",
-        "border.opacity": "Line border opacity:"
+        "title": "Options des lignes",
+        "background.color": "Couleur du fond d'une ligne :",
+        "background.opacity": "Opacité du fond d'une ligne :",
+        "border.color": "Couleur de bordure d'une ligne :",
+        "border.opacity": "Opacité de bordure d'une ligne :"
       },
       "global": {
-        "title": "Other options",
-        "background": "Background color:",
-        "width": "Render image width:",
-        "image": "Background image:",
+        "title": "Autres options",
+        "background": "Couleur du fond :",
+        "width": "Largeur de l'image rendue :",
+        "image": "Image de fond :",
         "name.image": {
-          "none": "Default",
+          "none": "Défaut",
           "sakura": "Sakura",
-          "etoile": "Etoile",
-          "ciel": "Sky",
-          "custom": "Custom"
+          "etoile": "Étoile",
+          "ciel": "Ciel",
+          "custom": "Personnalisé"
         }
       },
       "name": {
-        "width": "Group name width:",
-        "font-size": "Group name text size:",
-        "opacity": "Group name background opacity:"
+        "width": "Largeur des noms de groupe :",
+        "font-size": "Taille du texte des noms de groupe :",
+        "opacity": "Opacité du fond des noms de groupe :"
       },
       "group.direction": {
-        "label": "Direction:",
-        "rtl": "Right to left",
-        "ltr": "Left to right"
+        "label": "Direction :",
+        "rtl": "Droite à gauche",
+        "ltr": "Gauche à droite"
       },
       "background": {
-        "custom": "Select a custom background image",
-        "custom.api": "Select a custom background image (max 1000×1000)"
+        "custom": "Sélectionner une image fond personnalisée",
+        "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
       }
     },
     "screen": {
-      "default": "Default display",
-      "window": "Maximize to window",
-      "fullscreen": "Full screen"
+      "default": "Affiche par défaut",
+      "window": "Agrandir à la fenêtre",
+      "fullscreen": "Plein écran"
     },
     "theme": {
-      "link": "Choose a theme",
-      "info": "Predefined theme selection:",
-      "cancel": "Cancel",
-      "validate": "Validate",
+      "link": "Choisir un thème",
+      "info": "Selection de thème prédéfini :",
+      "cancel": "Annuler",
+      "validate": "Valider",
       "name": {
-        "default": "Default",
-        "compact": "Default compact",
+        "default": "Défaut",
+        "compact": "Défaut compact",
         "sakura": "Sakura",
-        "night": "Night",
-        "ciel": "Sky"
+        "night": "Nuit",
+        "ciel": "Ciel"
       }
     },
     "ranking": {
-      "group.title": "Tierlist",
-      "name": "Name",
-      "list": "List",
-      "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
-      "add.image": "Click here to add one or a group of images",
-      "share.link": "Share this ranking with your friends",
-      "see": "See your tierlist",
-      "copy.link.success": "The link was successfully copied to the clipboard",
-      "copy.link.error": "Failed to copy link to clipboard",
-      "diff": "Tiles in other derivatives",
-      "add.tile": "Click on the tiles you want to add to your list.",
-      "no.tile": "There are no tiles.",
-      "tile.color": "Tile background color",
-      "tile.color.remove": "Remove color.",
-      "tile.color.new": "Add color.",
-      "tile.color.previous": "A color already in use.",
-      "close": "Close",
-      "title": "Title",
+      "group.title": "Classement",
+      "name": "Nom",
+      "list": "Liste",
+      "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
+      "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
+      "share.link": "Partagez ce classement à vos amis",
+      "see": "Voir votre classement",
+      "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
+      "copy.link.error": "Impossible de copier le lien dans le presse-papiers",
+      "diff": "Tuiles dans d'autres dérivés",
+      "add.tile": "Cliquez sur les tuiles que vous voulez ajouter à votre liste.",
+      "no.tile": "Il n'y a aucune tuile.",
+      "tile.color": "Couleur du fond de la tuile",
+      "tile.color.remove": "Supprimer la couleur.",
+      "tile.color.new": "Ajouter une couleur.",
+      "tile.color.previous": "Une couleur déjà utilisée.",
+      "close": "Fermer",
+      "title": "Titre",
       "annotation": "Annotation",
-      "create": "Created on {{ DATE }}",
-      "change": "Changed on {{ DATE }}",
+      "create": "Créé le {{ DATE }}",
+      "change": "Modifié le {{ DATE }}",
       "image": "Image",
-      "image.drop": "Copy-paste or drop an image (JPG, PNG, GIF, WebP) here",
-      "image.ratio": "Ratio",
-      "image.ratio.help": "(4:3, 4/3 or 1.33)",
-      "image.empty": "No image",
-      "image.remove": "Removed image",
-      "image.edit": "Edit Image",
-      "image.edit.cancel": "Cancel",
-      "image.edit.ok": "Validate"
+      "image.drop": "Copiez-collez ou déposez ici une image (JPG, PNG, GIF, WebP)",
+      "image.ratio": "Proportion",
+      "image.ratio.help": "(4:3, 4/3 ou 1.33)",
+      "image.empty": "Pas d'image",
+      "image.remove": "Supprimer l'image",
+      "image.edit": "Éditer l'image",
+      "image.edit.cancel": "Annuler",
+      "image.edit.ok": "Valider"
     },
     "line": {
-      "add": "Add",
-      "delete": "Del."
+      "add": "Ajout",
+      "delete": "Suppr."
     },
     "actions": {
-      "export.image": "Image export",
-      "save.local": "Browser save",
-      "save.local.auto": "Automatic browser save on every change.",
-      "save.server": "Save to your account",
-      "export.json": "Export",
-      "export.all.json": "Export all",
-      "import.json": "Import",
-      "save.image": "Save as:",
-      "edit.local": "Edit local version",
-      "edit.local.empty": "Edit empty local version",
-      "see.my.derivative": "See my derivative",
-      "see.my.last.derivative": "See my last derivative",
-      "see.this.derivative": "See this derivative",
-      "make.my.derivative": "Make my derivative",
-      "make.my.derivative.empty": "Make my empty derivative",
-      "edit.my.derivative": "Edit my derivative",
-      "edit.my.last.derivative": "Edit my last derivative",
-      "new.derivative": "New derivative from this tierlist",
-      "new.derivative.empty": "New empty derivative from this tierlist",
-      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist.",
+      "export.image": "Export en image",
+      "save.local": "Sauvegarde navigateur",
+      "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
+      "save.server": "Sauvegarde sur votre compte",
+      "export.json": "Exporter",
+      "export.all.json": "Tout exporter",
+      "import.json": "Importer",
+      "save.image": "Sauvegarder au format :",
+      "edit.local": "Éditer la version locale",
+      "edit.local.empty": "Éditer la version locale vidé",
+      "see.my.derivative": "Voir mon dérivé",
+      "see.my.last.derivative": "Voir mon dernier dérivé",
+      "see.this.derivative": "Voir ce dérivé",
+      "make.my.derivative": "Faire mon dérivé",
+      "make.my.derivative.empty": "Faire mon dérivé vidé",
+      "edit.my.derivative": "Éditer mon dérivé",
+      "edit.my.last.derivative": "Éditer mon dernier dérivé",
+      "new.derivative": "Nouveau dérivé à partir de ce classement",
+      "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
+      "my.derivative.count": "Note : vous avez actuellement {{ count }} dérivés de ce classement.",
       "change.mode": {
-        "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
-        "default": "Freely move tiles in each group.",
-        "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams."
+        "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
+        "default": "Déplacer librement les tuiles dans chaque groupes.",
+        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes."
       },
       "reset.groups": {
-        "button": "Clear Groups",
-        "question": "Are you sure you want to clear groups?",
+        "button": "Vider les groupes",
+        "question": "Êtes-vous sûr de vouloir vider les groupes ?",
         "ok": "Ok",
-        "cancel": "Cancel"
+        "cancel": "Annuler"
       },
       "history": {
-        "warning": "Old version",
-        "show": "See old versions"
+        "warning": "Ancienne version",
+        "show": "Voir les anciennes versions"
       }
     },
     "change": {
-      "warning": "You have made changes!",
-      "question": "Are you sure you want to leave this page?"
+      "warning": "Vous avez effectué des changements !",
+      "question": "Êtes-vous sûr de vouloir quitter cette page ?"
     },
     "json": {
-      "title": "Title:",
-      "category": "Category:",
-      "count.group": "Number of groups:",
-      "count.item": "Number of items:",
-      "cancel": "Cancel",
+      "title": "Titre :",
+      "category": "Catégorie :",
+      "count.group": "Nombre de groupes :",
+      "count.item": "Nombre d’éléments :",
+      "cancel": "Annuler",
       "import": {
-        "list": "Import a tierlist:",
-        "list.multi": "Import one or more rankings:",
-        "replace": "Import and replace",
-        "new": "Import into a new tierlist",
-        "add": "Import this tierlist",
-        "multi.replace": "Import and replace if exists",
-        "multi.add": "Add import"
+        "list": "Importer un classement :",
+        "list.multi": "Importer un ou des classements :",
+        "replace": "Importer et remplacer",
+        "new": "Importer dans un nouveau classement",
+        "add": "Importer ce classement",
+        "multi.replace": "Importer et remplacer si existe",
+        "multi.add": "Ajouter"
       },
-      "select.all": "Select all",
-      "unselect.all": "Unselect all"
+      "select.all": "Tout sélectionner",
+      "unselect.all": "Tout désélectionner"
     },
     "optimise": {
-      "info": "Convert image to WebP 300×300.",
-      "button.optimise": "Optimise",
-      "current": "Current size: {{ totalSize }} bytes for {{ totalImage }} images.",
-      "show.detail": "Show details",
-      "hide.detail": "Hide details",
-      "reduce.files": "Reduced number of files: {{ countResize }}",
-      "reduce.size": "Total reduce size: {{ reduceSize }} bytes",
-      "final.size": "File size: {{ finalSize }} bytes ({{percent}})",
-      "size": "{{ size }} bytes",
-      "validate": "Validate"
+      "info": "Convertir l'image en WebP 300×300.",
+      "button.optimise": "Optimiser",
+      "current": "Taille actuelle : {{ totalSize }} octects pour {{ totalImage }} images.",
+      "show.detail": "Afficher les détails",
+      "hide.detail": "Cacher les détails",
+      "reduce.files": "Nombre de fichiers réduits : {{ countResize }}",
+      "reduce.size": "Taille totale réduite : {{ reduceSize }} octects",
+      "final.size": "Taille finale : {{ finalSize }} octects ({{percent}})",
+      "size": "{{ size }} octets",
+      "validate": "Valider"
     },
-    "loading": "Loading…",
+    "loading": "Chargement en cours…",
     "server": {
-      "update": "Update your ranking",
-      "new": "Save a new tierlist",
-      "from": "Original tierlist",
-      "username": "Username:",
-      "edit": "Edit",
+      "update": "Mettre à jour votre classement",
+      "new": "Sauvegarder un nouveau classement",
+      "from": "Classement d'origine",
+      "username": "Nom d'utilisateur :",
+      "edit": "Éditer",
       "banner": {
-        "select": "Select a banner image",
-        "crop": "Crop",
-        "image": "Banner image",
-        "reset": "Reset"
+        "select": "Sélectionner une images de bannière",
+        "crop": "Recadrer",
+        "image": "Image de la bannière",
+        "reset": "Réinitialiser"
       },
-      "not.public": "Do not make public.",
-      "not.remove.local": "Keep locally.",
-      "not.remove.local.info": "If unchecked, the version saved in the browser will be deleted.",
-      "cancel": "Cancel",
-      "save": "Save",
-      "password": "Set a password (optional)",
+      "not.public": "Ne pas rendre public.",
+      "not.remove.local": "Garder localement.",
+      "not.remove.local.info": "Si non coché, la version sauvegardée dans le navigateur sera supprimée.",
+      "cancel": "Annuler",
+      "save": "Sauvegarder",
+      "password": "Définir un mot de passe (facultatif)",
       "history": {
-        "label": "Historize the old version",
-        "info": "This allows you to keep track before changing the tierlist."
+        "label": "Historiser l'ancienne version",
+        "info": "Cela permet de garder une trace avant modification du classement."
       },
-      "link": "Replace the default ID with a more readable name (optional)"
+      "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif) :"
     },
     "external": {
       "imbd": {
-        "title": "Search for a movie on IMDB",
-        "name": "Movie name:",
-        "adult.content": "Include adult content",
-        "language": "Language:",
-        "search": "Search",
-        "with.title": "with the title",
-        "with.year": "with the year"
+        "title": "Rechercher un film sur IMDB",
+        "name": "Nom d'un film :",
+        "adult.content": "Inclure le contenu adulte",
+        "language": "Langue :",
+        "search": "Rechercher",
+        "with.title": "avec le titre",
+        "with.year": "avec l'année"
+      },
+      "mal": {
+        "title": "Rechercher un film sur MAL",
+        "name": "Nom d'un anime :",
+        "search": "Rechercher"
       }
     }
   },
   "user": {
-    "by": "By {{ author }}",
+    "by": "Par {{ author }}",
     "login": {
       "title": "Log in",
       "username": "Username",
@@ -501,7 +511,7 @@
         "info": "Information",
         "text1": "To create an account or login with Discord or Facebook requires a page reload.",
         "text2": "To not lose your tierlist: close this dialog, save your browser and create your account or log in.",
-        "text3": "You can then reload your ranking from “My List” with the “Browser List” tab."
+        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
       }
     },
     "profile": {
@@ -528,7 +538,7 @@
       "avatar": {
         "title": "Change my avatar",
         "select": "Select an image for my avatar",
-        "crop": "Crop selected image",
+        "crop": "Recadrer l'image sélectionnée",
         "image": "Image for my avatar",
         "delete": "Delete",
         "cancel": "Cancel",
@@ -592,7 +602,7 @@
       "title": "Information",
       "data.privacy": {
         "title": "Data Privacy",
-        "text": "Data requested when connecting via a third-party service is limited to the minimum for account creation: email and pseudonym or first name."
+        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimum pour la création de compte : courriel et pseudonyme ou prénom."
       },
       "data.deletion": {
         "title": "Data deletion",
@@ -616,8 +626,8 @@
     "back.category": "Return to the list of categories",
     "back.search": "Return to search",
     "title": "Title",
-    "category": "Category",
-    "categories": "tierlist",
+    "category": "Catégorie",
+    "categories": "Catégories",
     "classements": "Tierlists",
     "see.derivatives": "See derivatives",
     "my.derivatives": "My derivatives",
@@ -661,7 +671,7 @@
       "4001": "This username already exists.",
       "4002": "This email already exists.",
       "4100": "Cannot send email.",
-      "5000": "Category error.",
+      "5000": "Erreur de catégorie.",
       "9999": "Invalid request.",
       "undefined": "⚠️ A server error has occurred."
     },
@@ -697,8 +707,8 @@
     },
     "json.read": {
       "failed": "⚠️ Failed to read file. The format is not recognized.",
-      "replace": "😊 Uploaded file successful. Replaced successfully.",
-      "new": "😊 successfully uploaded file to new tierlist."
+      "replace": "😊 Chargement du fichier réussi. Remplacement réussi.",
+      "new": "😊 Chargement du fichier réussi dans un nouveau classement."
     },
     "remove": {
       "success": "🗑 Removed from tierlist “%title%” successful."
