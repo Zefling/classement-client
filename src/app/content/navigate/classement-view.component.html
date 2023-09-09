@@ -44,7 +44,7 @@
             </ng-template>
         </div>
         <div class="desc" *ngIf="classement.data.options.description">
-            {{ classement.data.options.description }}
+            <markdown [data]="classement.data.options.description"></markdown>
         </div>
         <div class="dates">
             <div class="date">

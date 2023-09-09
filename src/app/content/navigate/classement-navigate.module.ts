@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { MarkdownModule, MarkdownService } from 'ngx-markdown';
+
 import { SharedModule } from 'src/app/share.module';
 
 import { ClassementNavigateComponent } from './classement-navigate.component';
@@ -14,8 +16,8 @@ import { ClassementViewComponent } from './classement-view.component';
         ClassementTemplateComponent,
         ClassementViewComponent,
     ],
-    imports: [SharedModule, ClassementNavigatetRoutingModule],
-    providers: [],
+    imports: [SharedModule, ClassementNavigatetRoutingModule, MarkdownModule],
+    providers: [MarkdownService],
     exports: [],
 })
 export class ClassementNavigateModule {}
