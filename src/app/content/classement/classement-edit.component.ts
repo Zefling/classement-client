@@ -47,6 +47,7 @@ import { defaultOptions, defaultTheme, defautGroup } from './classement-default'
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ExternalImdbComponent } from './external.imdb.component';
+import { ExternalMalComponent } from './external.mal.component';
 
 @Component({
     selector: 'classement-edit',
@@ -96,6 +97,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     currentTile?: FileString;
 
     imdbActive = false;
+    malActive = false;
 
     @HostBinding('class.option-reduce')
     get optionReduce() {
@@ -119,6 +121,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild(ClassementEditImageComponent) editImage!: ClassementEditImageComponent;
     @ViewChild(ClassementLoginComponent) login!: ClassementLoginComponent;
     @ViewChild(ExternalImdbComponent) imdb!: ExternalImdbComponent;
+    @ViewChild(ExternalMalComponent) mal!: ExternalMalComponent;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -188,6 +191,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     initAPI() {
         this.imdbActive = !!this.preferencesService.preferences.authApiKeys.imdb?.trim();
+        this.malActive = !!this.preferencesService.preferences.authApiKeys.mal?.trim();
     }
 
     initWithParams(params: Params) {

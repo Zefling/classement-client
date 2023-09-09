@@ -239,13 +239,26 @@
 
             <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
             <tab-content id="api" formGroupName="authApiKeys">
-                <label>{{ 'preferences.imdb.key' | translate }} </label>
-                <input type="text" formControlName="imdb" />
+                <div>
+                    <label>{{ 'preferences.imdb.key' | translate }} </label>
+                    <input type="text" formControlName="imdb" />
 
-                <div class="info">
-                    <span class="icon-info"></span>
-                    Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
-                    <a href="https://www.themoviedb.org/settings/api">API</a>
+                    <div class="info">
+                        <span class="icon-info"></span>
+                        {{ 'preferences.imdb.info' | translate }}
+                        <a href="https://www.themoviedb.org/settings/api">API</a>
+                    </div>
+                </div>
+
+                <div>
+                    <label>{{ 'preferences.mal.key' | translate }} </label>
+                    <input type="text" formControlName="mal" />
+
+                    <div class="info">
+                        <span class="icon-info"></span>
+                        {{ 'preferences.mal.info' | translate }}
+                        <a href="https://myanimelist.net/apiconfig">API</a>
+                    </div>
                 </div>
             </tab-content>
         </tabs>

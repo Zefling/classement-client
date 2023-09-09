@@ -26,6 +26,7 @@ export class PreferencesService {
         pageSize: 24,
         authApiKeys: {
             imdb: '',
+            mal: '',
         },
     };
 

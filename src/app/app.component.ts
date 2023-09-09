@@ -151,6 +151,7 @@ export class AppComponent implements DoCheck {
             pageSize: new FormControl(initPreferences.pageSize),
             authApiKeys: new FormGroup({
                 imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
+                mal: new FormControl(initPreferences.authApiKeys.mal ?? ''),
             }),
         });
 

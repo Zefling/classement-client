@@ -1,0 +1,90 @@
+.movie-title {
+    padding: 0;
+    margin: 3px;
+}
+
+.imdb {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template:
+        'a b'
+        'c c'
+        'd d'
+        / 1fr auto;
+    gap: 10px;
+}
+
+form {
+    grid-area: a;
+}
+
+.logo {
+    width: min(175px, 17vw);
+    grid-area: b;
+}
+
+.options {
+    grid-area: c;
+}
+
+.movies {
+    grid-area: d;
+}
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.content-box {
+    padding: var(--over-item-padding, 10px);
+    margin: var(--over-item-margin, 2px);
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
+    background: var(--over-item-background, var(--content-box-background));
+    color: var(--over-item-color, var(--content-box-color));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.5s;
+    text-align: center;
+    opacity: 1;
+
+    &:not(.disabled):hover {
+        transform: scale(1.2);
+    }
+
+    &.disabled {
+        opacity: 0.4;
+        cursor: default;
+        transform: scale(0);
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    .image {
+        flex: 1 1 100%;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}

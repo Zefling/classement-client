@@ -186,6 +186,7 @@ export interface PreferencesData {
     pageSize: number;
     authApiKeys: {
         imdb: string;
+        mal: string;
     };
 }
 

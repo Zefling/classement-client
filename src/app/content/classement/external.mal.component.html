@@ -1,0 +1,51 @@
+<dialog-cmp closeButton>
+    <h2>{{ 'generator.external.mal.title' | translate }}</h2>
+
+    <div *ngIf="keyApi" class="imdb">
+        <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
+        <form [formGroup]="searchAnimeForm" (submit)="search()">
+            <div>
+                <label for="name">{{ 'generator.external.mal.name' | translate }}</label>
+                <input id="name" formControlName="q" />
+            </div>
+
+            <p class="buttons">
+                <button type="submit" [disabled]="!searchAnimeForm.get('q')?.value.trim()">
+                    {{ 'generator.external.mal.search' | translate }}
+                </button>
+            </p>
+        </form>
+
+        <div class="options" *ngIf="results?.length">
+            <div>
+                <label>
+                    <input type="checkbox" [(ngModel)]="withTitle" />
+                    {{ 'generator.external.mal.with.title' | translate }}
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="withYear" />
+                    {{ 'generator.external.mal.with.year' | translate }}
+                </label>
+            </div>
+        </div>
+
+        <div class="movies">
+            <ng-container *ngFor="let anime of results">
+                <div
+                    class="content-box"
+                    [class.disabled]="anime.disabled"
+                    *ngIf="anime.main_picture"
+                    (click)="addTile(anime)"
+                >
+                    <div class="content">
+                        <img [src]="anime.main_picture.medium" alt="poster_path" />
+                        <div class="movie-title">
+                            <span *ngIf="withTitle">{{ anime.title }}</span>
+                            <span *ngIf="withYear"> ({{ anime.start_season.year }})</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</dialog-cmp>

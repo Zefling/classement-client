@@ -16,9 +16,9 @@
             </button>
         </div>
         <div class="client-api">
-            <button *ngIf="imdbActive" class="button-add primary" (click)="imdb.open()">
-                {{ 'IMDB' | translate }}
-            </button>
+            <button *ngIf="imdbActive" class="button-add primary" (click)="imdb.open()">IMDB</button>
+
+            <button *ngIf="imdbActive" class="button-add primary" (click)="mal.open()">MAL</button>
         </div>
     </div>
 
@@ -507,3 +507,4 @@
 <classement-login></classement-login>
 
 <external-imdb></external-imdb>
+<external-mal></external-mal>
