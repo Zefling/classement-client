@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 1.12.4 (2023-09-11)
+
+#### Standalone web app
+
+-   Use Markdown on description
+-   Fix double loading of language files when it is not English
+-   Add description size and fix style
+-   Language: fix french
+-   Mirror fixes
+
 ### 1.12.3 (2023-09-03)
 
 #### External service
