@@ -28,6 +28,21 @@
         <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
         <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
     </p>
+
+    <ng-container *ngIf="user.classements">
+        <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
+        <div class="links">
+            <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
+                'user.profile.list.browser.tab' | translate
+            }}</a>
+            -
+            <a routerLink="/user/lists/server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
+                'user.profile.list.server.tab' | translate
+            }}</a>
+        </div>
+
+        <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+    </ng-container>
 </div>
 
 <dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
