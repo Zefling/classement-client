@@ -293,7 +293,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = data.data.list;
                 this.addIds();
                 this.global.fixImageSize(this.groups, this.list);
-                this.html2canavasImagesCacheUpdate();
+                this.html2canvasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.resetCache();
             })
@@ -315,7 +315,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.teamsModeUpdateTile();
         this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
-        this.html2canavasImagesCacheUpdate();
+        this.html2canvasImagesCacheUpdate();
 
         if (withDerivative && this.logged) {
             this.classementService
@@ -763,6 +763,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     updateAfterServerSave(action: { type: 'save' | 'remove'; classement: Classement }) {
         const classement = action.classement;
+        let reset = false;
 
         const navigate =
             this.classement?.linkId !== classement.linkId ||
@@ -777,7 +778,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.teamsModeUpdateTile();
         this.addIds();
 
-        this.html2canavasImagesCacheUpdate();
+        this.html2canvasImagesCacheUpdate();
 
         if (classement.localId) {
             if (action.type === 'save') {
@@ -785,14 +786,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.saveLocal(false, false);
             } else if (action.type === 'remove') {
                 this.dbService.delete(classement.localId);
+                reset = true;
             }
+        } else {
+            reset = true;
         }
 
         if (navigate) {
             this.id = classement.rankingId;
-            this.resetCache();
+            reset = true;
             this.updateSize();
             this.location.replaceState('/edit/' + this.getClassementId(classement));
+        }
+        if (reset) {
+            this.resetCache();
         }
     }
 
@@ -808,7 +815,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
                 this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
-                this.html2canavasImagesCacheUpdate();
+                this.html2canvasImagesCacheUpdate();
                 break;
             }
             case 'new': {
@@ -839,7 +846,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     @HostListener('window:fullscreenchange')
-    screenModeFullscren() {
+    screenModeFullscreen() {
         if (!document.fullscreenElement) {
             this.screenMode('default');
         }
@@ -849,7 +856,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         Utils.formattedTilesByMode(this.options, this.groups, this.list);
     }
 
-    private html2canavasImagesCacheUpdate() {
+    private html2canvasImagesCacheUpdate() {
         this.exportImageDisabled = true;
         setTimeout(() => {
             this.global
