@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit, booleanAttribute } from '@
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { FileString, FormatedGroup, Options } from 'src/app/interface/interface';
+import { FileString, FormattedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
 import { GlobalService } from '../../services/global.service';
@@ -13,7 +13,7 @@ import { GlobalService } from '../../services/global.service';
     styleUrls: ['./see-classement.component.scss'],
 })
 export class SeeClassementComponent implements OnInit {
-    @Input() groups: FormatedGroup[] = [];
+    @Input() groups: FormattedGroup[] = [];
     @Input() list: FileString[] = [];
     @Input() imagesCache: Record<string, string | ArrayBuffer | null> = {};
 

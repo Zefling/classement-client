@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormatedInfos, FormatedInfosData, IndexedData, PreferencesData } from '../interface/interface';
+import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData } from '../interface/interface';
 import { Utils } from '../tools/utils';
 
 enum Store {
@@ -36,13 +36,13 @@ export class DBService {
         });
     }
 
-    getLocalList(): Promise<FormatedInfos[]> {
+    getLocalList(): Promise<FormattedInfos[]> {
         return this._getDB().then(db => this._getInfosList(db));
     }
 
-    getLocalData(): Promise<FormatedInfosData[]> {
+    getLocalData(): Promise<FormattedInfosData[]> {
         return this.getLocalList().then(async infos => {
-            const list: FormatedInfosData[] = [];
+            const list: FormattedInfosData[] = [];
             for (const info of infos) {
                 list.push(await this.loadLocal(info.id!));
             }
@@ -60,7 +60,7 @@ export class DBService {
         });
     }
 
-    clone(item: FormatedInfos, title: string, newTemplate: boolean = false): Promise<FormatedInfos> {
+    clone(item: FormattedInfos, title: string, newTemplate: boolean = false): Promise<FormattedInfos> {
         return new Promise((resolve, reject) => {
             const formatData: any = {};
             const cloneItem = Utils.jsonCopy(item);
@@ -76,7 +76,7 @@ export class DBService {
                     .then(db => this._saveDB(db, Store.infos, cloneItem))
                     .then(db => this._getByIdDB(db, Store.data, item.id as string, formatData, 'data'))
                     .then(db => {
-                        (formatData as FormatedInfosData).data.id = cloneItem.id;
+                        (formatData as FormattedInfosData).data.id = cloneItem.id;
                         return this._saveDB(db, Store.data, formatData.data);
                     })
                     .then(__ => resolve(cloneItem))
@@ -85,7 +85,7 @@ export class DBService {
         });
     }
 
-    loadLocal(id: string): Promise<FormatedInfosData> {
+    loadLocal(id: string): Promise<FormattedInfosData> {
         const formatData: any = {};
         return new Promise((resolve, reject) => {
             this._getDB()
@@ -96,7 +96,7 @@ export class DBService {
         });
     }
 
-    saveLocal(data: Data): Promise<FormatedInfosData> {
+    saveLocal(data: Data): Promise<FormattedInfosData> {
         this.accessState = false;
         return new Promise((resolve, reject) => {
             this._formatData(data).then(formatData => {
@@ -147,7 +147,7 @@ export class DBService {
         });
     }
 
-    private async _formatData(data: Data): Promise<FormatedInfosData> {
+    private async _formatData(data: Data): Promise<FormattedInfosData> {
         let exist = false;
         if (data.id) {
             const db = await this._getDB();
@@ -194,12 +194,12 @@ export class DBService {
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    private _getInfosList(db: IDBDatabase): Promise<FormatedInfos[]> {
+    private _getInfosList(db: IDBDatabase): Promise<FormattedInfos[]> {
         return new Promise((resolve, reject) => {
             this.logger.log('Read Infos');
             const _this = this;
             const list = db.transaction([Store.infos], 'readwrite').objectStore(Store.infos).getAll();
-            list.onsuccess = function (this: IDBRequest<FormatedInfos[]>) {
+            list.onsuccess = function (this: IDBRequest<FormattedInfos[]>) {
                 _this.logger.log('getInfosList', LoggerLevel.log, this.result);
                 resolve(this.result);
             };
@@ -214,7 +214,7 @@ export class DBService {
         db: IDBDatabase,
         store: Store,
         id: string,
-        data: FormatedInfosData,
+        data: FormattedInfosData,
         attr: 'infos' | 'data' | 'pref',
     ): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {

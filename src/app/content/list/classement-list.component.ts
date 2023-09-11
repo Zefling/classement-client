@@ -1,5 +1,4 @@
 import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +7,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { SortableDirective } from 'src/app/directives/sortable.directive';
-import { FormatedInfos } from 'src/app/interface/interface';
+import { FormattedInfos } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -34,9 +33,9 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     filter = '';
 
-    result!: FormatedInfos[];
+    result!: FormattedInfos[];
 
-    itemCurrent?: FormatedInfos;
+    itemCurrent?: FormattedInfos;
 
     serverIds: string[] = [];
 
@@ -49,14 +48,13 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private listener = Subscriptions.instance();
 
     constructor(
-        private readonly dbservice: DBService,
+        private readonly dbService: DBService,
         private readonly userService: APIUserService,
         private readonly router: Router,
         private readonly translate: TranslateService,
         private readonly messageService: MessageService,
         private readonly global: GlobalService,
         private readonly logger: Logger,
-        private readonly title: Title,
     ) {
         this.updateTitle();
         this.showList();
@@ -83,7 +81,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         });
     }
 
-    sortableFilter = (key: string, item: FormatedInfos, _index: number): boolean => {
+    sortableFilter = (key: string, item: FormattedInfos, _index: number): boolean => {
         return (
             (!key.startsWith('#') && Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key))) ||
             (key.startsWith('#') &&
@@ -115,7 +113,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     exportAll() {
-        this.dbservice.getLocalData().then(result => {
+        this.dbService.getLocalData().then(result => {
             const list: Data[] = [];
 
             if (result.length) {
@@ -142,7 +140,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     showList() {
-        this.dbservice.getLocalList().then(result => {
+        this.dbService.getLocalList().then(result => {
             this.result = result;
             this.sortableDirective.sortLines();
 
@@ -152,12 +150,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         });
     }
 
-    delete(item: FormatedInfos) {
+    delete(item: FormattedInfos) {
         this.dialogDelete.open();
         this.itemCurrent = item;
     }
 
-    clone(item: FormatedInfos) {
+    clone(item: FormattedInfos) {
         this.dialogClone.open();
         this.itemCurrent = item;
         this.changeTemplate = false;
@@ -169,9 +167,9 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.itemCurrent = undefined;
             this.dialogDelete.close();
         } else if (this.itemCurrent?.id) {
-            this.dbservice.delete(this.itemCurrent.id).then(() => {
+            this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
-                this.result.splice(this.result.indexOf(this.itemCurrent as FormatedInfos), 1);
+                this.result.splice(this.result.indexOf(this.itemCurrent as FormattedInfos), 1);
                 this.messageService.addMessage(
                     this.translate
                         .instant('message.remove.success')
@@ -189,7 +187,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.itemCurrent = undefined;
             this.dialogClone.close();
         } else if (this.itemCurrent?.id) {
-            this.dbservice.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
+            this.dbService.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
                 this.messageService.addMessage(
@@ -218,7 +216,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     event.action;
                 }
 
-                this.dbservice
+                this.dbService
                     .saveLocal(event.data!)
                     .then(item => {
                         this.logger.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
@@ -246,7 +244,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.dialogImport.close();
     }
 
-    private _getTitle(info: FormatedInfos) {
+    private _getTitle(info: FormattedInfos) {
         return info?.options?.title.trim() || this.translate.instant('list.title.undefined');
     }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import Pica from 'pica';
 
-import { FileHandle, FileString, FormatedGroup, ModeNames, OptimisedFile } from '../interface/interface';
+import { FileHandle, FileString, FormattedGroup, ModeNames, OptimisedFile } from '../interface/interface';
 
 @Injectable({ providedIn: 'root' })
 export class OptimiseImageService {
@@ -63,7 +63,7 @@ export class OptimiseImageService {
         });
     }
 
-    size(list?: FileString[], groups?: FormatedGroup[], mode: ModeNames = 'default') {
+    size(list?: FileString[], groups?: FormattedGroup[], mode: ModeNames = 'default') {
         let size = 0;
         let files = 0;
         if (list) {

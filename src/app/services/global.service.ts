@@ -13,7 +13,7 @@ import {
     FileHandle,
     FileStream,
     FileString,
-    FormatedGroup,
+    FormattedGroup,
     Options,
     PreferenceInterfaceTheme,
     ThemeOptions,
@@ -137,7 +137,7 @@ export class GlobalService {
         }
     }
 
-    fixImageSize(groups: FormatedGroup[], list: FileString[]) {
+    fixImageSize(groups: FormattedGroup[], list: FileString[]) {
         list.forEach(item => {
             this._fixImage(item);
         });
@@ -156,7 +156,7 @@ export class GlobalService {
      */
     async imagesCache(
         options: ThemeOptions,
-        groups: FormatedGroup[],
+        groups: FormattedGroup[],
         list: FileString[] = [],
     ): Promise<Record<string, string | ArrayBuffer | null>> {
         const cache: Record<string, string | ArrayBuffer | null> = {};

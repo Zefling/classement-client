@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileString, FormatedGroup, ModeNames, OptimisedFile } from 'src/app/interface/interface';
+import { FileString, FormattedGroup, ModeNames, OptimisedFile } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
@@ -13,7 +13,7 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 })
 export class ClassementOptimiseComponent implements OnInit {
     @Input()
-    groups?: FormatedGroup[];
+    groups?: FormattedGroup[];
 
     @Input()
     list?: FileString[];

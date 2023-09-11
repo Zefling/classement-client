@@ -1,6 +1,6 @@
-import { FormatedGroup, Options, Theme, ThemeNames } from 'src/app/interface/interface';
+import { FormattedGroup, Options, Theme, ThemeNames } from 'src/app/interface/interface';
 
-export const defautGroup: FormatedGroup[] = [
+export const defautGroup: FormattedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
     { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
     { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },

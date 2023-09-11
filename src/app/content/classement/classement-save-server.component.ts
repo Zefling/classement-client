@@ -16,7 +16,7 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Category, Classement, FileHandle, FileString, FormatedGroup, Options } from 'src/app/interface/interface';
+import { Category, Classement, FileHandle, FileString, FormattedGroup, Options } from 'src/app/interface/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -33,7 +33,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     classement?: Classement;
 
     @Input()
-    groups?: FormatedGroup[];
+    groups?: FormattedGroup[];
 
     @Input()
     list?: FileString[];

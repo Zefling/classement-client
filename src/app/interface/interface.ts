@@ -71,8 +71,8 @@ export type FileString = {
     annotation?: string;
     bgColor?: string;
 };
-export type GroupOption = { group: FormatedGroup; indexGrp: number; first: boolean; last: boolean };
-export type FormatedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
+export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
+export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
@@ -137,7 +137,7 @@ export interface IndexedData<T extends any> {
 
 export interface Data extends IndexedData<any> {
     options: Options;
-    groups: FormatedGroup[];
+    groups: FormattedGroup[];
     list: FileString[];
 }
 
@@ -147,7 +147,7 @@ export interface importData {
     selected?: boolean;
 }
 
-export interface FormatedInfos extends IndexedData<any> {
+export interface FormattedInfos extends IndexedData<any> {
     options: Options;
     /**
      * @deprecated use {@link dateCreate}
@@ -157,15 +157,15 @@ export interface FormatedInfos extends IndexedData<any> {
     listLenght: number;
 }
 
-export interface FormatedData extends IndexedData<any> {
-    groups: FormatedGroup[];
+export interface FormattedData extends IndexedData<any> {
+    groups: FormattedGroup[];
     list: FileString[];
 }
 
-export interface FormatedInfosData {
+export interface FormattedInfosData {
     update: boolean;
-    infos: FormatedInfos;
-    data: FormatedData;
+    infos: FormattedInfos;
+    data: FormattedData;
 }
 
 export type ScreenMode = 'default' | 'enlarge' | 'fullscreen';

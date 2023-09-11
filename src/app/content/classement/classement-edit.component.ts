@@ -25,7 +25,7 @@ import {
     Classement,
     Data,
     FileString,
-    FormatedGroup,
+    FormattedGroup,
     GroupOption,
     ImageCache,
     Options,
@@ -61,7 +61,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     derivatives?: Classement[];
 
-    groups: FormatedGroup[] = [];
+    groups: FormattedGroup[] = [];
     list: FileString[] = [];
     lockCategory = false;
 
@@ -846,7 +846,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     private teamsModeUpdateTile() {
-        Utils.formatedTilesByMode(this.options, this.groups, this.list);
+        Utils.formattedTilesByMode(this.options, this.groups, this.list);
     }
 
     private html2canavasImagesCacheUpdate() {
