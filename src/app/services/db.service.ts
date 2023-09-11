@@ -36,18 +36,17 @@ export class DBService {
         });
     }
 
-    getLocalList(): Promise<FormattedInfos[]> {
-        return this._getDB().then(db => this._getInfosList(db));
+    async getLocalList(): Promise<FormattedInfos[]> {
+        return this._getInfosList(await this._getDB());
     }
 
-    getLocalData(): Promise<FormattedInfosData[]> {
-        return this.getLocalList().then(async infos => {
-            const list: FormattedInfosData[] = [];
-            for (const info of infos) {
-                list.push(await this.loadLocal(info.id!));
-            }
-            return list;
-        });
+    async getLocalData(): Promise<FormattedInfosData[]> {
+        const infos = await this.getLocalList();
+        const list: FormattedInfosData[] = [];
+        for (const info of infos) {
+            list.push(await this.loadLocal(info.id!));
+        }
+        return list;
     }
 
     delete(id: string): Promise<void> {

@@ -11,6 +11,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { FileHandle, User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
@@ -24,6 +25,8 @@ import { UserPassword } from './user-password';
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
     user?: User;
+
+    localSize = 0;
 
     listener = Subscriptions.instance();
 
@@ -50,6 +53,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     constructor(
         private readonly router: Router,
         private readonly global: GlobalService,
+        private readonly dbService: DBService,
         userService: APIUserService,
         messageService: MessageService,
         translate: TranslateService,
@@ -71,6 +75,9 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             }),
             this.translate.onLangChange.subscribe(() => {
                 this.updateTitle();
+            }),
+            this.global.onUpdateList.subscribe(() => {
+                this.updateLocalListSize();
             }),
         );
 
@@ -144,6 +151,12 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                     this.showError[1] = this.translate.instant('error.email.new.invalid');
                 }
             });
+
+        this.updateLocalListSize();
+    }
+
+    updateLocalListSize() {
+        this.dbService?.getLocalList().then(e => (this.localSize = e.length));
     }
 
     updateTitle() {

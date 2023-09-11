@@ -32,16 +32,30 @@
     <ng-container *ngIf="user.classements">
         <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
         <div class="links">
-            <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
-                'user.profile.list.browser.tab' | translate
-            }}</a>
-            -
-            <a routerLink="/user/lists/server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
-                'user.profile.list.server.tab' | translate
-            }}</a>
+            <a
+                *ngIf="localSize"
+                routerLink="/user/lists/browser"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ 'user.profile.list.browser.tab' | translate }} ({{ localSize }})</a
+            >
+            <span *ngIf="user.classements && localSize"> - </span>
+            <a
+                *ngIf="user.classements"
+                routerLink="/user/lists/server"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ 'user.profile.list.server.tab' | translate }} ({{ user.classements.length }})</a
+            >
         </div>
 
-        <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+        <navigate-result
+            *ngIf="user.classements"
+            [classements]="user.classements"
+            hideDerivatives
+            hideUser
+            onlyRanking
+        ></navigate-result>
     </ng-container>
 </div>
 

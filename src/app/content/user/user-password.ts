@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import owasp from 'owasp-password-strength-test';
+import oWasp from 'owasp-password-strength-test';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -22,7 +22,7 @@ export abstract class UserPassword {
         this.changePasswordForm = new FormGroup(this.formGroupPasswordForm());
 
         this.changePasswordForm.get('password')?.valueChanges.subscribe(value => {
-            const test = owasp.test(value);
+            const test = oWasp.test(value);
             this.passedTests = test.passedTests;
             this.strong = test.strong || test.isPassphrase;
         });
@@ -36,7 +36,7 @@ export abstract class UserPassword {
     valideChangePassword() {
         var value = this.changePasswordForm.value;
 
-        const test = owasp.test(value.password);
+        const test = oWasp.test(value.password);
 
         if (value.password !== value.password2) {
             this.showError.push(this.translate.instant('error.pw.duplicate'));

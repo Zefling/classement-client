@@ -6,7 +6,7 @@ import { DataChange } from 'src/app/services/data-change';
 
 import { UserInformationComponent } from './user-information.component';
 import { UserListComponent } from './user-list.component';
-import { UserLoginAouthComponent } from './user-login-oauth.component';
+import { UserLoginOauthComponent } from './user-login-oauth.component';
 import { UserLoginComponent } from './user-login.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserPwLostChangeComponent } from './user-pw-lost-change.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
     {
         path: 'connect/:service/:token',
         pathMatch: 'full',
-        component: UserLoginAouthComponent,
+        component: UserLoginOauthComponent,
         canActivate: [DataChange, APIRequired],
     },
     {

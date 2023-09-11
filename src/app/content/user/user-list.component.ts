@@ -38,7 +38,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private listener = Subscriptions.instance();
 
     constructor(
-        private readonly dbservice: DBService,
+        private readonly dbService: DBService,
         private readonly classementService: APIClassementService,
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
@@ -70,7 +70,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         }
 
         // list of browser ranking
-        this.dbservice.getLocalList().then(result => {
+        this.dbService.getLocalList().then(result => {
             result.forEach(e => {
                 if (e.id) {
                     this.localIds.push(e.id);

@@ -12,7 +12,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     templateUrl: './user-login-oauth.component.html',
     styleUrls: ['./user-login-oauth.component.scss'],
 })
-export class UserLoginAouthComponent implements OnDestroy {
+export class UserLoginOauthComponent implements OnDestroy {
     showError = '';
 
     loader = true;
