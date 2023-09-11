@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 1.12.5 (2023-09-11)
+
+#### With API activated only
+
+-   Add server tile in profile
+-   Add link for lists
+
 ### 1.12.4 (2023-09-11)
 
 #### Standalone web app
@@ -25,7 +32,7 @@
 -   Improve styles: tags, buttons
 -   Improve CSS animations
 
-#### With API activited only
+#### With API activated only
 
 -   Recommended: API `1.12.1`
 
@@ -43,7 +50,7 @@
 
 -   Add tile title on hover #43
 
-#### With API activited only
+#### With API activated only
 
 -   Add dialog to change username #26
 -   Add option to save locally (breaking change)
@@ -58,7 +65,7 @@
 
 -   Fix detect change values and ignore autoSave & showAdvancedOptions
 
-#### With API activited only
+#### With API activated only
 
 -   Add log in dialog in editor #42
 
@@ -82,7 +89,7 @@
 
 -   Update font for fix Windows 10 #45
 
-#### With API activited only
+#### With API activated only
 
 -   Don't call history if there is none and show number
 -   Required: API `1.11.1`
@@ -124,7 +131,7 @@
 -   Improve drag'n drop in mobile
 -   Update titles and add metadata
 
-#### With API activited only
+#### With API activated only
 
 -   Fix logout on lists page
 
@@ -161,7 +168,7 @@
 
 -   Fix remove tiles in Teams mode
 
-#### With API activited only
+#### With API activated only
 
 -   Fix linkId on fork
 
@@ -172,7 +179,7 @@
 -   Add Teams mode #41
 -   Fix preferences
 
-#### With API activited only
+#### With API activated only
 
 -   Add page size preference #39
 -   Id renaming #13
@@ -189,7 +196,7 @@
 
 ### 1.10.7 (2023-06-11)
 
-#### With API activited only
+#### With API activated only
 
 -   Search forms are now real html forms
 
@@ -199,7 +206,7 @@
 
 -   Fix category sorting
 
-#### With API activited only
+#### With API activated only
 
 -   Fix date style in navigate
 
@@ -217,7 +224,7 @@
 -   Add clear button `×` for search for Firefox (only)
 -   Add space use with IndexedDB in Local list
 -   Add button “Save and validate” when you quit editing without saving
--   Fix recursive error with debouce
+-   Fix recursive error with debounce
 -   Fix date sort for Local list
 
 ### 1.10.3 (2023-05-30)
@@ -226,7 +233,7 @@
 
 -   rewrite tile size calculation
 
-#### With API activited only
+#### With API activated only
 
 -   admin: fix sort with paginate
 
@@ -236,7 +243,7 @@
 
 -   fix mobile
 
-#### With API activited only
+#### With API activated only
 
 -   admin: fix no result
 
@@ -257,7 +264,7 @@
 -   fix autosize in edit tierlist
 -   autosize refactoring
 
-#### With API activited only
+#### With API activated only
 
 -   admin update
     -   add sort by column #38
@@ -272,7 +279,7 @@
 
 ### 1.9.7 (2023-05-18)
 
-#### With API activited only
+#### With API activated only
 
 -   add page for user (@username)
 
@@ -282,7 +289,7 @@
 
 -   fix icons for Android
 
-#### With API activited only
+#### With API activated only
 
 -   fix color in admin
 
@@ -329,7 +336,7 @@
 -   add preferences dialog #34
 -   add tags for tierlist #31
 
-#### With API activited only
+#### With API activated only
 
 -   add avatar for user profile #19
 -   required: API `1.0.9`
@@ -342,13 +349,13 @@
 
 -   fix banner with local save
 
-#### With API activited only
+#### With API activated only
 
 -   fix links for history lierlist
 
 ### 1.8.2 (2023-04-23)
 
-#### With API activited only
+#### With API activated only
 
 -   fix history
 
@@ -358,13 +365,13 @@
 
 -   fix font size for group title
 
-#### With API activited only
+#### With API activated only
 
 -   fix sharing in editing
 
 ### 1.8.0 (2023-03-26)
 
-#### With API activited only
+#### With API activated only
 
 -   add history feature #33
 -   required: API `1.0.8`
@@ -407,7 +414,7 @@
 
 -   fix background selection
 
-#### With API activited only
+#### With API activated only
 
 -   fix custom background on render
 
@@ -420,7 +427,7 @@
 -   change advanced options interface
 -   change URLs without reload the current tierlist
 
-#### With API activited only
+#### With API activated only
 
 -   fix propagation of ids between client and server
 -   required: API `1.0.7`
@@ -433,7 +440,7 @@
 
 -   `itemWidthAuto:true` by default
 
-#### With API activited only
+#### With API activated only
 
 -   fix export image when not logged.
 
@@ -443,7 +450,7 @@
 
 -   add backdrop filter
 
-#### With API activited only
+#### With API activated only
 
 -   fix loading tiles on homepage
 -   don't load unnecessary images
@@ -466,12 +473,12 @@
 #### Standalone web app
 
 -   tierlist edit
-    -   fix line title heigth
+    -   fix line title height
     -   add description field #25
 -   homepage
     -   remove an unnecessary title
     -   add link to icon font source
--   personnal lists:
+-   personal lists:
     -   add a new directive to sort tables #21
     -   add filter on personal lists #21
     -   fix responsive for actions
@@ -479,7 +486,7 @@
 -   set language on HTML tag
 -   fix dialog input position
 
-#### With API activited only
+#### With API activated only
 
 -   tierlist with password
     -   add a password dialog for protected tierlist #30
@@ -506,7 +513,7 @@
     -   add loading component
 -   fix group tile coloration UX
 
-#### With API activited only
+#### With API activated only
 
 -   don't clone rankingID #22
 -   add an option to not clone templateId #22
@@ -521,7 +528,7 @@
 -   show (i) only if annotation content
 -   advanced options less visible
 
-#### With API activited only
+#### With API activated only
 
 -   redesign of the status change dialog for server tierlists #17
     -   add status
@@ -545,13 +552,13 @@
 -   fix tooltip position on left
 -   fix CSS mobile
 
-#### With API activited only
+#### With API activated only
 
 -   merge “**local list**” and “**profile**” into a “**personal list**” #14
 -   add tierlist relationships between local and server #15
 -   update category only if parent tierlist #12
     -   lock category if not parent tierlist
-    -   update listlist children catagory when is parent template (server)
+    -   update listlist children category when is parent template (server)
     -   required: API `1.0.4`
 -   fix export image loading
 -   fix routing (add `a:href` for a better tag structure )
@@ -564,7 +571,7 @@
 
 ### 1.2.3 (2022-10-29)
 
-#### With API activited only
+#### With API activated only
 
 -   navigate:
     -   fix pagination when no criterion
@@ -572,7 +579,7 @@
 
 ### 1.2.2 (2022-10-29)
 
-#### With API activited only
+#### With API activated only
 
 -   navigate: add pagination
 -   improve pagination component
@@ -586,7 +593,7 @@
 -   add categories: food, brand and role-playing
 -   fix minor bugs
 
-#### With API activited only
+#### With API activated only
 
 -   navigate:
     -   fix derivatives when empty search (but not null)
@@ -594,7 +601,7 @@
 
 ### 1.2.0 (2022-10-22)
 
-#### With API activited only
+#### With API activated only
 
 -   add change date #9
 -   make a empty derivatives #10
@@ -613,7 +620,7 @@
 -   fix tile title position without image
 -   fix background preview
 
-#### With API activited only
+#### With API activated only
 
 -   remove url for tile with no image
 
@@ -624,14 +631,14 @@
 -   fix title width in tile when “automatic tile width” is activated
 -   improve langage FR & EN (Thanks Ambroise Croizat)
 
-#### With API activited only
+#### With API activated only
 
 -   fix crash when canceling Oauth authentication
 -   fix on save tierlist
 
 ### 1.1.1 (2022-10-16)
 
-#### With API activited only
+#### With API activated only
 
 -   fix image render
 
@@ -644,11 +651,11 @@
 -   add maxlength for textarea
 -   improve dark mode
 
-#### With API activited only
+#### With API activated only
 
 -   rewrite navigation
 -   add page preview #3
--   better visibility for personnal derivatives
+-   better visibility for personal derivatives
 -   required: API `1.0.1`
 
 ---
@@ -659,7 +666,7 @@
 
 -   fix group naming
 
-#### With API activited only
+#### With API activated only
 
 -   fix email validation
 
@@ -671,7 +678,7 @@
     -   added support for line breaks
     -   autosize instead of scrollbar
 
-#### With API activited only
+#### With API activated only
 
 -   add an expiration days for cookies
 -   do not show advanced options on open
@@ -689,13 +696,13 @@
 
 -   do not show advanced options on open
 
-#### With API activited only
+#### With API activated only
 
 -   do not load personal derivative when not connected
 
 ### 0.9.21 beta (2022-09-24)
 
-#### With API activited only
+#### With API activated only
 
 -   improve navigation cards
 -   add icons
@@ -703,7 +710,7 @@
 
 ### 0.9.20 beta (2022-09-23)
 
-#### With API activited only
+#### With API activated only
 
 -   improve create account form
 -   improve password lost form
@@ -718,7 +725,7 @@
 
 ### 0.9.18 beta (2022-09-18)
 
-#### With API activited only
+#### With API activated only
 
 -   add the different tiles of derivative
 -   improve list “my derivative” on edit page
@@ -730,7 +737,7 @@
 
 -   fix scrolling top when changing page
 
-#### With API activited only
+#### With API activated only
 
 -   add list “my derivative” on edit page
 -   fix css
@@ -738,7 +745,7 @@
 
 ### 0.9.16 beta (2022-09-17)
 
-#### With API activited only
+#### With API activated only
 
 -   fix update profile on save
 -   fix update rankings list on change
@@ -751,14 +758,14 @@
 
 -   add link to template in ranking edit
 
-#### With API activited only
+#### With API activated only
 
 -   fix options interface
 -   fix css
 
 ### 0.9.14 beta (2022-09-11)
 
-#### With API activited only
+#### With API activated only
 
 -   add counters in navigation results
 -   fix navigation result order
@@ -778,7 +785,7 @@
 -   fix double optimization error
 -   fix CSS
 
-#### With API activited only
+#### With API activated only
 
 -   add share button
 -   add icons
@@ -790,7 +797,7 @@
 
 -   refacto CSS
 
-#### With API activited only
+#### With API activated only
 
 -   add progressbar for tierlist save
 -   fix bad initialization for image cropper
@@ -799,10 +806,10 @@
 
 #### Standalone web app
 
--   add global laoder
+-   add global loader
 -   add loading in edit page
 
-#### With API activited only
+#### With API activated only
 
 -   improve loading in admin pages
 -   fix CORS for Chromium
@@ -814,13 +821,13 @@
 
 -   improve responsive display
 
-#### With API activited only
+#### With API activated only
 
--   add laoder on navige page
+-   add loader on navigate page
 
 ### 0.9.8 beta (2022-09-05)
 
-#### With API activited only
+#### With API activated only
 
 -   fix image render with https images (fix the type mine)
 
@@ -833,7 +840,7 @@
 -   implement a log service
 -   fixed theme change (do not overwrite: title, category, autoSave, itemWidthAuto)
 
-#### With API activited only
+#### With API activated only
 
 -   fix image render with https images
 
@@ -843,7 +850,7 @@
 
 -   fix saving if an edit and replace with "new"
 
-#### With API activited only
+#### With API activated only
 
 -   fix connection if never connected
 
@@ -866,7 +873,7 @@
 
 ### 0.9.3 beta (2022-09-02)
 
-#### With API activited only
+#### With API activated only
 
 -   improve the rendering of roles and statuses in the admin
 
@@ -884,7 +891,7 @@
 -   fix import json
 -   fix light-dark mode
 
-#### With API activited only
+#### With API activated only
 
 -   add loading on save
 
@@ -896,7 +903,7 @@
 -   add auto save
 -   add an API switch in the environment configuration
 
-#### With API activited only
+#### With API activated only
 
 -   sign up / login / oauth
     -   Discord
@@ -944,7 +951,7 @@
 ### 0.4.3 (2022-04-11)
 
 -   change demo path: https://classement.ikilote.net/
--   add japanese
+-   add Japanese
 -   fix minor bugs
 
 ### 0.4.2 (2022-04-08)
@@ -1032,7 +1039,7 @@
 
 ### 0.0.4 (2022-03-10)
 
--   add advendced options: more sizes and colors
+-   add advanced options: more sizes and colors
 -   change dark/light button.
 -   fix wording
 
