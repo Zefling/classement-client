@@ -49,7 +49,6 @@ export function markedOptionsFactory(): MarkedOptions {
             },
         }),
         TranslateModule.forRoot({
-            defaultLanguage: 'en',
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
