@@ -26,6 +26,12 @@
         <label for="option-description">{{ 'generator.options.description' | translate }}</label>
         <div>
             <textarea id="option-description" autosize maxlength="1000" [(ngModel)]="options.description"></textarea>
+            <div class="info-desc">
+                <span *ngIf="1000 - (options.description?.length || 0) < 200">
+                    {{ 1000 - options.description.length }} -
+                </span>
+                <span>Markdown</span>
+            </div>
         </div>
     </div>
 

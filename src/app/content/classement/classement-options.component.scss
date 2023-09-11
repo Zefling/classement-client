@@ -167,6 +167,17 @@ h4 {
     grid-area: name-bg-opacity;
 }
 
+.info-desc {
+    font-size: 11px;
+    text-align: right;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 3em;
+    max-height: 15em;
+}
+
 .item-options {
     display: grid;
     grid-template:
