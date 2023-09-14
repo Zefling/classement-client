@@ -146,8 +146,7 @@
       "with.password": "パスワードあり",
       "question": "ステータスの一つを変更してもよろしいですか？",
       "validated": "有効",
-      "notValidated": "無効",
-      "deteled": " / 削除"
+      "notValidated": "無効"
     },
     "action": {
       "name": "アクション",
@@ -255,7 +254,7 @@
       "image": "Image",
       "clear": "Effacer",
       "simple": "Options simplifiées",
-      "advence": "Options avancées",
+      "advance": "Options avancées",
       "stream.mode": "Mode streamer",
       "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
       "item": {
@@ -315,6 +314,7 @@
         "rtl": "Droite à gauche",
         "ltr": "Gauche à droite"
       },
+      "group.markdown": "Markdown dans les noms de groupe",
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
