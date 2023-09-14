@@ -41,6 +41,7 @@ export const defaultOptions: Options = {
     nameWidth: 150,
     nameFontSize: 120,
     nameBackgroundOpacity: 100,
+    nameMarkdown: false,
     imageBackgroundImage: 'none',
     imageBackgroundCustom: '',
     mode: 'default',

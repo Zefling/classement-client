@@ -11,7 +11,7 @@
         // ----------------------------------------------------------------------------
         'title-line        title-line          title-line          title-line          '
         'colors-line-back  colors-line-border  name-bg-opacity     .                   '
-        'font-size         name-width          group-direction     .                   '
+        'font-size         name-width          group-direction     name-markdown       '
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
@@ -165,6 +165,10 @@ h4 {
 
 .name-bg-opacity {
     grid-area: name-bg-opacity;
+}
+
+.name-markdown {
+    grid-area: name-markdown;
 }
 
 .info-desc {

@@ -26,7 +26,7 @@
             <td class="category">
                 {{ classement.user || ('list.user.anonymous' | translate) }}
             </td>
-            <td class="category" (click)="editCatagory(classement)">
+            <td class="category" (click)="editCategory(classement)">
                 {{ 'category.' + (classement.category || 'undefined') | translate }}
                 <span class="icon-edit-2"></span>
             </td>

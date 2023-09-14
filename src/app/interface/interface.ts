@@ -112,6 +112,7 @@ export type ThemeOptions = {
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;
+    nameMarkdown: boolean;
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;

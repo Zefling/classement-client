@@ -11,7 +11,7 @@ import { ClassementLoginComponent } from './classement-login.component';
 import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
-import { ClassemenThemesComponent } from './classement-themes.component';
+import { ClassementThemesComponent } from './classement-themes.component';
 import { ClassementRoutingModule } from './classement.routing';
 import { ExternalImdbComponent } from './external.imdb.component';
 
@@ -19,7 +19,7 @@ import { ExternalImdbComponent } from './external.imdb.component';
     declarations: [
         // page
         ClassementOptionsComponent,
-        ClassemenThemesComponent,
+        ClassementThemesComponent,
         ClassementEditComponent,
         ClassementOptimiseComponent,
         ClassementSaveServerComponent,

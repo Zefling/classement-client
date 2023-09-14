@@ -276,6 +276,7 @@ img {
         content: attr(data-value) ' ';
         visibility: hidden;
         white-space: pre-wrap;
+        word-break: break-word;
     }
 }
 

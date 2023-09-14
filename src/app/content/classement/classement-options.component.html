@@ -37,7 +37,7 @@
 
     <div class="links">
         <a tabindex="0" (click)="switchOptions()">{{
-            (options.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advence') | translate
+            (options.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advance') | translate
         }}</a>
     </div>
     <div class="themes">
@@ -345,6 +345,13 @@
                     <option value="ltr">{{ 'generator.options.group.direction.ltr' | translate }}</option>
                 </select>
             </div>
+        </div>
+
+        <div class="name-markdown input-value">
+            <label class="toogle-switch">
+                <input type="checkbox" [(ngModel)]="options.nameMarkdown" />
+                <span>{{ 'generator.options.group.markdown' | translate }}</span>
+            </label>
         </div>
 
         <!-- ###############################  other options ###############################  -->

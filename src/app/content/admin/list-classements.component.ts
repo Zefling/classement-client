@@ -52,7 +52,7 @@ export class ListClassementsComponent {
         this.dialogActionsClassement.open();
     }
 
-    editCatagory(classement: Classement) {
+    editCategory(classement: Classement) {
         this.currentClassement = classement;
         this.dialogEditCategory.open();
     }

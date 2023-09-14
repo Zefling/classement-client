@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 import { imagesThemes } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
-import { ClassemenThemesComponent } from './classement-themes.component';
+import { ClassementThemesComponent } from './classement-themes.component';
 
 @Component({
     selector: 'classement-options',
@@ -30,7 +30,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listThemes!: Select2Data;
 
-    @ViewChild(ClassemenThemesComponent) classementThemes!: ClassemenThemesComponent;
+    @ViewChild(ClassementThemesComponent) classementThemes!: ClassementThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
     @ViewChild('mode') mode!: ElementRef<HTMLSelectElement>;
 

@@ -141,8 +141,7 @@
       "with.password": "With password",
       "question": "Are you sure you want to edit one of statuses?",
       "validated": "validated",
-      "notValidated": "not validated",
-      "deteled": " / deleted"
+      "notValidated": "not validated"
     },
     "action": {
       "name": "Action",
@@ -218,7 +217,7 @@
     "show": "Show",
     "sport": "Sport",
     "technology": "Technology",
-    "vehicle": "Vehicle",
+    "vehicle": "Vehicle",  "group.direction"
     "video.game": "Video games",
     "other": "Other",
     "undefined": "undefined"
@@ -250,7 +249,7 @@
       "image": "Image",
       "clear": "Clear",
       "simple": "Simplified options",
-      "advence": "Advanced options",
+      "advance": "Advanced options",
       "stream.mode": "Stream mode",
       "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
       "item": {

@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 1.12.5 (2023-09-11)
+### 1.12.5 (2023-09-12)
 
 #### With API activated only
 

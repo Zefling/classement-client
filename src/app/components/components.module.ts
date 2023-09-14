@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MarkdownModule } from 'ngx-markdown';
+
 import { DialogComponent } from './dialog/dialog.component';
 import { ImportJsonComponent } from './import-json/import-json.component';
 import { InfoMessageComponent } from './info-messages/info-message.component';
@@ -62,6 +64,6 @@ import { PipesModule } from '../pipes/pipes.module';
         NavigateResultComponent,
         TagListComponent,
     ],
-    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule],
+    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule, MarkdownModule],
 })
 export class ComponentsModule {}

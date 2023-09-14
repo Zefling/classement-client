@@ -17,7 +17,8 @@
                     [style.--name-background]="group.bgColor + nameOpacity"
                     [style.--text-color]="group.txtColor"
                 >
-                    <pre>{{ group.name }}</pre>
+                    <pre *ngIf="!options.nameMarkdown">{{ group.name }}</pre>
+                    <markdown *ngIf="options.nameMarkdown" [data]="group.name"></markdown>
                 </td>
                 <td class="elements drop-list">
                     <div
@@ -42,7 +43,7 @@
                                     <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
                                 </div>
                                 <div
-                                    *ngIf="withAnotation && item.annotation"
+                                    *ngIf="withAnnotation && item.annotation"
                                     class="tile-info"
                                     [tooltip]="item.annotation"
                                 ></div>

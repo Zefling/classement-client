@@ -101,6 +101,22 @@ table {
         white-space: pre-line;
         margin: 0;
     }
+
+    markdown ::ng-deep * {
+        font-weight: normal;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--text-color);
+
+        &:not(strong) {
+            font-weight: normal;
+        }
+
+        a {
+            pointer-events: none;
+        }
+    }
 }
 
 // text only

@@ -10,7 +10,7 @@ import { themesList } from './classement-default';
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
 })
-export class ClassemenThemesComponent {
+export class ClassementThemesComponent {
     currentTheme?: Theme;
 
     themes = themesList;
