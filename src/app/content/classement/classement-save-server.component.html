@@ -95,17 +95,17 @@
             <span [tooltip]="'list.hide.note' | translate" class="icon-info"></span>
         </div>
 
+        <div class="password" *ngIf="hidden">
+            <label>{{ 'generator.server.password' | translate }}</label>
+            <div><input type="password" [(ngModel)]="password" /></div>
+        </div>
+
         <div class="save-local">
             <label>
                 <input type="checkbox" [(ngModel)]="saveLocal" />
                 {{ 'generator.server.not.remove.local' | translate }}
             </label>
             <span [tooltip]="'generator.server.not.remove.local.info' | translate" class="icon-info"></span>
-        </div>
-
-        <div class="password" *ngIf="hidden">
-            <label>{{ 'generator.server.password' | translate }}</label>
-            <div><input type="password" [(ngModel)]="password" /></div>
         </div>
 
         <div class="public" *ngIf="update">

@@ -25,7 +25,7 @@ export class ClassementLoginComponent implements OnDestroy {
             this.userService.afterLogin.subscribe(() => {
                 this.dialogLogin.close();
                 this.edit.logged = true;
-                this.edit.dialogSaveServer.open();
+                this.edit.saveServer();
             }),
         );
     }

@@ -85,6 +85,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                 if (this.userService.user!.username === this.classement?.user) {
                     this.update = true;
                     this.history = false;
+                    this.hidden = this.classement?.hidden ?? false;
                 }
             } else {
                 this.dialog?.close();
@@ -107,7 +108,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['classement']) {
-            if (this.classement?.hidden) {
+            if (this.classement?.hidden !== undefined) {
                 this.hidden = this.classement.hidden;
             }
         }
@@ -129,7 +130,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         // format data for server save
         const classement: Classement = {
             rankingId: sameUserEdit ? this.classement?.rankingId ?? null : null,
-            parendId: sameUserEdit
+            parentId: sameUserEdit
                 ? this.classement?.parentId ?? this.classement?.templateId ?? null
                 : this.classement?.rankingId ?? null,
             templateId: this.classement?.templateId ?? null,
@@ -140,7 +141,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             mode: this.options?.mode,
             data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
             banner: this.croppedImage || this.classement?.banner,
-            hidden: this.hidden ?? this.classement?.hidden ?? false,
+            hidden: this.hidden ?? false,
             password: this.password,
             history: this.history,
         } as any;
