@@ -146,8 +146,7 @@
       "with.password": "With password",
       "question": "Are you sure you want to edit one of statuses?",
       "validated": "validated",
-      "notValidated": "not validated",
-      "deteled": " / deleted"
+      "notValidated": "not validated"
     },
     "action": {
       "name": "Action",
@@ -255,7 +254,7 @@
       "image": "Image",
       "clear": "Effacer",
       "simple": "Options simplifiées",
-      "advence": "Options avancées",
+      "advance": "Options avancées",
       "stream.mode": "Mode streamer",
       "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
       "item": {
@@ -315,6 +314,7 @@
         "rtl": "Droite à gauche",
         "ltr": "Gauche à droite"
       },
+      "group.markdown": "Markdown dans les noms de groupe",
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
