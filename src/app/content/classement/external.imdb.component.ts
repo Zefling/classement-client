@@ -88,7 +88,7 @@ export class ExternalImdbComponent {
                     url: image,
                     size: image.length,
                     type: 'image/jpeg',
-                    realSize: 0,
+                    realSize: image.length,
                     date: 0,
                 },
             });
