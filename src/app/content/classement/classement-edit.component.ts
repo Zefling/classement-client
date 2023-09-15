@@ -829,15 +829,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
-        this.classScreenMode = mode;
-
         if (div) {
             if (mode === 'fullscreen') {
                 div.requestFullscreen();
-            } else {
+            } else if (this.classScreenMode === 'fullscreen') {
                 document.exitFullscreen();
             }
         }
+        this.classScreenMode = mode;
     }
 
     openTileInfo(item: FileString) {
