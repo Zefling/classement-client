@@ -1,5 +1,22 @@
 # Changelog - Standalone web app & API
 
+### 1.12.6 (2023-09-15)
+
+#### Standalone web app
+
+-   Add markdown option in groupe name
+-   Fix display mode change
+
+#### External service
+
+-   Fix IMDB image size
+
+#### With API activated only
+
+-   Fix hidden status after login
+-   Fix reset cache after save
+-   Required: API `1.12.2`
+
 ### 1.12.5 (2023-09-12)
 
 #### With API activated only
