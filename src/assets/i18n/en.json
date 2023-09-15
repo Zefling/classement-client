@@ -105,7 +105,8 @@
       "api": "API"
     },
     "imdb": {
-      "key": "IMDB authentication key"
+      "key": "IMDB authentication key",
+      "info": "This key requires an account with IMDB and an API access request. Here :"
     }
   },
   "list": {
@@ -217,7 +218,7 @@
     "show": "Show",
     "sport": "Sport",
     "technology": "Technology",
-    "vehicle": "Vehicle",  "group.direction"
+    "vehicle": "Vehicle",
     "video.game": "Video games",
     "other": "Other",
     "undefined": "undefined"
@@ -309,6 +310,7 @@
         "rtl": "Right to left",
         "ltr": "Left to right"
       },
+      "group.markdown": "Markdown in group names",
       "background": {
         "custom": "Select a custom background image",
         "custom.api": "Select a custom background image (max 1000×1000)"

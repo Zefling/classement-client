@@ -436,12 +436,12 @@
     "optimise": {
       "info": "Convertir l'image en WebP 300×300.",
       "button.optimise": "Optimiser",
-      "current": "Taille actuelle : {{ totalSize }} octects pour {{ totalImage }} images.",
+      "current": "Taille actuelle : {{ totalSize }} octets pour {{ totalImage }} images.",
       "show.detail": "Afficher les détails",
       "hide.detail": "Cacher les détails",
       "reduce.files": "Nombre de fichiers réduits : {{ countResize }}",
-      "reduce.size": "Taille totale réduite : {{ reduceSize }} octects",
-      "final.size": "Taille finale : {{ finalSize }} octects ({{percent}})",
+      "reduce.size": "Taille totale réduite : {{ reduceSize }} octets",
+      "final.size": "Taille finale : {{ finalSize }} octets ({{percent}})",
       "size": "{{ size }} octets",
       "validate": "Valider"
     },
