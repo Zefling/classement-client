@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { CdkDragElement } from 'src/app/directives/drag-element.directive';
+import { CdkDropZone } from 'src/app/directives/dropzone.directive';
 import { SharedModule } from 'src/app/share.module';
 
 import { ClassementEditImageComponent } from './classement-edit-image.component';
@@ -28,7 +30,7 @@ import { ExternalImdbComponent } from './external.imdb.component';
         // extension
         ExternalImdbComponent,
     ],
-    imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule],
+    imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule, CdkDropZone, CdkDragElement],
     providers: [],
     exports: [],
 })

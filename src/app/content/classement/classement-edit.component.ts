@@ -606,6 +606,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
+    removeFromZone(index: number) {
+        this.list.push(...this.groups[0].list.splice(index, 1));
+    }
+
     removeItem(index: number) {
         const removeTile = this.list.splice(index, 1);
         if (this.options.mode === 'teams') {

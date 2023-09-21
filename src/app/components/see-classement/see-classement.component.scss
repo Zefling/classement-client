@@ -5,14 +5,6 @@
 
 // content --------------------------------------------------------------------
 
-.table-classement {
-    min-width: 100%;
-    background-color: var(--over-image-background, var(--background));
-    background-image: var(--over-image-url);
-    background-repeat: repeat;
-    border-spacing: 1px;
-}
-
 .elements {
     width: 100%;
 }
@@ -65,7 +57,7 @@ img {
     width: var(--over-image-width, 1200px);
 }
 
-table {
+.table-classement {
     min-width: 100%;
     background-color: var(--over-image-background, var(--background));
     background-image: var(--over-image-url);

@@ -194,7 +194,7 @@ export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; r
 
 export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';
 
-export type ModeNames = 'default' | 'teams';
+export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis';
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';

@@ -230,7 +230,9 @@
   "mode": {
     "name": {
       "default": "Défaut",
-      "teams": "Équipes"
+      "teams": "Équipes",
+      "iceberg": "Iceberg",
+      "axis": "Axes"
     }
   },
   "generator": {
@@ -398,7 +400,9 @@
       "change.mode": {
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
-        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes."
+        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
+        "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).\nLe clic central permet de faire retourner une tuile dans la liste.",
+        "axis": "Déplacer librement dans l'espace défini suivant des axes.\nLe clic central permet de faire retourner une tuile dans la liste."
       },
       "reset.groups": {
         "button": "Vider les groupes",
