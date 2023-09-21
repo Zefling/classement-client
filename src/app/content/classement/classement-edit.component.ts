@@ -1,4 +1,11 @@
-import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+    CdkDragDrop,
+    CdkDragMove,
+    Point,
+    copyArrayItem,
+    moveItemInArray,
+    transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import {
     ChangeDetectorRef,
@@ -21,6 +28,7 @@ import { Subject, debounceTime, first } from 'rxjs';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
+import { CdkDragElement } from 'src/app/directives/drag-element.directive';
 import {
     Classement,
     Data,
@@ -506,49 +514,62 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         } else {
             const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
 
-            if (this.options.mode === 'teams') {
-                if (
-                    this.listIsType(event.previousContainer.data.list, 'list') &&
-                    this.listIsType(event.container.data.list, 'group') &&
-                    !event.container.data.list.find(tile => tile.id === event.previousContainer.data.list[indexFrom].id)
-                ) {
-                    copyArrayItem(
-                        event.previousContainer.data.list,
-                        event.container.data.list,
-                        indexFrom,
-                        indexTarget + indexFix,
-                    );
-                } else if (
-                    this.listIsType(event.previousContainer.data.list, 'group') &&
-                    this.listIsType(event.container.data.list, 'group')
-                ) {
+            switch (this.options.mode) {
+                case 'teams':
                     if (
+                        this.listIsType(event.previousContainer.data.list, 'list') &&
+                        this.listIsType(event.container.data.list, 'group') &&
                         !event.container.data.list.find(
                             tile => tile.id === event.previousContainer.data.list[indexFrom].id,
                         )
                     ) {
-                        transferArrayItem(
+                        copyArrayItem(
                             event.previousContainer.data.list,
                             event.container.data.list,
                             indexFrom,
                             indexTarget + indexFix,
                         );
-                    } else {
+                    } else if (
+                        this.listIsType(event.previousContainer.data.list, 'group') &&
+                        this.listIsType(event.container.data.list, 'group')
+                    ) {
+                        if (
+                            !event.container.data.list.find(
+                                tile => tile.id === event.previousContainer.data.list[indexFrom].id,
+                            )
+                        ) {
+                            transferArrayItem(
+                                event.previousContainer.data.list,
+                                event.container.data.list,
+                                indexFrom,
+                                indexTarget + indexFix,
+                            );
+                        } else {
+                            event.previousContainer.data.list.splice(indexFrom, 1);
+                        }
+                    } else if (
+                        this.listIsType(event.previousContainer.data.list, 'group') &&
+                        this.listIsType(event.container.data.list, 'list')
+                    ) {
                         event.previousContainer.data.list.splice(indexFrom, 1);
                     }
-                } else if (
-                    this.listIsType(event.previousContainer.data.list, 'group') &&
-                    this.listIsType(event.container.data.list, 'list')
-                ) {
-                    event.previousContainer.data.list.splice(indexFrom, 1);
-                }
-            } else {
-                transferArrayItem(
-                    event.previousContainer.data.list,
-                    event.container.data.list,
-                    indexFrom,
-                    indexTarget + indexFix,
-                );
+                    break;
+                case 'iceberg':
+                case 'axis':
+                    transferArrayItem(
+                        event.previousContainer.data.list,
+                        event.container.data.list,
+                        indexFrom,
+                        this.groups[0].list.length,
+                    );
+                    break;
+                default:
+                    transferArrayItem(
+                        event.previousContainer.data.list,
+                        event.container.data.list,
+                        indexFrom,
+                        indexTarget + indexFix,
+                    );
             }
         }
         this.globalChange();
@@ -608,6 +629,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     removeFromZone(index: number) {
         this.list.push(...this.groups[0].list.splice(index, 1));
+        this.globalChange();
+        this.change();
+    }
+
+    initItem(element: CdkDragElement, pos: Point) {
+        element.freeDragPosition = pos;
+        element.ngAfterViewInit();
+    }
+
+    moveItem(event: CdkDragMove<any>, item: FileString, element: CdkDragElement) {
+        item.x = event.source._dragRef['_activeTransform'].x;
+        item.y = event.source._dragRef['_activeTransform'].y;
+        this.globalChange();
+        this.change();
     }
 
     removeItem(index: number) {

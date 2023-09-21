@@ -70,6 +70,8 @@ export type FileString = {
     title?: string;
     annotation?: string;
     bgColor?: string;
+    x?: number;
+    y?: number;
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
 export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };

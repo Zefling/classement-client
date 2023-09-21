@@ -186,38 +186,41 @@
                 (cdkDropListDropped)="drop(groups[0].list, $event)"
                 class="zone-classement"
             >
-                <div
-                    class="content-box"
-                    *ngFor="let item of groups[0].list; let index = index; trackBy: trackByFnFileString"
-                    cdkDragElement
-                    (removeElement)="removeFromZone(index)"
-                >
+                <ng-container *ngFor="let item of groups[0].list; let index = index; trackBy: trackByFnFileString">
                     <div
-                        class="content content-render"
-                        [ngClass]="options.itemTextPosition"
-                        [class.with-annotation]="item.annotation"
-                        [id]="item.id"
-                        #tile
+                        class="content-box"
+                        cdkDragElement
+                        #element="cdkDragElement"
+                        (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
+                        (cdkDragMoved)="moveItem($event, item, element)"
+                        (removeElement)="removeFromZone(index)"
                     >
-                        <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
-                            <img
-                                (ngInit)="calcWidth(item, tile); detectChanges()"
-                                (load)="calcWidth(item, tile); detectChanges()"
-                                src="{{ item.url }}"
-                                alt="{{ item.name }}"
-                            />
-                        </div>
                         <div
-                            *ngIf="item.title"
-                            #title
-                            class="title"
-                            [class.title-item-width-auto]="options.itemWidthAuto"
+                            class="content content-render"
+                            [ngClass]="options.itemTextPosition"
+                            [class.with-annotation]="item.annotation"
+                            [id]="item.id"
+                            #tile
                         >
-                            <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                        </div>
-                        <div class="tile-info" (click)="openTileInfo(item)"></div>
-                    </div>
-                </div>
+                            <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
+                                <img
+                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                    (load)="calcWidth(item, tile); detectChanges()"
+                                    src="{{ item.url }}"
+                                    alt="{{ item.name }}"
+                                />
+                            </div>
+                            <div
+                                *ngIf="item.title"
+                                #title
+                                class="title"
+                                [class.title-item-width-auto]="options.itemWidthAuto"
+                            >
+                                <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                            </div>
+                            <div class="tile-info" (click)="openTileInfo(item)"></div>
+                        </div></div
+                ></ng-container>
             </div>
 
             <div class="current-list">
