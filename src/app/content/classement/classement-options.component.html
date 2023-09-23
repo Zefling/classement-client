@@ -376,6 +376,31 @@
                 </label>
             </div>
         </ng-container>
+        <ng-container *ngIf="zoneMode.includes(options.mode)">
+            <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+
+            <div class="colors-line-back">
+                <div class="width-input">
+                    <label for="option-groups-size">{{ 'generator.options.title.color' | translate }}</label>
+                    <input
+                        id="option-groups-size"
+                        type="number"
+                        [ngModel]="options.groups?.length || 0"
+                        (ngModelChange)="updateListGroup($event)"
+                    />
+                </div>
+            </div>
+
+            <div class="colors-line-border">
+                <div *ngFor="let item of options.groups">
+                    <div class="width-input">
+                        <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
+                        <input id="option-title-color" type="text" [(ngModel)]="item.title" />
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
         <!-- ###############################  other options ###############################  -->
         <h4 class="title-other">{{ 'generator.options.global.title' | translate }}</h4>
 

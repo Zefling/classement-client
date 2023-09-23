@@ -186,6 +186,11 @@
                     (cdkDropListDropped)="drop(groups[0].list, $event)"
                     class="zone-classement"
                 >
+                    <div *ngIf="options.groups?.length" [class.zone-groups]="options.mode === 'iceberg'">
+                        <div *ngFor="let group of options.groups">
+                            <span class="group-title">{{ group.title }}</span>
+                        </div>
+                    </div>
                     <ng-container *ngFor="let item of groups[0].list; let index = index; trackBy: trackByFnFileString">
                         <div
                             class="content-box"

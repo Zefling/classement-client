@@ -72,6 +72,22 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         }));
     }
 
+    updateListGroup(size: number) {
+        if (!(size >= 0 && size <= 20)) {
+            size = size >= 0 ? 20 : 1;
+        }
+        if (!this.options!.groups) {
+            this.options!.groups = [];
+        }
+        if (size < this.options!.groups.length) {
+            this.options!.groups.splice(size, this.options!.groups.length);
+        } else if (size > this.options!.groups.length) {
+            for (let i = 0; i < size - this.options!.groups.length; i++) {
+                this.options!.groups.push({ title: '' });
+            }
+        }
+    }
+
     ngOnDestroy(): void {
         this._sub.clear();
     }

@@ -510,6 +510,26 @@ span.group-options {
     }
 }
 
+.zone-groups {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        flex: 1;
+        display: flex;
+
+        &:not(:first-child) {
+            border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+        }
+    }
+
+    .group-title {
+        padding: 3px;
+    }
+}
+
 // actions ------------------------------------------------------------------
 
 .save-actions {

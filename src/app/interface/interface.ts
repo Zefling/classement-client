@@ -84,6 +84,7 @@ export type Options = ThemeOptions & {
     description: string;
     tags: string[];
     mode: ModeNames;
+    groups?: OptionGroup[];
 };
 export type ThemeOptions = {
     titleTextColor: string;
@@ -120,6 +121,11 @@ export type ThemeOptions = {
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;
+};
+
+export type OptionGroup = {
+    title: string;
+    titlePosition?: string;
 };
 
 export type Theme = {
