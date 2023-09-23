@@ -628,7 +628,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     removeFromZone(index: number) {
-        this.list.push(...this.groups[0].list.splice(index, 1));
+        const item = this.groups[0].list.splice(index, 1)[0];
+        item.x = 0;
+        item.y = 0;
+        this.list.push(item);
         this.globalChange();
         this.change();
     }

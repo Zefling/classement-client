@@ -2,11 +2,13 @@
     display: flex;
     min-height: 100%;
     width: 100%;
+    max-width: 100%;
 
     & > div {
         padding: var(--main-padding);
         position: relative;
         flex: 1;
+        max-width: calc(100% - 10px);
     }
 }
 
@@ -211,12 +213,18 @@ img {
     }
 }
 
+.zone-classement-container {
+    overflow: auto;
+    max-width: 100%;
+    width: 100%;
+}
+
 .zone-classement {
     background-color: var(--over-image-background, var(--drop-list-background));
     background-image: var(--over-image-url);
     background-repeat: repeat;
     border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
-    width: var(--over-image-width, 1200px);
+    width: var(--over-image-width, 1170px);
     height: var(--over-image-height, 600px);
 }
 
@@ -238,7 +246,7 @@ img {
         height: 100%;
         grid-template:
             'a a a a a' auto
-            '. b e c .' var(--group-option-heigth, 35px)
+            '. b e c .' var(--group-option-height, 35px)
             'd d d d d' 0
             / 1fr auto 1fr auto 1fr;
 
@@ -512,7 +520,7 @@ span.group-options {
 // render ------------------------------------------------------------------
 
 .render {
-    width: var(--over-image-width, 1200px);
+    width: var(--over-image-width, 1170px);
     position: absolute;
     top: 0;
     left: -100000px;
@@ -717,7 +725,7 @@ loading-cmp {
 
 @media screen and (min-width: 769px) {
     :host.option-reduce {
-        --group-option-heigth: 0;
+        --group-option-height: 0;
 
         .table-classement {
             .button-up,
@@ -790,6 +798,6 @@ loading-cmp {
     }
 
     .names {
-        --group-option-heigth: 0;
+        --group-option-height: 0;
     }
 }

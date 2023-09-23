@@ -187,7 +187,9 @@ export class GlobalService {
         // item
         const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
-        r(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
+
+        const itemHeight = o.itemHeightAuto ? 'auto' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
+        r(body, '--over-item-height', itemHeight, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
         r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
@@ -204,6 +206,9 @@ export class GlobalService {
         // image background
         r(body, '--over-image-background', o.imageBackgroundColor, dash);
         r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        if (o.mode === 'axis' || o.mode === 'iceberg') {
+            r(body, '--over-image-height', (o.imageHeight ?? defaultOptions.imageHeight) + 'px', dash);
+        }
         r(
             body,
             '--over-image-url',

@@ -90,6 +90,7 @@ export type ThemeOptions = {
     titleTextOpacity: number;
     itemWidth: number;
     itemWidthAuto: boolean;
+    itemHeightAuto: boolean;
     itemHeight: number;
     itemPadding: number;
     itemBorder: number;
@@ -111,6 +112,7 @@ export type ThemeOptions = {
     imageBackgroundImage: string;
     imageBackgroundCustom: string;
     imageWidth: number;
+    imageHeight?: number;
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;

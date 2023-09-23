@@ -264,6 +264,7 @@
         "width": "Largeur d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
         "height": "Hauteur d'une tuile",
+        "height.auto": "Hauteur automatique des tuiles",
         "padding": "Rembourrage d'une tuile",
         "border": "Bordure d'une tuile",
         "margin": "Marge d'une tuile",
@@ -297,6 +298,7 @@
         "title": "Autres options",
         "background": "Couleur du fond :",
         "width": "Largeur de l'image rendue :",
+        "height": "Hauteur de l'image rendue :",
         "image": "Image de fond :",
         "name.image": {
           "none": "Défaut",

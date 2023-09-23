@@ -30,6 +30,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listThemes!: Select2Data;
 
+    zoneMode: ModeNames[] = ['iceberg', 'axis'];
+
     @ViewChild(ClassementThemesComponent) classementThemes!: ClassementThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
     @ViewChild('mode') mode!: ElementRef<HTMLSelectElement>;
