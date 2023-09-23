@@ -94,7 +94,8 @@
     }
 }
 
-.add-file {
+.add-file,
+.add-text {
     cursor: pointer;
     text-align: center;
     font-weight: 600;
@@ -274,7 +275,6 @@ img {
     textarea {
         border: 0;
         grid-area: 1 / 1;
-        text-align: center;
         font-size: var(--over-name-font-size, 120%);
         color: var(--text-color);
         width: 100%;
@@ -284,9 +284,6 @@ img {
         margin: 0;
         padding: 0;
         resize: none;
-        background: none;
-        appearance: none;
-        outline: 0;
     }
 
     &::after {
@@ -294,6 +291,16 @@ img {
         visibility: hidden;
         white-space: pre-wrap;
         word-break: break-word;
+    }
+
+    &.no-border {
+        &::after,
+        textarea {
+            background: none;
+            appearance: none;
+            outline: 0;
+            text-align: center;
+        }
     }
 }
 

@@ -101,19 +101,21 @@ export class GlobalService {
         const lines = text.split('\n');
         for (const line of lines) {
             const trimString = line.trim();
-            this.onFileLoaded.next({
-                filter: TypeFile.text,
-                file: {
-                    name: '',
-                    url: '',
-                    size: trimString.length,
-                    realSize: trimString.length,
-                    type: 'plain/text',
-                    date: new Date().getTime(),
-                    title: trimString,
-                    width: 150,
-                },
-            });
+            if (trimString !== '') {
+                this.onFileLoaded.next({
+                    filter: TypeFile.text,
+                    file: {
+                        name: '',
+                        url: '',
+                        size: trimString.length,
+                        realSize: trimString.length,
+                        type: 'plain/text',
+                        date: new Date().getTime(),
+                        title: trimString,
+                        width: 150,
+                    },
+                });
+            }
         }
     }
 

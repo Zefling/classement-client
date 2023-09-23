@@ -57,7 +57,7 @@
                         >
                             <div>
                                 <label class="name">
-                                    <div class="auto-resize" [attr.data-value]="input?.value">
+                                    <div class="auto-resize no-border" [attr.data-value]="input?.value">
                                         <textarea
                                             #input
                                             id="name-{{ indexGrp }}"
@@ -302,6 +302,9 @@
                     ></div>
                     <div class="content-box add-file" (click)="addFiles()">
                         <span>{{ 'generator.ranking.add.image' | translate }}</span>
+                    </div>
+                    <div class="content-box add-text" (click)="addTextsDialog()">
+                        <span>{{ 'generator.ranking.add.text' | translate }}</span>
                     </div>
                 </div>
             </div>
@@ -556,6 +559,27 @@
             </button>
         </div>
     </ng-container>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #dialogTexts>
+    <div class="colors-options">
+        <label class="name">
+            <div>
+                {{ 'generator.actions.texts.info' | translate }}
+            </div>
+            <div class="auto-resize" [attr.data-value]="inputText?.value">
+                <textarea #inputText [(ngModel)]="inputTexts" rows="1" maxlength="100"></textarea>
+            </div>
+        </label>
+        <div class="buttons">
+            <button class="default" (click)="closeTexts()">
+                {{ 'generator.actions.texts.cancel' | translate }}
+            </button>
+            <button class="primary" (click)="addTexts()">
+                {{ 'generator.actions.texts.ok' | translate }}
+            </button>
+        </div>
+    </div>
 </dialog-cmp>
 
 <classement-edit-image [currentTile]="currentTile" #editImage></classement-edit-image>

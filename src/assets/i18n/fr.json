@@ -348,6 +348,7 @@
       "list": "Liste",
       "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
       "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
+      "add.text": "Cliquez ici pour ajouter une texte ou un groupe de textes",
       "share.link": "Partagez ce classement à vos amis",
       "see": "Voir votre classement",
       "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
@@ -415,6 +416,11 @@
       "history": {
         "warning": "Ancienne version",
         "show": "Voir les anciennes versions"
+      },
+      "texts": {
+        "info": "Ajouter des tuiles de texts : une ligne par tuile, les ligne vides sont ignorées.",
+        "ok": "Ok",
+        "cancel": "Annuler"
       }
     },
     "change": {

@@ -105,6 +105,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     imdbActive = false;
 
+    inputTexts = '';
+
     @HostBinding('class.option-reduce')
     get optionReduce() {
         return this.lineOption === 'reduce';
@@ -124,6 +126,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
     @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
     @ViewChild('dialogGroupOption') dialogGroupOption!: DialogComponent;
+    @ViewChild('dialogTexts') dialogTexts!: DialogComponent;
     @ViewChild(ClassementEditImageComponent) editImage!: ClassementEditImageComponent;
     @ViewChild(ClassementLoginComponent) login!: ClassementLoginComponent;
     @ViewChild(ExternalImdbComponent) imdb!: ExternalImdbComponent;
@@ -596,6 +599,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this._inputFile.click();
+    }
+
+    addTextsDialog() {
+        this.dialogTexts.open();
+    }
+
+    closeTexts() {
+        this.inputTexts = '';
+        this.dialogTexts.close();
+    }
+
+    addTexts() {
+        this.global.addTexts(this.inputTexts);
+        this.closeTexts();
     }
 
     globalChange() {
