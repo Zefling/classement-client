@@ -680,7 +680,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
-    updateGoupOption(group: GroupOption) {
+    updateGroupOption(group: GroupOption) {
         this.currentGroup = group;
         this.dialogGroupOption.open();
     }
@@ -783,6 +783,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }
             ligne.list = [];
         }
+
         this.addIds();
         this.messageService.addMessage(this.translate.instant('message.reset.groups'));
     }

@@ -71,8 +71,8 @@
 
                                 <span
                                     class="color group-options icon-edit-2"
-                                    (click)="updateGoupOption({group, indexGrp, first, last})"
-                                    (keydown.enter)="updateGoupOption({group, indexGrp, first, last})"
+                                    (click)="updateGroupOption({group, indexGrp, first, last})"
+                                    (keydown.enter)="updateGroupOption({group, indexGrp, first, last})"
                                     tabindex="0"
                                 ></span>
                                 <span
@@ -170,8 +170,8 @@
                                 <span
                                     tabindex="0"
                                     class="color group-options icon-edit-2"
-                                    (click)="updateGoupOption({group, indexGrp, first, last})"
-                                    (keydown.enter)="updateGoupOption({group, indexGrp, first, last})"
+                                    (click)="updateGroupOption({group, indexGrp, first, last})"
+                                    (keydown.enter)="updateGroupOption({group, indexGrp, first, last})"
                                 ></span>
                             </div>
                         </td>
@@ -187,7 +187,11 @@
                     class="zone-classement"
                 >
                     <div *ngIf="options.groups?.length" [class.zone-groups]="options.mode === 'iceberg'">
-                        <div *ngFor="let group of options.groups">
+                        <div
+                            *ngFor="let group of options.groups"
+                            [style.--h]="group.titleHorizontalPosition"
+                            [style.--v]="group.titleVerticalPosition"
+                        >
                             <span class="group-title">{{ group.title }}</span>
                         </div>
                     </div>
@@ -200,6 +204,7 @@
                             (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
                             (cdkDragMoved)="moveItem($event, item, element)"
                             (removeElement)="removeFromZone(index)"
+                            [style.--over-item-background]="item.bgColor"
                         >
                             <div
                                 class="content content-render"

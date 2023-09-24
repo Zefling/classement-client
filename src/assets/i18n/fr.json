@@ -322,6 +322,24 @@
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
+      },
+      "zone.title": {
+        "number": "Nombre de groupes avec titre",
+        "name": "Nom du groupe",
+        "align": {
+          "vertical": {
+            "label": "Alignement vertical",
+            "start": "Haut",
+            "center": "Milieu",
+            "end": "Bas"
+          },
+          "horizontal": {
+            "label": "Alignement horizontal",
+            "start": "Debut",
+            "center": "Centrer",
+            "end": "Fin"
+          }
+        }
       }
     },
     "screen": {
@@ -348,7 +366,7 @@
       "list": "Liste",
       "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
       "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
-      "add.text": "Cliquez ici pour ajouter une texte ou un groupe de textes",
+      "add.text": "Cliquez ici pour ajouter un texte ou un groupe de textes",
       "share.link": "Partagez ce classement à vos amis",
       "see": "Voir votre classement",
       "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
@@ -418,7 +436,7 @@
         "show": "Voir les anciennes versions"
       },
       "texts": {
-        "info": "Ajouter des tuiles de texts : une ligne par tuile, les ligne vides sont ignorées.",
+        "info": "Ajouter des tuiles de textes : une ligne par tuile, les ligne vides sont ignorées.",
         "ok": "Ok",
         "cancel": "Annuler"
       }

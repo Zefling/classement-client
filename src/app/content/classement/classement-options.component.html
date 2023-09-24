@@ -50,6 +50,10 @@
             <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
             <span>{{ 'generator.options.item.width.auto' | translate }}</span>
         </label>
+        <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
+            <input type="checkbox" [(ngModel)]="options.itemHeightAuto" />
+            <span>{{ 'generator.options.item.height.auto' | translate }}</span>
+        </label>
     </div>
     <div class="stream-mode">
         <label class="toogle-switch">
@@ -110,6 +114,7 @@
                     max="300"
                     class="item-height"
                     [(ngModel)]="options.itemHeight"
+                    (ngModelChange)="updateSize('itemHeight')"
                     title="{{ 'generator.options.item.height' | translate }}"
                 />
                 <ng-template #itemHeightAuto>
@@ -124,6 +129,7 @@
                     max="300"
                     class="item-width"
                     [(ngModel)]="options.itemWidth"
+                    (ngModelChange)="updateSize('itemWidth')"
                     title="{{ 'generator.options.item.width' | translate }}"
                 />
                 <ng-template #itemWidthAuto>
@@ -135,7 +141,7 @@
                     <input id="option-item-width-auto" type="checkbox" [(ngModel)]="options.itemWidthAuto" />
                     <span>{{ 'generator.options.item.width.auto' | translate }}</span>
                 </label>
-                <label class="toogle-switch">
+                <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
                     <input id="option-item-height-auto" type="checkbox" [(ngModel)]="options.itemHeightAuto" />
                     <span>{{ 'generator.options.item.height.auto' | translate }}</span>
                 </label>
@@ -379,9 +385,9 @@
         <ng-container *ngIf="zoneMode.includes(options.mode)">
             <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
 
-            <div class="colors-line-back">
+            <div class="zone-title-number">
                 <div class="width-input">
-                    <label for="option-groups-size">{{ 'generator.options.title.color' | translate }}</label>
+                    <label for="option-groups-size">{{ 'generator.options.zone.title.number' | translate }}</label>
                     <input
                         id="option-groups-size"
                         type="number"
@@ -391,11 +397,43 @@
                 </div>
             </div>
 
-            <div class="colors-line-border">
+            <div class="zone-title-groups">
                 <div *ngFor="let item of options.groups">
                     <div class="width-input">
-                        <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
-                        <input id="option-title-color" type="text" [(ngModel)]="item.title" />
+                        <label for="option-title-name">{{ 'generator.options.zone.title.name' | translate }}</label>
+                        <input id="option-title-name" type="text" [(ngModel)]="item.title" />
+                    </div>
+                    <div class="width-input">
+                        <label for="option-title-align-vertical">{{
+                            'generator.options.zone.title.align.vertical.label' | translate
+                        }}</label>
+                        <select id="option-title-align-vertical" [(ngModel)]="item.titleVerticalPosition">
+                            <option value="start">
+                                {{ 'generator.options.zone.title.align.vertical.start' | translate }}
+                            </option>
+                            <option value="center">
+                                {{ 'generator.options.zone.title.align.vertical.center' | translate }}
+                            </option>
+                            <option value="end">
+                                {{ 'generator.options.zone.title.align.vertical.end' | translate }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="width-input">
+                        <label for="option-title-align-horizontal">{{
+                            'generator.options.zone.title.align.horizontal.label' | translate
+                        }}</label>
+                        <select id="option-title-align-horizontal" [(ngModel)]="item.titleHorizontalPosition">
+                            <option value="start">
+                                {{ 'generator.options.zone.title.align.horizontal.start' | translate }}
+                            </option>
+                            <option value="center">
+                                {{ 'generator.options.zone.title.align.horizontal.center' | translate }}
+                            </option>
+                            <option value="end">
+                                {{ 'generator.options.zone.title.align.horizontal.end' | translate }}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>

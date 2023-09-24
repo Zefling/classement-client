@@ -102,6 +102,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (ok) {
             this.editor.reset();
             this.options!.mode = this._modeTemp!;
+            this.options!.itemHeightAuto = this.zoneMode.includes(this.options!.mode);
         } else {
             this.mode.nativeElement.value = this._previousMode!;
         }
@@ -195,6 +196,14 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     resetTitleText() {
         this.options!.titleTextColor = '';
         this.options!.titleTextOpacity = 100;
+    }
+
+    updateSize(axis: 'itemHeight' | 'itemWidth') {
+        if (this.options![axis] < 16) {
+            this.options![axis] = 16;
+        } else if (this.options![axis] > 300) {
+            this.options![axis] = 300;
+        }
     }
 
     private getImageUrl(item: string) {

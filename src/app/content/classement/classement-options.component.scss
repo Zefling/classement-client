@@ -12,6 +12,7 @@
         'title-line        title-line          title-line          title-line          '
         'colors-line-back  colors-line-border  name-bg-opacity     .                   '
         'font-size         name-width          group-direction     name-markdown       '
+        'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
@@ -174,6 +175,24 @@ h4 {
 
 .name-markdown {
     grid-area: name-markdown;
+}
+
+.zone-title-number {
+    grid-area: zone-title-number;
+}
+
+.zone-title-groups {
+    grid-area: zone-title-groups;
+
+    & > * {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        & > * {
+            flex: 1;
+        }
+    }
 }
 
 .info-desc {

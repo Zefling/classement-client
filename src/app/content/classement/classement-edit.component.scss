@@ -55,6 +55,7 @@
     padding: var(--over-item-padding, 10px);
     margin: var(--over-item-margin, 2px);
     width: var(--over-item-width, 150px);
+    max-width: 300px;
     height: var(--over-item-height, 150px);
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
@@ -368,7 +369,9 @@ span.group-options {
     text-align: center;
     font-size: 85%;
     word-wrap: break-word;
-    max-width: 100%;
+    max-width: min(100%, 300px);
+    overflow: visible;
+    white-space: break-spaces;
 }
 
 .title {
@@ -381,6 +384,9 @@ span.group-options {
     span {
         white-space: nowrap;
         display: inline-block;
+        overflow: hidden;
+        max-width: 300px;
+        text-overflow: ellipsis;
     }
 }
 
@@ -506,6 +512,10 @@ span.group-options {
     }
 }
 
+.current-list .cdk-drop-list {
+    min-height: 40px;
+}
+
 // iceberg / zone -----------------------------------------------------------
 
 .cdk-drop-zone {
@@ -526,6 +536,8 @@ span.group-options {
     & > * {
         flex: 1;
         display: flex;
+        justify-content: var(--h);
+        align-items: var(--v);
 
         &:not(:first-child) {
             border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));

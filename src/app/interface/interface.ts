@@ -125,7 +125,8 @@ export type ThemeOptions = {
 
 export type OptionGroup = {
     title: string;
-    titlePosition?: string;
+    titleVerticalPosition?: string;
+    titleHorizontalPosition?: string;
 };
 
 export type Theme = {
