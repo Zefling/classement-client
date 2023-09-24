@@ -3,14 +3,23 @@ import { Component, ElementRef, Host, Input, OnChanges, OnDestroy, SimpleChanges
 import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { Category, FileHandle, ModeNames, Options, Theme } from 'src/app/interface/interface';
+import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
-import { imagesThemes } from './classement-default';
+import {
+    imageInfos,
+    imagesIceberg,
+    imagesLists,
+    imagesThemes,
+    themes,
+    themesIceberg,
+    themesList,
+    themesLists,
+} from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
 import { ClassementThemesComponent } from './classement-themes.component';
 
@@ -29,6 +38,11 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     @Input() lockCategory = false;
 
     listThemes!: Select2Data;
+
+    themes!: Theme[];
+
+    imagesList: ImagesNames[] = imagesThemes;
+    themesList: ThemesNames[] = themes;
 
     zoneMode: ModeNames[] = ['iceberg', 'axis'];
 
@@ -52,17 +66,35 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             }),
         );
 
-        this.updateList();
+        this.updateMode();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['options']) {
-            this.updateList();
+            this.updateMode();
         }
     }
 
-    updateList() {
-        this.listThemes = imagesThemes.map<Select2Option>(e => ({
+    updateMode() {
+        if (this.options) {
+            const theme = this._modeTemp ?? this.options.mode ?? 'default';
+
+            if (theme === 'iceberg') {
+                this.imagesList = imagesIceberg;
+                this.themesList = themesIceberg;
+            } else {
+                this.imagesList = imagesLists;
+                this.themesList = themesLists;
+            }
+            this.updateList(theme);
+
+            this.themes = themesList.filter(e => this.themesList.includes(e.name));
+        }
+    }
+
+    updateList(mode: ModeNames = this._modeTemp ?? this.options?.mode ?? 'default') {
+        // list image
+        this.listThemes = this.imagesList.map<Select2Option>(e => ({
             value: e,
             label: e,
             data: {
@@ -70,6 +102,15 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 label: e,
             },
         }));
+        if (this.options) {
+            // list theme
+            const themeOption = themesList.find(e => e.name === this.themesList[0]);
+            if (themeOption && this._previousMode && this._previousMode !== this.options.mode) {
+                this.changeTheme(themeOption);
+            }
+            // select mode
+            this.options.mode = mode;
+        }
     }
 
     updateListGroup(size: number) {
@@ -101,8 +142,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     modeChangeValid(ok: boolean) {
         if (ok) {
             this.editor.reset();
-            this.options!.mode = this._modeTemp!;
-            this.options!.itemHeightAuto = this.zoneMode.includes(this.options!.mode);
+            this.updateMode();
+            this.options!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
             this.mode.nativeElement.value = this._previousMode!;
         }
@@ -126,19 +167,25 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     changeTheme(theme: Theme) {
-        Object.assign(this.options!, theme.options, {
-            title: this.options!.title,
-            category: this.options!.category,
-            autoSave: this.options!.autoSave,
-            streamMode: this.options!.streamMode,
-            itemWidthAuto: this.options!.itemWidthAuto,
-        });
+        const mode = this.options!.mode;
+        Object.assign(
+            this.options!,
+            theme.options,
+            {
+                title: this.options!.title,
+                category: this.options!.category,
+                autoSave: this.options!.autoSave,
+                streamMode: this.options!.streamMode,
+                itemWidthAuto: this.options!.itemWidthAuto,
+            },
+            { mode },
+        );
     }
 
     changeCustomBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
-            this.updateList();
+            this.updateMode();
         }
     }
 
@@ -206,14 +253,14 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         }
     }
 
-    private getImageUrl(item: string) {
+    private getImageUrl(item: ImagesNames) {
         switch (item) {
             case 'none':
                 return null;
             case 'custom':
                 return this.options ? `url(${this.options.imageBackgroundCustom})` : 'none';
             default:
-                return `url(./assets/themes/${item}.mini.svg)`;
+                return `url(./assets/themes/${imageInfos[item]!.mini})`;
         }
     }
 

@@ -437,6 +437,42 @@
                     </div>
                 </div>
             </div>
+
+            <div class="group-line-width input-value">
+                <div class="number-input">
+                    <label for="option-group-line-width">{{ 'generator.options.name.width' | translate }}</label>
+                    <input
+                        id="option-group-line-width"
+                        type="number"
+                        min="0"
+                        max="50"
+                        [(ngModel)]="options.groupLineSize"
+                    />
+                </div>
+            </div>
+
+            <div class="colors-group-line input-button">
+                <div class="width-input">
+                    <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
+                    <input id="option-title-color" type="color" [(ngModel)]="options.groupLineColor" />
+                </div>
+                <div class="opacity">
+                    <label for="option-title-opacity">{{ 'generator.options.title.opacity' | translate }}</label>
+                    <input
+                        for="option-title-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [disabled]="!options.groupLineColor"
+                        [(ngModel)]="options.groupLineOpacity"
+                    />
+                </div>
+                <button (click)="resetTitleText()" [disabled]="!options.groupLineColor">
+                    {{ 'generator.options.clear' | translate }}
+                </button>
+                <div class="color-render" *ngIf="options.groupLineColor"></div>
+            </div>
         </ng-container>
 
         <!-- ###############################  other options ###############################  -->
@@ -538,7 +574,7 @@
     </div>
 </div>
 
-<classement-themes (change)="changeTheme($event)"></classement-themes>
+<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
 
 <dialog-cmp class="auto-format" #dialogChangeMode>
     <p class="question">

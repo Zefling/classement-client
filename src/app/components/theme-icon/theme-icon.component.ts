@@ -1,5 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
+import { imageInfos } from 'src/app/content/classement/classement-default';
+
 import { Theme } from '../../interface/interface';
 import { color } from '../../tools/function';
 
@@ -41,7 +43,9 @@ export class ThemeIconComponent implements OnInit {
             '--o-image-background': o.imageBackgroundColor,
             '--o-image-width': o.imageWidth + 'px',
             '--o-image-url':
-                o.imageBackgroundImage !== 'none' ? 'url(./assets/themes/' + o.imageBackgroundImage + '.svg)' : null,
+                o.imageBackgroundImage !== 'none'
+                    ? 'url(./assets/themes/' + imageInfos[o.imageBackgroundImage]!.normal + ')'
+                    : null,
             '--o-name-width': o.nameWidth + 'px',
             '--o-name-font-size': o.nameFontSize + '%',
         };

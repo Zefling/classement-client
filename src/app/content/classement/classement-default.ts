@@ -1,6 +1,6 @@
-import { FormattedGroup, Options, Theme, ThemeNames } from 'src/app/interface/interface';
+import { FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 
-export const defautGroup: FormattedGroup[] = [
+export const defaultGroup: FormattedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
     { name: 'A', bgColor: '#f66151', txtColor: '#000000', list: [] },
     { name: 'B', bgColor: '#ffbe6f', txtColor: '#000000', list: [] },
@@ -44,15 +44,41 @@ export const defaultOptions: Options = {
     nameFontSize: 120,
     nameBackgroundOpacity: 100,
     nameMarkdown: false,
+    groupLineColor: '',
+    groupLineSize: 1,
+    groupLineOpacity: 100,
     imageBackgroundImage: 'none',
     imageBackgroundCustom: '',
     mode: 'default',
     direction: 'ltr',
 };
 
-export const imagesThemes = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
+export const imageInfos: Partial<Record<ImagesNames, { normal: string; mini: string }>> = {
+    iceberg: {
+        normal: 'iceberg.jpg',
+        mini: 'iceberg.mini.webp',
+    },
+    sakura: {
+        normal: 'sakura.svg',
+        mini: 'sakura.mini.svg',
+    },
+    etoile: {
+        normal: 'etoile.svg',
+        mini: 'etoile.mini.svg',
+    },
+    ciel: {
+        normal: 'ciel.svg',
+        mini: 'ciel.mini.svg',
+    },
+};
 
-export const themes: ThemeNames[] = ['default', 'compact', 'sakura', 'night', 'ciel'];
+export const imagesLists: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
+export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
+export const imagesThemes = imagesLists;
+
+export const themesLists: ThemesNames[] = ['default', 'compact', 'sakura', 'night', 'ciel'];
+export const themesIceberg: ThemesNames[] = ['iceberg'];
+export const themes = themesLists;
 
 export const themesList: Theme[] = [
     {
@@ -140,9 +166,35 @@ export const themesList: Theme[] = [
             imageBackgroundImage: 'ciel',
         },
     },
+    {
+        name: 'iceberg',
+        options: {
+            ...defaultOptions,
+            mode: 'iceberg',
+            imageBackgroundImage: 'iceberg',
+            itemHeightAuto: true,
+            groupLineSize: 3,
+            groupLineColor: '#e01b24',
+            groupLineOpacity: 80,
+            imageHeight: 1500,
+            imageWidth: 1000,
+            imageSize: 'cover',
+            imagePosition: 'center',
+            groups: [
+                { title: '0' },
+                { title: '1' },
+                { title: '2' },
+                { title: '3' },
+                { title: '4' },
+                { title: '5' },
+                { title: '6' },
+                { title: '7' },
+            ],
+        },
+    },
 ];
 
-export const defaultTheme = (name: ThemeNames) => themesList.find(e => e.name === name)!;
+export const defaultTheme = (name: ThemesNames) => themesList.find(e => e.name === name)!;
 
 export const categories: string[] = [
     'animal',

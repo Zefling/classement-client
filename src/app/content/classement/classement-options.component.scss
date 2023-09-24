@@ -13,6 +13,7 @@
         'colors-line-back  colors-line-border  name-bg-opacity     .                   '
         'font-size         name-width          group-direction     name-markdown       '
         'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
+        'group-line-width  colors-group-line   .                   .                   '
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
@@ -193,6 +194,13 @@ h4 {
             flex: 1;
         }
     }
+}
+
+.group-line-width {
+    grid-area: group-line-width;
+}
+.colors-group-line {
+    grid-area: colors-group-line;
 }
 
 .info-desc {

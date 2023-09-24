@@ -224,6 +224,8 @@ img {
 .zone-classement {
     background-color: var(--over-image-background, var(--drop-list-background));
     background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
     background-repeat: repeat;
     border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
     width: var(--over-image-width, 1170px);
@@ -540,7 +542,8 @@ span.group-options {
         align-items: var(--v);
 
         &:not(:first-child) {
-            border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+            border-top: var(--over-group-line-size, var(--group-line-size)) solid
+                var(--over-group-line-color, var(--group-line-color));
         }
     }
 

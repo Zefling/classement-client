@@ -51,7 +51,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { defaultOptions, defaultTheme, defautGroup } from './classement-default';
+import { defaultGroup, defaultOptions, defaultTheme } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ExternalImdbComponent } from './external.imdb.component';
@@ -250,8 +250,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ...(this.global.jsonTmp?.options || defaultOptions),
                 ...{ showAdvancedOptions: false },
             };
-
-            this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defautGroup);
+            this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defaultGroup);
             this.list = this.global.jsonTmp?.list || [];
             this.addIds();
             this.id = undefined;
@@ -295,11 +294,15 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         this.classement!.banner = classement.banner;
                     }
                 }
+
                 this.options = {
                     ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
                     ...data.infos.options,
                     ...{ showAdvancedOptions: false },
                 };
+                if (data.infos.options.groups) {
+                    this.options.groups = data.infos.options.groups;
+                }
                 this.groups = data.data.groups;
                 this.list = data.data.list;
                 this.addIds();
@@ -321,6 +324,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             ...classement.data.options,
             ...{ showAdvancedOptions: false, category: classement.category },
         };
+        if (classement.data.options.groups) {
+            this.options.groups = classement.data.options.groups;
+        }
         this.groups = classement.data.groups;
         this.list = classement.data.list;
         this.teamsModeUpdateTile();

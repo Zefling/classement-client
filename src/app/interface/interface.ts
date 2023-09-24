@@ -110,14 +110,19 @@ export type ThemeOptions = {
     lineBackgroundOpacity: number;
     lineBorderOpacity: number;
     imageBackgroundColor: string;
-    imageBackgroundImage: string;
+    imageBackgroundImage: ImagesNames;
     imageBackgroundCustom: string;
     imageWidth: number;
     imageHeight?: number;
+    imageSize?: 'cover';
+    imagePosition?: 'center';
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;
     nameMarkdown: boolean;
+    groupLineSize: number;
+    groupLineColor: string;
+    groupLineOpacity: number;
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;
@@ -130,7 +135,7 @@ export type OptionGroup = {
 };
 
 export type Theme = {
-    name: ThemeNames;
+    name: ThemesNames;
     options: Options;
 };
 
@@ -194,7 +199,7 @@ export interface PreferencesData {
     newColor: PreferenceNewColor;
     newLine: PreferenceNewLine;
     lineOption: PreferenceLineOption;
-    theme: ThemeNames;
+    theme: ThemesNames;
     pageSize: number;
     authApiKeys: {
         imdb: string;
@@ -203,7 +208,8 @@ export interface PreferencesData {
 
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
-export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';
+export type ThemesNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
+export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
 export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis';
 

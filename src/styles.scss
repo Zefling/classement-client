@@ -101,6 +101,9 @@ body.light-mode {
     --tile-add-file-background: #fff;
     --tile-add-file-color: #000d;
     --tile-add-filter: brightness(0.8);
+    // zone
+    --group-line-size: 1px;
+    --group-line-color: #ccc;
     // info
     --alert-color: #b00;
     --alert-background: #bb00004f;
@@ -255,6 +258,9 @@ body.dark-mode {
     --tile-add-file-background: #242424;
     --tile-add-file-color: #fffd;
     --tile-add-filter: brightness(1.2);
+    // zone
+    --group-line-size: 1px;
+    --group-line-color: #3f3f3f;
     // info
     --alert-color: #ca5f5f;
     --alert-background: #8c000014;

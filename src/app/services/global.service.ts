@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { defaultOptions } from '../content/classement/classement-default';
+import { defaultOptions, imageInfos } from '../content/classement/classement-default';
 import {
     Data,
     FileHandle,
@@ -216,10 +216,15 @@ export class GlobalService {
             o.imageBackgroundImage !== 'none'
                 ? o.imageBackgroundImage === 'custom'
                     ? `url(${cache[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
-                    : `url(./assets/themes/${o.imageBackgroundImage}.svg)`
+                    : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`
                 : null,
             dash,
         );
+        r(body, '--over-image-background-position', o.imagePosition, dash);
+        r(body, '--over-image-background-size', o.imageSize, dash);
+        // zone group
+        r(body, '--over-group-line-size', (o.groupLineSize ?? defaultOptions.groupLineSize) + 'px', dash);
+        r(body, '--over-group-line-color', color(o.groupLineColor, o.groupLineOpacity), dash);
     }
 
     getValuesFromOptions(o: Options) {
