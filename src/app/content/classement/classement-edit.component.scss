@@ -518,7 +518,7 @@ span.group-options {
     min-height: 40px;
 }
 
-// iceberg / zone -----------------------------------------------------------
+// zone : iceberg / axis -----------------------------------------------------------
 
 .cdk-drop-zone {
     position: relative;
@@ -549,6 +549,118 @@ span.group-options {
 
     .group-title {
         padding: 3px;
+    }
+}
+
+.zone-axis {
+    height: 100%;
+    width: 100%;
+
+    .axis {
+        --width: 3px;
+        --arrow-size: 15px;
+        --color: #fff;
+
+        display: grid;
+        grid-template:
+            ' . . . . . ' calc(4px + var(--width))
+            ' . . . . . ' 1fr
+            ' . . . . . ' var(--width)
+            ' . . . . . ' 1fr
+            ' . . . . . ' calc(4px + var(--width)) /
+            calc(4px + var(--width)) 1fr var(--width) 1fr calc(4px + var(--width));
+        height: 100%;
+        width: 100%;
+        position: absolute;
+
+        .axis-v,
+        .axis-h {
+            background: var(--color);
+            grid-column: 3/4;
+            grid-row: 2/5;
+            position: relative;
+
+            &::before,
+            &::after {
+                position: absolute;
+                display: block;
+                content: ' ';
+                border: 0 solid var(--color);
+                border-width: var(--width) 0 0 var(--width);
+                width: var(--arrow-size);
+                height: var(--arrow-size);
+            }
+
+            &::before {
+                top: 0;
+                left: calc(var(--arrow-size) / -2);
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                left: calc(var(--arrow-size) / -2);
+                bottom: 0;
+                transform: rotate(-135deg);
+            }
+        }
+
+        .axis-h {
+            grid-row: 3/4;
+            grid-column: 2/5;
+
+            &::before {
+                top: calc(var(--arrow-size) / -2);
+                left: 0;
+                transform: rotate(-45deg);
+            }
+
+            &::after {
+                top: calc(var(--arrow-size) / -2);
+                left: auto;
+                right: 0;
+                transform: rotate(135deg);
+            }
+        }
+    }
+
+    .names {
+        position: absolute;
+        top: 0;
+        display: grid;
+        grid-template:
+            ' tl . t . tr ' auto
+            ' .  . . . .  ' 1fr
+            ' l  . . . r  ' auto
+            ' .  . . . .  ' 1fr
+            ' bl . b . br ' auto /
+            auto 1fr auto 1fr auto;
+        height: 100%;
+        width: 100%;
+
+        :nth-child(1) {
+            grid-area: t;
+        }
+        :nth-child(2) {
+            grid-area: tr;
+        }
+        :nth-child(3) {
+            grid-area: r;
+        }
+        :nth-child(4) {
+            grid-area: br;
+        }
+        :nth-child(5) {
+            grid-area: b;
+        }
+        :nth-child(6) {
+            grid-area: bl;
+        }
+        :nth-child(7) {
+            grid-area: l;
+        }
+        :nth-child(8) {
+            grid-area: tl;
+        }
     }
 }
 
