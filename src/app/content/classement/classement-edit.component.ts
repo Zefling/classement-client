@@ -794,6 +794,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.messageService.addMessage(this.translate.instant('message.reset.groups'));
     }
 
+    @HostListener('window:keydown.control.s', ['$event'])
+    keySaveLocal(event: Event) {
+        this.saveLocal();
+        event.preventDefault();
+    }
+
     saveLocal(silence: boolean = false, route: boolean = true) {
         this.dbService.saveLocal(this.getData()).then(
             item => {
