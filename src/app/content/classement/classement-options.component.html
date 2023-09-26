@@ -1,5 +1,5 @@
 <h3>{{ 'generator.options.group.title' | translate }}</h3>
-<div *ngIf="options" class="options" [class.simplified]="!options.showAdvancedOptions">
+<div *ngIf="options" class="options {{ options.mode }}" [class.simplified]="!options.showAdvancedOptions">
     <div class="title">
         <label for="option-title">{{ 'generator.options.title' | translate }}</label>
         <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="options.title" /></div>
@@ -382,7 +382,7 @@
                 </label>
             </div>
         </ng-container>
-        <ng-container *ngIf="zoneMode.includes(options.mode)">
+        <ng-container *ngIf="options.mode === 'iceberg'">
             <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
 
             <div class="zone-title-number">
@@ -472,6 +472,21 @@
                     {{ 'generator.options.clear' | translate }}
                 </button>
                 <div class="color-render" *ngIf="options.groupLineColor"></div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="options.mode === 'axis'">
+            <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+
+            <div class="zone-title-axis">
+                <div *ngFor="let item of options.groups; let index = index">
+                    <div class="width-input">
+                        <label for="option-title-name">{{
+                            (index % 2 === 0 ? 'generator.options.zone.axis.name' : 'generator.options.zone.area.name')
+                                | translate
+                        }}</label>
+                        <input id="option-title-name" type="text" [(ngModel)]="item.title" />
+                    </div>
+                </div>
             </div>
         </ng-container>
 

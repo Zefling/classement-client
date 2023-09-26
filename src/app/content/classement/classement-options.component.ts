@@ -12,10 +12,12 @@ import { environment } from 'src/environments/environment';
 
 import {
     imageInfos,
+    imagesAxis,
     imagesIceberg,
     imagesLists,
     imagesThemes,
     themes,
+    themesAxis,
     themesIceberg,
     themesList,
     themesLists,
@@ -82,6 +84,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             if (theme === 'iceberg') {
                 this.imagesList = imagesIceberg;
                 this.themesList = themesIceberg;
+            }
+            if (theme === 'axis') {
+                this.imagesList = imagesAxis;
+                this.themesList = themesAxis;
             } else {
                 this.imagesList = imagesLists;
                 this.themesList = themesLists;

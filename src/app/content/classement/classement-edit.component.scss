@@ -553,14 +553,13 @@ span.group-options {
 }
 
 .zone-axis {
+    --width: 3px;
+    --arrow-size: 15px;
+    --color: #fff;
     height: 100%;
     width: 100%;
 
     .axis {
-        --width: 3px;
-        --arrow-size: 15px;
-        --color: #fff;
-
         display: grid;
         grid-template:
             ' . . . . . ' calc(4px + var(--width))
@@ -628,38 +627,80 @@ span.group-options {
         top: 0;
         display: grid;
         grid-template:
-            ' tl . t . tr ' auto
-            ' .  . . . .  ' 1fr
-            ' l  . . . r  ' auto
-            ' .  . . . .  ' 1fr
-            ' bl . b . br ' auto /
-            auto 1fr auto 1fr auto;
+            ' tl . . t . tr ' auto
+            ' .  . . . . .  ' 1fr
+            ' .  . . . . .  ' calc(var(--arrow-size) * 2)
+            ' l  . . . . r  ' auto
+            ' .  . . . . .  ' 1fr
+            ' bl . . b . br ' auto /
+            auto 1fr calc(var(--arrow-size) * 2) 0 1fr auto;
         height: 100%;
         width: 100%;
 
+        & > * {
+            position: relative;
+            & > span {
+                position: absolute;
+                white-space: pre;
+            }
+        }
+
         :nth-child(1) {
             grid-area: t;
+            & > span {
+                top: 2px;
+                left: 2px;
+            }
         }
         :nth-child(2) {
             grid-area: tr;
+            & > span {
+                top: 2px;
+                right: 2px;
+            }
         }
         :nth-child(3) {
             grid-area: r;
+
+            & > span {
+                top: 2px;
+                right: 2px;
+            }
         }
         :nth-child(4) {
             grid-area: br;
+            & > span {
+                bottom: 2px;
+                right: 2px;
+            }
         }
         :nth-child(5) {
             grid-area: b;
+            & > span {
+                bottom: 2px;
+                left: 2px;
+            }
         }
         :nth-child(6) {
             grid-area: bl;
+            & > span {
+                bottom: 2px;
+                left: 2px;
+            }
         }
         :nth-child(7) {
             grid-area: l;
+            & > span {
+                top: 2px;
+                left: 2px;
+            }
         }
         :nth-child(8) {
             grid-area: tl;
+            & > span {
+                top: 2px;
+                left: 2px;
+            }
         }
     }
 }

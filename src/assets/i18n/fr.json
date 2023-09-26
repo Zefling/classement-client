@@ -340,7 +340,9 @@
             "end": "Fin"
           }
         }
-      }
+      },
+      "zone.axis.name": "Nom de l'axe",
+      "zone.area.name": "Nom de l'aire"
     },
     "screen": {
       "default": "Affiche par défaut",

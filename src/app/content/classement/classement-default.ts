@@ -74,10 +74,12 @@ export const imageInfos: Partial<Record<ImagesNames, { normal: string; mini: str
 
 export const imagesLists: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
+export const imagesAxis: ImagesNames[] = ['none', 'custom'];
 export const imagesThemes = imagesLists;
 
 export const themesLists: ThemesNames[] = ['default', 'compact', 'sakura', 'night', 'ciel'];
 export const themesIceberg: ThemesNames[] = ['iceberg'];
+export const themesAxis: ThemesNames[] = ['axis'];
 export const themes = themesLists;
 
 export const themesList: Theme[] = [
@@ -189,6 +191,28 @@ export const themesList: Theme[] = [
                 { title: '5' },
                 { title: '6' },
                 { title: '7' },
+            ],
+        },
+    },
+    {
+        name: 'axis',
+        options: {
+            ...defaultOptions,
+            mode: 'axis',
+            itemHeightAuto: true,
+            imageHeight: 1000,
+            imageWidth: 1000,
+            imageSize: 'cover',
+            imagePosition: 'center',
+            groups: [
+                { title: 'Y' },
+                { title: ' ' },
+                { title: 'X' },
+                { title: '' },
+                { title: '' },
+                { title: '' },
+                { title: '' },
+                { title: '' },
             ],
         },
     },

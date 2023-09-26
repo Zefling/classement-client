@@ -1,4 +1,16 @@
 .options {
+    --groups: 'colors-line-back  colors-line-border  name-bg-opacity     .                   '
+        'font-size         name-width          group-direction     name-markdown       ';
+
+    &.iceberg {
+        --groups: 'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
+            'group-line-width  colors-group-line   .                   .                   ';
+    }
+
+    &.axis {
+        --groups: 'zone-title-axis   zone-title-axis     zone-title-axis     zone-title-axis     ';
+    }
+
     display: grid;
     grid-template:
         'title             title               categories          mode                '
@@ -10,10 +22,7 @@
         'sizes             colors-item-text    item-text-pos       item-text-back      '
         // ----------------------------------------------------------------------------
         'title-line        title-line          title-line          title-line          '
-        'colors-line-back  colors-line-border  name-bg-opacity     .                   '
-        'font-size         name-width          group-direction     name-markdown       '
-        'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
-        'group-line-width  colors-group-line   .                   .                   '
+        var(--groups)
         // ----------------------------------------------------------------------------
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
@@ -193,6 +202,42 @@ h4 {
         & > * {
             flex: 1;
         }
+    }
+}
+
+.zone-title-axis {
+    grid-area: zone-title-axis;
+
+    display: grid;
+    gap: 10px;
+    grid-template:
+        'h a b'
+        'g . c'
+        'f e d';
+
+    :nth-child(1) {
+        grid-area: a;
+    }
+    :nth-child(2) {
+        grid-area: b;
+    }
+    :nth-child(3) {
+        grid-area: c;
+    }
+    :nth-child(4) {
+        grid-area: d;
+    }
+    :nth-child(5) {
+        grid-area: e;
+    }
+    :nth-child(6) {
+        grid-area: f;
+    }
+    :nth-child(7) {
+        grid-area: g;
+    }
+    :nth-child(8) {
+        grid-area: h;
     }
 }
 
