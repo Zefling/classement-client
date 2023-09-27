@@ -23,6 +23,8 @@ import { TabContentComponent } from './tabs/tab-title.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TagListComponent } from './tag-list/tag-list.component';
 import { ThemeIconComponent } from './theme-icon/theme-icon.component';
+import { ZoneAreaComponent } from './zone-area/zone-area.component';
+import { ZoneAxisComponent } from './zone-axis/zone-axis.component';
 
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
@@ -45,6 +47,8 @@ import { PipesModule } from '../pipes/pipes.module';
         TabsComponent,
         NavigateResultComponent,
         TagListComponent,
+        ZoneAreaComponent,
+        ZoneAxisComponent,
     ],
     exports: [
         DialogComponent,
@@ -63,6 +67,8 @@ import { PipesModule } from '../pipes/pipes.module';
         TabsComponent,
         NavigateResultComponent,
         TagListComponent,
+        ZoneAreaComponent,
+        ZoneAxisComponent,
     ],
     imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule, MarkdownModule],
 })

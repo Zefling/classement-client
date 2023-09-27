@@ -735,7 +735,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     exportImage() {
         this.dialogImage.open();
-        html2canvas(document.getElementById('table-classement') as HTMLElement, {
+        html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
             logging: false,
             allowTaint: false,
             useCORS: false,

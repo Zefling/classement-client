@@ -1,0 +1,153 @@
+:host {
+    --width: 3px;
+    --arrow-size: 15px;
+    --color: #fff;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.axis {
+    display: grid;
+    grid-template:
+        ' . . . . . ' calc(4px + var(--width))
+        ' . . . . . ' 1fr
+        ' . . . . . ' var(--width)
+        ' . . . . . ' 1fr
+        ' . . . . . ' calc(4px + var(--width)) /
+        calc(4px + var(--width)) 1fr var(--width) 1fr calc(4px + var(--width));
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    .axis-v,
+    .axis-h {
+        background: var(--color);
+        grid-column: 3/4;
+        grid-row: 2/5;
+        position: relative;
+
+        &::before,
+        &::after {
+            position: absolute;
+            display: block;
+            content: ' ';
+            border: 0 solid var(--color);
+            border-width: var(--width) 0 0 var(--width);
+            width: var(--arrow-size);
+            height: var(--arrow-size);
+        }
+
+        &::before {
+            top: 0;
+            left: calc(var(--arrow-size) / -2);
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            left: calc(var(--arrow-size) / -2);
+            bottom: 0;
+            transform: rotate(-135deg);
+        }
+    }
+
+    .axis-h {
+        grid-row: 3/4;
+        grid-column: 2/5;
+
+        &::before {
+            top: calc(var(--arrow-size) / -2);
+            left: 0;
+            transform: rotate(-45deg);
+        }
+
+        &::after {
+            top: calc(var(--arrow-size) / -2);
+            left: auto;
+            right: 0;
+            transform: rotate(135deg);
+        }
+    }
+}
+
+.names {
+    position: absolute;
+    top: 0;
+    display: grid;
+    grid-template:
+        ' tl . . t . tr ' auto
+        ' .  . . . . .  ' 1fr
+        ' .  . . . . .  ' calc(var(--arrow-size) * 2)
+        ' l  . . . . r  ' auto
+        ' .  . . . . .  ' 1fr
+        ' bl . . b . br ' auto /
+        auto 1fr calc(var(--arrow-size) * 2) 0 1fr auto;
+    height: 100%;
+    width: 100%;
+
+    & > * {
+        position: relative;
+        & > span {
+            position: absolute;
+            white-space: pre;
+        }
+    }
+
+    :nth-child(1) {
+        grid-area: t;
+        & > span {
+            top: 2px;
+            left: 2px;
+        }
+    }
+    :nth-child(2) {
+        grid-area: tr;
+        & > span {
+            top: 2px;
+            right: 2px;
+        }
+    }
+    :nth-child(3) {
+        grid-area: r;
+
+        & > span {
+            top: 2px;
+            right: 2px;
+        }
+    }
+    :nth-child(4) {
+        grid-area: br;
+        & > span {
+            bottom: 2px;
+            right: 2px;
+        }
+    }
+    :nth-child(5) {
+        grid-area: b;
+        & > span {
+            bottom: 2px;
+            left: 2px;
+        }
+    }
+    :nth-child(6) {
+        grid-area: bl;
+        & > span {
+            bottom: 2px;
+            left: 2px;
+        }
+    }
+    :nth-child(7) {
+        grid-area: l;
+        & > span {
+            top: 2px;
+            left: 2px;
+        }
+    }
+    :nth-child(8) {
+        grid-area: tl;
+        & > span {
+            top: 2px;
+            left: 2px;
+        }
+    }
+}

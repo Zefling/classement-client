@@ -1,5 +1,9 @@
 <div *ngIf="options" class="render">
-    <table id="table-classement" [attr.dir]="options.direction">
+    <table
+        *ngIf="options.mode === 'default' || options.mode === 'teams'"
+        id="html2canvas-element"
+        [attr.dir]="options.direction"
+    >
         <caption *ngIf="options.title">
             {{
                 options.title
@@ -55,4 +59,17 @@
             </tr>
         </tbody>
     </table>
+
+    <div
+        *ngIf="options.mode === 'iceberg' || options.mode === 'axis'"
+        class="zone-classement-container"
+        id="html2canvas-element"
+    >
+        <div class="zone-classement">
+            <ng-container *ngIf="options.groups?.length">
+                <zone-area *ngIf="options.mode === 'iceberg'" [groups]="options.groups"></zone-area>
+                <zone-axis *ngIf="options.mode === 'axis'" [groups]="options.groups"></zone-axis>
+            </ng-container>
+        </div>
+    </div>
 </div>

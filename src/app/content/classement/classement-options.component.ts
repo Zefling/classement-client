@@ -81,16 +81,19 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (this.options) {
             const theme = this._modeTemp ?? this.options.mode ?? 'default';
 
-            if (theme === 'iceberg') {
-                this.imagesList = imagesIceberg;
-                this.themesList = themesIceberg;
-            }
-            if (theme === 'axis') {
-                this.imagesList = imagesAxis;
-                this.themesList = themesAxis;
-            } else {
-                this.imagesList = imagesLists;
-                this.themesList = themesLists;
+            switch (theme) {
+                case 'iceberg':
+                    this.imagesList = imagesIceberg;
+                    this.themesList = themesIceberg;
+                    break;
+                case 'axis':
+                    this.imagesList = imagesAxis;
+                    this.themesList = themesAxis;
+                    break;
+                default:
+                    this.imagesList = imagesLists;
+                    this.themesList = themesLists;
+                    break;
             }
             this.updateList(theme);
 
