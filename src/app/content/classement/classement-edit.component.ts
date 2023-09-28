@@ -784,6 +784,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     reset() {
         for (const ligne of this.groups) {
+            ligne.list.forEach(item => {
+                delete item.x;
+                delete item.y;
+            });
             if (this.options.mode !== 'teams') {
                 this.list.push(...ligne.list);
             }
