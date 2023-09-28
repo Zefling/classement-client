@@ -4,7 +4,7 @@
 
 #### Standalone web app
 
--   Add markdown option in groupe name
+-   Add markdown option in group name
 -   Fix display mode change
 
 #### External service
