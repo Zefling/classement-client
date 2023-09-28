@@ -28,7 +28,7 @@ export enum TypeFile {
 }
 
 export const typesMine: Record<string, string[]> = {
-    image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp'],
+    image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp', 'image/avif'],
     json: ['application/json'],
 };
 
