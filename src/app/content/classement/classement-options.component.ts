@@ -112,9 +112,14 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             },
         }));
         if (this.options) {
+            let modeType = mode;
+            if (modeType === 'teams') {
+                modeType = 'default';
+            }
+
             // list theme
             const themeOption = themesList.find(e => e.name === this.themesList[0]);
-            if (themeOption && this._previousMode && this._previousMode !== this.options.mode) {
+            if (themeOption && this._previousMode && this._previousMode !== modeType) {
                 this.changeTheme(themeOption);
             }
             // select mode
