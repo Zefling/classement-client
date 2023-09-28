@@ -133,7 +133,7 @@ export class AppComponent implements DoCheck {
         const initPreferences = await this.preferencesService.init();
 
         // theme
-        this.globalService.userShema = initPreferences.interfaceTheme;
+        this.globalService.userSchema = initPreferences.interfaceTheme;
         this.globalService.changeThemeClass();
 
         // autodetect language
@@ -142,7 +142,7 @@ export class AppComponent implements DoCheck {
 
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
-            interfaceTheme: new FormControl(this.globalService.userShema),
+            interfaceTheme: new FormControl(this.globalService.userSchema),
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),

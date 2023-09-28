@@ -54,8 +54,8 @@ export class GlobalService {
 
     jsonTmp?: Data;
 
-    browserShema: PreferenceInterfaceTheme;
-    userShema?: PreferenceInterfaceTheme;
+    browserSchema: PreferenceInterfaceTheme;
+    userSchema?: PreferenceInterfaceTheme;
 
     private renderer: Renderer2;
 
@@ -68,11 +68,11 @@ export class GlobalService {
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
 
-        this.browserShema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        this.browserSchema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         this.changeThemeClass();
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            this.browserShema = event.matches ? 'dark' : 'light';
+            this.browserSchema = event.matches ? 'dark' : 'light';
             this.changeThemeClass();
         });
     }
@@ -151,7 +151,7 @@ export class GlobalService {
     }
 
     /**
-     * fix for html2canavas (not work with https? images)
+     * fix for html2canvas (not work with https? images)
      * @param groups groups
      * @param list list
      * @returns cache image in base64 `[url : base64]`
@@ -306,15 +306,15 @@ export class GlobalService {
     }
 
     toggleTheme() {
-        this.userShema = this.currentTheme() === 'light' ? 'dark' : 'light';
+        this.userSchema = this.currentTheme() === 'light' ? 'dark' : 'light';
     }
 
     currentTheme(): PreferenceInterfaceTheme {
-        return this.userShema ?? this.browserShema ?? 'light';
+        return this.userSchema ?? this.browserSchema ?? 'light';
     }
 
     changeThemeClass() {
-        this.logger.log('color theme:', LoggerLevel.log, this.userShema);
+        this.logger.log('color theme:', LoggerLevel.log, this.userSchema);
         this.renderer.addClass(document.body, this.currentTheme() === 'light' ? 'light-mode' : 'dark-mode');
         this.renderer.removeClass(document.body, this.currentTheme() !== 'light' ? 'light-mode' : 'dark-mode');
     }
