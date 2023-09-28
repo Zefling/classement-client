@@ -13,6 +13,7 @@
     padding: var(--over-item-padding, 10px);
     margin: var(--over-item-margin, 2px);
     width: var(--over-item-width, 150px);
+    max-width: 300px;
     height: var(--over-item-height, 150px);
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
@@ -135,11 +136,25 @@ img {
     text-align: center;
     font-size: 85%;
     word-wrap: break-word;
-    max-width: 100%;
+    max-width: min(100%, 300px);
+    overflow: visible;
+    white-space: break-spaces;
 }
 
 .title {
     color: var(--over-item-text-color, var(--content-box-text));
+}
+
+.title-item-width-auto {
+    text-align: center;
+
+    span {
+        white-space: nowrap;
+        display: inline-block;
+        overflow: hidden;
+        max-width: 300px;
+        text-overflow: ellipsis;
+    }
 }
 
 .content-render {
@@ -272,19 +287,27 @@ img {
 
 // ----------------- ZONE -----------------
 
-// .zone-classement-container {
-//     overflow: auto;
-//     max-width: 100%;
-//     width: 100%;
+.zone-classement-container {
+    padding: 0 2px 2px 0;
 
-//     .zone-classement {
-//         background-color: var(--over-image-background, var(--drop-list-background));
-//         background-image: var(--over-image-url);
-//         background-position: var(--over-image-background-position);
-//         background-size: var(--over-image-background-size);
-//         background-repeat: repeat;
-//         border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
-//         width: var(--over-image-width, 1170px);
-//         height: var(--over-image-height, 600px);
-//     }
-// }
+    .elements {
+        display: contents;
+
+        & > div {
+            position: absolute;
+            top: var(--top, 0);
+            left: var(--left, 0);
+        }
+    }
+}
+
+.zone-classement {
+    background-color: var(--over-image-background, var(--drop-list-background));
+    background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+    width: var(--over-image-width, 1170px);
+    height: var(--over-image-height, 600px);
+}
