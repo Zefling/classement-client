@@ -394,7 +394,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     trackByFnFileString(_index: number, item: FileString) {
-        return item.url;
+        return item.url || item.id;
     }
 
     calcWidth(item: FileString, tile: HTMLElement | null) {
@@ -490,6 +490,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.list.push(tile);
         this.addIds();
         this.diff!.splice(this.diff!.indexOf(tile), 1);
+    }
+
+    createTile(event: MouseEvent) {
+        const numb = `${Math.round(Math.random() * 9_999)}`.padStart(4, '0');
+        this.groups[0].list.push({
+            id: `${new Date().getTime()}`,
+            title: this.translate.instant('new') + numb,
+            name: '',
+            size: 0,
+            realSize: 0,
+            type: '',
+            date: 0,
+            x: (event as any)['layerX'] - 30,
+            y: (event as any)['layerY'] - 15,
+        });
     }
 
     resetCache() {
@@ -648,6 +663,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.addIds();
         this.globalChange();
         this.change();
+    }
+
+    stopEvent(event: Event) {
+        if (event instanceof MouseEvent && event.button === 1) {
+            // prevent copy on Linux
+            event.stopPropagation();
+            event.preventDefault();
+        }
     }
 
     removeFromZone(index: number) {

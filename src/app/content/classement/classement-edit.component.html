@@ -37,7 +37,7 @@
                 {{ 'generator.screen.fullscreen' | translate }}
             </button>
         </div>
-        <div cdkDropListGroup>
+        <div cdkDropListGroup class="mode-{{ options.mode }}">
             <table
                 *ngIf="options.mode === 'default' || options.mode === 'teams'"
                 class="table-classement"
@@ -185,6 +185,8 @@
                     [cdkDropListData]="{ list: groups[0].list, index: 0 }"
                     (cdkDropListDropped)="drop(groups[0].list, $event)"
                     class="zone-classement"
+                    (dblclick)="createTile($event)"
+                    (auxclick)="stopEvent($event)"
                 >
                     <ng-container *ngIf="options.groups?.length">
                         <zone-area *ngIf="options.mode === 'iceberg'" [groups]="options.groups"></zone-area>
@@ -230,6 +232,14 @@
                         </div>
                     </ng-container>
                 </div>
+            </div>
+
+            <div *ngIf="options.mode === 'iceberg' || options.mode === 'axis'" class="help">
+                <span class="icon-info"></span> Aide :
+                <ul>
+                    <li>Clic central sur une tuile : remettre dans la liste ;</li>
+                    <li>Double clic dans une zone vide : création d'une tuile à l'endroit visé.</li>
+                </ul>
             </div>
 
             <div class="current-list">

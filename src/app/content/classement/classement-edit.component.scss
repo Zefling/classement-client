@@ -215,12 +215,6 @@ img {
     }
 }
 
-.zone-classement-container {
-    overflow: auto;
-    max-width: 100%;
-    width: 100%;
-}
-
 .zone-classement {
     background-color: var(--over-image-background, var(--drop-list-background));
     background-image: var(--over-image-url);
@@ -526,6 +520,22 @@ span.group-options {
 
     .cdk-drag {
         position: absolute;
+    }
+}
+
+.mode-iceberg,
+.mode-axis {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.help {
+    flex: 1;
+    padding-left: 10px;
+
+    ul {
+        margin: 0;
+        padding: 10px 0 10px 20px;
     }
 }
 
