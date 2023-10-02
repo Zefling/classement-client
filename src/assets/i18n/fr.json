@@ -342,7 +342,12 @@
         }
       },
       "zone.axis.name": "Nom de l'axe",
-      "zone.area.name": "Nom de l'aire"
+      "zone.area.name": "Nom de l'aire",
+      "axis": {
+        "line.width": "Largeur des axes",
+        "line.color": "Couleur des axes",
+        "arrow.size": "Taille des flèches"
+      }
     },
     "screen": {
       "default": "Affiche par défaut",

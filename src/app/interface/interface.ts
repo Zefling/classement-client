@@ -116,6 +116,10 @@ export type ThemeOptions = {
     imageHeight?: number;
     imageSize?: 'cover';
     imagePosition?: 'center';
+    axisLineWidth: number;
+    axisLineColor: string;
+    axisLineOpacity: number;
+    axisArrowWidth: number;
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;

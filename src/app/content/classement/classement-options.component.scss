@@ -8,7 +8,8 @@
     }
 
     &.axis {
-        --groups: 'zone-title-axis   zone-title-axis     zone-title-axis     zone-title-axis     ';
+        --groups: 'zone-title-axis   zone-title-axis     zone-title-axis     zone-title-axis     '
+            'axis-line-width   axis-arrow-size     colors-axis-line    .                   ';
     }
 
     display: grid;
@@ -189,6 +190,19 @@ h4 {
 
 .zone-title-number {
     grid-area: zone-title-number;
+}
+
+.axis-line-width {
+    grid-area: axis-line-width;
+}
+
+.colors-axis-line {
+    grid-area: colors-axis-line;
+    --color-section: var(--over-axis-line-color);
+}
+
+.axis-arrow-size {
+    grid-area: axis-arrow-size;
 }
 
 .zone-title-groups {

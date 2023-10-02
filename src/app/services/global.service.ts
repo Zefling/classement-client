@@ -225,6 +225,12 @@ export class GlobalService {
         // zone group
         r(body, '--over-group-line-size', (o.groupLineSize ?? defaultOptions.groupLineSize) + 'px', dash);
         r(body, '--over-group-line-color', color(o.groupLineColor, o.groupLineOpacity), dash);
+        // axis
+        if (o.mode === 'axis') {
+            r(body, '--over-axis-arrow-size', (o.axisArrowWidth ?? defaultOptions.axisArrowWidth) + 'px', dash);
+            r(body, '--over-axis-line-size', (o.axisLineWidth ?? defaultOptions.axisLineWidth) + 'px', dash);
+            r(body, '--over-axis-line-color', color(o.axisLineColor, o.axisLineOpacity), dash);
+        }
     }
 
     getValuesFromOptions(o: Options) {

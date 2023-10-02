@@ -1,7 +1,7 @@
 :host {
-    --width: 3px;
-    --arrow-size: 15px;
-    --color: #fff;
+    --width: var(--over-axis-line-size, 3px);
+    --arrow-size: var(--over-axis-arrow-size, 15px);
+    --color: var(--over-axis-line-color, var(--axis-line-color));
     height: 100%;
     width: 100%;
     display: block;
@@ -39,14 +39,14 @@
         }
 
         &::before {
-            top: 0;
+            top: calc(var(--arrow-size) / 7);
             left: calc(var(--arrow-size) / -2);
             transform: rotate(45deg);
         }
 
         &::after {
             left: calc(var(--arrow-size) / -2);
-            bottom: 0;
+            bottom: calc(var(--arrow-size) / 7);
             transform: rotate(-135deg);
         }
     }
@@ -57,14 +57,14 @@
 
         &::before {
             top: calc(var(--arrow-size) / -2);
-            left: 0;
+            left: calc(var(--arrow-size) / 7);
             transform: rotate(-45deg);
         }
 
         &::after {
             top: calc(var(--arrow-size) / -2);
             left: auto;
-            right: 0;
+            right: calc(var(--arrow-size) / 7);
             transform: rotate(135deg);
         }
     }
