@@ -114,12 +114,23 @@
                     max="300"
                     class="item-height"
                     [(ngModel)]="options.itemHeight"
-                    (ngModelChange)="updateSize('itemHeight')"
+                    (ngModelChange)="updateSize('itemHeight', 16)"
                     title="{{ 'generator.options.item.height' | translate }}"
                 />
                 <ng-template #itemHeightAuto>
                     <span id="option-item-height-auto-info" class="item-height input">auto</span>
                 </ng-template>
+                <input
+                    *ngIf="options.itemHeightAuto"
+                    id="option-item-max-height"
+                    type="number"
+                    min="150"
+                    max="300"
+                    class="item-max-height"
+                    [(ngModel)]="options.itemMaxWidth"
+                    (ngModelChange)="updateSize('itemMaxHeight', 100)"
+                    title="{{ 'generator.options.item.max.height' | translate }}"
+                />
                 <span class="image">{{ 'generator.options.image' | translate }}</span>
                 <input
                     *ngIf="!options.itemWidthAuto; else itemWidthAuto"
@@ -129,12 +140,23 @@
                     max="300"
                     class="item-width"
                     [(ngModel)]="options.itemWidth"
-                    (ngModelChange)="updateSize('itemWidth')"
+                    (ngModelChange)="updateSize('itemWidth', 16)"
                     title="{{ 'generator.options.item.width' | translate }}"
                 />
                 <ng-template #itemWidthAuto>
                     <span id="option-item-width-auto-info" class="item-width input">auto</span>
                 </ng-template>
+                <input
+                    *ngIf="options.itemWidthAuto"
+                    id="option-item-max-width"
+                    type="number"
+                    min="150"
+                    max="300"
+                    class="item-max-width"
+                    [(ngModel)]="options.itemMaxWidth"
+                    (ngModelChange)="updateSize('itemMaxWidth', 100)"
+                    title="{{ 'generator.options.item.max.width' | translate }}"
+                />
             </div>
             <div>
                 <label class="toogle-switch">

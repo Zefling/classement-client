@@ -264,9 +264,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         this.options!.axisLineOpacity = 100;
     }
 
-    updateSize(axis: 'itemHeight' | 'itemWidth') {
-        if (this.options![axis] < 16) {
-            this.options![axis] = 16;
+    updateSize(axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth', min: number) {
+        if (this.options![axis] < min) {
+            this.options![axis] = min;
         } else if (this.options![axis] > 300) {
             this.options![axis] = 300;
         }

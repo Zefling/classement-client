@@ -189,8 +189,10 @@ export class GlobalService {
         // item
         const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
+        r(body, '--over-item-max-width', o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
         const itemHeight = o.itemHeightAuto ? 'auto' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
         r(body, '--over-item-height', itemHeight, dash);
+        r(body, '--over-item-max-height', o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
         r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);

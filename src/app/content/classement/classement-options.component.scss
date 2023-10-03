@@ -276,17 +276,17 @@ textarea {
 .item-options {
     display: grid;
     grid-template:
-        '.   .   .   .      margin   .   .   .' 15px
-        '.   .   .   .      border   .   .   .' 5px
-        '.   .   .   .      border   .   .   .' 5px
-        '.   .   .   .      border   .   .   .' 5px
-        '.   .   .   .      padding  .   .   .' 17px
-        '.   .   .   .      .        .   .   .' 15px
-        '.   .   .   .      height   .   .   .' 15px
-        '.   .   .   width  .        .   .   .' 15px
-        '.   .   .   .      .        .   .   .' 30px
-        '.   .   .   .      .        .   .   .' 5px
-        '.   .   .   .      .        .   .   .' 0px /
+        '.   .   .   .      margin     .         .   .' 15px
+        '.   .   .   .      border     .         .   .' 5px
+        '.   .   .   .      border     .         .   .' 5px
+        '.   .   .   .      border     .         .   .' 5px
+        '.   .   .   .      padding    .         .   .' 17px
+        '.   .   .   .      .          .         .   .' 15px
+        '.   .   .   .      height     .         .   .' 15px
+        '.   .   .   width  .          max-width .   .' 15px
+        '.   .   .   .      max-height .         .   .' 30px
+        '.   .   .   .      .          .         .   .' 5px
+        '.   .   .   .      .          .         .   .' 0px /
         0px 5px 60px 1fr 20px 1.5fr 5px 0px;
     background: var(--options-sizes-margin-color);
     padding: 5px;
@@ -452,6 +452,17 @@ span.item-height {
     width: 30px;
     height: 16px;
     cursor: default;
+}
+
+.item-max-width {
+    grid-area: max-width;
+    justify-self: end;
+    margin-right: 10px;
+}
+
+.item-max-height {
+    grid-area: max-height;
+    align-self: center;
 }
 
 .item-padding {

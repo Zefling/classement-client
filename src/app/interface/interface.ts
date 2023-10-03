@@ -91,8 +91,10 @@ export type ThemeOptions = {
     titleTextOpacity: number;
     itemWidth: number;
     itemWidthAuto: boolean;
-    itemHeightAuto: boolean;
+    itemMaxWidth: number;
     itemHeight: number;
+    itemHeightAuto: boolean;
+    itemMaxHeight: number;
     itemPadding: number;
     itemBorder: number;
     itemMargin: number;

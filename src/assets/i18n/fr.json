@@ -262,8 +262,10 @@
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
+        "max.width": "Largeur max d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
         "height": "Hauteur d'une tuile",
+        "max.height": "Hauteur max d'une tuile",
         "height.auto": "Hauteur automatique des tuiles",
         "padding": "Rembourrage d'une tuile",
         "border": "Bordure d'une tuile",

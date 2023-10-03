@@ -230,14 +230,18 @@ export class Utils {
             item.height = image?.naturalHeight;
         }
 
-        if (tile) {
+        if (tile && title) {
             tile.style.width =
                 options.itemWidthAuto && !item.title
-                    ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * options.itemHeight)) +
-                      'px'
+                    ? Math.round(
+                          Math.min(
+                              options.itemMaxWidth ?? 300,
+                              ((item.width || 100) / (item.height || 100)) * options.itemHeight,
+                          ),
+                      ) + 'px'
                     : options.itemWidthAuto && tile
                     ? Math.min(
-                          300,
+                          options.itemMaxWidth ?? 300,
                           Math.round(
                               Math.max(
                                   (((item.width || 100) - (title?.clientHeight || 16)) / (item.height || 100)) *

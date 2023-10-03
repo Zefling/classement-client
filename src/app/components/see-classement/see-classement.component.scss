@@ -136,7 +136,7 @@ img {
     text-align: center;
     font-size: 85%;
     word-wrap: break-word;
-    max-width: min(100%, 300px);
+    max-width: min(100%, var(--over-item-max-width, 300px));
     overflow: visible;
     white-space: break-spaces;
 }
@@ -152,7 +152,7 @@ img {
         white-space: nowrap;
         display: inline-block;
         overflow: hidden;
-        max-width: 300px;
+        max-width: var(--over-item-max-width, 300px);
         text-overflow: ellipsis;
     }
 }

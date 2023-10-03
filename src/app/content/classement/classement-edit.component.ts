@@ -411,7 +411,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         return this.options.itemWidthAuto
-            ? Math.round(Math.min(300, ((item.width || 100) / (item.height || 100)) * this.options.itemHeight))
+            ? Math.round(
+                  Math.min(
+                      this.options.itemMaxWidth ?? 300,
+                      ((item.width || 100) / (item.height || 100)) * this.options.itemHeight,
+                  ),
+              )
             : null;
     }
 
@@ -580,6 +585,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     break;
                 case 'iceberg':
                 case 'axis':
+                    const item = event.previousContainer.data.list[indexFrom];
+                    const eventLayer = event.event as any;
+                    //  debugger;
+                    item.x = Math.max(0, (eventLayer.layerX ?? eventLayer.x) - (item.width || 0) / 2);
+                    item.y = Math.max(0, (eventLayer.layerY ?? eventLayer.y) - (item.height || 0) / 2);
                     transferArrayItem(
                         event.previousContainer.data.list,
                         event.container.data.list,
@@ -688,8 +698,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     moveItem(event: CdkDragMove<any>, item: FileString, element: CdkDragElement) {
-        item.x = event.source._dragRef['_activeTransform'].x;
-        item.y = event.source._dragRef['_activeTransform'].y;
+        const source = event.source._dragRef['_activeTransform'];
+        item.x = source.x;
+        item.y = source.y;
         this.globalChange();
         this.change();
     }
