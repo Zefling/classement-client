@@ -524,6 +524,13 @@
         "name": "Nom d'un anime :",
         "search": "Rechercher"
       }
+    },
+    "help": {
+      "title": "Aide :",
+      "zone": {
+        "central.click": "Clic central sur une tuile : remettre dans la liste.",
+        "double.click": "Double clic dans une zone vide : création d'une tuile à l'endroit visé."
+      }
     }
   },
   "user": {

@@ -235,10 +235,10 @@
             </div>
 
             <div *ngIf="options.mode === 'iceberg' || options.mode === 'axis'" class="help">
-                <span class="icon-info"></span> Aide :
+                <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
                 <ul>
-                    <li>Clic central sur une tuile : remettre dans la liste ;</li>
-                    <li>Double clic dans une zone vide : création d'une tuile à l'endroit visé.</li>
+                    <li>{{ 'generator.help.zone.central.click' | translate }}</li>
+                    <li>{{ 'generator.help.zone.double.click' | translate }}</li>
                 </ul>
             </div>
 

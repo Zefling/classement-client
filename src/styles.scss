@@ -652,7 +652,7 @@ dialog-cmp.auto-format .main {
     cursor: pointer;
 
     &:hover {
-        background-color: var(--tooltip-background);
+        background-color: var(--table-header-sortable-cell);
     }
 }
 
