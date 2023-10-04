@@ -522,6 +522,10 @@ span.group-options {
     .cdk-drag {
         position: absolute;
     }
+
+    .cdk-drag-placeholder {
+        opacity: 0;
+    }
 }
 
 .mode-iceberg,

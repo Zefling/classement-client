@@ -499,6 +499,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     createTile(event: MouseEvent) {
         const numb = `${Math.round(Math.random() * 9_999)}`.padStart(4, '0');
+        // layerX/Y is not standard, but is the real position in zone for all browser
         this.groups[0].list.push({
             id: `${new Date().getTime()}`,
             title: this.translate.instant('new') + numb,
@@ -587,9 +588,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 case 'axis':
                     const item = event.previousContainer.data.list[indexFrom];
                     const eventLayer = event.event as any;
-                    //  debugger;
-                    item.x = Math.max(0, (eventLayer.layerX ?? eventLayer.x) - (item.width || 0) / 2);
-                    item.y = Math.max(0, (eventLayer.layerY ?? eventLayer.y) - (item.height || 0) / 2);
+                    item.x = Math.max(
+                        0,
+                        ((eventLayer.layerX > 0 ? eventLayer.layerX : null) ?? eventLayer.x) - (item.width || 0) / 2,
+                    );
+                    item.y = Math.max(
+                        0,
+                        ((eventLayer.layerY > 0 ? eventLayer.layerY : null) ?? eventLayer.y) - (item.height || 0) / 2,
+                    );
                     transferArrayItem(
                         event.previousContainer.data.list,
                         event.container.data.list,
@@ -698,6 +704,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     moveItem(event: CdkDragMove<any>, item: FileString, element: CdkDragElement) {
+        // position of tile is not public (why ?)
         const source = event.source._dragRef['_activeTransform'];
         item.x = source.x;
         item.y = source.y;
