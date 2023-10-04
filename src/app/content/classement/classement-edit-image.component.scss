@@ -49,11 +49,17 @@
     max-width: 100%;
 }
 
+.group-colors {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .colors {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    flex: 1 1 auto;
 
     label,
     .new-color {

@@ -70,6 +70,7 @@ export type FileString = {
     title?: string;
     annotation?: string;
     bgColor?: string;
+    txtColor?: string;
     x?: number;
     y?: number;
 };

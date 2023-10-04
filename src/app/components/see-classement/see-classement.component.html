@@ -28,6 +28,7 @@
                     <div
                         *ngFor="let item of group.list; let index = index"
                         [style.--over-item-background]="item.bgColor"
+                        [style.--over-item-text-color]="item.txtColor"
                     >
                         <div class="content-box">
                             <div class="content content-render" [ngClass]="options.itemTextPosition" #tile>
@@ -75,6 +76,7 @@
             <div
                 *ngFor="let item of groups[0].list; let index = index"
                 [style.--over-item-background]="item.bgColor"
+                [style.--over-item-text-color]="item.txtColor"
                 [style.--left.px]="item.x"
                 [style.--top.px]="item.y"
             >

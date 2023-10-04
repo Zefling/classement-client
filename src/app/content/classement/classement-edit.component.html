@@ -116,6 +116,7 @@
                                     [cdkDropListData]="{ list: group.list, index: index }"
                                     (cdkDropListDropped)="drop(group.list, $event)"
                                     [style.--over-item-background]="item.bgColor"
+                                    [style.--over-item-text-color]="item.txtColor"
                                 >
                                     <div class="content-box" cdkDrag>
                                         <div
@@ -203,6 +204,7 @@
                             (cdkDragMoved)="moveItem($event, item, element)"
                             (removeElement)="removeFromZone(index)"
                             [style.--over-item-background]="item.bgColor"
+                            [style.--over-item-text-color]="item.txtColor"
                         >
                             <div
                                 class="content content-render"
@@ -255,6 +257,7 @@
                         [cdkDropListData]="{ list: list, index: index }"
                         (cdkDropListDropped)="drop(list, $event)"
                         [style.--over-item-background]="item.bgColor"
+                        [style.--over-item-text-color]="item.txtColor"
                     >
                         <div class="content-box" cdkDrag>
                             <div

@@ -40,30 +40,57 @@
                 </div>
             </div>
         </div>
-        <div class="colors">
-            <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | translate }}</label>
-            <div class="new-color">
-                <input
-                    [title]="'generator.ranking.tile.color.new' | translate"
-                    id="tile-bg-color"
-                    type="color"
-                    [(ngModel)]="currentTile.bgColor"
-                />
+        <div class="group-colors">
+            <div class="colors">
+                <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | translate }}</label>
+                <div class="new-color">
+                    <input
+                        [title]="'generator.ranking.tile.color.new' | translate"
+                        id="tile-bg-color"
+                        type="color"
+                        [(ngModel)]="currentTile.bgColor"
+                    />
+                </div>
+                <div
+                    [title]="'generator.ranking.tile.color.remove' | translate"
+                    class="color"
+                    (click)="currentTile.bgColor = undefined"
+                    tabindex="0"
+                ></div>
+                <div
+                    *ngFor="let color of colorListBg"
+                    [style.--color]="color"
+                    [title]="'generator.ranking.tile.color.previous' | translate"
+                    class="color"
+                    (click)="currentTile.bgColor = color"
+                    tabindex="0"
+                ></div>
             </div>
-            <div
-                [title]="'generator.ranking.tile.color.remove' | translate"
-                class="color"
-                (click)="currentTile.bgColor = undefined"
-                tabindex="0"
-            ></div>
-            <div
-                *ngFor="let color of colorList"
-                [style.--color]="color"
-                [title]="'generator.ranking.tile.color.previous' | translate"
-                class="color"
-                (click)="currentTile.bgColor = color"
-                tabindex="0"
-            ></div>
+            <div class="colors">
+                <label for="tile-text-color">{{ 'generator.ranking.text.color' | translate }}</label>
+                <div class="new-color">
+                    <input
+                        [title]="'generator.ranking.text.color.new' | translate"
+                        id="tile-text-color"
+                        type="color"
+                        [(ngModel)]="currentTile.txtColor"
+                    />
+                </div>
+                <div
+                    [title]="'generator.ranking.text.color.remove' | translate"
+                    class="color"
+                    (click)="currentTile.txtColor = undefined"
+                    tabindex="0"
+                ></div>
+                <div
+                    *ngFor="let color of colorListTxt"
+                    [style.--color]="color"
+                    [title]="'generator.ranking.text.color.previous' | translate"
+                    class="color"
+                    (click)="currentTile.txtColor = color"
+                    tabindex="0"
+                ></div>
+            </div>
         </div>
         <div class="buttons">
             <button class="primary" (click)="close()">
