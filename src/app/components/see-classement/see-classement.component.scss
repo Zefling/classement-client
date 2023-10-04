@@ -13,8 +13,9 @@
     padding: var(--over-item-padding, 10px);
     margin: var(--over-item-margin, 2px);
     width: var(--over-item-width, 150px);
-    max-width: 300px;
+    max-width: var(--over-item-max-width, 300px);
     height: var(--over-item-height, 150px);
+    max-height: var(--over-item-max-height, 300px);
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
     color: var(--over-item-color, var(--content-box-color));

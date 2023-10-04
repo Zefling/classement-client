@@ -180,6 +180,8 @@ export const themesList: Theme[] = [
             ...defaultOptions,
             mode: 'iceberg',
             imageBackgroundImage: 'iceberg',
+            itemMaxWidth: 150,
+            itemMaxHeight: 150,
             itemHeightAuto: true,
             groupLineSize: 3,
             groupLineColor: '#e01b24',
@@ -205,6 +207,8 @@ export const themesList: Theme[] = [
         options: {
             ...defaultOptions,
             mode: 'axis',
+            itemMaxWidth: 150,
+            itemMaxHeight: 150,
             itemHeightAuto: true,
             imageHeight: 1000,
             imageWidth: 1000,
