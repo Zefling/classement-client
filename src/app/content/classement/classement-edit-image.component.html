@@ -96,12 +96,36 @@
                     (click)="currentTile.txtColor = color"
                     tabindex="0"
                 ></div>
+                {{ _options?.mode }}
+            </div>
+            <div class="position" *ngIf="_options?.mode === 'iceberg' || _options?.mode === 'axis'">
+                <div class="label">{{ 'generator.ranking.tile.position' | translate }}</div>
+                <div class="new-color">
+                    <button
+                        [title]="'generator.ranking.tile.position.top' | translate"
+                        (click)="tileZIndex('top')"
+                        class="top"
+                    >
+                        <span>↑</span>
+                    </button>
+                    <button [title]="'generator.ranking.tile.position.up' | translate" (click)="tileZIndex('up')">
+                        ↑
+                    </button>
+                    <button [title]="'generator.ranking.tile.position.down' | translate" (click)="tileZIndex('down')">
+                        ↓
+                    </button>
+                    <button
+                        [title]="'generator.ranking.tile.position.bottom' | translate"
+                        (click)="tileZIndex('bottom')"
+                        class="bottom"
+                    >
+                        <span>↓</span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="buttons">
-            <button class="primary" (click)="close()">
-                {{ 'generator.ranking.close' | translate }}
-            </button>
+            <button class="primary" (click)="close()">{{ 'generator.ranking.close' | translate }}</button>
         </div>
     </ng-container>
 </dialog-cmp>

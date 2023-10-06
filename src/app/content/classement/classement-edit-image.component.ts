@@ -13,7 +13,7 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 import { Subject, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileHandle, FileString } from 'src/app/interface/interface';
+import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
@@ -48,6 +48,8 @@ export class ClassementEditImageComponent implements OnChanges {
     colorListBg?: Set<string>;
     colorListTxt?: Set<string>;
 
+    _options?: Options;
+
     private _detectChange = new Subject<void>();
 
     constructor(
@@ -75,6 +77,7 @@ export class ClassementEditImageComponent implements OnChanges {
             this.editor.groups.forEach(e => e.list.forEach(f => (f.txtColor ? txtColors.add(f.txtColor) : null)));
             this.colorListTxt = txtColors;
         }
+        this._options ??= this.editor.options;
     }
 
     open() {
@@ -93,6 +96,30 @@ export class ClassementEditImageComponent implements OnChanges {
 
     globalChange() {
         this.global.withChange = true;
+    }
+
+    /**
+     * only for iceberg & axis
+     */
+    tileZIndex(position: 'top' | 'up' | 'down' | 'bottom') {
+        const list = this.editor.groups[0].list;
+        const index = list.findIndex(e => e.id === this.currentTile!.id);
+        const item = list.splice(index, 1)[0];
+
+        switch (position) {
+            case 'top':
+                list.push(item);
+                break;
+            case 'up':
+                list.splice(index + 1, 0, item);
+                break;
+            case 'down':
+                list.splice(index - 1, 0, item);
+                break;
+            case 'bottom':
+                list.unshift(item);
+                break;
+        }
     }
 
     changeRatio(mode: number, aspectRatio: number | string = 0) {
