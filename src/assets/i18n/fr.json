@@ -387,6 +387,7 @@
       "no.tile": "Il n'y a aucune tuile.",
       "tile.color": "Couleur du fond de la tuile",
       "tile.color.remove": "Supprimer la couleur.",
+      "tile.color.transparent": "Fond transparent.",
       "tile.color.new": "Ajouter une couleur.",
       "tile.color.previous": "Une couleur déjà utilisée.",
       "text.color": "Couleur du text de la tuile",

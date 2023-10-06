@@ -74,19 +74,25 @@
         border-radius: 50%;
         cursor: pointer;
         outline: 1px solid;
-        background: var(
-            --color,
-            linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
-            linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%)
-        );
-        background-color: var(--color, #fff);
-        background-size: 10px 10px;
-        background-size: 25px 25px;
-        background-position: 0 0, 12.5px 12.5px;
+        background: var(--color, #fff);
 
         &:hover,
         &:focus {
             outline: 2px solid;
+        }
+
+        &.remove {
+            background: linear-gradient(45deg, transparent 46%, #b02626 46%, #b02626 54%, transparent 54%),
+                linear-gradient(-45deg, transparent 46%, #b02626 46%, #b02626 54%, transparent 54%);
+        }
+
+        &.transparent {
+            background: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
+                linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%);
+            background-color: var(--color, #fff);
+            background-position: 0 0, 12.5px 12.5px;
+            background-size: 10px 10px;
+            background-size: 25px 25px;
         }
     }
 

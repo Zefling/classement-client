@@ -53,15 +53,21 @@
                 </div>
                 <div
                     [title]="'generator.ranking.tile.color.remove' | translate"
-                    class="color"
+                    class="color remove"
                     (click)="currentTile.bgColor = undefined"
                     tabindex="0"
                 ></div>
                 <div
+                    [title]="'generator.ranking.tile.color.transparent' | translate"
+                    class="color transparent"
+                    (click)="currentTile.bgColor = 'transparent'"
+                    tabindex="0"
+                ></div>
+                <div
                     *ngFor="let color of colorListBg"
-                    [style.--color]="color"
                     [title]="'generator.ranking.tile.color.previous' | translate"
                     class="color"
+                    [style.--color]="color"
                     (click)="currentTile.bgColor = color"
                     tabindex="0"
                 ></div>
@@ -78,7 +84,7 @@
                 </div>
                 <div
                     [title]="'generator.ranking.text.color.remove' | translate"
-                    class="color"
+                    class="color remove"
                     (click)="currentTile.txtColor = undefined"
                     tabindex="0"
                 ></div>
