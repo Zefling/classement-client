@@ -249,7 +249,12 @@
                     <span>{{ 'generator.ranking.drop.image' | translate }}</span>
                     <span class="arrows" *ngIf="scrollArrows">⇄</span>
                 </div>
-                <div class="drop-list" #currentList [attr.dir]="options.direction">
+                <div
+                    class="drop-list"
+                    #currentList
+                    [attr.dir]="options.direction"
+                    [class.height-auto]="options.itemHeightAuto"
+                >
                     <div
                         *ngFor="let item of list; let index = index; trackBy: trackByFnFileString"
                         cdkDropList

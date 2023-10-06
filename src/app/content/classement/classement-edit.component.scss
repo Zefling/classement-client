@@ -42,6 +42,10 @@
     flex-wrap: wrap;
 }
 
+.height-auto {
+    align-items: center;
+}
+
 .drop-zone-empty-list {
     flex: 1;
     height: calc(
@@ -503,6 +507,7 @@ span.group-options {
     .drop-image-message span,
     .tile-info,
     .add-file,
+    .add-text,
     .btn-delete,
     .input-title {
         visibility: hidden;
