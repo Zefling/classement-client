@@ -588,14 +588,21 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 case 'axis':
                     const item = event.previousContainer.data.list[indexFrom];
                     const eventLayer = event.event as any;
-                    item.x = Math.max(
-                        0,
-                        ((eventLayer.layerX > 0 ? eventLayer.layerX : null) ?? eventLayer.x) - (item.width || 0) / 2,
-                    );
-                    item.y = Math.max(
-                        0,
-                        ((eventLayer.layerY > 0 ? eventLayer.layerY : null) ?? eventLayer.y) - (item.height || 0) / 2,
-                    );
+
+                    if (eventLayer.originalTarget.id === 'zone') {
+                        // when the target is the drop-zone
+                        item.x = eventLayer.layerX - (item.width || 0) / 2;
+                        item.y = eventLayer.layerY - (item.height || 0) / 2;
+                    } else if (eventLayer.originalTarget.id === 'list') {
+                        // when the target is the drag origin list (I don't know why...)
+                        const zone = window.document.getElementById('zone') as HTMLDivElement;
+                        item.x = eventLayer.layerX;
+                        item.y = zone.clientHeight + eventLayer.layerY;
+                    }
+
+                    item.x = Math.max(0, item.x || 0);
+                    item.y = Math.max(0, item.y || 0);
+
                     transferArrayItem(
                         event.previousContainer.data.list,
                         event.container.data.list,

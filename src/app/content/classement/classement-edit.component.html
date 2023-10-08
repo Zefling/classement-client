@@ -182,6 +182,7 @@
 
             <div class="zone-classement-container" *ngIf="options.mode === 'iceberg' || options.mode === 'axis'">
                 <div
+                    id="zone"
                     cdkDropZone
                     [cdkDropListData]="{ list: groups[0].list, index: 0 }"
                     (cdkDropListDropped)="drop(groups[0].list, $event)"
@@ -251,6 +252,7 @@
                 </div>
                 <div
                     class="drop-list"
+                    id="list"
                     #currentList
                     [attr.dir]="options.direction"
                     [class.height-auto]="options.itemHeightAuto"
