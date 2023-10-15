@@ -234,7 +234,9 @@
   "mode": {
     "name": {
       "default": "デフォルト",
-      "teams": "チーム"
+      "teams": "チーム",
+      "iceberg": "Iceberg",
+      "axis": "Axes"
     }
   },
   "generator": {
@@ -264,8 +266,11 @@
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
+        "max.width": "Largeur max d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
         "height": "Hauteur d'une tuile",
+        "max.height": "Hauteur max d'une tuile",
+        "height.auto": "Hauteur automatique des tuiles",
         "padding": "Rembourrage d'une tuile",
         "border": "Bordure d'une tuile",
         "margin": "Marge d'une tuile",
@@ -299,6 +304,7 @@
         "title": "Autres options",
         "background": "Couleur du fond :",
         "width": "Largeur de l'image rendue :",
+        "height": "Hauteur de l'image rendue :",
         "image": "Image de fond :",
         "name.image": {
           "none": "Défaut",
@@ -322,6 +328,31 @@
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
+      },
+      "zone.title": {
+        "number": "Nombre de groupes avec titre",
+        "name": "Nom du groupe",
+        "align": {
+          "vertical": {
+            "label": "Alignement vertical",
+            "start": "Haut",
+            "center": "Milieu",
+            "end": "Bas"
+          },
+          "horizontal": {
+            "label": "Alignement horizontal",
+            "start": "Debut",
+            "center": "Centrer",
+            "end": "Fin"
+          }
+        }
+      },
+      "zone.axis.name": "Nom de l'axe",
+      "zone.area.name": "Nom de l'aire",
+      "axis": {
+        "line.width": "Largeur des axes",
+        "line.color": "Couleur des axes",
+        "arrow.size": "Taille des flèches"
       }
     },
     "screen": {
@@ -339,7 +370,9 @@
         "compact": "Défaut compact",
         "sakura": "Sakura",
         "night": "Nuit",
-        "ciel": "Ciel"
+        "ciel": "Ciel",
+        "iceberg": "Iceberg",
+        "axis": "Axes"
       }
     },
     "ranking": {
@@ -348,6 +381,7 @@
       "list": "Liste",
       "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
       "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
+      "add.text": "Cliquez ici pour ajouter un texte ou un groupe de textes",
       "share.link": "Partagez ce classement à vos amis",
       "see": "Voir votre classement",
       "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
@@ -357,8 +391,18 @@
       "no.tile": "Il n'y a aucune tuile.",
       "tile.color": "Couleur du fond de la tuile",
       "tile.color.remove": "Supprimer la couleur.",
+      "tile.color.transparent": "Fond transparent.",
       "tile.color.new": "Ajouter une couleur.",
       "tile.color.previous": "Une couleur déjà utilisée.",
+      "text.color": "Couleur du texte de la tuile",
+      "text.color.remove": "Supprimer la couleur.",
+      "text.color.new": "Ajouter une couleur.",
+      "text.color.previous": "Une couleur déjà utilisée.",
+      "tile.position": "Position de la tuile",
+      "tile.position.top": "Dessus",
+      "tile.position.up": "Monter",
+      "tile.position.down": "Descendre",
+      "tile.position.bottom": "Dessous",
       "close": "Fermer",
       "title": "Titre",
       "annotation": "Annotation",
@@ -402,7 +446,9 @@
       "change.mode": {
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
-        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes."
+        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
+        "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
+        "axis": "Déplacer librement dans l'espace défini suivant des axes."
       },
       "reset.groups": {
         "button": "Vider les groupes",
@@ -413,6 +459,11 @@
       "history": {
         "warning": "Ancienne version",
         "show": "Voir les anciennes versions"
+      },
+      "texts": {
+        "info": "Ajouter des tuiles de textes : une ligne par tuile, les ligne vides sont ignorées.",
+        "ok": "Ok",
+        "cancel": "Annuler"
       }
     },
     "change": {
@@ -488,6 +539,13 @@
         "title": "Rechercher un film sur MAL",
         "name": "Nom d'un anime :",
         "search": "Rechercher"
+      }
+    },
+    "help": {
+      "title": "Aide :",
+      "zone": {
+        "central.click": "Clic central sur une tuile : remettre dans la liste.",
+        "double.click": "Double clic dans une zone vide : création d'une tuile à l'endroit visé."
       }
     }
   },
@@ -681,7 +739,7 @@
     },
     "classement": {
       "name.empty": "タイトルを空にすることはできません。",
-      "category.empty": "カテゴリを空にすることはできません。",
+      "category.empty": "La catégorie ne peut pas être vide.",
       "banner.empty": "バナーを空にすることはできません。"
     },
     "username.exist": "このユーザー名は既に存在します。",
@@ -691,7 +749,7 @@
       "invalid": "電子メールアドレスは無効です。",
       "old.invalid": "現在の電子メールアドレスは無効です。",
       "new.invalid": "新しい電子メールアドレスは無効です。",
-      "already.used": "この電子メールアドレスはすでに別のユーザーが使用しています。"
+      "already.used": "Ce courriel déjà utilisé par un autre utilisateur."
     },
     "pw.duplicate": "パスワードは同一ではありません。",
     "owasp": {
@@ -727,7 +785,7 @@
       "success": "😊 「％title％」のティアリストを追加しました。"
     },
     "user": {
-      "singup.success": "😊 ユーザーが作成しました。",
+      "sign.up.success": "😊 Utilisateur créé.",
       "validate.success": "😊 ユーザーの検証に成功しました。ログインできるようになりました。",
       "update.success": "😊 ユーザーが正常に更新されました。",
       "remove.success": "😲 ユーザーの匿名化に成功しました。",
