@@ -101,6 +101,10 @@ body.light-mode {
     --tile-add-file-background: #fff;
     --tile-add-file-color: #000d;
     --tile-add-filter: brightness(0.8);
+    // zone
+    --group-line-size: 1px;
+    --group-line-color: #ccc;
+    --axis-line-color: #333;
     // info
     --alert-color: #b00;
     --alert-background: #bb00004f;
@@ -152,7 +156,7 @@ body.light-mode {
     --tab-text-border-color: #494343;
     --tab-hover-border-color: #494343;
     // table
-    --table-header-sortabel-cell: #ecececee;
+    --table-header-sortable-cell: #ecececee;
     // box
     --box-background: #00000015;
     --box-border-color: #5f5f5f;
@@ -255,6 +259,10 @@ body.dark-mode {
     --tile-add-file-background: #242424;
     --tile-add-file-color: #fffd;
     --tile-add-filter: brightness(1.2);
+    // zone
+    --group-line-size: 1px;
+    --group-line-color: #3f3f3f;
+    --axis-line-color: #ccc;
     // info
     --alert-color: #ca5f5f;
     --alert-background: #8c000014;
@@ -306,7 +314,7 @@ body.dark-mode {
     --tab-text-border-color: #fff;
     --tab-hover-border-color: #fff;
     // table
-    --table-header-sortabel-cell: #202329ee;
+    --table-header-sortable-cell: #202329ee;
     // box
     --box-background: #ffffff15;
     --box-border-color: #5c5c5c;
@@ -644,7 +652,7 @@ dialog-cmp.auto-format .main {
     cursor: pointer;
 
     &:hover {
-        background-color: var(--tooltip-background);
+        background-color: var(--table-header-sortable-cell);
     }
 }
 

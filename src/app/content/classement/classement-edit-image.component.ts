@@ -13,7 +13,7 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 import { Subject, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileHandle, FileString } from 'src/app/interface/interface';
+import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
@@ -45,7 +45,10 @@ export class ClassementEditImageComponent implements OnChanges {
     aspectRatio = 0;
     mode = 0;
 
-    colorList?: Set<string>;
+    colorListBg?: Set<string>;
+    colorListTxt?: Set<string>;
+
+    _options?: Options;
 
     private _detectChange = new Subject<void>();
 
@@ -62,12 +65,19 @@ export class ClassementEditImageComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['currentTile']) {
-            // list colors
-            const colors = new Set<string>();
-            this.editor.list.forEach(e => (e.bgColor ? colors.add(e.bgColor) : null));
-            this.editor.groups.forEach(e => e.list.forEach(f => (f.bgColor ? colors.add(f.bgColor) : null)));
-            this.colorList = colors;
+            // list colors background
+            const bgColors = new Set<string>();
+            this.editor.list.forEach(e => (e.bgColor ? bgColors.add(e.bgColor) : null));
+            this.editor.groups.forEach(e => e.list.forEach(f => (f.bgColor ? bgColors.add(f.bgColor) : null)));
+            this.colorListBg = bgColors;
+
+            // list colors text
+            const txtColors = new Set<string>();
+            this.editor.list.forEach(e => (e.txtColor ? txtColors.add(e.txtColor) : null));
+            this.editor.groups.forEach(e => e.list.forEach(f => (f.txtColor ? txtColors.add(f.txtColor) : null)));
+            this.colorListTxt = txtColors;
         }
+        this._options ??= this.editor.options;
     }
 
     open() {
@@ -86,6 +96,30 @@ export class ClassementEditImageComponent implements OnChanges {
 
     globalChange() {
         this.global.withChange = true;
+    }
+
+    /**
+     * only for iceberg & axis
+     */
+    tileZIndex(position: 'top' | 'up' | 'down' | 'bottom') {
+        const list = this.editor.groups[0].list;
+        const index = list.findIndex(e => e.id === this.currentTile!.id);
+        const item = list.splice(index, 1)[0];
+
+        switch (position) {
+            case 'top':
+                list.push(item);
+                break;
+            case 'up':
+                list.splice(index + 1, 0, item);
+                break;
+            case 'down':
+                list.splice(index - 1, 0, item);
+                break;
+            case 'bottom':
+                list.unshift(item);
+                break;
+        }
     }
 
     changeRatio(mode: number, aspectRatio: number | string = 0) {

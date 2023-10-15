@@ -1,5 +1,5 @@
 <h3>{{ 'generator.options.group.title' | translate }}</h3>
-<div *ngIf="options" class="options" [class.simplified]="!options.showAdvancedOptions">
+<div *ngIf="options" class="options {{ options.mode }}" [class.simplified]="!options.showAdvancedOptions">
     <div class="title">
         <label for="option-title">{{ 'generator.options.title' | translate }}</label>
         <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="options.title" /></div>
@@ -20,6 +20,8 @@
         <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
             <option value="default">{{ 'mode.name.default' | translate }}</option>
             <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+            <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
+            <option value="axis">{{ 'mode.name.axis' | translate }}</option>
         </select>
     </div>
     <div class="description">
@@ -47,6 +49,10 @@
         <label class="toogle-switch">
             <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
             <span>{{ 'generator.options.item.width.auto' | translate }}</span>
+        </label>
+        <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
+            <input type="checkbox" [(ngModel)]="options.itemHeightAuto" />
+            <span>{{ 'generator.options.item.height.auto' | translate }}</span>
         </label>
     </div>
     <div class="stream-mode">
@@ -101,13 +107,29 @@
                     title="{{ 'generator.options.item.padding' | translate }}"
                 />
                 <input
+                    *ngIf="!options.itemHeightAuto; else itemHeightAuto"
                     id="option-item-height"
                     type="number"
                     min="16"
                     max="300"
                     class="item-height"
                     [(ngModel)]="options.itemHeight"
+                    (ngModelChange)="updateSize('itemHeight', 16)"
                     title="{{ 'generator.options.item.height' | translate }}"
+                />
+                <ng-template #itemHeightAuto>
+                    <span id="option-item-height-auto-info" class="item-height input">auto</span>
+                </ng-template>
+                <input
+                    *ngIf="options.itemHeightAuto"
+                    id="option-item-max-height"
+                    type="number"
+                    min="150"
+                    max="300"
+                    class="item-max-height"
+                    [(ngModel)]="options.itemMaxWidth"
+                    (ngModelChange)="updateSize('itemMaxHeight', 100)"
+                    title="{{ 'generator.options.item.max.height' | translate }}"
                 />
                 <span class="image">{{ 'generator.options.image' | translate }}</span>
                 <input
@@ -118,16 +140,32 @@
                     max="300"
                     class="item-width"
                     [(ngModel)]="options.itemWidth"
+                    (ngModelChange)="updateSize('itemWidth', 16)"
                     title="{{ 'generator.options.item.width' | translate }}"
                 />
                 <ng-template #itemWidthAuto>
                     <span id="option-item-width-auto-info" class="item-width input">auto</span>
                 </ng-template>
+                <input
+                    *ngIf="options.itemWidthAuto"
+                    id="option-item-max-width"
+                    type="number"
+                    min="150"
+                    max="300"
+                    class="item-max-width"
+                    [(ngModel)]="options.itemMaxWidth"
+                    (ngModelChange)="updateSize('itemMaxWidth', 100)"
+                    title="{{ 'generator.options.item.max.width' | translate }}"
+                />
             </div>
             <div>
                 <label class="toogle-switch">
                     <input id="option-item-width-auto" type="checkbox" [(ngModel)]="options.itemWidthAuto" />
                     <span>{{ 'generator.options.item.width.auto' | translate }}</span>
+                </label>
+                <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
+                    <input id="option-item-height-auto" type="checkbox" [(ngModel)]="options.itemHeightAuto" />
+                    <span>{{ 'generator.options.item.height.auto' | translate }}</span>
                 </label>
             </div>
         </div>
@@ -254,105 +292,274 @@
         </div>
 
         <!-- ###############################  line options ###############################  -->
+        <ng-container *ngIf="!zoneMode.includes(options.mode)">
+            <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
 
-        <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
-
-        <div class="colors-line-back input-button">
-            <div class="color">
-                <label for="option-line-background-color">{{
-                    'generator.options.line.background.color' | translate
-                }}</label>
-                <input id="option-line-background-color" type="color" [(ngModel)]="options.lineBackgroundColor" />
+            <div class="colors-line-back input-button">
+                <div class="color">
+                    <label for="option-line-background-color">{{
+                        'generator.options.line.background.color' | translate
+                    }}</label>
+                    <input id="option-line-background-color" type="color" [(ngModel)]="options.lineBackgroundColor" />
+                </div>
+                <div class="opacity">
+                    <label for="option-line-background-opacity">{{
+                        'generator.options.line.background.opacity' | translate
+                    }}</label>
+                    <input
+                        for="option-line-background-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [disabled]="!options.lineBackgroundColor"
+                        [(ngModel)]="options.lineBackgroundOpacity"
+                    />
+                </div>
+                <button (click)="resetLineBackground()" [disabled]="!options.lineBackgroundColor">
+                    {{ 'generator.options.clear' | translate }}
+                </button>
+                <div class="color-render" *ngIf="options.lineBackgroundColor"></div>
             </div>
-            <div class="opacity">
-                <label for="option-line-background-opacity">{{
-                    'generator.options.line.background.opacity' | translate
-                }}</label>
+
+            <div class="colors-line-border input-button">
+                <div class="color">
+                    <label for="option-line-border-color">{{
+                        'generator.options.line.border.color' | translate
+                    }}</label>
+                    <input id="option-line-border-color" type="color" [(ngModel)]="options.lineBorderColor" />
+                </div>
+                <div class="opacity">
+                    <label for="option-line-border-opacity">{{
+                        'generator.options.line.border.opacity' | translate
+                    }}</label>
+                    <input
+                        id="option-line-border-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [disabled]="!options.lineBorderColor"
+                        [(ngModel)]="options.lineBorderOpacity"
+                    />
+                </div>
+                <button (click)="resetLineBorder()" [disabled]="!options.lineBorderColor">
+                    {{ 'generator.options.clear' | translate }}
+                </button>
+                <div class="color-render" *ngIf="options.lineBorderColor"></div>
+            </div>
+
+            <div class="name-bg-opacity input-value">
+                <div class="width-input">
+                    <label for="options-name-background-opacity">{{
+                        'generator.options.name.opacity' | translate
+                    }}</label>
+                    <input
+                        id="options-name-background-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [(ngModel)]="options.nameBackgroundOpacity"
+                    />
+                </div>
+            </div>
+
+            <div class="font-size input-value">
+                <div class="number-input">
+                    <label for="option-name-font-size">{{ 'generator.options.name.font-size' | translate }}</label>
+                    <input
+                        id="option-name-font-size"
+                        type="number"
+                        min="50"
+                        max="300"
+                        [(ngModel)]="options.nameFontSize"
+                    />
+                </div>
+            </div>
+
+            <div class="name-width input-value">
+                <div class="number-input">
+                    <label for="option-name-width">{{ 'generator.options.name.width' | translate }}</label>
+                    <input id="option-name-width" type="number" [(ngModel)]="options.nameWidth" />
+                </div>
+            </div>
+
+            <div class="group-direction input-value">
+                <div class="select-input">
+                    <label for="option-group-direction">{{
+                        'generator.options.group.direction.label' | translate
+                    }}</label>
+                    <select id="option-item-text-position" [(ngModel)]="options.direction">
+                        <option value="rtl">{{ 'generator.options.group.direction.rtl' | translate }}</option>
+                        <option value="ltr">{{ 'generator.options.group.direction.ltr' | translate }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="name-markdown input-value">
+                <label class="toogle-switch">
+                    <input type="checkbox" [(ngModel)]="options.nameMarkdown" />
+                    <span>{{ 'generator.options.group.markdown' | translate }}</span>
+                </label>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="options.mode === 'iceberg'">
+            <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+
+            <div class="zone-title-number">
+                <div class="width-input">
+                    <label for="option-groups-size">{{ 'generator.options.zone.title.number' | translate }}</label>
+                    <input
+                        id="option-groups-size"
+                        type="number"
+                        [ngModel]="options.groups?.length || 0"
+                        (ngModelChange)="updateListGroup($event)"
+                    />
+                </div>
+            </div>
+
+            <div class="zone-title-groups">
+                <div *ngFor="let item of options.groups">
+                    <div class="width-input">
+                        <label for="option-title-name">{{ 'generator.options.zone.title.name' | translate }}</label>
+                        <input id="option-title-name" type="text" [(ngModel)]="item.title" />
+                    </div>
+                    <div class="width-input">
+                        <label for="option-title-align-vertical">{{
+                            'generator.options.zone.title.align.vertical.label' | translate
+                        }}</label>
+                        <select id="option-title-align-vertical" [(ngModel)]="item.titleVerticalPosition">
+                            <option value="start">
+                                {{ 'generator.options.zone.title.align.vertical.start' | translate }}
+                            </option>
+                            <option value="center">
+                                {{ 'generator.options.zone.title.align.vertical.center' | translate }}
+                            </option>
+                            <option value="end">
+                                {{ 'generator.options.zone.title.align.vertical.end' | translate }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="width-input">
+                        <label for="option-title-align-horizontal">{{
+                            'generator.options.zone.title.align.horizontal.label' | translate
+                        }}</label>
+                        <select id="option-title-align-horizontal" [(ngModel)]="item.titleHorizontalPosition">
+                            <option value="start">
+                                {{ 'generator.options.zone.title.align.horizontal.start' | translate }}
+                            </option>
+                            <option value="center">
+                                {{ 'generator.options.zone.title.align.horizontal.center' | translate }}
+                            </option>
+                            <option value="end">
+                                {{ 'generator.options.zone.title.align.horizontal.end' | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-line-width input-value">
+                <div class="number-input">
+                    <label for="option-group-line-width">{{ 'generator.options.name.width' | translate }}</label>
+                    <input
+                        id="option-group-line-width"
+                        type="number"
+                        min="0"
+                        max="50"
+                        [(ngModel)]="options.groupLineSize"
+                    />
+                </div>
+            </div>
+
+            <div class="colors-group-line input-button">
+                <div class="width-input">
+                    <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
+                    <input id="option-title-color" type="color" [(ngModel)]="options.groupLineColor" />
+                </div>
+                <div class="opacity">
+                    <label for="option-title-opacity">{{ 'generator.options.title.opacity' | translate }}</label>
+                    <input
+                        for="option-title-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [disabled]="!options.groupLineColor"
+                        [(ngModel)]="options.groupLineOpacity"
+                    />
+                </div>
+                <button (click)="resetTitleText()" [disabled]="!options.groupLineColor">
+                    {{ 'generator.options.clear' | translate }}
+                </button>
+                <div class="color-render" *ngIf="options.groupLineColor"></div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="options.mode === 'axis'">
+            <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+
+            <div class="zone-title-axis">
+                <div *ngFor="let item of options.groups; let index = index">
+                    <div class="width-input">
+                        <label for="option-title-name">{{
+                            (index % 2 === 0 ? 'generator.options.zone.axis.name' : 'generator.options.zone.area.name')
+                                | translate
+                        }}</label>
+                        <input id="option-title-name" type="text" [(ngModel)]="item.title" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="axis-line-width input-value">
+                <div class="number-input">
+                    <label for="option-axis-line-width">{{ 'generator.options.axis.line.width' | translate }}</label>
+                    <input
+                        id="option-axis-line-width"
+                        type="number"
+                        min="0"
+                        max="12"
+                        [(ngModel)]="options.axisLineWidth"
+                    />
+                </div>
+            </div>
+
+            <div class="axis-arrow-size number-input">
+                <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | translate }}</label>
                 <input
-                    for="option-line-background-opacity"
-                    type="range"
-                    max="100"
+                    id="option-axis-arrow-size"
+                    type="number"
                     min="0"
-                    step="1"
-                    [disabled]="!options.lineBackgroundColor"
-                    [(ngModel)]="options.lineBackgroundOpacity"
+                    max="50"
+                    [(ngModel)]="options.axisArrowWidth"
                 />
             </div>
-            <button (click)="resetLineBackground()" [disabled]="!options.lineBackgroundColor">
-                {{ 'generator.options.clear' | translate }}
-            </button>
-            <div class="color-render" *ngIf="options.lineBackgroundColor"></div>
-        </div>
 
-        <div class="colors-line-border input-button">
-            <div class="color">
-                <label for="option-line-border-color">{{ 'generator.options.line.border.color' | translate }}</label>
-                <input id="option-line-border-color" type="color" [(ngModel)]="options.lineBorderColor" />
+            <div class="colors-axis-line input-button">
+                <div class="width-input">
+                    <label for="option-axis-line-color">{{ 'generator.options.axis.line.color' | translate }}</label>
+                    <input id="option-axis-line-color" type="color" [(ngModel)]="options.axisLineColor" />
+                </div>
+                <div class="opacity">
+                    <label for="option-axis-line-opacity">{{
+                        'generator.options.item.text.opacity' | translate
+                    }}</label>
+                    <input
+                        for="option-axis-line-opacity"
+                        type="range"
+                        max="100"
+                        min="0"
+                        step="1"
+                        [disabled]="!options.axisLineColor"
+                        [(ngModel)]="options.axisLineOpacity"
+                    />
+                </div>
+                <button (click)="resetAxisLine()" [disabled]="!options.axisLineColor">
+                    {{ 'generator.options.clear' | translate }}
+                </button>
+                <div class="color-render" *ngIf="options.axisLineColor"></div>
             </div>
-            <div class="opacity">
-                <label for="option-line-border-opacity">{{
-                    'generator.options.line.border.opacity' | translate
-                }}</label>
-                <input
-                    id="option-line-border-opacity"
-                    type="range"
-                    max="100"
-                    min="0"
-                    step="1"
-                    [disabled]="!options.lineBorderColor"
-                    [(ngModel)]="options.lineBorderOpacity"
-                />
-            </div>
-            <button (click)="resetLineBorder()" [disabled]="!options.lineBorderColor">
-                {{ 'generator.options.clear' | translate }}
-            </button>
-            <div class="color-render" *ngIf="options.lineBorderColor"></div>
-        </div>
-
-        <div class="name-bg-opacity input-value">
-            <div class="width-input">
-                <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | translate }}</label>
-                <input
-                    id="options-name-background-opacity"
-                    type="range"
-                    max="100"
-                    min="0"
-                    step="1"
-                    [(ngModel)]="options.nameBackgroundOpacity"
-                />
-            </div>
-        </div>
-
-        <div class="font-size input-value">
-            <div class="number-input">
-                <label for="option-name-font-size">{{ 'generator.options.name.font-size' | translate }}</label>
-                <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="options.nameFontSize" />
-            </div>
-        </div>
-
-        <div class="name-width input-value">
-            <div class="number-input">
-                <label for="option-name-width">{{ 'generator.options.name.width' | translate }}</label>
-                <input id="option-name-width" type="number" [(ngModel)]="options.nameWidth" />
-            </div>
-        </div>
-
-        <div class="group-direction input-value">
-            <div class="select-input">
-                <label for="option-group-direction">{{ 'generator.options.group.direction.label' | translate }}</label>
-                <select id="option-item-text-position" [(ngModel)]="options.direction">
-                    <option value="rtl">{{ 'generator.options.group.direction.rtl' | translate }}</option>
-                    <option value="ltr">{{ 'generator.options.group.direction.ltr' | translate }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="name-markdown input-value">
-            <label class="toogle-switch">
-                <input type="checkbox" [(ngModel)]="options.nameMarkdown" />
-                <span>{{ 'generator.options.group.markdown' | translate }}</span>
-            </label>
-        </div>
+        </ng-container>
 
         <!-- ###############################  other options ###############################  -->
         <h4 class="title-other">{{ 'generator.options.global.title' | translate }}</h4>
@@ -383,6 +590,13 @@
         <div class="global-width input-button">
             <div class="width-input">
                 <label for="option-global-width">{{ 'generator.options.global.width' | translate }}</label>
+                <input id="option-global-width" type="number" [(ngModel)]="options.imageWidth" />
+            </div>
+        </div>
+
+        <div class="global-height input-button" *ngIf="zoneMode.includes(options.mode)">
+            <div class="width-input">
+                <label for="option-global-width">{{ 'generator.options.global.height' | translate }}</label>
                 <input id="option-global-width" type="number" [(ngModel)]="options.imageWidth" />
             </div>
         </div>
@@ -446,7 +660,7 @@
     </div>
 </div>
 
-<classement-themes (change)="changeTheme($event)"></classement-themes>
+<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
 
 <dialog-cmp class="auto-format" #dialogChangeMode>
     <p class="question">

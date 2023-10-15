@@ -110,7 +110,11 @@
     },
     "imdb": {
       "key": "IMDB authentication key",
-      "info": "This key requires an account with IMDB and an API access request. Here :"
+      "info": "This key requires an account with IMDB and an API access request. Here:"
+    },
+    "mal": {
+      "key": "MAL authentication key",
+      "info": "This key requires an account with MAL and an API access request. Here:"
     }
   },
   "list": {
@@ -230,7 +234,9 @@
   "mode": {
     "name": {
       "default": "Default",
-      "teams": "Teams"
+      "teams": "Teams",
+      "iceberg": "Iceberg",
+      "axis": "Axis"
     }
   },
   "generator": {
@@ -260,8 +266,11 @@
       "item": {
         "title": "Tile options",
         "width": "Tile width",
+        "max.width": "Max width of a tile",
         "width.auto": "Automatic tile width",
-        "height": "Tile height",
+        "height": "Height of a tile",
+        "max.height": "Max height of a tile",
+        "height.auto": "Automatic tile height",
         "padding": "Tile padding",
         "border": "Tile border",
         "margin": "Tile margin",
@@ -295,6 +304,7 @@
         "title": "Other options",
         "background": "Background color:",
         "width": "Render image width:",
+        "height": "Height of rendered image:",
         "image": "Background image:",
         "name.image": {
           "none": "Default",
@@ -318,6 +328,31 @@
       "background": {
         "custom": "Select a custom background image",
         "custom.api": "Select a custom background image (max 1000×1000)"
+      },
+      "zone.title": {
+        "number": "Number of groups with title",
+        "name": "Group name",
+        "align": {
+          "vertical": {
+            "label": "Vertical alignment",
+            "start": "Up",
+            "center": "Middle",
+            "end": "Down"
+          },
+          "horizontal": {
+            "label": "Horizontal alignment",
+            "start": "Start",
+            "center": "Center",
+            "end": "End"
+          }
+        }
+      },
+      "zone.axis.name": "Axis name",
+      "zone.area.name": "Area name",
+      "axis": {
+        "line.width": "Axis width",
+        "line.color": "Axis color",
+        "arrow.size": "Arrow size"
       }
     },
     "screen": {
@@ -335,7 +370,9 @@
         "compact": "Default compact",
         "sakura": "Sakura",
         "night": "Night",
-        "ciel": "Sky"
+        "ciel": "Sky",
+        "iceberg": "Iceberg",
+        "axis": "Axis"
       }
     },
     "ranking": {
@@ -344,6 +381,7 @@
       "list": "List",
       "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
       "add.image": "Click here to add one or a group of images",
+      "add.text": "Click here to add one or a group of texts",
       "share.link": "Share this ranking with your friends",
       "see": "See your tierlist",
       "copy.link.success": "The link was successfully copied to the clipboard",
@@ -353,8 +391,18 @@
       "no.tile": "There are no tiles.",
       "tile.color": "Tile background color",
       "tile.color.remove": "Remove color.",
-      "tile.color.new": "Add color.",
-      "tile.color.previous": "A color already in use.",
+      "tile.color.transparent": "Transparent background.",
+      "tile.color.new": "Add a color.",
+      "tile.color.previous": "A color already used.",
+      "text.color": "Tile text color",
+      "text.color.remove": "Remove color.",
+      "text.color.new": "Add a color.",
+      "text.color.previous": "A color already in use.",
+      "tile.position": "Position of the tile",
+      "tile.position.top": "Top",
+      "tile.position.up": "Move up",
+      "tile.position.down": "Go down",
+      "tile.position.bottom": "Bottom",
       "close": "Close",
       "title": "Title",
       "annotation": "Annotation",
@@ -398,7 +446,9 @@
       "change.mode": {
         "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
         "default": "Freely move tiles in each group.",
-        "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams."
+        "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams.",
+        "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
+        "axis": "Move freely in the defined space along axes."
       },
       "reset.groups": {
         "button": "Clear Groups",
@@ -409,6 +459,11 @@
       "history": {
         "warning": "Old version",
         "show": "See old versions"
+      },
+      "texts": {
+        "info": "Add text tiles: one line per tile, empty lines are ignored.",
+        "ok": "Ok",
+        "cancel": "Cancel"
       }
     },
     "change": {
@@ -479,6 +534,18 @@
         "search": "Search",
         "with.title": "with the title",
         "with.year": "with the year"
+      },
+      "mal": {
+        "title": "Search for a movie on MAL",
+        "name": "Name of an anime:",
+        "search": "Search"
+      }
+    },
+    "help": {
+      "title": "Help:",
+      "area": {
+        "central.click": "Central click on a tile: return to the list.",
+        "double.click": "Double click in an empty area: creates a tile at the target location."
       }
     }
   },
@@ -718,7 +785,7 @@
       "success": "😊 successfully added “%title%” tierlist."
     },
     "user": {
-      "singup.success": "😊 User created.",
+      "sign.up.success": "😊 User created.",
       "validate.success": "😊 User validated successfully. You can now login.",
       "update.success": "😊 User updated successfully.",
       "remove.success": "😲 User anonymized successfully.",

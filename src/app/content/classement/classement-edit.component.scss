@@ -2,11 +2,13 @@
     display: flex;
     min-height: 100%;
     width: 100%;
+    max-width: 100%;
 
     & > div {
         padding: var(--main-padding);
         position: relative;
         flex: 1;
+        max-width: calc(100% - 10px);
     }
 }
 
@@ -40,6 +42,10 @@
     flex-wrap: wrap;
 }
 
+.height-auto {
+    align-items: center;
+}
+
 .drop-zone-empty-list {
     flex: 1;
     height: calc(
@@ -53,7 +59,9 @@
     padding: var(--over-item-padding, 10px);
     margin: var(--over-item-margin, 2px);
     width: var(--over-item-width, 150px);
+    max-width: var(--over-item-max-width, 300px);
     height: var(--over-item-height, 150px);
+    max-height: var(--over-item-max-height, 300px);
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
     color: var(--over-item-color, var(--content-box-color));
@@ -92,7 +100,8 @@
     }
 }
 
-.add-file {
+.add-file,
+.add-text {
     cursor: pointer;
     text-align: center;
     font-weight: 600;
@@ -211,6 +220,17 @@ img {
     }
 }
 
+.zone-classement {
+    background-color: var(--over-image-background, var(--drop-list-background));
+    background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+    width: var(--over-image-width, 1170px);
+    height: var(--over-image-height, 600px);
+}
+
 .elements {
     width: 100%;
 }
@@ -229,7 +249,7 @@ img {
         height: 100%;
         grid-template:
             'a a a a a' auto
-            '. b e c .' var(--group-option-heigth, 35px)
+            '. b e c .' var(--group-option-height, 35px)
             'd d d d d' 0
             / 1fr auto 1fr auto 1fr;
 
@@ -257,7 +277,6 @@ img {
     textarea {
         border: 0;
         grid-area: 1 / 1;
-        text-align: center;
         font-size: var(--over-name-font-size, 120%);
         color: var(--text-color);
         width: 100%;
@@ -267,9 +286,6 @@ img {
         margin: 0;
         padding: 0;
         resize: none;
-        background: none;
-        appearance: none;
-        outline: 0;
     }
 
     &::after {
@@ -277,6 +293,16 @@ img {
         visibility: hidden;
         white-space: pre-wrap;
         word-break: break-word;
+    }
+
+    &.no-border {
+        &::after,
+        textarea {
+            background: none;
+            appearance: none;
+            outline: 0;
+            text-align: center;
+        }
     }
 }
 
@@ -344,7 +370,9 @@ span.group-options {
     text-align: center;
     font-size: 85%;
     word-wrap: break-word;
-    max-width: 100%;
+    max-width: min(100%, var(--over-item-max-width, 300px));
+    overflow: visible;
+    white-space: break-spaces;
 }
 
 .title {
@@ -357,6 +385,9 @@ span.group-options {
     span {
         white-space: nowrap;
         display: inline-block;
+        overflow: hidden;
+        max-width: var(--over-item-max-width, 300px);
+        text-overflow: ellipsis;
     }
 }
 
@@ -476,9 +507,49 @@ span.group-options {
     .drop-image-message span,
     .tile-info,
     .add-file,
+    .add-text,
     .btn-delete,
     .input-title {
         visibility: hidden;
+    }
+}
+
+.current-list .cdk-drop-list {
+    min-height: 40px;
+}
+
+// zone : iceberg / axis -----------------------------------------------------------
+
+.cdk-drop-zone {
+    position: relative;
+    overflow: hidden;
+
+    .cdk-drag {
+        position: absolute;
+    }
+
+    .cdk-drag-placeholder {
+        opacity: 0;
+    }
+}
+
+.mode-iceberg,
+.mode-axis {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.help {
+    flex: 1;
+    padding-left: 10px;
+
+    p {
+        margin: 1em 0 0;
+    }
+
+    ul {
+        margin: 0;
+        padding: 10px 0 10px 20px;
     }
 }
 
@@ -492,7 +563,7 @@ span.group-options {
 // render ------------------------------------------------------------------
 
 .render {
-    width: var(--over-image-width, 1200px);
+    width: var(--over-image-width, 1170px);
     position: absolute;
     top: 0;
     left: -100000px;
@@ -697,7 +768,7 @@ loading-cmp {
 
 @media screen and (min-width: 769px) {
     :host.option-reduce {
-        --group-option-heigth: 0;
+        --group-option-height: 0;
 
         .table-classement {
             .button-up,
@@ -770,6 +841,6 @@ loading-cmp {
     }
 
     .names {
-        --group-option-heigth: 0;
+        --group-option-height: 0;
     }
 }

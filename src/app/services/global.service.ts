@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { defaultOptions } from '../content/classement/classement-default';
+import { defaultOptions, imageInfos } from '../content/classement/classement-default';
 import {
     Data,
     FileHandle,
@@ -28,7 +28,7 @@ export enum TypeFile {
 }
 
 export const typesMine: Record<string, string[]> = {
-    image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp'],
+    image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp', 'image/avif'],
     json: ['application/json'],
 };
 
@@ -101,19 +101,21 @@ export class GlobalService {
         const lines = text.split('\n');
         for (const line of lines) {
             const trimString = line.trim();
-            this.onFileLoaded.next({
-                filter: TypeFile.text,
-                file: {
-                    name: '',
-                    url: '',
-                    size: trimString.length,
-                    realSize: trimString.length,
-                    type: 'plain/text',
-                    date: new Date().getTime(),
-                    title: trimString,
-                    width: 150,
-                },
-            });
+            if (trimString !== '') {
+                this.onFileLoaded.next({
+                    filter: TypeFile.text,
+                    file: {
+                        name: '',
+                        url: '',
+                        size: trimString.length,
+                        realSize: trimString.length,
+                        type: 'plain/text',
+                        date: new Date().getTime(),
+                        title: trimString,
+                        width: 150,
+                    },
+                });
+            }
         }
     }
 
@@ -149,7 +151,7 @@ export class GlobalService {
     }
 
     /**
-     * fix for html2canavas (not work with https? images)
+     * fix for html2canvas (not work with https? images)
      * @param groups groups
      * @param list list
      * @returns cache image in base64 `[url : base64]`
@@ -187,7 +189,10 @@ export class GlobalService {
         // item
         const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
-        r(body, '--over-item-height', (o.itemHeight ?? defaultOptions.itemHeight) + 'px', dash);
+        r(body, '--over-item-max-width', o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
+        const itemHeight = o.itemHeightAuto ? 'auto' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
+        r(body, '--over-item-height', itemHeight, dash);
+        r(body, '--over-item-max-height', o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
         r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
@@ -204,16 +209,30 @@ export class GlobalService {
         // image background
         r(body, '--over-image-background', o.imageBackgroundColor, dash);
         r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
+        if (o.mode === 'axis' || o.mode === 'iceberg') {
+            r(body, '--over-image-height', (o.imageHeight ?? defaultOptions.imageHeight) + 'px', dash);
+        }
         r(
             body,
             '--over-image-url',
             o.imageBackgroundImage !== 'none'
                 ? o.imageBackgroundImage === 'custom'
                     ? `url(${cache[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
-                    : `url(./assets/themes/${o.imageBackgroundImage}.svg)`
+                    : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`
                 : null,
             dash,
         );
+        r(body, '--over-image-background-position', o.imagePosition, dash);
+        r(body, '--over-image-background-size', o.imageSize, dash);
+        // zone group
+        r(body, '--over-group-line-size', (o.groupLineSize ?? defaultOptions.groupLineSize) + 'px', dash);
+        r(body, '--over-group-line-color', color(o.groupLineColor, o.groupLineOpacity), dash);
+        // axis
+        if (o.mode === 'axis') {
+            r(body, '--over-axis-arrow-size', (o.axisArrowWidth ?? defaultOptions.axisArrowWidth) + 'px', dash);
+            r(body, '--over-axis-line-size', (o.axisLineWidth ?? defaultOptions.axisLineWidth) + 'px', dash);
+            r(body, '--over-axis-line-color', color(o.axisLineColor, o.axisLineOpacity), dash);
+        }
     }
 
     getValuesFromOptions(o: Options) {

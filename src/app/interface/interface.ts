@@ -70,6 +70,9 @@ export type FileString = {
     title?: string;
     annotation?: string;
     bgColor?: string;
+    txtColor?: string;
+    x?: number;
+    y?: number;
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
 export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
@@ -82,13 +85,17 @@ export type Options = ThemeOptions & {
     description: string;
     tags: string[];
     mode: ModeNames;
+    groups?: OptionGroup[];
 };
 export type ThemeOptions = {
     titleTextColor: string;
     titleTextOpacity: number;
     itemWidth: number;
     itemWidthAuto: boolean;
+    itemMaxWidth: number;
     itemHeight: number;
+    itemHeightAuto: boolean;
+    itemMaxHeight: number;
     itemPadding: number;
     itemBorder: number;
     itemMargin: number;
@@ -106,20 +113,36 @@ export type ThemeOptions = {
     lineBackgroundOpacity: number;
     lineBorderOpacity: number;
     imageBackgroundColor: string;
-    imageBackgroundImage: string;
+    imageBackgroundImage: ImagesNames;
     imageBackgroundCustom: string;
     imageWidth: number;
+    imageHeight?: number;
+    imageSize?: 'cover';
+    imagePosition?: 'center';
+    axisLineWidth: number;
+    axisLineColor: string;
+    axisLineOpacity: number;
+    axisArrowWidth: number;
     nameWidth: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;
     nameMarkdown: boolean;
+    groupLineSize: number;
+    groupLineColor: string;
+    groupLineOpacity: number;
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;
 };
 
+export type OptionGroup = {
+    title: string;
+    titleVerticalPosition?: string;
+    titleHorizontalPosition?: string;
+};
+
 export type Theme = {
-    name: ThemeNames;
+    name: ThemesNames;
     options: Options;
 };
 
@@ -183,7 +206,7 @@ export interface PreferencesData {
     newColor: PreferenceNewColor;
     newLine: PreferenceNewLine;
     lineOption: PreferenceLineOption;
-    theme: ThemeNames;
+    theme: ThemesNames;
     pageSize: number;
     mainMenuReduce: boolean;
     authApiKeys: {
@@ -193,9 +216,10 @@ export interface PreferencesData {
 
 export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
-export type ThemeNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel';
+export type ThemesNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
+export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
-export type ModeNames = 'default' | 'teams';
+export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis';
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';

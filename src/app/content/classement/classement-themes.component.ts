@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Theme } from 'src/app/interface/interface';
-
-import { themesList } from './classement-default';
 
 @Component({
     selector: 'classement-themes',
@@ -13,7 +11,8 @@ import { themesList } from './classement-default';
 export class ClassementThemesComponent {
     currentTheme?: Theme;
 
-    themes = themesList;
+    @Input()
+    themes?: Theme[];
 
     @ViewChild(DialogComponent) dialog!: DialogComponent;
 
