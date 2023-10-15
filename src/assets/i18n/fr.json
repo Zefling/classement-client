@@ -443,8 +443,8 @@
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
         "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
-        "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).\nLe clic central permet de faire retourner une tuile dans la liste.",
-        "axis": "Déplacer librement dans l'espace défini suivant des axes.\nLe clic central permet de faire retourner une tuile dans la liste."
+        "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
+        "axis": "Déplacer librement dans l'espace défini suivant des axes."
       },
       "reset.groups": {
         "button": "Vider les groupes",
@@ -735,7 +735,7 @@
     },
     "classement": {
       "name.empty": "Le titre ne peut pas être vide.",
-      "category.empty": "La categorie ne peut pas être vide.",
+      "category.empty": "La catégorie ne peut pas être vide.",
       "banner.empty": "La bannière ne peut pas être vide."
     },
     "username.exist": "Ce nom d'utilisateur existe déjà.",
@@ -745,7 +745,7 @@
       "invalid": "Le courriel est invalide.",
       "old.invalid": "L'ancien courriel est invalide.",
       "new.invalid": "Le nouveau courriel est invalide.",
-      "already.used": "Ce courriel déja utilisé par un autre utilisateur."
+      "already.used": "Ce courriel déjà utilisé par un autre utilisateur."
     },
     "pw.duplicate": "Les mots de passe ne sont pas identiques.",
     "owasp": {
@@ -781,7 +781,7 @@
       "success": "😊 Ajout du classement « %title% » réussi."
     },
     "user": {
-      "singup.success": "😊 Utilisateur créé.",
+      "sign.up.success": "😊 Utilisateur créé.",
       "validate.success": "😊 Utilisateur validé avec succès. Vous pouvez maintenant vous connecter.",
       "update.success": "😊 Utilisateur mis à jour avec succès.",
       "remove.success": "😲 Utilisateur anonymisé avec succès.",

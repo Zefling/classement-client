@@ -107,6 +107,10 @@
     "imdb": {
       "key": "IMDB認証キー",
       "info": "このキーには、IMDBのアカウントとAPIアクセス要求が必要です。ここ："
+    },
+    "mal": {
+      "key": "MAL認証キー",
+      "info": "このキーには、MALのアカウントとAPIアクセス要求が必要です。ここ："
     }
   },
   "list": {
@@ -226,7 +230,9 @@
   "mode": {
     "name": {
       "default": "デフォルト",
-      "teams": "チーム"
+      "teams": "チーム",
+      "iceberg": "氷山",
+      "axis": "軸"
     }
   },
   "generator": {
@@ -256,8 +262,11 @@
       "item": {
         "title": "タイルのオプション",
         "width": "タイル幅",
+        "max.width": "タイルの最大幅",
         "width.auto": "自動タイル幅",
         "height": "タイルの高さ",
+        "max.height": "タイルの最大高さ",
+        "height.auto": "自動タイル高さ",
         "padding": "タイルパディング",
         "border": "タイルボーダー",
         "margin": "タイルマージン",
@@ -291,6 +300,7 @@
         "title": "別のオプション",
         "background": "背景の色：",
         "width": "レンダリング画像の幅：",
+        "height": "レンダリング画像の高さ:",
         "image": "背景画像：",
         "name.image": {
           "none": "デフォルト",
@@ -314,6 +324,31 @@
       "background": {
         "custom": "カスタム背景画像を選択",
         "custom.api": "カスタム背景画像を選択 (最大 1000×1000)"
+      },
+      "zone.title": {
+        "number": "タイトルを持つグループの数",
+        "name": "グループ名",
+        "align": {
+          "vertical": {
+            "label": "垂直方向の配置",
+            "start": "上",
+            "center": "中央",
+            "end": "下"
+          },
+          "horizontal": {
+            "label": "水平方向の配置",
+            "start": "開始",
+            "center": "中心",
+            "end": "終了"
+          }
+        }
+      },
+      "zone.axis.name": "軸名",
+      "zone.area.name": "エリア名",
+      "axis": {
+        "line.width": "軸の幅",
+        "line.color": "軸の色",
+        "arrow.size": "矢印のサイズ"
       }
     },
     "screen": {
@@ -331,7 +366,9 @@
         "compact": "デフォルトのコンパクト",
         "sakura": "桜",
         "night": "エトワール",
-        "ciel": "空"
+        "ciel": "空",
+        "iceberg": "氷山",
+        "axis": "軸"
       }
     },
     "ranking": {
@@ -340,6 +377,7 @@
       "list": "リスト",
       "drop.image": "ここに画像（JPG、PNG、GIF、WEBP）またはテキストの1つまたはグループをコピペするか、ドロップします",
       "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください",
+      "add.text": "テキストの1つまたはグループを追加するには、ここをクリックしてください",
       "share.link": "このティアリストを友達と共有します",
       "see": "自分のランキングを見る",
       "copy.link.success": "リンクは正常にクリップボードにコピーされました",
@@ -349,8 +387,18 @@
       "no.tile": "タイルがありません。",
       "tile.color": "タイルの背景色",
       "tile.color.remove": "色を削除します。",
+      "tile.color.transparent": "透明な背景。",
       "tile.color.new": "色を追加します。",
       "tile.color.previous": "すでに使用されている色です。",
+      "text.color": "タイルのテキストの色",
+      "text.color.remove": "色を削除します。",
+      "text.color.new": "色を追加します。",
+      "text.color.previous": "すでに使用されている色です。",
+      "tile.position": "タイルの位置",
+      "tile.position.top": "一番上",
+      "tile.position.up": "上に移動",
+      "tile.position.down": "下に移動",
+      "tile.position.bottom": "一番下",
       "close": "閉じる",
       "title": "タイトル",
       "annotation": "注釈",
@@ -394,7 +442,9 @@
       "change.mode": {
         "question": "モードを変更するには、グループを空にリセットする必要があります。\n続行してもよろしいですか？",
         "default": "各グループ内のタイルを自由に移動します。",
-        "teams": "各グループのタイルをコピーします。\nグループを形成するには、各タイルの 1 つのバージョンのみを含めることができます。"
+        "teams": "各グループのタイルをコピーします。\nグループを形成するには、各タイルの 1 つのバージョンのみを含めることができます。",
+        "iceberg": "氷山 (または別の画像) のモデルで定義された空間内を自由に移動します。",
+        "axis": "軸に沿って定義された空間内を自由に移動します。"
       },
       "reset.groups": {
         "button": "クリアグループ",
@@ -405,6 +455,11 @@
       "history": {
         "warning": "古いバージョン",
         "show": "古いバージョンを見る"
+      },
+      "texts": {
+        "info": "テキスト タイルを追加します。タイルごとに 1 行、空の行は無視されます。",
+        "ok": "OK",
+        "cancel": "キャンセル"
       }
     },
     "change": {
@@ -475,6 +530,18 @@
         "search": "検索",
         "with.title": "タイトル付きで",
         "with.year": "年付きで"
+      },
+      "mal": {
+        "title": "MAL で映画を検索します",
+        "name": "アニメの名前:",
+        "検索": "検索"
+      }
+    },
+    "help": {
+      "title": "ヘルプ:",
+      "zone": {
+        "central.click": "タイルを中央クリック: リストに戻ります。",
+        "double.click": "空の領域をダブルクリックすると、ターゲットの位置にタイルが作成されます。"
       }
     }
   },
@@ -490,9 +557,9 @@
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
-        "label": " ",
+        "label": "",
         "label.after": "でログインします。",
-        "create": "  ",
+        "create": "",
         "create.after": "で作成します。",
         "discord": "DISCORD",
         "facebook": "FACEBOOK",
@@ -714,7 +781,7 @@
       "success": "😊 「％title％」のティアリストを追加しました。"
     },
     "user": {
-      "singup.success": "😊 ユーザーが作成しました。",
+      "sign.up.success": "😊 ユーザーが作成しました。",
       "validate.success": "😊 ユーザーの検証に成功しました。ログインできるようになりました。",
       "update.success": "😊 ユーザーが正常に更新されました。",
       "remove.success": "😲 ユーザーの匿名化に成功しました。",

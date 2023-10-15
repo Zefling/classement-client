@@ -143,7 +143,7 @@ export class UserSignupComponent implements OnDestroy {
             this.userService
                 .signup(value.username, value.password, value.email)
                 .then(() => {
-                    this.messageService.addMessage(this.translate.instant('message.user.singup.success'));
+                    this.messageService.addMessage(this.translate.instant('message.user.sign.up.success'));
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {
