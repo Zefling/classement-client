@@ -38,6 +38,9 @@ export class AppComponent implements DoCheck {
     @HostBinding('class.show-menu')
     asideOpen = false;
 
+    @HostBinding('class.reduce-menu')
+    mainMenuReduce = true;
+
     modeApi = environment.api?.active || false;
     modeModerator = false;
 
@@ -96,6 +99,11 @@ export class AppComponent implements DoCheck {
         this.asideOpen = !this.asideOpen;
     }
 
+    toggleResizeMenu() {
+        this.mainMenuReduce = !this.mainMenuReduce;
+        this.preferencesForm?.get('mainMenuReduce')?.setValue(this.mainMenuReduce);
+    }
+
     updateLanguage(lang: string) {
         this.logger.log('Update language: ' + lang);
         this.translate.use(lang);
@@ -133,22 +141,26 @@ export class AppComponent implements DoCheck {
         const initPreferences = await this.preferencesService.init();
 
         // theme
-        this.globalService.userShema = initPreferences.interfaceTheme;
+        this.globalService.userSchema = initPreferences.interfaceTheme;
         this.globalService.changeThemeClass();
 
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
         const selectedLang = l.length ? l[0].value : 'en';
 
+        // menu
+        this.mainMenuReduce = initPreferences.mainMenuReduce;
+
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
-            interfaceTheme: new FormControl(this.globalService.userShema),
+            interfaceTheme: new FormControl(this.globalService.userSchema),
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),
             lineOption: new FormControl(initPreferences.lineOption),
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
+            mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),
             authApiKeys: new FormGroup({
                 imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
             }),

@@ -15,9 +15,13 @@
     "admin.classements": "ティアリスト",
     "logout": "ログアウト",
     "information": "情報",
-    "licences": "ライセンス",
+    "licenses": "ライセンス",
     "preferences": "環境設定",
-    "forgot.password": "パスワードを忘れてしまいました"
+    "forgot.password": "パスワードを忘れてしまいました",
+    "mode": {
+      "reduce": "メニューを圧縮する",
+      "expand": "メニューを解凍する"
+    }
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",

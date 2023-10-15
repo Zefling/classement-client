@@ -15,9 +15,13 @@
     "admin.classements": "Classements",
     "logout": "Déconnexion",
     "information": "Information",
-    "licences": "Licences",
+    "licenses": "Licences",
     "preferences": "Préférences",
-    "forgot.password": "Mot de passe perdu"
+    "forgot.password": "Mot de passe perdu",
+    "mode": {
+      "reduce": "Réduire le menu",
+      "expand": "Étendre le menu"
+    }
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",

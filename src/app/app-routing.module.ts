@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren: () => import('./content/list/classement-list.module').then(m => m.ClassementListModule),
     },
     {
-        path: 'licences',
+        path: 'licenses',
         loadChildren: () => import('./content/licenses/licenses.module').then(m => m.LicensesModule),
     },
     {

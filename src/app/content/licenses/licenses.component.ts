@@ -39,6 +39,6 @@ export class LicensesComponent {
     }
 
     updateTitle() {
-        this.global.setTitle('menu.licences');
+        this.global.setTitle('menu.licenses');
     }
 }

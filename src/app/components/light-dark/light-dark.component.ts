@@ -28,6 +28,6 @@ export class LightDarkComponent {
     click() {
         this.global.toggleTheme();
         this.global.changeThemeClass();
-        this.change.emit(this.global.userShema);
+        this.change.emit(this.global.userSchema);
     }
 }

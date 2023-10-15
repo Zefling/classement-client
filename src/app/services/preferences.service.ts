@@ -24,6 +24,7 @@ export class PreferencesService {
         theme: themes[0],
         lineOption: 'auto',
         pageSize: 24,
+        mainMenuReduce: false,
         authApiKeys: {
             imdb: '',
         },

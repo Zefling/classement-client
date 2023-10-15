@@ -1,12 +1,13 @@
 :host {
     --main-padding: 0 15px 30px 30px;
 
+    transition: all 0.5s;
     height: 100%;
     display: grid;
     grid-template:
         'header header' 50px
         'aside  main' 1fr /
-        var(--aside-width, 150px) 1fr;
+        var(--aside-width, 200px) 1fr;
 
     &.show-menu {
         --aside-content-left: var(--aside-content-left-open);
@@ -93,7 +94,8 @@ aside {
         list-style: none;
 
         a {
-            display: block;
+            display: flex;
+            align-items: center;
             margin: 0 5px;
             padding: var(--menu-item-padding, 5px);
             border: 1px solid var(--menu-border-color);
@@ -111,6 +113,20 @@ aside {
                 color: var(--menu-hover-color);
                 background-color: var(--menu-hover-background);
             }
+
+            .icon {
+                width: 35px;
+                line-height: 28px;
+                font-size: 31px;
+                padding-right: 3px;
+
+                & + span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
+                }
+            }
         }
     }
 
@@ -118,8 +134,39 @@ aside {
         margin-top: auto;
     }
 
-    .licences {
+    .licenses {
         margin-bottom: 15px;
+    }
+}
+
+.menu-mode {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 3px;
+
+    .icon {
+        width: 35px;
+        padding: 0 3px 0 12px;
+        line-height: 28px;
+        font-size: 31px;
+
+        & + span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+    }
+}
+
+:host.reduce-menu {
+    --aside-width: 55px;
+
+    .icon + span {
+        transition: all 0.5s;
+        opacity: 0;
+        width: 0;
     }
 }
 

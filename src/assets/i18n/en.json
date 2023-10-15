@@ -15,9 +15,13 @@
     "admin.classements": "Tierlists",
     "logout": "Logout",
     "information": "Information",
-    "licences": "Licenses",
+    "licenses": "Licenses",
     "preferences": "Preferences",
-    "forgot.password": "Forgot your password"
+    "forgot.password": "Forgot your password",
+    "mode": {
+      "reduce": "Reduce menu",
+      "expand": "Expand menu"
+    }
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",

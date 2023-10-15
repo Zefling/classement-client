@@ -185,6 +185,7 @@ export interface PreferencesData {
     lineOption: PreferenceLineOption;
     theme: ThemeNames;
     pageSize: number;
+    mainMenuReduce: boolean;
     authApiKeys: {
         imdb: string;
     };
