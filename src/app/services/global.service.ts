@@ -46,6 +46,8 @@ export class GlobalService {
 
     readonly onImageUpdate = new Subject<void>();
 
+    readonly onOpenChoice = new Subject<void>();
+
     withChange = false;
 
     lang!: string;

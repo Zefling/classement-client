@@ -1,7 +1,11 @@
 <h2>{{ 'menu.home' | translate }}</h2>
 
 <div class="tiles-navigate">
-    <a class="tile-navigate" routerLink="/edit/new">
+    <a class="tile-navigate" *ngIf="preferences.mode !== 'choice'" routerLink="/edit/new">
+        <span class="icon icon-add"></span>
+        <span class="label">{{ 'menu.new' | translate }}</span>
+    </a>
+    <a class="tile-navigate" *ngIf="preferences.mode === 'choice'" (click)="openNew()">
         <span class="icon icon-add"></span>
         <span class="label">{{ 'menu.new' | translate }}</span>
     </a>

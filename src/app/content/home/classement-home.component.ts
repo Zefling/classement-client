@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { Classement } from 'src/app/interface/interface';
+import { Classement, PreferencesData } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
@@ -26,6 +27,8 @@ export class ClassementHomeComponent {
 
     classements: Classement[] = [];
 
+    readonly preferences: PreferencesData;
+
     private listener = Subscriptions.instance();
 
     constructor(
@@ -34,8 +37,11 @@ export class ClassementHomeComponent {
         private readonly messageService: MessageService,
         private readonly translate: TranslateService,
         private readonly global: GlobalService,
+        private readonly preferencesService: PreferencesService,
     ) {
         this.updateTitle();
+
+        this.preferences = this.preferencesService.preferences;
 
         if (this.modeApi) {
             this.logged = !!this.userService.logged;
@@ -59,6 +65,10 @@ export class ClassementHomeComponent {
                 this.updateTitle();
             }),
         );
+    }
+
+    openNew() {
+        this.global.onOpenChoice.next();
     }
 
     updateTitle() {

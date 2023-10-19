@@ -78,6 +78,10 @@ export class AppComponent implements DoCheck {
             this.route = route;
         });
 
+        this.globalService.onOpenChoice.subscribe(() => {
+            this.choice.open();
+        });
+
         router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
             changeDetectorRef.detectChanges();
             this.main.nativeElement.scroll({ top: 0, behavior: 'auto' });
