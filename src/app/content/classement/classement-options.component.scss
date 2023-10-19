@@ -70,6 +70,11 @@ h4 {
 
 .mode {
     grid-area: mode;
+
+    .list-mode {
+        display: flex;
+        gap: 10px;
+    }
 }
 
 .width-auto {

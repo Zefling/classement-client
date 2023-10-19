@@ -1,6 +1,6 @@
-import { Component, ElementRef, Host, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Host, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 
-import { Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
@@ -48,9 +48,16 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     zoneMode: ModeNames[] = ['iceberg', 'axis'];
 
+    listMode: Select2Data = [
+        { value: 'default', label: 'default', data: { icon: 'tierlist' } },
+        { value: 'teams', label: 'teams', data: { icon: 'teams' } },
+        { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
+        { value: 'axis', label: 'axis', data: { icon: 'axis' } },
+    ];
+
     @ViewChild(ClassementThemesComponent) classementThemes!: ClassementThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
-    @ViewChild('mode') mode!: ElementRef<HTMLSelectElement>;
+    @ViewChild('mode') mode!: Select2;
 
     private _sub = Subscriptions.instance();
     _modeTemp?: ModeNames;
@@ -148,7 +155,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     modeChange(previous: ModeNames, event: ModeNames) {
-        this.dialogChangeMode.open();
+        if (this._previousMode && previous !== event) {
+            this.dialogChangeMode.open();
+        }
         this._previousMode = previous;
         this._modeTemp = event;
     }
@@ -159,7 +168,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             this.updateMode();
             this.options!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
-            this.mode.nativeElement.value = this._previousMode!;
+            this.mode.writeValue(this._previousMode!);
         }
         this.dialogChangeMode.close();
     }

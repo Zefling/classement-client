@@ -17,12 +17,23 @@
     </div>
     <div class="mode">
         <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
-        <select id="option-mode" [ngModel]="options.mode" (ngModelChange)="modeChange(options.mode, $event)" #mode>
-            <option value="default">{{ 'mode.name.default' | translate }}</option>
-            <option value="teams">{{ 'mode.name.teams' | translate }}</option>
-            <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
-            <option value="axis">{{ 'mode.name.axis' | translate }}</option>
-        </select>
+        <select2
+            #mode
+            id="option-mode"
+            [ngModel]="options.mode"
+            (ngModelChange)="modeChange(options.mode, $event)"
+            [data]="listMode"
+            [templates]="templateMode"
+        >
+            <ng-template #templateMode let-label="label" let-data="data">
+                <div class="list-mode">
+                    <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
+                    <div class="desc">
+                        {{ 'mode.name.' + label | translate }}
+                    </div>
+                </div>
+            </ng-template>
+        </select2>
     </div>
     <div class="description">
         <label for="option-description">{{ 'generator.options.description' | translate }}</label>
