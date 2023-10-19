@@ -230,6 +230,11 @@ img {
     border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
     width: var(--over-image-width, 1170px);
     height: var(--over-image-height, 600px);
+
+    img {
+        max-width: min(var(--over-item-max-width, var(--over-item-width, 300px)), 300px);
+        max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
+    }
 }
 
 .elements {

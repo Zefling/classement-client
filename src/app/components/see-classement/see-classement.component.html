@@ -71,33 +71,33 @@
                 <zone-area *ngIf="options.mode === 'iceberg'" [groups]="options.groups"></zone-area>
                 <zone-axis *ngIf="options.mode === 'axis'" [groups]="options.groups"></zone-axis>
             </ng-container>
-        </div>
-        <div class="elements">
-            <div
-                *ngFor="let item of groups[0].list; let index = index"
-                [style.--over-item-background]="item.bgColor"
-                [style.--over-item-text-color]="item.txtColor"
-                [style.--left.px]="item.x"
-                [style.--top.px]="item.y"
-            >
-                <div class="content-box">
-                    <div class="content content-render" [ngClass]="options.itemTextPosition" #tile>
-                        <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
-                            <img
-                                (ngInit)="calcWidth(item, tile); detectChanges()"
-                                (load)="calcWidth(item, tile); detectChanges()"
-                                src="{{ imagesCache[item.url] || item.url }}"
-                                alt="{{ item.name }}"
-                            />
+            <div class="elements">
+                <div
+                    *ngFor="let item of groups[0].list; let index = index"
+                    [style.--over-item-background]="item.bgColor"
+                    [style.--over-item-text-color]="item.txtColor"
+                    [style.--left.px]="item.x"
+                    [style.--top.px]="item.y"
+                >
+                    <div class="content-box">
+                        <div class="content content-render" [ngClass]="options.itemTextPosition" #tile>
+                            <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
+                                <img
+                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                    (load)="calcWidth(item, tile); detectChanges()"
+                                    src="{{ imagesCache[item.url] || item.url }}"
+                                    alt="{{ item.name }}"
+                                />
+                            </div>
+                            <div *ngIf="item.title" class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                            </div>
+                            <div
+                                *ngIf="withAnnotation && item.annotation"
+                                class="tile-info"
+                                [tooltip]="item.annotation"
+                            ></div>
                         </div>
-                        <div *ngIf="item.title" class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                            <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                        </div>
-                        <div
-                            *ngIf="withAnnotation && item.annotation"
-                            class="tile-info"
-                            [tooltip]="item.annotation"
-                        ></div>
                     </div>
                 </div>
             </div>

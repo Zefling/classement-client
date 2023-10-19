@@ -80,6 +80,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['options']) {
+            this._modeTemp = undefined;
             this.updateMode();
         }
     }

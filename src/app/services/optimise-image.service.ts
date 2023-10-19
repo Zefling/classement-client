@@ -87,7 +87,7 @@ export class OptimiseImageService {
         return { size, files };
     }
 
-    private resizeDimension(
+    resizeDimension(
         widthSource: number,
         heightSource: number,
         widthTarget: number,

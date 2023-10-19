@@ -267,6 +267,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         themes = themesLists;
                         break;
                 }
+                this.location.replaceState('/edit/new');
                 if (themes) {
                     defaultOptions = Utils.jsonCopy(defaultTheme(themes[0])).options;
                     defaultOptions.mode = params['mode'];
@@ -621,9 +622,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     const eventLayer = event.event as any;
 
                     if (eventLayer.originalTarget.id === 'zone') {
+                        const size = this.optimiseImage.resizeDimension(
+                            item.width || 0,
+                            item.height || 0,
+                            this.options.itemWidthAuto
+                                ? this.options.itemMaxWidth || 300
+                                : this.options.itemWidth || 300,
+                            this.options.itemHeightAuto
+                                ? this.options.itemMaxHeight || 300
+                                : this.options.itemHeight || 300,
+                        );
+
                         // when the target is the drop-zone
-                        item.x = eventLayer.layerX - (item.width || 0) / 2;
-                        item.y = eventLayer.layerY - (item.height || 0) / 2;
+                        item.x = eventLayer.layerX - (size.width || 0) / 2;
+                        item.y = eventLayer.layerY - (size.height || 0) / 2;
                     } else if (eventLayer.originalTarget.id === 'list') {
                         // when the target is the drag origin list (I don't know why...)
                         const zone = window.document.getElementById('zone') as HTMLDivElement;
