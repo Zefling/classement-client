@@ -90,6 +90,9 @@
         "hidden": "非表示: オプションは表示されず、このモードではグループを編集できません"
       }
     },
+    "mode": {
+      "title": "Mode par défaut"
+    },
     "theme": {
       "title": "デフォルトのテーマ"
     },
@@ -233,7 +236,8 @@
   },
   "mode": {
     "name": {
-      "default": "デフォルト",
+      "choice": "Choix à la création",
+      "default": "Tierlist",
       "teams": "チーム",
       "iceberg": "Iceberg",
       "axis": "Axes"
@@ -243,6 +247,9 @@
     "title": {
       "new": "Nouveau classement",
       "edit": "Édition d'un classement"
+    },
+    "choice": {
+      "title": "Choisissez un mode de classement"
     },
     "options": {
       "group.title": "Options",
