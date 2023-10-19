@@ -90,6 +90,9 @@
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
+    "mode": {
+      "title": "Mode par défaut"
+    },
     "theme": {
       "title": "Default theme"
     },
@@ -233,7 +236,8 @@
   },
   "mode": {
     "name": {
-      "default": "Default",
+      "choice": "Choix à la création",
+      "default": "Tierlist",
       "teams": "Teams",
       "iceberg": "Iceberg",
       "axis": "Axes"
@@ -243,6 +247,9 @@
     "title": {
       "new": "Nouveau classement",
       "edit": "Édition d'un classement"
+    },
+    "choice": {
+      "title": "Choisissez un mode de classement"
     },
     "options": {
       "group.title": "Options",
