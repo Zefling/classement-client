@@ -206,7 +206,8 @@ export interface PreferencesData {
     newColor: PreferenceNewColor;
     newLine: PreferenceNewLine;
     lineOption: PreferenceLineOption;
-    theme: ThemesNames;
+    mode: ModeNames | 'choice';
+    theme: ThemesNames | undefined;
     pageSize: number;
     mainMenuReduce: boolean;
     authApiKeys: {

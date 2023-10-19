@@ -230,7 +230,7 @@ export const themesList: Theme[] = [
     },
 ];
 
-export const defaultTheme = (name: ThemesNames) => themesList.find(e => e.name === name)!;
+export const defaultTheme = (name: ThemesNames | undefined) => themesList.find(e => e.name === name) ?? themesList[0];
 
 export const categories: string[] = [
     'animal',

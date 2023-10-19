@@ -79,9 +79,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     updateMode() {
         if (this.options) {
-            const theme = this._modeTemp ?? this.options.mode ?? 'default';
+            const mode = this._modeTemp ?? this.options.mode ?? 'default';
 
-            switch (theme) {
+            switch (mode) {
                 case 'iceberg':
                     this.imagesList = imagesIceberg;
                     this.themesList = themesIceberg;
@@ -95,7 +95,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                     this.themesList = themesLists;
                     break;
             }
-            this.updateList(theme);
+            this.updateList(mode);
 
             this.themes = themesList.filter(e => this.themesList.includes(e.name));
         }

@@ -21,7 +21,7 @@
                     <span>{{ 'menu.home' | translate }}</span>
                 </a>
             </li>
-            <li *ngIf="!modeApi || !userService.logged" class="section-top" [title]="'menu.list' | translate">
+            <li *ngIf="!modeApi || !logged" class="section-top" [title]="'menu.list' | translate">
                 <a
                     routerLink="/list"
                     routerLinkActive="active"
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <ng-container *ngIf="modeApi">
-                <li *ngIf="userService.logged" class="section-top" [title]="'menu.my.lists' | translate">
+                <li *ngIf="logged" class="section-top" [title]="'menu.my.lists' | translate">
                     <a
                         routerLink="/user/lists"
                         routerLinkActive="active"
@@ -59,10 +59,19 @@
             </ng-container>
             <li class="section-top" [title]="'menu.new' | translate">
                 <a
+                    *ngIf="preferencesForm?.get('mode')?.value !== 'choice'"
                     routerLink="/edit/new"
                     routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLinkActiveOptions]="{ exact: true, queryParams: 'ignored' }"
                     (click)="toggleMenu()"
+                >
+                    <span class="icon icon-add"></span>
+                    <span>{{ 'menu.new' | translate }}</span>
+                </a>
+                <a
+                    *ngIf="preferencesForm?.get('mode')?.value === 'choice'"
+                    (click)="openChoice($event)"
+                    [class.active]="routerUrl.startsWith('/edit/new')"
                 >
                     <span class="icon icon-add"></span>
                     <span>{{ 'menu.new' | translate }}</span>
@@ -86,7 +95,7 @@
                 </a>
             </li>
             <ng-container *ngIf="modeApi">
-                <li *ngIf="userService.logged" [title]="'menu.profile' | translate">
+                <li *ngIf="logged" [title]="'menu.profile' | translate">
                     <a
                         routerLink="/user/profile"
                         routerLinkActive="active"
@@ -97,7 +106,7 @@
                         <span>{{ 'menu.profile' | translate }}</span>
                     </a>
                 </li>
-                <li *ngIf="!userService.logged" [title]="'menu.login' | translate">
+                <li *ngIf="!logged" [title]="'menu.login' | translate">
                     <a
                         routerLink="/user/login"
                         routerLinkActive="active"
@@ -108,7 +117,7 @@
                         <span>{{ 'menu.login' | translate }}</span>
                     </a>
                 </li>
-                <li *ngIf="!userService.logged" [title]="'menu.sign-up' | translate">
+                <li *ngIf="!logged" [title]="'menu.sign-up' | translate">
                     <a
                         routerLink="/user/sign-up"
                         routerLinkActive="active"
@@ -120,7 +129,7 @@
                     </a>
                 </li>
                 <li [title]="'menu.logout' | translate">
-                    <a *ngIf="userService.logged" class="logout" (click)="logout()">
+                    <a *ngIf="logged" class="logout" (click)="logout()">
                         <span class="icon icon-logout"></span>
                         <span>{{ 'menu.logout' | translate }}</span>
                     </a>
@@ -183,6 +192,28 @@
     </div>
 </dialog-cmp>
 
+<dialog-cmp class="auto-format" #choice closeBackdrop>
+    <p class="title">{{ 'generator.choice.title' | translate }}</p>
+    <menu class="choice-mode">
+        <li (click)="beginNew('default')" tabIndex="0">
+            <span class="icon-mode-tierlist"></span>
+            <span>{{ 'mode.name.default' | translate }}</span>
+        </li>
+        <li (click)="beginNew('teams')" tabIndex="0">
+            <span class="icon-mode-teams"></span>
+            <span>{{ 'mode.name.teams' | translate }}</span>
+        </li>
+        <li (click)="beginNew('iceberg')" tabIndex="0">
+            <span class="icon-mode-iceberg"></span>
+            <span>{{ 'mode.name.iceberg' | translate }}</span>
+        </li>
+        <li (click)="beginNew('axis')" tabIndex="0">
+            <span class="icon-mode-axis"></span>
+            <span>{{ 'mode.name.axis' | translate }}</span>
+        </li>
+    </menu>
+</dialog-cmp>
+
 <dialog-cmp class="preferences" #preferences closeBackdrop closeButton>
     <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
         <h2>{{ 'preferences.title' | translate }}</h2>
@@ -201,6 +232,19 @@
                     </select>
                 </label>
 
+                <ng-container *ngIf="modeApi">
+                    <h3>{{ 'preferences.navigation.title' | translate }}</h3>
+                    <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
+                    <label>
+                        {{ 'preferences.navigation.page.size.pre' | translate }}
+                        <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
+                        {{ 'preferences.navigation.page.size.per' | translate }}
+                    </label>
+                </ng-container>
+            </tab-content>
+
+            <tab-title id="editor"> {{ 'preferences.editor.title' | translate }}</tab-title>
+            <tab-content id="editor">
                 <h3>{{ 'preferences.editor.title' | translate }}</h3>
                 <h4>{{ 'preferences.tiles.title' | translate }}</h4>
                 <h5>{{ 'preferences.tile.title' | translate }}</h5>
@@ -230,9 +274,9 @@
                     {{ 'preferences.group.new.line.above' | translate }}
                 </label>
                 <!-- <label
-                  ><input type="radio" formControlName="newLine" value="ask-me" />
-                  {{ 'preferences.group.new.line.ask.me' | translate }}
-              </label> -->
+                ><input type="radio" formControlName="newLine" value="ask-me" />
+                {{ 'preferences.group.new.line.ask.me' | translate }}
+            </label> -->
 
                 <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
                 <label>
@@ -248,21 +292,22 @@
                     {{ 'preferences.group.line.option.hidden' | translate }}
                 </label>
 
-                <h4>{{ 'preferences.theme.title' | translate }}</h4>
-                <select formControlName="theme">
-                    <option *ngFor="let theme of themes" [value]="theme">
-                        {{ 'generator.theme.name.' + theme | translate }}
-                    </option>
+                <h4>{{ 'preferences.mode.title' | translate }}</h4>
+                <select formControlName="mode">
+                    <option value="choice">{{ 'mode.name.choice' | translate }}</option>
+                    <option value="default">{{ 'mode.name.default' | translate }}</option>
+                    <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+                    <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
+                    <option value="axis">{{ 'mode.name.axis' | translate }}</option>
                 </select>
 
-                <ng-container *ngIf="modeApi">
-                    <h3>{{ 'preferences.navigation.title' | translate }}</h3>
-                    <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
-                    <label>
-                        {{ 'preferences.navigation.page.size.pre' | translate }}
-                        <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-                        {{ 'preferences.navigation.page.size.per' | translate }}
-                    </label>
+                <ng-container *ngIf="preferencesForm.get('mode')?.value !== 'choice'">
+                    <h4>{{ 'preferences.theme.title' | translate }}</h4>
+                    <select formControlName="theme">
+                        <option *ngFor="let theme of themes" [value]="theme">
+                            {{ 'generator.theme.name.' + theme | translate }}
+                        </option>
+                    </select>
                 </ng-container>
             </tab-content>
 

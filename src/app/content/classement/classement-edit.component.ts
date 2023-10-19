@@ -39,6 +39,7 @@ import {
     Options,
     PreferenceLineOption,
     ScreenMode,
+    ThemesNames,
 } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -51,7 +52,14 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { defaultGroup, defaultOptions, defaultTheme } from './classement-default';
+import {
+    defaultGroup,
+    defaultOptions,
+    defaultTheme,
+    themesAxis,
+    themesIceberg,
+    themesLists,
+} from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ExternalImdbComponent } from './external.imdb.component';
@@ -202,10 +210,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     initWithParams(params: Params) {
-        const fork = params['fork'] === 'fork';
         this.lockCategory = false;
 
         if (params['id'] && params['id'] !== 'new') {
+            const fork = params['mode'] === 'fork';
             this.id = params['id'];
             this.exportImageLoading = true;
             this.exportImageDisabled = true;
@@ -242,8 +250,31 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.logged = this.userService.logged ?? false;
                 });
             }
-            // reset all
-            const defaultOptions = Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
+
+            // reset all + theme selection
+            let defaultOptions: Options | undefined = undefined;
+            if (params['mode']) {
+                let themes: ThemesNames[] | undefined = undefined;
+                switch (params['mode']) {
+                    case 'iceberg':
+                        themes = themesIceberg;
+                        break;
+                    case 'axis':
+                        themes = themesAxis;
+                        break;
+                    case 'default':
+                    case 'teams':
+                        themes = themesLists;
+                        break;
+                }
+                if (themes) {
+                    defaultOptions = Utils.jsonCopy(defaultTheme(themes[0])).options;
+                    defaultOptions.mode = params['mode'];
+                }
+            }
+            if (!defaultOptions) {
+                defaultOptions = Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
+            }
             this.new = true;
             this.options = {
                 ...defaultOptions,

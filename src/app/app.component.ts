@@ -9,7 +9,8 @@ import { filter } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { DialogComponent } from './components/dialog/dialog.component';
-import { themes } from './content/classement/classement-default';
+import { themes, themesAxis, themesIceberg, themesLists } from './content/classement/classement-default';
+import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';
@@ -29,6 +30,7 @@ const languages = [
 export class AppComponent implements DoCheck {
     @ViewChild('warningExit') warningExit!: DialogComponent;
     @ViewChild('preferences') preferences!: DialogComponent;
+    @ViewChild('choice') choice!: DialogComponent;
     @ViewChild('main') main!: ElementRef<HTMLDivElement>;
 
     languages = languages;
@@ -45,7 +47,15 @@ export class AppComponent implements DoCheck {
     modeModerator = false;
 
     preferencesForm?: FormGroup;
-    themes = themes;
+    themes? = themes;
+
+    get routerUrl() {
+        return this.router.url;
+    }
+
+    get logged() {
+        return this.userService.logged;
+    }
 
     private route?: string;
 
@@ -55,7 +65,7 @@ export class AppComponent implements DoCheck {
         private readonly router: Router,
         private readonly logger: Logger,
         private readonly preferencesService: PreferencesService,
-        public readonly userService: APIUserService,
+        private readonly userService: APIUserService,
         changeDetectorRef: ChangeDetectorRef,
     ) {
         // preferences
@@ -133,6 +143,21 @@ export class AppComponent implements DoCheck {
         this.warningExit.close();
     }
 
+    openChoice(event: MouseEvent) {
+        this.toggleMenu();
+        if (this.preferencesForm?.get('mode')?.value === 'choice') {
+            this.choice.open();
+
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    }
+
+    beginNew(mode: ModeNames) {
+        this.router.navigate(['edit', 'new', mode]);
+        this.choice.close();
+    }
+
     openPreferences() {
         this.preferences.open();
     }
@@ -158,6 +183,7 @@ export class AppComponent implements DoCheck {
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),
             lineOption: new FormControl(initPreferences.lineOption),
+            mode: new FormControl(initPreferences.mode),
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
             mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),
@@ -169,6 +195,12 @@ export class AppComponent implements DoCheck {
         this.preferencesForm.valueChanges.subscribe(() => {
             this.preferencesService.saveAndUpdate(this.preferencesForm!.value);
         });
+
+        this.preferencesForm.get('mode')?.valueChanges.subscribe((mode: ModeNames | 'choice') => {
+            this.initThemeByMode(mode);
+        });
+        this.initThemeByMode(initPreferences.mode, false);
+
         this.preferencesForm.get('pageSize')?.valueChanges.subscribe((value: number) => {
             try {
                 this.preferencesForm!.get('pageSize')?.setValue(Math.min(50, Math.max(9, value)), { emitEvent: false });
@@ -176,8 +208,30 @@ export class AppComponent implements DoCheck {
                 this.preferencesForm!.get('pageSize')?.setValue(24, { emitEvent: false });
             }
         });
+
         this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: string) => {
             this.updateLanguage(value);
         });
+    }
+
+    private initThemeByMode(mode: ModeNames | 'choice', updateThemeValue = true) {
+        switch (mode) {
+            case 'choice':
+                this.themes = undefined;
+                break;
+            case 'iceberg':
+                this.themes = themesIceberg;
+                break;
+            case 'axis':
+                this.themes = themesAxis;
+                break;
+            default:
+                this.themes = themesLists;
+                break;
+        }
+
+        if (updateThemeValue) {
+            this.preferencesForm!.get('theme')?.setValue(this.themes?.[0]);
+        }
     }
 }
