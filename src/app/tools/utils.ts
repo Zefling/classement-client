@@ -230,7 +230,7 @@ export class Utils {
             item.height = image?.naturalHeight;
         }
 
-        if (tile && title) {
+        if (tile) {
             tile.style.width =
                 options.itemWidthAuto && !item.title
                     ? Math.round(
