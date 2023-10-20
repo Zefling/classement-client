@@ -621,7 +621,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     const item = event.previousContainer.data.list[indexFrom];
                     const eventLayer = event.event as any;
 
-                    if (eventLayer.originalTarget.id === 'zone') {
+                    if (eventLayer.target.id === 'zone') {
                         const size = this.optimiseImage.resizeDimension(
                             item.width || 0,
                             item.height || 0,
@@ -636,7 +636,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                         // when the target is the drop-zone
                         item.x = eventLayer.layerX - (size.width || 0) / 2;
                         item.y = eventLayer.layerY - (size.height || 0) / 2;
-                    } else if (eventLayer.originalTarget.id === 'list') {
+                    } else if (eventLayer.target.id === 'list') {
                         // when the target is the drag origin list (I don't know why...)
                         const zone = window.document.getElementById('zone') as HTMLDivElement;
                         item.x = eventLayer.layerX;
