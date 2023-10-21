@@ -231,10 +231,10 @@ img {
     width: var(--over-image-width, 1170px);
     height: var(--over-image-height, 600px);
 
-    img {
-        max-width: min(var(--over-item-max-width, var(--over-item-width, 300px)), 300px);
-        max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
-    }
+    // img {
+    //     max-width: min(var(--over-item-max-width, var(--over-item-width, 300px)), 300px);
+    //     max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
+    // }
 
     &.cdk-drop-list-dragging ::ng-deep *,
     &.cdk-drop-list-receiving ::ng-deep * {
@@ -534,6 +534,9 @@ span.group-options {
 .cdk-drop-zone {
     position: relative;
     overflow: hidden;
+    overflow-anchor: none;
+    overscroll-behavior: none;
+    scroll-padding-block: 0;
 
     .cdk-drag {
         position: absolute;
