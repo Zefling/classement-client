@@ -804,7 +804,8 @@
       "deleted.success": "🗑 Le classement a été effacé avec succès.",
       "restored.success": "😊 La classement a été restauré avec succès.",
       "hidden.success": "🫣 Le classement a été rendu privé avec succès.",
-      "showed.success": "😊 La classement a été rendu public avec succès."
+      "showed.success": "😊 La classement a été rendu public avec succès.",
+      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
     },
     "contact": {
       "sent.success": "😊 Le message a été envoyé à l'administrateur avec succès."

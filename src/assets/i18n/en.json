@@ -90,6 +90,9 @@
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
+    "mode": {
+      "title": "Default mode"
+    },
     "theme": {
       "title": "Default theme"
     },
@@ -233,7 +236,8 @@
   },
   "mode": {
     "name": {
-      "default": "Default",
+      "choice": "Choice at creation",
+      "default": "Tierlist",
       "teams": "Teams",
       "iceberg": "Iceberg",
       "axis": "Axis"
@@ -243,6 +247,9 @@
     "title": {
       "new": "New tierlist",
       "edit": "Edit tierlist"
+    },
+    "choice": {
+      "title": "Choose a  ranking method"
     },
     "options": {
       "group.title": "Options",
@@ -543,7 +550,7 @@
     },
     "help": {
       "title": "Help:",
-      "area": {
+      "zone": {
         "central.click": "Central click on a tile: return to the list.",
         "double.click": "Double click in an empty area: creates a tile at the target location."
       }
@@ -797,7 +804,8 @@
       "deleted.success": "🗑 The tierlist has been successfully removed.",
       "restored.success": "😊 The tierlist has been successfully restored.",
       "hidden.success": "🫣 The tierlist has been successfully made private.",
-      "showed.success": "😊 The tierlist has been successfully made public."
+      "showed.success": "😊 The tierlist has been successfully made public.",
+      "update.password.success": "😊 Your password has been successfully updated."
     },
     "contact": {
       "sent.success": "😊 Message has been successfully sent to the administrator."
