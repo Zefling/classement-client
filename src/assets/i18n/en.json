@@ -804,7 +804,8 @@
       "deleted.success": "🗑 The tierlist has been successfully removed.",
       "restored.success": "😊 The tierlist has been successfully restored.",
       "hidden.success": "🫣 The tierlist has been successfully made private.",
-      "showed.success": "😊 The tierlist has been successfully made public."
+      "showed.success": "😊 The tierlist has been successfully made public.",
+      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
     },
     "contact": {
       "sent.success": "😊 Message has been successfully sent to the administrator."
