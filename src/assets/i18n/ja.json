@@ -804,7 +804,8 @@
       "deleted.success": "🗑 ティアリストは正常に消去されました。",
       "restored.success": "😊 ティアリストは正常に復元されました。",
       "hidden.success": "🫣 ティアリストは非公開に成功しました。",
-      "showed.success": "😊 ティアリストは公開に成功しました。"
+      "showed.success": "😊 ティアリストは公開に成功しました。",
+      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
     },
     "contact": {
       "sent.success": "😊 メッセージは管理者に正常に送信されました。"
