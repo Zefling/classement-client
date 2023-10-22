@@ -273,7 +273,7 @@ export class APIUserService extends APICommon {
     update(oldValue: string, newValue: string, type: 'email' | 'password' | 'username'): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             let param: any = {};
-            if ((type = 'username')) {
+            if (type === 'username') {
                 param[type] = newValue;
             } else {
                 param[type + 'Old'] = oldValue;
