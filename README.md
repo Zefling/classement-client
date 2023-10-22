@@ -22,9 +22,11 @@ See `src/environments/environment*.ts` for change.
     -   ✅ Adding images by drag'n drop or copy-paste
     -   ✅ Adding text under images
     -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
-    -   ✅ Tierlist modes
-        -   ✅ Original
+    -   ✅ Modes
+        -   ✅ Tierlist
         -   ✅ Teams
+        -   ✅ Iceberg
+        -   ✅ Axis
     -   ✅ Advanced customization of tiles, lines, background, etc.
         -   ✅ Background image
         -   ✅ Direction

@@ -1,5 +1,44 @@
 # Changelog - Standalone web app & API
 
+### 2.0.0 (2023-10-22)
+
+#### Standalone web app
+
+-   Add new modes: Iceberg & Axis #48
+    -   Drag'n drop into position without sorting
+        -   Drop tile into selection box
+        -   Drop tile to position
+        -   Save tile location
+    -   Specific options (iceberg & axis)
+        -   Adding groups/sections
+        -   Display groups
+        -   Color management
+    -   Theme management by mode
+    -   New dedicated features
+        -   Tiles organization (change z-index)
+        -   Double click to create an empty tile at the desired location
+        -   Text color
+        -   Transparent background
+        -   max-width / max-height
+    -   Add a dialog for text tiles
+-   Menu improvement #49
+    -   Add icons
+    -   Add reduced mode
+-   Improuve choice #51
+    -   Preference : add mode choice
+    -   Add dialog mode
+    -   Add icons
+-   Keyboard shortcut
+    -   `Ctrl` + `s` => Browser save
+-   Fix email & password change [critical]
+-   Minor fixes
+
+#### With API activated only
+
+-   Required: API `1.12.3`
+
+---
+
 ### 1.12.6 (2023-09-15)
 
 #### Standalone web app
