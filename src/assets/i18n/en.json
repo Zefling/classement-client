@@ -318,6 +318,7 @@
           "sakura": "Sakura",
           "etoile": "Étoile",
           "ciel": "Ciel",
+          "iceberg": "Iceberg",
           "custom": "Personnalisé"
         }
       },
@@ -337,29 +338,34 @@
         "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
       },
       "zone.title": {
-        "number": "Nombre de groupes avec titre",
-        "name": "Nom du groupe",
+        "number": "Nombre de groupes avec titre :",
+        "name": "Nom du groupe :",
         "align": {
           "vertical": {
-            "label": "Alignement vertical",
+            "label": "Alignement vertical :",
             "start": "Haut",
             "center": "Milieu",
             "end": "Bas"
           },
           "horizontal": {
-            "label": "Alignement horizontal",
+            "label": "Alignement horizontal :",
             "start": "Debut",
             "center": "Centrer",
             "end": "Fin"
           }
         }
       },
-      "zone.axis.name": "Nom de l'axe",
-      "zone.area.name": "Nom de l'aire",
+      "separator": {
+        "line.width": "Largeur de la ligne de séparation :",
+        "line.color": "Couleur de la ligne de séparation :",
+        "line.opacity": "Opacité de la ligne de séparation :"
+      },
+      "zone.axis.name": "Nom de l'axe :",
+      "zone.area.name": "Nom de l'aire :",
       "axis": {
-        "line.width": "Largeur des axes",
-        "line.color": "Couleur des axes",
-        "arrow.size": "Taille des flèches"
+        "line.width": "Largeur des axes :",
+        "line.color": "Couleur des axes :",
+        "arrow.size": "Taille des flèches :"
       }
     },
     "screen": {
