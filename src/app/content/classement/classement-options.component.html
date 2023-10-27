@@ -473,7 +473,9 @@
 
             <div class="group-line-width input-value">
                 <div class="number-input">
-                    <label for="option-group-line-width">{{ 'generator.options.name.width' | translate }}</label>
+                    <label for="option-group-line-width">{{
+                        'generator.options.separator.line.width' | translate
+                    }}</label>
                     <input
                         id="option-group-line-width"
                         type="number"
@@ -486,11 +488,13 @@
 
             <div class="colors-group-line input-button">
                 <div class="width-input">
-                    <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
+                    <label for="option-title-color">{{ 'generator.options.separator.line.color' | translate }}</label>
                     <input id="option-title-color" type="color" [(ngModel)]="options.groupLineColor" />
                 </div>
                 <div class="opacity">
-                    <label for="option-title-opacity">{{ 'generator.options.title.opacity' | translate }}</label>
+                    <label for="option-title-opacity">{{
+                        'generator.options.separator.line.opacity' | translate
+                    }}</label>
                     <input
                         for="option-title-opacity"
                         type="range"

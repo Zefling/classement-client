@@ -318,6 +318,7 @@
           "sakura": "桜",
           "etoile": "エトワール",
           "ciel": "空",
+          "iceberg": "氷山",
           "custom": "カスタム"
         }
       },
@@ -337,29 +338,34 @@
         "custom.api": "カスタム背景画像を選択 (最大 1000×1000)"
       },
       "zone.title": {
-        "number": "タイトルを持つグループの数",
-        "name": "グループ名",
+        "number": "タイトルを持つグループの数：",
+        "name": "グループ名：",
         "align": {
           "vertical": {
-            "label": "垂直方向の配置",
+            "label": "垂直方向の配置：",
             "start": "上",
             "center": "中央",
             "end": "下"
           },
           "horizontal": {
-            "label": "水平方向の配置",
+            "label": "水平方向の配置：",
             "start": "開始",
             "center": "中心",
             "end": "終了"
           }
         }
       },
-      "zone.axis.name": "軸名",
-      "zone.area.name": "エリア名",
+      "separator": {
+        "line.width": "区切り文字の幅:",
+        "line.color": "区切り文字線の色:",
+        "line.opacity": "区切り文字線の不透明度:"
+      },
+      "zone.axis.name": "軸名：",
+      "zone.area.name": "エリア名：",
       "axis": {
-        "line.width": "軸の幅",
-        "line.color": "軸の色",
-        "arrow.size": "矢印のサイズ"
+        "line.width": "軸の幅：",
+        "line.color": "軸の色：",
+        "arrow.size": "矢印のサイズ："
       }
     },
     "screen": {

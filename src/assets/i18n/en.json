@@ -318,6 +318,7 @@
           "sakura": "Sakura",
           "etoile": "Etoile",
           "ciel": "Sky",
+          "iceberg": "Iceberg",
           "custom": "Custom"
         }
       },
@@ -337,29 +338,34 @@
         "custom.api": "Select a custom background image (max 1000×1000)"
       },
       "zone.title": {
-        "number": "Number of groups with title",
-        "name": "Group name",
+        "number": "Number of groups with title:",
+        "name": "Group name:",
         "align": {
           "vertical": {
-            "label": "Vertical alignment",
+            "label": "Vertical alignment:",
             "start": "Up",
             "center": "Middle",
             "end": "Down"
           },
           "horizontal": {
-            "label": "Horizontal alignment",
+            "label": "Horizontal alignment:",
             "start": "Start",
             "center": "Center",
             "end": "End"
           }
         }
       },
-      "zone.axis.name": "Axis name",
-      "zone.area.name": "Area name",
+      "separator": {
+        "line.width": "Separator line width:",
+        "line.color": "Separator line color:",
+        "line.opacity": "Separator line opacity:"
+      },
+      "zone.axis.name": "Axis name:",
+      "zone.area.name": "Area name:",
       "axis": {
-        "line.width": "Axis width",
-        "line.color": "Axis color",
-        "arrow.size": "Arrow size"
+        "line.width": "Axis width:",
+        "line.color": "Axis color:",
+        "arrow.size": "Arrow size:"
       }
     },
     "screen": {
