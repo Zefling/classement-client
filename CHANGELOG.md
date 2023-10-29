@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.0.1 (2023-10-29)
+
+#### Standalone web app
+
+-   Fix iceberg advanced option names
+-   Minor fixes
+
 ### 2.0.0 (2023-10-22)
 
 #### Standalone web app
