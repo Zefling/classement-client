@@ -160,6 +160,13 @@ figure {
 
         figure {
             flex-direction: row;
+
+            &::before {
+                right: auto;
+                top: auto;
+                bottom: 13px;
+                left: 13px;
+            }
         }
 
         .template {
