@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import Pica from 'pica';
 
-import { FileHandle, FileString, FormattedGroup, ModeNames, OptimisedFile } from '../interface/interface';
+import { FileHandle, FileString, FormattedGroup, ModeNames, OptimizedFile } from '../interface/interface';
 
 @Injectable({ providedIn: 'root' })
 export class OptimiseImageService {
@@ -11,7 +11,7 @@ export class OptimiseImageService {
         maxWidth: number,
         maxHeight: number,
         mimeType: string = 'image/webp',
-    ): Promise<OptimisedFile> {
+    ): Promise<OptimizedFile> {
         return new Promise((resolve, reject) => {
             let canvas: HTMLCanvasElement = document.createElement('canvas');
             let image = new Image();

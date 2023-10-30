@@ -45,10 +45,10 @@
                 <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
                     {{ 'list.date' | translate }}
                 </th>
-                <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLenght' }">
+                <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
                     {{ 'list.count.group' | translate }}
                 </th>
-                <th class="items" [sort-rule]="{ type: 'number', attr: 'listLenght' }">
+                <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
                     {{ 'list.count.item' | translate }}
                 </th>
                 <th class="actions">{{ 'list.action.name' | translate }}</th>
@@ -90,8 +90,8 @@
                         item.dateChange || item.dateCreate || item.date | date : ('date.HH:mm' | translate)
                     }}</span>
                 </td>
-                <td class="groups">{{ item.groupsLenght }}</td>
-                <td class="items">{{ item.listLenght }}</td>
+                <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
+                <td class="items">{{ item.listLength || item.listLenght }}</td>
                 <td class="actions">
                     <button
                         class="primary"

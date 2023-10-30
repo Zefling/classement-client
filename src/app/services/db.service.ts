@@ -168,8 +168,8 @@ export class DBService {
                 options: data.options,
                 dateCreate: Utils.toISODate(data.dateCreate, true),
                 dateChange: Utils.toISODate(data.dateChange),
-                groupsLenght: data.groups?.length || 0,
-                listLenght:
+                groupsLength: data.groups?.length || 0,
+                listLength:
                     (data.list?.length || 0) +
                     (data.groups?.reduce<number>((prev, curr) => prev + (curr.list?.length || 0), 0) || 0),
                 // server data

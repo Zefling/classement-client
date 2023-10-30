@@ -177,8 +177,11 @@ export interface FormattedInfos extends IndexedData<any> {
      * @deprecated use {@link dateCreate}
      */
     date?: string | Date;
-    groupsLenght: number;
-    listLenght: number;
+    groupsLength: number;
+    listLength: number;
+    // retro compatiblity
+    groupsLenght?: number;
+    listLenght?: number;
 }
 
 export interface FormattedData extends IndexedData<any> {
@@ -215,7 +218,7 @@ export interface PreferencesData {
     };
 }
 
-export type OptimisedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
+export type OptimizedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
 export type ThemesNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
