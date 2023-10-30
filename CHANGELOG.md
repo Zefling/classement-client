@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 2.0.2 (2023-10-30)
+
+#### Standalone web app
+
+-   Fix a display regression
+
+#### With API activated only
+
+-   Add mode on tiles
+
 ### 2.0.1 (2023-10-29)
 
 #### Standalone web app
