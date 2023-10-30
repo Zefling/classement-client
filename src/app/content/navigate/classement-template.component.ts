@@ -20,7 +20,7 @@ export class ClassementTemplateComponent {
 
     classements: Classement[] = [];
 
-    isCatagoryList = false;
+    isCategoryList = false;
 
     loading = false;
 

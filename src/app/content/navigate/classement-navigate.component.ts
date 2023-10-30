@@ -38,7 +38,7 @@ export class ClassementNavigateComponent implements OnDestroy {
         return this.preferences.preferences.pageSize;
     }
 
-    isCatagoryList = false;
+    isCategoryList = false;
 
     private _sub = Subscriptions.instance();
 
@@ -88,7 +88,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     showCategoriesList() {
-        this.isCatagoryList = true;
+        this.isCategoryList = true;
         this.loading = true;
         this.classementService
             .getClassementsHome()
@@ -123,7 +123,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.total = classements.total;
                 this.category = this.category;
                 this.searchKey = this.searchKey;
-                this.isCatagoryList = false;
+                this.isCategoryList = false;
             })
             .catch(() => {
                 this.classements = [];

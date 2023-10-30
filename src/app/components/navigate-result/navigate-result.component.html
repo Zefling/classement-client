@@ -1,24 +1,24 @@
-<ng-container *ngIf="classements?.length; else noResult" [class.cateories]="isCatagoryList">
+<ng-container *ngIf="classements?.length; else noResult" [class.cateories]="isCategoryList">
     <div class="classement" *ngFor="let classement of classements">
         <a
             [routerLink]="
-                isCatagoryList
+                isCategoryList
                     ? ['/navigate']
                     : classement.templateTotal <= 1 || this.onlyRanking
                     ? ['/navigate/view', classement.linkId || classement.rankingId]
                     : ['/navigate/template', classement.templateId]
             "
-            [queryParams]="isCatagoryList ? { category: classement.category } : {}"
+            [queryParams]="isCategoryList ? { category: classement.category } : {}"
         >
-            <figure>
+            <figure [attr.data-type]="">
                 <img [src]="classement.banner" [alt]="classement.name" />
                 <figcaption>
-                    <div class="name" *ngIf="!isCatagoryList">{{ classement.name }}</div>
+                    <div class="name" *ngIf="!isCategoryList">{{ classement.name }}</div>
                     <div class="category">
                         {{ 'category.' + (classement.category || 'undefined') | translate }}
-                        <ng-container *ngIf="isCatagoryList"> ({{ classement.templateTotal }}) </ng-container>
+                        <ng-container *ngIf="isCategoryList"> ({{ classement.templateTotal }}) </ng-container>
                     </div>
-                    <ng-container *ngIf="!isCatagoryList">
+                    <ng-container *ngIf="!isCategoryList">
                         <div class="groups">
                             <div [title]="'list.count.group' | translate">
                                 <span class="icon-group"></span> {{ classement.totalGroups }}
@@ -49,7 +49,7 @@
                 </figcaption>
             </figure>
             <div
-                *ngIf="!isCatagoryList && !hideDerivatives"
+                *ngIf="!isCategoryList && !hideDerivatives"
                 class="template"
                 [class.hide]="classement.templateTotal <= 1"
             >

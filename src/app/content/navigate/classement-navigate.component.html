@@ -21,16 +21,16 @@
 </form>
 
 <h3>
-    {{ (isCatagoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
+    {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
     <ng-container *ngIf="!loading">({{ total }})</ng-container>
 </h3>
 
-<div class="return" *ngIf="!isCatagoryList">
+<div class="return" *ngIf="!isCategoryList">
     <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.category' | translate }}</a>
 </div>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && total / pageSize > 1"
+    *ngIf="!isCategoryList && total && total / pageSize > 1"
     [total]="total"
     [page]="page"
     [base]="url"
@@ -39,11 +39,11 @@
 ></paginate-cmp>
 
 <ng-container *ngIf="!loading">
-    <navigate-result [classements]="classements" [isCatagoryList]="isCatagoryList"></navigate-result>
+    <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
 </ng-container>
 
 <paginate-cmp
-    *ngIf="!isCatagoryList && total && total / pageSize > 1"
+    *ngIf="!isCategoryList && total && total / pageSize > 1"
     [total]="total"
     [page]="page"
     [base]="url"
