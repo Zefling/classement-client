@@ -25,7 +25,7 @@
                 <span class="icon-tile"></span> {{ classement.totalItems }}
             </div>
             <div class="mode">
-                {{ 'mode.name.' + classement.mode | translate }}
+                {{ 'mode.name.' + (classement.mode || 'default') | translate }}
             </div>
         </div>
         <div class="username">

@@ -10,7 +10,7 @@
             "
             [queryParams]="isCategoryList ? { category: classement.category } : {}"
         >
-            <figure [attr.data-type]="">
+            <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | translate">
                 <img [src]="classement.banner" [alt]="classement.name" />
                 <figcaption>
                     <div class="name" *ngIf="!isCategoryList">{{ classement.name }}</div>

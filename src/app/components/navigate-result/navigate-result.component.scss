@@ -73,6 +73,8 @@ a:hover :where(figure, .template) {
 }
 
 .classement {
+    container: figure / inline-size;
+
     a {
         display: grid;
         grid-template-columns: auto;
@@ -80,6 +82,27 @@ a:hover :where(figure, .template) {
         gap: 10px;
         height: 100%;
         width: 100%;
+    }
+}
+
+figure {
+    position: relative;
+
+    &::before {
+        content: attr(data-mode);
+        position: absolute;
+        background: var(--menu-cartouche-background);
+        border-radius: 15px;
+        padding: 1px 8px;
+        border: 1px solid;
+        font-size: 12px;
+    }
+}
+
+@container figure (width < 400px) {
+    figure::before {
+        top: calc(100cqw - 32px);
+        right: 12px;
     }
 }
 
