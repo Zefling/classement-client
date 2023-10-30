@@ -1,6 +1,6 @@
 <div *ngIf="options" class="render">
     <table
-        *ngIf="options.mode === 'default' || options.mode === 'teams'"
+        *ngIf="options.mode === 'default' || options.mode === 'teams' || !options.mode"
         id="html2canvas-element"
         [attr.dir]="options.direction"
     >
