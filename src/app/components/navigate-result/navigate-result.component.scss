@@ -58,14 +58,15 @@
         max-width: 100%;
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 450px) {
         padding: 3px;
     }
 }
 
 a:hover :where(figure, .template) {
-    color: var(--menu-hover-color);
-    background: var(--menu-hover-background);
+    --menu-color: var(--menu-hover-color);
+    --menu-background: var(--menu-hover-background);
+    --menu-cartouche-background: color-mix(in srgb, var(--menu-hover-background) 70%, #fff 10%);
 }
 
 .template {
@@ -184,16 +185,20 @@ figure {
 @media screen and (max-width: 450px) {
     :host.categories {
         --cell: repeat(3, calc(33.3% - 4px));
-
         gap: 5px;
     }
 
     :host:not(.categories) {
-        gap: 5px;
         --cell: 100%;
+        gap: 5px;
 
         figure {
             flex-direction: row;
+
+            &::before {
+                bottom: 4px;
+                left: 4px;
+            }
         }
 
         .hide {

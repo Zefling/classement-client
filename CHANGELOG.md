@@ -47,11 +47,11 @@
     -   Add icons
 -   Keyboard shortcut
     -   `Ctrl` + `s` => Browser save
--   Fix email & password change [critical]
 -   Minor fixes
 
 #### With API activated only
 
+-   Fix email & password change [critical]
 -   Required: API `1.12.3`
 
 ---

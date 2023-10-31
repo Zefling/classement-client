@@ -41,6 +41,17 @@
                             {{ 'list.title.name' | translate }}
                         </th>
                         <th
+                            class="mode"
+                            [sort-rule]="{
+                                type: 'translate',
+                                attr: 'mode',
+                                translate: 'mode.name.%value%',
+                                default: 'default'
+                            }"
+                        >
+                            {{ 'list.mode.name' | translate }}
+                        </th>
+                        <th
                             class="category"
                             [sort-rule]="{
                                 type: 'translate',
@@ -71,6 +82,7 @@
                                 >
                             </div>
                             <div class="category-rwd">
+                                {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }} |
                                 {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
                             </div>
                             <div class="tags" *ngIf="classement.data.options.tags?.length">
@@ -100,6 +112,9 @@
                                     {{ 'list.status.with.password' | translate }}
                                 </span>
                             </div>
+                        </td>
+                        <td class="mode">
+                            {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }}
                         </td>
                         <td class="category">
                             {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}

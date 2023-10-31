@@ -37,6 +37,17 @@
                     {{ 'list.title.name' | translate }}
                 </th>
                 <th
+                    class="mode"
+                    [sort-rule]="{
+                        type: 'translate',
+                        attr: 'options.mode',
+                        translate: 'mode.name.%value%',
+                        default: 'default'
+                    }"
+                >
+                    {{ 'list.mode.name' | translate }}
+                </th>
+                <th
                     class="category"
                     [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
                 >
@@ -61,6 +72,7 @@
                         {{ item.options.title || ('list.title.undefined' | translate) }}
                     </div>
                     <div class="category-rwd">
+                        {{ 'mode.name.' + (item.options.mode || 'default') | translate }} |
                         {{ 'category.' + (item.options.category || 'undefined') | translate }}
                     </div>
                     <div class="tags" *ngIf="item.options.tags?.length">
@@ -81,6 +93,7 @@
                         ></a>
                     </div>
                 </td>
+                <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | translate }}</td>
                 <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
                 <td class="date">
                     <span>{{

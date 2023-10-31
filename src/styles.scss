@@ -21,16 +21,16 @@ body.light-mode {
     --menu-hover-background: #83a9cc;
     --menu-active-color: #122333;
     --menu-active-background: #5f88af;
-    // defaut button
-    --button-defaut-border-color: #e2e2e2;
-    --button-defaut-background: #fff;
-    --button-defaut-box-shadow: #c5c5c5;
-    --button-defaut-color: #000;
-    --button-defaut-hover-border-color: #e2e2e2;
-    --button-defaut-hover-background: #dddfe2;
-    --button-defaut-hover-box-shadow: #474747;
-    --button-defaut-focus-border-color: #888;
-    --menu-cartouche-background: #fffd;
+    // default button
+    --button-default-border-color: #e2e2e2;
+    --button-default-background: #fff;
+    --button-default-box-shadow: #c5c5c5;
+    --button-default-color: #000;
+    --button-default-hover-border-color: #e2e2e2;
+    --button-default-hover-background: #dddfe2;
+    --button-default-hover-box-shadow: #474747;
+    --button-default-focus-border-color: #888;
+    --menu-cartouche-background: #dddfe2dd;
     // primary button
     --button-primary-border-color: #b0a8ea;
     --button-primary-background: #468eff;
@@ -180,16 +180,16 @@ body.dark-mode {
     --menu-hover-background: #334a61;
     --menu-active-color: #fff;
     --menu-active-background: #4f6983;
-    --menu-cartouche-background: #000d;
-    // defaut button
-    --button-defaut-border-color: #303030;
-    --button-defaut-background: #202020;
-    --button-defaut-box-shadow: #181818;
-    --button-defaut-color: #fff;
-    --button-defaut-hover-border-color: #1f1f1f;
-    --button-defaut-hover-background: #474747;
-    --button-defaut-hover-box-shadow: #474747;
-    --button-defaut-focus-border-color: #888;
+    --menu-cartouche-background: #1f2d3bdd;
+    // default button
+    --button-default-border-color: #303030;
+    --button-default-background: #202020;
+    --button-default-box-shadow: #181818;
+    --button-default-color: #fff;
+    --button-default-hover-border-color: #1f1f1f;
+    --button-default-hover-background: #474747;
+    --button-default-hover-box-shadow: #474747;
+    --button-default-focus-border-color: #888;
     // primary button
     --button-primary-border-color: #454261;
     --button-primary-background: #203c69;
@@ -368,23 +368,23 @@ button,
 input::file-selector-button {
     padding: 10px;
     font-size: 110%;
-    border: 2px solid var(--button-defaut-border-color);
-    background: var(--button-defaut-background);
-    color: var(--button-defaut-color);
-    box-shadow: 0 0 12px var(--button-defaut-box-shadow);
+    border: 2px solid var(--button-default-border-color);
+    background: var(--button-default-background);
+    color: var(--button-default-color);
+    box-shadow: 0 0 12px var(--button-default-box-shadow);
     border-radius: 5px;
     margin: 0 5px;
     outline: none;
     cursor: pointer;
 
     &:hover {
-        background: var(--button-defaut-hover-background);
-        border: 2px solid var(--button-defaut-hover-border-color);
-        box-shadow: 0 0 12px var(--button-defaut-hover-box-shadow);
+        background: var(--button-default-hover-background);
+        border: 2px solid var(--button-default-hover-border-color);
+        box-shadow: 0 0 12px var(--button-default-hover-box-shadow);
     }
 
     &:focus {
-        border-color: var(--button-defaut-focus-border-color);
+        border-color: var(--button-default-focus-border-color);
     }
 }
 
@@ -411,9 +411,9 @@ button:disabled {
     opacity: 0.25;
 
     &:hover {
-        background: var(--button-defaut-background);
-        border: 2px solid var(--button-defaut-border-color);
-        box-shadow: 0 0 12px var(--button-defaut-box-shadow);
+        background: var(--button-default-background);
+        border: 2px solid var(--button-default-border-color);
+        box-shadow: 0 0 12px var(--button-default-box-shadow);
     }
 }
 
@@ -430,25 +430,25 @@ input:not(:focus-visible):invalid {
 }
 
 button.primary {
-    --button-defaut-border-color: var(--button-primary-border-color);
-    --button-defaut-background: var(--button-primary-background);
-    --button-defaut-box-shadow: var(--button-primary-box-shadow);
-    --button-defaut-color: var(--button-primary-color);
-    --button-defaut-hover-border-color: var(--button-primary-hover-border-color);
-    --button-defaut-hover-background: var(--button-primary-hover-background);
-    --button-defaut-hover-box-shadow: var(--button-primary-hover-box-shadow);
-    --button-defaut-focus-border-color: var(--button-primary-focus-border-color);
+    --button-default-border-color: var(--button-primary-border-color);
+    --button-default-background: var(--button-primary-background);
+    --button-default-box-shadow: var(--button-primary-box-shadow);
+    --button-default-color: var(--button-primary-color);
+    --button-default-hover-border-color: var(--button-primary-hover-border-color);
+    --button-default-hover-background: var(--button-primary-hover-background);
+    --button-default-hover-box-shadow: var(--button-primary-hover-box-shadow);
+    --button-default-focus-border-color: var(--button-primary-focus-border-color);
 }
 
 button.warn {
-    --button-defaut-border-color: var(--button-warn-border-color);
-    --button-defaut-background: var(--button-warn-background);
-    --button-defaut-box-shadow: var(--button-warn-box-shadow);
-    --button-defaut-color: var(--button-warn-color);
-    --button-defaut-hover-border-color: var(--button-warn-hover-border-color);
-    --button-defaut-hover-background: var(--button-warn-hover-background);
-    --button-defaut-hover-box-shadow: var(--button-warn-hover-box-shadow);
-    --button-defaut-focus-border-color: var(--button-warn-focus-border-color);
+    --button-default-border-color: var(--button-warn-border-color);
+    --button-default-background: var(--button-warn-background);
+    --button-default-box-shadow: var(--button-warn-box-shadow);
+    --button-default-color: var(--button-warn-color);
+    --button-default-hover-border-color: var(--button-warn-hover-border-color);
+    --button-default-hover-background: var(--button-warn-hover-background);
+    --button-default-hover-box-shadow: var(--button-warn-hover-box-shadow);
+    --button-default-focus-border-color: var(--button-warn-focus-border-color);
 }
 
 .buttons {

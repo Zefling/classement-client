@@ -17,7 +17,7 @@ import { Utils } from '../tools/utils';
 
 export type SortRule =
     | { type: 'string' | 'number' | 'date'; attr: string; init?: 'asc' | 'desc' }
-    | { type: 'translate'; attr: string; translate: string; init?: 'asc' | 'desc' }
+    | { type: 'translate'; attr: string; translate: string; init?: 'asc' | 'desc'; default?: string }
     | { type: 'none' };
 
 @Directive({
@@ -131,8 +131,8 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
                     test = (valA as string).localeCompare(valB as string);
                 } else if (rule.type === 'translate') {
                     test = this.translate
-                        .instant(rule.translate.replace('%value%', valA))
-                        .localeCompare(this.translate.instant(rule.translate.replace('%value%', valB)));
+                        .instant(rule.translate.replace('%value%', valA || rule.default))
+                        .localeCompare(this.translate.instant(rule.translate.replace('%value%', valB || rule.default)));
                 } else if (rule.type === 'number') {
                     test = valA - valB;
                 } else if (rule.type === 'date') {

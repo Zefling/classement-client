@@ -128,6 +128,11 @@ td {
             padding: 7px 0;
         }
     }
+
+    .groups,
+    .items {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -138,14 +143,9 @@ td {
     th {
         padding: 15px 0;
     }
-}
 
-@media screen and (max-width: 900px) {
-    .groups,
-    .items {
-        display: none;
-    }
-    .category {
+    .category,
+    .mode {
         display: none;
     }
     .category-rwd {

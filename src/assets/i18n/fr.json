@@ -137,6 +137,9 @@
       "cancel": "Annuler",
       "edit": "Éditer"
     },
+    "mode": {
+      "name": "Mode"
+    },
     "roles": {
       "name": "Rôles"
     },
