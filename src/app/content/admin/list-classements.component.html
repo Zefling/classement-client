@@ -6,6 +6,7 @@
                 <span *ngIf="sort === 'name'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             </th>
             <th class="user">{{ 'list.user.name' | translate }}</th>
+            <th class="mode">{{ 'list.mode.name' | translate }}</th>
             <th class="category sort" (click)="sortUpdate.emit('category')">
                 {{ 'list.category.name' | translate }}
                 <span *ngIf="sort === 'category'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
@@ -23,9 +24,8 @@
     <tbody>
         <tr *ngFor="let classement of classements">
             <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
-            <td class="category">
-                {{ classement.user || ('list.user.anonymous' | translate) }}
-            </td>
+            <td class="user">{{ classement.user || ('list.user.anonymous' | translate) }}</td>
+            <td class="mode">{{ 'mode.name.' + (classement.mode || 'default') | translate }}</td>
             <td class="category" (click)="editCategory(classement)">
                 {{ 'category.' + (classement.category || 'undefined') | translate }}
                 <span class="icon-edit-2"></span>
