@@ -525,8 +525,12 @@ span.group-options {
     }
 }
 
-.current-list .cdk-drop-list {
-    min-height: 40px;
+.current-list {
+    width: 100%;
+
+    .cdk-drop-list {
+        min-height: 40px;
+    }
 }
 
 // zone : iceberg / axis -----------------------------------------------------------
@@ -547,6 +551,10 @@ span.group-options {
     }
 }
 
+.zone-classement-container {
+    overflow: auto;
+}
+
 .mode-iceberg,
 .mode-axis {
     display: flex;
@@ -554,7 +562,7 @@ span.group-options {
 }
 
 .help {
-    flex: 1;
+    flex: 1 1 150px;
     padding-left: 10px;
 
     p {
