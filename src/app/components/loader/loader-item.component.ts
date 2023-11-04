@@ -1,5 +1,8 @@
 import { Component, Input, numberAttribute } from '@angular/core';
 
+/**
+ * Tiles loader with fake tile
+ */
 @Component({
     selector: 'loader-item',
     templateUrl: './loader-item.component.html',

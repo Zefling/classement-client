@@ -1,5 +1,8 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
+/**
+ * loader only (without message)
+ */
 @Component({
     selector: 'loading-cmp',
     templateUrl: './loading.component.html',

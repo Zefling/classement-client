@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 
 import { UploadProgress } from '../../services/api.classement.service';
 
+/**
+ * Loader with message and/or progress bar
+ */
 @Component({
     selector: 'loader-cmp',
     templateUrl: './loader.component.html',
@@ -9,7 +12,7 @@ import { UploadProgress } from '../../services/api.classement.service';
 })
 export class LoaderComponent {
     @Input()
-    message!: string;
+    message?: string;
 
     @Input()
     progress?: UploadProgress;

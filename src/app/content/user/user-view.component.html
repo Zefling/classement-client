@@ -1,3 +1,5 @@
+<loader-cmp *ngIf="loading"></loader-cmp>
+
 <ng-container *ngIf="user">
     <h1>{{ 'user.profile.view.title' | translate }}{{ user.username }}</h1>
 
