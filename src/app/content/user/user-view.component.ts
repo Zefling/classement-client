@@ -30,7 +30,6 @@ export class UserViewComponent {
                 try {
                     if (params['id']?.startsWith('@')) {
                         this.user = await this.userService.getUser(params['id'].substring(1));
-
                         this.user.classements?.sort(
                             (a, b) =>
                                 (new Date(b.dateChange)?.getTime() || new Date(b.dateCreate).getTime()) -
