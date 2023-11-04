@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+### 2.0.3 (2023-11-04)
+
+#### Standalone web app
+
+-   Add `mode` column to lists and admin
+-   Fix drag scroll (Firefox)
+-   Fix mobile for zones
+-   Fix mode render on tiles
+
+#### With API activated only
+
+-   Add loader on user profile
+
 ### 2.0.2 (2023-10-30)
 
 #### Standalone web app
