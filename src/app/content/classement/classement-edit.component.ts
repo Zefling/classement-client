@@ -417,7 +417,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.shareUrl =
             this.apiActive && this.classement?.rankingId
-                ? `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement)}`
+                ? `${location.protocol}//${location.host}/~${this.getClassementId(this.classement)}`
                 : '';
 
         if (this.currentList) {
@@ -565,7 +565,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     show() {
-        this.router.navigate([`/navigate/view/${this.getClassementId(this.classement!)}`]);
+        this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
     drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {

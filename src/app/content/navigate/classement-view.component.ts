@@ -214,7 +214,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     getLink() {
-        return `${location.protocol}//${location.host}/navigate/view/${this.getClassementId(this.classement!)}${
+        return `${location.protocol}//${location.host}/~${this.getClassementId(this.classement!)}${
             this.historyId ? `/${this.historyId}` : ''
         }`;
     }
