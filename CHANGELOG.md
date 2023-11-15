@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 2.0.4 (2023-11-15)
+
+#### Standalone web app
+
+-   Remove font Tahoma
+-   Fix 404 error
+
+#### With API activated only
+
+-   `https://example/~id` → template
+-   `https://example/@user` → user
+
 ### 2.0.3 (2023-11-04)
 
 #### Standalone web app
