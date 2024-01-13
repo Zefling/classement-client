@@ -270,6 +270,11 @@ h4 {
 .info-desc {
     font-size: 11px;
     text-align: right;
+    position: relative;
+    top: -17px;
+    right: 15px;
+    pointer-events: none;
+    height: 0;
 }
 
 textarea {
