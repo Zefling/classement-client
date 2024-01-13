@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
+import { MARKED_OPTIONS, MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,8 +30,6 @@ export function markedOptionsFactory(): MarkedOptions {
         gfm: true,
         breaks: false,
         pedantic: false,
-        smartLists: true,
-        smartypants: false,
     };
 }
 
@@ -44,7 +42,7 @@ export function markedOptionsFactory(): MarkedOptions {
         MarkdownModule.forRoot({
             loader: HttpClient,
             markedOptions: {
-                provide: MarkedOptions,
+                provide: MARKED_OPTIONS,
                 useFactory: markedOptionsFactory,
             },
         }),
