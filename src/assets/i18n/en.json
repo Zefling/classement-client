@@ -170,7 +170,7 @@
     "no.result": "No results.",
     "create.new": "Create your tierlist.",
     "server.link": "This tierlist is linked to a tierlist of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
-    "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
+    "local.link": "Ce classement est lié un brouillons sur ce navigateur.\nCliquez ici pour voir le brouillon sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Are you sure you want to delete this tierlist?",
       "exit.save": "Save and exit",
@@ -440,8 +440,9 @@
     },
     "actions": {
       "export.image": "Export en image",
-      "save.local": "Sauvegarde navigateur",
-      "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
+      "save.local": "Sauvegarde comme brouillon",
+      "save.local.info": "La sauvegarde est fait dans la mémoire de votre navigateur uniquement. Vous pourrez la retrouver uniquement sur celui-ci tant que les données sont persistées. Pour une sauvegarde plus pérenne : export vos données ou sauvegardez sur votre compte.",
+      "save.local.auto": "Sauvegarde comme brouillon automatique à chaque changement.",
       "save.server": "Sauvegarde sur votre compte",
       "export.json": "Exporter",
       "export.all.json": "Tout exporter",
@@ -449,16 +450,16 @@
       "save.image": "Sauvegarder au format :",
       "edit.local": "Éditer la version locale",
       "edit.local.empty": "Éditer la version locale vidé",
-      "see.my.derivative": "Voir mon dérivé",
-      "see.my.last.derivative": "Voir mon dernier dérivé",
-      "see.this.derivative": "Voir ce dérivé",
+      "see.my.derivative": "Voir mon classement",
+      "see.my.last.derivative": "Voir mon dernier classement",
+      "see.this.derivative": "Voir ce classement",
       "make.my.derivative": "Faire mon dérivé",
       "make.my.derivative.empty": "Faire mon dérivé vidé",
-      "edit.my.derivative": "Éditer mon dérivé",
-      "edit.my.last.derivative": "Éditer mon dernier dérivé",
-      "new.derivative": "Nouveau dérivé à partir de ce classement",
-      "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
-      "my.derivative.count": "Note : vous avez actuellement {{ count }} dérivés de ce classement.",
+      "edit.my.derivative": "Éditer mon classement",
+      "edit.my.last.derivative": "Éditer mon dernier classement",
+      "new.derivative": "Nouveau classement à partir celui-ci en l'état",
+      "new.derivative.empty": "Nouveau classement réinitialisé",
+      "my.derivative.count": "Note : vous avez actuellement {{ count }} variantes de ce classement.",
       "change.mode": {
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
@@ -589,7 +590,7 @@
         "info": "Information",
         "text1": "To create an account or login with Discord or Facebook requires a page reload.",
         "text2": "To not lose your tierlist: close this dialog, save your browser and create your account or log in.",
-        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
+        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Brouillons »."
       }
     },
     "profile": {
@@ -628,9 +629,9 @@
         "rankings": "Tierlists",
         "empty": "No tierlists for this user at this time."
       },
-      "list.browser.tab": "Browser list",
-      "list.server.tab": "Server list",
-      "list.server.intro": "List of tierlists saved on your account."
+      "list.browser.tab": "Brouillons",
+      "list.server.tab": "Sur mon compte",
+      "list.server.intro": "Liste des classements sauvegardés sur votre compte."
     },
     "signup": {
       "title": "Create my account",
