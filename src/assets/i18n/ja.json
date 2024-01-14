@@ -170,7 +170,7 @@
     "no.result": "結果なし。",
     "create.new": "ティアリストを作成します。",
     "server.link": "このティアリストは、アカウントのティアリストにリンクされています。\nここをクリックして、アカウントに保存されているバージョンを確認してください。\nID:{{ id }}",
-    "local.link": "このティアリストは、このブラウザのティアリストにリンクされています。\nここをクリックして、このブラウザに保存されているバージョンを確認してください。\nID:{{ id }}",
+    "local.link": "Ce classement est lié un brouillons sur ce navigateur.\nCliquez ici pour voir le brouillon sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "このティアリストを消去してもよろしいですか？",
       "exit.save": "セーブして終了する",
@@ -440,8 +440,9 @@
     },
     "actions": {
       "export.image": "Export en image",
-      "save.local": "Sauvegarde navigateur",
-      "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
+      "save.local": "Sauvegarde comme brouillon",
+      "save.local.info": "La sauvegarde est fait dans la mémoire de votre navigateur uniquement. Vous pourrez la retrouver uniquement sur celui-ci tant que les données sont persistées. Pour une sauvegarde plus pérenne : export vos données ou sauvegardez sur votre compte.",
+      "save.local.auto": "Sauvegarde comme brouillon automatique à chaque changement.",
       "save.server": "Sauvegarde sur votre compte",
       "export.json": "Exporter",
       "export.all.json": "Tout exporter",
@@ -449,16 +450,16 @@
       "save.image": "Sauvegarder au format :",
       "edit.local": "Éditer la version locale",
       "edit.local.empty": "Éditer la version locale vidé",
-      "see.my.derivative": "Voir mon dérivé",
-      "see.my.last.derivative": "Voir mon dernier dérivé",
-      "see.this.derivative": "Voir ce dérivé",
+      "see.my.derivative": "Voir mon classement",
+      "see.my.last.derivative": "Voir mon dernier classement",
+      "see.this.derivative": "Voir ce classement",
       "make.my.derivative": "Faire mon dérivé",
       "make.my.derivative.empty": "Faire mon dérivé vidé",
-      "edit.my.derivative": "Éditer mon dérivé",
-      "edit.my.last.derivative": "Éditer mon dernier dérivé",
-      "new.derivative": "Nouveau dérivé à partir de ce classement",
-      "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
-      "my.derivative.count": "Note : vous avez actuellement {{ count }} dérivés de ce classement.",
+      "edit.my.derivative": "Éditer mon classement",
+      "edit.my.last.derivative": "Éditer mon dernier classement",
+      "new.derivative": "Nouveau classement à partir celui-ci en l'état",
+      "new.derivative.empty": "Nouveau classement réinitialisé",
+      "my.derivative.count": "Note : vous avez actuellement {{ count }} variantes de ce classement.",
       "change.mode": {
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
@@ -589,7 +590,7 @@
         "info": "インフォメーション",
         "text1": "アカウントを作成したり、DISCORDまたはFACEBOOKにログインするには、ページをリロードする必要があります。",
         "text2": "ティアリストを失わないようにするには、このダイアログを閉じて、ブラウザセーブを保存して、アカウントを作成するかログインしてください。",
-        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
+        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Brouillons »."
       }
     },
     "profile": {
@@ -628,9 +629,9 @@
         "rankings": "ティアリスト",
         "empty": "このユーザーにはまだティアリストがありません。"
       },
-      "list.browser.tab": "ブラウザリスト",
-      "list.server.tab": "サーバーリスト",
-      "list.server.intro": "アカウントに保存されているティアリストのリストです。"
+      "list.browser.tab": "Brouillons",
+      "list.server.tab": "Sur mon compte",
+      "list.server.intro": "Liste des classements sauvegardés sur votre compte."
     },
     "signup": {
       "title": "アカウントを作成する",
