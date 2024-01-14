@@ -170,7 +170,7 @@
     "no.result": "Pas de résultat.",
     "create.new": "Créez votre classement.",
     "server.link": "Ce classement est lié un classement de votre compte.\nCliquez ici pour voir la version sauvegardé sur votre compte.\nId : {{ id }}",
-    "local.link": "Ce classement est lié un classement de ce navigateur.\nCliquez ici pour voir la version sauvegardé sur ce navigateur.\nId : {{ id }}",
+    "local.link": "Ce classement est lié un brouillons sur ce navigateur.\nCliquez ici pour voir le brouillon sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer ce classement ?",
       "exit.save": "Sauvegarder et quitter",
@@ -440,8 +440,9 @@
     },
     "actions": {
       "export.image": "Export en image",
-      "save.local": "Sauvegarde navigateur",
-      "save.local.auto": "Sauvegarde navigateur automatique à chaque changement.",
+      "save.local": "Sauvegarde comme brouillon",
+      "save.local.info": "La sauvegarde est fait dans la mémoire de votre navigateur uniquement. Vous pourrez la retrouver uniquement sur celui-ci tant que les données sont persistées. Pour une sauvegarde plus pérenne : export vos données ou sauvegardez sur votre compte.",
+      "save.local.auto": "Sauvegarde comme brouillon automatique à chaque changement.",
       "save.server": "Sauvegarde sur votre compte",
       "export.json": "Exporter",
       "export.all.json": "Tout exporter",
@@ -449,16 +450,16 @@
       "save.image": "Sauvegarder au format :",
       "edit.local": "Éditer la version locale",
       "edit.local.empty": "Éditer la version locale vidé",
-      "see.my.derivative": "Voir mon dérivé",
-      "see.my.last.derivative": "Voir mon dernier dérivé",
-      "see.this.derivative": "Voir ce dérivé",
+      "see.my.derivative": "Voir mon classement",
+      "see.my.last.derivative": "Voir mon dernier classement",
+      "see.this.derivative": "Voir ce classement",
       "make.my.derivative": "Faire mon dérivé",
       "make.my.derivative.empty": "Faire mon dérivé vidé",
-      "edit.my.derivative": "Éditer mon dérivé",
-      "edit.my.last.derivative": "Éditer mon dernier dérivé",
-      "new.derivative": "Nouveau dérivé à partir de ce classement",
-      "new.derivative.empty": "Nouveau dérivé vidé de ce classement",
-      "my.derivative.count": "Note : vous avez actuellement {{ count }} dérivés de ce classement.",
+      "edit.my.derivative": "Éditer mon classement",
+      "edit.my.last.derivative": "Éditer mon dernier classement",
+      "new.derivative": "Nouveau classement à partir celui-ci en l'état",
+      "new.derivative.empty": "Nouveau classement réinitialisé",
+      "my.derivative.count": "Note : vous avez actuellement {{ count }} variantes de ce classement.",
       "change.mode": {
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
@@ -589,7 +590,7 @@
         "info": "Informations",
         "text1": "Pour créer un compte ou vous connecter avec Discord ou Facebook demande un rechargement de page.",
         "text2": "Pour ne pas perdre votre classement : fermez cette dialogue, faites une sauvegarde navigateur et créer votre compte ou connectez-vous.",
-        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Liste navigateur »."
+        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Brouillons »."
       }
     },
     "profile": {
@@ -628,9 +629,9 @@
         "rankings": "Classements",
         "empty": "Aucun classement pour cet utilisateur pour le moment."
       },
-      "list.browser.tab": "Liste navigateur",
-      "list.server.tab": "Liste serveur",
-      "list.server.intro": "Liste des Classements sauvegardés sur votre compte."
+      "list.browser.tab": "Brouillons",
+      "list.server.tab": "Sur mon compte",
+      "list.server.intro": "Liste des classements sauvegardés sur votre compte."
     },
     "signup": {
       "title": "Créer mon compte",

@@ -352,6 +352,7 @@
         <div class="save-actions buttons">
             <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
                 {{ 'generator.actions.save.local' | translate }}
+                <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
             </button>
             <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
                 {{ 'generator.actions.export.json' | translate }}

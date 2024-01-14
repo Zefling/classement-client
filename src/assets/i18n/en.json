@@ -12,7 +12,7 @@
     "navigate": "Navigate",
     "admin": "Admin",
     "admin.users": "Users",
-    "admin.classements": "Tierlists",
+    "admin.classements": "Rankings",
     "logout": "Logout",
     "information": "Information",
     "licenses": "Licenses",
@@ -42,7 +42,7 @@
   },
   "home": {
     "info": "Information",
-    "intro": "A Web application to make a tierlist by images or texts.",
+    "intro": "A Web application to make a ranking by images or texts.",
     "philosophy": "This is a free and open source project, you can help the project by giving feedback.",
     "feedback": "Make feedback",
     "source": {
@@ -57,7 +57,7 @@
       "name": "Classement: ",
       "version": "version {{ version }}"
     },
-    "last": "Latest tierlists"
+    "last": "Latest rankings"
   },
   "preferences": {
     "title": "Preferences",
@@ -121,7 +121,7 @@
     }
   },
   "list": {
-    "intro": "List of tierlists in memory in your Web browser only.",
+    "intro": "List of rankings in memory in your Web browser only.",
     "space": "Space use: ",
     "filter": "Filter:",
     "title": {
@@ -146,7 +146,7 @@
     "count": {
       "group": "Number of groups",
       "item": "Number of items",
-      "classements": "Nombre de tierlists"
+      "classements": "Number of rankings"
     },
     "status": {
       "list": "Status",
@@ -168,11 +168,11 @@
       "replace": "Replace"
     },
     "no.result": "No results.",
-    "create.new": "Create your tierlist.",
-    "server.link": "This tierlist is linked to a tierlist of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
-    "local.link": "This tierlist is linked to a tierlist of this browser.\nClick here to see the version saved to this browser.\nId: {{ id }}",
+    "create.new": "Create your ranking.",
+    "server.link": "This ranking is linked to a ranking of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
+    "local.link": "This ranking is linked to a draft ranking of this browser.\nClick here to see the draft saved to this browser.\nId: {{ id }}",
     "delete": {
-      "question": "Are you sure you want to delete this tierlist?",
+      "question": "Are you sure you want to delete this ranking?",
       "exit.save": "Save and exit",
       "exit": "Exit",
       "cancel": "Cancel",
@@ -180,18 +180,18 @@
       "restore": "Restore"
     },
     "show": {
-      "question": "Are you sure you want to make this tierlist public?",
+      "question": "Are you sure you want to make this ranking public?",
       "public": "Make public"
     },
     "hide": {
-      "question": "Are you sure you want to make this tierlist private?",
+      "question": "Are you sure you want to make this ranking private?",
       "private": "Make private",
-      "note": "A private tierlist will not be able to be found with navigation or search.",
+      "note": "A private ranking will not be able to be found with navigation or search.",
       "note2": "But you can share it with its share link."
     },
     "clone": {
       "question": "Are you sure you want to clone?",
-      "new.template": "New template: The new tierlist will have no link to the old one, otherwise it will be considered as a derivative.",
+      "new.template": "New template: The new ranking will have no link to the old one, otherwise it will be considered as a derivative.",
       "title": "Change title:",
       "validate": "Clone",
       "edit": "Clone & edit",
@@ -248,15 +248,15 @@
   },
   "generator": {
     "title": {
-      "new": "New tierlist",
-      "edit": "Edit tierlist"
+      "new": "New ranking",
+      "edit": "Edit ranking"
     },
     "choice": {
       "title": "Choose a  ranking method"
     },
     "options": {
       "group.title": "Options",
-      "title": "Tierlist title:",
+      "title": "Ranking title:",
       "title.color": "Title text color:",
       "title.opacity": "Title text opacity:",
       "group": "Category:",
@@ -392,14 +392,14 @@
       }
     },
     "ranking": {
-      "group.title": "Tierlist",
+      "group.title": "Ranking",
       "name": "Name",
       "list": "List",
       "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
       "add.image": "Click here to add one or a group of images",
       "add.text": "Click here to add one or a group of texts",
       "share.link": "Share this ranking with your friends",
-      "see": "See your tierlist",
+      "see": "See your ranking",
       "copy.link.success": "The link was successfully copied to the clipboard",
       "copy.link.error": "Failed to copy link to clipboard",
       "diff": "Tiles in other derivatives",
@@ -440,8 +440,9 @@
     },
     "actions": {
       "export.image": "Image export",
-      "save.local": "Browser save",
-      "save.local.auto": "Automatic browser save on every change.",
+      "save.local": "Save as draft",
+      "save.local.info": "The backup is made in your browser's memory only. You will be able to find it only on this one as long as the data is persisted. For a more lasting backup: export your data or save to your account.",
+      "save.local.auto": "Save as automatic draft with each change.",
       "save.server": "Save to your account",
       "export.json": "Export",
       "export.all.json": "Export all",
@@ -449,16 +450,16 @@
       "save.image": "Save as:",
       "edit.local": "Edit local version",
       "edit.local.empty": "Edit empty local version",
-      "see.my.derivative": "See my derivative",
-      "see.my.last.derivative": "See my last derivative",
-      "see.this.derivative": "See this derivative",
-      "make.my.derivative": "Make my derivative",
-      "make.my.derivative.empty": "Make my empty derivative",
-      "edit.my.derivative": "Edit my derivative",
-      "edit.my.last.derivative": "Edit my last derivative",
-      "new.derivative": "New derivative from this tierlist",
-      "new.derivative.empty": "New empty derivative from this tierlist",
-      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this tierlist.",
+      "see.my.derivative": "See my ranking",
+      "see.my.last.derivative": "See my last ranking",
+      "see.this.derivative": "See this ranking",
+      "make.my.derivative": "Make my ranking",
+      "make.my.derivative.empty": "Make my empty ranking",
+      "edit.my.derivative": "Edit my ranking",
+      "edit.my.last.derivative": "Edit my last ranking",
+      "new.derivative": "New ranking reset",
+      "new.derivative.empty": "New ranking from this one with empty group",
+      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this ranking.",
       "change.mode": {
         "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
         "default": "Freely move tiles in each group.",
@@ -493,11 +494,11 @@
       "count.item": "Number of items:",
       "cancel": "Cancel",
       "import": {
-        "list": "Import a tierlist:",
+        "list": "Import a ranking:",
         "list.multi": "Import one or more rankings:",
         "replace": "Import and replace",
-        "new": "Import into a new tierlist",
-        "add": "Import this tierlist",
+        "new": "Import into a new ranking",
+        "add": "Import this ranking",
         "multi.replace": "Import and replace if exists",
         "multi.add": "Add import"
       },
@@ -519,8 +520,8 @@
     "loading": "Loading…",
     "server": {
       "update": "Update your ranking",
-      "new": "Save a new tierlist",
-      "from": "Original tierlist",
+      "new": "Save a new ranking",
+      "from": "Original ranking",
       "username": "Username:",
       "edit": "Edit",
       "banner": {
@@ -537,7 +538,7 @@
       "password": "Set a password (optional)",
       "history": {
         "label": "Historize the old version",
-        "info": "This allows you to keep track before changing the tierlist."
+        "info": "This allows you to keep track before changing the ranking."
       },
       "link": "Replace the default ID with a more readable name (optional)"
     },
@@ -588,7 +589,7 @@
       "generator": {
         "info": "Information",
         "text1": "To create an account or login with Discord or Facebook requires a page reload.",
-        "text2": "To not lose your tierlist: close this dialog, save your browser and create your account or log in.",
+        "text2": "To not lose your ranking: close this dialog, save your browser and create your account or log in.",
         "text3": "You can then reload your ranking from “My List” with the “Browser List” tab."
       }
     },
@@ -625,12 +626,12 @@
       },
       "view": {
         "title": "Profile: ",
-        "rankings": "Tierlists",
-        "empty": "No tierlists for this user at this time."
+        "rankings": "Rankings",
+        "empty": "No ranking for this user at this time."
       },
-      "list.browser.tab": "Browser list",
-      "list.server.tab": "Server list",
-      "list.server.intro": "List of tierlists saved on your account."
+      "list.browser.tab": "Drafts",
+      "list.server.tab": "On my account",
+      "list.server.intro": "List of ranking saved on your account."
     },
     "signup": {
       "title": "Create my account",
@@ -705,13 +706,13 @@
     "back.search": "Return to search",
     "title": "Title",
     "category": "Category",
-    "categories": "tierlist",
-    "classements": "Tierlists",
+    "categories": "ranking",
+    "classements": "Ranking",
     "see.derivatives": "See derivatives",
     "my.derivatives": "My derivatives",
     "visualization": "Visualization",
     "password": {
-      "required": "Password required to view this tierlist",
+      "required": "Password required to view this ranking",
       "cancel": "Cancel",
       "ok": "Ok"
     }
@@ -738,12 +739,12 @@
       "3003": "User information not found for this action.",
       "3010": "Your account has been banned. Contact the administrator for more information.",
       "3020": "Your account has not been validated. If the validation token is expired, request a password change.",
-      "3101": "Tierlist not found.",
-      "3102": "No tierlists found.",
-      "3103": "No archived tierlists found.",
+      "3101": "Ranking not found.",
+      "3102": "No ranking found.",
+      "3103": "No archived ranking found.",
       "3110": "Invalid password.",
       "3201": "Original ranking not found.",
-      "3202": "No tierlist found with this id.",
+      "3202": "No ranking found with this id.",
       "3301": "Status error.",
       "3400": "Save failed. Contact administrator if this persists.",
       "4001": "This username already exists.",
@@ -786,19 +787,19 @@
     "json.read": {
       "failed": "⚠️ Failed to read file. The format is not recognized.",
       "replace": "😊 Uploaded file successful. Replaced successfully.",
-      "new": "😊 successfully uploaded file to new tierlist."
+      "new": "😊 successfully uploaded file to new ranking."
     },
     "remove": {
-      "success": "🗑 Removed from tierlist “%title%” successful."
+      "success": "🗑 Removed from ranking “%title%” successful."
     },
     "clone": {
-      "success": "😊 successfully duplicated tierlist as “%title%”."
+      "success": "😊 successfully duplicated ranking as “%title%”."
     },
     "reset": {
       "groups": "😊 Reset groups."
     },
     "add": {
-      "success": "😊 successfully added “%title%” tierlist."
+      "success": "😊 successfully added “%title%” ranking."
     },
     "user": {
       "sign.up.success": "😊 User created.",
@@ -810,10 +811,10 @@
     },
     "server": {
       "save.success": "😊 The save was successful.",
-      "deleted.success": "🗑 The tierlist has been successfully removed.",
-      "restored.success": "😊 The tierlist has been successfully restored.",
-      "hidden.success": "🫣 The tierlist has been successfully made private.",
-      "showed.success": "😊 The tierlist has been successfully made public.",
+      "deleted.success": "🗑 The ranking has been successfully removed.",
+      "restored.success": "😊 The ranking has been successfully restored.",
+      "hidden.success": "🫣 The ranking has been successfully made private.",
+      "showed.success": "😊 The ranking has been successfully made public.",
       "update.password.success": "😊 Your password has been successfully updated."
     },
     "contact": {
