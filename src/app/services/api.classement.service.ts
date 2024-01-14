@@ -71,6 +71,7 @@ export class APIClassementService extends APICommon {
     getClassementsByCriterion(criterion: {
         name?: string;
         category?: string;
+        mode?: string;
         page?: number;
         size?: number;
     }): Promise<SearchResult> {

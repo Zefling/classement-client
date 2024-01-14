@@ -14,6 +14,8 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
+import { listModes } from '../classement/classement-default';
+
 @Component({
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
@@ -21,9 +23,11 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 })
 export class ClassementNavigateComponent implements OnDestroy {
     categoriesList?: Select2Data;
+    categoriesType?: Select2Data;
 
     searchKey?: string;
     category?: string;
+    mode?: string;
 
     classements: Classement[] = [];
 
@@ -39,6 +43,8 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     isCategoryList = false;
+
+    listMode: Select2Data = [{ label: '', value: '' }, ...listModes];
 
     private _sub = Subscriptions.instance();
 
@@ -60,6 +66,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.logger.log('params', LoggerLevel.log, params);
                 this.searchKey = params['name'];
                 this.category = params['category'];
+                this.mode = params['mode'];
                 this.page = params['page'];
                 this.queryParams = { name: this.searchKey, category: this.category };
                 if (this.searchKey !== undefined || this.category !== undefined || params['page']) {
@@ -115,6 +122,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             .getClassementsByCriterion({
                 name: this.searchKey,
                 category: this.category,
+                mode: this.mode,
                 page: this.page,
                 size: this.pageSize,
             })
@@ -122,6 +130,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.classements = classements.list;
                 this.total = classements.total;
                 this.category = this.category;
+                this.mode = this.mode;
                 this.searchKey = this.searchKey;
                 this.isCategoryList = false;
             })
@@ -138,6 +147,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                               queryParams: {
                                   name: this.searchKey,
                                   category: this.category,
+                                  mode: this.mode,
                                   page: this.page,
                               },
                           },

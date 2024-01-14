@@ -18,11 +18,18 @@
 }
 
 .line {
-    flex: 1 1 300px;
+    flex: 2 2 450px;
     display: flex;
     align-items: flex-end;
+    gap: 5px;
 }
 
-.categories {
+.categories,
+.modes {
     flex: 1 1 170px;
+
+    .list-mode {
+        display: flex;
+        gap: 10px;
+    }
 }

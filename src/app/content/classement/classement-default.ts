@@ -1,3 +1,5 @@
+import { Select2Data } from 'ng-select2-component';
+
 import { FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 
 export const defaultGroup: FormattedGroup[] = [
@@ -264,4 +266,11 @@ export const categories: string[] = [
     'vehicle',
     'video.game',
     'other',
+];
+
+export const listModes: Select2Data = [
+    { value: 'default', label: 'default', data: { icon: 'tierlist' } },
+    { value: 'teams', label: 'teams', data: { icon: 'teams' } },
+    { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
+    { value: 'axis', label: 'axis', data: { icon: 'axis' } },
 ];

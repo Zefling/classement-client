@@ -16,6 +16,7 @@ import {
     imagesIceberg,
     imagesLists,
     imagesThemes,
+    listModes,
     themes,
     themesAxis,
     themesIceberg,
@@ -48,12 +49,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     zoneMode: ModeNames[] = ['iceberg', 'axis'];
 
-    listMode: Select2Data = [
-        { value: 'default', label: 'default', data: { icon: 'tierlist' } },
-        { value: 'teams', label: 'teams', data: { icon: 'teams' } },
-        { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
-        { value: 'axis', label: 'axis', data: { icon: 'axis' } },
-    ];
+    listMode: Select2Data = listModes;
 
     @ViewChild(ClassementThemesComponent) classementThemes!: ClassementThemesComponent;
     @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;

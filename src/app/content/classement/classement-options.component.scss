@@ -14,7 +14,7 @@
 
     display: grid;
     grid-template:
-        'title             title               categories          mode                '
+        'title             title               categories          modes               '
         'description       description         description         description         '
         'theme             width-auto          stream-mode         links               '
         // ----------------------------------------------------------------------------
@@ -40,7 +40,7 @@
 
     &.simplified {
         grid-template:
-            'title             title               categories          mode                '
+            'title             title               categories          modes               '
             'description       description         description         description         '
             'theme             width-auto          stream-mode         links               '
             'tags              tags                tags                tags                '
@@ -68,8 +68,8 @@ h4 {
     grid-area: tags;
 }
 
-.mode {
-    grid-area: mode;
+.modes {
+    grid-area: modes;
 
     .list-mode {
         display: flex;

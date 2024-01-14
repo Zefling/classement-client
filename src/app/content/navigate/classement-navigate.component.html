@@ -16,6 +16,22 @@
             <label>{{ 'navigate.category' | translate }}</label>
             <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
         </div>
+        <div class="modes">
+            <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
+
+            <select2 name="mode" [data]="listMode" [(ngModel)]="mode" [templates]="templateMode">
+                <ng-template #templateMode let-label="label" let-data="data">
+                    <div class="list-mode" *ngIf="data; else noData">
+                        <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
+                        <div class="desc">
+                            {{ 'mode.name.' + label | translate }}
+                        </div>
+                    </div>
+                    <ng-template #noData><div>&nbsp;</div></ng-template>
+                </ng-template>
+            </select2>
+        </div>
+
         <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>
 </form>
