@@ -731,6 +731,24 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
+    deleteCurrent() {
+        if (this.currentTile) {
+            const index = this.list.indexOf(this.currentTile);
+            if (index >= 0) {
+                this.list.splice(index, 1);
+            }
+            this.groups.forEach(group => {
+                const index = group.list.findIndex(tile => tile.id === this.currentTile!.id);
+                if (index !== -1) {
+                    group.list.splice(index, 1);
+                }
+            });
+            this.globalChange();
+            this.updateSize();
+            this.change();
+        }
+    }
+
     stopEvent(event: Event) {
         if (event instanceof MouseEvent && event.button === 1) {
             // prevent copy on Linux

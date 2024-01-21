@@ -2,9 +2,11 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
+    EventEmitter,
     Host,
     Input,
     OnChanges,
+    Output,
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
@@ -33,6 +35,8 @@ export class ClassementEditImageComponent implements OnChanges {
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
     @Input() currentTile?: FileString;
+
+    @Output() deleteCurrent = new EventEmitter<void>();
 
     imageChangedEvent?: Event;
     croppedImage?: string;
@@ -88,6 +92,11 @@ export class ClassementEditImageComponent implements OnChanges {
     close() {
         this.dialogInfo.close();
         this._open = false;
+    }
+
+    delete() {
+        this.deleteCurrent.emit();
+        this.close();
     }
 
     detectChanges() {

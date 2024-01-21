@@ -405,6 +405,7 @@
       "diff": "他のデリバティブからタイル",
       "add.tile": "リストに追加したいタイルをクリックします。",
       "no.tile": "タイルがありません。",
+      "delete.tile": "タイルを削除します",
       "tile.color": "タイルの背景色",
       "tile.color.remove": "色を削除します。",
       "tile.color.transparent": "透明な背景。",

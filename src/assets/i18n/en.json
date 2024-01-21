@@ -405,6 +405,7 @@
       "diff": "Tiles in other derivatives",
       "add.tile": "Click on the tiles you want to add to your list.",
       "no.tile": "There are no tiles.",
+      "delete.tile": "Delete the tile",
       "tile.color": "Tile background color",
       "tile.color.remove": "Remove color.",
       "tile.color.transparent": "Transparent background.",

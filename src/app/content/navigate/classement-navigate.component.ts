@@ -152,7 +152,6 @@ export class ClassementNavigateComponent implements OnDestroy {
                               },
                           },
                 );
-
                 this.loading = false;
             });
     }
