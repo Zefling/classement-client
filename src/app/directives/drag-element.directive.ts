@@ -14,13 +14,10 @@ import {
     ChangeDetectorRef,
     Directive,
     ElementRef,
-    EventEmitter,
-    HostListener,
     Inject,
     InjectionToken,
     NgZone,
     Optional,
-    Output,
     Self,
     SkipSelf,
     ViewContainerRef,
@@ -93,19 +90,5 @@ export class CdkDragElement<T = any> extends CdkDrag {
             _selfHandle,
             _parentDrag,
         );
-    }
-
-    @Output()
-    removeElement = new EventEmitter<CdkDrag>();
-
-    @HostListener('auxclick', ['$event'])
-    remove(event: MouseEvent) {
-        if (event.button === 1) {
-            this.removeElement.emit(this);
-
-            // prevent copy on Linux
-            event.stopPropagation();
-            event.preventDefault();
-        }
     }
 }

@@ -757,11 +757,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    removeFromZone(index: number) {
-        const item = this.groups[0].list.splice(index, 1)[0];
+    removeFromZone(group: FormattedGroup, index: number) {
+        const item = group.list.splice(index, 1)[0];
         item.x = 0;
         item.y = 0;
-        this.list.push(item);
+        if (this.options.mode !== 'teams') {
+            this.list.push(item);
+        }
         this.globalChange();
         this.change();
     }

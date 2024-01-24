@@ -115,6 +115,8 @@
                                     cdkDropListOrientation="horizontal"
                                     [cdkDropListData]="{ list: group.list, index: index }"
                                     (cdkDropListDropped)="drop(group.list, $event)"
+                                    removeTile
+                                    (removeElement)="removeFromZone(group, index)"
                                     [style.--over-item-background]="item.bgColor"
                                     [style.--over-item-text-color]="item.txtColor"
                                 >
@@ -203,7 +205,8 @@
                             #element="cdkDragElement"
                             (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
                             (cdkDragMoved)="moveItem($event, item, element)"
-                            (removeElement)="removeFromZone(index)"
+                            removeTile
+                            (removeElement)="removeFromZone(groups[0], index)"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
                         >
