@@ -1,5 +1,23 @@
 # Changelog - Standalone web app & API
 
+### 2.1.0 (2024-01-25)
+
+#### Standalone web app
+
+-   Improvement of texts #50
+-   Add search mode in navigation #52
+-   Add delete button in tile edit dialog #54
+-   Middle click to remove tile from group #55
+-   Add font Roboto
+-   Update to Angular `17.1`
+
+#### With API activated only
+
+-   Add sitemap
+-   Required: API `1.13`
+
+---
+
 ### 2.0.4 (2023-11-15)
 
 #### Standalone web app

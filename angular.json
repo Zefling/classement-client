@@ -29,7 +29,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.svg", "src/.htaccess", "src/assets"],
+            "assets": [
+              "src/favicon.svg",
+              "src/.htaccess",
+              "src/assets",
+              {
+                "glob": "sitemap.php",
+                "input": ".",
+                "output": "/"
+              }
+            ],
             "styles": ["src/styles.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": ["pica", "buffer", "html2canvas", "owasp-password-strength-test"]
