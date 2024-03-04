@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.1.1 (2024-03-05)
+
+#### Standalone web app
+
+-   Fix image size in edit dialog
+-   Improve action buttons in edit mode
+-   Update to Angular `17.2` and packages
+
 ### 2.1.0 (2024-01-25)
 
 #### Standalone web app
