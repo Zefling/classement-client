@@ -1,6 +1,22 @@
 {
   "name": "classement",
+  "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
   "version": "2.1.1",
+  "license": "GPL-3.0-or-later",
+  "author": {
+    "name": "Zéfling",
+    "email": "zefling@ikilote.net",
+    "url": "http://ikilote.net"
+  },
+  "markdown": "standard",
+  "homepage": "https://classement.ikilote.net",
+  "bugs": {
+    "email": "zefling@ikilote.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.ikilote.net/classement/classement.git"
+  },
   "scripts": {
     "postinstall": "npm audit fix",
     "ng": "ng",
@@ -11,6 +27,14 @@
     "format": "npx prettier --write ."
   },
   "private": true,
+  "engines": {
+    "node": ">= 20.0.0",
+    "npm": ">= 10.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "dependencies": {
     "@angular/animations": "^17.2.3",
     "@angular/cdk": "^17.2.1",
