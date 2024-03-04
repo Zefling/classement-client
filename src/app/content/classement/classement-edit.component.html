@@ -162,13 +162,17 @@
                         </td>
                         <td class="actions">
                             <div class="button-actions">
-                                <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">↑</button>
-                                <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">↓</button>
+                                <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">
+                                    <span class="icon-up"></span>
+                                </button>
+                                <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">
+                                    <span class="icon-down"></span>
+                                </button>
                                 <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
-                                    {{ 'generator.line.delete' | translate }}
+                                    <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
                                 </button>
                                 <button class="button-add" (click)="addLine(indexGrp)">
-                                    {{ 'generator.line.add' | translate }}
+                                    <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
                                 </button>
                                 <span
                                     tabindex="0"
