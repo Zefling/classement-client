@@ -25,6 +25,7 @@ body.light-mode {
 
     --loading-line-animation-color: 0 0 0;
     --box-shadow: hsl(0, 0%, 0%) 20%;
+    --tile-add-filter: brightness(0.8);
 
     color-scheme: light;
 }
@@ -50,12 +51,14 @@ body.dark-mode {
 
     --loading-line-animation-color: 255 255 255;
     --box-shadow: hsl(0, 0%, 0%) 25%;
+    --tile-add-filter: brightness(1.2);
 
     color-scheme: dark;
 }
 
 body,
 html {
+    // palettes
     --primary0: hsl(210, 5%, calc(var(--base) 95%));
     --primary1: hsl(210, 15%, calc(var(--base) 80%));
     --primary2: hsl(210, 15%, calc(var(--base) 70%));
@@ -106,6 +109,7 @@ html {
     --success9: hsl(120, 25%, calc(var(--base) 6%));
     --successA: hsl(120, 5%, calc(var(--base) 5%));
 
+    // global
     --background: var(--primaryA);
     --text-color: var(--primary0);
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
@@ -196,7 +200,6 @@ html {
     --content-box-text-background: color-mix(in hsl, var(--neutralB) 75%, transparent);
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
-    --tile-add-filter: brightness(1.2);
     // zone
     --group-line-size: 1px;
     --group-line-color: var(--neutral6);
@@ -269,6 +272,7 @@ html {
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
 
+    // base
     height: 100%;
     margin: 0;
     padding: 0;
