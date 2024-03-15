@@ -124,9 +124,9 @@ html {
     --menu-active-background: var(--primary6);
     --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
     // default button
-    --button-default-border-color: var(--neutral7);
-    --button-default-background: var(--neutral5);
-    --button-default-box-shadow: var(--neutral6);
+    --button-default-border-color: var(--neutral5);
+    --button-default-background: var(--neutral7);
+    --button-default-box-shadow: var(--neutral5);
     --button-default-color: var(--neutral0);
     --button-default-hover-border-color: var(--neutral9);
     --button-default-hover-background: var(--neutral6);
@@ -156,7 +156,7 @@ html {
     // dialog
     --dialog-backdrop-background: color-mix(in hsl, var(--primaryA) 60%, transparent);
     --dialog-backdrop-background-no-filter: color-mix(in hsl, var(--primaryA) 70%, transparent);
-    --dialog-background: var(--primary8);
+    --dialog-background: var(--neutral7);
     --dialog-shadow-color: color-mix(in hsl, var(--neutralA) 30%, transparent);
     // list
     --list-header-background: var(--neutral9);
@@ -293,16 +293,17 @@ input::file-selector-button {
     border: 2px solid var(--button-default-border-color);
     background: var(--button-default-background);
     color: var(--button-default-color);
-    box-shadow: 0 0 6px var(--button-default-box-shadow);
+    box-shadow: 0 0 1px var(--button-default-box-shadow);
     border-radius: 5px;
     margin: 0 5px;
     outline: none;
     cursor: pointer;
+    caret-color: transparent;
 
     &:hover {
         background: var(--button-default-hover-background);
         border: 2px solid var(--button-default-hover-border-color);
-        box-shadow: 0 0 12px var(--button-default-hover-box-shadow);
+        box-shadow: 0 0 6px var(--button-default-hover-box-shadow);
     }
 
     &:focus {
@@ -335,7 +336,7 @@ button:disabled {
     &:hover {
         background: var(--button-default-background);
         border: 2px solid var(--button-default-border-color);
-        box-shadow: 0 0 6px var(--button-default-box-shadow);
+        box-shadow: 0 0 1px var(--button-default-box-shadow);
     }
 }
 
