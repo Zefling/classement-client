@@ -239,13 +239,13 @@ export class Utils {
                               ((item.width || 100) / (item.height || 100)) * options.itemHeight,
                           ),
                       ) + 'px'
-                    : options.itemWidthAuto && tile
+                    : options.itemWidthAuto
                     ? Math.min(
                           options.itemMaxWidth ?? 300,
                           Math.round(
                               Math.max(
-                                  (((item.width || 100) - (title?.clientHeight || 16)) / (item.height || 100)) *
-                                      options.itemHeight,
+                                  ((item.width || 100) / (item.height || 100)) * options.itemHeight -
+                                      (title ? (title.clientHeight || 16) + 2 : 0),
                                   title?.clientWidth || 0,
                               ),
                           ),
