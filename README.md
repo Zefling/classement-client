@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This application aims to manage tierlists by groups of elements in the form of images or texts.
+This application aims to manage ranking list by groups of elements in the form of images or texts.
 The lists are modifiable and configurable by options or drag'n drop.
 
 Currently 2 modes are possible:
