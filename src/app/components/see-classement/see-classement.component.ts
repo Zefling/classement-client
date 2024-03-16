@@ -25,7 +25,10 @@ export class SeeClassementComponent implements OnInit {
 
     private _detectChange = new Subject<void>();
 
-    constructor(private readonly globalService: GlobalService, private readonly cd: ChangeDetectorRef) {
+    constructor(
+        private readonly globalService: GlobalService,
+        private readonly cd: ChangeDetectorRef,
+    ) {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
         });

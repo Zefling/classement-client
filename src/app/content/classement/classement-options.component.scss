@@ -2,16 +2,6 @@
     --groups: 'colors-line-back  colors-line-border  name-bg-opacity     .                   '
         'font-size         name-width          group-direction     name-markdown       ';
 
-    &.iceberg {
-        --groups: 'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
-            'group-line-width  colors-group-line   .                   .                   ';
-    }
-
-    &.axis {
-        --groups: 'zone-title-axis   zone-title-axis     zone-title-axis     zone-title-axis     '
-            'axis-line-width   axis-arrow-size     colors-axis-line    .                   ';
-    }
-
     display: grid;
     grid-template:
         'title             title               categories          modes               '
@@ -33,10 +23,20 @@
         'tags              tags                tags                tags                '
         / 1fr 1fr 1fr 1fr;
     gap: 10px;
-    border-radius: 5px;
     border: solid 1px var(--options-border-color);
+    border-radius: 5px;
     background: var(--options-background);
     padding: 10px;
+
+    &.iceberg {
+        --groups: 'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
+            'group-line-width  colors-group-line   .                   .                   ';
+    }
+
+    &.axis {
+        --groups: 'zone-title-axis   zone-title-axis     zone-title-axis     zone-title-axis     '
+            'axis-line-width   axis-arrow-size     colors-axis-line    .                   ';
+    }
 
     &.simplified {
         grid-template:
@@ -50,14 +50,14 @@
 
 .links {
     grid-area: links;
-    text-align: end;
     align-self: flex-end;
+    text-align: end;
 }
 
 h4 {
-    padding: 0;
     margin: 0;
     border-bottom: 1px solid #4f4f88;
+    padding: 0;
 }
 
 .themes {
@@ -225,14 +225,13 @@ h4 {
 }
 
 .zone-title-axis {
-    grid-area: zone-title-axis;
-
     display: grid;
-    gap: 10px;
+    grid-area: zone-title-axis;
     grid-template:
         'h a b'
         'g . c'
         'f e d';
+    gap: 10px;
 
     :nth-child(1) {
         grid-area: a;
@@ -268,19 +267,19 @@ h4 {
 }
 
 .info-desc {
-    font-size: 11px;
-    text-align: right;
     position: relative;
     top: -17px;
     right: 15px;
-    pointer-events: none;
     height: 0;
+    pointer-events: none;
+    font-size: 11px;
+    text-align: right;
 }
 
 textarea {
-    resize: vertical;
     min-height: 3em;
     max-height: 15em;
+    resize: vertical;
 }
 
 .item-options {
@@ -302,12 +301,12 @@ textarea {
     padding: 5px;
 
     input {
+        z-index: 1;
+        padding: 2px 4px;
+        width: 30px;
+        height: 15px;
         font-size: 10px;
         text-align: center;
-        padding: 2px 4px;
-        height: 15px;
-        width: 30px;
-        z-index: 1;
     }
 
     /* Chrome, Safari, Edge, Opera */
@@ -338,60 +337,60 @@ textarea {
 }
 
 .margin {
-    font-weight: 400;
     grid-row: 1;
     grid-column: 1;
-    font-size: 11px;
     width: 70px;
+    font-weight: 400;
+    font-size: 11px;
 }
 
 .padding {
-    font-weight: 400;
     grid-row: 5;
     grid-column: 3;
+    font-weight: 400;
     font-size: 11px;
 }
 
 .image {
-    font-weight: 400;
     grid-row: 6;
     grid-column: 3;
-    font-size: 11px;
     margin-left: 3px;
+    font-weight: 400;
+    font-size: 11px;
 }
 
 .border {
-    font-weight: 400;
     grid-row: 2/5;
     grid-column: 3/4;
+    font-weight: 400;
     font-size: 11px;
 
     span {
+        margin-left: -2px;
+        border-radius: 3px;
         background: var(--options-sizes-border-color);
         color: var(--options-sizes-border-text);
-        border-radius: 3px;
-        margin-left: -2px;
     }
 }
 
 .height {
-    border: 1px solid var(--options-sizes-height-color);
+    position: relative;
     grid-row: 6/10;
     grid-column: 5;
-    border-width: 0 1px 0 0;
     margin-right: 6px;
-    position: relative;
+    border: 1px solid var(--options-sizes-height-color);
+    border-width: 0 1px 0 0;
 
     &::before,
     &::after {
-        content: ' ';
         display: block;
-        width: 5px;
-        height: 5px;
-        border: 1px solid var(--options-sizes-height-color);
         position: absolute;
         transform: translateX(10.5px) rotate(-135deg);
+        border: 1px solid var(--options-sizes-height-color);
         border-width: 0 1px 1px 0;
+        width: 5px;
+        height: 5px;
+        content: ' ';
     }
     &::after {
         bottom: 0;
@@ -400,23 +399,23 @@ textarea {
 }
 
 .width {
-    border: 1px solid var(--options-sizes-width-color);
+    position: relative;
     grid-row: 9;
     grid-column: 3/7;
-    border-width: 1px 0 0 0;
     margin-top: -8px;
-    position: relative;
+    border: 1px solid var(--options-sizes-width-color);
+    border-width: 1px 0 0 0;
 
     &::before,
     &::after {
-        content: ' ';
         display: block;
-        width: 5px;
-        height: 5px;
-        border: 1px solid var(--options-sizes-width-color);
         position: absolute;
         transform: translateY(-3.5px) rotate(-225deg);
+        border: 1px solid var(--options-sizes-width-color);
         border-width: 0 1px 1px 0;
+        width: 5px;
+        height: 5px;
+        content: ' ';
     }
     &::after {
         right: 0;
@@ -434,14 +433,14 @@ textarea {
 }
 
 .info span {
-    text-align: center;
-    background: var(--box-background);
-    border: 1px solid var(--box-border-color);
-    margin-top: 15px;
-    padding: 15px;
-    width: 100%;
     display: block;
     box-sizing: border-box;
+    margin-top: 15px;
+    border: 1px solid var(--box-border-color);
+    background: var(--box-background);
+    padding: 15px;
+    width: 100%;
+    text-align: center;
 }
 
 .item-width {
@@ -456,12 +455,12 @@ textarea {
 
 span.item-width,
 span.item-height {
-    font-size: 11px;
-    line-height: 2px;
     z-index: 1;
+    cursor: default;
     width: 30px;
     height: 16px;
-    cursor: default;
+    font-size: 11px;
+    line-height: 2px;
 }
 
 .item-max-width {
@@ -481,8 +480,8 @@ span.item-height {
 
 .item-border {
     grid-area: border;
-    border: 1px solid var(--options-sizes-border-color);
     margin-top: -2px;
+    border: 1px solid var(--options-sizes-border-color);
 }
 
 .item-margin {
@@ -528,26 +527,28 @@ span.item-height {
     }
 
     .color-render {
+        display: block;
         grid-area: e;
-        border: 1px solid var(--input-border-color);
         box-shadow: 0 0 3px;
+        border: 1px solid var(--input-border-color);
         border-radius: 3px;
-        background-color: #fff;
-        background-size: 10px 10px;
         background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
             linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%);
+        background-position:
+            0 0,
+            12.5px 12.5px;
+        background-size: 10px 10px;
         background-size: 25px 25px;
-        background-position: 0 0, 12.5px 12.5px;
+        background-color: #fff;
         height: 100%;
         overflow: hidden;
-        display: block;
 
         &::before {
             display: block;
-            content: ' ';
+            background: var(--color-section);
             width: 100%;
             height: 100%;
-            background: var(--color-section);
+            content: ' ';
         }
     }
 
@@ -575,8 +576,8 @@ span.item-height {
             grid-area: b;
         }
         input {
-            text-align: right;
             width: 100px;
+            text-align: right;
         }
     }
 }
@@ -587,8 +588,8 @@ span.item-height {
 
 .list-option {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
     cursor: default;
 
     .desc {
@@ -596,18 +597,18 @@ span.item-height {
     }
 
     .view {
-        width: 40px;
-        height: 40px;
-        background-color: var(--over-image-background, var(--background));
         background-image: var(--url);
         background-size: contain;
+        background-color: var(--over-image-background, var(--background));
+        width: 40px;
+        height: 40px;
     }
 }
 
 .icon-info {
+    vertical-align: -2px;
     padding: 5px;
     font-size: 16px;
-    vertical-align: -2px;
 }
 
 .background-image-custom {
@@ -633,8 +634,8 @@ span.item-height {
 
     .image-custom {
         grid-area: c;
-        max-height: 150px;
         max-width: 150px;
+        max-height: 150px;
     }
 }
 

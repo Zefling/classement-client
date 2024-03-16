@@ -5,8 +5,8 @@
 
 .form,
 .links {
-    max-width: 50%;
     margin: auto;
+    max-width: 50%;
 }
 
 .links {
@@ -23,19 +23,19 @@
     text-align: center;
 
     img {
-        height: 29px;
         vertical-align: middle;
         padding-right: 11px;
+        height: 29px;
     }
 }
 
 .error {
     padding-top: 15px;
-    text-align: center;
     color: var(--alert-color);
+    text-align: center;
 }
 
 :host .list-error {
-    padding: 15px 40px;
     margin: 30px;
+    padding: 15px 40px;
 }

@@ -78,7 +78,9 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "prettier": "^2.8.8",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "prettier-plugin-css-order": "^2.0.1",
     "typescript": "~5.2.2"
   }
 }

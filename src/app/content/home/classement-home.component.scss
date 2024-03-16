@@ -5,8 +5,8 @@
 
 .infos {
     display: flex;
-    padding: 40px 10px;
     gap: 20px;
+    padding: 40px 10px;
 
     & > div {
         flex: 1;
@@ -19,8 +19,8 @@
 }
 
 .licence svg {
-    height: 85px;
     margin: -20px 0;
+    height: 85px;
 }
 
 .licence path {
@@ -30,30 +30,30 @@
 .tiles-navigate {
     display: flex;
     justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
     gap: 20px;
     font-size: 30px;
-    justify-content: flex-start;
+    text-align: center;
 }
 
 .tile-navigate {
-    cursor: pointer;
-    flex: 1 0 150px;
-    height: 200px;
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-    color: var(--menu-color);
-    background: var(--menu-background);
-    border-radius: 5px;
     display: flex;
+    flex: 1 0 150px;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+    margin: 0;
     box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
+    border-radius: 5px;
+    background: var(--menu-background);
+    padding: 10px;
+    height: 200px;
+    color: var(--menu-color);
+    text-align: center;
 
     &:hover {
-        color: var(--menu-hover-color);
         background: var(--menu-hover-background);
+        color: var(--menu-hover-color);
     }
 
     .icon {
@@ -63,15 +63,15 @@
 
 navigate-result {
     display: flex;
-    flex-wrap: nowrap;
     position: relative;
+    flex-wrap: nowrap;
     overflow: hidden;
     --image-size: 200px;
 
     ::ng-deep {
         .classement {
-            min-width: var(--image-size);
             flex: 1;
+            min-width: var(--image-size);
             max-width: 320px;
         }
         figure {
@@ -89,17 +89,17 @@ navigate-result {
     position: relative;
 
     &::before {
-        content: '';
-        position: absolute;
         display: block;
-        height: 100%;
-        width: 150px;
+        position: absolute;
         right: 0;
         z-index: 1;
-        pointer-events: none;
-        background: linear-gradient(to left, var(--background) 10px, transparent);
-        mask-image: linear-gradient(to left, var(--background) 10px, transparent);
         backdrop-filter: blur(8px);
+        mask-image: linear-gradient(to left, var(--background) 10px, transparent);
+        background: linear-gradient(to left, var(--background) 10px, transparent);
+        width: 150px;
+        height: 100%;
+        pointer-events: none;
+        content: '';
     }
 }
 
@@ -123,16 +123,16 @@ navigate-result {
 
 @media screen and (max-width: 800px) {
     .tiles-navigate {
-        margin: 0 calc(min(20%, 30px) * 0.5);
         flex-wrap: wrap;
         box-sizing: border-box;
+        margin: 0 calc(min(20%, 30px) * 0.5);
         width: calc(100% + min(20%, 30px) * -1);
     }
 
     .tile-navigate {
+        flex: 1 1 max(150px, 33%);
         height: 150px;
         scroll-snap-align: center;
-        flex: 1 1 max(150px, 33%);
     }
 
     navigate-result {
@@ -142,8 +142,8 @@ navigate-result {
 
 @media screen and (max-width: 450px) {
     .tile-navigate {
-        height: 100px;
         flex: 1 1 33%;
+        height: 100px;
         font-size: 20px;
 
         .icon {

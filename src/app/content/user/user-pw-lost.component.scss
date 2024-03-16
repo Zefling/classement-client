@@ -5,8 +5,8 @@
 
 .form,
 .links {
-    max-width: 50%;
     margin: auto;
+    max-width: 50%;
 }
 
 .links {
@@ -25,6 +25,6 @@
 
 .error {
     padding-top: 15px;
-    text-align: center;
     color: var(--alert-color);
+    text-align: center;
 }

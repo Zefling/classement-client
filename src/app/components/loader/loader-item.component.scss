@@ -4,15 +4,13 @@
 }
 
 div {
-    width: 220px;
-    height: 300px;
-    background: var(--loading-tile-color);
-    border-radius: 5px;
     animation-duration: 3s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: lighting;
     animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-name: lighting;
+    border-radius: 5px;
+    background: var(--loading-tile-color);
     background-image: linear-gradient(
         125deg,
         transparent 45%,
@@ -26,6 +24,8 @@ div {
         transparent 100%
     );
     background-size: 1500px 300px;
+    width: 220px;
+    height: 300px;
 }
 
 @keyframes lighting {

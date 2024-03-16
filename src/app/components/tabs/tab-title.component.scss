@@ -1,10 +1,10 @@
 :host {
     display: block;
+    cursor: pointer;
     border-bottom: 5px solid var(--tab-border-color);
     padding: 5px 20px;
-    font-size: 20px;
     font-weight: 700;
-    cursor: pointer;
+    font-size: 20px;
 
     &:not(.selected) {
         color: var(--tab-text-color);
@@ -15,7 +15,7 @@
     }
 
     &:hover {
-        color: var(--tab-text-border-color);
         border-color: var(--tab-hover-border-color);
+        color: var(--tab-text-border-color);
     }
 }

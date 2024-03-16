@@ -11,7 +11,10 @@ import { MessageError } from '../content/user/user.interface';
 export abstract class APICommon {
     abstract token?: string;
 
-    constructor(protected readonly translate: TranslateService, protected readonly logger: Logger) {}
+    constructor(
+        protected readonly translate: TranslateService,
+        protected readonly logger: Logger,
+    ) {}
 
     protected header(): {} {
         return {

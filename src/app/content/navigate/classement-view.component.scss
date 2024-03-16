@@ -7,29 +7,29 @@
 
 .infos {
     margin: 15px;
-    padding: 15px;
     border: 1px solid var(--menu-separator);
+    padding: 15px;
 }
 
 .groups {
-    padding-top: 3px;
     display: flex;
     justify-content: flex-start;
     gap: 20px;
+    padding-top: 3px;
 }
 
 .mode {
-    border-radius: 10px;
     border: 1px solid;
-    font-size: 80%;
+    border-radius: 10px;
     padding: 0 5px;
+    font-size: 80%;
 }
 
 .name {
-    margin-top: 0;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0;
 
     .history {
         text-align: right;
@@ -49,10 +49,10 @@
     font-weight: 700;
 }
 .username a {
-    margin-top: 10px;
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .avatar {
@@ -62,8 +62,8 @@
 
 .note {
     width: 100%;
-    text-align: center;
     font-size: 80%;
+    text-align: center;
 }
 
 .buttons {
@@ -85,10 +85,10 @@
 // render
 
 .render {
-    width: var(--over-image-width, 1170px);
     position: absolute;
     top: 0;
     left: -100000px;
+    width: var(--over-image-width, 1170px);
 }
 
 loading-cmp {
@@ -99,15 +99,15 @@ loading-cmp {
 
 .table-derivatives,
 .table-history {
-    border-spacing: 0;
     position: relative;
     margin: 0 -30px;
+    border-spacing: 0;
     width: calc(100% + 60px);
 
     thead {
-        background: var(--list-header-background);
         position: sticky;
         top: 0;
+        background: var(--list-header-background);
     }
 
     th {
@@ -124,8 +124,8 @@ loading-cmp {
 
     tbody {
         tr:hover {
-            background: var(--list-line-hover-background);
             cursor: default;
+            background: var(--list-line-hover-background);
         }
 
         .current {
@@ -140,15 +140,15 @@ loading-cmp {
             text-align: center;
 
             span {
-                margin: auto 5px;
                 display: block;
+                margin: auto 5px;
             }
         }
 
         .groups,
         .items {
-            text-align: center;
             padding-right: 10px;
+            text-align: center;
         }
 
         .actions {

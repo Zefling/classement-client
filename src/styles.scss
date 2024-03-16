@@ -271,43 +271,43 @@ html {
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
+    margin: 0;
+    background: var(--background);
+    padding: 0;
 
     // base
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
-    background: var(--background);
     color: var(--text-color);
 }
 
 *,
 *:focus,
 *:hover {
-    font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
+    transition-duration: 0.3s;
     // color not possible in Chromium (too slow)
     transition-property: backgound-color, opacity, border, box-shadow, text-shadow, outline;
-    transition-duration: 0.3s;
+    font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
 }
 
 button,
 input::file-selector-button {
-    padding: 10px;
-    font-size: 110%;
-    border: 2px solid var(--button-default-border-color);
-    background: var(--button-default-background);
-    color: var(--button-default-color);
-    box-shadow: 0 0 1px var(--button-default-box-shadow);
-    border-radius: 5px;
+    cursor: pointer;
     margin: 0 5px;
     outline: none;
-    cursor: pointer;
+    box-shadow: 0 0 1px var(--button-default-box-shadow);
+    border: 2px solid var(--button-default-border-color);
+    border-radius: 5px;
+    background: var(--button-default-background);
+    padding: 10px;
+    color: var(--button-default-color);
     caret-color: transparent;
+    font-size: 110%;
 
     &:hover {
-        background: var(--button-default-hover-background);
-        border: 2px solid var(--button-default-hover-border-color);
         box-shadow: 0 0 6px var(--button-default-hover-box-shadow);
+        border: 2px solid var(--button-default-hover-border-color);
+        background: var(--button-default-hover-background);
     }
 
     &:focus {
@@ -338,9 +338,9 @@ button:disabled {
     opacity: 0.25;
 
     &:hover {
-        background: var(--button-default-background);
-        border: 2px solid var(--button-default-border-color);
         box-shadow: 0 0 1px var(--button-default-box-shadow);
+        border: 2px solid var(--button-default-border-color);
+        background: var(--button-default-background);
     }
 }
 
@@ -381,8 +381,8 @@ button.warn {
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     justify-content: center;
+    gap: 10px;
 
     & > button {
         margin: 0;
@@ -395,8 +395,8 @@ button.warn {
 
 a {
     cursor: pointer;
-    text-decoration: none;
     color: var(--link-color);
+    text-decoration: none;
 
     &:hover {
         color: var(--link-hover-color);
@@ -413,15 +413,15 @@ a {
 }
 
 :where(input:not([type='checkbox'], [type='radio']), .input, textarea, select) {
+    box-sizing: border-box;
+    outline: 1px solid transparent;
     border: 1px solid var(--input-border-color);
     border-radius: 3px;
+    background: var(--input-background);
     padding: 5px 3px;
     width: 100%;
-    background: var(--input-background);
     color: var(--text-color);
-    box-sizing: border-box;
     font-size: 14px;
-    outline: 1px solid transparent;
 
     &:disabled {
         opacity: 0.5;
@@ -438,16 +438,16 @@ dialog-cmp.auto-format .main {
     }
 
     :where(h3, p, div) {
-        text-align: center;
-        padding: 15px 0;
         margin: 0 auto;
+        padding: 15px 0;
+        text-align: center;
     }
 
     :where(input:not([type='checkbox'], [type='radio']), textarea, select) {
+        display: block;
+        margin: auto;
         width: 80%;
         resize: vertical;
-        margin: auto;
-        display: block;
     }
 
     .note {
@@ -463,12 +463,12 @@ dialog-cmp.auto-format .main {
 }
 
 .list-error {
-    padding: 15px 40px;
-    text-align: left;
-    color: var(--alert-color);
-    border: 1px solid var(--alert-color);
     margin: 30px;
+    border: 1px solid var(--alert-color);
     background: var(--alert-background);
+    padding: 15px 40px;
+    color: var(--alert-color);
+    text-align: left;
 }
 
 .anonymous {
@@ -488,40 +488,40 @@ dialog-cmp.auto-format .main {
     position: relative;
 
     input {
-        opacity: 0.01;
-        height: 0.1px;
-        width: 0.1px;
         position: absolute;
+        opacity: 0.01;
+        width: 0.1px;
+        height: 0.1px;
     }
 
     input + span {
-        margin: 3px 0;
         display: inline-block;
-        line-height: 21px;
         position: relative;
+        margin: 3px 0;
+        line-height: 21px;
 
         &::before {
-            content: '';
             display: inline-block;
-            height: 20px;
-            width: 40px;
-            border-radius: 10px;
-            background-color: var(--input-border-color);
             vertical-align: bottom;
             margin-right: 5px;
+            border-radius: 10px;
+            background-color: var(--input-border-color);
+            width: 40px;
+            height: 20px;
+            content: '';
         }
 
         &::after {
-            content: '';
             display: block;
-            height: 18px;
-            width: 18px;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s;
             border-radius: 50%;
             background-color: var(--input-item-color);
-            position: absolute;
-            left: 2px;
-            top: 2px;
-            transition: left 0.2s;
+            width: 18px;
+            height: 18px;
+            content: '';
         }
     }
 
@@ -548,30 +548,30 @@ dialog-cmp.auto-format .main {
 }
 
 .tooltip-container {
-    box-shadow: 2px 2px 5px var(--tooltip-shadow-color);
-    border: 1px solid var(--tooltip-border-color);
-    color: var(--tooltip-text-color);
-    background: var(--tooltip-background);
-    text-align: center;
     position: fixed;
-    padding: 6px;
+    transform: translate(-50%, -30%);
     opacity: 0;
     z-index: 4;
-    transform: translate(-50%, -30%);
     animation: tooltip-slide 0.18s ease-out 0.5s;
     animation-fill-mode: forwards;
+    box-shadow: 2px 2px 5px var(--tooltip-shadow-color);
+    border: 1px solid var(--tooltip-border-color);
+    background: var(--tooltip-background);
+    padding: 6px;
     pointer-events: none;
+    color: var(--tooltip-text-color);
+    text-align: center;
     white-space: pre-wrap;
 }
 
 @keyframes tooltip-slide {
     0% {
-        opacity: 0;
         transform: translate(-50%, -30%);
+        opacity: 0;
     }
     100% {
-        opacity: 1;
         transform: translate(-50%, 0);
+        opacity: 1;
     }
 }
 
@@ -598,15 +598,15 @@ dialog-cmp.auto-format .main {
 @supports not selector(::-webkit-search-cancel-button) {
     input[type='search']:not(.empty) + span {
         display: flex;
-        z-index: 1;
-        height: 20px;
-        width: 20px;
-        left: calc(100% - 24px);
         position: relative;
         top: -25px;
-        margin-bottom: -20px;
+        left: calc(100% - 24px);
         justify-content: center;
         align-items: center;
+        z-index: 1;
+        margin-bottom: -20px;
+        width: 20px;
+        height: 20px;
         font-weight: bold;
 
         &::after {

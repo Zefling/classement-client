@@ -48,10 +48,9 @@ export class APIClassementService extends APICommon {
     getClassement(rankingId: string, password?: string, history?: number): Promise<Classement> {
         return new Promise<Classement>((resolve, reject) => {
             this.http
-                .get<Message<Classement>>(
-                    `${environment.api.path}api/classement/${rankingId}${history ? `?history=${history}` : ''}`,
-                    password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined,
-                )
+                .get<
+                    Message<Classement>
+                >(`${environment.api.path}api/classement/${rankingId}${history ? `?history=${history}` : ''}`, password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined)
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -98,9 +97,9 @@ export class APIClassementService extends APICommon {
     getClassementsByTemplateId(id: string, userId?: number): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http
-                .get<Message<Classement[]>>(
-                    `${environment.api.path}api/classements/template/${id}${userId ? `?userId=${userId}` : ''}`,
-                )
+                .get<
+                    Message<Classement[]>
+                >(`${environment.api.path}api/classements/template/${id}${userId ? `?userId=${userId}` : ''}`)
                 .subscribe({
                     next: result => {
                         resolve(result.message);

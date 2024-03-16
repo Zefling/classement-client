@@ -1,26 +1,26 @@
 :host {
     --cell: repeat(auto-fill, minmax(200px, 1fr));
-    margin-top: 20px;
     display: grid;
     grid-template-columns: var(--cell);
     gap: 30px 10px;
+    margin-top: 20px;
 
     figcaption {
         display: flex;
-        flex-direction: column;
         flex: 1;
+        flex-direction: column;
         justify-content: flex-end;
         margin-bottom: 5px;
 
         .groups {
-            padding-top: 3px;
             display: flex;
             justify-content: center;
             gap: 20px;
+            padding-top: 3px;
 
             & + * {
-                border-top: 1px solid var(--menu-separator);
                 margin-top: 5px;
+                border-top: 1px solid var(--menu-separator);
                 padding-top: 5px;
             }
         }
@@ -35,24 +35,24 @@
         }
 
         .date {
-            font-size: 60%;
-            max-height: 13px;
             min-height: 13px;
+            max-height: 13px;
             overflow: hidden;
+            font-size: 60%;
         }
     }
 }
 
 :where(figure, .template) {
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-    color: var(--menu-color);
-    background: var(--menu-background);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
+    margin: 0;
     box-shadow: 2px 2px 8px 0px var(--menu-box-shadow-color);
+    border-radius: 5px;
+    background: var(--menu-background);
+    padding: 10px;
+    color: var(--menu-color);
+    text-align: center;
 
     img {
         max-width: 100%;
@@ -78,11 +78,11 @@ a:hover :where(figure, .template) {
 
     a {
         display: grid;
-        grid-template-columns: auto;
         grid-template-rows: 1fr auto;
+        grid-template-columns: auto;
         gap: 10px;
-        height: 100%;
         width: 100%;
+        height: 100%;
     }
 }
 
@@ -90,12 +90,12 @@ figure {
     position: relative;
 
     &::before {
-        content: attr(data-mode);
         position: absolute;
-        background: var(--menu-cartouche-background);
-        border-radius: 15px;
-        padding: 1px 8px;
         border: 1px solid;
+        border-radius: 15px;
+        background: var(--menu-cartouche-background);
+        padding: 1px 8px;
+        content: attr(data-mode);
         font-size: 12px;
     }
 }
@@ -109,9 +109,9 @@ figure {
 
 .category {
     &:first-child {
-        font-size: 120%;
-        font-weight: 700;
         padding-top: 10px;
+        font-weight: 700;
+        font-size: 120%;
     }
 
     &:not(:first-child) {
@@ -125,10 +125,10 @@ figure {
 }
 
 .no-result {
-    padding: 10px 5px;
-    text-align: center;
     background: var(--no-result-background);
+    padding: 10px 5px;
     width: 100%;
+    text-align: center;
 }
 
 @media screen and (max-width: 800px) {
@@ -140,8 +140,8 @@ figure {
         .result {
             figcaption .date {
                 margin-top: 4px;
-                font-size: 60%;
                 height: 12px;
+                font-size: 60%;
             }
         }
 
@@ -163,8 +163,8 @@ figure {
             flex-direction: row;
 
             &::before {
-                right: auto;
                 top: auto;
+                right: auto;
                 bottom: 13px;
                 left: 13px;
             }
@@ -175,9 +175,9 @@ figure {
         }
 
         img {
-            max-width: 40%;
-            width: 40%;
             align-self: center;
+            width: 40%;
+            max-width: 40%;
         }
     }
 }

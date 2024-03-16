@@ -51,7 +51,7 @@
                         <img [src]="baseImg + movie.poster_path" alt="poster_path" />
                         <div class="movie-title">
                             <span *ngIf="withTitle">{{ movie.title }}</span>
-                            <span *ngIf="withYear"> ({{ movie.release_date | date : 'YYYY' }})</span>
+                            <span *ngIf="withYear"> ({{ movie.release_date | date: 'YYYY' }})</span>
                         </div>
                     </div>
                 </div>

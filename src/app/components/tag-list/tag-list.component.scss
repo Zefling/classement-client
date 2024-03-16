@@ -5,18 +5,18 @@
 }
 
 button {
-    padding: 0;
+    box-shadow: none;
     border: 0;
     background: transparent;
-    box-shadow: none;
+    padding: 0;
 }
 
 div,
 label {
-    background: var(--tag-background);
-    border-radius: 15px;
     display: flex;
     justify-content: space-between;
+    border-radius: 15px;
+    background: var(--tag-background);
     font-weight: inherit;
     font-size: inherit;
 }
@@ -36,24 +36,24 @@ button,
 
 label {
     display: inline-grid;
-    align-items: center;
     position: relative;
-    background: var(--tag-input-background);
+    align-items: center;
     outline: 1px solid var(--tag-input-border-color);
+    background: var(--tag-input-background);
 
     &::after,
     input {
+        grid-area: 1 / 2;
+        appearance: none;
+        margin: 0;
+        outline: none;
+        border: none;
+        background: none;
+        padding: 3px 10px;
         width: auto;
         min-width: 1em;
-        grid-area: 1 / 2;
-        font: inherit;
-        padding: 3px 10px;
-        margin: 0;
         resize: none;
-        background: none;
-        appearance: none;
-        border: none;
-        outline: none;
+        font: inherit;
     }
 
     &:has(> input:focus) {
@@ -61,8 +61,8 @@ label {
     }
 
     &::after {
-        content: attr(data-value) ' ';
         visibility: hidden;
+        content: attr(data-value) ' ';
         white-space: pre-wrap;
         word-break: break-word;
     }

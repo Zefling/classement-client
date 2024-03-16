@@ -15,9 +15,9 @@ dialog-cmp {
     label,
     .label {
         display: block;
-        text-align: left;
-        width: 80%;
         margin: auto;
+        width: 80%;
+        text-align: left;
 
         input {
             width: auto;
@@ -25,9 +25,9 @@ dialog-cmp {
     }
 
     .alert {
-        width: 80%;
         margin: auto;
         border: 1px solid var(--alert-color);
+        width: 80%;
         color: var(--alert-color);
     }
 }
@@ -50,8 +50,8 @@ dialog-cmp {
 }
 
 .classements {
-    text-align: center;
     width: 40px;
+    text-align: center;
 }
 
 dialog-cmp list-classements {

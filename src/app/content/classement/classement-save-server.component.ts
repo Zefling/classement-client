@@ -160,7 +160,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
         if (classement.mode === 'teams') {
             // keep only the ids for this mode
-            classement.data.groups.forEach(group => (group.list = group.list.map(tile => ({ id: tile.id } as any))));
+            classement.data.groups.forEach(group => (group.list = group.list.map(tile => ({ id: tile.id }) as any)));
         }
 
         if (!this.showError.length) {

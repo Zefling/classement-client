@@ -27,44 +27,44 @@
     --n-image-width: var(--o-image-width, var(--image-width));
     --n-name-width: var(--o-name-width, var(--name-width));
     --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     box-shadow: 0 0 10px var(--theme-shadow-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: var(--n-image-background, var(--background));
     background-image: var(--n-image-url);
     background-repeat: repeat;
+    background-color: var(--n-image-background, var(--background));
     padding: 0;
     height: 130px;
+    overflow: hidden;
 }
 
 .group {
-    height: 100px;
-    width: 120px;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
     border: solid 1px var(--n-drop-list-border-color);
     background: var(--n-drop-list-background);
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
+    padding: 0;
+    width: 120px;
+    height: 100px;
 }
 
 .item {
     display: flex;
-    align-items: stretch;
     justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
     margin: var(--n-item-margin);
-    padding: var(--n-item-padding);
-    width: 100px;
     border: var(--n-item-border) solid var(--n-content-box-border);
     background: var(--n-content-box-background);
+    padding: var(--n-item-padding);
+    width: 100px;
     color: var(--n-content-box-color);
-    box-sizing: border-box;
 }
 .image {
-    background-color: azure;
     flex: 1;
+    background-color: azure;
     padding: 0;
 }

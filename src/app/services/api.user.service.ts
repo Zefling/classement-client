@@ -311,11 +311,9 @@ export class APIUserService extends APICommon {
                 avatar,
             };
             this.http
-                .post<Message<{ avatar: boolean; url: string }>>(
-                    `${environment.api.path}api/user/update/avatar`,
-                    param,
-                    this.header(),
-                )
+                .post<
+                    Message<{ avatar: boolean; url: string }>
+                >(`${environment.api.path}api/user/update/avatar`, param, this.header())
                 .subscribe({
                     next: result => {
                         resolve(result.message);

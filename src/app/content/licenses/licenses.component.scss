@@ -9,9 +9,9 @@ pre {
 
 :host ::ng-deep {
     h3 {
-        padding-bottom: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid;
+        padding-bottom: 3px;
     }
     .license {
         font-size: 20px;

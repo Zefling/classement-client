@@ -5,8 +5,8 @@
                 isCategoryList
                     ? ['/navigate']
                     : classement.templateTotal <= 1 || this.onlyRanking
-                    ? ['/navigate/view', classement.linkId || classement.rankingId]
-                    : ['/navigate/template', classement.templateId]
+                      ? ['/navigate/view', classement.linkId || classement.rankingId]
+                      : ['/navigate/template', classement.templateId]
             "
             [queryParams]="isCategoryList ? { category: classement.category } : {}"
         >
@@ -30,18 +30,18 @@
                         <div class="username" *ngIf="!hideUser">
                             {{
                                 'user.by'
-                                    | translate : { author: classement.user || ('list.user.anonymous' | translate) }
+                                    | translate: { author: classement.user || ('list.user.anonymous' | translate) }
                             }}
                         </div>
                         <div class="date">
-                            {{ classement.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }}
+                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
                         </div>
                         <div class="date change">
                             <ng-container *ngIf="classement.dateChange">{{
                                 'generator.ranking.change'
                                     | translate
                                         : {
-                                              DATE: classement.dateChange | date : ('date.dd/MM/yyyy HH:mm' | translate)
+                                              DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
                                           }
                             }}</ng-container>
                         </div>

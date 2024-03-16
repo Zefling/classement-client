@@ -34,12 +34,12 @@
                     <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
                 </div>
                 <div>
-                    {{ 'user.by' | translate : { author: classement.user } }}
+                    {{ 'user.by' | translate: { author: classement.user } }}
                 </div>
             </a>
             <ng-template #noUser>
                 <div>
-                    {{ 'user.by' | translate : { author: ('list.user.anonymous' | translate) } }}
+                    {{ 'user.by' | translate: { author: ('list.user.anonymous' | translate) } }}
                 </div>
             </ng-template>
         </div>
@@ -50,13 +50,13 @@
             <div class="date">
                 {{
                     'generator.ranking.create'
-                        | translate : { DATE: classement.dateCreate | date : ('date.dd/MM/yyyy HH:mm' | translate) }
+                        | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
                 }}
             </div>
             <div class="date" *ngIf="classement.dateChange">
                 {{
                     'generator.ranking.change'
-                        | translate : { DATE: classement.dateChange | date : ('date.dd/MM/yyyy HH:mm' | translate) }
+                        | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
                 }}
             </div>
         </div>
@@ -70,8 +70,8 @@
                     (!apiActive
                         ? 'generator.actions.edit.local.empty'
                         : !logged
-                        ? 'generator.actions.make.my.derivative.empty'
-                        : 'generator.actions.new.derivative.empty'
+                          ? 'generator.actions.make.my.derivative.empty'
+                          : 'generator.actions.new.derivative.empty'
                     ) | translate
                 }}
             </button>
@@ -80,8 +80,8 @@
                     (!apiActive
                         ? 'generator.actions.edit.local'
                         : !logged
-                        ? 'generator.actions.make.my.derivative'
-                        : 'generator.actions.new.derivative'
+                          ? 'generator.actions.make.my.derivative'
+                          : 'generator.actions.new.derivative'
                     ) | translate
                 }}
             </button>
@@ -110,7 +110,7 @@
                 {{ 'navigate.my.derivatives' | translate }}
             </button>
             <div class="note" *ngIf="myClassementCount > 1">
-                {{ 'generator.actions.my.derivative.count' | translate : { count: myClassementCount } }}
+                {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
             </div>
         </div>
     </div>
@@ -176,8 +176,8 @@
                     {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
                 </td>
                 <td class="date">
-                    <span>{{ derivative.dateCreate | date : ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ derivative.dateCreate | date : ('date.HH:mm' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="groups">{{ derivative.totalGroups }}</td>
                 <td class="items">{{ derivative.totalItems }}</td>
@@ -231,8 +231,8 @@
                     {{ item.name || ('list.title.undefined' | translate) }}
                 </td>
                 <td class="date">
-                    <span>{{ item.date | date : ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ item.date | date : ('date.HH:mm' | translate) }}</span>
+                    <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="actions">
                     <button

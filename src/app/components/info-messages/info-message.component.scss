@@ -1,15 +1,15 @@
 :host {
     display: block;
+    position: relative;
+    top: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px var(--info-message-box-shadow-color);
     border: 1px solid var(--info-message-border-color);
     border-right: 0;
+    border-radius: 4px 0 0 4px;
     background: var(--info-message-background);
     padding: 10px;
     min-width: 100px;
-    position: relative;
-    box-sizing: border-box;
-    top: 10px;
-    border-radius: 4px 0 0 4px;
-    box-shadow: 0 0 10px var(--info-message-box-shadow-color);
 
     &.close {
         animation: 0.7s linear both moveTop;
@@ -25,13 +25,13 @@
 }
 
 .progress {
-    height: 5px;
-    background: var(--info-message-progress-background);
     position: absolute;
-    bottom: 0;
     right: 0;
-    width: 100%;
+    bottom: 0;
     animation: var(--info-message-progress-time, 3s) linear slidein;
+    background: var(--info-message-progress-background);
+    width: 100%;
+    height: 5px;
 }
 
 @keyframes slidein {
@@ -46,19 +46,19 @@
 @keyframes moveTop {
     from {
         top: 10px;
-        max-height: var(--current-height);
-        padding: 5px 10px;
         opacity: 1;
+        padding: 5px 10px;
+        max-height: var(--current-height);
     }
     75% {
         top: calc(var(--current-pos) * -1 - 62px);
-        max-height: var(--current-height);
         padding: 5px 10px;
+        max-height: var(--current-height);
     }
     to {
         top: calc(var(--current-pos) * -1 - 62px);
-        max-height: 0;
-        padding: 0 10px;
         opacity: 0;
+        padding: 0 10px;
+        max-height: 0;
     }
 }

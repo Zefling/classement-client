@@ -2,14 +2,15 @@
     --width: var(--over-axis-line-size, 3px);
     --arrow-size: var(--over-axis-arrow-size, 15px);
     --color: var(--over-axis-line-color, var(--axis-line-color));
-    height: 100%;
-    width: 100%;
     display: block;
+    width: 100%;
+    height: 100%;
     overflow: hidden; // fix Firefox
 }
 
 .axis {
     display: grid;
+    position: absolute;
     grid-template:
         ' . . . . . ' calc(4px + var(--width))
         ' . . . . . ' 1fr
@@ -17,26 +18,25 @@
         ' . . . . . ' 1fr
         ' . . . . . ' calc(4px + var(--width)) /
         calc(4px + var(--width)) 1fr var(--width) 1fr calc(4px + var(--width));
-    height: 100%;
     width: 100%;
-    position: absolute;
+    height: 100%;
 
     .axis-v,
     .axis-h {
-        background: var(--color);
-        grid-column: 3/4;
-        grid-row: 2/5;
         position: relative;
+        grid-row: 2/5;
+        grid-column: 3/4;
+        background: var(--color);
 
         &::before,
         &::after {
-            position: absolute;
             display: block;
-            content: ' ';
+            position: absolute;
             border: 0 solid var(--color);
             border-width: var(--width) 0 0 var(--width);
             width: var(--arrow-size);
             height: var(--arrow-size);
+            content: ' ';
         }
 
         &::before {
@@ -46,8 +46,8 @@
         }
 
         &::after {
-            left: calc(var(--arrow-size) / -2);
             bottom: calc(var(--arrow-size) / 7);
+            left: calc(var(--arrow-size) / -2);
             transform: rotate(-135deg);
         }
     }
@@ -64,16 +64,16 @@
 
         &::after {
             top: calc(var(--arrow-size) / -2);
-            left: auto;
             right: calc(var(--arrow-size) / 7);
+            left: auto;
             transform: rotate(135deg);
         }
     }
 }
 
 .names {
-    top: 0;
     display: grid;
+    top: 0;
     grid-template:
         ' tl . . t . tr ' auto
         ' .  . . . . .  ' 1fr
@@ -82,8 +82,8 @@
         ' .  . . . . .  ' 1fr
         ' bl . . b . br ' auto /
         auto 1fr calc(var(--arrow-size) * 2) 0 1fr auto;
-    height: 100%;
     width: 100%;
+    height: 100%;
 
     & > * {
         position: relative;
@@ -118,8 +118,8 @@
     :nth-child(4) {
         grid-area: br;
         & > span {
-            bottom: 2px;
             right: 2px;
+            bottom: 2px;
         }
     }
     :nth-child(5) {

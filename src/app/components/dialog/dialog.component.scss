@@ -1,15 +1,15 @@
 :host {
     display: none;
     position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: 3;
-    background: var(--dialog-backdrop-background);
     top: 0;
     left: 0;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    z-index: 3;
     backdrop-filter: blur(2px);
+    background: var(--dialog-backdrop-background);
+    width: 100%;
+    height: 100%;
 
     @supports not (backdrop-filter: blur(2px)) {
         background: var(--dialog-backdrop-background-no-filter);
@@ -23,27 +23,27 @@
 .content {
     display: flex;
     position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
     background: var(--dialog-background);
-    min-height: 150px;
-    max-height: 90%;
     min-width: min(700px, calc(100% - 20px));
     max-width: calc(100% - 20px);
-    box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
-    box-sizing: border-box;
+    min-height: 150px;
+    max-height: 90%;
 }
 
 .close {
     position: absolute;
     top: -10px;
     right: -10px;
-    padding: 5px;
     z-index: 1;
+    padding: 5px;
 }
 
 .main {
-    width: 100%;
     padding: 0 30px;
     padding: auto;
+    width: 100%;
     overflow: auto;
     overflow: auto;
     scrollbar-gutter: stable;

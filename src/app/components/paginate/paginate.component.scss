@@ -6,16 +6,16 @@
 }
 
 a {
-    min-width: 40px;
-    text-align: center;
-    color: var(--page-item-text-color);
+    cursor: pointer;
     border: 1px solid var(--page-item-border-color);
     border-radius: 5px;
-    cursor: pointer;
+    min-width: 40px;
+    color: var(--page-item-text-color);
+    text-align: center;
 
     &.current {
-        color: var(--page-item-current-test-color);
         background: var(--page-item-current-background);
+        color: var(--page-item-current-test-color);
         font-weight: 700;
     }
 

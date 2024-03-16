@@ -10,27 +10,27 @@
 }
 
 .avatar {
-    grid-area: a;
-    height: 80px;
-    width: 80px;
-    font-size: 56px;
-    text-align: center;
-    border-radius: 50%;
-    background-color: var(--avatar-background);
-    margin: 0 10px;
     display: flex;
+    grid-area: a;
     justify-content: center;
     align-items: center;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-color: var(--avatar-background);
+    width: 80px;
+    height: 80px;
+    font-size: 56px;
+    text-align: center;
 
     span {
-        margin-top: -7px;
         opacity: var(--avatar-icon-opacity);
+        margin-top: -7px;
     }
 
     img {
-        max-height: 80px;
-        max-width: 80px;
         display: block;
         border-radius: 50%;
+        max-width: 80px;
+        max-height: 80px;
     }
 }

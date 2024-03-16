@@ -101,8 +101,8 @@ export class Utils {
         return Utils.containClasses(element, cssClass.trim().split(/\s+/))
             ? element
             : element.parentElement
-            ? Utils.getParentElementByClass(element.parentElement, cssClass)
-            : undefined;
+              ? Utils.getParentElementByClass(element.parentElement, cssClass)
+              : undefined;
     }
 
     static containClasses(element: HTMLElement, cssClasses: string[]): boolean {
@@ -240,17 +240,17 @@ export class Utils {
                           ),
                       ) + 'px'
                     : options.itemWidthAuto
-                    ? Math.min(
-                          options.itemMaxWidth ?? 300,
-                          Math.round(
-                              Math.max(
-                                  ((item.width || 100) / (item.height || 100)) * options.itemHeight -
-                                      (title ? (title.clientHeight || 16) + 2 : 0),
-                                  title?.clientWidth || 0,
-                              ),
-                          ),
-                      ) + 'px'
-                    : '';
+                      ? Math.min(
+                            options.itemMaxWidth ?? 300,
+                            Math.round(
+                                Math.max(
+                                    ((item.width || 100) / (item.height || 100)) * options.itemHeight -
+                                        (title ? (title.clientHeight || 16) + 2 : 0),
+                                    title?.clientWidth || 0,
+                                ),
+                            ),
+                        ) + 'px'
+                      : '';
         }
     }
 

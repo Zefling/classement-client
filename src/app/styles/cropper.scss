@@ -1,15 +1,15 @@
 .drop-image-zone {
+    margin: 0 -40px;
     background: var(--drop-image-zone-background);
     padding: 0.02px 40px;
-    margin: 0 -40px;
 }
 
 .cropper-line {
     display: flex;
     align-items: baseline;
-    max-width: 100%;
-    width: 100%;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
 
     .cropper {
         flex: 2;
@@ -22,8 +22,8 @@
         gap: 5px;
 
         img {
-            border: 1px solid #ccc;
             box-shadow: 0 0 4px #888;
+            border: 1px solid #ccc;
             border-radius: var(--cropper-image-radius);
             max-width: var(--cropper-max-width, 300px);
         }

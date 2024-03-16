@@ -20,7 +20,10 @@ export class ClassementLoginComponent implements OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(@Host() private readonly edit: ClassementEditComponent, private readonly userService: APIUserService) {
+    constructor(
+        @Host() private readonly edit: ClassementEditComponent,
+        private readonly userService: APIUserService,
+    ) {
         this._sub.push(
             this.userService.afterLogin.subscribe(() => {
                 this.dialogLogin.close();

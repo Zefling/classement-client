@@ -1,10 +1,9 @@
 .movie-title {
-    padding: 0;
     margin: 3px;
+    padding: 0;
 }
 
 .imdb {
-    margin-bottom: 30px;
     display: grid;
     grid-template:
         'a b'
@@ -12,6 +11,7 @@
         'd d'
         / 1fr auto;
     gap: 10px;
+    margin-bottom: 30px;
 }
 
 form {
@@ -19,8 +19,8 @@ form {
 }
 
 .logo {
-    width: min(175px, 17vw);
     grid-area: b;
+    width: min(175px, 17vw);
 }
 
 .options {
@@ -38,29 +38,29 @@ form {
 }
 
 .content-box {
-    padding: var(--over-item-padding, 10px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: transform 0.5s;
+    cursor: pointer;
+    box-sizing: content-box;
     margin: var(--over-item-margin, 2px);
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
+    padding: var(--over-item-padding, 10px);
     color: var(--over-item-color, var(--content-box-color));
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: content-box;
-    cursor: pointer;
     font-size: 14px;
-    transition: transform 0.5s;
     text-align: center;
-    opacity: 1;
 
     &:not(.disabled):hover {
         transform: scale(1.2);
     }
 
     &.disabled {
+        transform: scale(0);
         opacity: 0.4;
         cursor: default;
-        transform: scale(0);
     }
 }
 
@@ -68,23 +68,23 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
     max-width: 100%;
+    height: 100%;
     max-height: 100%;
 
     .image {
-        flex: 1 1 100%;
-        min-width: 0;
-        min-height: 0;
         display: flex;
+        flex: 1 1 100%;
         justify-content: center;
         align-items: center;
+        min-width: 0;
+        min-height: 0;
     }
 }
 
 img {
     width: auto;
-    height: auto;
     max-width: 100%;
+    height: auto;
     max-height: 100%;
 }

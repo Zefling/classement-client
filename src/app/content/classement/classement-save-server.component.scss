@@ -2,9 +2,9 @@
 
 :host {
     --cropper-image-radius: 0;
+    display: block;
 
     padding: 0 10px;
-    display: block;
 }
 
 h2 {
@@ -12,8 +12,8 @@ h2 {
 }
 
 p {
-    text-align: center;
     padding: 15px 0;
+    text-align: center;
 }
 
 .info-classement strong {
@@ -23,8 +23,8 @@ p {
 
 .public,
 .save-local {
-    text-align: center;
     margin: 20px 0 0;
+    text-align: center;
 }
 
 .link {
@@ -32,10 +32,10 @@ p {
 
     .validity {
         position: absolute;
-        bottom: 4px;
         right: 6px;
-        font-weight: 900;
+        bottom: 4px;
         color: var(--color-icon-deleted);
+        font-weight: 900;
 
         &.valid {
             color: var(--color-icon-validated);

@@ -8,9 +8,9 @@
     }
 
     .image {
-        max-height: 300px;
         width: 320px;
         min-width: 320px;
+        max-height: 300px;
     }
 
     image-cropper {
@@ -32,16 +32,16 @@
     }
 
     .edit-ratio {
-        max-width: 130px;
         margin: 0;
+        max-width: 130px;
     }
 
     .sub-input {
+        opacity: 0.5;
         margin: 0;
         padding: 0;
         font-size: 80%;
         white-space: nowrap;
-        opacity: 0.5;
     }
 }
 
@@ -57,24 +57,24 @@
 
 :where(.colors, position) {
     display: flex;
+    flex: 1 1 auto;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    flex: 1 1 auto;
 
     :where(label, .new-color) {
-        width: 100%;
         display: flex;
         justify-content: center;
+        width: 100%;
     }
 
     .color {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
         cursor: pointer;
         outline: 1px solid;
+        border-radius: 50%;
         background: var(--color, #fff);
+        width: 30px;
+        height: 30px;
 
         &:hover,
         &:focus {
@@ -89,10 +89,12 @@
         &.transparent {
             background: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%),
                 linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%);
-            background-color: var(--color, #fff);
-            background-position: 0 0, 12.5px 12.5px;
+            background-position:
+                0 0,
+                12.5px 12.5px;
             background-size: 10px 10px;
             background-size: 25px 25px;
+            background-color: var(--color, #fff);
         }
     }
 
@@ -102,9 +104,9 @@
     }
 
     input {
+        border-radius: 0;
         width: 50px;
         height: 30px;
-        border-radius: 0;
     }
 }
 

@@ -8,22 +8,22 @@
     height: var(--height);
 }
 div {
+    position: absolute;
+    transform: rotate(calc(var(--index) * 30deg));
     transform-origin: calc(var(--height) / 2) calc(var(--height) / 2);
     animation: spinner 1.2s linear infinite;
-    transform: rotate(calc(var(--index) * 30deg));
     animation-delay: calc(var(--index) * 0.1s - 1.1s);
-    position: absolute;
 
     &:after {
-        content: ' ';
         display: block;
         position: absolute;
         top: 0;
         left: calc(var(--height) / 2 - var(--width) / 2);
-        width: var(--width);
-        height: calc(var(--height) / 3);
         border-radius: 20%;
         background: var(--loading-color);
+        width: var(--width);
+        height: calc(var(--height) / 3);
+        content: ' ';
     }
 }
 

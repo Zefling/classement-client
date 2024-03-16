@@ -2,9 +2,9 @@
     display: flex;
 
     .input {
-        text-align: center;
-        flex: 0;
         display: flex;
+        flex: 0;
+        text-align: center;
 
         input {
             width: auto;
@@ -14,10 +14,10 @@
     .infos-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        text-align: left;
-        gap: 0 10px;
         flex: 1;
+        gap: 0 10px;
         border: 1px solid var(--input-border-color);
+        text-align: left;
 
         :nth-child(2n-1) {
             font-weight: 700;

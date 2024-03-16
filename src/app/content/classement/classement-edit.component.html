@@ -71,8 +71,8 @@
 
                                 <span
                                     class="color group-options icon-edit-2"
-                                    (click)="updateGroupOption({group, indexGrp, first, last})"
-                                    (keydown.enter)="updateGroupOption({group, indexGrp, first, last})"
+                                    (click)="updateGroupOption({ group, indexGrp, first, last })"
+                                    (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
                                     tabindex="0"
                                 ></span>
                                 <span
@@ -177,8 +177,8 @@
                                 <span
                                     tabindex="0"
                                     class="color group-options icon-edit-2"
-                                    (click)="updateGroupOption({group, indexGrp, first, last})"
-                                    (keydown.enter)="updateGroupOption({group, indexGrp, first, last})"
+                                    (click)="updateGroupOption({ group, indexGrp, first, last })"
+                                    (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
                                 ></span>
                             </div>
                         </td>
@@ -453,8 +453,8 @@
                     </ng-container>
                 </td>
                 <td class="date">
-                    <span>{{ derivative.dateCreate | date : ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ derivative.dateCreate | date : ('date.HH:mm' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
                 </td>
                 <td class="groups">{{ derivative.totalGroups }}</td>
                 <td class="items">{{ derivative.totalItems }}</td>

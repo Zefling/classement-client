@@ -15,7 +15,7 @@ function getResolvedUrl(route: ActivatedRouteSnapshot): string {
 }
 
 @Injectable({ providedIn: 'root' })
-export class APIRequired  {
+export class APIRequired {
     canActivate(
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,

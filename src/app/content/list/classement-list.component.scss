@@ -12,10 +12,10 @@
 
 .list-actions {
     display: flex;
-    flex-wrap: wrap;
     flex: 1 1 auto;
-    align-items: flex-end;
+    flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: flex-end;
     gap: 10px 0;
 }
 
@@ -28,9 +28,9 @@
 }
 
 table {
-    width: 100%;
-    border-spacing: 0;
     position: relative;
+    border-spacing: 0;
+    width: 100%;
 }
 
 .date,
@@ -66,9 +66,9 @@ table {
 }
 
 thead {
-    background: var(--list-header-background);
     position: sticky;
     top: 0;
+    background: var(--list-header-background);
 }
 
 th {
@@ -77,8 +77,8 @@ th {
 
 tbody {
     tr:hover {
-        background: var(--list-line-hover-background);
         cursor: default;
+        background: var(--list-line-hover-background);
     }
 
     .date {
@@ -90,8 +90,8 @@ tbody {
 
     .groups,
     .items {
-        text-align: center;
         padding-right: 10px;
+        text-align: center;
     }
 
     .actions {
@@ -150,8 +150,8 @@ td {
     }
     .category-rwd {
         display: block;
-        font-size: 80%;
         font-weight: 700;
+        font-size: 80%;
     }
     .title a {
         margin: 0px;
