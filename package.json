@@ -1,7 +1,7 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
@@ -31,10 +31,7 @@
     "node": ">= 20.0.0",
     "npm": ">= 10.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
+  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, not IE_Mob 11",
   "dependencies": {
     "@angular/animations": "^17.3.0",
     "@angular/cdk": "^17.3.0",

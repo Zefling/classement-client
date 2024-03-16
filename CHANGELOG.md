@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.1.2 (2024-03-16)
+
+#### Standalone web app
+
+-   Fix calculation of tiles with title
+-   Rewrite colors to use a dynamic light/dark palette
+-   Update to Angular `17.2` and packages
+
 ### 2.1.1 (2024-03-05)
 
 #### Standalone web app
