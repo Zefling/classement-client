@@ -12,15 +12,15 @@
     "navigate": "ナビゲート",
     "admin": "管理",
     "admin.users": "ユーザー",
-    "admin.classements": "ティアリスト",
+    "admin.classements": "ランキング",
     "logout": "ログアウト",
     "information": "情報",
-    "licenses": "Licences",
+    "licenses": "ライセンス",
     "preferences": "環境設定",
     "forgot.password": "パスワードを忘れてしまいました",
     "mode": {
-      "reduce": "Réduire le menu",
-      "expand": "Étendre le menu"
+      "reduce": "メニューを圧縮する",
+      "expand": "メニューを解凍する"
     }
   },
   "date": {
@@ -42,7 +42,7 @@
   },
   "home": {
     "info": "インフォメーション",
-    "intro": "画像またはテキストでティアリストを作成するWebアプリケーションです。",
+    "intro": "画像またはテキストでランキングを作成するWebアプリケーションです。",
     "philosophy": "これは自由でオープンソースのプロジェクトです。フィードバックを提供することでプロジェクトを支援できます。",
     "feedback": "フィードバックをする",
     "source": {
@@ -57,7 +57,7 @@
       "name": "Classement(クラスメント)：",
       "version": "バージョン {{ version }}"
     },
-    "last": "最後のティアリスト"
+    "last": "最後のランキング"
   },
   "preferences": {
     "title": "環境設定",
@@ -86,12 +86,12 @@
       "line.option": {
         "title": "オプション表示モード",
         "auto": "自動: モバイルモードかどうかに応じて",
-        "reduce": "Réduit : réduire au minimum dans l'interface",
+        "reduce": "削減: インターフェース内で最小限に削減します",
         "hidden": "非表示: オプションは表示されず、このモードではグループを編集できません"
       }
     },
     "mode": {
-      "title": "Mode par défaut"
+      "title": "デフォルトモード"
     },
     "theme": {
       "title": "デフォルトのテーマ"
@@ -113,15 +113,15 @@
     },
     "imdb": {
       "key": "IMDB認証キー",
-      "info": "Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :"
+      "info": "このキーには、IMDBのアカウントとAPIアクセス要求が必要です。ここ："
     },
     "mal": {
-      "key": "Clef d'authentification MAL",
-      "info": "Cette clé nécessite un compte chez MAL et une demande d'accès à l'API. Ici :"
+      "key": "MAL認証キー",
+      "info": "このキーには、MALのアカウントとAPIアクセス要求が必要です。ここ："
     }
   },
   "list": {
-    "intro": "インターネットブラウザだけでメモリ内のティアリストのリストです。",
+    "intro": "インターネットブラウザだけでメモリ内のランキングのリストです。",
     "space": "使用スペース：",
     "filter": "フィルター：",
     "title": {
@@ -138,15 +138,15 @@
       "edit": "編集する"
     },
     "mode": {
-      "name": "Mode"
+      "name": "モード"
     },
     "roles": {
       "name": "ロール"
     },
     "count": {
       "group": "グループの数",
-      "item": "Nombre d’éléments",
-      "classements": "ティアリストの数"
+      "item": "アイテムの数",
+      "classements": "ランキングの数"
     },
     "status": {
       "list": "ステータス",
@@ -168,11 +168,11 @@
       "replace": "交換する"
     },
     "no.result": "結果なし。",
-    "create.new": "ティアリストを作成します。",
-    "server.link": "このティアリストは、アカウントのティアリストにリンクされています。\nここをクリックして、アカウントに保存されているバージョンを確認してください。\nID:{{ id }}",
-    "local.link": "Ce classement est lié un brouillons sur ce navigateur.\nCliquez ici pour voir le brouillon sauvegardé sur ce navigateur.\nId : {{ id }}",
+    "create.new": "ランキングを作成します。",
+    "server.link": "このランキングは、アカウントのランキングにリンクされています。\nここをクリックして、アカウントに保存されているバージョンを確認してください。\nID:{{ id }}",
+    "local.link": "このランキングは、このブラウザのランキングの下書きにリンクされています。\nここをクリックして、このブラウザに保存されている下書きを確認してください。\nID:{{ id }}",
     "delete": {
-      "question": "このティアリストを消去してもよろしいですか？",
+      "question": "このランキングを消去してもよろしいですか？",
       "exit.save": "セーブして終了する",
       "exit": "終了する",
       "cancel": "拒否する",
@@ -180,18 +180,18 @@
       "restore": "復元する"
     },
     "show": {
-      "question": "このティアリストを公開してもよろしいですか?",
+      "question": "このランキングを公開してもよろしいですか?",
       "public": "公開する"
     },
     "hide": {
-      "question": "このティアリストを非公開にしてもよろしいですか?",
+      "question": "このランキングを非公開にしてもよろしいですか?",
       "private": "非公開する",
-      "note": "ブラウジングまたは検索で非公開のティアリストを見つけることができません。",
+      "note": "ブラウジングまたは検索で非公開のランキングを見つけることができません。",
       "note2": "ただし、共有リンクを使用して共有できます。"
     },
     "clone": {
       "question": "複製してもよろしいですか？",
-      "new.template": "New model: The new ranking will have no link with the old one, so it will be considered a new model.",
+      "new.template": "新しいテンプレート: 新しいランキングは古いランキングとは関係ありません。それ以外の場合は、デリバティブと見なされます。",
       "title": "タイトルを変更する：",
       "validate": "複製する",
       "edit": "複製して編集する",
@@ -216,7 +216,7 @@
     "figure": "フィギュア",
     "food": "食物",
     "game": "ゲーム",
-    "geography": "Géographie",
+    "geography": "地理",
     "history": "歴史",
     "language": "言語",
     "manga": "漫画",
@@ -239,336 +239,336 @@
   },
   "mode": {
     "name": {
-      "choice": "Choix à la création",
-      "default": "Tierlist",
+      "choice": "作成時の選択",
+      "default": "ティアリスト",
       "teams": "チーム",
-      "iceberg": "Iceberg",
-      "axis": "Axes"
+      "iceberg": "氷山",
+      "axis": "軸"
     }
   },
   "generator": {
     "title": {
-      "new": "Nouveau classement",
-      "edit": "Édition d'un classement"
+      "new": "新しいランキングを編集する",
+      "edit": "ランキングを編集する"
     },
     "choice": {
-      "title": "Choisissez un mode de classement"
+      "title": "ランキング方法を選択してください"
     },
     "options": {
-      "group.title": "Options",
-      "title": "Titre du classement :",
-      "title.color": "Couleur du texte du titre :",
-      "title.opacity": "Opacité du texte du titre :",
-      "group": "Catégorie :",
-      "description": "Description :",
-      "mode": "Mode :",
-      "tags": "Clefs :",
-      "sizes": "Dimensions d'une tuile :",
-      "margin": "Marge",
-      "padding": "Rembourrage",
-      "border": "Bordure",
-      "image": "Image",
-      "clear": "Effacer",
-      "simple": "Options simplifiées",
-      "advance": "Options avancées",
-      "stream.mode": "Mode streamer",
-      "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
+      "group.title": "オプション",
+      "title": "ランキングのタイトル：",
+      "title.color": "タイトルのテキストの色：",
+      "title.opacity": "タイトルのテキストの不透明度：",
+      "group": "カテゴリー：",
+      "description": "説明:",
+      "mode": "モード:",
+      "tags": "タグ:",
+      "sizes": "タイルサイズ：",
+      "margin": "マージン",
+      "padding": "パディング",
+      "border": "ボーダー",
+      "image": "画像",
+      "clear": "クリア",
+      "simple": "簡易なオプション",
+      "advance": "高度なオプション",
+      "stream.mode": "ストリームモード",
+      "stream.mode.info": "このモードでは、タイルの追加 (コピペまたはドラッグ・アンド・ドロップを除く)、編集、削除、および注釈付けが非表示になります。",
       "item": {
-        "title": "Options des tuiles",
-        "width": "Largeur d'une tuile",
-        "max.width": "Largeur max d'une tuile",
-        "width.auto": "Largeur automatique des tuiles",
-        "height": "Hauteur d'une tuile",
-        "max.height": "Hauteur max d'une tuile",
-        "height.auto": "Hauteur automatique des tuiles",
-        "padding": "Rembourrage d'une tuile",
-        "border": "Bordure d'une tuile",
-        "margin": "Marge d'une tuile",
-        "background.color": "Couleur du fond d'une tuile :",
-        "background.opacity": "Opacité du fond d'une tuile :",
-        "border.color": "Couleur de bordure d'une tuile :",
-        "border.opacity": "Opacité de bordure d'une tuile :",
+        "title": "タイルのオプション",
+        "width": "タイル幅",
+        "max.width": "タイルの最大幅",
+        "width.auto": "自動タイル幅",
+        "height": "タイルの高さ",
+        "max.height": "タイルの最大高さ",
+        "height.auto": "自動タイル高さ",
+        "padding": "タイルパディング",
+        "border": "タイルボーダー",
+        "margin": "タイルマージン",
+        "background.color": "タイルの背景の色：",
+        "background.opacity": "タイルの背景の不透明度：",
+        "border.color": "タイルのボーダーの色：",
+        "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
-          "color": "Couleur du texte d'une tuile :",
-          "opacity": "Opacité du texte d'une tuile :",
-          "background.color": "Couleur de fond du texte :",
-          "background.opacity": "Opacité de fond du texte :",
-          "position": "Position texte dans la tuile :",
-          "position.bottom": "En dessous",
-          "position.bottom.over": "En dessous et par dessus",
-          "position.bottom.over.hover": "En dessous et par dessus au survol",
-          "position.top": "Au dessus",
-          "position.top.over": "Au dessus et par dessus",
-          "position.top.over.hover": "En dessous et par dessus au survol",
-          "position.hidden": "Caché"
+          "color": "タイルのテキストの色：",
+          "opacity": "タイルのテキストの不透明度：",
+          "background.color": "テキストの背景の色：",
+          "background.opacity": "テキストの背景の不透明度：",
+          "position": "タイル内のテキストの位置：",
+          "position.bottom": "下部に",
+          "position.bottom.over": "下部にその上",
+          "position.bottom.over.hover": "オーバーで下部にその上",
+          "position.top": "上部に",
+          "position.top.over": "上部にその上",
+          "position.top.over.hover": "オーバーで上部にその上",
+          "position.hidden": "非表示"
         }
       },
       "line": {
-        "title": "Options des lignes",
-        "background.color": "Couleur du fond d'une ligne :",
-        "background.opacity": "Opacité du fond d'une ligne :",
-        "border.color": "Couleur de bordure d'une ligne :",
-        "border.opacity": "Opacité de bordure d'une ligne :"
+        "title": "ラインのオプション",
+        "background.color": "ラインの背景の色：",
+        "background.opacity": "ラインの背景の不透明度：",
+        "border.color": "ラインボーダーの色：",
+        "border.opacity": "ラインボーダーの不透明度："
       },
       "global": {
-        "title": "Autres options",
-        "background": "Couleur du fond :",
-        "width": "Largeur de l'image rendue :",
-        "height": "Hauteur de l'image rendue :",
-        "image": "Image de fond :",
+        "title": "別のオプション",
+        "background": "背景の色：",
+        "width": "レンダリング画像の幅：",
+        "height": "レンダリング画像の高さ:",
+        "image": "背景画像：",
         "name.image": {
-          "none": "Défaut",
-          "sakura": "Sakura",
-          "etoile": "Étoile",
-          "ciel": "Ciel",
-          "iceberg": "Iceberg",
-          "custom": "Personnalisé"
+          "none": "デフォルト",
+          "sakura": "桜",
+          "etoile": "エトワール",
+          "ciel": "空",
+          "iceberg": "氷山",
+          "custom": "カスタム"
         }
       },
       "name": {
-        "width": "Largeur des noms de groupe :",
-        "font-size": "Taille du texte des noms de groupe :",
-        "opacity": "Opacité du fond des noms de groupe :"
+        "width": "グループ名の幅：",
+        "font-size": "グループ名のテキストサイズ：",
+        "opacity": "グループ名の背景の不透明度："
       },
       "group.direction": {
-        "label": "Direction :",
-        "rtl": "Droite à gauche",
-        "ltr": "Gauche à droite"
+        "label": "方向：",
+        "rtl": "右から左へ",
+        "ltr": "左から右へ"
       },
-      "group.markdown": "Markdown dans les noms de groupe",
+      "group.markdown": "グループ名のマークダウン",
       "background": {
-        "custom": "Sélectionner une image fond personnalisée",
-        "custom.api": "Sélectionner une image fond personnalisée (max 1000×1000)"
+        "custom": "カスタム背景画像を選択",
+        "custom.api": "カスタム背景画像を選択 (最大 1000×1000)"
       },
       "zone.title": {
-        "number": "Nombre de groupes avec titre :",
-        "name": "Nom du groupe :",
+        "number": "タイトルを持つグループの数：",
+        "name": "グループ名：",
         "align": {
           "vertical": {
-            "label": "Alignement vertical :",
-            "start": "Haut",
-            "center": "Milieu",
-            "end": "Bas"
+            "label": "垂直方向の配置：",
+            "start": "上",
+            "center": "中央",
+            "end": "下"
           },
           "horizontal": {
-            "label": "Alignement horizontal :",
-            "start": "Debut",
-            "center": "Centrer",
-            "end": "Fin"
+            "label": "水平方向の配置：",
+            "start": "開始",
+            "center": "中心",
+            "end": "終了"
           }
         }
       },
       "separator": {
-        "line.width": "Largeur de la ligne de séparation :",
-        "line.color": "Couleur de la ligne de séparation :",
-        "line.opacity": "Opacité de la ligne de séparation :"
+        "line.width": "区切り文字の幅:",
+        "line.color": "区切り文字線の色:",
+        "line.opacity": "区切り文字線の不透明度:"
       },
-      "zone.axis.name": "Nom de l'axe :",
-      "zone.area.name": "Nom de l'aire :",
+      "zone.axis.name": "軸名：",
+      "zone.area.name": "エリア名：",
       "axis": {
-        "line.width": "Largeur des axes :",
-        "line.color": "Couleur des axes :",
-        "arrow.size": "Taille des flèches :"
+        "line.width": "軸の幅：",
+        "line.color": "軸の色：",
+        "arrow.size": "矢印のサイズ："
       }
     },
     "screen": {
-      "default": "Affiche par défaut",
-      "window": "Agrandir à la fenêtre",
-      "fullscreen": "Plein écran"
+      "default": "デフォルト表示",
+      "window": "ウィンドウに最大化",
+      "fullscreen": "フルスクリーン"
     },
     "theme": {
-      "link": "Choisir un thème",
-      "info": "Selection de thème prédéfini :",
-      "cancel": "Annuler",
-      "validate": "Valider",
+      "link": "テーマを選ぶ",
+      "info": "定義済みのテーマの選択：",
+      "cancel": "拒否する",
+      "validate": "複製する",
       "name": {
-        "default": "Défaut",
-        "compact": "Défaut compact",
-        "sakura": "Sakura",
-        "night": "Nuit",
-        "ciel": "Ciel",
-        "iceberg": "Iceberg",
-        "axis": "Axes"
+        "default": "デフォルト",
+        "compact": "デフォルトのコンパクト",
+        "sakura": "桜",
+        "night": "エトワール",
+        "ciel": "空",
+        "iceberg": "氷山",
+        "axis": "軸"
       }
     },
     "ranking": {
-      "group.title": "Classement",
-      "name": "Nom",
-      "list": "Liste",
-      "drop.image": "Copiez-collez ou déposez ici ↓ une image, un groupe d'images (JPG, PNG, GIF, WebP) ou du texte",
-      "add.image": "Cliquez ici pour ajouter une image ou un groupe d'images",
-      "add.text": "Cliquez ici pour ajouter un texte ou un groupe de textes",
-      "share.link": "Partagez ce classement à vos amis",
-      "see": "Voir votre classement",
-      "copy.link.success": "Le lien a été copié dans le presse-papiers avec succès",
-      "copy.link.error": "Impossible de copier le lien dans le presse-papiers",
-      "diff": "Tuiles d'autres classements liées",
-      "add.tile": "Cliquez sur les tuiles que vous voulez ajouter à votre liste.",
-      "no.tile": "Il n'y a aucune tuile.",
-      "delete.tile": "Supprimer la tuile",
-      "tile.color": "Couleur du fond de la tuile",
-      "tile.color.remove": "Supprimer la couleur.",
-      "tile.color.transparent": "Fond transparent.",
-      "tile.color.new": "Ajouter une couleur.",
-      "tile.color.previous": "Une couleur déjà utilisée.",
-      "text.color": "Couleur du texte de la tuile",
-      "text.color.remove": "Supprimer la couleur.",
-      "text.color.new": "Ajouter une couleur.",
-      "text.color.previous": "Une couleur déjà utilisée.",
-      "tile.position": "Position de la tuile",
-      "tile.position.top": "Dessus",
-      "tile.position.up": "Monter",
-      "tile.position.down": "Descendre",
-      "tile.position.bottom": "Dessous",
-      "close": "Fermer",
-      "title": "Titre",
-      "annotation": "Annotation",
-      "create": "Créé le {{ DATE }}",
-      "change": "Modifié le {{ DATE }}",
-      "image": "Image",
-      "image.drop": "Copiez-collez ou déposez ici une image (JPG, PNG, GIF, WebP)",
-      "image.ratio": "Proportion",
-      "image.ratio.help": "(4:3, 4/3 ou 1.33)",
-      "image.empty": "Pas d'image",
-      "image.remove": "Supprimer l'image",
-      "image.edit": "Éditer l'image",
-      "image.edit.cancel": "Annuler",
-      "image.edit.ok": "Valider"
+      "group.title": "ランキング",
+      "name": "名前",
+      "list": "リスト",
+      "drop.image": "ここに画像（JPG、PNG、GIF、WEBP）またはテキストの1つまたはグループをコピペするか、ドロップします",
+      "add.image": "画像の1つまたはグループを追加するには、ここをクリックしてください",
+      "add.text": "テキストの1つまたはグループを追加するには、ここをクリックしてください",
+      "share.link": "このランキングを友達と共有します",
+      "see": "自分のランキングを見る",
+      "copy.link.success": "リンクは正常にクリップボードにコピーされました",
+      "copy.link.error": "リンクをクリップボードにコピーできませんでした",
+      "diff": "他の関連ランキングのタイル",
+      "add.tile": "リストに追加したいタイルをクリックします。",
+      "no.tile": "タイルがありません。",
+      "delete.tile": "タイルを削除します",
+      "tile.color": "タイルの背景色",
+      "tile.color.remove": "色を削除します。",
+      "tile.color.transparent": "透明な背景。",
+      "tile.color.new": "色を追加します。",
+      "tile.color.previous": "すでに使用されている色です。",
+      "text.color": "タイルのテキストの色",
+      "text.color.remove": "色を削除します。",
+      "text.color.new": "色を追加します。",
+      "text.color.previous": "すでに使用されている色です。",
+      "tile.position": "タイルの位置",
+      "tile.position.top": "一番上",
+      "tile.position.up": "上に移動",
+      "tile.position.down": "下に移動",
+      "tile.position.bottom": "一番下",
+      "close": "閉じる",
+      "title": "タイトル",
+      "annotation": "注釈",
+      "create": "{{ DATE }}に作成",
+      "change": "{{ DATE }}に変更",
+      "image": "画像",
+      "image.drop": "ここに画像（JPG、PNG、GIF、WebP）をコピペして貼り付けるか、ドロップします",
+      "image.ratio": "比",
+      "image.ratio.help": "(4:3、4/3、1.33)",
+      "image.empty": "画像なし",
+      "image.remove": "画像を削除する",
+      "image.edit": "画像を編集する",
+      "image.edit.cancel": "キャンセル",
+      "image.edit.ok": "OK"
     },
     "line": {
-      "add": "Ajout",
-      "delete": "Suppr."
+      "add": "追加",
+      "delete": "削除"
     },
     "actions": {
-      "export.image": "Export en image",
-      "save.local": "Sauvegarde comme brouillon",
-      "save.local.info": "La sauvegarde est fait dans la mémoire de votre navigateur uniquement. Vous pourrez la retrouver uniquement sur celui-ci tant que les données sont persistées. Pour une sauvegarde plus pérenne : export vos données ou sauvegardez sur votre compte.",
-      "save.local.auto": "Sauvegarde comme brouillon automatique à chaque changement.",
-      "save.server": "Sauvegarde sur votre compte",
-      "export.json": "Exporter",
-      "export.all.json": "Tout exporter",
-      "import.json": "Importer",
-      "save.image": "Sauvegarder au format :",
-      "edit.local": "Éditer la version locale",
-      "edit.local.empty": "Éditer la version locale vidé",
-      "see.my.derivative": "Voir mon classement",
-      "see.my.last.derivative": "Voir mon dernier classement",
-      "see.this.derivative": "Voir ce classement",
-      "make.my.derivative": "Faire mon classement sans modification",
-      "make.my.derivative.empty": "Faire mon classement réinitialisé",
-      "edit.my.derivative": "Éditer mon classement",
-      "edit.my.last.derivative": "Éditer mon dernier classement",
-      "new.derivative": "Nouveau classement à partir celui-ci en l'état",
-      "new.derivative.empty": "Nouveau classement réinitialisé",
-      "my.derivative.count": "Note : vous avez actuellement {{ count }} variantes de ce classement.",
+      "export.image": "画像のエクスポート",
+      "save.local": "下書きとして保存",
+      "save.local.info": "バックアップはブラウザのメモリ内だけに作成されます。データが保存されている限り、このブラウザだけで見つけることができます。より永続的なバックアップの場合: データをエクスポートするか、アカウントに保存します。",
+      "save.local.auto": "変更を加えるたびに、自動的に下書きとして保存されます。。",
+      "save.server": "アカウントにセーブする",
+      "export.json": "エクスポート",
+      "export.all.json": "すべてエクスポート",
+      "import.json": "インポート",
+      "save.image": "新規保管：",
+      "edit.local": "ローカル版を編集する",
+      "edit.local.empty": "空のローカル版を編集する",
+      "see.my.derivative": "私のランキングを見る",
+      "see.my.last.derivative": "私の最新のランキングを見る",
+      "see.this.derivative": "このランキングを見る",
+      "make.my.derivative": "ランキングを変更せずに作成する",
+      "make.my.derivative.empty": "ランキングのリセットを作成する",
+      "edit.my.derivative": "私のランキングを編集する",
+      "edit.my.last.derivative": "私の最新のランキングを編集する",
+      "new.derivative": "このままの新しいランキング",
+      "new.derivative.empty": "空のグループを含むこの照合順序からの新しいランキング",
+      "my.derivative.count": "注: 現在、このランキングからバリアントをした{{ count }}つを持っています。",
       "change.mode": {
-        "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
-        "default": "Déplacer librement les tuiles dans chaque groupes.",
-        "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
-        "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
-        "axis": "Déplacer librement dans l'espace défini suivant des axes."
+        "question": "モードを変更するには、グループを空にリセットする必要があります。\n続行してもよろしいですか？",
+        "default": "各グループ内のタイルを自由に移動します。",
+        "teams": "各グループのタイルをコピーします。\nグループを形成するには、各タイルの 1 つのバージョンのみを含めることができます。",
+        "iceberg": "氷山 (または別の画像) のモデルで定義された空間内を自由に移動します。",
+        "axis": "軸に沿って定義された空間内を自由に移動します。"
       },
       "reset.groups": {
-        "button": "Vider les groupes",
-        "question": "Êtes-vous sûr de vouloir vider les groupes ?",
-        "ok": "Ok",
-        "cancel": "Annuler"
+        "button": "クリアグループ",
+        "question": "グループをクリアしてもよろしいですか？",
+        "ok": "OK",
+        "cancel": "キャンセル"
       },
       "history": {
-        "warning": "Ancienne version",
-        "show": "Voir les anciennes versions"
+        "warning": "古いバージョン",
+        "show": "古いバージョンを見る"
       },
       "texts": {
-        "info": "Ajouter des tuiles de textes : une ligne par tuile, les ligne vides sont ignorées.",
-        "ok": "Ok",
-        "cancel": "Annuler"
+        "info": "テキスト タイルを追加します。タイルごとに 1 行、空の行は無視されます。",
+        "ok": "OK",
+        "cancel": "キャンセル"
       }
     },
     "change": {
-      "warning": "Vous avez effectué des changements !",
-      "question": "Êtes-vous sûr de vouloir quitter cette page ?"
+      "warning": "変更を加えました！",
+      "question": "このページを離れてもよろしいですか？"
     },
     "json": {
-      "title": "Titre :",
-      "category": "Catégorie :",
-      "count.group": "Nombre de groupes :",
-      "count.item": "Nombre d’éléments :",
-      "cancel": "Annuler",
+      "title": "タイトル：",
+      "category": "カテゴリー：",
+      "count.group": "グループ数：",
+      "count.item": "アイテム数：",
+      "cancel": "キャンセル",
       "import": {
-        "list": "Importer un classement :",
-        "list.multi": "Importer un ou des classements :",
-        "replace": "Importer et remplacer",
-        "new": "Importer dans un nouveau classement",
-        "add": "Importer ce classement",
-        "multi.replace": "Importer et remplacer si existe",
-        "multi.add": "Ajouter"
+        "list": "ランキングをインポートします：",
+        "list.multi": "1 つまたは複数のランキングをインポートします：",
+        "replace": "インポートして置換",
+        "new": "新しいランキングにインポートする",
+        "add": "このランキングをインポートする",
+        "multi.replace": "存在する場合はインポートして置き換える",
+        "multi.add": "インポートを追加する"
       },
-      "select.all": "Tout sélectionner",
-      "unselect.all": "Tout désélectionner"
+      "select.all": "すべて選択",
+      "unselect.all": "すべて選択解除"
     },
     "optimise": {
-      "info": "Convertir l'image en WebP 300×300.",
-      "button.optimise": "Optimiser",
-      "current": "Taille actuelle : {{ totalSize }} octets pour {{ totalImage }} images.",
-      "show.detail": "Afficher les détails",
-      "hide.detail": "Cacher les détails",
-      "reduce.files": "Nombre de fichiers réduits : {{ countResize }}",
-      "reduce.size": "Taille totale réduite : {{ reduceSize }} octets",
-      "final.size": "Taille finale : {{ finalSize }} octets ({{percent}})",
-      "size": "{{ size }} octets",
-      "validate": "Valider"
+      "info": "WebP 300×300に画像を変換します。",
+      "button.optimise": "最適化",
+      "current": "今のサイズ：{{ totalImage }}枚の画像に対して{{ totalSize }}バイト。",
+      "show.detail": "詳細を表示",
+      "hide.detail": "詳細を非表示",
+      "reduce.files": "ファイル数の縮小：{{ countResize }}",
+      "reduce.size": "合計サイズを縮小：{{ reduceSize }}バイト",
+      "final.size": "ファイルサイズ：{{ finalSize }}バイト({{percent}})",
+      "size": "{{ size }}バイト",
+      "validate": "検証"
     },
-    "loading": "Chargement en cours…",
+    "loading": "ロード中…",
     "server": {
-      "update": "Mettre à jour votre classement",
-      "new": "Sauvegarder un nouveau classement",
-      "from": "Classement d'origine",
-      "username": "Nom d'utilisateur :",
-      "edit": "Éditer",
+      "update": "ランキングを更新する",
+      "new": "新しいランキングをセーブする",
+      "from": "元のランキング",
+      "username": "ユーザー名：",
+      "edit": "編集する",
       "banner": {
-        "select": "Sélectionner une images de bannière",
-        "crop": "Recadrer",
-        "image": "Image de la bannière",
-        "reset": "Réinitialiser"
+        "select": "バナー画像を選択する",
+        "crop": "切り抜く",
+        "image": "バナー画像",
+        "reset": "リセット"
       },
-      "not.public": "Ne pas rendre public.",
-      "not.remove.local": "Garder localement.",
-      "not.remove.local.info": "Si non coché, la version sauvegardée dans le navigateur sera supprimée.",
-      "cancel": "Annuler",
-      "save": "Sauvegarder",
-      "password": "Définir un mot de passe (facultatif)",
+      "not.public": "公開しないでください。",
+      "not.remove.local": "ローカルに保持します。",
+      "not.remove.local.info": "チェックを入れないと、ブラウザに保存されているバージョンが削除されます。",
+      "cancel": "キャンセルする",
+      "save": "セーブする",
+      "password": "パスワードを設定します (任意)",
       "history": {
-        "label": "Historiser l'ancienne version",
-        "info": "Cela permet de garder une trace avant modification du classement."
+        "label": "古いバージョンを歴史化する",
+        "info": "これにより、ランキングを変更する前に追跡できます。"
       },
-      "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif) :"
+      "link": "デフォルトのIDを読みやすい名前に置き換えます(オプション)："
     },
     "external": {
       "imbd": {
-        "title": "Rechercher un film sur IMDB",
-        "name": "Nom d'un film :",
-        "adult.content": "Inclure le contenu adulte",
-        "language": "Langue :",
-        "search": "Rechercher",
-        "with.title": "avec le titre",
-        "with.year": "avec l'année"
+        "title": "IMDBで映画を検索します",
+        "name": "映画の名前：",
+        "adult.content": "アダルトコンテンツを追加する",
+        "language": "言語：",
+        "search": "検索",
+        "with.title": "タイトル付きで",
+        "with.year": "年付きで"
       },
       "mal": {
-        "title": "Rechercher un film sur MAL",
-        "name": "Nom d'un anime :",
-        "search": "Rechercher"
+        "title": "MAL で映画を検索します",
+        "name": "アニメの名前:",
+        "search": "検索"
       }
     },
     "help": {
-      "title": "Aide :",
+      "title": "ヘルプ:",
       "zone": {
-        "central.click": "Clic central sur une tuile : remettre dans la liste.",
-        "double.click": "Double clic dans une zone vide : création d'une tuile à l'endroit visé."
+        "central.click": "タイルを中央クリック: リストに戻ります。",
+        "double.click": "空の領域をダブルクリックすると、ターゲットの位置にタイルが作成されます。"
       }
     }
   },
   "user": {
-    "by": "Par {{ author }}",
+    "by": "{{ author }}による",
     "login": {
       "title": "ログインする",
       "username": "ユーザー名",
@@ -590,8 +590,8 @@
       "generator": {
         "info": "インフォメーション",
         "text1": "アカウントを作成したり、DISCORDまたはFACEBOOKにログインするには、ページをリロードする必要があります。",
-        "text2": "ティアリストを失わないようにするには、このダイアログを閉じて、ブラウザセーブを保存して、アカウントを作成するかログインしてください。",
-        "text3": "Vous pourrez ensuite recharger votre classement depuis « Mes Liste » avec l'onglet « Brouillons »."
+        "text2": "ランキングを失わないようにするには、このダイアログを閉じて、ブラウザセーブを保存して、アカウントを作成するかログインしてください。",
+        "text3": "その後、「ブラウザリスト」タブの「自分のリスト」からランキングを再読み込みすることができます。"
       }
     },
     "profile": {
@@ -618,7 +618,7 @@
       "avatar": {
         "title": "アバターを変更する",
         "select": "アバターの画像を選択してください",
-        "crop": "Recadrer l'image sélectionnée",
+        "crop": "選択した画像を切り抜く",
         "image": "自分のアバターの画像",
         "delete": "削除",
         "cancel": "キャンセル",
@@ -627,12 +627,12 @@
       },
       "view": {
         "title": "プロフィール：",
-        "rankings": "ティアリスト",
-        "empty": "このユーザーにはまだティアリストがありません。"
+        "rankings": "ランキング",
+        "empty": "このユーザーにはまだランキングがありません。"
       },
-      "list.browser.tab": "Brouillons",
-      "list.server.tab": "Sur mon compte",
-      "list.server.intro": "Liste des classements sauvegardés sur votre compte."
+      "list.browser.tab": "ドラフト",
+      "list.server.tab": "自分のアカウントで",
+      "list.server.intro": "アカウントに保存されているランキングのリストです。"
     },
     "signup": {
       "title": "アカウントを作成する",
@@ -682,11 +682,11 @@
       "title": "情報",
       "data.privacy": {
         "title": "データプライバシー",
-        "text": "Les données demandées lors de la connexion via un service tiers se limitent au minimum pour la création de compte : courriel et pseudonyme ou prénom."
+        "text": "サードパーティ・サービスを介して接続する際に要求されるデータは、アカウントの作成に必要な最小限のデータ (電子メールアドレスと仮名または名) に限定されます。"
       },
       "data.deletion": {
         "title": "データ削除",
-        "text": "アカウントを削除しても、自分のティアリストは匿名になります。 それらを完全に破棄したい場合は、管理者に連絡してください。"
+        "text": "アカウントを削除しても、自分のランキングは匿名になります。 それらを完全に破棄したい場合は、管理者に連絡してください。"
       },
       "contact.admin": {
         "title": "管理者に連絡",
@@ -702,18 +702,18 @@
   "navigate": {
     "search": "検索",
     "search.nothing": "何も見つかりませんでした。",
-    "template": "Recherche par modèle",
+    "template": "バージョンを参照",
     "back.category": "カテゴリのリストに戻る",
     "back.search": "検索に戻る",
     "title": "タイトル",
-    "category": "Catégorie",
-    "categories": "Catégories",
-    "classements": "ティアリスト",
-    "see.derivatives": "Voir les versions",
-    "my.derivatives": "Mes versions",
+    "category": "カテゴリー",
+    "categories": "カテゴリー",
+    "classements": "ランキング",
+    "see.derivatives": "バージョンを見る",
+    "my.derivatives": "私のバージョン",
     "visualization": "視覚化",
     "password": {
-      "required": "このティアリストを表示するにはパスワードが必要です",
+      "required": "このランキングを表示するにはパスワードが必要です",
       "cancel": "キャンセル",
       "ok": "OK"
     }
@@ -740,24 +740,24 @@
       "3003": "このアクションのユーザー情報が見つかりません。",
       "3010": "あなたのアカウントは禁止されています.詳細については管理者にお問い合わせください.",
       "3020": "あなたのアカウントは検証されていません。検証トークンの有効期限が切れている場合は、パスワードの変更をリクエストしてください。",
-      "3101": "ティアリストが見つかりません。",
-      "3102": "ティアリストが見つかりません。",
-      "3103": "アーカイブされたティアリストが見つかりません。",
+      "3101": "ランキングが見つかりません。",
+      "3102": "ランキングが見つかりません。",
+      "3103": "アーカイブされたランキングが見つかりません。",
       "3110": "無効なパスワードです。",
-      "3201": "元ティアリストが見つかりません。",
+      "3201": "元ランキングが見つかりません。",
       "3202": "この ID の評価は見つかりませんでした。",
       "3301": "ステータス エラーです。",
       "3400": "セーブに失敗しました。これが続く場合は、管理者に連絡してください。",
       "4001": "このユーザー名は既に存在します。",
       "4002": "この電子メールアドレスは既に存在します。",
       "4100": "メールを送信できません。",
-      "5000": "Erreur de catégorie.",
+      "5000": "カテゴリエラーです。",
       "9999": "無効なリクエスト",
       "undefined": "⚠️ サーバーエラーが発生しました。"
     },
     "classement": {
       "name.empty": "タイトルを空にすることはできません。",
-      "category.empty": "La catégorie ne peut pas être vide.",
+      "category.empty": "カテゴリを空にすることはできません。",
       "banner.empty": "バナーを空にすることはできません。"
     },
     "username.exist": "このユーザー名は既に存在します。",
@@ -767,7 +767,7 @@
       "invalid": "電子メールアドレスは無効です。",
       "old.invalid": "現在の電子メールアドレスは無効です。",
       "new.invalid": "新しい電子メールアドレスは無効です。",
-      "already.used": "Ce courriel déjà utilisé par un autre utilisateur."
+      "already.used": "この電子メールアドレスはすでに別のユーザーが使用しています。"
     },
     "pw.duplicate": "パスワードは同一ではありません。",
     "owasp": {
@@ -787,23 +787,23 @@
     },
     "json.read": {
       "failed": "⚠️ ファイルの読み取りに失敗しました。 フォーマットが認識されません。",
-      "replace": "😊 Chargement du fichier réussi. Remplacement réussi.",
-      "new": "😊 Chargement du fichier réussi dans un nouveau classement."
+      "replace": "😊 アップロードされたファイルは成功しました。 正常に置き換えられました。",
+      "new": "😊 ファイルを新しいランキングに正常にアップロードしました。"
     },
     "remove": {
-      "success": "🗑 「%title%」のティアリストから削除されました。"
+      "success": "🗑 「%title%」のランキングから削除されました。"
     },
     "clone": {
-      "success": "😊 「%title%」のティアリストをして正常に作成しました。"
+      "success": "😊 「%title%」のランキングをして正常に作成しました。"
     },
     "reset": {
       "groups": "😊 グループをリセットします。"
     },
     "add": {
-      "success": "😊 「％title％」のティアリストを追加しました。"
+      "success": "😊 「％title％」のランキングを追加しました。"
     },
     "user": {
-      "sign.up.success": "😊 Utilisateur créé.",
+      "sign.up.success": "😊 ユーザーが作成しました。",
       "validate.success": "😊 ユーザーの検証に成功しました。ログインできるようになりました。",
       "update.success": "😊 ユーザーが正常に更新されました。",
       "remove.success": "😲 ユーザーの匿名化に成功しました。",
@@ -812,11 +812,11 @@
     },
     "server": {
       "save.success": "😊 セーブは成功しました。",
-      "deleted.success": "🗑 ティアリストは正常に消去されました。",
-      "restored.success": "😊 ティアリストは正常に復元されました。",
-      "hidden.success": "🫣 ティアリストは非公開に成功しました。",
-      "showed.success": "😊 ティアリストは公開に成功しました。",
-      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
+      "deleted.success": "🗑 ランキングは正常に消去されました。",
+      "restored.success": "😊 ランキングは正常に復元されました。",
+      "hidden.success": "🫣 ランキングは非公開に成功しました。",
+      "showed.success": "😊 ランキングは公開に成功しました。",
+      "update.password.success": "😊 パスワードは正常に更新されました。"
     },
     "contact": {
       "sent.success": "😊 メッセージは管理者に正常に送信されました。"
