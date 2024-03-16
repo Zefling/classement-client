@@ -6,7 +6,7 @@
 
 -   Fix calculation of tiles with title
 -   Rewrite colors to use a dynamic light/dark palette
--   Update to Angular `17.2` and packages
+-   Update to Angular `17.3`
 
 ### 2.1.1 (2024-03-05)
 
