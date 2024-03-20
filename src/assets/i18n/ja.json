@@ -9,7 +9,7 @@
     "login": "ログイン",
     "profile": "プロフィール",
     "sign-up": "登録する",
-    "navigate": "ナビゲート",
+    "navigate": "ブラウズ",
     "admin": "管理",
     "admin.users": "ユーザー",
     "admin.classements": "ランキング",
@@ -97,8 +97,8 @@
       "title": "デフォルトのテーマ"
     },
     "navigation": {
-      "title": "ナビゲート",
-      "page.size": "ナビゲーション内のページごとのタイルの数",
+      "title": "ブラウズ",
+      "page.size": "「ブラウズ」のページごとのタイル数",
       "page.size.pre": "1ページあたり",
       "page.size.per": "タイル"
     },
@@ -173,7 +173,7 @@
     "local.link": "このランキングは、このブラウザのランキングの下書きにリンクされています。\nここをクリックして、このブラウザに保存されている下書きを確認してください。\nID:{{ id }}",
     "delete": {
       "question": "このランキングを消去してもよろしいですか？",
-      "exit.save": "セーブして終了する",
+      "exit.save": "下書きをセーブして終了する",
       "exit": "終了する",
       "cancel": "拒否する",
       "delete": "削除する",

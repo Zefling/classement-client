@@ -11,7 +11,7 @@
 label {
     display: block;
     margin: auto;
-    width: 80%;
+    width: 90%;
     text-align: left;
 }
 
@@ -23,7 +23,11 @@ label {
 
 .user {
     display: grid;
-    grid-template: 'a b' 'a c' 'a d' / auto 1fr;
+    grid-template:
+        'a b'
+        'a c'
+        'a d'
+        / auto 1fr;
     gap: 0 20px;
 }
 
