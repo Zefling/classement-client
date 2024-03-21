@@ -9,7 +9,7 @@
     "login": "ログイン",
     "profile": "プロフィール",
     "sign-up": "登録する",
-    "navigate": "ナビゲート",
+    "navigate": "Parcourir",
     "admin": "管理",
     "admin.users": "ユーザー",
     "admin.classements": "ランキング",
@@ -97,8 +97,8 @@
       "title": "デフォルトのテーマ"
     },
     "navigation": {
-      "title": "ナビゲート",
-      "page.size": "ナビゲーション内のページごとのタイルの数",
+      "title": "Parcourir",
+      "page.size": "Nombre de tuiles par page dans « Parcourir »",
       "page.size.pre": "1ページあたり",
       "page.size.per": "タイル"
     },
@@ -173,7 +173,7 @@
     "local.link": "このランキングは、このブラウザのランキングの下書きにリンクされています。\nここをクリックして、このブラウザに保存されている下書きを確認してください。\nID:{{ id }}",
     "delete": {
       "question": "このランキングを消去してもよろしいですか？",
-      "exit.save": "セーブして終了する",
+      "exit.save": "Sauvegarder un bouillon et quitter",
       "exit": "終了する",
       "cancel": "拒否する",
       "delete": "削除する",
@@ -454,12 +454,12 @@
       "see.my.derivative": "私のランキングを見る",
       "see.my.last.derivative": "私の最新のランキングを見る",
       "see.this.derivative": "このランキングを見る",
-      "make.my.derivative": "ランキングを変更せずに作成する",
-      "make.my.derivative.empty": "ランキングのリセットを作成する",
+      "make.my.derivative": "Faire mon classement à partir de celui là sans changement",
+      "make.my.derivative.empty": "Faire mon classement à partir de celui là",
       "edit.my.derivative": "私のランキングを編集する",
       "edit.my.last.derivative": "私の最新のランキングを編集する",
-      "new.derivative": "このままの新しいランキング",
-      "new.derivative.empty": "空のグループを含むこの照合順序からの新しいランキング",
+      "new.derivative": "Faire mon classement à partir de celui là sans changement",
+      "new.derivative.empty": "Faire mon classement à partir de celui là",
       "my.derivative.count": "注: 現在、このランキングからバリアントをした{{ count }}つを持っています。",
       "change.mode": {
         "question": "モードを変更するには、グループを空にリセットする必要があります。\n続行してもよろしいですか？",
