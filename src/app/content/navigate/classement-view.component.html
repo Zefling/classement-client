@@ -75,7 +75,7 @@
                     ) | translate
                 }}
             </button>
-            <button (click)="openClassement()" *ngIf="!currentUser">
+            <!-- <button (click)="openClassement()" *ngIf="!currentUser">
                 {{
                     (!apiActive
                         ? 'generator.actions.edit.local'
@@ -84,7 +84,7 @@
                           : 'generator.actions.new.derivative'
                     ) | translate
                 }}
-            </button>
+            </button> -->
         </div>
         <div class="buttons">
             <button *ngIf="classement.withHistory" (click)="seeHistory()" class="primary">
