@@ -129,6 +129,10 @@ figure {
     padding: 10px 5px;
     width: 100%;
     text-align: center;
+
+    :host:has(&) {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 800px) {

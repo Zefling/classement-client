@@ -136,7 +136,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             })
             .catch(() => {
                 this.classements = [];
-                this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
+                this.total = 0;
             })
             .finally(() => {
                 this.router.navigate(
