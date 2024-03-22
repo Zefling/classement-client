@@ -5,7 +5,23 @@
 @import './fonts.scss';
 
 body.light-mode {
-    --base: 95% -;
+    color-scheme: light;
+
+    // palettes
+    --primaryH: 190;
+    --L: 0%;
+    --L0: 10%;
+    --L1: 20%;
+    --L2: 30%;
+    --L3: 40%;
+    --L4: 50%;
+    --L5: 60%;
+    --L6: 70%;
+    --L7: 80%;
+    --L8: 85%;
+    --L9: 90%;
+    --LA: 95%;
+    --LB: 100%;
 
     // option block
     --options-sizes-border-color: #8b441b;
@@ -15,6 +31,7 @@ body.light-mode {
     --options-sizes-box-color: #eee;
     --options-sizes-height-color: #105f1e;
     --options-sizes-width-color: #50197e;
+
     // icons
     --color-icon-deleted: #940d0d;
     --color-icon-admin: #9e7900;
@@ -23,15 +40,30 @@ body.light-mode {
     --color-icon-validated: #176b0c;
     --color-icon-user: #162d79;
 
+    // other
     --loading-line-animation-color: 0 0 0;
     --box-shadow: hsl(0, 0%, 0%) 20%;
     --tile-add-filter: brightness(0.8);
-
-    color-scheme: light;
 }
 
 body.dark-mode {
-    --base: 0% +;
+    color-scheme: dark;
+
+    // palettes
+    --primaryH: 210;
+    --L: 100%;
+    --L0: 95%;
+    --L1: 80%;
+    --L2: 70%;
+    --L3: 60%;
+    --L4: 50%;
+    --L5: 40%;
+    --L6: 35%;
+    --L7: 20%;
+    --L8: 10%;
+    --L9: 6%;
+    --LA: 5%;
+    --LB: 0%;
 
     // option block
     --options-sizes-border-color: yellow;
@@ -41,6 +73,7 @@ body.dark-mode {
     --options-sizes-box-color: #111;
     --options-sizes-height-color: #00ff34;
     --options-sizes-width-color: #a12dff;
+
     // icons
     --color-icon-deleted: #912e2e;
     --color-icon-admin: #dfbd00;
@@ -49,65 +82,60 @@ body.dark-mode {
     --color-icon-validated: #47963d;
     --color-icon-user: #4767cf;
 
+    // other
     --loading-line-animation-color: 255 255 255;
     --box-shadow: hsl(0, 0%, 0%) 25%;
     --tile-add-filter: brightness(1.2);
-
-    color-scheme: dark;
 }
 
-body,
-html {
+body {
     // palettes
-    --primary0: hsl(210, 5%, calc(var(--base) 95%));
-    --primary1: hsl(210, 15%, calc(var(--base) 80%));
-    --primary2: hsl(210, 15%, calc(var(--base) 70%));
-    --primary3: hsl(210, 15%, calc(var(--base) 60%));
-    --primary4: hsl(210, 15%, calc(var(--base) 50%));
-    --primary5: hsl(210, 15%, calc(var(--base) 50%));
-    --primary6: hsl(210, 15%, calc(var(--base) 35%));
-    --primary7: hsl(210, 15%, calc(var(--base) 20%));
-    --primary8: hsl(210, 15%, calc(var(--base) 15%));
-    --primary9: hsl(210, 15%, calc(var(--base) 6%));
-    --primaryA: hsl(210, 5%, calc(var(--base) 5%));
-
-    --neutral: hsl(0, 0%, calc(var(--base) 100%));
-    --neutral0: hsl(0, 0%, calc(var(--base) 95%));
-    --neutral1: hsl(0, 0%, calc(var(--base) 80%));
-    --neutral2: hsl(0, 0%, calc(var(--base) 70%));
-    --neutral3: hsl(0, 0%, calc(var(--base) 60%));
-    --neutral4: hsl(0, 0%, calc(var(--base) 50%));
-    --neutral5: hsl(0, 0%, calc(var(--base) 40%));
-    --neutral6: hsl(0, 0%, calc(var(--base) 25%));
-    --neutral7: hsl(0, 0%, calc(var(--base) 13%));
-    --neutral8: hsl(0, 0%, calc(var(--base) 10%));
-    --neutral9: hsl(0, 0%, calc(var(--base) 6%));
-    --neutralA: hsl(0, 0%, calc(var(--base) 5%));
-    --neutralB: hsl(0, 0%, calc(var(--base) 0%));
-
-    --alert0: hsl(0, 5%, calc(var(--base) 95%));
-    --alert1: hsl(0, 15%, calc(var(--base) 80%));
-    --alert2: hsl(0, 25%, calc(var(--base) 70%));
-    --alert3: hsl(0, 45%, calc(var(--base) 60%));
-    --alert4: hsl(0, 55%, calc(var(--base) 50%));
-    --alert5: hsl(0, 75%, calc(var(--base) 50%));
-    --alert6: hsl(0, 65%, calc(var(--base) 40%));
-    --alert7: hsl(0, 55%, calc(var(--base) 30%));
-    --alert8: hsl(0, 45%, calc(var(--base) 20%));
-    --alert9: hsl(0, 25%, calc(var(--base) 6%));
-    --alertA: hsl(0, 5%, calc(var(--base) 5%));
-
-    --success0: hsl(120, 5%, calc(var(--base) 95%));
-    --success1: hsl(120, 15%, calc(var(--base) 80%));
-    --success2: hsl(120, 25%, calc(var(--base) 70%));
-    --success3: hsl(120, 45%, calc(var(--base) 60%));
-    --success4: hsl(120, 55%, calc(var(--base) 50%));
-    --success5: hsl(120, 55%, calc(var(--base) 50%));
-    --success6: hsl(120, 65%, calc(var(--base) 40%));
-    --success7: hsl(120, 55%, calc(var(--base) 30%));
-    --success8: hsl(120, 45%, calc(var(--base) 20%));
-    --success9: hsl(120, 25%, calc(var(--base) 6%));
-    --successA: hsl(120, 5%, calc(var(--base) 5%));
+    --primary0: hsl(var(--primaryH), 5%, var(--L0));
+    --primary1: hsl(var(--primaryH), 15%, var(--L1));
+    --primary2: hsl(var(--primaryH), 15%, var(--L2));
+    --primary3: hsl(var(--primaryH), 15%, var(--L3));
+    --primary4: hsl(var(--primaryH), 15%, var(--L4));
+    --primary5: hsl(var(--primaryH), 15%, var(--L5));
+    --primary6: hsl(var(--primaryH), 15%, var(--L6));
+    --primary7: hsl(var(--primaryH), 15%, var(--L7));
+    --primary8: hsl(var(--primaryH), 15%, var(--L8));
+    --primary9: hsl(var(--primaryH), 15%, var(--L9));
+    --primaryA: hsl(var(--primaryH), 5%, var(--LA));
+    --neutral: hsl(0, 0%, var(--L));
+    --neutral0: hsl(0, 0%, var(--L0));
+    --neutral1: hsl(0, 0%, var(--L1));
+    --neutral2: hsl(0, 0%, var(--L2));
+    --neutral3: hsl(0, 0%, var(--L3));
+    --neutral4: hsl(0, 0%, var(--L4));
+    --neutral5: hsl(0, 0%, var(--L5));
+    --neutral6: hsl(0, 0%, var(--L6));
+    --neutral7: hsl(0, 0%, var(--L7));
+    --neutral8: hsl(0, 0%, var(--L8));
+    --neutral9: hsl(0, 0%, var(--L9));
+    --neutralA: hsl(0, 0%, var(--LA));
+    --neutralB: hsl(0, 0%, var(--LB));
+    --alert0: hsl(0, 5%, var(--L0));
+    --alert1: hsl(0, 15%, var(--L1));
+    --alert2: hsl(0, 25%, var(--L2));
+    --alert3: hsl(0, 45%, var(--L3));
+    --alert4: hsl(0, 55%, var(--L4));
+    --alert5: hsl(0, 75%, var(--L5));
+    --alert6: hsl(0, 65%, var(--L6));
+    --alert7: hsl(0, 55%, var(--L7));
+    --alert8: hsl(0, 45%, var(--L8));
+    --alert9: hsl(0, 25%, var(--L9));
+    --alertA: hsl(0, 5%, var(--LA));
+    --success0: hsl(120, 5%, var(--L0));
+    --success1: hsl(120, 15%, var(--L1));
+    --success2: hsl(120, 25%, var(--L2));
+    --success3: hsl(120, 45%, var(--L3));
+    --success4: hsl(120, 55%, var(--L4));
+    --success5: hsl(120, 55%, var(--L5));
+    --success6: hsl(120, 65%, var(--L6));
+    --success7: hsl(120, 55%, var(--L7));
+    --success8: hsl(120, 45%, var(--L8));
+    --success9: hsl(120, 25%, var(--L9));
+    --successA: hsl(120, 5%, var(--LA));
 
     // global
     --background: var(--primaryA);
@@ -117,6 +145,7 @@ html {
     --aside-background: var(--primary9);
     --licence-color: var(--primary0);
     --color-mode-border-color: var(--primary0);
+
     // menu
     --menu-border-color: var(--primary8);
     --menu-color: var(--primary0);
@@ -127,6 +156,7 @@ html {
     --menu-active-color: var(--primary0);
     --menu-active-background: var(--primary6);
     --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
+
     // default button
     --button-default-border-color: var(--neutral5);
     --button-default-background: var(--neutral7);
@@ -136,6 +166,7 @@ html {
     --button-default-hover-background: var(--neutral6);
     --button-default-hover-box-shadow: var(--neutral7);
     --button-default-focus-border-color: var(--primary2);
+
     // primary button
     --button-primary-border-color: var(--primary7);
     --button-primary-background: var(--primary6);
@@ -145,6 +176,7 @@ html {
     --button-primary-hover-background: var(--primary6);
     --button-primary-hover-box-shadow: var(--primary7);
     --button-primary-focus-border-color: var(--primary3);
+
     // warn button
     --button-warn-border-color: var(--alert7);
     --button-warn-background: var(--alert8);
@@ -154,14 +186,17 @@ html {
     --button-warn-hover-background: var(--alert6);
     --button-warn-hover-box-shadow: var(--alert7);
     --button-warn-focus-border-color: var(--alert5);
+
     // link
     --link-color: var(--primary4);
     --link-hover-color: var(--primary1);
+
     // dialog
     --dialog-backdrop-background: color-mix(in hsl, var(--primaryA) 60%, transparent);
     --dialog-backdrop-background-no-filter: color-mix(in hsl, var(--primaryA) 70%, transparent);
-    --dialog-background: var(--neutral7);
+    --dialog-background: var(--neutral8);
     --dialog-shadow-color: color-mix(in hsl, var(--neutralA) 30%, transparent);
+
     // list
     --list-header-background: var(--neutral9);
     --list-header-background-hover: var(--neutral8);
@@ -169,28 +204,31 @@ html {
     --list-selected-text: var(--alert2);
     --no-result-background: var(--neutral9);
     --table-header-sortable-cell: var(--neutral7);
+
     // option block
     --options-border-color: var(--neutral7);
     --options-background: var(--neutral8);
+
     // input
     --input-border-color: var(--primary6);
-    --input-background: var(--primary7);
+    --input-background: var(--primary8);
     --input-background-transparent: color-mix(in hsl, var(--input-background) 60%, transparent);
     --input-item-color: var(--neutral7);
     --input-item-active-color: var(--neutral1);
     --input-focus-border-color: var(--neutral5);
     --input-color-shadow: var(--neutralA);
-    // select2
-    --select2-option-selected-background: var(--primary5);
-    --select2-option-highlighted-background: var(--primary6);
+
     // avatar
     --avatar-background: var(--primaryA);
     --avatar-icon-opacity: 0.17;
+
     // drop list
     --drop-list-border-color: var(--neutral6);
     --drop-list-background: var(--neutral7);
+
     // drop list (add image)
     --drop-image-zone-background: var(--success9);
+
     // item content-box
     --content-title-text-color: var(--neutral);
     --content-box-border: var(--neutral7);
@@ -200,13 +238,16 @@ html {
     --content-box-text-background: color-mix(in hsl, var(--neutralB) 75%, transparent);
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
+
     // zone
     --group-line-size: 1px;
     --group-line-color: var(--neutral6);
     --axis-line-color: var(--neutral1);
+
     // info
     --alert-color: var(--alert4);
     --alert-background: color-mix(in hsl, var(--alert8) 8%, transparent);
+
     // message
     --info-message-border-color: var(--neutral1);
     --info-message-background: var(--neutral5);
@@ -216,29 +257,35 @@ html {
     --error-message-background: var(--alert7);
     --error-message-box-shadow-color: var(--neutralB);
     --error-message-progress-background: var(--alert5);
+
     // loading
     --loading-color: var(--neutral0);
     --loading-tile-color: var(--primary8);
     --loading-background: color-mix(in hsl, var(--neutralA) 23%, transparent);
     --loading-text-color: var(--neutral0);
     --loading-text-shadow-color: var(--neutralB);
+
     // cropper
     --cropper-overlay-color: var(--neutralB);
     --cropper-outline-color: color-mix(in hsl, var(--neutralB) 30%, transparent);
+
     // theme
     --theme-selection: var(--primary4);
     --theme-shadow-color: color-mix(in hsl, var(--primaryA) 40%, transparent);
+
     // tooltip
     --tooltip-text-color: var(--neutral0);
     --tooltip-background: color-mix(in hsl, var(--primary8) 93%, transparent);
     --tooltip-shadow-color: var(--neutralB);
     --tooltip-border-color: var(--primary8);
+
     // page
     --page-item-text-color: var(--neutral1);
     --page-item-border-color: var(--neutral5);
     --page-item-current-test-color: var(--primary3);
     --page-item-current-background: var(--primary8);
     --page-item-hover-background: var(--neutral7);
+
     // tabs
     --tabs-line-color: var(--neutral6);
     --tab-border-color: var(--neutral6);
@@ -246,6 +293,7 @@ html {
     --tab-select-border-color: var(--neutral4);
     --tab-text-border-color: var(--neutral0);
     --tab-hover-border-color: var(--neutral0);
+
     // box
     --box-background: var(--neutral7);
     --box-border-color: var(--neutral5);
@@ -255,27 +303,31 @@ html {
     --select2-selection-text-color: var(--text-color);
     --select2-selection-background: var(--input-background);
     --select2-selection-border-color: var(--input-border-color);
+    --select2-selection-disabled-background: var(--input-background);
+    --select2-selection-disabled-border-color: var(--input-border-color);
     --select2-single-height: auto;
     --select2-dropdown-background: var(--input-background);
     --select2-dropdown-border-color: var(--input-border-color);
     --select2-option-text-color: var(--text-color);
     --select2-option-selected-text-color: var(--text-color);
+    --select2-option-selected-background: var(--primary5);
     --select2-option-highlighted-text-color: var(--text-color);
+    --select2-option-highlighted-background: var(--primary6);
     --select2-search-border-color: var(--input-border-color);
     --select2-search-background: var(--text-color);
-    --select2-selection-disabled-background: var(--input-background);
-    --select2-selection-disabled-border-color: var(--input-border-color);
 
     // tag
     --tag-background: var(--input-border-color);
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
+}
+
+body,
+html {
     margin: 0;
     background: var(--background);
     padding: 0;
-
-    // base
     height: 100%;
     overflow: hidden;
     color: var(--text-color);
@@ -353,7 +405,7 @@ button:disabled {
 }
 
 input:not(:focus-visible):invalid {
-    text-decoration: underline wavy red;
+    text-decoration: underline wavy var(--alert5);
 }
 
 button.primary {

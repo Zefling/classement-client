@@ -169,16 +169,18 @@ aside {
     }
 }
 
-.mode-dialog ::ng-deep > .content {
-    max-width: 780px;
+.mode-dialog {
+    .info {
+        visibility: hidden;
+
+        &.visible {
+            visibility: visible;
+        }
+    }
 }
 
-.info {
-    visibility: hidden;
-
-    &.visible {
-        visibility: visible;
-    }
+.mode-dialog ::ng-deep > .content {
+    max-width: 780px;
 }
 
 .menu-mode {
