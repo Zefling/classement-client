@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li [title]="'menu.preferences' | translate">
-                <a (click)="openPreferences()">
+                <a (click)="openPreferences()" (keydown.enter)="openPreferences()" tabIndex="0">
                     <span class="icon icon-params"></span>
                     <span>{{ 'menu.preferences' | translate }}</span>
                 </a>
@@ -193,31 +193,31 @@
 </dialog-cmp>
 
 <dialog-cmp class="auto-format mode-dialog" #choice closeBackdrop>
-    <p class="title">{{ 'generator.choice.title' | translate }}</p>
+    <h2 class="title">{{ 'generator.choice.title' | translate }}</h2>
     <menu class="choice-mode">
         <li
             (click)="beginNew('default')"
             (mouseenter)="_modeTemp = 'default'"
-            ((mouseleave))="_modeTemp = ''"
+            (mouseleave)="_modeTemp = ''"
             tabIndex="0"
         >
             <span class="icon-mode-tierlist"></span>
             <span>{{ 'mode.name.default' | translate }}</span>
         </li>
-        <li (click)="beginNew('teams')" (mouseenter)="_modeTemp = 'teams'" ((mouseleave))="_modeTemp = ''" tabIndex="0">
+        <li (click)="beginNew('teams')" (mouseenter)="_modeTemp = 'teams'" (mouseleave)="_modeTemp = ''" tabIndex="0">
             <span class="icon-mode-teams"></span>
             <span>{{ 'mode.name.teams' | translate }}</span>
         </li>
         <li
             (click)="beginNew('iceberg')"
             (mouseenter)="_modeTemp = 'iceberg'"
-            ((mouseleave))="_modeTemp = ''"
+            (mouseleave)="_modeTemp = ''"
             tabIndex="0"
         >
             <span class="icon-mode-iceberg"></span>
             <span>{{ 'mode.name.iceberg' | translate }}</span>
         </li>
-        <li (click)="beginNew('axis')" (mouseenter)="_modeTemp = 'axis'" ((mouseleave))="_modeTemp = ''" tabIndex="0">
+        <li (click)="beginNew('axis')" (mouseenter)="_modeTemp = 'axis'" (mouseleave)="_modeTemp = ''" tabIndex="0">
             <span class="icon-mode-axis"></span>
             <span>{{ 'mode.name.axis' | translate }}</span>
         </li>

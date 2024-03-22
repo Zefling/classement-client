@@ -5,7 +5,13 @@
         <span class="icon icon-add"></span>
         <span class="label">{{ 'menu.new' | translate }}</span>
     </a>
-    <a class="tile-navigate" *ngIf="preferences.mode === 'choice'" (click)="openNew()">
+    <a
+        class="tile-navigate"
+        *ngIf="preferences.mode === 'choice'"
+        (click)="openNew()"
+        (keydown.enter)="openNew()"
+        tabindex="0"
+    >
         <span class="icon icon-add"></span>
         <span class="label">{{ 'menu.new' | translate }}</span>
     </a>

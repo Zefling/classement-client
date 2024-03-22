@@ -245,7 +245,7 @@ export class Utils {
                             Math.round(
                                 Math.max(
                                     ((item.width || 100) / (item.height || 100)) * options.itemHeight -
-                                        (title ? (title.clientHeight || 16) + 2 : 0),
+                                        (title ? title.clientHeight || 16 : 0),
                                     title?.clientWidth || 0,
                                 ),
                             ),

@@ -437,7 +437,7 @@ dialog-cmp.auto-format .main {
         font-weight: 700;
     }
 
-    :where(h3, p, div) {
+    :where(h2, h3, p, div) {
         margin: 0 auto;
         padding: 15px 0;
         text-align: center;
