@@ -49,6 +49,8 @@ export class AppComponent implements DoCheck {
     preferencesForm?: FormGroup;
     themes? = themes;
 
+    _modeTemp?: string;
+
     get routerUrl() {
         return this.router.url;
     }

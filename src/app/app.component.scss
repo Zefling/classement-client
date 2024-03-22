@@ -163,6 +163,22 @@ aside {
             color: var(--menu-hover-color);
         }
     }
+
+    li:hover {
+        color: var(--neutral5);
+    }
+}
+
+.mode-dialog ::ng-deep > .content {
+    max-width: 780px;
+}
+
+.info {
+    visibility: hidden;
+
+    &.visible {
+        visibility: visible;
+    }
 }
 
 .menu-mode {

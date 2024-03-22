@@ -460,6 +460,17 @@ dialog-cmp.auto-format .main {
         justify-content: center;
         gap: 6px;
     }
+
+    .info span {
+        display: block;
+        box-sizing: border-box;
+        margin-top: 15px;
+        border: 1px solid var(--box-border-color);
+        background: var(--box-background);
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .list-error {
