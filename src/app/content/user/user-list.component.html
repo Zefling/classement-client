@@ -1,12 +1,6 @@
 <h2>{{ 'menu.my.lists' | translate }}</h2>
 
 <tabs (tabChange)="tabChange($event)">
-    <!-- browser -->
-    <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
-    <tab-content id="browser">
-        <classement-list [pageMode]="false"></classement-list>
-    </tab-content>
-
     <!-- server -->
     <tab-title id="server">{{ 'user.profile.list.server.tab' | translate }}</tab-title>
     <tab-content id="server">
@@ -162,6 +156,12 @@
                 </p>
             </ng-template>
         </ng-container>
+    </tab-content>
+
+    <!-- browser -->
+    <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
+    <tab-content id="browser">
+        <classement-list [pageMode]="false"></classement-list>
     </tab-content>
 </tabs>
 
