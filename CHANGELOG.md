@@ -1,5 +1,20 @@
 # Changelog - Standalone web app & API
 
+### 2.1.3 (2024-03-24)
+
+#### Standalone web app
+
+-   Better display when no results in search (remove error)
+-   Interface improvement
+    -   Wrap mode choice (for mobile)
+    -   Fix naming
+    -   Simplify the ranking fork
+    -   Improved rendering of the ranking choice
+    -   Interface adjustment
+    -   User : server ranking first
+-   Palette update for light theme
+-   Minor fixes
+
 ### 2.1.2 (2024-03-16)
 
 #### Standalone web app

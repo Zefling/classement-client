@@ -1,7 +1,7 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
