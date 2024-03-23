@@ -188,7 +188,7 @@ body {
     --button-warn-focus-border-color: var(--alert5);
 
     // link
-    --link-color: var(--primary4);
+    --link-color: var(--primary3);
     --link-hover-color: var(--primary1);
 
     // dialog
@@ -210,7 +210,7 @@ body {
     --options-background: var(--neutral8);
 
     // input
-    --input-border-color: var(--primary6);
+    --input-border-color: var(--primary4);
     --input-background: var(--primary8);
     --input-background-transparent: color-mix(in hsl, var(--input-background) 60%, transparent);
     --input-item-color: var(--neutral7);
@@ -513,7 +513,7 @@ dialog-cmp.auto-format .main {
         gap: 6px;
     }
 
-    .info span {
+    .info span:not([class^='icon']) {
         display: block;
         box-sizing: border-box;
         margin-top: 15px;
