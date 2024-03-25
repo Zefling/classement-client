@@ -238,6 +238,7 @@ body {
     --content-box-text-background: color-mix(in hsl, var(--neutralB) 75%, transparent);
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
+    --tile-info-background: color-mix(in hsl, var(--neutral3) 30%, transparent);
 
     // zone
     --group-line-size: 1px;

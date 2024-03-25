@@ -431,9 +431,10 @@
       "image.ratio.help": "(4:3, 4/3 or 1.33)",
       "image.empty": "No image",
       "image.remove": "Removed image",
-      "image.edit": "Edit Image",
+      "image.edit": "Edit image",
       "image.edit.cancel": "Cancel",
-      "image.edit.ok": "Validate"
+      "image.edit.ok": "Validate",
+      "image.add": "Add image"
     },
     "line": {
       "add": "Add",

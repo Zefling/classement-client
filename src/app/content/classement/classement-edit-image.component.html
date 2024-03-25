@@ -23,22 +23,29 @@
         </div>
         <div>
             <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
-            <div>
-                <img *ngIf="currentTile.url; else noImage" [src]="currentTile.url" class="image-preview" />
-                <ng-template #noImage>
-                    <div>
-                        {{ 'generator.ranking.image.empty' | translate }}
-                    </div>
-                </ng-template>
-                <div>
-                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''; globalChange()">
-                        {{ 'generator.ranking.image.remove' | translate }}
-                    </button>
+
+            <div class="image-preview-content" *ngIf="currentTile.url; else noImage">
+                <img [src]="currentTile.url" class="image-preview" />
+                <div class="image-preview-button">
                     <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
                         {{ 'generator.ranking.image.edit' | translate }}
                     </button>
+                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''; globalChange()" class="warn">
+                        {{ 'generator.ranking.image.remove' | translate }}
+                    </button>
                 </div>
             </div>
+
+            <ng-template #noImage>
+                <div>
+                    <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+                        {{ 'generator.ranking.image.add' | translate }}
+                    </button>
+                    <div>
+                        {{ 'generator.ranking.image.empty' | translate }}
+                    </div>
+                </div>
+            </ng-template>
         </div>
         <div class="group-colors">
             <div class="colors">
