@@ -710,8 +710,8 @@
     "category": "Catégorie",
     "categories": "Catégories",
     "classements": "Classements",
-    "see.derivatives": "Voir les versions",
-    "my.derivatives": "Mes versions",
+    "see.derivatives": "Voir les autres versions du classement",
+    "my.derivatives": "Mes versions du classement",
     "visualization": "Visualisation",
     "password": {
       "required": "Mot de passe requis pour voir ce classement",

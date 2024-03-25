@@ -710,8 +710,8 @@
     "category": "カテゴリー",
     "categories": "カテゴリー",
     "classements": "ランキング",
-    "see.derivatives": "バージョンを見る",
-    "my.derivatives": "私のバージョン",
+    "see.derivatives": "他のバージョンのランキングを見る",
+    "my.derivatives": "私のバージョンのランキング",
     "visualization": "視覚化",
     "password": {
       "required": "このランキングを表示するにはパスワードが必要です",
