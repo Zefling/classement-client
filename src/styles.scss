@@ -556,46 +556,44 @@ dialog-cmp.auto-format .main {
         opacity: 0.01;
         width: 0.1px;
         height: 0.1px;
-    }
 
-    input + span {
-        display: inline-block;
-        position: relative;
-        margin: 3px 0;
-        line-height: 21px;
-
-        &::before {
+        & + span {
             display: inline-block;
-            vertical-align: bottom;
-            margin-right: 5px;
-            border: 1px solid var(--input-border-color);
-            border-radius: 10px;
-            background: var(--input-background);
-            width: 40px;
-            height: 20px;
-            content: '';
+            position: relative;
+            margin: 3px 0;
+            line-height: 21px;
+
+            &::before {
+                display: inline-block;
+                vertical-align: bottom;
+                margin-right: 5px;
+                border: 1px solid var(--input-border-color);
+                border-radius: 10px;
+                background: var(--input-background);
+                width: 40px;
+                height: 20px;
+                content: '';
+            }
+
+            &::after {
+                display: block;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                transition: left 0.2s;
+                border-radius: 50%;
+                background-color: var(--input-item-color);
+                width: 18px;
+                height: 18px;
+                content: '';
+            }
         }
 
-        &::after {
-            display: block;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: left 0.2s;
-            border-radius: 50%;
-            background-color: var(--input-item-color);
-            width: 18px;
-            height: 18px;
-            content: '';
+        &:checked + ::after {
+            left: 22px;
+            background-color: var(--input-item-active-color);
         }
-    }
 
-    input:checked + ::after {
-        left: 22px;
-        background-color: var(--input-item-active-color);
-    }
-
-    input {
         & + ::before {
             outline: 1px solid transparent;
         }
