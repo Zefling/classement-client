@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.1.4 (2024-03-26)
+
+-   Fix `toggle-switch` render
+-   “ranking versions” naming
+-   Fix calculation of (vertical) tiles with title
+-   Fix crash with `color-mix()` for `html2canvas`
+-   Fix rendering ⓘ
+
 ### 2.1.3 (2024-03-24)
 
 #### Standalone web app
