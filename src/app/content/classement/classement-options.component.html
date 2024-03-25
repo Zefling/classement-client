@@ -57,17 +57,17 @@
         <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | translate }}</a>
     </div>
     <div class="width-auto">
-        <label class="toogle-switch">
+        <label class="toggle-switch">
             <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
             <span>{{ 'generator.options.item.width.auto' | translate }}</span>
         </label>
-        <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
+        <label class="toggle-switch" *ngIf="zoneMode.includes(options.mode)">
             <input type="checkbox" [(ngModel)]="options.itemHeightAuto" />
             <span>{{ 'generator.options.item.height.auto' | translate }}</span>
         </label>
     </div>
     <div class="stream-mode">
-        <label class="toogle-switch">
+        <label class="toggle-switch">
             <input type="checkbox" [(ngModel)]="options.streamMode" />
             <span>{{ 'generator.options.stream.mode' | translate }}</span>
             <span [tooltip]="'generator.options.stream.mode.info' | translate" class="icon-info"></span>
@@ -170,11 +170,11 @@
                 />
             </div>
             <div>
-                <label class="toogle-switch">
+                <label class="toggle-switch">
                     <input id="option-item-width-auto" type="checkbox" [(ngModel)]="options.itemWidthAuto" />
                     <span>{{ 'generator.options.item.width.auto' | translate }}</span>
                 </label>
-                <label class="toogle-switch" *ngIf="zoneMode.includes(options.mode)">
+                <label class="toggle-switch" *ngIf="zoneMode.includes(options.mode)">
                     <input id="option-item-height-auto" type="checkbox" [(ngModel)]="options.itemHeightAuto" />
                     <span>{{ 'generator.options.item.height.auto' | translate }}</span>
                 </label>
@@ -409,7 +409,7 @@
             </div>
 
             <div class="name-markdown input-value">
-                <label class="toogle-switch">
+                <label class="toggle-switch">
                     <input type="checkbox" [(ngModel)]="options.nameMarkdown" />
                     <span>{{ 'generator.options.group.markdown' | translate }}</span>
                 </label>

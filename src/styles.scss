@@ -548,7 +548,7 @@ dialog-cmp.auto-format .main {
     }
 }
 
-.toogle-switch {
+.toggle-switch {
     position: relative;
 
     input {
@@ -568,8 +568,9 @@ dialog-cmp.auto-format .main {
             display: inline-block;
             vertical-align: bottom;
             margin-right: 5px;
+            border: 1px solid var(--input-border-color);
             border-radius: 10px;
-            background-color: var(--input-border-color);
+            background: var(--input-background);
             width: 40px;
             height: 20px;
             content: '';
@@ -590,7 +591,7 @@ dialog-cmp.auto-format .main {
     }
 
     input:checked + ::after {
-        left: 20px;
+        left: 22px;
         background-color: var(--input-item-active-color);
     }
 
