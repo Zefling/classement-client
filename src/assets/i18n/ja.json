@@ -433,7 +433,8 @@
       "image.remove": "画像を削除する",
       "image.edit": "画像を編集する",
       "image.edit.cancel": "キャンセル",
-      "image.edit.ok": "OK"
+      "image.edit.ok": "OK",
+      "image.add": "Ajouter une image"
     },
     "line": {
       "add": "追加",
