@@ -487,16 +487,18 @@ span.group-options {
 
     &::before {
         display: block;
-        cursor: pointer;
-        border: 1px solid var(--text-color);
+        cursor: default;
+        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
+        border: 1px solid var(--tile-info-border-color);
         border-radius: 50%;
         background: var(--tile-info-background);
         width: 16px;
         height: 16px;
         content: 'i';
-        color: var(--text-color);
+        color: var(--tile-info-text-color);
         line-height: 16px;
         text-align: center;
+        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
     }
 }
 

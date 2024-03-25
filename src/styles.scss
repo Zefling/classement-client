@@ -234,11 +234,14 @@ body {
     --content-box-border: var(--neutral7);
     --content-box-background: var(--neutral8);
     --content-box-color: var(--neutral9);
-    --content-box-text: var(--neutral);
+    --content-box-text: #fff;
     --content-box-text-background: #000000bf;
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
-    --tile-info-background: color-mix(in hsl, var(--neutral3) 30%, transparent);
+    --tile-info-text-color: #fff;
+    --tile-info-border-color: #fff;
+    --tile-info-border-color2: #000;
+    --tile-info-background: #fff5;
 
     // zone
     --group-line-size: 1px;

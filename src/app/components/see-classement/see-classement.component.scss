@@ -266,14 +266,17 @@ img {
     &::before {
         display: block;
         cursor: default;
-        border: 1px solid var(--text-color);
+        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
+        border: 1px solid var(--tile-info-border-color);
         border-radius: 50%;
         background: var(--tile-info-background);
         width: 16px;
         height: 16px;
         content: 'i';
+        color: var(--tile-info-text-color);
         line-height: 16px;
         text-align: center;
+        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
     }
 }
 
