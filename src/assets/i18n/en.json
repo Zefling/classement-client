@@ -433,7 +433,8 @@
       "image.remove": "Removed image",
       "image.edit": "Edit Image",
       "image.edit.cancel": "Cancel",
-      "image.edit.ok": "Validate"
+      "image.edit.ok": "Validate",
+      "image.add": "Ajouter une image"
     },
     "line": {
       "add": "Add",
