@@ -235,7 +235,7 @@ body {
     --content-box-background: var(--neutral8);
     --content-box-color: var(--neutral9);
     --content-box-text: var(--neutral);
-    --content-box-text-background: color-mix(in hsl, var(--neutralB) 75%, transparent);
+    --content-box-text-background: #000000bf;
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
     --tile-info-background: color-mix(in hsl, var(--neutral3) 30%, transparent);
@@ -339,7 +339,7 @@ html {
 *:hover {
     transition-duration: 0.3s;
     // color not possible in Chromium (too slow)
-    transition-property: backgound-color, opacity, border, box-shadow, text-shadow, outline;
+    transition-property: background-color, opacity, border, box-shadow, text-shadow, outline;
     font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
 }
 
