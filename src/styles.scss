@@ -44,6 +44,7 @@ body.light-mode {
     --loading-line-animation-color: 0 0 0;
     --box-shadow: hsl(0, 0%, 0%) 20%;
     --tile-add-filter: brightness(0.8);
+    --content-box-text: #000;
 }
 
 body.dark-mode {
@@ -86,6 +87,7 @@ body.dark-mode {
     --loading-line-animation-color: 255 255 255;
     --box-shadow: hsl(0, 0%, 0%) 25%;
     --tile-add-filter: brightness(1.2);
+    --content-box-text: #fff;
 }
 
 body {
@@ -234,7 +236,6 @@ body {
     --content-box-border: var(--neutral7);
     --content-box-background: var(--neutral8);
     --content-box-color: var(--neutral9);
-    --content-box-text: #fff;
     --content-box-text-background: #000000bf;
     --tile-add-file-background: var(--neutral8);
     --tile-add-file-color: var(--neutral3);
