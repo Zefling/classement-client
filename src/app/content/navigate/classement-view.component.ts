@@ -8,7 +8,7 @@ import html2canvas from 'html2canvas';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Classement, ClassementHistory } from 'src/app/interface/interface';
+import { Classement, ClassementHistory, ScreenMode } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -45,6 +45,8 @@ export class ClassementViewComponent implements OnDestroy {
 
     history?: ClassementHistory[];
     historyId?: number;
+
+    classScreenMode: ScreenMode = 'default';
 
     @ViewChild('image') image!: ElementRef;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
@@ -118,6 +120,17 @@ export class ClassementViewComponent implements OnDestroy {
                 }
             }),
         );
+    }
+
+    screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
+        if (div) {
+            if (mode === 'fullscreen') {
+                div.requestFullscreen();
+            } else if (this.classScreenMode === 'fullscreen') {
+                document.exitFullscreen();
+            }
+        }
+        this.classScreenMode = mode;
     }
 
     updateTitle(classement: Classement) {

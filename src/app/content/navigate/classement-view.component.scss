@@ -95,6 +95,35 @@ loading-cmp {
     vertical-align: bottom;
 }
 
+// view modes
+
+.classement-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+
+    :first-child {
+        flex: 1;
+    }
+}
+
+.enlarge,
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: var(--background);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    see-classement {
+        --over-image-width: calc(100% - 40px);
+    }
+}
+
 // derivatives ------------------------------------------------------------------
 
 .table-derivatives,

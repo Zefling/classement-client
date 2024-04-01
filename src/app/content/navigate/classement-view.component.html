@@ -133,13 +133,28 @@
         [imagesCache]="imagesCache"
     ></see-classement>
 
-    <see-classement
-        class="preview"
-        [options]="classement.data.options"
-        [groups]="classement.data.groups"
-        [list]="classement.data.list"
-        withAnnotation
-    ></see-classement>
+    <div [ngClass]="classScreenMode" #div>
+        <div class="classement-top">
+            <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+            <button *ngIf="classScreenMode !== 'default'" (click)="screenMode('default', div)">
+                {{ 'generator.screen.default' | translate }}
+            </button>
+            <button *ngIf="classScreenMode !== 'enlarge'" (click)="screenMode('enlarge', div)">
+                {{ 'generator.screen.window' | translate }}
+            </button>
+            <button *ngIf="classScreenMode !== 'fullscreen'" (click)="screenMode('fullscreen', div)">
+                {{ 'generator.screen.fullscreen' | translate }}
+            </button>
+        </div>
+
+        <see-classement
+            class="preview"
+            [options]="classement.data.options"
+            [groups]="classement.data.groups"
+            [list]="classement.data.list"
+            withAnnotation
+        ></see-classement>
+    </div>
 </ng-container>
 
 <loader-item *ngIf="loading"></loader-item>
