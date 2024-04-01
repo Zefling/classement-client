@@ -171,6 +171,7 @@ img {
         position: absolute;
         background: var(--over-item-text-background, var(--content-box-text-background));
         width: 100%;
+        color: var(--over-item-text-color, var(--content-box-over-text));
         text-align: center;
     }
 
