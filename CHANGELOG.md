@@ -1,6 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 2.1.5 (2024-04-01)
+
+#### Standalone web app
+
+-   View: add enlarge & fullscreen modes #56
+-   Fix title color in light mode
+
 ### 2.1.4 (2024-03-26)
+
+#### Standalone web app
 
 -   Fix `toggle-switch` render
 -   “ranking versions” naming
@@ -19,7 +28,7 @@
     -   Simplify the ranking fork
     -   Improved rendering of the ranking choice
     -   Interface adjustment
-    -   User : server ranking first
+    -   User: server ranking first
 -   Palette update for light theme
 -   Minor fixes
 
