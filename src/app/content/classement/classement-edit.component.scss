@@ -470,15 +470,16 @@ span.group-options {
     width: calc(100% - 30px);
     font-size: 75%;
     text-align: center;
+    --ics: var(--input-color-shadow);
     text-shadow:
-        0 -1px var(--input-color-shadow),
-        0 1px var(--input-color-shadow),
-        -1px -1px var(--input-color-shadow),
-        1px 1px var(--input-color-shadow),
-        0 -1px 2px var(--input-color-shadow),
-        0 1px 2px var(--input-color-shadow),
-        -1px -1px 2px var(--input-color-shadow),
-        1px 1px 2px var(--input-color-shadow);
+        0 -1px var(--ics),
+        0 1px var(--ics),
+        -1px -1px var(--ics),
+        1px 1px var(--ics),
+        0 -1px 2px var(--ics),
+        0 1px 2px var(--ics),
+        -1px -1px 2px var(--ics),
+        1px 1px 2px var(--ics);
 }
 
 .tile-info {
