@@ -6,9 +6,7 @@
       <h3>{{ 'generator.server.from' | translate }}</h3>
       <div>
         <strong>{{ 'generator.server.username' | translate }}</strong>
-        <span [class.anonymous]="!classement.user">{{
-          classement.user || ('list.user.anonymous' | translate)
-        }}</span>
+        <span [class.anonymous]="!classement.user">{{ classement.user || ('list.user.anonymous' | translate) }}</span>
       </div>
       <div>
         <strong>{{ 'generator.options.title' | translate }}</strong>
@@ -74,7 +72,7 @@
         </div>
       }
     </div>
-    @if (showError?.length) {
+    @if (showError.length) {
       <ul class="list-error">
         @for (error of showError; track error) {
           <li>{{ error }}</li>
@@ -89,7 +87,7 @@
           [ngModel]="this.classement?.linkId"
           (ngModelChange)="testLink($event)"
           (blur)="linkFormat($event)"
-          />
+        />
       </div>
       <span class="validity" [class.valid]="linkIdValid">
         {{ linkIdValid !== undefined ? (linkIdValid ? 'Ｏ' : 'Ｘ') : '' }}

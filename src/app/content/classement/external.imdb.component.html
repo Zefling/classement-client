@@ -42,11 +42,7 @@
       <div class="movies">
         @for (movie of results; track movie) {
           @if (movie.poster_path) {
-            <div
-              class="content-box"
-              [class.disabled]="movie.disabled"
-              (click)="addTile(movie)"
-              >
+            <div class="content-box" [class.disabled]="movie.disabled" (click)="addTile(movie)">
               <div class="content">
                 <img [src]="baseImg + movie.poster_path" alt="poster_path" />
                 <div class="movie-title">

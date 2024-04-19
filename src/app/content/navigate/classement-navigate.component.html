@@ -9,7 +9,7 @@
         name="name"
         [(ngModel)]="searchKey"
         [class.empty]="searchKey === '' || searchKey === undefined"
-        />
+      />
       <span (click)="searchKey = ''"></span>
     </div>
     <div class="line">
@@ -53,13 +53,7 @@
 }
 
 @if (!isCategoryList && total && total / pageSize > 1) {
-  <paginate-cmp
-    [total]="total"
-    [page]="page"
-    [base]="url"
-    [queryParams]="queryParams"
-    [size]="pageSize"
-  ></paginate-cmp>
+  <paginate-cmp [total]="total" [page]="page" [base]="url" [queryParams]="queryParams" [size]="pageSize"></paginate-cmp>
 }
 
 @if (!loading) {
@@ -67,13 +61,7 @@
 }
 
 @if (!isCategoryList && total && total / pageSize > 1) {
-  <paginate-cmp
-    [total]="total"
-    [page]="page"
-    [base]="url"
-    [queryParams]="queryParams"
-    [size]="pageSize"
-  ></paginate-cmp>
+  <paginate-cmp [total]="total" [page]="page" [base]="url" [queryParams]="queryParams" [size]="pageSize"></paginate-cmp>
 }
 
 @if (loading) {

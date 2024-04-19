@@ -67,14 +67,14 @@
         (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
         [class.warn]="!currentClassement!.hidden"
         [class.primary]="currentClassement!.hidden"
-        >
+      >
         {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
       </button>
       <button
         (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
         [class.warn]="!currentClassement!.deleted"
         [class.primary]="currentClassement!.deleted"
-        >
+      >
         {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | translate }}
       </button>
     </div>
@@ -100,16 +100,13 @@
         id="current-cat"
         value="{{ 'category.' + (currentClassement.category || 'undefined') | translate }}"
         disabled
-        />
+      />
     </div>
     <div>
       <label for="new-cat">{{ 'list.category.new' | translate }} </label>
       <select id="new-cat" #newCatagory>
         @for (catagory of catagories; track catagory) {
-          <option
-            [value]="catagory"
-            [selected]="currentClassement.category === catagory"
-            >
+          <option [value]="catagory" [selected]="currentClassement.category === catagory">
             {{ 'category.' + catagory | translate }}
           </option>
         }

@@ -54,399 +54,382 @@
       </div>
       <div cdkDropListGroup class="mode-{{ options.mode }}">
         @if (options.mode === 'default' || options.mode === 'teams') {
-          <table
-            class="table-classement"
-            [attr.dir]="options.direction"
-            >
+          <table class="table-classement" [attr.dir]="options.direction">
             <colgroup>
-            <col class="names" />
-            <col class="elements" />
-            <col class="actions" />
-          </colgroup>
-          <tbody>
-            @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
-              <tr>
-                <td
-                  class="names"
-                  [style.--name-background]="group.bgColor + nameOpacity"
-                  [style.--text-color]="group.txtColor"
+              <col class="names" />
+              <col class="elements" />
+              <col class="actions" />
+            </colgroup>
+            <tbody>
+              @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                <tr>
+                  <td
+                    class="names"
+                    [style.--name-background]="group.bgColor + nameOpacity"
+                    [style.--text-color]="group.txtColor"
                   >
-                  <div>
-                    <label class="name">
-                      <div class="auto-resize no-border" [attr.data-value]="input?.value">
-                        <textarea
-                          #input
-                          id="name-{{ indexGrp }}"
-                          rows="1"
-                          [(ngModel)]="group.name"
+                    <div>
+                      <label class="name">
+                        <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                          <textarea
+                            #input
+                            id="name-{{ indexGrp }}"
+                            rows="1"
+                            [(ngModel)]="group.name"
+                            (ngModelChange)="globalChange()"
+                            maxlength="500"
+                          ></textarea>
+                        </div>
+                      </label>
+                      <span
+                        class="color group-options icon-edit-2"
+                        (click)="updateGroupOption({ group, indexGrp, first, last })"
+                        (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                        tabindex="0"
+                      ></span>
+                      <span
+                        class="color bg-color icon-background-color"
+                        (click)="inputBgColor.click()"
+                        (keydown.enter)="inputBgColor.click()"
+                        tabindex="0"
+                      ></span>
+                      <span
+                        class="color txt-color icon-text-color"
+                        (click)="inputTxtColor.click()"
+                        (keydown.enter)="inputTxtColor.click()"
+                        tabindex="0"
+                      ></span>
+                      <div class="colors">
+                        <input
+                          class="color"
+                          type="color"
+                          [(ngModel)]="group.bgColor"
                           (ngModelChange)="globalChange()"
-                          maxlength="500"
-                        ></textarea>
+                          tabindex="-1"
+                          #inputBgColor
+                        />
+                        <input
+                          class="color"
+                          type="color"
+                          [(ngModel)]="group.txtColor"
+                          (ngModelChange)="globalChange()"
+                          tabindex="-1"
+                          #inputTxtColor
+                        />
                       </div>
-                    </label>
-                    <span
-                      class="color group-options icon-edit-2"
-                      (click)="updateGroupOption({ group, indexGrp, first, last })"
-                      (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                      tabindex="0"
-                    ></span>
-                    <span
-                      class="color bg-color icon-background-color"
-                      (click)="inputBgColor.click()"
-                      (keydown.enter)="inputBgColor.click()"
-                      tabindex="0"
-                    ></span>
-                    <span
-                      class="color txt-color icon-text-color"
-                      (click)="inputTxtColor.click()"
-                      (keydown.enter)="inputTxtColor.click()"
-                      tabindex="0"
-                    ></span>
-                    <div class="colors">
-                      <input
-                        class="color"
-                        type="color"
-                        [(ngModel)]="group.bgColor"
-                        (ngModelChange)="globalChange()"
-                        tabindex="-1"
-                        #inputBgColor
-                        />
-                      <input
-                        class="color"
-                        type="color"
-                        [(ngModel)]="group.txtColor"
-                        (ngModelChange)="globalChange()"
-                        tabindex="-1"
-                        #inputTxtColor
-                        />
                     </div>
-                  </div>
-                </td>
-                <td class="elements">
-                  <div class="drop-list">
-                    @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
-                      <div
-                        cdkDropList
-                        cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="{ list: group.list, index: index }"
-                        (cdkDropListDropped)="drop(group.list, $event)"
-                        removeTile
-                        (removeElement)="removeFromZone(group, index)"
-                        [style.--over-item-background]="item.bgColor"
-                        [style.--over-item-text-color]="item.txtColor"
+                  </td>
+                  <td class="elements">
+                    <div class="drop-list">
+                      @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+                        <div
+                          cdkDropList
+                          cdkDropListOrientation="horizontal"
+                          [cdkDropListData]="{ list: group.list, index: index }"
+                          (cdkDropListDropped)="drop(group.list, $event)"
+                          removeTile
+                          (removeElement)="removeFromZone(group, index)"
+                          [style.--over-item-background]="item.bgColor"
+                          [style.--over-item-text-color]="item.txtColor"
                         >
-                        <div class="content-box" cdkDrag>
-                          <div
-                            class="content content-render"
-                            [ngClass]="options.itemTextPosition"
-                            [class.with-annotation]="item.annotation"
-                            [id]="item.id"
-                            #tile
+                          <div class="content-box" cdkDrag>
+                            <div
+                              class="content content-render"
+                              [ngClass]="options.itemTextPosition"
+                              [class.with-annotation]="item.annotation"
+                              [id]="item.id"
+                              #tile
                             >
-                            @if (item.url) {
-                              <div [class.image]="calcWidth(item, tile)">
-                                <img
-                                  (ngInit)="calcWidth(item, tile); detectChanges()"
-                                  (load)="calcWidth(item, tile); detectChanges()"
-                                  src="{{ item.url }}"
-                                  alt="{{ item.name }}"
+                              @if (item.url) {
+                                <div [class.image]="calcWidth(item, tile)">
+                                  <img
+                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                    (load)="calcWidth(item, tile); detectChanges()"
+                                    src="{{ item.url }}"
+                                    alt="{{ item.name }}"
                                   />
-                              </div>
-                            }
-                            @if (item.title) {
-                              <div
-                                #title
-                                class="title"
-                                [class.title-item-width-auto]="options.itemWidthAuto"
-                                >
-                                <span class="title-span" (ngInit)="detectChanges()">{{
-                                  item.title
-                                }}</span>
-                              </div>
-                            }
-                            <div class="tile-info" (click)="openTileInfo(item)"></div>
+                                </div>
+                              }
+                              @if (item.title) {
+                                <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                                </div>
+                              }
+                              <div class="tile-info" (click)="openTileInfo(item)"></div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    }
-                    @if (group.list.length === 0) {
-                      <div
-                        class="drop-zone-empty-list"
-                        cdkDropList
-                        cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="{ list: group.list, index: 0 }"
-                        (cdkDropListDropped)="drop(group.list, $event)"
-                      ></div>
-                    }
-                  </div>
-                </td>
-                <td class="actions">
-                  <div class="button-actions">
-                    @if (!first) {
-                      <button class="button-up" (click)="upLine(indexGrp)">
-                        <span class="icon-up"></span>
-                      </button>
-                    }
-                    @if (!last) {
-                      <button class="button-down" (click)="downLine(indexGrp)">
-                        <span class="icon-down"></span>
-                      </button>
-                    }
-                    @if (!(first && last)) {
-                      <button class="button-suppr" (click)="deleteLine(indexGrp)">
-                        <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
-                      </button>
-                    }
-                    <button class="button-add" (click)="addLine(indexGrp)">
-                      <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
-                    </button>
-                    <span
-                      tabindex="0"
-                      class="color group-options icon-edit-2"
-                      (click)="updateGroupOption({ group, indexGrp, first, last })"
-                      (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                    ></span>
-                  </div>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      }
-      @if (options.mode === 'iceberg' || options.mode === 'axis') {
-        <div class="zone-classement-container">
-          <div
-            id="zone"
-            cdkDropZone
-            [cdkDropListData]="{ list: groups[0].list, index: 0 }"
-            (cdkDropListDropped)="drop(groups[0].list, $event)"
-            class="zone-classement"
-            (dblclick)="createTile($event)"
-            (auxclick)="stopEvent($event)"
-            >
-            @if (options.groups?.length) {
-              @if (options.mode === 'iceberg') {
-                <zone-area [groups]="options.groups"></zone-area>
-              }
-              @if (options.mode === 'axis') {
-                <zone-axis [groups]="options.groups"></zone-axis>
-              }
-            }
-            @for (item of groups[0].list; track trackByFnFileString(index, item); let index = $index) {
-              <div
-                class="content-box"
-                cdkDragElement
-                cdkDragBoundary=".zone-classement"
-                #element="cdkDragElement"
-                (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
-                (cdkDragMoved)="moveItem($event, item, element)"
-                removeTile
-                (removeElement)="removeFromZone(groups[0], index)"
-                [style.--over-item-background]="item.bgColor"
-                [style.--over-item-text-color]="item.txtColor"
-                >
-                <div
-                  class="content content-render"
-                  [ngClass]="options.itemTextPosition"
-                  [class.with-annotation]="item.annotation"
-                  [id]="item.id"
-                  #tile
-                  >
-                  @if (item.url) {
-                    <div [class.image]="calcWidth(item, tile)">
-                      <img
-                        (ngInit)="calcWidth(item, tile); detectChanges()"
-                        (load)="calcWidth(item, tile); detectChanges()"
-                        src="{{ item.url }}"
-                        alt="{{ item.name }}"
-                        />
+                      }
+                      @if (group.list.length === 0) {
+                        <div
+                          class="drop-zone-empty-list"
+                          cdkDropList
+                          cdkDropListOrientation="horizontal"
+                          [cdkDropListData]="{ list: group.list, index: 0 }"
+                          (cdkDropListDropped)="drop(group.list, $event)"
+                        ></div>
+                      }
                     </div>
-                  }
-                  @if (item.title) {
-                    <div
-                      #title
-                      class="title"
-                      [class.title-item-width-auto]="options.itemWidthAuto"
-                      >
-                      <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                  </td>
+                  <td class="actions">
+                    <div class="button-actions">
+                      @if (!first) {
+                        <button class="button-up" (click)="upLine(indexGrp)">
+                          <span class="icon-up"></span>
+                        </button>
+                      }
+                      @if (!last) {
+                        <button class="button-down" (click)="downLine(indexGrp)">
+                          <span class="icon-down"></span>
+                        </button>
+                      }
+                      @if (!(first && last)) {
+                        <button class="button-suppr" (click)="deleteLine(indexGrp)">
+                          <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
+                        </button>
+                      }
+                      <button class="button-add" (click)="addLine(indexGrp)">
+                        <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
+                      </button>
+                      <span
+                        tabindex="0"
+                        class="color group-options icon-edit-2"
+                        (click)="updateGroupOption({ group, indexGrp, first, last })"
+                        (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                      ></span>
                     </div>
-                  }
-                  <div class="tile-info" (click)="openTileInfo(item)"></div>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      }
-      @if (options.mode === 'iceberg' || options.mode === 'axis') {
-        <div class="help">
-          <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
-          <ul>
-            <li>{{ 'generator.help.zone.central.click' | translate }}</li>
-            <li>{{ 'generator.help.zone.double.click' | translate }}</li>
-          </ul>
-        </div>
-      }
-      <div class="current-list">
-        <div class="drop-image-message">
-          <span>{{ 'generator.ranking.drop.image' | translate }}</span>
-          @if (scrollArrows) {
-            <span class="arrows">⇄</span>
-          }
-        </div>
-        <div
-          class="drop-list"
-          id="list"
-          #currentList
-          [attr.dir]="options.direction"
-          [class.height-auto]="options.itemHeightAuto"
-          >
-          @for (item of list; track trackByFnFileString(index, item); let index = $index) {
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+        @if (options.mode === 'iceberg' || options.mode === 'axis') {
+          <div class="zone-classement-container">
             <div
-              cdkDropList
-              cdkDropListOrientation="horizontal"
-              [cdkDropListData]="{ list: list, index: index }"
-              (cdkDropListDropped)="drop(list, $event)"
-              [style.--over-item-background]="item.bgColor"
-              [style.--over-item-text-color]="item.txtColor"
-              >
-              <div class="content-box" cdkDrag>
-                @if (!options.streamMode) {
-                  <div
-                    #tile
-                    class="content"
-                    [class.with-annotation]="item.annotation"
-                    [style.width.px]="calcWidthEdit(item, tile)"
-                    >
-                    <button class="btn-delete" (click)="removeItem(index)">×</button>
-                    <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
-                    <input
-                      class="input-title"
-                      input="text"
-                      maxlength="150"
-                      [(ngModel)]="item.title"
-                      (ngModelChange)="globalChange()"
-                      (blur)="change()"
-                      />
-                    <div class="tile-info" (click)="openTileInfo(item)"></div>
-                  </div>
-                } @else {
+              id="zone"
+              cdkDropZone
+              [cdkDropListData]="{ list: groups[0].list, index: 0 }"
+              (cdkDropListDropped)="drop(groups[0].list, $event)"
+              class="zone-classement"
+              (dblclick)="createTile($event)"
+              (auxclick)="stopEvent($event)"
+            >
+              @if (options.groups?.length) {
+                @if (options.mode === 'iceberg') {
+                  <zone-area [groups]="options.groups"></zone-area>
+                }
+                @if (options.mode === 'axis') {
+                  <zone-axis [groups]="options.groups"></zone-axis>
+                }
+              }
+              @for (item of groups[0].list; track trackByFnFileString(index, item); let index = $index) {
+                <div
+                  class="content-box"
+                  cdkDragElement
+                  cdkDragBoundary=".zone-classement"
+                  #element="cdkDragElement"
+                  (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
+                  (cdkDragMoved)="moveItem($event, item, element)"
+                  removeTile
+                  (removeElement)="removeFromZone(groups[0], index)"
+                  [style.--over-item-background]="item.bgColor"
+                  [style.--over-item-text-color]="item.txtColor"
+                >
                   <div
                     class="content content-render"
                     [ngClass]="options.itemTextPosition"
+                    [class.with-annotation]="item.annotation"
+                    [id]="item.id"
                     #tile
-                    [style.width.px]="calcWidth(item, tile)"
-                    >
+                  >
                     @if (item.url) {
-                      <div class="image">
+                      <div [class.image]="calcWidth(item, tile)">
                         <img
-                          (ngInit)="detectChanges()"
-                          (load)="detectChanges()"
+                          (ngInit)="calcWidth(item, tile); detectChanges()"
+                          (load)="calcWidth(item, tile); detectChanges()"
                           src="{{ item.url }}"
                           alt="{{ item.name }}"
-                          />
+                        />
                       </div>
                     }
                     @if (item.title) {
-                      <div
-                        #title
-                        class="title"
-                        [class.title-item-width-auto]="options.itemWidthAuto"
-                        >
+                      <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
                         <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
                       </div>
                     }
+                    <div class="tile-info" (click)="openTileInfo(item)"></div>
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
-          }
-          @if (list.length === 0) {
-            <div
-              class="drop-zone-empty-list"
-              cdkDropList
-              cdkDropListOrientation="horizontal"
-              [cdkDropListData]="{ list: list, index: 0 }"
-              (cdkDropListDropped)="drop(list, $event)"
-            ></div>
-          }
-          <div class="content-box add-file" (click)="addFiles()">
-            <span>{{ 'generator.ranking.add.image' | translate }}</span>
           </div>
-          <div class="content-box add-text" (click)="addTextsDialog()">
-            <span>{{ 'generator.ranking.add.text' | translate }}</span>
+        }
+        @if (options.mode === 'iceberg' || options.mode === 'axis') {
+          <div class="help">
+            <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
+            <ul>
+              <li>{{ 'generator.help.zone.central.click' | translate }}</li>
+              <li>{{ 'generator.help.zone.double.click' | translate }}</li>
+            </ul>
+          </div>
+        }
+        <div class="current-list">
+          <div class="drop-image-message">
+            <span>{{ 'generator.ranking.drop.image' | translate }}</span>
+            @if (scrollArrows) {
+              <span class="arrows">⇄</span>
+            }
+          </div>
+          <div
+            class="drop-list"
+            id="list"
+            #currentList
+            [attr.dir]="options.direction"
+            [class.height-auto]="options.itemHeightAuto"
+          >
+            @for (item of list; track trackByFnFileString(index, item); let index = $index) {
+              <div
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                [cdkDropListData]="{ list: list, index: index }"
+                (cdkDropListDropped)="drop(list, $event)"
+                [style.--over-item-background]="item.bgColor"
+                [style.--over-item-text-color]="item.txtColor"
+              >
+                <div class="content-box" cdkDrag>
+                  @if (!options.streamMode) {
+                    <div
+                      #tile
+                      class="content"
+                      [class.with-annotation]="item.annotation"
+                      [style.width.px]="calcWidthEdit(item, tile)"
+                    >
+                      <button class="btn-delete" (click)="removeItem(index)">×</button>
+                      <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
+                      <input
+                        class="input-title"
+                        input="text"
+                        maxlength="150"
+                        [(ngModel)]="item.title"
+                        (ngModelChange)="globalChange()"
+                        (blur)="change()"
+                      />
+                      <div class="tile-info" (click)="openTileInfo(item)"></div>
+                    </div>
+                  } @else {
+                    <div
+                      class="content content-render"
+                      [ngClass]="options.itemTextPosition"
+                      #tile
+                      [style.width.px]="calcWidth(item, tile)"
+                    >
+                      @if (item.url) {
+                        <div class="image">
+                          <img
+                            (ngInit)="detectChanges()"
+                            (load)="detectChanges()"
+                            src="{{ item.url }}"
+                            alt="{{ item.name }}"
+                          />
+                        </div>
+                      }
+                      @if (item.title) {
+                        <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+            @if (list.length === 0) {
+              <div
+                class="drop-zone-empty-list"
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                [cdkDropListData]="{ list: list, index: 0 }"
+                (cdkDropListDropped)="drop(list, $event)"
+              ></div>
+            }
+            <div class="content-box add-file" (click)="addFiles()">
+              <span>{{ 'generator.ranking.add.image' | translate }}</span>
+            </div>
+            <div class="content-box add-text" (click)="addTextsDialog()">
+              <span>{{ 'generator.ranking.add.text' | translate }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <see-classement
-      class="render"
-      [options]="options"
-      [groups]="groups"
-      [list]="list"
-      [withAnnotation]="false"
-      [imagesCache]="imagesCache"
-    ></see-classement>
-  </div>
-}
-<div>
-  <div class="save-actions buttons">
-    <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-      @if (!exportImageLoading) {
-        <span class="icon-share"></span>
-      }
-      @if (exportImageLoading) {
-        <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
-      }
-      {{ 'generator.actions.export.image' | translate }}
-    </button>
-  </div>
-
-  <div class="save-actions buttons">
-    <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
-      {{ 'generator.actions.save.local' | translate }}
-      <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
-    </button>
-    <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
-      {{ 'generator.actions.export.json' | translate }}
-    </button>
-    <button class="primary" (click)="dialogImport.open()">
-      {{ 'generator.actions.import.json' | translate }}
-    </button>
-    <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-      {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
-    </button>
-    @if (options && hasItems) {
-      <label class="line">
-        <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-        {{ 'generator.actions.save.local.auto' | translate }}
-      </label>
-    }
-  </div>
-  @if (apiActive) {
-    <div class="save-actions buttons">
-      @if (logged) {
-        <button [disabled]="!id" class="primary" (click)="copyLink()">
-          🔗 {{ 'generator.ranking.share.link' | translate }}
-        </button>
-      }
-      @if (logged) {
-        <button [disabled]="!id" class="primary" (click)="show()">
-          {{ 'generator.ranking.see' | translate }}
-        </button>
-      }
-      <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
-        {{ 'generator.actions.save.server' | translate }}
-      </button>
+      <see-classement
+        class="render"
+        [options]="options"
+        [groups]="groups"
+        [list]="list"
+        [withAnnotation]="false"
+        [imagesCache]="imagesCache"
+      ></see-classement>
     </div>
   }
+  <div>
+    <div class="save-actions buttons">
+      <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+        @if (!exportImageLoading) {
+          <span class="icon-share"></span>
+        }
+        @if (exportImageLoading) {
+          <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+        }
+        {{ 'generator.actions.export.image' | translate }}
+      </button>
+    </div>
 
-  <div class="save-actions buttons">
-    <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
-      {{ 'generator.actions.reset.groups.button' | translate }}
-    </button>
+    <div class="save-actions buttons">
+      <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
+        {{ 'generator.actions.save.local' | translate }}
+        <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
+      </button>
+      <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
+        {{ 'generator.actions.export.json' | translate }}
+      </button>
+      <button class="primary" (click)="dialogImport.open()">
+        {{ 'generator.actions.import.json' | translate }}
+      </button>
+      <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
+        {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
+      </button>
+      @if (options && hasItems) {
+        <label class="line">
+          <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
+          {{ 'generator.actions.save.local.auto' | translate }}
+        </label>
+      }
+    </div>
+    @if (apiActive) {
+      <div class="save-actions buttons">
+        @if (logged) {
+          <button [disabled]="!id" class="primary" (click)="copyLink()">
+            🔗 {{ 'generator.ranking.share.link' | translate }}
+          </button>
+        }
+        @if (logged) {
+          <button [disabled]="!id" class="primary" (click)="show()">
+            {{ 'generator.ranking.see' | translate }}
+          </button>
+        }
+        <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
+          {{ 'generator.actions.save.server' | translate }}
+        </button>
+      </div>
+    }
+
+    <div class="save-actions buttons">
+      <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
+        {{ 'generator.actions.reset.groups.button' | translate }}
+      </button>
+    </div>
   </div>
-</div>
 </div>
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
@@ -538,12 +521,10 @@
             <div
               class="content content-render"
               [ngClass]="options.itemTextPosition"
-                        [style.width.px]="
-                            options.itemWidthAuto
-                                ? ((item.width || 150) / (item.height || 150)) * options.itemHeight
-                                : null
-                        "
-              >
+              [style.width.px]="
+                options.itemWidthAuto ? ((item.width || 150) / (item.height || 150)) * options.itemHeight : null
+              "
+            >
               @if (item.url) {
                 <div class="image">
                   <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
@@ -608,29 +589,23 @@
         [(ngModel)]="currentGroup.group.bgColor"
         (ngModelChange)="globalChange()"
         #inputBgColorGroup
-        />
+      />
       <input
         class="color group-options"
         type="color"
         [(ngModel)]="currentGroup.group.txtColor"
         (ngModelChange)="globalChange()"
         #inputTxtColorGroup
-        />
+      />
     </div>
     <div class="button-actions">
       @if (!currentGroup.first) {
-        <button
-          class="button-up group-options"
-          (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()"
-          >
+        <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()">
           ↑
         </button>
       }
       @if (!currentGroup.last) {
-        <button
-          class="button-down group-options"
-          (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()"
-          >
+        <button class="button-down group-options" (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()">
           ↓
         </button>
       }
@@ -638,14 +613,11 @@
         <button
           class="button-suppr group-options"
           (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
-          >
+        >
           {{ 'generator.line.delete' | translate }}
         </button>
       }
-      <button
-        class="button-add group-options"
-        (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()"
-        >
+      <button class="button-add group-options" (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()">
         {{ 'generator.line.add' | translate }}
       </button>
     </div>

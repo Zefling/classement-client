@@ -16,7 +16,7 @@
             [(ngModel)]="filter"
             #inputFilter
             [class.empty]="filter === ''"
-            />
+          />
           <span (click)="updateFilter(inputFilter)"></span>
         </div>
       </div>
@@ -27,7 +27,7 @@
         [sortable]="user.classements"
         [sortable-filter-input]="inputFilter"
         [sortable-filter]="sortableFilter"
-        >
+      >
         @if (user.classements?.length) {
           <table>
             <thead>
@@ -37,23 +37,23 @@
                 </th>
                 <th
                   class="mode"
-                            [sort-rule]="{
-                                type: 'translate',
-                                attr: 'mode',
-                                translate: 'mode.name.%value%',
-                                default: 'default'
-                            }"
-                  >
+                  [sort-rule]="{
+                    type: 'translate',
+                    attr: 'mode',
+                    translate: 'mode.name.%value%',
+                    default: 'default'
+                  }"
+                >
                   {{ 'list.mode.name' | translate }}
                 </th>
                 <th
                   class="category"
-                            [sort-rule]="{
-                                type: 'translate',
-                                attr: 'category',
-                                translate: 'category.%value%'
-                            }"
-                  >
+                  [sort-rule]="{
+                    type: 'translate',
+                    attr: 'category',
+                    translate: 'category.%value%'
+                  }"
+                >
                   {{ 'list.category.name' | translate }}
                 </th>
                 <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
@@ -75,136 +75,129 @@
                     <div>
                       <a [routerLink]="['/navigate/view', classement.rankingId]">
                         {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
-                        >
-                      </div>
-                      <div class="category-rwd">
-                        {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }} |
-                        {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
-                      </div>
-                      @if (classement.data.options.tags?.length) {
-                        <div class="tags">
-                          <tag-list
-                            [tags]="classement.data.options.tags"
-                            readOnly
-                            allowTagClick
-                            (tagClick)="tagClick($event, inputFilter)"
-                          ></tag-list>
-                        </div>
-                      }
-                      <div>
-                        @if (classement.localId && localIds.includes(classement.localId)) {
-                          <a
-                            class="from"
-                            [tooltip]="'list.local.link' | translate: { id: classement.localId }"
-                            [routerLink]="['/edit', classement.localId]"
-                            >➡ <span class="icon-browser"></span
-                          ></a>
-                        }
-                        @if (classement.hidden) {
-                          <span
-                            class="private"
-                            [tooltip]="'list.hide.note' | translate"
-                            >
-                            <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
-                          </span>
-                        }
-                        @if (classement.password === 'true') {
-                          <span class="password">
-                            {{ 'list.status.with.password' | translate }}
-                          </span>
-                        }
-                      </div>
-                    </td>
-                    <td class="mode">
-                      {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }}
-                    </td>
-                    <td class="category">
+                      >
+                    </div>
+                    <div class="category-rwd">
+                      {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }} |
                       {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
-                    </td>
-                    <td class="date">
-                      <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                      <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
-                    </td>
-                    <td class="groups">{{ classement.totalGroups }}</td>
-                    <td class="items">{{ classement.totalItems }}</td>
-                    <td class="actions">
-                      <button
-                        class="primary"
-                        [routerLink]="'/edit/' + classement.rankingId"
-                        title="{{ 'list.action.edit' | translate }}"
-                        >
-                        <span class="icon-edit"></span>
-                      </button>
-                      <button
-                        (click)="action(classement, 'change')"
-                                title="  {{
-                                    (!classement?.hidden ? 'list.hide.private' : 'list.show.public') | translate
-                                }}"
-                        >
-                        <span
-                          class=" {{ !classement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"
-                        ></span>
-                      </button>
-                      <button
-                        class="warn"
-                        (click)="action(classement, 'delete')"
-                        title="{{ 'list.action.remove' | translate }}"
-                        >
-                        <span class="icon-remove"></span>
-                      </button>
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          } @else {
-            <p class="no-result">{{ 'list.no.result' | translate }}</p>
-            <p>
-              <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
-            </p>
-          }
-        </ng-container>
-      }
-    </tab-content>
+                    </div>
+                    @if (classement.data.options.tags && classement.data.options.tags.length) {
+                      <div class="tags">
+                        <tag-list
+                          [tags]="classement.data.options.tags"
+                          readOnly
+                          allowTagClick
+                          (tagClick)="tagClick($event, inputFilter)"
+                        ></tag-list>
+                      </div>
+                    }
+                    <div>
+                      @if (classement.localId && localIds.includes(classement.localId)) {
+                        <a
+                          class="from"
+                          [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                          [routerLink]="['/edit', classement.localId]"
+                          >➡ <span class="icon-browser"></span
+                        ></a>
+                      }
+                      @if (classement.hidden) {
+                        <span class="private" [tooltip]="'list.hide.note' | translate">
+                          <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
+                        </span>
+                      }
+                      @if (classement.password === 'true') {
+                        <span class="password">
+                          {{ 'list.status.with.password' | translate }}
+                        </span>
+                      }
+                    </div>
+                  </td>
+                  <td class="mode">
+                    {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }}
+                  </td>
+                  <td class="category">
+                    {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                  </td>
+                  <td class="date">
+                    <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+                    <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                  </td>
+                  <td class="groups">{{ classement.totalGroups }}</td>
+                  <td class="items">{{ classement.totalItems }}</td>
+                  <td class="actions">
+                    <button
+                      class="primary"
+                      [routerLink]="'/edit/' + classement.rankingId"
+                      title="{{ 'list.action.edit' | translate }}"
+                    >
+                      <span class="icon-edit"></span>
+                    </button>
+                    <button
+                      (click)="action(classement, 'change')"
+                      title="  {{ (!classement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}"
+                    >
+                      <span class=" {{ !classement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
+                    </button>
+                    <button
+                      class="warn"
+                      (click)="action(classement, 'delete')"
+                      title="{{ 'list.action.remove' | translate }}"
+                    >
+                      <span class="icon-remove"></span>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p class="no-result">{{ 'list.no.result' | translate }}</p>
+          <p>
+            <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+          </p>
+        }
+      </ng-container>
+    }
+  </tab-content>
 
-    <!-- browser -->
-    <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
-    <tab-content id="browser">
-      <classement-list [pageMode]="false"></classement-list>
-    </tab-content>
-  </tabs>
+  <!-- browser -->
+  <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
+  <tab-content id="browser">
+    <classement-list [pageMode]="false"></classement-list>
+  </tab-content>
+</tabs>
 
-  <dialog-cmp class="auto-format" #dialogActionsClassement>
-    <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+<dialog-cmp class="auto-format" #dialogActionsClassement>
+  <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
 
+  <div class="buttons">
+    <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
+  </div>
+
+  @if (currentAction === 'change') {
+    <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
     <div class="buttons">
-      <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
+      <button
+        (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
+        [class.warn]="!currentClassement?.hidden"
+        [class.primary]="currentClassement?.hidden"
+      >
+        <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
+        <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
+      </button>
     </div>
+    <div class="note">
+      {{ 'list.hide.note' | translate }}<br />
+      {{ 'list.hide.note2' | translate }}
+    </div>
+  }
 
-    @if (currentAction === 'change') {
-      <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
-      <div class="buttons">
-        <button
-          (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
-          [class.warn]="!currentClassement?.hidden"
-          [class.primary]="currentClassement?.hidden"
-          >
-          <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
-          <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
-        </button>
-      </div>
-      <div class="note">
-        {{ 'list.hide.note' | translate }}<br />
-        {{ 'list.hide.note2' | translate }}
-      </div>
-    }
-
-    @if (currentAction === 'delete') {
-      <h3>{{ 'list.delete.question' | translate }}</h3>
-      <div>
-        <button (click)="actionForCurrentClassement('delete')" class="warn">
-          {{ 'list.delete.delete' | translate }}
-        </button>
-      </div>
-    }
-  </dialog-cmp>
+  @if (currentAction === 'delete') {
+    <h3>{{ 'list.delete.question' | translate }}</h3>
+    <div>
+      <button (click)="actionForCurrentClassement('delete')" class="warn">
+        {{ 'list.delete.delete' | translate }}
+      </button>
+    </div>
+  }
+</dialog-cmp>

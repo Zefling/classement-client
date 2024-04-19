@@ -13,21 +13,15 @@
     <h3 class="name">
       <span>{{ classement.name }}</span>
       @if (classement.historyId) {
-        <span class="history">{{
-          'generator.actions.history.warning' | translate
-        }}</span>
+        <span class="history">{{ 'generator.actions.history.warning' | translate }}</span>
       }
     </h3>
     <div class="category">
       {{ 'category.' + (classement.category || 'undefined') | translate }}
     </div>
     <div class="groups">
-      <div [title]="'list.count.group' | translate">
-        <span class="icon-group"></span> {{ classement.totalGroups }}
-      </div>
-      <div [title]="'list.count.item' | translate">
-        <span class="icon-tile"></span> {{ classement.totalItems }}
-      </div>
+      <div [title]="'list.count.group' | translate"><span class="icon-group"></span> {{ classement.totalGroups }}</div>
+      <div [title]="'list.count.item' | translate"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
       <div class="mode">
         {{ 'mode.name.' + (classement.mode || 'default') | translate }}
       </div>
@@ -58,20 +52,20 @@
     <div class="dates">
       <div class="date">
         {{
-        'generator.ranking.create'
-        | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+          'generator.ranking.create'
+            | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
         }}
       </div>
       @if (classement.dateChange) {
         <div class="date">
           {{
-          'generator.ranking.change'
-          | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+            'generator.ranking.change'
+              | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
           }}
         </div>
       }
     </div>
-    @if (classement.data.options.tags?.length) {
+    @if (classement.data.options.tags && classement.data.options.tags.length) {
       <div class="tags">
         <span>{{ 'generator.options.tags' | translate }}</span>
         <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
@@ -81,12 +75,12 @@
       @if (!currentUser) {
         <button (click)="openClassementFork()" class="primary">
           {{
-          (!apiActive
-          ? 'generator.actions.edit.local.empty'
-          : !logged
-          ? 'generator.actions.make.my.derivative.empty'
-          : 'generator.actions.new.derivative.empty'
-          ) | translate
+            (!apiActive
+              ? 'generator.actions.edit.local.empty'
+              : !logged
+                ? 'generator.actions.make.my.derivative.empty'
+                : 'generator.actions.new.derivative.empty'
+            ) | translate
           }}
         </button>
       }
@@ -100,93 +94,91 @@
       ) | translate
       }}
     </button> -->
+    </div>
+    <div class="buttons">
+      @if (classement.withHistory) {
+        <button (click)="seeHistory()" class="primary">
+          {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
+        </button>
+      }
+      @if (myClassement && !currentUser) {
+        <button (click)="seeMyClassement()" class="primary">
+          {{
+            (myClassementCount > 1 ? 'generator.actions.see.my.last.derivative' : 'generator.actions.see.my.derivative')
+              | translate
+          }}
+        </button>
+      }
+      @if (myClassement) {
+        <button (click)="openMyClassement()" class="primary">
+          {{
+            (myClassementCount > 1
+              ? 'generator.actions.edit.my.last.derivative'
+              : 'generator.actions.edit.my.derivative'
+            ) | translate
+          }}
+        </button>
+      }
+      @if (myClassementCount > 1) {
+        <button (click)="seeMyClassements()" class="primary">
+          {{ 'navigate.my.derivatives' | translate }}
+        </button>
+      }
+      @if (myClassementCount > 1) {
+        <div class="note">
+          {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
+        </div>
+      }
+    </div>
   </div>
-  <div class="buttons">
-    @if (classement.withHistory) {
-      <button (click)="seeHistory()" class="primary">
-        {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
-      </button>
-    }
-    @if (myClassement && !currentUser) {
-      <button (click)="seeMyClassement()" class="primary">
-        {{
-        (myClassementCount > 1
-        ? 'generator.actions.see.my.last.derivative'
-        : 'generator.actions.see.my.derivative'
-        ) | translate
-        }}
-      </button>
-    }
-    @if (myClassement) {
-      <button (click)="openMyClassement()" class="primary">
-        {{
-        (myClassementCount > 1
-        ? 'generator.actions.edit.my.last.derivative'
-        : 'generator.actions.edit.my.derivative'
-        ) | translate
-        }}
-      </button>
-    }
-    @if (myClassementCount > 1) {
-      <button (click)="seeMyClassements()" class="primary">
-        {{ 'navigate.my.derivatives' | translate }}
-      </button>
-    }
-    @if (myClassementCount > 1) {
-      <div class="note">
-        {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
-      </div>
-    }
+  <div class="save-actions buttons">
+    <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | translate }}</button>
+    <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+      @if (!exportImageDisabled) {
+        <span class="icon-share"></span>
+      }
+      @if (exportImageDisabled) {
+        <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+      }
+      {{ 'generator.actions.export.image' | translate }}
+    </button>
   </div>
-</div>
-<div class="save-actions buttons">
-  <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | translate }}</button>
-  <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-    @if (!exportImageDisabled) {
-      <span class="icon-share"></span>
-    }
-    @if (exportImageDisabled) {
-      <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
-    }
-    {{ 'generator.actions.export.image' | translate }}
-  </button>
-</div>
-@if (!exportImageDisabled) {
-  <see-classement
-    class="render"
-    [options]="classement.data.options"
-    [groups]="classement.data.groups"
-    [list]="classement.data.list"
-    [imagesCache]="imagesCache"
-  ></see-classement>
-}
-<div [ngClass]="classScreenMode" #div>
-  <div class="classement-top">
-    <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
-    @if (classScreenMode !== 'default') {
-      <button (click)="screenMode('default', div)">
-        {{ 'generator.screen.default' | translate }}
-      </button>
-    }
-    @if (classScreenMode !== 'enlarge') {
-      <button (click)="screenMode('enlarge', div)">
-        {{ 'generator.screen.window' | translate }}
-      </button>
-    }
-    @if (classScreenMode !== 'fullscreen') {
-      <button (click)="screenMode('fullscreen', div)">
-        {{ 'generator.screen.fullscreen' | translate }}
-      </button>
-    }
+  @if (!exportImageDisabled) {
+    <see-classement
+      class="render"
+      [options]="classement.data.options"
+      [groups]="classement.data.groups"
+      [list]="classement.data.list"
+      [imagesCache]="imagesCache"
+    ></see-classement>
+  }
+  <div [ngClass]="classScreenMode" #div>
+    <div class="classement-top">
+      <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+      @if (classScreenMode !== 'default') {
+        <button (click)="screenMode('default', div)">
+          {{ 'generator.screen.default' | translate }}
+        </button>
+      }
+      @if (classScreenMode !== 'enlarge') {
+        <button (click)="screenMode('enlarge', div)">
+          {{ 'generator.screen.window' | translate }}
+        </button>
+      }
+      @if (classScreenMode !== 'fullscreen') {
+        <button (click)="screenMode('fullscreen', div)">
+          {{ 'generator.screen.fullscreen' | translate }}
+        </button>
+      }
+    </div>
+    <see-classement
+      class="preview"
+      [options]="classement.data.options"
+      [groups]="classement.data.groups"
+      [list]="classement.data.list"
+      withAnnotation
+    ></see-classement>
   </div>
-  <see-classement
-    class="preview"
-    [options]="classement.data.options"
-    [groups]="classement.data.groups"
-    [list]="classement.data.list"
-    withAnnotation
-  ></see-classement>
-</div>
 }
 
 @if (loading) {
@@ -219,9 +211,7 @@
       </thead>
       <tbody>
         @for (derivative of myClassements; track derivative) {
-          <tr
-            [class.current]="derivative.rankingId === classement?.rankingId"
-            >
+          <tr [class.current]="derivative.rankingId === classement?.rankingId">
             <td class="title">
               {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
             </td>
@@ -233,10 +223,7 @@
             <td class="items">{{ derivative.totalItems }}</td>
             <td class="actions">
               @if (derivative.rankingId !== classement?.rankingId) {
-                <button
-                  class="primary"
-                  (click)="loadDerivativeClassement(derivative)"
-                  >
+                <button class="primary" (click)="loadDerivativeClassement(derivative)">
                   {{ 'generator.actions.see.this.derivative' | translate }}
                 </button>
               }
@@ -293,10 +280,7 @@
             </td>
             <td class="actions">
               @if (item.id !== classement.historyId) {
-                <button
-                  class="primary"
-                  (click)="loadHistoryClassement(item)"
-                  >
+                <button class="primary" (click)="loadHistoryClassement(item)">
                   {{ 'generator.actions.see.this.derivative' | translate }}
                 </button>
               }

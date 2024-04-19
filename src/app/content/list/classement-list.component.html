@@ -19,7 +19,7 @@
         [(ngModel)]="filter"
         #filterInput
         [class.empty]="filter === ''"
-        />
+      />
       <span (click)="updateFilter(filterInput)"></span>
     </div>
     <button class="primary" (click)="exportAll()">
@@ -32,7 +32,7 @@
 </div>
 
 <ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
-  @if (result?.length) {
+  @if (result && result.length) {
     <table>
       <thead>
         <tr>
@@ -41,19 +41,19 @@
           </th>
           <th
             class="mode"
-                    [sort-rule]="{
-                        type: 'translate',
-                        attr: 'options.mode',
-                        translate: 'mode.name.%value%',
-                        default: 'default'
-                    }"
-            >
+            [sort-rule]="{
+              type: 'translate',
+              attr: 'options.mode',
+              translate: 'mode.name.%value%',
+              default: 'default'
+            }"
+          >
             {{ 'list.mode.name' | translate }}
           </th>
           <th
             class="category"
             [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
-            >
+          >
             {{ 'list.category.name' | translate }}
           </th>
           <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
@@ -79,7 +79,7 @@
                 {{ 'mode.name.' + (item.options.mode || 'default') | translate }} |
                 {{ 'category.' + (item.options.category || 'undefined') | translate }}
               </div>
-              @if (item.options.tags?.length) {
+              @if (item.options.tags && item.options.tags.length) {
                 <div class="tags">
                   <tag-list
                     [tags]="item.options.tags"
@@ -103,21 +103,13 @@
             <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | translate }}</td>
             <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
             <td class="date">
-              <span>{{
-                item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | translate)
-              }}</span>
-              <span>{{
-                item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | translate)
-              }}</span>
+              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
+              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | translate) }}</span>
             </td>
             <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
             <td class="items">{{ item.listLength || item.listLenght }}</td>
             <td class="actions">
-              <button
-                class="primary"
-                [routerLink]="'/edit/' + item.id"
-                title="{{ 'list.action.edit' | translate }}"
-                >
+              <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | translate }}">
                 <span class="icon-edit"></span>
               </button>
               <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
@@ -138,7 +130,6 @@
     </p>
   }
 </ng-container>
-
 
 <dialog-cmp #dialogImport class="auto-format">
   <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>

@@ -8,7 +8,7 @@
         type="text"
         [(ngModel)]="currentTile.title"
         (ngModelChange)="detectChanges()"
-        />
+      />
     </div>
     <div>
       <label for="tile-annotation">{{ 'generator.ranking.annotation' | translate }}</label> <br />
@@ -18,7 +18,7 @@
         id="tile-annotation"
         [(ngModel)]="currentTile.annotation"
         (ngModelChange)="globalChange()"
-        >
+      >
       </textarea>
     </div>
     <div>
@@ -57,7 +57,7 @@
             id="tile-bg-color"
             type="color"
             [(ngModel)]="currentTile.bgColor"
-            />
+          />
         </div>
         <div
           [title]="'generator.ranking.tile.color.remove' | translate"
@@ -89,7 +89,7 @@
             id="tile-text-color"
             type="color"
             [(ngModel)]="currentTile.txtColor"
-            />
+          />
         </div>
         <div
           [title]="'generator.ranking.text.color.remove' | translate"
@@ -112,24 +112,16 @@
         <div class="position">
           <div class="label">{{ 'generator.ranking.tile.position' | translate }}</div>
           <div class="new-color">
-            <button
-              [title]="'generator.ranking.tile.position.top' | translate"
-              (click)="tileZIndex('top')"
-              class="top"
-              >
+            <button [title]="'generator.ranking.tile.position.top' | translate" (click)="tileZIndex('top')" class="top">
               <span>↑</span>
             </button>
-            <button [title]="'generator.ranking.tile.position.up' | translate" (click)="tileZIndex('up')">
-              ↑
-            </button>
-            <button [title]="'generator.ranking.tile.position.down' | translate" (click)="tileZIndex('down')">
-              ↓
-            </button>
+            <button [title]="'generator.ranking.tile.position.up' | translate" (click)="tileZIndex('up')">↑</button>
+            <button [title]="'generator.ranking.tile.position.down' | translate" (click)="tileZIndex('down')">↓</button>
             <button
               [title]="'generator.ranking.tile.position.bottom' | translate"
               (click)="tileZIndex('bottom')"
               class="bottom"
-              >
+            >
               <span>↓</span>
             </button>
           </div>
@@ -185,7 +177,7 @@
                   value="0"
                   (focus)="changeRatio(99, ratioInput.value)"
                   (input)="changeRatio(99, ratioInput.value)"
-                  />
+                />
                 <div class="sub-input">{{ 'generator.ranking.image.ratio.help' | translate }}</div>
               </div>
             </div>

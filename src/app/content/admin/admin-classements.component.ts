@@ -115,8 +115,8 @@ export class AdminClassementsComponent implements OnDestroy {
             for (let classement of classements) {
                 for (let page in this.classements) {
                     this.classements[page]?.forEach((c, index) => {
-                        if (classement.rankingId === c.rankingId) {
-                            this.classements[page][index] = classement;
+                        if (classement.rankingId === c.rankingId && this.classements[page]) {
+                            this.classements[page]![index] = classement;
                         }
                     });
                 }

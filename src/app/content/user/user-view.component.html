@@ -25,12 +25,7 @@
     </div>
     <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
     @if (user.classements) {
-      <navigate-result
-        [classements]="user.classements"
-        hideDerivatives
-        hideUser
-        onlyRanking
-      ></navigate-result>
+      <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
     } @else {
       <div>
         {{ 'user.profile.view.empty' | translate }}

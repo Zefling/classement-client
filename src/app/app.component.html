@@ -13,12 +13,7 @@
   <div class="menu" [class.main-menu-reduce]="preferencesForm?.get('mainMenuReduce')?.value">
     <ul>
       <li class="section-top" [title]="'menu.home' | translate">
-        <a
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          (click)="toggleMenu()"
-          >
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()">
           <span class="icon icon-home"></span>
           <span>{{ 'menu.home' | translate }}</span>
         </a>
@@ -30,7 +25,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="toggleMenu()"
-            >
+          >
             <span class="icon icon-bookmark"></span>
             <span>{{ 'menu.list' | translate }}</span>
           </a>
@@ -44,7 +39,7 @@
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: false }"
               (click)="toggleMenu()"
-              >
+            >
               <span class="icon icon-bookmark"></span>
               <span>{{ 'menu.my.lists' | translate }}</span>
             </a>
@@ -56,7 +51,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
             (click)="toggleMenu()"
-            >
+          >
             <span class="icon icon-public-search"></span>
             <span>{{ 'menu.navigate' | translate }}</span>
           </a>
@@ -69,16 +64,13 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true, queryParams: 'ignored' }"
             (click)="toggleMenu()"
-            >
+          >
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | translate }}</span>
           </a>
         }
         @if (preferencesForm?.get('mode')?.value === 'choice') {
-          <a
-            (click)="openChoice($event)"
-            [class.active]="routerUrl.startsWith('/edit/new')"
-            >
+          <a (click)="openChoice($event)" [class.active]="routerUrl.startsWith('/edit/new')">
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | translate }}</span>
           </a>
@@ -97,7 +89,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: false }"
             (click)="toggleMenu()"
-            >
+          >
             <span class="icon icon-admin"></span>
             <span>{{ 'menu.admin' | translate }}</span>
           </a>
@@ -111,7 +103,7 @@
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="toggleMenu()"
-              >
+            >
               <span class="icon icon-profile"></span>
               <span>{{ 'menu.profile' | translate }}</span>
             </a>
@@ -124,7 +116,7 @@
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="toggleMenu()"
-              >
+            >
               <span class="icon icon-login"></span>
               <span>{{ 'menu.login' | translate }}</span>
             </a>
@@ -137,7 +129,7 @@
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
               (click)="toggleMenu()"
-              >
+            >
               <span class="icon icon-signup"></span>
               <span>{{ 'menu.sign-up' | translate }}</span>
             </a>
@@ -157,7 +149,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="toggleMenu()"
-            >
+          >
             <span class="icon icon-info"></span>
             <span>{{ 'menu.information' | translate }}</span>
           </a>
@@ -170,7 +162,7 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           (click)="toggleMenu()"
-          >
+        >
           <span class="icon icon-licenses"></span>
           <span>{{ 'menu.licenses' | translate }}</span>
         </a>
@@ -179,10 +171,8 @@
     <div
       class="menu-mode"
       (click)="toggleResizeMenu()"
-            [title]="
-                (preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand') | translate
-            "
-      >
+      [title]="(preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand') | translate"
+    >
       <span
         class="icon"
         [class.icon-reduce]="!preferencesForm?.get('mainMenuReduce')?.value"
@@ -214,12 +204,7 @@
 <dialog-cmp class="auto-format mode-dialog" #choice closeBackdrop>
   <h2 class="title">{{ 'generator.choice.title' | translate }}</h2>
   <menu class="choice-mode">
-    <li
-      (click)="beginNew('default')"
-      (mouseenter)="_modeTemp = 'default'"
-      (mouseleave)="_modeTemp = ''"
-      tabIndex="0"
-      >
+    <li (click)="beginNew('default')" (mouseenter)="_modeTemp = 'default'" (mouseleave)="_modeTemp = ''" tabIndex="0">
       <span class="icon-mode-tierlist"></span>
       <span>{{ 'mode.name.default' | translate }}</span>
     </li>
@@ -227,12 +212,7 @@
       <span class="icon-mode-teams"></span>
       <span>{{ 'mode.name.teams' | translate }}</span>
     </li>
-    <li
-      (click)="beginNew('iceberg')"
-      (mouseenter)="_modeTemp = 'iceberg'"
-      (mouseleave)="_modeTemp = ''"
-      tabIndex="0"
-      >
+    <li (click)="beginNew('iceberg')" (mouseenter)="_modeTemp = 'iceberg'" (mouseleave)="_modeTemp = ''" tabIndex="0">
       <span class="icon-mode-iceberg"></span>
       <span>{{ 'mode.name.iceberg' | translate }}</span>
     </li>
@@ -306,52 +286,52 @@
           ><input type="radio" formControlName="newLine" value="ask-me" />
           {{ 'preferences.group.new.line.ask.me' | translate }}
         </label> -->
-        <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
-        <label>
-          <input type="radio" formControlName="lineOption" value="auto" />
-          {{ 'preferences.group.line.option.auto' | translate }}
-        </label>
-        <label
-          ><input type="radio" formControlName="lineOption" value="reduce" />
-          {{ 'preferences.group.line.option.reduce' | translate }}
-        </label>
-        <label
-          ><input type="radio" formControlName="lineOption" value="hidden" />
-          {{ 'preferences.group.line.option.hidden' | translate }}
-        </label>
-        <h4>{{ 'preferences.mode.title' | translate }}</h4>
-        <select formControlName="mode">
-          <option value="choice">{{ 'mode.name.choice' | translate }}</option>
-          <option value="default">{{ 'mode.name.default' | translate }}</option>
-          <option value="teams">{{ 'mode.name.teams' | translate }}</option>
-          <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
-          <option value="axis">{{ 'mode.name.axis' | translate }}</option>
-        </select>
-        @if (preferencesForm.get('mode')?.value !== 'choice') {
-          <h4>{{ 'preferences.theme.title' | translate }}</h4>
-          <select formControlName="theme">
-            @for (theme of themes; track theme) {
-              <option [value]="theme">
-                {{ 'generator.theme.name.' + theme | translate }}
-              </option>
-            }
+          <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
+          <label>
+            <input type="radio" formControlName="lineOption" value="auto" />
+            {{ 'preferences.group.line.option.auto' | translate }}
+          </label>
+          <label
+            ><input type="radio" formControlName="lineOption" value="reduce" />
+            {{ 'preferences.group.line.option.reduce' | translate }}
+          </label>
+          <label
+            ><input type="radio" formControlName="lineOption" value="hidden" />
+            {{ 'preferences.group.line.option.hidden' | translate }}
+          </label>
+          <h4>{{ 'preferences.mode.title' | translate }}</h4>
+          <select formControlName="mode">
+            <option value="choice">{{ 'mode.name.choice' | translate }}</option>
+            <option value="default">{{ 'mode.name.default' | translate }}</option>
+            <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+            <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
+            <option value="axis">{{ 'mode.name.axis' | translate }}</option>
           </select>
-        }
-      </tab-content>
-      <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
-      <tab-content id="api" formGroupName="authApiKeys">
-        <label>{{ 'preferences.imdb.key' | translate }} </label>
-        <input type="text" formControlName="imdb" />
-        <div class="info">
-          <span class="icon-info"></span>
-          Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
-          <a href="https://www.themoviedb.org/settings/api">API</a>
-        </div>
-      </tab-content>
-    </tabs>
-    <div class="buttons">
-      <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
-    </div>
-  </ng-container>
-}
+          @if (preferencesForm.get('mode')?.value !== 'choice') {
+            <h4>{{ 'preferences.theme.title' | translate }}</h4>
+            <select formControlName="theme">
+              @for (theme of themes; track theme) {
+                <option [value]="theme">
+                  {{ 'generator.theme.name.' + theme | translate }}
+                </option>
+              }
+            </select>
+          }
+        </tab-content>
+        <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
+        <tab-content id="api" formGroupName="authApiKeys">
+          <label>{{ 'preferences.imdb.key' | translate }} </label>
+          <input type="text" formControlName="imdb" />
+          <div class="info">
+            <span class="icon-info"></span>
+            Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
+            <a href="https://www.themoviedb.org/settings/api">API</a>
+          </div>
+        </tab-content>
+      </tabs>
+      <div class="buttons">
+        <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
+      </div>
+    </ng-container>
+  }
 </dialog-cmp>

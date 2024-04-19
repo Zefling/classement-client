@@ -10,7 +10,7 @@
         [(ngModel)]="searchKey"
         #filterInput
         [class.empty]="searchKey === '' || searchKey === undefined"
-        />
+      />
       <span (click)="resteFilter(filterInput)"></span>
     </div>
     <div class="line">
@@ -28,7 +28,7 @@
 }
 
 @if (!loading) {
-  @if (classements[page]?.length) {
+  @if (classements[page] && classements[page].length) {
     @if (total) {
       <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
     }

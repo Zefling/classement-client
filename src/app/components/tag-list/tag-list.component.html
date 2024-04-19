@@ -1,7 +1,7 @@
 @for (tag of tags; track tag) {
   <div [class.allow-tag-click]="allowTagClick" (click)="allowTagClick ? onTagClick(tag) : null">
-    <span class="tag">{{ tag }}</span
-      >@if (!readOnly) {
+    <span class="tag">{{ tag }}</span>
+    @if (!readOnly) {
       <button (click)="remove(tag)">×</button>
     }
   </div>

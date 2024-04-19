@@ -9,7 +9,7 @@
       [(ngModel)]="searchKey"
       #filterInput
       [class.empty]="searchKey === '' || searchKey === undefined"
-      />
+    />
     <span (click)="resteFilter(filterInput)"></span>
   </div>
   <div>
@@ -22,7 +22,7 @@
 }
 
 @if (!loading) {
-  @if (users[page]?.length) {
+  @if (users[page] && users[page].length) {
     @if (total) {
       <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
     }
@@ -33,18 +33,14 @@
           <th class="user sort" (click)="sortUpdate('username')">
             {{ 'list.user.name' | translate }}
             @if (sort === 'username') {
-              <span
-                class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"
-              ></span>
+              <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
           <th class="role">{{ 'list.roles.name' | translate }}</th>
           <th class="date sort" (click)="sortUpdate('dateCreate')">
             {{ 'list.date' | translate }}
             @if (sort === 'dateCreate') {
-              <span
-                class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"
-              ></span>
+              <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
           <th class="classements">{{ 'list.count.classements' | translate }}</th>
@@ -60,16 +56,11 @@
                   class="icon"
                   [class.icon-validated]="user.isValidated"
                   [class.icon-not-validated]="!user.isValidated"
-                            [title]="
-                                (user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate
-                            "
+                  [title]="(user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate"
                 ></span>
               }
               @if (user.deleted) {
-                <span
-                  class="icon icon-deleted"
-                  [title]="'list.status.deleted' | translate"
-                ></span>
+                <span class="icon icon-deleted" [title]="'list.status.deleted' | translate"></span>
               }
             </td>
             <td class="username" [class.anonymous]="!user.username">
