@@ -230,27 +230,25 @@ export class Utils {
             item.height = image?.naturalHeight;
         }
 
+        const itemHeight = options.itemHeight;
+        const itemMaxWidth = options.itemMaxWidth;
+        const itemWidthAuto = options.itemWidthAuto;
+
+        const width = item.width || 100;
+        const height = item.height || 100;
+        const titleHeight = title ? title.clientHeight + 3 : 0;
+        let targetHeight = height < itemHeight - titleHeight ? height : Math.min(height, itemHeight) - titleHeight;
+
+        console.log('targetHeight', height, targetHeight);
+
         if (tile) {
             tile.style.width =
-                options.itemWidthAuto && !item.title
-                    ? Math.round(
-                          Math.min(
-                              options.itemMaxWidth ?? 300,
-                              ((item.width || 100) / (item.height || 100)) * options.itemHeight,
-                          ),
-                      ) + 'px'
-                    : options.itemWidthAuto
+                itemWidthAuto && !item.title
+                    ? Math.round(Math.min(itemMaxWidth ?? 300, (width / height) * targetHeight)) + 'px'
+                    : itemWidthAuto
                       ? Math.min(
-                            options.itemMaxWidth ?? 300,
-                            Math.round(
-                                Math.max(
-                                    ((item.width || 100) / (item.height || 100)) * options.itemHeight -
-                                        (title && title.clientHeight > title.clientWidth
-                                            ? title.clientHeight || 16
-                                            : 0),
-                                    title?.clientWidth || 0,
-                                ),
-                            ),
+                            itemMaxWidth ?? 300,
+                            Math.round(Math.max((width / height) * targetHeight, title?.clientWidth || 0)),
                         ) + 'px'
                       : '';
         }
