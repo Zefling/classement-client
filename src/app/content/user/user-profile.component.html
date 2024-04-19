@@ -1,202 +1,241 @@
 <h1>{{ 'user.profile.title' | translate }}</h1>
 
-<div *ngIf="user">
+@if (user) {
+  <div>
     <div class="user">
-        <div class="avatar" (click)="avatarEdit()">
-            <span *ngIf="!user.avatar" class="icon icon-profile"></span>
-            <img *ngIf="user.avatar" [src]="user.avatarUrl" />
-        </div>
-        <div>
-            <strong>{{ 'user.profile.username' | translate }}</strong>
-            {{ user.username || ('list.user.anonymous' | translate) }}
-        </div>
-        <div>
-            <strong>{{ 'user.profile.since' | translate }}</strong>
-            {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
-        </div>
-        <div>
-            <strong>{{ 'user.profile.email' | translate }}</strong>
-            {{ user.email }}
-        </div>
+      <div class="avatar" (click)="avatarEdit()">
+        @if (!user.avatar) {
+          <span class="icon icon-profile"></span>
+        }
+        @if (user.avatar) {
+          <img [src]="user.avatarUrl" />
+        }
+      </div>
+      <div>
+        <strong>{{ 'user.profile.username' | translate }}</strong>
+        {{ user.username || ('list.user.anonymous' | translate) }}
+      </div>
+      <div>
+        <strong>{{ 'user.profile.since' | translate }}</strong>
+        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+      </div>
+      <div>
+        <strong>{{ 'user.profile.email' | translate }}</strong>
+        {{ user.email }}
+      </div>
     </div>
-
     <h2>{{ 'user.profile.actions' | translate }}</h2>
-
     <p class="action buttons">
-        <button (click)="changeUsername()">{{ 'user.profile.change.username' | translate }}</button>
-        <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
-        <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
-        <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
+      <button (click)="changeUsername()">{{ 'user.profile.change.username' | translate }}</button>
+      <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
+      <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
+      <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
     </p>
-
-    <ng-container *ngIf="user.classements">
-        <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
-        <div class="links">
-            <a
-                *ngIf="localSize"
-                routerLink="/user/lists/browser"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                >{{ 'user.profile.list.browser.tab' | translate }} ({{ localSize }})</a
+    @if (user.classements) {
+      <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
+      <div class="links">
+        @if (localSize) {
+          <a
+            routerLink="/user/lists/browser"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ 'user.profile.list.browser.tab' | translate }} ({{ localSize }})</a
             >
-            <span *ngIf="user.classements && localSize"> - </span>
+          }
+          @if (user.classements && localSize) {
+            <span> - </span>
+          }
+          @if (user.classements) {
             <a
-                *ngIf="user.classements"
-                routerLink="/user/lists/server"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                >{{ 'user.profile.list.server.tab' | translate }} ({{ user.classements.length }})</a
-            >
-        </div>
+              routerLink="/user/lists/server"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >{{ 'user.profile.list.server.tab' | translate }} ({{ user.classements.length }})</a
+              >
+            }
+          </div>
+          @if (user.classements) {
+            <navigate-result
+              [classements]="user.classements"
+              hideDerivatives
+              hideUser
+              onlyRanking
+            ></navigate-result>
+          }
+        }
+      </div>
+    }
 
-        <navigate-result
-            *ngIf="user.classements"
-            [classements]="user.classements"
-            hideDerivatives
-            hideUser
-            onlyRanking
-        ></navigate-result>
-    </ng-container>
-</div>
+    <dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
+      <p>{{ 'user.username.change' | translate }}</p>
 
-<dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
-    <p>{{ 'user.username.change' | translate }}</p>
-
-    <label for="username">{{ 'user.username.new' | translate }}</label>
-    <div class="validity-input">
+      <label for="username">{{ 'user.username.new' | translate }}</label>
+      <div class="validity-input">
         <input id="username" spellcheck="false" formControlName="username" />
         <span class="validity" [class.valid]="usernameValidity">
-            {{ usernameValidity !== undefined ? (usernameValidity ? 'Ｏ' : 'Ｘ') : '' }}
+          {{ usernameValidity !== undefined ? (usernameValidity ? 'Ｏ' : 'Ｘ') : '' }}
         </span>
-    </div>
+      </div>
 
-    <ul *ngIf="showError?.[0]" class="list-error">
-        <li *ngFor="let error of showError">{{ error }}</li>
-    </ul>
+      @if (showError?.[0]) {
+        <ul class="list-error">
+          @for (error of showError; track error) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      }
 
-    <div class="buttons">
+      <div class="buttons">
         <button (click)="dialogChangeUsername.close()">{{ 'user.username.change.cancel' | translate }}</button>
         <button (click)="valideChangeUsername()" class="primary" [disabled]="!usernameValidity">
-            {{ 'user.username.change.ok' | translate }}
+          {{ 'user.username.change.ok' | translate }}
         </button>
-    </div>
-</dialog-cmp>
+      </div>
+    </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
-    <p>{{ 'user.password.change' | translate }}</p>
+    <dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
+      <p>{{ 'user.password.change' | translate }}</p>
 
-    <label for="password">{{ 'user.password.old' | translate }}</label>
-    <input id="password" type="password" spellcheck="false" formControlName="passwordOld" />
+      <label for="password">{{ 'user.password.old' | translate }}</label>
+      <input id="password" type="password" spellcheck="false" formControlName="passwordOld" />
 
-    <label for="password">{{ 'user.password.new' | translate }}</label>
-    <input id="password" type="password" spellcheck="false" formControlName="password" />
-    <div class="level-strong">
-        <ng-container *ngIf="!strong">
-            <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
-        </ng-container>
-        <span class="strong" *ngIf="strong"></span>
-    </div>
+      <label for="password">{{ 'user.password.new' | translate }}</label>
+      <input id="password" type="password" spellcheck="false" formControlName="password" />
+      <div class="level-strong">
+        @if (!strong) {
+          @for (lvl of passedTests; track lvl) {
+            <span [style.--level]="lvl"></span>
+          }
+        }
+        @if (strong) {
+          <span class="strong"></span>
+        }
+      </div>
 
-    <label for="password2">{{ 'user.password.confirm' | translate }}</label>
-    <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-    <div class="level-strong">
-        <span class="strong" *ngIf="confirm"></span>
-    </div>
+      <label for="password2">{{ 'user.password.confirm' | translate }}</label>
+      <input id="password2" type="password" spellcheck="false" formControlName="password2" />
+      <div class="level-strong">
+        @if (confirm) {
+          <span class="strong"></span>
+        }
+      </div>
 
-    <ul *ngIf="showError?.length" class="list-error">
-        <li *ngFor="let error of showError">{{ error }}</li>
-    </ul>
+      @if (showError?.length) {
+        <ul class="list-error">
+          @for (error of showError; track error) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      }
 
-    <div class="buttons">
+      <div class="buttons">
         <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | translate }}</button>
         <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
-    </div>
-</dialog-cmp>
+      </div>
+    </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
-    <p>{{ 'user.email.change' | translate }}</p>
-    <label for="email">{{ 'user.email.old' | translate }}</label>
-    <input id="email" type="email" formControlName="emailOld" />
-    <div class="level-strong">
-        <span class="strong" *ngIf="changeEmailForm.get('emailOld')?.value" [class.error-block]="!emailOldValid"></span>
-    </div>
+    <dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
+      <p>{{ 'user.email.change' | translate }}</p>
+      <label for="email">{{ 'user.email.old' | translate }}</label>
+      <input id="email" type="email" formControlName="emailOld" />
+      <div class="level-strong">
+        @if (changeEmailForm.get('emailOld')?.value) {
+          <span class="strong" [class.error-block]="!emailOldValid"></span>
+        }
+      </div>
 
-    <label for="email">{{ 'user.email.new' | translate }}</label>
-    <input id="email" type="email" formControlName="emailNew" />
-    <div class="level-strong">
-        <span class="strong" *ngIf="changeEmailForm.get('emailNew')?.value" [class.error-block]="!emailNewValid"></span>
-    </div>
+      <label for="email">{{ 'user.email.new' | translate }}</label>
+      <input id="email" type="email" formControlName="emailNew" />
+      <div class="level-strong">
+        @if (changeEmailForm.get('emailNew')?.value) {
+          <span class="strong" [class.error-block]="!emailNewValid"></span>
+        }
+      </div>
 
-    <ul *ngIf="showError?.[0] || showError?.[1]" class="list-error">
-        <ng-container *ngFor="let error of showError">
-            <li *ngIf="error">{{ error }}</li>
-        </ng-container>
-    </ul>
+      @if (showError?.[0] || showError?.[1]) {
+        <ul class="list-error">
+          @for (error of showError; track error) {
+            @if (error) {
+              <li>{{ error }}</li>
+            }
+          }
+        </ul>
+      }
 
-    <div class="buttons">
+      <div class="buttons">
         <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | translate }}</button>
         <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | translate }}</button>
-    </div>
-</dialog-cmp>
+      </div>
+    </dialog-cmp>
 
-<dialog-cmp class="auto-format" #dialogRemoveProfile>
-    <p>{{ 'user.profile.remove.question' | translate }}</p>
-    <p class="alert">
+    <dialog-cmp class="auto-format" #dialogRemoveProfile>
+      <p>{{ 'user.profile.remove.question' | translate }}</p>
+      <p class="alert">
         {{ 'user.profile.remove.warning' | translate }}<br />
         {{ 'user.profile.remove.warning2' | translate }}
-    </p>
-    <div class="buttons">
+      </p>
+      <div class="buttons">
         <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | translate }}</button>
         <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
-    </div>
-</dialog-cmp>
+      </div>
+    </dialog-cmp>
 
-<dialog-cmp class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
-    <h3>
+    <dialog-cmp class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
+      <h3>
         {{ 'user.profile.avatar.title' | translate }}
-    </h3>
-    <div class="banner">
+      </h3>
+      <div class="banner">
         <label class="required">{{ 'user.profile.avatar.select' | translate }}</label>
         <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #avatarInput />
-    </div>
+      </div>
 
-    <div class="cropper-line">
-        <div class="cropper" *ngIf="imageChangedEvent || imageBase64">
+      <div class="cropper-line">
+        @if (imageChangedEvent || imageBase64) {
+          <div class="cropper">
             <div class="label">{{ 'user.profile.avatar.crop' | translate }}</div>
             <image-cropper
-                #imageCropper
-                [imageChangedEvent]="imageChangedEvent"
-                [imageBase64]="imageBase64"
-                [maintainAspectRatio]="true"
-                [cropperMinWidth]="300"
-                [cropperMinHeight]="300"
-                [resizeToWidth]="300"
-                [resizeToHeight]="300"
-                [aspectRatio]="1 / 1"
-                [onlyScaleDown]="true"
-                format="webp"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
+              #imageCropper
+              [imageChangedEvent]="imageChangedEvent"
+              [imageBase64]="imageBase64"
+              [maintainAspectRatio]="true"
+              [cropperMinWidth]="300"
+              [cropperMinHeight]="300"
+              [resizeToWidth]="300"
+              [resizeToHeight]="300"
+              [aspectRatio]="1 / 1"
+              [onlyScaleDown]="true"
+              format="webp"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
             ></image-cropper>
-        </div>
-        <div class="image" *ngIf="croppedImage || user!.avatarUrl">
+          </div>
+        }
+        @if (croppedImage || user!.avatarUrl) {
+          <div class="image">
             <div class="label">{{ 'user.profile.avatar.image' | translate }}</div>
             <img [src]="croppedImage || user!.avatarUrl" />
-            <button *ngIf="croppedImage" (click)="removeAvatar()">
+            @if (croppedImage) {
+              <button (click)="removeAvatar()">
                 {{ 'user.profile.avatar.delete' | translate }}
-            </button>
-        </div>
-    </div>
+              </button>
+            }
+          </div>
+        }
+      </div>
 
-    <div class="buttons">
+      <div class="buttons">
         <button (click)="avatarDialog.close()">{{ 'user.profile.avatar.cancel' | translate }}</button>
-        <button (click)="updateAvatar()" class="primary" *ngIf="croppedImage">
+        @if (croppedImage) {
+          <button (click)="updateAvatar()" class="primary">
             {{ 'user.profile.avatar.update' | translate }}
-        </button>
-        <button (click)="updateAvatar()" class="warn" *ngIf="!croppedImage && user?.avatar">
+          </button>
+        }
+        @if (!croppedImage && user?.avatar) {
+          <button (click)="updateAvatar()" class="warn">
             {{ 'user.profile.avatar.remove' | translate }}
-        </button>
-    </div>
-</dialog-cmp>
+          </button>
+        }
+      </div>
+    </dialog-cmp>

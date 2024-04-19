@@ -1,49 +1,57 @@
 <h1>{{ 'user.login.title' | translate }}</h1>
 
 <form class="form">
-    <label for="username">{{ 'user.login.username' | translate }}</label>
-    <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
-    <label for="password">{{ 'user.login.password' | translate }}</label>
-    <input
-        id="password"
-        type="password"
-        spellcheck="false"
-        [(ngModel)]="password"
-        [ngModelOptions]="{ standalone: true }"
+  <label for="username">{{ 'user.login.username' | translate }}</label>
+  <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
+  <label for="password">{{ 'user.login.password' | translate }}</label>
+  <input
+    id="password"
+    type="password"
+    spellcheck="false"
+    [(ngModel)]="password"
+    [ngModelOptions]="{ standalone: true }"
     />
 
-    <div *ngIf="showError" class="list-error">
-        {{ showError }}
+  @if (showError) {
+    <div class="list-error">
+      {{ showError }}
     </div>
+  }
 
+  <div class="buttons">
+    <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
+  </div>
+
+  @if (!popup) {
     <div class="buttons">
-        <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
+      <p>
+        {{ 'user.login.oauth.label' | translate }}
+      </p>
+      <button (click)="oauth('discord')">
+        <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
+      </button>
+      <button (click)="oauth('facebook')">
+        <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
+      </button>
+      <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
+      <p>
+        {{ 'user.login.oauth.label.after' | translate }}
+      </p>
     </div>
-
-    <div class="buttons" *ngIf="!popup">
-        <p>
-            {{ 'user.login.oauth.label' | translate }}
-        </p>
-        <button (click)="oauth('discord')">
-            <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
-        </button>
-        <button (click)="oauth('facebook')">
-            <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
-        </button>
-        <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
-        <p>
-            {{ 'user.login.oauth.label.after' | translate }}
-        </p>
-    </div>
+  }
 </form>
 
-<div class="links" *ngIf="!popup">
+@if (!popup) {
+  <div class="links">
     <div>
-        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+      <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
     </div>
     <div>
-        <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+      <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
     </div>
-</div>
+  </div>
+}
 
-<loader-cmp *ngIf="loader"></loader-cmp>
+@if (loader) {
+  <loader-cmp></loader-cmp>
+}

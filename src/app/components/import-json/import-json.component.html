@@ -1,65 +1,84 @@
 <div>{{ 'generator.json.import.list' + (multi ? '.multi' : '') | translate }}</div>
 
 <div>
-    <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
+  <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
 </div>
 
-<div *ngIf="onLoad">
+@if (onLoad) {
+  <div>
     <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'generator.loading' | translate }}</span>
-</div>
+  </div>
+}
 
-<ng-container *ngIf="jsonTmp">
-    <div class="buttons-list button-image-save" *ngIf="jsonTmp.length > 1">
-        <button class="button-add primary" (click)="selectAll(true)" *ngIf="jsonTmp">
-            {{ 'generator.json.select.all' | translate }}
+@if (jsonTmp) {
+  @if (jsonTmp.length > 1) {
+    <div class="buttons-list button-image-save">
+      @if (jsonTmp) {
+        <button class="button-add primary" (click)="selectAll(true)">
+          {{ 'generator.json.select.all' | translate }}
         </button>
-        <button class="button-add primary" (click)="selectAll(false)" *ngIf="jsonTmp">
-            {{ 'generator.json.unselect.all' | translate }}
+      }
+      @if (jsonTmp) {
+        <button class="button-add primary" (click)="selectAll(false)">
+          {{ 'generator.json.unselect.all' | translate }}
         </button>
+      }
     </div>
-
-    <label *ngFor="let file of jsonTmp" class="json-infos">
-        <ng-container *ngIf="!file.error">
-            <ng-container *ngIf="multi">
-                <span class="input">
-                    <input type="checkbox" [(ngModel)]="file.selected" />
-                </span>
-            </ng-container>
-            <div class="infos-list">
-                <span>{{ 'generator.json.title' | translate }}</span>
-                <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
-                <span>{{ 'generator.json.category' | translate }}</span>
-                <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
-                <span>{{ 'generator.json.count.group' | translate }}</span>
-                <span>{{ file.data!.groups.length || 0 }}</span>
-                <span>{{ 'generator.json.count.item' | translate }}</span>
-                <span>{{ countItem(file) }}</span>
-            </div>
-        </ng-container>
+  }
+  @for (file of jsonTmp; track file) {
+    <label class="json-infos">
+      @if (!file.error) {
+        @if (multi) {
+          <span class="input">
+            <input type="checkbox" [(ngModel)]="file.selected" />
+          </span>
+        }
+        <div class="infos-list">
+          <span>{{ 'generator.json.title' | translate }}</span>
+          <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
+          <span>{{ 'generator.json.category' | translate }}</span>
+          <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
+          <span>{{ 'generator.json.count.group' | translate }}</span>
+          <span>{{ file.data!.groups.length || 0 }}</span>
+          <span>{{ 'generator.json.count.item' | translate }}</span>
+          <span>{{ countItem(file) }}</span>
+        </div>
+      }
     </label>
-</ng-container>
+  }
+}
 
 <div class="buttons-list button-image-save">
-    <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
-    <ng-container *ngIf="!multi && actions === 'all'">
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')" *ngIf="jsonTmp">
-            {{ 'generator.json.import.replace' | translate }}
-        </button>
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
-            {{ 'generator.json.import.new' | translate }}
-        </button>
-    </ng-container>
-    <ng-container *ngIf="!multi && actions === 'importOnly'">
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')" *ngIf="jsonTmp">
-            {{ 'generator.json.import.add' | translate }}
-        </button>
-    </ng-container>
-    <ng-container *ngIf="multi">
-        <button class="button-add primary" (click)="importMultiJson('replace')" *ngIf="jsonTmp">
-            {{ 'generator.json.import.multi.replace' | translate }}
-        </button>
-        <button class="button-add primary" (click)="importMultiJson('new')" *ngIf="jsonTmp">
-            {{ 'generator.json.import.multi.add' | translate }}
-        </button>
-    </ng-container>
+  <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
+  @if (!multi && actions === 'all') {
+    @if (jsonTmp) {
+      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
+        {{ 'generator.json.import.replace' | translate }}
+      </button>
+    }
+    @if (jsonTmp) {
+      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+        {{ 'generator.json.import.new' | translate }}
+      </button>
+    }
+  }
+  @if (!multi && actions === 'importOnly') {
+    @if (jsonTmp) {
+      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+        {{ 'generator.json.import.add' | translate }}
+      </button>
+    }
+  }
+  @if (multi) {
+    @if (jsonTmp) {
+      <button class="button-add primary" (click)="importMultiJson('replace')">
+        {{ 'generator.json.import.multi.replace' | translate }}
+      </button>
+    }
+    @if (jsonTmp) {
+      <button class="button-add primary" (click)="importMultiJson('new')">
+        {{ 'generator.json.import.multi.add' | translate }}
+      </button>
+    }
+  }
 </div>

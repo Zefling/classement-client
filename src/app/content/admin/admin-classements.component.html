@@ -1,42 +1,48 @@
 <h3>{{ 'menu.admin.classements' | translate }}</h3>
 
-<form class="search" (submit)="submit()" *ngIf="categoriesList">
+@if (categoriesList) {
+  <form class="search" (submit)="submit()">
     <div class="name">
-        <label>{{ 'navigate.title' | translate }}</label>
-        <input
-            type="search"
-            name="searchKey"
-            [(ngModel)]="searchKey"
-            #filterInput
-            [class.empty]="searchKey === '' || searchKey === undefined"
+      <label>{{ 'navigate.title' | translate }}</label>
+      <input
+        type="search"
+        name="searchKey"
+        [(ngModel)]="searchKey"
+        #filterInput
+        [class.empty]="searchKey === '' || searchKey === undefined"
         />
-        <span (click)="resteFilter(filterInput)"></span>
+      <span (click)="resteFilter(filterInput)"></span>
     </div>
     <div class="line">
-        <div class="categories">
-            <label>{{ 'navigate.category' | translate }}</label>
-            <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
-        </div>
-        <button type="submit">{{ 'navigate.search' | translate }}</button>
+      <div class="categories">
+        <label>{{ 'navigate.category' | translate }}</label>
+        <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
+      </div>
+      <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>
-</form>
+  </form>
+}
 
-<loading-cmp *ngIf="loading"></loading-cmp>
+@if (loading) {
+  <loading-cmp></loading-cmp>
+}
 
-<ng-container *ngIf="!loading">
-    <ng-container *ngIf="classements[page]?.length; else noResult">
-        <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
-        <list-classements
-            [classements]="classements[page]"
-            [sort]="sort"
-            [direction]="direction"
-            (updateClassements)="updateClassements($event)"
-            (sortUpdate)="sortUpdate($event)"
-        ></list-classements>
-        <paginate-cmp *ngIf="total" [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
-    </ng-container>
-
-    <ng-template #noResult>
-        <p class="no-result">{{ 'list.no.result' | translate }}</p>
-    </ng-template>
-</ng-container>
+@if (!loading) {
+  @if (classements[page]?.length) {
+    @if (total) {
+      <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+    }
+    <list-classements
+      [classements]="classements[page]"
+      [sort]="sort"
+      [direction]="direction"
+      (updateClassements)="updateClassements($event)"
+      (sortUpdate)="sortUpdate($event)"
+    ></list-classements>
+    @if (total) {
+      <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+    }
+  } @else {
+    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+  }
+}

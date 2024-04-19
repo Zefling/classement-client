@@ -1,170 +1,178 @@
-<h2 *ngIf="pageMode">{{ 'menu.list' | translate }}</h2>
+@if (pageMode) {
+  <h2>{{ 'menu.list' | translate }}</h2>
+}
 
 <div class="infos">
-    <p>
-        <span class="icon-info"></span> {{ 'list.intro' | translate }}<br />
-        <span class="space">
-            {{ 'list.space' | translate }}{{ quota?.usage || 0 | filesize }} / {{ quota?.quota || 0 | filesize }}
-        </span>
-    </p>
-    <div class="list-actions">
-        <div class="filter">
-            <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
-            <input
-                id="browser-list-filter"
-                type="search"
-                maxlength="150"
-                [(ngModel)]="filter"
-                #filterInput
-                [class.empty]="filter === ''"
-            />
-            <span (click)="updateFilter(filterInput)"></span>
-        </div>
-        <button class="primary" (click)="exportAll()">
-            {{ 'generator.actions.export.all.json' | translate }}
-        </button>
-        <button class="primary" (click)="dialogImport.open()">
-            {{ 'generator.actions.import.json' | translate }}
-        </button>
+  <p>
+    <span class="icon-info"></span> {{ 'list.intro' | translate }}<br />
+    <span class="space">
+      {{ 'list.space' | translate }}{{ quota?.usage || 0 | filesize }} / {{ quota?.quota || 0 | filesize }}
+    </span>
+  </p>
+  <div class="list-actions">
+    <div class="filter">
+      <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
+      <input
+        id="browser-list-filter"
+        type="search"
+        maxlength="150"
+        [(ngModel)]="filter"
+        #filterInput
+        [class.empty]="filter === ''"
+        />
+      <span (click)="updateFilter(filterInput)"></span>
     </div>
+    <button class="primary" (click)="exportAll()">
+      {{ 'generator.actions.export.all.json' | translate }}
+    </button>
+    <button class="primary" (click)="dialogImport.open()">
+      {{ 'generator.actions.import.json' | translate }}
+    </button>
+  </div>
 </div>
 
 <ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
-    <table *ngIf="result?.length; else noResult">
-        <thead>
-            <tr>
-                <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
-                    {{ 'list.title.name' | translate }}
-                </th>
-                <th
-                    class="mode"
+  @if (result?.length) {
+    <table>
+      <thead>
+        <tr>
+          <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+            {{ 'list.title.name' | translate }}
+          </th>
+          <th
+            class="mode"
                     [sort-rule]="{
                         type: 'translate',
                         attr: 'options.mode',
                         translate: 'mode.name.%value%',
                         default: 'default'
                     }"
+            >
+            {{ 'list.mode.name' | translate }}
+          </th>
+          <th
+            class="category"
+            [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
+            >
+            {{ 'list.category.name' | translate }}
+          </th>
+          <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
+            {{ 'list.date' | translate }}
+          </th>
+          <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
+            {{ 'list.count.group' | translate }}
+          </th>
+          <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
+            {{ 'list.count.item' | translate }}
+          </th>
+          <th class="actions">{{ 'list.action.name' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of result; track item) {
+          <tr>
+            <td class="title">
+              <div>
+                {{ item.options.title || ('list.title.undefined' | translate) }}
+              </div>
+              <div class="category-rwd">
+                {{ 'mode.name.' + (item.options.mode || 'default') | translate }} |
+                {{ 'category.' + (item.options.category || 'undefined') | translate }}
+              </div>
+              @if (item.options.tags?.length) {
+                <div class="tags">
+                  <tag-list
+                    [tags]="item.options.tags"
+                    readOnly
+                    allowTagClick
+                    (tagClick)="tagClick($event, filterInput)"
+                  ></tag-list>
+                </div>
+              }
+              <div>
+                @if (modeApi && item.rankingId && serverIds.includes(item.rankingId)) {
+                  <a
+                    class="from"
+                    [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
+                    [routerLink]="['/navigate/view', item.rankingId]"
+                    >➡ <span class="icon-server"></span
+                  ></a>
+                }
+              </div>
+            </td>
+            <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | translate }}</td>
+            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
+            <td class="date">
+              <span>{{
+                item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | translate)
+              }}</span>
+              <span>{{
+                item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | translate)
+              }}</span>
+            </td>
+            <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
+            <td class="items">{{ item.listLength || item.listLenght }}</td>
+            <td class="actions">
+              <button
+                class="primary"
+                [routerLink]="'/edit/' + item.id"
+                title="{{ 'list.action.edit' | translate }}"
                 >
-                    {{ 'list.mode.name' | translate }}
-                </th>
-                <th
-                    class="category"
-                    [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
-                >
-                    {{ 'list.category.name' | translate }}
-                </th>
-                <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
-                    {{ 'list.date' | translate }}
-                </th>
-                <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
-                    {{ 'list.count.group' | translate }}
-                </th>
-                <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
-                    {{ 'list.count.item' | translate }}
-                </th>
-                <th class="actions">{{ 'list.action.name' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of result">
-                <td class="title">
-                    <div>
-                        {{ item.options.title || ('list.title.undefined' | translate) }}
-                    </div>
-                    <div class="category-rwd">
-                        {{ 'mode.name.' + (item.options.mode || 'default') | translate }} |
-                        {{ 'category.' + (item.options.category || 'undefined') | translate }}
-                    </div>
-                    <div class="tags" *ngIf="item.options.tags?.length">
-                        <tag-list
-                            [tags]="item.options.tags"
-                            readOnly
-                            allowTagClick
-                            (tagClick)="tagClick($event, filterInput)"
-                        ></tag-list>
-                    </div>
-                    <div>
-                        <a
-                            class="from"
-                            *ngIf="modeApi && item.rankingId && serverIds.includes(item.rankingId)"
-                            [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
-                            [routerLink]="['/navigate/view', item.rankingId]"
-                            >➡ <span class="icon-server"></span
-                        ></a>
-                    </div>
-                </td>
-                <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | translate }}</td>
-                <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
-                <td class="date">
-                    <span>{{
-                        item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | translate)
-                    }}</span>
-                    <span>{{
-                        item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | translate)
-                    }}</span>
-                </td>
-                <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
-                <td class="items">{{ item.listLength || item.listLenght }}</td>
-                <td class="actions">
-                    <button
-                        class="primary"
-                        [routerLink]="'/edit/' + item.id"
-                        title="{{ 'list.action.edit' | translate }}"
-                    >
-                        <span class="icon-edit"></span>
-                    </button>
-                    <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
-                        <span class="icon-clone"></span>
-                    </button>
-                    <button class="warn" (click)="delete(item)" title="{{ 'list.status.delete' | translate }}">
-                        <span class="icon-remove"></span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
+                <span class="icon-edit"></span>
+              </button>
+              <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
+                <span class="icon-clone"></span>
+              </button>
+              <button class="warn" (click)="delete(item)" title="{{ 'list.status.delete' | translate }}">
+                <span class="icon-remove"></span>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
-</ng-container>
-
-<ng-template #noResult>
+  } @else {
     <p class="no-result">{{ 'list.no.result' | translate }}</p>
     <p>
-        <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+      <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
     </p>
-</ng-template>
+  }
+</ng-container>
+
 
 <dialog-cmp #dialogImport class="auto-format">
-    <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
+  <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
 </dialog-cmp>
 
 <dialog-cmp #dialogDelete class="auto-format dialog-delete">
-    <p>{{ 'list.delete.question' | translate }}</p>
-    <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
-    <div class="buttons">
-        <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
-        <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | translate }}</button>
-    </div>
+  <p>{{ 'list.delete.question' | translate }}</p>
+  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+  <div class="buttons">
+    <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
+    <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | translate }}</button>
+  </div>
 </dialog-cmp>
 
 <dialog-cmp #dialogClone class="auto-format dialog-clone">
-    <p>{{ 'list.clone.question' | translate }}</p>
-    <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
-    <div>
-        <label for="clone-title">{{ 'list.clone.title' | translate }}</label>
-        <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
-    </div>
+  <p>{{ 'list.clone.question' | translate }}</p>
+  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+  <div>
+    <label for="clone-title">{{ 'list.clone.title' | translate }}</label>
+    <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
+  </div>
 
-    <label>
-        <input type="checkbox" [(ngModel)]="changeTemplate" />
-        {{ 'list.clone.new.template' | translate }}
-    </label>
+  <label>
+    <input type="checkbox" [(ngModel)]="changeTemplate" />
+    {{ 'list.clone.new.template' | translate }}
+  </label>
 
-    <div class="buttons">
-        <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
-        <button class="primary" (click)="cloneCurrent(true, title.value)">
-            {{ 'list.clone.validate' | translate }}
-        </button>
-        <button class="primary" (click)="cloneCurrent(true, title.value, true)">
-            {{ 'list.clone.edit' | translate }}
-        </button>
-    </div>
+  <div class="buttons">
+    <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
+    <button class="primary" (click)="cloneCurrent(true, title.value)">
+      {{ 'list.clone.validate' | translate }}
+    </button>
+    <button class="primary" (click)="cloneCurrent(true, title.value, true)">
+      {{ 'list.clone.edit' | translate }}
+    </button>
+  </div>
 </dialog-cmp>

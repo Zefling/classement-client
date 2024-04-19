@@ -1,70 +1,81 @@
 <h2>{{ 'menu.navigate' | translate }}</h2>
 
-<form class="search" (submit)="submit(true)" *ngIf="categoriesList">
+@if (categoriesList) {
+  <form class="search" (submit)="submit(true)">
     <div class="name">
-        <label>{{ 'navigate.title' | translate }}</label>
-        <input
-            type="search"
-            name="name"
-            [(ngModel)]="searchKey"
-            [class.empty]="searchKey === '' || searchKey === undefined"
+      <label>{{ 'navigate.title' | translate }}</label>
+      <input
+        type="search"
+        name="name"
+        [(ngModel)]="searchKey"
+        [class.empty]="searchKey === '' || searchKey === undefined"
         />
-        <span (click)="searchKey = ''"></span>
+      <span (click)="searchKey = ''"></span>
     </div>
     <div class="line">
-        <div class="categories">
-            <label>{{ 'navigate.category' | translate }}</label>
-            <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
-        </div>
-        <div class="modes">
-            <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
-
-            <select2 name="mode" [data]="listMode" [(ngModel)]="mode" [templates]="templateMode">
-                <ng-template #templateMode let-label="label" let-data="data">
-                    <div class="list-mode" *ngIf="data; else noData">
-                        <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
-                        <div class="desc">
-                            {{ 'mode.name.' + label | translate }}
-                        </div>
-                    </div>
-                    <ng-template #noData><div>&nbsp;</div></ng-template>
-                </ng-template>
-            </select2>
-        </div>
-
-        <button type="submit">{{ 'navigate.search' | translate }}</button>
+      <div class="categories">
+        <label>{{ 'navigate.category' | translate }}</label>
+        <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
+      </div>
+      <div class="modes">
+        <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
+        <select2 name="mode" [data]="listMode" [(ngModel)]="mode" [templates]="templateMode">
+          <ng-template #templateMode let-label="label" let-data="data">
+            @if (data) {
+              <div class="list-mode">
+                <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
+                <div class="desc">
+                  {{ 'mode.name.' + label | translate }}
+                </div>
+              </div>
+            } @else {
+              <div>&nbsp;</div>
+            }
+          </ng-template>
+        </select2>
+      </div>
+      <button type="submit">{{ 'navigate.search' | translate }}</button>
     </div>
-</form>
+  </form>
+}
 
 <h3>
-    {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
-    <ng-container *ngIf="!loading">({{ total }})</ng-container>
+  {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
+  @if (!loading) {
+    ({{ total }})
+  }
 </h3>
 
-<div class="return" *ngIf="!isCategoryList">
+@if (!isCategoryList) {
+  <div class="return">
     <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.category' | translate }}</a>
-</div>
+  </div>
+}
 
-<paginate-cmp
-    *ngIf="!isCategoryList && total && total / pageSize > 1"
+@if (!isCategoryList && total && total / pageSize > 1) {
+  <paginate-cmp
     [total]="total"
     [page]="page"
     [base]="url"
     [queryParams]="queryParams"
     [size]="pageSize"
-></paginate-cmp>
+  ></paginate-cmp>
+}
 
-<ng-container *ngIf="!loading">
-    <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
-</ng-container>
+@if (!loading) {
+  <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
+}
 
-<paginate-cmp
-    *ngIf="!isCategoryList && total && total / pageSize > 1"
+@if (!isCategoryList && total && total / pageSize > 1) {
+  <paginate-cmp
     [total]="total"
     [page]="page"
     [base]="url"
     [queryParams]="queryParams"
     [size]="pageSize"
-></paginate-cmp>
+  ></paginate-cmp>
+}
 
-<loader-item *ngIf="loading"></loader-item>
+@if (loading) {
+  <loader-item></loader-item>
+}

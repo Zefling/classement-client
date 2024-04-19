@@ -1,72 +1,79 @@
 <div>{{ 'generator.optimise.info' | translate }}</div>
 
 <div>
-    <button class="primary" (click)="optimise()" [disabled]="start">
-        {{ 'generator.optimise.button.optimise' | translate }}
-    </button>
+  <button class="primary" (click)="optimise()" [disabled]="start">
+    {{ 'generator.optimise.button.optimise' | translate }}
+  </button>
 </div>
 
 <div>
-    {{ 'generator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}
+  {{ 'generator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}
 </div>
 
-<div *ngIf="start">
+@if (start) {
+  <div>
     <div>
-        <loading-cmp class="loading" *ngIf="progress !== total" size="20px" tickWidth="2px"></loading-cmp>
-        <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
+      @if (progress !== total) {
+        <loading-cmp class="loading" size="20px" tickWidth="2px"></loading-cmp>
+      }
+      <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
     </div>
     <div>
-        <a (click)="toggle()">{{
-            (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | translate
-        }}</a>
+      <a (click)="toggle()">{{
+        (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | translate
+      }}</a>
     </div>
     <div>
-        {{ 'generator.optimise.reduce.files' | translate: { countResize: countResize } }}<br />
-        {{ 'generator.optimise.reduce.size' | translate: { reduceSize: (reduceSize | numFormat) } }}<br />
-        {{
-            'generator.optimise.final.size'
-                | translate
-                    : {
-                          finalSize: (finalSize | numFormat),
-                          percent: (finalSize - totalSize) / totalSize | numFormat: { style: 'percent' }
-                      }
-        }}
-    </div>
-
-    <div>
-        <button *ngIf="progress === total" class="primary" (click)="optimiseAccept()">
-            {{ 'generator.optimise.validate' | translate }}
-        </button>
-    </div>
-
-    <div *ngIf="detail" class="list">
-        <div *ngFor="let item of listOptimise; let index = index">
-            <img
-                src="{{ (item.reduceFile || item.sourceFile).url }}"
-                alt="{{ (item.reduceFile || item.sourceFile).name }}"
+      {{ 'generator.optimise.reduce.files' | translate: { countResize: countResize } }}<br />
+      {{ 'generator.optimise.reduce.size' | translate: { reduceSize: (reduceSize | numFormat) } }}<br />
+      {{
+      'generator.optimise.final.size'
+      | translate
+      : {
+      finalSize: (finalSize | numFormat),
+      percent: (finalSize - totalSize) / totalSize | numFormat: { style: 'percent' }
+    }
+    }}
+  </div>
+  <div>
+    @if (progress === total) {
+      <button class="primary" (click)="optimiseAccept()">
+        {{ 'generator.optimise.validate' | translate }}
+      </button>
+    }
+  </div>
+  @if (detail) {
+    <div class="list">
+      @for (item of listOptimise; track item; let index = $index) {
+        <div>
+          <img
+            src="{{ (item.reduceFile || item.sourceFile).url }}"
+            alt="{{ (item.reduceFile || item.sourceFile).name }}"
             />
-            <div class="info-reduce">
-                <span class="reduce-source">
-                    {{ 'generator.optimise.size' | translate: { size: (item.sourceFile.realSize | numFormat) } }}
-                </span>
-                <span class="arrow">↓</span>
-                <span class="reduce-target">
-                    {{
-                        'generator.optimise.size'
-                            | translate: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
-                    }}
-                </span>
-                <span class="reduce-size">
-                    {{ 'generator.optimise.size' | translate: { size: (-1 * item.reduce | numFormat) } }}
-
-                    <span class="percent">
-                        {{
-                            ((item.reduceFile?.realSize || item.sourceFile.realSize) - item.sourceFile.realSize) /
-                                item.sourceFile.realSize | numFormat: { style: 'percent' }
-                        }}
-                    </span>
-                </span>
-            </div>
+          <div class="info-reduce">
+            <span class="reduce-source">
+              {{ 'generator.optimise.size' | translate: { size: (item.sourceFile.realSize | numFormat) } }}
+            </span>
+            <span class="arrow">↓</span>
+            <span class="reduce-target">
+              {{
+              'generator.optimise.size'
+              | translate: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
+              }}
+            </span>
+            <span class="reduce-size">
+              {{ 'generator.optimise.size' | translate: { size: (-1 * item.reduce | numFormat) } }}
+              <span class="percent">
+                {{
+                ((item.reduceFile?.realSize || item.sourceFile.realSize) - item.sourceFile.realSize) /
+                item.sourceFile.realSize | numFormat: { style: 'percent' }
+                }}
+              </span>
+            </span>
+          </div>
         </div>
+      }
     </div>
+  }
 </div>
+}

@@ -1,3 +1,5 @@
-<div *ngFor="let group of groups" [style.--h]="group.titleHorizontalPosition" [style.--v]="group.titleVerticalPosition">
+@for (group of groups; track group) {
+  <div [style.--h]="group.titleHorizontalPosition" [style.--v]="group.titleVerticalPosition">
     <span class="group-title">{{ group.title }}</span>
-</div>
+  </div>
+}

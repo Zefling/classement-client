@@ -1,267 +1,314 @@
 <h2>{{ 'navigate.visualization' | translate }}</h2>
 
-<div class="return" *ngIf="classement">
+@if (classement) {
+  <div class="return">
     <a [routerLink]="['/navigate/template', classement.templateId]" class="icon-left">
-        {{ 'navigate.see.derivatives' | translate }}
+      {{ 'navigate.see.derivatives' | translate }}
     </a>
-</div>
+  </div>
+}
 
-<ng-container *ngIf="!loading && classement && classement.data">
-    <div class="infos">
-        <h3 class="name">
-            <span>{{ classement.name }}</span>
-            <span *ngIf="classement.historyId" class="history">{{
-                'generator.actions.history.warning' | translate
-            }}</span>
-        </h3>
-        <div class="category">
-            {{ 'category.' + (classement.category || 'undefined') | translate }}
-        </div>
-        <div class="groups">
-            <div [title]="'list.count.group' | translate">
-                <span class="icon-group"></span> {{ classement.totalGroups }}
-            </div>
-            <div [title]="'list.count.item' | translate">
-                <span class="icon-tile"></span> {{ classement.totalItems }}
-            </div>
-            <div class="mode">
-                {{ 'mode.name.' + (classement.mode || 'default') | translate }}
-            </div>
-        </div>
-        <div class="username">
-            <a *ngIf="classement.user; else noUser" [routerLink]="['/user', '@' + classement.user]">
-                <div *ngIf="classement.userAvatar">
-                    <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
-                </div>
-                <div>
-                    {{ 'user.by' | translate: { author: classement.user } }}
-                </div>
-            </a>
-            <ng-template #noUser>
-                <div>
-                    {{ 'user.by' | translate: { author: ('list.user.anonymous' | translate) } }}
-                </div>
-            </ng-template>
-        </div>
-        <div class="desc" *ngIf="classement.data.options.description">
-            <markdown [data]="classement.data.options.description"></markdown>
-        </div>
-        <div class="dates">
-            <div class="date">
-                {{
-                    'generator.ranking.create'
-                        | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
-                }}
-            </div>
-            <div class="date" *ngIf="classement.dateChange">
-                {{
-                    'generator.ranking.change'
-                        | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
-                }}
-            </div>
-        </div>
-        <div class="tags" *ngIf="classement.data.options.tags?.length">
-            <span>{{ 'generator.options.tags' | translate }}</span>
-            <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
-        </div>
-        <div class="buttons">
-            <button (click)="openClassementFork()" *ngIf="!currentUser" class="primary">
-                {{
-                    (!apiActive
-                        ? 'generator.actions.edit.local.empty'
-                        : !logged
-                          ? 'generator.actions.make.my.derivative.empty'
-                          : 'generator.actions.new.derivative.empty'
-                    ) | translate
-                }}
-            </button>
-            <!-- <button (click)="openClassement()" *ngIf="!currentUser">
-                {{
-                    (!apiActive
-                        ? 'generator.actions.edit.local'
-                        : !logged
-                          ? 'generator.actions.make.my.derivative'
-                          : 'generator.actions.new.derivative'
-                    ) | translate
-                }}
-            </button> -->
-        </div>
-        <div class="buttons">
-            <button *ngIf="classement.withHistory" (click)="seeHistory()" class="primary">
-                {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
-            </button>
-            <button *ngIf="myClassement && !currentUser" (click)="seeMyClassement()" class="primary">
-                {{
-                    (myClassementCount > 1
-                        ? 'generator.actions.see.my.last.derivative'
-                        : 'generator.actions.see.my.derivative'
-                    ) | translate
-                }}
-            </button>
-            <button *ngIf="myClassement" (click)="openMyClassement()" class="primary">
-                {{
-                    (myClassementCount > 1
-                        ? 'generator.actions.edit.my.last.derivative'
-                        : 'generator.actions.edit.my.derivative'
-                    ) | translate
-                }}
-            </button>
-            <button *ngIf="myClassementCount > 1" (click)="seeMyClassements()" class="primary">
-                {{ 'navigate.my.derivatives' | translate }}
-            </button>
-            <div class="note" *ngIf="myClassementCount > 1">
-                {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
-            </div>
-        </div>
+@if (!loading && classement && classement.data) {
+  <div class="infos">
+    <h3 class="name">
+      <span>{{ classement.name }}</span>
+      @if (classement.historyId) {
+        <span class="history">{{
+          'generator.actions.history.warning' | translate
+        }}</span>
+      }
+    </h3>
+    <div class="category">
+      {{ 'category.' + (classement.category || 'undefined') | translate }}
     </div>
-
-    <div class="save-actions buttons">
-        <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | translate }}</button>
-        <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-            <span *ngIf="!exportImageDisabled" class="icon-share"></span>
-            <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageDisabled"></loading-cmp>
-            {{ 'generator.actions.export.image' | translate }}
+    <div class="groups">
+      <div [title]="'list.count.group' | translate">
+        <span class="icon-group"></span> {{ classement.totalGroups }}
+      </div>
+      <div [title]="'list.count.item' | translate">
+        <span class="icon-tile"></span> {{ classement.totalItems }}
+      </div>
+      <div class="mode">
+        {{ 'mode.name.' + (classement.mode || 'default') | translate }}
+      </div>
+    </div>
+    <div class="username">
+      @if (classement.user) {
+        <a [routerLink]="['/user', '@' + classement.user]">
+          @if (classement.userAvatar) {
+            <div>
+              <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
+            </div>
+          }
+          <div>
+            {{ 'user.by' | translate: { author: classement.user } }}
+          </div>
+        </a>
+      } @else {
+        <div>
+          {{ 'user.by' | translate: { author: ('list.user.anonymous' | translate) } }}
+        </div>
+      }
+    </div>
+    @if (classement.data.options.description) {
+      <div class="desc">
+        <markdown [data]="classement.data.options.description"></markdown>
+      </div>
+    }
+    <div class="dates">
+      <div class="date">
+        {{
+        'generator.ranking.create'
+        | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+        }}
+      </div>
+      @if (classement.dateChange) {
+        <div class="date">
+          {{
+          'generator.ranking.change'
+          | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+          }}
+        </div>
+      }
+    </div>
+    @if (classement.data.options.tags?.length) {
+      <div class="tags">
+        <span>{{ 'generator.options.tags' | translate }}</span>
+        <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
+      </div>
+    }
+    <div class="buttons">
+      @if (!currentUser) {
+        <button (click)="openClassementFork()" class="primary">
+          {{
+          (!apiActive
+          ? 'generator.actions.edit.local.empty'
+          : !logged
+          ? 'generator.actions.make.my.derivative.empty'
+          : 'generator.actions.new.derivative.empty'
+          ) | translate
+          }}
         </button>
-    </div>
+      }
+      <!-- <button (click)="openClassement()" *ngIf="!currentUser">
+      {{
+      (!apiActive
+      ? 'generator.actions.edit.local'
+      : !logged
+      ? 'generator.actions.make.my.derivative'
+      : 'generator.actions.new.derivative'
+      ) | translate
+      }}
+    </button> -->
+  </div>
+  <div class="buttons">
+    @if (classement.withHistory) {
+      <button (click)="seeHistory()" class="primary">
+        {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
+      </button>
+    }
+    @if (myClassement && !currentUser) {
+      <button (click)="seeMyClassement()" class="primary">
+        {{
+        (myClassementCount > 1
+        ? 'generator.actions.see.my.last.derivative'
+        : 'generator.actions.see.my.derivative'
+        ) | translate
+        }}
+      </button>
+    }
+    @if (myClassement) {
+      <button (click)="openMyClassement()" class="primary">
+        {{
+        (myClassementCount > 1
+        ? 'generator.actions.edit.my.last.derivative'
+        : 'generator.actions.edit.my.derivative'
+        ) | translate
+        }}
+      </button>
+    }
+    @if (myClassementCount > 1) {
+      <button (click)="seeMyClassements()" class="primary">
+        {{ 'navigate.my.derivatives' | translate }}
+      </button>
+    }
+    @if (myClassementCount > 1) {
+      <div class="note">
+        {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
+      </div>
+    }
+  </div>
+</div>
+<div class="save-actions buttons">
+  <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | translate }}</button>
+  <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+    @if (!exportImageDisabled) {
+      <span class="icon-share"></span>
+    }
+    @if (exportImageDisabled) {
+      <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+    }
+    {{ 'generator.actions.export.image' | translate }}
+  </button>
+</div>
+@if (!exportImageDisabled) {
+  <see-classement
+    class="render"
+    [options]="classement.data.options"
+    [groups]="classement.data.groups"
+    [list]="classement.data.list"
+    [imagesCache]="imagesCache"
+  ></see-classement>
+}
+<div [ngClass]="classScreenMode" #div>
+  <div class="classement-top">
+    <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+    @if (classScreenMode !== 'default') {
+      <button (click)="screenMode('default', div)">
+        {{ 'generator.screen.default' | translate }}
+      </button>
+    }
+    @if (classScreenMode !== 'enlarge') {
+      <button (click)="screenMode('enlarge', div)">
+        {{ 'generator.screen.window' | translate }}
+      </button>
+    }
+    @if (classScreenMode !== 'fullscreen') {
+      <button (click)="screenMode('fullscreen', div)">
+        {{ 'generator.screen.fullscreen' | translate }}
+      </button>
+    }
+  </div>
+  <see-classement
+    class="preview"
+    [options]="classement.data.options"
+    [groups]="classement.data.groups"
+    [list]="classement.data.list"
+    withAnnotation
+  ></see-classement>
+</div>
+}
 
-    <see-classement
-        *ngIf="!exportImageDisabled"
-        class="render"
-        [options]="classement.data.options"
-        [groups]="classement.data.groups"
-        [list]="classement.data.list"
-        [imagesCache]="imagesCache"
-    ></see-classement>
-
-    <div [ngClass]="classScreenMode" #div>
-        <div class="classement-top">
-            <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
-            <button *ngIf="classScreenMode !== 'default'" (click)="screenMode('default', div)">
-                {{ 'generator.screen.default' | translate }}
-            </button>
-            <button *ngIf="classScreenMode !== 'enlarge'" (click)="screenMode('enlarge', div)">
-                {{ 'generator.screen.window' | translate }}
-            </button>
-            <button *ngIf="classScreenMode !== 'fullscreen'" (click)="screenMode('fullscreen', div)">
-                {{ 'generator.screen.fullscreen' | translate }}
-            </button>
-        </div>
-
-        <see-classement
-            class="preview"
-            [options]="classement.data.options"
-            [groups]="classement.data.groups"
-            [list]="classement.data.list"
-            withAnnotation
-        ></see-classement>
-    </div>
-</ng-container>
-
-<loader-item *ngIf="loading"></loader-item>
+@if (loading) {
+  <loader-item></loader-item>
+}
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
-    <div class="button-image-save">
-        {{ 'generator.actions.save.image' | translate }}
-        <span>
-            <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
-            <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
-            <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
-        </span>
-    </div>
-    <div #image></div>
+  <div class="button-image-save">
+    {{ 'generator.actions.save.image' | translate }}
+    <span>
+      <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
+      <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
+      <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
+    </span>
+  </div>
+  <div #image></div>
 </dialog-cmp>
 
 <dialog-cmp #dialogDerivatives closeButton>
-    <table class="table-derivatives" *ngIf="myClassements">
-        <thead>
-            <tr>
-                <th class="title">{{ 'list.title.name' | translate }}</th>
-                <th class="date">{{ 'list.date' | translate }}</th>
-                <th class="groups">{{ 'list.count.group' | translate }}</th>
-                <th class="items">{{ 'list.count.item' | translate }}</th>
-                <th class="actions">{{ 'list.action.name' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr
-                *ngFor="let derivative of myClassements"
-                [class.current]="derivative.rankingId === classement?.rankingId"
+  @if (myClassements) {
+    <table class="table-derivatives">
+      <thead>
+        <tr>
+          <th class="title">{{ 'list.title.name' | translate }}</th>
+          <th class="date">{{ 'list.date' | translate }}</th>
+          <th class="groups">{{ 'list.count.group' | translate }}</th>
+          <th class="items">{{ 'list.count.item' | translate }}</th>
+          <th class="actions">{{ 'list.action.name' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (derivative of myClassements; track derivative) {
+          <tr
+            [class.current]="derivative.rankingId === classement?.rankingId"
             >
-                <td class="title">
-                    {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
-                </td>
-                <td class="date">
-                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
-                </td>
-                <td class="groups">{{ derivative.totalGroups }}</td>
-                <td class="items">{{ derivative.totalItems }}</td>
-                <td class="actions">
-                    <button
-                        class="primary"
-                        *ngIf="derivative.rankingId !== classement?.rankingId"
-                        (click)="loadDerivativeClassement(derivative)"
-                    >
-                        {{ 'generator.actions.see.this.derivative' | translate }}
-                    </button>
-                    <ng-container *ngIf="derivative.rankingId === classement?.rankingId">
-                        {{ 'list.current' | translate }}
-                    </ng-container>
-                </td>
-            </tr>
-        </tbody>
+            <td class="title">
+              {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+            </td>
+            <td class="date">
+              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+            </td>
+            <td class="groups">{{ derivative.totalGroups }}</td>
+            <td class="items">{{ derivative.totalItems }}</td>
+            <td class="actions">
+              @if (derivative.rankingId !== classement?.rankingId) {
+                <button
+                  class="primary"
+                  (click)="loadDerivativeClassement(derivative)"
+                  >
+                  {{ 'generator.actions.see.this.derivative' | translate }}
+                </button>
+              }
+              @if (derivative.rankingId === classement?.rankingId) {
+                {{ 'list.current' | translate }}
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
+  }
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogPassword>
-    <div class="button-image-save">
-        {{ 'navigate.password.required' | translate }}
-        <div>
-            <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
-        </div>
-        <ul *ngIf="showError" class="list-error">
-            <li>{{ showError }}</li>
-        </ul>
-        <span>
-            <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | translate }}</button>
-            <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
-                {{ 'navigate.password.ok' | translate }}
-            </button>
-        </span>
+  <div class="button-image-save">
+    {{ 'navigate.password.required' | translate }}
+    <div>
+      <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
     </div>
+    @if (showError) {
+      <ul class="list-error">
+        <li>{{ showError }}</li>
+      </ul>
+    }
+    <span>
+      <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | translate }}</button>
+      <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
+        {{ 'navigate.password.ok' | translate }}
+      </button>
+    </span>
+  </div>
 </dialog-cmp>
 
 <dialog-cmp #dialogHistory closeButton>
-    <table class="table-history" *ngIf="classement && history">
-        <thead>
-            <tr>
-                <th class="title">{{ 'list.title.name' | translate }}</th>
-                <th class="date">{{ 'list.date' | translate }}</th>
-                <th class="actions">{{ 'list.action.name' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of history" [class.current]="item.id === classement.historyId">
-                <td class="title">
-                    {{ item.name || ('list.title.undefined' | translate) }}
-                </td>
-                <td class="date">
-                    <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
-                </td>
-                <td class="actions">
-                    <button
-                        class="primary"
-                        *ngIf="item.id !== classement.historyId"
-                        (click)="loadHistoryClassement(item)"
-                    >
-                        {{ 'generator.actions.see.this.derivative' | translate }}
-                    </button>
-                    <span class="current" *ngIf="item.id === classement.historyId">
-                        {{ 'list.current' | translate }}
-                    </span>
-                </td>
-            </tr>
-        </tbody>
+  @if (classement && history) {
+    <table class="table-history">
+      <thead>
+        <tr>
+          <th class="title">{{ 'list.title.name' | translate }}</th>
+          <th class="date">{{ 'list.date' | translate }}</th>
+          <th class="actions">{{ 'list.action.name' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of history; track item) {
+          <tr [class.current]="item.id === classement.historyId">
+            <td class="title">
+              {{ item.name || ('list.title.undefined' | translate) }}
+            </td>
+            <td class="date">
+              <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
+              <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
+            </td>
+            <td class="actions">
+              @if (item.id !== classement.historyId) {
+                <button
+                  class="primary"
+                  (click)="loadHistoryClassement(item)"
+                  >
+                  {{ 'generator.actions.see.this.derivative' | translate }}
+                </button>
+              }
+              @if (item.id === classement.historyId) {
+                <span class="current">
+                  {{ 'list.current' | translate }}
+                </span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
+  }
 </dialog-cmp>

@@ -1,345 +1,357 @@
-<loader-cmp *ngIf="loading" [message]="'generator.loading' | translate"></loader-cmp>
+@if (loading) {
+  <loader-cmp [message]="'generator.loading' | translate"></loader-cmp>
+}
 
 <header>
-    <div class="title">{{ 'classement' | translate }}</div>
-    <div class="actions">
-        <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
-    </div>
+  <div class="title">{{ 'classement' | translate }}</div>
+  <div class="actions">
+    <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
+  </div>
 </header>
 <aside>
-    <div class="backdrop" (click)="toggleMenu()"></div>
-    <div class="menu" [class.main-menu-reduce]="preferencesForm?.get('mainMenuReduce')?.value">
-        <ul>
-            <li class="section-top" [title]="'menu.home' | translate">
-                <a
-                    routerLink="/"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="toggleMenu()"
-                >
-                    <span class="icon icon-home"></span>
-                    <span>{{ 'menu.home' | translate }}</span>
-                </a>
-            </li>
-            <li *ngIf="!modeApi || !logged" class="section-top" [title]="'menu.list' | translate">
-                <a
-                    routerLink="/list"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="toggleMenu()"
-                >
-                    <span class="icon icon-bookmark"></span>
-                    <span>{{ 'menu.list' | translate }}</span>
-                </a>
-            </li>
-            <ng-container *ngIf="modeApi">
-                <li *ngIf="logged" class="section-top" [title]="'menu.my.lists' | translate">
-                    <a
-                        routerLink="/user/lists"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-bookmark"></span>
-                        <span>{{ 'menu.my.lists' | translate }}</span>
-                    </a>
-                </li>
+  <div class="backdrop" (click)="toggleMenu()"></div>
+  <div class="menu" [class.main-menu-reduce]="preferencesForm?.get('mainMenuReduce')?.value">
+    <ul>
+      <li class="section-top" [title]="'menu.home' | translate">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="toggleMenu()"
+          >
+          <span class="icon icon-home"></span>
+          <span>{{ 'menu.home' | translate }}</span>
+        </a>
+      </li>
+      @if (!modeApi || !logged) {
+        <li class="section-top" [title]="'menu.list' | translate">
+          <a
+            routerLink="/list"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="toggleMenu()"
+            >
+            <span class="icon icon-bookmark"></span>
+            <span>{{ 'menu.list' | translate }}</span>
+          </a>
+        </li>
+      }
+      @if (modeApi) {
+        @if (logged) {
+          <li class="section-top" [title]="'menu.my.lists' | translate">
+            <a
+              routerLink="/user/lists"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              (click)="toggleMenu()"
+              >
+              <span class="icon icon-bookmark"></span>
+              <span>{{ 'menu.my.lists' | translate }}</span>
+            </a>
+          </li>
+        }
+        <li class="section-top" [title]="'menu.navigate' | translate">
+          <a
+            routerLink="/navigate"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            (click)="toggleMenu()"
+            >
+            <span class="icon icon-public-search"></span>
+            <span>{{ 'menu.navigate' | translate }}</span>
+          </a>
+        </li>
+      }
+      <li class="section-top" [title]="'menu.new' | translate">
+        @if (preferencesForm?.get('mode')?.value !== 'choice') {
+          <a
+            routerLink="/edit/new"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true, queryParams: 'ignored' }"
+            (click)="toggleMenu()"
+            >
+            <span class="icon icon-add"></span>
+            <span>{{ 'menu.new' | translate }}</span>
+          </a>
+        }
+        @if (preferencesForm?.get('mode')?.value === 'choice') {
+          <a
+            (click)="openChoice($event)"
+            [class.active]="routerUrl.startsWith('/edit/new')"
+            >
+            <span class="icon icon-add"></span>
+            <span>{{ 'menu.new' | translate }}</span>
+          </a>
+        }
+      </li>
+      <li [title]="'menu.preferences' | translate">
+        <a (click)="openPreferences()" (keydown.enter)="openPreferences()" tabIndex="0">
+          <span class="icon icon-params"></span>
+          <span>{{ 'menu.preferences' | translate }}</span>
+        </a>
+      </li>
+      @if (modeApi && modeModerator) {
+        <li [title]="'menu.admin' | translate">
+          <a
+            routerLink="/admin"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            (click)="toggleMenu()"
+            >
+            <span class="icon icon-admin"></span>
+            <span>{{ 'menu.admin' | translate }}</span>
+          </a>
+        </li>
+      }
+      @if (modeApi) {
+        @if (logged) {
+          <li [title]="'menu.profile' | translate">
+            <a
+              routerLink="/user/profile"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="toggleMenu()"
+              >
+              <span class="icon icon-profile"></span>
+              <span>{{ 'menu.profile' | translate }}</span>
+            </a>
+          </li>
+        }
+        @if (!logged) {
+          <li [title]="'menu.login' | translate">
+            <a
+              routerLink="/user/login"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="toggleMenu()"
+              >
+              <span class="icon icon-login"></span>
+              <span>{{ 'menu.login' | translate }}</span>
+            </a>
+          </li>
+        }
+        @if (!logged) {
+          <li [title]="'menu.sign-up' | translate">
+            <a
+              routerLink="/user/sign-up"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="toggleMenu()"
+              >
+              <span class="icon icon-signup"></span>
+              <span>{{ 'menu.sign-up' | translate }}</span>
+            </a>
+          </li>
+        }
+        <li [title]="'menu.logout' | translate">
+          @if (logged) {
+            <a class="logout" (click)="logout()">
+              <span class="icon icon-logout"></span>
+              <span>{{ 'menu.logout' | translate }}</span>
+            </a>
+          }
+        </li>
+        <li class="information" [title]="'menu.information' | translate">
+          <a
+            routerLink="/user/information"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="toggleMenu()"
+            >
+            <span class="icon icon-info"></span>
+            <span>{{ 'menu.information' | translate }}</span>
+          </a>
+        </li>
+      }
 
-                <li class="section-top" [title]="'menu.navigate' | translate">
-                    <a
-                        routerLink="/navigate"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-public-search"></span>
-                        <span>{{ 'menu.navigate' | translate }}</span>
-                    </a>
-                </li>
-            </ng-container>
-            <li class="section-top" [title]="'menu.new' | translate">
-                <a
-                    *ngIf="preferencesForm?.get('mode')?.value !== 'choice'"
-                    routerLink="/edit/new"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true, queryParams: 'ignored' }"
-                    (click)="toggleMenu()"
-                >
-                    <span class="icon icon-add"></span>
-                    <span>{{ 'menu.new' | translate }}</span>
-                </a>
-                <a
-                    *ngIf="preferencesForm?.get('mode')?.value === 'choice'"
-                    (click)="openChoice($event)"
-                    [class.active]="routerUrl.startsWith('/edit/new')"
-                >
-                    <span class="icon icon-add"></span>
-                    <span>{{ 'menu.new' | translate }}</span>
-                </a>
-            </li>
-            <li [title]="'menu.preferences' | translate">
-                <a (click)="openPreferences()" (keydown.enter)="openPreferences()" tabIndex="0">
-                    <span class="icon icon-params"></span>
-                    <span>{{ 'menu.preferences' | translate }}</span>
-                </a>
-            </li>
-            <li *ngIf="modeApi && modeModerator" [title]="'menu.admin' | translate">
-                <a
-                    routerLink="/admin"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: false }"
-                    (click)="toggleMenu()"
-                >
-                    <span class="icon icon-admin"></span>
-                    <span>{{ 'menu.admin' | translate }}</span>
-                </a>
-            </li>
-            <ng-container *ngIf="modeApi">
-                <li *ngIf="logged" [title]="'menu.profile' | translate">
-                    <a
-                        routerLink="/user/profile"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-profile"></span>
-                        <span>{{ 'menu.profile' | translate }}</span>
-                    </a>
-                </li>
-                <li *ngIf="!logged" [title]="'menu.login' | translate">
-                    <a
-                        routerLink="/user/login"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-login"></span>
-                        <span>{{ 'menu.login' | translate }}</span>
-                    </a>
-                </li>
-                <li *ngIf="!logged" [title]="'menu.sign-up' | translate">
-                    <a
-                        routerLink="/user/sign-up"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-signup"></span>
-                        <span>{{ 'menu.sign-up' | translate }}</span>
-                    </a>
-                </li>
-                <li [title]="'menu.logout' | translate">
-                    <a *ngIf="logged" class="logout" (click)="logout()">
-                        <span class="icon icon-logout"></span>
-                        <span>{{ 'menu.logout' | translate }}</span>
-                    </a>
-                </li>
-                <li class="information" [title]="'menu.information' | translate">
-                    <a
-                        routerLink="/user/information"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        (click)="toggleMenu()"
-                    >
-                        <span class="icon icon-info"></span>
-                        <span>{{ 'menu.information' | translate }}</span>
-                    </a>
-                </li>
-            </ng-container>
-
-            <li class="licenses" [title]="'menu.licenses' | translate">
-                <a
-                    routerLink="/licenses"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="toggleMenu()"
-                >
-                    <span class="icon icon-licenses"></span>
-                    <span>{{ 'menu.licenses' | translate }}</span>
-                </a>
-            </li>
-        </ul>
-        <div
-            class="menu-mode"
-            (click)="toggleResizeMenu()"
+      <li class="licenses" [title]="'menu.licenses' | translate">
+        <a
+          routerLink="/licenses"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="toggleMenu()"
+          >
+          <span class="icon icon-licenses"></span>
+          <span>{{ 'menu.licenses' | translate }}</span>
+        </a>
+      </li>
+    </ul>
+    <div
+      class="menu-mode"
+      (click)="toggleResizeMenu()"
             [title]="
                 (preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand') | translate
             "
-        >
-            <span
-                class="icon"
-                [class.icon-reduce]="!preferencesForm?.get('mainMenuReduce')?.value"
-                [class.icon-expand]="preferencesForm?.get('mainMenuReduce')?.value"
-            ></span>
-            <span>{{
-                (preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.expand' : 'menu.mode.reduce') | translate
-            }}</span>
-        </div>
+      >
+      <span
+        class="icon"
+        [class.icon-reduce]="!preferencesForm?.get('mainMenuReduce')?.value"
+        [class.icon-expand]="preferencesForm?.get('mainMenuReduce')?.value"
+      ></span>
+      <span>{{
+        (preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.expand' : 'menu.mode.reduce') | translate
+      }}</span>
     </div>
+  </div>
 </aside>
 <div #main>
-    <router-outlet *ngIf="!loading"></router-outlet>
-    <info-messages></info-messages>
+  @if (!loading) {
+    <router-outlet></router-outlet>
+  }
+  <info-messages></info-messages>
 </div>
 
 <dialog-cmp class="auto-format" #warningExit>
-    <p class="title">{{ 'generator.change.warning' | translate }}</p>
-    <p>{{ 'generator.change.question' | translate }}</p>
-    <div>
-        <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
-        <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | translate }}</button>
-        <button class="warn" (click)="exit(true)">{{ 'list.delete.exit' | translate }}</button>
-    </div>
+  <p class="title">{{ 'generator.change.warning' | translate }}</p>
+  <p>{{ 'generator.change.question' | translate }}</p>
+  <div>
+    <button (click)="exit(false)">{{ 'list.delete.cancel' | translate }}</button>
+    <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | translate }}</button>
+    <button class="warn" (click)="exit(true)">{{ 'list.delete.exit' | translate }}</button>
+  </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format mode-dialog" #choice closeBackdrop>
-    <h2 class="title">{{ 'generator.choice.title' | translate }}</h2>
-    <menu class="choice-mode">
-        <li
-            (click)="beginNew('default')"
-            (mouseenter)="_modeTemp = 'default'"
-            (mouseleave)="_modeTemp = ''"
-            tabIndex="0"
-        >
-            <span class="icon-mode-tierlist"></span>
-            <span>{{ 'mode.name.default' | translate }}</span>
-        </li>
-        <li (click)="beginNew('teams')" (mouseenter)="_modeTemp = 'teams'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-            <span class="icon-mode-teams"></span>
-            <span>{{ 'mode.name.teams' | translate }}</span>
-        </li>
-        <li
-            (click)="beginNew('iceberg')"
-            (mouseenter)="_modeTemp = 'iceberg'"
-            (mouseleave)="_modeTemp = ''"
-            tabIndex="0"
-        >
-            <span class="icon-mode-iceberg"></span>
-            <span>{{ 'mode.name.iceberg' | translate }}</span>
-        </li>
-        <li (click)="beginNew('axis')" (mouseenter)="_modeTemp = 'axis'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-            <span class="icon-mode-axis"></span>
-            <span>{{ 'mode.name.axis' | translate }}</span>
-        </li>
-    </menu>
-    <p class="info" [class.visible]="_modeTemp">
-        <strong>{{ 'mode.name.' + _modeTemp | translate }}</strong>
-        <span>{{ 'generator.actions.change.mode.' + _modeTemp | translate }}</span>
-    </p>
+  <h2 class="title">{{ 'generator.choice.title' | translate }}</h2>
+  <menu class="choice-mode">
+    <li
+      (click)="beginNew('default')"
+      (mouseenter)="_modeTemp = 'default'"
+      (mouseleave)="_modeTemp = ''"
+      tabIndex="0"
+      >
+      <span class="icon-mode-tierlist"></span>
+      <span>{{ 'mode.name.default' | translate }}</span>
+    </li>
+    <li (click)="beginNew('teams')" (mouseenter)="_modeTemp = 'teams'" (mouseleave)="_modeTemp = ''" tabIndex="0">
+      <span class="icon-mode-teams"></span>
+      <span>{{ 'mode.name.teams' | translate }}</span>
+    </li>
+    <li
+      (click)="beginNew('iceberg')"
+      (mouseenter)="_modeTemp = 'iceberg'"
+      (mouseleave)="_modeTemp = ''"
+      tabIndex="0"
+      >
+      <span class="icon-mode-iceberg"></span>
+      <span>{{ 'mode.name.iceberg' | translate }}</span>
+    </li>
+    <li (click)="beginNew('axis')" (mouseenter)="_modeTemp = 'axis'" (mouseleave)="_modeTemp = ''" tabIndex="0">
+      <span class="icon-mode-axis"></span>
+      <span>{{ 'mode.name.axis' | translate }}</span>
+    </li>
+  </menu>
+  <p class="info" [class.visible]="_modeTemp">
+    <strong>{{ 'mode.name.' + _modeTemp | translate }}</strong>
+    <span>{{ 'generator.actions.change.mode.' + _modeTemp | translate }}</span>
+  </p>
 </dialog-cmp>
 
 <dialog-cmp class="preferences" #preferences closeBackdrop closeButton>
-    <ng-container *ngIf="preferencesForm" [formGroup]="preferencesForm">
-        <h2>{{ 'preferences.title' | translate }}</h2>
-        <tabs>
-            <tab-title id="general"> {{ 'preferences.tab.general' | translate }}</tab-title>
-            <tab-content id="general">
-                <h3>{{ 'preferences.interface.title' | translate }}</h3>
-
-                <h5>{{ 'preferences.interface.light-dark' | translate }}</h5>
-                <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
-
-                <h5>{{ 'preferences.interface.language' | translate }}</h5>
-                <label for="language">
-                    <select id="language" formControlName="interfaceLanguage">
-                        <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
-                    </select>
-                </label>
-
-                <ng-container *ngIf="modeApi">
-                    <h3>{{ 'preferences.navigation.title' | translate }}</h3>
-                    <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
-                    <label>
-                        {{ 'preferences.navigation.page.size.pre' | translate }}
-                        <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-                        {{ 'preferences.navigation.page.size.per' | translate }}
-                    </label>
-                </ng-container>
-            </tab-content>
-
-            <tab-title id="editor"> {{ 'preferences.editor.title' | translate }}</tab-title>
-            <tab-content id="editor">
-                <h3>{{ 'preferences.editor.title' | translate }}</h3>
-                <h4>{{ 'preferences.tiles.title' | translate }}</h4>
-                <h5>{{ 'preferences.tile.title' | translate }}</h5>
-                <label>
-                    <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
-                </label>
-
-                <h4>{{ 'preferences.groups.title' | translate }}</h4>
-
-                <h5>{{ 'preferences.color.title' | translate }}</h5>
-                <label>
-                    <input type="radio" formControlName="newColor" value="mixed" />
-                    {{ 'preferences.color.new.color.mixed' | translate }}
-                </label>
-                <label>
-                    <input type="radio" formControlName="newColor" value="same" />
-                    {{ 'preferences.color.new.color.same' | translate }}
-                </label>
-
-                <h5>{{ 'preferences.group.title' | translate }}</h5>
-                <label>
-                    <input type="radio" formControlName="newLine" value="below" />
-                    {{ 'preferences.group.new.line.below' | translate }}
-                </label>
-                <label
-                    ><input type="radio" formControlName="newLine" value="above" />
-                    {{ 'preferences.group.new.line.above' | translate }}
-                </label>
-                <!-- <label
-                ><input type="radio" formControlName="newLine" value="ask-me" />
-                {{ 'preferences.group.new.line.ask.me' | translate }}
-            </label> -->
-
-                <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
-                <label>
-                    <input type="radio" formControlName="lineOption" value="auto" />
-                    {{ 'preferences.group.line.option.auto' | translate }}
-                </label>
-                <label
-                    ><input type="radio" formControlName="lineOption" value="reduce" />
-                    {{ 'preferences.group.line.option.reduce' | translate }}
-                </label>
-                <label
-                    ><input type="radio" formControlName="lineOption" value="hidden" />
-                    {{ 'preferences.group.line.option.hidden' | translate }}
-                </label>
-
-                <h4>{{ 'preferences.mode.title' | translate }}</h4>
-                <select formControlName="mode">
-                    <option value="choice">{{ 'mode.name.choice' | translate }}</option>
-                    <option value="default">{{ 'mode.name.default' | translate }}</option>
-                    <option value="teams">{{ 'mode.name.teams' | translate }}</option>
-                    <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
-                    <option value="axis">{{ 'mode.name.axis' | translate }}</option>
-                </select>
-
-                <ng-container *ngIf="preferencesForm.get('mode')?.value !== 'choice'">
-                    <h4>{{ 'preferences.theme.title' | translate }}</h4>
-                    <select formControlName="theme">
-                        <option *ngFor="let theme of themes" [value]="theme">
-                            {{ 'generator.theme.name.' + theme | translate }}
-                        </option>
-                    </select>
-                </ng-container>
-            </tab-content>
-
-            <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
-            <tab-content id="api" formGroupName="authApiKeys">
-                <label>{{ 'preferences.imdb.key' | translate }} </label>
-                <input type="text" formControlName="imdb" />
-
-                <div class="info">
-                    <span class="icon-info"></span>
-                    Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
-                    <a href="https://www.themoviedb.org/settings/api">API</a>
-                </div>
-            </tab-content>
-        </tabs>
-
-        <div class="buttons">
-            <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
+  @if (preferencesForm) {
+    <ng-container [formGroup]="preferencesForm">
+      <h2>{{ 'preferences.title' | translate }}</h2>
+      <tabs>
+        <tab-title id="general"> {{ 'preferences.tab.general' | translate }}</tab-title>
+        <tab-content id="general">
+          <h3>{{ 'preferences.interface.title' | translate }}</h3>
+          <h5>{{ 'preferences.interface.light-dark' | translate }}</h5>
+          <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
+          <h5>{{ 'preferences.interface.language' | translate }}</h5>
+          <label for="language">
+            <select id="language" formControlName="interfaceLanguage">
+              @for (lang of languages; track lang) {
+                <option [value]="lang.value">{{ lang.label }}</option>
+              }
+            </select>
+          </label>
+          @if (modeApi) {
+            <h3>{{ 'preferences.navigation.title' | translate }}</h3>
+            <h5>{{ 'preferences.navigation.page.size' | translate }}</h5>
+            <label>
+              {{ 'preferences.navigation.page.size.pre' | translate }}
+              <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
+              {{ 'preferences.navigation.page.size.per' | translate }}
+            </label>
+          }
+        </tab-content>
+        <tab-title id="editor"> {{ 'preferences.editor.title' | translate }}</tab-title>
+        <tab-content id="editor">
+          <h3>{{ 'preferences.editor.title' | translate }}</h3>
+          <h4>{{ 'preferences.tiles.title' | translate }}</h4>
+          <h5>{{ 'preferences.tile.title' | translate }}</h5>
+          <label>
+            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | translate }}
+          </label>
+          <h4>{{ 'preferences.groups.title' | translate }}</h4>
+          <h5>{{ 'preferences.color.title' | translate }}</h5>
+          <label>
+            <input type="radio" formControlName="newColor" value="mixed" />
+            {{ 'preferences.color.new.color.mixed' | translate }}
+          </label>
+          <label>
+            <input type="radio" formControlName="newColor" value="same" />
+            {{ 'preferences.color.new.color.same' | translate }}
+          </label>
+          <h5>{{ 'preferences.group.title' | translate }}</h5>
+          <label>
+            <input type="radio" formControlName="newLine" value="below" />
+            {{ 'preferences.group.new.line.below' | translate }}
+          </label>
+          <label
+            ><input type="radio" formControlName="newLine" value="above" />
+            {{ 'preferences.group.new.line.above' | translate }}
+          </label>
+          <!-- <label
+          ><input type="radio" formControlName="newLine" value="ask-me" />
+          {{ 'preferences.group.new.line.ask.me' | translate }}
+        </label> -->
+        <h5>{{ 'preferences.group.line.option.title' | translate }}</h5>
+        <label>
+          <input type="radio" formControlName="lineOption" value="auto" />
+          {{ 'preferences.group.line.option.auto' | translate }}
+        </label>
+        <label
+          ><input type="radio" formControlName="lineOption" value="reduce" />
+          {{ 'preferences.group.line.option.reduce' | translate }}
+        </label>
+        <label
+          ><input type="radio" formControlName="lineOption" value="hidden" />
+          {{ 'preferences.group.line.option.hidden' | translate }}
+        </label>
+        <h4>{{ 'preferences.mode.title' | translate }}</h4>
+        <select formControlName="mode">
+          <option value="choice">{{ 'mode.name.choice' | translate }}</option>
+          <option value="default">{{ 'mode.name.default' | translate }}</option>
+          <option value="teams">{{ 'mode.name.teams' | translate }}</option>
+          <option value="iceberg">{{ 'mode.name.iceberg' | translate }}</option>
+          <option value="axis">{{ 'mode.name.axis' | translate }}</option>
+        </select>
+        @if (preferencesForm.get('mode')?.value !== 'choice') {
+          <h4>{{ 'preferences.theme.title' | translate }}</h4>
+          <select formControlName="theme">
+            @for (theme of themes; track theme) {
+              <option [value]="theme">
+                {{ 'generator.theme.name.' + theme | translate }}
+              </option>
+            }
+          </select>
+        }
+      </tab-content>
+      <tab-title id="api"> {{ 'preferences.tab.api' | translate }}</tab-title>
+      <tab-content id="api" formGroupName="authApiKeys">
+        <label>{{ 'preferences.imdb.key' | translate }} </label>
+        <input type="text" formControlName="imdb" />
+        <div class="info">
+          <span class="icon-info"></span>
+          Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
+          <a href="https://www.themoviedb.org/settings/api">API</a>
         </div>
-    </ng-container>
+      </tab-content>
+    </tabs>
+    <div class="buttons">
+      <button (click)="preferences.close()">{{ 'preferences.close' | translate }}</button>
+    </div>
+  </ng-container>
+}
 </dialog-cmp>

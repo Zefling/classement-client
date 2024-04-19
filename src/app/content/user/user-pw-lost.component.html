@@ -1,31 +1,31 @@
 <h1>{{ 'user.password.lost.title' | translate }}</h1>
 
-<form class="form" *ngIf="!valide; else valideBlock">
+@if (!valide) {
+  <form class="form">
     <p>{{ 'user.password.lost.info' | translate }}</p>
-
     <label for="email">{{ 'user.login.email' | translate }}</label>
     <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
-
-    <div *ngIf="showError" class="list-error">
+    @if (showError) {
+      <div class="list-error">
         {{ showError }}
-    </div>
-
+      </div>
+    }
     <div class="button">
-        <button (click)="submit()">{{ 'user.password.lost.action' | translate }}</button>
+      <button (click)="submit()">{{ 'user.password.lost.action' | translate }}</button>
     </div>
-</form>
+  </form>
+} @else {
+  <div>
+    {{ 'user.password.lost.send' | translate }}
+  </div>
+}
 
-<ng-template #valideBlock>
-    <div>
-        {{ 'user.password.lost.send' | translate }}
-    </div>
-</ng-template>
 
 <div class="links">
-    <div>
-        <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
-    </div>
-    <div>
-        <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
-    </div>
+  <div>
+    <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+  </div>
+  <div>
+    <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+  </div>
 </div>

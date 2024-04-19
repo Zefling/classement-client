@@ -1,28 +1,38 @@
 <h1>{{ 'user.password.lost.change.title' | translate }}</h1>
 
 <form class="form" [formGroup]="changePasswordForm">
-    <p>{{ 'user.password.lost.change.intro' | translate }}</p>
+  <p>{{ 'user.password.lost.change.intro' | translate }}</p>
 
-    <label for="password">{{ 'user.password.new' | translate }}</label>
-    <input id="password" type="password" spellcheck="false" formControlName="password" />
-    <div class="level-strong">
-        <ng-container *ngIf="!strong">
-            <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
-        </ng-container>
-        <span class="strong" *ngIf="strong"></span>
-    </div>
+  <label for="password">{{ 'user.password.new' | translate }}</label>
+  <input id="password" type="password" spellcheck="false" formControlName="password" />
+  <div class="level-strong">
+    @if (!strong) {
+      @for (lvl of passedTests; track lvl) {
+        <span [style.--level]="lvl"></span>
+      }
+    }
+    @if (strong) {
+      <span class="strong"></span>
+    }
+  </div>
 
-    <label for="password2">{{ 'user.password.confirm' | translate }}</label>
-    <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-    <div class="level-strong">
-        <span class="strong" *ngIf="confirm"></span>
-    </div>
+  <label for="password2">{{ 'user.password.confirm' | translate }}</label>
+  <input id="password2" type="password" spellcheck="false" formControlName="password2" />
+  <div class="level-strong">
+    @if (confirm) {
+      <span class="strong"></span>
+    }
+  </div>
 
-    <ul *ngIf="showError?.length" class="list-error">
-        <li *ngFor="let error of showError">{{ error }}</li>
+  @if (showError?.length) {
+    <ul class="list-error">
+      @for (error of showError; track error) {
+        <li>{{ error }}</li>
+      }
     </ul>
+  }
 
-    <div class="button">
-        <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
-    </div>
+  <div class="button">
+    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
+  </div>
 </form>

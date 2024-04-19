@@ -1,61 +1,67 @@
 <dialog-cmp closeButton>
-    <h2>{{ 'generator.external.imbd.title' | translate }}</h2>
+  <h2>{{ 'generator.external.imbd.title' | translate }}</h2>
 
-    <div *ngIf="keyApi && languages" class="imdb">
-        <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
-        <form [formGroup]="searchMovieForm" (submit)="search()">
-            <div>
-                <label for="name">{{ 'generator.external.imbd.name' | translate }}</label>
-                <input id="name" formControlName="query" />
-            </div>
-            <div>
-                <label>
-                    <input type="checkbox" formControlName="include_adult" />
-                    {{ 'generator.external.imbd.adult.content' | translate }}
-                </label>
-            </div>
-            <div>
-                <label for="language">{{ 'generator.external.imbd.language' | translate }}</label>
-                <select2 overlay id="language" formControlName="language" [data]="languages" />
-            </div>
-
-            <p class="buttons">
-                <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
-                    {{ 'generator.external.imbd.search' | translate }}
-                </button>
-            </p>
-        </form>
-
-        <div class="options" *ngIf="results?.length">
-            <div>
-                <label>
-                    <input type="checkbox" [(ngModel)]="withTitle" />
-                    {{ 'generator.external.imbd.with.title' | translate }}
-                </label>
-                <label>
-                    <input type="checkbox" [(ngModel)]="withYear" />
-                    {{ 'generator.external.imbd.with.year' | translate }}
-                </label>
-            </div>
+  @if (keyApi && languages) {
+    <div class="imdb">
+      <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
+      <form [formGroup]="searchMovieForm" (submit)="search()">
+        <div>
+          <label for="name">{{ 'generator.external.imbd.name' | translate }}</label>
+          <input id="name" formControlName="query" />
         </div>
-
-        <div class="movies">
-            <ng-container *ngFor="let movie of results">
-                <div
-                    class="content-box"
-                    [class.disabled]="movie.disabled"
-                    *ngIf="movie.poster_path"
-                    (click)="addTile(movie)"
-                >
-                    <div class="content">
-                        <img [src]="baseImg + movie.poster_path" alt="poster_path" />
-                        <div class="movie-title">
-                            <span *ngIf="withTitle">{{ movie.title }}</span>
-                            <span *ngIf="withYear"> ({{ movie.release_date | date: 'YYYY' }})</span>
-                        </div>
-                    </div>
+        <div>
+          <label>
+            <input type="checkbox" formControlName="include_adult" />
+            {{ 'generator.external.imbd.adult.content' | translate }}
+          </label>
+        </div>
+        <div>
+          <label for="language">{{ 'generator.external.imbd.language' | translate }}</label>
+          <select2 overlay id="language" formControlName="language" [data]="languages" />
+        </div>
+        <p class="buttons">
+          <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
+            {{ 'generator.external.imbd.search' | translate }}
+          </button>
+        </p>
+      </form>
+      @if (results?.length) {
+        <div class="options">
+          <div>
+            <label>
+              <input type="checkbox" [(ngModel)]="withTitle" />
+              {{ 'generator.external.imbd.with.title' | translate }}
+            </label>
+            <label>
+              <input type="checkbox" [(ngModel)]="withYear" />
+              {{ 'generator.external.imbd.with.year' | translate }}
+            </label>
+          </div>
+        </div>
+      }
+      <div class="movies">
+        @for (movie of results; track movie) {
+          @if (movie.poster_path) {
+            <div
+              class="content-box"
+              [class.disabled]="movie.disabled"
+              (click)="addTile(movie)"
+              >
+              <div class="content">
+                <img [src]="baseImg + movie.poster_path" alt="poster_path" />
+                <div class="movie-title">
+                  @if (withTitle) {
+                    <span>{{ movie.title }}</span>
+                  }
+                  @if (withYear) {
+                    <span> ({{ movie.release_date | date: 'YYYY' }})</span>
+                  }
                 </div>
-            </ng-container>
-        </div>
+              </div>
+            </div>
+          }
+        }
+      </div>
     </div>
+  }
 </dialog-cmp>

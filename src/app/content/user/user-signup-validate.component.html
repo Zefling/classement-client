@@ -1,3 +1,5 @@
 <h1>{{ 'user.login.validate' | translate }}</h1>
 
-<p *ngIf="error" class="alert">{{ error }}</p>
+@if (error) {
+  <p class="alert">{{ error }}</p>
+}

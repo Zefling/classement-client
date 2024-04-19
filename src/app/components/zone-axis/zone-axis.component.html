@@ -1,15 +1,16 @@
 <div class="axis">
-    <div class="axis-h"></div>
-    <div class="axis-v"></div>
+  <div class="axis-h"></div>
+  <div class="axis-v"></div>
 </div>
 
 <div class="names">
+  @for (group of groups; track group) {
     <div
-        *ngFor="let group of groups"
-        [style.--h]="group.titleHorizontalPosition"
-        [style.--v]="group.titleVerticalPosition"
-        class="name"
-    >
-        <span class="group-title">{{ group.title }}</span>
+      [style.--h]="group.titleHorizontalPosition"
+      [style.--v]="group.titleVerticalPosition"
+      class="name"
+      >
+      <span class="group-title">{{ group.title }}</span>
     </div>
+  }
 </div>

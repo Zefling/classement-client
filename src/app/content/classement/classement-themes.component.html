@@ -1,19 +1,22 @@
 <dialog-cmp class="auto-format">
-    <p>{{ 'generator.theme.info' | translate }}</p>
+  <p>{{ 'generator.theme.info' | translate }}</p>
 
-    <div class="themes">
-        <theme-icon
-            *ngFor="let theme of themes"
-            [theme]="theme"
-            (select)="changeTheme($event)"
-            [class.selected]="theme === currentTheme"
-        ></theme-icon>
-    </div>
+  <div class="themes">
+    @for (theme of themes; track theme) {
+      <theme-icon
+        [theme]="theme"
+        (select)="changeTheme($event)"
+        [class.selected]="theme === currentTheme"
+      ></theme-icon>
+    }
+  </div>
 
-    <div>
-        <button (click)="cancel()">{{ 'generator.theme.cancel' | translate }}</button>
-        <button *ngIf="currentTheme" class="primary" (click)="validate()">
-            {{ 'generator.theme.validate' | translate }}
-        </button>
-    </div>
+  <div>
+    <button (click)="cancel()">{{ 'generator.theme.cancel' | translate }}</button>
+    @if (currentTheme) {
+      <button class="primary" (click)="validate()">
+        {{ 'generator.theme.validate' | translate }}
+      </button>
+    }
+  </div>
 </dialog-cmp>

@@ -1,63 +1,69 @@
-<ng-container *ngIf="classements?.length; else noResult" [class.cateories]="isCategoryList">
-    <div class="classement" *ngFor="let classement of classements">
+@if (classements?.length) {
+  <ng-container [class.cateories]="isCategoryList">
+    @for (classement of classements; track classement) {
+      <div class="classement">
         <a
-            [routerLink]="
-                isCategoryList
-                    ? ['/navigate']
-                    : classement.templateTotal <= 1 || this.onlyRanking
-                      ? ['/navigate/view', classement.linkId || classement.rankingId]
-                      : ['/navigate/template', classement.templateId]
-            "
-            [queryParams]="isCategoryList ? { category: classement.category } : {}"
+          [routerLink]="
+            isCategoryList
+              ? ['/navigate']
+              : classement.templateTotal <= 1 || this.onlyRanking
+                ? ['/navigate/view', classement.linkId || classement.rankingId]
+                : ['/navigate/template', classement.templateId]
+          "
+          [queryParams]="isCategoryList ? { category: classement.category } : {}"
         >
-            <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | translate">
-                <img [src]="classement.banner" [alt]="classement.name" />
-                <figcaption>
-                    <div class="name" *ngIf="!isCategoryList">{{ classement.name }}</div>
-                    <div class="category">
-                        {{ 'category.' + (classement.category || 'undefined') | translate }}
-                        <ng-container *ngIf="isCategoryList"> ({{ classement.templateTotal }}) </ng-container>
-                    </div>
-                    <ng-container *ngIf="!isCategoryList">
-                        <div class="groups">
-                            <div [title]="'list.count.group' | translate">
-                                <span class="icon-group"></span> {{ classement.totalGroups }}
-                            </div>
-                            <div [title]="'list.count.item' | translate">
-                                <span class="icon-tile"></span> {{ classement.totalItems }}
-                            </div>
-                        </div>
-                        <div class="username" *ngIf="!hideUser">
-                            {{
-                                'user.by'
-                                    | translate: { author: classement.user || ('list.user.anonymous' | translate) }
-                            }}
-                        </div>
-                        <div class="date">
-                            {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
-                        </div>
-                        <div class="date change">
-                            <ng-container *ngIf="classement.dateChange">{{
-                                'generator.ranking.change'
-                                    | translate
-                                        : {
-                                              DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
-                                          }
-                            }}</ng-container>
-                        </div>
-                    </ng-container>
-                </figcaption>
-            </figure>
-            <div
-                *ngIf="!isCategoryList && !hideDerivatives"
-                class="template"
-                [class.hide]="classement.templateTotal <= 1"
-            >
-                {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+          <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | translate">
+            <img [src]="classement.banner" [alt]="classement.name" />
+            <figcaption>
+              @if (!isCategoryList) {
+                <div class="name">{{ classement.name }}</div>
+              }
+              <div class="category">
+                {{ 'category.' + (classement.category || 'undefined') | translate }}
+                @if (isCategoryList) {
+                  ({{ classement.templateTotal }})
+                }
+              </div>
+              @if (!isCategoryList) {
+                <div class="groups">
+                  <div [title]="'list.count.group' | translate">
+                    <span class="icon-group"></span> {{ classement.totalGroups }}
+                  </div>
+                  <div [title]="'list.count.item' | translate">
+                    <span class="icon-tile"></span> {{ classement.totalItems }}
+                  </div>
+                </div>
+                @if (!hideUser) {
+                  <div class="username">
+                    {{ 'user.by' | translate: { author: classement.user || ('list.user.anonymous' | translate) } }}
+                  </div>
+                }
+                <div class="date">
+                  {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                </div>
+                <div class="date change">
+                  @if (classement.dateChange) {
+                    {{
+                      'generator.ranking.change'
+                        | translate
+                          : {
+                              DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate)
+                            }
+                    }}
+                  }
+                </div>
+              }
+            </figcaption>
+          </figure>
+          @if (!isCategoryList && !hideDerivatives) {
+            <div class="template" [class.hide]="classement.templateTotal <= 1">
+              {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
             </div>
+          }
         </a>
-    </div>
-</ng-container>
-<ng-template #noResult>
-    <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
-</ng-template>
+      </div>
+    }
+  </ng-container>
+} @else {
+  <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
+}

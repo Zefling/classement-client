@@ -1,202 +1,209 @@
 <dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
-    <ng-container *ngIf="currentTile">
+  @if (currentTile) {
+    <div>
+      <label for="ranking-title">{{ 'generator.ranking.title' | translate }}</label> <br />
+      <input
+        maxlength="150"
+        id="ranking-title"
+        type="text"
+        [(ngModel)]="currentTile.title"
+        (ngModelChange)="detectChanges()"
+        />
+    </div>
+    <div>
+      <label for="tile-annotation">{{ 'generator.ranking.annotation' | translate }}</label> <br />
+      <textarea
+        autosize
+        maxlength="500"
+        id="tile-annotation"
+        [(ngModel)]="currentTile.annotation"
+        (ngModelChange)="globalChange()"
+        >
+      </textarea>
+    </div>
+    <div>
+      <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
+      @if (currentTile.url) {
+        <div class="image-preview-content">
+          <img [src]="currentTile.url" class="image-preview" />
+          <div class="image-preview-button">
+            <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+              {{ 'generator.ranking.image.edit' | translate }}
+            </button>
+            @if (currentTile.url) {
+              <button (click)="currentTile.url = ''; globalChange()" class="warn">
+                {{ 'generator.ranking.image.remove' | translate }}
+              </button>
+            }
+          </div>
+        </div>
+      } @else {
         <div>
-            <label for="ranking-title">{{ 'generator.ranking.title' | translate }}</label> <br />
-            <input
-                maxlength="150"
-                id="ranking-title"
-                type="text"
-                [(ngModel)]="currentTile.title"
-                (ngModelChange)="detectChanges()"
+          <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+            {{ 'generator.ranking.image.add' | translate }}
+          </button>
+          <div>
+            {{ 'generator.ranking.image.empty' | translate }}
+          </div>
+        </div>
+      }
+    </div>
+    <div class="group-colors">
+      <div class="colors">
+        <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | translate }}</label>
+        <div class="new-color">
+          <input
+            [title]="'generator.ranking.tile.color.new' | translate"
+            id="tile-bg-color"
+            type="color"
+            [(ngModel)]="currentTile.bgColor"
             />
         </div>
-        <div>
-            <label for="tile-annotation">{{ 'generator.ranking.annotation' | translate }}</label> <br />
-            <textarea
-                autosize
-                maxlength="500"
-                id="tile-annotation"
-                [(ngModel)]="currentTile.annotation"
-                (ngModelChange)="globalChange()"
-            >
-            </textarea>
+        <div
+          [title]="'generator.ranking.tile.color.remove' | translate"
+          class="color remove"
+          (click)="currentTile.bgColor = undefined"
+          tabindex="0"
+        ></div>
+        <div
+          [title]="'generator.ranking.tile.color.transparent' | translate"
+          class="color transparent"
+          (click)="currentTile.bgColor = 'transparent'"
+          tabindex="0"
+        ></div>
+        @for (color of colorListBg; track color) {
+          <div
+            [title]="'generator.ranking.tile.color.previous' | translate"
+            class="color"
+            [style.--color]="color"
+            (click)="currentTile.bgColor = color"
+            tabindex="0"
+          ></div>
+        }
+      </div>
+      <div class="colors">
+        <label for="tile-text-color">{{ 'generator.ranking.text.color' | translate }}</label>
+        <div class="new-color">
+          <input
+            [title]="'generator.ranking.text.color.new' | translate"
+            id="tile-text-color"
+            type="color"
+            [(ngModel)]="currentTile.txtColor"
+            />
         </div>
-        <div>
-            <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
-
-            <div class="image-preview-content" *ngIf="currentTile.url; else noImage">
-                <img [src]="currentTile.url" class="image-preview" />
-                <div class="image-preview-button">
-                    <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
-                        {{ 'generator.ranking.image.edit' | translate }}
-                    </button>
-                    <button *ngIf="currentTile.url" (click)="currentTile.url = ''; globalChange()" class="warn">
-                        {{ 'generator.ranking.image.remove' | translate }}
-                    </button>
-                </div>
-            </div>
-
-            <ng-template #noImage>
-                <div>
-                    <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
-                        {{ 'generator.ranking.image.add' | translate }}
-                    </button>
-                    <div>
-                        {{ 'generator.ranking.image.empty' | translate }}
-                    </div>
-                </div>
-            </ng-template>
+        <div
+          [title]="'generator.ranking.text.color.remove' | translate"
+          class="color remove"
+          (click)="currentTile.txtColor = undefined"
+          tabindex="0"
+        ></div>
+        @for (color of colorListTxt; track color) {
+          <div
+            [style.--color]="color"
+            [title]="'generator.ranking.text.color.previous' | translate"
+            class="color"
+            (click)="currentTile.txtColor = color"
+            tabindex="0"
+          ></div>
+        }
+        {{ _options?.mode }}
+      </div>
+      @if (_options?.mode === 'iceberg' || _options?.mode === 'axis') {
+        <div class="position">
+          <div class="label">{{ 'generator.ranking.tile.position' | translate }}</div>
+          <div class="new-color">
+            <button
+              [title]="'generator.ranking.tile.position.top' | translate"
+              (click)="tileZIndex('top')"
+              class="top"
+              >
+              <span>↑</span>
+            </button>
+            <button [title]="'generator.ranking.tile.position.up' | translate" (click)="tileZIndex('up')">
+              ↑
+            </button>
+            <button [title]="'generator.ranking.tile.position.down' | translate" (click)="tileZIndex('down')">
+              ↓
+            </button>
+            <button
+              [title]="'generator.ranking.tile.position.bottom' | translate"
+              (click)="tileZIndex('bottom')"
+              class="bottom"
+              >
+              <span>↓</span>
+            </button>
+          </div>
         </div>
-        <div class="group-colors">
-            <div class="colors">
-                <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | translate }}</label>
-                <div class="new-color">
-                    <input
-                        [title]="'generator.ranking.tile.color.new' | translate"
-                        id="tile-bg-color"
-                        type="color"
-                        [(ngModel)]="currentTile.bgColor"
-                    />
-                </div>
-                <div
-                    [title]="'generator.ranking.tile.color.remove' | translate"
-                    class="color remove"
-                    (click)="currentTile.bgColor = undefined"
-                    tabindex="0"
-                ></div>
-                <div
-                    [title]="'generator.ranking.tile.color.transparent' | translate"
-                    class="color transparent"
-                    (click)="currentTile.bgColor = 'transparent'"
-                    tabindex="0"
-                ></div>
-                <div
-                    *ngFor="let color of colorListBg"
-                    [title]="'generator.ranking.tile.color.previous' | translate"
-                    class="color"
-                    [style.--color]="color"
-                    (click)="currentTile.bgColor = color"
-                    tabindex="0"
-                ></div>
-            </div>
-            <div class="colors">
-                <label for="tile-text-color">{{ 'generator.ranking.text.color' | translate }}</label>
-                <div class="new-color">
-                    <input
-                        [title]="'generator.ranking.text.color.new' | translate"
-                        id="tile-text-color"
-                        type="color"
-                        [(ngModel)]="currentTile.txtColor"
-                    />
-                </div>
-                <div
-                    [title]="'generator.ranking.text.color.remove' | translate"
-                    class="color remove"
-                    (click)="currentTile.txtColor = undefined"
-                    tabindex="0"
-                ></div>
-                <div
-                    *ngFor="let color of colorListTxt"
-                    [style.--color]="color"
-                    [title]="'generator.ranking.text.color.previous' | translate"
-                    class="color"
-                    (click)="currentTile.txtColor = color"
-                    tabindex="0"
-                ></div>
-                {{ _options?.mode }}
-            </div>
-            <div class="position" *ngIf="_options?.mode === 'iceberg' || _options?.mode === 'axis'">
-                <div class="label">{{ 'generator.ranking.tile.position' | translate }}</div>
-                <div class="new-color">
-                    <button
-                        [title]="'generator.ranking.tile.position.top' | translate"
-                        (click)="tileZIndex('top')"
-                        class="top"
-                    >
-                        <span>↑</span>
-                    </button>
-                    <button [title]="'generator.ranking.tile.position.up' | translate" (click)="tileZIndex('up')">
-                        ↑
-                    </button>
-                    <button [title]="'generator.ranking.tile.position.down' | translate" (click)="tileZIndex('down')">
-                        ↓
-                    </button>
-                    <button
-                        [title]="'generator.ranking.tile.position.bottom' | translate"
-                        (click)="tileZIndex('bottom')"
-                        class="bottom"
-                    >
-                        <span>↓</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="buttons">
-            <button class="primary" (click)="close()">{{ 'generator.ranking.close' | translate }}</button>
-            <button class="warn" (click)="delete()">{{ 'generator.ranking.delete.tile' | translate }}</button>
-        </div>
-    </ng-container>
+      }
+    </div>
+    <div class="buttons">
+      <button class="primary" (click)="close()">{{ 'generator.ranking.close' | translate }}</button>
+      <button class="warn" (click)="delete()">{{ 'generator.ranking.delete.tile' | translate }}</button>
+    </div>
+  }
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogImageEdit>
-    <div drop-image mode="local" (file)="fileChange($event)" *ngIf="currentTile && dialogImageEdit._open">
-        <div class="drop-image-message">{{ 'generator.ranking.image.drop' | translate }}</div>
-        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
-        <div class="edit-image" *ngIf="data?.startsWith('data'); else staticImage">
-            <div class="image">
-                <img [src]="croppedImage || data" />
+  @if (currentTile && dialogImageEdit._open) {
+    <div drop-image mode="local" (file)="fileChange($event)">
+      <div class="drop-image-message">{{ 'generator.ranking.image.drop' | translate }}</div>
+      <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
+      @if (data?.startsWith('data')) {
+        <div class="edit-image">
+          <div class="image">
+            <img [src]="croppedImage || data" />
+          </div>
+          <div class="image-edit">
+            <image-cropper
+              #imageCropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="maintainAspectRatio"
+              [aspectRatio]="aspectRatio"
+              [imageBase64]="data"
+              [cropperMinWidth]="16"
+              [cropperMinHeight]="16"
+              [resizeToWidth]="300"
+              [resizeToHeight]="300"
+              [onlyScaleDown]="true"
+              format="webp"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            <div class="change">
+              <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
+              <button [class.selected]="mode === 1" (click)="changeRatio(1, '1:1')">1:1</button>
+              <button [class.selected]="mode === 2" (click)="changeRatio(2, '4:3')">4:3</button>
+              <button [class.selected]="mode === 3" (click)="changeRatio(3, '16:9')">16:9</button>
+              <button [class.selected]="mode === 4" (click)="changeRatio(4, '9:16')">9:16</button>
+              <div class="edit-ratio">
+                <label for="ratio-image">{{ 'generator.ranking.image.ratio' | translate }}</label>
+                <input
+                  id="ratio-image"
+                  #ratioInput
+                  value="0"
+                  (focus)="changeRatio(99, ratioInput.value)"
+                  (input)="changeRatio(99, ratioInput.value)"
+                  />
+                <div class="sub-input">{{ 'generator.ranking.image.ratio.help' | translate }}</div>
+              </div>
             </div>
-            <div class="image-edit">
-                <image-cropper
-                    #imageCropper
-                    [imageChangedEvent]="imageChangedEvent"
-                    [maintainAspectRatio]="maintainAspectRatio"
-                    [aspectRatio]="aspectRatio"
-                    [imageBase64]="data"
-                    [cropperMinWidth]="16"
-                    [cropperMinHeight]="16"
-                    [resizeToWidth]="300"
-                    [resizeToHeight]="300"
-                    [onlyScaleDown]="true"
-                    format="webp"
-                    (imageCropped)="imageCropped($event)"
-                    (imageLoaded)="imageLoaded($event)"
-                    (cropperReady)="cropperReady()"
-                    (loadImageFailed)="loadImageFailed()"
-                ></image-cropper>
-                <div class="change">
-                    <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
-                    <button [class.selected]="mode === 1" (click)="changeRatio(1, '1:1')">1:1</button>
-                    <button [class.selected]="mode === 2" (click)="changeRatio(2, '4:3')">4:3</button>
-                    <button [class.selected]="mode === 3" (click)="changeRatio(3, '16:9')">16:9</button>
-                    <button [class.selected]="mode === 4" (click)="changeRatio(4, '9:16')">9:16</button>
-                    <div class="edit-ratio">
-                        <label for="ratio-image">{{ 'generator.ranking.image.ratio' | translate }}</label>
-                        <input
-                            id="ratio-image"
-                            #ratioInput
-                            value="0"
-                            (focus)="changeRatio(99, ratioInput.value)"
-                            (input)="changeRatio(99, ratioInput.value)"
-                        />
-                        <div class="sub-input">{{ 'generator.ranking.image.ratio.help' | translate }}</div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <ng-template #staticImage>
-            <div>
-                <img [src]="data" />
-            </div>
-        </ng-template>
-
-        <div class="buttons">
-            <button (click)="dialogImageEdit.close()">
-                {{ 'generator.ranking.image.edit.cancel' | translate }}
-            </button>
-            <button class="primary" (click)="update(); dialogImageEdit.close()">
-                {{ 'generator.ranking.image.edit.ok' | translate }}
-            </button>
+      } @else {
+        <div>
+          <img [src]="data" />
         </div>
+      }
+      <div class="buttons">
+        <button (click)="dialogImageEdit.close()">
+          {{ 'generator.ranking.image.edit.cancel' | translate }}
+        </button>
+        <button class="primary" (click)="update(); dialogImageEdit.close()">
+          {{ 'generator.ranking.image.edit.ok' | translate }}
+        </button>
+      </div>
     </div>
+  }
 </dialog-cmp>

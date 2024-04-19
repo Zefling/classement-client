@@ -1,11 +1,13 @@
 <h2>{{ 'navigate.template' | translate }}</h2>
 
 <div class="return">
-    <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.search' | translate }}</a>
+  <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.search' | translate }}</a>
 </div>
 
-<ng-container *ngIf="!loading">
-    <navigate-result [classements]="classements" hideDerivatives></navigate-result>
-</ng-container>
+@if (!loading) {
+  <navigate-result [classements]="classements" hideDerivatives></navigate-result>
+}
 
-<loader-item *ngIf="loading"></loader-item>
+@if (loading) {
+  <loader-item></loader-item>
+}

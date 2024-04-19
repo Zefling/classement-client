@@ -239,8 +239,6 @@ export class Utils {
         const titleHeight = title ? title.clientHeight + 3 : 0;
         let targetHeight = height < itemHeight - titleHeight ? height : Math.min(height, itemHeight) - titleHeight;
 
-        console.log('targetHeight', height, targetHeight);
-
         if (tile) {
             tile.style.width =
                 itemWidthAuto && !item.title

@@ -1,14 +1,20 @@
-<div *ngFor="let tag of tags" [class.allow-tag-click]="allowTagClick" (click)="allowTagClick ? onTagClick(tag) : null">
+@for (tag of tags; track tag) {
+  <div [class.allow-tag-click]="allowTagClick" (click)="allowTagClick ? onTagClick(tag) : null">
     <span class="tag">{{ tag }}</span
-    ><button *ngIf="!readOnly" (click)="remove(tag)">×</button>
-</div>
-<ng-container *ngIf="!readOnly">
-    <div>
-        <label [attr.data-value]="input?.value">
-            <input #input list="data" (input)="onInput()" (keyup.enter)="onEnter()" size="5" />
-        </label>
-    </div>
-    <datalist id="data">
-        <option *ngFor="let proposal of proposals" [value]="proposal"></option>
-    </datalist>
-</ng-container>
+      >@if (!readOnly) {
+      <button (click)="remove(tag)">×</button>
+    }
+  </div>
+}
+@if (!readOnly) {
+  <div>
+    <label [attr.data-value]="input?.value">
+      <input #input list="data" (input)="onInput()" (keyup.enter)="onEnter()" size="5" />
+    </label>
+  </div>
+  <datalist id="data">
+    @for (proposal of proposals; track proposal) {
+      <option [value]="proposal"></option>
+    }
+  </datalist>
+}

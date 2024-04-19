@@ -1,117 +1,125 @@
 <table>
-    <thead>
-        <tr>
-            <th class="title sort" (click)="sortUpdate.emit('name')">
-                {{ 'list.title.name' | translate }}
-                <span *ngIf="sort === 'name'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
-            </th>
-            <th class="user">{{ 'list.user.name' | translate }}</th>
-            <th class="mode">{{ 'list.mode.name' | translate }}</th>
-            <th class="category sort" (click)="sortUpdate.emit('category')">
-                {{ 'list.category.name' | translate }}
-                <span *ngIf="sort === 'category'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
-            </th>
-            <th class="date sort" (click)="sortUpdate.emit('dateCreate')">
-                {{ 'list.date' | translate }}
-                <span *ngIf="sort === 'dateCreate'" class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
-            </th>
-            <th class="groups">{{ 'list.count.group' | translate }}</th>
-            <th class="items">{{ 'list.count.item' | translate }}</th>
-            <th class="status">{{ 'list.status.list' | translate }}</th>
-            <th class="actions">{{ 'list.action.name' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let classement of classements">
-            <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
-            <td class="user">{{ classement.user || ('list.user.anonymous' | translate) }}</td>
-            <td class="mode">{{ 'mode.name.' + (classement.mode || 'default') | translate }}</td>
-            <td class="category" (click)="editCategory(classement)">
-                {{ 'category.' + (classement.category || 'undefined') | translate }}
-                <span class="icon-edit-2"></span>
-            </td>
-            <td class="date">
-                <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
-            </td>
-            <td class="groups">{{ classement.totalGroups }}</td>
-            <td class="datas">{{ classement.totalItems }}</td>
-            <td class="status">
-                {{ classement.deleted ? ('list.status.deleted' | translate) : '' }}
-                {{ classement.hidden ? ('list.status.hidden' | translate) : '' }}
-                {{ classement.parent ? ('list.status.parent' | translate) : '' }}
-            </td>
-            <td class="actions">
-                <a (click)="see(classement)">{{ 'list.action.see' | translate }}</a>
-                <a (click)="update(classement)">{{ 'list.action.update' | translate }}</a>
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th class="title sort" (click)="sortUpdate.emit('name')">
+        {{ 'list.title.name' | translate }}
+        @if (sort === 'name') {
+          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        }
+      </th>
+      <th class="user">{{ 'list.user.name' | translate }}</th>
+      <th class="mode">{{ 'list.mode.name' | translate }}</th>
+      <th class="category sort" (click)="sortUpdate.emit('category')">
+        {{ 'list.category.name' | translate }}
+        @if (sort === 'category') {
+          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        }
+      </th>
+      <th class="date sort" (click)="sortUpdate.emit('dateCreate')">
+        {{ 'list.date' | translate }}
+        @if (sort === 'dateCreate') {
+          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        }
+      </th>
+      <th class="groups">{{ 'list.count.group' | translate }}</th>
+      <th class="items">{{ 'list.count.item' | translate }}</th>
+      <th class="status">{{ 'list.status.list' | translate }}</th>
+      <th class="actions">{{ 'list.action.name' | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (classement of classements; track classement) {
+      <tr>
+        <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
+        <td class="user">{{ classement.user || ('list.user.anonymous' | translate) }}</td>
+        <td class="mode">{{ 'mode.name.' + (classement.mode || 'default') | translate }}</td>
+        <td class="category" (click)="editCategory(classement)">
+          {{ 'category.' + (classement.category || 'undefined') | translate }}
+          <span class="icon-edit-2"></span>
+        </td>
+        <td class="date">
+          <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+          <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+        </td>
+        <td class="groups">{{ classement.totalGroups }}</td>
+        <td class="datas">{{ classement.totalItems }}</td>
+        <td class="status">
+          {{ classement.deleted ? ('list.status.deleted' | translate) : '' }}
+          {{ classement.hidden ? ('list.status.hidden' | translate) : '' }}
+          {{ classement.parent ? ('list.status.parent' | translate) : '' }}
+        </td>
+        <td class="actions">
+          <a (click)="see(classement)">{{ 'list.action.see' | translate }}</a>
+          <a (click)="update(classement)">{{ 'list.action.update' | translate }}</a>
+        </td>
+      </tr>
+    }
+  </tbody>
 </table>
 
 <dialog-cmp class="auto-format" #dialogActionsClassement>
-    <ng-container *ngIf="currentClassement">
-        <p>{{ 'list.status.question' | translate }}</p>
-        <p class="title">{{ currentClassement.name || ('list.title.undefined' | translate) }}</p>
-        <div>
-            <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | translate }}</button>
-            <button
-                (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
-                [class.warn]="!currentClassement!.hidden"
-                [class.primary]="currentClassement!.hidden"
-            >
-                {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
-            </button>
-            <button
-                (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
-                [class.warn]="!currentClassement!.deleted"
-                [class.primary]="currentClassement!.deleted"
-            >
-                {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | translate }}
-            </button>
-        </div>
-    </ng-container>
+  @if (currentClassement) {
+    <p>{{ 'list.status.question' | translate }}</p>
+    <p class="title">{{ currentClassement.name || ('list.title.undefined' | translate) }}</p>
+    <div>
+      <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | translate }}</button>
+      <button
+        (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
+        [class.warn]="!currentClassement!.hidden"
+        [class.primary]="currentClassement!.hidden"
+        >
+        {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | translate }}
+      </button>
+      <button
+        (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
+        [class.warn]="!currentClassement!.deleted"
+        [class.primary]="currentClassement!.deleted"
+        >
+        {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | translate }}
+      </button>
+    </div>
+  }
 </dialog-cmp>
 
 <dialog-cmp #dialogSeeClassement closeButton>
+  @if (currentClassement) {
     <see-classement
-        *ngIf="currentClassement"
-        [options]="currentClassement.data.options"
-        [groups]="currentClassement.data.groups"
-        [list]="currentClassement.data.list"
+      [options]="currentClassement.data.options"
+      [groups]="currentClassement.data.groups"
+      [list]="currentClassement.data.list"
     ></see-classement>
+  }
 </dialog-cmp>
 
 <dialog-cmp #dialogEditCategory closeButton class="auto-format">
-    <ng-container *ngIf="currentClassement">
-        <h3>{{ 'list.category.edit.title' | translate }}</h3>
-
-        <div>
-            <label for="current-cat">{{ 'list.category.current' | translate }}</label>
-            <input
-                id="current-cat"
-                value="{{ 'category.' + (currentClassement.category || 'undefined') | translate }}"
-                disabled
-            />
-        </div>
-
-        <div>
-            <label for="new-cat">{{ 'list.category.new' | translate }} </label>
-            <select id="new-cat" #newCatagory>
-                <option
-                    *ngFor="let catagory of catagories"
-                    [value]="catagory"
-                    [selected]="currentClassement.category === catagory"
-                >
-                    {{ 'category.' + catagory | translate }}
-                </option>
-            </select>
-        </div>
-        <div>
-            <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | translate }}</button>
-            <button class="primary" (click)="changeStatusCurrentClassement(newCatagory.value, 'category')">
-                {{ 'list.category.edit' | translate }}
-            </button>
-        </div>
-    </ng-container>
+  @if (currentClassement) {
+    <h3>{{ 'list.category.edit.title' | translate }}</h3>
+    <div>
+      <label for="current-cat">{{ 'list.category.current' | translate }}</label>
+      <input
+        id="current-cat"
+        value="{{ 'category.' + (currentClassement.category || 'undefined') | translate }}"
+        disabled
+        />
+    </div>
+    <div>
+      <label for="new-cat">{{ 'list.category.new' | translate }} </label>
+      <select id="new-cat" #newCatagory>
+        @for (catagory of catagories; track catagory) {
+          <option
+            [value]="catagory"
+            [selected]="currentClassement.category === catagory"
+            >
+            {{ 'category.' + catagory | translate }}
+          </option>
+        }
+      </select>
+    </div>
+    <div>
+      <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | translate }}</button>
+      <button class="primary" (click)="changeStatusCurrentClassement(newCatagory.value, 'category')">
+        {{ 'list.category.edit' | translate }}
+      </button>
+    </div>
+  }
 </dialog-cmp>

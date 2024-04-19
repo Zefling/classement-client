@@ -1,8 +1,12 @@
 <loading-cmp></loading-cmp>
-<div *ngIf="message" class="message">
+@if (message) {
+  <div class="message">
     {{ message }}
-</div>
-<div *ngIf="progress !== undefined">
+  </div>
+}
+@if (progress !== undefined) {
+  <div>
     <div class="progress" [style.--progress]="progress.percent"></div>
     <div class="progress-text">{{ progress.loaded | filesize }} / {{ progress.total | filesize }}</div>
-</div>
+  </div>
+}

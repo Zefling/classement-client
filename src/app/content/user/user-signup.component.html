@@ -1,65 +1,79 @@
 <h1>{{ 'user.signup.title' | translate }}</h1>
 
 <form class="form">
-    <ng-container [formGroup]="profileForm">
-        <label for="username">{{ 'user.login.username' | translate }}</label>
-        <input id="username" type="text" formControlName="username" #username />
-        <div class="level-strong">
-            <span class="strong" [class.error-block]="usernameExist" *ngIf="username.value"></span>
-        </div>
-
-        <label for="password">{{ 'user.login.password' | translate }}</label>
-        <input id="password" type="password" spellcheck="false" formControlName="password" />
-        <div class="level-strong">
-            <ng-container *ngIf="!strong">
-                <span *ngFor="let lvl of passedTests" [style.--level]="lvl"></span>
-            </ng-container>
-            <span class="strong" *ngIf="strong"></span>
-        </div>
-
-        <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
-        <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-        <div class="level-strong">
-            <span class="strong" *ngIf="confirm"></span>
-        </div>
-
-        <label for="email">{{ 'user.login.email' | translate }}</label>
-        <input id="email" type="email" formControlName="email" #email />
-        <div class="level-strong">
-            <span class="strong" [class.error-block]="emailExist || emailInvalide" *ngIf="email.value"></span>
-        </div>
-    </ng-container>
-
-    <ul *ngIf="showError?.length" class="list-error">
-        <li *ngFor="let error of showError">{{ error }}</li>
-    </ul>
-
-    <div class="button">
-        <button (click)="submit()">{{ 'user.signup.action' | translate }}</button>
+  <ng-container [formGroup]="profileForm">
+    <label for="username">{{ 'user.login.username' | translate }}</label>
+    <input id="username" type="text" formControlName="username" #username />
+    <div class="level-strong">
+      @if (username.value) {
+        <span class="strong" [class.error-block]="usernameExist"></span>
+      }
     </div>
+
+    <label for="password">{{ 'user.login.password' | translate }}</label>
+    <input id="password" type="password" spellcheck="false" formControlName="password" />
+    <div class="level-strong">
+      @if (!strong) {
+        @for (lvl of passedTests; track lvl) {
+          <span [style.--level]="lvl"></span>
+        }
+      }
+      @if (strong) {
+        <span class="strong"></span>
+      }
+    </div>
+
+    <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
+    <input id="password2" type="password" spellcheck="false" formControlName="password2" />
+    <div class="level-strong">
+      @if (confirm) {
+        <span class="strong"></span>
+      }
+    </div>
+
+    <label for="email">{{ 'user.login.email' | translate }}</label>
+    <input id="email" type="email" formControlName="email" #email />
+    <div class="level-strong">
+      @if (email.value) {
+        <span class="strong" [class.error-block]="emailExist || emailInvalide"></span>
+      }
+    </div>
+  </ng-container>
+
+  @if (showError?.length) {
+    <ul class="list-error">
+      @for (error of showError; track error) {
+        <li>{{ error }}</li>
+      }
+    </ul>
+  }
+
+  <div class="button">
+    <button (click)="submit()">{{ 'user.signup.action' | translate }}</button>
+  </div>
 </form>
 
 <div class="buttons">
-    <p>
-        {{ 'user.login.oauth.create' | translate }}
-    </p>
-    <button (click)="oauth('discord')">
-        <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
-    </button>
-    <button (click)="oauth('facebook')">
-        <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
-    </button>
-    <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
-    <p>
-        {{ 'user.login.oauth.create.after' | translate }}
-    </p>
+  <p>
+    {{ 'user.login.oauth.create' | translate }}
+  </p>
+  <button (click)="oauth('discord')">
+    <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
+  </button>
+  <button (click)="oauth('facebook')">
+    <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
+  </button>
+  <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
+  <p>
+    {{ 'user.login.oauth.create.after' | translate }}
+  </p>
 </div>
 
 <div class="links">
-    <div>
-        <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
-    </div>
-    <div>
-        <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
-    </div>
+  <div>
+    <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+  </div>
+  <div>
+    <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+  </div>
 </div>

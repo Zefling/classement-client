@@ -1,1 +1,3 @@
-<info-message *ngFor="let message of messages" [message]="message" (destruct)="destruct(message)"></info-message>
+@for (message of messages; track message) {
+  <info-message [message]="message" (destruct)="destruct(message)"></info-message>
+}

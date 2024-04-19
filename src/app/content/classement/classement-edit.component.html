@@ -1,614 +1,681 @@
-<loader-cmp *ngIf="!options" [message]="'generator.loading' | translate"></loader-cmp>
+@if (!options) {
+  <loader-cmp [message]="'generator.loading' | translate"></loader-cmp>
+}
 
 <div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
-    <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
+  <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
 
-    <div class="top-actions">
-        <div class="server-api" *ngIf="apiActive && classement && classement.templateTotal > 1">
-            <button class="button-add primary" (click)="toTemplateNavigation()">
-                {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
-            </button>
-            <button class="button-add primary" (click)="showDerivative()" *ngIf="derivatives && derivatives.length > 1">
-                {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
-            </button>
-            <button class="button-add primary" (click)="showRankingDiff()">
-                {{ 'generator.ranking.diff' | translate }}
-            </button>
-        </div>
-        <div class="client-api">
-            <button *ngIf="imdbActive" class="button-add primary" (click)="imdb.open()">
-                {{ 'IMDB' | translate }}
-            </button>
-        </div>
+  <div class="top-actions">
+    @if (apiActive && classement && classement.templateTotal > 1) {
+      <div class="server-api">
+        <button class="button-add primary" (click)="toTemplateNavigation()">
+          {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+        </button>
+        @if (derivatives && derivatives.length > 1) {
+          <button class="button-add primary" (click)="showDerivative()">
+            {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
+          </button>
+        }
+        <button class="button-add primary" (click)="showRankingDiff()">
+          {{ 'generator.ranking.diff' | translate }}
+        </button>
+      </div>
+    }
+    <div class="client-api">
+      @if (imdbActive) {
+        <button class="button-add primary" (click)="imdb.open()">
+          {{ 'IMDB' | translate }}
+        </button>
+      }
     </div>
+  </div>
 
-    <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
+  <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
 
-    <div *ngIf="options" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
-        <div class="classement-top">
-            <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
-            <button *ngIf="classScreenMode !== 'default'" (click)="screenMode('default', div)">
-                {{ 'generator.screen.default' | translate }}
-            </button>
-            <button *ngIf="classScreenMode !== 'enlarge'" (click)="screenMode('enlarge', div)">
-                {{ 'generator.screen.window' | translate }}
-            </button>
-            <button *ngIf="classScreenMode !== 'fullscreen'" (click)="screenMode('fullscreen', div)">
-                {{ 'generator.screen.fullscreen' | translate }}
-            </button>
-        </div>
-        <div cdkDropListGroup class="mode-{{ options.mode }}">
-            <table
-                *ngIf="options.mode === 'default' || options.mode === 'teams'"
-                class="table-classement"
-                [attr.dir]="options.direction"
+  @if (options) {
+    <div [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
+      <div class="classement-top">
+        <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+        @if (classScreenMode !== 'default') {
+          <button (click)="screenMode('default', div)">
+            {{ 'generator.screen.default' | translate }}
+          </button>
+        }
+        @if (classScreenMode !== 'enlarge') {
+          <button (click)="screenMode('enlarge', div)">
+            {{ 'generator.screen.window' | translate }}
+          </button>
+        }
+        @if (classScreenMode !== 'fullscreen') {
+          <button (click)="screenMode('fullscreen', div)">
+            {{ 'generator.screen.fullscreen' | translate }}
+          </button>
+        }
+      </div>
+      <div cdkDropListGroup class="mode-{{ options.mode }}">
+        @if (options.mode === 'default' || options.mode === 'teams') {
+          <table
+            class="table-classement"
+            [attr.dir]="options.direction"
             >
-                <colgroup>
-                    <col class="names" />
-                    <col class="elements" />
-                    <col class="actions" />
-                </colgroup>
-                <tbody>
-                    <tr *ngFor="let group of groups; let indexGrp = index; let first = first; let last = last">
-                        <td
-                            class="names"
-                            [style.--name-background]="group.bgColor + nameOpacity"
-                            [style.--text-color]="group.txtColor"
-                        >
-                            <div>
-                                <label class="name">
-                                    <div class="auto-resize no-border" [attr.data-value]="input?.value">
-                                        <textarea
-                                            #input
-                                            id="name-{{ indexGrp }}"
-                                            rows="1"
-                                            [(ngModel)]="group.name"
-                                            (ngModelChange)="globalChange()"
-                                            maxlength="500"
-                                        ></textarea>
-                                    </div>
-                                </label>
-
-                                <span
-                                    class="color group-options icon-edit-2"
-                                    (click)="updateGroupOption({ group, indexGrp, first, last })"
-                                    (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                                    tabindex="0"
-                                ></span>
-                                <span
-                                    class="color bg-color icon-background-color"
-                                    (click)="inputBgColor.click()"
-                                    (keydown.enter)="inputBgColor.click()"
-                                    tabindex="0"
-                                ></span>
-                                <span
-                                    class="color txt-color icon-text-color"
-                                    (click)="inputTxtColor.click()"
-                                    (keydown.enter)="inputTxtColor.click()"
-                                    tabindex="0"
-                                ></span>
-                                <div class="colors">
-                                    <input
-                                        class="color"
-                                        type="color"
-                                        [(ngModel)]="group.bgColor"
-                                        (ngModelChange)="globalChange()"
-                                        tabindex="-1"
-                                        #inputBgColor
-                                    />
-                                    <input
-                                        class="color"
-                                        type="color"
-                                        [(ngModel)]="group.txtColor"
-                                        (ngModelChange)="globalChange()"
-                                        tabindex="-1"
-                                        #inputTxtColor
-                                    />
-                                </div>
-                            </div>
-                        </td>
-                        <td class="elements">
-                            <div class="drop-list">
-                                <div
-                                    *ngFor="let item of group.list; let index = index; trackBy: trackByFnFileString"
-                                    cdkDropList
-                                    cdkDropListOrientation="horizontal"
-                                    [cdkDropListData]="{ list: group.list, index: index }"
-                                    (cdkDropListDropped)="drop(group.list, $event)"
-                                    removeTile
-                                    (removeElement)="removeFromZone(group, index)"
-                                    [style.--over-item-background]="item.bgColor"
-                                    [style.--over-item-text-color]="item.txtColor"
-                                >
-                                    <div class="content-box" cdkDrag>
-                                        <div
-                                            class="content content-render"
-                                            [ngClass]="options.itemTextPosition"
-                                            [class.with-annotation]="item.annotation"
-                                            [id]="item.id"
-                                            #tile
-                                        >
-                                            <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
-                                                <img
-                                                    (ngInit)="calcWidth(item, tile); detectChanges()"
-                                                    (load)="calcWidth(item, tile); detectChanges()"
-                                                    src="{{ item.url }}"
-                                                    alt="{{ item.name }}"
-                                                />
-                                            </div>
-                                            <div
-                                                *ngIf="item.title"
-                                                #title
-                                                class="title"
-                                                [class.title-item-width-auto]="options.itemWidthAuto"
-                                            >
-                                                <span class="title-span" (ngInit)="detectChanges()">{{
-                                                    item.title
-                                                }}</span>
-                                            </div>
-                                            <div class="tile-info" (click)="openTileInfo(item)"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="drop-zone-empty-list"
-                                    *ngIf="group.list.length === 0"
-                                    cdkDropList
-                                    cdkDropListOrientation="horizontal"
-                                    [cdkDropListData]="{ list: group.list, index: 0 }"
-                                    (cdkDropListDropped)="drop(group.list, $event)"
-                                ></div>
-                            </div>
-                        </td>
-                        <td class="actions">
-                            <div class="button-actions">
-                                <button class="button-up" (click)="upLine(indexGrp)" *ngIf="!first">
-                                    <span class="icon-up"></span>
-                                </button>
-                                <button class="button-down" (click)="downLine(indexGrp)" *ngIf="!last">
-                                    <span class="icon-down"></span>
-                                </button>
-                                <button class="button-suppr" (click)="deleteLine(indexGrp)" *ngIf="!(first && last)">
-                                    <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
-                                </button>
-                                <button class="button-add" (click)="addLine(indexGrp)">
-                                    <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
-                                </button>
-                                <span
-                                    tabindex="0"
-                                    class="color group-options icon-edit-2"
-                                    (click)="updateGroupOption({ group, indexGrp, first, last })"
-                                    (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                                ></span>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="zone-classement-container" *ngIf="options.mode === 'iceberg' || options.mode === 'axis'">
-                <div
-                    id="zone"
-                    cdkDropZone
-                    [cdkDropListData]="{ list: groups[0].list, index: 0 }"
-                    (cdkDropListDropped)="drop(groups[0].list, $event)"
-                    class="zone-classement"
-                    (dblclick)="createTile($event)"
-                    (auxclick)="stopEvent($event)"
-                >
-                    <ng-container *ngIf="options.groups?.length">
-                        <zone-area *ngIf="options.mode === 'iceberg'" [groups]="options.groups"></zone-area>
-                        <zone-axis *ngIf="options.mode === 'axis'" [groups]="options.groups"></zone-axis>
-                    </ng-container>
-
-                    <ng-container *ngFor="let item of groups[0].list; let index = index; trackBy: trackByFnFileString">
-                        <div
-                            class="content-box"
-                            cdkDragElement
-                            cdkDragBoundary=".zone-classement"
-                            #element="cdkDragElement"
-                            (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
-                            (cdkDragMoved)="moveItem($event, item, element)"
-                            removeTile
-                            (removeElement)="removeFromZone(groups[0], index)"
-                            [style.--over-item-background]="item.bgColor"
-                            [style.--over-item-text-color]="item.txtColor"
-                        >
-                            <div
-                                class="content content-render"
-                                [ngClass]="options.itemTextPosition"
-                                [class.with-annotation]="item.annotation"
-                                [id]="item.id"
-                                #tile
-                            >
-                                <div *ngIf="item.url" [class.image]="calcWidth(item, tile)">
-                                    <img
-                                        (ngInit)="calcWidth(item, tile); detectChanges()"
-                                        (load)="calcWidth(item, tile); detectChanges()"
-                                        src="{{ item.url }}"
-                                        alt="{{ item.name }}"
-                                    />
-                                </div>
-                                <div
-                                    *ngIf="item.title"
-                                    #title
-                                    class="title"
-                                    [class.title-item-width-auto]="options.itemWidthAuto"
-                                >
-                                    <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                                </div>
-                                <div class="tile-info" (click)="openTileInfo(item)"></div>
-                            </div>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-
-            <div *ngIf="options.mode === 'iceberg' || options.mode === 'axis'" class="help">
-                <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
-                <ul>
-                    <li>{{ 'generator.help.zone.central.click' | translate }}</li>
-                    <li>{{ 'generator.help.zone.double.click' | translate }}</li>
-                </ul>
-            </div>
-
-            <div class="current-list">
-                <div class="drop-image-message">
-                    <span>{{ 'generator.ranking.drop.image' | translate }}</span>
-                    <span class="arrows" *ngIf="scrollArrows">⇄</span>
-                </div>
-                <div
-                    class="drop-list"
-                    id="list"
-                    #currentList
-                    [attr.dir]="options.direction"
-                    [class.height-auto]="options.itemHeightAuto"
-                >
-                    <div
-                        *ngFor="let item of list; let index = index; trackBy: trackByFnFileString"
+            <colgroup>
+            <col class="names" />
+            <col class="elements" />
+            <col class="actions" />
+          </colgroup>
+          <tbody>
+            @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+              <tr>
+                <td
+                  class="names"
+                  [style.--name-background]="group.bgColor + nameOpacity"
+                  [style.--text-color]="group.txtColor"
+                  >
+                  <div>
+                    <label class="name">
+                      <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                        <textarea
+                          #input
+                          id="name-{{ indexGrp }}"
+                          rows="1"
+                          [(ngModel)]="group.name"
+                          (ngModelChange)="globalChange()"
+                          maxlength="500"
+                        ></textarea>
+                      </div>
+                    </label>
+                    <span
+                      class="color group-options icon-edit-2"
+                      (click)="updateGroupOption({ group, indexGrp, first, last })"
+                      (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                      tabindex="0"
+                    ></span>
+                    <span
+                      class="color bg-color icon-background-color"
+                      (click)="inputBgColor.click()"
+                      (keydown.enter)="inputBgColor.click()"
+                      tabindex="0"
+                    ></span>
+                    <span
+                      class="color txt-color icon-text-color"
+                      (click)="inputTxtColor.click()"
+                      (keydown.enter)="inputTxtColor.click()"
+                      tabindex="0"
+                    ></span>
+                    <div class="colors">
+                      <input
+                        class="color"
+                        type="color"
+                        [(ngModel)]="group.bgColor"
+                        (ngModelChange)="globalChange()"
+                        tabindex="-1"
+                        #inputBgColor
+                        />
+                      <input
+                        class="color"
+                        type="color"
+                        [(ngModel)]="group.txtColor"
+                        (ngModelChange)="globalChange()"
+                        tabindex="-1"
+                        #inputTxtColor
+                        />
+                    </div>
+                  </div>
+                </td>
+                <td class="elements">
+                  <div class="drop-list">
+                    @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+                      <div
                         cdkDropList
                         cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="{ list: list, index: index }"
-                        (cdkDropListDropped)="drop(list, $event)"
+                        [cdkDropListData]="{ list: group.list, index: index }"
+                        (cdkDropListDropped)="drop(group.list, $event)"
+                        removeTile
+                        (removeElement)="removeFromZone(group, index)"
                         [style.--over-item-background]="item.bgColor"
                         [style.--over-item-text-color]="item.txtColor"
-                    >
+                        >
                         <div class="content-box" cdkDrag>
-                            <div
-                                *ngIf="!options.streamMode; else streamTile"
-                                #tile
-                                class="content"
-                                [class.with-annotation]="item.annotation"
-                                [style.width.px]="calcWidthEdit(item, tile)"
+                          <div
+                            class="content content-render"
+                            [ngClass]="options.itemTextPosition"
+                            [class.with-annotation]="item.annotation"
+                            [id]="item.id"
+                            #tile
                             >
-                                <button class="btn-delete" (click)="removeItem(index)">×</button>
-                                <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
-                                <input
-                                    class="input-title"
-                                    input="text"
-                                    maxlength="150"
-                                    [(ngModel)]="item.title"
-                                    (ngModelChange)="globalChange()"
-                                    (blur)="change()"
-                                />
-                                <div class="tile-info" (click)="openTileInfo(item)"></div>
-                            </div>
-                            <ng-template #streamTile>
-                                <div
-                                    class="content content-render"
-                                    [ngClass]="options.itemTextPosition"
-                                    #tile
-                                    [style.width.px]="calcWidth(item, tile)"
+                            @if (item.url) {
+                              <div [class.image]="calcWidth(item, tile)">
+                                <img
+                                  (ngInit)="calcWidth(item, tile); detectChanges()"
+                                  (load)="calcWidth(item, tile); detectChanges()"
+                                  src="{{ item.url }}"
+                                  alt="{{ item.name }}"
+                                  />
+                              </div>
+                            }
+                            @if (item.title) {
+                              <div
+                                #title
+                                class="title"
+                                [class.title-item-width-auto]="options.itemWidthAuto"
                                 >
-                                    <div *ngIf="item.url" class="image">
-                                        <img
-                                            (ngInit)="detectChanges()"
-                                            (load)="detectChanges()"
-                                            src="{{ item.url }}"
-                                            alt="{{ item.name }}"
-                                        />
-                                    </div>
-                                    <div
-                                        *ngIf="item.title"
-                                        #title
-                                        class="title"
-                                        [class.title-item-width-auto]="options.itemWidthAuto"
-                                    >
-                                        <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                                    </div>
-                                </div>
-                            </ng-template>
+                                <span class="title-span" (ngInit)="detectChanges()">{{
+                                  item.title
+                                }}</span>
+                              </div>
+                            }
+                            <div class="tile-info" (click)="openTileInfo(item)"></div>
+                          </div>
                         </div>
-                    </div>
-                    <div
+                      </div>
+                    }
+                    @if (group.list.length === 0) {
+                      <div
                         class="drop-zone-empty-list"
-                        *ngIf="list.length === 0"
                         cdkDropList
                         cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="{ list: list, index: 0 }"
-                        (cdkDropListDropped)="drop(list, $event)"
-                    ></div>
-                    <div class="content-box add-file" (click)="addFiles()">
-                        <span>{{ 'generator.ranking.add.image' | translate }}</span>
+                        [cdkDropListData]="{ list: group.list, index: 0 }"
+                        (cdkDropListDropped)="drop(group.list, $event)"
+                      ></div>
+                    }
+                  </div>
+                </td>
+                <td class="actions">
+                  <div class="button-actions">
+                    @if (!first) {
+                      <button class="button-up" (click)="upLine(indexGrp)">
+                        <span class="icon-up"></span>
+                      </button>
+                    }
+                    @if (!last) {
+                      <button class="button-down" (click)="downLine(indexGrp)">
+                        <span class="icon-down"></span>
+                      </button>
+                    }
+                    @if (!(first && last)) {
+                      <button class="button-suppr" (click)="deleteLine(indexGrp)">
+                        <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
+                      </button>
+                    }
+                    <button class="button-add" (click)="addLine(indexGrp)">
+                      <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
+                    </button>
+                    <span
+                      tabindex="0"
+                      class="color group-options icon-edit-2"
+                      (click)="updateGroupOption({ group, indexGrp, first, last })"
+                      (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                    ></span>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      @if (options.mode === 'iceberg' || options.mode === 'axis') {
+        <div class="zone-classement-container">
+          <div
+            id="zone"
+            cdkDropZone
+            [cdkDropListData]="{ list: groups[0].list, index: 0 }"
+            (cdkDropListDropped)="drop(groups[0].list, $event)"
+            class="zone-classement"
+            (dblclick)="createTile($event)"
+            (auxclick)="stopEvent($event)"
+            >
+            @if (options.groups?.length) {
+              @if (options.mode === 'iceberg') {
+                <zone-area [groups]="options.groups"></zone-area>
+              }
+              @if (options.mode === 'axis') {
+                <zone-axis [groups]="options.groups"></zone-axis>
+              }
+            }
+            @for (item of groups[0].list; track trackByFnFileString(index, item); let index = $index) {
+              <div
+                class="content-box"
+                cdkDragElement
+                cdkDragBoundary=".zone-classement"
+                #element="cdkDragElement"
+                (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
+                (cdkDragMoved)="moveItem($event, item, element)"
+                removeTile
+                (removeElement)="removeFromZone(groups[0], index)"
+                [style.--over-item-background]="item.bgColor"
+                [style.--over-item-text-color]="item.txtColor"
+                >
+                <div
+                  class="content content-render"
+                  [ngClass]="options.itemTextPosition"
+                  [class.with-annotation]="item.annotation"
+                  [id]="item.id"
+                  #tile
+                  >
+                  @if (item.url) {
+                    <div [class.image]="calcWidth(item, tile)">
+                      <img
+                        (ngInit)="calcWidth(item, tile); detectChanges()"
+                        (load)="calcWidth(item, tile); detectChanges()"
+                        src="{{ item.url }}"
+                        alt="{{ item.name }}"
+                        />
                     </div>
-                    <div class="content-box add-text" (click)="addTextsDialog()">
-                        <span>{{ 'generator.ranking.add.text' | translate }}</span>
+                  }
+                  @if (item.title) {
+                    <div
+                      #title
+                      class="title"
+                      [class.title-item-width-auto]="options.itemWidthAuto"
+                      >
+                      <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
                     </div>
+                  }
+                  <div class="tile-info" (click)="openTileInfo(item)"></div>
                 </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+      @if (options.mode === 'iceberg' || options.mode === 'axis') {
+        <div class="help">
+          <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
+          <ul>
+            <li>{{ 'generator.help.zone.central.click' | translate }}</li>
+            <li>{{ 'generator.help.zone.double.click' | translate }}</li>
+          </ul>
+        </div>
+      }
+      <div class="current-list">
+        <div class="drop-image-message">
+          <span>{{ 'generator.ranking.drop.image' | translate }}</span>
+          @if (scrollArrows) {
+            <span class="arrows">⇄</span>
+          }
+        </div>
+        <div
+          class="drop-list"
+          id="list"
+          #currentList
+          [attr.dir]="options.direction"
+          [class.height-auto]="options.itemHeightAuto"
+          >
+          @for (item of list; track trackByFnFileString(index, item); let index = $index) {
+            <div
+              cdkDropList
+              cdkDropListOrientation="horizontal"
+              [cdkDropListData]="{ list: list, index: index }"
+              (cdkDropListDropped)="drop(list, $event)"
+              [style.--over-item-background]="item.bgColor"
+              [style.--over-item-text-color]="item.txtColor"
+              >
+              <div class="content-box" cdkDrag>
+                @if (!options.streamMode) {
+                  <div
+                    #tile
+                    class="content"
+                    [class.with-annotation]="item.annotation"
+                    [style.width.px]="calcWidthEdit(item, tile)"
+                    >
+                    <button class="btn-delete" (click)="removeItem(index)">×</button>
+                    <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
+                    <input
+                      class="input-title"
+                      input="text"
+                      maxlength="150"
+                      [(ngModel)]="item.title"
+                      (ngModelChange)="globalChange()"
+                      (blur)="change()"
+                      />
+                    <div class="tile-info" (click)="openTileInfo(item)"></div>
+                  </div>
+                } @else {
+                  <div
+                    class="content content-render"
+                    [ngClass]="options.itemTextPosition"
+                    #tile
+                    [style.width.px]="calcWidth(item, tile)"
+                    >
+                    @if (item.url) {
+                      <div class="image">
+                        <img
+                          (ngInit)="detectChanges()"
+                          (load)="detectChanges()"
+                          src="{{ item.url }}"
+                          alt="{{ item.name }}"
+                          />
+                      </div>
+                    }
+                    @if (item.title) {
+                      <div
+                        #title
+                        class="title"
+                        [class.title-item-width-auto]="options.itemWidthAuto"
+                        >
+                        <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
             </div>
+          }
+          @if (list.length === 0) {
+            <div
+              class="drop-zone-empty-list"
+              cdkDropList
+              cdkDropListOrientation="horizontal"
+              [cdkDropListData]="{ list: list, index: 0 }"
+              (cdkDropListDropped)="drop(list, $event)"
+            ></div>
+          }
+          <div class="content-box add-file" (click)="addFiles()">
+            <span>{{ 'generator.ranking.add.image' | translate }}</span>
+          </div>
+          <div class="content-box add-text" (click)="addTextsDialog()">
+            <span>{{ 'generator.ranking.add.text' | translate }}</span>
+          </div>
         </div>
-
-        <see-classement
-            class="render"
-            [options]="options"
-            [groups]="groups"
-            [list]="list"
-            [withAnnotation]="false"
-            [imagesCache]="imagesCache"
-        ></see-classement>
+      </div>
     </div>
-    <div>
-        <div class="save-actions buttons">
-            <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-                <span *ngIf="!exportImageLoading" class="icon-share"></span>
-                <loading-cmp size="22px" tickWidth="2px" *ngIf="exportImageLoading"></loading-cmp>
-                {{ 'generator.actions.export.image' | translate }}
-            </button>
-        </div>
+    <see-classement
+      class="render"
+      [options]="options"
+      [groups]="groups"
+      [list]="list"
+      [withAnnotation]="false"
+      [imagesCache]="imagesCache"
+    ></see-classement>
+  </div>
+}
+<div>
+  <div class="save-actions buttons">
+    <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+      @if (!exportImageLoading) {
+        <span class="icon-share"></span>
+      }
+      @if (exportImageLoading) {
+        <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+      }
+      {{ 'generator.actions.export.image' | translate }}
+    </button>
+  </div>
 
-        <div class="save-actions buttons">
-            <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
-                {{ 'generator.actions.save.local' | translate }}
-                <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
-            </button>
-            <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
-                {{ 'generator.actions.export.json' | translate }}
-            </button>
-            <button class="primary" (click)="dialogImport.open()">
-                {{ 'generator.actions.import.json' | translate }}
-            </button>
-            <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-                {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
-            </button>
-            <label class="line" *ngIf="options && hasItems">
-                <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-                {{ 'generator.actions.save.local.auto' | translate }}
-            </label>
-        </div>
-        <div class="save-actions buttons" *ngIf="apiActive">
-            <button [disabled]="!id" class="primary" (click)="copyLink()" *ngIf="logged">
-                🔗 {{ 'generator.ranking.share.link' | translate }}
-            </button>
-            <button [disabled]="!id" class="primary" (click)="show()" *ngIf="logged">
-                {{ 'generator.ranking.see' | translate }}
-            </button>
-            <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
-                {{ 'generator.actions.save.server' | translate }}
-            </button>
-        </div>
-
-        <div class="save-actions buttons">
-            <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
-                {{ 'generator.actions.reset.groups.button' | translate }}
-            </button>
-        </div>
+  <div class="save-actions buttons">
+    <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
+      {{ 'generator.actions.save.local' | translate }}
+      <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
+    </button>
+    <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
+      {{ 'generator.actions.export.json' | translate }}
+    </button>
+    <button class="primary" (click)="dialogImport.open()">
+      {{ 'generator.actions.import.json' | translate }}
+    </button>
+    <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
+      {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
+    </button>
+    @if (options && hasItems) {
+      <label class="line">
+        <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
+        {{ 'generator.actions.save.local.auto' | translate }}
+      </label>
+    }
+  </div>
+  @if (apiActive) {
+    <div class="save-actions buttons">
+      @if (logged) {
+        <button [disabled]="!id" class="primary" (click)="copyLink()">
+          🔗 {{ 'generator.ranking.share.link' | translate }}
+        </button>
+      }
+      @if (logged) {
+        <button [disabled]="!id" class="primary" (click)="show()">
+          {{ 'generator.ranking.see' | translate }}
+        </button>
+      }
+      <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
+        {{ 'generator.actions.save.server' | translate }}
+      </button>
     </div>
+  }
+
+  <div class="save-actions buttons">
+    <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
+      {{ 'generator.actions.reset.groups.button' | translate }}
+    </button>
+  </div>
+</div>
 </div>
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
-    <div class="button-image-save">
-        {{ 'generator.actions.save.image' | translate }}
-        <span>
-            <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
-            <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
-            <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
-        </span>
-    </div>
-    <div #image></div>
+  <div class="button-image-save">
+    {{ 'generator.actions.save.image' | translate }}
+    <span>
+      <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
+      <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
+      <button class="button-add primary" (click)="saveImage('WEBP')">WebP</button>
+    </span>
+  </div>
+  <div #image></div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogImport>
-    <import-json (load)="importJson($event)"></import-json>
+  <import-json (load)="importJson($event)"></import-json>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogOptimise closeButton>
+  @if (dialogOptimise._open) {
     <classement-optimise
-        *ngIf="dialogOptimise._open"
-        [list]="list"
-        [groups]="groups"
-        [dialog]="dialogOptimise"
-        [mode]="options.mode"
+      [list]="list"
+      [groups]="groups"
+      [dialog]="dialogOptimise"
+      [mode]="options.mode"
     ></classement-optimise>
+  }
 </dialog-cmp>
 
 <dialog-cmp #dialogSaveServer>
+  @if (logged && dialogSaveServer._open) {
     <classement-save-server
-        *ngIf="logged && dialogSaveServer._open"
-        [classement]="classement"
-        [options]="options"
-        [list]="list"
-        [groups]="groups"
-        [dialog]="dialogSaveServer"
-        (action)="updateAfterServerSave($event)"
+      [classement]="classement"
+      [options]="options"
+      [list]="list"
+      [groups]="groups"
+      [dialog]="dialogSaveServer"
+      (action)="updateAfterServerSave($event)"
     ></classement-save-server>
+  }
 </dialog-cmp>
 
 <dialog-cmp #dialogDerivatives closeButton>
-    <table class="table-derivatives" *ngIf="derivatives">
-        <thead>
-            <tr>
-                <th class="title">{{ 'list.title.name' | translate }}</th>
-                <th class="date">{{ 'list.date' | translate }}</th>
-                <th class="groups">{{ 'list.count.group' | translate }}</th>
-                <th class="items">{{ 'list.count.item' | translate }}</th>
-                <th class="actions">{{ 'list.action.name' | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let derivative of derivatives" [class.current]="derivative.rankingId === classement?.rankingId">
-                <td class="title">
-                    {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
-                    <ng-container *ngIf="derivative.rankingId === classement?.rankingId">
-                        <span class="icon-left"></span> {{ 'list.current' | translate }}
-                    </ng-container>
-                </td>
-                <td class="date">
-                    <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
-                </td>
-                <td class="groups">{{ derivative.totalGroups }}</td>
-                <td class="items">{{ derivative.totalItems }}</td>
-                <td class="actions">
-                    <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
-                </td>
-            </tr>
-        </tbody>
+  @if (derivatives) {
+    <table class="table-derivatives">
+      <thead>
+        <tr>
+          <th class="title">{{ 'list.title.name' | translate }}</th>
+          <th class="date">{{ 'list.date' | translate }}</th>
+          <th class="groups">{{ 'list.count.group' | translate }}</th>
+          <th class="items">{{ 'list.count.item' | translate }}</th>
+          <th class="actions">{{ 'list.action.name' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (derivative of derivatives; track derivative) {
+          <tr [class.current]="derivative.rankingId === classement?.rankingId">
+            <td class="title">
+              {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+              @if (derivative.rankingId === classement?.rankingId) {
+                <span class="icon-left"></span> {{ 'list.current' | translate }}
+              }
+            </td>
+            <td class="date">
+              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+            </td>
+            <td class="groups">{{ derivative.totalGroups }}</td>
+            <td class="items">{{ derivative.totalItems }}</td>
+            <td class="actions">
+              <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
+  }
 </dialog-cmp>
 
 <dialog-cmp class="content-diff" #dialogRankingDiff>
-    <div class="container">
-        <ng-container *ngIf="diff?.length; else noTiles">
-            <div class="label">
-                {{ 'generator.ranking.add.tile' | translate }}
-            </div>
-            <div class="elements drop-list">
-                <div class="content-box" *ngFor="let item of diff" (click)="addTile(item)">
-                    <div
-                        class="content content-render"
-                        [ngClass]="options.itemTextPosition"
+  <div class="container">
+    @if (diff?.length) {
+      <div class="label">
+        {{ 'generator.ranking.add.tile' | translate }}
+      </div>
+      <div class="elements drop-list">
+        @for (item of diff; track item) {
+          <div class="content-box" (click)="addTile(item)">
+            <div
+              class="content content-render"
+              [ngClass]="options.itemTextPosition"
                         [style.width.px]="
                             options.itemWidthAuto
                                 ? ((item.width || 150) / (item.height || 150)) * options.itemHeight
                                 : null
                         "
-                    >
-                        <div *ngIf="item.url" class="image">
-                            <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
-                        </div>
-                        <div *ngIf="item.title" class="title">
-                            <span>{{ item.title }}</span>
-                        </div>
-                    </div>
+              >
+              @if (item.url) {
+                <div class="image">
+                  <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
                 </div>
+              }
+              @if (item.title) {
+                <div class="title">
+                  <span>{{ item.title }}</span>
+                </div>
+              }
             </div>
-        </ng-container>
-        <ng-template #noTiles>
-            <div class="content-diff">{{ 'generator.ranking.no.tile' | translate }}</div>
-        </ng-template>
-        <div class="buttons">
-            <button class="primary" (click)="dialogRankingDiff.close()">
-                {{ 'generator.ranking.close' | translate }}
-            </button>
-        </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="content-diff">{{ 'generator.ranking.no.tile' | translate }}</div>
+    }
+    <div class="buttons">
+      <button class="primary" (click)="dialogRankingDiff.close()">
+        {{ 'generator.ranking.close' | translate }}
+      </button>
     </div>
+  </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogClear>
-    <p>
-        {{ 'generator.actions.reset.groups.question' | translate }}
-    </p>
-    <div class="buttons">
-        <button (click)="dialogClear.close()">
-            {{ 'generator.actions.reset.groups.cancel' | translate }}
-        </button>
-        <button class="warn" (click)="reset(); dialogClear.close()">
-            {{ 'generator.actions.reset.groups.ok' | translate }}
-        </button>
-    </div>
+  <p>
+    {{ 'generator.actions.reset.groups.question' | translate }}
+  </p>
+  <div class="buttons">
+    <button (click)="dialogClear.close()">
+      {{ 'generator.actions.reset.groups.cancel' | translate }}
+    </button>
+    <button class="warn" (click)="reset(); dialogClear.close()">
+      {{ 'generator.actions.reset.groups.ok' | translate }}
+    </button>
+  </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogGroupOption>
-    <ng-container *ngIf="currentGroup">
-        <div class="colors-options">
-            <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
-            <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
-
-            <label class="name" [style.background-color]="currentGroup.group.bgColor">
-                <div class="auto-resize" [attr.data-value]="input?.value">
-                    <textarea
-                        #input
-                        rows="1"
-                        [(ngModel)]="currentGroup.group.name"
-                        (ngModelChange)="globalChange()"
-                        maxlength="500"
-                        [style.color]="currentGroup.group.txtColor"
-                    ></textarea>
-                </div>
-            </label>
+  @if (currentGroup) {
+    <div class="colors-options">
+      <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
+      <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
+      <label class="name" [style.background-color]="currentGroup.group.bgColor">
+        <div class="auto-resize" [attr.data-value]="input?.value">
+          <textarea
+            #input
+            rows="1"
+            [(ngModel)]="currentGroup.group.name"
+            (ngModelChange)="globalChange()"
+            maxlength="500"
+            [style.color]="currentGroup.group.txtColor"
+          ></textarea>
         </div>
-        <div class="colors">
-            <input
-                class="color group-options"
-                type="color"
-                [(ngModel)]="currentGroup.group.bgColor"
-                (ngModelChange)="globalChange()"
-                #inputBgColorGroup
-            />
-            <input
-                class="color group-options"
-                type="color"
-                [(ngModel)]="currentGroup.group.txtColor"
-                (ngModelChange)="globalChange()"
-                #inputTxtColorGroup
-            />
-        </div>
-        <div class="button-actions">
-            <button
-                class="button-up group-options"
-                (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()"
-                *ngIf="!currentGroup.first"
-            >
-                ↑
-            </button>
-            <button
-                class="button-down group-options"
-                (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()"
-                *ngIf="!currentGroup.last"
-            >
-                ↓
-            </button>
-            <button
-                class="button-suppr group-options"
-                (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
-                *ngIf="!(currentGroup.first && currentGroup.last)"
-            >
-                {{ 'generator.line.delete' | translate }}
-            </button>
-            <button
-                class="button-add group-options"
-                (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()"
-            >
-                {{ 'generator.line.add' | translate }}
-            </button>
-        </div>
-        <div class="buttons">
-            <button class="primary" (click)="dialogGroupOption.close()">
-                {{ 'generator.actions.reset.groups.ok' | translate }}
-            </button>
-        </div>
-    </ng-container>
+      </label>
+    </div>
+    <div class="colors">
+      <input
+        class="color group-options"
+        type="color"
+        [(ngModel)]="currentGroup.group.bgColor"
+        (ngModelChange)="globalChange()"
+        #inputBgColorGroup
+        />
+      <input
+        class="color group-options"
+        type="color"
+        [(ngModel)]="currentGroup.group.txtColor"
+        (ngModelChange)="globalChange()"
+        #inputTxtColorGroup
+        />
+    </div>
+    <div class="button-actions">
+      @if (!currentGroup.first) {
+        <button
+          class="button-up group-options"
+          (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()"
+          >
+          ↑
+        </button>
+      }
+      @if (!currentGroup.last) {
+        <button
+          class="button-down group-options"
+          (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()"
+          >
+          ↓
+        </button>
+      }
+      @if (!(currentGroup.first && currentGroup.last)) {
+        <button
+          class="button-suppr group-options"
+          (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
+          >
+          {{ 'generator.line.delete' | translate }}
+        </button>
+      }
+      <button
+        class="button-add group-options"
+        (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()"
+        >
+        {{ 'generator.line.add' | translate }}
+      </button>
+    </div>
+    <div class="buttons">
+      <button class="primary" (click)="dialogGroupOption.close()">
+        {{ 'generator.actions.reset.groups.ok' | translate }}
+      </button>
+    </div>
+  }
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogTexts>
-    <div class="colors-options">
-        <label class="name">
-            <div>
-                {{ 'generator.actions.texts.info' | translate }}
-            </div>
-            <div class="auto-resize" [attr.data-value]="inputText?.value">
-                <textarea #inputText [(ngModel)]="inputTexts" rows="1" maxlength="100"></textarea>
-            </div>
-        </label>
-        <div class="buttons">
-            <button class="default" (click)="closeTexts()">
-                {{ 'generator.actions.texts.cancel' | translate }}
-            </button>
-            <button class="primary" (click)="addTexts()">
-                {{ 'generator.actions.texts.ok' | translate }}
-            </button>
-        </div>
+  <div class="colors-options">
+    <label class="name">
+      <div>
+        {{ 'generator.actions.texts.info' | translate }}
+      </div>
+      <div class="auto-resize" [attr.data-value]="inputText?.value">
+        <textarea #inputText [(ngModel)]="inputTexts" rows="1" maxlength="100"></textarea>
+      </div>
+    </label>
+    <div class="buttons">
+      <button class="default" (click)="closeTexts()">
+        {{ 'generator.actions.texts.cancel' | translate }}
+      </button>
+      <button class="primary" (click)="addTexts()">
+        {{ 'generator.actions.texts.ok' | translate }}
+      </button>
     </div>
+  </div>
 </dialog-cmp>
 
 <classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage></classement-edit-image>
