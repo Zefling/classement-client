@@ -25,9 +25,7 @@
 
 @if (loading) {
   <loading-cmp></loading-cmp>
-}
-
-@if (!loading) {
+} @else {
   @if (classements[page] && classements[page].length) {
     @if (total) {
       <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>

@@ -81,7 +81,7 @@
   }
 </dialog-cmp>
 
-<dialog-cmp #dialogSeeClassement closeButton>
+<dialog-cmp #dialogSeeClassement closeButton (onClose)="currentClassement = undefined">
   @if (currentClassement) {
     <see-classement
       [options]="currentClassement.data.options"

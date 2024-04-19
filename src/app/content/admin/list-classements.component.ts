@@ -8,6 +8,7 @@ import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { Utils } from 'src/app/tools/utils';
 
+import { GlobalService } from 'src/app/services/global.service';
 import { categories } from '../classement/classement-default';
 
 @Component({
@@ -38,12 +39,14 @@ export class ListClassementsComponent {
     constructor(
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
+        private readonly globalService: GlobalService,
         private readonly translate: TranslateService,
     ) {}
 
     see(classement: Classement) {
         this.currentClassement = classement;
         Utils.formattedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
+        this.globalService.updateVarCss(classement.data.options);
         this.dialogSeeClassement.open();
     }
 

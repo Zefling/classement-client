@@ -182,7 +182,7 @@ export class GlobalService {
         return cache;
     }
 
-    updateVarCss(o: Options, cache: Record<string, string | ArrayBuffer | null>): void {
+    updateVarCss(o: Options, cache?: Record<string, string | ArrayBuffer | null>): void {
         const body = document.body;
         const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;
@@ -219,7 +219,7 @@ export class GlobalService {
             '--over-image-url',
             o.imageBackgroundImage !== 'none'
                 ? o.imageBackgroundImage === 'custom'
-                    ? `url(${cache[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
+                    ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
                     : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`
                 : null,
             dash,
