@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+### 2.1.6 (2024-04-20)
+
+#### Standalone web app
+
+-   Upgrade to new Angular templates
+-   Fix title color in light mode (over)
+-   Fix calculation error between base64 and server images in tiles
+-   Minor fixes
+
+#### With API activated only
+
+-   Admin: Fix classement render
+
 ### 2.1.5 (2024-04-01)
 
 #### Standalone web app
