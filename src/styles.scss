@@ -500,6 +500,9 @@ dialog-cmp.auto-format .main {
         padding: 15px 0;
         text-align: center;
     }
+    div div {
+        padding: 10px 0;
+    }
 
     :where(input:not([type='checkbox'], [type='radio']), textarea, select) {
         display: block;

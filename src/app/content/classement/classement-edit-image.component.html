@@ -25,7 +25,9 @@
       <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
       @if (currentTile.url) {
         <div class="image-preview-content">
-          <img [src]="currentTile.url" class="image-preview" />
+          <div class="image-preview">
+            <img [src]="currentTile.url" />
+          </div>
           <div class="image-preview-button">
             <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
               {{ 'generator.ranking.image.edit' | translate }}
