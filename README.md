@@ -12,9 +12,9 @@ Currently 2 modes are possible:
 
 See `src/environments/environment*.ts` for change.
 
-# language update
+## Website
 
--   Crowdin: https://crowdin.com/project/classement
+Current installation in this [website](https://classement.ikilote.net/).
 
 ## Features
 
@@ -79,9 +79,7 @@ See `src/environments/environment*.ts` for change.
         -   ✅ Remove user
     -   ✅ Contact form
 
-## Demo
-
-[See a demonstration](https://classement.ikilote.net/)
+## Development
 
 ### Development server
 
@@ -90,3 +88,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### language update
+
+-   Crowdin: https://crowdin.com/project/classement
