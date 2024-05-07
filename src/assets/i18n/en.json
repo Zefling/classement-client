@@ -278,6 +278,7 @@
         "width": "Tile width",
         "max.width": "Max width of a tile",
         "width.auto": "Automatic tile width",
+        "cover": "Couvrir toute la tuile",
         "height": "Height of a tile",
         "max.height": "Max height of a tile",
         "height.auto": "Automatic tile height",
