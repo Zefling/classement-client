@@ -41,7 +41,7 @@
             ],
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["pica", "buffer", "html2canvas", "owasp-password-strength-test"]
+            "allowedCommonJsDependencies": ["pica", "buffer", "@wtto00/html2canvas", "owasp-password-strength-test"]
           },
           "configurations": {
             "production": {

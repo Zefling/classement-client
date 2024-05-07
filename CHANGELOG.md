@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 2.1.7 (2024-05-08)
+
+#### Standalone web app
+
+-   Add an option for cover the entire tile
+-   Add a square theme
+-   Fix theme list
+-   Update `html2canvas` to `@wtto00/html2canvas` (for `object-fit`)
+-   Minor fixes
+
 ### 2.1.6 (2024-04-20)
 
 #### Standalone web app
