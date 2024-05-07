@@ -136,6 +136,7 @@
                             <div
                               class="content content-render"
                               [class.with-annotation]="item.annotation"
+                              [ngClass]="options.itemTextPosition"
                               [id]="item.id"
                               #tile
                             >
@@ -328,6 +329,7 @@
                   } @else {
                     <div
                       class="content content-render"
+                      [ngClass]="options.itemTextPosition"
                       [class.cover]="options.itemImageCover"
                       #tile
                       [style.width.px]="calcWidth(item, tile)"
