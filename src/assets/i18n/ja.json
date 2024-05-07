@@ -278,6 +278,7 @@
         "width": "タイル幅",
         "max.width": "タイルの最大幅",
         "width.auto": "自動タイル幅",
+        "cover": "タイル全体を覆う",
         "height": "タイルの高さ",
         "max.height": "タイルの最大高さ",
         "height.auto": "自動タイル高さ",

@@ -21,6 +21,7 @@ export const defaultOptions: Options = {
     tags: [],
     itemWidth: 100,
     itemWidthAuto: true,
+    itemImageCover: false,
     itemMaxWidth: 300,
     itemHeight: 100,
     itemHeightAuto: false,

@@ -92,6 +92,7 @@ export type ThemeOptions = {
     titleTextOpacity: number;
     itemWidth: number;
     itemWidthAuto: boolean;
+    itemImageCover: boolean;
     itemMaxWidth: number;
     itemHeight: number;
     itemHeightAuto: boolean;
@@ -179,7 +180,7 @@ export interface FormattedInfos extends IndexedData<any> {
     date?: string | Date;
     groupsLength: number;
     listLength: number;
-    // retro compatiblity
+    // retro compatibility
     groupsLenght?: number;
     listLenght?: number;
 }

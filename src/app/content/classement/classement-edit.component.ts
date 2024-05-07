@@ -21,8 +21,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import html2canvas from '@wtto00/html2canvas';
 import { Coloration } from 'coloration-lib';
-import html2canvas from 'html2canvas';
 import { Subject, debounceTime, first } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';

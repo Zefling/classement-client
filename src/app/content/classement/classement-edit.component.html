@@ -135,7 +135,6 @@
                           <div class="content-box" cdkDrag>
                             <div
                               class="content content-render"
-                              [ngClass]="options.itemTextPosition"
                               [class.with-annotation]="item.annotation"
                               [id]="item.id"
                               #tile
@@ -145,6 +144,7 @@
                                   <img
                                     (ngInit)="calcWidth(item, tile); detectChanges()"
                                     (load)="calcWidth(item, tile); detectChanges()"
+                                    [class.cover]="options.itemImageCover"
                                     src="{{ item.url }}"
                                     alt="{{ item.name }}"
                                   />
@@ -248,6 +248,7 @@
                         <img
                           (ngInit)="calcWidth(item, tile); detectChanges()"
                           (load)="calcWidth(item, tile); detectChanges()"
+                          [class.cover]="options.itemImageCover"
                           src="{{ item.url }}"
                           alt="{{ item.name }}"
                         />
@@ -302,11 +303,18 @@
                     <div
                       #tile
                       class="content"
+                      [ngClass]="options.itemTextPosition"
                       [class.with-annotation]="item.annotation"
+                      [class.cover]="options.itemImageCover"
                       [style.width.px]="calcWidthEdit(item, tile)"
                     >
                       <button class="btn-delete" (click)="removeItem(index)">×</button>
-                      <img [src]="item.url" [alt]="item.name" (load)="detectChanges()" />
+                      <img
+                        [src]="item.url"
+                        [alt]="item.name"
+                        [class.cover]="options.itemImageCover"
+                        (load)="detectChanges()"
+                      />
                       <input
                         class="input-title"
                         input="text"
@@ -320,7 +328,7 @@
                   } @else {
                     <div
                       class="content content-render"
-                      [ngClass]="options.itemTextPosition"
+                      [class.cover]="options.itemImageCover"
                       #tile
                       [style.width.px]="calcWidth(item, tile)"
                     >
@@ -329,6 +337,7 @@
                           <img
                             (ngInit)="detectChanges()"
                             (load)="detectChanges()"
+                            [class.cover]="options.itemImageCover"
                             src="{{ item.url }}"
                             alt="{{ item.name }}"
                           />

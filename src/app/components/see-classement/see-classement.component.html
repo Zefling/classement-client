@@ -38,6 +38,7 @@
                             <img
                               (ngInit)="calcWidth(item, tile); detectChanges()"
                               (load)="calcWidth(item, tile); detectChanges()"
+                              [class.cover]="options.itemImageCover"
                               src="{{ imagesCache[item.url] || item.url }}"
                               alt="{{ item.name }}"
                             />
@@ -90,6 +91,7 @@
                         <img
                           (ngInit)="calcWidth(item, tile); detectChanges()"
                           (load)="calcWidth(item, tile); detectChanges()"
+                          [class.cover]="options.itemImageCover"
                           src="{{ imagesCache[item.url] || item.url }}"
                           alt="{{ item.name }}"
                         />

@@ -278,6 +278,7 @@
         "width": "Largeur d'une tuile",
         "max.width": "Largeur max d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
+        "cover": "Couvrir toute la tuile",
         "height": "Hauteur d'une tuile",
         "max.height": "Hauteur max d'une tuile",
         "height.auto": "Hauteur automatique des tuiles",
