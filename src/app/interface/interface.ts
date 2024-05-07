@@ -221,7 +221,7 @@ export interface PreferencesData {
 
 export type OptimizedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
-export type ThemesNames = 'default' | 'compact' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
+export type ThemesNames = 'default' | 'compact' | 'square' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
 export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis';

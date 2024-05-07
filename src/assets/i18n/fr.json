@@ -385,6 +385,7 @@
       "name": {
         "default": "Défaut",
         "compact": "Défaut compact",
+        "square": "Carré",
         "sakura": "Sakura",
         "night": "Nuit",
         "ciel": "Ciel",

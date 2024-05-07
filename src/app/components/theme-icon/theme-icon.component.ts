@@ -31,7 +31,7 @@ export class ThemeIconComponent implements OnInit {
     getStyles() {
         const o = this.theme.options;
         return {
-            '--o-item-width': o.imageWidth + 'px',
+            '--o-item-width': o.itemWidth + 'px',
             '--o-item-height': o.itemHeight + 'px',
             '--o-item-padding': o.itemPadding + 'px',
             '--o-item-border': o.itemBorder + 'px',

@@ -196,7 +196,6 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 category: this.options!.category,
                 autoSave: this.options!.autoSave,
                 streamMode: this.options!.streamMode,
-                itemWidthAuto: this.options!.itemWidthAuto,
             },
             { mode },
         );

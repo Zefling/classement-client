@@ -1,6 +1,5 @@
 :host {
     display: block;
-    width: 130px;
 
     .block {
         margin: 5px;
@@ -10,61 +9,60 @@
         outline: 5px solid var(--theme-selection);
         box-shadow: 0 0 20px var(--theme-shadow-color);
     }
-}
 
-.block {
-    --n-item-width: var(--o-item-width, var(--item-width));
-    --n-item-height: var(--o-item-height, var(--item-height));
-    --n-item-padding: var(--o-item-padding, var(--item-padding));
-    --n-item-border: var(--o-item-border, var(--item-border));
-    --n-item-margin: var(--o-item-margin, var(--item-margin));
-    --n-content-box-background: var(--o-content-box-background, var(--content-box-background));
-    --n-content-box-border: var(--o-content-box-border, var(--content-box-border));
-    --n-drop-list-background: var(--o-drop-list-background, var(--drop-list-background));
-    --n-drop-list-border-color: var(--o-drop-list-border-color, var(--drop-list-border-color));
-    --n-image-background: var(--o-image-background, var(--image-background));
-    --n-image-url: var(--o-image-url);
-    --n-image-width: var(--o-image-width, var(--image-width));
-    --n-name-width: var(--o-name-width, var(--name-width));
-    --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .block {
+        --n-item-width: var(--o-item-width, var(--item-width));
+        --n-item-height: var(--o-item-height, var(--item-height));
+        --n-item-padding: var(--o-item-padding, var(--item-padding));
+        --n-item-border: var(--o-item-border, var(--item-border));
+        --n-item-margin: var(--o-item-margin, var(--item-margin));
+        --n-content-box-background: var(--o-content-box-background, var(--content-box-background));
+        --n-content-box-border: var(--o-content-box-border, var(--content-box-border));
+        --n-drop-list-background: var(--o-drop-list-background, var(--drop-list-background));
+        --n-drop-list-border-color: var(--o-drop-list-border-color, var(--drop-list-border-color));
+        --n-image-background: var(--o-image-background, var(--image-background));
+        --n-image-url: var(--o-image-url);
+        --n-image-width: var(--o-image-width, var(--image-width));
+        --n-name-width: var(--o-name-width, var(--name-width));
+        --n-name-font-size: var(--o-name-font-size, var(--name-font-size));
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    box-shadow: 0 0 10px var(--theme-shadow-color);
-    background-image: var(--n-image-url);
-    background-repeat: repeat;
-    background-color: var(--n-image-background, var(--background));
-    padding: 0;
-    height: 130px;
-    overflow: hidden;
-}
+        box-shadow: 0 0 10px var(--theme-shadow-color);
+        background-image: var(--n-image-url);
+        background-repeat: repeat;
+        background-color: var(--n-image-background, var(--background));
+        padding: 10px;
+        overflow: hidden;
+    }
 
-.group {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    border: solid 1px var(--n-drop-list-border-color);
-    background: var(--n-drop-list-background);
-    padding: 0;
-    width: 120px;
-    height: 100px;
-}
+    .group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: solid 1px var(--n-drop-list-border-color);
+        background: var(--n-drop-list-background);
+    }
 
-.item {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    box-sizing: border-box;
-    margin: var(--n-item-margin);
-    border: var(--n-item-border) solid var(--n-content-box-border);
-    background: var(--n-content-box-background);
-    padding: var(--n-item-padding);
-    width: 100px;
-    color: var(--n-content-box-color);
-}
-.image {
-    flex: 1;
-    background-color: azure;
-    padding: 0;
+    .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        margin: var(--n-item-margin);
+        border: var(--n-item-border) solid var(--n-content-box-border);
+        background: var(--n-content-box-background);
+        padding: var(--n-item-padding);
+        color: var(--n-content-box-color);
+    }
+    .image {
+        flex: 1;
+        background-color: azure;
+        padding: 0;
+        width: var(--n-item-width);
+        max-width: var(--n-item-width);
+        height: var(--n-item-height);
+        max-height: var(--n-item-height);
+    }
 }

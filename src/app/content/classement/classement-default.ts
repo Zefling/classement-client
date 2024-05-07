@@ -86,9 +86,9 @@ export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
 export const imagesAxis: ImagesNames[] = ['none', 'custom'];
 export const imagesThemes = imagesLists;
 
-export const themesLists: ThemesNames[] = ['default', 'compact', 'sakura', 'night', 'ciel'];
-export const themesIceberg: ThemesNames[] = ['iceberg'];
-export const themesAxis: ThemesNames[] = ['axis'];
+export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'sakura', 'night', 'ciel'];
+export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
+export const themesAxis: ThemesNames[] = ['axis', 'square'];
 export const themes = themesLists;
 
 export const themesList: Theme[] = [
@@ -107,6 +107,24 @@ export const themesList: Theme[] = [
             itemBorder: 0,
             itemMargin: 0,
             imageWidth: 1155,
+            nameWidth: 100,
+            nameFontSize: 100,
+        },
+    },
+    {
+        name: 'square',
+        options: {
+            ...defaultOptions,
+            itemTextPosition: 'bottom-over',
+            itemWidth: 100,
+            itemHeight: 100,
+            itemHeightAuto: false,
+            itemWidthAuto: false,
+            itemImageCover: true,
+            itemPadding: 0,
+            itemBorder: 0,
+            itemMargin: 0,
+            imageWidth: 1000,
             nameWidth: 100,
             nameFontSize: 100,
         },

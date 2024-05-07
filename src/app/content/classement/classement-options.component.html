@@ -69,7 +69,7 @@
       }
       @if (
         !options.itemWidthAuto &&
-        (zoneMode.includes(options.mode) || (!zoneMode.includes(options.mode) && options.itemHeightAuto))
+        (!zoneMode.includes(options.mode) || (zoneMode.includes(options.mode) && !options.itemHeightAuto))
       ) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="options.itemImageCover" />
