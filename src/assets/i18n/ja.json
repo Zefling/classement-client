@@ -385,6 +385,7 @@
       "name": {
         "default": "デフォルト",
         "compact": "デフォルトのコンパクト",
+        "square": "Carré",
         "sakura": "桜",
         "night": "エトワール",
         "ciel": "空",
