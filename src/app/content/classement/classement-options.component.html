@@ -61,16 +61,19 @@
         <input type="checkbox" [(ngModel)]="options.itemWidthAuto" />
         <span>{{ 'generator.options.item.width.auto' | translate }}</span>
       </label>
-      @if (!options.itemWidthAuto) {
-        <label class="toggle-switch">
-          <input type="checkbox" [(ngModel)]="options.itemImageCover" />
-          <span>{{ 'generator.options.item.cover' | translate }}</span>
-        </label>
-      }
       @if (zoneMode.includes(options.mode)) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="options.itemHeightAuto" />
           <span>{{ 'generator.options.item.height.auto' | translate }}</span>
+        </label>
+      }
+      @if (
+        !options.itemWidthAuto &&
+        (zoneMode.includes(options.mode) || (!zoneMode.includes(options.mode) && options.itemHeightAuto))
+      ) {
+        <label class="toggle-switch">
+          <input type="checkbox" [(ngModel)]="options.itemImageCover" />
+          <span>{{ 'generator.options.item.cover' | translate }}</span>
         </label>
       }
     </div>
