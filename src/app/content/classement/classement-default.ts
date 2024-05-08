@@ -124,7 +124,7 @@ export const themesList: Theme[] = [
             itemPadding: 0,
             itemBorder: 0,
             itemMargin: 0,
-            imageWidth: 1000,
+            imageWidth: 1010,
             nameWidth: 100,
             nameFontSize: 100,
         },
