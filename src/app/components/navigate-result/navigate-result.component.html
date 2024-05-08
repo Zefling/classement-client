@@ -57,7 +57,7 @@
           </figure>
           @if (!isCategoryList && !hideDerivatives) {
             <div class="template" [class.hide]="classement.templateTotal <= 1">
-              {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+              {{ 'navigate.count.derivatives' | translate }} {{ classement.templateTotal }}
             </div>
           }
         </a>
