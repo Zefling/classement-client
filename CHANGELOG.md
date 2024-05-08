@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 2.1.8 (2024-05-08)
+
+#### Standalone web app
+
+-   Fix cartouche on home page for mobile
+-   Fix naming for version of ranking
+-   Better default size image for the Square theme
+-   Fix the height of large image preview
+-   Update `@wtto00/html2canvas` to `@html2canvas/html2canvas`
+
 ### 2.1.7 (2024-05-08)
 
 #### Standalone web app
