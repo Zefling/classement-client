@@ -100,6 +100,10 @@ figure {
     }
 }
 
+:host.categories figure::before {
+    display: none;
+}
+
 @container figure (width < 400px) {
     figure::before {
         top: calc(100cqw - 32px);
@@ -159,7 +163,7 @@ figure {
         }
     }
 
-    :host:not(.categories) {
+    :host:not(.categories):not(.list) {
         gap: 5px;
         --cell: repeat(2, calc(50% - 4px));
 
@@ -192,7 +196,7 @@ figure {
         gap: 5px;
     }
 
-    :host:not(.categories) {
+    :host:not(.categories):not(.list) {
         --cell: 100%;
         gap: 5px;
 

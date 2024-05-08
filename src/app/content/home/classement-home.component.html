@@ -35,7 +35,7 @@
   <h3>{{ 'home.last' | translate }}</h3>
   @if (!loading) {
     <div class="navigate-result">
-      <navigate-result [classements]="classements" hideDerivatives onlyRanking></navigate-result>
+      <navigate-result [classements]="classements" hideDerivatives onlyRanking isHomeList></navigate-result>
     </div>
   }
   @if (loading) {

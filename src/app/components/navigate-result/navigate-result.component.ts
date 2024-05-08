@@ -19,4 +19,8 @@ export class NavigateResultComponent {
     @HostBinding('class.categories')
     @Input({ transform: booleanAttribute })
     isCategoryList = false;
+
+    @HostBinding('class.list')
+    @Input({ transform: booleanAttribute })
+    isHomeList = false;
 }
