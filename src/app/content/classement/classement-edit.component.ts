@@ -19,9 +19,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import html2canvas from '@html2canvas/html2canvas';
 import { TranslateService } from '@ngx-translate/core';
 
-import html2canvas from '@wtto00/html2canvas';
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
