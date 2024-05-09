@@ -26,7 +26,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
     background: var(--dialog-background);
-    min-width: min(700px, calc(100% - 20px));
+    min-width: min(700px, 100% - 20px);
     max-width: calc(100% - 20px);
     min-height: 150px;
     max-height: 90%;
