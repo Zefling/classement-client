@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 2.1.9 (2024-05-09)
+
+#### Standalone web app
+
+-   Fix textarea in add text dialog
+-   Fix a problem on a tile when adding an image if there is none or it has been deleted
+-   Fix dialog of avatar
+-   Minor fixes
+
 ### 2.1.8 (2024-05-08)
 
 #### Standalone web app
