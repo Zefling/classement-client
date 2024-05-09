@@ -301,7 +301,7 @@ img {
         grid-area: 1 / 1;
         box-sizing: border-box;
         margin: 0;
-        border: 0;
+        border: 1px solid var(--input-border-color);
         padding: 0;
         width: 100%;
         min-width: 1em;
@@ -313,6 +313,7 @@ img {
 
     &::after {
         visibility: hidden;
+        border-color: transparent;
         content: attr(data-value) ' ';
         white-space: pre-wrap;
         word-break: break-word;
@@ -323,6 +324,7 @@ img {
         textarea {
             appearance: none;
             outline: 0;
+            border: 0;
             background: none;
             text-align: center;
         }
