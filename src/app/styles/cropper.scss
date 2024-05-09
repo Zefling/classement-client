@@ -11,6 +11,10 @@
     width: 100%;
     max-width: 100%;
 
+    image-cropper {
+        max-height: 400px;
+    }
+
     .cropper {
         flex: 2;
     }
