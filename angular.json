@@ -44,6 +44,7 @@
             "allowedCommonJsDependencies": [
               "pica",
               "buffer",
+              "hammerjs",
               "@html2canvas/html2canvas",
               "owasp-password-strength-test"
             ]
