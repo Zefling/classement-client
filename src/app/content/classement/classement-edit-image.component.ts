@@ -30,7 +30,8 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 })
 export class ClassementEditImageComponent implements OnChanges {
     @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
-    @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('dialogImageEdit') dialogImageEdit!: DialogComponent;
+    @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
     @ViewChild('ratioInput') ratioInput!: ElementRef<HTMLInputElement>;
     @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
 
@@ -94,6 +95,15 @@ export class ClassementEditImageComponent implements OnChanges {
         this._open = false;
     }
 
+    openEdit() {
+        this.dialogImageEdit.open();
+    }
+
+    closeEdit() {
+        this.dialogImageEdit.close();
+        this.resetBanner();
+    }
+
     delete() {
         this.deleteCurrent.emit();
         this.close();
@@ -150,13 +160,15 @@ export class ClassementEditImageComponent implements OnChanges {
     }
 
     resetBanner() {
+        this.bannerInput.nativeElement.value = '';
         this.croppedImage = undefined;
         this.imageChangedEvent = undefined;
-        this.imageInput.nativeElement.value = '';
+        this.data = '';
     }
 
-    fileChangeEvent(event: Event): void {
+    async fileChangeEvent(event: Event) {
         this.imageChangedEvent = event;
+        this.data = await Utils.blobToBase64((event as any).target.files[0]);
     }
 
     fileChange(event: FileHandle | string) {
@@ -171,7 +183,7 @@ export class ClassementEditImageComponent implements OnChanges {
         }
     }
 
-    async update() {
+    async updateAndCloseEdit() {
         if (this.croppedImage) {
             const tile = this.currentTile!;
             setTimeout(() => {
@@ -188,6 +200,7 @@ export class ClassementEditImageComponent implements OnChanges {
             this.global.onImageUpdate.next();
             this.globalChange();
         }
+        this.closeEdit();
     }
 
     imageLoaded(_image?: LoadedImage) {
@@ -201,9 +214,11 @@ export class ClassementEditImageComponent implements OnChanges {
 
     cropperReady() {
         // cropper ready
+        console.log('Cropper is ready');
     }
 
     loadImageFailed() {
         // show message
+        console.warn('Cropper load image failed !!');
     }
 }

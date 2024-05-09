@@ -29,7 +29,7 @@
             <img [src]="currentTile.url" />
           </div>
           <div class="image-preview-button">
-            <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+            <button class="primary" (click)="croppedImage = data = currentTile.url; openEdit()">
               {{ 'generator.ranking.image.edit' | translate }}
             </button>
             @if (currentTile.url) {
@@ -41,7 +41,7 @@
         </div>
       } @else {
         <div>
-          <button class="primary" (click)="croppedImage = data = currentTile.url; dialogImageEdit.open()">
+          <button class="primary" (click)="croppedImage = data = currentTile.url; openEdit()">
             {{ 'generator.ranking.image.add' | translate }}
           </button>
           <div>
@@ -142,10 +142,10 @@
     <div drop-image mode="local" (file)="fileChange($event)">
       <div class="drop-image-message">{{ 'generator.ranking.image.drop' | translate }}</div>
       <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
-      @if (data?.startsWith('data')) {
+      @if (data?.startsWith('data') || imageChangedEvent) {
         <div class="edit-image">
           <div class="image">
-            <img [src]="croppedImage || data" />
+            <img class="image-render" [src]="croppedImage || data" />
           </div>
           <div class="image-edit">
             <image-cropper
@@ -191,10 +191,10 @@
         </div>
       }
       <div class="buttons">
-        <button (click)="dialogImageEdit.close()">
+        <button (click)="closeEdit()">
           {{ 'generator.ranking.image.edit.cancel' | translate }}
         </button>
-        <button class="primary" (click)="update(); dialogImageEdit.close()">
+        <button class="primary" (click)="updateAndCloseEdit()">
           {{ 'generator.ranking.image.edit.ok' | translate }}
         </button>
       </div>

@@ -69,6 +69,11 @@
     }
 }
 
+.image-render {
+    max-width: 300px;
+    max-height: 300px;
+}
+
 .group-colors {
     display: flex;
     flex-wrap: wrap;
