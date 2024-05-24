@@ -290,6 +290,7 @@
         "border.color": "Couleur de bordure d'une tuile :",
         "border.opacity": "Opacité de bordure d'une tuile :",
         "text": {
+          "size": "Taille du texte de la tuile :",
           "color": "Couleur du texte d'une tuile :",
           "opacity": "Opacité du texte d'une tuile :",
           "background.color": "Couleur de fond du texte :",

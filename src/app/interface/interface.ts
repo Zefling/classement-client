@@ -104,6 +104,7 @@ export type ThemeOptions = {
     itemBorderColor: string;
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
+    itemTextSize: number;
     itemTextColor: string;
     itemTextOpacity: number;
     itemTextPosition: 'hidden' | 'bottom' | 'bottom-over' | 'bottom-over-hover' | 'top' | 'top-over' | 'top-over-hover';

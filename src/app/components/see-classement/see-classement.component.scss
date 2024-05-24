@@ -140,7 +140,7 @@ img {
 // image, text only
 .title:not(:first-child),
 .title:first-child span {
-    font-size: 85%;
+    font-size: var(--over-item-text-size, 12px);
     text-align: center;
     word-wrap: break-word;
     max-width: min(100%, var(--over-item-max-width, 300px));

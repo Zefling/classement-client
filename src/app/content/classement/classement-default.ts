@@ -29,6 +29,7 @@ export const defaultOptions: Options = {
     itemPadding: 3,
     itemBorder: 1,
     itemMargin: 2,
+    itemTextSize: 12,
     itemTextColor: '',
     itemTextOpacity: 100,
     itemTextPosition: 'bottom',

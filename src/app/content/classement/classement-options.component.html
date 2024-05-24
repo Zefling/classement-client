@@ -271,6 +271,12 @@
           <div class="color-render"></div>
         }
       </div>
+      <div class="size-item-text input-button">
+        <div class="color">
+          <label for="itemTextSize">{{ 'generator.options.item.text.size' | translate }}</label>
+          <input id="itemTextSize" type="number" min="6" max="100" [(ngModel)]="options.itemTextSize" />
+        </div>
+      </div>
       <div class="colors-item-text input-button">
         <div class="width-input">
           <label for="option-item-text-color">{{ 'generator.options.item.text.color' | translate }}</label>

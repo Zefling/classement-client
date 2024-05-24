@@ -290,6 +290,7 @@
         "border.color": "タイルのボーダーの色：",
         "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
+          "size": "タイルのテキストのサイズ：",
           "color": "タイルのテキストの色：",
           "opacity": "タイルのテキストの不透明度：",
           "background.color": "テキストの背景の色：",

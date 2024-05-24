@@ -290,6 +290,7 @@
         "border.color": "Tile border color:",
         "border.opacity": "Tile border opacity:",
         "text": {
+          "size": "Tile text size:",
           "color": "Tile text color:",
           "opacity": "Tile text opacity:",
           "background.color": "Text background color:",
