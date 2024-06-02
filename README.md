@@ -14,7 +14,7 @@ See `src/environments/environment*.ts` for change.
 
 ## Website
 
-Current installation in this [website](https://classement.ikilote.net/).
+Current installation in this [website](https://classement.org/).
 
 ## Support the project
 
