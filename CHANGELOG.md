@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.1.10 (2024-06-02)
+
+#### Standalone web app
+
+-   Add size text in tile #58
+-   Update to Angular `18`
+
 ### 2.1.9 (2024-05-09)
 
 #### Standalone web app
