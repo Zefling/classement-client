@@ -33,15 +33,15 @@
   },
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, not IE_Mob 11",
   "dependencies": {
-    "@angular/animations": "^17.3.3",
-    "@angular/cdk": "^17.3.3",
-    "@angular/common": "^17.3.3",
-    "@angular/compiler": "^17.3.3",
-    "@angular/core": "^17.3.3",
-    "@angular/forms": "^17.3.3",
-    "@angular/platform-browser": "^17.3.3",
-    "@angular/platform-browser-dynamic": "^17.3.3",
-    "@angular/router": "^17.3.3",
+    "@angular/animations": "^18.0.1",
+    "@angular/cdk": "^18.0.1",
+    "@angular/common": "^18.0.1",
+    "@angular/compiler": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@angular/forms": "^18.0.1",
+    "@angular/platform-browser": "^18.0.1",
+    "@angular/platform-browser-dynamic": "^18.0.1",
+    "@angular/router": "^18.0.1",
     "@fontsource/roboto": "^5.0.12",
     "@github/textarea-autosize": "0.3.3",
     "@html2canvas/html2canvas": "1.6.0",
@@ -61,9 +61,9 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.3.3",
-    "@angular/cli": "^17.3.3",
-    "@angular/compiler-cli": "^17.3.3",
+    "@angular-devkit/build-angular": "^18.0.2",
+    "@angular/cli": "^18.0.2",
+    "@angular/compiler-cli": "^18.0.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/marked": "^4.3.1",
@@ -79,6 +79,6 @@
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "prettier-plugin-css-order": "^2.0.1",
-    "typescript": "~5.2.2"
+    "typescript": "~5.4.5"
   }
 }
