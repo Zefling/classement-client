@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,7 +17,6 @@ import { PipesModule } from './pipes/pipes.module';
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         Select2Module,
         // internal
         DirectiveModule,
@@ -31,7 +29,6 @@ import { PipesModule } from './pipes/pipes.module';
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         Select2Module,
         // internal
         DirectiveModule,

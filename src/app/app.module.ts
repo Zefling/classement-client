@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -54,7 +54,7 @@ export function markedOptionsFactory(): MarkedOptions {
             },
         }),
     ],
-    providers: [],
+    providers: [provideHttpClient(withInterceptorsFromDi())],
     exports: [],
     bootstrap: [AppComponent],
 })

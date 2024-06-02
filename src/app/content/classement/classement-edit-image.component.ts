@@ -145,7 +145,7 @@ export class ClassementEditImageComponent implements OnChanges {
         this.mode = mode;
         const aspectRatioValue =
             typeof aspectRatio === 'string' && aspectRatio.match(formula)
-                ? +(eval(aspectRatio.replace(':', '/')) || 0)
+                ? this.evalRatio(aspectRatio.replace(':', '/'))
                 : aspectRatio;
         this.aspectRatio = isNaN(aspectRatioValue as number)
             ? 0
@@ -157,6 +157,11 @@ export class ClassementEditImageComponent implements OnChanges {
         }
 
         this.imageLoaded();
+    }
+
+    private evalRatio(aspectRatio: string): number {
+        const [a, b] = aspectRatio.split('/');
+        return b.trim() ? +a.trim() / +b.trim() : 0;
     }
 
     resetBanner() {
