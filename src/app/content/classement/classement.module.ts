@@ -1,7 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
 import { CdkDropZone } from 'src/app/directives/dropzone.directive';
@@ -30,7 +30,14 @@ import { ExternalImdbComponent } from './external.imdb.component';
         // extension
         ExternalImdbComponent,
     ],
-    imports: [SharedModule, DragDropModule, ImageCropperModule, ClassementRoutingModule, CdkDropZone, CdkDragElement],
+    imports: [
+        SharedModule,
+        DragDropModule,
+        ImageCropperComponent,
+        ClassementRoutingModule,
+        CdkDropZone,
+        CdkDragElement,
+    ],
     providers: [],
     exports: [],
 })

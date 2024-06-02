@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,19 +10,20 @@ import { ComponentsModule } from './components/components.module';
 import { DirectiveModule } from './directives/directive.module';
 import { PipesModule } from './pipes/pipes.module';
 
-@NgModule({ exports: [
+@NgModule({
+    exports: [
         // external
         CommonModule,
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         Select2Module,
         // internal
         DirectiveModule,
         ComponentsModule,
         PipesModule,
-    ], imports: [
+    ],
+    imports: [
         // external
         CommonModule,
         TranslateModule,
@@ -33,5 +33,7 @@ import { PipesModule } from './pipes/pipes.module';
         // internal
         DirectiveModule,
         ComponentsModule,
-        PipesModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        PipesModule,
+    ],
+})
 export class SharedModule {}

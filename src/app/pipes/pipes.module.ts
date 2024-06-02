@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { FilesizePipe } from './file-size';
+import { FileSizePipe } from './file-size';
 import { NumFormatPipe } from './num-format';
 
 @NgModule({
-    declarations: [NumFormatPipe, FilesizePipe],
-    exports: [NumFormatPipe, FilesizePipe],
+    declarations: [NumFormatPipe, FileSizePipe],
+    exports: [NumFormatPipe, FileSizePipe],
     imports: [],
 })
 export class PipesModule {}
