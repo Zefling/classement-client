@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.1.11 (2024-06-04)
+
+#### Standalone web app
+
+-   Fix tile size in list and drag-preview
+-   Fix image render for Firefox
+
 ### 2.1.10 (2024-06-02)
 
 #### Standalone web app
