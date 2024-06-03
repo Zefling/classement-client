@@ -844,19 +844,17 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
-    exportImage() {
+    async exportImage() {
         this.dialogImage.open();
-        html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
-            logging: false,
-            allowTaint: false,
-            useCORS: false,
+        const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
+            logging: true,
+            allowTaint: true,
             scale: 2,
-        }).then(canvas => {
-            const element = this.image.nativeElement;
-            element.innerHTML = '';
-            element.appendChild(canvas);
-            this._canvas = canvas;
         });
+        const element = this.image.nativeElement;
+        element.innerHTML = '';
+        element.appendChild(canvas);
+        this._canvas = canvas;
     }
 
     saveImage(type: string) {

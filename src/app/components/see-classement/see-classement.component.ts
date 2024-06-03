@@ -20,6 +20,7 @@ export class SeeClassementComponent implements OnInit {
     @Input() options!: Options;
 
     @Input({ transform: booleanAttribute }) withAnnotation = false;
+    @Input({ transform: booleanAttribute }) render = false;
 
     nameOpacity!: string;
 

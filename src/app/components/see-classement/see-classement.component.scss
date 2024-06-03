@@ -67,7 +67,7 @@ img {
     height: var(--over-image-height, auto);
 }
 
-#html2canvas-element {
+.html2canvas-element {
     border-spacing: 1px;
     background-image: var(--over-image-url);
     background-position: var(--over-image-background-position);

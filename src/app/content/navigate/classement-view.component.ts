@@ -321,10 +321,9 @@ export class ClassementViewComponent implements OnDestroy {
 
     exportImage() {
         this.dialogImage.open();
-        html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
-            logging: false,
-            allowTaint: false,
-            useCORS: false,
+        html2canvas(document.getElementById('html2canvas-element')!, {
+            logging: true,
+            allowTaint: true,
             scale: 2,
         }).then(canvas => {
             const element = this.image.nativeElement;
