@@ -189,10 +189,10 @@ export class GlobalService {
         // title
         r(body, '--over-title-text-color', color(o.titleTextColor, o.titleTextOpacity), dash);
         // item
-        const itemWidth = o.itemWidthAuto ? 'auto' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
+        const itemWidth = o.itemWidthAuto ? 'min-content' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
         r(body, '--over-item-max-width', o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
-        const itemHeight = o.itemHeightAuto ? 'auto' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
+        const itemHeight = o.itemHeightAuto ? 'min-content' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
         r(body, '--over-item-height', itemHeight, dash);
         r(body, '--over-item-max-height', o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);

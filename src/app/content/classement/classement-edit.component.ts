@@ -847,7 +847,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     async exportImage() {
         this.dialogImage.open();
         const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
-            logging: true,
+            logging: false,
             allowTaint: true,
             scale: 2,
         });

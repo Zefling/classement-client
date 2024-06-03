@@ -322,7 +322,7 @@ export class ClassementViewComponent implements OnDestroy {
     exportImage() {
         this.dialogImage.open();
         html2canvas(document.getElementById('html2canvas-element')!, {
-            logging: true,
+            logging: false,
             allowTaint: true,
             scale: 2,
         }).then(canvas => {

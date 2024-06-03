@@ -106,10 +106,13 @@
 
 .add-file,
 .add-text {
+    align-self: stretch;
     cursor: pointer;
     background: var(--tile-add-file-background);
+    width: max-content;
     min-width: 100px;
     max-width: 200px;
+    height: auto;
     color: var(--tile-add-file-color);
     font-weight: 600;
     text-align: center;
@@ -129,7 +132,9 @@
     // fix size
     padding: var(--over-item-padding, 10px) !important;
     width: var(--over-item-width, 150px) !important;
+    min-width: 40px;
     height: var(--over-item-height, 150px) !important;
+    min-height: 40px;
 }
 
 .cdk-drag-placeholder {
@@ -553,7 +558,8 @@ span.group-options {
 .current-list {
     width: 100%;
 
-    .cdk-drop-list {
+    .cdk-drop-list,
+    .cdk-drop-list .content-box {
         min-height: 40px;
     }
 }
