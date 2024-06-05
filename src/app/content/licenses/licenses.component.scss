@@ -9,11 +9,27 @@ pre {
 
 :host ::ng-deep {
     h3 {
-        margin-bottom: 3px;
+        margin: 0px;
         border-bottom: 1px solid;
-        padding-bottom: 3px;
+        padding: 0 6px 6px;
     }
+
     .license {
+        margin-right: 5px;
         font-size: 20px;
+        text-align: right;
+    }
+
+    p {
+        padding: 0 6px;
+    }
+
+    .block {
+        border: 1px solid;
+        border-radius: 5px;
+
+        & + .block {
+            margin-top: 15px;
+        }
     }
 }

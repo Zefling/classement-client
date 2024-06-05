@@ -21,10 +21,11 @@
     "postinstall": "npm audit fix",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npm run addlicenses",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "addlicenses": "mv dist/classement/3rdpartylicenses.txt dist/classement/browser/3rdpartylicenses.txt"
   },
   "private": true,
   "engines": {

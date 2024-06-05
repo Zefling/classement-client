@@ -25,10 +25,12 @@ export class LicensesComponent {
             this.data = this.global.licenses;
         } else {
             this.http.get('./3rdpartylicenses.txt', { responseType: 'text' }).subscribe(data => {
-                this.data = this.global.licenses = data.replace(
-                    /([^\n]*)\n(MIT|Apache-2.0|0BSD|BSD-3-Clause)\n/g,
-                    '\n<h3>$1</h3><div class="license"><strong>$2</strong></div>\n',
-                );
+                this.data = this.global.licenses = data
+                    .replace(/Package: (.*)\n/g, '<h3>$1</h3>')
+                    .replace(/License: "(.*)"\n/g, '<div class="license">$1</div><p>')
+                    .replace(/--*-/g, '</p></div><div class="block">')
+                    .replace(/<p>\s*<\/p>/g, '')
+                    .replace(/^<\/p><\/div>|<div class="block">\s*$/g, '');
             });
         }
         this.listener.push(
