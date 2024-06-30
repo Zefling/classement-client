@@ -222,6 +222,7 @@ export class ClassementViewComponent implements OnDestroy {
                         ...history,
                     ];
                 }
+                classement.withHistory = history?.length;
             });
         }
     }
