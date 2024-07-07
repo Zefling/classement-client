@@ -6,6 +6,8 @@ const emailTest =
 const isObject = (a: Record<string, any>, b: Record<string, any>) =>
     typeof a === 'object' && !Array.isArray(a) && !!a && !!b;
 
+const changeTitleHeight = ['bottom', 'top'];
+
 export class Utils {
     static objectsAreSame(objA?: Record<string, any>, objB?: Record<string, any>, ignoreKeys: string[] = []): boolean {
         if (objA === objB) {
@@ -236,7 +238,7 @@ export class Utils {
 
         const width = item.width || 100;
         const height = item.height || 100;
-        const titleHeight = title ? title.clientHeight + 3 : 0;
+        const titleHeight = changeTitleHeight.includes(options.itemTextPosition) && title ? title.clientHeight + 3 : 0;
         let targetHeight = height < itemHeight - titleHeight ? height : Math.min(height, itemHeight) - titleHeight;
 
         if (tile) {
