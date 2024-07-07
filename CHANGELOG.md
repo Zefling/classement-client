@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 2.1.12 (2024-07-07)
+
+#### Standalone web app
+
+-   Fix history length #59
+-   Fix title height with title for all options
+-   Update html2canvas
+-   Add Github links
+
 ### 2.1.11 (2024-06-04)
 
 #### Standalone web app
