@@ -334,7 +334,7 @@ export class ClassementViewComponent implements OnDestroy {
         });
     }
 
-    saveImage(type: string) {
+    saveImage(type: 'PNG' | 'JPG' | 'WEBP') {
         const title = this.getFileName();
         if (this.canvas) {
             switch (type) {
