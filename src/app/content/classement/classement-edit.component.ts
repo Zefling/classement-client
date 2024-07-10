@@ -568,57 +568,37 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
-    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
-        const indexFrom = event.previousContainer.data.index;
-        const indexTarget = event.container.data.index;
-        if (event.previousContainer.data.list === event.container.data.list) {
-            moveItemInArray(list, indexFrom, indexTarget);
+    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[] }>) {
+        const previousList = event.previousContainer.data.list;
+        const targetList = event.container.data.list;
+        const indexFrom = event.previousIndex;
+        const indexTarget = event.currentIndex;
+
+        if (previousList === targetList) {
+            moveItemInArray(targetList, event.previousIndex, event.currentIndex);
         } else {
             const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
-
             switch (this.options.mode) {
                 case 'teams':
                     if (
-                        this.listIsType(event.previousContainer.data.list, 'list') &&
-                        this.listIsType(event.container.data.list, 'group') &&
-                        !event.container.data.list.find(
-                            tile => tile.id === event.previousContainer.data.list[indexFrom].id,
-                        )
+                        this.listIsType(previousList, 'list') &&
+                        this.listIsType(targetList, 'group') &&
+                        !targetList.find(tile => tile.id === previousList[indexFrom].id)
                     ) {
-                        copyArrayItem(
-                            event.previousContainer.data.list,
-                            event.container.data.list,
-                            indexFrom,
-                            indexTarget + indexFix,
-                        );
-                    } else if (
-                        this.listIsType(event.previousContainer.data.list, 'group') &&
-                        this.listIsType(event.container.data.list, 'group')
-                    ) {
-                        if (
-                            !event.container.data.list.find(
-                                tile => tile.id === event.previousContainer.data.list[indexFrom].id,
-                            )
-                        ) {
-                            transferArrayItem(
-                                event.previousContainer.data.list,
-                                event.container.data.list,
-                                indexFrom,
-                                indexTarget + indexFix,
-                            );
+                        copyArrayItem(previousList, targetList, indexFrom, indexTarget);
+                    } else if (this.listIsType(previousList, 'group') && this.listIsType(targetList, 'group')) {
+                        if (!targetList.find(tile => tile.id === previousList[indexFrom].id)) {
+                            transferArrayItem(previousList, targetList, indexFrom, indexTarget);
                         } else {
-                            event.previousContainer.data.list.splice(indexFrom, 1);
+                            previousList.splice(indexFrom, 1);
                         }
-                    } else if (
-                        this.listIsType(event.previousContainer.data.list, 'group') &&
-                        this.listIsType(event.container.data.list, 'list')
-                    ) {
-                        event.previousContainer.data.list.splice(indexFrom, 1);
+                    } else if (this.listIsType(previousList, 'group') && this.listIsType(targetList, 'list')) {
+                        previousList.splice(indexFrom, 1);
                     }
                     break;
                 case 'iceberg':
                 case 'axis':
-                    const item = event.previousContainer.data.list[indexFrom];
+                    const item = previousList[indexFrom];
                     const eventLayer = event.event as any;
 
                     if (eventLayer.target.id === 'zone') {
@@ -646,20 +626,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     item.x = Math.max(0, item.x || 0);
                     item.y = Math.max(0, item.y || 0);
 
-                    transferArrayItem(
-                        event.previousContainer.data.list,
-                        event.container.data.list,
-                        indexFrom,
-                        this.groups[0].list.length,
-                    );
+                    transferArrayItem(previousList, targetList, indexFrom, this.groups[0].list.length);
                     break;
                 default:
-                    transferArrayItem(
-                        event.previousContainer.data.list,
-                        event.container.data.list,
-                        indexFrom,
-                        indexTarget + indexFix,
-                    );
+                    transferArrayItem(previousList, targetList, indexFrom, indexTarget);
             }
         }
         this.globalChange();
@@ -773,7 +743,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         element.ngAfterViewInit();
     }
 
-    moveItem(event: CdkDragMove<any>, item: FileString, element: CdkDragElement) {
+    moveItem(event: CdkDragMove<any>, item: FileString, _element: CdkDragElement) {
         // position of tile is not public (why ?)
         const source = event.source._dragRef['_activeTransform'];
         item.x = source.x;
