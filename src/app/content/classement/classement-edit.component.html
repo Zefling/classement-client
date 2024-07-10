@@ -120,19 +120,22 @@
                     </div>
                   </td>
                   <td class="elements">
-                    <div class="drop-list">
+                    <div
+                      class="drop-list"
+                      cdkDropList
+                      cdkDropListOrientation="mixed"
+                      [cdkDropListData]="{ list: group.list, index: 0 }"
+                      (cdkDropListDropped)="drop(group.list, $event)"
+                    >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                         <div
-                          cdkDropList
-                          cdkDropListOrientation="horizontal"
-                          [cdkDropListData]="{ list: group.list, index: index }"
-                          (cdkDropListDropped)="drop(group.list, $event)"
+                          cdkDrag
                           removeTile
                           (removeElement)="removeFromZone(group, index)"
                           [style.--over-item-background]="item.bgColor"
                           [style.--over-item-text-color]="item.txtColor"
                         >
-                          <div class="content-box" cdkDrag>
+                          <div class="content-box">
                             <div
                               class="content content-render"
                               [class.with-annotation]="item.annotation"
@@ -162,13 +165,7 @@
                         </div>
                       }
                       @if (group.list.length === 0) {
-                        <div
-                          class="drop-zone-empty-list"
-                          cdkDropList
-                          cdkDropListOrientation="horizontal"
-                          [cdkDropListData]="{ list: group.list, index: 0 }"
-                          (cdkDropListDropped)="drop(group.list, $event)"
-                        ></div>
+                        <div class="drop-zone-empty-list"></div>
                       }
                     </div>
                   </td>
@@ -289,17 +286,14 @@
             #currentList
             [attr.dir]="options.direction"
             [class.height-auto]="options.itemHeightAuto"
+            cdkDropList
+            cdkDropListOrientation="mixed"
+            [cdkDropListData]="{ list: list, index: 0 }"
+            (cdkDropListDropped)="drop(list, $event)"
           >
             @for (item of list; track trackByFnFileString(index, item); let index = $index) {
-              <div
-                cdkDropList
-                cdkDropListOrientation="horizontal"
-                [cdkDropListData]="{ list: list, index: index }"
-                (cdkDropListDropped)="drop(list, $event)"
-                [style.--over-item-background]="item.bgColor"
-                [style.--over-item-text-color]="item.txtColor"
-              >
-                <div class="content-box" cdkDrag>
+              <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor" cdkDrag>
+                <div class="content-box">
                   @if (!options.streamMode) {
                     <div
                       #tile
@@ -359,7 +353,7 @@
               <div
                 class="drop-zone-empty-list"
                 cdkDropList
-                cdkDropListOrientation="horizontal"
+                cdkDropListOrientation="mixed"
                 [cdkDropListData]="{ list: list, index: 0 }"
                 (cdkDropListDropped)="drop(list, $event)"
               ></div>
