@@ -4,6 +4,12 @@
     max-width: 100%;
     min-height: 100%;
 
+    --cdk-drag-animating-transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+    &.no-animation {
+        --cdk-drag-animating-transition: none;
+    }
+
     & > div {
         position: relative;
         flex: 1;
@@ -142,7 +148,7 @@
 }
 
 .cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition: var(--cdk-drag-animating-transition);
 }
 
 .example-box:last-child {

@@ -125,6 +125,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return this.lineOption === 'hidden';
     }
 
+    @HostBinding('class.no-animation')
+    get noAnimation() {
+        return this.options.mode === 'iceberg' || this.options.mode === 'axis';
+    }
+
     @ViewChild('image') image!: ElementRef<HTMLDivElement>;
     @ViewChild('currentList') currentList!: ElementRef<HTMLDivElement>;
     @ViewChild('dialogImage') dialogImage!: DialogComponent;
