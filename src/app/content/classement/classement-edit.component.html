@@ -124,43 +124,42 @@
                       class="drop-list"
                       cdkDropList
                       cdkDropListOrientation="mixed"
-                      [cdkDropListData]="{ list: group.list, index: 0 }"
+                      [cdkDropListData]="{ list: group.list }"
                       (cdkDropListDropped)="drop(group.list, $event)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                         <div
+                          class="content-box"
                           cdkDrag
                           removeTile
                           (removeElement)="removeFromZone(group, index)"
                           [style.--over-item-background]="item.bgColor"
                           [style.--over-item-text-color]="item.txtColor"
                         >
-                          <div class="content-box">
-                            <div
-                              class="content content-render"
-                              [class.with-annotation]="item.annotation"
-                              [ngClass]="options.itemTextPosition"
-                              [id]="item.id"
-                              #tile
-                            >
-                              @if (item.url) {
-                                <div [class.image]="calcWidth(item, tile)">
-                                  <img
-                                    (ngInit)="calcWidth(item, tile); detectChanges()"
-                                    (load)="calcWidth(item, tile); detectChanges()"
-                                    [class.cover]="options.itemImageCover"
-                                    src="{{ item.url }}"
-                                    alt="{{ item.name }}"
-                                  />
-                                </div>
-                              }
-                              @if (item.title) {
-                                <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                                </div>
-                              }
-                              <div class="tile-info" (click)="openTileInfo(item)"></div>
-                            </div>
+                          <div
+                            class="content content-render"
+                            [class.with-annotation]="item.annotation"
+                            [ngClass]="options.itemTextPosition"
+                            [id]="item.id"
+                            #tile
+                          >
+                            @if (item.url) {
+                              <div [class.image]="calcWidth(item, tile)">
+                                <img
+                                  (ngInit)="calcWidth(item, tile); detectChanges()"
+                                  (load)="calcWidth(item, tile); detectChanges()"
+                                  [class.cover]="options.itemImageCover"
+                                  src="{{ item.url }}"
+                                  alt="{{ item.name }}"
+                                />
+                              </div>
+                            }
+                            @if (item.title) {
+                              <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                              </div>
+                            }
+                            <div class="tile-info" (click)="openTileInfo(item)"></div>
                           </div>
                         </div>
                       }
@@ -207,7 +206,7 @@
             <div
               id="zone"
               cdkDropZone
-              [cdkDropListData]="{ list: groups[0].list, index: 0 }"
+              [cdkDropListData]="{ list: groups[0].list }"
               (cdkDropListDropped)="drop(groups[0].list, $event)"
               class="zone-classement"
               (dblclick)="createTile($event)"
@@ -288,65 +287,68 @@
             [class.height-auto]="options.itemHeightAuto"
             cdkDropList
             cdkDropListOrientation="mixed"
-            [cdkDropListData]="{ list: list, index: 0 }"
+            [cdkDropListData]="{ list: list }"
             (cdkDropListDropped)="drop(list, $event)"
           >
             @for (item of list; track trackByFnFileString(index, item); let index = $index) {
-              <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor" cdkDrag>
-                <div class="content-box">
-                  @if (!options.streamMode) {
-                    <div
-                      #tile
-                      class="content"
-                      [ngClass]="options.itemTextPosition"
-                      [class.with-annotation]="item.annotation"
+              <div
+                cdkDrag
+                [style.--over-item-background]="item.bgColor"
+                [style.--over-item-text-color]="item.txtColor"
+                class="content-box"
+              >
+                @if (!options.streamMode) {
+                  <div
+                    #tile
+                    class="content"
+                    [ngClass]="options.itemTextPosition"
+                    [class.with-annotation]="item.annotation"
+                    [class.cover]="options.itemImageCover"
+                    [style.width.px]="calcWidthEdit(item, tile)"
+                  >
+                    <button class="btn-delete" (click)="removeItem(index)">×</button>
+                    <img
+                      [src]="item.url"
+                      [alt]="item.name"
                       [class.cover]="options.itemImageCover"
-                      [style.width.px]="calcWidthEdit(item, tile)"
-                    >
-                      <button class="btn-delete" (click)="removeItem(index)">×</button>
-                      <img
-                        [src]="item.url"
-                        [alt]="item.name"
-                        [class.cover]="options.itemImageCover"
-                        (load)="detectChanges()"
-                      />
-                      <input
-                        class="input-title"
-                        input="text"
-                        maxlength="150"
-                        [(ngModel)]="item.title"
-                        (ngModelChange)="globalChange()"
-                        (blur)="change()"
-                      />
-                      <div class="tile-info" (click)="openTileInfo(item)"></div>
-                    </div>
-                  } @else {
-                    <div
-                      class="content content-render"
-                      [ngClass]="options.itemTextPosition"
-                      [class.cover]="options.itemImageCover"
-                      #tile
-                      [style.width.px]="calcWidth(item, tile)"
-                    >
-                      @if (item.url) {
-                        <div class="image">
-                          <img
-                            (ngInit)="detectChanges()"
-                            (load)="detectChanges()"
-                            [class.cover]="options.itemImageCover"
-                            src="{{ item.url }}"
-                            alt="{{ item.name }}"
-                          />
-                        </div>
-                      }
-                      @if (item.title) {
-                        <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                        </div>
-                      }
-                    </div>
-                  }
-                </div>
+                      (load)="detectChanges()"
+                    />
+                    <input
+                      class="input-title"
+                      input="text"
+                      maxlength="150"
+                      [(ngModel)]="item.title"
+                      (ngModelChange)="globalChange()"
+                      (blur)="change()"
+                    />
+                    <div class="tile-info" (click)="openTileInfo(item)"></div>
+                  </div>
+                } @else {
+                  <div
+                    class="content content-render"
+                    [ngClass]="options.itemTextPosition"
+                    [class.cover]="options.itemImageCover"
+                    #tile
+                    [style.width.px]="calcWidth(item, tile)"
+                  >
+                    @if (item.url) {
+                      <div class="image">
+                        <img
+                          (ngInit)="detectChanges()"
+                          (load)="detectChanges()"
+                          [class.cover]="options.itemImageCover"
+                          src="{{ item.url }}"
+                          alt="{{ item.name }}"
+                        />
+                      </div>
+                    }
+                    @if (item.title) {
+                      <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                        <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                      </div>
+                    }
+                  </div>
+                }
               </div>
             }
             @if (list.length === 0) {
@@ -354,7 +356,7 @@
                 class="drop-zone-empty-list"
                 cdkDropList
                 cdkDropListOrientation="mixed"
-                [cdkDropListData]="{ list: list, index: 0 }"
+                [cdkDropListData]="{ list: list }"
                 (cdkDropListDropped)="drop(list, $event)"
               ></div>
             }

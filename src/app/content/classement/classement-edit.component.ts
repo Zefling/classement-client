@@ -568,7 +568,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
-    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[]; index: number }>) {
+    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[] }>) {
         const previousList = event.previousContainer.data.list;
         const targetList = event.container.data.list;
         const indexFrom = event.previousIndex;
