@@ -1,10 +1,10 @@
-import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, HostListener, input, numberAttribute, OnDestroy } from '@angular/core';
 
 @Directive({ selector: '[tooltip]' })
 export class TooltipDirective implements OnDestroy {
-    @Input() tooltip = '';
-    @Input() delayEnter? = 200;
-    @Input() delayLeave? = 0; // 0 to infini
+    tooltip = input('');
+    delayEnter = input(200, { transform: numberAttribute });
+    delayLeave = input(0, { transform: numberAttribute }); // 0 to infini
 
     private tooltipElement?: HTMLDivElement;
     private timer?: NodeJS.Timeout;
@@ -22,7 +22,7 @@ export class TooltipDirective implements OnDestroy {
         this.timer = setTimeout(() => {
             const { x, y } = this.position();
             this.createTooltip(x, y);
-        }, this.delayEnter);
+        }, this.delayEnter());
     }
 
     @HostListener('mouseleave')
@@ -48,7 +48,7 @@ export class TooltipDirective implements OnDestroy {
         }
 
         const tooltipElement = document.createElement('div');
-        tooltipElement.innerHTML = this.tooltip;
+        tooltipElement.innerHTML = this.tooltip();
         document.body.appendChild(tooltipElement);
         tooltipElement.setAttribute('class', 'tooltip-container');
         tooltipElement.style.top = y.toString() + 'px';
@@ -58,10 +58,10 @@ export class TooltipDirective implements OnDestroy {
 
         this.tooltipElement = tooltipElement;
 
-        if (this.delayLeave) {
+        if (this.delayLeave()) {
             setTimeout(() => {
                 this.ngOnDestroy();
-            }, this.delayLeave);
+            }, this.delayLeave());
         }
     }
 }

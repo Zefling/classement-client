@@ -1,11 +1,10 @@
-import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
+import { Directive, HostListener, output } from '@angular/core';
 
 @Directive({
     selector: '[removeTile]',
 })
 export class RemoveTileDirective {
-    @Output()
-    removeElement = new EventEmitter<void>();
+    removeElement = output<void>();
 
     @HostListener('auxclick', ['$event'])
     remove(event: MouseEvent) {

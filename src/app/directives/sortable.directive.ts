@@ -3,7 +3,7 @@ import {
     Host,
     HostBinding,
     HostListener,
-    Input,
+    input,
     OnChanges,
     OnDestroy,
     OnInit,
@@ -24,22 +24,21 @@ export type SortRule =
     selector: '[sort-rule]',
 })
 export class SortRuleDirective implements OnInit {
-    @Input('sort-rule')
-    sortRule?: SortRule;
+    sortRule = input<SortRule | undefined>(undefined, { alias: 'sort-rule' });
 
     @HostBinding('class.sort-asc')
     get classSortAsc() {
-        return this.sortable?.currentRuleOrder === true && this.sortable?.currentRule === this.sortRule;
+        return this.sortable?.currentRuleOrder === true && this.sortable?.currentRule === this.sortRule();
     }
 
     @HostBinding('class.sort-desc')
     get classSortDesc() {
-        return this.sortable?.currentRuleOrder === false && this.sortable?.currentRule === this.sortRule;
+        return this.sortable?.currentRuleOrder === false && this.sortable?.currentRule === this.sortRule();
     }
 
     @HostBinding('class.sort-cell')
     get classSortCell() {
-        return this.sortRule?.type !== 'none';
+        return this.sortRule()?.type !== 'none';
     }
 
     sortOrder?: { order: boolean; rule?: SortRule };
@@ -47,14 +46,15 @@ export class SortRuleDirective implements OnInit {
     constructor(@Host() private sortable: SortableDirective) {}
 
     ngOnInit(): void {
-        if (this.sortRule && this.sortRule.type !== 'none' && this.sortRule.init) {
-            this.sortable.sortWithRule(this.sortRule, this.sortRule.init);
+        const sortRule = this.sortRule();
+        if (sortRule && sortRule.type !== 'none' && sortRule.init) {
+            this.sortable.sortWithRule(sortRule, sortRule.init);
         }
     }
 
     @HostListener('click')
     onClick() {
-        this.sortable.sortWithRule(this.sortRule);
+        this.sortable.sortWithRule(this.sortRule());
     }
 }
 
@@ -62,14 +62,13 @@ export class SortRuleDirective implements OnInit {
     selector: '[sortable]',
 })
 export class SortableDirective implements OnInit, OnChanges, OnDestroy {
-    @Input()
-    sortable?: any[] = [];
+    sortable = input<any[] | undefined>([]);
 
-    @Input('sortable-filter-input')
-    sortableFilterInput?: HTMLInputElement;
+    sortableFilterInput = input<HTMLInputElement | undefined>(undefined, { alias: 'sortable-filter-input' });
 
-    @Input('sortable-filter')
-    sortableFilter?: (key: string, item: any, index: number) => boolean;
+    sortableFilter = input<((key: string, item: any, index: number) => boolean) | undefined>(undefined, {
+        alias: 'sortable-filter',
+    });
 
     currentRule?: SortRule;
     currentRuleOrder = false;
@@ -84,23 +83,23 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        if (this.sortableFilterInput) {
-            this.inputListener = this.renderer.listen(this.sortableFilterInput, 'input', (inputEvent: any) => {
+        if (this.sortableFilterInput()) {
+            this.inputListener = this.renderer.listen(this.sortableFilterInput(), 'input', (inputEvent: any) => {
                 this.filter((inputEvent.target as HTMLInputElement).value);
             });
         }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['sortable'] && this.sortableFilterInput && this.sortable) {
+        if (changes['sortable'] && this.sortableFilterInput() && this.sortable()) {
             this.sortableComplete.splice(0, this.sortable.length);
-            this.sortableComplete.push(...this.sortable);
+            this.sortableComplete.push(...(this.sortable() || []));
             this.update();
         }
     }
 
     update() {
-        this.filter(this.sortableFilterInput?.value || '');
+        this.filter(this.sortableFilterInput()?.value || '');
     }
 
     ngOnDestroy(): void {
@@ -120,8 +119,9 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
 
     sortLines() {
         const rule = this.currentRule;
-        if (rule && rule.type !== 'none' && Array.isArray(this.sortable) && this.sortable.length > 1) {
-            this.sortable.sort((a, b) => {
+        const sortable = this.sortable();
+        if (rule && rule.type !== 'none' && Array.isArray(sortable) && sortable.length > 1) {
+            sortable.sort((a, b) => {
                 let valA;
                 let valB;
                 for (const attr of rule.attr.split(',')) {
@@ -148,12 +148,13 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     private filter(input: string = '') {
-        if (this.input !== input && this.sortable && this.sortableComplete && this.sortableFilter) {
-            this.sortable.splice(0, this.sortable.length);
+        const sortable = this.sortable();
+        if (this.input !== input && sortable && this.sortableComplete && this.sortableFilter) {
+            sortable.splice(0, this.sortable.length);
             const result = !!input?.trim()
-                ? this.sortableComplete.filter((item, index) => this.sortableFilter!(input, item, index))
+                ? this.sortableComplete.filter((item, index) => this.sortableFilter()!(input, item, index))
                 : this.sortableComplete;
-            this.sortable.push(...result);
+            sortable.push(...result);
             this.sortLines();
             this.input = input;
         }
