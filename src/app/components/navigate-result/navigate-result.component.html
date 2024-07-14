@@ -1,12 +1,12 @@
-@if (classements.length) {
+@if (classements().length) {
   <ng-container [class.cateories]="isCategoryList">
-    @for (classement of classements; track classement) {
+    @for (classement of classements(); track classement) {
       <div class="classement">
         <a
           [routerLink]="
             isCategoryList
               ? ['/navigate']
-              : classement.templateTotal <= 1 || this.onlyRanking
+              : classement.templateTotal <= 1 || this.onlyRanking()
                 ? ['/navigate/view', classement.linkId || classement.rankingId]
                 : ['/navigate/template', classement.templateId]
           "
@@ -33,7 +33,7 @@
                     <span class="icon-tile"></span> {{ classement.totalItems }}
                   </div>
                 </div>
-                @if (!hideUser) {
+                @if (!hideUser()) {
                   <div class="username">
                     {{ 'user.by' | translate: { author: classement.user || ('list.user.anonymous' | translate) } }}
                   </div>
@@ -55,7 +55,7 @@
               }
             </figcaption>
           </figure>
-          @if (!isCategoryList && !hideDerivatives) {
+          @if (!isCategoryList && !hideDerivatives()) {
             <div class="template" [class.hide]="classement.templateTotal <= 1">
               {{ 'navigate.count.derivatives' | translate }} {{ classement.templateTotal }}
             </div>

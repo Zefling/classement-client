@@ -405,7 +405,7 @@
         {{ 'generator.actions.import.json' | translate }}
       </button>
       <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-        {{ 'generator.optimise.button.optimise' | translate }} ({{ size | filesize }})
+        {{ 'generator.optimise.button.optimise' | translate }} ({{ size | fileSize }})
       </button>
       @if (options && hasItems) {
         <label class="line">

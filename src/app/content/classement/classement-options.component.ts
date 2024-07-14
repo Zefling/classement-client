@@ -183,7 +183,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     themesOpen() {
-        this.classementThemes.dialog.open();
+        this.classementThemes.dialog()!.open();
     }
 
     changeTheme(theme: Theme) {

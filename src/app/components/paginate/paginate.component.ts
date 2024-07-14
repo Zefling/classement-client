@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnDestroy, numberAttribute } from '@angular/core';
+import { Component, DoCheck, Input, OnDestroy, input, numberAttribute } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -18,15 +18,15 @@ interface Page {
 })
 export class PaginationComponent implements DoCheck, OnDestroy {
     @Input({ transform: numberAttribute }) page = 1;
-    @Input({ transform: numberAttribute }) total = 0;
-    @Input() base?: string;
-    @Input({ transform: numberAttribute }) size = 25;
-    @Input() queryParams: {} = {};
+    total = input(0, { transform: numberAttribute });
+    base = input<string>();
+    size = input(25, { transform: numberAttribute });
+    queryParams = input<{}>({});
 
-    @Input({ transform: numberAttribute }) start = 3;
-    @Input({ transform: numberAttribute }) middleStart = 3;
-    @Input({ transform: numberAttribute }) middleEnd = 3;
-    @Input({ transform: numberAttribute }) end = 3;
+    start = input(3, { transform: numberAttribute });
+    middleStart = input(3, { transform: numberAttribute });
+    middleEnd = input(3, { transform: numberAttribute });
+    end = input(3, { transform: numberAttribute });
 
     pages: Page[] = [];
 
@@ -49,7 +49,7 @@ export class PaginationComponent implements DoCheck, OnDestroy {
         let currentPage = +this.page;
         let test = 0;
 
-        const nbPages = this.size ? Math.ceil((this.total ?? 0) / this.size) : 0;
+        const nbPages = this.size ? Math.ceil((this.total() ?? 0) / this.size()) : 0;
 
         if (currentPage < 1) {
             currentPage = 1;
@@ -67,10 +67,10 @@ export class PaginationComponent implements DoCheck, OnDestroy {
         };
 
         let i: number;
-        const startPos = this.start;
-        const middleStartPos = currentPage - this.middleStart;
-        const middleEndPos = currentPage + this.middleEnd;
-        const endPos = nbPages - this.end + 1;
+        const startPos = this.start();
+        const middleStartPos = currentPage - this.middleStart();
+        const middleEndPos = currentPage + this.middleEnd();
+        const endPos = nbPages - this.end() + 1;
 
         for (i = 1; i <= Math.min(startPos, nbPages); i++) {
             addPage(i);

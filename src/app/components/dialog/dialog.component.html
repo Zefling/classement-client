@@ -1,6 +1,6 @@
 @if (_open) {
   <div class="content" (click)="_propagationStop($event)">
-    @if (closeButton) {
+    @if (closeButton()) {
       <button class="close" (click)="close()">×</button>
     }
     <div class="main">

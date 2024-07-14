@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, input, output } from '@angular/core';
 
 import { Message } from './info-messages.component';
 
@@ -8,15 +8,13 @@ import { Message } from './info-messages.component';
     styleUrls: ['./info-message.component.scss'],
 })
 export class InfoMessageComponent {
-    @Input()
-    message?: Message;
+    message = input<Message>();
 
-    @Output()
-    destruct = new EventEmitter<Message>();
+    destruct = output<Message>();
 
     @HostBinding('class')
     get classes() {
-        return [this.message?.type, this._closeClass ? 'close' : null];
+        return [this.message()?.type, this._closeClass ? 'close' : null];
     }
 
     @HostBinding('style.--current-pos.px')
@@ -31,7 +29,7 @@ export class InfoMessageComponent {
 
     @HostBinding('style.--info-message-progress-time')
     get progressTime() {
-        return this.message?.time;
+        return this.message()?.time;
     }
 
     private _closeClass = false;
@@ -56,6 +54,6 @@ export class InfoMessageComponent {
     }
 
     close() {
-        this.destruct.emit(this.message);
+        this.destruct.emit(this.message()!);
     }
 }

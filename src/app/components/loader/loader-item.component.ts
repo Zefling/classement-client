@@ -1,4 +1,4 @@
-import { Component, Input, numberAttribute } from '@angular/core';
+import { Component, input, numberAttribute } from '@angular/core';
 
 /**
  * Tiles loader with fake tile
@@ -9,9 +9,8 @@ import { Component, Input, numberAttribute } from '@angular/core';
     styleUrls: ['./loader-item.component.scss'],
 })
 export class LoaderItemComponent {
-    @Input() mode: 'tile' | 'list' = 'tile';
-
-    @Input({ transform: numberAttribute }) nombre = 2;
+    mode = input<'tile' | 'list'>('tile');
+    nombre = input(2, { transform: numberAttribute });
 
     get list() {
         return new Array(this.nombre);

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
     selector: 'tab-content',
@@ -6,7 +6,9 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./tab-content.component.scss'],
 })
 export class TabTitleComponent {
-    @Input() id?: string;
+    @HostBinding('attr.id')
+    @Input()
+    id?: string;
 
     @Input() selected?: boolean;
 }

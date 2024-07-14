@@ -1,13 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    Output,
-    ViewChild,
-    booleanAttribute,
-} from '@angular/core';
+import { Component, ElementRef, OnDestroy, booleanAttribute, input, output, viewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,17 +23,18 @@ export class ImportJsonComponent implements OnDestroy {
 
     onLoad = false;
 
-    @Input({ transform: booleanAttribute })
-    multi = false;
+    // input
 
-    @Input()
-    actions: 'importOnly' | 'all' = 'all';
+    multi = input(false, { transform: booleanAttribute });
+    actions = input<'importOnly' | 'all'>('all');
 
-    @Output()
-    load = new EventEmitter<ImportJsonEvent>();
+    // output
 
-    @ViewChild('fileImport')
-    private fileImport!: ElementRef<HTMLInputElement>;
+    load = output<ImportJsonEvent>();
+
+    // viewChild
+
+    fileImport = viewChild<ElementRef<HTMLInputElement>>('fileImport');
 
     private _sub: Subscription[] = [];
 
@@ -89,7 +81,7 @@ export class ImportJsonComponent implements OnDestroy {
                         type: MessageType.error,
                     });
                 }
-            } else if (this.multi) {
+            } else if (this.multi()) {
                 for (const json of data) {
                     this.jsonTmp?.push(
                         Array.isArray(json.groups) && json.groups.length > 0 && Array.isArray(json.list) && json.options
@@ -145,8 +137,8 @@ export class ImportJsonComponent implements OnDestroy {
     clear() {
         this.jsonTmp = undefined;
         // clear input
-        if (this.fileImport?.nativeElement) {
-            this.fileImport.nativeElement.value = '';
+        if (this.fileImport()) {
+            this.fileImport()!.nativeElement.value = '';
         }
     }
 }

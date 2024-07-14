@@ -8,7 +8,9 @@ import { TabsComponent } from './tabs.component';
     styleUrls: ['./tab-title.component.scss'],
 })
 export class TabContentComponent {
-    @Input() id?: string;
+    @HostBinding('attr.id')
+    @Input()
+    id?: string;
 
     @HostBinding('class.selected')
     @Input()

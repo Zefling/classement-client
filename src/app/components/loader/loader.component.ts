@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { UploadProgress } from '../../services/api.classement.service';
 
@@ -11,9 +11,7 @@ import { UploadProgress } from '../../services/api.classement.service';
     styleUrls: ['./loader.component.scss'],
 })
 export class LoaderComponent {
-    @Input()
-    message?: string;
+    message = input<string>();
 
-    @Input()
-    progress?: UploadProgress;
+    progress = input<UploadProgress>();
 }

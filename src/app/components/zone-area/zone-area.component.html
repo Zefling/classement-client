@@ -1,4 +1,4 @@
-@for (group of groups; track group) {
+@for (group of groups(); track group) {
   <div [style.--h]="group.titleHorizontalPosition" [style.--v]="group.titleVerticalPosition">
     <span class="group-title">{{ group.title }}</span>
   </div>

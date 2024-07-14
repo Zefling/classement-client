@@ -6,7 +6,7 @@
   <p>
     <span class="icon-info"></span> {{ 'list.intro' | translate }}<br />
     <span class="space">
-      {{ 'list.space' | translate }}{{ quota?.usage || 0 | filesize }} / {{ quota?.quota || 0 | filesize }}
+      {{ 'list.space' | translate }}{{ quota?.usage || 0 | fileSize }} / {{ quota?.quota || 0 | fileSize }}
     </span>
   </p>
   <div class="list-actions">

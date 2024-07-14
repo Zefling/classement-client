@@ -1,12 +1,12 @@
-@for (tag of tags; track tag) {
-  <div [class.allow-tag-click]="allowTagClick" (click)="allowTagClick ? onTagClick(tag) : null">
+@for (tag of tags(); track tag) {
+  <div [class.allow-tag-click]="allowTagClick()" (click)="allowTagClick() ? onTagClick(tag) : null">
     <span class="tag">{{ tag }}</span>
-    @if (!readOnly) {
+    @if (!readOnly()) {
       <button (click)="remove(tag)">×</button>
     }
   </div>
 }
-@if (!readOnly) {
+@if (!readOnly()) {
   <div>
     <label [attr.data-value]="input?.value">
       <input #input list="data" (input)="onInput()" (keyup.enter)="onEnter()" size="5" />

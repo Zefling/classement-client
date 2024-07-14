@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, input, output, viewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Theme } from 'src/app/interface/interface';
@@ -9,15 +9,13 @@ import { Theme } from 'src/app/interface/interface';
     styleUrls: ['./classement-themes.component.scss'],
 })
 export class ClassementThemesComponent {
+    themes = input.required<Theme[]>();
+
+    change = output<Theme>();
+
+    dialog = viewChild<DialogComponent>(DialogComponent);
+
     currentTheme?: Theme;
-
-    @Input()
-    themes?: Theme[];
-
-    @ViewChild(DialogComponent) dialog!: DialogComponent;
-
-    @Output()
-    change = new EventEmitter<Theme>();
 
     changeTheme(theme: Theme) {
         this.currentTheme = theme;
@@ -25,11 +23,13 @@ export class ClassementThemesComponent {
 
     cancel() {
         this.currentTheme = undefined;
-        this.dialog.close();
+        this.dialog()!.close();
     }
 
     validate() {
-        this.change.emit(this.currentTheme);
+        if (this.currentTheme) {
+            this.change.emit(this.currentTheme);
+        }
         this.cancel();
     }
 }
