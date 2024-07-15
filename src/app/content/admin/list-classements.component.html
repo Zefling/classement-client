@@ -3,22 +3,22 @@
     <tr>
       <th class="title sort" (click)="sortUpdate.emit('name')">
         {{ 'list.title.name' | translate }}
-        @if (sort === 'name') {
-          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        @if (sort() === 'name') {
+          <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
         }
       </th>
       <th class="user">{{ 'list.user.name' | translate }}</th>
       <th class="mode">{{ 'list.mode.name' | translate }}</th>
       <th class="category sort" (click)="sortUpdate.emit('category')">
         {{ 'list.category.name' | translate }}
-        @if (sort === 'category') {
-          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        @if (sort() === 'category') {
+          <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
         }
       </th>
       <th class="date sort" (click)="sortUpdate.emit('dateCreate')">
         {{ 'list.date' | translate }}
-        @if (sort === 'dateCreate') {
-          <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
+        @if (sort() === 'dateCreate') {
+          <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
         }
       </th>
       <th class="groups">{{ 'list.count.group' | translate }}</th>
@@ -28,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (classement of classements; track classement) {
+    @for (classement of classements(); track classement) {
       <tr>
         <td class="title">{{ classement.data.options.title || ('list.title.undefined' | translate) }}</td>
         <td class="user">{{ classement.user || ('list.user.anonymous' | translate) }}</td>

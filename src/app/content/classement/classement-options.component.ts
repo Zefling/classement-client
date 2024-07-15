@@ -1,4 +1,13 @@
-import { Component, Host, Input, OnChanges, OnDestroy, SimpleChanges, viewChild } from '@angular/core';
+import {
+    booleanAttribute,
+    Component,
+    Host,
+    input,
+    OnChanges,
+    OnDestroy,
+    SimpleChanges,
+    viewChild,
+} from '@angular/core';
 
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
@@ -32,13 +41,20 @@ import { ClassementThemesComponent } from './classement-themes.component';
     styleUrls: ['./classement-options.component.scss'],
 })
 export class ClassementOptionsComponent implements OnChanges, OnDestroy {
+    // input
+
+    options = input<Options>();
+    lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
+
+    // viewChild
+
+    classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
+    dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
+    mode = viewChild.required<Select2>('mode');
+
     api = environment.api?.active || false;
 
     categoriesList: Category[] = [];
-
-    @Input() options?: Options;
-
-    @Input() lockCategory = false;
 
     listThemes!: Select2Data;
 
@@ -51,13 +67,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listMode: Select2Data = listModes;
 
-    classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
-    dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
-    mode = viewChild.required<Select2>('mode');
-
-    private _sub = Subscriptions.instance();
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
+
+    private _sub = Subscriptions.instance();
 
     constructor(
         private readonly optimiseImage: OptimiseImageService,
@@ -82,8 +95,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     updateMode() {
-        if (this.options) {
-            const mode = this._modeTemp ?? this.options.mode ?? 'default';
+        const options = this.options();
+        if (options) {
+            const mode = this._modeTemp ?? options.mode ?? 'default';
 
             switch (mode) {
                 case 'iceberg':
@@ -105,7 +119,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         }
     }
 
-    updateList(mode: ModeNames = this._modeTemp ?? this.options?.mode ?? 'default') {
+    updateList(mode: ModeNames = this._modeTemp ?? this.options()?.mode ?? 'default') {
         // list image
         this.listThemes = this.imagesList.map<Select2Option>(e => ({
             value: e,
@@ -115,7 +129,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 label: e,
             },
         }));
-        if (this.options) {
+        const options = this.options();
+        if (options) {
             let modeType = mode;
             if (modeType === 'teams') {
                 modeType = 'default';
@@ -127,7 +142,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 this.changeTheme(themeOption);
             }
             // select mode
-            this.options.mode = mode;
+            options.mode = mode;
         }
     }
 
@@ -135,14 +150,15 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (!(size >= 0 && size <= 20)) {
             size = size >= 0 ? 20 : 1;
         }
-        if (!this.options!.groups) {
-            this.options!.groups = [];
+        const options = this.options()!;
+        if (!options.groups) {
+            options.groups = [];
         }
-        if (size < this.options!.groups.length) {
-            this.options!.groups.splice(size, this.options!.groups.length);
-        } else if (size > this.options!.groups.length) {
-            for (let i = 0; i < size - this.options!.groups.length; i++) {
-                this.options!.groups.push({ title: '' });
+        if (size < options.groups.length) {
+            options.groups.splice(size, options.groups.length);
+        } else if (size > options.groups.length) {
+            for (let i = 0; i < size - options.groups.length; i++) {
+                options.groups.push({ title: '' });
             }
         }
     }
@@ -163,7 +179,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (ok) {
             this.editor.reset();
             this.updateMode();
-            this.options!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
+            this.options()!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
             this.mode().writeValue(this._previousMode!);
         }
@@ -171,14 +187,16 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     switchOptions() {
-        if (this.options) {
-            this.options.showAdvancedOptions = !this.options.showAdvancedOptions;
+        const options = this.options();
+        if (options) {
+            options.showAdvancedOptions = !options.showAdvancedOptions;
         }
     }
 
     updateTags(tags: string[]) {
-        if (this.options) {
-            this.options.tags = tags;
+        const options = this.options();
+        if (options) {
+            options.tags = tags;
         }
     }
 
@@ -187,15 +205,16 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     changeTheme(theme: Theme) {
-        const mode = this.options!.mode;
+        const options = this.options()!;
+        const mode = options.mode;
         Object.assign(
-            this.options!,
+            options,
             theme.options,
             {
-                title: this.options!.title,
-                category: this.options!.category,
-                autoSave: this.options!.autoSave,
-                streamMode: this.options!.streamMode,
+                title: options.title,
+                category: options.category,
+                autoSave: options.autoSave,
+                streamMode: options.streamMode,
             },
             { mode },
         );
@@ -230,50 +249,59 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     resetItemTextBackground() {
-        this.options!.itemTextBackgroundColor = '';
-        this.options!.itemTextBackgroundOpacity = 100;
+        const options = this.options()!;
+        options.itemTextBackgroundColor = '';
+        options.itemTextBackgroundOpacity = 100;
     }
 
     resetItemBackground() {
-        this.options!.itemBackgroundColor = '';
-        this.options!.itemBackgroundOpacity = 100;
+        const options = this.options()!;
+        options.itemBackgroundColor = '';
+        options.itemBackgroundOpacity = 100;
     }
 
     resetLineBackground() {
-        this.options!.lineBackgroundColor = '';
-        this.options!.lineBackgroundOpacity = 100;
+        const options = this.options()!;
+        options.lineBackgroundColor = '';
+        options.lineBackgroundOpacity = 100;
     }
 
     resetLineBorder() {
-        this.options!.lineBorderColor = '';
-        this.options!.lineBorderOpacity = 100;
+        const options = this.options()!;
+        options.lineBorderColor = '';
+        options.lineBorderOpacity = 100;
     }
 
     resetItemBorder() {
-        this.options!.itemBorderColor = '';
-        this.options!.itemBorderOpacity = 100;
+        const options = this.options()!;
+        options.itemBorderColor = '';
+        options.itemBorderOpacity = 100;
     }
 
     resetItemText() {
-        this.options!.itemTextColor = '';
-        this.options!.itemTextOpacity = 100;
+        const options = this.options()!;
+        options.itemTextColor = '';
+        options.itemTextOpacity = 100;
     }
 
     resetTitleText() {
-        this.options!.titleTextColor = '';
-        this.options!.titleTextOpacity = 100;
+        const options = this.options()!;
+        options.titleTextColor = '';
+        options.titleTextOpacity = 100;
     }
 
     resetAxisLine() {
-        this.options!.axisLineColor = '';
-        this.options!.axisLineOpacity = 100;
+        const options = this.options()!;
+        options.axisLineColor = '';
+        options.axisLineOpacity = 100;
     }
 
     updateSize(axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth', min: number) {
-        if (this.options![axis] < min) {
-            this.options![axis] = min;
-        } else if (this.options![axis] > 300) {
-            this.options![axis] = 300;
+        const options = this.options()!;
+        if (options[axis] < min) {
+            options[axis] = min;
+        } else if (options[axis] > 300) {
+            options[axis] = 300;
         }
     }
 
@@ -282,7 +310,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             case 'none':
                 return null;
             case 'custom':
-                return this.options ? `url(${this.options.imageBackgroundCustom})` : 'none';
+                return this.options ? `url(${this.options()!.imageBackgroundCustom})` : 'none';
             default:
                 return `url(./assets/themes/${imageInfos[item]!.mini})`;
         }
@@ -307,7 +335,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 1000,
             )
             .then(file => {
-                this.options!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
+                this.options()!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
                 this.updateList();
             });
     }

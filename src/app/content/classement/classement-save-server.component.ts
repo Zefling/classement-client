@@ -1,14 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnDestroy,
-    Output,
-    SimpleChanges,
-    viewChild,
-} from '@angular/core';
+import { Component, ElementRef, input, OnChanges, OnDestroy, output, SimpleChanges, viewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -29,23 +19,21 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./classement-save-server.component.scss'],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
-    @Input()
-    classement?: Classement;
+    // input
 
-    @Input()
-    groups?: FormattedGroup[];
+    classement = input<Classement>();
+    groups = input<FormattedGroup[]>();
+    list = input<FileString[]>();
+    options = input<Options>();
+    dialog = input<DialogComponent>();
 
-    @Input()
-    list?: FileString[];
+    // output
 
-    @Input()
-    options?: Options;
+    action = output<{ type: 'save' | 'remove'; classement: Classement }>();
 
-    @Input()
-    dialog?: DialogComponent;
+    // viewChild
 
-    @Output()
-    action = new EventEmitter<{ type: 'save' | 'remove'; classement: Classement }>();
+    bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
 
     update = false;
 
@@ -56,8 +44,6 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     linkIdValid?: boolean;
     linkChange = false;
     saveLocal = false;
-
-    bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
 
     imageChangedEvent?: Event;
     imageBase64: string = '';
@@ -81,13 +67,13 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     ) {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {
-                if (this.userService.user!.username === this.classement?.user) {
+                if (this.userService.user!.username === this.classement()?.user) {
                     this.update = true;
                     this.history = false;
-                    this.hidden = this.classement?.hidden ?? false;
+                    this.hidden = this.classement()?.hidden ?? false;
                 }
             } else {
-                this.dialog?.close();
+                this.dialog()?.close();
             }
         });
 
@@ -107,8 +93,8 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['classement']) {
-            if (this.classement?.hidden !== undefined) {
-                this.hidden = this.classement.hidden;
+            if (this.classement()?.hidden !== undefined) {
+                this.hidden = this.classement()!.hidden || false;
             }
         }
     }
@@ -118,28 +104,32 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     }
 
     cancel() {
-        this.dialog?.close();
+        this.dialog()?.close();
     }
 
     validate() {
         this.showError = [];
 
-        const sameUserEdit = this.userService.user?.username === this.classement?.user;
+        const current = this.classement();
+        const options = this.options();
+
+        const list = this.list();
+        const groups = this.groups();
+
+        const sameUserEdit = this.userService.user?.username === current?.user;
 
         // format data for server save
         const classement: Classement = {
-            rankingId: sameUserEdit ? this.classement?.rankingId ?? null : null,
-            parentId: sameUserEdit
-                ? this.classement?.parentId ?? this.classement?.templateId ?? null
-                : this.classement?.rankingId ?? null,
-            templateId: this.classement?.templateId ?? null,
-            localId: this.classement?.localId || null,
-            linkId: this.linkChange ? this.linkId : this.classement?.linkId || null,
-            name: this.options?.title?.trim(),
-            category: this.options?.category,
-            mode: this.options?.mode,
-            data: { list: this.list, groups: this.groups, options: this.options, name: this.options?.title },
-            banner: this.croppedImage || this.classement?.banner,
+            rankingId: sameUserEdit ? current?.rankingId ?? null : null,
+            parentId: sameUserEdit ? current?.parentId ?? current?.templateId ?? null : current?.rankingId ?? null,
+            templateId: current?.templateId ?? null,
+            localId: current?.localId || null,
+            linkId: this.linkChange ? this.linkId : current?.linkId || null,
+            name: options?.title?.trim(),
+            category: options?.category,
+            mode: options?.mode,
+            data: { list, groups, options, name: options?.title },
+            banner: this.croppedImage || current?.banner,
             hidden: this.hidden ?? false,
             password: this.password,
             history: this.history,
@@ -185,7 +175,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     testLink(linkId: string) {
         if (linkId.trim()) {
             this.classementService
-                .testLink(linkId.trim().replace(/\s/g, '_'), this.classement?.rankingId)
+                .testLink(linkId.trim().replace(/\s/g, '_'), this.classement()?.rankingId)
                 .then(linkIdValid => {
                     this.linkIdValid = linkIdValid;
                 });

@@ -131,7 +131,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');
-    currentList = viewChild.required<ElementRef<HTMLDivElement>>('currentList');
+    currentList = viewChild<ElementRef<HTMLDivElement>>('currentList');
     dialogImage = viewChild.required<DialogComponent>('dialogImage');
     dialogImport = viewChild.required<DialogComponent>('dialogImport');
     dialogOptimise = viewChild.required<DialogComponent>('dialogOptimise');
@@ -425,9 +425,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ? `${location.protocol}//${location.host}/~${this.getClassementId(this.classement)}`
                 : '';
 
-        if (this.currentList) {
-            this.scrollArrows =
-                this.currentList().nativeElement.scrollWidth > this.currentList().nativeElement.clientWidth;
+        const currentList = this.currentList()?.nativeElement;
+        if (currentList) {
+            this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
         }
     }
 

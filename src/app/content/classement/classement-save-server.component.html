@@ -1,35 +1,38 @@
 <div drop-image mode="local" (file)="fileChange($event)" class="test">
   <h2>{{ (update ? 'generator.server.update' : 'generator.server.new') | translate }}</h2>
 
-  @if (classement && classement.user && !update) {
-    <div class="info-classement">
+  @let current = classement();
+  @let opts = options();
+
+  @if (current && current.user && !update) {
+    <div class="info-current">
       <h3>{{ 'generator.server.from' | translate }}</h3>
       <div>
         <strong>{{ 'generator.server.username' | translate }}</strong>
-        <span [class.anonymous]="!classement.user">{{ classement.user || ('list.user.anonymous' | translate) }}</span>
+        <span [class.anonymous]="!current.user">{{ current.user || ('list.user.anonymous' | translate) }}</span>
       </div>
       <div>
         <strong>{{ 'generator.options.title' | translate }}</strong>
-        <span>{{ classement.name }}</span>
+        <span>{{ current.name }}</span>
       </div>
       <div class="category">
         <strong>{{ 'generator.options.group' | translate }}</strong>
-        <span>{{ 'category.' + (classement.category || 'undefined') | translate }}</span>
+        <span>{{ 'category.' + (current.category || 'undefined') | translate }}</span>
       </div>
     </div>
   }
 
-  @if (options) {
+  @if (opts) {
     <h3>{{ 'generator.server.edit' | translate }}</h3>
     <div class="title">
       <label>{{ 'generator.options.title' | translate }}</label>
-      <div><input type="text" maxlength="150" [(ngModel)]="options.title" /></div>
+      <div><input type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
     </div>
-    @if (!classement?.user || classement?.parent) {
+    @if (!current?.user || current?.parent) {
       <div class="categories">
         <label>{{ 'generator.options.group' | translate }}</label>
         <div>
-          <select2 [data]="categoriesList" [(ngModel)]="options.category"></select2>
+          <select2 [data]="categoriesList" [(ngModel)]="opts.category"></select2>
         </div>
       </div>
     }
@@ -59,10 +62,10 @@
           ></image-cropper>
         </div>
       }
-      @if (croppedImage || classement?.banner) {
+      @if (croppedImage || current?.banner) {
         <div class="image">
           <div class="label">{{ 'generator.server.banner.image' | translate }}</div>
-          <img [src]="croppedImage || classement?.banner" />
+          <img [src]="croppedImage || current?.banner" />
           @if (croppedImage) {
             <button (click)="resetBanner()">
               {{ 'generator.server.banner.reset' | translate }}
@@ -83,7 +86,7 @@
       <div>
         <input
           type="text"
-          [ngModel]="this.classement?.linkId"
+          [ngModel]="current?.linkId"
           (ngModelChange)="testLink($event)"
           (blur)="linkFormat($event)"
         />

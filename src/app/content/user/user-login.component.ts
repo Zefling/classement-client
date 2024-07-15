@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ export class UserLoginComponent implements OnDestroy {
 
     loader = false;
 
-    @Input() popup = false;
+    popup = input<boolean, any>(false, { transform: booleanAttribute });
 
     private listener = Subscriptions.instance();
 
@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnDestroy {
 
         this.listener.push(
             this.userService.afterLogin.subscribe(() => {
-                if (!this.popup && this.userService.logged) {
+                if (!this.popup() && this.userService.logged) {
                     this.router.navigate(['/user/profile']);
                 }
             }),
@@ -57,7 +57,7 @@ export class UserLoginComponent implements OnDestroy {
         this.userService
             .login(this.username, this.password)
             .then(() => {
-                if (!this.popup) {
+                if (!this.popup()) {
                     this.router.navigate(['/user/profile']);
                 }
             })

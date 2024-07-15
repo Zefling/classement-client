@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, input, Output, viewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,9 +17,9 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./list-classements.component.scss'],
 })
 export class ListClassementsComponent {
-    @Input() classements?: Classement[];
-    @Input() sort?: SortClassementCol;
-    @Input() direction?: SortDirection;
+    classements = input<Classement[]>();
+    sort = input<SortClassementCol>();
+    direction = input<SortDirection>();
 
     dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
     dialogSeeClassement = viewChild.required<DialogComponent>('dialogSeeClassement');
@@ -76,10 +76,10 @@ export class ListClassementsComponent {
                 }
 
                 if (type === 'delete' || type === 'hide') {
-                    Utils.updateClassements(this.classements, classements);
+                    Utils.updateClassements(this.classements(), classements);
                     this.changeStatusCancel();
                 } else if (type === 'category') {
-                    this.classements?.forEach(e => {
+                    this.classements()?.forEach(e => {
                         if (e.templateId === this.currentClassement!.templateId) {
                             e.category = status as string;
                         }
