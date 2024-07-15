@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, booleanAttribute, input } from '@angular/core';
+import { Component, booleanAttribute, input } from '@angular/core';
 
 import { Classement } from 'src/app/interface/interface';
 
@@ -6,6 +6,10 @@ import { Classement } from 'src/app/interface/interface';
     selector: 'navigate-result',
     templateUrl: './navigate-result.component.html',
     styleUrls: ['./navigate-result.component.scss'],
+    host: {
+        '[class.categories]': 'isCategoryList()',
+        '[class.list]': 'isHomeList()',
+    },
 })
 export class NavigateResultComponent {
     classements = input<Classement[]>([]);
@@ -13,11 +17,7 @@ export class NavigateResultComponent {
     hideUser = input<boolean, any>(false, { transform: booleanAttribute });
     onlyRanking = input<boolean, any>(false, { transform: booleanAttribute });
 
-    @HostBinding('class.categories')
-    @Input({ transform: booleanAttribute })
-    isCategoryList = false;
-
-    @HostBinding('class.list')
-    @Input({ transform: booleanAttribute })
-    isHomeList = false;
+    // host
+    isCategoryList = input<boolean, any>(false, { transform: booleanAttribute });
+    isHomeList = input<boolean, any>(false, { transform: booleanAttribute });
 }

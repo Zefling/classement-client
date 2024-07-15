@@ -84,7 +84,7 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit(): void {
         if (this.sortableFilterInput()) {
-            this.inputListener = this.renderer.listen(this.sortableFilterInput(), 'input', (inputEvent: any) => {
+            this.inputListener = this.renderer.listen(this.sortableFilterInput(), 'input', (inputEvent: InputEvent) => {
                 this.filter((inputEvent.target as HTMLInputElement).value);
             });
         }
@@ -149,8 +149,8 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
 
     private filter(input: string = '') {
         const sortable = this.sortable();
-        if (this.input !== input && sortable && this.sortableComplete && this.sortableFilter) {
-            sortable.splice(0, this.sortable.length);
+        if (this.input !== input && sortable && this.sortableComplete?.length && this.sortableFilter()) {
+            sortable.splice(0, sortable.length);
             const result = !!input?.trim()
                 ? this.sortableComplete.filter((item, index) => this.sortableFilter()!(input, item, index))
                 : this.sortableComplete;

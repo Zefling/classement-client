@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,11 +20,16 @@ import { environment } from 'src/environments/environment';
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
+    host: {
+        '[class.page]': 'pageMode()',
+    },
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
-    @HostBinding('class.page')
-    @Input()
-    pageMode = true;
+    // input
+
+    pageMode = input<boolean, any>(true, { transform: booleanAttribute });
+
+    // viewChild
 
     dialogDelete = viewChild.required<DialogComponent>('dialogDelete');
     dialogClone = viewChild.required<DialogComponent>('dialogClone');
@@ -83,7 +88,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     sortableFilter = (key: string, item: FormattedInfos, _index: number): boolean => {
         return (
-            (!key.startsWith('#') && Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key))) ||
+            (!key.startsWith('#') &&
+                Utils.normalizeString(item.options.title || this.translate.instant('list.title.undefined')).includes(
+                    Utils.normalizeString(key),
+                )) ||
             (key.startsWith('#') &&
                 item.options.tags?.map(e => `#${Utils.normalizeString(e)}`).includes(`${Utils.normalizeString(key)}`))
         );
@@ -95,7 +103,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (this.modeApi && this.userService.logged) {
-            if (this.pageMode) {
+            if (this.pageMode()) {
                 this.router.navigate(['/user/lists/browser']);
             } else {
                 // list of server ranking
