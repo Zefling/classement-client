@@ -1,4 +1,4 @@
-import { Component, Host, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, Host, HostListener, input, model } from '@angular/core';
 
 import { TabsComponent } from './tabs.component';
 
@@ -6,22 +6,21 @@ import { TabsComponent } from './tabs.component';
     selector: 'tab-title',
     templateUrl: './tab-title.component.html',
     styleUrls: ['./tab-title.component.scss'],
+    host: {
+        '[attr.id]': 'id()',
+        '[class.selected]': 'selected()',
+    },
 })
 export class TabContentComponent {
-    @HostBinding('attr.id')
-    @Input()
-    id?: string;
-
-    @HostBinding('class.selected')
-    @Input()
-    selected?: boolean;
+    id = input<string>();
+    selected = model<boolean>(false);
 
     constructor(@Host() private readonly tabs: TabsComponent) {}
 
     @HostListener('click')
     onclick() {
-        if (this.tabs && this.id) {
-            this.tabs.update(this.id);
+        if (this.tabs && this.id()) {
+            this.tabs.update(this.id()!);
         }
     }
 }

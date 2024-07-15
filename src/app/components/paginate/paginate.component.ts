@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnDestroy, input, numberAttribute } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit, input, numberAttribute } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -16,8 +16,8 @@ interface Page {
     templateUrl: './paginate.component.html',
     styleUrls: ['./paginate.component.scss'],
 })
-export class PaginationComponent implements DoCheck, OnDestroy {
-    @Input({ transform: numberAttribute }) page = 1;
+export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
+    page = input(1, { transform: numberAttribute });
     total = input(0, { transform: numberAttribute });
     base = input<string>();
     size = input(25, { transform: numberAttribute });
@@ -29,6 +29,7 @@ export class PaginationComponent implements DoCheck, OnDestroy {
     end = input(3, { transform: numberAttribute });
 
     pages: Page[] = [];
+    currentPage = 1;
 
     private _test = 0;
 
@@ -40,13 +41,13 @@ export class PaginationComponent implements DoCheck, OnDestroy {
         });
     }
 
-    ngOnDestroy(): void {
-        this.onPageUpdate.unsubscribe();
+    ngOnInit(): void {
+        this.currentPage = this.page();
     }
 
     ngDoCheck(): void {
         const pages = [];
-        let currentPage = +this.page;
+        let currentPage = +this.currentPage;
         let test = 0;
 
         const nbPages = this.size ? Math.ceil((this.total() ?? 0) / this.size()) : 0;
@@ -94,9 +95,13 @@ export class PaginationComponent implements DoCheck, OnDestroy {
         }
     }
 
+    ngOnDestroy(): void {
+        this.onPageUpdate.unsubscribe();
+    }
+
     update(page: number, event: boolean = true): void {
-        if (this.page !== page) {
-            this.page = page;
+        if (this.currentPage !== page) {
+            this.currentPage = page;
             this.pages.forEach(e => (e.current = e.page === page));
             if (event) {
                 this.global.onPageUpdate.next(page);
