@@ -42,7 +42,6 @@
         <div class="cropper">
           <div class="label">{{ 'generator.server.banner.crop' | translate }}</div>
           <image-cropper
-            #imageCropper
             [imageChangedEvent]="imageChangedEvent"
             [imageBase64]="imageBase64"
             [maintainAspectRatio]="true"

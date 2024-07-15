@@ -7,12 +7,12 @@ import {
     OnDestroy,
     Output,
     SimpleChanges,
-    ViewChild,
+    viewChild,
 } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -57,8 +57,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     linkChange = false;
     saveLocal = false;
 
-    @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
-    @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
+    bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
 
     imageChangedEvent?: Event;
     imageBase64: string = '';
@@ -203,7 +202,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     resetBanner() {
         this.croppedImage = undefined;
         this.imageChangedEvent = undefined;
-        this.bannerInput.nativeElement.value = '';
+        this.bannerInput().nativeElement.value = '';
     }
 
     fileChangeEvent(event: Event): void {

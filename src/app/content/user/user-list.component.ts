@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -21,9 +21,9 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
-    @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
-    @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
-    @ViewChild(TabsComponent) tabs!: TabsComponent;
+    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
+    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
+    tabs = viewChild.required<TabsComponent>(TabsComponent);
 
     filter = '';
 
@@ -53,7 +53,7 @@ export class UserListComponent implements OnInit, OnDestroy {
             this.route.params.subscribe(params => {
                 if (params['page']) {
                     setTimeout(() => {
-                        this.tabs?.update(params['page'], false);
+                        this.tabs().update(params['page'], false);
                     });
                 }
             }),
@@ -120,7 +120,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     action(classement: Classement, action: 'change' | 'delete'): void {
         this.currentAction = action;
         this.currentClassement = classement;
-        this.dialogActionsClassement.open();
+        this.dialogActionsClassement().open();
     }
 
     actionForCurrentClassement(type: 'delete' | 'hide' | 'close', status: boolean = true): void {
@@ -144,6 +144,6 @@ export class UserListComponent implements OnInit, OnDestroy {
         } else {
             this.currentClassement = undefined;
         }
-        this.dialogActionsClassement.close();
+        this.dialogActionsClassement().close();
     }
 }

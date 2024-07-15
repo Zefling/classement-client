@@ -34,7 +34,7 @@ export class ImportJsonComponent implements OnDestroy {
 
     // viewChild
 
-    fileImport = viewChild<ElementRef<HTMLInputElement>>('fileImport');
+    fileImport = viewChild.required<ElementRef<HTMLInputElement>>('fileImport');
 
     private _sub: Subscription[] = [];
 
@@ -138,7 +138,7 @@ export class ImportJsonComponent implements OnDestroy {
         this.jsonTmp = undefined;
         // clear input
         if (this.fileImport()) {
-            this.fileImport()!.nativeElement.value = '';
+            this.fileImport().nativeElement.value = '';
         }
     }
 }

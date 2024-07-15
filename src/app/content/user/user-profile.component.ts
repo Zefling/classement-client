@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -30,14 +30,13 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     listener = Subscriptions.instance();
 
-    @ViewChild('avatarDialog') avatarDialog!: DialogComponent;
-    @ViewChild('dialogChangePassword') dialogChangePassword!: DialogComponent;
-    @ViewChild('dialogChangeUsername') dialogChangeUsername!: DialogComponent;
-    @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
-    @ViewChild('dialogChangeEmail') dialogChangeEmail!: DialogComponent;
+    avatarDialog = viewChild.required<DialogComponent>('avatarDialog');
+    dialogChangePassword = viewChild.required<DialogComponent>('dialogChangePassword');
+    dialogChangeUsername = viewChild.required<DialogComponent>('dialogChangeUsername');
+    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
+    dialogChangeEmail = viewChild.required<DialogComponent>('dialogChangeEmail');
 
-    @ViewChild('avatarInput') avatarInput!: ElementRef<HTMLInputElement>;
-    @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
+    avatarInput = viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 
     changeEmailForm: FormGroup;
     emailOldValid = false;
@@ -167,7 +166,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         this.usernameValidity = undefined;
         this.showError = [];
         this.changeUsernameForm.get('username')?.setValue('');
-        this.dialogChangeUsername.open();
+        this.dialogChangeUsername().open();
     }
 
     changePassword(): void {
@@ -175,14 +174,14 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         this.changePasswordForm.get('passwordOld')?.setValue('');
         this.changePasswordForm.get('password')?.setValue('');
         this.changePasswordForm.get('password2')?.setValue('');
-        this.dialogChangePassword.open();
+        this.dialogChangePassword().open();
     }
 
     changeEmail(): void {
         this.showError = [];
         this.changeEmailForm.get('emailOld')?.setValue('');
         this.changeEmailForm.get('emailNew')?.setValue('');
-        this.dialogChangeEmail.open();
+        this.dialogChangeEmail().open();
     }
 
     ngOnDestroy(): void {
@@ -204,7 +203,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             this.userService
                 .update(value.passwordOld, value.password, 'password')
                 .then(() => {
-                    this.dialogChangePassword.close();
+                    this.dialogChangePassword().close();
                     this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
                 })
                 .catch(e => {
@@ -220,7 +219,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             this.userService
                 .update(value.emailOld, value.emailNew, 'email')
                 .then(() => {
-                    this.dialogChangePassword.close();
+                    this.dialogChangePassword().close();
                     this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
                 })
                 .catch(e => {
@@ -238,7 +237,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             this.userService
                 .update('', value.username, 'username')
                 .then(() => {
-                    this.dialogChangeUsername.close();
+                    this.dialogChangeUsername().close();
                     this.user!.username = value.username;
                     this.messageService.addMessage(this.translate.instant('message.user.username.update.success'));
                 })
@@ -249,7 +248,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     removeProfile() {
-        this.dialogRemoveProfile.open();
+        this.dialogRemoveProfile().open();
     }
 
     valideRemoveProfile() {
@@ -257,7 +256,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             .remove()
             .then(() => {
                 this.userService.reset();
-                this.dialogRemoveProfile.close();
+                this.dialogRemoveProfile().close();
                 this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
                 this.router.navigate(['/user/login']);
             })
@@ -277,7 +276,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     avatarEdit() {
-        this.avatarDialog.open();
+        this.avatarDialog().open();
     }
 
     async imageCropped(event: ImageCroppedEvent) {
@@ -306,7 +305,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     removeAvatar() {
         this.croppedImage = undefined;
         this.imageChangedEvent = undefined;
-        this.avatarInput.nativeElement.value = '';
+        this.avatarInput().nativeElement.value = '';
     }
 
     updateAvatar() {
@@ -316,7 +315,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 this.user!.avatar = data.avatar;
                 this.user!.avatarUrl = data.url ? data.url + '?time=' + new Date().getTime() : undefined;
 
-                this.avatarDialog.close();
+                this.avatarDialog().close();
                 this.messageService.addMessage(this.translate.instant('message.user.avatar.update.success'));
             })
             .catch(e => {

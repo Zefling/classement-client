@@ -23,7 +23,7 @@
     }
     <div class="client-api">
       @if (imdbActive) {
-        <button class="button-add primary" (click)="imdb.open()">
+        <button class="button-add primary" (click)="imdb().open()">
           {{ 'IMDB' | translate }}
         </button>
       }
@@ -379,65 +379,66 @@
         [imagesCache]="imagesCache"
       ></see-classement>
     </div>
-  }
-  <div>
-    <div class="save-actions buttons">
-      <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-        @if (!exportImageLoading) {
-          <span class="icon-share"></span>
-        }
-        @if (exportImageLoading) {
-          <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
-        }
-        {{ 'generator.actions.export.image' | translate }}
-      </button>
-    </div>
 
-    <div class="save-actions buttons">
-      <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
-        {{ 'generator.actions.save.local' | translate }}
-        <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
-      </button>
-      <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
-        {{ 'generator.actions.export.json' | translate }}
-      </button>
-      <button class="primary" (click)="dialogImport.open()">
-        {{ 'generator.actions.import.json' | translate }}
-      </button>
-      <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-        {{ 'generator.optimise.button.optimise' | translate }} ({{ size | fileSize }})
-      </button>
-      @if (options && hasItems) {
-        <label class="line">
-          <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-          {{ 'generator.actions.save.local.auto' | translate }}
-        </label>
-      }
-    </div>
-    @if (apiActive) {
+    <div>
       <div class="save-actions buttons">
-        @if (logged) {
-          <button [disabled]="!id" class="primary" (click)="copyLink()">
-            🔗 {{ 'generator.ranking.share.link' | translate }}
-          </button>
-        }
-        @if (logged) {
-          <button [disabled]="!id" class="primary" (click)="show()">
-            {{ 'generator.ranking.see' | translate }}
-          </button>
-        }
-        <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
-          {{ 'generator.actions.save.server' | translate }}
+        <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+          @if (!exportImageLoading) {
+            <span class="icon-share"></span>
+          }
+          @if (exportImageLoading) {
+            <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+          }
+          {{ 'generator.actions.export.image' | translate }}
         </button>
       </div>
-    }
 
-    <div class="save-actions buttons">
-      <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
-        {{ 'generator.actions.reset.groups.button' | translate }}
-      </button>
+      <div class="save-actions buttons">
+        <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
+          {{ 'generator.actions.save.local' | translate }}
+          <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
+        </button>
+        <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
+          {{ 'generator.actions.export.json' | translate }}
+        </button>
+        <button class="primary" (click)="dialogImport.open()">
+          {{ 'generator.actions.import.json' | translate }}
+        </button>
+        <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
+          {{ 'generator.optimise.button.optimise' | translate }} ({{ size | fileSize }})
+        </button>
+        @if (options && hasItems) {
+          <label class="line">
+            <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
+            {{ 'generator.actions.save.local.auto' | translate }}
+          </label>
+        }
+      </div>
+      @if (apiActive) {
+        <div class="save-actions buttons">
+          @if (logged) {
+            <button [disabled]="!id" class="primary" (click)="copyLink()">
+              🔗 {{ 'generator.ranking.share.link' | translate }}
+            </button>
+          }
+          @if (logged) {
+            <button [disabled]="!id" class="primary" (click)="show()">
+              {{ 'generator.ranking.see' | translate }}
+            </button>
+          }
+          <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
+            {{ 'generator.actions.save.server' | translate }}
+          </button>
+        </div>
+      }
+
+      <div class="save-actions buttons">
+        <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
+          {{ 'generator.actions.reset.groups.button' | translate }}
+        </button>
+      </div>
     </div>
-  </div>
+  }
 </div>
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>

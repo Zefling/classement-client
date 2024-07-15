@@ -13,7 +13,7 @@ export class ClassementThemesComponent {
 
     change = output<Theme>();
 
-    dialog = viewChild<DialogComponent>(DialogComponent);
+    dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     currentTheme?: Theme;
 
@@ -23,7 +23,7 @@ export class ClassementThemesComponent {
 
     cancel() {
         this.currentTheme = undefined;
-        this.dialog()!.close();
+        this.dialog().close();
     }
 
     validate() {

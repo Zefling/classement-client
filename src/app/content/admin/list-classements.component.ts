@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, viewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,9 +21,9 @@ export class ListClassementsComponent {
     @Input() sort?: SortClassementCol;
     @Input() direction?: SortDirection;
 
-    @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
-    @ViewChild('dialogSeeClassement') dialogSeeClassement!: DialogComponent;
-    @ViewChild('dialogEditCategory') dialogEditCategory!: DialogComponent;
+    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
+    dialogSeeClassement = viewChild.required<DialogComponent>('dialogSeeClassement');
+    dialogEditCategory = viewChild.required<DialogComponent>('dialogEditCategory');
 
     currentClassement?: Classement;
 
@@ -47,17 +47,17 @@ export class ListClassementsComponent {
         this.currentClassement = classement;
         Utils.formattedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
         this.globalService.updateVarCss(classement.data.options);
-        this.dialogSeeClassement.open();
+        this.dialogSeeClassement().open();
     }
 
     update(classement: Classement): void {
         this.currentClassement = classement;
-        this.dialogActionsClassement.open();
+        this.dialogActionsClassement().open();
     }
 
     editCategory(classement: Classement) {
         this.currentClassement = classement;
-        this.dialogEditCategory.open();
+        this.dialogEditCategory().open();
     }
 
     changeStatusCurrentClassement(status: boolean | string, type: 'delete' | 'hide' | 'category'): void {
@@ -94,11 +94,11 @@ export class ListClassementsComponent {
 
     changeStatusCancel() {
         this.currentClassement = undefined;
-        this.dialogActionsClassement.close();
+        this.dialogActionsClassement().close();
     }
 
     changeCategoryCancel() {
         this.currentClassement = undefined;
-        this.dialogEditCategory.close();
+        this.dialogEditCategory().close();
     }
 }

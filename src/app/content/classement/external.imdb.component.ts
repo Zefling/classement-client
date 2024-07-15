@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
@@ -17,7 +17,7 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./external.imdb.component.scss'],
 })
 export class ExternalImdbComponent {
-    @ViewChild(DialogComponent) dialog!: DialogComponent;
+    dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     @Output()
     change = new EventEmitter<Theme>();
@@ -98,10 +98,10 @@ export class ExternalImdbComponent {
     }
 
     open() {
-        this.dialog.open();
+        this.dialog().open();
     }
 
     close() {
-        this.dialog.close();
+        this.dialog().close();
     }
 }

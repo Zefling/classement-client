@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
@@ -48,11 +48,11 @@ export class ClassementViewComponent implements OnDestroy {
 
     classScreenMode: ScreenMode = 'default';
 
-    @ViewChild('image') image!: ElementRef;
-    @ViewChild('dialogImage') dialogImage!: DialogComponent;
-    @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
-    @ViewChild('dialogHistory') dialogHistory!: DialogComponent;
-    @ViewChild('dialogPassword') dialogPassword!: DialogComponent;
+    image = viewChild.required<ElementRef>('image');
+    dialogImage = viewChild.required<DialogComponent>('dialogImage');
+    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
+    dialogHistory = viewChild.required<DialogComponent>('dialogHistory');
+    dialogPassword = viewChild.required<DialogComponent>('dialogPassword');
 
     private canvas?: HTMLCanvasElement;
     private id?: string;
@@ -100,7 +100,7 @@ export class ClassementViewComponent implements OnDestroy {
                                     .catch(e => {
                                         this.logger.log('loadLocalClassement (browser)', LoggerLevel.info, e);
                                         if ((e as MessageError)?.code === 401) {
-                                            this.dialogPassword.open();
+                                            this.dialogPassword().open();
                                         } else {
                                             this.loadLocalClassement(this.id!);
                                         }
@@ -144,7 +144,7 @@ export class ClassementViewComponent implements OnDestroy {
                 this.logger.log('loadServerClassement (server)');
                 this.userService.addCache(classement);
                 this.loadClassement(classement);
-                this.dialogPassword.close();
+                this.dialogPassword().close();
             })
             .catch(e => {
                 this.logger.log('loadLocalClassement (browser)', LoggerLevel.info, e);
@@ -156,7 +156,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     cancelPassword() {
-        this.dialogPassword.close();
+        this.dialogPassword().close();
         this.router.navigate(['navigate']);
     }
 
@@ -256,7 +256,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     seeHistory() {
-        this.dialogHistory.open();
+        this.dialogHistory().open();
     }
 
     loadHistoryClassement(history: ClassementHistory) {
@@ -265,16 +265,16 @@ export class ClassementViewComponent implements OnDestroy {
                 ? ['navigate', 'view', this.getClassementId(this.classement!), history.id]
                 : ['navigate', 'view', this.getClassementId(this.classement!)],
         );
-        this.dialogHistory.close();
+        this.dialogHistory().close();
     }
 
     seeMyClassements() {
-        this.dialogDerivatives.open();
+        this.dialogDerivatives().open();
     }
 
     loadDerivativeClassement(classement: Classement) {
         this.router.navigate(['navigate', 'view', this.getClassementId(classement)]);
-        this.dialogDerivatives.close();
+        this.dialogDerivatives().close();
     }
 
     openMyClassement() {
@@ -321,13 +321,13 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     exportImage() {
-        this.dialogImage.open();
+        this.dialogImage().open();
         html2canvas(document.getElementById('html2canvas-element')!, {
             logging: false,
             allowTaint: true,
             scale: 2,
         }).then(canvas => {
-            const element = this.image.nativeElement;
+            const element = this.image().nativeElement;
             element.innerHTML = '';
             element.appendChild(canvas);
             this.canvas = canvas;

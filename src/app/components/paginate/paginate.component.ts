@@ -105,6 +105,6 @@ export class PaginationComponent implements DoCheck, OnDestroy {
     }
 
     pageQueryParams(page: number): {} {
-        return { page: page, ...this.queryParams };
+        return { page: page, ...this.queryParams() };
     }
 }

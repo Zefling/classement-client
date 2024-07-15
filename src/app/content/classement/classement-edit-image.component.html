@@ -1,12 +1,15 @@
 <dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
-  @if (currentTile) {
+
+  @let cTile = currentTile();
+
+  @if (cTile) {
     <div>
       <label for="ranking-title">{{ 'generator.ranking.title' | translate }}</label> <br />
       <input
         maxlength="150"
         id="ranking-title"
         type="text"
-        [(ngModel)]="currentTile.title"
+        [(ngModel)]="cTile.title"
         (ngModelChange)="detectChanges()"
       />
     </div>
@@ -16,24 +19,24 @@
         autosize
         maxlength="500"
         id="tile-annotation"
-        [(ngModel)]="currentTile.annotation"
+        [(ngModel)]="cTile.annotation"
         (ngModelChange)="globalChange()"
       >
       </textarea>
     </div>
     <div>
       <label for="tile-image">{{ 'generator.ranking.image' | translate }}</label>
-      @if (currentTile.url) {
+      @if (cTile.url) {
         <div class="image-preview-content">
           <div class="image-preview">
-            <img [src]="currentTile.url" />
+            <img [src]="cTile.url" />
           </div>
           <div class="image-preview-button">
-            <button class="primary" (click)="croppedImage = data = currentTile.url; openEdit()">
+            <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
               {{ 'generator.ranking.image.edit' | translate }}
             </button>
-            @if (currentTile.url) {
-              <button (click)="currentTile.url = ''; globalChange()" class="warn">
+            @if (cTile.url) {
+              <button (click)="cTile.url = ''; globalChange()" class="warn">
                 {{ 'generator.ranking.image.remove' | translate }}
               </button>
             }
@@ -41,7 +44,7 @@
         </div>
       } @else {
         <div>
-          <button class="primary" (click)="croppedImage = data = currentTile.url; openEdit()">
+          <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
             {{ 'generator.ranking.image.add' | translate }}
           </button>
           <div>
@@ -58,19 +61,19 @@
             [title]="'generator.ranking.tile.color.new' | translate"
             id="tile-bg-color"
             type="color"
-            [(ngModel)]="currentTile.bgColor"
+            [(ngModel)]="cTile.bgColor"
           />
         </div>
         <div
           [title]="'generator.ranking.tile.color.remove' | translate"
           class="color remove"
-          (click)="currentTile.bgColor = undefined"
+          (click)="cTile.bgColor = undefined"
           tabindex="0"
         ></div>
         <div
           [title]="'generator.ranking.tile.color.transparent' | translate"
           class="color transparent"
-          (click)="currentTile.bgColor = 'transparent'"
+          (click)="cTile.bgColor = 'transparent'"
           tabindex="0"
         ></div>
         @for (color of colorListBg; track color) {
@@ -78,7 +81,7 @@
             [title]="'generator.ranking.tile.color.previous' | translate"
             class="color"
             [style.--color]="color"
-            (click)="currentTile.bgColor = color"
+            (click)="cTile.bgColor = color"
             tabindex="0"
           ></div>
         }
@@ -90,13 +93,13 @@
             [title]="'generator.ranking.text.color.new' | translate"
             id="tile-text-color"
             type="color"
-            [(ngModel)]="currentTile.txtColor"
+            [(ngModel)]="cTile.txtColor"
           />
         </div>
         <div
           [title]="'generator.ranking.text.color.remove' | translate"
           class="color remove"
-          (click)="currentTile.txtColor = undefined"
+          (click)="cTile.txtColor = undefined"
           tabindex="0"
         ></div>
         @for (color of colorListTxt; track color) {
@@ -104,7 +107,7 @@
             [style.--color]="color"
             [title]="'generator.ranking.text.color.previous' | translate"
             class="color"
-            (click)="currentTile.txtColor = color"
+            (click)="cTile.txtColor = color"
             tabindex="0"
           ></div>
         }
@@ -138,7 +141,7 @@
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogImageEdit>
-  @if (currentTile && dialogImageEdit._open) {
+  @if (cTile && dialogImageEdit._open) {
     <div drop-image mode="local" (file)="fileChange($event)">
       <div class="drop-image-message">{{ 'generator.ranking.image.drop' | translate }}</div>
       <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />

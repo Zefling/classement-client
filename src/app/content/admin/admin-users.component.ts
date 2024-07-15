@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnDestroy, ViewChild } from '@angular/core';
+import { Component, DoCheck, OnDestroy, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -32,15 +32,14 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     sort: SortUserCol = 'dateCreate';
     direction: SortDirection = 'DESC';
 
-    @ViewChild('dialogListClassements') dialogListClassements!: DialogComponent;
+    dialogListClassements = viewChild.required<DialogComponent>('dialogListClassements');
+    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
+    dialogActionsUser = viewChild.required<DialogComponent>('dialogActionsUser');
 
-    @ViewChild('dialogActionsUser') dialogActionsUser!: DialogComponent;
     currentUser?: User;
     userForm?: FormGroup;
     isAdmin = false;
     showError?: string;
-
-    @ViewChild('dialogRemoveProfile') dialogRemoveProfile!: DialogComponent;
 
     constructor(
         private readonly userService: APIUserService,
@@ -132,7 +131,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     see(user: User) {
         this.currentUser = user;
-        this.dialogListClassements.open();
+        this.dialogListClassements().open();
     }
 
     update(user: User): void {
@@ -145,7 +144,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
             admin: new FormControl(this.currentUser.roles.includes(Role.ADMIN)),
             banned: new FormControl(this.currentUser.roles.includes(Role.BANNED)),
         });
-        this.dialogActionsUser.open();
+        this.dialogActionsUser().open();
     }
 
     disabledBanned() {
@@ -172,12 +171,12 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     changeStatusCancel() {
         this.userForm = undefined;
         this.currentUser = undefined;
-        this.dialogActionsUser.close();
+        this.dialogActionsUser().close();
     }
 
     removeProfile(user: User) {
         this.currentUser = user;
-        this.dialogRemoveProfile.open();
+        this.dialogRemoveProfile().open();
     }
 
     valideRemoveProfile() {
@@ -196,6 +195,6 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     cancelRemoveProfile() {
         this.currentUser = undefined;
-        this.dialogRemoveProfile.close();
+        this.dialogRemoveProfile().close();
     }
 }

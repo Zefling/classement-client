@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Host, Input, OnChanges, OnDestroy, SimpleChanges, viewChild } from '@angular/core';
 
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
@@ -51,9 +51,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listMode: Select2Data = listModes;
 
-    @ViewChild(ClassementThemesComponent) classementThemes!: ClassementThemesComponent;
-    @ViewChild('dialogChangeMode') dialogChangeMode!: DialogComponent;
-    @ViewChild('mode') mode!: Select2;
+    classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
+    dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
+    mode = viewChild.required<Select2>('mode');
 
     private _sub = Subscriptions.instance();
     _modeTemp?: ModeNames;
@@ -153,7 +153,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     modeChange(previous: ModeNames, event: ModeNames) {
         if (this._previousMode && previous !== event) {
-            this.dialogChangeMode.open();
+            this.dialogChangeMode().open();
         }
         this._previousMode = previous;
         this._modeTemp = event;
@@ -165,9 +165,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             this.updateMode();
             this.options!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
-            this.mode.writeValue(this._previousMode!);
+            this.mode().writeValue(this._previousMode!);
         }
-        this.dialogChangeMode.close();
+        this.dialogChangeMode().close();
     }
 
     switchOptions() {
@@ -183,7 +183,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     themesOpen() {
-        this.classementThemes.dialog()!.open();
+        this.classementThemes().dialog()!.open();
     }
 
     changeTheme(theme: Theme) {

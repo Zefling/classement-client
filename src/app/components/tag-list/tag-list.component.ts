@@ -25,7 +25,7 @@ export class TagListComponent implements OnInit {
 
     // viewChild
 
-    input = viewChild<ElementRef<HTMLInputElement>>('input');
+    input = viewChild.required<ElementRef<HTMLInputElement>>('input');
 
     proposals: string[] = [];
 
@@ -36,7 +36,7 @@ export class TagListComponent implements OnInit {
     ngOnInit(): void {
         if (environment.api?.active) {
             this.subject.pipe(debounceTime(500)).subscribe(() => {
-                const tag = this.input()!.nativeElement.value.trim();
+                const tag = this.input().nativeElement.value.trim();
                 if (tag) {
                     this.http.get<Message<string[]>>(`${environment.api.path}api/tags/${tag}`).subscribe({
                         next: proposals => {
@@ -56,7 +56,7 @@ export class TagListComponent implements OnInit {
     }
 
     onEnter() {
-        const input = this.input()!.nativeElement;
+        const input = this.input().nativeElement;
         const value = input.value;
         if (!this.tags().includes(value)) {
             this.tags().push(value);

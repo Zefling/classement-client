@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -26,10 +26,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     @Input()
     pageMode = true;
 
-    @ViewChild('dialogDelete') dialogDelete!: DialogComponent;
-    @ViewChild('dialogClone') dialogClone!: DialogComponent;
-    @ViewChild('dialogImport') dialogImport!: DialogComponent;
-    @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
+    dialogDelete = viewChild.required<DialogComponent>('dialogDelete');
+    dialogClone = viewChild.required<DialogComponent>('dialogClone');
+    dialogImport = viewChild.required<DialogComponent>('dialogImport');
+    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
 
     filter = '';
 
@@ -142,7 +142,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     showList() {
         this.dbService.getLocalList().then(result => {
             this.result = result;
-            this.sortableDirective.sortLines();
+            this.sortableDirective().sortLines();
 
             navigator.storage.estimate().then(quota => {
                 this.quota = quota;
@@ -151,12 +151,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     delete(item: FormattedInfos) {
-        this.dialogDelete.open();
+        this.dialogDelete().open();
         this.itemCurrent = item;
     }
 
     clone(item: FormattedInfos) {
-        this.dialogClone.open();
+        this.dialogClone().open();
         this.itemCurrent = item;
         this.changeTemplate = false;
     }
@@ -165,7 +165,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         if (!action) {
             this.logger.log(`Not remove line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
-            this.dialogDelete.close();
+            this.dialogDelete().close();
         } else if (this.itemCurrent?.id) {
             this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
@@ -176,7 +176,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
-                this.dialogDelete.close();
+                this.dialogDelete().close();
             });
         }
     }
@@ -185,7 +185,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         if (!action) {
             this.logger.log(`Not clone line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
-            this.dialogClone.close();
+            this.dialogClone().close();
         } else if (this.itemCurrent?.id) {
             this.dbService.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
@@ -196,12 +196,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
-                this.dialogClone.close();
+                this.dialogClone().close();
                 if (edit) {
                     this.router.navigate(['/edit/' + item.id]);
                 } else {
                     this.result.push(item);
-                    this.sortableDirective.sortLines();
+                    this.sortableDirective().sortLines();
                 }
             });
         }
@@ -227,11 +227,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
                         );
                         this.itemCurrent = undefined;
-                        this.dialogClone.close();
+                        this.dialogClone().close();
                         const index = this.result.findIndex(e => e.id === item.infos.id);
                         if (index === -1) {
                             this.result.push(item.infos);
-                            this.sortableDirective.sortLines();
+                            this.sortableDirective().sortLines();
                         } else {
                             this.result[index] = item.infos;
                         }
@@ -241,7 +241,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     });
                 break;
         }
-        this.dialogImport.close();
+        this.dialogImport().close();
     }
 
     private _getTitle(info: FormattedInfos) {

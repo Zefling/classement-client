@@ -15,7 +15,7 @@ import {
     HostBinding,
     HostListener,
     OnDestroy,
-    ViewChild,
+    viewChild,
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -130,19 +130,19 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return this.options.mode === 'iceberg' || this.options.mode === 'axis';
     }
 
-    @ViewChild('image') image!: ElementRef<HTMLDivElement>;
-    @ViewChild('currentList') currentList!: ElementRef<HTMLDivElement>;
-    @ViewChild('dialogImage') dialogImage!: DialogComponent;
-    @ViewChild('dialogImport') dialogImport!: DialogComponent;
-    @ViewChild('dialogOptimise') dialogOptimise!: DialogComponent;
-    @ViewChild('dialogSaveServer') dialogSaveServer!: DialogComponent;
-    @ViewChild('dialogDerivatives') dialogDerivatives!: DialogComponent;
-    @ViewChild('dialogRankingDiff') dialogRankingDiff!: DialogComponent;
-    @ViewChild('dialogGroupOption') dialogGroupOption!: DialogComponent;
-    @ViewChild('dialogTexts') dialogTexts!: DialogComponent;
-    @ViewChild(ClassementEditImageComponent) editImage!: ClassementEditImageComponent;
-    @ViewChild(ClassementLoginComponent) login!: ClassementLoginComponent;
-    @ViewChild(ExternalImdbComponent) imdb!: ExternalImdbComponent;
+    image = viewChild.required<ElementRef<HTMLDivElement>>('image');
+    currentList = viewChild.required<ElementRef<HTMLDivElement>>('currentList');
+    dialogImage = viewChild.required<DialogComponent>('dialogImage');
+    dialogImport = viewChild.required<DialogComponent>('dialogImport');
+    dialogOptimise = viewChild.required<DialogComponent>('dialogOptimise');
+    dialogSaveServer = viewChild.required<DialogComponent>('dialogSaveServer');
+    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
+    dialogRankingDiff = viewChild.required<DialogComponent>('dialogRankingDiff');
+    dialogGroupOption = viewChild.required<DialogComponent>('dialogGroupOption');
+    dialogTexts = viewChild.required<DialogComponent>('dialogTexts');
+    editImage = viewChild.required<ClassementEditImageComponent>(ClassementEditImageComponent);
+    login = viewChild.required<ClassementLoginComponent>(ClassementLoginComponent);
+    imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -392,7 +392,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     loadDerivativeClassement(classement: Classement) {
         this.router.navigate(['edit', this.getClassementId(classement)]);
-        this.dialogDerivatives.close();
+        this.dialogDerivatives().close();
     }
 
     ngDoCheck() {
@@ -426,7 +426,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 : '';
 
         if (this.currentList) {
-            this.scrollArrows = this.currentList.nativeElement.scrollWidth > this.currentList.nativeElement.clientWidth;
+            this.scrollArrows =
+                this.currentList().nativeElement.scrollWidth > this.currentList().nativeElement.clientWidth;
         }
     }
 
@@ -476,7 +477,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     showDerivative() {
-        this.dialogDerivatives.open();
+        this.dialogDerivatives().open();
     }
 
     showRankingDiff() {
@@ -524,7 +525,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     //  this.loading = false;
                 });
 
-            this.dialogRankingDiff.open();
+            this.dialogRankingDiff().open();
         }
     }
 
@@ -664,12 +665,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     addTextsDialog() {
-        this.dialogTexts.open();
+        this.dialogTexts().open();
     }
 
     closeTexts() {
         this.inputTexts = '';
-        this.dialogTexts.close();
+        this.dialogTexts().close();
     }
 
     addTexts() {
@@ -774,7 +775,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     updateGroupOption(group: GroupOption) {
         this.currentGroup = group;
-        this.dialogGroupOption.open();
+        this.dialogGroupOption().open();
     }
 
     updateSize() {
@@ -820,13 +821,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     async exportImage() {
-        this.dialogImage.open();
+        this.dialogImage().open();
         const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
             logging: false,
             allowTaint: true,
             scale: 2,
         });
-        const element = this.image.nativeElement;
+        const element = this.image().nativeElement;
         element.innerHTML = '';
         element.appendChild(canvas);
         this._canvas = canvas;
@@ -915,9 +916,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     saveServer() {
         if (this.logged) {
-            this.dialogSaveServer.open();
+            this.dialogSaveServer().open();
         } else {
-            this.login.open();
+            this.login().open();
         }
     }
 
@@ -985,7 +986,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 break;
             }
         }
-        this.dialogImport.close();
+        this.dialogImport().close();
     }
 
     screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
@@ -1001,7 +1002,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     openTileInfo(item: FileString) {
         this.currentTile = item;
-        this.editImage.open();
+        this.editImage().open();
     }
 
     @HostListener('window:fullscreenchange')

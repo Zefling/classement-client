@@ -2,7 +2,7 @@
   @if (!item.separator) {
     <a
       [class.current]="item.current"
-      [routerLink]="[base]"
+      [routerLink]="[base()]"
       [queryParams]="pageQueryParams(item.page!)"
       (click)="update(item.page!)"
     >

@@ -1,4 +1,4 @@
-import { Component, Host, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Host, OnDestroy, viewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -14,7 +14,7 @@ import { UserLoginComponent } from '../user/user-login.component';
     styleUrls: ['./classement-login.component.scss'],
 })
 export class ClassementLoginComponent implements OnDestroy {
-    @ViewChild('dialogLogin') dialogLogin!: DialogComponent;
+    dialogLogin = viewChild.required<DialogComponent>('dialogLogin');
 
     loginComponent = UserLoginComponent;
 
@@ -26,7 +26,7 @@ export class ClassementLoginComponent implements OnDestroy {
     ) {
         this._sub.push(
             this.userService.afterLogin.subscribe(() => {
-                this.dialogLogin.close();
+                this.dialogLogin().close();
                 this.edit.logged = true;
                 this.edit.saveServer();
             }),
@@ -38,6 +38,6 @@ export class ClassementLoginComponent implements OnDestroy {
     }
 
     open() {
-        this.dialogLogin.open();
+        this.dialogLogin().open();
     }
 }
