@@ -30,7 +30,14 @@
             "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.svg", "src/.htaccess", "src/assets", "src/robots.txt", "src/sitemap.php"],
+            "assets": [
+              "src/favicon.svg",
+              "src/favicon.ico",
+              "src/.htaccess",
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.php"
+            ],
             "styles": ["src/styles.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": [
