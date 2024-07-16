@@ -1,4 +1,4 @@
-<div>{{ 'generator.json.import.list' + (multi ? '.multi' : '') | translate }}</div>
+<div>{{ 'generator.json.import.list' + (multi() ? '.multi' : '') | translate }}</div>
 
 <div>
   <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
@@ -28,7 +28,7 @@
   @for (file of jsonTmp; track file) {
     <label class="json-infos">
       @if (!file.error) {
-        @if (multi) {
+        @if (multi()) {
           <span class="input">
             <input type="checkbox" [(ngModel)]="file.selected" />
           </span>
@@ -50,7 +50,7 @@
 
 <div class="buttons-list button-image-save">
   <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
-  @if (!multi && actions === 'all') {
+  @if (!multi && actions() === 'all') {
     @if (jsonTmp) {
       <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
         {{ 'generator.json.import.replace' | translate }}
@@ -62,14 +62,14 @@
       </button>
     }
   }
-  @if (!multi && actions === 'importOnly') {
+  @if (!multi && actions() === 'importOnly') {
     @if (jsonTmp) {
       <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
         {{ 'generator.json.import.add' | translate }}
       </button>
     }
   }
-  @if (multi) {
+  @if (multi()) {
     @if (jsonTmp) {
       <button class="button-add primary" (click)="importMultiJson('replace')">
         {{ 'generator.json.import.multi.replace' | translate }}

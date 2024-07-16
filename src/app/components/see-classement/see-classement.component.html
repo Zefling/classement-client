@@ -1,11 +1,15 @@
-@if (options) {
+@if (options()) {
   <div class="render">
-    @if (options.mode === 'default' || options.mode === 'teams' || !options.mode) {
-      <table id="{{ render ? 'html2canvas-element' : '' }}" class="html2canvas-element" [attr.dir]="options.direction">
-        @if (options.title) {
+    @if (options().mode === 'default' || options().mode === 'teams' || !options().mode) {
+      <table
+        id="{{ render() ? 'html2canvas-element' : '' }}"
+        class="html2canvas-element"
+        [attr.dir]="options().direction"
+      >
+        @if (options().title) {
           <caption>
             {{
-              options.title
+              options().title
             }}
           </caption>
         }
@@ -14,17 +18,17 @@
           <col class="elements" />
         </colgroup>
         <tbody>
-          @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+          @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
             <tr>
               <td
                 class="names"
                 [style.--name-background]="group.bgColor + nameOpacity"
                 [style.--text-color]="group.txtColor"
               >
-                @if (!options.nameMarkdown) {
+                @if (!options().nameMarkdown) {
                   <pre>{{ group.name }}</pre>
                 }
-                @if (options.nameMarkdown) {
+                @if (options().nameMarkdown) {
                   <markdown [data]="group.name"></markdown>
                 }
               </td>
@@ -32,24 +36,24 @@
                 @for (item of group.list; track item; let index = $index) {
                   <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
                     <div class="content-box">
-                      <div class="content content-render" [ngClass]="options.itemTextPosition" #tile>
+                      <div class="content content-render" [ngClass]="options().itemTextPosition" #tile>
                         @if (item.url) {
                           <div [class.image]="calcWidth(item, tile)">
                             <img
                               (ngInit)="calcWidth(item, tile); detectChanges()"
                               (load)="calcWidth(item, tile); detectChanges()"
-                              [class.cover]="options.itemImageCover"
-                              src="{{ imagesCache[item.url] || item.url }}"
+                              [class.cover]="options().itemImageCover"
+                              src="{{ imagesCache()[item.url] || item.url }}"
                               alt="{{ item.name }}"
                             />
                           </div>
                         }
                         @if (item.title) {
-                          <div class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                          <div class="title" [class.title-item-width-auto]="options().itemWidthAuto">
                             <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
                           </div>
                         }
-                        @if (withAnnotation && item.annotation) {
+                        @if (withAnnotation() && item.annotation) {
                           <div class="tile-info" [tooltip]="item.annotation"></div>
                         }
                       </div>
@@ -65,19 +69,19 @@
         </tbody>
       </table>
     }
-    @if (options.mode === 'iceberg' || options.mode === 'axis') {
-      <div class="zone-classement-container html2canvas-element" id="{{ render ? 'html2canvas-element' : '' }}">
+    @if (options().mode === 'iceberg' || options().mode === 'axis') {
+      <div class="zone-classement-container html2canvas-element" id="{{ render() ? 'html2canvas-element' : '' }}">
         <div class="zone-classement">
-          @if (options.groups?.length) {
-            @if (options.mode === 'iceberg') {
-              <zone-area [groups]="options.groups"></zone-area>
+          @if (options().groups?.length) {
+            @if (options().mode === 'iceberg') {
+              <zone-area [groups]="options().groups"></zone-area>
             }
-            @if (options.mode === 'axis') {
-              <zone-axis [groups]="options.groups"></zone-axis>
+            @if (options().mode === 'axis') {
+              <zone-axis [groups]="options().groups"></zone-axis>
             }
           }
           <div class="elements">
-            @for (item of groups[0].list; track item; let index = $index) {
+            @for (item of groups()[0].list; track item; let index = $index) {
               <div
                 [style.--over-item-background]="item.bgColor"
                 [style.--over-item-text-color]="item.txtColor"
@@ -85,24 +89,24 @@
                 [style.--top.px]="item.y"
               >
                 <div class="content-box">
-                  <div class="content content-render" [ngClass]="options.itemTextPosition" #tile>
+                  <div class="content content-render" [ngClass]="options().itemTextPosition" #tile>
                     @if (item.url) {
                       <div [class.image]="calcWidth(item, tile)">
                         <img
                           (ngInit)="calcWidth(item, tile); detectChanges()"
                           (load)="calcWidth(item, tile); detectChanges()"
-                          [class.cover]="options.itemImageCover"
-                          src="{{ imagesCache[item.url] || item.url }}"
+                          [class.cover]="options().itemImageCover"
+                          src="{{ imagesCache()[item.url] || item.url }}"
                           alt="{{ item.name }}"
                         />
                       </div>
                     }
                     @if (item.title) {
-                      <div class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                      <div class="title" [class.title-item-width-auto]="options().itemWidthAuto">
                         <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
                       </div>
                     }
-                    @if (withAnnotation && item.annotation) {
+                    @if (withAnnotation() && item.annotation) {
                       <div class="tile-info" [tooltip]="item.annotation"></div>
                     }
                   </div>

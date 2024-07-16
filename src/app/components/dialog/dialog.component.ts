@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, HostListener, Input, Output, booleanAttribute } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, HostListener, input, output } from '@angular/core';
 
 @Component({
     selector: 'dialog-cmp',
@@ -6,16 +6,20 @@ import { Component, EventEmitter, HostBinding, HostListener, Input, Output, bool
     styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-    @Input({ transform: booleanAttribute }) closeButton = false;
-    @Input({ transform: booleanAttribute }) closeBackdrop = false;
+    // input
 
-    @Output() onClose = new EventEmitter();
+    closeButton = input(false, { transform: booleanAttribute });
+    closeBackdrop = input(false, { transform: booleanAttribute });
+
+    // output
+
+    onClose = output();
 
     @HostBinding('class.open') _open = false;
 
     @HostListener('click')
     onClick() {
-        if (this.closeBackdrop) {
+        if (this.closeBackdrop()) {
             this.close();
         }
     }

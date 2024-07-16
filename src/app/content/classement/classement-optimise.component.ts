@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
@@ -12,17 +12,10 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
     styleUrls: ['./classement-optimise.component.scss'],
 })
 export class ClassementOptimiseComponent implements OnInit {
-    @Input()
-    groups?: FormattedGroup[];
-
-    @Input()
-    list?: FileString[];
-
-    @Input()
-    dialog?: DialogComponent;
-
-    @Input()
-    mode?: ModeNames;
+    groups = input<FormattedGroup[]>();
+    list = input<FileString[]>();
+    dialog = input<DialogComponent>();
+    mode = input<ModeNames>();
 
     totalSize!: number;
     total!: number;
@@ -57,7 +50,7 @@ export class ClassementOptimiseComponent implements OnInit {
     }
 
     ngOnInit() {
-        const { size, files } = this.optimiseImage.size(this.list, this.groups, this.mode);
+        const { size, files } = this.optimiseImage.size(this.list(), this.groups(), this.mode());
         this.totalSize = size;
         this.total = files;
     }
@@ -70,20 +63,17 @@ export class ClassementOptimiseComponent implements OnInit {
         this.countResize = 0;
         this.reduceSize = 0;
         this.listOptimise = [];
-        if (this.mode !== 'teams') {
-            if (this.groups) {
-                this.groups.forEach(group =>
-                    group?.list.forEach(tile => {
-                        this.optimiseImg(tile);
-                    }),
-                );
-            }
+        if (this.mode() !== 'teams') {
+            this.groups()?.forEach(group =>
+                group?.list.forEach(tile => {
+                    this.optimiseImg(tile);
+                }),
+            );
         }
-        if (this.list) {
-            this.list.forEach(tile => {
-                this.optimiseImg(tile);
-            });
-        }
+
+        this.list()?.forEach(tile => {
+            this.optimiseImg(tile);
+        });
     }
 
     optimiseAccept() {
@@ -95,7 +85,7 @@ export class ClassementOptimiseComponent implements OnInit {
                 e.sourceFile.url = e.reduceFile.url;
             }
         });
-        this.dialog?.close();
+        this.dialog()?.close();
         this.global.onImageUpdate.next();
     }
 

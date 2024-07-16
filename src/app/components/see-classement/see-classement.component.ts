@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, booleanAttribute } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, booleanAttribute, input } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -13,14 +13,14 @@ import { GlobalService } from '../../services/global.service';
     styleUrls: ['./see-classement.component.scss'],
 })
 export class SeeClassementComponent implements OnInit {
-    @Input() groups: FormattedGroup[] = [];
-    @Input() list: FileString[] = [];
-    @Input() imagesCache: Record<string, string | ArrayBuffer | null> = {};
+    groups = input<FormattedGroup[]>([]);
+    list = input<FileString[]>([]);
+    imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
 
-    @Input() options!: Options;
+    options = input.required<Options>();
 
-    @Input({ transform: booleanAttribute }) withAnnotation = false;
-    @Input({ transform: booleanAttribute }) render = false;
+    withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
+    render = input<boolean, any>(false, { transform: booleanAttribute });
 
     nameOpacity!: string;
 
@@ -39,9 +39,9 @@ export class SeeClassementComponent implements OnInit {
         if (!this.options) {
             return;
         }
-        const val = this.globalService.updateVarCss(this.options, this.imagesCache);
+        const val = this.globalService.updateVarCss(this.options(), this.imagesCache());
 
-        this.nameOpacity = this.globalService.getValuesFromOptions(this.options).nameOpacity;
+        this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
     }
 
     detectChanges() {
@@ -50,7 +50,7 @@ export class SeeClassementComponent implements OnInit {
 
     calcWidth(item: FileString, element: HTMLElement | null) {
         // hack for calcule de width of the image
-        Utils.calcWidth(this.options, item, element);
+        Utils.calcWidth(this.options(), item, element);
         return true;
     }
 }

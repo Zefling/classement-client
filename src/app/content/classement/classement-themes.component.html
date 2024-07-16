@@ -2,7 +2,7 @@
   <p>{{ 'generator.theme.info' | translate }}</p>
 
   <div class="themes">
-    @for (theme of themes; track theme) {
+    @for (theme of themes(); track theme) {
       <theme-icon [theme]="theme" (select)="changeTheme($event)" [class.selected]="theme === currentTheme"></theme-icon>
     }
   </div>

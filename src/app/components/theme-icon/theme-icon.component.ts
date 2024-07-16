@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, HostListener, input, OnInit, output } from '@angular/core';
 
 import { imageInfos } from 'src/app/content/classement/classement-default';
 
@@ -11,26 +11,24 @@ import { color } from '../../tools/function';
     styleUrls: ['./theme-icon.component.scss'],
 })
 export class ThemeIconComponent implements OnInit {
-    @Input()
-    theme!: Theme;
+    theme = input.required<Theme>();
 
-    @Output()
-    select = new EventEmitter<Theme>();
+    select = output<Theme>();
 
     styles: any;
 
     ngOnInit() {
-        this.styles = this.getStyles();
+        this.getStyles();
     }
 
     @HostListener('click')
     click() {
-        this.select.emit(this.theme);
+        this.select.emit(this.theme());
     }
 
     getStyles() {
-        const o = this.theme.options;
-        return {
+        const o = this.theme().options;
+        this.styles = {
             '--o-item-width': o.itemWidth + 'px',
             '--o-item-height': o.itemHeight + 'px',
             '--o-item-padding': o.itemPadding + 'px',

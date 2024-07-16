@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, input, Output, viewChild } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,13 +17,13 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./list-classements.component.scss'],
 })
 export class ListClassementsComponent {
-    @Input() classements?: Classement[];
-    @Input() sort?: SortClassementCol;
-    @Input() direction?: SortDirection;
+    classements = input<Classement[]>();
+    sort = input<SortClassementCol>();
+    direction = input<SortDirection>();
 
-    @ViewChild('dialogActionsClassement') dialogActionsClassement!: DialogComponent;
-    @ViewChild('dialogSeeClassement') dialogSeeClassement!: DialogComponent;
-    @ViewChild('dialogEditCategory') dialogEditCategory!: DialogComponent;
+    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
+    dialogSeeClassement = viewChild.required<DialogComponent>('dialogSeeClassement');
+    dialogEditCategory = viewChild.required<DialogComponent>('dialogEditCategory');
 
     currentClassement?: Classement;
 
@@ -47,17 +47,17 @@ export class ListClassementsComponent {
         this.currentClassement = classement;
         Utils.formattedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
         this.globalService.updateVarCss(classement.data.options);
-        this.dialogSeeClassement.open();
+        this.dialogSeeClassement().open();
     }
 
     update(classement: Classement): void {
         this.currentClassement = classement;
-        this.dialogActionsClassement.open();
+        this.dialogActionsClassement().open();
     }
 
     editCategory(classement: Classement) {
         this.currentClassement = classement;
-        this.dialogEditCategory.open();
+        this.dialogEditCategory().open();
     }
 
     changeStatusCurrentClassement(status: boolean | string, type: 'delete' | 'hide' | 'category'): void {
@@ -76,10 +76,10 @@ export class ListClassementsComponent {
                 }
 
                 if (type === 'delete' || type === 'hide') {
-                    Utils.updateClassements(this.classements, classements);
+                    Utils.updateClassements(this.classements(), classements);
                     this.changeStatusCancel();
                 } else if (type === 'category') {
-                    this.classements?.forEach(e => {
+                    this.classements()?.forEach(e => {
                         if (e.templateId === this.currentClassement!.templateId) {
                             e.category = status as string;
                         }
@@ -94,11 +94,11 @@ export class ListClassementsComponent {
 
     changeStatusCancel() {
         this.currentClassement = undefined;
-        this.dialogActionsClassement.close();
+        this.dialogActionsClassement().close();
     }
 
     changeCategoryCancel() {
         this.currentClassement = undefined;
-        this.dialogEditCategory.close();
+        this.dialogEditCategory().close();
     }
 }

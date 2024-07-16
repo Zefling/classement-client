@@ -4,7 +4,7 @@
 </div>
 
 <div class="names">
-  @for (group of groups; track group) {
+  @for (group of groups(); track group) {
     <div [style.--h]="group.titleHorizontalPosition" [style.--v]="group.titleVerticalPosition" class="name">
       <span class="group-title">{{ group.title }}</span>
     </div>

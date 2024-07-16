@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * loader only (without message)
@@ -7,13 +7,12 @@ import { Component, HostBinding, Input } from '@angular/core';
     selector: 'loading-cmp',
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.scss'],
+    host: {
+        '[style.--height]': 'size()',
+        '[style.--width]': 'tickWidth()',
+    },
 })
 export class LoadingComponent {
-    @Input()
-    @HostBinding('style.--height')
-    size!: string;
-
-    @Input()
-    @HostBinding('style.--width')
-    tickWidth!: string;
+    size = input<string>();
+    tickWidth = input<string>();
 }

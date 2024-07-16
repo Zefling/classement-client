@@ -2,17 +2,16 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    EventEmitter,
     Host,
-    Input,
+    input,
     OnChanges,
-    Output,
+    output,
     SimpleChanges,
-    ViewChild,
+    viewChild,
 } from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
-import { Subject, debounceTime } from 'rxjs';
+import { debounceTime, Subject } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString, Options } from 'src/app/interface/interface';
@@ -29,15 +28,15 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     styleUrls: ['./classement-edit-image.component.scss'],
 })
 export class ClassementEditImageComponent implements OnChanges {
-    @ViewChild('dialogInfo') dialogInfo!: DialogComponent;
-    @ViewChild('dialogImageEdit') dialogImageEdit!: DialogComponent;
-    @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
-    @ViewChild('ratioInput') ratioInput!: ElementRef<HTMLInputElement>;
-    @ViewChild('imageCropper') imageCropper!: ImageCropperComponent;
+    dialogInfo = viewChild.required<DialogComponent>('dialogInfo');
+    dialogImageEdit = viewChild.required<DialogComponent>('dialogImageEdit');
+    bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
+    ratioInput = viewChild.required<ElementRef<HTMLInputElement>>('ratioInput');
+    imageCropper = viewChild.required<ImageCropperComponent>('imageCropper');
 
-    @Input() currentTile?: FileString;
+    currentTile = input<FileString>();
 
-    @Output() deleteCurrent = new EventEmitter<void>();
+    deleteCurrent = output<void>();
 
     imageChangedEvent?: Event;
     croppedImage?: string;
@@ -86,21 +85,21 @@ export class ClassementEditImageComponent implements OnChanges {
     }
 
     open() {
-        this.dialogInfo.open();
+        this.dialogInfo().open();
         this._open = true;
     }
 
     close() {
-        this.dialogInfo.close();
+        this.dialogInfo().close();
         this._open = false;
     }
 
     openEdit() {
-        this.dialogImageEdit.open();
+        this.dialogImageEdit().open();
     }
 
     closeEdit() {
-        this.dialogImageEdit.close();
+        this.dialogImageEdit().close();
         this.resetBanner();
     }
 
@@ -122,7 +121,7 @@ export class ClassementEditImageComponent implements OnChanges {
      */
     tileZIndex(position: 'top' | 'up' | 'down' | 'bottom') {
         const list = this.editor.groups[0].list;
-        const index = list.findIndex(e => e.id === this.currentTile!.id);
+        const index = list.findIndex(e => e.id === this.currentTile()!.id);
         const item = list.splice(index, 1)[0];
 
         switch (position) {
@@ -153,7 +152,7 @@ export class ClassementEditImageComponent implements OnChanges {
         this.maintainAspectRatio = this.aspectRatio !== 0;
 
         if (mode !== 99) {
-            this.ratioInput.nativeElement.value = `${aspectRatio}`;
+            this.ratioInput().nativeElement.value = `${aspectRatio}`;
         }
 
         this.imageLoaded();
@@ -165,7 +164,7 @@ export class ClassementEditImageComponent implements OnChanges {
     }
 
     resetBanner() {
-        this.bannerInput.nativeElement.value = '';
+        this.bannerInput().nativeElement.value = '';
         this.croppedImage = undefined;
         this.imageChangedEvent = undefined;
         this.data = '';
@@ -190,7 +189,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     async updateAndCloseEdit() {
         if (this.croppedImage) {
-            const tile = this.currentTile!;
+            const tile = this.currentTile()!;
             setTimeout(() => {
                 tile.url = this.croppedImage;
             });

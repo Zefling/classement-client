@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
+import { booleanAttribute, Directive, HostBinding, HostListener, input, output } from '@angular/core';
 
 import { FileHandle } from '../interface/interface';
 import { GlobalService, TypeFile, typesMine } from '../services/global.service';
@@ -7,13 +7,15 @@ import { GlobalService, TypeFile, typesMine } from '../services/global.service';
 export class DropImageDirective {
     @HostBinding('class.drop-image-zone') background = false;
 
-    @Input() mode: 'global' | 'local' = 'global';
+    // input
 
-    @Input() allowText = true;
+    mode = input<'global' | 'local'>('global');
+    allowText = input<boolean, any>(true, { transform: booleanAttribute });
+    disabled = input<boolean, any>(false, { transform: booleanAttribute });
 
-    @Input() disabled = false;
+    // output
 
-    @Output() file = new EventEmitter<FileHandle | string>();
+    file = output<FileHandle | string>();
 
     constructor(private readonly globalService: GlobalService) {}
 
@@ -38,13 +40,13 @@ export class DropImageDirective {
     public onDrop(event: DragEvent): void {
         if (!this.disabled) {
             this.background = false;
-            if (this.mode === 'global') {
+            if (this.mode() === 'global') {
                 if (event.dataTransfer?.files?.length) {
                     this.globalService.addFiles(event.dataTransfer.files, TypeFile.image);
-                } else if (this.allowText && event.dataTransfer?.getData('text')) {
+                } else if (this.allowText() && event.dataTransfer?.getData('text')) {
                     this.globalService.addTexts(event.dataTransfer?.getData('text'));
                 }
-            } else if (this.mode === 'local') {
+            } else if (this.mode() === 'local') {
                 if (event.dataTransfer?.files?.length) {
                     this.addFile(event.dataTransfer.files, TypeFile.image).then(file => {
                         this.file.emit(file);
@@ -60,18 +62,18 @@ export class DropImageDirective {
     @HostListener('window:paste', ['$event'])
     onCtrlV(event: ClipboardEvent) {
         if (!this.disabled) {
-            if (this.mode === 'global') {
+            if (this.mode() === 'global') {
                 if (event.clipboardData?.files?.length) {
                     this.globalService.addFiles(event.clipboardData?.files, TypeFile.image);
                 }
                 if (
-                    this.allowText &&
+                    this.allowText() &&
                     event.clipboardData?.getData('text') &&
                     !['INPUT', 'TEXTAREA'].includes((event.target as HTMLInputElement).tagName)
                 ) {
                     this.globalService.addTexts(event.clipboardData?.getData('text'));
                 }
-            } else if (this.mode === 'local') {
+            } else if (this.mode() === 'local') {
                 if (event.clipboardData?.files?.length) {
                     this.addFile(event.clipboardData.files, TypeFile.image).then(file => {
                         this.file.emit(file);

@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,16 +20,21 @@ import { environment } from 'src/environments/environment';
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
+    host: {
+        '[class.page]': 'pageMode()',
+    },
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
-    @HostBinding('class.page')
-    @Input()
-    pageMode = true;
+    // input
 
-    @ViewChild('dialogDelete') dialogDelete!: DialogComponent;
-    @ViewChild('dialogClone') dialogClone!: DialogComponent;
-    @ViewChild('dialogImport') dialogImport!: DialogComponent;
-    @ViewChild(SortableDirective) sortableDirective!: SortableDirective;
+    pageMode = input<boolean, any>(true, { transform: booleanAttribute });
+
+    // viewChild
+
+    dialogDelete = viewChild.required<DialogComponent>('dialogDelete');
+    dialogClone = viewChild.required<DialogComponent>('dialogClone');
+    dialogImport = viewChild.required<DialogComponent>('dialogImport');
+    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
 
     filter = '';
 
@@ -83,7 +88,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     sortableFilter = (key: string, item: FormattedInfos, _index: number): boolean => {
         return (
-            (!key.startsWith('#') && Utils.normalizeString(item.options.title).includes(Utils.normalizeString(key))) ||
+            (!key.startsWith('#') &&
+                Utils.normalizeString(item.options.title || this.translate.instant('list.title.undefined')).includes(
+                    Utils.normalizeString(key),
+                )) ||
             (key.startsWith('#') &&
                 item.options.tags?.map(e => `#${Utils.normalizeString(e)}`).includes(`${Utils.normalizeString(key)}`))
         );
@@ -95,7 +103,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (this.modeApi && this.userService.logged) {
-            if (this.pageMode) {
+            if (this.pageMode()) {
                 this.router.navigate(['/user/lists/browser']);
             } else {
                 // list of server ranking
@@ -142,7 +150,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     showList() {
         this.dbService.getLocalList().then(result => {
             this.result = result;
-            this.sortableDirective.sortLines();
+            this.sortableDirective().sortLines();
 
             navigator.storage.estimate().then(quota => {
                 this.quota = quota;
@@ -151,12 +159,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     delete(item: FormattedInfos) {
-        this.dialogDelete.open();
+        this.dialogDelete().open();
         this.itemCurrent = item;
     }
 
     clone(item: FormattedInfos) {
-        this.dialogClone.open();
+        this.dialogClone().open();
         this.itemCurrent = item;
         this.changeTemplate = false;
     }
@@ -165,7 +173,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         if (!action) {
             this.logger.log(`Not remove line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
-            this.dialogDelete.close();
+            this.dialogDelete().close();
         } else if (this.itemCurrent?.id) {
             this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
@@ -176,7 +184,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
-                this.dialogDelete.close();
+                this.dialogDelete().close();
             });
         }
     }
@@ -185,7 +193,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         if (!action) {
             this.logger.log(`Not clone line: ${this.itemCurrent?.id}`);
             this.itemCurrent = undefined;
-            this.dialogClone.close();
+            this.dialogClone().close();
         } else if (this.itemCurrent?.id) {
             this.dbService.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
@@ -196,12 +204,12 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
-                this.dialogClone.close();
+                this.dialogClone().close();
                 if (edit) {
                     this.router.navigate(['/edit/' + item.id]);
                 } else {
                     this.result.push(item);
-                    this.sortableDirective.sortLines();
+                    this.sortableDirective().sortLines();
                 }
             });
         }
@@ -227,11 +235,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
                         );
                         this.itemCurrent = undefined;
-                        this.dialogClone.close();
+                        this.dialogClone().close();
                         const index = this.result.findIndex(e => e.id === item.infos.id);
                         if (index === -1) {
                             this.result.push(item.infos);
-                            this.sortableDirective.sortLines();
+                            this.sortableDirective().sortLines();
                         } else {
                             this.result[index] = item.infos;
                         }
@@ -241,7 +249,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     });
                 break;
         }
-        this.dialogImport.close();
+        this.dialogImport().close();
     }
 
     private _getTitle(info: FormattedInfos) {

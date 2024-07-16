@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { OptionGroup } from '../../interface/interface';
 
@@ -8,6 +8,5 @@ import { OptionGroup } from '../../interface/interface';
     styleUrls: ['./zone-area.component.scss'],
 })
 export class ZoneAreaComponent {
-    @Input()
-    groups?: OptionGroup[];
+    groups = input<OptionGroup[]>();
 }

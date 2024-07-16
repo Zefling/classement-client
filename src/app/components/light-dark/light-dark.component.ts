@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
+import { Component, HostBinding, HostListener, output } from '@angular/core';
 
 import { PreferenceInterfaceTheme } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
@@ -19,8 +19,7 @@ export class LightDarkComponent {
         return this.global.currentTheme() === 'dark';
     }
 
-    @Output()
-    change = new EventEmitter<PreferenceInterfaceTheme>();
+    change = output<PreferenceInterfaceTheme>();
 
     constructor(private global: GlobalService) {}
 
@@ -28,6 +27,8 @@ export class LightDarkComponent {
     click() {
         this.global.toggleTheme();
         this.global.changeThemeClass();
-        this.change.emit(this.global.userSchema);
+        if (this.global.userSchema) {
+            this.change.emit(this.global.userSchema);
+        }
     }
 }

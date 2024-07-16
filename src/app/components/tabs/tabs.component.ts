@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, EventEmitter, Output, QueryList } from '@angular/core';
+import { AfterContentInit, Component, contentChildren, output } from '@angular/core';
 
 import { TabTitleComponent } from './tab-content.component';
 import { TabContentComponent } from './tab-title.component';
@@ -9,41 +9,43 @@ import { TabContentComponent } from './tab-title.component';
     styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent implements AfterContentInit {
-    @ContentChildren(TabTitleComponent) titles?: QueryList<TabTitleComponent>;
-    @ContentChildren(TabContentComponent) content?: QueryList<TabContentComponent>;
+    titles = contentChildren(TabTitleComponent);
+    content = contentChildren(TabContentComponent);
 
-    @Output() tabChange = new EventEmitter<string>();
+    tabChange = output<string>();
 
     ngAfterContentInit(): void {
-        if (this.titles?.length) {
+        if (this.titles()?.length) {
             const ids: Record<string, boolean> = {};
             let selected = false;
-            this.titles.forEach(e => {
-                if (e.id) {
-                    ids[e.id!] = !!e.selected;
-                    if (!!e.selected) {
+            this.titles().forEach(e => {
+                const id = e.id();
+                if (id) {
+                    ids[id] = e.selected();
+                    if (ids[id]) {
                         selected = true;
                     }
                 }
             });
             if (!selected) {
-                const first = this.titles.first;
-                first.selected = true;
-                ids[first.id!] = true;
+                const first = this.titles()[0];
+                first.selected.set(true);
+                ids[first.id()!] = true;
             }
 
-            this.content!.forEach(e => {
-                if (e.id) {
-                    e.selected = ids[e.id];
+            this.content()!.forEach(e => {
+                const id = e.id();
+                if (id) {
+                    e.selected.set(ids[id]);
                 }
             });
         }
     }
 
     update(id: string, emit: boolean = true) {
-        this.titles?.forEach(e => {
+        this.titles()?.forEach(e => {
             if (e.id) {
-                e.selected = e.id == id;
+                e.selected.set(e.id() === id);
             }
         });
         this.ngAfterContentInit();
