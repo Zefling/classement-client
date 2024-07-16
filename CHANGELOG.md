@@ -1,5 +1,24 @@
 # Changelog - Standalone web app & API
 
+### 2.2.0 (2024-07-16)
+
+#### Standalone web app
+
+-   Fix weird animation issue in icebergs and axes
+-   Add `robots.txt` & `favicon.ico`
+-   Update to Angular `18.1`
+    -   Use `cdkDropListOrientation="mixed"` for better drag'n drop in lists (remove hack) #60
+    -   Signal: change for `input`/`output`/`viewChild`/`contentChildren` #61
+
+#### With API activated only
+
+-   Required: API `1.14`
+    -   Fix read classement not hidden with password (ignore this)
+    -   Support multi-domain (for domain change)
+    -   Fix classement without images
+
+---
+
 ### 2.1.12 (2024-07-07)
 
 #### Standalone web app
