@@ -22,7 +22,7 @@
     <button (click)="submit()">{{ 'user.login.login' | translate }}</button>
   </div>
 
-  @if (!popup) {
+  @if (!popup()) {
     <div class="buttons">
       <p>
         {{ 'user.login.oauth.label' | translate }}

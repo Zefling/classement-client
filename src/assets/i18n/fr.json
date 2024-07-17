@@ -585,7 +585,7 @@
       "oauth": {
         "label": "Connexion avec",
         "label.after": "",
-        "create": "Créer with",
+        "create": "Créer avec",
         "create.after": "",
         "discord": "Discord",
         "facebook": "Facebook",
