@@ -126,8 +126,6 @@
           <input id="moderator" type="checkbox" formControlName="moderator" />
           {{ 'user.status.moderator' | translate }}
         </label>
-      }
-      @if (isAdmin) {
         <label for="admin">
           <input id="admin" type="checkbox" formControlName="admin" #adminCheckbox />
           {{ 'user.status.admin' | translate }}

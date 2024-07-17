@@ -174,30 +174,31 @@
     <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
   </div>
 
-  @if (currentAction === 'change') {
-    <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
-    <div class="buttons">
-      <button
-        (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
-        [class.warn]="!currentClassement?.hidden"
-        [class.primary]="currentClassement?.hidden"
-      >
-        <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
-        <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
-      </button>
-    </div>
-    <div class="note">
-      {{ 'list.hide.note' | translate }}<br />
-      {{ 'list.hide.note2' | translate }}
-    </div>
-  }
-
-  @if (currentAction === 'delete') {
-    <h3>{{ 'list.delete.question' | translate }}</h3>
-    <div>
-      <button (click)="actionForCurrentClassement('delete')" class="warn">
-        {{ 'list.delete.delete' | translate }}
-      </button>
-    </div>
+  @switch (currentAction) {
+    @case ('change') {
+      <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
+      <div class="buttons">
+        <button
+          (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
+          [class.warn]="!currentClassement?.hidden"
+          [class.primary]="currentClassement?.hidden"
+        >
+          <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
+          <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
+        </button>
+      </div>
+      <div class="note">
+        {{ 'list.hide.note' | translate }}<br />
+        {{ 'list.hide.note2' | translate }}
+      </div>
+    }
+    @case ('delete') {
+      <h3>{{ 'list.delete.question' | translate }}</h3>
+      <div>
+        <button (click)="actionForCurrentClassement('delete')" class="warn">
+          {{ 'list.delete.delete' | translate }}
+        </button>
+      </div>
+    }
   }
 </dialog-cmp>

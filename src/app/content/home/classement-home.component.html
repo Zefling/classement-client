@@ -6,8 +6,7 @@
       <span class="icon icon-add"></span>
       <span class="label">{{ 'menu.new' | translate }}</span>
     </a>
-  }
-  @if (preferences.mode === 'choice') {
+  } @else {
     <a class="tile-navigate" (click)="openNew()" (keydown.enter)="openNew()" tabindex="0">
       <span class="icon icon-add"></span>
       <span class="label">{{ 'menu.new' | translate }}</span>
@@ -18,8 +17,6 @@
       <span class="icon icon-search"></span>
       <span class="label">{{ 'menu.navigate' | translate }}</span>
     </a>
-  }
-  @if (modeApi) {
     <a class="tile-navigate" routerLink="/user/profile">
       <span class="icon icon-profile"></span>
       <span class="label">{{ 'menu.profile' | translate }}</span>
@@ -37,8 +34,7 @@
     <div class="navigate-result">
       <navigate-result [classements]="classements" hideDerivatives onlyRanking isHomeList></navigate-result>
     </div>
-  }
-  @if (loading) {
+  } @else {
     <loader-item></loader-item>
   }
 }

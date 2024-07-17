@@ -9,8 +9,7 @@
       <div class="avatar">
         @if (!user.avatar) {
           <span class="icon icon-profile"></span>
-        }
-        @if (user.avatar) {
+        } @else {
           <img [src]="user.avatarUrl" />
         }
       </div>

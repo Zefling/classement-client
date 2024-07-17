@@ -30,8 +30,7 @@
             <span>{{ 'menu.list' | translate }}</span>
           </a>
         </li>
-      }
-      @if (modeApi) {
+      } @else if (modeApi) {
         @if (logged) {
           <li class="section-top" [title]="'menu.my.lists' | translate">
             <a
@@ -82,20 +81,20 @@
           <span>{{ 'menu.preferences' | translate }}</span>
         </a>
       </li>
-      @if (modeApi && modeModerator) {
-        <li [title]="'menu.admin' | translate">
-          <a
-            routerLink="/admin"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }"
-            (click)="toggleMenu()"
-          >
-            <span class="icon icon-admin"></span>
-            <span>{{ 'menu.admin' | translate }}</span>
-          </a>
-        </li>
-      }
       @if (modeApi) {
+        @if (modeModerator) {
+          <li [title]="'menu.admin' | translate">
+            <a
+              routerLink="/admin"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              (click)="toggleMenu()"
+            >
+              <span class="icon icon-admin"></span>
+              <span>{{ 'menu.admin' | translate }}</span>
+            </a>
+          </li>
+        }
         @if (logged) {
           <li [title]="'menu.profile' | translate">
             <a
@@ -121,8 +120,6 @@
               <span>{{ 'menu.login' | translate }}</span>
             </a>
           </li>
-        }
-        @if (!logged) {
           <li [title]="'menu.sign-up' | translate">
             <a
               routerLink="/user/sign-up"

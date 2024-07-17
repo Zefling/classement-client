@@ -52,18 +52,28 @@
   </div>
 }
 
-@if (!isCategoryList && total && total / pageSize > 1) {
-  <paginate-cmp [total]="total" [page]="page" [base]="url" [queryParams]="queryParams" [size]="pageSize"></paginate-cmp>
-}
-
 @if (!loading) {
+  @if (!isCategoryList && total && total / pageSize > 1) {
+    <paginate-cmp
+      [total]="total"
+      [page]="page"
+      [base]="url"
+      [queryParams]="queryParams"
+      [size]="pageSize"
+    ></paginate-cmp>
+  }
+
   <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
-}
 
-@if (!isCategoryList && total && total / pageSize > 1) {
-  <paginate-cmp [total]="total" [page]="page" [base]="url" [queryParams]="queryParams" [size]="pageSize"></paginate-cmp>
-}
-
-@if (loading) {
+  @if (!isCategoryList && total && total / pageSize > 1) {
+    <paginate-cmp
+      [total]="total"
+      [page]="page"
+      [base]="url"
+      [queryParams]="queryParams"
+      [size]="pageSize"
+    ></paginate-cmp>
+  }
+} @else {
   <loader-item></loader-item>
 }

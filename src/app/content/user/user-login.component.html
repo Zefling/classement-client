@@ -41,7 +41,7 @@
   }
 </form>
 
-@if (!popup) {
+@if (!popup()) {
   <div class="links">
     <div>
       <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>

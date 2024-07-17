@@ -6,8 +6,6 @@
 
 @if (!loading) {
   <navigate-result [classements]="classements" hideDerivatives></navigate-result>
-}
-
-@if (loading) {
+} @else {
   <loader-item></loader-item>
 }

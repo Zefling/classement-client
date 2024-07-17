@@ -213,11 +213,13 @@
               (auxclick)="stopEvent($event)"
             >
               @if (options.groups?.length) {
-                @if (options.mode === 'iceberg') {
-                  <zone-area [groups]="options.groups"></zone-area>
-                }
-                @if (options.mode === 'axis') {
-                  <zone-axis [groups]="options.groups"></zone-axis>
+                @switch (options.mode) {
+                  @case ('iceberg') {
+                    <zone-area [groups]="options.groups"></zone-area>
+                  }
+                  @case ('axis') {
+                    <zone-axis [groups]="options.groups"></zone-axis>
+                  }
                 }
               }
               @for (item of groups[0].list; track trackByFnFileString(index, item); let index = $index) {
@@ -420,8 +422,6 @@
             <button [disabled]="!id" class="primary" (click)="copyLink()">
               🔗 {{ 'generator.ranking.share.link' | translate }}
             </button>
-          }
-          @if (logged) {
             <button [disabled]="!id" class="primary" (click)="show()">
               {{ 'generator.ranking.see' | translate }}
             </button>

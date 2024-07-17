@@ -104,17 +104,17 @@
     </div>
     <div>
       <label for="new-cat">{{ 'list.category.new' | translate }} </label>
-      <select id="new-cat" #newCatagory>
-        @for (catagory of catagories; track catagory) {
-          <option [value]="catagory" [selected]="currentClassement.category === catagory">
-            {{ 'category.' + catagory | translate }}
+      <select id="new-cat" #newCategory>
+        @for (category of catagories; track category) {
+          <option [value]="category" [selected]="currentClassement.category === category">
+            {{ 'category.' + category | translate }}
           </option>
         }
       </select>
     </div>
     <div>
       <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | translate }}</button>
-      <button class="primary" (click)="changeStatusCurrentClassement(newCatagory.value, 'category')">
+      <button class="primary" (click)="changeStatusCurrentClassement(newCategory.value, 'category')">
         {{ 'list.category.edit' | translate }}
       </button>
     </div>

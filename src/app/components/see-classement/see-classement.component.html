@@ -25,11 +25,10 @@
                 [style.--name-background]="group.bgColor + nameOpacity"
                 [style.--text-color]="group.txtColor"
               >
-                @if (!options().nameMarkdown) {
-                  <pre>{{ group.name }}</pre>
-                }
                 @if (options().nameMarkdown) {
                   <markdown [data]="group.name"></markdown>
+                } @else {
+                  <pre>{{ group.name }}</pre>
                 }
               </td>
               <td class="elements drop-list">
@@ -73,11 +72,13 @@
       <div class="zone-classement-container html2canvas-element" id="{{ render() ? 'html2canvas-element' : '' }}">
         <div class="zone-classement">
           @if (options().groups?.length) {
-            @if (options().mode === 'iceberg') {
-              <zone-area [groups]="options().groups"></zone-area>
-            }
-            @if (options().mode === 'axis') {
-              <zone-axis [groups]="options().groups"></zone-axis>
+            @switch (options().mode) {
+              @case ('iceberg') {
+                <zone-area [groups]="options().groups"></zone-area>
+              }
+              @case ('axis') {
+                <zone-axis [groups]="options().groups"></zone-axis>
+              }
             }
           }
           <div class="elements">

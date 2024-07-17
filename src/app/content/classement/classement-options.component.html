@@ -418,8 +418,7 @@
             <span>{{ 'generator.options.group.markdown' | translate }}</span>
           </label>
         </div>
-      }
-      @if (opts.mode === 'iceberg') {
+      } @else if (opts.mode === 'iceberg') {
         <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
         <div class="zone-title-number">
           <div class="width-input">
@@ -504,8 +503,7 @@
             <div class="color-render"></div>
           }
         </div>
-      }
-      @if (opts.mode === 'axis') {
+      } @else if (opts.mode === 'axis') {
         <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
         <div class="zone-title-axis">
           @for (item of opts.groups; track item; let index = $index) {

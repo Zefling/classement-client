@@ -101,15 +101,17 @@
           {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
         </button>
       }
-      @if (myClassement && !currentUser) {
-        <button (click)="seeMyClassement()" class="primary">
-          {{
-            (myClassementCount > 1 ? 'generator.actions.see.my.last.derivative' : 'generator.actions.see.my.derivative')
-              | translate
-          }}
-        </button>
-      }
       @if (myClassement) {
+        @if (!currentUser) {
+          <button (click)="seeMyClassement()" class="primary">
+            {{
+              (myClassementCount > 1
+                ? 'generator.actions.see.my.last.derivative'
+                : 'generator.actions.see.my.derivative'
+              ) | translate
+            }}
+          </button>
+        }
         <button (click)="openMyClassement()" class="primary">
           {{
             (myClassementCount > 1
@@ -123,8 +125,6 @@
         <button (click)="seeMyClassements()" class="primary">
           {{ 'navigate.my.derivatives' | translate }}
         </button>
-      }
-      @if (myClassementCount > 1) {
         <div class="note">
           {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
         </div>
@@ -136,8 +136,7 @@
     <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
       @if (!exportImageDisabled) {
         <span class="icon-share"></span>
-      }
-      @if (exportImageDisabled) {
+      } @else {
         <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
       }
       {{ 'generator.actions.export.image' | translate }}
@@ -227,8 +226,7 @@
                 <button class="primary" (click)="loadDerivativeClassement(derivative)">
                   {{ 'generator.actions.see.this.derivative' | translate }}
                 </button>
-              }
-              @if (derivative.rankingId === classement?.rankingId) {
+              } @else {
                 {{ 'list.current' | translate }}
               }
             </td>
@@ -284,8 +282,7 @@
                 <button class="primary" (click)="loadHistoryClassement(item)">
                   {{ 'generator.actions.see.this.derivative' | translate }}
                 </button>
-              }
-              @if (item.id === classement.historyId) {
+              } @else {
                 <span class="current">
                   {{ 'list.current' | translate }}
                 </span>

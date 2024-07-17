@@ -6,8 +6,7 @@
       <div class="avatar" (click)="avatarEdit()">
         @if (!user.avatar) {
           <span class="icon icon-profile"></span>
-        }
-        @if (user.avatar) {
+        } @else {
           <img [src]="user.avatarUrl" />
         }
       </div>
@@ -219,8 +218,7 @@
       <button (click)="updateAvatar()" class="primary">
         {{ 'user.profile.avatar.update' | translate }}
       </button>
-    }
-    @if (!croppedImage && user?.avatar) {
+    } @else if (!croppedImage && user?.avatar) {
       <button (click)="updateAvatar()" class="warn">
         {{ 'user.profile.avatar.remove' | translate }}
       </button>
