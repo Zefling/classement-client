@@ -13,16 +13,13 @@
 @if (jsonTmp) {
   @if (jsonTmp.length > 1) {
     <div class="buttons-list button-image-save">
-      @if (jsonTmp) {
-        <button class="button-add primary" (click)="selectAll(true)">
-          {{ 'generator.json.select.all' | translate }}
-        </button>
-      }
-      @if (jsonTmp) {
-        <button class="button-add primary" (click)="selectAll(false)">
-          {{ 'generator.json.unselect.all' | translate }}
-        </button>
-      }
+      <button class="button-add primary" (click)="selectAll(true)">
+        {{ 'generator.json.select.all' | translate }}
+      </button>
+
+      <button class="button-add primary" (click)="selectAll(false)">
+        {{ 'generator.json.unselect.all' | translate }}
+      </button>
     </div>
   }
   @for (file of jsonTmp; track file) {
@@ -50,32 +47,25 @@
 
 <div class="buttons-list button-image-save">
   <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
-  @if (!multi && actions() === 'all') {
-    @if (jsonTmp) {
-      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
-        {{ 'generator.json.import.replace' | translate }}
-      </button>
-    }
-    @if (jsonTmp) {
-      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
-        {{ 'generator.json.import.new' | translate }}
-      </button>
-    }
-  }
-  @if (!multi && actions() === 'importOnly') {
-    @if (jsonTmp) {
-      <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
-        {{ 'generator.json.import.add' | translate }}
-      </button>
-    }
-  }
-  @if (multi()) {
-    @if (jsonTmp) {
+  @if (jsonTmp) {
+    @if (!multi()) {
+      @if (actions() === 'all') {
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
+          {{ 'generator.json.import.replace' | translate }}
+        </button>
+
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+          {{ 'generator.json.import.new' | translate }}
+        </button>
+      } @else if (actions() === 'importOnly') {
+        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+          {{ 'generator.json.import.add' | translate }}
+        </button>
+      }
+    } @else {
       <button class="button-add primary" (click)="importMultiJson('replace')">
         {{ 'generator.json.import.multi.replace' | translate }}
       </button>
-    }
-    @if (jsonTmp) {
       <button class="button-add primary" (click)="importMultiJson('new')">
         {{ 'generator.json.import.multi.add' | translate }}
       </button>
