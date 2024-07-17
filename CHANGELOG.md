@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.2.1 (2024-07-17)
+
+#### Standalone web app
+
+-   Fixed a login regression with OAuth
+-   Update Angular CDK
+
 ### 2.2.0 (2024-07-16)
 
 #### Standalone web app
