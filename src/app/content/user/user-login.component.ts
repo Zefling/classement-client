@@ -1,7 +1,7 @@
 import { booleanAttribute, Component, input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -27,7 +27,7 @@ export class UserLoginComponent implements OnDestroy {
     constructor(
         private readonly router: Router,
         private readonly userService: APIUserService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -38,7 +38,7 @@ export class UserLoginComponent implements OnDestroy {
                     this.router.navigate(['/user/profile']);
                 }
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
@@ -13,8 +13,8 @@ export class CategoriesService {
 
     onChange = new Subject<void>();
 
-    constructor(private readonly translate: TranslateService) {
-        this.translate.onLangChange.subscribe(() => {
+    constructor(private readonly translate: TranslocoService) {
+        this.translate.langChanges$.subscribe(() => {
             this.sort();
             this.onChange.next();
         });
@@ -25,7 +25,7 @@ export class CategoriesService {
     sort() {
         this.categoriesList = categories.map<Category>(category => ({
             value: category,
-            label: this.translate.instant(`category.${category}`),
+            label: this.translate.translate(`category.${category}`),
         }));
         this.categoriesList.sort((a, b) =>
             a.value === 'other' ? 1 : b.value === 'other' ? -1 : a.label.localeCompare(b.label),

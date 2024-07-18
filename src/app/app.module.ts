@@ -2,18 +2,14 @@ import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { MARKED_OPTIONS, MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './share.module';
-
-export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { TranslocoRootModule } from './transloco-root.module';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -46,13 +42,8 @@ export function markedOptionsFactory(): MarkedOptions {
                 useFactory: markedOptionsFactory,
             },
         }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [HttpClient],
-            },
-        }),
+        TranslocoModule,
+        TranslocoRootModule,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],
     exports: [],

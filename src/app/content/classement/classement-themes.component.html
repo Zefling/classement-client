@@ -1,5 +1,5 @@
 <dialog-cmp class="auto-format">
-  <p>{{ 'generator.theme.info' | translate }}</p>
+  <p>{{ 'generator.theme.info' | transloco }}</p>
 
   <div class="themes">
     @for (theme of themes(); track theme) {
@@ -8,10 +8,10 @@
   </div>
 
   <div>
-    <button (click)="cancel()">{{ 'generator.theme.cancel' | translate }}</button>
+    <button (click)="cancel()">{{ 'generator.theme.cancel' | transloco }}</button>
     @if (currentTheme) {
       <button class="primary" (click)="validate()">
-        {{ 'generator.theme.validate' | translate }}
+        {{ 'generator.theme.validate' | transloco }}
       </button>
     }
   </div>

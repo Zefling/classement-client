@@ -1,30 +1,30 @@
 @if (!options) {
-  <loader-cmp [message]="'generator.loading' | translate"></loader-cmp>
+  <loader-cmp [message]="'generator.loading' | transloco"></loader-cmp>
 }
 
 <div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
-  <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | translate }}</h2>
+  <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
   <div class="top-actions">
     @if (apiActive && classement && classement.templateTotal > 1) {
       <div class="server-api">
         <button class="button-add primary" (click)="toTemplateNavigation()">
-          {{ 'navigate.see.derivatives' | translate }} ({{ classement.templateTotal }})
+          {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
         </button>
         @if (derivatives && derivatives.length > 1) {
           <button class="button-add primary" (click)="showDerivative()">
-            {{ 'navigate.my.derivatives' | translate }} ({{ derivatives.length }})
+            {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
           </button>
         }
         <button class="button-add primary" (click)="showRankingDiff()">
-          {{ 'generator.ranking.diff' | translate }}
+          {{ 'generator.ranking.diff' | transloco }}
         </button>
       </div>
     }
     <div class="client-api">
       @if (imdbActive) {
         <button class="button-add primary" (click)="imdb().open()">
-          {{ 'IMDB' | translate }}
+          {{ 'IMDB' | transloco }}
         </button>
       }
     </div>
@@ -35,20 +35,20 @@
   @if (options) {
     <div [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
       <div class="classement-top">
-        <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+        <h3>{{ 'generator.ranking.group.title' | transloco }}</h3>
         @if (classScreenMode !== 'default') {
           <button (click)="screenMode('default', div)">
-            {{ 'generator.screen.default' | translate }}
+            {{ 'generator.screen.default' | transloco }}
           </button>
         }
         @if (classScreenMode !== 'enlarge') {
           <button (click)="screenMode('enlarge', div)">
-            {{ 'generator.screen.window' | translate }}
+            {{ 'generator.screen.window' | transloco }}
           </button>
         }
         @if (classScreenMode !== 'fullscreen') {
           <button (click)="screenMode('fullscreen', div)">
-            {{ 'generator.screen.fullscreen' | translate }}
+            {{ 'generator.screen.fullscreen' | transloco }}
           </button>
         }
       </div>
@@ -182,11 +182,11 @@
                       }
                       @if (!(first && last)) {
                         <button class="button-suppr" (click)="deleteLine(indexGrp)">
-                          <span [title]="'generator.line.delete' | translate" class="icon-remove"></span>
+                          <span [title]="'generator.line.delete' | transloco" class="icon-remove"></span>
                         </button>
                       }
                       <button class="button-add" (click)="addLine(indexGrp)">
-                        <span [title]="'generator.line.add' | translate" class="icon icon-add"></span>
+                        <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
                       </button>
                       <span
                         tabindex="0"
@@ -267,16 +267,16 @@
         }
         @if (options.mode === 'iceberg' || options.mode === 'axis') {
           <div class="help">
-            <p><span class="icon-info"></span> {{ 'generator.help.title' | translate }}</p>
+            <p><span class="icon-info"></span> {{ 'generator.help.title' | transloco }}</p>
             <ul>
-              <li>{{ 'generator.help.zone.central.click' | translate }}</li>
-              <li>{{ 'generator.help.zone.double.click' | translate }}</li>
+              <li>{{ 'generator.help.zone.central.click' | transloco }}</li>
+              <li>{{ 'generator.help.zone.double.click' | transloco }}</li>
             </ul>
           </div>
         }
         <div class="current-list">
           <div class="drop-image-message">
-            <span>{{ 'generator.ranking.drop.image' | translate }}</span>
+            <span>{{ 'generator.ranking.drop.image' | transloco }}</span>
             @if (scrollArrows) {
               <span class="arrows">⇄</span>
             }
@@ -363,10 +363,10 @@
               ></div>
             }
             <div class="content-box add-file" (click)="addFiles()">
-              <span>{{ 'generator.ranking.add.image' | translate }}</span>
+              <span>{{ 'generator.ranking.add.image' | transloco }}</span>
             </div>
             <div class="content-box add-text" (click)="addTextsDialog()">
-              <span>{{ 'generator.ranking.add.text' | translate }}</span>
+              <span>{{ 'generator.ranking.add.text' | transloco }}</span>
             </div>
           </div>
         </div>
@@ -391,28 +391,28 @@
           @if (exportImageLoading) {
             <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
           }
-          {{ 'generator.actions.export.image' | translate }}
+          {{ 'generator.actions.export.image' | transloco }}
         </button>
       </div>
 
       <div class="save-actions buttons">
         <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
-          {{ 'generator.actions.save.local' | translate }}
-          <span [tooltip]="'generator.actions.save.local.info' | translate" class="icon-info"></span>
+          {{ 'generator.actions.save.local' | transloco }}
+          <span [tooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
         </button>
         <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
-          {{ 'generator.actions.export.json' | translate }}
+          {{ 'generator.actions.export.json' | transloco }}
         </button>
         <button class="primary" (click)="dialogImport.open()">
-          {{ 'generator.actions.import.json' | translate }}
+          {{ 'generator.actions.import.json' | transloco }}
         </button>
         <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
-          {{ 'generator.optimise.button.optimise' | translate }} ({{ size | fileSize }})
+          {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
         @if (options && hasItems) {
           <label class="line">
             <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-            {{ 'generator.actions.save.local.auto' | translate }}
+            {{ 'generator.actions.save.local.auto' | transloco }}
           </label>
         }
       </div>
@@ -420,21 +420,21 @@
         <div class="save-actions buttons">
           @if (logged) {
             <button [disabled]="!id" class="primary" (click)="copyLink()">
-              🔗 {{ 'generator.ranking.share.link' | translate }}
+              🔗 {{ 'generator.ranking.share.link' | transloco }}
             </button>
             <button [disabled]="!id" class="primary" (click)="show()">
-              {{ 'generator.ranking.see' | translate }}
+              {{ 'generator.ranking.see' | transloco }}
             </button>
           }
           <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
-            {{ 'generator.actions.save.server' | translate }}
+            {{ 'generator.actions.save.server' | transloco }}
           </button>
         </div>
       }
 
       <div class="save-actions buttons">
         <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
-          {{ 'generator.actions.reset.groups.button' | translate }}
+          {{ 'generator.actions.reset.groups.button' | transloco }}
         </button>
       </div>
     </div>
@@ -443,7 +443,7 @@
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
   <div class="button-image-save">
-    {{ 'generator.actions.save.image' | translate }}
+    {{ 'generator.actions.save.image' | transloco }}
     <span>
       <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
       <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
@@ -486,30 +486,30 @@
     <table class="table-derivatives">
       <thead>
         <tr>
-          <th class="title">{{ 'list.title.name' | translate }}</th>
-          <th class="date">{{ 'list.date' | translate }}</th>
-          <th class="groups">{{ 'list.count.group' | translate }}</th>
-          <th class="items">{{ 'list.count.item' | translate }}</th>
-          <th class="actions">{{ 'list.action.name' | translate }}</th>
+          <th class="title">{{ 'list.title.name' | transloco }}</th>
+          <th class="date">{{ 'list.date' | transloco }}</th>
+          <th class="groups">{{ 'list.count.group' | transloco }}</th>
+          <th class="items">{{ 'list.count.item' | transloco }}</th>
+          <th class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
       <tbody>
         @for (derivative of derivatives; track derivative) {
           <tr [class.current]="derivative.rankingId === classement?.rankingId">
             <td class="title">
-              {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+              {{ derivative.data.options.title || ('list.title.undefined' | transloco) }}
               @if (derivative.rankingId === classement?.rankingId) {
-                <span class="icon-left"></span> {{ 'list.current' | translate }}
+                <span class="icon-left"></span> {{ 'list.current' | transloco }}
               }
             </td>
             <td class="date">
-              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="groups">{{ derivative.totalGroups }}</td>
             <td class="items">{{ derivative.totalItems }}</td>
             <td class="actions">
-              <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | translate }}</a>
+              <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | transloco }}</a>
             </td>
           </tr>
         }
@@ -522,7 +522,7 @@
   <div class="container">
     @if (diff?.length) {
       <div class="label">
-        {{ 'generator.ranking.add.tile' | translate }}
+        {{ 'generator.ranking.add.tile' | transloco }}
       </div>
       <div class="elements drop-list">
         @for (item of diff; track item) {
@@ -549,11 +549,11 @@
         }
       </div>
     } @else {
-      <div class="content-diff">{{ 'generator.ranking.no.tile' | translate }}</div>
+      <div class="content-diff">{{ 'generator.ranking.no.tile' | transloco }}</div>
     }
     <div class="buttons">
       <button class="primary" (click)="dialogRankingDiff.close()">
-        {{ 'generator.ranking.close' | translate }}
+        {{ 'generator.ranking.close' | transloco }}
       </button>
     </div>
   </div>
@@ -561,14 +561,14 @@
 
 <dialog-cmp class="auto-format" #dialogClear>
   <p>
-    {{ 'generator.actions.reset.groups.question' | translate }}
+    {{ 'generator.actions.reset.groups.question' | transloco }}
   </p>
   <div class="buttons">
     <button (click)="dialogClear.close()">
-      {{ 'generator.actions.reset.groups.cancel' | translate }}
+      {{ 'generator.actions.reset.groups.cancel' | transloco }}
     </button>
     <button class="warn" (click)="reset(); dialogClear.close()">
-      {{ 'generator.actions.reset.groups.ok' | translate }}
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
 </dialog-cmp>
@@ -623,16 +623,16 @@
           class="button-suppr group-options"
           (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
         >
-          {{ 'generator.line.delete' | translate }}
+          {{ 'generator.line.delete' | transloco }}
         </button>
       }
       <button class="button-add group-options" (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()">
-        {{ 'generator.line.add' | translate }}
+        {{ 'generator.line.add' | transloco }}
       </button>
     </div>
     <div class="buttons">
       <button class="primary" (click)="dialogGroupOption.close()">
-        {{ 'generator.actions.reset.groups.ok' | translate }}
+        {{ 'generator.actions.reset.groups.ok' | transloco }}
       </button>
     </div>
   }
@@ -642,7 +642,7 @@
   <div class="add-text-dialog">
     <label class="name">
       <div>
-        {{ 'generator.actions.texts.info' | translate }}
+        {{ 'generator.actions.texts.info' | transloco }}
       </div>
       <div class="auto-resize" [attr.data-value]="inputText?.value">
         <textarea #inputText [(ngModel)]="inputTexts" rows="1" maxlength="100"></textarea>
@@ -650,10 +650,10 @@
     </label>
     <div class="buttons">
       <button class="default" (click)="closeTexts()">
-        {{ 'generator.actions.texts.cancel' | translate }}
+        {{ 'generator.actions.texts.cancel' | transloco }}
       </button>
       <button class="primary" (click)="addTexts()">
-        {{ 'generator.actions.texts.ok' | translate }}
+        {{ 'generator.actions.texts.ok' | transloco }}
       </button>
     </div>
   </div>

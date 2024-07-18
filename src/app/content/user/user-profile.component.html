@@ -1,4 +1,4 @@
-<h1>{{ 'user.profile.title' | translate }}</h1>
+<h1>{{ 'user.profile.title' | transloco }}</h1>
 
 @if (user) {
   <div>
@@ -11,31 +11,31 @@
         }
       </div>
       <div>
-        <strong>{{ 'user.profile.username' | translate }}</strong>
-        {{ user.username || ('list.user.anonymous' | translate) }}
+        <strong>{{ 'user.profile.username' | transloco }}</strong>
+        {{ user.username || ('list.user.anonymous' | transloco) }}
       </div>
       <div>
-        <strong>{{ 'user.profile.since' | translate }}</strong>
-        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+        <strong>{{ 'user.profile.since' | transloco }}</strong>
+        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }}
       </div>
       <div>
-        <strong>{{ 'user.profile.email' | translate }}</strong>
+        <strong>{{ 'user.profile.email' | transloco }}</strong>
         {{ user.email }}
       </div>
     </div>
-    <h2>{{ 'user.profile.actions' | translate }}</h2>
+    <h2>{{ 'user.profile.actions' | transloco }}</h2>
     <p class="action buttons">
-      <button (click)="changeUsername()">{{ 'user.profile.change.username' | translate }}</button>
-      <button (click)="changeEmail()">{{ 'user.profile.change.email' | translate }}</button>
-      <button (click)="changePassword()">{{ 'user.profile.change.password' | translate }}</button>
-      <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | translate }}</button>
+      <button (click)="changeUsername()">{{ 'user.profile.change.username' | transloco }}</button>
+      <button (click)="changeEmail()">{{ 'user.profile.change.email' | transloco }}</button>
+      <button (click)="changePassword()">{{ 'user.profile.change.password' | transloco }}</button>
+      <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | transloco }}</button>
     </p>
     @if (user.classements) {
-      <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
+      <h2>{{ 'user.profile.view.rankings' | transloco }}</h2>
       <div class="links">
         @if (localSize) {
           <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >{{ 'user.profile.list.browser.tab' | translate }} ({{ localSize }})</a
+            >{{ 'user.profile.list.browser.tab' | transloco }} ({{ localSize }})</a
           >
         }
         @if (user.classements && localSize) {
@@ -43,7 +43,7 @@
         }
         @if (user.classements) {
           <a routerLink="/user/lists/server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >{{ 'user.profile.list.server.tab' | translate }} ({{ user.classements.length }})</a
+            >{{ 'user.profile.list.server.tab' | transloco }} ({{ user.classements.length }})</a
           >
         }
       </div>
@@ -55,9 +55,9 @@
 }
 
 <dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
-  <p>{{ 'user.username.change' | translate }}</p>
+  <p>{{ 'user.username.change' | transloco }}</p>
 
-  <label for="username">{{ 'user.username.new' | translate }}</label>
+  <label for="username">{{ 'user.username.new' | transloco }}</label>
   <div class="validity-input">
     <input id="username" spellcheck="false" formControlName="username" />
     <span class="validity" [class.valid]="usernameValidity">
@@ -74,20 +74,20 @@
   }
 
   <div class="buttons">
-    <button (click)="dialogChangeUsername.close()">{{ 'user.username.change.cancel' | translate }}</button>
+    <button (click)="dialogChangeUsername.close()">{{ 'user.username.change.cancel' | transloco }}</button>
     <button (click)="valideChangeUsername()" class="primary" [disabled]="!usernameValidity">
-      {{ 'user.username.change.ok' | translate }}
+      {{ 'user.username.change.ok' | transloco }}
     </button>
   </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
-  <p>{{ 'user.password.change' | translate }}</p>
+  <p>{{ 'user.password.change' | transloco }}</p>
 
-  <label for="password">{{ 'user.password.old' | translate }}</label>
+  <label for="password">{{ 'user.password.old' | transloco }}</label>
   <input id="password" type="password" spellcheck="false" formControlName="passwordOld" />
 
-  <label for="password">{{ 'user.password.new' | translate }}</label>
+  <label for="password">{{ 'user.password.new' | transloco }}</label>
   <input id="password" type="password" spellcheck="false" formControlName="password" />
   <div class="level-strong">
     @if (!strong) {
@@ -100,7 +100,7 @@
     }
   </div>
 
-  <label for="password2">{{ 'user.password.confirm' | translate }}</label>
+  <label for="password2">{{ 'user.password.confirm' | transloco }}</label>
   <input id="password2" type="password" spellcheck="false" formControlName="password2" />
   <div class="level-strong">
     @if (confirm) {
@@ -117,14 +117,14 @@
   }
 
   <div class="buttons">
-    <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | translate }}</button>
-    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
+    <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | transloco }}</button>
+    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | transloco }}</button>
   </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
-  <p>{{ 'user.email.change' | translate }}</p>
-  <label for="email">{{ 'user.email.old' | translate }}</label>
+  <p>{{ 'user.email.change' | transloco }}</p>
+  <label for="email">{{ 'user.email.old' | transloco }}</label>
   <input id="email" type="email" formControlName="emailOld" />
   <div class="level-strong">
     @if (changeEmailForm.get('emailOld')?.value) {
@@ -132,7 +132,7 @@
     }
   </div>
 
-  <label for="email">{{ 'user.email.new' | translate }}</label>
+  <label for="email">{{ 'user.email.new' | transloco }}</label>
   <input id="email" type="email" formControlName="emailNew" />
   <div class="level-strong">
     @if (changeEmailForm.get('emailNew')?.value) {
@@ -151,36 +151,36 @@
   }
 
   <div class="buttons">
-    <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | translate }}</button>
-    <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | translate }}</button>
+    <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | transloco }}</button>
+    <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | transloco }}</button>
   </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogRemoveProfile>
-  <p>{{ 'user.profile.remove.question' | translate }}</p>
+  <p>{{ 'user.profile.remove.question' | transloco }}</p>
   <p class="alert">
-    {{ 'user.profile.remove.warning' | translate }}<br />
-    {{ 'user.profile.remove.warning2' | translate }}
+    {{ 'user.profile.remove.warning' | transloco }}<br />
+    {{ 'user.profile.remove.warning2' | transloco }}
   </p>
   <div class="buttons">
-    <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | translate }}</button>
-    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
+    <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | transloco }}</button>
+    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
   <h3>
-    {{ 'user.profile.avatar.title' | translate }}
+    {{ 'user.profile.avatar.title' | transloco }}
   </h3>
   <div class="banner">
-    <label class="required">{{ 'user.profile.avatar.select' | translate }}</label>
+    <label class="required">{{ 'user.profile.avatar.select' | transloco }}</label>
     <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #avatarInput />
   </div>
 
   <div class="cropper-line">
     @if (imageChangedEvent || imageBase64) {
       <div class="cropper">
-        <div class="label">{{ 'user.profile.avatar.crop' | translate }}</div>
+        <div class="label">{{ 'user.profile.avatar.crop' | transloco }}</div>
         <image-cropper
           [imageChangedEvent]="imageChangedEvent"
           [imageBase64]="imageBase64"
@@ -201,11 +201,11 @@
     }
     @if (croppedImage || user!.avatarUrl) {
       <div class="image">
-        <div class="label">{{ 'user.profile.avatar.image' | translate }}</div>
+        <div class="label">{{ 'user.profile.avatar.image' | transloco }}</div>
         <img [src]="croppedImage || user!.avatarUrl" />
         @if (croppedImage) {
           <button (click)="removeAvatar()">
-            {{ 'user.profile.avatar.delete' | translate }}
+            {{ 'user.profile.avatar.delete' | transloco }}
           </button>
         }
       </div>
@@ -213,14 +213,14 @@
   </div>
 
   <div class="buttons">
-    <button (click)="avatarDialog.close()">{{ 'user.profile.avatar.cancel' | translate }}</button>
+    <button (click)="avatarDialog.close()">{{ 'user.profile.avatar.cancel' | transloco }}</button>
     @if (croppedImage) {
       <button (click)="updateAvatar()" class="primary">
-        {{ 'user.profile.avatar.update' | translate }}
+        {{ 'user.profile.avatar.update' | transloco }}
       </button>
     } @else if (!croppedImage && user?.avatar) {
       <button (click)="updateAvatar()" class="warn">
-        {{ 'user.profile.avatar.remove' | translate }}
+        {{ 'user.profile.avatar.remove' | transloco }}
       </button>
     }
   </div>

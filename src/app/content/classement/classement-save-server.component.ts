@@ -1,6 +1,6 @@
 import { Component, ElementRef, input, OnChanges, OnDestroy, output, SimpleChanges, viewChild } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
@@ -62,7 +62,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         private readonly userService: APIUserService,
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly categories: CategoriesService,
     ) {
         this.userService.loggedStatus().then(() => {
@@ -120,8 +120,8 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
         // format data for server save
         const classement: Classement = {
-            rankingId: sameUserEdit ? current?.rankingId ?? null : null,
-            parentId: sameUserEdit ? current?.parentId ?? current?.templateId ?? null : current?.rankingId ?? null,
+            rankingId: sameUserEdit ? (current?.rankingId ?? null) : null,
+            parentId: sameUserEdit ? (current?.parentId ?? current?.templateId ?? null) : (current?.rankingId ?? null),
             templateId: current?.templateId ?? null,
             localId: current?.localId || null,
             linkId: this.linkChange ? this.linkId : current?.linkId || null,
@@ -136,15 +136,15 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         } as any;
 
         if (!classement.name) {
-            this.showError.push(this.translate.instant('error.classement.name.empty'));
+            this.showError.push(this.translate.translate('error.classement.name.empty'));
         }
 
         if (!classement.category) {
-            this.showError.push(this.translate.instant('error.classement.category.empty'));
+            this.showError.push(this.translate.translate('error.classement.category.empty'));
         }
 
         if (!classement.banner) {
-            this.showError.push(this.translate.instant('error.classement.banner.empty'));
+            this.showError.push(this.translate.translate('error.classement.banner.empty'));
         }
 
         if (classement.mode === 'teams') {
@@ -160,7 +160,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                 .then(classementSave => {
                     this.action.emit({ type: this.saveLocal ? 'save' : 'remove', classement: classementSave });
                     this.userService.updateClassement(classementSave);
-                    this.messageService.addMessage(this.translate.instant('message.server.save.success'));
+                    this.messageService.addMessage(this.translate.translate('message.server.save.success'));
                     this.cancel();
                 })
                 .catch(e => {

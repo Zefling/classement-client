@@ -1,6 +1,6 @@
 import { Component, EventEmitter, input, Output, viewChild } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -40,7 +40,7 @@ export class ListClassementsComponent {
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
         private readonly globalService: GlobalService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
     ) {}
 
     see(classement: Classement) {
@@ -87,7 +87,7 @@ export class ListClassementsComponent {
                     this.changeCategoryCancel();
                 }
 
-                this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
+                this.messageService.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
             })
             .catch(e => {});
     }

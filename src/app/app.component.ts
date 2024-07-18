@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostBinding, ViewChi
 import { FormControl, FormGroup } from '@angular/forms';
 import { Event, Router, Scroll } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { filter } from 'rxjs';
 
@@ -62,7 +62,7 @@ export class AppComponent implements DoCheck {
     private route?: string;
 
     constructor(
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly globalService: GlobalService,
         private readonly router: Router,
         private readonly logger: Logger,
@@ -122,7 +122,7 @@ export class AppComponent implements DoCheck {
 
     updateLanguage(lang: string) {
         this.logger.log('Update language: ' + lang);
-        this.translate.use(lang);
+        this.translate.setActiveLang(lang);
         document.documentElement.setAttribute('lang', lang);
         this.globalService.lang = lang;
     }

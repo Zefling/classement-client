@@ -1,17 +1,17 @@
 @if (pageMode()) {
-  <h2>{{ 'menu.list' | translate }}</h2>
+  <h2>{{ 'menu.list' | transloco }}</h2>
 }
 
 <div class="infos">
   <p>
-    <span class="icon-info"></span> {{ 'list.intro' | translate }}<br />
+    <span class="icon-info"></span> {{ 'list.intro' | transloco }}<br />
     <span class="space">
-      {{ 'list.space' | translate }}{{ quota?.usage || 0 | fileSize }} / {{ quota?.quota || 0 | fileSize }}
+      {{ 'list.space' | transloco }}{{ quota?.usage || 0 | fileSize }} / {{ quota?.quota || 0 | fileSize }}
     </span>
   </p>
   <div class="list-actions">
     <div class="filter">
-      <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
+      <label for="browser-list-filter">{{ 'list.filter' | transloco }}</label>
       <input
         id="browser-list-filter"
         type="search"
@@ -23,10 +23,10 @@
       <span (click)="updateFilter(filterInput)"></span>
     </div>
     <button class="primary" (click)="exportAll()">
-      {{ 'generator.actions.export.all.json' | translate }}
+      {{ 'generator.actions.export.all.json' | transloco }}
     </button>
     <button class="primary" (click)="dialogImport.open()">
-      {{ 'generator.actions.import.json' | translate }}
+      {{ 'generator.actions.import.json' | transloco }}
     </button>
   </div>
 </div>
@@ -37,7 +37,7 @@
       <thead>
         <tr>
           <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
-            {{ 'list.title.name' | translate }}
+            {{ 'list.title.name' | transloco }}
           </th>
           <th
             class="mode"
@@ -48,24 +48,24 @@
               default: 'default',
             }"
           >
-            {{ 'list.mode.name' | translate }}
+            {{ 'list.mode.name' | transloco }}
           </th>
           <th
             class="category"
             [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
           >
-            {{ 'list.category.name' | translate }}
+            {{ 'list.category.name' | transloco }}
           </th>
           <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
-            {{ 'list.date' | translate }}
+            {{ 'list.date' | transloco }}
           </th>
           <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
-            {{ 'list.count.group' | translate }}
+            {{ 'list.count.group' | transloco }}
           </th>
           <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
-            {{ 'list.count.item' | translate }}
+            {{ 'list.count.item' | transloco }}
           </th>
-          <th class="actions">{{ 'list.action.name' | translate }}</th>
+          <th class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
       <tbody>
@@ -73,11 +73,11 @@
           <tr>
             <td class="title">
               <div>
-                {{ item.options.title || ('list.title.undefined' | translate) }}
+                {{ item.options.title || ('list.title.undefined' | transloco) }}
               </div>
               <div class="category-rwd">
-                {{ 'mode.name.' + (item.options.mode || 'default') | translate }} |
-                {{ 'category.' + (item.options.category || 'undefined') | translate }}
+                {{ 'mode.name.' + (item.options.mode || 'default') | transloco }} |
+                {{ 'category.' + (item.options.category || 'undefined') | transloco }}
               </div>
               @if (item.options.tags && item.options.tags.length) {
                 <div class="tags">
@@ -93,29 +93,29 @@
                 @if (modeApi && item.rankingId && serverIds.includes(item.rankingId)) {
                   <a
                     class="from"
-                    [tooltip]="'list.server.link' | translate: { id: item.rankingId }"
+                    [tooltip]="'list.server.link' | transloco: { id: item.rankingId }"
                     [routerLink]="['/navigate/view', item.rankingId]"
                     >➡ <span class="icon-server"></span
                   ></a>
                 }
               </div>
             </td>
-            <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | translate }}</td>
-            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | translate }}</td>
+            <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | transloco }}</td>
+            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | transloco }}</td>
             <td class="date">
-              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
-              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | translate) }}</span>
+              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
             <td class="items">{{ item.listLength || item.listLenght }}</td>
             <td class="actions">
-              <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | translate }}">
+              <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | transloco }}">
                 <span class="icon-edit"></span>
               </button>
-              <button (click)="clone(item)" title="{{ 'list.action.clone' | translate }}">
+              <button (click)="clone(item)" title="{{ 'list.action.clone' | transloco }}">
                 <span class="icon-clone"></span>
               </button>
-              <button class="warn" (click)="delete(item)" title="{{ 'list.status.delete' | translate }}">
+              <button class="warn" (click)="delete(item)" title="{{ 'list.status.delete' | transloco }}">
                 <span class="icon-remove"></span>
               </button>
             </td>
@@ -124,9 +124,9 @@
       </tbody>
     </table>
   } @else {
-    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p class="no-result">{{ 'list.no.result' | transloco }}</p>
     <p>
-      <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+      <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | transloco }}</a>
     </p>
   }
 </ng-container>
@@ -136,34 +136,34 @@
 </dialog-cmp>
 
 <dialog-cmp #dialogDelete class="auto-format dialog-delete">
-  <p>{{ 'list.delete.question' | translate }}</p>
-  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+  <p>{{ 'list.delete.question' | transloco }}</p>
+  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div class="buttons">
-    <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | translate }}</button>
-    <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | translate }}</button>
+    <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | transloco }}</button>
+    <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | transloco }}</button>
   </div>
 </dialog-cmp>
 
 <dialog-cmp #dialogClone class="auto-format dialog-clone">
-  <p>{{ 'list.clone.question' | translate }}</p>
-  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | translate) }}</p>
+  <p>{{ 'list.clone.question' | transloco }}</p>
+  <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div>
-    <label for="clone-title">{{ 'list.clone.title' | translate }}</label>
+    <label for="clone-title">{{ 'list.clone.title' | transloco }}</label>
     <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
   </div>
 
   <label>
     <input type="checkbox" [(ngModel)]="changeTemplate" />
-    {{ 'list.clone.new.template' | translate }}
+    {{ 'list.clone.new.template' | transloco }}
   </label>
 
   <div class="buttons">
-    <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | translate }}</button>
+    <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | transloco }}</button>
     <button class="primary" (click)="cloneCurrent(true, title.value)">
-      {{ 'list.clone.validate' | translate }}
+      {{ 'list.clone.validate' | transloco }}
     </button>
     <button class="primary" (click)="cloneCurrent(true, title.value, true)">
-      {{ 'list.clone.edit' | translate }}
+      {{ 'list.clone.edit' | transloco }}
     </button>
   </div>
 </dialog-cmp>

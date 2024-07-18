@@ -1,7 +1,7 @@
 import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -56,7 +56,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         private readonly dbService: DBService,
         private readonly userService: APIUserService,
         private readonly router: Router,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly messageService: MessageService,
         private readonly global: GlobalService,
         private readonly logger: Logger,
@@ -68,7 +68,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.global.onUpdateList.subscribe(() => {
                 this.showList();
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -89,7 +89,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     sortableFilter = (key: string, item: FormattedInfos, _index: number): boolean => {
         return (
             (!key.startsWith('#') &&
-                Utils.normalizeString(item.options.title || this.translate.instant('list.title.undefined')).includes(
+                Utils.normalizeString(item.options.title || this.translate.translate('list.title.undefined')).includes(
                     Utils.normalizeString(key),
                 )) ||
             (key.startsWith('#') &&
@@ -180,7 +180,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                 this.result.splice(this.result.indexOf(this.itemCurrent as FormattedInfos), 1);
                 this.messageService.addMessage(
                     this.translate
-                        .instant('message.remove.success')
+                        .translate('message.remove.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
@@ -200,7 +200,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
                 this.messageService.addMessage(
                     this.translate
-                        .instant('message.clone.success')
+                        .translate('message.clone.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
                 );
                 this.itemCurrent = undefined;
@@ -231,7 +231,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
                         this.messageService.addMessage(
                             this.translate
-                                .instant('message.add.success')
+                                .translate('message.add.success')
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
                         );
                         this.itemCurrent = undefined;
@@ -245,7 +245,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         }
                     })
                     .catch(() => {
-                        this.messageService.addMessage(this.translate.instant('message.add.error'));
+                        this.messageService.addMessage(this.translate.translate('message.add.error'));
                     });
                 break;
         }
@@ -253,6 +253,6 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     private _getTitle(info: FormattedInfos) {
-        return info?.options?.title.trim() || this.translate.instant('list.title.undefined');
+        return info?.options?.title.trim() || this.translate.translate('list.title.undefined');
     }
 }

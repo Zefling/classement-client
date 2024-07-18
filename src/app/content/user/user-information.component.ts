@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -23,7 +23,7 @@ export class UserInformationComponent {
     constructor(
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -33,7 +33,7 @@ export class UserInformationComponent {
         }
 
         this._sub.push(
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -53,7 +53,7 @@ export class UserInformationComponent {
                 .sendToAdmin(this.username, this.email, this.text)
                 .then(() => {
                     this.text = '';
-                    this.messageService.addMessage(this.translate.instant('message.contact.sent.success'));
+                    this.messageService.addMessage(this.translate.translate('message.contact.sent.success'));
                 })
                 .catch(e => {
                     this.messageService.addMessage(e, { type: MessageType.error });

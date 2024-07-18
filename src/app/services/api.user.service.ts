@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
@@ -34,7 +34,7 @@ export class APIUserService extends APICommon {
     constructor(
         private readonly http: HttpClient,
         private readonly globalService: GlobalService,
-        translate: TranslateService,
+        translate: TranslocoService,
         logger: Logger,
     ) {
         super(translate, logger);

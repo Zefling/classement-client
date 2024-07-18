@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import owasp from 'owasp-password-strength-test';
 import { debounceTime } from 'rxjs';
@@ -35,7 +35,7 @@ export class UserSignupComponent implements OnDestroy {
         private readonly router: Router,
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -53,7 +53,7 @@ export class UserSignupComponent implements OnDestroy {
                     this.router.navigate(['/user/profile']);
                 }
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -114,27 +114,29 @@ export class UserSignupComponent implements OnDestroy {
         this.showError = [];
 
         if (value.username.trim() === '') {
-            this.showError.push(this.translate.instant('error.api-code.1001'));
+            this.showError.push(this.translate.translate('error.api-code.1001'));
         } else if (this.usernameExist) {
-            this.showError.push(this.translate.instant('error.username.exist'));
+            this.showError.push(this.translate.translate('error.username.exist'));
             this.usernameExist = true;
         }
         if (value.email.trim() === '') {
-            this.showError.push(this.translate.instant('error.api-code.1020'));
+            this.showError.push(this.translate.translate('error.api-code.1020'));
         } else if (this.emailInvalide) {
-            this.showError.push(this.translate.instant('error.email.invalid'));
+            this.showError.push(this.translate.translate('error.email.invalid'));
         } else if (this.emailExist) {
-            this.showError.push(this.translate.instant('error.email.exist'));
+            this.showError.push(this.translate.translate('error.email.exist'));
             this.emailExist = true;
         }
         if (value.password !== value.password2) {
-            this.showError.push(this.translate.instant('error.pw.duplicate'));
+            this.showError.push(this.translate.translate('error.pw.duplicate'));
             this.confirm = false;
         }
         if (test.errors?.length) {
             test.errors.forEach(e =>
                 this.showError.push(
-                    this.translate.instant('error.owasp.' + e.replace(/\d+/, '*')).replace('%', e.match(/\d+/)?.[0]),
+                    this.translate
+                        .translate('error.owasp.' + e.replace(/\d+/, '*'))
+                        .replace('%', e.match(/\d+/)?.[0] ?? ''),
                 ),
             );
         }
@@ -143,7 +145,7 @@ export class UserSignupComponent implements OnDestroy {
             this.userService
                 .signup(value.username, value.password, value.email)
                 .then(() => {
-                    this.messageService.addMessage(this.translate.instant('message.user.sign.up.success'));
+                    this.messageService.addMessage(this.translate.translate('message.user.sign.up.success'));
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {

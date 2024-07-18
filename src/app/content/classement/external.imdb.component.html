@@ -1,27 +1,27 @@
 <dialog-cmp closeButton>
-  <h2>{{ 'generator.external.imbd.title' | translate }}</h2>
+  <h2>{{ 'generator.external.imbd.title' | transloco }}</h2>
 
   @if (keyApi && languages) {
     <div class="imdb">
       <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
       <form [formGroup]="searchMovieForm" (submit)="search()">
         <div>
-          <label for="name">{{ 'generator.external.imbd.name' | translate }}</label>
+          <label for="name">{{ 'generator.external.imbd.name' | transloco }}</label>
           <input id="name" formControlName="query" />
         </div>
         <div>
           <label>
             <input type="checkbox" formControlName="include_adult" />
-            {{ 'generator.external.imbd.adult.content' | translate }}
+            {{ 'generator.external.imbd.adult.content' | transloco }}
           </label>
         </div>
         <div>
-          <label for="language">{{ 'generator.external.imbd.language' | translate }}</label>
+          <label for="language">{{ 'generator.external.imbd.language' | transloco }}</label>
           <select2 overlay id="language" formControlName="language" [data]="languages" />
         </div>
         <p class="buttons">
           <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
-            {{ 'generator.external.imbd.search' | translate }}
+            {{ 'generator.external.imbd.search' | transloco }}
           </button>
         </p>
       </form>
@@ -30,11 +30,11 @@
           <div>
             <label>
               <input type="checkbox" [(ngModel)]="withTitle" />
-              {{ 'generator.external.imbd.with.title' | translate }}
+              {{ 'generator.external.imbd.with.title' | transloco }}
             </label>
             <label>
               <input type="checkbox" [(ngModel)]="withYear" />
-              {{ 'generator.external.imbd.with.year' | translate }}
+              {{ 'generator.external.imbd.with.year' | transloco }}
             </label>
           </div>
         </div>

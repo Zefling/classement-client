@@ -1,9 +1,9 @@
-<h3>{{ 'menu.admin.classements' | translate }}</h3>
+<h3>{{ 'menu.admin.classements' | transloco }}</h3>
 
 @if (categoriesList) {
   <form class="search" (submit)="submit()">
     <div class="name">
-      <label>{{ 'navigate.title' | translate }}</label>
+      <label>{{ 'navigate.title' | transloco }}</label>
       <input
         type="search"
         name="searchKey"
@@ -15,10 +15,10 @@
     </div>
     <div class="line">
       <div class="categories">
-        <label>{{ 'navigate.category' | translate }}</label>
+        <label>{{ 'navigate.category' | transloco }}</label>
         <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
       </div>
-      <button type="submit">{{ 'navigate.search' | translate }}</button>
+      <button type="submit">{{ 'navigate.search' | transloco }}</button>
     </div>
   </form>
 }
@@ -41,6 +41,6 @@
       <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
     }
   } @else {
-    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p class="no-result">{{ 'list.no.result' | transloco }}</p>
   }
 }

@@ -10,8 +10,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
-
 import { Subject, last, map, tap } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
@@ -20,6 +18,7 @@ import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
+import { TranslocoService } from '@jsverse/transloco';
 import { Message, MessageError } from '../content/user/user.interface';
 import { Classement, ClassementHistory, SortClassementCol, SortDirection } from '../interface/interface';
 
@@ -39,7 +38,7 @@ export class APIClassementService extends APICommon {
     constructor(
         private readonly http: HttpClient,
         private readonly userService: APIUserService,
-        translate: TranslateService,
+        translate: TranslocoService,
         logger: Logger,
     ) {
         super(translate, logger);

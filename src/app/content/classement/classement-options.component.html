@@ -1,15 +1,15 @@
-<h3>{{ 'generator.options.group.title' | translate }}</h3>
+<h3>{{ 'generator.options.group.title' | transloco }}</h3>
 
 @let opts = options();
 
 @if (opts) {
   <div class="options {{ opts.mode }}" [class.simplified]="!opts.showAdvancedOptions">
     <div class="title">
-      <label for="option-title">{{ 'generator.options.title' | translate }}</label>
+      <label for="option-title">{{ 'generator.options.title' | transloco }}</label>
       <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
     </div>
     <div class="categories">
-      <label for="option-category">{{ 'generator.options.group' | translate }}</label>
+      <label for="option-category">{{ 'generator.options.group' | transloco }}</label>
       <div>
         <select2
           id="option-category"
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="modes">
-      <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
+      <label for="option-mode">{{ 'generator.options.mode' | transloco }}</label>
       <select2
         #mode
         id="option-mode"
@@ -33,14 +33,14 @@
           <div class="list-mode">
             <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
             <div class="desc">
-              {{ 'mode.name.' + label | translate }}
+              {{ 'mode.name.' + label | transloco }}
             </div>
           </div>
         </ng-template>
       </select2>
     </div>
     <div class="description">
-      <label for="option-description">{{ 'generator.options.description' | translate }}</label>
+      <label for="option-description">{{ 'generator.options.description' | transloco }}</label>
       <div>
         <textarea id="option-description" autosize maxlength="1000" [(ngModel)]="opts.description"></textarea>
         <div class="info-desc">
@@ -53,21 +53,21 @@
     </div>
     <div class="links">
       <a tabindex="0" (click)="switchOptions()">{{
-        (opts.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advance') | translate
+        (opts.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advance') | transloco
       }}</a>
     </div>
     <div class="themes">
-      <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | translate }}</a>
+      <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | transloco }}</a>
     </div>
     <div class="width-auto">
       <label class="toggle-switch">
         <input type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
-        <span>{{ 'generator.options.item.width.auto' | translate }}</span>
+        <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
       </label>
       @if (zoneMode.includes(opts.mode)) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
-          <span>{{ 'generator.options.item.height.auto' | translate }}</span>
+          <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
         </label>
       }
       @if (
@@ -75,28 +75,28 @@
       ) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemImageCover" />
-          <span>{{ 'generator.options.item.cover' | translate }}</span>
+          <span>{{ 'generator.options.item.cover' | transloco }}</span>
         </label>
       }
     </div>
     <div class="stream-mode">
       <label class="toggle-switch">
         <input type="checkbox" [(ngModel)]="opts.streamMode" />
-        <span>{{ 'generator.options.stream.mode' | translate }}</span>
-        <span [tooltip]="'generator.options.stream.mode.info' | translate" class="icon-info"></span>
+        <span>{{ 'generator.options.stream.mode' | transloco }}</span>
+        <span [tooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
       </label>
     </div>
     @if (opts.showAdvancedOptions) {
       <!-- ###############################  tile options ############################### -->
-      <h4 class="title-item">{{ 'generator.options.item.title' | translate }}</h4>
+      <h4 class="title-item">{{ 'generator.options.item.title' | transloco }}</h4>
       <div class="sizes">
-        <label for="option-item-margin">{{ 'generator.options.sizes' | translate }}</label>
+        <label for="option-item-margin">{{ 'generator.options.sizes' | transloco }}</label>
         <div class="item-options">
           <div class="box-border"></div>
           <div class="box-in"></div>
           <div class="height"></div>
           <div class="width"></div>
-          <label for="option-item-margin" class="margin">{{ 'generator.options.margin' | translate }}</label>
+          <label for="option-item-margin" class="margin">{{ 'generator.options.margin' | transloco }}</label>
           <input
             id="option-item-margin"
             type="number"
@@ -104,10 +104,10 @@
             max="20"
             class="item-margin"
             [(ngModel)]="opts.itemMargin"
-            title="{{ 'generator.options.item.margin' | translate }}"
+            title="{{ 'generator.options.item.margin' | transloco }}"
           />
           <label for="option-item-border" class="border">
-            <span>{{ 'generator.options.border' | translate }}</span>
+            <span>{{ 'generator.options.border' | transloco }}</span>
           </label>
           <input
             id="option-item-border"
@@ -116,9 +116,9 @@
             max="20"
             class="item-border"
             [(ngModel)]="opts.itemBorder"
-            title="{{ 'generator.options.item.border' | translate }}"
+            title="{{ 'generator.options.item.border' | transloco }}"
           />
-          <label for="option-item-padding" class="padding">{{ 'generator.options.padding' | translate }}</label>
+          <label for="option-item-padding" class="padding">{{ 'generator.options.padding' | transloco }}</label>
           <input
             id="option-item-padding"
             type="number"
@@ -126,7 +126,7 @@
             max="20"
             class="item-padding"
             [(ngModel)]="opts.itemPadding"
-            title="{{ 'generator.options.item.padding' | translate }}"
+            title="{{ 'generator.options.item.padding' | transloco }}"
           />
           @if (!opts.itemHeightAuto) {
             <input
@@ -137,7 +137,7 @@
               class="item-height"
               [(ngModel)]="opts.itemHeight"
               (ngModelChange)="updateSize('itemHeight', 16)"
-              title="{{ 'generator.options.item.height' | translate }}"
+              title="{{ 'generator.options.item.height' | transloco }}"
             />
           } @else {
             <span id="option-item-height-auto-info" class="item-height input">auto</span>
@@ -151,10 +151,10 @@
               class="item-max-height"
               [(ngModel)]="opts.itemMaxWidth"
               (ngModelChange)="updateSize('itemMaxHeight', 100)"
-              title="{{ 'generator.options.item.max.height' | translate }}"
+              title="{{ 'generator.options.item.max.height' | transloco }}"
             />
           }
-          <span class="image">{{ 'generator.options.image' | translate }}</span>
+          <span class="image">{{ 'generator.options.image' | transloco }}</span>
           @if (!opts.itemWidthAuto) {
             <input
               id="option-item-width"
@@ -164,7 +164,7 @@
               class="item-width"
               [(ngModel)]="opts.itemWidth"
               (ngModelChange)="updateSize('itemWidth', 16)"
-              title="{{ 'generator.options.item.width' | translate }}"
+              title="{{ 'generator.options.item.width' | transloco }}"
             />
           } @else {
             <span id="option-item-width-auto-info" class="item-width input">auto</span>
@@ -178,19 +178,19 @@
               class="item-max-width"
               [(ngModel)]="opts.itemMaxWidth"
               (ngModelChange)="updateSize('itemMaxWidth', 100)"
-              title="{{ 'generator.options.item.max.width' | translate }}"
+              title="{{ 'generator.options.item.max.width' | transloco }}"
             />
           }
         </div>
         <div>
           <label class="toggle-switch">
             <input id="option-item-width-auto" type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
-            <span>{{ 'generator.options.item.width.auto' | translate }}</span>
+            <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
           </label>
           @if (zoneMode.includes(opts.mode)) {
             <label class="toggle-switch">
               <input id="option-item-height-auto" type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
-              <span>{{ 'generator.options.item.height.auto' | translate }}</span>
+              <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
             </label>
           }
         </div>
@@ -199,13 +199,13 @@
         <div class="item-text-back input-button">
           <div class="color">
             <label for="option-item-text-background-color">{{
-              'generator.options.item.text.background.color' | translate
+              'generator.options.item.text.background.color' | transloco
             }}</label>
             <input id="option-item-text-background-color" type="color" [(ngModel)]="opts.itemTextBackgroundColor" />
           </div>
           <div class="opacity">
             <label id="option-item-text-background-opacity">{{
-              'generator.options.item.text.background.opacity' | translate
+              'generator.options.item.text.background.opacity' | transloco
             }}</label>
             <input
               id="option-item-text-background-opacity"
@@ -218,7 +218,7 @@
             />
           </div>
           <button (click)="resetItemTextBackground()" [disabled]="!opts.itemTextBackgroundColor">
-            {{ 'generator.options.clear' | translate }}
+            {{ 'generator.options.clear' | transloco }}
           </button>
           @if (opts.itemTextBackgroundColor) {
             <div class="color-render"></div>
@@ -227,11 +227,11 @@
       }
       <div class="colors-item-back input-button">
         <div class="color">
-          <label for="itemBackgroundColor">{{ 'generator.options.item.background.color' | translate }}</label>
+          <label for="itemBackgroundColor">{{ 'generator.options.item.background.color' | transloco }}</label>
           <input id="itemBackgroundColor" type="color" [(ngModel)]="opts.itemBackgroundColor" />
         </div>
         <div class="opacity">
-          <label for="itemBackgroundOpacity">{{ 'generator.options.item.background.opacity' | translate }}</label>
+          <label for="itemBackgroundOpacity">{{ 'generator.options.item.background.opacity' | transloco }}</label>
           <input
             id="itemBackgroundOpacity"
             type="range"
@@ -243,7 +243,7 @@
           />
         </div>
         <button (click)="resetItemBackground()" [disabled]="!opts.itemBackgroundColor">
-          {{ 'generator.options.clear' | translate }}
+          {{ 'generator.options.clear' | transloco }}
         </button>
         @if (opts.itemBackgroundColor) {
           <div class="color-render"></div>
@@ -251,11 +251,11 @@
       </div>
       <div class="colors-item-border input-button">
         <div class="color">
-          <label for="itemBorderColor">{{ 'generator.options.item.border.color' | translate }}</label>
+          <label for="itemBorderColor">{{ 'generator.options.item.border.color' | transloco }}</label>
           <input id="itemBorderColor" type="color" [(ngModel)]="opts.itemBorderColor" />
         </div>
         <div class="opacity">
-          <label for="itemBorderOpacity">{{ 'generator.options.item.border.opacity' | translate }}</label>
+          <label for="itemBorderOpacity">{{ 'generator.options.item.border.opacity' | transloco }}</label>
           <input
             id="itemBorderOpacity"
             type="range"
@@ -267,7 +267,7 @@
           />
         </div>
         <button (click)="resetItemBorder()" [disabled]="!opts.itemBorderColor">
-          {{ 'generator.options.clear' | translate }}
+          {{ 'generator.options.clear' | transloco }}
         </button>
         @if (opts.itemBorderColor) {
           <div class="color-render"></div>
@@ -275,17 +275,17 @@
       </div>
       <div class="size-item-text input-button">
         <div class="color">
-          <label for="itemTextSize">{{ 'generator.options.item.text.size' | translate }}</label>
+          <label for="itemTextSize">{{ 'generator.options.item.text.size' | transloco }}</label>
           <input id="itemTextSize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextSize" />
         </div>
       </div>
       <div class="colors-item-text input-button">
         <div class="width-input">
-          <label for="option-item-text-color">{{ 'generator.options.item.text.color' | translate }}</label>
+          <label for="option-item-text-color">{{ 'generator.options.item.text.color' | transloco }}</label>
           <input id="option-item-text-color" type="color" [(ngModel)]="opts.itemTextColor" />
         </div>
         <div class="opacity">
-          <label for="option-item-text-opacity">{{ 'generator.options.item.text.opacity' | translate }}</label>
+          <label for="option-item-text-opacity">{{ 'generator.options.item.text.opacity' | transloco }}</label>
           <input
             for="option-item-text-opacity"
             type="range"
@@ -297,7 +297,7 @@
           />
         </div>
         <button (click)="resetItemText()" [disabled]="!opts.itemTextColor">
-          {{ 'generator.options.clear' | translate }}
+          {{ 'generator.options.clear' | transloco }}
         </button>
         @if (opts.itemTextColor) {
           <div class="color-render"></div>
@@ -305,37 +305,37 @@
       </div>
       <div class="item-text-position input-value">
         <div class="select-input">
-          <label for="option-item-text-position">{{ 'generator.options.item.text.position' | translate }}</label>
+          <label for="option-item-text-position">{{ 'generator.options.item.text.position' | transloco }}</label>
           <select id="option-item-text-position" [(ngModel)]="opts.itemTextPosition">
-            <option value="bottom">{{ 'generator.options.item.text.position.bottom' | translate }}</option>
+            <option value="bottom">{{ 'generator.options.item.text.position.bottom' | transloco }}</option>
             <option value="bottom-over">
-              {{ 'generator.options.item.text.position.bottom.over' | translate }}
+              {{ 'generator.options.item.text.position.bottom.over' | transloco }}
             </option>
             <option value="bottom-over-hover">
-              {{ 'generator.options.item.text.position.bottom.over.hover' | translate }}
+              {{ 'generator.options.item.text.position.bottom.over.hover' | transloco }}
             </option>
-            <option value="top">{{ 'generator.options.item.text.position.top' | translate }}</option>
-            <option value="top-over">{{ 'generator.options.item.text.position.top.over' | translate }}</option>
+            <option value="top">{{ 'generator.options.item.text.position.top' | transloco }}</option>
+            <option value="top-over">{{ 'generator.options.item.text.position.top.over' | transloco }}</option>
             <option value="top-over-hover">
-              {{ 'generator.options.item.text.position.top.over.hover' | translate }}
+              {{ 'generator.options.item.text.position.top.over.hover' | transloco }}
             </option>
-            <option value="hidden">{{ 'generator.options.item.text.position.hidden' | translate }}</option>
+            <option value="hidden">{{ 'generator.options.item.text.position.hidden' | transloco }}</option>
           </select>
         </div>
       </div>
       <!-- ###############################  line options ###############################  -->
       @if (!zoneMode.includes(opts.mode)) {
-        <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+        <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
         <div class="colors-line-back input-button">
           <div class="color">
             <label for="option-line-background-color">{{
-              'generator.options.line.background.color' | translate
+              'generator.options.line.background.color' | transloco
             }}</label>
             <input id="option-line-background-color" type="color" [(ngModel)]="opts.lineBackgroundColor" />
           </div>
           <div class="opacity">
             <label for="option-line-background-opacity">{{
-              'generator.options.line.background.opacity' | translate
+              'generator.options.line.background.opacity' | transloco
             }}</label>
             <input
               for="option-line-background-opacity"
@@ -348,7 +348,7 @@
             />
           </div>
           <button (click)="resetLineBackground()" [disabled]="!opts.lineBackgroundColor">
-            {{ 'generator.options.clear' | translate }}
+            {{ 'generator.options.clear' | transloco }}
           </button>
           @if (opts.lineBackgroundColor) {
             <div class="color-render"></div>
@@ -356,11 +356,11 @@
         </div>
         <div class="colors-line-border input-button">
           <div class="color">
-            <label for="option-line-border-color">{{ 'generator.options.line.border.color' | translate }}</label>
+            <label for="option-line-border-color">{{ 'generator.options.line.border.color' | transloco }}</label>
             <input id="option-line-border-color" type="color" [(ngModel)]="opts.lineBorderColor" />
           </div>
           <div class="opacity">
-            <label for="option-line-border-opacity">{{ 'generator.options.line.border.opacity' | translate }}</label>
+            <label for="option-line-border-opacity">{{ 'generator.options.line.border.opacity' | transloco }}</label>
             <input
               id="option-line-border-opacity"
               type="range"
@@ -372,7 +372,7 @@
             />
           </div>
           <button (click)="resetLineBorder()" [disabled]="!opts.lineBorderColor">
-            {{ 'generator.options.clear' | translate }}
+            {{ 'generator.options.clear' | transloco }}
           </button>
           @if (opts.lineBorderColor) {
             <div class="color-render"></div>
@@ -380,7 +380,7 @@
         </div>
         <div class="name-bg-opacity input-value">
           <div class="width-input">
-            <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | translate }}</label>
+            <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | transloco }}</label>
             <input
               id="options-name-background-opacity"
               type="range"
@@ -393,36 +393,36 @@
         </div>
         <div class="font-size input-value">
           <div class="number-input">
-            <label for="option-name-font-size">{{ 'generator.options.name.font-size' | translate }}</label>
+            <label for="option-name-font-size">{{ 'generator.options.name.font-size' | transloco }}</label>
             <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="opts.nameFontSize" />
           </div>
         </div>
         <div class="name-width input-value">
           <div class="number-input">
-            <label for="option-name-width">{{ 'generator.options.name.width' | translate }}</label>
+            <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
             <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
           </div>
         </div>
         <div class="group-direction input-value">
           <div class="select-input">
-            <label for="option-group-direction">{{ 'generator.options.group.direction.label' | translate }}</label>
+            <label for="option-group-direction">{{ 'generator.options.group.direction.label' | transloco }}</label>
             <select id="option-item-text-position" [(ngModel)]="opts.direction">
-              <option value="rtl">{{ 'generator.options.group.direction.rtl' | translate }}</option>
-              <option value="ltr">{{ 'generator.options.group.direction.ltr' | translate }}</option>
+              <option value="rtl">{{ 'generator.options.group.direction.rtl' | transloco }}</option>
+              <option value="ltr">{{ 'generator.options.group.direction.ltr' | transloco }}</option>
             </select>
           </div>
         </div>
         <div class="name-markdown input-value">
           <label class="toggle-switch">
             <input type="checkbox" [(ngModel)]="opts.nameMarkdown" />
-            <span>{{ 'generator.options.group.markdown' | translate }}</span>
+            <span>{{ 'generator.options.group.markdown' | transloco }}</span>
           </label>
         </div>
       } @else if (opts.mode === 'iceberg') {
-        <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+        <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
         <div class="zone-title-number">
           <div class="width-input">
-            <label for="option-groups-size">{{ 'generator.options.zone.title.number' | translate }}</label>
+            <label for="option-groups-size">{{ 'generator.options.zone.title.number' | transloco }}</label>
             <input
               id="option-groups-size"
               type="number"
@@ -435,38 +435,38 @@
           @for (item of opts.groups; track item) {
             <div>
               <div class="width-input">
-                <label for="option-title-name">{{ 'generator.options.zone.title.name' | translate }}</label>
+                <label for="option-title-name">{{ 'generator.options.zone.title.name' | transloco }}</label>
                 <input id="option-title-name" type="text" [(ngModel)]="item.title" />
               </div>
               <div class="width-input">
                 <label for="option-title-align-vertical">{{
-                  'generator.options.zone.title.align.vertical.label' | translate
+                  'generator.options.zone.title.align.vertical.label' | transloco
                 }}</label>
                 <select id="option-title-align-vertical" [(ngModel)]="item.titleVerticalPosition">
                   <option value="start">
-                    {{ 'generator.options.zone.title.align.vertical.start' | translate }}
+                    {{ 'generator.options.zone.title.align.vertical.start' | transloco }}
                   </option>
                   <option value="center">
-                    {{ 'generator.options.zone.title.align.vertical.center' | translate }}
+                    {{ 'generator.options.zone.title.align.vertical.center' | transloco }}
                   </option>
                   <option value="end">
-                    {{ 'generator.options.zone.title.align.vertical.end' | translate }}
+                    {{ 'generator.options.zone.title.align.vertical.end' | transloco }}
                   </option>
                 </select>
               </div>
               <div class="width-input">
                 <label for="option-title-align-horizontal">{{
-                  'generator.options.zone.title.align.horizontal.label' | translate
+                  'generator.options.zone.title.align.horizontal.label' | transloco
                 }}</label>
                 <select id="option-title-align-horizontal" [(ngModel)]="item.titleHorizontalPosition">
                   <option value="start">
-                    {{ 'generator.options.zone.title.align.horizontal.start' | translate }}
+                    {{ 'generator.options.zone.title.align.horizontal.start' | transloco }}
                   </option>
                   <option value="center">
-                    {{ 'generator.options.zone.title.align.horizontal.center' | translate }}
+                    {{ 'generator.options.zone.title.align.horizontal.center' | transloco }}
                   </option>
                   <option value="end">
-                    {{ 'generator.options.zone.title.align.horizontal.end' | translate }}
+                    {{ 'generator.options.zone.title.align.horizontal.end' | transloco }}
                   </option>
                 </select>
               </div>
@@ -475,17 +475,17 @@
         </div>
         <div class="group-line-width input-value">
           <div class="number-input">
-            <label for="option-group-line-width">{{ 'generator.options.separator.line.width' | translate }}</label>
+            <label for="option-group-line-width">{{ 'generator.options.separator.line.width' | transloco }}</label>
             <input id="option-group-line-width" type="number" min="0" max="50" [(ngModel)]="opts.groupLineSize" />
           </div>
         </div>
         <div class="colors-group-line input-button">
           <div class="width-input">
-            <label for="option-title-color">{{ 'generator.options.separator.line.color' | translate }}</label>
+            <label for="option-title-color">{{ 'generator.options.separator.line.color' | transloco }}</label>
             <input id="option-title-color" type="color" [(ngModel)]="opts.groupLineColor" />
           </div>
           <div class="opacity">
-            <label for="option-title-opacity">{{ 'generator.options.separator.line.opacity' | translate }}</label>
+            <label for="option-title-opacity">{{ 'generator.options.separator.line.opacity' | transloco }}</label>
             <input
               for="option-title-opacity"
               type="range"
@@ -497,21 +497,21 @@
             />
           </div>
           <button (click)="resetTitleText()" [disabled]="!opts.groupLineColor">
-            {{ 'generator.options.clear' | translate }}
+            {{ 'generator.options.clear' | transloco }}
           </button>
           @if (opts.groupLineColor) {
             <div class="color-render"></div>
           }
         </div>
       } @else if (opts.mode === 'axis') {
-        <h4 class="title-line">{{ 'generator.options.line.title' | translate }}</h4>
+        <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
         <div class="zone-title-axis">
           @for (item of opts.groups; track item; let index = $index) {
             <div>
               <div class="width-input">
                 <label for="option-title-name">{{
                   (index % 2 === 0 ? 'generator.options.zone.axis.name' : 'generator.options.zone.area.name')
-                    | translate
+                    | transloco
                 }}</label>
                 <input id="option-title-name" type="text" [(ngModel)]="item.title" />
               </div>
@@ -520,21 +520,21 @@
         </div>
         <div class="axis-line-width input-value">
           <div class="number-input">
-            <label for="option-axis-line-width">{{ 'generator.options.axis.line.width' | translate }}</label>
+            <label for="option-axis-line-width">{{ 'generator.options.axis.line.width' | transloco }}</label>
             <input id="option-axis-line-width" type="number" min="0" max="12" [(ngModel)]="opts.axisLineWidth" />
           </div>
         </div>
         <div class="axis-arrow-size number-input">
-          <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | translate }}</label>
+          <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | transloco }}</label>
           <input id="option-axis-arrow-size" type="number" min="0" max="50" [(ngModel)]="opts.axisArrowWidth" />
         </div>
         <div class="colors-axis-line input-button">
           <div class="width-input">
-            <label for="option-axis-line-color">{{ 'generator.options.axis.line.color' | translate }}</label>
+            <label for="option-axis-line-color">{{ 'generator.options.axis.line.color' | transloco }}</label>
             <input id="option-axis-line-color" type="color" [(ngModel)]="opts.axisLineColor" />
           </div>
           <div class="opacity">
-            <label for="option-axis-line-opacity">{{ 'generator.options.item.text.opacity' | translate }}</label>
+            <label for="option-axis-line-opacity">{{ 'generator.options.item.text.opacity' | transloco }}</label>
             <input
               for="option-axis-line-opacity"
               type="range"
@@ -546,7 +546,7 @@
             />
           </div>
           <button (click)="resetAxisLine()" [disabled]="!opts.axisLineColor">
-            {{ 'generator.options.clear' | translate }}
+            {{ 'generator.options.clear' | transloco }}
           </button>
           @if (opts.axisLineColor) {
             <div class="color-render"></div>
@@ -554,14 +554,14 @@
         </div>
       }
       <!-- ###############################  other options ###############################  -->
-      <h4 class="title-other">{{ 'generator.options.global.title' | translate }}</h4>
+      <h4 class="title-other">{{ 'generator.options.global.title' | transloco }}</h4>
       <div class="colors-title-text input-button">
         <div class="width-input">
-          <label for="option-title-color">{{ 'generator.options.title.color' | translate }}</label>
+          <label for="option-title-color">{{ 'generator.options.title.color' | transloco }}</label>
           <input id="option-title-color" type="color" [(ngModel)]="opts.titleTextColor" />
         </div>
         <div class="opacity">
-          <label for="option-title-opacity">{{ 'generator.options.title.opacity' | translate }}</label>
+          <label for="option-title-opacity">{{ 'generator.options.title.opacity' | transloco }}</label>
           <input
             for="option-title-opacity"
             type="range"
@@ -573,7 +573,7 @@
           />
         </div>
         <button (click)="resetTitleText()" [disabled]="!opts.titleTextColor">
-          {{ 'generator.options.clear' | translate }}
+          {{ 'generator.options.clear' | transloco }}
         </button>
         @if (opts.titleTextColor) {
           <div class="color-render"></div>
@@ -581,21 +581,21 @@
       </div>
       <div class="global-width input-button">
         <div class="width-input">
-          <label for="option-global-width">{{ 'generator.options.global.width' | translate }}</label>
+          <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
           <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
         </div>
       </div>
       @if (zoneMode.includes(opts.mode)) {
         <div class="global-height input-button">
           <div class="width-input">
-            <label for="option-global-height">{{ 'generator.options.global.height' | translate }}</label>
+            <label for="option-global-height">{{ 'generator.options.global.height' | transloco }}</label>
             <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" />
           </div>
         </div>
       }
       <div class="background-image">
         <div class="width-input">
-          <label for="backgroundImage">{{ 'generator.options.global.image' | translate }}</label>
+          <label for="backgroundImage">{{ 'generator.options.global.image' | transloco }}</label>
           <div class="image-list">
             <select2
               [(ngModel)]="opts.imageBackgroundImage"
@@ -607,7 +607,7 @@
                 <div class="list-option">
                   <div class="view" [style.--url]="data.image"></div>
                   <div class="desc">
-                    {{ 'generator.options.global.name.image.' + data.label | translate }}
+                    {{ 'generator.options.global.name.image.' + data.label | transloco }}
                   </div>
                 </div>
               </ng-template>
@@ -617,11 +617,11 @@
       </div>
       <div class="global-color input-button">
         <div class="color">
-          <label for="option-global-background-color">{{ 'generator.options.global.background' | translate }}</label>
+          <label for="option-global-background-color">{{ 'generator.options.global.background' | transloco }}</label>
           <input id="option-global-background-color" type="color" [(ngModel)]="opts.imageBackgroundColor" />
         </div>
         <button (click)="opts.imageBackgroundColor = ''" [disabled]="!opts.imageBackgroundColor">
-          {{ 'generator.options.clear' | translate }}
+          {{ 'generator.options.clear' | transloco }}
         </button>
         @if (opts.imageBackgroundColor) {
           <div class="color-render"></div>
@@ -629,7 +629,7 @@
       </div>
       @if (opts.imageBackgroundImage === 'custom') {
         <div class="background-image-custom" drop-image mode="local" (file)="changeCustomBackground($event)">
-          <label class="required">{{ 'generator.options.background.custom' + (api ? '.api' : '') | translate }}</label>
+          <label class="required">{{ 'generator.options.background.custom' + (api ? '.api' : '') | transloco }}</label>
           <input type="file" accept="image/*" required (change)="changeCustomBackgroundEvent($event)" />
           <div>
             @if (opts.imageBackgroundCustom) {
@@ -640,7 +640,7 @@
       }
     }
     <div class="tags">
-      {{ 'generator.options.tags' | translate }}
+      {{ 'generator.options.tags' | transloco }}
       <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
     </div>
   </div>
@@ -650,19 +650,19 @@
 
 <dialog-cmp class="auto-format" #dialogChangeMode>
   <p class="question">
-    {{ 'generator.actions.change.mode.question' | translate }}
+    {{ 'generator.actions.change.mode.question' | transloco }}
   </p>
   <p class="info">
-    <strong>{{ 'mode.name.' + _modeTemp | translate }}</strong>
-    <span>{{ 'generator.actions.change.mode.' + _modeTemp | translate }}</span>
+    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
+    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
   </p>
 
   <div class="buttons">
     <button (click)="modeChangeValid(false)">
-      {{ 'generator.actions.reset.groups.cancel' | translate }}
+      {{ 'generator.actions.reset.groups.cancel' | transloco }}
     </button>
     <button class="primary" (click)="modeChangeValid(true)">
-      {{ 'generator.actions.reset.groups.ok' | translate }}
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
 </dialog-cmp>

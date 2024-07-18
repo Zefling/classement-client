@@ -1,4 +1,4 @@
-<div>{{ 'generator.json.import.list' + (multi() ? '.multi' : '') | translate }}</div>
+<div>{{ 'generator.json.import.list' + (multi() ? '.multi' : '') | transloco }}</div>
 
 <div>
   <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
@@ -6,7 +6,7 @@
 
 @if (onLoad) {
   <div>
-    <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'generator.loading' | translate }}</span>
+    <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'generator.loading' | transloco }}</span>
   </div>
 }
 
@@ -14,11 +14,11 @@
   @if (jsonTmp.length > 1) {
     <div class="buttons-list button-image-save">
       <button class="button-add primary" (click)="selectAll(true)">
-        {{ 'generator.json.select.all' | translate }}
+        {{ 'generator.json.select.all' | transloco }}
       </button>
 
       <button class="button-add primary" (click)="selectAll(false)">
-        {{ 'generator.json.unselect.all' | translate }}
+        {{ 'generator.json.unselect.all' | transloco }}
       </button>
     </div>
   }
@@ -31,13 +31,13 @@
           </span>
         }
         <div class="infos-list">
-          <span>{{ 'generator.json.title' | translate }}</span>
-          <span>{{ file.data!.options.title || ('list.title.undefined' | translate) }}</span>
-          <span>{{ 'generator.json.category' | translate }}</span>
-          <span>{{ 'category.' + (file.data!.options.category || 'undefined') | translate }}</span>
-          <span>{{ 'generator.json.count.group' | translate }}</span>
+          <span>{{ 'generator.json.title' | transloco }}</span>
+          <span>{{ file.data!.options.title || ('list.title.undefined' | transloco) }}</span>
+          <span>{{ 'generator.json.category' | transloco }}</span>
+          <span>{{ 'category.' + (file.data!.options.category || 'undefined') | transloco }}</span>
+          <span>{{ 'generator.json.count.group' | transloco }}</span>
           <span>{{ file.data!.groups.length || 0 }}</span>
-          <span>{{ 'generator.json.count.item' | translate }}</span>
+          <span>{{ 'generator.json.count.item' | transloco }}</span>
           <span>{{ countItem(file) }}</span>
         </div>
       }
@@ -46,28 +46,28 @@
 }
 
 <div class="buttons-list button-image-save">
-  <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | translate }}</button>
+  <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | transloco }}</button>
   @if (jsonTmp) {
     @if (!multi()) {
       @if (actions() === 'all') {
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
-          {{ 'generator.json.import.replace' | translate }}
+          {{ 'generator.json.import.replace' | transloco }}
         </button>
 
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
-          {{ 'generator.json.import.new' | translate }}
+          {{ 'generator.json.import.new' | transloco }}
         </button>
       } @else if (actions() === 'importOnly') {
         <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
-          {{ 'generator.json.import.add' | translate }}
+          {{ 'generator.json.import.add' | transloco }}
         </button>
       }
     } @else {
       <button class="button-add primary" (click)="importMultiJson('replace')">
-        {{ 'generator.json.import.multi.replace' | translate }}
+        {{ 'generator.json.import.multi.replace' | transloco }}
       </button>
       <button class="button-add primary" (click)="importMultiJson('new')">
-        {{ 'generator.json.import.multi.add' | translate }}
+        {{ 'generator.json.import.multi.add' | transloco }}
       </button>
     }
   }

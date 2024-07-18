@@ -11,42 +11,42 @@
         "
         [queryParams]="isCategoryList() ? { category: classement.category } : {}"
       >
-        <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | translate">
+        <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | transloco">
           <img [src]="classement.banner" [alt]="classement.name" />
           <figcaption>
             @if (!isCategoryList()) {
               <div class="name">{{ classement.name }}</div>
             }
             <div class="category">
-              {{ 'category.' + (classement.category || 'undefined') | translate }}
+              {{ 'category.' + (classement.category || 'undefined') | transloco }}
               @if (isCategoryList()) {
                 ({{ classement.templateTotal }})
               }
             </div>
             @if (!isCategoryList()) {
               <div class="groups">
-                <div [title]="'list.count.group' | translate">
+                <div [title]="'list.count.group' | transloco">
                   <span class="icon-group"></span> {{ classement.totalGroups }}
                 </div>
-                <div [title]="'list.count.item' | translate">
+                <div [title]="'list.count.item' | transloco">
                   <span class="icon-tile"></span> {{ classement.totalItems }}
                 </div>
               </div>
               @if (!hideUser()) {
                 <div class="username">
-                  {{ 'user.by' | translate: { author: classement.user || ('list.user.anonymous' | translate) } }}
+                  {{ 'user.by' | transloco: { author: classement.user || ('list.user.anonymous' | transloco) } }}
                 </div>
               }
               <div class="date">
-                {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+                {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }}
               </div>
               <div class="date change">
                 @if (classement.dateChange) {
                   {{
                     'generator.ranking.change'
-                      | translate
+                      | transloco
                         : {
-                            DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate),
+                            DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | transloco),
                           }
                   }}
                 }
@@ -56,12 +56,12 @@
         </figure>
         @if (!isCategoryList() && !hideDerivatives()) {
           <div class="template" [class.hide]="classement.templateTotal <= 1">
-            {{ 'navigate.count.derivatives' | translate }} {{ classement.templateTotal }}
+            {{ 'navigate.count.derivatives' | transloco }} {{ classement.templateTotal }}
           </div>
         }
       </a>
     </div>
   }
 } @else {
-  <div class="no-result">{{ 'navigate.search.nothing' | translate }}</div>
+  <div class="no-result">{{ 'navigate.search.nothing' | transloco }}</div>
 }

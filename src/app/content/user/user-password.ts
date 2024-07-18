@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import oWasp from 'owasp-password-strength-test';
 
@@ -17,7 +17,7 @@ export abstract class UserPassword {
     constructor(
         protected userService: APIUserService,
         protected messageService: MessageService,
-        protected translate: TranslateService,
+        protected translate: TranslocoService,
     ) {
         this.changePasswordForm = new FormGroup(this.formGroupPasswordForm());
 
@@ -39,13 +39,15 @@ export abstract class UserPassword {
         const test = oWasp.test(value.password);
 
         if (value.password !== value.password2) {
-            this.showError.push(this.translate.instant('error.pw.duplicate'));
+            this.showError.push(this.translate.translate('error.pw.duplicate'));
         }
 
         if (test.errors?.length) {
             test.errors.forEach(e =>
                 this.showError.push(
-                    this.translate.instant('error.owasp.' + e.replace(/\d+/, '*')).replace('%', e.match(/\d+/)?.[0]),
+                    this.translate
+                        .translate('error.owasp.' + e.replace(/\d+/, '*'))
+                        .replace('%', e.match(/\d+/)?.[0] ?? ''),
                 ),
             );
         }

@@ -1,13 +1,13 @@
-<div>{{ 'generator.optimise.info' | translate }}</div>
+<div>{{ 'generator.optimise.info' | transloco }}</div>
 
 <div>
   <button class="primary" (click)="optimise()" [disabled]="start">
-    {{ 'generator.optimise.button.optimise' | translate }}
+    {{ 'generator.optimise.button.optimise' | transloco }}
   </button>
 </div>
 
 <div>
-  {{ 'generator.optimise.current' | translate: { totalSize: (totalSize | numFormat), totalImage: total } }}
+  {{ 'generator.optimise.current' | transloco: { totalSize: (totalSize | numFormat), totalImage: total } }}
 </div>
 
 @if (start) {
@@ -20,15 +20,15 @@
     </div>
     <div>
       <a (click)="toggle()">{{
-        (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | translate
+        (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | transloco
       }}</a>
     </div>
     <div>
-      {{ 'generator.optimise.reduce.files' | translate: { countResize: countResize } }}<br />
-      {{ 'generator.optimise.reduce.size' | translate: { reduceSize: (reduceSize | numFormat) } }}<br />
+      {{ 'generator.optimise.reduce.files' | transloco: { countResize: countResize } }}<br />
+      {{ 'generator.optimise.reduce.size' | transloco: { reduceSize: (reduceSize | numFormat) } }}<br />
       {{
         'generator.optimise.final.size'
-          | translate
+          | transloco
             : {
                 finalSize: (finalSize | numFormat),
                 percent: (finalSize - totalSize) / totalSize | numFormat: { style: 'percent' },
@@ -38,7 +38,7 @@
     <div>
       @if (progress === total) {
         <button class="primary" (click)="optimiseAccept()">
-          {{ 'generator.optimise.validate' | translate }}
+          {{ 'generator.optimise.validate' | transloco }}
         </button>
       }
     </div>
@@ -52,17 +52,17 @@
             />
             <div class="info-reduce">
               <span class="reduce-source">
-                {{ 'generator.optimise.size' | translate: { size: (item.sourceFile.realSize | numFormat) } }}
+                {{ 'generator.optimise.size' | transloco: { size: (item.sourceFile.realSize | numFormat) } }}
               </span>
               <span class="arrow">↓</span>
               <span class="reduce-target">
                 {{
                   'generator.optimise.size'
-                    | translate: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
+                    | transloco: { size: (item.reduceFile?.realSize || item.sourceFile.realSize | numFormat) }
                 }}
               </span>
               <span class="reduce-size">
-                {{ 'generator.optimise.size' | translate: { size: (-1 * item.reduce | numFormat) } }}
+                {{ 'generator.optimise.size' | transloco: { size: (-1 * item.reduce | numFormat) } }}
                 <span class="percent">
                   {{
                     ((item.reduceFile?.realSize || item.sourceFile.realSize) - item.sourceFile.realSize) /

@@ -1,14 +1,14 @@
-<h2>{{ 'menu.my.lists' | translate }}</h2>
+<h2>{{ 'menu.my.lists' | transloco }}</h2>
 
 <tabs (tabChange)="tabChange($event)">
   <!-- server -->
-  <tab-title id="server">{{ 'user.profile.list.server.tab' | translate }}</tab-title>
+  <tab-title id="server">{{ 'user.profile.list.server.tab' | transloco }}</tab-title>
   <tab-content id="server">
     <div class="infos">
-      <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | translate }}</p>
+      <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | transloco }}</p>
       <div class="list-actions">
         <div class="filter">
-          <label for="browser-list-filter">{{ 'list.filter' | translate }}</label>
+          <label for="browser-list-filter">{{ 'list.filter' | transloco }}</label>
           <input
             id="browser-list-filter"
             type="search"
@@ -33,7 +33,7 @@
             <thead>
               <tr>
                 <th class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
-                  {{ 'list.title.name' | translate }}
+                  {{ 'list.title.name' | transloco }}
                 </th>
                 <th
                   class="mode"
@@ -44,7 +44,7 @@
                     default: 'default',
                   }"
                 >
-                  {{ 'list.mode.name' | translate }}
+                  {{ 'list.mode.name' | transloco }}
                 </th>
                 <th
                   class="category"
@@ -54,18 +54,18 @@
                     translate: 'category.%value%',
                   }"
                 >
-                  {{ 'list.category.name' | translate }}
+                  {{ 'list.category.name' | transloco }}
                 </th>
                 <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
-                  {{ 'list.date' | translate }}
+                  {{ 'list.date' | transloco }}
                 </th>
                 <th class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
-                  {{ 'list.count.group' | translate }}
+                  {{ 'list.count.group' | transloco }}
                 </th>
                 <th class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
-                  {{ 'list.count.item' | translate }}
+                  {{ 'list.count.item' | transloco }}
                 </th>
-                <th class="actions">{{ 'list.action.name' | translate }}</th>
+                <th class="actions">{{ 'list.action.name' | transloco }}</th>
               </tr>
             </thead>
             <tbody>
@@ -74,12 +74,12 @@
                   <td class="title">
                     <div>
                       <a [routerLink]="['/navigate/view', classement.rankingId]">
-                        {{ classement.data.options.title || ('list.title.undefined' | translate) }}</a
+                        {{ classement.data.options.title || ('list.title.undefined' | transloco) }}</a
                       >
                     </div>
                     <div class="category-rwd">
-                      {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }} |
-                      {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                      {{ 'mode.name.' + (classement.data.options.mode || 'default') | transloco }} |
+                      {{ 'category.' + (classement.data.options.category || 'undefined') | transloco }}
                     </div>
                     @if (classement.data.options.tags && classement.data.options.tags.length) {
                       <div class="tags">
@@ -95,32 +95,32 @@
                       @if (classement.localId && localIds.includes(classement.localId)) {
                         <a
                           class="from"
-                          [tooltip]="'list.local.link' | translate: { id: classement.localId }"
+                          [tooltip]="'list.local.link' | transloco: { id: classement.localId }"
                           [routerLink]="['/edit', classement.localId]"
                           >➡ <span class="icon-browser"></span
                         ></a>
                       }
                       @if (classement.hidden) {
-                        <span class="private" [tooltip]="'list.hide.note' | translate">
-                          <span class="icon-private-search"></span> {{ 'list.status.hidden' | translate }}
+                        <span class="private" [tooltip]="'list.hide.note' | transloco">
+                          <span class="icon-private-search"></span> {{ 'list.status.hidden' | transloco }}
                         </span>
                       }
                       @if (classement.password === 'true') {
                         <span class="password">
-                          {{ 'list.status.with.password' | translate }}
+                          {{ 'list.status.with.password' | transloco }}
                         </span>
                       }
                     </div>
                   </td>
                   <td class="mode">
-                    {{ 'mode.name.' + (classement.data.options.mode || 'default') | translate }}
+                    {{ 'mode.name.' + (classement.data.options.mode || 'default') | transloco }}
                   </td>
                   <td class="category">
-                    {{ 'category.' + (classement.data.options.category || 'undefined') | translate }}
+                    {{ 'category.' + (classement.data.options.category || 'undefined') | transloco }}
                   </td>
                   <td class="date">
-                    <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-                    <span>{{ classement.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+                    <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+                    <span>{{ classement.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
                   </td>
                   <td class="groups">{{ classement.totalGroups }}</td>
                   <td class="items">{{ classement.totalItems }}</td>
@@ -128,20 +128,20 @@
                     <button
                       class="primary"
                       [routerLink]="'/edit/' + classement.rankingId"
-                      title="{{ 'list.action.edit' | translate }}"
+                      title="{{ 'list.action.edit' | transloco }}"
                     >
                       <span class="icon-edit"></span>
                     </button>
                     <button
                       (click)="action(classement, 'change')"
-                      title="  {{ (!classement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}"
+                      title="  {{ (!classement?.hidden ? 'list.hide.private' : 'list.show.public') | transloco }}"
                     >
                       <span class=" {{ !classement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
                     </button>
                     <button
                       class="warn"
                       (click)="action(classement, 'delete')"
-                      title="{{ 'list.action.remove' | translate }}"
+                      title="{{ 'list.action.remove' | transloco }}"
                     >
                       <span class="icon-remove"></span>
                     </button>
@@ -151,9 +151,9 @@
             </tbody>
           </table>
         } @else {
-          <p class="no-result">{{ 'list.no.result' | translate }}</p>
+          <p class="no-result">{{ 'list.no.result' | transloco }}</p>
           <p>
-            <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | translate }}</a>
+            <a routerLink="/edit/new" routerLinkActive="active">{{ 'list.create.new' | transloco }}</a>
           </p>
         }
       </ng-container>
@@ -161,22 +161,22 @@
   </tab-content>
 
   <!-- browser -->
-  <tab-title id="browser">{{ 'user.profile.list.browser.tab' | translate }}</tab-title>
+  <tab-title id="browser">{{ 'user.profile.list.browser.tab' | transloco }}</tab-title>
   <tab-content id="browser">
     <classement-list [pageMode]="false"></classement-list>
   </tab-content>
 </tabs>
 
 <dialog-cmp class="auto-format" #dialogActionsClassement>
-  <p class="title">{{ currentClassement?.name || ('list.title.undefined' | translate) }}</p>
+  <p class="title">{{ currentClassement?.name || ('list.title.undefined' | transloco) }}</p>
 
   <div class="buttons">
-    <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | translate }}</button>
+    <button (click)="actionForCurrentClassement('close')">{{ 'list.delete.cancel' | transloco }}</button>
   </div>
 
   @switch (currentAction) {
     @case ('change') {
-      <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | translate }}</h3>
+      <h3>{{ (!currentClassement?.hidden ? 'list.hide.question' : 'list.show.question') | transloco }}</h3>
       <div class="buttons">
         <button
           (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
@@ -184,19 +184,19 @@
           [class.primary]="currentClassement?.hidden"
         >
           <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
-          <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | translate }}</span>
+          <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | transloco }}</span>
         </button>
       </div>
       <div class="note">
-        {{ 'list.hide.note' | translate }}<br />
-        {{ 'list.hide.note2' | translate }}
+        {{ 'list.hide.note' | transloco }}<br />
+        {{ 'list.hide.note2' | transloco }}
       </div>
     }
     @case ('delete') {
-      <h3>{{ 'list.delete.question' | translate }}</h3>
+      <h3>{{ 'list.delete.question' | transloco }}</h3>
       <div>
         <button (click)="actionForCurrentClassement('delete')" class="warn">
-          {{ 'list.delete.delete' | translate }}
+          {{ 'list.delete.delete' | transloco }}
         </button>
       </div>
     }
