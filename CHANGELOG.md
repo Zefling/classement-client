@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.2.2 (2024-07-18)
+
+#### Standalone web app
+
+-   HTML templates refactoring
+-   Change `ngx-translate` to `transloco` for internationalization
+-   Update packages
+
 ### 2.2.1 (2024-07-17)
 
 #### Standalone web app
