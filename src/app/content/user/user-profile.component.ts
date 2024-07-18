@@ -2,8 +2,6 @@ import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
-
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
@@ -16,6 +14,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
+import { TranslocoService } from '@jsverse/transloco';
 import { UserPassword } from './user-password';
 
 @Component({
@@ -55,7 +54,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         private readonly dbService: DBService,
         userService: APIUserService,
         messageService: MessageService,
-        translate: TranslateService,
+        translate: TranslocoService,
     ) {
         super(userService, messageService, translate);
 
@@ -72,7 +71,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             this.userService.afterLogout.subscribe(() => {
                 this.router.navigate(['/user/login']);
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
             this.global.onUpdateList.subscribe(() => {
@@ -103,7 +102,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                         .then(test => {
                             this.usernameValidity = !test;
                             this.showError[0] = test
-                                ? this.translate.instant(
+                                ? this.translate.translate(
                                       testValue === this.user?.username
                                           ? 'error.username.yours'
                                           : 'error.username.exist',
@@ -128,7 +127,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
         this.changeEmailForm.get('emailOld')?.valueChanges.subscribe(value => {
             this.emailOldValid = Utils.testEmail(value);
-            this.showError[0] = value && !this.emailOldValid ? this.translate.instant('error.email.old.invalid') : '';
+            this.showError[0] = value && !this.emailOldValid ? this.translate.translate('error.email.old.invalid') : '';
         });
         this.changeEmailForm
             .get('emailNew')
@@ -139,7 +138,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                         .test('email', value)
                         .then(test => {
                             this.emailNewValid = !test;
-                            this.showError[1] = test ? this.translate.instant('error.email.already.used') : '';
+                            this.showError[1] = test ? this.translate.translate('error.email.already.used') : '';
                         })
                         .catch(e => {
                             this.emailNewValid = false;
@@ -147,7 +146,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                         });
                 } else if (value) {
                     this.emailNewValid = false;
-                    this.showError[1] = this.translate.instant('error.email.new.invalid');
+                    this.showError[1] = this.translate.translate('error.email.new.invalid');
                 }
             });
 
@@ -204,7 +203,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .update(value.passwordOld, value.password, 'password')
                 .then(() => {
                     this.dialogChangePassword().close();
-                    this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
+                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
                 })
                 .catch(e => {
                     this.messageService.addMessage(e, { type: MessageType.error });
@@ -220,13 +219,13 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .update(value.emailOld, value.emailNew, 'email')
                 .then(() => {
                     this.dialogChangePassword().close();
-                    this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
+                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
                 })
                 .catch(e => {
                     this.messageService.addMessage(e, { type: MessageType.error });
                 });
         } else if (!value.emailOld && !value.emailNew) {
-            this.showError[0] = this.translate.instant('error.email.old.invalid');
+            this.showError[0] = this.translate.translate('error.email.old.invalid');
         }
     }
 
@@ -239,7 +238,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .then(() => {
                     this.dialogChangeUsername().close();
                     this.user!.username = value.username;
-                    this.messageService.addMessage(this.translate.instant('message.user.username.update.success'));
+                    this.messageService.addMessage(this.translate.translate('message.user.username.update.success'));
                 })
                 .catch(e => {
                     this.messageService.addMessage(e, { type: MessageType.error });
@@ -257,7 +256,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             .then(() => {
                 this.userService.reset();
                 this.dialogRemoveProfile().close();
-                this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
+                this.messageService.addMessage(this.translate.translate('message.user.remove.success'));
                 this.router.navigate(['/user/login']);
             })
             .catch(e => {
@@ -316,7 +315,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 this.user!.avatarUrl = data.url ? data.url + '?time=' + new Date().getTime() : undefined;
 
                 this.avatarDialog().close();
-                this.messageService.addMessage(this.translate.instant('message.user.avatar.update.success'));
+                this.messageService.addMessage(this.translate.translate('message.user.avatar.update.success'));
             })
             .catch(e => {
                 this.messageService.addMessage(e, { type: MessageType.error });

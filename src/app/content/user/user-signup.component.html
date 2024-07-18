@@ -1,8 +1,8 @@
-<h1>{{ 'user.signup.title' | translate }}</h1>
+<h1>{{ 'user.signup.title' | transloco }}</h1>
 
 <form class="form">
   <ng-container [formGroup]="profileForm">
-    <label for="username">{{ 'user.login.username' | translate }}</label>
+    <label for="username">{{ 'user.login.username' | transloco }}</label>
     <input id="username" type="text" formControlName="username" #username />
     <div class="level-strong">
       @if (username.value) {
@@ -10,7 +10,7 @@
       }
     </div>
 
-    <label for="password">{{ 'user.login.password' | translate }}</label>
+    <label for="password">{{ 'user.login.password' | transloco }}</label>
     <input id="password" type="password" spellcheck="false" formControlName="password" />
     <div class="level-strong">
       @if (!strong) {
@@ -23,7 +23,7 @@
       }
     </div>
 
-    <label for="password2">{{ 'user.login.password.bis' | translate }}</label>
+    <label for="password2">{{ 'user.login.password.bis' | transloco }}</label>
     <input id="password2" type="password" spellcheck="false" formControlName="password2" />
     <div class="level-strong">
       @if (confirm) {
@@ -31,7 +31,7 @@
       }
     </div>
 
-    <label for="email">{{ 'user.login.email' | translate }}</label>
+    <label for="email">{{ 'user.login.email' | transloco }}</label>
     <input id="email" type="email" formControlName="email" #email />
     <div class="level-strong">
       @if (email.value) {
@@ -49,31 +49,31 @@
   }
 
   <div class="button">
-    <button (click)="submit()">{{ 'user.signup.action' | translate }}</button>
+    <button (click)="submit()">{{ 'user.signup.action' | transloco }}</button>
   </div>
 </form>
 
 <div class="buttons">
   <p>
-    {{ 'user.login.oauth.create' | translate }}
+    {{ 'user.login.oauth.create' | transloco }}
   </p>
   <button (click)="oauth('discord')">
-    <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | translate }}</span>
+    <img src="./assets/icons/Discord_logo.svg" /> <span>{{ 'user.login.oauth.discord' | transloco }}</span>
   </button>
   <button (click)="oauth('facebook')">
-    <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | translate }}</span>
+    <img src="./assets/icons/Facebook_logo.svg" /> <span>{{ 'user.login.oauth.facebook' | transloco }}</span>
   </button>
-  <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | translate }}</button>-->
+  <!--<button (click)="oauth('google')">{{ 'user.login.oauth.google' | transloco }}</button>-->
   <p>
-    {{ 'user.login.oauth.create.after' | translate }}
+    {{ 'user.login.oauth.create.after' | transloco }}
   </p>
 </div>
 
 <div class="links">
   <div>
-    <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | transloco }}</a>
   </div>
   <div>
-    <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+    <a routerLink="/user/login">{{ 'user.login.login' | transloco }}</a>
   </div>
 </div>

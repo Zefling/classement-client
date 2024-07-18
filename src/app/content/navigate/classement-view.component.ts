@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import html2canvas from '@html2canvas/html2canvas';
 
@@ -66,7 +66,7 @@ export class ClassementViewComponent implements OnDestroy {
         private readonly logger: Logger,
         private readonly bdService: DBService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
         private readonly meta: Meta,
     ) {
@@ -114,7 +114,7 @@ export class ClassementViewComponent implements OnDestroy {
                     this.router.navigate(['navigate']);
                 }
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 if (this.classement) {
                     this.updateTitle(this.classement);
                 }
@@ -150,7 +150,7 @@ export class ClassementViewComponent implements OnDestroy {
                 this.logger.log('loadLocalClassement (browser)', LoggerLevel.info, e);
                 // password required
                 if ((e as MessageError)?.code === 401) {
-                    this.showError = this.translate.instant(`error.api-code.${(e as MessageError).errorCode}`);
+                    this.showError = this.translate.translate(`error.api-code.${(e as MessageError).errorCode}`);
                 }
             });
     }
@@ -235,9 +235,9 @@ export class ClassementViewComponent implements OnDestroy {
 
     copyLink() {
         Utils.clipboard(this.getLink())
-            .then(() => this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.success')))
+            .then(() => this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.error'), {
+                this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
                     type: MessageType.error,
                 }),
             );
@@ -351,8 +351,8 @@ export class ClassementViewComponent implements OnDestroy {
         }
     }
 
-    private getFileName(): Data {
-        return this.classement!.data.options.title.trim() || this.translate.instant('list.title.undefined');
+    private getFileName(): string {
+        return this.classement!.data.options.title.trim() || this.translate.translate('list.title.undefined');
     }
 
     private downloadImage(data: string, filename: string) {

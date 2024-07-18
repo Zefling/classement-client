@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Select2Data } from 'ng-select2-component';
 
@@ -57,7 +57,7 @@ export class ClassementNavigateComponent implements OnDestroy {
         private readonly messageService: MessageService,
         private readonly categories: CategoriesService,
         private readonly preferences: PreferencesService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
     ) {
         this.updateTitle();
 
@@ -78,7 +78,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             this.categories.onChange.subscribe(() => {
                 this.categoryUpdate();
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -105,7 +105,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             })
             .catch(() => {
                 this.classements = [];
-                this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
+                this.messageService.addMessage(this.translate.translate('message.navigate.access.error'));
             })
             .finally(() => {
                 this.loading = false;

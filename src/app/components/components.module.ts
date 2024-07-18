@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -70,6 +70,6 @@ import { PipesModule } from '../pipes/pipes.module';
         ZoneAreaComponent,
         ZoneAxisComponent,
     ],
-    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslateModule, MarkdownModule],
+    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslocoModule, MarkdownModule],
 })
 export class ComponentsModule {}

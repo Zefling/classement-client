@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
-
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
+import { TranslocoService } from '@jsverse/transloco';
 import { UserPassword } from './user-password';
 
 @Component({
@@ -23,7 +22,7 @@ export class UserPwLostChangeComponent extends UserPassword {
         private readonly activatedRoute: ActivatedRoute,
         userService: APIUserService,
         messageService: MessageService,
-        translate: TranslateService,
+        translate: TranslocoService,
     ) {
         super(userService, messageService, translate);
 
@@ -32,7 +31,7 @@ export class UserPwLostChangeComponent extends UserPassword {
             if (token) {
                 this.token = token;
             } else {
-                this.showError = [this.translate.instant('error.token.not')];
+                this.showError = [this.translate.translate('error.token.not')];
             }
         });
     }
@@ -51,7 +50,7 @@ export class UserPwLostChangeComponent extends UserPassword {
             this.userService
                 .passwordChange(value.password, this.token!)
                 .then(() => {
-                    this.messageService.addMessage(this.translate.instant('message.server.update.password.success'));
+                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {

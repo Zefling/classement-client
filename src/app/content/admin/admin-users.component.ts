@@ -2,7 +2,7 @@ import { Component, DoCheck, OnDestroy, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -46,7 +46,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
         private readonly route: ActivatedRoute,
         private readonly messageService: MessageService,
         private readonly logger: Logger,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -58,7 +58,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 const page = params['page'] || 1;
                 this.pageUpdate(page);
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -159,7 +159,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
             .adminUpdateUser(this.currentUser!.id, this.userForm?.value)
             .then(user => {
                 Object.assign(this.currentUser!, user);
-                this.messageService.addMessage(this.translate.instant('message.user.update.success'));
+                this.messageService.addMessage(this.translate.translate('message.user.update.success'));
                 this.changeStatusCancel();
             })
             .catch(e => {
@@ -186,7 +186,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 this.currentUser!.username = '';
                 this.currentUser!.roles = [];
                 this.cancelRemoveProfile();
-                this.messageService.addMessage(this.translate.instant('message.user.remove.success'));
+                this.messageService.addMessage(this.translate.translate('message.user.remove.success'));
             })
             .catch(e => {
                 this.messageService.addMessage(e, { type: MessageType.error });

@@ -1,9 +1,9 @@
-<h1>{{ 'user.password.lost.change.title' | translate }}</h1>
+<h1>{{ 'user.password.lost.change.title' | transloco }}</h1>
 
 <form class="form" [formGroup]="changePasswordForm">
-  <p>{{ 'user.password.lost.change.intro' | translate }}</p>
+  <p>{{ 'user.password.lost.change.intro' | transloco }}</p>
 
-  <label for="password">{{ 'user.password.new' | translate }}</label>
+  <label for="password">{{ 'user.password.new' | transloco }}</label>
   <input id="password" type="password" spellcheck="false" formControlName="password" />
   <div class="level-strong">
     @if (!strong) {
@@ -16,7 +16,7 @@
     }
   </div>
 
-  <label for="password2">{{ 'user.password.confirm' | translate }}</label>
+  <label for="password2">{{ 'user.password.confirm' | transloco }}</label>
   <input id="password2" type="password" spellcheck="false" formControlName="password2" />
   <div class="level-strong">
     @if (confirm) {
@@ -33,6 +33,6 @@
   }
 
   <div class="button">
-    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | translate }}</button>
+    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | transloco }}</button>
   </div>
 </form>

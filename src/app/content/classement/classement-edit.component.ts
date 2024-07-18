@@ -20,7 +20,7 @@ import {
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
@@ -154,7 +154,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly dbService: DBService,
         private readonly router: Router,
         private readonly route: ActivatedRoute,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
         private readonly messageService: MessageService,
         private readonly userService: APIUserService,
@@ -200,7 +200,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
                 this.cd.detectChanges();
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -540,7 +540,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         // layerX/Y is not standard, but is the real position in zone for all browser
         this.groups[0].list.push({
             id: `${new Date().getTime()}`,
-            title: this.translate.instant('new') + numb,
+            title: this.translate.translate('new') + numb,
             name: '',
             size: 0,
             realSize: 0,
@@ -562,9 +562,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     copyLink() {
         Utils.clipboard(this.shareUrl)
-            .then(() => this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.success')))
+            .then(() => this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.instant('generator.ranking.copy.link.error'), {
+                this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
                     type: MessageType.error,
                 }),
             );
@@ -798,7 +798,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ? mixColor(this.groups[index].txtColor, this.groups[colorIndex].txtColor)
                 : this.groups[index].txtColor;
         this.groups.splice(nextIndex, 0, {
-            name: this.translate.instant('New'),
+            name: this.translate.translate('New'),
             txtColor,
             bgColor,
             list: [],
@@ -880,7 +880,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.addIds();
-        this.messageService.addMessage(this.translate.instant('message.reset.groups'));
+        this.messageService.addMessage(this.translate.translate('message.reset.groups'));
     }
 
     @HostListener('window:keydown.control.s', ['$event'])
@@ -902,12 +902,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     this.classement.localId = this.id;
                 }
                 if (!silence) {
-                    this.messageService.addMessage(this.translate.instant('message.save.success'));
+                    this.messageService.addMessage(this.translate.translate('message.save.success'));
                 }
                 this.global.updateList();
             },
             _ => {
-                this.messageService.addMessage(this.translate.instant('message.save.failed'), {
+                this.messageService.addMessage(this.translate.translate('message.save.failed'), {
                     type: MessageType.error,
                 });
             },
@@ -975,14 +975,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list = event.data?.list!;
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
-                this.messageService.addMessage(this.translate.instant('message.json.read.replace'));
+                this.messageService.addMessage(this.translate.translate('message.json.read.replace'));
                 this.html2canvasImagesCacheUpdate();
                 break;
             }
             case 'new': {
                 this.global.jsonTmp = event.data;
                 this.router.navigate(['edit', 'new']);
-                this.messageService.addMessage(this.translate.instant('message.json.read.new'));
+                this.messageService.addMessage(this.translate.translate('message.json.read.new'));
                 break;
             }
         }
@@ -1045,8 +1045,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         };
     }
 
-    private getFileName(): Data {
-        return this.options.title.trim() || this.translate.instant('list.title.undefined');
+    private getFileName(): string {
+        return this.options.title.trim() || this.translate.translate('list.title.undefined');
     }
 
     private downloadImage(data: string, filename: string) {

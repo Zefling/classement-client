@@ -3,7 +3,7 @@
 }
 
 @if (user) {
-  <h1>{{ 'user.profile.view.title' | translate }}{{ user.username }}</h1>
+  <h1>{{ 'user.profile.view.title' | transloco }}{{ user.username }}</h1>
   <div>
     <div class="user">
       <div class="avatar">
@@ -14,20 +14,20 @@
         }
       </div>
       <div>
-        <strong>{{ 'user.profile.since' | translate }}</strong>
-        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }}
+        <strong>{{ 'user.profile.since' | transloco }}</strong>
+        {{ user.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }}
       </div>
       <div>
-        <strong>{{ 'user.profile.total' | translate }}</strong>
+        <strong>{{ 'user.profile.total' | transloco }}</strong>
         {{ user.classements?.length || 0 }}
       </div>
     </div>
-    <h2>{{ 'user.profile.view.rankings' | translate }}</h2>
+    <h2>{{ 'user.profile.view.rankings' | transloco }}</h2>
     @if (user.classements) {
       <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
     } @else {
       <div>
-        {{ 'user.profile.view.empty' | translate }}
+        {{ 'user.profile.view.empty' | transloco }}
       </div>
     }
   </div>

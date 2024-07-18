@@ -11,7 +11,7 @@ import {
     SimpleChanges,
 } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Utils } from '../tools/utils';
 
@@ -78,7 +78,7 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     private input = '';
 
     constructor(
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly renderer: Renderer2,
     ) {}
 
@@ -134,8 +134,10 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
                     test = (valA as string).localeCompare(valB as string);
                 } else if (rule.type === 'translate') {
                     test = this.translate
-                        .instant(rule.translate.replace('%value%', valA || rule.default))
-                        .localeCompare(this.translate.instant(rule.translate.replace('%value%', valB || rule.default)));
+                        .translate(rule.translate.replace('%value%', valA || rule.default))
+                        .localeCompare(
+                            this.translate.translate(rule.translate.replace('%value%', valB || rule.default)),
+                        );
                 } else if (rule.type === 'number') {
                     test = valA - valB;
                 } else if (rule.type === 'date') {

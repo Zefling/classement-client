@@ -1,9 +1,9 @@
-<h2>{{ 'navigate.visualization' | translate }}</h2>
+<h2>{{ 'navigate.visualization' | transloco }}</h2>
 
 @if (classement) {
   <div class="return">
     <a [routerLink]="['/navigate/template', classement.templateId]" class="icon-left">
-      {{ 'navigate.see.derivatives' | translate }}
+      {{ 'navigate.see.derivatives' | transloco }}
     </a>
   </div>
 }
@@ -13,17 +13,17 @@
     <h3 class="name">
       <span>{{ classement.name }}</span>
       @if (classement.historyId) {
-        <span class="history">{{ 'generator.actions.history.warning' | translate }}</span>
+        <span class="history">{{ 'generator.actions.history.warning' | transloco }}</span>
       }
     </h3>
     <div class="category">
-      {{ 'category.' + (classement.category || 'undefined') | translate }}
+      {{ 'category.' + (classement.category || 'undefined') | transloco }}
     </div>
     <div class="groups">
-      <div [title]="'list.count.group' | translate"><span class="icon-group"></span> {{ classement.totalGroups }}</div>
-      <div [title]="'list.count.item' | translate"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
+      <div [title]="'list.count.group' | transloco"><span class="icon-group"></span> {{ classement.totalGroups }}</div>
+      <div [title]="'list.count.item' | transloco"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
       <div class="mode">
-        {{ 'mode.name.' + (classement.mode || 'default') | translate }}
+        {{ 'mode.name.' + (classement.mode || 'default') | transloco }}
       </div>
     </div>
     <div class="username">
@@ -35,12 +35,12 @@
             </div>
           }
           <div>
-            {{ 'user.by' | translate: { author: classement.user } }}
+            {{ 'user.by' | transloco: { author: classement.user } }}
           </div>
         </a>
       } @else {
         <div>
-          {{ 'user.by' | translate: { author: ('list.user.anonymous' | translate) } }}
+          {{ 'user.by' | transloco: { author: ('list.user.anonymous' | transloco) } }}
         </div>
       }
     </div>
@@ -53,21 +53,21 @@
       <div class="date">
         {{
           'generator.ranking.create'
-            | translate: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+            | transloco: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
         }}
       </div>
       @if (classement.dateChange) {
         <div class="date">
           {{
             'generator.ranking.change'
-              | translate: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | translate) }
+              | transloco: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
           }}
         </div>
       }
     </div>
     @if (classement.data.options.tags && classement.data.options.tags.length) {
       <div class="tags">
-        <span>{{ 'generator.options.tags' | translate }}</span>
+        <span>{{ 'generator.options.tags' | transloco }}</span>
         <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
       </div>
     }
@@ -80,7 +80,7 @@
               : !logged
                 ? 'generator.actions.make.my.derivative.empty'
                 : 'generator.actions.new.derivative.empty'
-            ) | translate
+            ) | transloco
           }}
         </button>
       }
@@ -91,14 +91,14 @@
       : !logged
       ? 'generator.actions.make.my.derivative'
       : 'generator.actions.new.derivative'
-      ) | translate
+      ) | transloco
       }}
     </button> -->
     </div>
     <div class="buttons">
       @if (classement.withHistory) {
         <button (click)="seeHistory()" class="primary">
-          {{ 'generator.actions.history.show' | translate }} ({{ classement.withHistory + 1 }})
+          {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory + 1 }})
         </button>
       }
       @if (myClassement) {
@@ -108,7 +108,7 @@
               (myClassementCount > 1
                 ? 'generator.actions.see.my.last.derivative'
                 : 'generator.actions.see.my.derivative'
-              ) | translate
+              ) | transloco
             }}
           </button>
         }
@@ -117,29 +117,29 @@
             (myClassementCount > 1
               ? 'generator.actions.edit.my.last.derivative'
               : 'generator.actions.edit.my.derivative'
-            ) | translate
+            ) | transloco
           }}
         </button>
       }
       @if (myClassementCount > 1) {
         <button (click)="seeMyClassements()" class="primary">
-          {{ 'navigate.my.derivatives' | translate }}
+          {{ 'navigate.my.derivatives' | transloco }}
         </button>
         <div class="note">
-          {{ 'generator.actions.my.derivative.count' | translate: { count: myClassementCount } }}
+          {{ 'generator.actions.my.derivative.count' | transloco: { count: myClassementCount } }}
         </div>
       }
     </div>
   </div>
   <div class="save-actions buttons">
-    <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | translate }}</button>
+    <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | transloco }}</button>
     <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
       @if (!exportImageDisabled) {
         <span class="icon-share"></span>
       } @else {
         <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
       }
-      {{ 'generator.actions.export.image' | translate }}
+      {{ 'generator.actions.export.image' | transloco }}
     </button>
   </div>
   @if (!exportImageDisabled) {
@@ -154,20 +154,20 @@
   }
   <div [ngClass]="classScreenMode" #div>
     <div class="classement-top">
-      <h3>{{ 'generator.ranking.group.title' | translate }}</h3>
+      <h3>{{ 'generator.ranking.group.title' | transloco }}</h3>
       @if (classScreenMode !== 'default') {
         <button (click)="screenMode('default', div)">
-          {{ 'generator.screen.default' | translate }}
+          {{ 'generator.screen.default' | transloco }}
         </button>
       }
       @if (classScreenMode !== 'enlarge') {
         <button (click)="screenMode('enlarge', div)">
-          {{ 'generator.screen.window' | translate }}
+          {{ 'generator.screen.window' | transloco }}
         </button>
       }
       @if (classScreenMode !== 'fullscreen') {
         <button (click)="screenMode('fullscreen', div)">
-          {{ 'generator.screen.fullscreen' | translate }}
+          {{ 'generator.screen.fullscreen' | transloco }}
         </button>
       }
     </div>
@@ -187,7 +187,7 @@
 
 <dialog-cmp class="auto-format" #dialogImage closeButton>
   <div class="button-image-save">
-    {{ 'generator.actions.save.image' | translate }}
+    {{ 'generator.actions.save.image' | transloco }}
     <span>
       <button class="button-add primary" (click)="saveImage('PNG')">PNG</button>
       <button class="button-add primary" (click)="saveImage('JPG')">Jpeg</button>
@@ -202,32 +202,32 @@
     <table class="table-derivatives">
       <thead>
         <tr>
-          <th class="title">{{ 'list.title.name' | translate }}</th>
-          <th class="date">{{ 'list.date' | translate }}</th>
-          <th class="groups">{{ 'list.count.group' | translate }}</th>
-          <th class="items">{{ 'list.count.item' | translate }}</th>
-          <th class="actions">{{ 'list.action.name' | translate }}</th>
+          <th class="title">{{ 'list.title.name' | transloco }}</th>
+          <th class="date">{{ 'list.date' | transloco }}</th>
+          <th class="groups">{{ 'list.count.group' | transloco }}</th>
+          <th class="items">{{ 'list.count.item' | transloco }}</th>
+          <th class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
       <tbody>
         @for (derivative of myClassements; track derivative) {
           <tr [class.current]="derivative.rankingId === classement?.rankingId">
             <td class="title">
-              {{ derivative.data.options.title || ('list.title.undefined' | translate) }}
+              {{ derivative.data.options.title || ('list.title.undefined' | transloco) }}
             </td>
             <td class="date">
-              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="groups">{{ derivative.totalGroups }}</td>
             <td class="items">{{ derivative.totalItems }}</td>
             <td class="actions">
               @if (derivative.rankingId !== classement?.rankingId) {
                 <button class="primary" (click)="loadDerivativeClassement(derivative)">
-                  {{ 'generator.actions.see.this.derivative' | translate }}
+                  {{ 'generator.actions.see.this.derivative' | transloco }}
                 </button>
               } @else {
-                {{ 'list.current' | translate }}
+                {{ 'list.current' | transloco }}
               }
             </td>
           </tr>
@@ -239,7 +239,7 @@
 
 <dialog-cmp class="auto-format" #dialogPassword>
   <div class="button-image-save">
-    {{ 'navigate.password.required' | translate }}
+    {{ 'navigate.password.required' | transloco }}
     <div>
       <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
     </div>
@@ -249,9 +249,9 @@
       </ul>
     }
     <span>
-      <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | translate }}</button>
+      <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
       <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
-        {{ 'navigate.password.ok' | translate }}
+        {{ 'navigate.password.ok' | transloco }}
       </button>
     </span>
   </div>
@@ -262,29 +262,29 @@
     <table class="table-history">
       <thead>
         <tr>
-          <th class="title">{{ 'list.title.name' | translate }}</th>
-          <th class="date">{{ 'list.date' | translate }}</th>
-          <th class="actions">{{ 'list.action.name' | translate }}</th>
+          <th class="title">{{ 'list.title.name' | transloco }}</th>
+          <th class="date">{{ 'list.date' | transloco }}</th>
+          <th class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
       <tbody>
         @for (item of history; track item) {
           <tr [class.current]="item.id === classement.historyId">
             <td class="title">
-              {{ item.name || ('list.title.undefined' | translate) }}
+              {{ item.name || ('list.title.undefined' | transloco) }}
             </td>
             <td class="date">
-              <span>{{ item.date | date: ('date.dd/MM/yyyy' | translate) }}</span>
-              <span>{{ item.date | date: ('date.HH:mm' | translate) }}</span>
+              <span>{{ item.date | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ item.date | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="actions">
               @if (item.id !== classement.historyId) {
                 <button class="primary" (click)="loadHistoryClassement(item)">
-                  {{ 'generator.actions.see.this.derivative' | translate }}
+                  {{ 'generator.actions.see.this.derivative' | transloco }}
                 </button>
               } @else {
                 <span class="current">
-                  {{ 'list.current' | translate }}
+                  {{ 'list.current' | transloco }}
                 </span>
               }
             </td>

@@ -99,7 +99,7 @@
     "navigation": {
       "title": "Browse",
       "page.size": "Number of tiles per page in “Browse”",
-      "page.size.pre": "",
+      "page.size.pre": " ",
       "page.size.per": "tiles per page"
     },
     "interface": {

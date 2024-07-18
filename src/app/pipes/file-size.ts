@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { GlobalService } from '../services/global.service';
 
@@ -8,7 +8,7 @@ import { GlobalService } from '../services/global.service';
 export class FileSizePipe implements PipeTransform {
     constructor(
         private readonly globalService: GlobalService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
     ) {}
 
     transform(value: number, params: Intl.NumberFormatOptions | undefined = {}): string {
@@ -21,7 +21,7 @@ export class FileSizePipe implements PipeTransform {
 
         return (
             new Intl.NumberFormat(this.globalService.lang || 'en', params).format(value) +
-            this.translate.instant(`unit.file.B${unit}`)
+            this.translate.translate(`unit.file.B${unit}`)
         );
     }
 }

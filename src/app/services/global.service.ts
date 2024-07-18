@@ -1,7 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
@@ -65,7 +65,7 @@ export class GlobalService {
         readonly rendererFactory: RendererFactory2,
         private readonly logger: Logger,
         private readonly title: Title,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
     ) {
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
@@ -81,9 +81,9 @@ export class GlobalService {
 
     setTitle(key: string, admin = false) {
         this.title.setTitle(
-            `${this.translate.instant(key)}${
-                admin ? `- ${this.translate.instant('menu.admin')}` : ''
-            } - ${this.translate.instant('classement')}`,
+            `${this.translate.translate(key)}${
+                admin ? `- ${this.translate.translate('menu.admin')}` : ''
+            } - ${this.translate.translate('classement')}`,
         );
     }
 

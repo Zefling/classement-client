@@ -1,8 +1,8 @@
-<h3>{{ 'menu.admin.users' | translate }}</h3>
+<h3>{{ 'menu.admin.users' | transloco }}</h3>
 
 <form class="search" (submit)="submit()">
   <div class="name">
-    <label>{{ 'list.user.name' | translate }}</label>
+    <label>{{ 'list.user.name' | transloco }}</label>
     <input
       type="search"
       name="searchKey"
@@ -13,7 +13,7 @@
     <span (click)="resteFilter(filterInput)"></span>
   </div>
   <div>
-    <button type="submit">{{ 'navigate.search' | translate }}</button>
+    <button type="submit">{{ 'navigate.search' | transloco }}</button>
   </div>
 </form>
 
@@ -29,22 +29,22 @@
     <table>
       <thead>
         <tr>
-          <th class="status">{{ 'list.status.list' | translate }}</th>
+          <th class="status">{{ 'list.status.list' | transloco }}</th>
           <th class="user sort" (click)="sortUpdate('username')">
-            {{ 'list.user.name' | translate }}
+            {{ 'list.user.name' | transloco }}
             @if (sort === 'username') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="role">{{ 'list.roles.name' | translate }}</th>
+          <th class="role">{{ 'list.roles.name' | transloco }}</th>
           <th class="date sort" (click)="sortUpdate('dateCreate')">
-            {{ 'list.date' | translate }}
+            {{ 'list.date' | transloco }}
             @if (sort === 'dateCreate') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="classements">{{ 'list.count.classements' | translate }}</th>
-          <th class="actions">{{ 'list.action.name' | translate }}</th>
+          <th class="classements">{{ 'list.count.classements' | transloco }}</th>
+          <th class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
       <tbody>
@@ -56,15 +56,15 @@
                   class="icon"
                   [class.icon-validated]="user.isValidated"
                   [class.icon-not-validated]="!user.isValidated"
-                  [title]="(user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | translate"
+                  [title]="(user.isValidated ? 'list.status.validated' : 'list.status.notValidated') | transloco"
                 ></span>
               }
               @if (user.deleted) {
-                <span class="icon icon-deleted" [title]="'list.status.deleted' | translate"></span>
+                <span class="icon icon-deleted" [title]="'list.status.deleted' | transloco"></span>
               }
             </td>
             <td class="username" [class.anonymous]="!user.username">
-              {{ user.username || ('list.user.anonymous' | translate) }}
+              {{ user.username || ('list.user.anonymous' | transloco) }}
             </td>
             <td class="role">
               @for (role of user.roles; track role) {
@@ -78,17 +78,17 @@
               }
             </td>
             <td class="date">
-              <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | translate) }}</span>
-              <span>{{ user.dateCreate | date: ('date.HH:mm' | translate) }}</span>
+              <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ user.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="classements">{{ user.classements?.length || 0 }}</td>
             <td class="actions">
               @if (user.classements?.length) {
-                <a (click)="see(user)">{{ 'list.action.see' | translate }}</a>
+                <a (click)="see(user)">{{ 'list.action.see' | transloco }}</a>
               }
               @if (!user.deleted) {
-                <a (click)="update(user)">{{ 'list.action.update' | translate }}</a>
-                <a (click)="removeProfile(user)">{{ 'list.action.remove' | translate }}</a>
+                <a (click)="update(user)">{{ 'list.action.update' | transloco }}</a>
+                <a (click)="removeProfile(user)">{{ 'list.action.remove' | transloco }}</a>
               }
             </td>
           </tr>
@@ -99,7 +99,7 @@
       <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
     }
   } @else {
-    <p class="no-result">{{ 'list.no.result' | translate }}</p>
+    <p class="no-result">{{ 'list.no.result' | transloco }}</p>
   }
 }
 
@@ -110,30 +110,30 @@
 <dialog-cmp class="auto-format" #dialogActionsUser>
   @if (currentUser && userForm) {
     <ng-container [formGroup]="userForm">
-      <p>{{ 'user.status.warning' | translate }}</p>
+      <p>{{ 'user.status.warning' | transloco }}</p>
       <p class="title" [class.anonymous]="!currentUser.username">
-        {{ currentUser.username || ('list.user.anonymous' | translate) }}
+        {{ currentUser.username || ('list.user.anonymous' | transloco) }}
       </p>
-      <label for="username">{{ 'user.login.username' | translate }}</label>
+      <label for="username">{{ 'user.login.username' | transloco }}</label>
       <input id="username" type="text" formControlName="username" #username />
-      <label for="password">{{ 'user.login.password' | translate }}</label>
+      <label for="password">{{ 'user.login.password' | transloco }}</label>
       <input id="password" type="password" spellcheck="false" formControlName="password" />
-      <label for="email">{{ 'user.login.email' | translate }}</label>
+      <label for="email">{{ 'user.login.email' | transloco }}</label>
       <input id="email" type="email" formControlName="email" #email />
-      <div class="label">{{ 'user.status.list' | translate }}</div>
+      <div class="label">{{ 'user.status.list' | transloco }}</div>
       @if (isAdmin) {
         <label for="moderator">
           <input id="moderator" type="checkbox" formControlName="moderator" />
-          {{ 'user.status.moderator' | translate }}
+          {{ 'user.status.moderator' | transloco }}
         </label>
         <label for="admin">
           <input id="admin" type="checkbox" formControlName="admin" #adminCheckbox />
-          {{ 'user.status.admin' | translate }}
+          {{ 'user.status.admin' | transloco }}
         </label>
       }
       <label for="banned">
         <input id="banned" type="checkbox" formControlName="banned" />
-        {{ 'user.status.banned' | translate }}
+        {{ 'user.status.banned' | transloco }}
       </label>
       @if (showError) {
         <div class="list-error">
@@ -141,24 +141,24 @@
         </div>
       }
       <div>
-        <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | translate }}</button>
-        <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | translate }}</button>
+        <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | transloco }}</button>
+        <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | transloco }}</button>
       </div>
     </ng-container>
   }
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #dialogRemoveProfile>
-  <p>{{ 'user.profile.remove.question.admin' | translate }}</p>
+  <p>{{ 'user.profile.remove.question.admin' | transloco }}</p>
   <p>
     <strong>{{ currentUser?.username }}</strong>
   </p>
   <p class="alert">
-    {{ 'user.profile.remove.warning' | translate }}<br />
-    {{ 'user.profile.remove.warning2' | translate }}
+    {{ 'user.profile.remove.warning' | transloco }}<br />
+    {{ 'user.profile.remove.warning2' | transloco }}
   </p>
   <div>
-    <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | translate }}</button>
-    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | translate }}</button>
+    <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | transloco }}</button>
+    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
 </dialog-cmp>

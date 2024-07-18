@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -30,7 +30,7 @@ export class ClassementTemplateComponent {
         private readonly classementService: APIClassementService,
         private readonly router: Router,
         private readonly route: ActivatedRoute,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -56,7 +56,7 @@ export class ClassementTemplateComponent {
                         });
                 }
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );

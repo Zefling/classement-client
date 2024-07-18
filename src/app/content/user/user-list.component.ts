@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         private readonly classementService: APIClassementService,
         private readonly userService: APIUserService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly route: ActivatedRoute,
         private readonly router: Router,
         private readonly global: GlobalService,
@@ -60,7 +60,7 @@ export class UserListComponent implements OnInit, OnDestroy {
             this.userService.afterLogout.subscribe(() => {
                 this.router.navigate(['/list']);
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
@@ -138,7 +138,7 @@ export class UserListComponent implements OnInit, OnDestroy {
                         Utils.updateClassements(this.user!.classements, classements, this.user);
                     }
 
-                    this.messageService.addMessage(this.translate.instant(`message.server.${typeName!}.success`));
+                    this.messageService.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
                     this.currentClassement = undefined;
                 });
         } else {

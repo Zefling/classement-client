@@ -1,35 +1,35 @@
-<h2>{{ 'menu.home' | translate }}</h2>
+<h2>{{ 'menu.home' | transloco }}</h2>
 
 <div class="tiles-navigate">
   @if (preferences.mode !== 'choice') {
     <a class="tile-navigate" routerLink="/edit/new">
       <span class="icon icon-add"></span>
-      <span class="label">{{ 'menu.new' | translate }}</span>
+      <span class="label">{{ 'menu.new' | transloco }}</span>
     </a>
   } @else {
     <a class="tile-navigate" (click)="openNew()" (keydown.enter)="openNew()" tabindex="0">
       <span class="icon icon-add"></span>
-      <span class="label">{{ 'menu.new' | translate }}</span>
+      <span class="label">{{ 'menu.new' | transloco }}</span>
     </a>
   }
   @if (modeApi) {
     <a class="tile-navigate" routerLink="/navigate">
       <span class="icon icon-search"></span>
-      <span class="label">{{ 'menu.navigate' | translate }}</span>
+      <span class="label">{{ 'menu.navigate' | transloco }}</span>
     </a>
     <a class="tile-navigate" routerLink="/user/profile">
       <span class="icon icon-profile"></span>
-      <span class="label">{{ 'menu.profile' | translate }}</span>
+      <span class="label">{{ 'menu.profile' | transloco }}</span>
     </a>
   }
   <a class="tile-navigate" [routerLink]="logged ? '/user/lists' : '/list'">
     <span class="icon icon-bookmark"></span>
-    <span class="label">{{ (logged ? 'menu.my.lists' : 'menu.list') | translate }}</span>
+    <span class="label">{{ (logged ? 'menu.my.lists' : 'menu.list') | transloco }}</span>
   </a>
 </div>
 
 @if (modeApi) {
-  <h3>{{ 'home.last' | translate }}</h3>
+  <h3>{{ 'home.last' | transloco }}</h3>
   @if (!loading) {
     <div class="navigate-result">
       <navigate-result [classements]="classements" hideDerivatives onlyRanking isHomeList></navigate-result>
@@ -39,19 +39,19 @@
   }
 }
 
-<h3>{{ 'home.info' | translate }}</h3>
-<p>{{ 'home.intro' | translate }}</p>
-<p>{{ 'home.philosophy' | translate }}</p>
+<h3>{{ 'home.info' | transloco }}</h3>
+<p>{{ 'home.intro' | transloco }}</p>
+<p>{{ 'home.philosophy' | transloco }}</p>
 @if (modeApi) {
   <p>
-    <a routerLink="/user/information"> {{ 'home.feedback' | translate }}</a>
+    <a routerLink="/user/information"> {{ 'home.feedback' | transloco }}</a>
   </p>
 }
 
 <div class="infos">
   <div class="licence">
     <div class="logo">
-      <div class="text">{{ 'home.source.license' | translate }}</div>
+      <div class="text">{{ 'home.source.license' | transloco }}</div>
 
       <!-- source : GLP3 -->
       <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 1072 1024" role="img">
@@ -68,13 +68,13 @@
     </div>
     <div class="link">
       <a href="https://git.ikilote.net/typescript/classement/-/blob/master/LICENSE">{{
-        'home.source.gpl3' | translate
+        'home.source.gpl3' | transloco
       }}</a>
     </div>
   </div>
   <div class="source">
     <div class="logo">
-      <div class="text">{{ 'home.source.code' | translate }}</div>
+      <div class="text">{{ 'home.source.code' | transloco }}</div>
 
       <!-- source : Gitlab -->
       <svg title="GitLab" width="36" height="36" class="gtilab-tanuki-logo" viewBox="0 0 36 36" role="img">
@@ -89,13 +89,13 @@
     </div>
     <div class="source-links">
       <div class="link">
-        <a href="https://git.ikilote.net/classement/classement">{{ 'home.source.client' | translate }}</a>
+        <a href="https://git.ikilote.net/classement/classement">{{ 'home.source.client' | transloco }}</a>
       </div>
       <div class="link">
-        <a href="https://git.ikilote.net/classement/serveur">{{ 'home.source.server' | translate }}</a>
+        <a href="https://git.ikilote.net/classement/serveur">{{ 'home.source.server' | transloco }}</a>
       </div>
       <div class="link">
-        <a href="https://git.ikilote.net/classement/classicone">{{ 'home.source.icons' | translate }}</a>
+        <a href="https://git.ikilote.net/classement/classicone">{{ 'home.source.icons' | transloco }}</a>
       </div>
     </div>
 
@@ -125,18 +125,18 @@
     </div>
     <div class="source-links">
       <div class="link">
-        <a href="https://github.com/Zefling/classement-client">{{ 'home.source.client' | translate }}</a>
+        <a href="https://github.com/Zefling/classement-client">{{ 'home.source.client' | transloco }}</a>
       </div>
       <div class="link">
-        <a href="https://github.com/Zefling/classement-server">{{ 'home.source.server' | translate }}</a>
+        <a href="https://github.com/Zefling/classement-server">{{ 'home.source.server' | transloco }}</a>
       </div>
     </div>
   </div>
 </div>
 
 <div>
-  {{ 'home.app.name' | translate }}
+  {{ 'home.app.name' | transloco }}
   <a href="https://git.ikilote.net/classement/classement/-/blob/master/CHANGELOG.md">{{
-    'home.app.version' | translate: { version: version }
+    'home.app.version' | transloco: { version: version }
   }}</a>
 </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, PreferencesData } from 'src/app/interface/interface';
@@ -35,7 +35,7 @@ export class ClassementHomeComponent {
         private readonly userService: APIUserService,
         private readonly classementService: APIClassementService,
         private readonly messageService: MessageService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
         private readonly preferencesService: PreferencesService,
     ) {
@@ -53,7 +53,7 @@ export class ClassementHomeComponent {
                 })
                 .catch(() => {
                     this.classements = [];
-                    this.messageService.addMessage(this.translate.instant('message.navigate.access.error'));
+                    this.messageService.addMessage(this.translate.translate('message.navigate.access.error'));
                 })
                 .finally(() => {
                     this.loading = false;
@@ -61,7 +61,7 @@ export class ClassementHomeComponent {
         }
 
         this.listener.push(
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );

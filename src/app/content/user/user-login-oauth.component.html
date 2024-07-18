@@ -1,4 +1,4 @@
-<h1>{{ 'user.login.title' | translate }}</h1>
+<h1>{{ 'user.login.title' | transloco }}</h1>
 
 @if (showError) {
   <div class="list-error">
@@ -8,13 +8,13 @@
 
 <div class="links">
   <div>
-    <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+    <a routerLink="/user/login">{{ 'user.login.login' | transloco }}</a>
   </div>
   <div>
-    <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | translate }}</a>
+    <a routerLink="/user/password-lost">{{ 'user.login.password.lost' | transloco }}</a>
   </div>
   <div>
-    <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+    <a routerLink="/user/sign-up">{{ 'user.login.signup' | transloco }}</a>
   </div>
 </div>
 

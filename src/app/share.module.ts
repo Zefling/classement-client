@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { Select2Module } from 'ng-select2-component';
 
@@ -14,7 +14,7 @@ import { PipesModule } from './pipes/pipes.module';
     exports: [
         // external
         CommonModule,
-        TranslateModule,
+        TranslocoModule,
         FormsModule,
         ReactiveFormsModule,
         Select2Module,
@@ -26,7 +26,7 @@ import { PipesModule } from './pipes/pipes.module';
     imports: [
         // external
         CommonModule,
-        TranslateModule,
+        TranslocoModule,
         FormsModule,
         ReactiveFormsModule,
         Select2Module,

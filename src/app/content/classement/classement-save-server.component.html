@@ -1,49 +1,49 @@
 <div drop-image mode="local" (file)="fileChange($event)" class="test">
-  <h2>{{ (update ? 'generator.server.update' : 'generator.server.new') | translate }}</h2>
+  <h2>{{ (update ? 'generator.server.update' : 'generator.server.new') | transloco }}</h2>
 
   @let current = classement();
   @let opts = options();
 
   @if (current && current.user && !update) {
     <div class="info-current">
-      <h3>{{ 'generator.server.from' | translate }}</h3>
+      <h3>{{ 'generator.server.from' | transloco }}</h3>
       <div>
-        <strong>{{ 'generator.server.username' | translate }}</strong>
-        <span [class.anonymous]="!current.user">{{ current.user || ('list.user.anonymous' | translate) }}</span>
+        <strong>{{ 'generator.server.username' | transloco }}</strong>
+        <span [class.anonymous]="!current.user">{{ current.user || ('list.user.anonymous' | transloco) }}</span>
       </div>
       <div>
-        <strong>{{ 'generator.options.title' | translate }}</strong>
+        <strong>{{ 'generator.options.title' | transloco }}</strong>
         <span>{{ current.name }}</span>
       </div>
       <div class="category">
-        <strong>{{ 'generator.options.group' | translate }}</strong>
-        <span>{{ 'category.' + (current.category || 'undefined') | translate }}</span>
+        <strong>{{ 'generator.options.group' | transloco }}</strong>
+        <span>{{ 'category.' + (current.category || 'undefined') | transloco }}</span>
       </div>
     </div>
   }
 
   @if (opts) {
-    <h3>{{ 'generator.server.edit' | translate }}</h3>
+    <h3>{{ 'generator.server.edit' | transloco }}</h3>
     <div class="title">
-      <label>{{ 'generator.options.title' | translate }}</label>
+      <label>{{ 'generator.options.title' | transloco }}</label>
       <div><input type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
     </div>
     @if (!current?.user || current?.parent) {
       <div class="categories">
-        <label>{{ 'generator.options.group' | translate }}</label>
+        <label>{{ 'generator.options.group' | transloco }}</label>
         <div>
           <select2 [data]="categoriesList" [(ngModel)]="opts.category"></select2>
         </div>
       </div>
     }
     <div class="banner">
-      <label class="required">{{ 'generator.server.banner.select' | translate }}</label>
+      <label class="required">{{ 'generator.server.banner.select' | transloco }}</label>
       <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
     </div>
     <div class="cropper-line">
       @if (imageChangedEvent || imageBase64) {
         <div class="cropper">
-          <div class="label">{{ 'generator.server.banner.crop' | translate }}</div>
+          <div class="label">{{ 'generator.server.banner.crop' | transloco }}</div>
           <image-cropper
             [imageChangedEvent]="imageChangedEvent"
             [imageBase64]="imageBase64"
@@ -64,11 +64,11 @@
       }
       @if (croppedImage || current?.banner) {
         <div class="image">
-          <div class="label">{{ 'generator.server.banner.image' | translate }}</div>
+          <div class="label">{{ 'generator.server.banner.image' | transloco }}</div>
           <img [src]="croppedImage || current?.banner" />
           @if (croppedImage) {
             <button (click)="resetBanner()">
-              {{ 'generator.server.banner.reset' | translate }}
+              {{ 'generator.server.banner.reset' | transloco }}
             </button>
           }
         </div>
@@ -82,7 +82,7 @@
       </ul>
     }
     <div class="link">
-      <label>{{ 'generator.server.link' | translate }}</label>
+      <label>{{ 'generator.server.link' | transloco }}</label>
       <div>
         <input
           type="text"
@@ -98,38 +98,38 @@
     <div class="public">
       <label>
         <input type="checkbox" [(ngModel)]="hidden" />
-        {{ 'generator.server.not.public' | translate }}
+        {{ 'generator.server.not.public' | transloco }}
       </label>
-      <span [tooltip]="'list.hide.note' | translate" class="icon-info"></span>
+      <span [tooltip]="'list.hide.note' | transloco" class="icon-info"></span>
     </div>
     @if (hidden) {
       <div class="password">
-        <label>{{ 'generator.server.password' | translate }}</label>
+        <label>{{ 'generator.server.password' | transloco }}</label>
         <div><input type="password" [(ngModel)]="password" /></div>
       </div>
     }
     <div class="save-local">
       <label>
         <input type="checkbox" [(ngModel)]="saveLocal" />
-        {{ 'generator.server.not.remove.local' | translate }}
+        {{ 'generator.server.not.remove.local' | transloco }}
       </label>
-      <span [tooltip]="'generator.server.not.remove.local.info' | translate" class="icon-info"></span>
+      <span [tooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span>
     </div>
     @if (update) {
       <div class="public">
         <label>
           <input type="checkbox" [(ngModel)]="history" />
-          {{ 'generator.server.history.label' | translate }}
+          {{ 'generator.server.history.label' | transloco }}
         </label>
-        <span [tooltip]="'generator.server.history.info' | translate" class="icon-info"></span>
+        <span [tooltip]="'generator.server.history.info' | transloco" class="icon-info"></span>
       </div>
     }
   }
 
   <p>
-    <button (click)="cancel()">{{ 'generator.server.cancel' | translate }}</button>
+    <button (click)="cancel()">{{ 'generator.server.cancel' | transloco }}</button>
     <button class="primary" (click)="validate()" [disabled]="linkIdValid === false">
-      {{ 'generator.server.save' | translate }}
+      {{ 'generator.server.save' | transloco }}
     </button>
   </p>
 </div>

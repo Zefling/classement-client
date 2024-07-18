@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -19,7 +19,7 @@ export class LicensesComponent {
     constructor(
         private readonly http: HttpClient,
         private readonly global: GlobalService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
     ) {
         if (this.global.licenses) {
             this.data = this.global.licenses;
@@ -34,7 +34,7 @@ export class LicensesComponent {
             });
         }
         this.listener.push(
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -18,7 +18,7 @@ export class UserSignupValidateComponent {
         private readonly userService: APIUserService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly messageService: MessageService,
     ) {
         this.activatedRoute.paramMap.subscribe(params => {
@@ -27,16 +27,16 @@ export class UserSignupValidateComponent {
                 this.userService
                     .userValidate(token)
                     .then(() => {
-                        this.messageService.addMessage(this.translate.instant('message.user.validate.success'), {
+                        this.messageService.addMessage(this.translate.translate('message.user.validate.success'), {
                             time: '7s',
                         });
                         this.router.navigate(['/user/login']);
                     })
                     .catch(() => {
-                        this.error = this.translate.instant('error.token.invalid');
+                        this.error = this.translate.translate('error.token.invalid');
                     });
             } else {
-                this.error = this.translate.instant('error.token.not');
+                this.error = this.translate.translate('error.token.not');
             }
         });
     }

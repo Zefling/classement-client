@@ -1,9 +1,9 @@
-<h1>{{ 'user.password.lost.title' | translate }}</h1>
+<h1>{{ 'user.password.lost.title' | transloco }}</h1>
 
 @if (!valide) {
   <form class="form">
-    <p>{{ 'user.password.lost.info' | translate }}</p>
-    <label for="email">{{ 'user.login.email' | translate }}</label>
+    <p>{{ 'user.password.lost.info' | transloco }}</p>
+    <label for="email">{{ 'user.login.email' | transloco }}</label>
     <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
     @if (showError) {
       <div class="list-error">
@@ -11,20 +11,20 @@
       </div>
     }
     <div class="button">
-      <button (click)="submit()">{{ 'user.password.lost.action' | translate }}</button>
+      <button (click)="submit()">{{ 'user.password.lost.action' | transloco }}</button>
     </div>
   </form>
 } @else {
   <div>
-    {{ 'user.password.lost.send' | translate }}
+    {{ 'user.password.lost.send' | transloco }}
   </div>
 }
 
 <div class="links">
   <div>
-    <a routerLink="/user/login">{{ 'user.login.login' | translate }}</a>
+    <a routerLink="/user/login">{{ 'user.login.login' | transloco }}</a>
   </div>
   <div>
-    <a routerLink="/user/sign-up">{{ 'user.login.signup' | translate }}</a>
+    <a routerLink="/user/sign-up">{{ 'user.login.signup' | transloco }}</a>
   </div>
 </div>

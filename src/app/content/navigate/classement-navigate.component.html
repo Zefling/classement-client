@@ -1,9 +1,9 @@
-<h2>{{ 'menu.navigate' | translate }}</h2>
+<h2>{{ 'menu.navigate' | transloco }}</h2>
 
 @if (categoriesList) {
   <form class="search" (submit)="submit(true)">
     <div class="name">
-      <label>{{ 'navigate.title' | translate }}</label>
+      <label>{{ 'navigate.title' | transloco }}</label>
       <input
         type="search"
         name="name"
@@ -14,18 +14,18 @@
     </div>
     <div class="line">
       <div class="categories">
-        <label>{{ 'navigate.category' | translate }}</label>
+        <label>{{ 'navigate.category' | transloco }}</label>
         <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
       </div>
       <div class="modes">
-        <label for="option-mode">{{ 'generator.options.mode' | translate }}</label>
+        <label for="option-mode">{{ 'generator.options.mode' | transloco }}</label>
         <select2 name="mode" [data]="listMode" [(ngModel)]="mode" [templates]="templateMode">
           <ng-template #templateMode let-label="label" let-data="data">
             @if (data) {
               <div class="list-mode">
                 <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
                 <div class="desc">
-                  {{ 'mode.name.' + label | translate }}
+                  {{ 'mode.name.' + label | transloco }}
                 </div>
               </div>
             } @else {
@@ -34,13 +34,13 @@
           </ng-template>
         </select2>
       </div>
-      <button type="submit">{{ 'navigate.search' | translate }}</button>
+      <button type="submit">{{ 'navigate.search' | transloco }}</button>
     </div>
   </form>
 }
 
 <h3>
-  {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | translate }}
+  {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | transloco }}
   @if (!loading) {
     ({{ total }})
   }
@@ -48,7 +48,7 @@
 
 @if (!isCategoryList) {
   <div class="return">
-    <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.category' | translate }}</a>
+    <a [routerLink]="['/navigate']" class="icon-left"> {{ 'navigate.back.category' | transloco }}</a>
   </div>
 }
 

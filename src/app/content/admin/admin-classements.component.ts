@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -35,7 +35,7 @@ export class AdminClassementsComponent implements OnDestroy {
         private readonly classementService: APIClassementService,
         private readonly route: ActivatedRoute,
         private readonly categories: CategoriesService,
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly global: GlobalService,
     ) {
         this.updateTitle();
@@ -50,7 +50,7 @@ export class AdminClassementsComponent implements OnDestroy {
             this.categories.onChange.subscribe(() => {
                 this.categoryUpdate();
             }),
-            this.translate.onLangChange.subscribe(() => {
+            this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );

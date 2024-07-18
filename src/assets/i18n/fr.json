@@ -99,7 +99,7 @@
     "navigation": {
       "title": "Parcourir",
       "page.size": "Nombre de tuiles par page dans « Parcourir »",
-      "page.size.pre": "",
+      "page.size.pre": " ",
       "page.size.per": "tuiles par page"
     },
     "interface": {

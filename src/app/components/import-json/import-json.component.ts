@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, booleanAttribute, input, output, viewChild } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Buffer } from 'buffer';
 import { Subscription } from 'rxjs';
@@ -39,7 +39,7 @@ export class ImportJsonComponent implements OnDestroy {
     private _sub: Subscription[] = [];
 
     constructor(
-        private readonly translate: TranslateService,
+        private readonly translate: TranslocoService,
         private readonly globalService: GlobalService,
         private readonly messageService: MessageService,
         private readonly dbService: DBService,
@@ -77,7 +77,7 @@ export class ImportJsonComponent implements OnDestroy {
                 if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
                     this.jsonTmp = [{ data: data, selected: true }];
                 } else {
-                    this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
+                    this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
                         type: MessageType.error,
                     });
                 }
@@ -90,13 +90,13 @@ export class ImportJsonComponent implements OnDestroy {
                     );
                 }
             } else {
-                this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
+                this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
                     type: MessageType.error,
                 });
             }
         } catch (e) {
             this.logger.log('json error:', LoggerLevel.error, e);
-            this.messageService.addMessage(this.translate.instant('message.json.read.failed'), {
+            this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
                 type: MessageType.error,
             });
         }
