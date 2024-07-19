@@ -18,6 +18,7 @@ import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { ClassementEditComponent } from './classement-edit.component';
 
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
@@ -59,6 +60,7 @@ export class ClassementEditImageComponent implements OnChanges {
     constructor(
         private readonly cd: ChangeDetectorRef,
         private readonly global: GlobalService,
+        private readonly logger: Logger,
         @Host() private readonly editor: ClassementEditComponent,
     ) {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
@@ -218,11 +220,11 @@ export class ClassementEditImageComponent implements OnChanges {
 
     cropperReady() {
         // cropper ready
-        console.log('Cropper is ready');
+        this.logger.log('Cropper is ready', LoggerLevel.info);
     }
 
     loadImageFailed() {
         // show message
-        console.warn('Cropper load image failed !!');
+        this.logger.log('Cropper load image failed !!', LoggerLevel.warn);
     }
 }

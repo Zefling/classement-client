@@ -73,7 +73,9 @@
         </label>
       }
       @if (
-        !opts.itemWidthAuto && (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))
+        (!opts.itemWidthAuto &&
+          (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+        opts.mode === 'bingo'
       ) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemImageCover" />

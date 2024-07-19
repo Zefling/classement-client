@@ -85,6 +85,7 @@ export const imageInfos: Partial<Record<ImagesNames, { normal: string; mini: str
 export const imagesLists: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
 export const imagesAxis: ImagesNames[] = ['none', 'custom'];
+export const imagesBingo: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesThemes = imagesLists;
 
 export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'sakura', 'night', 'ciel'];
@@ -261,7 +262,8 @@ export const themesList: Theme[] = [
             itemHeight: 150,
             itemMaxWidth: 100,
             itemMaxHeight: 150,
-            itemHeightAuto: true,
+            itemWidthAuto: false,
+            itemHeightAuto: false,
             imageHeight: 1000,
             imageWidth: 1000,
             imageSize: 'cover',

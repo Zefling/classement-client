@@ -291,6 +291,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ...(this.global.jsonTmp?.options || defaultOptions),
                 ...{ showAdvancedOptions: false },
             };
+
             this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defaultGroup);
             this.list = this.global.jsonTmp?.list || [];
             this.addIds();
@@ -432,7 +433,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.lineOption = this.preferencesService.preferences.lineOption;
 
-        const val = this.global.updateVarCss(this.options, this.imagesCache);
+        this.global.updateVarCss(this.options, this.imagesCache);
         this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
 
         // fix category with select2

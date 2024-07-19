@@ -22,12 +22,14 @@ import { environment } from 'src/environments/environment';
 import {
     imageInfos,
     imagesAxis,
+    imagesBingo,
     imagesIceberg,
     imagesLists,
     imagesThemes,
     listModes,
     themes,
     themesAxis,
+    themesBingo,
     themesIceberg,
     themesList,
     themesLists,
@@ -107,6 +109,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 case 'axis':
                     this.imagesList = imagesAxis;
                     this.themesList = themesAxis;
+                    break;
+                case 'bingo':
+                    this.imagesList = imagesBingo;
+                    this.themesList = themesBingo;
                     break;
                 default:
                     this.imagesList = imagesLists;
