@@ -609,7 +609,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
-    drop(event: CdkDragDrop<{ list: (FileString | null)[] }>) {
+    drop(event: CdkDragDrop<{ list: (FileString | null)[]; index: number }>) {
         const previousList = event.previousContainer.data.list;
         const targetList = event.container.data.list;
         const indexFrom = event.previousIndex;
@@ -668,6 +668,17 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     item.y = Math.max(0, item.y || 0);
 
                     transferArrayItem(previousList, targetList, indexFrom, this.groups[0].list.length);
+                    break;
+                case 'bingo':
+                    transferArrayItem(
+                        previousList,
+                        targetList,
+                        indexFrom,
+                        event.container.data.index > -1 ? event.container.data.index : indexTarget,
+                    );
+                    if (event.container.data.index > -1) {
+                        event.container.data.list.splice(event.container.data.index + 1, 1);
+                    }
                     break;
                 default:
                     transferArrayItem(previousList, targetList, indexFrom, indexTarget);

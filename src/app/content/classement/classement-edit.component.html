@@ -124,7 +124,7 @@
                       class="drop-list"
                       cdkDropList
                       cdkDropListOrientation="mixed"
-                      [cdkDropListData]="{ list: group.list }"
+                      [cdkDropListData]="{ list: group.list, index: -1 }"
                       (cdkDropListDropped)="drop($event)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
@@ -284,8 +284,8 @@
                       <div
                         class="drop-list"
                         cdkDropList
-                        cdkDropListOrientation="mixed"
-                        [cdkDropListData]="{ list: group.list }"
+                        [cdkDropListDisabled]="item !== null"
+                        [cdkDropListData]="{ list: group.list, index }"
                         (cdkDropListDropped)="drop($event)"
                       >
                         @if (item) {
@@ -351,7 +351,7 @@
             [class.height-auto]="options.itemHeightAuto"
             cdkDropList
             cdkDropListOrientation="mixed"
-            [cdkDropListData]="{ list: list }"
+            [cdkDropListData]="{ list: list, index: -1 }"
             (cdkDropListDropped)="drop($event)"
           >
             @for (item of list; track trackByFnFileString(index, item); let index = $index) {
@@ -422,7 +422,7 @@
                 class="drop-zone-empty-list"
                 cdkDropList
                 cdkDropListOrientation="mixed"
-                [cdkDropListData]="{ list: list }"
+                [cdkDropListData]="{ list: list, index: -1 }"
                 (cdkDropListDropped)="drop($event)"
               ></div>
             }

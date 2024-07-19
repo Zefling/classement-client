@@ -612,6 +612,24 @@ span.group-options {
     }
 }
 
+// zone : bingo -----------------------------------------------------------
+
+.mode-bingo {
+    .table-classement {
+        margin: auto;
+        width: auto;
+        min-width: auto;
+    }
+
+    .elements,
+    .elements > div {
+        width: var(--over-item-max-width);
+        max-width: var(--over-item-max-width);
+        height: var(--over-item-max-height);
+        max-height: var(--over-item-max-height);
+    }
+}
+
 // actions ------------------------------------------------------------------
 
 .save-actions {
