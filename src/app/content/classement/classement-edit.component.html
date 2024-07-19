@@ -30,7 +30,11 @@
     </div>
   </div>
 
-  <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
+  <classement-options
+    [options]="options"
+    [lockCategory]="lockCategory"
+    (updateAction)="updateAction($event)"
+  ></classement-options>
 
   @if (options) {
     <div [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>

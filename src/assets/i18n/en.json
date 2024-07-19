@@ -243,7 +243,8 @@
       "default": "Tierlist",
       "teams": "Teams",
       "iceberg": "Iceberg",
-      "axis": "Axis"
+      "axis": "Axis",
+      "bingo": "Bingo"
     }
   },
   "generator": {
@@ -337,6 +338,7 @@
         "rtl": "Right to left",
         "ltr": "Left to right"
       },
+      "size": "Grid size (width × height):",
       "group.markdown": "Markdown in group names",
       "background": {
         "custom": "Select a custom background image",
@@ -391,7 +393,8 @@
         "night": "Night",
         "ciel": "Sky",
         "iceberg": "Iceberg",
-        "axis": "Axis"
+        "axis": "Axis",
+        "bingo": "Bingo"
       }
     },
     "ranking": {
@@ -470,7 +473,8 @@
         "default": "Freely move tiles in each group.",
         "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams.",
         "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
-        "axis": "Move freely in the defined space along axes."
+        "axis": "Move freely in the defined space along axes.",
+        "bingo": "Distribute tiles in a grid."
       },
       "reset.groups": {
         "button": "Clear Groups",

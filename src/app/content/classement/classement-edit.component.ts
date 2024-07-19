@@ -330,6 +330,34 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
+    updateAction(event: { action: string; value: any }) {
+        if (event.action === 'sizeX') {
+            if (this.groups[0].list.length < event.value) {
+                this.groupsControl(this.groups, this.options);
+            } else if (this.groups[0].list.length > event.value) {
+                this.groups.forEach(line =>
+                    line.list.splice(event.value).forEach(tile => {
+                        if (tile) {
+                            this.list.push(tile);
+                        }
+                    }),
+                );
+            }
+        } else if (event.action === 'sizeY') {
+            if (this.groups.length < event.value) {
+                this.groupsControl(this.groups, this.options);
+            } else if (this.groups.length > event.value) {
+                this.groups.splice(event.value).forEach(line => {
+                    line.list.forEach(tile => {
+                        if (tile) {
+                            this.list.push(tile);
+                        }
+                    });
+                });
+            }
+        }
+    }
+
     loadLocalClassement() {
         this.dbService
             .loadLocal(this.id!)

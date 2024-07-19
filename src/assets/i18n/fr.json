@@ -243,7 +243,8 @@
       "default": "Tierlist",
       "teams": "Équipes",
       "iceberg": "Iceberg",
-      "axis": "Axes"
+      "axis": "Axes",
+      "bingo": "Bingo"
     }
   },
   "generator": {
@@ -337,6 +338,7 @@
         "rtl": "Droite à gauche",
         "ltr": "Gauche à droite"
       },
+      "size": "Taille de la grille (largeur × hauteur) :",
       "group.markdown": "Markdown dans les noms de groupe",
       "background": {
         "custom": "Sélectionner une image fond personnalisée",
@@ -391,7 +393,8 @@
         "night": "Nuit",
         "ciel": "Ciel",
         "iceberg": "Iceberg",
-        "axis": "Axes"
+        "axis": "Axes",
+        "bingo": "Bingo"
       }
     },
     "ranking": {
@@ -470,7 +473,8 @@
         "default": "Déplacer librement les tuiles dans chaque groupes.",
         "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
         "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
-        "axis": "Déplacer librement dans l'espace défini suivant des axes."
+        "axis": "Déplacer librement dans l'espace défini suivant des axes.",
+        "bingo": "Repartissez des tuiles dans une grille."
       },
       "reset.groups": {
         "button": "Vider les groupes",

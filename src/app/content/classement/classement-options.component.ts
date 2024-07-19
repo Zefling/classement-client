@@ -5,6 +5,7 @@ import {
     input,
     OnChanges,
     OnDestroy,
+    output,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
@@ -47,6 +48,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     options = input<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
+
+    // output
+
+    updateAction = output<{ action: string; value: any }>();
 
     // viewChild
 
