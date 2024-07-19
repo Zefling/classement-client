@@ -614,9 +614,30 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const targetList = event.container.data.list;
         const indexFrom = event.previousIndex;
         const indexTarget = event.currentIndex;
+        const indexPreviousData = event.previousContainer.data.index;
+        const indexTargetData = event.container.data.index;
 
         if (previousList === targetList) {
-            moveItemInArray(targetList, event.previousIndex, event.currentIndex);
+            switch (this.options.mode) {
+                case 'bingo':
+                    if (indexTargetData === -1 || (indexTargetData > -1 && !targetList[indexTargetData])) {
+                        moveItemInArray(
+                            targetList,
+                            indexPreviousData > -1 ? indexPreviousData : indexFrom,
+                            indexTargetData > -1 ? indexTargetData : indexTarget,
+                        );
+                        if (indexTargetData > -1 && indexPreviousData > -1) {
+                            moveItemInArray(
+                                targetList,
+                                indexTargetData + (indexTargetData > indexPreviousData ? -1 : 1),
+                                indexPreviousData,
+                            );
+                        }
+                    }
+                    break;
+                default:
+                    moveItemInArray(targetList, indexFrom, indexTarget);
+            }
         } else {
             const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
             switch (this.options.mode) {
@@ -670,14 +691,19 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     transferArrayItem(previousList, targetList, indexFrom, this.groups[0].list.length);
                     break;
                 case 'bingo':
-                    transferArrayItem(
-                        previousList,
-                        targetList,
-                        indexFrom,
-                        event.container.data.index > -1 ? event.container.data.index : indexTarget,
-                    );
-                    if (event.container.data.index > -1) {
-                        event.container.data.list.splice(event.container.data.index + 1, 1);
+                    if (indexTargetData === -1 || (indexTargetData > -1 && !targetList[indexTargetData])) {
+                        transferArrayItem(
+                            previousList,
+                            targetList,
+                            indexPreviousData > -1 ? indexPreviousData : indexFrom,
+                            indexTargetData > -1 ? indexTargetData : indexTarget,
+                        );
+                        if (indexTargetData > -1) {
+                            targetList.splice(indexTargetData + 1, 1);
+                        }
+                        if (indexPreviousData > -1) {
+                            previousList.splice(indexPreviousData, 0, null);
+                        }
                     }
                     break;
                 default:
@@ -780,7 +806,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     removeFromZone(group: FormattedGroup, index: number) {
-        const item = group.list.splice(index, 1)[0];
+        let item: FileString | null;
+
+        if (this.options.mode !== 'bingo') {
+            item = group.list.splice(index, 1)[0];
+        } else {
+            item = group.list.splice(index, 1, null)[0];
+        }
+
         if (item) {
             item.x = 0;
             item.y = 0;

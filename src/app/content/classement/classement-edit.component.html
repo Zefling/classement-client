@@ -284,47 +284,44 @@
                       <div
                         class="drop-list"
                         cdkDropList
-                        [cdkDropListDisabled]="item !== null"
                         [cdkDropListData]="{ list: group.list, index }"
                         (cdkDropListDropped)="drop($event)"
                       >
                         @if (item) {
-                          @for (item of [item]; track trackByFnFileString(index, item); let index = $index) {
+                          <div
+                            class="content-box"
+                            cdkDrag
+                            removeTile
+                            (removeElement)="removeFromZone(group, index)"
+                            [style.--over-item-background]="item.bgColor"
+                            [style.--over-item-text-color]="item.txtColor"
+                          >
                             <div
-                              class="content-box"
-                              cdkDrag
-                              removeTile
-                              (removeElement)="removeFromZone(group, index)"
-                              [style.--over-item-background]="item.bgColor"
-                              [style.--over-item-text-color]="item.txtColor"
+                              class="content content-render"
+                              [class.with-annotation]="item.annotation"
+                              [ngClass]="options.itemTextPosition"
+                              [id]="item.id"
+                              #tile
                             >
-                              <div
-                                class="content content-render"
-                                [class.with-annotation]="item.annotation"
-                                [ngClass]="options.itemTextPosition"
-                                [id]="item.id"
-                                #tile
-                              >
-                                @if (item.url) {
-                                  <div [class.image]="calcWidth(item, tile)">
-                                    <img
-                                      (ngInit)="calcWidth(item, tile); detectChanges()"
-                                      (load)="calcWidth(item, tile); detectChanges()"
-                                      [class.cover]="options.itemImageCover"
-                                      src="{{ item.url }}"
-                                      alt="{{ item.name }}"
-                                    />
-                                  </div>
-                                }
-                                @if (item.title) {
-                                  <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                    <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                                  </div>
-                                }
-                                <div class="tile-info" (click)="openTileInfo(item)"></div>
-                              </div>
+                              @if (item.url) {
+                                <div [class.image]="calcWidth(item, tile)">
+                                  <img
+                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                    (load)="calcWidth(item, tile); detectChanges()"
+                                    [class.cover]="options.itemImageCover"
+                                    src="{{ item.url }}"
+                                    alt="{{ item.name }}"
+                                  />
+                                </div>
+                              }
+                              @if (item.title) {
+                                <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                                </div>
+                              }
+                              <div class="tile-info" (click)="openTileInfo(item)"></div>
                             </div>
-                          }
+                          </div>
                         } @else {
                           <div class="drop-zone-empty-list"></div>
                         }
