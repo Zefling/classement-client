@@ -35,6 +35,7 @@ You can also help by contributing, returning bugs or helping with translations.
         -   ✅ Teams
         -   ✅ Iceberg
         -   ✅ Axis
+        -   ✅ Bingo
     -   ✅ Advanced customization of tiles, lines, background, etc.
         -   ✅ Background image
         -   ✅ Direction

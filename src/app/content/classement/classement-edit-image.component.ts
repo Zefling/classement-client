@@ -71,14 +71,14 @@ export class ClassementEditImageComponent implements OnChanges {
         if (changes['currentTile']) {
             // list colors background
             const bgColors = new Set<string>();
-            this.editor.list.forEach(e => (e.bgColor ? bgColors.add(e.bgColor) : null));
-            this.editor.groups.forEach(e => e.list.forEach(f => (f.bgColor ? bgColors.add(f.bgColor) : null)));
+            this.editor.list.forEach(e => (e?.bgColor ? bgColors.add(e.bgColor) : null));
+            this.editor.groups.forEach(e => e.list.forEach(f => (f?.bgColor ? bgColors.add(f.bgColor) : null)));
             this.colorListBg = bgColors;
 
             // list colors text
             const txtColors = new Set<string>();
-            this.editor.list.forEach(e => (e.txtColor ? txtColors.add(e.txtColor) : null));
-            this.editor.groups.forEach(e => e.list.forEach(f => (f.txtColor ? txtColors.add(f.txtColor) : null)));
+            this.editor.list.forEach(e => (e?.txtColor ? txtColors.add(e.txtColor) : null));
+            this.editor.groups.forEach(e => e.list.forEach(f => (f?.txtColor ? txtColors.add(f.txtColor) : null)));
             this.colorListTxt = txtColors;
         }
         this._options ??= this.editor.options;
@@ -121,7 +121,7 @@ export class ClassementEditImageComponent implements OnChanges {
      */
     tileZIndex(position: 'top' | 'up' | 'down' | 'bottom') {
         const list = this.editor.groups[0].list;
-        const index = list.findIndex(e => e.id === this.currentTile()!.id);
+        const index = list.findIndex(e => e?.id === this.currentTile()!.id);
         const item = list.splice(index, 1)[0];
 
         switch (position) {

@@ -1,15 +1,13 @@
-@if (options()) {
+@let opts = options();
+
+@if (opts) {
   <div class="render">
-    @if (options().mode === 'default' || options().mode === 'teams' || !options().mode) {
-      <table
-        id="{{ render() ? 'html2canvas-element' : '' }}"
-        class="html2canvas-element"
-        [attr.dir]="options().direction"
-      >
-        @if (options().title) {
+    @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
+      <table id="{{ render() ? 'html2canvas-element' : '' }}" class="html2canvas-element" [attr.dir]="opts.direction">
+        @if (opts.title) {
           <caption>
             {{
-              options().title
+              opts.title
             }}
           </caption>
         }
@@ -25,7 +23,7 @@
                 [style.--name-background]="group.bgColor + nameOpacity"
                 [style.--text-color]="group.txtColor"
               >
-                @if (options().nameMarkdown) {
+                @if (opts.nameMarkdown) {
                   <markdown [data]="group.name"></markdown>
                 } @else {
                   <pre>{{ group.name }}</pre>
@@ -33,31 +31,33 @@
               </td>
               <td class="elements drop-list">
                 @for (item of group.list; track item; let index = $index) {
-                  <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
-                    <div class="content-box">
-                      <div class="content content-render" [ngClass]="options().itemTextPosition" #tile>
-                        @if (item.url) {
-                          <div [class.image]="calcWidth(item, tile)">
-                            <img
-                              (ngInit)="calcWidth(item, tile); detectChanges()"
-                              (load)="calcWidth(item, tile); detectChanges()"
-                              [class.cover]="options().itemImageCover"
-                              src="{{ imagesCache()[item.url] || item.url }}"
-                              alt="{{ item.name }}"
-                            />
-                          </div>
-                        }
-                        @if (item.title) {
-                          <div class="title" [class.title-item-width-auto]="options().itemWidthAuto">
-                            <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                          </div>
-                        }
-                        @if (withAnnotation() && item.annotation) {
-                          <div class="tile-info" [tooltip]="item.annotation"></div>
-                        }
+                  @if (item) {
+                    <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
+                      <div class="content-box">
+                        <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                          @if (item.url) {
+                            <div [class.image]="calcWidth(item, tile)">
+                              <img
+                                (ngInit)="calcWidth(item, tile); detectChanges()"
+                                (load)="calcWidth(item, tile); detectChanges()"
+                                [class.cover]="opts.itemImageCover"
+                                src="{{ imagesCache()[item.url] || item.url }}"
+                                alt="{{ item.name }}"
+                              />
+                            </div>
+                          }
+                          @if (item.title) {
+                            <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                              <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                            </div>
+                          }
+                          @if (withAnnotation() && item.annotation) {
+                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                          }
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  }
                 }
                 @if (group.list.length === 0) {
                   <div class="drop-zone-empty-list"></div>
@@ -67,52 +67,53 @@
           }
         </tbody>
       </table>
-    }
-    @if (options().mode === 'iceberg' || options().mode === 'axis') {
+    } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
       <div class="zone-classement-container html2canvas-element" id="{{ render() ? 'html2canvas-element' : '' }}">
         <div class="zone-classement">
-          @if (options().groups?.length) {
-            @switch (options().mode) {
+          @if (opts.groups?.length) {
+            @switch (opts.mode) {
               @case ('iceberg') {
-                <zone-area [groups]="options().groups"></zone-area>
+                <zone-area [groups]="opts.groups"></zone-area>
               }
               @case ('axis') {
-                <zone-axis [groups]="options().groups"></zone-axis>
+                <zone-axis [groups]="opts.groups"></zone-axis>
               }
             }
           }
           <div class="elements">
             @for (item of groups()[0].list; track item; let index = $index) {
-              <div
-                [style.--over-item-background]="item.bgColor"
-                [style.--over-item-text-color]="item.txtColor"
-                [style.--left.px]="item.x"
-                [style.--top.px]="item.y"
-              >
-                <div class="content-box">
-                  <div class="content content-render" [ngClass]="options().itemTextPosition" #tile>
-                    @if (item.url) {
-                      <div [class.image]="calcWidth(item, tile)">
-                        <img
-                          (ngInit)="calcWidth(item, tile); detectChanges()"
-                          (load)="calcWidth(item, tile); detectChanges()"
-                          [class.cover]="options().itemImageCover"
-                          src="{{ imagesCache()[item.url] || item.url }}"
-                          alt="{{ item.name }}"
-                        />
-                      </div>
-                    }
-                    @if (item.title) {
-                      <div class="title" [class.title-item-width-auto]="options().itemWidthAuto">
-                        <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
-                      </div>
-                    }
-                    @if (withAnnotation() && item.annotation) {
-                      <div class="tile-info" [tooltip]="item.annotation"></div>
-                    }
+              @if (item) {
+                <div
+                  [style.--over-item-background]="item.bgColor"
+                  [style.--over-item-text-color]="item.txtColor"
+                  [style.--left.px]="item.x"
+                  [style.--top.px]="item.y"
+                >
+                  <div class="content-box">
+                    <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                      @if (item.url) {
+                        <div [class.image]="calcWidth(item, tile)">
+                          <img
+                            (ngInit)="calcWidth(item, tile); detectChanges()"
+                            (load)="calcWidth(item, tile); detectChanges()"
+                            [class.cover]="opts.itemImageCover"
+                            src="{{ imagesCache()[item.url] || item.url }}"
+                            alt="{{ item.name }}"
+                          />
+                        </div>
+                      }
+                      @if (item.title) {
+                        <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                        </div>
+                      }
+                      @if (withAnnotation() && item.annotation) {
+                        <div class="tile-info" [tooltip]="item.annotation"></div>
+                      }
+                    </div>
                   </div>
                 </div>
-              </div>
+              }
             }
           </div>
         </div>

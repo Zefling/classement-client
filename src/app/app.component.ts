@@ -9,7 +9,7 @@ import { filter } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { DialogComponent } from './components/dialog/dialog.component';
-import { themes, themesAxis, themesIceberg, themesLists } from './content/classement/classement-default';
+import { themes, themesAxis, themesBingo, themesIceberg, themesLists } from './content/classement/classement-default';
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
@@ -230,6 +230,9 @@ export class AppComponent implements DoCheck {
                 break;
             case 'axis':
                 this.themes = themesAxis;
+                break;
+            case 'bingo':
+                this.themes = themesBingo;
                 break;
             default:
                 this.themes = themesLists;

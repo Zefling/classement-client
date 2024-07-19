@@ -261,10 +261,10 @@ export class Utils {
         return path.reduce((obj, key) => (obj ? obj[key] : undefined), object);
     }
 
-    static formattedTilesByMode(options: Options, groups: FormattedGroup[], list: FileString[]) {
+    static formattedTilesByMode(options: Options, groups: FormattedGroup[], list: (FileString | null)[]) {
         if (options.mode === 'teams') {
             groups.forEach(group => {
-                group.list = group.list.map(tile => list.find(t => t.id === tile.id)!);
+                group.list = group.list.map(tile => list.find(t => t?.id === tile?.id)!);
             });
         }
     }

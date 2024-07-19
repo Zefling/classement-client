@@ -141,13 +141,17 @@ export class GlobalService {
         }
     }
 
-    fixImageSize(groups: FormattedGroup[], list: FileString[]) {
+    fixImageSize(groups: FormattedGroup[], list: (FileString | null)[]) {
         list.forEach(item => {
-            this._fixImage(item);
+            if (item) {
+                this._fixImage(item);
+            }
         });
         groups.forEach(group =>
             group.list.forEach(item => {
-                this._fixImage(item);
+                if (item) {
+                    this._fixImage(item);
+                }
             }),
         );
     }
@@ -161,17 +165,17 @@ export class GlobalService {
     async imagesCache(
         options: ThemeOptions,
         groups: FormattedGroup[],
-        list: FileString[] = [],
+        list: (FileString | null)[] = [],
     ): Promise<Record<string, string | ArrayBuffer | null>> {
         const cache: Record<string, string | ArrayBuffer | null> = {};
         for (const item of list) {
-            if (item.url) {
+            if (item?.url) {
                 cache[item.url] = await Utils.ulrToBase64(item.url);
             }
         }
         for (const group of groups) {
             for (const item of group.list) {
-                if (item.url) {
+                if (item?.url) {
                     cache[item.url] = await Utils.ulrToBase64(item.url);
                 }
             }
