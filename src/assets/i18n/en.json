@@ -729,6 +729,19 @@
       "ok": "Ok"
     }
   },
+  "action": {
+    "validated": {
+      "label": "Choose a symbol:",
+      "clear": "Reset",
+      "name": {
+        "check.round": "Check circled",
+        "check": "Check",
+        "circle": "Circle",
+        "hanamaru": "Hanamaru",
+        "heart": "Heart"
+      }
+    }
+  },
   "error": {
     "api-code": {
       "1001": "No username.",

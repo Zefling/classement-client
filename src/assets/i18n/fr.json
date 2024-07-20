@@ -729,6 +729,19 @@
       "ok": "Ok"
     }
   },
+  "action": {
+    "validated": {
+      "label": "Choisir un symbole :",
+      "clear": "Réinitialiser",
+      "name": {
+        "check.round": "Coche entourée",
+        "check": "Coche",
+        "circle": "Cercle",
+        "hanamaru": "Hanamaru",
+        "heart": "Cœur"
+      }
+    }
+  },
   "error": {
     "api-code": {
       "1001": "Pas de nom d'utilisateur.",

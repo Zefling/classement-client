@@ -368,3 +368,43 @@ img {
         height: var(--over-item-height);
     }
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+.tile-validate {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    transform: rotate(-5deg);
+    z-index: 1;
+    color: var(--symbol-color);
+    font-size: 80px;
+}
+
+.list-mode {
+    display: flex;
+    gap: 10px;
+
+    .view span {
+        vertical-align: -4px;
+        font-size: 20px;
+    }
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+
+    .select {
+        width: 300px;
+    }
+}
+
+:host.preview:has(.options) {
+    flex-wrap: wrap;
+}

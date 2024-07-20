@@ -26,6 +26,7 @@ import { ThemeIconComponent } from './theme-icon/theme-icon.component';
 import { ZoneAreaComponent } from './zone-area/zone-area.component';
 import { ZoneAxisComponent } from './zone-axis/zone-axis.component';
 
+import { Select2Module } from 'ng-select2-component';
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -70,6 +71,15 @@ import { PipesModule } from '../pipes/pipes.module';
         ZoneAreaComponent,
         ZoneAxisComponent,
     ],
-    imports: [CommonModule, FormsModule, PipesModule, DirectiveModule, RouterModule, TranslocoModule, MarkdownModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        PipesModule,
+        DirectiveModule,
+        RouterModule,
+        TranslocoModule,
+        MarkdownModule,
+        Select2Module,
+    ],
 })
 export class ComponentsModule {}

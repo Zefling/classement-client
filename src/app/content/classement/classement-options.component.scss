@@ -60,7 +60,7 @@
 
 h4 {
     margin: 0;
-    border-bottom: 1px solid #4f4f88;
+    border-bottom: 1px solid var(--neutral7);
     padding: 0;
 }
 
@@ -78,6 +78,11 @@ h4 {
     .list-mode {
         display: flex;
         gap: 10px;
+
+        .view span {
+            vertical-align: -4px;
+            font-size: 20px;
+        }
     }
 }
 

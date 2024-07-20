@@ -729,6 +729,19 @@
       "ok": "OK"
     }
   },
+  "action": {
+    "validated": {
+      "label": "シンボルを選択してください:",
+      "clear": "リセット",
+      "name": {
+        "check.round": "チェックマークを囲む",
+        "check": "チェックマーク",
+        "circle": "サークル",
+        "hanamaru": "はなまる",
+        "heart": "ハート"
+      }
+    }
+  },
   "error": {
     "api-code": {
       "1001": "ユーザー名がありません。",

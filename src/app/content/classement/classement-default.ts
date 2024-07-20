@@ -268,7 +268,7 @@ export const themesList: Theme[] = [
             imageWidth: 1000,
             imageSize: 'cover',
             imagePosition: 'center',
-            itemTextPosition: 'bottom-over',
+            itemTextPosition: 'bottom-bubble',
             sizeX: 5,
             sizeY: 5,
         },

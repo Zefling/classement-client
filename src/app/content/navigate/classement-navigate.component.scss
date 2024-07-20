@@ -31,5 +31,10 @@
     .list-mode {
         display: flex;
         gap: 10px;
+
+        .view span {
+            vertical-align: -4px;
+            font-size: 20px;
+        }
     }
 }

@@ -1,6 +1,27 @@
 @let opts = options();
 
 @if (opts) {
+  @if (!render() && opts.mode === 'bingo') {
+    <div class="options">
+      <div class="select">
+        <label for="icon-validated">{{ 'action.validated.label' | transloco }}</label>
+        <select2 id="icon-category" [data]="checkChoices" [(ngModel)]="checkChoice" [templates]="templateMode">
+          <ng-template #templateMode let-label="label" let-value="value">
+            <div class="list-mode">
+              <div class="view"><span [ngClass]="'icon-validated-' + value + '1'"></span></div>
+              <div class="desc">
+                {{ 'action.validated.name.' + label | transloco }}
+              </div>
+            </div>
+          </ng-template>
+        </select2>
+      </div>
+      <div>
+        <button (click)="clear()">{{ 'action.validated.clear' | transloco }}</button>
+      </div>
+    </div>
+  }
+
   <div class="render">
     @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
       <table id="{{ render() ? 'html2canvas-element' : '' }}" class="html2canvas-element" [attr.dir]="opts.direction">
@@ -87,7 +108,7 @@
                 <td class="elements drop-list">
                   @if (item) {
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
-                      <div class="content-box">
+                      <div class="content-box clickable" (click)="check(indexGrp, index)">
                         <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
                           @if (item.url) {
                             <div [class.image]="calcWidth(item, tile)">
@@ -99,6 +120,13 @@
                                 alt="{{ item.name }}"
                               />
                             </div>
+                          }
+                          @if (value(indexGrp, index)) {
+                            <div
+                              class="tile-validate icon-validated-{{ checkChoice }}{{
+                                (indexGrp * group.list.length + index) % 3 || 3
+                              }}"
+                            ></div>
                           }
                           @if (item.title) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">

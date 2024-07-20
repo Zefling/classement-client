@@ -7,9 +7,9 @@
     font-style: normal;
     font-weight: normal;
     src:
-        url('./assets/fonts/Classicone.ttf?oohp4a') format('truetype'),
-        url('./assets/fonts/Classicone.woff?oohp4a') format('woff'),
-        url('./assets/fonts/Classicone.svg?oohp4a#Classicone') format('svg');
+        url('./assets/fonts/Classicone.ttf?la6til') format('truetype'),
+        url('./assets/fonts/Classicone.woff?la6til') format('woff'),
+        url('./assets/fonts/Classicone.svg?la6til#Classicone') format('svg');
     font-family: 'Classicone';
     font-display: block;
 }
@@ -34,6 +34,51 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-validated-E3:before {
+    content: '\e934';
+}
+.icon-validated-E2:before {
+    content: '\e935';
+}
+.icon-validated-E1:before {
+    content: '\e936';
+}
+.icon-validated-D3:before {
+    content: '\e937';
+}
+.icon-validated-D2:before {
+    content: '\e938';
+}
+.icon-validated-D1:before {
+    content: '\e939';
+}
+.icon-validated-C3:before {
+    content: '\e93a';
+}
+.icon-validated-C2:before {
+    content: '\e93b';
+}
+.icon-validated-C1:before {
+    content: '\e93c';
+}
+.icon-validated-B3:before {
+    content: '\e93d';
+}
+.icon-validated-B2:before {
+    content: '\e93e';
+}
+.icon-validated-B1:before {
+    content: '\e93f';
+}
+.icon-validated-A3:before {
+    content: '\e940';
+}
+.icon-validated-A2:before {
+    content: '\e941';
+}
+.icon-validated-A1:before {
+    content: '\e942';
+}
 .icon-mode-bingo:before {
     content: '\e933';
 }
