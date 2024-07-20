@@ -57,6 +57,7 @@ export interface FileHandle {
 }
 
 export type FileStream = { filter: TypeFile; file: FileString };
+export type FileType = FileString | null;
 export type FileString = {
     id?: string;
     url?: string;
@@ -75,7 +76,7 @@ export type FileString = {
     y?: number;
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
-export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: (FileString | null)[] };
+export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileType[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
@@ -166,7 +167,7 @@ export interface IndexedData<T extends any> {
 export interface Data extends IndexedData<any> {
     options: Options;
     groups: FormattedGroup[];
-    list: (FileString | null)[];
+    list: FileType[];
 }
 
 export interface importData {
@@ -190,7 +191,7 @@ export interface FormattedInfos extends IndexedData<any> {
 
 export interface FormattedData extends IndexedData<any> {
     groups: FormattedGroup[];
-    list: (FileString | null)[];
+    list: FileType[];
 }
 
 export interface FormattedInfosData {

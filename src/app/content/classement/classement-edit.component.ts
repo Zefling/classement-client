@@ -33,6 +33,7 @@ import {
     Classement,
     Data,
     FileString,
+    FileType,
     FormattedGroup,
     GroupOption,
     ImageCache,
@@ -79,7 +80,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     derivatives?: Classement[];
 
     groups: FormattedGroup[] = [];
-    list: (FileString | null)[] = [];
+    list: FileType[] = [];
     lockCategory = false;
 
     diff?: FileString[];
@@ -490,7 +491,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    trackByFnFileString(_index: number, item: FileString | null) {
+    trackByFnFileString(_index: number, item: FileType) {
         return item?.url || item?.id;
     }
 
@@ -547,7 +548,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 .then(classements => {
                     this.diff = [];
                     // current tiles
-                    const list: (FileString | null)[] = [];
+                    const list: FileType[] = [];
                     list.push(...this.list);
                     this.groups.forEach(e => list.push(...e.list));
 
@@ -638,7 +639,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
-    drop(event: CdkDragDrop<{ list: (FileString | null)[]; index: number }>) {
+    drop(event: CdkDragDrop<{ list: FileType[]; index: number }>) {
         const previousList = event.previousContainer.data.list;
         const targetList = event.container.data.list;
         const indexFrom = event.previousIndex;
@@ -835,7 +836,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     removeFromZone(group: FormattedGroup, index: number) {
-        let item: FileString | null;
+        let item: FileType;
 
         if (this.options.mode !== 'bingo') {
             item = group.list.splice(index, 1)[0];
@@ -1195,7 +1196,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         });
     }
 
-    private listIsType(list: (FileString | null)[], group: string): boolean {
+    private listIsType(list: FileType[], group: string): boolean {
         return (list as any).type === group;
     }
 
