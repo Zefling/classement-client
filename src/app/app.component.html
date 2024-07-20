@@ -217,6 +217,10 @@
       <span class="icon-mode-axis"></span>
       <span>{{ 'mode.name.axis' | transloco }}</span>
     </li>
+    <li (click)="beginNew('bingo')" (mouseenter)="_modeTemp = 'bingo'" (mouseleave)="_modeTemp = ''" tabIndex="0">
+      <span class="icon-mode-bingo"></span>
+      <span>{{ 'mode.name.bingo' | transloco }}</span>
+    </li>
   </menu>
   <p class="info" [class.visible]="_modeTemp">
     <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>

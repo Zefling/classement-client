@@ -1,7 +1,7 @@
 import { Component, input, OnInit } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { FileString, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
+import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
@@ -13,7 +13,7 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 })
 export class ClassementOptimiseComponent implements OnInit {
     groups = input<FormattedGroup[]>();
-    list = input<FileString[]>();
+    list = input<FileType[]>();
     dialog = input<DialogComponent>();
     mode = input<ModeNames>();
 
@@ -66,13 +66,17 @@ export class ClassementOptimiseComponent implements OnInit {
         if (this.mode() !== 'teams') {
             this.groups()?.forEach(group =>
                 group?.list.forEach(tile => {
-                    this.optimiseImg(tile);
+                    if (tile) {
+                        this.optimiseImg(tile);
+                    }
                 }),
             );
         }
 
         this.list()?.forEach(tile => {
-            this.optimiseImg(tile);
+            if (tile) {
+                this.optimiseImg(tile);
+            }
         });
     }
 

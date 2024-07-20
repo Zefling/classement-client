@@ -85,11 +85,13 @@ export const imageInfos: Partial<Record<ImagesNames, { normal: string; mini: str
 export const imagesLists: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
 export const imagesAxis: ImagesNames[] = ['none', 'custom'];
+export const imagesBingo: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesThemes = imagesLists;
 
 export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'sakura', 'night', 'ciel'];
 export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
 export const themesAxis: ThemesNames[] = ['axis', 'square'];
+export const themesBingo: ThemesNames[] = ['bingo'];
 export const themes = themesLists;
 
 export const themesList: Theme[] = [
@@ -250,6 +252,27 @@ export const themesList: Theme[] = [
             ],
         },
     },
+    {
+        name: 'bingo',
+        options: {
+            ...defaultOptions,
+            mode: 'bingo',
+            itemBorder: 0,
+            itemWidth: 100,
+            itemHeight: 150,
+            itemMaxWidth: 100,
+            itemMaxHeight: 150,
+            itemWidthAuto: false,
+            itemHeightAuto: false,
+            imageHeight: 1000,
+            imageWidth: 1000,
+            imageSize: 'cover',
+            imagePosition: 'center',
+            itemTextPosition: 'bottom-over',
+            sizeX: 5,
+            sizeY: 5,
+        },
+    },
 ];
 
 export const defaultTheme = (name: ThemesNames | undefined) => themesList.find(e => e.name === name) ?? themesList[0];
@@ -293,4 +316,5 @@ export const listModes: Select2Data = [
     { value: 'teams', label: 'teams', data: { icon: 'teams' } },
     { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
     { value: 'axis', label: 'axis', data: { icon: 'axis' } },
+    { value: 'bingo', label: 'bingo', data: { icon: 'bingo' } },
 ];

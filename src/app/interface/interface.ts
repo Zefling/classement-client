@@ -57,6 +57,7 @@ export interface FileHandle {
 }
 
 export type FileStream = { filter: TypeFile; file: FileString };
+export type FileType = FileString | null;
 export type FileString = {
     id?: string;
     url?: string;
@@ -75,7 +76,7 @@ export type FileString = {
     y?: number;
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
-export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileString[] };
+export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileType[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
@@ -135,6 +136,8 @@ export type ThemeOptions = {
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;
+    sizeX?: number;
+    sizeY?: number;
 };
 
 export type OptionGroup = {
@@ -164,7 +167,7 @@ export interface IndexedData<T extends any> {
 export interface Data extends IndexedData<any> {
     options: Options;
     groups: FormattedGroup[];
-    list: FileString[];
+    list: FileType[];
 }
 
 export interface importData {
@@ -188,7 +191,7 @@ export interface FormattedInfos extends IndexedData<any> {
 
 export interface FormattedData extends IndexedData<any> {
     groups: FormattedGroup[];
-    list: FileString[];
+    list: FileType[];
 }
 
 export interface FormattedInfosData {
@@ -222,10 +225,10 @@ export interface PreferencesData {
 
 export type OptimizedFile = { sourceFile: FileString; reduceFile?: FileString; reduce: number };
 
-export type ThemesNames = 'default' | 'compact' | 'square' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis';
+export type ThemesNames = 'default' | 'compact' | 'square' | 'sakura' | 'night' | 'ciel' | 'iceberg' | 'axis' | 'bingo';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
-export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis';
+export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis' | 'bingo';
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';

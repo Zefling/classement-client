@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, booleanAttribute, input } from '@
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { FileString, FormattedGroup, Options } from 'src/app/interface/interface';
+import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
 import { GlobalService } from '../../services/global.service';
@@ -14,7 +14,7 @@ import { GlobalService } from '../../services/global.service';
 })
 export class SeeClassementComponent implements OnInit {
     groups = input<FormattedGroup[]>([]);
-    list = input<FileString[]>([]);
+    list = input<FileType[]>([]);
     imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
 
     options = input.required<Options>();

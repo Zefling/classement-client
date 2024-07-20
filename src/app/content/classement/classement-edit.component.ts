@@ -33,6 +33,7 @@ import {
     Classement,
     Data,
     FileString,
+    FileType,
     FormattedGroup,
     GroupOption,
     ImageCache,
@@ -57,6 +58,7 @@ import {
     defaultOptions,
     defaultTheme,
     themesAxis,
+    themesBingo,
     themesIceberg,
     themesLists,
 } from './classement-default';
@@ -78,7 +80,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     derivatives?: Classement[];
 
     groups: FormattedGroup[] = [];
-    list: FileString[] = [];
+    list: FileType[] = [];
     lockCategory = false;
 
     diff?: FileString[];
@@ -127,7 +129,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     @HostBinding('class.no-animation')
     get noAnimation() {
-        return this.options.mode === 'iceberg' || this.options.mode === 'axis';
+        return this.options?.mode === 'iceberg' || this.options?.mode === 'axis';
     }
 
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');
@@ -267,6 +269,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     case 'axis':
                         themes = themesAxis;
                         break;
+                    case 'bingo':
+                        themes = themesBingo;
+                        break;
                     case 'default':
                     case 'teams':
                         themes = themesLists;
@@ -287,6 +292,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 ...(this.global.jsonTmp?.options || defaultOptions),
                 ...{ showAdvancedOptions: false },
             };
+
             this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defaultGroup);
             this.list = this.global.jsonTmp?.list || [];
             this.addIds();
@@ -296,6 +302,60 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
             this.exportImageLoading = false;
             this.resetCache();
+
+            if (params['mode'] === 'bingo') {
+                this.groupsControl(this.groups, this.options);
+            }
+        }
+    }
+
+    groupsControl(groups: FormattedGroup[], options: Options) {
+        // total line control
+        const limitY = options.sizeY || 5;
+        if (groups.length > limitY) {
+            groups.splice(limitY);
+        } else if (groups.length < limitY) {
+            for (let i = groups.length; i < limitY; i++) {
+                groups.push({ name: 'X', bgColor: '#FFF', txtColor: '#000', list: [] });
+            }
+        }
+
+        // total col control
+        const limitX = options.sizeX || 5;
+        for (let line of groups) {
+            for (let i = 0; i < limitX; i++) {
+                if (line.list[i] === undefined) {
+                    line.list[i] = null;
+                }
+            }
+        }
+    }
+
+    updateAction(event: { action: string; value: any }) {
+        if (event.action === 'sizeX') {
+            if (this.groups[0].list.length < event.value) {
+                this.groupsControl(this.groups, this.options);
+            } else if (this.groups[0].list.length > event.value) {
+                this.groups.forEach(line =>
+                    line.list.splice(event.value).forEach(tile => {
+                        if (tile) {
+                            this.list.push(tile);
+                        }
+                    }),
+                );
+            }
+        } else if (event.action === 'sizeY') {
+            if (this.groups.length < event.value) {
+                this.groupsControl(this.groups, this.options);
+            } else if (this.groups.length > event.value) {
+                this.groups.splice(event.value).forEach(line => {
+                    line.list.forEach(tile => {
+                        if (tile) {
+                            this.list.push(tile);
+                        }
+                    });
+                });
+            }
         }
     }
 
@@ -402,7 +462,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.lineOption = this.preferencesService.preferences.lineOption;
 
-        const val = this.global.updateVarCss(this.options, this.imagesCache);
+        this.global.updateVarCss(this.options, this.imagesCache);
         this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
 
         // fix category with select2
@@ -431,8 +491,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    trackByFnFileString(_index: number, item: FileString) {
-        return item.url || item.id;
+    trackByFnFileString(_index: number, item: FileType) {
+        return item?.url || item?.id;
     }
 
     calcWidth(item: FileString, tile: HTMLElement | null) {
@@ -488,7 +548,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 .then(classements => {
                     this.diff = [];
                     // current tiles
-                    const list: FileString[] = [];
+                    const list: FileType[] = [];
                     list.push(...this.list);
                     this.groups.forEach(e => list.push(...e.list));
 
@@ -499,19 +559,24 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             classement.data.groups.forEach(e => listCompare.push(...e.list));
 
                             listCompare.forEach(tile => {
-                                // compare with exist
-                                for (const item of list) {
-                                    if (item.url === tile.url || (!item.url && item.title == tile.title)) {
-                                        return;
+                                if (tile) {
+                                    // compare with exist
+                                    for (const item of list) {
+                                        if (
+                                            item &&
+                                            (item.url === tile.url || (!item.url && item.title == tile.title))
+                                        ) {
+                                            return;
+                                        }
                                     }
-                                }
-                                // compare with previous added
-                                for (const item of this.diff!) {
-                                    if (item.url === tile.url || (!item.url && item.title == tile.title)) {
-                                        return;
+                                    // compare with previous added
+                                    for (const item of this.diff!) {
+                                        if (item.url === tile.url || (!item.url && item.title == tile.title)) {
+                                            return;
+                                        }
                                     }
+                                    this.diff?.push(tile);
                                 }
-                                this.diff?.push(tile);
                             });
                         });
                     }
@@ -574,14 +639,35 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
     }
 
-    drop(list: FileString[], event: CdkDragDrop<{ list: FileString[] }>) {
+    drop(event: CdkDragDrop<{ list: FileType[]; index: number }>) {
         const previousList = event.previousContainer.data.list;
         const targetList = event.container.data.list;
         const indexFrom = event.previousIndex;
         const indexTarget = event.currentIndex;
+        const indexPreviousData = event.previousContainer.data.index;
+        const indexTargetData = event.container.data.index;
 
         if (previousList === targetList) {
-            moveItemInArray(targetList, event.previousIndex, event.currentIndex);
+            switch (this.options.mode) {
+                case 'bingo':
+                    if (indexTargetData === -1 || (indexTargetData > -1 && !targetList[indexTargetData])) {
+                        moveItemInArray(
+                            targetList,
+                            indexPreviousData > -1 ? indexPreviousData : indexFrom,
+                            indexTargetData > -1 ? indexTargetData : indexTarget,
+                        );
+                        if (indexTargetData > -1 && indexPreviousData > -1) {
+                            moveItemInArray(
+                                targetList,
+                                indexTargetData + (indexTargetData > indexPreviousData ? -1 : 1),
+                                indexPreviousData,
+                            );
+                        }
+                    }
+                    break;
+                default:
+                    moveItemInArray(targetList, indexFrom, indexTarget);
+            }
         } else {
             const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
             switch (this.options.mode) {
@@ -589,11 +675,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     if (
                         this.listIsType(previousList, 'list') &&
                         this.listIsType(targetList, 'group') &&
-                        !targetList.find(tile => tile.id === previousList[indexFrom].id)
+                        !targetList.find(tile => tile!.id === previousList[indexFrom]!.id)
                     ) {
                         copyArrayItem(previousList, targetList, indexFrom, indexTarget);
                     } else if (this.listIsType(previousList, 'group') && this.listIsType(targetList, 'group')) {
-                        if (!targetList.find(tile => tile.id === previousList[indexFrom].id)) {
+                        if (!targetList.find(tile => tile!.id === previousList[indexFrom]!.id)) {
                             transferArrayItem(previousList, targetList, indexFrom, indexTarget);
                         } else {
                             previousList.splice(indexFrom, 1);
@@ -604,7 +690,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     break;
                 case 'iceberg':
                 case 'axis':
-                    const item = previousList[indexFrom];
+                    const item = previousList[indexFrom]!;
                     const eventLayer = event.event as any;
 
                     if (eventLayer.target.id === 'zone') {
@@ -633,6 +719,22 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     item.y = Math.max(0, item.y || 0);
 
                     transferArrayItem(previousList, targetList, indexFrom, this.groups[0].list.length);
+                    break;
+                case 'bingo':
+                    if (indexTargetData === -1 || (indexTargetData > -1 && !targetList[indexTargetData])) {
+                        transferArrayItem(
+                            previousList,
+                            targetList,
+                            indexPreviousData > -1 ? indexPreviousData : indexFrom,
+                            indexTargetData > -1 ? indexTargetData : indexTarget,
+                        );
+                        if (indexTargetData > -1) {
+                            targetList.splice(indexTargetData + 1, 1);
+                        }
+                        if (indexPreviousData > -1) {
+                            previousList.splice(indexPreviousData, 0, null);
+                        }
+                    }
                     break;
                 default:
                     transferArrayItem(previousList, targetList, indexFrom, indexTarget);
@@ -714,7 +816,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.list.splice(index, 1);
             }
             this.groups.forEach(group => {
-                const index = group.list.findIndex(tile => tile.id === this.currentTile!.id);
+                const index = group.list.findIndex(tile => tile?.id === this.currentTile!.id);
                 if (index !== -1) {
                     group.list.splice(index, 1);
                 }
@@ -734,9 +836,18 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     removeFromZone(group: FormattedGroup, index: number) {
-        const item = group.list.splice(index, 1)[0];
-        item.x = 0;
-        item.y = 0;
+        let item: FileType;
+
+        if (this.options.mode !== 'bingo') {
+            item = group.list.splice(index, 1)[0];
+        } else {
+            item = group.list.splice(index, 1, null)[0];
+        }
+
+        if (item) {
+            item.x = 0;
+            item.y = 0;
+        }
         if (this.options.mode !== 'teams') {
             this.list.push(item);
         }
@@ -760,9 +871,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     removeItem(index: number) {
         const removeTile = this.list.splice(index, 1);
-        if (this.options.mode === 'teams') {
+        if (removeTile[0] && this.options.mode === 'teams') {
             this.groups.forEach(group => {
-                const index = group.list.findIndex(tile => tile.id === removeTile[0].id);
+                const index = group.list.findIndex(tile => tile?.id === removeTile[0]!.id);
                 if (index !== -1) {
                     group.list.splice(index, 1);
                 }
@@ -870,8 +981,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     reset() {
         for (const ligne of this.groups) {
             ligne.list.forEach(item => {
-                delete item.x;
-                delete item.y;
+                if (item) {
+                    delete item.x;
+                    delete item.y;
+                }
             });
             if (this.options.mode !== 'teams') {
                 this.list.push(...ligne.list);
@@ -1062,7 +1175,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 (group.list as any).id = `group-${this.randomNumber()}`;
             }
             group.list.forEach(tile => {
-                if (!tile.id) {
+                if (tile && !tile.id) {
                     // add ids to identify tiles
                     tile.id = `tile-${this.randomNumber()}`;
                 }
@@ -1076,14 +1189,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             (this.list as any).id = 'list';
         }
         this.list.forEach(tile => {
-            if (!tile.id) {
+            if (tile && !tile.id) {
                 // add ids to identify tiles
                 tile.id = `tile-${this.randomNumber()}`;
             }
         });
     }
 
-    private listIsType(list: FileString[], group: string): boolean {
+    private listIsType(list: FileType[], group: string): boolean {
         return (list as any).type === group;
     }
 

@@ -612,6 +612,30 @@ span.group-options {
     }
 }
 
+// bingo -----------------------------------------------------------
+
+.mode-bingo {
+    .table-classement {
+        margin: auto;
+        width: auto;
+        min-width: auto;
+    }
+
+    .elements,
+    .elements > div {
+        --border: var(--over-item-border) * 2 + var(--over-item-padding) * 2 + var(--over-item-margin) * 2;
+        width: calc(var(--over-item-width) + var(--border));
+        max-width: calc(var(--over-item-width) + var(--border));
+        height: calc(var(--over-item-height) + var(--border));
+        max-height: calc(var(--over-item-height) + var(--border));
+    }
+
+    .content-box {
+        width: var(--over-item-width);
+        height: var(--over-item-height);
+    }
+}
+
 // actions ------------------------------------------------------------------
 
 .save-actions {

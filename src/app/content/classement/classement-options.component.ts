@@ -5,6 +5,7 @@ import {
     input,
     OnChanges,
     OnDestroy,
+    output,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
@@ -22,12 +23,14 @@ import { environment } from 'src/environments/environment';
 import {
     imageInfos,
     imagesAxis,
+    imagesBingo,
     imagesIceberg,
     imagesLists,
     imagesThemes,
     listModes,
     themes,
     themesAxis,
+    themesBingo,
     themesIceberg,
     themesList,
     themesLists,
@@ -45,6 +48,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     options = input<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
+
+    // output
+
+    updateAction = output<{ action: string; value: any }>();
 
     // viewChild
 
@@ -108,6 +115,10 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                     this.imagesList = imagesAxis;
                     this.themesList = themesAxis;
                     break;
+                case 'bingo':
+                    this.imagesList = imagesBingo;
+                    this.themesList = themesBingo;
+                    break;
                 default:
                     this.imagesList = imagesLists;
                     this.themesList = themesLists;
@@ -132,8 +143,14 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         const options = this.options();
         if (options) {
             let modeType = mode;
-            if (modeType === 'teams') {
-                modeType = 'default';
+            switch (mode) {
+                case 'teams':
+                    modeType = 'default';
+                    break;
+                case 'bingo':
+                    this.updateAction.emit({ action: 'sizeX', value: options.sizeX });
+                    this.updateAction.emit({ action: 'sizeY', value: options.sizeY });
+                    break;
             }
 
             // list theme

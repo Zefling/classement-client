@@ -60,10 +60,12 @@
       <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | transloco }}</a>
     </div>
     <div class="width-auto">
-      <label class="toggle-switch">
-        <input type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
-        <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
-      </label>
+      @if (opts.mode !== 'bingo') {
+        <label class="toggle-switch">
+          <input type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
+          <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
+        </label>
+      }
       @if (zoneMode.includes(opts.mode)) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
@@ -71,7 +73,9 @@
         </label>
       }
       @if (
-        !opts.itemWidthAuto && (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))
+        (!opts.itemWidthAuto &&
+          (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+        opts.mode === 'bingo'
       ) {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemImageCover" />
@@ -378,46 +382,73 @@
             <div class="color-render"></div>
           }
         </div>
-        <div class="name-bg-opacity input-value">
-          <div class="width-input">
-            <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | transloco }}</label>
-            <input
-              id="options-name-background-opacity"
-              type="range"
-              max="100"
-              min="0"
-              step="1"
-              [(ngModel)]="opts.nameBackgroundOpacity"
-            />
+        @if (opts.mode !== 'bingo') {
+          <div class="name-bg-opacity input-value">
+            <div class="width-input">
+              <label for="options-name-background-opacity">{{ 'generator.options.name.opacity' | transloco }}</label>
+              <input
+                id="options-name-background-opacity"
+                type="range"
+                max="100"
+                min="0"
+                step="1"
+                [(ngModel)]="opts.nameBackgroundOpacity"
+              />
+            </div>
           </div>
-        </div>
-        <div class="font-size input-value">
-          <div class="number-input">
-            <label for="option-name-font-size">{{ 'generator.options.name.font-size' | transloco }}</label>
-            <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="opts.nameFontSize" />
+          <div class="font-size input-value">
+            <div class="number-input">
+              <label for="option-name-font-size">{{ 'generator.options.name.font-size' | transloco }}</label>
+              <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="opts.nameFontSize" />
+            </div>
           </div>
-        </div>
-        <div class="name-width input-value">
-          <div class="number-input">
-            <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
-            <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
+          <div class="name-width input-value">
+            <div class="number-input">
+              <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
+              <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
+            </div>
           </div>
-        </div>
-        <div class="group-direction input-value">
-          <div class="select-input">
-            <label for="option-group-direction">{{ 'generator.options.group.direction.label' | transloco }}</label>
-            <select id="option-item-text-position" [(ngModel)]="opts.direction">
-              <option value="rtl">{{ 'generator.options.group.direction.rtl' | transloco }}</option>
-              <option value="ltr">{{ 'generator.options.group.direction.ltr' | transloco }}</option>
-            </select>
+          <div class="group-direction input-value">
+            <div class="select-input">
+              <label for="option-group-direction">{{ 'generator.options.group.direction.label' | transloco }}</label>
+              <select id="option-item-text-position" [(ngModel)]="opts.direction">
+                <option value="rtl">{{ 'generator.options.group.direction.rtl' | transloco }}</option>
+                <option value="ltr">{{ 'generator.options.group.direction.ltr' | transloco }}</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="name-markdown input-value">
-          <label class="toggle-switch">
-            <input type="checkbox" [(ngModel)]="opts.nameMarkdown" />
-            <span>{{ 'generator.options.group.markdown' | transloco }}</span>
-          </label>
-        </div>
+          <div class="name-markdown input-value">
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="opts.nameMarkdown" />
+              <span>{{ 'generator.options.group.markdown' | transloco }}</span>
+            </label>
+          </div>
+        } @else {
+          <div class="size-x">
+            <div class="size-input">
+              <label for="options-size-x">{{ 'generator.options.size' | transloco }}</label>
+              <input
+                id="options-size-x"
+                type="number"
+                max="20"
+                min="2"
+                step="1"
+                [(ngModel)]="opts.sizeX"
+                (ngModelChange)="updateAction.emit({ action: 'sizeX', value: $event })"
+              />
+              <span>×</span>
+              <input
+                id="options-size-y"
+                type="number"
+                max="20"
+                min="2"
+                step="1"
+                [(ngModel)]="opts.sizeY"
+                (ngModelChange)="updateAction.emit({ action: 'sizeY', value: $event })"
+              />
+            </div>
+          </div>
+        }
       } @else if (opts.mode === 'iceberg') {
         <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
         <div class="zone-title-number">
@@ -579,12 +610,14 @@
           <div class="color-render"></div>
         }
       </div>
-      <div class="global-width input-button">
-        <div class="width-input">
-          <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
-          <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
+      @if (opts.mode !== 'bingo') {
+        <div class="global-width input-button">
+          <div class="width-input">
+            <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
+            <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
+          </div>
         </div>
-      </div>
+      }
       @if (zoneMode.includes(opts.mode)) {
         <div class="global-height input-button">
           <div class="width-input">

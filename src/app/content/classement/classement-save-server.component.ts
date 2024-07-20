@@ -6,7 +6,7 @@ import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { Category, Classement, FileHandle, FileString, FormattedGroup, Options } from 'src/app/interface/interface';
+import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -23,7 +23,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     classement = input<Classement>();
     groups = input<FormattedGroup[]>();
-    list = input<FileString[]>();
+    list = input<FileType[]>();
     options = input<Options>();
     dialog = input<DialogComponent>();
 
@@ -149,7 +149,9 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
         if (classement.mode === 'teams') {
             // keep only the ids for this mode
-            classement.data.groups.forEach(group => (group.list = group.list.map(tile => ({ id: tile.id }) as any)));
+            classement.data.groups.forEach(
+                group => (group.list = group.list.map(tile => (tile ? { id: tile.id } : null) as any)),
+            );
         }
 
         if (!this.showError.length) {
