@@ -128,7 +128,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     @HostBinding('class.no-animation')
     get noAnimation() {
-        return this.options.mode === 'iceberg' || this.options.mode === 'axis';
+        return this.options?.mode === 'iceberg' || this.options?.mode === 'axis';
     }
 
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');

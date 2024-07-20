@@ -143,8 +143,14 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         const options = this.options();
         if (options) {
             let modeType = mode;
-            if (modeType === 'teams') {
-                modeType = 'default';
+            switch (mode) {
+                case 'teams':
+                    modeType = 'default';
+                    break;
+                case 'bingo':
+                    this.updateAction.emit({ action: 'sizeX', value: options.sizeX });
+                    this.updateAction.emit({ action: 'sizeY', value: options.sizeY });
+                    break;
             }
 
             // list theme
