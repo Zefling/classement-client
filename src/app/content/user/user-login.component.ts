@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, input, OnDestroy } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
 })
-export class UserLoginComponent implements OnDestroy {
+export class UserLoginComponent implements OnInit, OnDestroy {
     username = '';
     password = '';
     showError = '';
@@ -29,7 +29,9 @@ export class UserLoginComponent implements OnDestroy {
         private readonly userService: APIUserService,
         private readonly translate: TranslocoService,
         private readonly global: GlobalService,
-    ) {
+    ) {}
+
+    ngOnInit(): void {
         this.updateTitle();
 
         this.listener.push(
@@ -45,7 +47,9 @@ export class UserLoginComponent implements OnDestroy {
     }
 
     updateTitle() {
-        this.global.setTitle('menu.login');
+        if (!this.popup()) {
+            this.global.setTitle('menu.login');
+        }
     }
 
     ngOnDestroy(): void {
