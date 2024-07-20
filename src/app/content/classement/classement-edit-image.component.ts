@@ -29,13 +29,19 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     styleUrls: ['./classement-edit-image.component.scss'],
 })
 export class ClassementEditImageComponent implements OnChanges {
+    // viewChild
+
     dialogInfo = viewChild.required<DialogComponent>('dialogInfo');
     dialogImageEdit = viewChild.required<DialogComponent>('dialogImageEdit');
     bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
     ratioInput = viewChild.required<ElementRef<HTMLInputElement>>('ratioInput');
     imageCropper = viewChild.required<ImageCropperComponent>('imageCropper');
 
+    // input
+
     currentTile = input<FileString>();
+
+    // output
 
     deleteCurrent = output<void>();
 

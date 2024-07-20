@@ -309,21 +309,18 @@
       </div>
       <div class="item-text-position input-value">
         <div class="select-input">
-          <label for="option-item-text-position">{{ 'generator.options.item.text.position' | transloco }}</label>
+          @let textPosition = 'generator.options.item.text.position';
+          <label for="option-item-text-position">{{ textPosition | transloco }}</label>
           <select id="option-item-text-position" [(ngModel)]="opts.itemTextPosition">
-            <option value="bottom">{{ 'generator.options.item.text.position.bottom' | transloco }}</option>
-            <option value="bottom-over">
-              {{ 'generator.options.item.text.position.bottom.over' | transloco }}
-            </option>
-            <option value="bottom-over-hover">
-              {{ 'generator.options.item.text.position.bottom.over.hover' | transloco }}
-            </option>
-            <option value="top">{{ 'generator.options.item.text.position.top' | transloco }}</option>
-            <option value="top-over">{{ 'generator.options.item.text.position.top.over' | transloco }}</option>
-            <option value="top-over-hover">
-              {{ 'generator.options.item.text.position.top.over.hover' | transloco }}
-            </option>
-            <option value="hidden">{{ 'generator.options.item.text.position.hidden' | transloco }}</option>
+            <option value="bottom">{{ textPosition + '.bottom' | transloco }}</option>
+            <option value="bottom-over">{{ textPosition + '.bottom.over' | transloco }}</option>
+            <option value="bottom-over-hover">{{ textPosition + '.bottom.over.hover' | transloco }}</option>
+            <option value="bottom-bubble">{{ textPosition + '.bottom.bubble' | transloco }}</option>
+            <option value="top">{{ textPosition + '.top' | transloco }}</option>
+            <option value="top-over">{{ textPosition + '.top.over' | transloco }}</option>
+            <option value="top-over-hover">{{ textPosition + '.top.over.hover' | transloco }}</option>
+            <option value="top-bubble">{{ textPosition + '.top.bubble' | transloco }}</option>
+            <option value="hidden">{{ textPosition + '.hidden' | transloco }}</option>
           </select>
         </div>
       </div>
@@ -424,7 +421,7 @@
             </label>
           </div>
         } @else {
-          <div class="size-x">
+          <div class="size-x-y">
             <div class="size-input">
               <label for="options-size-x">{{ 'generator.options.size' | transloco }}</label>
               <input

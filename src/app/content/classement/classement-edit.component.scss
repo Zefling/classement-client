@@ -436,8 +436,10 @@ span.group-options {
 
     &.bottom-over .title,
     &.bottom-over-hover .title,
+    &.bottom-bubble .title,
     &.top-over .title,
-    &.top-over-hover .title {
+    &.top-over-hover .title,
+    &.top-bubble .title {
         position: absolute;
         background: var(--over-item-text-background, var(--content-box-text-background));
         width: 100%;
@@ -462,6 +464,18 @@ span.group-options {
         }
     }
 
+    &.bottom-bubble .title,
+    &.top-bubble .title {
+        bottom: 5px;
+        align-self: center;
+        box-sizing: border-box;
+        margin: auto;
+        border-radius: 1em;
+        padding: 3px 7px;
+        width: auto;
+        max-width: calc(100% - 10px);
+    }
+
     &.top-over .title {
         top: 0;
     }
@@ -477,6 +491,11 @@ span.group-options {
         &:hover .title {
             top: 0px;
         }
+    }
+
+    &.top-bubble .title {
+        top: 10px;
+        bottom: auto;
     }
 
     &.hidden .title {

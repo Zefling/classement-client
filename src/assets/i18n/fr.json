@@ -300,9 +300,11 @@
           "position.bottom": "En dessous",
           "position.bottom.over": "En dessous et par dessus",
           "position.bottom.over.hover": "En dessous et par dessus au survol",
+          "position.bottom.bubble": "En dessous en bulle",
           "position.top": "Au dessus",
           "position.top.over": "Au dessus et par dessus",
-          "position.top.over.hover": "En dessous et par dessus au survol",
+          "position.top.over.hover": "En dessus et par dessus au survol",
+          "position.top.bubble": "En dessus en bulle",
           "position.hidden": "Caché"
         }
       },

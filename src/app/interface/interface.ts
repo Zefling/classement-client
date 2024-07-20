@@ -108,7 +108,16 @@ export type ThemeOptions = {
     itemTextSize: number;
     itemTextColor: string;
     itemTextOpacity: number;
-    itemTextPosition: 'hidden' | 'bottom' | 'bottom-over' | 'bottom-over-hover' | 'top' | 'top-over' | 'top-over-hover';
+    itemTextPosition:
+        | 'hidden'
+        | 'bottom'
+        | 'bottom-over'
+        | 'bottom-over-hover'
+        | 'bottom-bubble'
+        | 'top'
+        | 'top-over'
+        | 'top-over-hover'
+        | 'top-bubble';
     itemTextBackgroundColor: string;
     itemTextBackgroundOpacity: number;
     lineBackgroundColor: string;

@@ -300,9 +300,11 @@
           "position.bottom": "On bottom",
           "position.bottom.over": "On bottom and over",
           "position.bottom.over.hover": "On bottom and over on hover",
+          "position.bottom.bubble": "On bottom in bubble",
           "position.top": "On top",
           "position.top.over": "On top and over",
           "position.top.over.hover": "On top and over on hover",
+          "position.top.bubble": "On top in bubble",
           "position.hidden": "Hidden"
         }
       },
