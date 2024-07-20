@@ -67,6 +67,57 @@
           }
         </tbody>
       </table>
+    } @else if (opts.mode === 'bingo') {
+      <table
+        id="{{ render() ? 'html2canvas-element' : '' }}"
+        class="html2canvas-element mode-bingo"
+        [attr.dir]="opts.direction"
+      >
+        @if (opts.title) {
+          <caption>
+            {{
+              opts.title
+            }}
+          </caption>
+        }
+        <tbody>
+          @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+            <tr>
+              @for (item of group.list; track item; let index = $index) {
+                <td class="elements drop-list">
+                  @if (item) {
+                    <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
+                      <div class="content-box">
+                        <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                          @if (item.url) {
+                            <div [class.image]="calcWidth(item, tile)">
+                              <img
+                                (ngInit)="calcWidth(item, tile); detectChanges()"
+                                (load)="calcWidth(item, tile); detectChanges()"
+                                [class.cover]="opts.itemImageCover"
+                                src="{{ imagesCache()[item.url] || item.url }}"
+                                alt="{{ item.name }}"
+                              />
+                            </div>
+                          }
+                          @if (item.title) {
+                            <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                              <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                            </div>
+                          }
+                          @if (withAnnotation() && item.annotation) {
+                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
     } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
       <div class="zone-classement-container html2canvas-element" id="{{ render() ? 'html2canvas-element' : '' }}">
         <div class="zone-classement">
