@@ -436,18 +436,17 @@
           </div>
         </div>
       </div>
-      @if (classement) {
-        <see-classement
-          class="render"
-          render
-          [options]="options"
-          [groups]="groups"
-          [list]="list"
-          [withAnnotation]="false"
-          [imagesCache]="imagesCache"
-          [id]="classement.rankingId"
-        ></see-classement>
-      }
+
+      <see-classement
+        class="render"
+        render
+        [options]="options"
+        [groups]="groups"
+        [list]="list"
+        [withAnnotation]="false"
+        [imagesCache]="imagesCache"
+        [id]="classement?.rankingId || 'new'"
+      ></see-classement>
     </div>
 
     <div>
