@@ -234,7 +234,7 @@ img {
         bottom: auto;
     }
 
-    &.hidden .title {
+    &.hidden .title:last-child:not(:first-child) {
         display: none;
     }
 }
