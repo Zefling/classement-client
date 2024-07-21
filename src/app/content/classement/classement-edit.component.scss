@@ -441,12 +441,12 @@ span.group-options {
     &.top-over .title,
     &.top-over-hover .title,
     &.top-bubble .title {
-        position: absolute;
         width: 100%;
         color: var(--over-item-text-color, var(--content-box-over-text));
         text-align: center;
 
         &:not(:first-child) {
+            position: absolute;
             background: var(--over-item-text-background, var(--content-box-text-background));
         }
     }
