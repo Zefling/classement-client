@@ -201,36 +201,6 @@
           }
         </div>
       </div>
-      @if (opts.itemTextPosition && opts.itemTextPosition.endsWith('over')) {
-        <div class="item-text-back input-button">
-          <div class="color">
-            <label for="option-item-text-background-color">{{
-              'generator.options.item.text.background.color' | transloco
-            }}</label>
-            <input id="option-item-text-background-color" type="color" [(ngModel)]="opts.itemTextBackgroundColor" />
-          </div>
-          <div class="opacity">
-            <label id="option-item-text-background-opacity">{{
-              'generator.options.item.text.background.opacity' | transloco
-            }}</label>
-            <input
-              id="option-item-text-background-opacity"
-              type="range"
-              max="100"
-              min="0"
-              step="1"
-              [disabled]="!opts.itemTextBackgroundColor"
-              [(ngModel)]="opts.itemTextBackgroundOpacity"
-            />
-          </div>
-          <button (click)="resetItemTextBackground()" [disabled]="!opts.itemTextBackgroundColor">
-            {{ 'generator.options.clear' | transloco }}
-          </button>
-          @if (opts.itemTextBackgroundColor) {
-            <div class="color-render"></div>
-          }
-        </div>
-      }
       <div class="colors-item-back input-button">
         <div class="color">
           <label for="itemBackgroundColor">{{ 'generator.options.item.background.color' | transloco }}</label>
@@ -279,18 +249,6 @@
           <div class="color-render"></div>
         }
       </div>
-      <div class="size-item-text input-button">
-        <div class="color">
-          <label for="itemTextSize">{{ 'generator.options.item.text.size' | transloco }}</label>
-          <input id="itemTextSize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextSize" />
-        </div>
-      </div>
-      <div class="size-item-text-only input-button">
-        <div class="color">
-          <label for="itemTextOnlySize">{{ 'generator.options.item.text.only.size' | transloco }}</label>
-          <input id="itemTextOnlySize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextOnlySize" />
-        </div>
-      </div>
       <div class="colors-item-text input-button">
         <div class="width-input">
           <label for="option-item-text-color">{{ 'generator.options.item.text.color' | transloco }}</label>
@@ -315,6 +273,18 @@
           <div class="color-render"></div>
         }
       </div>
+      <div class="size-item-text input-button">
+        <div class="color">
+          <label for="itemTextSize">{{ 'generator.options.item.text.size' | transloco }}</label>
+          <input id="itemTextSize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextSize" />
+        </div>
+      </div>
+      <div class="size-item-text-only input-button">
+        <div class="color">
+          <label for="itemTextOnlySize">{{ 'generator.options.item.text.only.size' | transloco }}</label>
+          <input id="itemTextOnlySize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextOnlySize" />
+        </div>
+      </div>
       <div class="item-text-position input-value">
         <div class="select-input">
           @let textPosition = 'generator.options.item.text.position';
@@ -332,6 +302,36 @@
           </select>
         </div>
       </div>
+      @if (opts.itemTextPosition && opts.itemTextPosition.match('.*(over|bubble).*')) {
+        <div class="item-text-back input-button">
+          <div class="color">
+            <label for="option-item-text-background-color">{{
+              'generator.options.item.text.background.color' | transloco
+            }}</label>
+            <input id="option-item-text-background-color" type="color" [(ngModel)]="opts.itemTextBackgroundColor" />
+          </div>
+          <div class="opacity">
+            <label id="option-item-text-background-opacity">{{
+              'generator.options.item.text.background.opacity' | transloco
+            }}</label>
+            <input
+              id="option-item-text-background-opacity"
+              type="range"
+              max="100"
+              min="0"
+              step="1"
+              [disabled]="!opts.itemTextBackgroundColor"
+              [(ngModel)]="opts.itemTextBackgroundOpacity"
+            />
+          </div>
+          <button (click)="resetItemTextBackground()" [disabled]="!opts.itemTextBackgroundColor">
+            {{ 'generator.options.clear' | transloco }}
+          </button>
+          @if (opts.itemTextBackgroundColor) {
+            <div class="color-render"></div>
+          }
+        </div>
+      }
       <!-- ###############################  line options ###############################  -->
       @if (!zoneMode.includes(opts.mode)) {
         <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
