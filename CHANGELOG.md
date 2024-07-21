@@ -1,5 +1,33 @@
 # Changelog - Standalone web app & API
 
+### 2.3.0 (2024-07-21)
+
+#### Standalone web app
+
+-   Add mode: Bingo #48
+    -   Drag'n drop into grid
+    -   Specific options
+        -   Grid size
+        -   Themes
+    -   New dedicated features in view mode
+        -   Allow selecting tiles: #65
+            -   Check circled
+            -   Check
+            -   Circle
+            -   Hanamaru
+            -   Heart
+        -   Bingo persistence in the browser #66
+-   Add bubble title #64
+-   Fix language change for title
+-   Fix title in edit page
+-   Fix if title without image, ignores display options
+
+#### With API activated only
+
+-   Required: API `1.14.1` for Bingo
+
+---
+
 ### 2.2.2 (2024-07-18)
 
 #### Standalone web app
