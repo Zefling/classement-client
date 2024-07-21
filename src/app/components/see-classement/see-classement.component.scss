@@ -380,7 +380,7 @@ img {
     transform: rotate(-5deg);
     z-index: 1;
     color: var(--symbol-color);
-    font-size: 80px;
+    font-size: calc(min(var(--over-item-width), var(--over-item-height)) - 20px);
 }
 
 .list-mode {

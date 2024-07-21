@@ -396,7 +396,9 @@
         "ciel": "Ciel",
         "iceberg": "Iceberg",
         "axis": "Axes",
-        "bingo": "Bingo"
+        "bingo-s": "Petit",
+        "bingo-m": "Moyen",
+        "bingo-l": "Large"
       }
     },
     "ranking": {

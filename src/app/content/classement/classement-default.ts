@@ -91,7 +91,7 @@ export const imagesThemes = imagesLists;
 export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'sakura', 'night', 'ciel'];
 export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
 export const themesAxis: ThemesNames[] = ['axis', 'square'];
-export const themesBingo: ThemesNames[] = ['bingo'];
+export const themesBingo: ThemesNames[] = ['bingo-s', 'bingo-m', 'bingo-l'];
 export const themes = themesLists;
 
 export const themesList: Theme[] = [
@@ -253,7 +253,7 @@ export const themesList: Theme[] = [
         },
     },
     {
-        name: 'bingo',
+        name: 'bingo-s',
         options: {
             ...defaultOptions,
             mode: 'bingo',
@@ -266,7 +266,49 @@ export const themesList: Theme[] = [
             itemHeightAuto: false,
             imageHeight: 1000,
             imageWidth: 1000,
-            imageSize: 'cover',
+            itemImageCover: true,
+            imagePosition: 'center',
+            itemTextPosition: 'bottom-bubble',
+            sizeX: 5,
+            sizeY: 5,
+        },
+    },
+    {
+        name: 'bingo-m',
+        options: {
+            ...defaultOptions,
+            mode: 'bingo',
+            itemBorder: 0,
+            itemWidth: 120,
+            itemHeight: 180,
+            itemMaxWidth: 120,
+            itemMaxHeight: 180,
+            itemWidthAuto: false,
+            itemHeightAuto: false,
+            imageHeight: 1000,
+            imageWidth: 1000,
+            itemImageCover: true,
+            imagePosition: 'center',
+            itemTextPosition: 'bottom-bubble',
+            sizeX: 5,
+            sizeY: 5,
+        },
+    },
+    {
+        name: 'bingo-l',
+        options: {
+            ...defaultOptions,
+            mode: 'bingo',
+            itemBorder: 0,
+            itemWidth: 160,
+            itemHeight: 240,
+            itemMaxWidth: 160,
+            itemMaxHeight: 240,
+            itemWidthAuto: false,
+            itemHeightAuto: false,
+            imageHeight: 1000,
+            imageWidth: 1000,
+            itemImageCover: true,
             imagePosition: 'center',
             itemTextPosition: 'bottom-bubble',
             sizeX: 5,

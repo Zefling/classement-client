@@ -396,7 +396,9 @@
         "ciel": "空",
         "iceberg": "氷山",
         "axis": "軸",
-        "bingo": "ビンゴ"
+        "bingo-s": "小",
+        "bingo-m": "中",
+        "bingo-l": "高"
       }
     },
     "ranking": {
