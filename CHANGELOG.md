@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.1 (2024-07-21)
+
+#### Standalone web app
+
+-   Add an option to have a different text size for tiles without image #67
+-   Fix image render with local data
+
 ### 2.3.0 (2024-07-21)
 
 #### Standalone web app
