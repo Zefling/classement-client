@@ -257,7 +257,9 @@ export const themesList: Theme[] = [
         options: {
             ...defaultOptions,
             mode: 'bingo',
+            itemPadding: 0,
             itemBorder: 0,
+            itemMargin: 0,
             itemWidth: 100,
             itemHeight: 150,
             itemMaxWidth: 100,
@@ -278,7 +280,9 @@ export const themesList: Theme[] = [
         options: {
             ...defaultOptions,
             mode: 'bingo',
+            itemPadding: 0,
             itemBorder: 0,
+            itemMargin: 0,
             itemWidth: 120,
             itemHeight: 180,
             itemMaxWidth: 120,
@@ -299,7 +303,9 @@ export const themesList: Theme[] = [
         options: {
             ...defaultOptions,
             mode: 'bingo',
+            itemPadding: 0,
             itemBorder: 0,
+            itemMargin: 0,
             itemWidth: 160,
             itemHeight: 240,
             itemMaxWidth: 160,

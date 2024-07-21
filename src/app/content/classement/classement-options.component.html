@@ -187,10 +187,12 @@
           }
         </div>
         <div>
-          <label class="toggle-switch">
-            <input id="option-item-width-auto" type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
-            <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
-          </label>
+          @if (opts.mode !== 'bingo') {
+            <label class="toggle-switch">
+              <input id="option-item-width-auto" type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
+              <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
+            </label>
+          }
           @if (zoneMode.includes(opts.mode)) {
             <label class="toggle-switch">
               <input id="option-item-height-auto" type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
