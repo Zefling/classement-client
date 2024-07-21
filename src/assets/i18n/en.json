@@ -292,6 +292,7 @@
         "border.opacity": "Tile border opacity:",
         "text": {
           "size": "Tile text size:",
+          "only.size": "Text size if no image:",
           "color": "Tile text color:",
           "opacity": "Tile text opacity:",
           "background.color": "Text background color:",

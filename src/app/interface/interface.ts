@@ -106,6 +106,7 @@ export type ThemeOptions = {
     itemBackgroundOpacity: number;
     itemBorderOpacity: number;
     itemTextSize: number;
+    itemTextOnlySize: number;
     itemTextColor: string;
     itemTextOpacity: number;
     itemTextPosition:

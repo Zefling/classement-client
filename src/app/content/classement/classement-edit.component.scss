@@ -399,6 +399,7 @@ span.group-options {
     justify-content: center;
     align-items: center;
     height: 100%;
+    --over-item-text-size: var(--over-item-text-only-size, 24px);
 }
 
 // image, text only

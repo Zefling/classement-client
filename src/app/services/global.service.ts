@@ -206,6 +206,7 @@ export class GlobalService {
         r(body, '--over-item-background', color(o.itemBackgroundColor, o.itemBackgroundOpacity), dash);
         r(body, '--over-item-border-color', color(o.itemBorderColor, o.itemBorderOpacity), dash);
         r(body, '--over-item-text-size', (o.itemTextSize ?? defaultOptions.itemTextSize) + 'px', dash);
+        r(body, '--over-item-text-only-size', (o.itemTextOnlySize ?? defaultOptions.itemTextOnlySize) + 'px', dash);
         r(body, '--over-item-text-color', color(o.itemTextColor, o.itemTextOpacity), dash);
         r(body, '--over-item-text-background', color(o.itemTextBackgroundColor, o.itemTextBackgroundOpacity), dash);
         // drop zone group

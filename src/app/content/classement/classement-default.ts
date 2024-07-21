@@ -30,6 +30,7 @@ export const defaultOptions: Options = {
     itemBorder: 1,
     itemMargin: 2,
     itemTextSize: 12,
+    itemTextOnlySize: 24,
     itemTextColor: '',
     itemTextOpacity: 100,
     itemTextPosition: 'bottom',
@@ -204,6 +205,7 @@ export const themesList: Theme[] = [
             ...defaultOptions,
             mode: 'iceberg',
             imageBackgroundImage: 'iceberg',
+            itemTextOnlySize: 12,
             itemBorder: 0,
             itemMaxWidth: 150,
             itemMaxHeight: 150,
@@ -232,6 +234,7 @@ export const themesList: Theme[] = [
         options: {
             ...defaultOptions,
             mode: 'axis',
+            itemTextOnlySize: 12,
             itemBorder: 0,
             itemMaxWidth: 150,
             itemMaxHeight: 150,
