@@ -6,12 +6,16 @@ import { Logger, LoggerLevel } from './logger';
 
 import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData } from '../interface/interface';
 import { Utils } from '../tools/utils';
+import { DataExtra } from './data.service';
 
 enum Store {
     infos = 'classementInfos',
     data = 'classementData',
     pref = 'preferences',
+    extra = 'extraData',
 }
+
+type DBAttr = 'infos' | 'data' | 'pref' | 'extra';
 
 @Injectable({ providedIn: 'root' })
 export class DBService {
@@ -146,6 +150,33 @@ export class DBService {
         });
     }
 
+    loadExtraData<T>(id: string): Promise<DataExtra<T>> {
+        const formatData: any = {};
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._getByIdDB(db, Store.extra, id, formatData, 'extra'))
+                .then(__ => resolve(formatData.extra.data))
+                .catch(_ => reject());
+        });
+    }
+
+    saveExtraData<T>(id: string, data: DataExtra<T>) {
+        const formatData: IndexedData<DataExtra<T>> = {
+            id,
+            data,
+        };
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(async db =>
+                    (await this._testByIdDB(db, Store.extra, id))
+                        ? this._updateDB(db, Store.extra, formatData)
+                        : this._saveDB(db, Store.extra, formatData),
+                )
+                .then(__ => resolve(formatData))
+                .catch(_ => reject());
+        });
+    }
+
     private async _formatData(data: Data): Promise<FormattedInfosData> {
         let exist = false;
         if (data.id) {
@@ -214,7 +245,7 @@ export class DBService {
         store: Store,
         id: string,
         data: FormattedInfosData,
-        attr: 'infos' | 'data' | 'pref',
+        attr: DBAttr,
     ): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
             this.logger.log(`Get data in “${store}” for [${id}].`);
@@ -328,7 +359,7 @@ export class DBService {
             if (this._db) {
                 resolve(this._db);
             } else {
-                const dbReq = indexedDB.open('classementDB', 3);
+                const dbReq = indexedDB.open('classementDB', 5);
 
                 dbReq.onerror = () => {
                     this.logger.log('Error for init Database.', LoggerLevel.error, dbReq.error);
@@ -350,6 +381,11 @@ export class DBService {
                     }
                     if (!names.contains(Store.pref)) {
                         dbReq.result.createObjectStore(Store.pref).createIndex('pref', 'pref', {
+                            unique: true,
+                        });
+                    }
+                    if (!names.contains(Store.extra)) {
+                        dbReq.result.createObjectStore(Store.extra).createIndex('extra', 'extra', {
                             unique: true,
                         });
                     }

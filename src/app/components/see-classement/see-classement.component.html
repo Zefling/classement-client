@@ -17,7 +17,7 @@
         </select2>
       </div>
       <div>
-        <button (click)="clear()">{{ 'action.validated.clear' | transloco }}</button>
+        <button (click)="bingoClear()">{{ 'action.validated.clear' | transloco }}</button>
       </div>
     </div>
   }
@@ -108,7 +108,7 @@
                 <td class="elements drop-list">
                   @if (item) {
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
-                      <div class="content-box clickable" (click)="check(indexGrp, index)">
+                      <div class="content-box clickable" (click)="bingoCheck(indexGrp, index)">
                         <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
                           @if (item.url) {
                             <div [class.image]="calcWidth(item, tile)">
@@ -121,7 +121,7 @@
                               />
                             </div>
                           }
-                          @if (value(indexGrp, index)) {
+                          @if (bingoValue(indexGrp, index)) {
                             <div
                               class="tile-validate icon-validated-{{ checkChoice }}{{
                                 (indexGrp * group.list.length + index) % 3 || 3

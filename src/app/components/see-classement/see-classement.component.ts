@@ -48,26 +48,25 @@ export class SeeClassementComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-        const val = this.globalService.updateVarCss(this.options(), this.imagesCache());
-
+    async ngOnInit() {
+        this.globalService.updateVarCss(this.options(), this.imagesCache());
         this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
 
         if (this.options().mode === 'bingo') {
-            this.dataService.init(this.id());
+            await this.dataService.init('bingo', this.id());
         }
     }
 
-    check(group: number, item: number) {
-        return this.dataService.change(this.id(), group, item, !this.value(group, item));
+    bingoCheck(group: number, item: number) {
+        return this.dataService.change('bingo', this.id(), group, item, !this.bingoValue(group, item));
     }
 
-    value(group: number, item: number): boolean {
-        return this.dataService.value(this.id(), group, item) ?? false;
+    bingoValue(group: number, item: number) {
+        return this.dataService.value('bingo', this.id(), group, item) ?? false;
     }
 
-    clear() {
-        this.dataService.clear(this.id());
+    bingoClear() {
+        this.dataService.clear('bingo', this.id());
     }
 
     detectChanges() {

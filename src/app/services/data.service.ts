@@ -1,31 +1,44 @@
 import { Injectable } from '@angular/core';
+import { DBService } from './db.service';
+
+export type DataExtra<T> = Record<string, { group: number; item: number; value: T }[]>;
 
 @Injectable({ providedIn: 'root' })
 export class DataService<T> {
-    data: Record<string, { group: number; item: number; value: T }[]> = {};
+    data: Record<string, DataExtra<T>> = {};
 
-    init(id: string) {
-        if (!this.data[id]) {
-            this.clear(id);
+    constructor(private readonly db: DBService) {}
+
+    async init(type: string, id: string) {
+        if (!this.data[type]) {
+            this.data[type] = (await this.db.loadExtraData<T>(type)) ?? {};
+        }
+        this.data[type] ??= {};
+
+        if (!this.data[type][id]) {
+            this.clear(type, id);
         }
     }
 
-    change(id: string, group: number, item: number, value: T) {
-        this.init(id);
+    change(type: string, id: string, group: number, item: number, value: T) {
+        this.init(type, id);
 
-        const record = this.data[id].find(e => e.group === group && e.item === item);
+        const record = this.data[type][id].find(e => e.group === group && e.item === item);
         if (record) {
             record.value = value;
         } else {
-            this.data[id].push({ group, item, value });
+            this.data[type][id].push({ group, item, value });
         }
+
+        this.db.saveExtraData<T>(type, this.data[type]);
     }
 
-    value(id: string, group: number, item: number): T | undefined {
-        return this.data[id].find(e => e.group === group && e.item === item)?.value;
+    value(type: string, id: string, group: number, item: number): T | undefined {
+        return this.data[type]?.[id].find(e => e.group === group && e.item === item)?.value;
     }
 
-    clear(id: string) {
-        this.data[id] = [];
+    clear(type: string, id: string) {
+        this.data[type][id] = [];
+        this.db.saveExtraData<T>(type, this.data[type]);
     }
 }
