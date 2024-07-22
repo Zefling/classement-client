@@ -299,12 +299,12 @@
           "background.opacity": "Text background opacity:",
           "position": "Text position in the tile:",
           "position.bottom": "On bottom",
-          "position.bottom.over": "On bottom and over",
-          "position.bottom.over.hover": "On bottom and over on hover",
+          "position.bottom.float": "On bottom floating",
+          "position.bottom.float.hover": "On bottom floating on hover",
           "position.bottom.bubble": "On bottom in bubble",
           "position.top": "On top",
-          "position.top.over": "On top and over",
-          "position.top.over.hover": "On top and over on hover",
+          "position.top.float": "On top floating",
+          "position.top.float.hover": "On top floating on hover",
           "position.top.bubble": "On top in bubble",
           "position.hidden": "Hidden"
         }

@@ -291,12 +291,12 @@
           <label for="option-item-text-position">{{ textPosition | transloco }}</label>
           <select id="option-item-text-position" [(ngModel)]="opts.itemTextPosition">
             <option value="bottom">{{ textPosition + '.bottom' | transloco }}</option>
-            <option value="bottom-over">{{ textPosition + '.bottom.over' | transloco }}</option>
-            <option value="bottom-over-hover">{{ textPosition + '.bottom.over.hover' | transloco }}</option>
+            <option value="bottom-over">{{ textPosition + '.bottom.float' | transloco }}</option>
+            <option value="bottom-over-hover">{{ textPosition + '.bottom.float.hover' | transloco }}</option>
             <option value="bottom-bubble">{{ textPosition + '.bottom.bubble' | transloco }}</option>
             <option value="top">{{ textPosition + '.top' | transloco }}</option>
-            <option value="top-over">{{ textPosition + '.top.over' | transloco }}</option>
-            <option value="top-over-hover">{{ textPosition + '.top.over.hover' | transloco }}</option>
+            <option value="top-over">{{ textPosition + '.top.float' | transloco }}</option>
+            <option value="top-over-hover">{{ textPosition + '.top.float.hover' | transloco }}</option>
             <option value="top-bubble">{{ textPosition + '.top.bubble' | transloco }}</option>
             <option value="hidden">{{ textPosition + '.hidden' | transloco }}</option>
           </select>

@@ -299,13 +299,13 @@
           "background.opacity": "Opacité de fond du texte :",
           "position": "Position texte dans la tuile :",
           "position.bottom": "En dessous",
-          "position.bottom.over": "En dessous et par dessus",
-          "position.bottom.over.hover": "En dessous et par dessus au survol",
+          "position.bottom.float": "En dessous flottant",
+          "position.bottom.float.hover": "En dessous flottant au survol",
           "position.bottom.bubble": "En dessous en bulle",
           "position.top": "Au dessus",
-          "position.top.over": "Au dessus et par dessus",
-          "position.top.over.hover": "En dessus et par dessus au survol",
-          "position.top.bubble": "En dessus en bulle",
+          "position.top.float": "Au dessus flottant",
+          "position.top.float.hover": "Au dessus flottant au survol",
+          "position.top.bubble": "Au dessus en bulle",
           "position.hidden": "Caché"
         }
       },
