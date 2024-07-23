@@ -10,7 +10,7 @@
         // ----------------------------------------------------------------------------
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  .                   '
-        'sizes             colors-item-text    .                   .                   '
+        'sizes             colors-item-text    min-line-text       max-line-text       '
         'size-item-text    size-item-text-only item-text-pos       item-text-back      '
         // ----------------------------------------------------------------------------
         'title-line        title-line          title-line          title-line          '
@@ -165,6 +165,14 @@ h4 {
 .global-color {
     grid-area: global-color;
     --color-section: var(--over-image-background, var(--background));
+}
+
+.min-line-text {
+    grid-area: min-line-text;
+}
+
+.max-line-text {
+    grid-area: max-line-text;
 }
 
 .size-item-text {

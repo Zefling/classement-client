@@ -306,7 +306,9 @@
           "position.top.float": "フローティング上部に",
           "position.top.float.hover": "オーバーでフローティング上部に",
           "position.top.bubble": "バブルの上部に",
-          "position.hidden": "非表示"
+          "position.hidden": "非表示",
+          "min.line": "最小行数:",
+          "max.line": "最大行数:"
         }
       },
       "line": {

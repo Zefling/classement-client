@@ -30,6 +30,8 @@ export const defaultOptions: Options = {
     itemBorder: 1,
     itemMargin: 2,
     itemTextSize: 12,
+    itemTextMinLine: 0,
+    itemTextMaxLine: 10,
     itemTextOnlySize: 24,
     itemTextColor: '',
     itemTextOpacity: 100,

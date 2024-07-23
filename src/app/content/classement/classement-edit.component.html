@@ -159,9 +159,11 @@
                                   />
                                 </div>
                               }
-                              @if (item.title) {
+                              @if (
+                                item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
+                              ) {
                                 <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                                 </div>
                               }
                               <div class="tile-info" (click)="openTileInfo(item)"></div>
@@ -259,9 +261,9 @@
                           />
                         </div>
                       }
-                      @if (item.title) {
+                      @if (item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))) {
                         <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                         </div>
                       }
                       <div class="tile-info" (click)="openTileInfo(item)"></div>
@@ -318,9 +320,11 @@
                                   />
                                 </div>
                               }
-                              @if (item.title) {
+                              @if (
+                                item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
+                              ) {
                                 <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                                 </div>
                               }
                               <div class="tile-info" (click)="openTileInfo(item)"></div>
@@ -408,9 +412,9 @@
                           />
                         </div>
                       }
-                      @if (item.title) {
+                      @if (item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))) {
                         <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title }}</span>
+                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                         </div>
                       }
                     </div>
@@ -606,9 +610,9 @@
                   <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
                 </div>
               }
-              @if (item.title) {
+              @if (item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))) {
                 <div class="title">
-                  <span>{{ item.title }}</span>
+                  <span>{{ item.title || '' }}</span>
                 </div>
               }
             </div>

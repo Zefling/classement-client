@@ -306,7 +306,9 @@
           "position.top.float": "On top floating",
           "position.top.float.hover": "On top floating on hover",
           "position.top.bubble": "On top in bubble",
-          "position.hidden": "Hidden"
+          "position.hidden": "Hidden",
+          "min.line": "Minimum number of lines:",
+          "max.line": "Maximum number of lines:"
         }
       },
       "line": {

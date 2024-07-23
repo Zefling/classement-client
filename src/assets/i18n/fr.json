@@ -306,7 +306,9 @@
           "position.top.float": "Au dessus flottant",
           "position.top.float.hover": "Au dessus flottant au survol",
           "position.top.bubble": "Au dessus en bulle",
-          "position.hidden": "Caché"
+          "position.hidden": "Caché",
+          "min.line": "Nombre de lignes minimal :",
+          "max.line": "Nombre de lignes maximal :"
         }
       },
       "line": {

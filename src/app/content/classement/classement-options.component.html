@@ -273,6 +273,20 @@
           <div class="color-render"></div>
         }
       </div>
+      @if (!opts.itemWidthAuto) {
+        <div class="min-line-text input-button">
+          <div class="color">
+            <label for="min-line-text">{{ 'generator.options.item.text.min.line' | transloco }}</label>
+            <input id="min-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMinLine" />
+          </div>
+        </div>
+        <div class="max-line-text input-button">
+          <div class="color">
+            <label for="max-line-text">{{ 'generator.options.item.text.max.line' | transloco }}</label>
+            <input id="max-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMaxLine" />
+          </div>
+        </div>
+      }
       <div class="size-item-text input-button">
         <div class="color">
           <label for="itemTextSize">{{ 'generator.options.item.text.size' | transloco }}</label>
