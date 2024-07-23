@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 2.3.2 (2024-07-23)
+
+#### Standalone web app
+
+-   Allow a min & max number of lines for the title #68
+-   Fix text options
+    -   Keyboard navigation
+    -   Background color for bubble
+    -   More understandable text position
+
 ### 2.3.1 (2024-07-21)
 
 #### Standalone web app
