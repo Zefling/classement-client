@@ -574,9 +574,11 @@
             <input id="option-axis-line-width" type="number" min="0" max="12" [(ngModel)]="opts.axisLineWidth" />
           </div>
         </div>
-        <div class="axis-arrow-size number-input">
-          <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | transloco }}</label>
-          <input id="option-axis-arrow-size" type="number" min="0" max="50" [(ngModel)]="opts.axisArrowWidth" />
+        <div class="axis-arrow-size input-value">
+          <div class="number-input">
+            <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | transloco }}</label>
+            <input id="option-axis-arrow-size" type="number" min="0" max="50" [(ngModel)]="opts.axisArrowWidth" />
+          </div>
         </div>
         <div class="colors-axis-line input-button">
           <div class="width-input">
