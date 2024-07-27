@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.3 (2024-07-27)
+
+#### Standalone web app
+
+-   Fix option alignment
+-   Fix drop files
+
 ### 2.3.2 (2024-07-23)
 
 #### Standalone web app
