@@ -22,7 +22,7 @@ export class DropImageDirective {
     @HostListener('dragover', ['$event'])
     onDragOver(evt: DragEvent): void {
         evt.preventDefault();
-        if (!this.disabled) {
+        if (!this.disabled()) {
             this.background = true;
         }
     }
@@ -31,14 +31,14 @@ export class DropImageDirective {
     public onDragLeave(event: DragEvent): void {
         event.preventDefault();
         event.stopPropagation();
-        if (!this.disabled) {
+        if (!this.disabled()) {
             this.background = false;
         }
     }
 
     @HostListener('drop', ['$event'])
     public onDrop(event: DragEvent): void {
-        if (!this.disabled) {
+        if (!this.disabled()) {
             this.background = false;
             if (this.mode() === 'global') {
                 if (event.dataTransfer?.files?.length) {
@@ -61,7 +61,7 @@ export class DropImageDirective {
 
     @HostListener('window:paste', ['$event'])
     onCtrlV(event: ClipboardEvent) {
-        if (!this.disabled) {
+        if (!this.disabled()) {
             if (this.mode() === 'global') {
                 if (event.clipboardData?.files?.length) {
                     this.globalService.addFiles(event.clipboardData?.files, TypeFile.image);
