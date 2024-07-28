@@ -680,14 +680,10 @@
     </div>
     <div class="button-actions">
       @if (!currentGroup.first) {
-        <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp); dialogGroupOption.close()">
-          ↑
-        </button>
+        <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp)">↑</button>
       }
       @if (!currentGroup.last) {
-        <button class="button-down group-options" (click)="downLine(currentGroup.indexGrp); dialogGroupOption.close()">
-          ↓
-        </button>
+        <button class="button-down group-options" (click)="downLine(currentGroup.indexGrp)">↓</button>
       }
       @if (!(currentGroup.first && currentGroup.last)) {
         <button

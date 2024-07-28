@@ -789,6 +789,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.addIds();
         this.globalChange();
         this.change();
+
+        this.currentGroup = {
+            group: this.groups[index - 1],
+            indexGrp: index - 1,
+            first: index - 1 === 0,
+            last: false,
+        };
     }
 
     downLine(index: number) {
@@ -796,6 +803,13 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.addIds();
         this.globalChange();
         this.change();
+
+        this.currentGroup = {
+            group: this.groups[index + 1],
+            indexGrp: index + 1,
+            first: false,
+            last: index + 1 === this.groups.length - 1,
+        };
     }
 
     deleteLine(index: number) {
