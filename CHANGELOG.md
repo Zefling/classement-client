@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.4 (2024-07-28)
+
+#### Standalone web app
+
+-   In line edit mode in a dialog, move the current line without closing the dialog
+-   Fix line colors options in dialog
+
 ### 2.3.3 (2024-07-27)
 
 #### Standalone web app
