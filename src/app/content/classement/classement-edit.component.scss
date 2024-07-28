@@ -33,6 +33,13 @@
     }
 }
 
+dialog-cmp .colors-options textarea {
+    outline: none;
+    border: none !important;
+    background: transparent;
+    text-align: center;
+}
+
 // drag'n drop --------------------------------------------------------------
 
 .drop-list {
