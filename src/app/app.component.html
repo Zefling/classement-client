@@ -30,7 +30,8 @@
             <span>{{ 'menu.list' | transloco }}</span>
           </a>
         </li>
-      } @else if (modeApi) {
+      }
+      @if (modeApi) {
         @if (logged) {
           <li class="section-top" [title]="'menu.my.lists' | transloco">
             <a
