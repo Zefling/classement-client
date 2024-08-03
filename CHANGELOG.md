@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.5 (2024-08-03)
+
+#### Standalone web app
+
+-   Use Select2 in grid mode for validated & mode
+-   Fix navigate link in menu
+
 ### 2.3.4 (2024-07-28)
 
 #### Standalone web app
