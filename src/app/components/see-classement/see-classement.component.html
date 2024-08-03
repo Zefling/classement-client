@@ -5,8 +5,22 @@
     <div class="options">
       <div class="select">
         <label for="icon-validated">{{ 'action.validated.label' | transloco }}</label>
-        <select2 id="icon-category" [data]="checkChoices" [(ngModel)]="checkChoice" [templates]="templateMode">
+        <select2
+          id="icon-category"
+          [data]="checkChoices"
+          [(ngModel)]="checkChoice"
+          [templates]="{ template: templateMode, templateSelection: templateSelectionMode }"
+          grid="80px"
+        >
           <ng-template #templateMode let-label="label" let-value="value">
+            <div class="list-mode option">
+              <div class="view"><span [ngClass]="'icon-validated-' + value + '1'"></span></div>
+              <div class="desc">
+                {{ 'action.validated.name.' + label | transloco }}
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #templateSelectionMode let-label="label" let-data="data" let-value="value">
             <div class="list-mode">
               <div class="view"><span [ngClass]="'icon-validated-' + value + '1'"></span></div>
               <div class="desc">

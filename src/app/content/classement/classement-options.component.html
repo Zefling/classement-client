@@ -27,9 +27,18 @@
         [ngModel]="opts.mode"
         (ngModelChange)="modeChange(opts.mode, $event)"
         [data]="listMode"
-        [templates]="templateMode"
+        [templates]="{ template: templateMode, templateSelection: templateSelectionMode }"
+        grid="100px"
       >
         <ng-template #templateMode let-label="label" let-data="data">
+          <div class="list-mode option">
+            <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
+            <div class="desc">
+              {{ 'mode.name.' + label | transloco }}
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #templateSelectionMode let-label="label" let-data="data">
           <div class="list-mode">
             <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
             <div class="desc">

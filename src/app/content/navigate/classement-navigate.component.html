@@ -19,8 +19,26 @@
       </div>
       <div class="modes">
         <label for="option-mode">{{ 'generator.options.mode' | transloco }}</label>
-        <select2 name="mode" [data]="listMode" [(ngModel)]="mode" [templates]="templateMode">
+        <select2
+          name="mode"
+          [data]="listMode"
+          [(ngModel)]="mode"
+          [templates]="{ template: templateMode, templateSelection: templateSelectionMode }"
+          grid="80px"
+        >
           <ng-template #templateMode let-label="label" let-data="data">
+            @if (data) {
+              <div class="list-mode option">
+                <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
+                <div class="desc">
+                  {{ 'mode.name.' + label | transloco }}
+                </div>
+              </div>
+            } @else {
+              <div>&nbsp;</div>
+            }
+          </ng-template>
+          <ng-template #templateSelectionMode let-label="label" let-data="data">
             @if (data) {
               <div class="list-mode">
                 <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>

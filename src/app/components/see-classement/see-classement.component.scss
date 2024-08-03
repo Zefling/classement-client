@@ -400,6 +400,22 @@ img {
         vertical-align: -4px;
         font-size: 20px;
     }
+    .desc {
+        text-align: left;
+    }
+
+    &.option {
+        flex-direction: column;
+        align-items: center;
+
+        .view span {
+            font-size: 40px;
+            text-align: left;
+        }
+        .desc {
+            text-align: center;
+        }
+    }
 }
 
 .options {
