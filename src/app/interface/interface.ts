@@ -4,7 +4,7 @@ export interface Classement {
     banner: string;
     data: Data;
     category: string;
-    mode: string;
+    mode: 'default' | 'teams' | 'axis' | 'iceberg' | 'bingo';
     name: string;
     user: string;
     userAvatar: string;
