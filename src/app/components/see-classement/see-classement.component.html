@@ -39,7 +39,11 @@
 
   <div class="render">
     @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
-      <table id="{{ render() ? 'html2canvas-element' : '' }}" class="html2canvas-element" [attr.dir]="opts.direction">
+      <table
+        [id]="render() ? 'html2canvas-element' : 'preview-element'"
+        class="html2canvas-element"
+        [attr.dir]="opts.direction"
+      >
         @if (opts.title) {
           <caption>
             {{
@@ -105,7 +109,7 @@
       </table>
     } @else if (opts.mode === 'bingo') {
       <table
-        id="{{ render() ? 'html2canvas-element' : '' }}"
+        [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element mode-bingo"
         [attr.dir]="opts.direction"
       >
@@ -162,7 +166,10 @@
         </tbody>
       </table>
     } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
-      <div class="zone-classement-container html2canvas-element" id="{{ render() ? 'html2canvas-element' : '' }}">
+      <div
+        class="zone-classement-container html2canvas-element"
+        [id]="render() ? 'html2canvas-element' : 'preview-element'"
+      >
         <div class="zone-classement">
           @if (opts.groups?.length) {
             @switch (opts.mode) {
