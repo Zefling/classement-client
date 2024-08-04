@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.7 (2024-08-04)
+
+#### Standalone web app
+
+-   Bingo: Persist symbol
+-   Bingo: fix image rendering when changing symbol
+
 ### 2.3.6 (2024-08-04)
 
 #### Standalone web app
