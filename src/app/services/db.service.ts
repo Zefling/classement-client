@@ -150,7 +150,7 @@ export class DBService {
         });
     }
 
-    loadExtraData<T>(id: string): Promise<DataExtra<T>> {
+    loadExtraData<T, U>(id: string): Promise<DataExtra<T, U>> {
         const formatData: any = {};
         return new Promise((resolve, reject) => {
             this._getDB()
@@ -160,8 +160,8 @@ export class DBService {
         });
     }
 
-    saveExtraData<T>(id: string, data: DataExtra<T>) {
-        const formatData: IndexedData<DataExtra<T>> = {
+    saveExtraData<T, U>(id: string, data: DataExtra<T, U>) {
+        const formatData: IndexedData<DataExtra<T, U>> = {
             id,
             data,
         };

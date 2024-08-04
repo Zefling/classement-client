@@ -40,7 +40,7 @@ export class SeeClassementComponent implements OnInit {
 
     constructor(
         private readonly globalService: GlobalService,
-        private readonly dataService: DataService<boolean>,
+        private readonly dataService: DataService<boolean, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
     ) {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
@@ -52,9 +52,19 @@ export class SeeClassementComponent implements OnInit {
         this.globalService.updateVarCss(this.options(), this.imagesCache());
         this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
 
-        if (this.options().mode === 'bingo') {
-            await this.dataService.init('bingo', this.id());
+        const mode = this.options().mode;
+
+        if (mode === 'bingo') {
+            await this.dataService.init(mode, this.id());
+            const options = this.dataService.getOptions(mode, this.id());
+            if (options) {
+                this.checkChoice = options.checkChoice;
+            }
         }
+    }
+
+    updateIconStyle(type: string) {
+        return this.dataService.saveOption('bingo', this.id(), { checkChoice: type });
     }
 
     bingoCheck(group: number, item: number) {
