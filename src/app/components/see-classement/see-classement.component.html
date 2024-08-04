@@ -9,7 +9,7 @@
           id="icon-category"
           [data]="checkChoices"
           [(ngModel)]="checkChoice"
-          (ngModelChange)="updateIconStyle($event)"
+          (update)="updateIconStyle($event)"
           [templates]="{ template: templateMode, templateSelection: templateSelectionMode }"
           grid="80px"
         >

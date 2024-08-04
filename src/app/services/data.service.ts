@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DBService } from './db.service';
 
 export type DataExtraCell<T> = { group: number; item: number; value: T };
@@ -7,7 +8,9 @@ export type DataExtra<T, U> = Record<string, (DataExtraCell<T> | DataExtraOption
 
 @Injectable({ providedIn: 'root' })
 export class DataService<T, U> {
-    data: Record<string, DataExtra<T, U>> = {};
+    private readonly data: Record<string, DataExtra<T, U>> = {};
+
+    readonly onOptionChange = new Subject<U>();
 
     constructor(private readonly db: DBService) {}
 
@@ -39,6 +42,8 @@ export class DataService<T, U> {
         }
 
         this.db.saveExtraData<T, U>(type, this.data[type]);
+
+        this.onOptionChange.next(options);
     }
 
     change(type: string, id: string, group: number, item: number, value: T) {

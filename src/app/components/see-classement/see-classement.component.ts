@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit, booleanAttribute, input } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, booleanAttribute, input } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
 import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
-import { Select2Option } from 'ng-select2-component';
+import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { DataService } from 'src/app/services/data.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { GlobalService } from '../../services/global.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
 })
-export class SeeClassementComponent implements OnInit {
+export class SeeClassementComponent implements OnInit, OnDestroy {
     groups = input.required<FormattedGroup[]>();
     list = input.required<FileType[]>();
     imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
@@ -38,6 +39,8 @@ export class SeeClassementComponent implements OnInit {
 
     private _detectChange = new Subject<void>();
 
+    private sub = Subscriptions.instance();
+
     constructor(
         private readonly globalService: GlobalService,
         private readonly dataService: DataService<boolean, { checkChoice: string }>,
@@ -59,12 +62,28 @@ export class SeeClassementComponent implements OnInit {
             const options = this.dataService.getOptions(mode, this.id());
             if (options) {
                 this.checkChoice = options.checkChoice;
+                this.cd.detectChanges();
             }
+        }
+
+        if (this.render()) {
+            this.sub.push(
+                this.dataService.onOptionChange.subscribe(options => {
+                    if (options && this.checkChoice !== options.checkChoice) {
+                        this.checkChoice = options.checkChoice;
+                        this.cd.detectChanges();
+                    }
+                }),
+            );
         }
     }
 
-    updateIconStyle(type: string) {
-        return this.dataService.saveOption('bingo', this.id(), { checkChoice: type });
+    ngOnDestroy() {
+        this.sub.clear();
+    }
+
+    updateIconStyle(type: Select2UpdateEvent<Select2UpdateValue>) {
+        this.dataService.saveOption('bingo', this.id(), { checkChoice: type.value as string });
     }
 
     bingoCheck(group: number, item: number) {
