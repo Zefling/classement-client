@@ -23,10 +23,12 @@ export class DataService<T> {
     change(type: string, id: string, group: number, item: number, value: T) {
         this.init(type, id);
 
-        const record = this.data[type][id].find(e => e.group === group && e.item === item);
+        const record = this.data[type]?.[id]?.find(e => e.group === group && e.item === item);
         if (record) {
             record.value = value;
         } else {
+            this.data[type] ??= {};
+            this.data[type][id] ??= [];
             this.data[type][id].push({ group, item, value });
         }
 
@@ -34,7 +36,7 @@ export class DataService<T> {
     }
 
     value(type: string, id: string, group: number, item: number): T | undefined {
-        return this.data[type]?.[id].find(e => e.group === group && e.item === item)?.value;
+        return this.data[type]?.[id]?.find(e => e.group === group && e.item === item)?.value;
     }
 
     clear(type: string, id: string) {
