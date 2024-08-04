@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.6 (2024-08-04)
+
+#### Standalone web app
+
+-   Don't show group counts for iceberg, axis & bingo
+-   Fix bingo selection (for the first bingo)
+
 ### 2.3.5 (2024-08-03)
 
 #### Standalone web app
