@@ -283,29 +283,31 @@
         }
       </div>
       @if (!opts.itemWidthAuto) {
-        <div class="min-line-text input-button">
-          <div class="color">
+        <div class="min-line-text input-value">
+          <div class="number-input">
             <label for="min-line-text">{{ 'generator.options.item.text.min.line' | transloco }}</label>
             <input id="min-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMinLine" />
           </div>
         </div>
-        <div class="max-line-text input-button">
-          <div class="color">
+        <div class="max-line-text input-value">
+          <div class="number-input">
             <label for="max-line-text">{{ 'generator.options.item.text.max.line' | transloco }}</label>
             <input id="max-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMaxLine" />
           </div>
         </div>
       }
-      <div class="size-item-text input-button">
-        <div class="color">
+      <div class="size-item-text input-value">
+        <div class="number-input">
           <label for="itemTextSize">{{ 'generator.options.item.text.size' | transloco }}</label>
           <input id="itemTextSize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextSize" />
+          <span data-type="px"></span>
         </div>
       </div>
-      <div class="size-item-text-only input-button">
-        <div class="color">
+      <div class="size-item-text-only input-value">
+        <div class="number-input">
           <label for="itemTextOnlySize">{{ 'generator.options.item.text.only.size' | transloco }}</label>
           <input id="itemTextOnlySize" type="number" min="6" max="100" [(ngModel)]="opts.itemTextOnlySize" />
+          <span data-type="px"></span>
         </div>
       </div>
       <div class="item-text-position input-value">
@@ -428,12 +430,14 @@
             <div class="number-input">
               <label for="option-name-font-size">{{ 'generator.options.name.font-size' | transloco }}</label>
               <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="opts.nameFontSize" />
+              <span data-type="%"></span>
             </div>
           </div>
           <div class="name-width input-value">
             <div class="number-input">
               <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
               <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
+              <span data-type="px"></span>
             </div>
           </div>
           <div class="group-direction input-value">
@@ -479,8 +483,8 @@
         }
       } @else if (opts.mode === 'iceberg') {
         <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
-        <div class="zone-title-number">
-          <div class="width-input">
+        <div class="zone-title-number input-value">
+          <div class="number-input">
             <label for="option-groups-size">{{ 'generator.options.zone.title.number' | transloco }}</label>
             <input
               id="option-groups-size"
@@ -581,12 +585,14 @@
           <div class="number-input">
             <label for="option-axis-line-width">{{ 'generator.options.axis.line.width' | transloco }}</label>
             <input id="option-axis-line-width" type="number" min="0" max="12" [(ngModel)]="opts.axisLineWidth" />
+            <span data-type="px"></span>
           </div>
         </div>
         <div class="axis-arrow-size input-value">
           <div class="number-input">
             <label for="option-axis-arrow-size">{{ 'generator.options.axis.arrow.size' | transloco }}</label>
             <input id="option-axis-arrow-size" type="number" min="0" max="50" [(ngModel)]="opts.axisArrowWidth" />
+            <span data-type="px"></span>
           </div>
         </div>
         <div class="colors-axis-line input-button">
@@ -641,18 +647,20 @@
         }
       </div>
       @if (opts.mode !== 'bingo') {
-        <div class="global-width input-button">
-          <div class="width-input">
+        <div class="global-width input-value">
+          <div class="number-input">
             <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
             <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
+            <span data-type="px"></span>
           </div>
         </div>
       }
       @if (zoneMode.includes(opts.mode)) {
-        <div class="global-height input-button">
-          <div class="width-input">
+        <div class="global-height input-value">
+          <div class="number-input">
             <label for="option-global-height">{{ 'generator.options.global.height' | transloco }}</label>
             <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" />
+            <span data-type="px"></span>
           </div>
         </div>
       }

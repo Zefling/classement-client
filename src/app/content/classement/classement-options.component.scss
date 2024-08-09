@@ -595,10 +595,11 @@ span.item-height {
 .input-value {
     .number-input,
     .select-input {
+        --size: auto;
         display: grid;
         grid-template:
-            'a' 20px
-            'b' 50px / 1fr;
+            'a a' 20px
+            'b c' 50px / var(--size) auto;
         align-items: center;
         gap: 5px 10px;
 
@@ -611,9 +612,20 @@ span.item-height {
             grid-area: b;
         }
         input {
-            width: 100px;
+            width: var(--size);
             text-align: right;
         }
+        span[data-type] {
+            grid-area: c;
+
+            &::after {
+                content: attr(data-type);
+            }
+        }
+    }
+
+    .number-input {
+        --size: 100px;
     }
 }
 
