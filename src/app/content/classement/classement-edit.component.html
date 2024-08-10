@@ -281,65 +281,68 @@
             </ul>
           </div>
         } @else if (options.mode === 'bingo') {
-          <table class="table-classement">
-            <tbody>
-              @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
-                <tr>
-                  @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
-                    <td class="elements">
-                      <div
-                        class="drop-list"
-                        cdkDropList
-                        [cdkDropListData]="{ list: group.list, index }"
-                        (cdkDropListDropped)="drop($event)"
-                      >
-                        @if (item) {
-                          <div
-                            class="content-box"
-                            cdkDrag
-                            removeTile
-                            (removeElement)="removeFromZone(group, index)"
-                            [style.--over-item-background]="item.bgColor"
-                            [style.--over-item-text-color]="item.txtColor"
-                          >
+          <div class="bingo-container">
+            <table class="table-classement">
+              <tbody>
+                @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                  <tr>
+                    @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+                      <td class="elements">
+                        <div
+                          class="drop-list"
+                          cdkDropList
+                          [cdkDropListData]="{ list: group.list, index }"
+                          (cdkDropListDropped)="drop($event)"
+                        >
+                          @if (item) {
                             <div
-                              class="content content-render"
-                              [class.with-annotation]="item.annotation"
-                              [ngClass]="options.itemTextPosition"
-                              [id]="item.id"
-                              #tile
+                              class="content-box"
+                              cdkDrag
+                              removeTile
+                              (removeElement)="removeFromZone(group, index)"
+                              [style.--over-item-background]="item.bgColor"
+                              [style.--over-item-text-color]="item.txtColor"
                             >
-                              @if (item.url) {
-                                <div [class.image]="calcWidth(item, tile)">
-                                  <img
-                                    (ngInit)="calcWidth(item, tile); detectChanges()"
-                                    (load)="calcWidth(item, tile); detectChanges()"
-                                    [class.cover]="options.itemImageCover"
-                                    src="{{ item.url }}"
-                                    alt="{{ item.name }}"
-                                  />
-                                </div>
-                              }
-                              @if (
-                                item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
-                              ) {
-                                <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
-                                </div>
-                              }
-                              <div class="tile-info" (click)="openTileInfo(item)"></div>
+                              <div
+                                class="content content-render"
+                                [class.with-annotation]="item.annotation"
+                                [ngClass]="options.itemTextPosition"
+                                [id]="item.id"
+                                #tile
+                              >
+                                @if (item.url) {
+                                  <div [class.image]="calcWidth(item, tile)">
+                                    <img
+                                      (ngInit)="calcWidth(item, tile); detectChanges()"
+                                      (load)="calcWidth(item, tile); detectChanges()"
+                                      [class.cover]="options.itemImageCover"
+                                      src="{{ item.url }}"
+                                      alt="{{ item.name }}"
+                                    />
+                                  </div>
+                                }
+                                @if (
+                                  item.title ||
+                                  (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
+                                ) {
+                                  <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                    <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                  </div>
+                                }
+                                <div class="tile-info" (click)="openTileInfo(item)"></div>
+                              </div>
                             </div>
-                          </div>
-                        } @else {
-                          <div class="drop-zone-empty-list"></div>
-                        }
-                      </div>
-                    </td>
-                  }
-                </tr>
-              }
-            </tbody>
-          </table>
+                          } @else {
+                            <div class="drop-zone-empty-list"></div>
+                          }
+                        </div>
+                      </td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
         }
         <div class="current-list">
           <div class="drop-image-message">

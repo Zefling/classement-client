@@ -652,6 +652,10 @@ span.group-options {
 }
 
 // bingo -----------------------------------------------------------
+.bingo-container {
+    max-width: 100%;
+    overflow: auto;
+}
 
 .mode-bingo {
     .table-classement {
