@@ -348,6 +348,13 @@ html {
     transition-duration: 0.3s;
     // color not possible in Chromium (too slow)
     transition-property: background-color, opacity, border, box-shadow, text-shadow, outline;
+}
+
+.select2-container-dropdown {
+    transition: none;
+}
+
+* {
     font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
 }
 
