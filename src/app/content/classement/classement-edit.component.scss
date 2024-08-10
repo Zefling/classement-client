@@ -577,6 +577,12 @@ span.group-options {
     }
 }
 
+@media (hover: none) and (device-width: 100vw) and (device-height: 100vh) {
+    #fullscreen-view {
+        display: none;
+    }
+}
+
 .enlarge,
 .fullscreen {
     position: fixed;

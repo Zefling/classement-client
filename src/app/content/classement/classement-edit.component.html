@@ -41,17 +41,17 @@
       <div class="classement-top">
         <h3>{{ 'generator.ranking.group.title' | transloco }}</h3>
         @if (classScreenMode !== 'default') {
-          <button (click)="screenMode('default', div)">
+          <button id="default-view" (click)="screenMode('default', div)">
             {{ 'generator.screen.default' | transloco }}
           </button>
         }
         @if (classScreenMode !== 'enlarge') {
-          <button (click)="screenMode('enlarge', div)">
+          <button id="enlarge-view" (click)="screenMode('enlarge', div)">
             {{ 'generator.screen.window' | transloco }}
           </button>
         }
         @if (classScreenMode !== 'fullscreen') {
-          <button (click)="screenMode('fullscreen', div)">
+          <button id="fullscreen-view" (click)="screenMode('fullscreen', div)">
             {{ 'generator.screen.fullscreen' | transloco }}
           </button>
         }
