@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 2.3.8 (2024-08-04)
+
+#### Standalone web app
+
+-   Options: alignment of input numbers, add units
+-   Don't display the fullscreen button on mobile (already "fullscreen")
+-   Fix view mobile for Bingo
+-   Fix select2 animation bug
+
 ### 2.3.7 (2024-08-04)
 
 #### Standalone web app
