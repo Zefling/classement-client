@@ -12,10 +12,6 @@ Currently 2 modes are possible:
 
 See `src/environments/environment*.ts` for change.
 
-## Website
-
-Current installation in this [website](https://classement.org/).
-
 ## Support the project
 
 I'm Zéfling, the main developer on this project. If you want to help me a little to pay for my server which hosts my projects:
@@ -23,6 +19,18 @@ I'm Zéfling, the main developer on this project. If you want to help me a littl
 <a href='https://ko-fi.com/Z8Z7XW9H2' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 You can also help by contributing, returning bugs or helping with translations.
+
+## Website
+
+Current installation in this [website](https://classement.org/).
+
+### Demo for Tierlist
+
+![Demo for Tierlist](demo/demo_tierlist.webp 'Demo for Tierlist')
+
+### Demo for Bingo selection
+
+![Demo for Bingo selection](demo/demo_bingo.webp 'Demo for Bingo selection')
 
 ## Features
 
