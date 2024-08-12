@@ -700,3 +700,10 @@ dialog-cmp.auto-format .main {
         }
     }
 }
+
+/** Safari */
+@supports (background: -webkit-named-image(i)) {
+    .webp {
+        display: none;
+    }
+}

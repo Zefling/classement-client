@@ -28,6 +28,8 @@ export enum TypeFile {
     text = 'text',
 }
 
+export type FileFormatExport = 'PNG' | 'JPG' | 'WEBP' | 'AVIF';
+
 export const typesMine: Record<string, string[]> = {
     image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp', 'image/avif'],
     json: ['application/json'],
@@ -336,5 +338,28 @@ export class GlobalService {
         this.logger.log('color theme:', LoggerLevel.log, this.userSchema);
         this.renderer.addClass(document.body, this.currentTheme() === 'light' ? 'light-mode' : 'dark-mode');
         this.renderer.removeClass(document.body, this.currentTheme() !== 'light' ? 'light-mode' : 'dark-mode');
+    }
+
+    saveImage(canvas: HTMLCanvasElement | undefined, title: string, type: FileFormatExport) {
+        if (canvas) {
+            switch (type) {
+                case 'PNG':
+                    this.downloadImage(canvas.toDataURL('image/png'), title + '.png');
+                    break;
+                case 'JPG':
+                    this.downloadImage(canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
+                    break;
+                case 'WEBP':
+                    this.downloadImage(canvas.toDataURL('image/webp', 1.0), title + '.webp');
+                    break;
+                case 'AVIF':
+                    this.downloadImage(canvas.toDataURL('image/avif', 1.0), title + '.avif');
+                    break;
+            }
+        }
+    }
+
+    private downloadImage(data: string, filename: string) {
+        Utils.downloadFile(data, filename);
     }
 }

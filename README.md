@@ -30,7 +30,7 @@ You can also help by contributing, returning bugs or helping with translations.
     -   ✅ Adding images by drag'n drop or copy-paste
     -   ✅ Adding text under images
     -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
-    -   ✅ Modes
+    -   ✅ Ranking Modes
         -   ✅ Tierlist
         -   ✅ Teams
         -   ✅ Iceberg
@@ -46,8 +46,8 @@ You can also help by contributing, returning bugs or helping with translations.
     -   ✅ Backup in browser or in Json
         -   ✅ Import (one or more)
         -   ✅ Export all
-    -   ✅ Image export (PNG, JPG or WebP)
-    -   ✅ In-memory tierlists clone
+    -   ✅ Image export: PNG, JPG or WebP (except for Safari)
+    -   ✅ In-memory rankings clone
     -   ✅ Tags
     -   ✅ Preferences
     -   ✅ External API
@@ -64,27 +64,27 @@ You can also help by contributing, returning bugs or helping with translations.
             -   ❌ Google (abandoned, the code is not deleted, but impossible to test)
         -   ✅ Password lost
     -   ✅ Profile
-        -   ✅ See personal tierlists
-        -   ✅ Remove tierslist
+        -   ✅ See personal rankings
+        -   ✅ Remove ranking
         -   ✅ Change username
         -   ✅ Change email
         -   ✅ Change password
         -   ✅ Change avatar
         -   ✅ Remove user
-    -   ✅ Tierlists
-        -   ✅ Save tierlists on server
+    -   ✅ rankings
+        -   ✅ Save rankings on server
             -   ✅ Public
             -   ✅ Private
             -   ✅ Private with password
-        -   ✅ Search in public tierlists
-        -   ✅ See tierlists form template
-        -   ✅ Tierlist view
-            -   ✅ Tierlist history
+        -   ✅ Search in public rankings
+        -   ✅ See rankings form template
+        -   ✅ Ranking view
+            -   ✅ Ranking history
     -   ✅ Admin
-        -   ✅ Search users or tierlists
+        -   ✅ Search users or rankings
         -   ✅ Edit profil & change roles
-        -   ✅ Tierlists change status
-        -   ✅ Tierlists change category
+        -   ✅ rankings change status
+        -   ✅ rankings change category
         -   ✅ Remove user
     -   ✅ Contact form
 

@@ -45,7 +45,7 @@ import {
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
-import { GlobalService, TypeFile } from 'src/app/services/global.service';
+import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
@@ -958,21 +958,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this._canvas = canvas;
     }
 
-    saveImage(type: string) {
-        const title = this.getFileName();
-        if (this._canvas) {
-            switch (type) {
-                case 'PNG':
-                    this.downloadImage(this._canvas.toDataURL('image/png'), title + '.png');
-                    break;
-                case 'JPG':
-                    this.downloadImage(this._canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
-                    break;
-                case 'WEBP':
-                    this.downloadImage(this._canvas.toDataURL('image/webp', 1.0), title + '.webp');
-                    break;
-            }
-        }
+    saveImage(type: FileFormatExport) {
+        this.global.saveImage(this._canvas, this.getFileName(), type);
     }
 
     change() {
@@ -1174,10 +1161,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     private getFileName(): string {
         return this.options.title.trim() || this.translate.translate('list.title.undefined');
-    }
-
-    private downloadImage(data: string, filename: string) {
-        Utils.downloadFile(data, filename);
     }
 
     private addIds() {

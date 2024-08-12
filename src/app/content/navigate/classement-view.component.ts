@@ -12,7 +12,7 @@ import { Classement, ClassementHistory, ScreenMode } from 'src/app/interface/int
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
+import { FileFormatExport, GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
@@ -334,29 +334,12 @@ export class ClassementViewComponent implements OnDestroy {
         });
     }
 
-    saveImage(type: 'PNG' | 'JPG' | 'WEBP') {
-        const title = this.getFileName();
-        if (this.canvas) {
-            switch (type) {
-                case 'PNG':
-                    this.downloadImage(this.canvas.toDataURL('image/png'), `${title}.png`);
-                    break;
-                case 'JPG':
-                    this.downloadImage(this.canvas.toDataURL('image/jpeg', 1.0), `${title}.jpeg`);
-                    break;
-                case 'WEBP':
-                    this.downloadImage(this.canvas.toDataURL('image/webp', 1.0), `${title}.webp`);
-                    break;
-            }
-        }
+    saveImage(type: FileFormatExport) {
+        this.global.saveImage(this.canvas, this.getFileName(), type);
     }
 
     private getFileName(): string {
         return this.classement!.data.options.title.trim() || this.translate.translate('list.title.undefined');
-    }
-
-    private downloadImage(data: string, filename: string) {
-        Utils.downloadFile(data, filename);
     }
 
     private getClassementId(classement: Classement) {
