@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.3.9 (2024-08-12)
+
+#### Standalone web app
+
+-   Edit group name height: fix for Chromium
+-   Webp is not supported on Safari (Webkit)
+
 ### 2.3.8 (2024-08-04)
 
 #### Standalone web app
