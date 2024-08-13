@@ -203,16 +203,6 @@ aside {
     }
 }
 
-:host.reduce-menu {
-    --aside-width: 55px;
-
-    .icon + span {
-        opacity: 0;
-        transition: all 0.5s;
-        width: 0;
-    }
-}
-
 .preferences {
     label {
         display: block;
@@ -264,10 +254,21 @@ aside {
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (width >= 1024px) {
+    :host.reduce-menu {
+        --aside-width: 55px;
+
+        .icon + span {
+            opacity: 0;
+            transition: all 0.5s;
+            width: 0;
+        }
+    }
+}
+
+@media screen and (width < 1024px) {
     :host {
         --main-padding: 0 5px;
-
         --aside-width: 0;
         --show-mobile: block;
         --menu-transition: left 0.5s;
@@ -281,9 +282,13 @@ aside {
         --menu-item-padding: 25px;
         --main-shadow: none;
     }
+
+    .menu-mode {
+        display: none;
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (width < 600px) {
     :host {
         --aside-actions-display: flex;
         --header-actions-display: none;
