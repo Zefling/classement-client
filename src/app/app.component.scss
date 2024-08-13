@@ -22,7 +22,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background: var(--header-background);
-    padding: 15px;
+    padding: 0 15px;
 
     .title {
         font-weight: 700;
@@ -44,7 +44,6 @@ header {
     .buton-menu-mobile {
         display: var(--show-mobile, none);
         cursor: pointer;
-        margin: -10px 0 0 20px;
         font-size: 30px;
     }
 }
@@ -270,7 +269,7 @@ aside {
         --main-padding: 0 5px;
 
         --aside-width: 0;
-        --show-mobile: display;
+        --show-mobile: block;
         --menu-transition: left 0.5s;
         --aside-transition: background-color 0.5s;
         --aside-content-width: 90vw;
