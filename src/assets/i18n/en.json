@@ -1,5 +1,6 @@
 {
   "classement": "Classement",
+  "help": "Help",
   "menu": {
     "home": "Home",
     "list": "Local list",
@@ -575,10 +576,36 @@
       }
     },
     "help": {
-      "title": "Help:",
-      "zone": {
-        "central.click": "Central click on a tile: return to the list.",
-        "double.click": "Double click in an empty area: creates a tile at the target location."
+      "title": "Presentation",
+      "shortcut": {
+        "title": "Keyboard shortcuts",
+        "ctrl.v": "Copy one or more images that will be added. Also works with text. Each line of text creates a new tile.",
+        "ctrl.s": "Save draft.",
+        "ctrl.e": "Export draft.",
+        "middle.click": "Middle click",
+        "double.click": "Double click",
+        "on.tile": "on a tile",
+        "on.zone": "in a zone",
+        "put.back.list": "Put back in the list.",
+        "create": "Create a tile at the target location."
+      },
+      "default": {
+        "text": "Move tiles by drag and drop."
+      },
+      "teams": {
+        "text": "Move tiles by drag and drop to copy them into groups. Each tile can be copied only once per group."
+      },
+      "iceberg": {
+        "move": "Move tiles in the area.",
+        "options": "In the options choose the number of levels."
+      },
+      "axis": {
+        "move": "Move tiles in the area.",
+        "options": "In the options choose the names of the axes."
+      },
+      "bingo": {
+        "grid": "Fill a grid to make a list or a top.",
+        "view": "In visualization mode, after saving, allows you to select the tiles."
       }
     }
   },

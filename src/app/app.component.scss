@@ -2,9 +2,9 @@
     --main-padding: 0 15px 30px 30px;
     display: grid;
     grid-template:
-        'header header' 50px
-        'aside  main' 1fr /
-        var(--aside-width, 200px) 1fr;
+        'header header header' 50px
+        'menu   main   help  ' 1fr /
+        var(--aside-width, 200px) 1fr var(--aside-help-width, 0);
 
     transition: all 0.5s;
     height: 100%;
@@ -35,9 +35,11 @@ header {
 
     .actions {
         display: flex;
+        align-items: center;
+        gap: 20px;
 
         & > :not(.buton-menu-mobile) {
-            display: var(--header-actions-display, flex);
+            display: flex;
         }
     }
 
@@ -48,9 +50,9 @@ header {
     }
 }
 
-aside {
+.aside-menu {
     position: relative;
-    grid-area: aside;
+    grid-area: menu;
     background: var(--aside-background);
 
     .backdrop {
@@ -137,6 +139,32 @@ aside {
     .licenses {
         margin-bottom: 15px;
     }
+}
+
+:host.show-help {
+    --aside-help-width: 200px;
+}
+
+.aside-help {
+    grid-area: help;
+    box-sizing: border-box;
+    background: var(--aside-background);
+    padding: 5px;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+}
+
+.button-help {
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 22px;
+    text-align: center;
 }
 
 .choice-mode {
@@ -286,12 +314,43 @@ aside {
     .menu-mode {
         display: none;
     }
+
+    .aside-help {
+        position: relative;
+        background: transparent;
+        padding: 0;
+        width: 0;
+        height: 100%;
+        overflow: visible;
+
+        & ::ng-deep help {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: -200px;
+            z-index: 1;
+            transition: right 0.3s;
+            box-sizing: border-box;
+            background: var(--aside-background);
+            padding: 5px;
+            width: 200px;
+            height: 100%;
+            overflow: auto;
+        }
+    }
+
+    :host.show-help {
+        --aside-help-width: 0;
+
+        .aside-help ::ng-deep help {
+            right: 0;
+        }
+    }
 }
 
 @media screen and (width < 600px) {
     :host {
         --aside-actions-display: flex;
-        --header-actions-display: none;
     }
 
     aside ul {
