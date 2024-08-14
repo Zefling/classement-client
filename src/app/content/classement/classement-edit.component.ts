@@ -1029,7 +1029,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     @HostListener('window:keydown.control.s', ['$event'])
     keySaveLocal(event: Event) {
-        this.saveLocal();
+        if (this.hasItems) {
+            this.saveLocal();
+        }
         event.preventDefault();
     }
 
@@ -1108,8 +1110,18 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
+    @HostListener('window:keydown.control.e', ['$event'])
+    keySaveJson(event: Event) {
+        if (this.hasItems) {
+            this.saveJson();
+        }
+        event.preventDefault();
+    }
+
     saveJson() {
-        Utils.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
+        if (this.hasItems) {
+            Utils.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
+        }
     }
 
     importJson(event: ImportJsonEvent) {
