@@ -5,10 +5,13 @@
 <header>
   <div class="title">{{ 'classement' | transloco }}</div>
   <div class="actions">
+    @if (showHelpButton()) {
+      <div class="buton-help" (click)="toggleHelp()">❓</div>
+    }
     <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
   </div>
 </header>
-<aside>
+<aside class="aside-menu">
   <div class="backdrop" (click)="toggleMenu()"></div>
   <div class="menu" [class.main-menu-reduce]="preferencesForm?.get('mainMenuReduce')?.value">
     <ul>
@@ -181,6 +184,11 @@
       }}</span>
     </div>
   </div>
+</aside>
+<aside class="aside-help">
+  @if (helpComponent) {
+    <ng-container [ngComponentOutlet]="helpComponent"></ng-container>
+  }
 </aside>
 <div #main>
   @if (!loading) {

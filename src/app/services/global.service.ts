@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -51,6 +51,8 @@ export class GlobalService {
 
     readonly onOpenChoice = new Subject<void>();
 
+    readonly helpComponent = new Subject<Type<any> | undefined>();
+
     withChange = false;
 
     lang!: string;
@@ -100,6 +102,10 @@ export class GlobalService {
 
     updateList() {
         this.onUpdateList.next();
+    }
+
+    changeHelpComponent(component?: Type<any>) {
+        this.helpComponent.next(component);
     }
 
     addTexts(text: string) {

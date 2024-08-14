@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, signal, Type, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Event, Router, Scroll } from '@angular/router';
 
@@ -26,6 +26,11 @@ const languages = [
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    host: {
+        '[class.show-menu]': 'asideOpen()',
+        '[class.reduce-menu]': 'mainMenuReduce()',
+        '[class.show-help]': 'showHelp()',
+    },
 })
 export class AppComponent implements DoCheck {
     @ViewChild('warningExit') warningExit!: DialogComponent;
@@ -37,11 +42,10 @@ export class AppComponent implements DoCheck {
 
     loading = environment.api?.active;
 
-    @HostBinding('class.show-menu')
-    asideOpen = false;
-
-    @HostBinding('class.reduce-menu')
-    mainMenuReduce = true;
+    asideOpen = signal<boolean>(false);
+    mainMenuReduce = signal<boolean>(true);
+    showHelp = signal<boolean>(false);
+    showHelpButton = signal<boolean>(false);
 
     modeApi = environment.api?.active || false;
     modeModerator = false;
@@ -58,6 +62,8 @@ export class AppComponent implements DoCheck {
     get logged() {
         return this.userService.logged;
     }
+
+    helpComponent?: Type<any>;
 
     private route?: string;
 
@@ -82,6 +88,12 @@ export class AppComponent implements DoCheck {
 
         this.globalService.onOpenChoice.subscribe(() => {
             this.choice.open();
+        });
+
+        this.globalService.helpComponent.subscribe(helpComponent => {
+            this.showHelp.set(false);
+            this.showHelpButton.set(helpComponent !== undefined);
+            this.helpComponent = helpComponent;
         });
 
         router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
@@ -112,12 +124,16 @@ export class AppComponent implements DoCheck {
     }
 
     toggleMenu() {
-        this.asideOpen = !this.asideOpen;
+        this.asideOpen.set(!this.asideOpen());
+    }
+
+    toggleHelp() {
+        this.showHelp.set(!this.showHelp());
     }
 
     toggleResizeMenu() {
-        this.mainMenuReduce = !this.mainMenuReduce;
-        this.preferencesForm?.get('mainMenuReduce')?.setValue(this.mainMenuReduce);
+        this.mainMenuReduce.set(!this.mainMenuReduce());
+        this.preferencesForm?.get('mainMenuReduce')?.setValue(this.mainMenuReduce());
     }
 
     updateLanguage(lang: string) {
@@ -182,7 +198,7 @@ export class AppComponent implements DoCheck {
         const selectedLang = l.length ? l[0].value : 'en';
 
         // menu
-        this.mainMenuReduce = initPreferences.mainMenuReduce;
+        this.mainMenuReduce.set(initPreferences.mainMenuReduce);
 
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),

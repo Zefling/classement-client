@@ -2,9 +2,9 @@
     --main-padding: 0 15px 30px 30px;
     display: grid;
     grid-template:
-        'header header' 50px
-        'aside  main' 1fr /
-        var(--aside-width, 200px) 1fr;
+        'header header header' 50px
+        'menu   main   help  ' 1fr /
+        var(--aside-width, 200px) 1fr var(--aside-help-width, 0);
 
     transition: all 0.5s;
     height: 100%;
@@ -48,9 +48,9 @@ header {
     }
 }
 
-aside {
+.aside-menu {
     position: relative;
-    grid-area: aside;
+    grid-area: menu;
     background: var(--aside-background);
 
     .backdrop {
@@ -137,6 +137,25 @@ aside {
     .licenses {
         margin-bottom: 15px;
     }
+}
+
+:host.show-help {
+    --aside-help-width: 200px;
+}
+
+.aside-help {
+    grid-area: help;
+    background: var(--aside-background);
+    padding: 5px;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+}
+
+.buton-help {
+    cursor: pointer;
+    min-width: 30px;
+    text-align: center;
 }
 
 .choice-mode {

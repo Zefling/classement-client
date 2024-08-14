@@ -65,6 +65,11 @@ import {
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ExternalImdbComponent } from './external.imdb.component';
+import { HelpAxisComponent } from './help/help.axis.component';
+import { HelpBingoComponent } from './help/help.bingo.component';
+import { HelpIcebergComponent } from './help/help.iceberg.component';
+import { HelpTeamsComponent } from './help/help.teams.component';
+import { HelpTierListComponent } from './help/help.tierlist.component';
 
 @Component({
     selector: 'classement-edit',
@@ -302,6 +307,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
             this.exportImageLoading = false;
             this.resetCache();
+            this.helpInit();
 
             if (params['mode'] === 'bingo') {
                 this.groupsControl(this.groups, this.options);
@@ -407,6 +413,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.html2canvasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.resetCache();
+                this.helpInit();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -448,6 +455,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.updateSize();
         this.resetCache();
+        this.helpInit();
     }
 
     loadDerivativeClassement(classement: Classement) {
@@ -488,6 +496,26 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const currentList = this.currentList()?.nativeElement;
         if (currentList) {
             this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
+        }
+    }
+
+    helpInit() {
+        switch (this.options.mode) {
+            case 'teams':
+                this.global.changeHelpComponent(HelpTeamsComponent);
+                break;
+            case 'iceberg':
+                this.global.changeHelpComponent(HelpIcebergComponent);
+                break;
+            case 'axis':
+                this.global.changeHelpComponent(HelpAxisComponent);
+                break;
+            case 'bingo':
+                this.global.changeHelpComponent(HelpBingoComponent);
+                break;
+            default:
+                this.global.changeHelpComponent(HelpTierListComponent);
+                break;
         }
     }
 
