@@ -196,6 +196,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (ok) {
             this.editor.reset();
             this.updateMode();
+            this.editor.helpInit();
             this.options()!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
             this.mode().writeValue(this._previousMode!);

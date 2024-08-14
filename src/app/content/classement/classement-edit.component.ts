@@ -500,6 +500,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     helpInit() {
+        console.log(this.options.mode);
         switch (this.options.mode) {
             case 'teams':
                 this.global.changeHelpComponent(HelpTeamsComponent);
@@ -552,6 +553,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     ngOnDestroy() {
         this._sub.clear();
+        this.global.changeHelpComponent();
     }
 
     @HostListener('window:beforeunload', ['$event'])

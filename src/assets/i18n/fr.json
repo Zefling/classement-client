@@ -1,5 +1,6 @@
 {
   "classement": "Classement",
+  "help": "Aide",
   "menu": {
     "home": "Accueil",
     "list": "Liste locale",
@@ -575,10 +576,36 @@
       }
     },
     "help": {
-      "title": "Aide :",
-      "zone": {
-        "central.click": "Clic central sur une tuile : remettre dans la liste.",
-        "double.click": "Double clic dans une zone vide : création d'une tuile à l'endroit visé."
+      "title": "Présentation",
+      "shortcut": {
+        "title": "Raccourcis clavier",
+        "ctrl.v": "Copier une au plusieurs images qui seront ajouter. Fonctionne aussi avec du texte. Chaque ligne de texte créée une nouvelle tuile.",
+        "ctrl.s": "Sauvegarder le brouillon.",
+        "ctrl.e": "Exporter le brouillon.",
+        "middle.click": "Clic central",
+        "double.click": "Double clic",
+        "on.tile": "sur une tuile",
+        "on.zone": "dans une zone",
+        "put.back.list": "Remettre dans la liste.",
+        "create": "Création d'une tuile à l'endroit visé."
+      },
+      "default": {
+        "text": "Déplacer les tuiles par glissé-déposé."
+      },
+      "teams": {
+        "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par group."
+      },
+      "iceberg": {
+        "move": "Déplacer les tuiles dans la zone.",
+        "options": "Dans les options choisissez le nombre de niveau."
+      },
+      "axis": {
+        "move": "Déplacer les tuiles dans la zone.",
+        "options": "Dans les options choisissez les noms des axes."
+      },
+      "bingo": {
+        "grid": "Remplir une grille pour faire une liste ou un top.",
+        "view": "En mode visualisation après sauvegarde permet de sélectionner les tuiles."
       }
     }
   },

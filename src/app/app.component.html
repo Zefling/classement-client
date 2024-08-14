@@ -6,7 +6,7 @@
   <div class="title">{{ 'classement' | transloco }}</div>
   <div class="actions">
     @if (showHelpButton()) {
-      <div class="buton-help" (click)="toggleHelp()">❓</div>
+      <div class="button-help" [title]="'help' | transloco" (click)="toggleHelp()">?</div>
     }
     <div class="buton-menu-mobile" (click)="toggleMenu()">☰</div>
   </div>

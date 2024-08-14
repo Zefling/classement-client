@@ -145,6 +145,7 @@ header {
 
 .aside-help {
     grid-area: help;
+    box-sizing: border-box;
     background: var(--aside-background);
     padding: 5px;
     width: 200px;
@@ -152,9 +153,15 @@ header {
     overflow: auto;
 }
 
-.buton-help {
+.button-help {
+    align-content: center;
+    justify-content: center;
     cursor: pointer;
-    min-width: 30px;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 22px;
     text-align: center;
 }
 
