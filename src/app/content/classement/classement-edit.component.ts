@@ -54,6 +54,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
+import { MemoryService } from 'src/app/services/momory.service';
 import {
     defaultGroup,
     defaultOptions,
@@ -158,12 +159,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _inputFile!: HTMLInputElement;
     private _detectChange = new Subject<void>();
 
-    private _back: {
-        options: Options;
-        groups: FormattedGroup[];
-        list: FileType[];
-    }[] = [];
-
     constructor(
         private readonly dbService: DBService,
         private readonly router: Router,
@@ -178,6 +173,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly cd: ChangeDetectorRef,
         private readonly location: Location,
         private readonly preferencesService: PreferencesService,
+        private readonly memory: MemoryService,
     ) {
         this.updateTitle();
 
@@ -218,17 +214,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.updateTitle();
             }),
             toObservable(this.global.withChange).subscribe(withChange => {
-                const copy = {
-                    options: Utils.jsonCopy(this.options),
-                    groups: Utils.jsonCopy(this.groups),
-                    list: Utils.jsonCopy(this.list),
-                };
-
-                // TODO reduce RAM usage
-                this._back.push(copy);
-
-                if (this._back.length > 50) {
-                    this._back.shift();
+                if (this.options) {
+                    this.memory.addUndo(this);
                 }
             }),
         );
@@ -674,6 +661,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
         this.global.withChange.set(0);
+        this.memory.addUndo(this);
     }
 
     toTemplateNavigation() {
@@ -1133,6 +1121,18 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         if (reset) {
             this.resetCache();
         }
+    }
+
+    @HostListener('window:keydown.control.z', ['$event'])
+    undo(event: Event) {
+        this.memory.undo(this);
+        event.preventDefault();
+    }
+
+    @HostListener('window:keydown.control.u', ['$event'])
+    redo(event: Event) {
+        this.memory.redo(this);
+        event.preventDefault();
     }
 
     @HostListener('window:keydown.control.e', ['$event'])
