@@ -161,7 +161,7 @@ export class AppComponent implements DoCheck {
             if (save) {
                 this.globalService.classementSave();
             }
-            this.globalService.withChange = false;
+            this.globalService.withChange.set(0);
             this.router.navigate([this.route]);
         }
         this.warningExit.close();

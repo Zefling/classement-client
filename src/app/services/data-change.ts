@@ -22,7 +22,7 @@ export class DataChange {
         route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        if (this.global.withChange) {
+        if (this.global.withChange()) {
             this.global.forceExit(getResolvedUrl(route));
             return false;
         }
