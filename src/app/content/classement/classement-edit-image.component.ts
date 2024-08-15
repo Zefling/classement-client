@@ -121,7 +121,7 @@ export class ClassementEditImageComponent implements OnChanges {
     }
 
     globalChange() {
-        this.global.withChange = true;
+        this.global.withChange.update(value => value + 1);
     }
 
     /**

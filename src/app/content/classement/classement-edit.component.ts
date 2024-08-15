@@ -17,6 +17,7 @@ import {
     OnDestroy,
     viewChild,
 } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
@@ -157,6 +158,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     private _inputFile!: HTMLInputElement;
     private _detectChange = new Subject<void>();
 
+    private _back: {
+        options: Options;
+        groups: FormattedGroup[];
+        list: FileType[];
+    }[] = [];
+
     constructor(
         private readonly dbService: DBService,
         private readonly router: Router,
@@ -209,6 +216,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }),
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
+            }),
+            toObservable(this.global.withChange).subscribe(withChange => {
+                const copy = {
+                    options: Utils.jsonCopy(this.options),
+                    groups: Utils.jsonCopy(this.groups),
+                    list: Utils.jsonCopy(this.list),
+                };
+
+                // TODO reduce RAM usage
+                this._back.push(copy);
+
+                if (this._back.length > 50) {
+                    this._back.shift();
+                }
             }),
         );
     }
@@ -478,12 +499,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         if (
             this.options &&
-            !this.global.withChange &&
             !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
         ) {
+            console.log(!Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions']));
+
             this.globalChange();
             this.logger.log('Option change');
-            this.change();
+            if (!this.global.withChange()) {
+                this.change();
+            }
+            this._optionsCache = Utils.jsonCopy(this.options);
         }
 
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
@@ -561,7 +586,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         // apply logic
         // if blocking is required -> show message to the user
         // if the user decide to stay in the page:
-        if (this.global.withChange) {
+        if (this.global.withChange()) {
             event.returnValue = true;
         }
     }
@@ -648,7 +673,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
-        this.global.withChange = false;
+        this.global.withChange.set(0);
     }
 
     toTemplateNavigation() {
@@ -811,7 +836,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     globalChange() {
-        this.global.withChange = true;
+        this.global.withChange.update(value => value + 1);
     }
 
     upLine(index: number) {

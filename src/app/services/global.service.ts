@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -53,7 +53,7 @@ export class GlobalService {
 
     readonly helpComponent = new Subject<Type<any> | undefined>();
 
-    withChange = false;
+    withChange = signal<number>(0);
 
     lang!: string;
 
