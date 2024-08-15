@@ -20,3 +20,10 @@ kbd {
     line-height: 1;
     white-space: nowrap;
 }
+
+.disabled {
+    &,
+    & + dd {
+        opacity: 0.3;
+    }
+}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
+import { MemoryService } from 'src/app/services/momory.service';
 
 @Component({
     selector: 'help.tierlist',
@@ -8,4 +9,6 @@ import { TranslocoModule } from '@jsverse/transloco';
     imports: [TranslocoModule],
     standalone: true,
 })
-export class HelpTierListComponent {}
+export class HelpTierListComponent {
+    constructor(public readonly memory: MemoryService) {}
+}

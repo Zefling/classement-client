@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
+import { MemoryService } from 'src/app/services/momory.service';
 
 @Component({
     selector: 'help.iceberg',
@@ -8,4 +9,6 @@ import { TranslocoModule } from '@jsverse/transloco';
     imports: [TranslocoModule],
     standalone: true,
 })
-export class HelpIcebergComponent {}
+export class HelpIcebergComponent {
+    constructor(public readonly memory: MemoryService) {}
+}

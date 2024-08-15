@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Md5 } from 'ts-md5';
+
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 import { FileType, FormattedGroup, Options } from '../interface/interface';
 import { Utils } from '../tools/utils';
@@ -9,19 +11,28 @@ import { Utils } from '../tools/utils';
  */
 @Injectable({ providedIn: 'root' })
 export class MemoryService {
-    private _back: {
+    hasRedo = false;
+    hasUndo = false;
+
+    #back: {
         options: Options;
         groups: FormattedGroup[];
         list: FileType[];
     }[] = [];
 
-    private _index = 0;
+    #index = 0;
 
-    private _image: string[] = [];
+    #image: Record<string, string> = {};
+
+    reset() {
+        this.#back = [];
+        this.#image = {};
+        this.#index = 0;
+    }
 
     addUndo(parent: ClassementEditComponent) {
-        if (this._index < this._back.length - 1) {
-            this._back.splice(this._index + 1);
+        if (this.#index < this.#back.length - 1) {
+            this.#back.splice(this.#index + 1);
         }
 
         const copy = {
@@ -30,36 +41,68 @@ export class MemoryService {
             list: Utils.jsonCopy(parent.list),
         };
 
-        // TODO reduce RAM usage
+        // save image
+        copy.list.forEach(e => this.code(e));
+        copy.groups.forEach(list => list.list.forEach(e => this.code(e)));
 
-        this._back.push(copy);
+        this.#back.push(copy);
 
-        if (this._back.length > 50) {
-            this._back.shift();
+        if (this.#back.length > 50) {
+            this.#back.shift();
         }
-        this._index = this._back.length - 1;
-        console.log('addUndo', this._index);
+        this.#index = this.#back.length - 1;
+        console.log('addUndo', this.#index);
+
+        this.update();
     }
 
     undo(parent: ClassementEditComponent) {
-        this._index--;
-        console.log('undo', this._index);
+        if (this.hasUndo) {
+            this.#index--;
+            this.change(parent);
+            this.update();
+        }
+    }
 
-        const back = this._back[this._index];
+    redo(parent: ClassementEditComponent) {
+        if (this.hasRedo) {
+            this.#index++;
+            this.change(parent);
+            this.update();
+        }
+    }
+
+    private update() {
+        this.hasUndo = this.#index > 0;
+        this.hasRedo = this.#index < this.#back.length - 1;
+    }
+
+    private change(parent: ClassementEditComponent) {
+        const back = Utils.jsonCopy(this.#back[this.#index]);
+
+        // save image
+        back.list.forEach(e => this.decode(e));
+        back.groups.forEach(list => list.list.forEach(e => this.decode(e)));
 
         parent.options = back.options;
         parent.groups = back.groups;
         parent.list = back.list;
     }
 
-    redo(parent: ClassementEditComponent) {
-        this._index++;
-        console.log('redo', this._index);
+    private code(e: FileType) {
+        if (e?.url?.startsWith('data:')) {
+            const id = Md5.hashStr(e.url);
+            if (!this.#image[id]) {
+                this.#image[id] = e?.url;
+            }
+            e.url = `md5:${id}`;
+        }
+    }
 
-        const back = this._back[this._index];
-
-        parent.options = back.options;
-        parent.groups = back.groups;
-        parent.list = back.list;
+    private decode(e: FileType) {
+        console.log(e?.url);
+        if (e?.url?.startsWith('md5:')) {
+            e.url = this.#image[e?.url.replace('md5:', '')];
+        }
     }
 }
