@@ -582,6 +582,8 @@
         "ctrl.v": "Copy one or more images that will be added. Also works with text. Each line of text creates a new tile.",
         "ctrl.s": "Save draft.",
         "ctrl.e": "Export draft.",
+        "ctrl.z": "Undo.",
+        "ctrl.u": "Redo.",
         "middle.click": "Middle click",
         "double.click": "Double click",
         "on.tile": "on a tile",

@@ -582,6 +582,8 @@
         "ctrl.v": "Copier une au plusieurs images qui seront ajouter. Fonctionne aussi avec du texte. Chaque ligne de texte créée une nouvelle tuile.",
         "ctrl.s": "Sauvegarder le brouillon.",
         "ctrl.e": "Exporter le brouillon.",
+        "ctrl.z": "Annuler.",
+        "ctrl.u": "Refaire.",
         "middle.click": "Clic central",
         "double.click": "Double clic",
         "on.tile": "sur une tuile",
