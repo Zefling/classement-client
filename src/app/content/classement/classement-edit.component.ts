@@ -16,6 +16,7 @@ import {
     HostListener,
     OnDestroy,
     viewChild,
+    viewChildren,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -54,7 +55,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { MemoryService } from 'src/app/services/momory.service';
+import { MemoryService } from 'src/app/services/memory.service';
 import {
     defaultGroup,
     defaultOptions,
@@ -152,6 +153,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     editImage = viewChild.required<ClassementEditImageComponent>(ClassementEditImageComponent);
     login = viewChild.required<ClassementLoginComponent>(ClassementLoginComponent);
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
+    tiles = viewChildren<CdkDragElement>(CdkDragElement);
+
+    dragElement: Record<string, CdkDragElement> = {};
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -214,7 +218,10 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.updateTitle();
             }),
             toObservable(this.global.withChange).subscribe(withChange => {
-                if (this.options) {
+                if (
+                    this.options &&
+                    !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
+                ) {
                     this.memory.addUndo(this);
                 }
             }),
@@ -314,6 +321,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.global.jsonTmp = undefined;
 
             this.exportImageLoading = false;
+            this.dragElement = {};
+            this.memory.reset();
             this.resetCache();
             this.helpInit();
 
@@ -341,34 +350,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 if (line.list[i] === undefined) {
                     line.list[i] = null;
                 }
-            }
-        }
-    }
-
-    updateAction(event: { action: string; value: any }) {
-        if (event.action === 'sizeX') {
-            if (this.groups[0].list.length < event.value) {
-                this.groupsControl(this.groups, this.options);
-            } else if (this.groups[0].list.length > event.value) {
-                this.groups.forEach(line =>
-                    line.list.splice(event.value).forEach(tile => {
-                        if (tile) {
-                            this.list.push(tile);
-                        }
-                    }),
-                );
-            }
-        } else if (event.action === 'sizeY') {
-            if (this.groups.length < event.value) {
-                this.groupsControl(this.groups, this.options);
-            } else if (this.groups.length > event.value) {
-                this.groups.splice(event.value).forEach(line => {
-                    line.list.forEach(tile => {
-                        if (tile) {
-                            this.list.push(tile);
-                        }
-                    });
-                });
             }
         }
     }
@@ -420,6 +401,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.global.fixImageSize(this.groups, this.list);
                 this.html2canvasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
+                this.dragElement = {};
+                this.memory.reset();
                 this.resetCache();
                 this.helpInit();
             })
@@ -462,12 +445,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.updateSize();
+        this.dragElement = {};
+        this.memory.reset();
         this.resetCache();
         this.helpInit();
     }
 
     loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['edit', this.getClassementId(classement)]);
+        this.router.navigate(['edit', Utils.getClassementId(classement)]);
         this.dialogDerivatives().close();
     }
 
@@ -488,8 +473,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.options &&
             !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
         ) {
-            console.log(!Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions']));
-
             this.globalChange();
             this.logger.log('Option change');
             if (!this.global.withChange()) {
@@ -502,7 +485,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
         this.shareUrl =
             this.apiActive && this.classement?.rankingId
-                ? `${location.protocol}//${location.host}/~${this.getClassementId(this.classement)}`
+                ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
                 : '';
 
         const currentList = this.currentList()?.nativeElement;
@@ -512,7 +495,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     helpInit() {
-        console.log(this.options.mode);
         switch (this.options.mode) {
             case 'teams':
                 this.global.changeHelpComponent(HelpTeamsComponent);
@@ -679,7 +661,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     show() {
-        this.router.navigate([`/~${this.getClassementId(this.classement!)}`]);
+        this.router.navigate([`/~${Utils.getClassementId(this.classement!)}`]);
     }
 
     drop(event: CdkDragDrop<{ list: FileType[]; index: number }>) {
@@ -711,25 +693,26 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 default:
                     moveItemInArray(targetList, indexFrom, indexTarget);
             }
+            this.globalChange();
         } else {
-            const indexFix = this.options.direction === 'ltr' ? event.currentIndex : event.currentIndex === 0 ? 1 : 0;
             switch (this.options.mode) {
                 case 'teams':
                     if (
-                        this.listIsType(previousList, 'list') &&
-                        this.listIsType(targetList, 'group') &&
+                        Utils.listIsType(previousList, 'list') &&
+                        Utils.listIsType(targetList, 'group') &&
                         !targetList.find(tile => tile!.id === previousList[indexFrom]!.id)
                     ) {
                         copyArrayItem(previousList, targetList, indexFrom, indexTarget);
-                    } else if (this.listIsType(previousList, 'group') && this.listIsType(targetList, 'group')) {
+                    } else if (Utils.listIsType(previousList, 'group') && Utils.listIsType(targetList, 'group')) {
                         if (!targetList.find(tile => tile!.id === previousList[indexFrom]!.id)) {
                             transferArrayItem(previousList, targetList, indexFrom, indexTarget);
                         } else {
                             previousList.splice(indexFrom, 1);
                         }
-                    } else if (this.listIsType(previousList, 'group') && this.listIsType(targetList, 'list')) {
+                    } else if (Utils.listIsType(previousList, 'group') && Utils.listIsType(targetList, 'list')) {
                         previousList.splice(indexFrom, 1);
                     }
+                    this.globalChange();
                     break;
                 case 'iceberg':
                 case 'axis':
@@ -762,6 +745,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                     item.y = Math.max(0, item.y || 0);
 
                     transferArrayItem(previousList, targetList, indexFrom, this.groups[0].list.length);
+                    this.globalChange();
                     break;
                 case 'bingo':
                     if (indexTargetData === -1 || (indexTargetData > -1 && !targetList[indexTargetData])) {
@@ -778,12 +762,16 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                             previousList.splice(indexPreviousData, 0, null);
                         }
                     }
+                    this.globalChange();
                     break;
                 default:
                     transferArrayItem(previousList, targetList, indexFrom, indexTarget);
+                    this.globalChange();
             }
         }
-        this.globalChange();
+
+        console.log('event');
+
         this.detectChanges();
         this.change();
     }
@@ -825,6 +813,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     globalChange() {
         this.global.withChange.update(value => value + 1);
+        this.memory.addUndo(this);
     }
 
     upLine(index: number) {
@@ -892,14 +881,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
     }
 
-    removeFromZone(group: FormattedGroup, index: number) {
-        let item: FileType;
-
-        if (this.options.mode !== 'bingo') {
-            item = group.list.splice(index, 1)[0];
-        } else {
-            item = group.list.splice(index, 1, null)[0];
-        }
+    removeFromGroup(group: FormattedGroup, index: number) {
+        const item =
+            this.options.mode !== 'bingo' ? group.list.splice(index, 1)[0] : group.list.splice(index, 1, null)[0];
 
         if (item) {
             item.x = 0;
@@ -912,7 +896,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
-    initItem(element: CdkDragElement, pos: Point) {
+    initItem(id: string, element: CdkDragElement, pos: Point) {
         element.freeDragPosition = pos;
         element.ngAfterViewInit();
     }
@@ -922,6 +906,9 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         const source = event.source._dragRef['_activeTransform'];
         item.x = source.x;
         item.y = source.y;
+    }
+
+    moveItemEnd() {
         this.globalChange();
         this.change();
     }
@@ -1023,18 +1010,20 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     reset() {
-        for (const ligne of this.groups) {
-            ligne.list.forEach(item => {
+        for (const line of this.groups) {
+            line.list.forEach(item => {
                 if (item) {
                     delete item.x;
                     delete item.y;
                 }
             });
             if (this.options.mode !== 'teams') {
-                this.list.push(...ligne.list);
+                this.list.push(...line.list);
             }
-            ligne.list = [];
+            line.list = [];
         }
+
+        this.list = this.list.filter(e => e);
 
         this.addIds();
         this.messageService.addMessage(this.translate.translate('message.reset.groups'));
@@ -1116,9 +1105,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.id = classement.rankingId;
             reset = true;
             this.updateSize();
-            this.location.replaceState('/edit/' + this.getClassementId(classement));
+            this.location.replaceState('/edit/' + Utils.getClassementId(classement));
         }
         if (reset) {
+            this.dragElement = {};
+            this.memory.reset();
             this.resetCache();
         }
     }
@@ -1126,13 +1117,27 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     @HostListener('window:keydown.control.z', ['$event'])
     undo(event: Event) {
         this.memory.undo(this);
-        event.preventDefault();
+        this.undoRedoUpdate(event);
     }
 
     @HostListener('window:keydown.control.u', ['$event'])
     redo(event: Event) {
         this.memory.redo(this);
+        this.undoRedoUpdate(event);
+    }
+
+    private undoRedoUpdate(event: Event) {
+        this._detectChange.next();
         event.preventDefault();
+
+        setTimeout(() => {
+            if (this.options.mode === 'axis' || this.options.mode === 'iceberg') {
+                this.tiles().forEach(element => {
+                    element.freeDragPosition = element.data;
+                    element.ngAfterViewInit();
+                });
+            }
+        });
     }
 
     @HostListener('window:keydown.control.e', ['$event'])
@@ -1230,18 +1235,18 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         return this.options.title.trim() || this.translate.translate('list.title.undefined');
     }
 
-    private addIds() {
+    addIds() {
         // for groups
         this.groups.forEach(group => {
             if (!(group.list as any).id) {
                 // add ids to identify lists
                 (group.list as any).type = `group`;
-                (group.list as any).id = `group-${this.randomNumber()}`;
+                (group.list as any).id = `group-${Utils.randomNumber()}`;
             }
             group.list.forEach(tile => {
                 if (tile && !tile.id) {
                     // add ids to identify tiles
-                    tile.id = `tile-${this.randomNumber()}`;
+                    tile.id = `tile-${Utils.randomNumber()}`;
                 }
             });
         });
@@ -1255,20 +1260,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.list.forEach(tile => {
             if (tile && !tile.id) {
                 // add ids to identify tiles
-                tile.id = `tile-${this.randomNumber()}`;
+                tile.id = `tile-${Utils.randomNumber()}`;
             }
         });
-    }
-
-    private listIsType(list: FileType[], group: string): boolean {
-        return (list as any).type === group;
-    }
-
-    private randomNumber() {
-        return `${Math.round(Math.random() * 999_999_999)}`.padStart(9, '0');
-    }
-
-    private getClassementId(classement: Classement) {
-        return classement!.linkId || classement!.rankingId;
     }
 }

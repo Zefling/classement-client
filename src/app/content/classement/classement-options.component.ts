@@ -5,7 +5,6 @@ import {
     input,
     OnChanges,
     OnDestroy,
-    output,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
@@ -20,7 +19,10 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
+import { MemoryService } from 'src/app/services/memory.service';
+import { Utils } from 'src/app/tools/utils';
 import {
+    defaultGroup,
     imageInfos,
     imagesAxis,
     imagesBingo,
@@ -48,10 +50,6 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     options = input<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
-
-    // output
-
-    updateAction = output<{ action: string; value: any }>();
 
     // viewChild
 
@@ -82,6 +80,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     constructor(
         private readonly optimiseImage: OptimiseImageService,
         private readonly categories: CategoriesService,
+        private readonly memory: MemoryService,
         @Host() private readonly editor: ClassementEditComponent,
     ) {
         this.categoryUpdate();
@@ -124,7 +123,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                     this.themesList = themesLists;
                     break;
             }
-            this.updateList(mode);
+            if (this.options()?.mode !== mode) {
+                this.updateList(mode);
+            }
 
             this.themes = themesList.filter(e => this.themesList.includes(e.name));
         }
@@ -144,12 +145,21 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         if (options) {
             let modeType = mode;
             switch (mode) {
+                case 'default':
+                    modeType = 'default';
+                    this.updateAction('groups', defaultGroup);
+                    break;
                 case 'teams':
                     modeType = 'default';
+                    this.updateAction('groups', defaultGroup);
+                    break;
+                case 'axis':
+                case 'iceberg':
+                    this.updateAction('groups', [{ name: mode, bgColor: '#000', txtColor: '#000', list: [] }]);
                     break;
                 case 'bingo':
-                    this.updateAction.emit({ action: 'sizeX', value: options.sizeX });
-                    this.updateAction.emit({ action: 'sizeY', value: options.sizeY });
+                    this.updateAction('sizeX', options.sizeX ?? 5);
+                    this.updateAction('sizeY', options.sizeY ?? 5);
                     break;
             }
 
@@ -160,6 +170,39 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             }
             // select mode
             options.mode = mode;
+
+            // fix ids
+            this.editor.addIds();
+        }
+    }
+
+    protected updateAction(action: string, value: any) {
+        if (action === 'groups') {
+            this.editor.groups = Utils.jsonCopy(value);
+        } else if (action === 'sizeX') {
+            if (this.editor.groups[0].list.length < value) {
+                this.editor.groupsControl(this.editor.groups, this.editor.options);
+            } else if (this.editor.groups[0].list.length > value) {
+                this.editor.groups.forEach(line =>
+                    line.list.splice(value).forEach(tile => {
+                        if (tile) {
+                            this.editor.list.push(tile);
+                        }
+                    }),
+                );
+            }
+        } else if (action === 'sizeY') {
+            if (this.editor.groups.length < value) {
+                this.editor.groupsControl(this.editor.groups, this.editor.options);
+            } else if (this.editor.groups.length > value) {
+                this.editor.groups.splice(value).forEach(line => {
+                    line.list.forEach(tile => {
+                        if (tile) {
+                            this.editor.list.push(tile);
+                        }
+                    });
+                });
+            }
         }
     }
 
@@ -194,6 +237,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     modeChangeValid(ok: boolean) {
         if (ok) {
+            this.editor.dragElement = {};
+            this.memory.reset();
             this.editor.reset();
             this.updateMode();
             this.editor.helpInit();
@@ -342,6 +387,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         this.optimiseImage
             .resize(
                 {
+                    id: `tile-${Utils.randomNumber()}`,
                     url: image,
                     name: 'background',
                     size: image.length,

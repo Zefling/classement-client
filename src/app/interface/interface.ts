@@ -59,7 +59,7 @@ export interface FileHandle {
 export type FileStream = { filter: TypeFile; file: FileString };
 export type FileType = FileString | null;
 export type FileString = {
-    id?: string;
+    id: string;
     url?: string;
     name: string;
     height?: number;

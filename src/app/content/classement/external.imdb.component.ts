@@ -81,6 +81,7 @@ export class ExternalImdbComponent {
             this.globalService.onFileLoaded.next({
                 filter: TypeFile.image,
                 file: {
+                    id: `tile-${Utils.randomNumber()}`,
                     title:
                         (this.withTitle ? movie.title : '') +
                         (this.withYear ? ' (' + new Date(movie.release_date).getFullYear() + ')' : ''),

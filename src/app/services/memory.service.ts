@@ -100,7 +100,6 @@ export class MemoryService {
     }
 
     private decode(e: FileType) {
-        console.log(e?.url);
         if (e?.url?.startsWith('md5:')) {
             e.url = this.#image[e?.url.replace('md5:', '')];
         }

@@ -39,6 +39,7 @@ export class OptimiseImageService {
                                 resolve({
                                     sourceFile,
                                     reduceFile: {
+                                        id: sourceFile.id,
                                         name: sourceFile.name,
                                         url: url,
                                         size: url!.length,

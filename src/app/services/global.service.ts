@@ -116,6 +116,7 @@ export class GlobalService {
                 this.onFileLoaded.next({
                     filter: TypeFile.text,
                     file: {
+                        id: `tile-${Utils.randomNumber()}`,
                         name: '',
                         url: '',
                         size: trimString.length,
@@ -284,6 +285,7 @@ export class GlobalService {
                         this.onFileLoaded.next({
                             filter,
                             file: {
+                                id: `tile-${Utils.randomNumber()}`,
                                 name: file.file.name,
                                 url: url,
                                 size: url.length,
@@ -301,6 +303,7 @@ export class GlobalService {
                 this.onFileLoaded.next({
                     filter,
                     file: {
+                        id: `tile-${Utils.randomNumber()}`,
                         name: file.file.name,
                         url: url,
                         size: url.length,

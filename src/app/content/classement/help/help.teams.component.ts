@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
-import { MemoryService } from 'src/app/services/momory.service';
+import { MemoryService } from 'src/app/services/memory.service';
 
 @Component({
     selector: 'help.teams',

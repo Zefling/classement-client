@@ -466,7 +466,7 @@
                 min="2"
                 step="1"
                 [(ngModel)]="opts.sizeX"
-                (ngModelChange)="updateAction.emit({ action: 'sizeX', value: $event })"
+                (ngModelChange)="updateAction('sizeX', $event)"
               />
               <span>×</span>
               <input
@@ -476,7 +476,7 @@
                 min="2"
                 step="1"
                 [(ngModel)]="opts.sizeY"
-                (ngModelChange)="updateAction.emit({ action: 'sizeY', value: $event })"
+                (ngModelChange)="updateAction('sizeY', $event)"
               />
             </div>
           </div>

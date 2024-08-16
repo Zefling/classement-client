@@ -228,7 +228,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     getLink() {
-        return `${location.protocol}//${location.host}/~${this.getClassementId(this.classement!)}${
+        return `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement!)}${
             this.historyId ? `/${this.historyId}` : ''
         }`;
     }
@@ -244,15 +244,15 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     openClassement() {
-        this.router.navigate(['edit', this.getClassementId(this.classement!)]);
+        this.router.navigate(['edit', Utils.getClassementId(this.classement!)]);
     }
 
     openClassementFork() {
-        this.router.navigate(['edit', this.getClassementId(this.classement!), 'fork']);
+        this.router.navigate(['edit', Utils.getClassementId(this.classement!), 'fork']);
     }
 
     seeMyClassement() {
-        this.router.navigate(['navigate', 'view', this.getClassementId(this.myClassement!)]);
+        this.router.navigate(['navigate', 'view', Utils.getClassementId(this.myClassement!)]);
     }
 
     seeHistory() {
@@ -262,8 +262,8 @@ export class ClassementViewComponent implements OnDestroy {
     loadHistoryClassement(history: ClassementHistory) {
         this.router.navigate(
             history.id
-                ? ['navigate', 'view', this.getClassementId(this.classement!), history.id]
-                : ['navigate', 'view', this.getClassementId(this.classement!)],
+                ? ['navigate', 'view', Utils.getClassementId(this.classement!), history.id]
+                : ['navigate', 'view', Utils.getClassementId(this.classement!)],
         );
         this.dialogHistory().close();
     }
@@ -273,7 +273,7 @@ export class ClassementViewComponent implements OnDestroy {
     }
 
     loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['navigate', 'view', this.getClassementId(classement)]);
+        this.router.navigate(['navigate', 'view', Utils.getClassementId(classement)]);
         this.dialogDerivatives().close();
     }
 
@@ -340,9 +340,5 @@ export class ClassementViewComponent implements OnDestroy {
 
     private getFileName(): string {
         return this.classement!.data.options.title.trim() || this.translate.translate('list.title.undefined');
-    }
-
-    private getClassementId(classement: Classement) {
-        return classement!.linkId || classement!.rankingId;
     }
 }

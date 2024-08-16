@@ -40,8 +40,8 @@ export class Utils {
             }
         };
 
-        const keysA = Object.keys(objA);
-        const keysB = Object.keys(objB);
+        const keysA = Object.keys(objA).filter(key => !ignoreKeys.includes(key));
+        const keysB = Object.keys(objB).filter(key => !ignoreKeys.includes(key));
 
         if (keysA.length !== keysB.length) {
             return false;
@@ -267,5 +267,17 @@ export class Utils {
                 group.list = group.list.map(tile => list.find(t => t?.id === tile?.id)!);
             });
         }
+    }
+
+    static listIsType(list: FileType[], group: string): boolean {
+        return (list as any).type === group;
+    }
+
+    static randomNumber() {
+        return `${Math.round(Math.random() * 999_999_999)}`.padStart(9, '0');
+    }
+
+    static getClassementId(classement: Classement) {
+        return classement!.linkId || classement!.rankingId;
     }
 }
