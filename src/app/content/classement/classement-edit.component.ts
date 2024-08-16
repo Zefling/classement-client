@@ -155,8 +155,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
     tiles = viewChildren<CdkDragElement>(CdkDragElement);
 
-    dragElement: Record<string, CdkDragElement> = {};
-
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
@@ -321,7 +319,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.global.jsonTmp = undefined;
 
             this.exportImageLoading = false;
-            this.dragElement = {};
             this.memory.reset();
             this.resetCache();
             this.helpInit();
@@ -401,7 +398,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 this.global.fixImageSize(this.groups, this.list);
                 this.html2canvasImagesCacheUpdate();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
-                this.dragElement = {};
                 this.memory.reset();
                 this.resetCache();
                 this.helpInit();
@@ -445,7 +441,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         }
 
         this.updateSize();
-        this.dragElement = {};
         this.memory.reset();
         this.resetCache();
         this.helpInit();
@@ -896,7 +891,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.change();
     }
 
-    initItem(id: string, element: CdkDragElement, pos: Point) {
+    initItem(element: CdkDragElement, pos: Point) {
         element.freeDragPosition = pos;
         element.ngAfterViewInit();
     }
@@ -1108,7 +1103,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.location.replaceState('/edit/' + Utils.getClassementId(classement));
         }
         if (reset) {
-            this.dragElement = {};
             this.memory.reset();
             this.resetCache();
         }

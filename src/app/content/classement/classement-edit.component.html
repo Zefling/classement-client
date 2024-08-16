@@ -232,7 +232,7 @@
                     cdkDragElement
                     cdkDragBoundary=".zone-classement"
                     #element="cdkDragElement"
-                    (ngInit)="initItem(item.id, element, { x: item.x || 0, y: item.y || 0 })"
+                    (ngInit)="initItem(element, { x: item.x || 0, y: item.y || 0 })"
                     (cdkDragMoved)="moveItem($event, item, element)"
                     (cdkDragEnded)="moveItemEnd()"
                     [cdkDragData]="{ x: item.x || 0, y: item.y || 0 }"

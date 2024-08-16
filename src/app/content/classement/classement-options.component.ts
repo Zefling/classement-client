@@ -237,7 +237,6 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     modeChangeValid(ok: boolean) {
         if (ok) {
-            this.editor.dragElement = {};
             this.memory.reset();
             this.editor.reset();
             this.updateMode();
