@@ -48,6 +48,8 @@ export class ClassementViewComponent implements OnDestroy {
 
     classScreenMode: ScreenMode = 'default';
 
+    showLink = true;
+
     image = viewChild.required<ElementRef>('image');
     dialogImage = viewChild.required<DialogComponent>('dialogImage');
     dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');

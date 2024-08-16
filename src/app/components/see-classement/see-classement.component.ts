@@ -23,6 +23,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     options = input.required<Options>();
 
+    link = input<string>();
+
     withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
     render = input<boolean, any>(false, { transform: booleanAttribute });
 

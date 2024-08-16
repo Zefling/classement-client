@@ -64,7 +64,6 @@ img {
 .render {
     position: relative;
     width: var(--over-image-width, 1170px);
-    height: var(--over-image-height, auto);
 }
 
 .html2canvas-element {
@@ -79,8 +78,8 @@ img {
 
 .zone-classement,
 .zone-classement-container {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    height: var(--over-image-height, auto);
 }
 
 // fix the preview background
@@ -327,6 +326,11 @@ img {
 .render:has(> #preview-element) {
     max-width: 100vw;
     overflow: auto;
+}
+
+.link {
+    font-size: 12px;
+    text-align: right;
 }
 
 // ----------------- ZONE -----------------

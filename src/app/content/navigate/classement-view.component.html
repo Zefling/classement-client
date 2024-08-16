@@ -146,6 +146,12 @@
       {{ 'generator.actions.export.image' | transloco }}
     </button>
   </div>
+  <div class="link-option">
+    <label
+      ><input type="checkbox" [(ngModel)]="showLink" />
+      <span>{{ 'generator.ranking.show.link' | transloco }}</span></label
+    >
+  </div>
   @if (!exportImageDisabled) {
     <see-classement
       class="render"
@@ -155,6 +161,7 @@
       [list]="classement.data.list"
       [id]="classement.rankingId"
       [imagesCache]="imagesCache"
+      [link]="showLink ? getLink() : ''"
     ></see-classement>
   }
   <div [ngClass]="classScreenMode" #div>

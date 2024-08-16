@@ -413,6 +413,7 @@
       "add.image": "Click here to add one or a group of images",
       "add.text": "Click here to add one or a group of texts",
       "share.link": "Share this ranking with your friends",
+      "show.link": "Show link in image",
       "see": "See your ranking",
       "copy.link.success": "The link was successfully copied to the clipboard",
       "copy.link.error": "Failed to copy link to clipboard",

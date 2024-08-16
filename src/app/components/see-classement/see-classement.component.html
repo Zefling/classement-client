@@ -106,6 +106,13 @@
             </tr>
           }
         </tbody>
+        @if (link()) {
+          <tfoot>
+            <tr>
+              <td colspan="2" class="link">{{ link() }}</td>
+            </tr>
+          </tfoot>
+        }
       </table>
     } @else if (opts.mode === 'bingo') {
       <table
@@ -164,60 +171,71 @@
             </tr>
           }
         </tbody>
+        @if (link()) {
+          <tfoot>
+            <tr>
+              <td [attr.colspan]="groups()[0].list.length" class="link">{{ link() }}</td>
+            </tr>
+          </tfoot>
+        }
       </table>
     } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
-      <div
-        class="zone-classement-container html2canvas-element"
-        [id]="render() ? 'html2canvas-element' : 'preview-element'"
-      >
-        <div class="zone-classement">
-          @if (opts.groups?.length) {
-            @switch (opts.mode) {
-              @case ('iceberg') {
-                <zone-area [groups]="opts.groups"></zone-area>
-              }
-              @case ('axis') {
-                <zone-axis [groups]="opts.groups"></zone-axis>
+      <div [id]="render() ? 'html2canvas-element' : 'preview-element'" class="html2canvas-element">
+        <div class="zone-classement-container">
+          <div class="zone-classement">
+            @if (opts.groups?.length) {
+              @switch (opts.mode) {
+                @case ('iceberg') {
+                  <zone-area [groups]="opts.groups"></zone-area>
+                }
+                @case ('axis') {
+                  <zone-axis [groups]="opts.groups"></zone-axis>
+                }
               }
             }
-          }
-          <div class="elements">
-            @for (item of groups()[0].list; track item; let index = $index) {
-              @if (item) {
-                <div
-                  [style.--over-item-background]="item.bgColor"
-                  [style.--over-item-text-color]="item.txtColor"
-                  [style.--left.px]="item.x"
-                  [style.--top.px]="item.y"
-                >
-                  <div class="content-box">
-                    <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
-                      @if (item.url) {
-                        <div [class.image]="calcWidth(item, tile)">
-                          <img
-                            (ngInit)="calcWidth(item, tile); detectChanges()"
-                            (load)="calcWidth(item, tile); detectChanges()"
-                            [class.cover]="opts.itemImageCover"
-                            src="{{ imagesCache()[item.url] || item.url }}"
-                            alt="{{ item.name }}"
-                          />
-                        </div>
-                      }
-                      @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
-                        <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
-                          <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
-                        </div>
-                      }
-                      @if (withAnnotation() && item.annotation) {
-                        <div class="tile-info" [tooltip]="item.annotation"></div>
-                      }
+            <div class="elements">
+              @for (item of groups()[0].list; track item; let index = $index) {
+                @if (item) {
+                  <div
+                    [style.--over-item-background]="item.bgColor"
+                    [style.--over-item-text-color]="item.txtColor"
+                    [style.--left.px]="item.x"
+                    [style.--top.px]="item.y"
+                  >
+                    <div class="content-box">
+                      <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                        @if (item.url) {
+                          <div [class.image]="calcWidth(item, tile)">
+                            <img
+                              (ngInit)="calcWidth(item, tile); detectChanges()"
+                              (load)="calcWidth(item, tile); detectChanges()"
+                              [class.cover]="opts.itemImageCover"
+                              src="{{ imagesCache()[item.url] || item.url }}"
+                              alt="{{ item.name }}"
+                            />
+                          </div>
+                        }
+                        @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
+                          <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                            <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                          </div>
+                        }
+                        @if (withAnnotation() && item.annotation) {
+                          <div class="tile-info" [tooltip]="item.annotation"></div>
+                        }
+                      </div>
                     </div>
                   </div>
-                </div>
+                }
               }
-            }
+            </div>
           </div>
         </div>
+        @if (link()) {
+          <div class="link">
+            {{ link() }}
+          </div>
+        }
       </div>
     }
   </div>

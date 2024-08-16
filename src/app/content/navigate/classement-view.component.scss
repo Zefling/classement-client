@@ -124,6 +124,11 @@ loading-cmp {
     }
 }
 
+.link-option {
+    padding: 10px;
+    text-align: center;
+}
+
 @media (hover: none) and (device-width: 100vw) and (device-height: 100vh) {
     #fullscreen-view {
         display: none;
