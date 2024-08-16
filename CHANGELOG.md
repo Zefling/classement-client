@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 2.4.1 (2024-08-16)
+
+#### Standalone web app
+
+-   Add border radius/spacing/size options
+-   Fix help content
+
 ### 2.4.0 (2024-08-16)
 
 #### Standalone web app
