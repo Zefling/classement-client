@@ -13,6 +13,7 @@
 -   Fix data zeroing on data change (broken)
 -   Fix detect changes
 -   Fix missing tile ids
+-   Update to Angular `18.2`
 
 ---
 
