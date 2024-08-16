@@ -4,7 +4,7 @@
 
 #### Standalone web app
 
--   Add help panel in mobile #11
+-   Add help panel #11
 -   Add export shortcut (`ctrl` + `e`)
 -   Add undo (`ctrl` + `z`) & redo (`ctrl` + `u`) #70
 -   Add option to add link to image #69
