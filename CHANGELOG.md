@@ -1,5 +1,21 @@
 # Changelog - Standalone web app & API
 
+### 2.4.0 (2024-08-16)
+
+#### Standalone web app
+
+-   Add help panel in mobile #11
+-   Add export shortcut (`ctrl` + `e`)
+-   Add undo (`ctrl` + `z`) & redo (`ctrl` + `u`) #70
+-   Add option to add link to image #69
+-   Fix reduce menu in mobile that should not be present
+-   Fix burger menu icon position
+-   Fix data zeroing on data change (broken)
+-   Fix detect changes
+-   Fix missing tile ids
+
+---
+
 ### 2.3.9 (2024-08-12)
 
 #### Standalone web app
