@@ -275,6 +275,9 @@
       "advance": "Options avancées",
       "stream.mode": "Mode streamer",
       "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
+      "border.radius": "Arrondi d'angle :",
+      "border.spacing": "Espacement :",
+      "border.size": "Taille de la bordure :",
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
@@ -336,7 +339,7 @@
       },
       "name": {
         "width": "Largeur des noms de groupe :",
-        "font-size": "Taille du texte des noms de groupe :",
+        "font.size": "Taille du texte des noms de groupe :",
         "opacity": "Opacité du fond des noms de groupe :"
       },
       "group.direction": {

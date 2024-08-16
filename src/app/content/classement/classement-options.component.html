@@ -412,6 +412,27 @@
             <div class="color-render"></div>
           }
         </div>
+        <div class="border-radius input-value">
+          <div class="number-input">
+            <label for="option-border-radius">{{ 'generator.options.border.radius' | transloco }}</label>
+            <input id="option-border-radius" type="number" min="0" max="100" [(ngModel)]="opts.borderRadius" />
+            <span data-type="px"></span>
+          </div>
+        </div>
+        <div class="border-spacing input-value">
+          <div class="number-input">
+            <label for="option-border-spacing">{{ 'generator.options.border.spacing' | transloco }}</label>
+            <input id="option-border-spacing" type="number" min="0" max="20" [(ngModel)]="opts.borderSpacing" />
+            <span data-type="px"></span>
+          </div>
+        </div>
+        <div class="border-size input-value">
+          <div class="number-input">
+            <label for="option-border-size">{{ 'generator.options.border.size' | transloco }}</label>
+            <input id="option-border-size" type="number" min="0" max="20" [(ngModel)]="opts.borderSize" />
+            <span data-type="px"></span>
+          </div>
+        </div>
         @if (opts.mode !== 'bingo') {
           <div class="name-bg-opacity input-value">
             <div class="width-input">
@@ -428,7 +449,7 @@
           </div>
           <div class="font-size input-value">
             <div class="number-input">
-              <label for="option-name-font-size">{{ 'generator.options.name.font-size' | transloco }}</label>
+              <label for="option-name-font-size">{{ 'generator.options.name.font.size' | transloco }}</label>
               <input id="option-name-font-size" type="number" min="50" max="300" [(ngModel)]="opts.nameFontSize" />
               <span data-type="%"></span>
             </div>

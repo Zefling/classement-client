@@ -765,8 +765,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             }
         }
 
-        console.log('event');
-
         this.detectChanges();
         this.change();
     }

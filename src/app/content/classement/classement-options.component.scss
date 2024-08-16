@@ -1,6 +1,7 @@
 .options {
     --groups: 'colors-line-back  colors-line-border  name-bg-opacity     .                   '
-        'font-size         name-width          group-direction     name-markdown       ';
+        'font-size         name-width          group-direction     name-markdown       '
+        'border-radius     border-spacing      border-size         .                   ';
 
     display: grid;
     grid-template:
@@ -40,7 +41,8 @@
     }
 
     &.bingo {
-        --groups: 'colors-line-back  colors-line-border  size-x-y     .                   ';
+        --groups: 'colors-line-back  colors-line-border  size-x-y            .                   '
+            'border-radius     border-spacing      border-size         .                   ';
     }
 
     &.simplified {
@@ -201,6 +203,18 @@ h4 {
 
 .background-image-custom {
     grid-area: image-custom;
+}
+
+.border-radius {
+    grid-area: border-radius;
+}
+
+.border-spacing {
+    grid-area: border-spacing;
+}
+
+.border-size {
+    grid-area: border-size;
 }
 
 .global-width {

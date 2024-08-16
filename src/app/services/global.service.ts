@@ -223,6 +223,9 @@ export class GlobalService {
         // drop zone group
         r(body, '--over-drop-list-background', color(o.lineBackgroundColor, o.lineBackgroundOpacity), dash);
         r(body, '--over-drop-list-border-color', color(o.lineBorderColor, o.lineBorderOpacity), dash);
+        r(body, '--over-drop-list-border-size', (o.borderSize ?? defaultOptions.borderSize) + 'px', dash);
+        r(body, '--over-drop-border-radius', (o.borderRadius ?? defaultOptions.borderRadius) + 'px', dash);
+        r(body, '--over-drop-border-spacing', (o.borderSpacing ?? defaultOptions.borderSpacing) + 'px', dash);
         // name group
         r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
         r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);

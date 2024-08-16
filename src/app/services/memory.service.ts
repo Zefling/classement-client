@@ -51,7 +51,6 @@ export class MemoryService {
             this.#back.shift();
         }
         this.#index = this.#back.length - 1;
-        console.log('addUndo', this.#index);
 
         this.update();
     }

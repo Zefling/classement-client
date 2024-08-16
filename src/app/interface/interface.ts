@@ -142,6 +142,9 @@ export type ThemeOptions = {
     nameFontSize: number;
     nameBackgroundOpacity: number;
     nameMarkdown: boolean;
+    borderRadius: number;
+    borderSpacing: number;
+    borderSize: number;
     groupLineSize: number;
     groupLineColor: string;
     groupLineOpacity: number;

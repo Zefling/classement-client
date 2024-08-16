@@ -45,8 +45,9 @@ dialog-cmp .colors-options textarea {
 .drop-list {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
-    border-radius: 4px;
+    border: var(--over-drop-list-border-size, var(--drop-list-border-size)) solid
+        var(--over-drop-list-border-color, var(--drop-list-border-color));
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
     background: var(--over-drop-list-background, var(--drop-list-background));
     min-height: calc(
         var(--over-item-height, 150px) +
@@ -142,7 +143,7 @@ dialog-cmp .colors-options textarea {
         0 5px 5px -3px rgba(0, 0, 0, 0.2),
         0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
     // fix size
     padding: var(--over-item-padding, 10px) !important;
     width: var(--over-item-width, 150px) !important;
@@ -241,7 +242,7 @@ img {
 // table --------------------------------------------------------------------
 
 .table-classement {
-    border-spacing: 1px;
+    border-spacing: var(--over-drop-border-spacing, var(--drop-list-border-spacing));
     background-image: var(--over-image-url);
     background-repeat: repeat;
     background-color: var(--over-image-background, var(--background));
@@ -250,7 +251,7 @@ img {
 }
 
 .zone-classement {
-    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-color));
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-radius));
     background-image: var(--over-image-url);
     background-position: var(--over-image-background-position);
     background-size: var(--over-image-background-size);
@@ -259,9 +260,11 @@ img {
     width: var(--over-image-width, 1170px);
     height: var(--over-image-height, 600px);
 
-    &.cdk-drop-list-dragging ::ng-deep *,
-    &.cdk-drop-list-receiving ::ng-deep * {
-        pointer-events: none;
+    &.cdk-drop-list-dragging,
+    &.cdk-drop-list-receiving {
+        ::ng-deep * {
+            pointer-events: none;
+        }
     }
 }
 
@@ -271,7 +274,7 @@ img {
 
 .names {
     border: 1px solid var(--name-border-color);
-    border-radius: 4px;
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
     background: var(--name-background);
     width: var(--over-name-width, 150px);
     min-width: var(--over-name-width, 150px);

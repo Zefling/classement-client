@@ -275,6 +275,9 @@
       "advance": "高度なオプション",
       "stream.mode": "ストリームモード",
       "stream.mode.info": "このモードでは、タイルの追加 (コピペまたはドラッグ・アンド・ドロップを除く)、編集、削除、および注釈付けが非表示になります。",
+      "border.radius": "角の丸み：",
+      "border.spacing": "間隔：",
+      "border.size": "ボーダーのサイズ：",
       "item": {
         "title": "タイルのオプション",
         "width": "タイル幅",
@@ -336,7 +339,7 @@
       },
       "name": {
         "width": "グループ名の幅：",
-        "font-size": "グループ名のテキストサイズ：",
+        "font.size": "グループ名のテキストサイズ：",
         "opacity": "グループ名の背景の不透明度："
       },
       "group.direction": {

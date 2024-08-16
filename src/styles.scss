@@ -226,7 +226,10 @@ body {
 
     // drop list
     --drop-list-border-color: var(--neutral6);
+    --drop-list-border-size: 1px;
     --drop-list-background: var(--neutral7);
+    --drop-list-border-radius: 4px;
+    --drop-list-border-spacing: 1px;
 
     // drop list (add image)
     --drop-image-zone-background: var(--success9);

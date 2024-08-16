@@ -275,6 +275,9 @@
       "advance": "Advanced options",
       "stream.mode": "Stream mode",
       "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
+      "border.radius": "Corner radius:",
+      "border.spacing": "Spacing:",
+      "border.size": "Border size:",
       "item": {
         "title": "Tile options",
         "width": "Tile width",
@@ -336,7 +339,7 @@
       },
       "name": {
         "width": "Group name width:",
-        "font-size": "Group name text size:",
+        "font.size": "Group name text size:",
         "opacity": "Group name background opacity:"
       },
       "group.direction": {
