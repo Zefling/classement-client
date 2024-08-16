@@ -6,8 +6,6 @@
 <p>{{ 'generator.help.bingo.view' | transloco }}</p>
 
 <h3>{{ 'generator.help.shortcut.title' | transloco }}</h3>
-<h3>{{ 'generator.help.shortcut.title' | transloco }}</h3>
-
 <dl>
   <dt><kbd>Ctrl</kbd> + <kbd>V</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.v' | transloco }}</dd>
@@ -24,9 +22,9 @@
   </dt>
   <dd>{{ 'generator.help.shortcut.put.back.list' | transloco }}</dd>
 
-  <dt><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
+  <dt [class.disabled]="!memory.hasUndo"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.z' | transloco }}</dd>
 
-  <dt><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
+  <dt [class.disabled]="!memory.hasRedo"><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.u' | transloco }}</dd>
 </dl>
