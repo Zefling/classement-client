@@ -655,8 +655,9 @@ span.group-options {
     .elements,
     .elements > div {
         --border: var(--over-item-border) * 2 + var(--over-item-padding) * 2 + var(--over-item-margin) * 2;
+        padding: 0;
         width: calc(var(--over-item-width) + var(--border));
-        max-width: calc(var(--over-item-width) + var(--border)) +
+        max-width: calc(var(--over-item-width) + var(--border))
             calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2);
         height: calc(var(--over-item-height) + var(--border));
         max-height: calc(var(--over-item-height) + var(--border));
