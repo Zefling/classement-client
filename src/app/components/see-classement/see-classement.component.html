@@ -118,6 +118,7 @@
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element mode-bingo"
+        [class.line-fusion]="opts.borderSpacing < 0"
         [attr.dir]="opts.direction"
       >
         @if (opts.title) {

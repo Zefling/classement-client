@@ -273,7 +273,7 @@
           </div>
         } @else if (options.mode === 'bingo') {
           <div class="bingo-container">
-            <table class="table-classement">
+            <table class="table-classement" [class.line-fusion]="options.borderSpacing < 0">
               <tbody>
                 @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
                   <tr>

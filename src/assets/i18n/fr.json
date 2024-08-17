@@ -277,6 +277,7 @@
       "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
       "border.radius": "Arrondi d'angle :",
       "border.spacing": "Espacement :",
+      "border.spacing.info": "Avec une valeur négative, fusionne les lignes.",
       "border.size": "Taille de la bordure :",
       "item": {
         "title": "Options des tuiles",

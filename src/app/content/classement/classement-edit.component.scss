@@ -667,6 +667,27 @@ span.group-options {
         width: var(--over-item-width);
         height: var(--over-item-height);
     }
+
+    .line-fusion {
+        .elements:not(:last-child) > div {
+            border-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .elements:not(:first-child) > div {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:last-child) .elements > div {
+            border-bottom: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:first-child) .elements > div {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
 }
 
 // actions ------------------------------------------------------------------

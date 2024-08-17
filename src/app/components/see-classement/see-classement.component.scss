@@ -387,6 +387,27 @@ img {
         width: var(--over-item-width);
         height: var(--over-item-height);
     }
+
+    &.line-fusion {
+        .elements:not(:last-child) {
+            border-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .elements:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:last-child) .elements {
+            border-bottom: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:first-child) .elements {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
 }
 
 .clickable {

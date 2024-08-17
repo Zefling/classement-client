@@ -421,8 +421,11 @@
         </div>
         <div class="border-spacing input-value">
           <div class="number-input">
-            <label for="option-border-spacing">{{ 'generator.options.border.spacing' | transloco }}</label>
-            <input id="option-border-spacing" type="number" min="0" max="20" [(ngModel)]="opts.borderSpacing" />
+            <label for="option-border-spacing"
+              >{{ 'generator.options.border.spacing' | transloco }}
+              <span [tooltip]="'generator.options.border.spacing.info' | transloco" class="icon-info"></span
+            ></label>
+            <input id="option-border-spacing" type="number" min="-1" max="20" [(ngModel)]="opts.borderSpacing" />
             <span data-type="px"></span>
           </div>
         </div>

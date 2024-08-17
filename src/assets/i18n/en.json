@@ -277,6 +277,7 @@
       "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
       "border.radius": "Corner radius:",
       "border.spacing": "Spacing:",
+      "border.spacing.info": "With a negative value, merges the lines.",
       "border.size": "Border size:",
       "item": {
         "title": "Tile options",
