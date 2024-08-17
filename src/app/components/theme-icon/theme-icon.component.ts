@@ -32,7 +32,7 @@ export class ThemeIconComponent implements OnInit {
             '--o-item-width': o.itemWidth + 'px',
             '--o-item-height': o.itemHeight + 'px',
             '--o-item-padding': o.itemPadding + 'px',
-            '--o-item-border': o.itemBorder + 'px',
+            '--o-item-border': o.borderSize + o.itemBorder + 'px',
             '--o-item-margin': o.itemMargin + 'px',
             '--o-content-box-background': color(o.itemBackgroundColor, o.itemBackgroundOpacity),
             '--o-content-box-border': color(o.itemBorderColor, o.itemBorderOpacity),

@@ -406,7 +406,8 @@
         "axis": "軸",
         "bingo-s": "小",
         "bingo-m": "中",
-        "bingo-l": "高"
+        "bingo-l": "高",
+        "grid": "グリッド"
       }
     },
     "ranking": {

@@ -28,7 +28,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
         box-shadow: 0 0 10px var(--theme-shadow-color);
         background-image: var(--n-image-url);
         background-repeat: repeat;
@@ -43,6 +42,7 @@
         align-items: center;
         border: solid 1px var(--n-drop-list-border-color);
         background: var(--n-drop-list-background);
+        padding: 0;
     }
 
     .item {

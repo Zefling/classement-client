@@ -251,7 +251,8 @@ export type ThemesNames =
     | 'axis'
     | 'bingo-s'
     | 'bingo-m'
-    | 'bingo-l';
+    | 'bingo-l'
+    | 'grid';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
 export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis' | 'bingo';

@@ -406,7 +406,8 @@
         "axis": "Axis",
         "bingo-s": "Small",
         "bingo-m": "Medium",
-        "bingo-l": "Large"
+        "bingo-l": "Large",
+        "grid": "Grid"
       }
     },
     "ranking": {
