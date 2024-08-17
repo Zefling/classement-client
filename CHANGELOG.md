@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 2.4.2 (2024-08-17)
+
+#### Standalone web app
+
+-   Add line fusion
+-   Bingo: add grid theme
+-   Fix grid spacing
+-   Fix theme change crash
+
 ### 2.4.1 (2024-08-16)
 
 #### Standalone web app
