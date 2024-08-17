@@ -334,6 +334,32 @@ img {
     text-align: right;
 }
 
+.mode-default,
+.mode-teams {
+    &.line-fusion {
+        td.names {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        td:not(.names) {
+            border-right-width: var(--over-drop-list-border-size);
+            border-left-width: calc(var(--over-drop-list-border-size) / 2);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:last-child) td {
+            border-bottom-width: calc(var(--over-drop-list-border-size) / 2);
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:first-child) td {
+            border-top-width: calc(var(--over-drop-list-border-size) / 2);
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+}
+
 // ----------------- ZONE -----------------
 
 .zone-classement-container {

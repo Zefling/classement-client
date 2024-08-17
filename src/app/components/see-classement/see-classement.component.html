@@ -43,6 +43,9 @@
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element"
         [attr.dir]="opts.direction"
+        [class.mode-default]="opts.mode === 'default'"
+        [class.mode-teams]="opts.mode === 'teams'"
+        [class.line-fusion]="opts.borderSpacing < 0"
       >
         @if (opts.title) {
           <caption>

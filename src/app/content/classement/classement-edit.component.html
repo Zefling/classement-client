@@ -54,7 +54,11 @@
       </div>
       <div cdkDropListGroup class="mode-{{ options.mode }}">
         @if (options.mode === 'default' || options.mode === 'teams') {
-          <table class="table-classement" [attr.dir]="options.direction">
+          <table
+            class="table-classement"
+            [attr.dir]="options.direction"
+            [class.line-fusion]="options.borderSpacing < 0"
+          >
             <colgroup>
               <col class="names" />
               <col class="elements" />

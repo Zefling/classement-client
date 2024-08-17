@@ -610,6 +610,42 @@ span.group-options {
     }
 }
 
+.mode-default,
+.mode-teams {
+    .drop-list {
+        margin-bottom: -2px;
+    }
+
+    .line-fusion {
+        td.names {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        td .drop-list {
+            border-right-width: var(--over-drop-list-border-size);
+            border-left-width: calc(var(--over-drop-list-border-size) / 2);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        tr:not(:last-child) td {
+            &.names,
+            .drop-list {
+                border-bottom-width: calc(var(--over-drop-list-border-size) / 2);
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+        tr:not(:first-child) td {
+            &.names,
+            .drop-list {
+                border-top-width: calc(var(--over-drop-list-border-size) / 2);
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;
+            }
+        }
+    }
+}
+
 // zone : iceberg / axis -----------------------------------------------------------
 
 .cdk-drop-zone {
@@ -670,7 +706,7 @@ span.group-options {
 
     .line-fusion {
         .elements:not(:last-child) > div {
-            border-right: 0;
+            border-right-width: calc(var(--border) / 2);
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -679,7 +715,7 @@ span.group-options {
             border-bottom-left-radius: 0;
         }
         tr:not(:last-child) .elements > div {
-            border-bottom: 0;
+            border-bottom-width: calc(var(--border) / 2);
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
         }
