@@ -40,8 +40,12 @@ export class Utils {
             }
         };
 
-        const keysA = Object.keys(objA).filter(key => !ignoreKeys.includes(key));
-        const keysB = Object.keys(objB).filter(key => !ignoreKeys.includes(key));
+        const keysA = Object.entries(objA)
+            .filter(entry => !ignoreKeys.includes(entry[0]) && entry[1] !== undefined)
+            .map(e => e[0]);
+        const keysB = Object.entries(objB)
+            .filter(entry => !ignoreKeys.includes(entry[0]) && entry[1] !== undefined)
+            .map(e => e[0]);
 
         if (keysA.length !== keysB.length) {
             return false;
