@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 
 export class Subscriptions {
-    private listener: Subscription[] = [];
+    private listener = new Subscription();
 
     public static instance() {
         return new Subscriptions();
@@ -10,10 +10,10 @@ export class Subscriptions {
     private constructor() {}
 
     push(...list: Subscription[]) {
-        this.listener.push(...list);
+        list.forEach(sub => this.listener.add(sub));
     }
 
     clear() {
-        this.listener.forEach(e => e.unsubscribe());
+        this.listener.unsubscribe();
     }
 }
