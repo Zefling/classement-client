@@ -1,7 +1,7 @@
 <dialog-cmp closeButton>
   <h2>{{ 'generator.external.imbd.title' | transloco }}</h2>
 
-  @if (keyApi && languages) {
+  @if (keyApi && languages && searchMovieForm) {
     <div class="imdb">
       <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
       <form [formGroup]="searchMovieForm" (submit)="search()">

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Logger, LoggerLevel } from './logger';
 import { PreferencesService } from './preferences.service';
 
+import { firstValueFrom, Subject } from 'rxjs';
 import { MovieSearch, PageResult } from '../interface/movie';
 
 type Params =
@@ -27,17 +28,25 @@ export class APIImdbService {
 
     private languages?: string[];
 
+    readonly onChange = new Subject<void>();
+
+    key?: string;
+
     constructor(
         private readonly http: HttpClient,
         private readonly prefs: PreferencesService,
         private readonly logger: Logger,
     ) {}
 
+    isActive() {
+        return (this.languages?.length ?? 0) > 0;
+    }
+
     protected options(params?: Params): search {
         return {
             headers: new HttpHeaders({
                 accept: 'application/json',
-                Authorization: 'Bearer ' + this.prefs.preferences.authApiKeys.imdb,
+                Authorization: 'Bearer ' + this.key,
             }),
             ...(params
                 ? {
@@ -69,22 +78,24 @@ export class APIImdbService {
         });
     }
 
-    acceptedLanguages() {
-        return new Promise<string[]>((resolve, reject) => {
-            if (!this.languages?.length) {
-                this.http.get<string[]>(`${this.baseUrl}configuration/primary_translations`, this.options()).subscribe({
-                    next: response => {
-                        this.languages = response;
-                        resolve(response);
-                    },
-                    error: error => {
-                        this.logger.log('Movie', LoggerLevel.error, error);
-                        reject();
-                    },
-                });
+    async acceptedLanguages() {
+        if (this.prefs.preferences.authApiKeys.imdb.trim() !== this.key) {
+            this.key = this.prefs.preferences.authApiKeys.imdb.trim();
+
+            if (!this.key) {
+                this.languages = undefined;
             } else {
-                resolve(this.languages);
+                try {
+                    this.languages = await firstValueFrom(
+                        this.http.get<string[]>(`${this.baseUrl}configuration/primary_translations`, this.options()),
+                    );
+                } catch (error) {
+                    this.logger.log('Movie', LoggerLevel.error, error);
+                    this.languages = undefined;
+                }
             }
-        });
+        }
+        this.onChange.next();
+        return this.languages;
     }
 }

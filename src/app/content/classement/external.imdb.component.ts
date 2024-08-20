@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
@@ -9,6 +9,7 @@ import { Genres, MovieSearch } from 'src/app/interface/movie';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 @Component({
@@ -16,13 +17,13 @@ import { Utils } from 'src/app/tools/utils';
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
 })
-export class ExternalImdbComponent {
+export class ExternalImdbComponent implements OnInit, OnDestroy {
     dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     @Output()
     change = new EventEmitter<Theme>();
 
-    searchMovieForm: FormGroup;
+    searchMovieForm?: FormGroup;
 
     genres?: Genres;
 
@@ -41,6 +42,8 @@ export class ExternalImdbComponent {
         return this.imdb.baseImg;
     }
 
+    private _sub = Subscriptions.instance();
+
     constructor(
         private readonly imdb: APIImdbService,
         private readonly prefs: PreferencesService,
@@ -52,7 +55,6 @@ export class ExternalImdbComponent {
         } else if ((this.prefs.preferences.interfaceLanguage = 'ja')) {
             language = 'ja-JP';
         }
-
         this.searchMovieForm = new FormGroup({
             query: new FormControl(''),
             include_adult: new FormControl(''),
@@ -61,15 +63,35 @@ export class ExternalImdbComponent {
             year: new FormControl(''),
             region: new FormControl(''),
         });
+    }
 
+    ngOnInit(): void {
+        if (this.keyApi) {
+            this.init();
+        }
+        this._sub.push(
+            this.prefs.onInit.subscribe(() => {
+                this.init();
+            }),
+            this.prefs.onChange.subscribe(() => {
+                this.init();
+            }),
+        );
+    }
+
+    ngOnDestroy(): void {
+        this._sub.clear();
+    }
+
+    init() {
         this.imdb
             .acceptedLanguages()
-            .then(list => (this.languages = list.map<Select2Option>(e => ({ label: e, value: e }))));
+            .then(list => (this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }))));
     }
 
     async search() {
-        if (this.searchMovieForm.value?.query?.trim()) {
-            const page = await this.imdb.searchMovies({ ...this.searchMovieForm.value, page: 1 });
+        if (this.searchMovieForm!.value?.query?.trim()) {
+            const page = await this.imdb.searchMovies({ ...this.searchMovieForm!.value, page: 1 });
             this.results = page.results?.length ? page.results : [];
         }
     }

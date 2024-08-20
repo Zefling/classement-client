@@ -55,6 +55,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
+import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import {
     defaultGroup,
@@ -175,6 +176,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly cd: ChangeDetectorRef,
         private readonly location: Location,
         private readonly preferencesService: PreferencesService,
+        private readonly imdbService: APIImdbService,
         private readonly memory: MemoryService,
     ) {
         this.updateTitle();
@@ -192,6 +194,12 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 }
             }),
             this.preferencesService.onInit.subscribe(() => {
+                this.initAPI();
+            }),
+            this.preferencesService.onChange.subscribe(() => {
+                this.initAPI();
+            }),
+            this.imdbService.onChange.subscribe(() => {
                 this.initAPI();
             }),
             global.onFileLoaded.subscribe(file => {
@@ -231,7 +239,7 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     }
 
     initAPI() {
-        this.imdbActive = !!this.preferencesService.preferences.authApiKeys.imdb?.trim();
+        this.imdbActive = this.imdbService.isActive();
     }
 
     initWithParams(params: Params) {
