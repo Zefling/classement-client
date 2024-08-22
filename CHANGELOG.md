@@ -1,5 +1,18 @@
 # Changelog - Standalone web app & API
 
+### 2.4.3 (2024-08-22)
+
+#### Standalone web app
+
+-   Rewrite IMDB access #73
+-   Little change for subscription helper #72
+-   Minor fixes
+
+#### With API activated only
+
+-   Fix history list
+-   Required: API `1.15`
+
 ### 2.4.2 (2024-08-17)
 
 #### Standalone web app
