@@ -34,6 +34,8 @@ export interface Classement {
 export interface ClassementHistory {
     id?: number;
     date?: Date;
+    dateChange?: Date;
+    dateCreate?: Date;
     name?: string;
 }
 

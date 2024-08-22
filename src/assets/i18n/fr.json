@@ -630,9 +630,9 @@
       "signup": "Créer un compte",
       "oauth": {
         "label": "Connexion avec",
-        "label.after": "",
+        "label.after": " ",
         "create": "Créer avec",
-        "create.after": "",
+        "create.after": " ",
         "discord": "Discord",
         "facebook": "Facebook",
         "google": "Google"

@@ -215,14 +215,11 @@ export class ClassementViewComponent implements OnDestroy {
         if (classement.withHistory) {
             this.classementService.getClassementsHistory(classement.rankingId).then(history => {
                 if (history?.length) {
-                    history.sort((a, b) => new Date(b.date as any).getTime() - new Date(a.date as any).getTime());
-                    this.history = [
-                        {
-                            date: this.classement?.dateChange ?? this.classement?.dateCreate,
-                            name: this.classement?.name,
-                        },
-                        ...history,
-                    ];
+                    this.history = history.sort(
+                        (a, b) =>
+                            new Date((b.date as any) ?? b.dateChange ?? b.dateCreate).getTime() -
+                            new Date((a.date as any) ?? a.dateChange ?? a.dateCreate).getTime(),
+                    );
                 }
                 classement.withHistory = history?.length;
             });

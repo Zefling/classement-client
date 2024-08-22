@@ -100,9 +100,9 @@
     </button> -->
     </div>
     <div class="buttons">
-      @if (classement.withHistory) {
+      @if (history?.length) {
         <button (click)="seeHistory()" class="primary">
-          {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory + 1 }})
+          {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory }})
         </button>
       }
       @if (myClassement) {
@@ -287,8 +287,8 @@
               {{ item.name || ('list.title.undefined' | transloco) }}
             </td>
             <td class="date">
-              <span>{{ item.date | date: ('date.dd/MM/yyyy' | transloco) }}</span>
-              <span>{{ item.date | date: ('date.HH:mm' | transloco) }}</span>
+              <span>{{ item.date ?? item.dateChange ?? item.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ item.date ?? item.dateChange ?? item.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
             <td class="actions">
               @if (item.id !== classement.historyId) {

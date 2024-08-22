@@ -629,9 +629,9 @@
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
-        "label": "",
+        "label": " ",
         "label.after": "でログインします。",
-        "create": "",
+        "create": " ",
         "create.after": "で作成します。",
         "discord": "DISCORD",
         "facebook": "FACEBOOK",
