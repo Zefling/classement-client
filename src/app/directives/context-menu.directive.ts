@@ -21,6 +21,35 @@ export class ContextMenuDirective<T> {
             backdropClass: 'overlay-backdrop',
             panelClass: 'overlay-panel',
             scrollStrategy: this.overlay.scrollStrategies.block(),
+            positionStrategy: this.overlay
+                .position()
+                .flexibleConnectedTo({ x: event.clientX, y: event.clientY })
+                .withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'bottom',
+                        overlayX: 'start',
+                        overlayY: 'top',
+                    },
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom',
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'bottom',
+                        overlayX: 'end',
+                        overlayY: 'top',
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'top',
+                        overlayX: 'end',
+                        overlayY: 'bottom',
+                    },
+                ]),
         });
         const userProfilePortal = new ComponentPortal(ContextMenuComponent);
 
@@ -31,14 +60,7 @@ export class ContextMenuDirective<T> {
             overlayRef.dispose();
             ContextMenuDirective._overlayRef = undefined;
         });
-        overlayRef.updateSize({});
-        overlayRef.updatePositionStrategy(
-            this.overlay
-                .position()
-                .global()
-                .left(event.clientX + 'px')
-                .top(event.clientY + 'px'),
-        );
+
         ContextMenuDirective._overlayRef = overlayRef;
 
         event.preventDefault();
