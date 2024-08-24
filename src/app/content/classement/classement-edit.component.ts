@@ -893,7 +893,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.groups.forEach(group => {
                 const index = group.list.findIndex(tile => tile?.id === this.currentTile!.id);
                 if (index !== -1) {
-                    group.list.splice(index, 1);
+                    if (this.options.mode === 'bingo') {
+                        group.list[index] = null;
+                    } else {
+                        group.list.splice(index, 1);
+                    }
                 }
             });
             this.globalChange();
