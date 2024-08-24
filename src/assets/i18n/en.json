@@ -595,12 +595,14 @@
         "ctrl.e": "Export draft.",
         "ctrl.z": "Undo.",
         "ctrl.u": "Redo.",
+        "right.click": "Right click",
         "middle.click": "Middle click",
         "double.click": "Double click",
         "on.tile": "on a tile",
         "on.zone": "in a zone",
         "put.back.list": "Put back in the list.",
-        "create": "Create a tile at the target location."
+        "create": "Create a tile at the target location.",
+        "context.menu": "Show the context menu."
       },
       "default": {
         "text": "Move tiles by drag and drop."

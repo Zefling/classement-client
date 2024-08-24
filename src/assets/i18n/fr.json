@@ -595,12 +595,14 @@
         "ctrl.e": "Exporter le brouillon.",
         "ctrl.z": "Annuler.",
         "ctrl.u": "Refaire.",
+        "right.click": "Clic droit",
         "middle.click": "Clic central",
         "double.click": "Double clic",
         "on.tile": "sur une tuile",
         "on.zone": "dans une zone",
         "put.back.list": "Remettre dans la liste.",
-        "create": "Création d'une tuile à l'endroit visé."
+        "create": "Création d'une tuile à l'endroit visé.",
+        "context.menu": "Affichage du menu contextuel."
       },
       "default": {
         "text": "Déplacer les tuiles par glissé-déposé."
