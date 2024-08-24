@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.4.4 (2024-08-24)
+
+#### Standalone web app
+
+-   Add context menu to tiles #74
+-   Fix bingo fork
+-   Minor fixes
+
 ### 2.4.3 (2024-08-22)
 
 #### Standalone web app
