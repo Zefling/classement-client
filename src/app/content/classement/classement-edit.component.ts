@@ -184,13 +184,30 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     ) {
         this.updateTitle();
 
-        this.contextMenu.push({
-            label: 'Return',
-            action: data => {
-                console.log('Return', data);
-                this.removeFromGroup(data.group, data.index);
+        this.contextMenu.push(
+            {
+                icon: 'icon-down',
+                label: 'generator.context.menu.back.list',
+                action: data => {
+                    this.removeFromGroup(data.group, data.index);
+                },
             },
-        });
+            {
+                icon: 'icon-edit-2',
+                label: 'generator.context.menu.edit',
+                action: data => {
+                    this.openTileInfo(data.item as FileString);
+                },
+            },
+            {
+                icon: 'icon-remove',
+                label: 'generator.context.menu.remove',
+                action: data => {
+                    this.currentTile = data.item as FileString;
+                    this.deleteCurrent();
+                },
+            },
+        );
 
         this._sub.push(
             this.route.params.subscribe(params => {

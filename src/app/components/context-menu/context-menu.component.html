@@ -2,7 +2,10 @@
   @let context = items().contextMenu;
   @if (context) {
     @for (item of context; track item) {
-      <li (click)="active(item)">{{ item.label }}</li>
+      <li (click)="active(item)">
+        <span class="{{ item.icon }}"></span>
+        <span>{{ item.label | transloco }}</span>
+      </li>
     }
   }
 </menu>

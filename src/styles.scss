@@ -159,6 +159,11 @@ body {
     --menu-active-background: var(--primary6);
     --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
 
+    // context-menu
+    --context-menu-background: var(--primary8);
+    --context-menu-item: var(--primary7);
+    --context-menu-item-hover: var(--primary6);
+
     // default button
     --button-default-border-color: var(--neutral5);
     --button-default-background: var(--neutral7);

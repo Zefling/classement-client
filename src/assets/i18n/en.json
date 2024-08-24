@@ -506,6 +506,11 @@
         "cancel": "Cancel"
       }
     },
+    "context.menu": {
+      "back.list": "Return to list",
+      "edit": "Edit",
+      "remove": "Delete"
+    },
     "change": {
       "warning": "You have made changes!",
       "question": "Are you sure you want to leave this page?"
@@ -585,7 +590,7 @@
       "title": "Presentation",
       "shortcut": {
         "title": "Keyboard shortcuts",
-        "ctrl.v": "Copy one or more images that will be added. Also works with text. Each line of text creates a new tile.",
+        "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
         "ctrl.s": "Save draft.",
         "ctrl.e": "Export draft.",
         "ctrl.z": "Undo.",

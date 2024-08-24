@@ -29,6 +29,7 @@ export class ContextMenuDirective<T> {
 
         overlayRef.backdropClick().subscribe(() => {
             overlayRef.dispose();
+            ContextMenuDirective._overlayRef = undefined;
         });
         overlayRef.updateSize({});
         overlayRef.updatePositionStrategy(
@@ -60,6 +61,7 @@ export class ContextMenuDirective<T> {
 
     private close(event: MouseEvent) {
         ContextMenuDirective._overlayRef!.dispose();
+        ContextMenuDirective._overlayRef = undefined;
         event.preventDefault();
         event.stopPropagation();
     }
