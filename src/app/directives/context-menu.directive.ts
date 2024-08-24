@@ -1,8 +1,15 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Directive, HostListener, input } from '@angular/core';
 
 import { ContextMenuComponent, ContextMenuData } from '../components/context-menu/context-menu.component';
+
+const connectedPosition: ConnectedPosition[] = [
+    { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+    { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
+    { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
+    { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
+];
 
 @Directive({
     selector: '[contextMenu]',
@@ -24,32 +31,7 @@ export class ContextMenuDirective<T> {
             positionStrategy: this.overlay
                 .position()
                 .flexibleConnectedTo({ x: event.clientX, y: event.clientY })
-                .withPositions([
-                    {
-                        originX: 'start',
-                        originY: 'bottom',
-                        overlayX: 'start',
-                        overlayY: 'top',
-                    },
-                    {
-                        originX: 'start',
-                        originY: 'top',
-                        overlayX: 'start',
-                        overlayY: 'bottom',
-                    },
-                    {
-                        originX: 'end',
-                        originY: 'bottom',
-                        overlayX: 'end',
-                        overlayY: 'top',
-                    },
-                    {
-                        originX: 'end',
-                        originY: 'top',
-                        overlayX: 'end',
-                        overlayY: 'bottom',
-                    },
-                ]),
+                .withPositions(connectedPosition),
         });
         const userProfilePortal = new ComponentPortal(ContextMenuComponent);
 
