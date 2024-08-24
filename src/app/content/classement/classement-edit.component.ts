@@ -55,6 +55,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
+import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import {
@@ -156,6 +157,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
     tiles = viewChildren<CdkDragElement>(CdkDragElement);
 
+    contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
+
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
@@ -180,6 +183,14 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly memory: MemoryService,
     ) {
         this.updateTitle();
+
+        this.contextMenu.push({
+            label: 'Return',
+            action: data => {
+                console.log('Return', data);
+                this.removeFromGroup(data.group, data.index);
+            },
+        });
 
         this._sub.push(
             this.route.params.subscribe(params => {

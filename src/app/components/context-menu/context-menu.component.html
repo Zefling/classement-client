@@ -1,0 +1,8 @@
+<menu>
+  @let context = items().contextMenu;
+  @if (context) {
+    @for (item of context; track item) {
+      <li (click)="active(item)">{{ item.label }}</li>
+    }
+  }
+</menu>

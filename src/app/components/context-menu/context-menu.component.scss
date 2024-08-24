@@ -1,0 +1,19 @@
+:host {
+    background: var(--menu-background);
+}
+
+menu {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        background: var(--menu-cartouche-background);
+        padding: 20px;
+
+        &:host {
+            --menu-cartouche-background: color-mix(in srgb, var(--menu-hover-background) 70%, #fff 10%);
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import { ContextMenuDirective } from './context-menu.directive';
 import { DropImageDirective } from './drop-image.directive';
 import { NgInitDirective } from './ngInit.directive';
 import { RemoveTileDirective } from './remove-tile.directive';
@@ -15,6 +16,7 @@ import { TooltipDirective } from './tooltip.directive';
         NgInitDirective,
         Sortable,
         RemoveTileDirective,
+        ContextMenuDirective,
     ],
     exports: [
         DropImageDirective,
@@ -23,6 +25,7 @@ import { TooltipDirective } from './tooltip.directive';
         NgInitDirective,
         Sortable,
         RemoveTileDirective,
+        ContextMenuDirective,
     ],
 })
 export class DirectiveModule {}

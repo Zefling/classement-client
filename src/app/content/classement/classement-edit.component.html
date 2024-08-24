@@ -138,6 +138,7 @@
                             cdkDrag
                             removeTile
                             (removeElement)="removeFromGroup(group, index)"
+                            [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
                           >
@@ -242,6 +243,7 @@
                     [cdkDragData]="{ x: item.x || 0, y: item.y || 0 }"
                     removeTile
                     (removeElement)="removeFromGroup(groups[0], index)"
+                    [contextMenu]="{ contextMenu, data: { item, group: groups[0], index } }"
                     [style.--over-item-background]="item.bgColor"
                     [style.--over-item-text-color]="item.txtColor"
                   >
@@ -295,6 +297,7 @@
                               cdkDrag
                               removeTile
                               (removeElement)="removeFromGroup(group, index)"
+                              [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
                             >
