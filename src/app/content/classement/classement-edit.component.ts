@@ -441,6 +441,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 });
         }
 
+        debugger;
+
         if (fork) {
             this.reset();
             this.id = undefined;
@@ -1021,7 +1023,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             if (this.options.mode !== 'teams') {
                 this.list.push(...line.list);
             }
-            line.list = [];
+            if (this.options.mode === 'bingo') {
+                line.list = line.list.map(_ => null);
+            } else {
+                line.list = [];
+            }
         }
 
         this.list = this.list.filter(e => e);
