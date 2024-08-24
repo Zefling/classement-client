@@ -506,6 +506,11 @@
         "cancel": "Annuler"
       }
     },
+    "context.menu": {
+      "back.list": "Remettre dans la liste",
+      "edit": "Éditer",
+      "remove": "Supprimer"
+    },
     "change": {
       "warning": "Vous avez effectué des changements !",
       "question": "Êtes-vous sûr de vouloir quitter cette page ?"
@@ -585,23 +590,25 @@
       "title": "Présentation",
       "shortcut": {
         "title": "Raccourcis clavier",
-        "ctrl.v": "Copier une au plusieurs images qui seront ajouter. Fonctionne aussi avec du texte. Chaque ligne de texte créée une nouvelle tuile.",
+        "ctrl.v": "Copier une ou plusieurs images qui seront ajoutées. Fonctionne aussi avec du texte, où chaque ligne de texte créée une nouvelle tuile.",
         "ctrl.s": "Sauvegarder le brouillon.",
         "ctrl.e": "Exporter le brouillon.",
         "ctrl.z": "Annuler.",
         "ctrl.u": "Refaire.",
+        "right.click": "Clic droit",
         "middle.click": "Clic central",
         "double.click": "Double clic",
         "on.tile": "sur une tuile",
         "on.zone": "dans une zone",
         "put.back.list": "Remettre dans la liste.",
-        "create": "Création d'une tuile à l'endroit visé."
+        "create": "Création d'une tuile à l'endroit visé.",
+        "context.menu": "Affichage du menu contextuel."
       },
       "default": {
         "text": "Déplacer les tuiles par glissé-déposé."
       },
       "teams": {
-        "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par group."
+        "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par groupe."
       },
       "iceberg": {
         "move": "Déplacer les tuiles dans la zone.",

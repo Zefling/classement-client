@@ -506,6 +506,11 @@
         "cancel": "Cancel"
       }
     },
+    "context.menu": {
+      "back.list": "Return to list",
+      "edit": "Edit",
+      "remove": "Delete"
+    },
     "change": {
       "warning": "You have made changes!",
       "question": "Are you sure you want to leave this page?"
@@ -585,17 +590,19 @@
       "title": "Presentation",
       "shortcut": {
         "title": "Keyboard shortcuts",
-        "ctrl.v": "Copy one or more images that will be added. Also works with text. Each line of text creates a new tile.",
+        "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
         "ctrl.s": "Save draft.",
         "ctrl.e": "Export draft.",
         "ctrl.z": "Undo.",
         "ctrl.u": "Redo.",
+        "right.click": "Right click",
         "middle.click": "Middle click",
         "double.click": "Double click",
         "on.tile": "on a tile",
         "on.zone": "in a zone",
         "put.back.list": "Put back in the list.",
-        "create": "Create a tile at the target location."
+        "create": "Create a tile at the target location.",
+        "context.menu": "Show the context menu."
       },
       "default": {
         "text": "Move tiles by drag and drop."

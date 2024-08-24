@@ -1,0 +1,26 @@
+:host {
+    box-shadow: 2px 2px 5px #0005;
+    border-radius: 6px;
+    background: var(--context-menu-background);
+}
+
+menu {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        gap: 10px;
+        cursor: pointer;
+        margin: 2px;
+        border-radius: 4px;
+        background: var(--context-menu-item);
+        padding: 10px 20px 10px 10px;
+
+        &:hover {
+            --context-menu-item: var(--context-menu-item-hover);
+        }
+    }
+}

@@ -55,6 +55,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
+import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import {
@@ -156,6 +157,8 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
     tiles = viewChildren<CdkDragElement>(CdkDragElement);
 
+    contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
+
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
@@ -180,6 +183,31 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         private readonly memory: MemoryService,
     ) {
         this.updateTitle();
+
+        this.contextMenu.push(
+            {
+                icon: 'icon-down',
+                label: 'generator.context.menu.back.list',
+                action: data => {
+                    this.removeFromGroup(data.group, data.index);
+                },
+            },
+            {
+                icon: 'icon-edit-2',
+                label: 'generator.context.menu.edit',
+                action: data => {
+                    this.openTileInfo(data.item as FileString);
+                },
+            },
+            {
+                icon: 'icon-remove',
+                label: 'generator.context.menu.remove',
+                action: data => {
+                    this.currentTile = data.item as FileString;
+                    this.deleteCurrent();
+                },
+            },
+        );
 
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -867,7 +895,11 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
             this.groups.forEach(group => {
                 const index = group.list.findIndex(tile => tile?.id === this.currentTile!.id);
                 if (index !== -1) {
-                    group.list.splice(index, 1);
+                    if (this.options.mode === 'bingo') {
+                        group.list[index] = null;
+                    } else {
+                        group.list.splice(index, 1);
+                    }
                 }
             });
             this.globalChange();
