@@ -59,45 +59,38 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
         this.contextMenuBingo.push(
             {
-                icon: 'icon-down',
-                label: 'Intervertir la sélection',
+                iconText: '',
+                label: '',
                 action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
+                    this.bingoRemoveCheck(data.groupIndex, data.index);
                 },
             },
             {
-                icon: 'icon-down',
-                label: 'Intervertir la sélection',
+                iconText: '🥰',
+                label: '🥰',
                 action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
+                    this.bingoSetCheck(data.groupIndex, data.index, '🥰');
                 },
             },
             {
-                icon: 'icon-down',
-                label: 'Intervertir la sélection',
+                iconText: '🤩',
+                label: '🤩',
                 action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
+                    this.bingoSetCheck(data.groupIndex, data.index, '🤩');
                 },
             },
             {
-                icon: 'icon-down',
-                label: 'Intervertir la sélection',
+                iconText: '😆',
+                label: 'selectEmoji',
                 action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
+                    this.bingoSetCheck(data.groupIndex, data.index, '😆');
                 },
             },
             {
-                icon: 'icon-down',
+                iconText: '...',
                 label: 'Intervertir la sélection',
                 action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
-                },
-            },
-            {
-                icon: 'icon-down',
-                label: 'Intervertir la sélection',
-                action: data => {
-                    this.bingoCheck(data.groupIndex, data.index);
+                    this.selectEmoji();
                 },
             },
         );
@@ -142,8 +135,16 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.dataService.saveOption('bingo', this.id(), { checkChoice: type.value as string });
     }
 
-    bingoCheck(group: number, item: number) {
+    bingoToggleCheck(group: number, item: number) {
         return this.dataService.change('bingo', this.id(), group, item, !this.bingoValue(group, item));
+    }
+
+    bingoRemoveCheck(group: number, item: number) {
+        return this.dataService.change('bingo', this.id(), group, item, false);
+    }
+
+    bingoSetCheck(group: number, item: number, value: string) {
+        return this.dataService.change('bingo', this.id(), group, item, value);
     }
 
     bingoValue(group: number, item: number) {
@@ -152,6 +153,10 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     bingoClear() {
         this.dataService.clear('bingo', this.id());
+    }
+
+    selectEmoji() {
+        // TODO
     }
 
     detectChanges() {

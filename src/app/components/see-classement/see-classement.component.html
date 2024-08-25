@@ -152,7 +152,7 @@
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
                       <div
                         class="content-box clickable"
-                        (click)="bingoCheck(indexGrp, index)"
+                        (click)="bingoToggleCheck(indexGrp, index)"
                         [contextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
                         contextMenuMode="bubble"
                       >
