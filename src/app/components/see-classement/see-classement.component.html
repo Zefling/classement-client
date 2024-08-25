@@ -15,7 +15,13 @@
         >
           <ng-template #templateMode let-label="label" let-value="value">
             <div class="list-mode option">
-              <div class="view"><span [ngClass]="'icon-validated-' + value + '1'"></span></div>
+              <div class="view">
+                @if (value === 'Z') {
+                  <span>🥰</span>
+                } @else {
+                  <span [ngClass]="'icon-validated-' + value + '1'"></span>
+                }
+              </div>
               <div class="desc">
                 {{ 'action.validated.name.' + label | transloco }}
               </div>
@@ -23,7 +29,13 @@
           </ng-template>
           <ng-template #templateSelectionMode let-label="label" let-data="data" let-value="value">
             <div class="list-mode">
-              <div class="view"><span [ngClass]="'icon-validated-' + value + '1'"></span></div>
+              <div class="view">
+                @if (value === 'Z') {
+                  <span>🥰</span>
+                } @else {
+                  <span [ngClass]="'icon-validated-' + value + '1'"></span>
+                }
+              </div>
               <div class="desc">
                 {{ 'action.validated.name.' + label | transloco }}
               </div>
@@ -138,7 +150,12 @@
                 <td class="elements drop-list">
                   @if (item) {
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
-                      <div class="content-box clickable" (click)="bingoCheck(indexGrp, index)">
+                      <div
+                        class="content-box clickable"
+                        (click)="bingoCheck(indexGrp, index)"
+                        [contextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
+                        contextMenuMode="bubble"
+                      >
                         <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
                           @if (item.url) {
                             <div [class.image]="calcWidth(item, tile)">
@@ -151,12 +168,17 @@
                               />
                             </div>
                           }
-                          @if (bingoValue(indexGrp, index)) {
-                            <div
-                              class="tile-validate icon-validated-{{ checkChoice }}{{
-                                (indexGrp * group.list.length + index) % 3 || 3
-                              }}"
-                            ></div>
+                          @let value = bingoValue(indexGrp, index);
+                          @if (value) {
+                            @if (checkChoice === 'Z') {
+                              <span class="tile-validate">{{ value !== true ? value : '🥰' }}</span>
+                            } @else {
+                              <div
+                                class="tile-validate icon-validated-{{ checkChoice }}{{
+                                  (indexGrp * group.list.length + index) % 3 || 3
+                                }}"
+                              ></div>
+                            }
                           }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">

@@ -9,6 +9,7 @@ import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select
 import { DataService } from 'src/app/services/data.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { GlobalService } from '../../services/global.service';
+import { ContextMenuItem } from '../context-menu/context-menu.component';
 
 @Component({
     selector: 'see-classement',
@@ -36,8 +37,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         { value: 'C', label: 'circle' },
         { value: 'D', label: 'hanamaru' },
         { value: 'E', label: 'heart' },
+        { value: 'Z', label: 'emoji' },
     ];
     checkChoice = 'A';
+
+    contextMenuBingo: ContextMenuItem<{ item: FileType; groupIndex: number; index: number }>[] = [];
 
     private _detectChange = new Subject<void>();
 
@@ -45,9 +49,17 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly globalService: GlobalService,
-        private readonly dataService: DataService<boolean, { checkChoice: string }>,
+        private readonly dataService: DataService<boolean | string, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
     ) {
+        this.contextMenuBingo.push({
+            icon: 'icon-down',
+            label: 'Intervertir la sélection',
+            action: data => {
+                this.bingoCheck(data.groupIndex, data.index);
+            },
+        });
+
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
         });

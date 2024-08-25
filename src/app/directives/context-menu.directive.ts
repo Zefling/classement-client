@@ -2,7 +2,11 @@ import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Directive, HostListener, input } from '@angular/core';
 
-import { ContextMenuComponent, ContextMenuData } from '../components/context-menu/context-menu.component';
+import {
+    ContextMenuComponent,
+    ContextMenuData,
+    ContextMenuMode,
+} from '../components/context-menu/context-menu.component';
 
 const connectedPosition: ConnectedPosition[] = [
     { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
@@ -18,6 +22,8 @@ export class ContextMenuDirective<T> {
     static _overlayRef?: OverlayRef;
 
     contextMenu = input<ContextMenuData<T>>();
+
+    contextMenuMode = input<ContextMenuMode>('default');
 
     constructor(private readonly overlay: Overlay) {}
 
@@ -37,6 +43,7 @@ export class ContextMenuDirective<T> {
 
         const component = overlayRef.attach(userProfilePortal);
         component.setInput('items', this.contextMenu());
+        component.setInput('mode', this.contextMenuMode());
 
         overlayRef.backdropClick().subscribe(() => {
             overlayRef.dispose();

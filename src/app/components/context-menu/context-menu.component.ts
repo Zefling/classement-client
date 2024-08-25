@@ -13,20 +13,25 @@ export interface ContextMenuData<T> {
     data: T;
 }
 
+export type ContextMenuMode = 'default' | 'bubble';
+
 @Component({
     selector: 'context-menu',
     templateUrl: './context-menu.component.html',
     styleUrls: ['./context-menu.component.scss'],
     standalone: true,
     imports: [TranslocoModule],
+    host: {
+        '[class.bubble]': 'mode() === bubble',
+    },
 })
 export class ContextMenuComponent<T> {
     items = input.required<ContextMenuData<T>>();
+    mode = input<ContextMenuMode>('default');
 
     active(item: ContextMenuItem<T>) {
         item.action(this.items().data);
         ContextMenuDirective._overlayRef!.dispose();
-
         ContextMenuDirective._overlayRef = undefined;
     }
 
