@@ -22,7 +22,8 @@ export type ContextMenuMode = 'default' | 'bubble';
     standalone: true,
     imports: [TranslocoModule],
     host: {
-        '[class.bubble]': 'mode() === bubble',
+        '[class.default]': 'mode() === "default"',
+        '[class.bubble]': 'mode() === "bubble"',
     },
 })
 export class ContextMenuComponent<T> {

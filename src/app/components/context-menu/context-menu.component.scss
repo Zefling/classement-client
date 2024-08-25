@@ -1,26 +1,63 @@
 :host {
-    box-shadow: 2px 2px 5px #0005;
-    border-radius: 6px;
-    background: var(--context-menu-background);
-}
+    &.default {
+        box-shadow: 2px 2px 5px #0005;
+        border-radius: 6px;
+        background: var(--context-menu-background);
 
-menu {
-    display: block;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+        menu {
+            display: block;
+            margin: 0;
+            padding: 0;
+            list-style: none;
 
-    li {
-        display: flex;
-        gap: 10px;
-        cursor: pointer;
-        margin: 2px;
-        border-radius: 4px;
-        background: var(--context-menu-item);
-        padding: 10px 20px 10px 10px;
+            li {
+                display: flex;
+                gap: 10px;
+                cursor: pointer;
+                margin: 2px;
+                border-radius: 4px;
+                background: var(--context-menu-item);
+                padding: 10px 20px 10px 10px;
 
-        &:hover {
-            --context-menu-item: var(--context-menu-item-hover);
+                &:hover {
+                    --context-menu-item: var(--context-menu-item-hover);
+                }
+            }
+        }
+    }
+
+    &.bubble menu {
+        display: block;
+        position: relative;
+        transform: translate(-26px, -26px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(calc((360deg / var(--total, 1)) * var(--position))) translate(0, -70px);
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #0008;
+            border: 2px solid var(--context-menu-background);
+            border-radius: 50%;
+            background: var(--context-menu-item);
+            width: 50px;
+            height: 50px;
+
+            .icon {
+                transform: rotate(calc((-360deg / var(--total, 1)) * var(--position)));
+            }
+            .label {
+                display: none;
+            }
+
+            &:hover {
+                --context-menu-item: var(--context-menu-item-hover);
+            }
         }
     }
 }

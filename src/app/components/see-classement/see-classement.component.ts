@@ -7,6 +7,7 @@ import { Utils } from 'src/app/tools/utils';
 
 import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { DataService } from 'src/app/services/data.service';
+import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { GlobalService } from '../../services/global.service';
 import { ContextMenuItem } from '../context-menu/context-menu.component';
@@ -41,6 +42,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     ];
     checkChoice = 'A';
 
+    emojis = emojis;
+
     contextMenuBingo: ContextMenuItem<{ item: FileType; groupIndex: number; index: number }>[] = [];
 
     private _detectChange = new Subject<void>();
@@ -52,13 +55,52 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         private readonly dataService: DataService<boolean | string, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
     ) {
-        this.contextMenuBingo.push({
-            icon: 'icon-down',
-            label: 'Intervertir la sélection',
-            action: data => {
-                this.bingoCheck(data.groupIndex, data.index);
+        console.log(this.emojis);
+
+        this.contextMenuBingo.push(
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
             },
-        });
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
+            },
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
+            },
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
+            },
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
+            },
+            {
+                icon: 'icon-down',
+                label: 'Intervertir la sélection',
+                action: data => {
+                    this.bingoCheck(data.groupIndex, data.index);
+                },
+            },
+        );
 
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();

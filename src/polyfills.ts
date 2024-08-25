@@ -52,3 +52,5 @@ import 'zone.js'; // Included with Angular CLI.
  */
 
 import 'hammerjs';
+import 'unicode-segmenter/intl-polyfill';
+
