@@ -14,6 +14,7 @@ import { PreferencesData } from '../interface/interface';
 export class PreferencesService {
     readonly onInit = new Subject<void>();
     readonly onChange = new Subject<PreferencesData>();
+    readonly openPref = new Subject<string>();
 
     hasInit = false;
 
@@ -26,6 +27,7 @@ export class PreferencesService {
         lineOption: 'auto',
         pageSize: 24,
         mainMenuReduce: false,
+        emojiList: ['🥰', '🤩', '🤩', '🤪', '😁', '😏'],
         authApiKeys: {
             imdb: '',
         },
@@ -61,5 +63,9 @@ export class PreferencesService {
         this.dbService.savePreferences(data);
         this.initPreferences = data;
         this.onChange.next(data);
+    }
+
+    openPanel(tabs: string) {
+        this.openPref.next(tabs);
     }
 }

@@ -328,6 +328,26 @@
             </select>
           }
         </tab-content>
+        <tab-title id="emoji"> {{ 'preferences.tab.emoji' | transloco }}</tab-title>
+        <tab-content id="emoji" formGroupName="authApiKeys">
+          <h3>Current</h3>
+          <ul class="emoji-list">
+            @for (emoji of preferencesService.preferences.emojiList; track emoji) {
+              <li>{{ emoji }}</li>
+            }
+          </ul>
+          <h3>Emoji au choix</h3>
+          <div>
+            @for (emojiGroup of emojiList; track emojiGroup) {
+              <h4>{{ 'preferences.emoji.' + emojiGroup.label | transloco }}</h4>
+              <ul class="emoji-list">
+                @for (emoji of emojiGroup.options; track emoji) {
+                  <li>{{ emoji.value }}</li>
+                }
+              </ul>
+            }
+          </div>
+        </tab-content>
         <tab-title id="api"> {{ 'preferences.tab.api' | transloco }}</tab-title>
         <tab-content id="api" formGroupName="authApiKeys">
           <label>{{ 'preferences.imdb.key' | transloco }} </label>

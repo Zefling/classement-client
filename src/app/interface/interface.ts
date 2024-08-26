@@ -235,6 +235,7 @@ export interface PreferencesData {
     theme: ThemesNames | undefined;
     pageSize: number;
     mainMenuReduce: boolean;
+    emojiList: string[];
     authApiKeys: {
         imdb: string;
     };

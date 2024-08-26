@@ -15,6 +15,7 @@ import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { Logger, LoggerLevel } from './services/logger';
 import { PreferencesService } from './services/preferences.service';
+import { emojis } from './tools/emoji';
 
 const languages = [
     { value: 'en', label: 'English' },
@@ -53,6 +54,8 @@ export class AppComponent implements DoCheck {
     preferencesForm?: FormGroup;
     themes? = themes;
 
+    emojiList = emojis;
+
     _modeTemp?: string;
 
     get routerUrl() {
@@ -72,7 +75,7 @@ export class AppComponent implements DoCheck {
         private readonly globalService: GlobalService,
         private readonly router: Router,
         private readonly logger: Logger,
-        private readonly preferencesService: PreferencesService,
+        protected readonly preferencesService: PreferencesService,
         private readonly userService: APIUserService,
         changeDetectorRef: ChangeDetectorRef,
     ) {

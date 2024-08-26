@@ -7,6 +7,7 @@ import { Utils } from 'src/app/tools/utils';
 
 import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { DataService } from 'src/app/services/data.service';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { GlobalService } from '../../services/global.service';
@@ -54,50 +55,17 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         private readonly globalService: GlobalService,
         private readonly dataService: DataService<boolean | string, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
+        private readonly prefs: PreferencesService,
     ) {
-        console.log(this.emojis);
-
-        this.contextMenuBingo.push(
-            {
-                iconText: '',
-                label: '',
-                action: data => {
-                    this.bingoRemoveCheck(data.groupIndex, data.index);
-                },
-            },
-            {
-                iconText: '🥰',
-                label: '🥰',
-                action: data => {
-                    this.bingoSetCheck(data.groupIndex, data.index, '🥰');
-                },
-            },
-            {
-                iconText: '🤩',
-                label: '🤩',
-                action: data => {
-                    this.bingoSetCheck(data.groupIndex, data.index, '🤩');
-                },
-            },
-            {
-                iconText: '😆',
-                label: 'selectEmoji',
-                action: data => {
-                    this.bingoSetCheck(data.groupIndex, data.index, '😆');
-                },
-            },
-            {
-                iconText: '...',
-                label: 'Intervertir la sélection',
-                action: data => {
-                    this.selectEmoji();
-                },
-            },
-        );
-
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
         });
+
+        this.sub.push(
+            this.prefs.onChange.subscribe(() => {
+                this.getContextMenu();
+            }),
+        );
     }
 
     async ngOnInit() {
@@ -125,6 +93,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
                 }),
             );
         }
+
+        this.getContextMenu();
     }
 
     ngOnDestroy() {
@@ -155,8 +125,36 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.dataService.clear('bingo', this.id());
     }
 
+    async getContextMenu() {
+        const initPreferences = await this.prefs.init();
+
+        this.contextMenuBingo = [
+            {
+                iconText: '',
+                label: '',
+                action: data => {
+                    this.bingoRemoveCheck(data.groupIndex, data.index);
+                },
+            },
+            ...initPreferences.emojiList.map(emoji => ({
+                iconText: emoji,
+                label: emoji,
+                action: (data: { groupIndex: number; index: number }) => {
+                    this.bingoSetCheck(data.groupIndex, data.index, emoji);
+                },
+            })),
+            {
+                iconText: '⋯',
+                label: 'Intervertir la sélection',
+                action: _ => {
+                    this.selectEmoji();
+                },
+            },
+        ];
+    }
+
     selectEmoji() {
-        // TODO
+        this.prefs.openPanel('emoji');
     }
 
     detectChanges() {

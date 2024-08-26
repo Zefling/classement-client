@@ -264,6 +264,26 @@ header {
         padding: 5px;
         font-size: 80%;
     }
+
+    .emoji-list {
+        display: grid;
+        grid-template-columns: [col-start] repeat(auto-fill, minmax(40px, 1fr)) [col-end];
+        gap: 2px;
+        padding: 0;
+        list-style: none;
+
+        li {
+            padding: 2px;
+            font-size: 25px;
+            line-height: 35px;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+                background-color: var(--primary5);
+            }
+        }
+    }
 }
 
 :host > div {

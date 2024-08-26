@@ -28,7 +28,7 @@ export class ContextMenuDirective<T> {
     constructor(private readonly overlay: Overlay) {}
 
     @HostListener('contextmenu', ['$event'])
-    onContextMenu(event: MouseEvent) {
+    async onContextMenu(event: MouseEvent) {
         const overlayRef = this.overlay.create({
             hasBackdrop: true,
             backdropClass: 'overlay-backdrop',
