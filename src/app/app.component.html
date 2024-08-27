@@ -342,7 +342,7 @@
               <h4>{{ 'preferences.emoji.' + emojiGroup.label | transloco }}</h4>
               <ul class="emoji-list">
                 @for (emoji of emojiGroup.options; track emoji) {
-                  <li>{{ emoji.value }}</li>
+                  <li>{{ emoji }}</li>
                 }
               </ul>
             }
