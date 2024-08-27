@@ -241,7 +241,7 @@
   @if (preferencesForm) {
     <ng-container [formGroup]="preferencesForm">
       <h2>{{ 'preferences.title' | transloco }}</h2>
-      <tabs>
+      <tabs #preferencesTabs>
         <tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</tab-title>
         <tab-content id="general">
           <h3>{{ 'preferences.interface.title' | transloco }}</h3>

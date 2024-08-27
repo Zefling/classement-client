@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, signal, Type, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, signal, Type, viewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Event, Router, Scroll } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { filter } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { DialogComponent } from './components/dialog/dialog.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 import { themes, themesAxis, themesBingo, themesIceberg, themesLists } from './content/classement/classement-default';
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
@@ -34,10 +35,11 @@ const languages = [
     },
 })
 export class AppComponent implements DoCheck {
-    @ViewChild('warningExit') warningExit!: DialogComponent;
-    @ViewChild('preferences') preferences!: DialogComponent;
-    @ViewChild('choice') choice!: DialogComponent;
-    @ViewChild('main') main!: ElementRef<HTMLDivElement>;
+    warningExit = viewChild.required<DialogComponent>('warningExit');
+    preferences = viewChild.required<DialogComponent>('preferences');
+    choice = viewChild.required<DialogComponent>('choice');
+    main = viewChild.required<ElementRef<HTMLDivElement>>('main');
+    preferencesTabs = viewChild('preferencesTabs', { read: TabsComponent });
 
     languages = languages;
 
@@ -85,12 +87,12 @@ export class AppComponent implements DoCheck {
         });
 
         this.globalService.onForceExit.subscribe((route?: string) => {
-            this.warningExit.open();
+            this.warningExit().open();
             this.route = route;
         });
 
         this.globalService.onOpenChoice.subscribe(() => {
-            this.choice.open();
+            this.choice().open();
         });
 
         this.globalService.helpComponent.subscribe(helpComponent => {
@@ -99,9 +101,14 @@ export class AppComponent implements DoCheck {
             this.helpComponent = helpComponent;
         });
 
+        this.preferencesService.openPref.subscribe(panelName => {
+            this.preferences().open();
+            this.preferencesTabs()?.update(panelName);
+            console.log('>>>>>>>>>>>>', this.preferencesTabs());
+        });
         router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
             changeDetectorRef.detectChanges();
-            this.main.nativeElement.scroll({ top: 0, behavior: 'auto' });
+            this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
         if (environment.api?.active) {
@@ -167,13 +174,13 @@ export class AppComponent implements DoCheck {
             this.globalService.withChange.set(0);
             this.router.navigate([this.route]);
         }
-        this.warningExit.close();
+        this.warningExit().close();
     }
 
     openChoice(event: MouseEvent) {
         this.toggleMenu();
         if (this.preferencesForm?.get('mode')?.value === 'choice') {
-            this.choice.open();
+            this.choice().open();
 
             event.stopPropagation();
             event.preventDefault();
@@ -182,11 +189,11 @@ export class AppComponent implements DoCheck {
 
     beginNew(mode: ModeNames) {
         this.router.navigate(['edit', 'new', mode]);
-        this.choice.close();
+        this.choice().close();
     }
 
     openPreferences() {
-        this.preferences.open();
+        this.preferences().open();
     }
 
     private async initPreferences() {

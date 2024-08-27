@@ -10,7 +10,7 @@
 # Version: 15.1
 */
 
-// list of regexp :
+// list of regexp apply on the source file (respect order):
 // /.*unqualified.*\n//
 // /.*;.*# (.*) E\d+.*\n/$1,/
 // /# subgroup: (.*)\n(.*),/'$1': '$2',/
