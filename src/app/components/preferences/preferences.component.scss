@@ -1,0 +1,80 @@
+.preferences {
+    label {
+        display: block;
+    }
+
+    .buttons {
+        margin: 20px;
+        text-align: center;
+    }
+
+    .number-pages {
+        margin-right: 5px;
+        width: 100px;
+        text-align: right;
+    }
+
+    light-dark {
+        margin: 10px 0;
+    }
+
+    h3 {
+        border-bottom: 1px solid var(--box-border-color);
+    }
+
+    h5 {
+        margin: 10px 0 5px;
+    }
+
+    .info {
+        opacity: 0.6;
+        padding: 5px;
+        font-size: 80%;
+    }
+
+    .emoji-list {
+        display: grid;
+        grid-template-columns: [col-start] repeat(auto-fill, minmax(40px, 1fr)) [col-end];
+        gap: 2px;
+        padding: 0;
+        list-style: none;
+
+        li {
+            padding: 2px;
+            font-size: 25px;
+            line-height: 35px;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+                background-color: var(--primary5);
+            }
+        }
+
+        &.cdk-drop-list-dragging li:not(.cdk-drag-placeholder) {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    box-shadow:
+        0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    background: var(--dialog-backdrop-background);
+    padding: 2px;
+    font-size: 25px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0.1;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

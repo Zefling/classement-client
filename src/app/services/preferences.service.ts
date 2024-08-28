@@ -27,7 +27,7 @@ export class PreferencesService {
         lineOption: 'auto',
         pageSize: 24,
         mainMenuReduce: false,
-        emojiList: ['🥰', '🤩', '🤩', '🤪', '😁', '😏'],
+        emojiList: ['🥰', '😍', '🤩', '🤪', '😁', '😏'],
         authApiKeys: {
             imdb: '',
         },

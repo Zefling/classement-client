@@ -26,9 +26,11 @@ import { ThemeIconComponent } from './theme-icon/theme-icon.component';
 import { ZoneAreaComponent } from './zone-area/zone-area.component';
 import { ZoneAxisComponent } from './zone-axis/zone-axis.component';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Select2Module } from 'ng-select2-component';
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { PreferencesDialogComponent } from './preferences/preferences.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +52,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TagListComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
+        PreferencesDialogComponent,
     ],
     exports: [
         DialogComponent,
@@ -70,6 +73,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TagListComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
+        PreferencesDialogComponent,
     ],
     imports: [
         CommonModule,
@@ -80,6 +84,7 @@ import { PipesModule } from '../pipes/pipes.module';
         TranslocoModule,
         MarkdownModule,
         Select2Module,
+        DragDropModule,
     ],
 })
 export class ComponentsModule {}

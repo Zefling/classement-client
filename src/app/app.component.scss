@@ -231,61 +231,6 @@ header {
     }
 }
 
-.preferences {
-    label {
-        display: block;
-    }
-
-    .buttons {
-        margin: 20px;
-        text-align: center;
-    }
-
-    .number-pages {
-        margin-right: 5px;
-        width: 100px;
-        text-align: right;
-    }
-
-    light-dark {
-        margin: 10px 0;
-    }
-
-    h3 {
-        border-bottom: 1px solid var(--box-border-color);
-    }
-
-    h5 {
-        margin: 10px 0 5px;
-    }
-
-    .info {
-        opacity: 0.6;
-        padding: 5px;
-        font-size: 80%;
-    }
-
-    .emoji-list {
-        display: grid;
-        grid-template-columns: [col-start] repeat(auto-fill, minmax(40px, 1fr)) [col-end];
-        gap: 2px;
-        padding: 0;
-        list-style: none;
-
-        li {
-            padding: 2px;
-            font-size: 25px;
-            line-height: 35px;
-            text-align: center;
-
-            &:hover {
-                cursor: pointer;
-                background-color: var(--primary5);
-            }
-        }
-    }
-}
-
 :host > div {
     position: relative;
     grid-area: main;
