@@ -10,7 +10,7 @@ type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<keyof T
 type ContextMenuItemBase<T> = {
     iconText?: string;
     icon?: string;
-    label: string;
+    label?: string;
     action: (arg: T) => void;
 };
 

@@ -92,14 +92,8 @@
         <tab-title id="emoji"> {{ 'preferences.tab.emoji' | transloco }}</tab-title>
         <tab-content id="emoji" formGroupName="authApiKeys">
           <h3>Current</h3>
-          <ul
-            class="emoji-list"
-            cdkDropList
-            cdkDropListOrientation="horizontal"
-            (cdkDropListDropped)="drop($event)"
-            (cdkDragExited)="dragEnd()"
-          >
-            @for (emoji of preferencesService.preferences.emojiList; track emoji) {
+          <ul class="emoji-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            @for (emoji of emojiSort; track emoji) {
               <li cdkDrag>{{ emoji }}</li>
             }
           </ul>

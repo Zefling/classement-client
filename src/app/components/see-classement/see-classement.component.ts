@@ -131,21 +131,20 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.contextMenuBingo = [
             {
                 iconText: '',
-                label: '',
+                label: 'Intervertir la sélection',
                 action: data => {
                     this.bingoRemoveCheck(data.groupIndex, data.index);
                 },
             },
             ...initPreferences.emojiList.map(emoji => ({
                 iconText: emoji,
-                label: emoji,
                 action: (data: { groupIndex: number; index: number }) => {
                     this.bingoSetCheck(data.groupIndex, data.index, emoji);
                 },
             })),
             {
                 iconText: '⋯',
-                label: 'Intervertir la sélection',
+                label: 'Éditer la liste',
                 action: _ => {
                     this.selectEmoji();
                 },

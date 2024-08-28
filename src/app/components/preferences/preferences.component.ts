@@ -35,10 +35,10 @@ const languages = [
 export class PreferencesDialogComponent {
     //inject
 
-    readonly preferencesService = inject(PreferencesService);
-    readonly logger = inject(Logger);
-    readonly translate = inject(TranslocoService);
-    readonly globalService = inject(GlobalService);
+    private readonly preferencesService = inject(PreferencesService);
+    private readonly logger = inject(Logger);
+    private readonly translate = inject(TranslocoService);
+    private readonly globalService = inject(GlobalService);
 
     // viewChild
 
@@ -54,6 +54,8 @@ export class PreferencesDialogComponent {
     themes? = themes;
 
     emojiList = emojis;
+    emojiSort: string[] = [];
+
     modeApi = environment.api?.active || false;
 
     preferencesForm?: FormGroup;
@@ -74,10 +76,7 @@ export class PreferencesDialogComponent {
     }
 
     drop(event: CdkDragDrop<string[]>) {
-        moveItemInArray(this.preferencesService.preferences.emojiList, event.previousIndex, event.currentIndex);
-    }
-
-    dragEnd() {
+        moveItemInArray(this.emojiSort, event.previousIndex, event.currentIndex);
         this.savePref();
     }
 
@@ -128,6 +127,8 @@ export class PreferencesDialogComponent {
         // menu
         this.mainMenuReduce.emit(initPreferences.mainMenuReduce);
 
+        this.emojiSort = initPreferences.emojiList;
+
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
             interfaceTheme: new FormControl(this.globalService.userSchema),
@@ -167,9 +168,8 @@ export class PreferencesDialogComponent {
     }
 
     private savePref() {
-        this.preferencesService.saveAndUpdate({
-            ...this.preferencesForm!.value,
-            emojiList: this.preferencesService.preferences.emojiList,
-        });
+        const data = this.preferencesForm!.value;
+        data.emojiList = this.emojiSort;
+        this.preferencesService.saveAndUpdate(data);
     }
 }
