@@ -5,6 +5,7 @@ import { Subject, debounceTime } from 'rxjs';
 import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
+import { TranslocoService } from '@jsverse/transloco';
 import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { DataService } from 'src/app/services/data.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
@@ -56,6 +57,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         private readonly dataService: DataService<boolean | string, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
         private readonly prefs: PreferencesService,
+        private readonly translate: TranslocoService,
     ) {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
@@ -131,7 +133,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.contextMenuBingo = [
             {
                 iconText: '',
-                label: 'Intervertir la sélection',
+                label: this.translate.translate('preferences.emoji.remove'),
                 action: data => {
                     this.bingoRemoveCheck(data.groupIndex, data.index);
                 },
@@ -144,7 +146,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             })),
             {
                 iconText: '⋯',
-                label: 'Éditer la liste',
+                label: this.translate.translate('preferences.emoji.edit.list'),
                 action: _ => {
                     this.selectEmoji();
                 },

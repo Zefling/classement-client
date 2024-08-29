@@ -110,7 +110,24 @@
     },
     "tab": {
       "general": "グローバル",
+      "emoji": "絵文字",
       "api": "API"
+    },
+    "emoji": {
+      "quick.list": "クイックリスト",
+      "quick.list.info": "並べ替え可能なリスト。クリックして絵文字を削除します。",
+      "all.list": "選択できる絵文字のリスト",
+      "edit.list": "リストを編集",
+      "remove": "絵文字を削除",
+      "Smileys & Emotion": "スマイリーと感情",
+      "People & Body": "人と身体",
+      "Animals & Nature": "動物と自然",
+      "Food & Drink": "食べ物と飲み物",
+      "Travel & Places": "旅行と場所",
+      "Activities": "活動",
+      "Objects": "物",
+      "Symbols": "記号",
+      "Flags": "旗"
     },
     "imdb": {
       "key": "IMDB認証キー",

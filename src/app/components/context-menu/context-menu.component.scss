@@ -51,6 +51,7 @@
             background: var(--context-menu-item);
             width: var(--size);
             height: var(--size);
+            font-size: 28px;
 
             .icon {
                 transform: rotate(calc((-360deg / var(--total, 1)) * var(--position)));

@@ -110,7 +110,24 @@
     },
     "tab": {
       "general": "General",
+      "emoji": "Emoji",
       "api": "API"
+    },
+    "emoji": {
+      "quick.list": "Quick list",
+      "quick.list.info": "Sortable list, click to remove an emoji.",
+      "all.list": "List of emoji to choose from",
+      "edit.list": "Edit list",
+      "remove": "Remove emoji",
+      "Smileys & Emotion": "Smileys & Emotions",
+      "People & Body": "People & Body",
+      "Animals & Nature": "Animals & Nature",
+      "Food & Drink": "Food & Drink",
+      "Travel & Places": "Travel & Places",
+      "Activities": "Activities",
+      "Objects": "Objects",
+      "Symbols": "Symbols",
+      "Flags": "Flags"
     },
     "imdb": {
       "key": "IMDB authentication key",

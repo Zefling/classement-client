@@ -60,6 +60,18 @@
             transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
         }
     }
+
+    .current-emoji {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background: var(--dialog-background);
+        padding-bottom: 5px;
+    }
+
+    .emoji-info {
+        font-size: 14px;
+    }
 }
 
 .cdk-drag-preview {
