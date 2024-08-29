@@ -49,6 +49,11 @@
                 cursor: pointer;
                 background-color: var(--primary5);
             }
+
+            &.disabled {
+                opacity: 0.2;
+                cursor: not-allowed;
+            }
         }
 
         &.cdk-drop-list-dragging li:not(.cdk-drag-placeholder) {

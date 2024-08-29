@@ -27,9 +27,12 @@
     }
 
     &.bubble menu {
+        --step: 8.5px;
+        --size: 50px;
         display: block;
         position: relative;
-        transform: translate(-26px, -26px);
+        transform: translate(calc(-1px - (var(--size) / 2)), calc(-1px - (var(--size) / 2)));
+
         margin: 0;
         padding: 0;
         list-style: none;
@@ -39,14 +42,15 @@
             position: absolute;
             justify-content: center;
             align-items: center;
-            transform: rotate(calc((360deg / var(--total, 1)) * var(--position))) translate(0, -70px);
+            transform: rotate(calc((360deg / var(--total, 1)) * var(--position)))
+                translate(0, calc(-1 * var(--step) * (var(--total) + 1)));
             cursor: pointer;
             box-shadow: 2px 2px 5px #0008;
             border: 2px solid var(--context-menu-background);
             border-radius: 50%;
             background: var(--context-menu-item);
-            width: 50px;
-            height: 50px;
+            width: var(--size);
+            height: var(--size);
 
             .icon {
                 transform: rotate(calc((-360deg / var(--total, 1)) * var(--position)));

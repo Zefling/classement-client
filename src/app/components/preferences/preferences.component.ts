@@ -113,6 +113,18 @@ export class PreferencesDialogComponent {
         }
     }
 
+    removeEmoji(emoji: string) {
+        this.emojiSort.splice(this.emojiSort.indexOf(emoji), 1);
+        this.savePref();
+    }
+
+    addEmoji(emoji: string) {
+        if (this.emojiSort.length < 12) {
+            this.emojiSort.push(emoji);
+            this.savePref();
+        }
+    }
+
     private async initPreferences() {
         const initPreferences = await this.preferencesService.init();
 

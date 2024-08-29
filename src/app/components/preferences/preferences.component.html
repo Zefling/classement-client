@@ -94,7 +94,7 @@
           <h3>Current</h3>
           <ul class="emoji-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
             @for (emoji of emojiSort; track emoji) {
-              <li cdkDrag>{{ emoji }}</li>
+              <li [tabIndex]="0" cdkDrag (click)="removeEmoji(emoji)">{{ emoji }}</li>
             }
           </ul>
           <h3>Emoji au choix</h3>
@@ -103,7 +103,13 @@
               <h4>{{ 'preferences.emoji.' + emojiGroup.label | transloco }}</h4>
               <ul class="emoji-list">
                 @for (emoji of emojiGroup.options; track emoji) {
-                  <li>{{ emoji }}</li>
+                  <li
+                    [tabIndex]="0"
+                    (click)="emojiSort.includes(emoji) ? null : addEmoji(emoji)"
+                    [class.disabled]="emojiSort.includes(emoji)"
+                  >
+                    {{ emoji }}
+                  </li>
                 }
               </ul>
             }
