@@ -130,6 +130,16 @@
         }
       </table>
     } @else if (opts.mode === 'bingo') {
+      <!-- <div>
+        @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+          @for (item of group.list; track item; let index = $index) {
+            @if (item && bingoValue(indexGrp, index) && checkChoice === 'Z') {
+              <moveable-zone target="element-{{ indexGrp }}-{{ index }}"></moveable-zone>
+            }
+          }
+        }
+      </div> -->
+
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element mode-bingo"
@@ -171,7 +181,9 @@
                           @let value = bingoValue(indexGrp, index);
                           @if (value) {
                             @if (checkChoice === 'Z') {
-                              <span class="tile-validate">{{ value !== true ? value : '🥰' }}</span>
+                              <moveable-zone class="tile-validate" id="element-{{ indexGrp }}-{{ index }}">
+                                {{ value !== true ? value : '🥰' }}
+                              </moveable-zone>
                             } @else {
                               <div
                                 class="tile-validate icon-validated-{{ checkChoice }}{{

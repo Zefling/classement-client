@@ -54,7 +54,10 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly globalService: GlobalService,
-        private readonly dataService: DataService<boolean | string, { checkChoice: string }>,
+        private readonly dataService: DataService<
+            boolean | string | { content?: string; transform?: string; visible?: boolean },
+            { checkChoice: string }
+        >,
         private readonly cd: ChangeDetectorRef,
         private readonly prefs: PreferencesService,
         private readonly translate: TranslocoService,

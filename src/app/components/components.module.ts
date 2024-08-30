@@ -30,6 +30,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Select2Module } from 'ng-select2-component';
 import { DirectiveModule } from '../directives/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { NgxMoveableComponent } from './moveable/moveable.component';
 import { PreferencesDialogComponent } from './preferences/preferences.component';
 
 @NgModule({
@@ -53,6 +54,7 @@ import { PreferencesDialogComponent } from './preferences/preferences.component'
         ZoneAreaComponent,
         ZoneAxisComponent,
         PreferencesDialogComponent,
+        NgxMoveableComponent,
     ],
     exports: [
         DialogComponent,
@@ -74,6 +76,7 @@ import { PreferencesDialogComponent } from './preferences/preferences.component'
         ZoneAreaComponent,
         ZoneAxisComponent,
         PreferencesDialogComponent,
+        NgxMoveableComponent,
     ],
     imports: [
         CommonModule,
