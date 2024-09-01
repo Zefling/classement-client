@@ -132,7 +132,7 @@
     } @else if (opts.mode === 'bingo') {
       @if (checkChoice === 'Z') {
         <div class="active-mode">
-          <label> <input type="checkbox" [(ngModel)]="editMode" /> Mode édition des emoji </label>
+          <label> <input type="checkbox" [(ngModel)]="editMode" />{{ 'action.emoji.edit.mode' | transloco }}</label>
         </div>
       }
 

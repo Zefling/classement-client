@@ -811,7 +811,8 @@
         "heart": "ハート",
         "emoji": "絵文字"
       }
-    }
+    },
+    "emoji.edit.mode": "絵文字編集モード"
   },
   "error": {
     "api-code": {
