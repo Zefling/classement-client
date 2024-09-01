@@ -8,82 +8,11 @@ import {
     NgZone,
     OnChanges,
     OnDestroy,
+    output,
+    signal,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
-
-export declare const ANGULAR_MOVEABLE_OUTPUTS: [
-    'beforeRenderStart',
-    'beforeRender',
-    'beforeRenderEnd',
-    'beforeRenderGroupStart',
-    'beforeRenderGroup',
-    'beforeRenderGroupEnd',
-    'changeTargets',
-    'snap',
-    'bound',
-    'pinchStart',
-    'pinch',
-    'pinchEnd',
-    'pinchGroupStart',
-    'pinchGroup',
-    'pinchGroupEnd',
-    'dragStart',
-    'drag',
-    'dragEnd',
-    'dragGroupStart',
-    'dragGroup',
-    'dragGroupEnd',
-    'resizeStart',
-    'beforeResize',
-    'resize',
-    'resizeEnd',
-    'resizeGroupStart',
-    'beforeResizeGroup',
-    'resizeGroup',
-    'resizeGroupEnd',
-    'scaleStart',
-    'beforeScale',
-    'scale',
-    'scaleEnd',
-    'scaleGroupStart',
-    'beforeScaleGroup',
-    'scaleGroup',
-    'scaleGroupEnd',
-    'warpStart',
-    'warp',
-    'warpEnd',
-    'rotateStart',
-    'beforeRotate',
-    'rotate',
-    'rotateEnd',
-    'rotateGroupStart',
-    'beforeRotateGroup',
-    'rotateGroup',
-    'rotateGroupEnd',
-    'scroll',
-    'scrollGroup',
-    'dragOriginStart',
-    'dragOrigin',
-    'dragOriginEnd',
-    'clipStart',
-    'clip',
-    'clipEnd',
-    'roundStart',
-    'round',
-    'roundEnd',
-    'roundGroupStart',
-    'roundGroup',
-    'roundGroupEnd',
-    'click',
-    'clickGroup',
-    'renderStart',
-    'render',
-    'renderEnd',
-    'renderGroupStart',
-    'renderGroup',
-    'renderGroupEnd',
-];
 
 import Moveable, { EVENTS } from 'moveable';
 
@@ -98,9 +27,14 @@ export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges
     private targetInternal = viewChild.required<ElementRef<HTMLElement>>('target');
     private container = viewChild.required<ElementRef<HTMLElement>>('container');
 
-    protected moveable!: Moveable;
-
     target = input<string>();
+    transform = input<string>();
+
+    transformTarget = signal<string>('');
+
+    transformUpdate = output<string>();
+
+    protected moveable!: Moveable;
 
     constructor() {
         EVENTS.forEach(name => {
@@ -111,14 +45,21 @@ export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges
     ngAfterViewInit(): void {
         const events: Record<string, (event: any) => void> = {};
 
+        this.transformTarget.set(this.transform() || '');
+
         EVENTS.forEach(name => {
             events[name] = (event: any) => {
-                console.log('event', name, event);
+                let transform: string | undefined = undefined;
+
                 if (name === 'scale' || name === 'rotate') {
-                    event.target.style.transform = event.drag.transform;
+                    transform = event.drag.transform;
+                } else if (name === 'drag') {
+                    transform = event.transform;
                 }
-                if (name === 'drag') {
-                    event.target.style.transform = event.transform;
+
+                if (transform) {
+                    this.transformUpdate.emit(event.target.style.transform);
+                    this.transformTarget.set(transform);
                 }
             };
         });

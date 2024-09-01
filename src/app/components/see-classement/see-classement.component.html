@@ -130,15 +130,11 @@
         }
       </table>
     } @else if (opts.mode === 'bingo') {
-      <!-- <div>
-        @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
-          @for (item of group.list; track item; let index = $index) {
-            @if (item && bingoValue(indexGrp, index) && checkChoice === 'Z') {
-              <moveable-zone target="element-{{ indexGrp }}-{{ index }}"></moveable-zone>
-            }
-          }
-        }
-      </div> -->
+      @if (checkChoice === 'Z') {
+        <div class="active-mode">
+          <label> <input type="checkbox" [(ngModel)]="editMode" /> Mode édition des emoji </label>
+        </div>
+      }
 
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
@@ -162,7 +158,7 @@
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
                       <div
                         class="content-box clickable"
-                        (click)="bingoToggleCheck(indexGrp, index)"
+                        (click)="!editMode || checkChoice !== 'Z' ? bingoToggleCheck(indexGrp, index) : null"
                         [contextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
                         contextMenuMode="bubble"
                       >
@@ -179,11 +175,19 @@
                             </div>
                           }
                           @let value = bingoValue(indexGrp, index);
-                          @if (value) {
+                          @if (value.visible) {
                             @if (checkChoice === 'Z') {
-                              <moveable-zone class="tile-validate" id="element-{{ indexGrp }}-{{ index }}">
-                                {{ value !== true ? value : '🥰' }}
-                              </moveable-zone>
+                              @if (editMode) {
+                                <moveable-zone
+                                  [transform]="value.transform"
+                                  (transformUpdate)="value.transform = $event"
+                                  >{{ value.content ?? '🥰' }}</moveable-zone
+                                >
+                              } @else {
+                                <span class="tile-validate" [style.--transform]="value.transform">{{
+                                  value.content ?? '🥰'
+                                }}</span>
+                              }
                             } @else {
                               <div
                                 class="tile-validate icon-validated-{{ checkChoice }}{{

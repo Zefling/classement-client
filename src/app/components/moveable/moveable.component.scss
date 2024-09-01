@@ -1,14 +1,11 @@
-:host {
-    display: block;
-    position: relative;
-    z-index: 2;
-}
+:host,
 .target {
     position: absolute;
-    top: 15px;
-    left: 12px;
-    transform: rotate(-5deg);
-    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.target {
     color: var(--symbol-color);
     font-size: calc(min(var(--over-item-width), var(--over-item-height)) - 20px);
 }

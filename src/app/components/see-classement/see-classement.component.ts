@@ -14,6 +14,13 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { GlobalService } from '../../services/global.service';
 import { ContextMenuItem } from '../context-menu/context-menu.component';
 
+export interface ItemSelection {
+    content?: string;
+    transform?: string;
+    visible?: boolean;
+}
+const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
+
 @Component({
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
@@ -45,6 +52,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     checkChoice = 'A';
 
     emojis = emojis;
+    editMode = false;
+    emojiDefault = '🥰';
 
     contextMenuBingo: ContextMenuItem<{ item: FileType; groupIndex: number; index: number }>[] = [];
 
@@ -54,10 +63,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly globalService: GlobalService,
-        private readonly dataService: DataService<
-            boolean | string | { content?: string; transform?: string; visible?: boolean },
-            { checkChoice: string }
-        >,
+        private readonly dataService: DataService<ItemSelection, { checkChoice: string }>,
         private readonly cd: ChangeDetectorRef,
         private readonly prefs: PreferencesService,
         private readonly translate: TranslocoService,
@@ -111,19 +117,30 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     }
 
     bingoToggleCheck(group: number, item: number) {
-        return this.dataService.change('bingo', this.id(), group, item, !this.bingoValue(group, item));
+        var toggle = this.bingoValue(group, item);
+        toggle.visible = !toggle.visible;
+        toggle.content ??= this.emojiDefault;
+        return this.dataService.change('bingo', this.id(), group, item, toggle);
     }
 
     bingoRemoveCheck(group: number, item: number) {
-        return this.dataService.change('bingo', this.id(), group, item, false);
+        var falsy = this.bingoValue(group, item);
+        falsy.visible = false;
+        return this.dataService.change('bingo', this.id(), group, item, falsy);
     }
 
-    bingoSetCheck(group: number, item: number, value: string) {
+    bingoSetCheck(group: number, item: number, value: ItemSelection) {
         return this.dataService.change('bingo', this.id(), group, item, value);
     }
 
     bingoValue(group: number, item: number) {
-        return this.dataService.value('bingo', this.id(), group, item) ?? false;
+        let value = this.dataService.value('bingo', this.id(), group, item);
+        return (value as any) === true
+            ? { visible: true, transform: defaultTransform }
+            : (this.dataService.value('bingo', this.id(), group, item) ?? {
+                  visible: false,
+                  transform: defaultTransform,
+              });
     }
 
     bingoClear() {
@@ -132,6 +149,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     async getContextMenu() {
         const initPreferences = await this.prefs.init();
+        this.emojiDefault = initPreferences.emojiList[0];
 
         this.contextMenuBingo = [
             {
@@ -144,7 +162,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             ...initPreferences.emojiList.map(emoji => ({
                 iconText: emoji,
                 action: (data: { groupIndex: number; index: number }) => {
-                    this.bingoSetCheck(data.groupIndex, data.index, emoji);
+                    const value = this.bingoValue(data.groupIndex, data.index);
+                    value.content = emoji;
+                    value.visible = true;
+                    value.transform = defaultTransform;
+                    this.bingoSetCheck(data.groupIndex, data.index, value);
                 },
             })),
             {
