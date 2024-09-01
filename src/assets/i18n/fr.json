@@ -791,6 +791,12 @@
       "required": "Mot de passe requis pour voir ce classement",
       "cancel": "Annuler",
       "ok": "Ok"
+    },
+    "help": {
+      "bingo": {
+        "text": "Avec le mode Emoji, il possible de choisir ce qu'on veut utiliser dans le panneau des “<strong>préférences</strong>”, et de les transformer avec le mode édition.",
+        "shortcut.context.menu": "Sélection l'emoji de son choix, le supprimer ou éditer la listes des emoji avec <code>⋯</code>"
+      }
     }
   },
   "action": {

@@ -7,6 +7,7 @@ import { Utils } from 'src/app/tools/utils';
 
 import { TranslocoService } from '@jsverse/transloco';
 import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { HelpBingoEmojiComponent } from 'src/app/content/navigate/help/help.bingo.component';
 import { DataService } from 'src/app/services/data.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
@@ -90,6 +91,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             const options = this.dataService.getOptions(mode, this.id());
             if (options) {
                 this.checkChoice = options.checkChoice;
+                if (options.checkChoice === 'Z') {
+                    this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
+                } else {
+                    this.globalService.changeHelpComponent();
+                }
                 this.cd.detectChanges();
             }
         }
@@ -99,6 +105,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
                 this.dataService.onOptionChange.subscribe(options => {
                     if (options && this.checkChoice !== options.checkChoice) {
                         this.checkChoice = options.checkChoice;
+                        if (options.checkChoice === 'Z') {
+                            this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
+                        } else {
+                            this.globalService.changeHelpComponent();
+                        }
                         this.cd.detectChanges();
                     }
                 }),
@@ -136,7 +147,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     bingoValue(group: number, item: number) {
         let value = this.dataService.value('bingo', this.id(), group, item);
         return (value as any) === true
-            ? { visible: true, transform: defaultTransform }
+            ? { visible: true, transform: defaultTransform, content: this.emojiDefault }
             : (this.dataService.value('bingo', this.id(), group, item) ?? {
                   visible: false,
                   transform: defaultTransform,

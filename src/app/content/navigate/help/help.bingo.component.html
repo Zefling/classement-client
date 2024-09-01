@@ -1,0 +1,15 @@
+<h2>{{ 'mode.name.bingo' | transloco }}</h2>
+
+<h3>{{ 'generator.help.title' | transloco }}</h3>
+
+<p [innerHTML]="'navigate.help.bingo.text' | transloco"></p>
+
+<h3>{{ 'generator.help.shortcut.title' | transloco }}</h3>
+
+<dl>
+  <dt>
+    <kbd>{{ 'generator.help.shortcut.middle.click' | transloco }}</kbd>
+    {{ 'generator.help.shortcut.on.tile' | transloco }}
+  </dt>
+  <dd [innerHTML]="'navigate.help.bingo.shortcut.context.menu' | transloco"></dd>
+</dl>

@@ -791,6 +791,12 @@
       "required": "Password required to view this ranking",
       "cancel": "Cancel",
       "ok": "Ok"
+    },
+    "help": {
+      "bingo": {
+        "text": "With Emoji mode, you can choose what you want to use in the “<strong>preferences</strong>” panel, and transform them with the edit mode.",
+        "shortcut.context.menu": "Select the emoji of your choice, delete it or edit the emoji list with <code>⋯</code>"
+      }
     }
   },
   "action": {

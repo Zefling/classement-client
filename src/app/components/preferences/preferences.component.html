@@ -95,7 +95,7 @@
             <h3>{{ 'preferences.emoji.quick.list' | transloco }}</h3>
             <ul class="emoji-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
               @for (emoji of emojiSort; track emoji) {
-                <li [tabIndex]="0" cdkDrag (click)="(emojiSort.length > 1 ? emoji : null)">{{ emoji }}</li>
+                <li [tabIndex]="0" cdkDrag (click)="emojiSort.length > 1 ? removeEmoji(emoji) : null">{{ emoji }}</li>
               }
             </ul>
             <div class="emoji-info">{{ 'preferences.emoji.quick.list.info' | transloco }}</div>

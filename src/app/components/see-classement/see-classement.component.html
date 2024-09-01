@@ -17,7 +17,7 @@
             <div class="list-mode option">
               <div class="view">
                 @if (value === 'Z') {
-                  <span>🥰</span>
+                  <span>{{ emojiDefault }}</span>
                 } @else {
                   <span [ngClass]="'icon-validated-' + value + '1'"></span>
                 }
@@ -31,7 +31,7 @@
             <div class="list-mode">
               <div class="view">
                 @if (value === 'Z') {
-                  <span>🥰</span>
+                  <span>{{ emojiDefault }}</span>
                 } @else {
                   <span [ngClass]="'icon-validated-' + value + '1'"></span>
                 }
@@ -181,11 +181,11 @@
                                 <moveable-zone
                                   [transform]="value.transform"
                                   (transformUpdate)="value.transform = $event"
-                                  >{{ value.content ?? '🥰' }}</moveable-zone
+                                  >{{ value.content ?? emojiDefault }}</moveable-zone
                                 >
                               } @else {
                                 <span class="tile-validate" [style.--transform]="value.transform">{{
-                                  value.content ?? '🥰'
+                                  value.content ?? emojiDefault
                                 }}</span>
                               }
                             } @else {
@@ -193,6 +193,7 @@
                                 class="tile-validate icon-validated-{{ checkChoice }}{{
                                   (indexGrp * group.list.length + index) % 3 || 3
                                 }}"
+                                [style.--transform]="value.transform"
                               ></div>
                             }
                           }

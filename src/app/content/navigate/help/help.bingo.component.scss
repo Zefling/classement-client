@@ -1,0 +1,10 @@
+@import url('../../classement/help/help.tierlist.component.scss');
+
+:host ::ng-deep code {
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+}
