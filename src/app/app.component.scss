@@ -231,41 +231,6 @@ header {
     }
 }
 
-.preferences {
-    label {
-        display: block;
-    }
-
-    .buttons {
-        margin: 20px;
-        text-align: center;
-    }
-
-    .number-pages {
-        margin-right: 5px;
-        width: 100px;
-        text-align: right;
-    }
-
-    light-dark {
-        margin: 10px 0;
-    }
-
-    h3 {
-        border-bottom: 1px solid var(--box-border-color);
-    }
-
-    h5 {
-        margin: 10px 0 5px;
-    }
-
-    .info {
-        opacity: 0.6;
-        padding: 5px;
-        font-size: 80%;
-    }
-}
-
 :host > div {
     position: relative;
     grid-area: main;

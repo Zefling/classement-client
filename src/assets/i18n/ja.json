@@ -110,7 +110,24 @@
     },
     "tab": {
       "general": "グローバル",
+      "emoji": "絵文字",
       "api": "API"
+    },
+    "emoji": {
+      "quick.list": "クイックリスト",
+      "quick.list.info": "並べ替え可能なリスト。クリックして絵文字を削除します。",
+      "all.list": "選択できる絵文字のリスト",
+      "edit.list": "リストを編集",
+      "remove": "絵文字を削除",
+      "Smileys & Emotion": "スマイリーと感情",
+      "People & Body": "人と身体",
+      "Animals & Nature": "動物と自然",
+      "Food & Drink": "食べ物と飲み物",
+      "Travel & Places": "旅行と場所",
+      "Activities": "活動",
+      "Objects": "物",
+      "Symbols": "記号",
+      "Flags": "旗"
     },
     "imdb": {
       "key": "IMDB認証キー",
@@ -774,6 +791,12 @@
       "required": "このランキングを表示するにはパスワードが必要です",
       "cancel": "キャンセル",
       "ok": "OK"
+    },
+    "help": {
+      "bingo": {
+        "text": "絵文字モードでは、「<strong>環境設定</strong>」パネルで使用するものを選択し、編集モードで変換できます。",
+        "shortcut.context.menu": "選択した絵文字を選択、削除するか、<code>⋯</code>で絵文字リストを編集してください。"
+      }
     }
   },
   "action": {
@@ -785,9 +808,11 @@
         "check": "チェックマーク",
         "circle": "サークル",
         "hanamaru": "はなまる",
-        "heart": "ハート"
+        "heart": "ハート",
+        "emoji": "絵文字"
       }
-    }
+    },
+    "emoji.edit.mode": "絵文字編集モード"
   },
   "error": {
     "api-code": {

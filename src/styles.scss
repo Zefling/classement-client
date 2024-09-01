@@ -4,6 +4,10 @@
 
 @import './fonts.scss';
 
+.cdk-overlay-container {
+    z-index: 10000;
+}
+
 body.light-mode {
     color-scheme: light;
 

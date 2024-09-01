@@ -1,0 +1,11 @@
+:host,
+.target {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.target {
+    color: var(--symbol-color);
+    font-size: calc(min(var(--over-item-width), var(--over-item-height)) - 20px);
+}

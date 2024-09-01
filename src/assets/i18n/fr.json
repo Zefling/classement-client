@@ -110,7 +110,24 @@
     },
     "tab": {
       "general": "Général",
+      "emoji": "Emoji",
       "api": "API"
+    },
+    "emoji": {
+      "quick.list": "Liste rapide",
+      "quick.list.info": "Liste triable, cliquer pour retirer un emoji.",
+      "all.list": "Liste d'emoji au choix",
+      "edit.list": "Éditer la liste",
+      "remove": "Effacer l'emoji",
+      "Smileys & Emotion": "Smileys & Émotions",
+      "People & Body": "Personnes & Corps",
+      "Animals & Nature": "Animaux & Nature",
+      "Food & Drink": "Nourriture & Boissons",
+      "Travel & Places": "Voyages & Lieux",
+      "Activities": "Activités",
+      "Objects": "Objets",
+      "Symbols": "Symboles",
+      "Flags": "Drapeaux"
     },
     "imdb": {
       "key": "Clef d'authentification IMDB",
@@ -774,6 +791,12 @@
       "required": "Mot de passe requis pour voir ce classement",
       "cancel": "Annuler",
       "ok": "Ok"
+    },
+    "help": {
+      "bingo": {
+        "text": "Avec le mode Emoji, il possible de choisir ce qu'on veut utiliser dans le panneau des “<strong>préférences</strong>”, et de les transformer avec le mode édition.",
+        "shortcut.context.menu": "Sélection l'emoji de son choix, le supprimer ou éditer la listes des emoji avec <code>⋯</code>"
+      }
     }
   },
   "action": {
@@ -785,9 +808,11 @@
         "check": "Coche",
         "circle": "Cercle",
         "hanamaru": "Hanamaru",
-        "heart": "Cœur"
+        "heart": "Cœur",
+        "emoji": "Emoji"
       }
-    }
+    },
+    "emoji.edit.mode": "Mode édition des emoji"
   },
   "error": {
     "api-code": {

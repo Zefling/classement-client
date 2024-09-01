@@ -110,7 +110,24 @@
     },
     "tab": {
       "general": "General",
+      "emoji": "Emoji",
       "api": "API"
+    },
+    "emoji": {
+      "quick.list": "Quick list",
+      "quick.list.info": "Sortable list, click to remove an emoji.",
+      "all.list": "List of emoji to choose from",
+      "edit.list": "Edit list",
+      "remove": "Remove emoji",
+      "Smileys & Emotion": "Smileys & Emotions",
+      "People & Body": "People & Body",
+      "Animals & Nature": "Animals & Nature",
+      "Food & Drink": "Food & Drink",
+      "Travel & Places": "Travel & Places",
+      "Activities": "Activities",
+      "Objects": "Objects",
+      "Symbols": "Symbols",
+      "Flags": "Flags"
     },
     "imdb": {
       "key": "IMDB authentication key",
@@ -774,6 +791,12 @@
       "required": "Password required to view this ranking",
       "cancel": "Cancel",
       "ok": "Ok"
+    },
+    "help": {
+      "bingo": {
+        "text": "With Emoji mode, you can choose what you want to use in the “<strong>preferences</strong>” panel, and transform them with the edit mode.",
+        "shortcut.context.menu": "Select the emoji of your choice, delete it or edit the emoji list with <code>⋯</code>"
+      }
     }
   },
   "action": {
@@ -785,9 +808,11 @@
         "check": "Check",
         "circle": "Circle",
         "hanamaru": "Hanamaru",
-        "heart": "Heart"
+        "heart": "Heart",
+        "emoji": "Emoji"
       }
-    }
+    },
+    "emoji.edit.mode": "Emoji edit mode"
   },
   "error": {
     "api-code": {

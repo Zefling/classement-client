@@ -442,10 +442,9 @@ img {
 
 .tile-validate {
     position: absolute;
-    top: 15px;
-    left: 12px;
-    transform: rotate(-5deg);
-    z-index: 1;
+    top: 0;
+    left: 0;
+    transform: var(--transform);
     color: var(--symbol-color);
     font-size: calc(min(var(--over-item-width), var(--over-item-height)) - 20px);
 }
@@ -490,4 +489,9 @@ img {
 
 :host.preview:has(.options) {
     flex-wrap: wrap;
+}
+
+.active-mode {
+    margin-top: 10px;
+    text-align: center;
 }

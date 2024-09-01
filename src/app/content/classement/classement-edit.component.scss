@@ -310,27 +310,44 @@ img {
     font-weight: inherit;
     font-size: inherit;
 
-    &::after,
-    textarea {
-        grid-area: 1 / 1;
-        box-sizing: border-box;
-        margin: 0;
-        border: 1px solid var(--input-border-color);
-        padding: 0;
-        width: 100%;
-        min-width: 1em;
-        height: 100%;
-        resize: none;
-        color: var(--text-color);
-        font-size: var(--over-name-font-size, 120%);
+    @supports (field-sizing: content) {
+        textarea {
+            field-sizing: content;
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+        }
     }
 
-    &::after {
-        visibility: hidden;
-        border-color: transparent;
-        content: attr(data-value) ' ';
-        white-space: pre-wrap;
-        word-break: break-word;
+    @supports not (field-sizing: content) {
+        &::after,
+        textarea {
+            grid-area: 1 / 1;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+        }
+
+        &::after {
+            visibility: hidden;
+            border-color: transparent;
+            content: attr(data-value) ' ';
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
     }
 
     &.no-border {

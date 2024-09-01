@@ -13,7 +13,7 @@
 </header>
 <aside class="aside-menu">
   <div class="backdrop" (click)="toggleMenu()"></div>
-  <div class="menu" [class.main-menu-reduce]="preferencesForm?.get('mainMenuReduce')?.value">
+  <div class="menu" [class.main-menu-reduce]="preferences().preferencesForm?.get('mainMenuReduce')?.value">
     <ul>
       <li class="section-top" [title]="'menu.home' | transloco">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()">
@@ -61,7 +61,7 @@
         </li>
       }
       <li class="section-top" [title]="'menu.new' | transloco">
-        @if (preferencesForm?.get('mode')?.value !== 'choice') {
+        @if (preferences().preferencesForm?.get('mode')?.value !== 'choice') {
           <a
             routerLink="/edit/new"
             routerLinkActive="active"
@@ -72,7 +72,7 @@
             <span>{{ 'menu.new' | transloco }}</span>
           </a>
         }
-        @if (preferencesForm?.get('mode')?.value === 'choice') {
+        @if (preferences().preferencesForm?.get('mode')?.value === 'choice') {
           <a (click)="openChoice($event)" [class.active]="routerUrl.startsWith('/edit/new')">
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | transloco }}</span>
@@ -172,15 +172,19 @@
     <div
       class="menu-mode"
       (click)="toggleResizeMenu()"
-      [title]="(preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand') | transloco"
+      [title]="
+        (preferences().preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand')
+          | transloco
+      "
     >
       <span
         class="icon"
-        [class.icon-reduce]="!preferencesForm?.get('mainMenuReduce')?.value"
-        [class.icon-expand]="preferencesForm?.get('mainMenuReduce')?.value"
+        [class.icon-reduce]="!preferences().preferencesForm?.get('mainMenuReduce')?.value"
+        [class.icon-expand]="preferences().preferencesForm?.get('mainMenuReduce')?.value"
       ></span>
       <span>{{
-        (preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.expand' : 'menu.mode.reduce') | transloco
+        (preferences().preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.expand' : 'menu.mode.reduce')
+          | transloco
       }}</span>
     </div>
   </div>
@@ -237,111 +241,4 @@
   </p>
 </dialog-cmp>
 
-<dialog-cmp class="preferences" #preferences closeBackdrop closeButton>
-  @if (preferencesForm) {
-    <ng-container [formGroup]="preferencesForm">
-      <h2>{{ 'preferences.title' | transloco }}</h2>
-      <tabs>
-        <tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</tab-title>
-        <tab-content id="general">
-          <h3>{{ 'preferences.interface.title' | transloco }}</h3>
-          <h5>{{ 'preferences.interface.light-dark' | transloco }}</h5>
-          <light-dark (change)="preferencesForm.get('interfaceTheme')?.setValue($event)"></light-dark>
-          <h5>{{ 'preferences.interface.language' | transloco }}</h5>
-          <label for="language">
-            <select id="language" formControlName="interfaceLanguage">
-              @for (lang of languages; track lang) {
-                <option [value]="lang.value">{{ lang.label }}</option>
-              }
-            </select>
-          </label>
-          @if (modeApi) {
-            <h3>{{ 'preferences.navigation.title' | transloco }}</h3>
-            <h5>{{ 'preferences.navigation.page.size' | transloco }}</h5>
-            <label>
-              {{ 'preferences.navigation.page.size.pre' | transloco }}
-              <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-              {{ 'preferences.navigation.page.size.per' | transloco }}
-            </label>
-          }
-        </tab-content>
-        <tab-title id="editor"> {{ 'preferences.editor.title' | transloco }}</tab-title>
-        <tab-content id="editor">
-          <h3>{{ 'preferences.editor.title' | transloco }}</h3>
-          <h4>{{ 'preferences.tiles.title' | transloco }}</h4>
-          <h5>{{ 'preferences.tile.title' | transloco }}</h5>
-          <label>
-            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | transloco }}
-          </label>
-          <h4>{{ 'preferences.groups.title' | transloco }}</h4>
-          <h5>{{ 'preferences.color.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="newColor" value="mixed" />
-            {{ 'preferences.color.new.color.mixed' | transloco }}
-          </label>
-          <label>
-            <input type="radio" formControlName="newColor" value="same" />
-            {{ 'preferences.color.new.color.same' | transloco }}
-          </label>
-          <h5>{{ 'preferences.group.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="newLine" value="below" />
-            {{ 'preferences.group.new.line.below' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="newLine" value="above" />
-            {{ 'preferences.group.new.line.above' | transloco }}
-          </label>
-          <!-- <label
-          ><input type="radio" formControlName="newLine" value="ask-me" />
-          {{ 'preferences.group.new.line.ask.me' | transloco }}
-        </label> -->
-          <h5>{{ 'preferences.group.line.option.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="lineOption" value="auto" />
-            {{ 'preferences.group.line.option.auto' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="lineOption" value="reduce" />
-            {{ 'preferences.group.line.option.reduce' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="lineOption" value="hidden" />
-            {{ 'preferences.group.line.option.hidden' | transloco }}
-          </label>
-          <h4>{{ 'preferences.mode.title' | transloco }}</h4>
-          <select formControlName="mode">
-            <option value="choice">{{ 'mode.name.choice' | transloco }}</option>
-            <option value="default">{{ 'mode.name.default' | transloco }}</option>
-            <option value="teams">{{ 'mode.name.teams' | transloco }}</option>
-            <option value="iceberg">{{ 'mode.name.iceberg' | transloco }}</option>
-            <option value="axis">{{ 'mode.name.axis' | transloco }}</option>
-          </select>
-          @if (preferencesForm.get('mode')?.value !== 'choice') {
-            <h4>{{ 'preferences.theme.title' | transloco }}</h4>
-            <select formControlName="theme">
-              @for (theme of themes; track theme) {
-                <option [value]="theme">
-                  {{ 'generator.theme.name.' + theme | transloco }}
-                </option>
-              }
-            </select>
-          }
-        </tab-content>
-        <tab-title id="api"> {{ 'preferences.tab.api' | transloco }}</tab-title>
-        <tab-content id="api" formGroupName="authApiKeys">
-          <label>{{ 'preferences.imdb.key' | transloco }} </label>
-          <input type="text" formControlName="imdb" />
-          <div class="info">
-            <span class="icon-info"></span>
-            Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
-            <a href="https://www.themoviedb.org/settings/api">API</a>
-          </div>
-        </tab-content>
-      </tabs>
-      <div class="buttons">
-        <button (click)="preferences.close()">{{ 'preferences.close' | transloco }}</button>
-      </div>
-    </ng-container>
-  }
-</dialog-cmp>
+<preferences-dialog #pref (mainMenuReduce)="mainMenuReduce.set($event)"></preferences-dialog>
