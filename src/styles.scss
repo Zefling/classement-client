@@ -8,6 +8,10 @@
     z-index: 10000;
 }
 
+.cdk-global-scrollblock {
+    overflow: hidden;
+}
+
 body.light-mode {
     color-scheme: light;
 
