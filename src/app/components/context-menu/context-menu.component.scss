@@ -44,6 +44,10 @@
             align-items: center;
             transform: rotate(calc((360deg / var(--total, 1)) * var(--position)))
                 translate(0, calc(-1 * var(--step) * (var(--total) + 1)));
+            opacity: 1;
+            transition-delay: calc(7ms * var(--position));
+            transition-duration: 0.5s;
+            transition-property: opacity, transform, display;
             cursor: pointer;
             box-shadow: 2px 2px 5px #0008;
             border: 2px solid var(--context-menu-background);
@@ -52,6 +56,11 @@
             width: var(--size);
             height: var(--size);
             font-size: 28px;
+
+            @starting-style {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
 
             .icon {
                 transform: rotate(calc((-360deg / var(--total, 1)) * var(--position)));
