@@ -16,7 +16,9 @@ export class DataService<T, U> {
 
     async init(type: string, id: string) {
         if (!this.data[type]) {
-            this.data[type] = (await this.db.loadExtraData<T, U>(type)) ?? {};
+            try {
+                this.data[type] = (await this.db.loadExtraData<T, U>(type)) ?? {};
+            } catch (e) {}
         }
         this.data[type] ??= {};
 
