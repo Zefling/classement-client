@@ -58,7 +58,8 @@
             font-size: 28px;
 
             @starting-style {
-                transform: translate(0, 0);
+                transform: rotate(calc((360deg / var(--total, 1)) * var(--position)))
+                    translate(0, calc(-1 * var(--size)));
                 opacity: 0;
             }
 
