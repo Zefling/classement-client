@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ import { MessageError } from '../user/user.interface';
     templateUrl: './classement-view.component.html',
     styleUrls: ['./classement-view.component.scss'],
 })
-export class ClassementViewComponent implements OnDestroy {
+export class ClassementViewComponent implements OnInit, OnDestroy {
     classement?: Classement;
     myClassement?: Classement;
     myClassements?: Classement[];
@@ -124,6 +124,19 @@ export class ClassementViewComponent implements OnDestroy {
         );
     }
 
+    ngOnInit(): void {
+        this.global.zoomActive.set(true);
+    }
+
+    ngOnDestroy(): void {
+        this.sub.clear();
+        ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'].forEach(
+            item => {
+                this.meta.removeTag(`name="${item}"`);
+            },
+        );
+    }
+
     screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
         if (div) {
             if (mode === 'fullscreen') {
@@ -160,15 +173,6 @@ export class ClassementViewComponent implements OnDestroy {
     cancelPassword() {
         this.dialogPassword().close();
         this.router.navigate(['navigate']);
-    }
-
-    ngOnDestroy(): void {
-        this.sub.clear();
-        ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'].forEach(
-            item => {
-                this.meta.removeTag(`name="${item}"`);
-            },
-        );
     }
 
     loadClassement(classement: Classement) {

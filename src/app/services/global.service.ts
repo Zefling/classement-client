@@ -38,20 +38,15 @@ export const typesMine: Record<string, string[]> = {
 @Injectable({ providedIn: 'root' })
 export class GlobalService {
     readonly onForceExit = new Subject<string | undefined>();
-
     readonly onFileLoaded = new Subject<FileStream>();
-
     readonly onPageUpdate = new Subject<number>();
-
     readonly onLocalSave = new Subject<void>();
-
     readonly onUpdateList = new Subject<void>();
-
     readonly onImageUpdate = new Subject<void>();
-
     readonly onOpenChoice = new Subject<void>();
-
     readonly helpComponent = new Subject<Type<any> | undefined>();
+
+    zoomActive = signal<boolean>(false);
 
     withChange = signal<number>(0);
 
