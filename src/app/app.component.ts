@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, signal, Type, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, inject, signal, Type, viewChild } from '@angular/core';
 import { Event, Router, Scroll } from '@angular/router';
 
 import { filter } from 'rxjs';
@@ -25,20 +25,31 @@ import { PreferencesService } from './services/preferences.service';
     },
 })
 export class AppComponent implements DoCheck {
-    warningExit = viewChild.required<DialogComponent>('warningExit');
-    choice = viewChild.required<DialogComponent>('choice');
-    main = viewChild.required<ElementRef<HTMLDivElement>>('main');
-    preferences = viewChild.required<PreferencesDialogComponent>('pref');
+    // injects
+
+    protected readonly globalService = inject(GlobalService);
+    private readonly router = inject(Router);
+    private readonly logger = inject(Logger);
+    protected readonly preferencesService = inject(PreferencesService);
+    private readonly userService = inject(APIUserService);
+    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
+    // viewChild
+
+    readonly warningExit = viewChild.required<DialogComponent>('warningExit');
+    readonly choice = viewChild.required<DialogComponent>('choice');
+    readonly main = viewChild.required<ElementRef<HTMLDivElement>>('main');
+    readonly preferences = viewChild.required<PreferencesDialogComponent>('pref');
+
+    // signals
+
+    readonly asideOpen = signal<boolean>(false);
+    readonly mainMenuReduce = signal<boolean>(true);
+    readonly showHelp = signal<boolean>(false);
+    readonly showHelpButton = signal<boolean>(false);
+    readonly modeModerator = signal<boolean>(false);
 
     loading = environment.api?.active;
-
-    asideOpen = signal<boolean>(false);
-    mainMenuReduce = signal<boolean>(true);
-    showHelp = signal<boolean>(false);
-    showHelpButton = signal<boolean>(false);
-
-    modeModerator = false;
-
     modeApi = environment.api?.active || false;
 
     _modeTemp?: string;
@@ -55,14 +66,7 @@ export class AppComponent implements DoCheck {
 
     private route?: string;
 
-    constructor(
-        private readonly globalService: GlobalService,
-        private readonly router: Router,
-        private readonly logger: Logger,
-        protected readonly preferencesService: PreferencesService,
-        private readonly userService: APIUserService,
-        changeDetectorRef: ChangeDetectorRef,
-    ) {
+    constructor() {
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit().open();
             this.route = route;
@@ -78,13 +82,13 @@ export class AppComponent implements DoCheck {
             this.helpComponent = helpComponent;
         });
 
-        router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
-            changeDetectorRef.detectChanges();
+        this.router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
+            this.changeDetectorRef.detectChanges();
             this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
         if (environment.api?.active) {
-            userService
+            this.userService
                 .initProfile()
                 .then(() => {
                     this.logger.log('Auto login success!!');
@@ -100,8 +104,8 @@ export class AppComponent implements DoCheck {
 
     ngDoCheck() {
         const modeModerator = this.userService?.isModerator || this.userService?.isAdmin || false;
-        if (this.modeModerator !== modeModerator) {
-            this.modeModerator = modeModerator;
+        if (this.modeModerator() !== modeModerator) {
+            this.modeModerator.set(modeModerator);
         }
     }
 

@@ -230,6 +230,15 @@ header {
         }
     }
 }
+.zoom-mobile {
+    position: relative;
+
+    label {
+        position: absolute;
+        top: -7px;
+        left: 3px;
+    }
+}
 
 :host > div {
     position: relative;

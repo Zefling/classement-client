@@ -80,6 +80,10 @@
 .preview {
     display: flex;
     justify-content: center;
+
+    & ::ng-deep .render {
+        zoom: calc(var(--zoom) / 100);
+    }
 }
 
 // render

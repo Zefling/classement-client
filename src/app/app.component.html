@@ -5,18 +5,19 @@
 <header>
   <div class="title">{{ 'classement' | transloco }}</div>
   <div class="actions">
-    @if (this.preferencesService.preferences.zoomMobile) {
+    @if (preferencesService.preferences.zoomMobile && globalService.zoomActive()) {
       <div class="zoom-mobile">
+        <label for="zoom"> Zoom </label>
         <input
+          id="zoom"
           type="range"
-          list="tickmarks"
-          [(ngModel)]="this.preferencesService.preferences.zoomMobile"
-          min="10"
+          min="30"
           max="100"
+          list="tick-marks"
+          [(ngModel)]="preferencesService.preferences.zoomMobile"
+          (ngModelChange)="preferencesService.saveAndUpdate(preferencesService.preferences)"
         />
-        <datalist id="tickmarks">
-          <option value="10"></option>
-          <option value="20"></option>
+        <datalist id="tick-marks">
           <option value="30"></option>
           <option value="40"></option>
           <option value="50"></option>
@@ -110,7 +111,7 @@
         </a>
       </li>
       @if (modeApi) {
-        @if (modeModerator) {
+        @if (modeModerator()) {
           <li [title]="'menu.admin' | transloco">
             <a
               routerLink="/admin"

@@ -15,6 +15,7 @@ import {
     HostBinding,
     HostListener,
     OnDestroy,
+    OnInit,
     viewChild,
     viewChildren,
 } from '@angular/core';
@@ -81,7 +82,7 @@ import { HelpTierListComponent } from './help/help.tierlist.component';
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
 })
-export class ClassementEditComponent implements OnDestroy, DoCheck {
+export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     new = false;
     id?: string;
 
@@ -260,6 +261,54 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
                 }
             }),
         );
+    }
+
+    ngOnInit(): void {
+        this.global.zoomActive.set(true);
+    }
+
+    ngDoCheck(): void {
+        if (!this.options) {
+            return;
+        }
+
+        this.lineOption = this.preferencesService.preferences.lineOption;
+
+        this.global.updateVarCss(this.options, this.imagesCache);
+        this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
+
+        // fix category with select2
+        this.options.category ??= '';
+
+        if (
+            this.options &&
+            !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
+        ) {
+            this.globalChange();
+            this.logger.log('Option change');
+            if (!this.global.withChange()) {
+                this.change();
+            }
+            this._optionsCache = Utils.jsonCopy(this.options);
+        }
+
+        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
+
+        this.shareUrl =
+            this.apiActive && this.classement?.rankingId
+                ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
+                : '';
+
+        const currentList = this.currentList()?.nativeElement;
+        if (currentList) {
+            this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
+        }
+    }
+
+    ngOnDestroy(): void {
+        this._sub.clear();
+        this.global.changeHelpComponent();
+        this.global.zoomActive.set(false);
     }
 
     updateTitle() {
@@ -489,44 +538,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
         this.dialogDerivatives().close();
     }
 
-    ngDoCheck() {
-        if (!this.options) {
-            return;
-        }
-
-        this.lineOption = this.preferencesService.preferences.lineOption;
-
-        this.global.updateVarCss(this.options, this.imagesCache);
-        this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
-
-        // fix category with select2
-        this.options.category ??= '';
-
-        if (
-            this.options &&
-            !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
-        ) {
-            this.globalChange();
-            this.logger.log('Option change');
-            if (!this.global.withChange()) {
-                this.change();
-            }
-            this._optionsCache = Utils.jsonCopy(this.options);
-        }
-
-        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
-
-        this.shareUrl =
-            this.apiActive && this.classement?.rankingId
-                ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
-                : '';
-
-        const currentList = this.currentList()?.nativeElement;
-        if (currentList) {
-            this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
-        }
-    }
-
     helpInit() {
         switch (this.options.mode) {
             case 'teams':
@@ -576,11 +587,6 @@ export class ClassementEditComponent implements OnDestroy, DoCheck {
 
     detectChanges() {
         this._detectChange.next();
-    }
-
-    ngOnDestroy() {
-        this._sub.clear();
-        this.global.changeHelpComponent();
     }
 
     @HostListener('window:beforeunload', ['$event'])
