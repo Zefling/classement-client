@@ -5,6 +5,30 @@
 <header>
   <div class="title">{{ 'classement' | transloco }}</div>
   <div class="actions">
+    @if (this.preferencesService.preferences.zoomMobile) {
+      <div class="zoom-mobile">
+        <input
+          type="range"
+          list="tickmarks"
+          [(ngModel)]="this.preferencesService.preferences.zoomMobile"
+          min="10"
+          max="100"
+        />
+        <datalist id="tickmarks">
+          <option value="10"></option>
+          <option value="20"></option>
+          <option value="30"></option>
+          <option value="40"></option>
+          <option value="50"></option>
+          <option value="60"></option>
+          <option value="70"></option>
+          <option value="80"></option>
+          <option value="90"></option>
+          <option value="100"></option>
+        </datalist>
+      </div>
+    }
+
     @if (showHelpButton()) {
       <div class="button-help" [title]="'help' | transloco" (click)="toggleHelp()">?</div>
     }

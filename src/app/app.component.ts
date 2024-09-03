@@ -21,6 +21,7 @@ import { PreferencesService } from './services/preferences.service';
         '[class.show-menu]': 'asideOpen()',
         '[class.reduce-menu]': 'mainMenuReduce()',
         '[class.show-help]': 'showHelp()',
+        '[style.--zoom]': 'preferencesService.preferences.zoomMobile',
     },
 })
 export class AppComponent implements DoCheck {

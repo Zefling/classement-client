@@ -859,7 +859,7 @@ loading-cmp {
         position: sticky;
         bottom: 0;
         background: var(--background);
-        max-width: calc(100vw - 10px);
+        max-width: 100%;
         overflow: auto;
     }
 
@@ -875,7 +875,7 @@ loading-cmp {
         justify-content: space-between;
         align-items: flex-end;
         cursor: e-resize;
-        max-width: calc(100vw - 10px);
+        max-width: 100%;
         min-height: 20px;
 
         .arrows {
@@ -886,6 +886,14 @@ loading-cmp {
 
     .mode-bingo .cdk-drop-list {
         display: inline-flex;
+    }
+
+    .mode-bingo,
+    .mode-axis,
+    .mode-default,
+    .mode-iceberg,
+    .mode-teams {
+        zoom: calc(var(--zoom) / 100);
     }
 }
 

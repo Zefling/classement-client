@@ -236,6 +236,7 @@ export interface PreferencesData {
     pageSize: number;
     mainMenuReduce: boolean;
     emojiList: string[];
+    zoomMobile: number;
     authApiKeys: {
         imdb: string;
     };

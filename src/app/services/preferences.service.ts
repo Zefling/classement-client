@@ -28,6 +28,7 @@ export class PreferencesService {
         pageSize: 24,
         mainMenuReduce: false,
         emojiList: ['🥰', '😍', '🤩', '🤪', '😁', '😏'],
+        zoomMobile: 100,
         authApiKeys: {
             imdb: '',
         },
