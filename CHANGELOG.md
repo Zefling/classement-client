@@ -1,5 +1,23 @@
 # Changelog - Standalone web app & API
 
+### 2.5.0 (2024-09-04)
+
+#### Standalone web app
+
+-   Add emoji for Bingo view #75
+    -   Add tab “Emoji” in preferences dialog
+    -   Use _Unicode_ emoji list
+    -   Add bubble style context-menu
+    -   Add emoji transformation mode with **Moveable**
+    -   Add help panel for emoji
+-   Add animation on bubble context-menu #77
+-   Add zoom option for mobile #79
+-   Fix bug when there are no preferences
+-   Fix mobile edit mode for **Bingo** #78
+-   Fix `cdk-global-scrollblock` with context-menu
+
+---
+
 ### 2.4.4 (2024-08-24)
 
 #### Standalone web app
