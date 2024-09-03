@@ -152,6 +152,7 @@ export class PreferencesDialogComponent {
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
             mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),
+            zoomMobile: new FormControl(initPreferences.zoomMobile),
             authApiKeys: new FormGroup({
                 imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
             }),
