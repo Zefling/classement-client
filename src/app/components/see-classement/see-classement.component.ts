@@ -158,6 +158,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.dataService.clear('bingo', this.id());
     }
 
+    bingoTransform(group: number, item: number, value: ItemSelection, event: string) {
+        value.transform = event;
+        return this.dataService.change('bingo', this.id(), group, item, this.bingoValue(group, item));
+    }
+
     async getContextMenu() {
         const initPreferences = await this.prefs.init();
         this.emojiDefault = initPreferences.emojiList[0];

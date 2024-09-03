@@ -180,7 +180,7 @@
                               @if (editMode) {
                                 <moveable-zone
                                   [transform]="value.transform"
-                                  (transformUpdate)="value.transform = $event"
+                                  (transformUpdate)="bingoTransform(indexGrp, index, value, $event)"
                                   >{{ value.content ?? emojiDefault }}</moveable-zone
                                 >
                               } @else {
