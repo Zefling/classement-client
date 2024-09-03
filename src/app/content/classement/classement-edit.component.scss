@@ -850,7 +850,7 @@ loading-cmp {
 
 // tablet / mobile ------------------------------------------------------------------
 
-@media screen and (max-width: 1024px) {
+@media screen and (width < 1024px) {
     :host {
         margin: 0 0 30px 0;
     }
@@ -874,17 +874,22 @@ loading-cmp {
         left: 0;
         justify-content: space-between;
         align-items: flex-end;
+        cursor: e-resize;
         max-width: calc(100vw - 10px);
-        height: 30px;
+        min-height: 20px;
 
         .arrows {
             right: 8px;
             font-size: 18px;
         }
     }
+
+    .mode-bingo .cdk-drop-list {
+        display: inline-flex;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width < 768px) {
     .drop-image-message {
         font-size: 60%;
     }
@@ -956,7 +961,7 @@ loading-cmp {
 
 // force reduce options ------------------------------------------------------------------
 
-@media screen and (min-width: 769px) {
+@media screen and (width > 769px) {
     :host.option-reduce {
         --group-option-height: 0;
 
