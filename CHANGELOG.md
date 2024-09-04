@@ -4,8 +4,6 @@
 
 #### Standalone web app
 
--   Fix emoji transform persistance
--   Fix context-menu: only for emoji
 -   Improve zoom option
 -   Fix help button size
 -   Fix remove zoom when exit the classement view
@@ -13,6 +11,8 @@
 
 #### With API activated only
 
+-   Fix emoji transform persistance
+-   Fix context-menu: only for emoji
 -   Emoji only for API
 
 ### 2.5.0 (2024-09-04)
