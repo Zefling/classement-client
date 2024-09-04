@@ -81,8 +81,10 @@
     display: flex;
     justify-content: center;
 
-    & ::ng-deep .render {
-        zoom: calc(var(--zoom) / 100);
+    @media screen and (width < 1024px) {
+        & ::ng-deep .render {
+            zoom: calc(var(--zoom) / 100);
+        }
     }
 }
 
@@ -205,7 +207,7 @@ loading-cmp {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width < 768px) {
     .preview ::ng-deep .names {
         width: calc(var(--over-name-width, 150px) / 2);
         min-width: calc(var(--over-name-width, 150px) / 2);

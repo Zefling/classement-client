@@ -325,8 +325,14 @@ img {
 }
 
 .render:has(> #preview-element) {
-    max-width: 100vw;
+    max-width: 100%;
     overflow: auto;
+}
+
+@media screen and (width < 1024px) {
+    :host.preview {
+        margin: 15px 0;
+    }
 }
 
 .link {

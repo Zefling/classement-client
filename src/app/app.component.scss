@@ -21,6 +21,7 @@ header {
     grid-area: header;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
     background: var(--header-background);
     padding: 0 15px;
 
@@ -289,6 +290,10 @@ header {
         --main-shadow: none;
     }
 
+    header .title {
+        font-size: 30px;
+    }
+
     .menu-mode {
         display: none;
     }
@@ -329,6 +334,10 @@ header {
 @media screen and (width < 600px) {
     :host {
         --aside-actions-display: flex;
+    }
+
+    header .title {
+        font-size: 24px;
     }
 
     aside ul {
