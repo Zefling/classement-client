@@ -20,6 +20,8 @@ import { environment } from 'src/environments/environment';
 
 import { MessageError } from '../user/user.interface';
 
+const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
+
 @Component({
     selector: 'classement-view',
     templateUrl: './classement-view.component.html',
@@ -130,11 +132,8 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.sub.clear();
-        ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'].forEach(
-            item => {
-                this.meta.removeTag(`name="${item}"`);
-            },
-        );
+        metaTags.forEach(item => this.meta.removeTag(`name="${item}"`));
+        this.global.zoomActive.set(false);
     }
 
     screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {
