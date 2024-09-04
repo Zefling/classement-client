@@ -160,6 +160,7 @@
                         class="content-box clickable"
                         (click)="!editMode || checkChoice !== 'Z' ? bingoToggleCheck(indexGrp, index) : null"
                         [contextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
+                        [contextMenuDisabled]="checkChoice !== 'Z'"
                         contextMenuMode="bubble"
                       >
                         <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>

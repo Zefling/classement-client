@@ -1,6 +1,6 @@
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Directive, HostListener, input } from '@angular/core';
+import { booleanAttribute, Directive, HostListener, input } from '@angular/core';
 
 import {
     ContextMenuComponent,
@@ -22,13 +22,17 @@ export class ContextMenuDirective<T> {
     static _overlayRef?: OverlayRef;
 
     contextMenu = input<ContextMenuData<T>>();
-
     contextMenuMode = input<ContextMenuMode>('default');
+    contextMenuDisabled = input(false, { transform: booleanAttribute });
 
     constructor(private readonly overlay: Overlay) {}
 
     @HostListener('contextmenu', ['$event'])
     async onContextMenu(event: MouseEvent) {
+        if (this.contextMenuDisabled()) {
+            return;
+        }
+
         const overlayRef = this.overlay.create({
             hasBackdrop: true,
             backdropClass: 'overlay-backdrop',
