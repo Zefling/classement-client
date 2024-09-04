@@ -344,6 +344,12 @@ body {
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
 
+    // scrollbar
+
+    --scrollbar-color: var(--primary6);
+    --scrollbar-color-hover: var(--primary4);
+    --scrollbar-width: thin;
+
     // symbol
     --symbol-color: #c90f0f;
 }
@@ -725,5 +731,33 @@ dialog-cmp.auto-format .main {
 @supports (background: -webkit-named-image(i)) {
     .webp {
         display: none;
+    }
+}
+
+// -------------------- scrollbar ------------------------------------------------------------
+
+body {
+    @supports selector(::-webkit-scrollbar) {
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: var(--scrollbar-color);
+
+            &:hover {
+                background: var(--scrollbar-color-hover);
+            }
+        }
+    }
+
+    @supports not selector(::-webkit-scrollbar-button) {
+        scrollbar-color: var(--scrollbar-color) transparent;
+        scrollbar-width: var(--scrollbar-width);
     }
 }
