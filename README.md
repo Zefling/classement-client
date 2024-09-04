@@ -88,6 +88,9 @@ Current installation in this [website](https://classement.org/).
         -   ✅ See rankings form template
         -   ✅ Ranking view
             -   ✅ Ranking history
+            -   ✅ Bingo selection
+                -   ✅ Symbol
+                -   ✅ Emoji (with transformation)
     -   ✅ Admin
         -   ✅ Search users or rankings
         -   ✅ Edit profil & change roles

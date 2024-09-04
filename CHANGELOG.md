@@ -1,8 +1,29 @@
 # Changelog - Standalone web app & API
 
+### 2.5.1 (2024-09-04)
+
+#### Standalone web app
+
+-   Fix emoji transform persistance
+-   Fix context-menu: only for emoji
+-   Improve zoom option
+-   Fix help button size
+-   Fix remove zoom when exit the classement view
+-   Change scrollbar for webkit & blink browsers
+
+#### With API activated only
+
+-   Emoji only for API
+
 ### 2.5.0 (2024-09-04)
 
 #### Standalone web app
+
+-   Add zoom option for mobile #79
+-   Fix bug when there are no preferences
+-   Fix `cdk-global-scrollblock` with context-menu
+
+#### With API activated only
 
 -   Add emoji for Bingo view #75
     -   Add tab “Emoji” in preferences dialog
@@ -11,10 +32,7 @@
     -   Add emoji transformation mode with **Moveable**
     -   Add help panel for emoji
 -   Add animation on bubble context-menu #77
--   Add zoom option for mobile #79
--   Fix bug when there are no preferences
 -   Fix mobile edit mode for **Bingo** #78
--   Fix `cdk-global-scrollblock` with context-menu
 
 ---
 
