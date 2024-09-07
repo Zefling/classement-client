@@ -424,7 +424,8 @@
         "bingo-s": "Petit",
         "bingo-m": "Moyen",
         "bingo-l": "Large",
-        "grid": "Grille"
+        "grid": "Grille",
+        "classic": "Classique"
       }
     },
     "ranking": {

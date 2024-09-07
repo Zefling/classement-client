@@ -155,7 +155,9 @@ export type ThemeOptions = {
     streamMode?: boolean;
     sizeX?: number;
     sizeY?: number;
+    palette?: Palette;
 };
+export type Palette = (string | [string, string])[];
 
 export type OptionGroup = {
     title: string;
@@ -251,6 +253,7 @@ export type ThemesNames =
     | 'sakura'
     | 'night'
     | 'ciel'
+    | 'classic'
     | 'iceberg'
     | 'axis'
     | 'bingo-s'

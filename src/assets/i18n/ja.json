@@ -424,7 +424,8 @@
         "bingo-s": "小",
         "bingo-m": "中",
         "bingo-l": "高",
-        "grid": "グリッド"
+        "grid": "グリッド",
+        "classic": "クラシック"
       }
     },
     "ranking": {

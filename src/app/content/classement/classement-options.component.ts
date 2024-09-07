@@ -20,6 +20,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
 import { MemoryService } from 'src/app/services/memory.service';
+import { palette } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
 import {
     defaultGroup,
@@ -280,6 +281,15 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
             },
             { mode },
         );
+
+        if (options.palette) {
+            const colors = palette(options.palette, this.editor.groups.length);
+            console.log(colors);
+            this.editor.groups.forEach((group, index) => {
+                group.bgColor = colors[index];
+            });
+            delete options.palette;
+        }
     }
 
     changeCustomBackground(event: string | FileHandle) {

@@ -94,7 +94,7 @@ export const imagesAxis: ImagesNames[] = ['none', 'custom'];
 export const imagesBingo: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesThemes = imagesLists;
 
-export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'sakura', 'night', 'ciel'];
+export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'classic', 'sakura', 'night', 'ciel'];
 export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
 export const themesAxis: ThemesNames[] = ['axis', 'square'];
 export const themesBingo: ThemesNames[] = ['bingo-s', 'bingo-m', 'bingo-l', 'grid'];
@@ -202,6 +202,31 @@ export const themesList: Theme[] = [
             imageBackgroundColor: '#99c1f1',
             nameBackgroundOpacity: 85,
             imageBackgroundImage: 'ciel',
+        },
+    },
+    {
+        name: 'classic',
+        options: {
+            ...defaultOptions,
+            itemHeight: 80,
+            itemWidth: 80,
+            lineBackgroundColor: '#1a1a17',
+            lineBorderColor: '#000',
+            borderRadius: 0,
+            borderSize: 0,
+            borderSpacing: 2,
+            imageBackgroundColor: '#000',
+            itemTextPosition: 'bottom-over',
+            itemHeightAuto: false,
+            itemWidthAuto: false,
+            itemImageCover: true,
+            itemPadding: 0,
+            itemBorder: 0,
+            itemMargin: 0,
+            imageWidth: 1010,
+            nameWidth: 100,
+            nameFontSize: 100,
+            palette: [['#FF7F7F', '#FFFF7F'], '#7FFF7F'],
         },
     },
     {
