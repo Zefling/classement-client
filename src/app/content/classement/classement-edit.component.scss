@@ -638,6 +638,12 @@ span.group-options {
     .cdk-drop-list,
     .cdk-drop-list .content-box {
         min-height: 40px;
+
+        &.add-file,
+        &.add-text {
+            box-sizing: border-box;
+            padding: 5px;
+        }
     }
 }
 
