@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 2.5.2 (2024-09-07)
+
+#### Standalone web app
+
+-   Collapse buttons when tile height < 100px
+-   Add theme classic (with palette)
+-   Fix padding of add tiles
+
 ### 2.5.1 (2024-09-04)
 
 #### Standalone web app
