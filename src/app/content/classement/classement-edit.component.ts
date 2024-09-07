@@ -252,7 +252,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
-            toObservable(this.global.withChange).subscribe(withChange => {
+            toObservable(this.global.withChange).subscribe(_withChange => {
                 if (
                     this.options &&
                     !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])

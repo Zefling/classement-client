@@ -198,7 +198,12 @@ dialog-cmp .colors-options textarea {
 
     button {
         margin: 0;
+        padding: 10px;
         white-space: nowrap;
+
+        .option-reduce & {
+            padding: 6px;
+        }
     }
 }
 
@@ -285,10 +290,14 @@ img {
         display: grid;
         grid-template:
             'a a a a a' auto
-            '. b e c .' var(--group-option-height, 35px)
+            '. b e c .' var(--group-option-height, var(--group-option-height-reduce, 35px))
             'd d d d d' 0
             / 1fr auto 1fr auto 1fr;
         height: 100%;
+
+        .option-reduce & {
+            --group-option-height-reduce: 30px;
+        }
 
         & > div {
             width: 100%;
@@ -390,6 +399,11 @@ span.color {
     height: 30px;
     color: #000;
     font-size: 24px;
+
+    .option-reduce & {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 span.txt-color {

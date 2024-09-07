@@ -66,7 +66,7 @@
             </colgroup>
             <tbody>
               @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
-                <tr>
+                <tr [class.option-reduce]="options.itemHeight < 100">
                   <td
                     class="names"
                     [style.--name-background]="group.bgColor + nameOpacity"
