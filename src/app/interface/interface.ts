@@ -82,7 +82,6 @@ export type FormattedGroup = { name: string; bgColor: string; txtColor: string; 
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
-    showAdvancedOptions: boolean;
     title: string;
     category: string;
     description: string;

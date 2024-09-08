@@ -1,14 +1,25 @@
 .options {
+    display: grid;
+    grid-template:
+        'title             title               categories          modes               '
+        'description       description         description         description         '
+        'theme             width-auto          stream-mode         links               '
+        'tags              tags                tags                tags                '
+        / 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    border: solid 1px var(--options-border-color);
+    border-radius: 5px;
+    background: var(--options-background);
+    padding: 10px;
+}
+
+.advanced-options {
     --groups: 'colors-line-back  colors-line-border  name-bg-opacity     .                   '
         'font-size         name-width          group-direction     name-markdown       '
         'border-radius     border-spacing      border-size         .                   ';
 
     display: grid;
     grid-template:
-        'title             title               categories          modes               '
-        'description       description         description         description         '
-        'theme             width-auto          stream-mode         links               '
-        // ----------------------------------------------------------------------------
         'title-item        title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  .                   '
         'sizes             colors-item-text    min-line-text       max-line-text       '
@@ -21,14 +32,11 @@
         'colors-title-text global-width        global-image        global-color        '
         '.                 global-height       .                   .                   '
         'image-custom      image-custom        image-custom        image-custom        '
-        // ----------------------------------------------------------------------------
-        'tags              tags                tags                tags                '
         / 1fr 1fr 1fr 1fr;
+
     gap: 10px;
-    border: solid 1px var(--options-border-color);
-    border-radius: 5px;
     background: var(--options-background);
-    padding: 10px;
+    padding: 10px 0;
 
     &.iceberg {
         --groups: 'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   '
@@ -44,14 +52,12 @@
         --groups: 'colors-line-back  colors-line-border  size-x-y            .                   '
             'border-radius     border-spacing      border-size         .                   ';
     }
+}
 
-    &.simplified {
-        grid-template:
-            'title             title               categories          modes               '
-            'description       description         description         description         '
-            'theme             width-auto          stream-mode         links               '
-            'tags              tags                tags                tags                '
-            / 1fr 1fr 1fr 1fr;
+.dialog-options {
+    & ::ng-deep > div {
+        padding-bottom: 10px;
+        width: min(95%, 1600px);
     }
 }
 

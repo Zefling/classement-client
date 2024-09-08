@@ -56,6 +56,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
+    dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
     mode = viewChild.required<Select2>('mode');
 
     api = environment.api?.active || false;
@@ -249,11 +250,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         this.dialogChangeMode().close();
     }
 
-    switchOptions() {
-        const options = this.options();
-        if (options) {
-            options.showAdvancedOptions = !options.showAdvancedOptions;
-        }
+    advanceOptions() {
+        this.dialogAdvancedOptions().open();
     }
 
     updateTags(tags: string[]) {

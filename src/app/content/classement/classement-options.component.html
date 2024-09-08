@@ -3,7 +3,7 @@
 @let opts = options();
 
 @if (opts) {
-  <div class="options {{ opts.mode }}" [class.simplified]="!opts.showAdvancedOptions">
+  <div class="options {{ opts.mode }}">
     <div class="title">
       <label for="option-title">{{ 'generator.options.title' | transloco }}</label>
       <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
@@ -61,9 +61,7 @@
       </div>
     </div>
     <div class="links">
-      <a tabindex="0" (click)="switchOptions()">{{
-        (opts.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advance') | transloco
-      }}</a>
+      <a tabindex="0" (click)="advanceOptions()">{{ 'generator.options.advance' | transloco }}</a>
     </div>
     <div class="themes">
       <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | transloco }}</a>
@@ -99,7 +97,42 @@
         <span [tooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
       </label>
     </div>
-    @if (opts.showAdvancedOptions) {
+
+    <div class="tags">
+      {{ 'generator.options.tags' | transloco }}
+      <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
+    </div>
+  </div>
+}
+
+<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
+
+<dialog-cmp class="auto-format" #dialogChangeMode>
+  <p class="question">
+    {{ 'generator.actions.change.mode.question' | transloco }}
+  </p>
+  <p class="info">
+    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
+    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
+  </p>
+
+  <div class="buttons">
+    <button (click)="modeChangeValid(false)">
+      {{ 'generator.actions.reset.groups.cancel' | transloco }}
+    </button>
+    <button class="primary" (click)="modeChangeValid(true)">
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    </button>
+  </div>
+</dialog-cmp>
+
+<dialog-cmp #dialogAdvancedOptions class="dialog-options" closeBackdrop closeButton>
+  <p class="warning">
+    {{ 'generator.options.advance.info' | transloco }}
+  </p>
+
+  @if (opts) {
+    <div class="advanced-options {{ opts.mode }}">
       <!-- ###############################  tile options ############################### -->
       <h4 class="title-item">{{ 'generator.options.item.title' | transloco }}</h4>
       <div class="sizes">
@@ -733,30 +766,11 @@
           </div>
         </div>
       }
-    }
-    <div class="tags">
-      {{ 'generator.options.tags' | transloco }}
-      <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
     </div>
-  </div>
-}
-
-<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
-
-<dialog-cmp class="auto-format" #dialogChangeMode>
-  <p class="question">
-    {{ 'generator.actions.change.mode.question' | transloco }}
-  </p>
-  <p class="info">
-    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
-    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
-  </p>
+  }
 
   <div class="buttons">
-    <button (click)="modeChangeValid(false)">
-      {{ 'generator.actions.reset.groups.cancel' | transloco }}
-    </button>
-    <button class="primary" (click)="modeChangeValid(true)">
+    <button class="primary" (click)="dialogAdvancedOptions.close()">
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>

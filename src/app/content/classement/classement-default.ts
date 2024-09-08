@@ -14,7 +14,6 @@ export const defaultGroup: FormattedGroup[] = [
 export const defaultOptions: Options = {
     titleTextColor: '',
     titleTextOpacity: 100,
-    showAdvancedOptions: false,
     title: '',
     category: '',
     description: '',
