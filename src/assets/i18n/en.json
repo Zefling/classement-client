@@ -278,6 +278,7 @@
       "import": "Import",
       "export": "Export",
       "close": "Close",
+      "cancel": "Cancel",
       "title": "Ranking title:",
       "title.color": "Title text color:",
       "title.opacity": "Title text opacity:",

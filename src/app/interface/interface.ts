@@ -88,6 +88,7 @@ export type Options = ThemeOptions & {
     tags: string[];
     mode: ModeNames;
     groups?: OptionGroup[];
+    themeName?: string;
 };
 export type ThemeOptions = {
     titleTextColor: string;

@@ -68,7 +68,7 @@ export class ImportJsonComponent implements OnDestroy {
 
     addJsonTemp(file: FileString) {
         try {
-            const fileString = file.url?.replace('data:application/json;base64,', '');
+            const fileString = file.url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
             const data = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Data | Data[];
 
             this.jsonTmp = [];

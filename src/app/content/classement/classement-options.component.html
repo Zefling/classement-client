@@ -770,21 +770,57 @@
   }
 
   <div class="buttons">
-    <button class="primary" (click)="export()">
+    <button class="primary" (click)="exportDialog.open()">
       {{ 'generator.options.export' | transloco }}
     </button>
-    <button class="primary" (click)="importDialog.open()">
+    <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
       {{ 'generator.options.import' | transloco }}
     </button>
-    <button class="primary" (click)="importClose()">
+    <button class="primary" (click)="dialogAdvancedOptions.close()">
       {{ 'generator.options.close' | transloco }}
     </button>
   </div>
 </dialog-cmp>
 
-<dialog-cmp #importDialog>
+<dialog-cmp class="auto-format" #exportDialog>
+  <div>Un petit nom à votre thème ?</div>
+  <div>
+    <input type="text" [(ngModel)]="themeName" />
+  </div>
+  <div class="buttons">
+    <button class="default" (click)="exportCancel()">
+      {{ 'generator.options.cancel' | transloco }}
+    </button>
+    <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
+      {{ 'generator.options.export' | transloco }}
+    </button>
+  </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #importDialog>
   <div>Merci d'importer un fichier de theme valide.</div>
   <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
   </div>
+
+  @if (themeTmp) {
+    <div>
+      Mettre en place le thème : <strong>{{ themeTmp.name }}</strong>
+    </div>
+
+    <div class="buttons">
+      <button class="default" (click)="importCancel()">
+        {{ 'generator.options.cancel' | transloco }}
+      </button>
+      <button class="primary" (click)="importValidation()">
+        {{ 'generator.options.import' | transloco }}
+      </button>
+    </div>
+  } @else {
+    <div class="buttons">
+      <button class="default" (click)="importCancel()">
+        {{ 'generator.options.cancel' | transloco }}
+      </button>
+    </div>
+  }
 </dialog-cmp>

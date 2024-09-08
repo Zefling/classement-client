@@ -217,6 +217,14 @@ export class Utils {
             .replace(/\p{Diacritic}/gu, '');
     }
 
+    static normalizeFileName(string: string) {
+        return string
+            .toLocaleLowerCase()
+            .normalize('NFD')
+            .replace(/[\p{Diacritic}\/|\\:*?"<>]/gu, '')
+            .substring(0, 200);
+    }
+
     static toISODate(date?: string | Date, newDate = false): string | undefined {
         if (typeof date === 'string' && date.trim()) {
             return date;

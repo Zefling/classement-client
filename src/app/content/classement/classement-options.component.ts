@@ -58,6 +58,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
     dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
+    dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
     dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
     mode = viewChild.required<Select2>('mode');
 
@@ -76,8 +77,15 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listMode: Select2Data = listModes;
 
+    themeName = '';
+
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
+
+    themeTmp?: {
+        name: string;
+        options: Options;
+    };
 
     private _sub = Subscriptions.instance();
 
@@ -378,53 +386,69 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     }
 
     export() {
-        const option = this.options() as any;
+        const theme = this.options() as any;
         // usage
-        delete option['showAdvancedOptions']; // removed option
-        delete option['autoSave'];
-        delete option['streamMode'];
+        delete theme['showAdvancedOptions']; // removed option
+        delete theme['autoSave'];
+        delete theme['streamMode'];
         // infos
-        delete option['title'];
-        delete option['category'];
-        delete option['description'];
-        delete option['tags'];
+        delete theme['title'];
+        delete theme['category'];
+        delete theme['description'];
+        delete theme['tags'];
+        theme['themeName'] = this.themeName;
 
-        Utils.downloadFile(JSON.stringify(option), `theme-${option.mode}.json`, 'text/plain');
+        Utils.downloadFile(
+            JSON.stringify(theme),
+            Utils.normalizeFileName(`theme-${theme.mode}-${this.themeName}`) + '.json',
+            'text/plain',
+        );
+        this.exportCancel();
+    }
+
+    exportCancel() {
+        this.themeName = '';
+        this.dialogAdvancedOptionsExport().close();
     }
 
     importJsonFile(event: Event) {
-        const options = this.options();
-        if (options) {
-            const files = (event.target as any).files as FileList;
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                if (typesMine[TypeFile.json].includes(file.type)) {
-                    const data: FileHandle = {
-                        file,
-                    };
+        const files = (event.target as any).files as FileList;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (typesMine[TypeFile.json].includes(file.type)) {
+                const data: FileHandle = {
+                    file,
+                };
 
-                    let reader = new FileReader();
-                    reader.onload = (ev: ProgressEvent<FileReader>) => {
-                        data.target = ev.target;
+                let reader = new FileReader();
+                reader.onload = (ev: ProgressEvent<FileReader>) => {
+                    data.target = ev.target;
+                };
+                reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
+                    const url = data.target?.result as String;
+                    const fileString = url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
+                    const importOptions = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Options;
+
+                    this.themeTmp = {
+                        name: importOptions['themeName'] || '',
+                        options: importOptions,
                     };
-                    reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
-                        const url = data.target?.result as String;
-                        const fileString = url
-                            ?.replace('data:application/json;base64,', '')
-                            ?.replace('data:base64,', '');
-                        const importOptions = JSON.parse(
-                            Buffer.from(fileString!, 'base64').toString('utf-8'),
-                        ) as Options;
-                        Object.assign(options, importOptions);
-                        this.importClose();
-                    };
-                    reader.readAsDataURL(data.file);
-                }
+                };
+                reader.readAsDataURL(data.file);
             }
         }
     }
 
-    importClose() {
+    importValidation() {
+        const options = this.options();
+        if (options && this.themeTmp) {
+            Object.assign(options, this.themeTmp.options);
+            this.importCancel();
+        }
+    }
+
+    importCancel() {
+        this.themeTmp = undefined;
         this.dialogAdvancedOptionsImport().close();
     }
 
