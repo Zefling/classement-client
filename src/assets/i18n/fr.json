@@ -275,6 +275,9 @@
     },
     "options": {
       "group.title": "Options",
+      "import": "Import",
+      "export": "Export",
+      "close": "Fermer",
       "title": "Titre du classement :",
       "title.color": "Couleur du texte du titre :",
       "title.opacity": "Opacité du texte du titre :",

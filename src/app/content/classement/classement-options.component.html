@@ -770,8 +770,21 @@
   }
 
   <div class="buttons">
-    <button class="primary" (click)="dialogAdvancedOptions.close()">
-      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    <button class="primary" (click)="export()">
+      {{ 'generator.options.export' | transloco }}
     </button>
+    <button class="primary" (click)="importDialog.open()">
+      {{ 'generator.options.import' | transloco }}
+    </button>
+    <button class="primary" (click)="importClose()">
+      {{ 'generator.options.close' | transloco }}
+    </button>
+  </div>
+</dialog-cmp>
+
+<dialog-cmp #importDialog>
+  <div>Merci d'importer un fichier de theme valide.</div>
+  <div>
+    <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
   </div>
 </dialog-cmp>

@@ -275,6 +275,9 @@
     },
     "options": {
       "group.title": "オプション",
+      "import": "インポート",
+      "export": "エクスポート",
+      "close": "閉じる",
       "title": "ランキングのタイトル：",
       "title.color": "タイトルのテキストの色：",
       "title.opacity": "タイトルのテキストの不透明度：",

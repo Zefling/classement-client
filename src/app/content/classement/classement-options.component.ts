@@ -9,12 +9,13 @@ import {
     viewChild,
 } from '@angular/core';
 
+import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { typesMine } from 'src/app/services/global.service';
+import { TypeFile, typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
@@ -57,6 +58,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
     classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
     dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
+    dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
     mode = viewChild.required<Select2>('mode');
 
     api = environment.api?.active || false;
@@ -373,6 +375,57 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         } else if (options[axis] > 300) {
             options[axis] = 300;
         }
+    }
+
+    export() {
+        const option = this.options() as any;
+        // usage
+        delete option['showAdvancedOptions']; // removed option
+        delete option['autoSave'];
+        delete option['streamMode'];
+        // infos
+        delete option['title'];
+        delete option['category'];
+        delete option['description'];
+        delete option['tags'];
+
+        Utils.downloadFile(JSON.stringify(option), `theme-${option.mode}.json`, 'text/plain');
+    }
+
+    importJsonFile(event: Event) {
+        const options = this.options();
+        if (options) {
+            const files = (event.target as any).files as FileList;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (typesMine[TypeFile.json].includes(file.type)) {
+                    const data: FileHandle = {
+                        file,
+                    };
+
+                    let reader = new FileReader();
+                    reader.onload = (ev: ProgressEvent<FileReader>) => {
+                        data.target = ev.target;
+                    };
+                    reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
+                        const url = data.target?.result as String;
+                        const fileString = url
+                            ?.replace('data:application/json;base64,', '')
+                            ?.replace('data:base64,', '');
+                        const importOptions = JSON.parse(
+                            Buffer.from(fileString!, 'base64').toString('utf-8'),
+                        ) as Options;
+                        Object.assign(options, importOptions);
+                        this.importClose();
+                    };
+                    reader.readAsDataURL(data.file);
+                }
+            }
+        }
+    }
+
+    importClose() {
+        this.dialogAdvancedOptionsImport().close();
     }
 
     private getImageUrl(item: ImagesNames) {
