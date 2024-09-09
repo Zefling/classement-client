@@ -737,6 +737,12 @@ span.item-height {
     }
 }
 
+.option-preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 @media screen and (max-width: 1200px) {
     .input-button {
         display: grid;

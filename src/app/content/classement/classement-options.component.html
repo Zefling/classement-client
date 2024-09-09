@@ -767,6 +767,17 @@
         </div>
       }
     </div>
+
+    <!-- ############################### render example ###############################  -->
+    <div class="option-preview">
+      <see-classement
+        id="test"
+        [options]="opts"
+        [groups]="[{ name: 'Test **Markdown**', bgColor: '#dc8add', txtColor: '#000', list: [] }]"
+        [list]="[]"
+        render
+      ></see-classement>
+    </div>
   }
 
   <div class="buttons">
