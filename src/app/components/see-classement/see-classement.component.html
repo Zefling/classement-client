@@ -163,7 +163,14 @@
                         [contextMenuDisabled]="checkChoice !== 'Z'"
                         contextMenuMode="bubble"
                       >
-                        <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                        @let value = bingoValue(indexGrp, index);
+                        <div
+                          class="content content-render"
+                          [class.validate]="value.visible"
+                          [class.only-text]="!item.url"
+                          [ngClass]="opts.itemTextPosition"
+                          #tile
+                        >
                           @if (item.url) {
                             <div [class.image]="calcWidth(item, tile)">
                               <img
@@ -175,7 +182,6 @@
                               />
                             </div>
                           }
-                          @let value = bingoValue(indexGrp, index);
                           @if (value.visible) {
                             @if (checkChoice === 'Z') {
                               @if (editMode) {

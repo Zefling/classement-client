@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
     max-width: var(--over-item-max-width, 100%);
     height: 100%;
     max-height: var(--over-item-max-height, 100%);
@@ -131,7 +132,8 @@ img {
 }
 
 // text only
-.title:first-child {
+.title:first-child,
+.only-text .title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,75 +183,77 @@ img {
         color: var(--over-item-text-color, var(--content-box-over-text));
     }
 
-    &.top {
-        flex-direction: column-reverse;
-    }
-
-    &.bottom-over .title:last-child:not(:first-child),
-    &.bottom-over-hover .title:last-child:not(:first-child),
-    &.bottom-bubble .title:last-child:not(:first-child),
-    &.top-over .title:last-child:not(:first-child),
-    &.top-over-hover .title:last-child:not(:first-child),
-    &.top-bubble .title:last-child:not(:first-child) {
-        position: absolute;
-        background: var(--over-item-text-background, var(--content-box-text-background));
-        width: 100%;
-        text-align: center;
-    }
-
-    &.bottom-bubble .title:last-child:not(:first-child),
-    &.top-bubble .title:last-child:not(:first-child) {
-        bottom: 5px;
-        align-self: center;
-        box-sizing: border-box;
-        margin: auto;
-        border-radius: 1em;
-        padding: 3px 7px;
-        width: auto;
-        max-width: calc(100% - 10px);
-    }
-
-    &.bottom-over .title:last-child:not(:first-child) {
-        bottom: 0;
-    }
-
-    &.bottom-over-hover {
-        overflow: hidden;
-
-        .title:last-child:not(:first-child) {
-            bottom: -100%;
-            transition: all 0.15s;
+    &:not(.only-text) {
+        &.top {
+            flex-direction: column-reverse;
         }
 
-        &:hover .title:last-child:not(:first-child) {
-            bottom: 0px;
-        }
-    }
-
-    &.top-over .title:last-child:not(:first-child) {
-        top: 0;
-    }
-
-    &.top-over-hover {
-        overflow: hidden;
-
-        .title:last-child:not(:first-child) {
-            top: -100%;
-            transition: all 0.15s;
+        &.bottom-over .title:last-child:not(:first-child),
+        &.bottom-over-hover .title:last-child:not(:first-child),
+        &.bottom-bubble .title:last-child:not(:first-child),
+        &.top-over .title:last-child:not(:first-child),
+        &.top-over-hover .title:last-child:not(:first-child),
+        &.top-bubble .title:last-child:not(:first-child) {
+            position: absolute;
+            background: var(--over-item-text-background, var(--content-box-text-background));
+            width: 100%;
+            text-align: center;
         }
 
-        &:hover .title:last-child:not(:first-child) {
-            top: 0px;
+        &.bottom-bubble .title:last-child:not(:first-child),
+        &.top-bubble .title:last-child:not(:first-child) {
+            bottom: 5px;
+            align-self: center;
+            box-sizing: border-box;
+            margin: auto;
+            border-radius: 1em;
+            padding: 3px 7px;
+            width: auto;
+            max-width: calc(100% - 10px);
         }
-    }
 
-    &.top-bubble .title:last-child:not(:first-child) {
-        top: 10px;
-        bottom: auto;
-    }
+        &.bottom-over .title:last-child:not(:first-child) {
+            bottom: 0;
+        }
 
-    &.hidden .title:last-child:not(:first-child) {
-        display: none;
+        &.bottom-over-hover {
+            overflow: hidden;
+
+            .title:last-child:not(:first-child) {
+                bottom: -100%;
+                transition: all 0.15s;
+            }
+
+            &:hover .title:last-child:not(:first-child) {
+                bottom: 0px;
+            }
+        }
+
+        &.top-over .title:last-child:not(:first-child) {
+            top: 0;
+        }
+
+        &.top-over-hover {
+            overflow: hidden;
+
+            .title:last-child:not(:first-child) {
+                top: -100%;
+                transition: all 0.15s;
+            }
+
+            &:hover .title:last-child:not(:first-child) {
+                top: 0px;
+            }
+        }
+
+        &.top-bubble .title:last-child:not(:first-child) {
+            top: 10px;
+            bottom: auto;
+        }
+
+        &.hidden .title:last-child:not(:first-child) {
+            display: none;
+        }
     }
 }
 
