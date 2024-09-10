@@ -241,6 +241,16 @@
               <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
             </label>
           }
+          @if (
+            (!opts.itemWidthAuto &&
+              (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+            opts.mode === 'bingo'
+          ) {
+            <label class="toggle-switch">
+              <input id="option-item-cover" type="checkbox" [(ngModel)]="opts.itemImageCover" />
+              <span>{{ 'generator.options.item.cover' | transloco }}</span>
+            </label>
+          }
         </div>
       </div>
       <div class="colors-item-back input-button">
@@ -768,29 +778,63 @@
       }
     </div>
 
+    <div class="buttons">
+      <button class="primary" (click)="exportDialog.open()">
+        {{ 'generator.options.export' | transloco }}
+      </button>
+      <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
+        {{ 'generator.options.import' | transloco }}
+      </button>
+      <button class="primary" (click)="dialogAdvancedOptions.close()">
+        {{ 'generator.options.close' | transloco }}
+      </button>
+    </div>
+
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
       <see-classement
         id="test"
         [options]="opts"
-        [groups]="[{ name: 'Test **Markdown**', bgColor: '#dc8add', txtColor: '#000', list: [] }]"
+        [groups]="[
+          {
+            name: 'Test\n**Markdown**',
+            bgColor: '#dc8add',
+            txtColor: '#000',
+            list: [
+              {
+                id: 'test-1',
+                url: './assets/images/tile_image_example.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 0,
+                y: 0,
+              },
+              {
+                id: 'test-1',
+                name: 'tile_image_example2',
+                title: 'Text',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 10,
+                y: 250,
+              },
+            ],
+          },
+        ]"
         [list]="[]"
         render
+        demo
       ></see-classement>
     </div>
   }
-
-  <div class="buttons">
-    <button class="primary" (click)="exportDialog.open()">
-      {{ 'generator.options.export' | transloco }}
-    </button>
-    <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
-      {{ 'generator.options.import' | transloco }}
-    </button>
-    <button class="primary" (click)="dialogAdvancedOptions.close()">
-      {{ 'generator.options.close' | transloco }}
-    </button>
-  </div>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #exportDialog>

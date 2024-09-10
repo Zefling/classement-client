@@ -67,13 +67,16 @@ img {
 }
 
 .html2canvas-element {
-    border-spacing: var(--over-drop-border-spacing, var(--drop-list-border-spacing));
-    background-image: var(--over-image-url);
-    background-position: var(--over-image-background-position);
-    background-size: var(--over-image-background-size);
-    background-repeat: repeat;
     background-color: var(--over-image-background, var(--background));
     min-width: 100%;
+
+    &:not(.with-zone) {
+        border-spacing: var(--over-drop-border-spacing, var(--drop-list-border-spacing));
+        background-image: var(--over-image-url);
+        background-position: var(--over-image-background-position);
+        background-size: var(--over-image-background-size);
+        background-repeat: repeat;
+    }
 }
 
 .zone-classement,
@@ -173,6 +176,11 @@ img {
 
 .content-render {
     position: relative;
+
+    .title {
+        color: var(--over-item-text-color, var(--content-box-over-text));
+    }
+
     &.top {
         flex-direction: column-reverse;
     }
@@ -186,7 +194,6 @@ img {
         position: absolute;
         background: var(--over-item-text-background, var(--content-box-text-background));
         width: 100%;
-        color: var(--over-item-text-color, var(--content-box-over-text));
         text-align: center;
     }
 
@@ -278,10 +285,12 @@ img {
     );
 }
 
-caption {
+caption,
+.global-title {
     padding: 10px;
     color: var(--over-title-text-color, var(--content-title-text-color));
     font-size: 120%;
+    text-align: center;
 }
 
 img {
