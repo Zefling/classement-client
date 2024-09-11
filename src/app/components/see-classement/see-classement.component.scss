@@ -145,10 +145,13 @@ img {
 .title:not(:first-child),
 .title:first-child span {
     font-size: var(--over-item-text-size, 12px);
-    text-align: center;
     word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: min(100%, var(--over-item-max-width, 300px));
     overflow: visible;
+    text-align: center;
     white-space: break-spaces;
 }
 
@@ -408,6 +411,11 @@ img {
     :host:not(.render) & img {
         max-width: min(var(--over-item-max-width, var(--over-item-width, 300px)), 300px);
         max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
+    }
+
+    .content[style*='height'][style*='width'] img {
+        max-width: 100%;
+        max-height: 100%;
     }
 }
 
