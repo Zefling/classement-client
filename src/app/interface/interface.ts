@@ -161,8 +161,8 @@ export type Palette = (string | [string, string])[];
 
 export type OptionGroup = {
     title: string;
-    titleVerticalPosition?: string;
-    titleHorizontalPosition?: string;
+    titleVerticalPosition?: 'start' | 'center' | 'end';
+    titleHorizontalPosition?: 'start' | 'center' | 'end';
 };
 
 export type Theme = {

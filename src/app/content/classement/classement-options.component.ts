@@ -21,6 +21,7 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
+import Ajv, { DefinedError } from 'ajv';
 import { MemoryService } from 'src/app/services/memory.service';
 import { palette } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
@@ -41,6 +42,7 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
+import { schemaTheme } from './classement-schemas';
 import { ClassementThemesComponent } from './classement-themes.component';
 
 @Component({
@@ -87,6 +89,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         name: string;
         options: Options;
     };
+    themeError = false;
 
     private _sub = Subscriptions.instance();
 
@@ -432,10 +435,35 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     const fileString = url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
                     const importOptions = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Options;
 
-                    this.themeTmp = {
-                        name: importOptions['themeName'] || '',
-                        options: importOptions,
-                    };
+                    const ajv = new Ajv({
+                        logger: {
+                            log: args => {
+                                console.log(args);
+                            },
+                            warn: args => {
+                                console.log(args);
+                            },
+                            error: args => {
+                                console.log(args);
+                            },
+                        },
+                    });
+                    const validate = ajv.compile(schemaTheme);
+                    const valid = validate(importOptions);
+
+                    if (valid) {
+                        this.themeTmp = {
+                            name: importOptions['themeName']!,
+                            options: importOptions,
+                        };
+                        this.themeError = false;
+                    } else {
+                        this.themeError = true;
+
+                        for (const err of validate.errors as DefinedError[]) {
+                            console.log(err);
+                        }
+                    }
                 };
                 reader.readAsDataURL(data.file);
             }

@@ -329,13 +329,13 @@
         <div class="min-line-text input-value">
           <div class="number-input">
             <label for="min-line-text">{{ 'generator.options.item.text.min.line' | transloco }}</label>
-            <input id="min-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMinLine" />
+            <input id="min-line-text" type="number" min="0" max="10" [(ngModel)]="opts.itemTextMinLine" />
           </div>
         </div>
         <div class="max-line-text input-value">
           <div class="number-input">
             <label for="max-line-text">{{ 'generator.options.item.text.max.line' | transloco }}</label>
-            <input id="max-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMaxLine" />
+            <input id="max-line-text" type="number" min="0" max="10" [(ngModel)]="opts.itemTextMaxLine" />
           </div>
         </div>
       }
@@ -458,7 +458,7 @@
         <div class="border-radius input-value">
           <div class="number-input">
             <label for="option-border-radius">{{ 'generator.options.border.radius' | transloco }}</label>
-            <input id="option-border-radius" type="number" min="0" max="100" [(ngModel)]="opts.borderRadius" />
+            <input id="option-border-radius" type="number" min="0" max="50" [(ngModel)]="opts.borderRadius" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -717,7 +717,7 @@
         <div class="global-width input-value">
           <div class="number-input">
             <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
-            <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
+            <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" min="100" max="4000" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -726,7 +726,7 @@
         <div class="global-height input-value">
           <div class="number-input">
             <label for="option-global-height">{{ 'generator.options.global.height' | transloco }}</label>
-            <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" />
+            <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" min="100" max="4000" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -888,7 +888,7 @@
 <dialog-cmp class="auto-format" #exportDialog>
   <div>Un petit nom à votre thème ?</div>
   <div>
-    <input type="text" [(ngModel)]="themeName" />
+    <input type="text" [(ngModel)]="themeName" maxlength="100" />
   </div>
   <div class="buttons">
     <button class="default" (click)="exportCancel()">
@@ -905,6 +905,10 @@
   <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
   </div>
+
+  @if (themeError) {
+    <div class="error">Le fichier de thème n'est pas valide</div>
+  }
 
   @if (themeTmp) {
     <div>
