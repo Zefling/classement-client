@@ -5,6 +5,7 @@ import {
     input,
     OnChanges,
     OnDestroy,
+    OnInit,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
@@ -47,7 +48,7 @@ import { ClassementThemesComponent } from './classement-themes.component';
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
 })
-export class ClassementOptionsComponent implements OnChanges, OnDestroy {
+export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
     // input
 
     options = input<Options>();
@@ -101,7 +102,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 this.categoryUpdate();
             }),
         );
+    }
 
+    ngOnInit(): void {
         this.updateMode();
     }
 
@@ -135,7 +138,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                     this.themesList = themesLists;
                     break;
             }
-            if (this.options()?.mode !== mode) {
+            if (!this._modeTemp || options.mode !== mode) {
                 this.updateList(mode);
             }
 
