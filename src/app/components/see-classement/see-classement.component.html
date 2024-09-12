@@ -49,7 +49,7 @@
     </div>
   }
 
-  <div class="render">
+  <div class="render" [class.demo]="demo()">
     @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
