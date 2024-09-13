@@ -217,6 +217,14 @@ export class Utils {
             .replace(/\p{Diacritic}/gu, '');
     }
 
+    static normalizeFileName(string: string) {
+        return string
+            .toLocaleLowerCase()
+            .normalize('NFD')
+            .replace(/[\p{Diacritic}\/|\\:*?"<>]/gu, '')
+            .substring(0, 200);
+    }
+
     static toISODate(date?: string | Date, newDate = false): string | undefined {
         if (typeof date === 'string' && date.trim()) {
             return date;
@@ -242,19 +250,39 @@ export class Utils {
 
         const width = item.width || 100;
         const height = item.height || 100;
+
         const titleHeight = changeTitleHeight.includes(options.itemTextPosition) && title ? title.clientHeight + 3 : 0;
-        let targetHeight = height < itemHeight - titleHeight ? height : Math.min(height, itemHeight) - titleHeight;
 
         if (tile) {
-            tile.style.width =
-                itemWidthAuto && !item.title
-                    ? Math.round(Math.min(itemMaxWidth ?? 300, (width / height) * targetHeight)) + 'px'
-                    : itemWidthAuto
-                      ? Math.min(
-                            itemMaxWidth ?? 300,
-                            Math.round(Math.max((width / height) * targetHeight, title?.clientWidth || 0)),
-                        ) + 'px'
-                      : '';
+            if (options.mode === 'iceberg' || options.mode === 'axis') {
+                if (options.itemWidthAuto || options.itemHeightAuto) {
+                    if (width < height + titleHeight) {
+                        tile.style.height = `${options.itemMaxHeight}px`;
+                        tile.style.width = `${((options.itemMaxHeight - titleHeight) / height) * width}px`;
+                    } else {
+                        tile.style.height = options.itemWidthAuto
+                            ? `${(itemMaxWidth / width) * height + titleHeight}px`
+                            : 'auto';
+                        tile.style.width = `${itemMaxWidth}px`;
+                    }
+                } else if (options.itemImageCover) {
+                    tile.style.height = `${options.itemMaxHeight}px`;
+                    tile.style.width = `${options.itemMaxWidth}px`;
+                }
+            } else {
+                let targetHeight =
+                    height < itemHeight - titleHeight ? height : Math.min(height, itemHeight) - titleHeight;
+
+                tile.style.width =
+                    itemWidthAuto && !item.title
+                        ? Math.round(Math.min(itemMaxWidth ?? 300, (width / height) * targetHeight)) + 'px'
+                        : itemWidthAuto
+                          ? Math.min(
+                                itemMaxWidth ?? 300,
+                                Math.round(Math.max((width / height) * targetHeight, title?.clientWidth || 0)),
+                            ) + 'px'
+                          : '';
+            }
         }
     }
 

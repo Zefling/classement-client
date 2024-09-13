@@ -30,9 +30,10 @@ export enum TypeFile {
 
 export type FileFormatExport = 'PNG' | 'JPG' | 'WEBP' | 'AVIF';
 
-export const typesMine: Record<string, string[]> = {
+export const typesMine: Record<TypeFile, string[]> = {
     image: ['image/png', 'image/gif', 'image/jpeg', 'image/webp', 'image/avif'],
     json: ['application/json'],
+    text: ['plain/text'],
 };
 
 @Injectable({ providedIn: 'root' })

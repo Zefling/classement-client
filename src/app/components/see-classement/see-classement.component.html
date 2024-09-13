@@ -49,7 +49,7 @@
     </div>
   }
 
-  <div class="render">
+  <div class="render" [class.demo]="demo()">
     @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
@@ -59,10 +59,10 @@
         [class.mode-teams]="opts.mode === 'teams'"
         [class.line-fusion]="opts.borderSpacing < 0"
       >
-        @if (opts.title) {
+        @if (opts.title || demo()) {
           <caption>
             {{
-              opts.title
+              opts.title || (demo() ? 'Example' : '')
             }}
           </caption>
         }
@@ -142,10 +142,10 @@
         [class.line-fusion]="opts.borderSpacing < 0"
         [attr.dir]="opts.direction"
       >
-        @if (opts.title) {
+        @if (opts.title || demo()) {
           <caption>
             {{
-              opts.title
+              opts.title || (demo() ? 'Example' : '')
             }}
           </caption>
         }
@@ -163,7 +163,14 @@
                         [contextMenuDisabled]="checkChoice !== 'Z'"
                         contextMenuMode="bubble"
                       >
-                        <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                        @let value = bingoValue(indexGrp, index);
+                        <div
+                          class="content content-render"
+                          [class.validate]="value.visible"
+                          [class.only-text]="!item.url"
+                          [ngClass]="opts.itemTextPosition"
+                          #tile
+                        >
                           @if (item.url) {
                             <div [class.image]="calcWidth(item, tile)">
                               <img
@@ -175,7 +182,6 @@
                               />
                             </div>
                           }
-                          @let value = bingoValue(indexGrp, index);
                           @if (value.visible) {
                             @if (checkChoice === 'Z') {
                               @if (editMode) {
@@ -224,7 +230,12 @@
         }
       </table>
     } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
-      <div [id]="render() ? 'html2canvas-element' : 'preview-element'" class="html2canvas-element">
+      <div [id]="render() ? 'html2canvas-element' : 'preview-element'" class="html2canvas-element with-zone">
+        @if (opts.title || demo()) {
+          <div class="global-title">
+            {{ opts.title || (demo() ? 'Example' : '') }}
+          </div>
+        }
         <div class="zone-classement-container">
           <div class="zone-classement">
             @if (opts.groups?.length) {

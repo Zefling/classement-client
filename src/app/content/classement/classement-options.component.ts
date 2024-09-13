@@ -5,20 +5,23 @@ import {
     input,
     OnChanges,
     OnDestroy,
+    OnInit,
     SimpleChanges,
     viewChild,
 } from '@angular/core';
 
+import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { typesMine } from 'src/app/services/global.service';
+import { TypeFile, typesMine } from 'src/app/services/global.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
+import Ajv, { DefinedError } from 'ajv';
 import { MemoryService } from 'src/app/services/memory.service';
 import { palette } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
@@ -39,6 +42,7 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
+import { schemaTheme } from './classement-schemas';
 import { ClassementThemesComponent } from './classement-themes.component';
 
 @Component({
@@ -46,7 +50,7 @@ import { ClassementThemesComponent } from './classement-themes.component';
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
 })
-export class ClassementOptionsComponent implements OnChanges, OnDestroy {
+export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
     // input
 
     options = input<Options>();
@@ -56,6 +60,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
+    dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
+    dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
+    dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
     mode = viewChild.required<Select2>('mode');
 
     api = environment.api?.active || false;
@@ -73,8 +80,16 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
 
     listMode: Select2Data = listModes;
 
+    themeName = '';
+
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
+
+    themeTmp?: {
+        name: string;
+        options: Options;
+    };
+    themeError = false;
 
     private _sub = Subscriptions.instance();
 
@@ -90,7 +105,9 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                 this.categoryUpdate();
             }),
         );
+    }
 
+    ngOnInit(): void {
         this.updateMode();
     }
 
@@ -124,7 +141,7 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
                     this.themesList = themesLists;
                     break;
             }
-            if (this.options()?.mode !== mode) {
+            if (!this._modeTemp || options.mode !== mode) {
                 this.updateList(mode);
             }
 
@@ -249,11 +266,8 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         this.dialogChangeMode().close();
     }
 
-    switchOptions() {
-        const options = this.options();
-        if (options) {
-            options.showAdvancedOptions = !options.showAdvancedOptions;
-        }
+    advanceOptions() {
+        this.dialogAdvancedOptions().open();
     }
 
     updateTags(tags: string[]) {
@@ -375,6 +389,98 @@ export class ClassementOptionsComponent implements OnChanges, OnDestroy {
         } else if (options[axis] > 300) {
             options[axis] = 300;
         }
+    }
+
+    export() {
+        const theme = this.options() as any;
+        // usage
+        delete theme['showAdvancedOptions']; // removed option
+        delete theme['autoSave'];
+        delete theme['streamMode'];
+        // infos
+        delete theme['title'];
+        delete theme['category'];
+        delete theme['description'];
+        delete theme['tags'];
+        theme['themeName'] = this.themeName;
+
+        Utils.downloadFile(
+            JSON.stringify(theme),
+            Utils.normalizeFileName(`theme-${theme.mode}-${this.themeName}`) + '.json',
+            'text/plain',
+        );
+        this.exportCancel();
+    }
+
+    exportCancel() {
+        this.themeName = '';
+        this.dialogAdvancedOptionsExport().close();
+    }
+
+    importJsonFile(event: Event) {
+        const files = (event.target as any).files as FileList;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (typesMine[TypeFile.json].includes(file.type)) {
+                const data: FileHandle = {
+                    file,
+                };
+
+                let reader = new FileReader();
+                reader.onload = (ev: ProgressEvent<FileReader>) => {
+                    data.target = ev.target;
+                };
+                reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
+                    const url = data.target?.result as String;
+                    const fileString = url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
+                    const importOptions = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Options;
+
+                    const ajv = new Ajv({
+                        logger: {
+                            log: args => {
+                                console.log(args);
+                            },
+                            warn: args => {
+                                console.log(args);
+                            },
+                            error: args => {
+                                console.log(args);
+                            },
+                        },
+                    });
+                    const validate = ajv.compile(schemaTheme);
+                    const valid = validate(importOptions);
+
+                    if (valid) {
+                        this.themeTmp = {
+                            name: importOptions['themeName']!,
+                            options: importOptions,
+                        };
+                        this.themeError = false;
+                    } else {
+                        this.themeError = true;
+
+                        for (const err of validate.errors as DefinedError[]) {
+                            console.log(err);
+                        }
+                    }
+                };
+                reader.readAsDataURL(data.file);
+            }
+        }
+    }
+
+    importValidation() {
+        const options = this.options();
+        if (options && this.themeTmp) {
+            Object.assign(options, this.themeTmp.options);
+            this.importCancel();
+        }
+    }
+
+    importCancel() {
+        this.themeTmp = undefined;
+        this.dialogAdvancedOptionsImport().close();
     }
 
     private getImageUrl(item: ImagesNames) {

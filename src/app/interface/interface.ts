@@ -82,13 +82,13 @@ export type FormattedGroup = { name: string; bgColor: string; txtColor: string; 
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
-    showAdvancedOptions: boolean;
     title: string;
     category: string;
     description: string;
     tags: string[];
     mode: ModeNames;
     groups?: OptionGroup[];
+    themeName?: string;
 };
 export type ThemeOptions = {
     titleTextColor: string;
@@ -161,8 +161,8 @@ export type Palette = (string | [string, string])[];
 
 export type OptionGroup = {
     title: string;
-    titleVerticalPosition?: string;
-    titleHorizontalPosition?: string;
+    titleVerticalPosition?: 'start' | 'center' | 'end';
+    titleHorizontalPosition?: 'start' | 'center' | 'end';
 };
 
 export type Theme = {

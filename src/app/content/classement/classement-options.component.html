@@ -3,7 +3,7 @@
 @let opts = options();
 
 @if (opts) {
-  <div class="options {{ opts.mode }}" [class.simplified]="!opts.showAdvancedOptions">
+  <div class="options {{ opts.mode }}">
     <div class="title">
       <label for="option-title">{{ 'generator.options.title' | transloco }}</label>
       <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
@@ -61,9 +61,7 @@
       </div>
     </div>
     <div class="links">
-      <a tabindex="0" (click)="switchOptions()">{{
-        (opts.showAdvancedOptions ? 'generator.options.simple' : 'generator.options.advance') | transloco
-      }}</a>
+      <a tabindex="0" (click)="advanceOptions()">{{ 'generator.options.advance' | transloco }}</a>
     </div>
     <div class="themes">
       <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | transloco }}</a>
@@ -99,7 +97,42 @@
         <span [tooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
       </label>
     </div>
-    @if (opts.showAdvancedOptions) {
+
+    <div class="tags">
+      {{ 'generator.options.tags' | transloco }}
+      <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
+    </div>
+  </div>
+}
+
+<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
+
+<dialog-cmp class="auto-format" #dialogChangeMode>
+  <p class="question">
+    {{ 'generator.actions.change.mode.question' | transloco }}
+  </p>
+  <p class="info">
+    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
+    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
+  </p>
+
+  <div class="buttons">
+    <button (click)="modeChangeValid(false)">
+      {{ 'generator.actions.reset.groups.cancel' | transloco }}
+    </button>
+    <button class="primary" (click)="modeChangeValid(true)">
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    </button>
+  </div>
+</dialog-cmp>
+
+<dialog-cmp #dialogAdvancedOptions class="dialog-options" closeBackdrop closeButton>
+  <p class="warning">
+    {{ 'generator.options.advance.info' | transloco }}
+  </p>
+
+  @if (opts) {
+    <div class="advanced-options {{ opts.mode }}">
       <!-- ###############################  tile options ############################### -->
       <h4 class="title-item">{{ 'generator.options.item.title' | transloco }}</h4>
       <div class="sizes">
@@ -208,6 +241,16 @@
               <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
             </label>
           }
+          @if (
+            (!opts.itemWidthAuto &&
+              (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+            opts.mode === 'bingo'
+          ) {
+            <label class="toggle-switch">
+              <input id="option-item-cover" type="checkbox" [(ngModel)]="opts.itemImageCover" />
+              <span>{{ 'generator.options.item.cover' | transloco }}</span>
+            </label>
+          }
         </div>
       </div>
       <div class="colors-item-back input-button">
@@ -286,13 +329,13 @@
         <div class="min-line-text input-value">
           <div class="number-input">
             <label for="min-line-text">{{ 'generator.options.item.text.min.line' | transloco }}</label>
-            <input id="min-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMinLine" />
+            <input id="min-line-text" type="number" min="0" max="10" [(ngModel)]="opts.itemTextMinLine" />
           </div>
         </div>
         <div class="max-line-text input-value">
           <div class="number-input">
             <label for="max-line-text">{{ 'generator.options.item.text.max.line' | transloco }}</label>
-            <input id="max-line-text" type="number" min="0" max="100" [(ngModel)]="opts.itemTextMaxLine" />
+            <input id="max-line-text" type="number" min="0" max="10" [(ngModel)]="opts.itemTextMaxLine" />
           </div>
         </div>
       }
@@ -415,7 +458,7 @@
         <div class="border-radius input-value">
           <div class="number-input">
             <label for="option-border-radius">{{ 'generator.options.border.radius' | transloco }}</label>
-            <input id="option-border-radius" type="number" min="0" max="100" [(ngModel)]="opts.borderRadius" />
+            <input id="option-border-radius" type="number" min="0" max="50" [(ngModel)]="opts.borderRadius" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -674,7 +717,7 @@
         <div class="global-width input-value">
           <div class="number-input">
             <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
-            <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" />
+            <input id="option-global-width" type="number" [(ngModel)]="opts.imageWidth" min="100" max="4000" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -683,7 +726,7 @@
         <div class="global-height input-value">
           <div class="number-input">
             <label for="option-global-height">{{ 'generator.options.global.height' | transloco }}</label>
-            <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" />
+            <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" min="100" max="4000" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -697,6 +740,7 @@
               [data]="listThemes"
               [templates]="templates"
               resultMaxHeight="300px"
+              overlay
             >
               <ng-template #templates let-data="data">
                 <div class="list-option">
@@ -733,31 +777,157 @@
           </div>
         </div>
       }
-    }
-    <div class="tags">
-      {{ 'generator.options.tags' | transloco }}
-      <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
     </div>
+
+    <div class="buttons">
+      <button class="primary" (click)="exportDialog.open()">
+        {{ 'generator.options.export' | transloco }}
+      </button>
+      <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
+        {{ 'generator.options.import' | transloco }}
+      </button>
+      <button class="primary" (click)="dialogAdvancedOptions.close()">
+        {{ 'generator.options.close' | transloco }}
+      </button>
+    </div>
+
+    <!-- ############################### render example ###############################  -->
+    <div class="option-preview">
+      <see-classement
+        id="test"
+        [options]="opts"
+        [groups]="[
+          {
+            name: 'Test\n**Markdown**',
+            bgColor: '#dc8add',
+            txtColor: '#000',
+            list: [
+              {
+                id: 'test-1',
+                url: './assets/images/tile_image_example1.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 0,
+                y: 0,
+              },
+              {
+                id: 'test-2',
+                url: './assets/images/tile_image_example2.webp',
+                name: 'tile_image_example',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 200,
+                y: 0,
+              },
+              {
+                id: 'test-3',
+                url: './assets/images/tile_image_example3.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 400,
+                y: 0,
+              },
+              {
+                id: 'test-4',
+                url: './assets/images/tile_image_example4.webp',
+                name: 'tile_image_example4',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 600,
+                y: 0,
+              },
+              {
+                id: 'text-1',
+                name: 'tile_text_example1',
+                title: 'Text',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 800,
+                y: 10,
+              },
+              {
+                id: 'text-2',
+                name: 'tile_text_example2',
+                title: 'Text Text Text',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 870,
+                y: 10,
+              },
+            ],
+          },
+        ]"
+        [list]="[]"
+        render
+        demo
+      ></see-classement>
+    </div>
+  }
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #exportDialog>
+  <div>Un petit nom à votre thème ?</div>
+  <div>
+    <input type="text" [(ngModel)]="themeName" maxlength="100" />
   </div>
-}
-
-<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
-
-<dialog-cmp class="auto-format" #dialogChangeMode>
-  <p class="question">
-    {{ 'generator.actions.change.mode.question' | transloco }}
-  </p>
-  <p class="info">
-    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
-    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
-  </p>
-
   <div class="buttons">
-    <button (click)="modeChangeValid(false)">
-      {{ 'generator.actions.reset.groups.cancel' | transloco }}
+    <button class="default" (click)="exportCancel()">
+      {{ 'generator.options.cancel' | transloco }}
     </button>
-    <button class="primary" (click)="modeChangeValid(true)">
-      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
+      {{ 'generator.options.export' | transloco }}
     </button>
   </div>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #importDialog>
+  <div>Merci d'importer un fichier de theme valide.</div>
+  <div>
+    <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
+  </div>
+
+  @if (themeError) {
+    <div class="error">Le fichier de thème n'est pas valide</div>
+  }
+
+  @if (themeTmp) {
+    <div>
+      Mettre en place le thème : <strong>{{ themeTmp.name }}</strong>
+    </div>
+
+    <div class="buttons">
+      <button class="default" (click)="importCancel()">
+        {{ 'generator.options.cancel' | transloco }}
+      </button>
+      <button class="primary" (click)="importValidation()">
+        {{ 'generator.options.import' | transloco }}
+      </button>
+    </div>
+  } @else {
+    <div class="buttons">
+      <button class="default" (click)="importCancel()">
+        {{ 'generator.options.cancel' | transloco }}
+      </button>
+    </div>
+  }
 </dialog-cmp>

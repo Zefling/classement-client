@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, booleanAttribute, input } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, OnDestroy, OnInit, booleanAttribute, input } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -27,7 +27,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
 })
-export class SeeClassementComponent implements OnInit, OnDestroy {
+export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
     groups = input.required<FormattedGroup[]>();
     list = input.required<FileType[]>();
     imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
@@ -39,6 +39,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
     render = input<boolean, any>(false, { transform: booleanAttribute });
+    demo = input<boolean, any>(false, { transform: booleanAttribute });
 
     nameOpacity!: string;
 
@@ -82,7 +83,6 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     async ngOnInit() {
         this.globalService.updateVarCss(this.options(), this.imagesCache());
-        this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
 
         const mode = this.options().mode;
 
@@ -117,6 +117,10 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         }
 
         this.getContextMenu();
+    }
+
+    ngDoCheck(): void {
+        this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
     }
 
     ngOnDestroy() {
