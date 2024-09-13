@@ -211,6 +211,9 @@ body {
     --dialog-backdrop-background-no-filter: color-mix(in hsl, var(--primaryA) 70%, transparent);
     --dialog-background: var(--neutral8);
     --dialog-shadow-color: color-mix(in hsl, var(--neutralA) 30%, transparent);
+    --dialog-close-shadow-color: var(--neutral5);
+    --dialog-close-background: var(--neutral7);
+    --dialog-close-background-hover: var(--neutral5);
 
     // list
     --list-header-background: var(--neutral9);
