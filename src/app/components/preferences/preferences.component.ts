@@ -113,6 +113,21 @@ export class PreferencesDialogComponent {
         }
     }
 
+    emojiAction(emoji: string, hide?: { test: boolean }) {
+        if (!this.emojiSort.includes(emoji)) {
+            this.addEmoji(emoji);
+            if (hide) {
+                hide.test != hide.test;
+            }
+        }
+    }
+
+    toggleEmoji(event: Event, hide: { test: boolean }) {
+        hide.test = !hide.test;
+        event.stopPropagation();
+        window.dispatchEvent(new CustomEvent('dialog-click', { detail: event }));
+    }
+
     removeEmoji(emoji: string) {
         this.emojiSort.splice(this.emojiSort.indexOf(emoji), 1);
         this.savePref();
@@ -168,11 +183,9 @@ export class PreferencesDialogComponent {
         this.initThemeByMode(initPreferences.mode, false);
 
         this.preferencesForm.get('pageSize')?.valueChanges.subscribe((value: number) => {
-            try {
-                this.preferencesForm!.get('pageSize')?.setValue(Math.min(50, Math.max(9, value)), { emitEvent: false });
-            } catch (e) {
-                this.preferencesForm!.get('pageSize')?.setValue(24, { emitEvent: false });
-            }
+            this.preferencesForm!.get('pageSize')?.setValue(Math.min(50, Math.max(9, value || 24)), {
+                emitEvent: false,
+            });
         });
 
         this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: string) => {

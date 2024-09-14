@@ -35,5 +35,6 @@ export class DialogComponent {
 
     _propagationStop(event: Event) {
         event.stopPropagation();
+        window.dispatchEvent(new CustomEvent('dialog-click', { detail: event }));
     }
 }

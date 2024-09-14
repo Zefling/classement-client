@@ -169,5 +169,29 @@ export const emojis = Object.entries(emojiList)
     .filter(e => e[0] !== 'Component')
     .map(e => ({
         label: e[0],
-        options: Object.values(e[1]).join(',').split(','),
+        options: Object.values(e[1])
+            .join(',')
+            .split(',')
+            .map(e => [e]),
     }));
+
+const element = new RegExp(
+    // tone                                           |sex              | hair                                  | emoji
+    '\u{1f3fb}|\u{1f3fc}|\u{1f3fd}|\u{1f3fe}|\u{1f3ff}|\u{2640}|\u{2642}|\u{1f9b0}|\u{1f9b1}|\u{1f9b3}|\u{1f9b3}|\u{fe0f}',
+    'g',
+);
+const testEmoji = new RegExp('\u{fe0f}.*', 'g');
+
+emojis
+    .filter(e => e.label === 'People & Body')
+    ?.forEach(g => {
+        g.options.forEach(o => {
+            const first = o[0];
+            const val = first?.replace(element, '');
+            if (val !== first?.replace(testEmoji, '')) {
+                g.options.find(e => e[0]?.replace(testEmoji, '') === val)?.push(first);
+                delete o[0];
+            }
+        });
+        g.options = g.options.filter(o => o[0]);
+    });

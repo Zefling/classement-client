@@ -113,14 +113,34 @@
               @for (emojiGroup of emojiList; track emojiGroup) {
                 <h4>{{ 'preferences.emoji.' + emojiGroup.label | transloco }}</h4>
                 <ul class="emoji-list">
-                  @for (emoji of emojiGroup.options; track emoji) {
-                    <li
-                      [tabIndex]="0"
-                      (click)="emojiSort.includes(emoji) ? null : addEmoji(emoji)"
-                      [class.disabled]="emojiSort.includes(emoji)"
-                    >
-                      {{ emoji }}
-                    </li>
+                  @for (emojis of emojiGroup.options; track emojis) {
+                    @if (emojis.length === 1) {
+                      <li
+                        tabIndex="0"
+                        (click)="emojiAction(emojis[0])"
+                        [class.disabled]="emojiSort.includes(emojis[0])"
+                      >
+                        {{ emojis[0] }}
+                      </li>
+                    } @else {
+                      @let hide = { test: true };
+                      <li tabIndex="0" class="multiple">
+                        <div (click)="toggleEmoji($event, hide)">{{ emojis[0] }}</div>
+                        @if (!hide.test) {
+                          <ul class="sub-list" (clickOutside)="hide.test = !hide.test">
+                            @for (emoji of emojis; track emoji) {
+                              <li
+                                [tabIndex]="0"
+                                (click)="emojiAction(emoji, hide)"
+                                [class.disabled]="emojiSort.includes(emoji)"
+                              >
+                                {{ emoji }}
+                              </li>
+                            }
+                          </ul>
+                        }
+                      </li>
+                    }
                   }
                 </ul>
               }

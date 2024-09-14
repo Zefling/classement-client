@@ -34,6 +34,7 @@
 
     .emoji-list {
         display: grid;
+        position: relative;
         grid-template-columns: [col-start] repeat(auto-fill, minmax(40px, 1fr)) [col-end];
         gap: 2px;
         padding: 0;
@@ -59,6 +60,28 @@
         &.cdk-drop-list-dragging li:not(.cdk-drag-placeholder) {
             transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
         }
+    }
+
+    .multiple > div {
+        background: linear-gradient(135deg, transparent 91%, var(--neutral0) 90%);
+    }
+
+    .sub-list {
+        display: grid;
+        position: absolute;
+        left: 0;
+        grid-template-columns: [col-start] repeat(auto-fill, minmax(40px, 1fr)) [col-end];
+        z-index: 1;
+        box-sizing: border-box;
+        margin: 0;
+        margin-top: 5px;
+        box-shadow: 2px 2px 10px var(--neutralB);
+        border: 2px solid var(--neutral5);
+        background: var(--neutral7);
+        padding: 0;
+        padding: 10px;
+        width: 100%;
+        list-style: none;
     }
 
     .current-emoji {
