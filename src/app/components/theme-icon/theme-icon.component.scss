@@ -1,6 +1,10 @@
 :host {
     display: block;
 
+    div {
+        all: initial;
+    }
+
     .block {
         margin: 5px;
     }

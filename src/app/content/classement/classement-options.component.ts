@@ -1,7 +1,7 @@
 import {
     booleanAttribute,
     Component,
-    Host,
+    inject,
     input,
     OnChanges,
     OnDestroy,
@@ -22,6 +22,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
 import Ajv, { DefinedError } from 'ajv';
+import { DBService } from 'src/app/services/db.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import { palette } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
@@ -51,9 +52,17 @@ import { ClassementThemesComponent } from './classement-themes.component';
     styleUrls: ['./classement-options.component.scss'],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
+    // inject
+
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly categories = inject(CategoriesService);
+    private readonly memory = inject(MemoryService);
+    private readonly editor = inject(ClassementEditComponent, { host: true });
+    private readonly dbService = inject(DBService);
+
     // input
 
-    options = input<Options>();
+    options = input.required<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
 
     // viewChild
@@ -65,12 +74,13 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
     mode = viewChild.required<Select2>('mode');
 
+    // template
+
     api = environment.api?.active || false;
 
     categoriesList: Category[] = [];
 
     listThemes!: Select2Data;
-
     themes!: Theme[];
 
     imagesList: ImagesNames[] = imagesThemes;
@@ -80,25 +90,16 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     listMode: Select2Data = listModes;
 
-    themeName = '';
-
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
 
-    themeTmp?: {
-        name: string;
-        options: Options;
-    };
+    themeName = '';
+    themeTmp?: Theme<string>;
     themeError = false;
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly categories: CategoriesService,
-        private readonly memory: MemoryService,
-        @Host() private readonly editor: ClassementEditComponent,
-    ) {
+    constructor() {
         this.categoryUpdate();
         this._sub.push(
             this.categories.onChange.subscribe(() => {
@@ -391,22 +392,38 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
-    export() {
-        const theme = this.options() as any;
+    private optionToTheme() {
+        const theme: Theme<string> = {
+            id: '',
+            name: this.themeName,
+            options: this.options(),
+        };
+
         // usage
-        delete theme['showAdvancedOptions']; // removed option
-        delete theme['autoSave'];
-        delete theme['streamMode'];
+        delete (theme.options as any)['showAdvancedOptions']; // removed option
+        delete theme.options['autoSave'];
+        delete theme.options['streamMode'];
         // infos
-        delete theme['title'];
-        delete theme['category'];
-        delete theme['description'];
-        delete theme['tags'];
-        theme['themeName'] = this.themeName;
+        delete (theme.options as any)['title'];
+        delete (theme.options as any)['category'];
+        delete (theme.options as any)['description'];
+        delete (theme.options as any)['tags'];
+
+        return theme;
+    }
+
+    saveDraft() {
+        this.dbService.saveLocalTheme(this.optionToTheme());
+    }
+
+    saveServer() {}
+
+    export() {
+        const theme = this.optionToTheme();
 
         Utils.downloadFile(
             JSON.stringify(theme),
-            Utils.normalizeFileName(`theme-${theme.mode}-${this.themeName}`) + '.json',
+            Utils.normalizeFileName(`theme-${theme.options.mode}-${this.themeName}`) + '.json',
             'text/plain',
         );
         this.exportCancel();
@@ -453,6 +470,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
                     if (valid) {
                         this.themeTmp = {
+                            id: 'import',
                             name: importOptions['themeName']!,
                             options: importOptions,
                         };

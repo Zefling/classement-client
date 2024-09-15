@@ -275,8 +275,11 @@
     },
     "options": {
       "group.title": "Options",
-      "import": "Import",
-      "export": "Export",
+      "import": "Importer",
+      "export": "Exporter",
+      "export.save": "Sauver ou exporter",
+      "save": "Sauver",
+      "draft": "Brouillon",
       "close": "Fermer",
       "cancel": "Annuler",
       "title": "Titre du classement :",
@@ -417,6 +420,7 @@
       "cancel": "Annuler",
       "validate": "Valider",
       "name": {
+        "question": "Un petit nom à votre thème ?",
         "default": "Défaut",
         "compact": "Défaut compact",
         "square": "Carré",
@@ -430,6 +434,11 @@
         "bingo-l": "Large",
         "grid": "Grille",
         "classic": "Classique"
+      },
+      "import": {
+        "info": "Merci d'importer un fichier de theme valide.",
+        "invalid": "Le fichier de thème n'est pas valide",
+        "valid": "Mettre en place le thème :"
       }
     },
     "ranking": {

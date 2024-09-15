@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData } from '../interface/interface';
+import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData, Theme } from '../interface/interface';
 import { Utils } from '../tools/utils';
 import { DataExtra } from './data.service';
 
@@ -13,6 +13,7 @@ enum Store {
     data = 'classementData',
     pref = 'preferences',
     extra = 'extraData',
+    themes = 'classementTheme',
 }
 
 type DBAttr = 'infos' | 'data' | 'pref' | 'extra';
@@ -130,6 +131,22 @@ export class DBService {
                 .then(db => this._getByIdDB(db, Store.pref, 'pref', formatData, 'pref'))
                 .then(__ => resolve(formatData.pref.data))
                 .catch(_ => reject());
+        });
+    }
+
+    saveLocalTheme(theme: Theme<string>) {
+        return new Promise((resolve, reject) => {
+            // this._getDB()
+            //     .then(db =>
+            //         formatData.update
+            //             ? this._updateDB(db, Store.infos, formatData.infos)
+            //             : this._saveDB(db, Store.infos, formatData.infos),
+            //     )
+            //     .then(__ => resolve(formatData))
+            //     .catch(_ => reject())
+            //     .finally(() => {
+            //         this.accessSubject.next();
+            //     });
         });
     }
 

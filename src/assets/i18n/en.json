@@ -277,6 +277,9 @@
       "group.title": "Options",
       "import": "Import",
       "export": "Export",
+      "export.save": "Save or export",
+      "save": "Save",
+      "draft": "Draft",
       "close": "Close",
       "cancel": "Cancel",
       "title": "Ranking title:",
@@ -417,6 +420,7 @@
       "cancel": "Cancel",
       "validate": "Validate",
       "name": {
+        "question": "A little name for your theme?",
         "default": "Default",
         "compact": "Default compact",
         "square": "Square",
@@ -430,6 +434,11 @@
         "bingo-l": "Large",
         "grid": "Grid",
         "classic": "Classic"
+      },
+      "import": {
+        "info": "Please import a valid theme file.",
+        "invalid": "Theme file is not valid",
+        "valid": "Set the theme:"
       }
     },
     "ranking": {
