@@ -4,6 +4,7 @@ import { booleanAttribute, Component, HostBinding, HostListener, input, output }
     selector: 'dialog-cmp',
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
+    standalone: true,
 })
 export class DialogComponent {
     // input

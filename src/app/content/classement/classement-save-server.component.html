@@ -84,12 +84,7 @@
     <div class="link">
       <label>{{ 'generator.server.link' | transloco }}</label>
       <div>
-        <input
-          type="text"
-          [ngModel]="current?.linkId"
-          (ngModelChange)="testLink($event)"
-          (blur)="linkFormat($event)"
-        />
+        <input type="text" [ngModel]="current?.linkId" (ngModelChange)="testLink($event)" (blur)="linkFormat($event)" />
       </div>
       <span class="validity" [class.valid]="linkIdValid">
         {{ linkIdValid !== undefined ? (linkIdValid ? 'Ｏ' : 'Ｘ') : '' }}

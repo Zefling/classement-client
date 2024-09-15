@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { MemoryService } from 'src/app/services/memory.service';
 
@@ -10,5 +10,5 @@ import { MemoryService } from 'src/app/services/memory.service';
     standalone: true,
 })
 export class HelpIcebergComponent {
-    constructor(public readonly memory: MemoryService) {}
+    readonly memory = inject(MemoryService);
 }

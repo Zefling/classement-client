@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, viewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -14,13 +14,49 @@ import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
+import { TabsComponent as TabsComponent_1 } from '../../components/tabs/tabs.component';
+import { TabContentComponent } from '../../components/tabs/tab-title.component';
+import { TabTitleComponent } from '../../components/tabs/tab-content.component';
+import { FormsModule } from '@angular/forms';
+import { SortableDirective as SortableDirective_1, SortRuleDirective } from '../../directives/sortable.directive';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { TooltipDirective } from '../../directives/tooltip.directive';
+import { ClassementListComponent } from '../list/classement-list.component';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
+    standalone: true,
+    imports: [
+        TabsComponent_1,
+        TabContentComponent,
+        TabTitleComponent,
+        FormsModule,
+        SortableDirective_1,
+        SortRuleDirective,
+        RouterLink,
+        TagListComponent,
+        TooltipDirective,
+        RouterLinkActive,
+        ClassementListComponent,
+        DialogComponent_1,
+        DatePipe,
+        TranslocoPipe,
+    ],
 })
 export class UserListComponent implements OnInit, OnDestroy {
+    private readonly dbService = inject(DBService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly userService = inject(APIUserService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly router = inject(Router);
+    private readonly global = inject(GlobalService);
+
     dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
     sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
     tabs = viewChild.required<TabsComponent>(TabsComponent);
@@ -37,16 +73,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly dbService: DBService,
-        private readonly classementService: APIClassementService,
-        private readonly userService: APIUserService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly route: ActivatedRoute,
-        private readonly router: Router,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.user = this.userService.user;
 
         this.listener.push(

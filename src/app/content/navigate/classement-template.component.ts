@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -9,13 +9,23 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from '../classement/classement-default';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 
 @Component({
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
+    standalone: true,
+    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
 })
 export class ClassementTemplateComponent {
+    private readonly classementService = inject(APIClassementService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     categories = categories;
 
     classements: Classement[] = [];
@@ -26,13 +36,7 @@ export class ClassementTemplateComponent {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

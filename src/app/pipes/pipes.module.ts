@@ -4,8 +4,7 @@ import { FileSizePipe } from './file-size';
 import { NumFormatPipe } from './num-format';
 
 @NgModule({
-    declarations: [NumFormatPipe, FileSizePipe],
     exports: [NumFormatPipe, FileSizePipe],
-    imports: [],
+    imports: [NumFormatPipe, FileSizePipe],
 })
 export class PipesModule {}

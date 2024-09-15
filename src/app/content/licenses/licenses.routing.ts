@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-import { LicensesComponent } from './licenses.component';
+
 
 const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        component: LicensesComponent,
+        loadComponent: () => import('./licenses.component').then(m => m.LicensesComponent),
         canActivate: [DataChange],
     },
 ];

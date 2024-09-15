@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -20,12 +20,12 @@ type DBAttr = 'infos' | 'data' | 'pref' | 'extra';
 
 @Injectable({ providedIn: 'root' })
 export class DBService {
+    private readonly logger = inject(Logger);
+
     private _db!: IDBDatabase;
 
     accessState = true;
     private accessSubject = new Subject<void>();
-
-    constructor(private readonly logger: Logger) {}
 
     access(): Promise<void> {
         return new Promise(resolve => {

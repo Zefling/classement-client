@@ -1,15 +1,17 @@
-import { Component, ElementRef, OnDestroy, booleanAttribute, input, output, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Buffer } from 'buffer';
 import { Subscription } from 'rxjs';
 
+import { FormsModule } from '@angular/forms';
 import { Data, FileString, importData } from '../../interface/interface';
 import { DBService } from '../../services/db.service';
 import { GlobalService, TypeFile } from '../../services/global.service';
 import { Logger, LoggerLevel } from '../../services/logger';
 import { MessageService, MessageType } from '../info-messages/info-messages.component';
+import { LoadingComponent } from '../loader/loading.component';
 
 export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Data };
 
@@ -17,8 +19,16 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     selector: 'import-json',
     templateUrl: './import-json.component.html',
     styleUrls: ['./import-json.component.scss'],
+    standalone: true,
+    imports: [LoadingComponent, FormsModule, TranslocoPipe],
 })
 export class ImportJsonComponent implements OnDestroy {
+    private readonly translate = inject(TranslocoService);
+    private readonly globalService = inject(GlobalService);
+    private readonly messageService = inject(MessageService);
+    private readonly dbService = inject(DBService);
+    private readonly logger = inject(Logger);
+
     jsonTmp?: importData[];
 
     onLoad = false;
@@ -38,13 +48,9 @@ export class ImportJsonComponent implements OnDestroy {
 
     private _sub: Subscription[] = [];
 
-    constructor(
-        private readonly translate: TranslocoService,
-        private readonly globalService: GlobalService,
-        private readonly messageService: MessageService,
-        private readonly dbService: DBService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
+        const globalService = this.globalService;
+
         this._sub.push(
             globalService.onFileLoaded.subscribe(file => {
                 if (file.filter === TypeFile.json) {

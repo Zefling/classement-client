@@ -9,14 +9,15 @@ import { AdminRoutingModule } from './admin.routing';
 import { ListClassementsComponent } from './list-classements.component';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        AdminRoutingModule,
         // page
         AdminComponent,
         AdminUsersComponent,
         AdminClassementsComponent,
         ListClassementsComponent,
     ],
-    imports: [SharedModule, AdminRoutingModule],
     providers: [],
     exports: [],
 })

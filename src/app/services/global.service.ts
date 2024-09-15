@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, signal } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, signal, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -38,6 +38,11 @@ export const typesMine: Record<TypeFile, string[]> = {
 
 @Injectable({ providedIn: 'root' })
 export class GlobalService {
+    readonly rendererFactory = inject(RendererFactory2);
+    private readonly logger = inject(Logger);
+    private readonly title = inject(Title);
+    private readonly translate = inject(TranslocoService);
+
     readonly onForceExit = new Subject<string | undefined>();
     readonly onFileLoaded = new Subject<FileStream>();
     readonly onPageUpdate = new Subject<number>();
@@ -62,12 +67,9 @@ export class GlobalService {
 
     private renderer: Renderer2;
 
-    constructor(
-        readonly rendererFactory: RendererFactory2,
-        private readonly logger: Logger,
-        private readonly title: Title,
-        private readonly translate: TranslocoService,
-    ) {
+    constructor() {
+        const rendererFactory = this.rendererFactory;
+
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
 

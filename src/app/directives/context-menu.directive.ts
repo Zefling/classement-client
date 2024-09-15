@@ -1,6 +1,6 @@
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { booleanAttribute, Directive, HostListener, input } from '@angular/core';
+import { booleanAttribute, Directive, HostListener, input, inject } from '@angular/core';
 
 import {
     ContextMenuComponent,
@@ -17,15 +17,16 @@ const connectedPosition: ConnectedPosition[] = [
 
 @Directive({
     selector: '[contextMenu]',
+    standalone: true,
 })
 export class ContextMenuDirective<T> {
+    private readonly overlay = inject(Overlay);
+
     static _overlayRef?: OverlayRef;
 
     contextMenu = input<ContextMenuData<T>>();
     contextMenuMode = input<ContextMenuMode>('default');
     contextMenuDisabled = input(false, { transform: booleanAttribute });
-
-    constructor(private readonly overlay: Overlay) {}
 
     @HostListener('contextmenu', ['$event'])
     async onContextMenu(event: MouseEvent) {

@@ -1,29 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { DatePipe } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
     selector: 'user-view',
     templateUrl: './user-view.component.html',
     styleUrls: ['./user-view.component.scss'],
+    standalone: true,
+    imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe],
 })
 export class UserViewComponent {
+    private readonly route = inject(ActivatedRoute);
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly logger = inject(Logger);
+
     user?: User;
 
     loading = false;
 
     listener = Subscriptions.instance();
 
-    constructor(
-        private readonly route: ActivatedRoute,
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
         this.listener.push(
             this.route.params.subscribe(async params => {
                 this.loading = true;

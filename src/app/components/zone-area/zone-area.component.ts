@@ -6,6 +6,7 @@ import { OptionGroup } from '../../interface/interface';
     selector: 'zone-area',
     templateUrl: './zone-area.component.html',
     styleUrls: ['./zone-area.component.scss'],
+    standalone: true,
 })
 export class ZoneAreaComponent {
     groups = input<OptionGroup[]>();

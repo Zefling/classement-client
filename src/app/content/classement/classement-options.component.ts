@@ -6,12 +6,11 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    SimpleChanges,
-    viewChild,
+    viewChild
 } from '@angular/core';
 
 import { Buffer } from 'buffer';
-import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
@@ -21,11 +20,20 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslocoPipe } from '@jsverse/transloco';
 import Ajv, { DefinedError } from 'ajv';
 import { DBService } from 'src/app/services/db.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import { palette } from 'src/app/tools/function';
 import { Utils } from 'src/app/tools/utils';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 import {
     defaultGroup,
     imageInfos,
@@ -50,6 +58,20 @@ import { ClassementThemesComponent } from './classement-themes.component';
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        Select2Module,
+        NgClass,
+        TextareaAutosizeDirective,
+        TooltipDirective,
+        TagListComponent,
+        ClassementThemesComponent,
+        DialogComponent_1,
+        DropImageDirective,
+        SeeClassementComponent,
+        TranslocoPipe,
+    ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
     // inject
@@ -100,6 +122,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private _sub = Subscriptions.instance();
 
     constructor() {
+    constructor() {
         this.categoryUpdate();
         this._sub.push(
             this.categories.onChange.subscribe(() => {
@@ -117,6 +140,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._modeTemp = undefined;
             this.updateMode();
         }
+    }
+    ngOnInit(): void {
+        throw new Error('Method not implemented.');
+    }
+    ngOnInit(): void {
+        throw new Error('Method not implemented.');
     }
 
     updateMode() {

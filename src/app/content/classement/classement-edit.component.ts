@@ -1,12 +1,15 @@
 import {
+    CdkDrag,
     CdkDragDrop,
     CdkDragMove,
+    CdkDropList,
+    CdkDropListGroup,
     Point,
     copyArrayItem,
     moveItemInArray,
     transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Location } from '@angular/common';
+import { DatePipe, Location, NgClass } from '@angular/common';
 import {
     ChangeDetectorRef,
     Component,
@@ -16,6 +19,7 @@ import {
     HostListener,
     OnDestroy,
     OnInit,
+    inject,
     viewChild,
     viewChildren,
 } from '@angular/core';
@@ -23,7 +27,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
@@ -56,9 +60,25 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
+import { FormsModule } from '@angular/forms';
 import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { MemoryService } from 'src/app/services/memory.service';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { ImportJsonComponent } from '../../components/import-json/import-json.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
+import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
+import { ContextMenuDirective } from '../../directives/context-menu.directive';
+import { CdkDragElement as CdkDragElement_1 } from '../../directives/drag-element.directive';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { CdkDropZone } from '../../directives/dropzone.directive';
+import { NgInitDirective } from '../../directives/ngInit.directive';
+import { RemoveTileDirective } from '../../directives/remove-tile.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
+import { FileSizePipe } from '../../pipes/file-size';
 import {
     defaultGroup,
     defaultOptions,
@@ -70,6 +90,9 @@ import {
 } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
 import { ClassementLoginComponent } from './classement-login.component';
+import { ClassementOptimiseComponent } from './classement-optimise.component';
+import { ClassementOptionsComponent } from './classement-options.component';
+import { ClassementSaveServerComponent } from './classement-save-server.component';
 import { ExternalImdbComponent } from './external.imdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
 import { HelpBingoComponent } from './help/help.bingo.component';
@@ -81,8 +104,55 @@ import { HelpTierListComponent } from './help/help.tierlist.component';
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
+    standalone: true,
+    imports: [
+        LoaderComponent,
+        DropImageDirective,
+        ClassementOptionsComponent,
+        NgClass,
+        CdkDropListGroup,
+        FormsModule,
+        CdkDropList,
+        CdkDrag,
+        RemoveTileDirective,
+        ContextMenuDirective,
+        NgInitDirective,
+        CdkDropZone,
+        ZoneAreaComponent,
+        ZoneAxisComponent,
+        CdkDragElement_1,
+        SeeClassementComponent,
+        LoadingComponent,
+        TooltipDirective,
+        DialogComponent_1,
+        ImportJsonComponent,
+        ClassementOptimiseComponent,
+        ClassementSaveServerComponent,
+        ClassementEditImageComponent,
+        ClassementLoginComponent,
+        ExternalImdbComponent,
+        DatePipe,
+        TranslocoPipe,
+        FileSizePipe,
+    ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
+    private readonly dbService = inject(DBService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+    private readonly messageService = inject(MessageService);
+    private readonly userService = inject(APIUserService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly location = inject(Location);
+    private readonly preferencesService = inject(PreferencesService);
+    private readonly imdbService = inject(APIImdbService);
+    private readonly memory = inject(MemoryService);
+
     new = false;
     id?: string;
 
@@ -166,23 +236,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private _inputFile!: HTMLInputElement;
     private _detectChange = new Subject<void>();
 
-    constructor(
-        private readonly dbService: DBService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-        private readonly messageService: MessageService,
-        private readonly userService: APIUserService,
-        private readonly classementService: APIClassementService,
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly logger: Logger,
-        private readonly cd: ChangeDetectorRef,
-        private readonly location: Location,
-        private readonly preferencesService: PreferencesService,
-        private readonly imdbService: APIImdbService,
-        private readonly memory: MemoryService,
-    ) {
+    constructor() {
+        const global = this.global;
+        const userService = this.userService;
+
         this.updateTitle();
 
         this.contextMenu.push(

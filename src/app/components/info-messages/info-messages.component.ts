@@ -1,6 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
+import { InfoMessageComponent } from './info-message.component';
 
 export enum MessageType {
     info = 'info',
@@ -26,12 +27,16 @@ export class MessageService {
     selector: 'info-messages',
     templateUrl: './info-messages.component.html',
     styleUrls: ['./info-messages.component.scss'],
+    standalone: true,
+    imports: [InfoMessageComponent],
 })
 export class InfoMessagesComponent {
     messages: Message[] = [];
 
-    constructor(messsageService: MessageService) {
-        messsageService.onAddMessage.subscribe((message: Message) => {
+    constructor() {
+        const messageService = inject(MessageService);
+
+        messageService.onAddMessage.subscribe((message: Message) => {
             this.messages.push(message);
         });
     }

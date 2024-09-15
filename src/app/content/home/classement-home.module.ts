@@ -6,11 +6,12 @@ import { ClassementHomeComponent } from './classement-home.component';
 import { ClassementHomeRoutingModule } from './classement-home.routing';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        ClassementHomeRoutingModule,
         // page
         ClassementHomeComponent,
     ],
-    imports: [SharedModule, ClassementHomeRoutingModule],
     providers: [],
     exports: [],
 })

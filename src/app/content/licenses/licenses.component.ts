@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -10,17 +10,19 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'third-party-licenses',
     templateUrl: './licenses.component.html',
     styleUrls: ['./licenses.component.scss'],
+    standalone: true,
+    imports: [TranslocoPipe],
 })
 export class LicensesComponent {
+    private readonly http = inject(HttpClient);
+    private readonly global = inject(GlobalService);
+    private readonly translate = inject(TranslocoService);
+
     data!: string;
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly http: HttpClient,
-        private readonly global: GlobalService,
-        private readonly translate: TranslocoService,
-    ) {
+    constructor() {
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {

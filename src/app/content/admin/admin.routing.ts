@@ -5,26 +5,26 @@ import { APIModeration } from 'src/app/services/api.moderation';
 import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
-import { AdminClassementsComponent } from './admin-classements.component';
-import { AdminUsersComponent } from './admin-users.component';
-import { AdminComponent } from './admin.component';
+
+
+
 
 const routes: Routes = [
     {
         path: '',
 
-        component: AdminComponent,
+        loadComponent: () => import('./admin.component').then(m => m.AdminComponent),
         canActivate: [DataChange, APIRequired, APIModeration],
         children: [
             {
                 path: 'users',
                 pathMatch: 'full',
-                component: AdminUsersComponent,
+                loadComponent: () => import('./admin-users.component').then(m => m.AdminUsersComponent),
             },
             {
                 path: 'classements',
                 pathMatch: 'full',
-                component: AdminClassementsComponent,
+                loadComponent: () => import('./admin-classements.component').then(m => m.AdminClassementsComponent),
             },
             {
                 path: '**',

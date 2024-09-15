@@ -1,9 +1,21 @@
-import { Component, ElementRef, input, OnChanges, OnDestroy, output, SimpleChanges, viewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    inject,
+    input,
+    OnChanges,
+    OnDestroy,
+    output,
+    SimpleChanges,
+    viewChild,
+} from '@angular/core';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
+import { FormsModule } from '@angular/forms';
+import { Select2Module } from 'ng-select2-component';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
@@ -12,13 +24,32 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
     selector: 'classement-save-server',
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
+    standalone: true,
+    imports: [
+        DropImageDirective,
+        FormsModule,
+        Select2Module,
+        ImageCropperComponent,
+        TooltipDirective,
+        LoaderComponent,
+        TranslocoPipe,
+    ],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
+    private readonly userService = inject(APIUserService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly categories = inject(CategoriesService);
+
     // input
 
     classement = input<Classement>();
@@ -58,13 +89,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly classementService: APIClassementService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly categories: CategoriesService,
-    ) {
+    constructor() {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {
                 if (this.userService.user!.username === this.classement()?.user) {

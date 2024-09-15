@@ -1,31 +1,34 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
     selector: 'user-login-oauth',
     templateUrl: './user-login-oauth.component.html',
     styleUrls: ['./user-login-oauth.component.scss'],
+    standalone: true,
+    imports: [RouterLink, LoaderComponent, TranslocoPipe],
 })
 export class UserLoginOauthComponent implements OnDestroy {
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     showError = '';
 
     loader = true;
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly activatedRoute: ActivatedRoute,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this.listener.push(

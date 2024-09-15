@@ -1,7 +1,8 @@
-import { Component, DoCheck, OnDestroy, OnInit, input, numberAttribute } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit, inject, input, numberAttribute } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
+import { RouterLink } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 
 interface Page {
@@ -15,8 +16,12 @@ interface Page {
     selector: 'paginate-cmp',
     templateUrl: './paginate.component.html',
     styleUrls: ['./paginate.component.scss'],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
+    private readonly global = inject(GlobalService);
+
     page = input(1, { transform: numberAttribute });
     total = input(0, { transform: numberAttribute });
     base = input<string>();
@@ -35,7 +40,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
 
     onPageUpdate: Subscription;
 
-    constructor(private readonly global: GlobalService) {
+    constructor() {
         this.onPageUpdate = this.global.onPageUpdate.subscribe(page => {
             this.update(page);
         });

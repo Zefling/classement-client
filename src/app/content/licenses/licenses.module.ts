@@ -6,11 +6,12 @@ import { LicensesComponent } from './licenses.component';
 import { LicensesRoutingModule } from './licenses.routing';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        LicensesRoutingModule,
         // page
         LicensesComponent,
     ],
-    imports: [SharedModule, LicensesRoutingModule],
     providers: [],
     exports: [],
 })

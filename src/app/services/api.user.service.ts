@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -18,6 +18,9 @@ import { Utils } from '../tools/utils';
 
 @Injectable({ providedIn: 'root' })
 export class APIUserService extends APICommon {
+    private readonly http = inject(HttpClient);
+    private readonly globalService = inject(GlobalService);
+
     afterLogin = new Subject<void>();
     afterLogout = new Subject<void>();
 
@@ -31,12 +34,10 @@ export class APIUserService extends APICommon {
 
     private cache: Classement[] = [];
 
-    constructor(
-        private readonly http: HttpClient,
-        private readonly globalService: GlobalService,
-        translate: TranslocoService,
-        logger: Logger,
-    ) {
+    constructor() {
+        const translate = inject(TranslocoService);
+        const logger = inject(Logger);
+
         super(translate, logger);
     }
 

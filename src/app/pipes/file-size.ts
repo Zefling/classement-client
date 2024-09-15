@@ -1,15 +1,17 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
 import { GlobalService } from '../services/global.service';
 
-@Pipe({ name: 'fileSize', pure: false })
+@Pipe({
+    name: 'fileSize',
+    pure: false,
+    standalone: true,
+})
 export class FileSizePipe implements PipeTransform {
-    constructor(
-        private readonly globalService: GlobalService,
-        private readonly translate: TranslocoService,
-    ) {}
+    private readonly globalService = inject(GlobalService);
+    private readonly translate = inject(TranslocoService);
 
     transform(value: number, params: Intl.NumberFormatOptions | undefined = {}): string {
         let unit = 0;

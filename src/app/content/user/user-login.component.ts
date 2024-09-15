@@ -1,19 +1,28 @@
-import { booleanAttribute, Component, input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { booleanAttribute, Component, input, OnDestroy, OnInit, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
     selector: 'user-login',
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
+    standalone: true,
+    imports: [FormsModule, RouterLink, LoaderComponent, TranslocoPipe],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     username = '';
     password = '';
     showError = '';
@@ -23,13 +32,6 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     popup = input<boolean, any>(false, { transform: booleanAttribute });
 
     private listener = Subscriptions.instance();
-
-    constructor(
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {}
 
     ngOnInit(): void {
         this.updateTitle();
