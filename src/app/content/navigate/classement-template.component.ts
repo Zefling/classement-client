@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -16,6 +16,12 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./classement-template.component.scss'],
 })
 export class ClassementTemplateComponent {
+    private readonly classementService = inject(APIClassementService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     categories = categories;
 
     classements: Classement[] = [];
@@ -26,13 +32,7 @@ export class ClassementTemplateComponent {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

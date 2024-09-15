@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, input, OnDestroy, OnInit } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -14,6 +14,11 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     username = '';
     password = '';
     showError = '';
@@ -23,13 +28,6 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     popup = input<boolean, any>(false, { transform: booleanAttribute });
 
     private listener = Subscriptions.instance();
-
-    constructor(
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {}
 
     ngOnInit(): void {
         this.updateTitle();

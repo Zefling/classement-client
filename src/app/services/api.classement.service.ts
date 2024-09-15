@@ -8,7 +8,7 @@ import {
     HttpRequest,
     HttpResponse,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Subject, last, map, tap } from 'rxjs';
 
@@ -29,18 +29,19 @@ export type UploadProgress = { percent: number; loaded: number; total: number };
 
 @Injectable({ providedIn: 'root' })
 export class APIClassementService extends APICommon {
+    private readonly http = inject(HttpClient);
+    private readonly userService = inject(APIUserService);
+
     progressValue = new Subject<UploadProgress>();
 
     get token(): string {
         return this.userService.token!;
     }
 
-    constructor(
-        private readonly http: HttpClient,
-        private readonly userService: APIUserService,
-        translate: TranslocoService,
-        logger: Logger,
-    ) {
+    constructor() {
+        const translate = inject(TranslocoService);
+        const logger = inject(Logger);
+
         super(translate, logger);
     }
 

@@ -7,18 +7,7 @@ import {
     transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
-import {
-    ChangeDetectorRef,
-    Component,
-    DoCheck,
-    ElementRef,
-    HostBinding,
-    HostListener,
-    OnDestroy,
-    OnInit,
-    viewChild,
-    viewChildren,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, viewChild, viewChildren, inject } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -83,6 +72,22 @@ import { HelpTierListComponent } from './help/help.tierlist.component';
     styleUrls: ['./classement-edit.component.scss'],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
+    private readonly dbService = inject(DBService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+    private readonly messageService = inject(MessageService);
+    private readonly userService = inject(APIUserService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly location = inject(Location);
+    private readonly preferencesService = inject(PreferencesService);
+    private readonly imdbService = inject(APIImdbService);
+    private readonly memory = inject(MemoryService);
+
     new = false;
     id?: string;
 
@@ -166,23 +171,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private _inputFile!: HTMLInputElement;
     private _detectChange = new Subject<void>();
 
-    constructor(
-        private readonly dbService: DBService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-        private readonly messageService: MessageService,
-        private readonly userService: APIUserService,
-        private readonly classementService: APIClassementService,
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly logger: Logger,
-        private readonly cd: ChangeDetectorRef,
-        private readonly location: Location,
-        private readonly preferencesService: PreferencesService,
-        private readonly imdbService: APIImdbService,
-        private readonly memory: MemoryService,
-    ) {
+    constructor() {
+        const global = this.global;
+        const userService = this.userService;
+
         this.updateTitle();
 
         this.contextMenu.push(

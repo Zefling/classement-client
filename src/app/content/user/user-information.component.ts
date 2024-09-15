@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -14,18 +14,18 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./user-information.component.scss'],
 })
 export class UserInformationComponent {
+    private readonly userService = inject(APIUserService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     text = '';
     username = '';
     email = '';
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         if (this.userService.user) {

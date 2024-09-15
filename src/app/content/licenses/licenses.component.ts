@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -12,15 +12,15 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     styleUrls: ['./licenses.component.scss'],
 })
 export class LicensesComponent {
+    private readonly http = inject(HttpClient);
+    private readonly global = inject(GlobalService);
+    private readonly translate = inject(TranslocoService);
+
     data!: string;
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly http: HttpClient,
-        private readonly global: GlobalService,
-        private readonly translate: TranslocoService,
-    ) {
+    constructor() {
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {

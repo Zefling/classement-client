@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, OnChanges, OnDestroy, output, SimpleChanges, viewChild } from '@angular/core';
+import { Component, ElementRef, input, OnChanges, OnDestroy, output, SimpleChanges, viewChild, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -19,6 +19,12 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./classement-save-server.component.scss'],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
+    private readonly userService = inject(APIUserService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly categories = inject(CategoriesService);
+
     // input
 
     classement = input<Classement>();
@@ -58,13 +64,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly classementService: APIClassementService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly categories: CategoriesService,
-    ) {
+    constructor() {
         this.userService.loggedStatus().then(() => {
             if (this.userService.logged) {
                 if (this.userService.user!.username === this.classement()?.user) {

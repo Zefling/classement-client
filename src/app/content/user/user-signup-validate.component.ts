@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -12,15 +12,15 @@ import { APIUserService } from 'src/app/services/api.user.service';
     styleUrls: ['./user-signup-validate.component.scss'],
 })
 export class UserSignupValidateComponent {
+    private readonly userService = inject(APIUserService);
+    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly router = inject(Router);
+    private readonly translate = inject(TranslocoService);
+    private readonly messageService = inject(MessageService);
+
     error = '';
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly activatedRoute: ActivatedRoute,
-        private readonly router: Router,
-        private readonly translate: TranslocoService,
-        private readonly messageService: MessageService,
-    ) {
+    constructor() {
         this.activatedRoute.paramMap.subscribe(params => {
             const token = params.get('token');
             if (token) {

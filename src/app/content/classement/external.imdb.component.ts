@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, viewChild, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
@@ -18,6 +18,10 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./external.imdb.component.scss'],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
+    private readonly imdb = inject(APIImdbService);
+    private readonly prefs = inject(PreferencesService);
+    private readonly globalService = inject(GlobalService);
+
     dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     @Output()
@@ -44,11 +48,7 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly imdb: APIImdbService,
-        private readonly prefs: PreferencesService,
-        private readonly globalService: GlobalService,
-    ) {
+    constructor() {
         let language = 'en-US';
         if ((this.prefs.preferences.interfaceLanguage = 'fr')) {
             language = 'fr-FR';

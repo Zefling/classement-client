@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, booleanAttribute, input, output, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, booleanAttribute, input, output, viewChild, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -19,6 +19,12 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     styleUrls: ['./import-json.component.scss'],
 })
 export class ImportJsonComponent implements OnDestroy {
+    private readonly translate = inject(TranslocoService);
+    private readonly globalService = inject(GlobalService);
+    private readonly messageService = inject(MessageService);
+    private readonly dbService = inject(DBService);
+    private readonly logger = inject(Logger);
+
     jsonTmp?: importData[];
 
     onLoad = false;
@@ -38,13 +44,9 @@ export class ImportJsonComponent implements OnDestroy {
 
     private _sub: Subscription[] = [];
 
-    constructor(
-        private readonly translate: TranslocoService,
-        private readonly globalService: GlobalService,
-        private readonly messageService: MessageService,
-        private readonly dbService: DBService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
+        const globalService = this.globalService;
+
         this._sub.push(
             globalService.onFileLoaded.subscribe(file => {
                 if (file.filter === TypeFile.json) {

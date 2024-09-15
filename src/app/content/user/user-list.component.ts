@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -21,6 +21,15 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
+    private readonly dbService = inject(DBService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly userService = inject(APIUserService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly router = inject(Router);
+    private readonly global = inject(GlobalService);
+
     dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
     sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
     tabs = viewChild.required<TabsComponent>(TabsComponent);
@@ -37,16 +46,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly dbService: DBService,
-        private readonly classementService: APIClassementService,
-        private readonly userService: APIUserService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly route: ActivatedRoute,
-        private readonly router: Router,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.user = this.userService.user;
 
         this.listener.push(

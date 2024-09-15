@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
 import { Data, Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -25,6 +25,14 @@ import { environment } from 'src/environments/environment';
     },
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
+    private readonly dbService = inject(DBService);
+    private readonly userService = inject(APIUserService);
+    private readonly router = inject(Router);
+    private readonly translate = inject(TranslocoService);
+    private readonly messageService = inject(MessageService);
+    private readonly global = inject(GlobalService);
+    private readonly logger = inject(Logger);
+
     // input
 
     pageMode = input<boolean, any>(true, { transform: booleanAttribute });
@@ -52,15 +60,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly dbService: DBService,
-        private readonly userService: APIUserService,
-        private readonly router: Router,
-        private readonly translate: TranslocoService,
-        private readonly messageService: MessageService,
-        private readonly global: GlobalService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
         this.updateTitle();
         this.showList();
 

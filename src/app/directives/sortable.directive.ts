@@ -1,15 +1,4 @@
-import {
-    Directive,
-    Host,
-    HostBinding,
-    HostListener,
-    input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Renderer2,
-    SimpleChanges,
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -24,6 +13,8 @@ export type SortRule =
     selector: '[sort-rule]',
 })
 export class SortRuleDirective implements OnInit {
+    private sortable = inject(SortableDirective, { host: true });
+
     sortRule = input<SortRule | undefined>(undefined, { alias: 'sort-rule' });
 
     @HostBinding('class.sort-asc')
@@ -43,8 +34,6 @@ export class SortRuleDirective implements OnInit {
 
     sortOrder?: { order: boolean; rule?: SortRule };
 
-    constructor(@Host() private sortable: SortableDirective) {}
-
     ngOnInit(): void {
         const sortRule = this.sortRule();
         if (sortRule && sortRule.type !== 'none' && sortRule.init) {
@@ -62,6 +51,9 @@ export class SortRuleDirective implements OnInit {
     selector: '[sortable]',
 })
 export class SortableDirective implements OnInit, OnChanges, OnDestroy {
+    private readonly translate = inject(TranslocoService);
+    private readonly renderer = inject(Renderer2);
+
     sortable = input<any[] | undefined>([]);
 
     sortableFilterInput = input<HTMLInputElement | undefined>(undefined, { alias: 'sortable-filter-input' });
@@ -76,11 +68,6 @@ export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     private sortableComplete: any[] = [];
     private inputListener?: () => void;
     private input = '';
-
-    constructor(
-        private readonly translate: TranslocoService,
-        private readonly renderer: Renderer2,
-    ) {}
 
     ngOnInit(): void {
         if (this.sortableFilterInput()) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from 'src/app/interface/interface';
@@ -12,18 +12,18 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     styleUrls: ['./user-view.component.scss'],
 })
 export class UserViewComponent {
+    private readonly route = inject(ActivatedRoute);
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly logger = inject(Logger);
+
     user?: User;
 
     loading = false;
 
     listener = Subscriptions.instance();
 
-    constructor(
-        private readonly route: ActivatedRoute,
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
         this.listener.push(
             this.route.params.subscribe(async params => {
                 this.loading = true;

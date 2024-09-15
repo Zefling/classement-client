@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, output } from '@angular/core';
+import { Component, HostBinding, HostListener, output, inject } from '@angular/core';
 
 import { PreferenceInterfaceTheme } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
@@ -9,6 +9,8 @@ import { GlobalService } from 'src/app/services/global.service';
     styleUrls: ['./light-dark.component.scss'],
 })
 export class LightDarkComponent {
+    private global = inject(GlobalService);
+
     @HostBinding('class.light')
     get classLight() {
         return this.global.currentTheme() === 'light';
@@ -20,8 +22,6 @@ export class LightDarkComponent {
     }
 
     change = output<PreferenceInterfaceTheme>();
-
-    constructor(private global: GlobalService) {}
 
     @HostListener('click')
     click() {

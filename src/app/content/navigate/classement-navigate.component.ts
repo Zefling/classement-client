@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -22,6 +22,16 @@ import { listModes } from '../classement/classement-default';
     styleUrls: ['./classement-navigate.component.scss'],
 })
 export class ClassementNavigateComponent implements OnDestroy {
+    private readonly classementService = inject(APIClassementService);
+    private readonly global = inject(GlobalService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly logger = inject(Logger);
+    private readonly messageService = inject(MessageService);
+    private readonly categories = inject(CategoriesService);
+    private readonly preferences = inject(PreferencesService);
+    private readonly translate = inject(TranslocoService);
+
     categoriesList?: Select2Data;
     categoriesType?: Select2Data;
 
@@ -48,17 +58,7 @@ export class ClassementNavigateComponent implements OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly global: GlobalService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly logger: Logger,
-        private readonly messageService: MessageService,
-        private readonly categories: CategoriesService,
-        private readonly preferences: PreferencesService,
-        private readonly translate: TranslocoService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

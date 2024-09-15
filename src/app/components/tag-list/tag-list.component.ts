@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, booleanAttribute, input, output, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, booleanAttribute, input, output, viewChild, inject } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./tag-list.component.scss'],
 })
 export class TagListComponent implements OnInit {
+    private readonly http = inject(HttpClient);
+
     // input
 
     tags = input.required<string[]>();
@@ -30,8 +32,6 @@ export class TagListComponent implements OnInit {
     proposals: string[] = [];
 
     private subject = new Subject<void>();
-
-    constructor(private readonly http: HttpClient) {}
 
     ngOnInit(): void {
         if (environment.api?.active) {

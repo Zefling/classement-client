@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -28,6 +28,17 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     styleUrls: ['./classement-view.component.scss'],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
+    private readonly classementService = inject(APIClassementService);
+    private readonly userService = inject(APIUserService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly logger = inject(Logger);
+    private readonly bdService = inject(DBService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+    private readonly meta = inject(Meta);
+
     classement?: Classement;
     myClassement?: Classement;
     myClassements?: Classement[];
@@ -62,18 +73,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private id?: string;
     private sub = Subscriptions.instance();
 
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly userService: APIUserService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly logger: Logger,
-        private readonly bdService: DBService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-        private readonly meta: Meta,
-    ) {
+    constructor() {
         this.logged = this.userService.logged;
 
         this.sub.push(

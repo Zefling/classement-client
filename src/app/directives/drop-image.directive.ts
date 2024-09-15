@@ -1,10 +1,12 @@
-import { booleanAttribute, Directive, HostBinding, HostListener, input, output } from '@angular/core';
+import { booleanAttribute, Directive, HostBinding, HostListener, input, output, inject } from '@angular/core';
 
 import { FileHandle } from '../interface/interface';
 import { GlobalService, TypeFile, typesMine } from '../services/global.service';
 
 @Directive({ selector: '[drop-image]' })
 export class DropImageDirective {
+    private readonly globalService = inject(GlobalService);
+
     @HostBinding('class.drop-image-zone') background = false;
 
     // input
@@ -16,8 +18,6 @@ export class DropImageDirective {
     // output
 
     file = output<FileHandle | string>();
-
-    constructor(private readonly globalService: GlobalService) {}
 
     @HostListener('dragover', ['$event'])
     onDragOver(evt: DragEvent): void {

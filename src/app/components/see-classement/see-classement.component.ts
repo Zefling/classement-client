@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, DoCheck, OnDestroy, OnInit, booleanAttribute, input } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    DoCheck,
+    OnDestroy,
+    OnInit,
+    booleanAttribute,
+    inject,
+    input,
+} from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -28,6 +37,12 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     styleUrls: ['./see-classement.component.scss'],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
+    private readonly globalService = inject(GlobalService);
+    private readonly dataService = inject<DataService<ItemSelection, { checkChoice: string }>>(DataService);
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly prefs = inject(PreferencesService);
+    private readonly translate = inject(TranslocoService);
+
     groups = input.required<FormattedGroup[]>();
     list = input.required<FileType[]>();
     imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
@@ -63,13 +78,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
 
     private sub = Subscriptions.instance();
 
-    constructor(
-        private readonly globalService: GlobalService,
-        private readonly dataService: DataService<ItemSelection, { checkChoice: string }>,
-        private readonly cd: ChangeDetectorRef,
-        private readonly prefs: PreferencesService,
-        private readonly translate: TranslocoService,
-    ) {
+    constructor() {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
         });

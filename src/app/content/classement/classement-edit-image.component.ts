@@ -1,14 +1,4 @@
-import {
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    Host,
-    input,
-    OnChanges,
-    output,
-    SimpleChanges,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, input, OnChanges, output, SimpleChanges, viewChild, inject } from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime, Subject } from 'rxjs';
@@ -29,6 +19,11 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     styleUrls: ['./classement-edit-image.component.scss'],
 })
 export class ClassementEditImageComponent implements OnChanges {
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly global = inject(GlobalService);
+    private readonly logger = inject(Logger);
+    private readonly editor = inject(ClassementEditComponent, { host: true });
+
     // viewChild
 
     dialogInfo = viewChild.required<DialogComponent>('dialogInfo');
@@ -63,12 +58,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     private _detectChange = new Subject<void>();
 
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        private readonly global: GlobalService,
-        private readonly logger: Logger,
-        @Host() private readonly editor: ClassementEditComponent,
-    ) {
+    constructor() {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
             this.cd.detectChanges();
             this.globalChange();

@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, inject } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
@@ -12,6 +12,10 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
     styleUrls: ['./classement-optimise.component.scss'],
 })
 export class ClassementOptimiseComponent implements OnInit {
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly global = inject(GlobalService);
+    private readonly logger = inject(Logger);
+
     groups = input<FormattedGroup[]>();
     list = input<FileType[]>();
     dialog = input<DialogComponent>();
@@ -31,11 +35,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     detail = false;
 
-    constructor(
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly global: GlobalService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;

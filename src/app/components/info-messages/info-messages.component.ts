@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -30,8 +30,10 @@ export class MessageService {
 export class InfoMessagesComponent {
     messages: Message[] = [];
 
-    constructor(messsageService: MessageService) {
-        messsageService.onAddMessage.subscribe((message: Message) => {
+    constructor() {
+        const messageService = inject(MessageService);
+
+        messageService.onAddMessage.subscribe((message: Message) => {
             this.messages.push(message);
         });
     }

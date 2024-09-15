@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DBService } from './db.service';
 
@@ -8,11 +8,11 @@ export type DataExtra<T, U> = Record<string, (DataExtraCell<T> | DataExtraOption
 
 @Injectable({ providedIn: 'root' })
 export class DataService<T, U> {
+    private readonly db = inject(DBService);
+
     private readonly data: Record<string, DataExtra<T, U>> = {};
 
     readonly onOptionChange = new Subject<U>();
-
-    constructor(private readonly db: DBService) {}
 
     async init(type: string, id: string) {
         if (!this.data[type]) {

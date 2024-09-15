@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,12 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./user-signup.component.scss'],
 })
 export class UserSignupComponent implements OnDestroy {
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     profileForm: FormGroup;
     usernameExist = false;
     emailExist = false;
@@ -31,13 +37,7 @@ export class UserSignupComponent implements OnDestroy {
 
     listener = Subscriptions.instance();
 
-    constructor(
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this.profileForm = new FormGroup({

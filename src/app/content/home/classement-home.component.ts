@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -17,6 +17,13 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./classement-home.component.scss'],
 })
 export class ClassementHomeComponent {
+    private readonly userService = inject(APIUserService);
+    private readonly classementService = inject(APIClassementService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+    private readonly preferencesService = inject(PreferencesService);
+
     version = environment.version;
 
     modeApi = environment.api?.active || false;
@@ -31,14 +38,7 @@ export class ClassementHomeComponent {
 
     private listener = Subscriptions.instance();
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly classementService: APIClassementService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-        private readonly preferencesService: PreferencesService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this.preferences = this.preferencesService.preferences;

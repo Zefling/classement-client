@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, viewChild, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -23,6 +23,10 @@ import { UserPassword } from './user-password';
     styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
+    private readonly router = inject(Router);
+    private readonly global = inject(GlobalService);
+    private readonly dbService = inject(DBService);
+
     user?: User;
 
     localSize = 0;
@@ -48,14 +52,11 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     imageBase64: string = '';
     croppedImage?: string;
 
-    constructor(
-        private readonly router: Router,
-        private readonly global: GlobalService,
-        private readonly dbService: DBService,
-        userService: APIUserService,
-        messageService: MessageService,
-        translate: TranslocoService,
-    ) {
+    constructor() {
+        const userService = inject(APIUserService);
+        const messageService = inject(MessageService);
+        const translate = inject(TranslocoService);
+
         super(userService, messageService, translate);
 
         this.updateTitle();

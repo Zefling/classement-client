@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,16 +14,17 @@ import { UserPassword } from './user-password';
     styleUrls: ['./user-pw-lost-change.component.scss'],
 })
 export class UserPwLostChangeComponent extends UserPassword {
+    private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
+
     valide = false;
     token?: string;
 
-    constructor(
-        private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute,
-        userService: APIUserService,
-        messageService: MessageService,
-        translate: TranslocoService,
-    ) {
+    constructor() {
+        const userService = inject(APIUserService);
+        const messageService = inject(MessageService);
+        const translate = inject(TranslocoService);
+
         super(userService, messageService, translate);
 
         this.activatedRoute.paramMap.subscribe(params => {

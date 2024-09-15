@@ -1,4 +1,4 @@
-import { Component, Host, HostListener, input, model } from '@angular/core';
+import { Component, HostListener, input, model, inject } from '@angular/core';
 
 import { TabsComponent } from './tabs.component';
 
@@ -12,10 +12,10 @@ import { TabsComponent } from './tabs.component';
     },
 })
 export class TabContentComponent {
+    private readonly tabs = inject(TabsComponent, { host: true });
+
     id = input<string>();
     selected = model<boolean>(false);
-
-    constructor(@Host() private readonly tabs: TabsComponent) {}
 
     @HostListener('click')
     onclick() {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, input, Output, viewChild, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -17,6 +17,11 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./list-classements.component.scss'],
 })
 export class ListClassementsComponent {
+    private readonly classementService = inject(APIClassementService);
+    private readonly messageService = inject(MessageService);
+    private readonly globalService = inject(GlobalService);
+    private readonly translate = inject(TranslocoService);
+
     classements = input<Classement[]>();
     sort = input<SortClassementCol>();
     direction = input<SortDirection>();
@@ -35,13 +40,6 @@ export class ListClassementsComponent {
 
     @Output()
     sortUpdate = new EventEmitter<SortClassementCol>();
-
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly messageService: MessageService,
-        private readonly globalService: GlobalService,
-        private readonly translate: TranslocoService,
-    ) {}
 
     see(classement: Classement) {
         this.currentClassement = classement;

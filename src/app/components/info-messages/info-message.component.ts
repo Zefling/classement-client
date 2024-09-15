@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, input, output } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, input, output, inject } from '@angular/core';
 
 import { Message } from './info-messages.component';
 
@@ -8,6 +8,8 @@ import { Message } from './info-messages.component';
     styleUrls: ['./info-message.component.scss'],
 })
 export class InfoMessageComponent {
+    private readonly element = inject(ElementRef);
+
     message = input<Message>();
 
     destruct = output<Message>();
@@ -35,8 +37,6 @@ export class InfoMessageComponent {
     private _closeClass = false;
     private _pos!: number;
     private _height!: number;
-
-    constructor(private readonly element: ElementRef) {}
 
     @HostListener('click')
     click() {

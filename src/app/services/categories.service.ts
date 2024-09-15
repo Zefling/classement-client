@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -9,11 +9,13 @@ import { Category } from '../interface/interface';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
+    private readonly translate = inject(TranslocoService);
+
     categoriesList: Category[] = [];
 
     onChange = new Subject<void>();
 
-    constructor(private readonly translate: TranslocoService) {
+    constructor() {
         this.translate.langChanges$.subscribe(() => {
             this.sort();
             this.onChange.next();

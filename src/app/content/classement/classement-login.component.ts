@@ -1,4 +1,4 @@
-import { Component, Host, OnDestroy, viewChild } from '@angular/core';
+import { Component, OnDestroy, viewChild, inject } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -14,16 +14,16 @@ import { UserLoginComponent } from '../user/user-login.component';
     styleUrls: ['./classement-login.component.scss'],
 })
 export class ClassementLoginComponent implements OnDestroy {
+    private readonly edit = inject(ClassementEditComponent, { host: true });
+    private readonly userService = inject(APIUserService);
+
     dialogLogin = viewChild.required<DialogComponent>('dialogLogin');
 
     loginComponent = UserLoginComponent;
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        @Host() private readonly edit: ClassementEditComponent,
-        private readonly userService: APIUserService,
-    ) {
+    constructor() {
         this._sub.push(
             this.userService.afterLogin.subscribe(() => {
                 this.dialogLogin().close();

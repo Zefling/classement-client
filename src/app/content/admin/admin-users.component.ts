@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnDestroy, viewChild } from '@angular/core';
+import { Component, DoCheck, OnDestroy, viewChild, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,6 +19,13 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     styleUrls: ['./admin-users.component.scss'],
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {
+    private readonly userService = inject(APIUserService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly messageService = inject(MessageService);
+    private readonly logger = inject(Logger);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     private _sub = Subscriptions.instance();
 
     searchKey?: string;
@@ -41,14 +48,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     isAdmin = false;
     showError?: string;
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly route: ActivatedRoute,
-        private readonly messageService: MessageService,
-        private readonly logger: Logger,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

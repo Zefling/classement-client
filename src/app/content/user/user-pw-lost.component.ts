@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -14,18 +14,18 @@ import { Utils } from 'src/app/tools/utils';
     styleUrls: ['./user-pw-lost.component.scss'],
 })
 export class UserPwLostComponent implements OnDestroy {
+    private readonly router = inject(Router);
+    private readonly userService = inject(APIUserService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     email = '';
     showError = '';
     valide = false;
 
     listener = Subscriptions.instance();
 
-    constructor(
-        private readonly router: Router,
-        private readonly userService: APIUserService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this.listener.push(

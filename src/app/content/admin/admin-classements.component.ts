@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -15,6 +15,12 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     styleUrls: ['./admin-classements.component.scss'],
 })
 export class AdminClassementsComponent implements OnDestroy {
+    private readonly classementService = inject(APIClassementService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly categories = inject(CategoriesService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     private _sub = Subscriptions.instance();
 
     categoriesList?: Category[];
@@ -31,13 +37,7 @@ export class AdminClassementsComponent implements OnDestroy {
     sort: SortClassementCol = 'dateCreate';
     direction: SortDirection = 'DESC';
 
-    constructor(
-        private readonly classementService: APIClassementService,
-        private readonly route: ActivatedRoute,
-        private readonly categories: CategoriesService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

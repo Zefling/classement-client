@@ -1,14 +1,4 @@
-import {
-    booleanAttribute,
-    Component,
-    Host,
-    input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    SimpleChanges,
-    viewChild,
-} from '@angular/core';
+import { booleanAttribute, Component, input, OnChanges, OnDestroy, OnInit, SimpleChanges, viewChild, inject } from '@angular/core';
 
 import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
@@ -51,6 +41,11 @@ import { ClassementThemesComponent } from './classement-themes.component';
     styleUrls: ['./classement-options.component.scss'],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly categories = inject(CategoriesService);
+    private readonly memory = inject(MemoryService);
+    private readonly editor = inject(ClassementEditComponent, { host: true });
+
     // input
 
     options = input<Options>();
@@ -93,12 +88,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly categories: CategoriesService,
-        private readonly memory: MemoryService,
-        @Host() private readonly editor: ClassementEditComponent,
-    ) {
+    constructor() {
         this.categoryUpdate();
         this._sub.push(
             this.categories.onChange.subscribe(() => {
