@@ -1,9 +1,10 @@
-import { Component, DoCheck, OnDestroy, viewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, DoCheck, inject, OnDestroy, viewChild } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { DatePipe } from '@angular/common';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
@@ -12,13 +13,35 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { PaginationComponent } from '../../components/paginate/paginate.component';
+import { ListClassementsComponent } from './list-classements.component';
 
 @Component({
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        LoadingComponent,
+        PaginationComponent,
+        DialogComponent_1,
+        ListClassementsComponent,
+        ReactiveFormsModule,
+        DatePipe,
+        TranslocoPipe,
+    ],
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {
+    private readonly userService = inject(APIUserService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly messageService = inject(MessageService);
+    private readonly logger = inject(Logger);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     private _sub = Subscriptions.instance();
 
     searchKey?: string;
@@ -41,14 +64,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     isAdmin = false;
     showError?: string;
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly route: ActivatedRoute,
-        private readonly messageService: MessageService,
-        private readonly logger: Logger,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         this._sub.push(

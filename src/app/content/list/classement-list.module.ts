@@ -6,11 +6,12 @@ import { ClassementListComponent } from './classement-list.component';
 import { ClassementListRoutingModule } from './classement-list.routing';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        ClassementListRoutingModule,
         // page
         ClassementListComponent,
     ],
-    imports: [SharedModule, ClassementListRoutingModule],
     providers: [],
     exports: [ClassementListComponent],
 })

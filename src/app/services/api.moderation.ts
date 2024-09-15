@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export const rolesModerator = [Role.MODERATOR, Role.ADMIN];
 
 @Injectable({ providedIn: 'root' })
 export class APIModeration {
-    constructor(@Optional() private readonly userService: APIUserService) {}
+    private readonly userService = inject(APIUserService, { optional: true });
 
     canActivate(
         _route: ActivatedRouteSnapshot,
@@ -23,7 +23,7 @@ export class APIModeration {
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         return new Promise<boolean>(resolve => {
             this.userService
-                .initProfile()
+                ?.initProfile()
                 .then(() => {
                     resolve(
                         this.userService?.user?.roles?.includes(Role.MODERATOR) ||

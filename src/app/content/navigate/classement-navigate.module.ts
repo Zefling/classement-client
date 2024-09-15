@@ -10,13 +10,15 @@ import { ClassementTemplateComponent } from './classement-template.component';
 import { ClassementViewComponent } from './classement-view.component';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        ClassementNavigateRoutingModule,
+        MarkdownModule,
         // page
         ClassementNavigateComponent,
         ClassementTemplateComponent,
         ClassementViewComponent,
     ],
-    imports: [SharedModule, ClassementNavigateRoutingModule, MarkdownModule],
     providers: [MarkdownService],
     exports: [],
 })

@@ -18,7 +18,13 @@ import { ClassementRoutingModule } from './classement.routing';
 import { ExternalImdbComponent } from './external.imdb.component';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        DragDropModule,
+        ImageCropperComponent,
+        ClassementRoutingModule,
+        CdkDropZone,
+        CdkDragElement,
         // page
         ClassementOptionsComponent,
         ClassementThemesComponent,
@@ -29,14 +35,6 @@ import { ExternalImdbComponent } from './external.imdb.component';
         ClassementLoginComponent,
         // extension
         ExternalImdbComponent,
-    ],
-    imports: [
-        SharedModule,
-        DragDropModule,
-        ImageCropperComponent,
-        ClassementRoutingModule,
-        CdkDropZone,
-        CdkDragElement,
     ],
     providers: [],
     exports: [],

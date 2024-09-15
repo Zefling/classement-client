@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -12,6 +12,8 @@ import { PreferencesData } from '../interface/interface';
  */
 @Injectable({ providedIn: 'root' })
 export class PreferencesService {
+    private readonly dbService = inject(DBService);
+
     readonly onInit = new Subject<void>();
     readonly onChange = new Subject<PreferencesData>();
     readonly openPref = new Subject<string>();
@@ -37,8 +39,6 @@ export class PreferencesService {
     get preferences(): PreferencesData {
         return this.initPreferences;
     }
-
-    constructor(private readonly dbService: DBService) {}
 
     init(): Promise<PreferencesData> {
         return new Promise<PreferencesData>(resolve => {

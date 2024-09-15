@@ -1,15 +1,18 @@
-import { Directive, ElementRef, HostListener, input, numberAttribute, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, HostListener, input, numberAttribute, OnDestroy, inject } from '@angular/core';
 
-@Directive({ selector: '[tooltip]' })
+@Directive({
+    selector: '[tooltip]',
+    standalone: true,
+})
 export class TooltipDirective implements OnDestroy {
+    private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
+
     tooltip = input('');
     delayEnter = input(200, { transform: numberAttribute });
     delayLeave = input(0, { transform: numberAttribute }); // 0 to infini
 
     private tooltipElement?: HTMLDivElement;
     private timer?: NodeJS.Timeout;
-
-    constructor(private readonly element: ElementRef<HTMLElement>) {}
 
     ngOnDestroy(): void {
         if (this.tooltipElement) {

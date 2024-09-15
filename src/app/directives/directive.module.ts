@@ -10,7 +10,7 @@ import { TextareaAutosizeDirective } from './textarea-autosize.directive';
 import { TooltipDirective } from './tooltip.directive';
 
 @NgModule({
-    declarations: [
+    imports: [
         DropImageDirective,
         TextareaAutosizeDirective,
         TooltipDirective,

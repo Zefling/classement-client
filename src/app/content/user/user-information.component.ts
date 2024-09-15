@@ -1,31 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
+import { FormsModule } from '@angular/forms';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
 @Component({
     selector: 'user-information',
     templateUrl: './user-information.component.html',
     styleUrls: ['./user-information.component.scss'],
+    standalone: true,
+    imports: [FormsModule, TextareaAutosizeDirective, TranslocoPipe],
 })
 export class UserInformationComponent {
+    private readonly userService = inject(APIUserService);
+    private readonly messageService = inject(MessageService);
+    private readonly translate = inject(TranslocoService);
+    private readonly global = inject(GlobalService);
+
     text = '';
     username = '';
     email = '';
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly userService: APIUserService,
-        private readonly messageService: MessageService,
-        private readonly translate: TranslocoService,
-        private readonly global: GlobalService,
-    ) {
+    constructor() {
         this.updateTitle();
 
         if (this.userService.user) {

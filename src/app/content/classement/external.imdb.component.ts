@@ -1,8 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, viewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output, viewChild } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
+import { DatePipe } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Theme } from 'src/app/interface/interface';
 import { Genres, MovieSearch } from 'src/app/interface/movie';
@@ -11,13 +13,20 @@ import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 
 @Component({
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
+    standalone: true,
+    imports: [DialogComponent_1, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
+    private readonly imdb = inject(APIImdbService);
+    private readonly prefs = inject(PreferencesService);
+    private readonly globalService = inject(GlobalService);
+
     dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     @Output()
@@ -44,11 +53,7 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    constructor(
-        private readonly imdb: APIImdbService,
-        private readonly prefs: PreferencesService,
-        private readonly globalService: GlobalService,
-    ) {
+    constructor() {
         let language = 'en-US';
         if ((this.prefs.preferences.interfaceLanguage = 'fr')) {
             language = 'fr-FR';

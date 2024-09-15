@@ -3,19 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-import { ClassementEditComponent } from './classement-edit.component';
+
 
 const routes: Routes = [
     {
         path: ':id/:mode',
         pathMatch: 'full',
-        component: ClassementEditComponent,
+        loadComponent: () => import('./classement-edit.component').then(m => m.ClassementEditComponent),
         canActivate: [DataChange],
     },
     {
         path: ':id',
         pathMatch: 'full',
-        component: ClassementEditComponent,
+        loadComponent: () => import('./classement-edit.component').then(m => m.ClassementEditComponent),
         canActivate: [DataChange],
     },
 ];

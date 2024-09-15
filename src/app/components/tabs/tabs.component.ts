@@ -7,6 +7,7 @@ import { TabContentComponent } from './tab-title.component';
     selector: 'tabs',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss'],
+    standalone: true,
 })
 export class TabsComponent implements AfterContentInit {
     titles = contentChildren(TabTitleComponent);

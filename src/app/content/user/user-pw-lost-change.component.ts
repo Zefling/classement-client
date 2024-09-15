@@ -1,29 +1,32 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 import { UserPassword } from './user-password';
 
 @Component({
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',
     styleUrls: ['./user-pw-lost-change.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, TranslocoPipe],
 })
 export class UserPwLostChangeComponent extends UserPassword {
+    private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
+
     valide = false;
     token?: string;
 
-    constructor(
-        private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute,
-        userService: APIUserService,
-        messageService: MessageService,
-        translate: TranslocoService,
-    ) {
+    constructor() {
+        const userService = inject(APIUserService);
+        const messageService = inject(MessageService);
+        const translate = inject(TranslocoService);
+
         super(userService, messageService, translate);
 
         this.activatedRoute.paramMap.subscribe(params => {

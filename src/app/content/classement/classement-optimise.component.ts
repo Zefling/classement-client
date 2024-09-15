@@ -1,17 +1,26 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 
+import { TranslocoPipe } from '@jsverse/transloco';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { NumFormatPipe } from '../../pipes/num-format';
 
 @Component({
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',
     styleUrls: ['./classement-optimise.component.scss'],
+    standalone: true,
+    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe],
 })
 export class ClassementOptimiseComponent implements OnInit {
+    private readonly optimiseImage = inject(OptimiseImageService);
+    private readonly global = inject(GlobalService);
+    private readonly logger = inject(Logger);
+
     groups = input<FormattedGroup[]>();
     list = input<FileType[]>();
     dialog = input<DialogComponent>();
@@ -31,11 +40,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     detail = false;
 
-    constructor(
-        private readonly optimiseImage: OptimiseImageService,
-        private readonly global: GlobalService,
-        private readonly logger: Logger,
-    ) {
+    constructor() {
         this.progress = 0;
         this.totalResize = 0;
         this.countResize = 0;

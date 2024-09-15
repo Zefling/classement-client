@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Logger, LoggerLevel } from './logger';
 import { PreferencesService } from './preferences.service';
@@ -23,6 +23,10 @@ type search = {
 
 @Injectable({ providedIn: 'root' })
 export class APIImdbService {
+    private readonly http = inject(HttpClient);
+    private readonly prefs = inject(PreferencesService);
+    private readonly logger = inject(Logger);
+
     readonly baseUrl = 'https://api.themoviedb.org/3/';
     readonly baseImg = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/';
 
@@ -31,12 +35,6 @@ export class APIImdbService {
     readonly onChange = new Subject<void>();
 
     key?: string;
-
-    constructor(
-        private readonly http: HttpClient,
-        private readonly prefs: PreferencesService,
-        private readonly logger: Logger,
-    ) {}
 
     isActive() {
         return (this.languages?.length ?? 0) > 0;
