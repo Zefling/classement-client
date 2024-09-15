@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-import { ClassementListComponent } from './classement-list.component';
+
 
 const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        component: ClassementListComponent,
+        loadComponent: () => import('./classement-list.component').then(m => m.ClassementListComponent),
         canActivate: [DataChange],
     },
 ];

@@ -45,7 +45,8 @@
               "buffer",
               "hammerjs",
               "@html2canvas/html2canvas",
-              "owasp-password-strength-test"
+              "owasp-password-strength-test",
+              "ajv"
             ],
             "browser": "src/main.ts"
           },
