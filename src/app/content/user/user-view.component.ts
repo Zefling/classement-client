@@ -5,11 +5,17 @@ import { User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { DatePipe } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
     selector: 'user-view',
     templateUrl: './user-view.component.html',
     styleUrls: ['./user-view.component.scss'],
+    standalone: true,
+    imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe],
 })
 export class UserViewComponent {
     private readonly route = inject(ActivatedRoute);

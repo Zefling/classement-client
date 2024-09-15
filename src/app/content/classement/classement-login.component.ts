@@ -1,4 +1,4 @@
-import { Component, OnDestroy, viewChild, inject } from '@angular/core';
+import { Component, inject, OnDestroy, viewChild } from '@angular/core';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -6,12 +6,18 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
+import { NgComponentOutlet } from '@angular/common';
+import { ɵEmptyOutletComponent } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { UserLoginComponent } from '../user/user-login.component';
 
 @Component({
     selector: 'classement-login',
     templateUrl: './classement-login.component.html',
     styleUrls: ['./classement-login.component.scss'],
+    standalone: true,
+    imports: [DialogComponent_1, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
 })
 export class ClassementLoginComponent implements OnDestroy {
     private readonly edit = inject(ClassementEditComponent, { host: true });

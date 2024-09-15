@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, viewChild, inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, LoadedImage, ImageCropperComponent } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -14,13 +14,30 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 import { UserPassword } from './user-password';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'user-profile',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss'],
+    standalone: true,
+    imports: [
+        RouterLink,
+        RouterLinkActive,
+        NavigateResultComponent,
+        DialogComponent_1,
+        FormsModule,
+        ReactiveFormsModule,
+        DropImageDirective,
+        ImageCropperComponent,
+        DatePipe,
+        TranslocoPipe,
+    ],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
     private readonly router = inject(Router);

@@ -1,4 +1,14 @@
-import { ChangeDetectorRef, Component, ElementRef, input, OnChanges, output, SimpleChanges, viewChild, inject } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    inject,
+    input,
+    OnChanges,
+    output,
+    SimpleChanges,
+    viewChild,
+} from '@angular/core';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime, Subject } from 'rxjs';
@@ -8,7 +18,12 @@ import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
+import { FormsModule } from '@angular/forms';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 import { ClassementEditComponent } from './classement-edit.component';
 
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
@@ -17,6 +32,15 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
+    standalone: true,
+    imports: [
+        DialogComponent_1,
+        FormsModule,
+        TextareaAutosizeDirective,
+        DropImageDirective,
+        ImageCropperComponent,
+        TranslocoPipe,
+    ],
 })
 export class ClassementEditImageComponent implements OnChanges {
     private readonly cd = inject(ChangeDetectorRef);

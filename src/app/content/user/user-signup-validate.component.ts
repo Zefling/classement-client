@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -10,6 +10,8 @@ import { APIUserService } from 'src/app/services/api.user.service';
     selector: 'user-signup-validate',
     templateUrl: './user-signup-validate.component.html',
     styleUrls: ['./user-signup-validate.component.scss'],
+    standalone: true,
+    imports: [TranslocoPipe],
 })
 export class UserSignupValidateComponent {
     private readonly userService = inject(APIUserService);

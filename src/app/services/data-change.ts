@@ -18,7 +18,6 @@ function getResolvedUrl(route: ActivatedRouteSnapshot): string {
 export class DataChange {
     private readonly global = inject(GlobalService);
 
-
     canActivate(
         route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,

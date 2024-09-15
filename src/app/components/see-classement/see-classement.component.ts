@@ -14,15 +14,24 @@ import { Subject, debounceTime } from 'rxjs';
 import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { Utils } from 'src/app/tools/utils';
 
-import { TranslocoService } from '@jsverse/transloco';
-import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+import { Select2Module, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { MarkdownComponent } from 'ngx-markdown';
 import { HelpBingoEmojiComponent } from 'src/app/content/navigate/help/help.bingo.component';
 import { DataService } from 'src/app/services/data.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { ContextMenuDirective } from '../../directives/context-menu.directive';
+import { NgInitDirective } from '../../directives/ngInit.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 import { GlobalService } from '../../services/global.service';
 import { ContextMenuItem } from '../context-menu/context-menu.component';
+import { NgxMoveableComponent } from '../moveable/moveable.component';
+import { ZoneAreaComponent } from '../zone-area/zone-area.component';
+import { ZoneAxisComponent } from '../zone-axis/zone-axis.component';
 
 export interface ItemSelection {
     content?: string;
@@ -35,6 +44,20 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
+    standalone: true,
+    imports: [
+        Select2Module,
+        FormsModule,
+        NgClass,
+        MarkdownComponent,
+        NgInitDirective,
+        TooltipDirective,
+        ContextMenuDirective,
+        NgxMoveableComponent,
+        ZoneAreaComponent,
+        ZoneAxisComponent,
+        TranslocoPipe,
+    ],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
     private readonly globalService = inject(GlobalService);

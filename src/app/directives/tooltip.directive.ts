@@ -1,6 +1,9 @@
 import { Directive, ElementRef, HostListener, input, numberAttribute, OnDestroy, inject } from '@angular/core';
 
-@Directive({ selector: '[tooltip]' })
+@Directive({
+    selector: '[tooltip]',
+    standalone: true,
+})
 export class TooltipDirective implements OnDestroy {
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
 

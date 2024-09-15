@@ -1,9 +1,9 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Data } from 'ng-select2-component';
+import { Select2Data, Select2Module } from 'ng-select2-component';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface/interface';
@@ -14,12 +14,28 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { LoaderItemComponent } from '../../components/loader/loader-item.component';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { PaginationComponent } from '../../components/paginate/paginate.component';
 import { listModes } from '../classement/classement-default';
 
 @Component({
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
     styleUrls: ['./classement-navigate.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        Select2Module,
+        NgClass,
+        RouterLink,
+        PaginationComponent,
+        NavigateResultComponent,
+        LoaderItemComponent,
+        TranslocoPipe,
+    ],
 })
 export class ClassementNavigateComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

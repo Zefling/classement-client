@@ -11,6 +11,7 @@ import { Component, input } from '@angular/core';
         '[style.--height]': 'size()',
         '[style.--width]': 'tickWidth()',
     },
+    standalone: true,
 })
 export class LoadingComponent {
     size = input<string>();

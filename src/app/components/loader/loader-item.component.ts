@@ -7,6 +7,7 @@ import { Component, input, numberAttribute } from '@angular/core';
     selector: 'loader-item',
     templateUrl: './loader-item.component.html',
     styleUrls: ['./loader-item.component.scss'],
+    standalone: true,
 })
 export class LoaderItemComponent {
     mode = input<'tile' | 'list'>('tile');

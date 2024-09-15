@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -9,11 +9,15 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { categories } from '../classement/classement-default';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 
 @Component({
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
+    standalone: true,
+    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
 })
 export class ClassementTemplateComponent {
     private readonly classementService = inject(APIClassementService);

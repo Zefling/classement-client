@@ -1,8 +1,8 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, inject, output, viewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import {
     themes,
@@ -18,7 +18,11 @@ import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 
 import { environment } from 'src/environments/environment';
+import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { DialogComponent } from '../dialog/dialog.component';
+import { LightDarkComponent } from '../light-dark/light-dark.component';
+import { TabTitleComponent } from '../tabs/tab-content.component';
+import { TabContentComponent } from '../tabs/tab-title.component';
 import { TabsComponent } from '../tabs/tabs.component';
 
 const languages = [
@@ -31,6 +35,20 @@ const languages = [
     selector: 'preferences-dialog',
     templateUrl: './preferences.component.html',
     styleUrls: ['./preferences.component.scss'],
+    standalone: true,
+    imports: [
+        DialogComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        TabsComponent,
+        TabContentComponent,
+        TabTitleComponent,
+        LightDarkComponent,
+        CdkDropList,
+        CdkDrag,
+        ClickOutsideDirective,
+        TranslocoPipe,
+    ],
 })
 export class PreferencesDialogComponent {
     //inject

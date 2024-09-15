@@ -2,6 +2,7 @@ import { Component, HostListener, input, OnInit, output } from '@angular/core';
 
 import { imageInfos } from 'src/app/content/classement/classement-default';
 
+import { TranslocoPipe } from '@jsverse/transloco';
 import { Theme } from '../../interface/interface';
 import { color } from '../../tools/function';
 
@@ -9,6 +10,8 @@ import { color } from '../../tools/function';
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',
     styleUrls: ['./theme-icon.component.scss'],
+    standalone: true,
+    imports: [TranslocoPipe],
 })
 export class ThemeIconComponent implements OnInit {
     theme = input.required<Theme>();

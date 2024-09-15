@@ -17,6 +17,7 @@ const connectedPosition: ConnectedPosition[] = [
 
 @Directive({
     selector: '[contextMenu]',
+    standalone: true,
 })
 export class ContextMenuDirective<T> {
     private readonly overlay = inject(Overlay);

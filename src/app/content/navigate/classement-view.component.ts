@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import html2canvas from '@html2canvas/html2canvas';
 
@@ -19,6 +19,14 @@ import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 import { MessageError } from '../user/user.interface';
+import { MarkdownComponent } from 'ngx-markdown';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { FormsModule } from '@angular/forms';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { NgClass, DatePipe } from '@angular/common';
+import { LoaderItemComponent } from '../../components/loader/loader-item.component';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 
 const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
 
@@ -26,6 +34,20 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     selector: 'classement-view',
     templateUrl: './classement-view.component.html',
     styleUrls: ['./classement-view.component.scss'],
+    standalone: true,
+    imports: [
+        RouterLink,
+        MarkdownComponent,
+        TagListComponent,
+        LoadingComponent,
+        FormsModule,
+        SeeClassementComponent,
+        NgClass,
+        LoaderItemComponent,
+        DialogComponent_1,
+        DatePipe,
+        TranslocoPipe,
+    ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly classementService = inject(APIClassementService);

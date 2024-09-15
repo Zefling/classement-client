@@ -1,8 +1,10 @@
-import { booleanAttribute, Component, input, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
-import { Data, Router } from '@angular/router';
+import { booleanAttribute, Component, inject, input, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -15,6 +17,12 @@ import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
+import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { ImportJsonComponent } from '../../components/import-json/import-json.component';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { SortableDirective as SortableDirective_1, SortRuleDirective } from '../../directives/sortable.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
+import { FileSizePipe } from '../../pipes/file-size';
 
 @Component({
     selector: 'classement-list',
@@ -23,6 +31,21 @@ import { environment } from 'src/environments/environment';
     host: {
         '[class.page]': 'pageMode()',
     },
+    standalone: true,
+    imports: [
+        FormsModule,
+        SortableDirective_1,
+        SortRuleDirective,
+        TagListComponent,
+        TooltipDirective,
+        RouterLink,
+        RouterLinkActive,
+        DialogComponent_1,
+        ImportJsonComponent,
+        DatePipe,
+        TranslocoPipe,
+        FileSizePipe,
+    ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);

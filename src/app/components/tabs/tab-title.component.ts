@@ -1,4 +1,4 @@
-import { Component, HostListener, input, model, inject } from '@angular/core';
+import { Component, HostListener, inject, input, model } from '@angular/core';
 
 import { TabsComponent } from './tabs.component';
 
@@ -10,6 +10,7 @@ import { TabsComponent } from './tabs.component';
         '[attr.id]': 'id()',
         '[class.selected]': 'selected()',
     },
+    standalone: true,
 })
 export class TabContentComponent {
     private readonly tabs = inject(TabsComponent, { host: true });

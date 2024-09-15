@@ -19,7 +19,11 @@ import { UserRoutingModule } from './user.routing';
 import { ClassementListModule } from '../list/classement-list.module';
 
 @NgModule({
-    declarations: [
+    imports: [
+        SharedModule,
+        UserRoutingModule,
+        ClassementListModule,
+        ImageCropperComponent,
         // page
         UserLoginComponent,
         UserLoginOauthComponent,
@@ -32,7 +36,6 @@ import { ClassementListModule } from '../list/classement-list.module';
         UserListComponent,
         UserViewComponent,
     ],
-    imports: [SharedModule, UserRoutingModule, ClassementListModule, ImageCropperComponent],
     providers: [],
     exports: [],
 })

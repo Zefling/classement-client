@@ -1,8 +1,8 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import owasp from 'owasp-password-strength-test';
 import { debounceTime } from 'rxjs';
@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
     selector: 'user-signup',
     templateUrl: './user-signup.component.html',
     styleUrls: ['./user-signup.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
 })
 export class UserSignupComponent implements OnDestroy {
     private readonly router = inject(Router);

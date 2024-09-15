@@ -1,4 +1,15 @@
-import { Directive, HostBinding, HostListener, input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, inject } from '@angular/core';
+import {
+    Directive,
+    HostBinding,
+    HostListener,
+    input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Renderer2,
+    SimpleChanges,
+    inject,
+} from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -11,6 +22,7 @@ export type SortRule =
 
 @Directive({
     selector: '[sort-rule]',
+    standalone: true,
 })
 export class SortRuleDirective implements OnInit {
     private sortable = inject(SortableDirective, { host: true });
@@ -49,6 +61,7 @@ export class SortRuleDirective implements OnInit {
 
 @Directive({
     selector: '[sortable]',
+    standalone: true,
 })
 export class SortableDirective implements OnInit, OnChanges, OnDestroy {
     private readonly translate = inject(TranslocoService);

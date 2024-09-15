@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, booleanAttribute, input, output, viewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
 
 import { Subject, debounceTime } from 'rxjs';
 
+import { FormsModule } from '@angular/forms';
 import { Message } from 'src/app/content/user/user.interface';
 import { environment } from 'src/environments/environment';
 
@@ -10,6 +11,8 @@ import { environment } from 'src/environments/environment';
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
+    standalone: true,
+    imports: [FormsModule],
 })
 export class TagListComponent implements OnInit {
     private readonly http = inject(HttpClient);

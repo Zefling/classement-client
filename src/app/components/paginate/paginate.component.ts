@@ -1,7 +1,8 @@
-import { Component, DoCheck, OnDestroy, OnInit, input, numberAttribute, inject } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit, inject, input, numberAttribute } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
+import { RouterLink } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 
 interface Page {
@@ -15,6 +16,8 @@ interface Page {
     selector: 'paginate-cmp',
     templateUrl: './paginate.component.html',
     styleUrls: ['./paginate.component.scss'],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
     private readonly global = inject(GlobalService);

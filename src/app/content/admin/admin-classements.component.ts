@@ -1,18 +1,32 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { FormsModule } from '@angular/forms';
+import { Select2Module } from 'ng-select2-component';
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { PaginationComponent } from '../../components/paginate/paginate.component';
+import { ListClassementsComponent } from './list-classements.component';
 
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        Select2Module,
+        LoadingComponent,
+        PaginationComponent,
+        ListClassementsComponent,
+        TranslocoPipe,
+    ],
 })
 export class AdminClassementsComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

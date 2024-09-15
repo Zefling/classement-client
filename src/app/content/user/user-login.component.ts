@@ -1,17 +1,21 @@
 import { booleanAttribute, Component, input, OnDestroy, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
     selector: 'user-login',
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
+    standalone: true,
+    imports: [FormsModule, RouterLink, LoaderComponent, TranslocoPipe],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
     private readonly router = inject(Router);

@@ -7,6 +7,7 @@ import { Component, input, model } from '@angular/core';
     host: {
         '[attr.id]': 'id()',
     },
+    standalone: true,
 })
 export class TabTitleComponent {
     id = input<string>();
