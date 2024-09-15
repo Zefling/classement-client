@@ -6,7 +6,8 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    viewChild
+    SimpleChanges,
+    viewChild,
 } from '@angular/core';
 
 import { Buffer } from 'buffer';
@@ -122,7 +123,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private _sub = Subscriptions.instance();
 
     constructor() {
-    constructor() {
         this.categoryUpdate();
         this._sub.push(
             this.categories.onChange.subscribe(() => {
@@ -140,12 +140,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._modeTemp = undefined;
             this.updateMode();
         }
-    }
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
     }
 
     updateMode() {
