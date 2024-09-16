@@ -2,29 +2,31 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
+    OnChanges,
+    SimpleChanges,
     inject,
     input,
-    OnChanges,
     output,
-    SimpleChanges,
     viewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
-import { debounceTime, Subject } from 'rxjs';
+import { Subject, debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Utils } from 'src/app/tools/utils';
 
-import { FormsModule } from '@angular/forms';
-import { TranslocoPipe } from '@jsverse/transloco';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { ClassementEditComponent } from './classement-edit.component';
+
 import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
-import { ClassementEditComponent } from './classement-edit.component';
 
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 

@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-
-
 const routes: Routes = [
     {
         path: '',

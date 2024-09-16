@@ -2,11 +2,11 @@ import { Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
+import { DataExtra } from './data.service';
 import { Logger, LoggerLevel } from './logger';
 
 import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData, Theme } from '../interface/interface';
 import { Utils } from '../tools/utils';
-import { DataExtra } from './data.service';
 
 enum Store {
     infos = 'classementInfos',

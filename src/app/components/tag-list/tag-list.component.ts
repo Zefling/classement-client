@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { FormsModule } from '@angular/forms';
 import { Message } from 'src/app/content/user/user.interface';
 import { environment } from 'src/environments/environment';
 

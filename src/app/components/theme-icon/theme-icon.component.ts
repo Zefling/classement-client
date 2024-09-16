@@ -1,8 +1,9 @@
-import { Component, HostListener, input, OnInit, output } from '@angular/core';
+import { Component, HostListener, OnInit, input, output } from '@angular/core';
+
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { imageInfos } from 'src/app/content/classement/classement-default';
 
-import { TranslocoPipe } from '@jsverse/transloco';
 import { Theme } from '../../interface/interface';
 import { color } from '../../tools/function';
 

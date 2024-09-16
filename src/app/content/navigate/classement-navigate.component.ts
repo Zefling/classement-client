@@ -1,4 +1,6 @@
+import { NgClass } from '@angular/common';
 import { Component, OnDestroy, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -14,8 +16,6 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { NgClass } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { PaginationComponent } from '../../components/paginate/paginate.component';

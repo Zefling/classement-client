@@ -24,6 +24,7 @@ import {
     viewChildren,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
@@ -32,6 +33,7 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
+import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -50,35 +52,18 @@ import {
     ThemesNames,
 } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { FormsModule } from '@angular/forms';
-import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
-import { APIImdbService } from 'src/app/services/api.imdb.service';
-import { MemoryService } from 'src/app/services/memory.service';
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
-import { ImportJsonComponent } from '../../components/import-json/import-json.component';
-import { LoaderComponent } from '../../components/loader/loader.component';
-import { LoadingComponent } from '../../components/loader/loading.component';
-import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
-import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
-import { ContextMenuDirective } from '../../directives/context-menu.directive';
-import { CdkDragElement as CdkDragElement_1 } from '../../directives/drag-element.directive';
-import { DropImageDirective } from '../../directives/drop-image.directive';
-import { CdkDropZone } from '../../directives/dropzone.directive';
-import { NgInitDirective } from '../../directives/ngInit.directive';
-import { RemoveTileDirective } from '../../directives/remove-tile.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
-import { FileSizePipe } from '../../pipes/file-size';
 import {
     defaultGroup,
     defaultOptions,
@@ -100,6 +85,20 @@ import { HelpIcebergComponent } from './help/help.iceberg.component';
 import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
 
+import { ImportJsonComponent } from '../../components/import-json/import-json.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
+import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
+import { ContextMenuDirective } from '../../directives/context-menu.directive';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { CdkDropZone } from '../../directives/dropzone.directive';
+import { NgInitDirective } from '../../directives/ngInit.directive';
+import { RemoveTileDirective } from '../../directives/remove-tile.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
+import { FileSizePipe } from '../../pipes/file-size';
+
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
@@ -120,11 +119,11 @@ import { HelpTierListComponent } from './help/help.tierlist.component';
         CdkDropZone,
         ZoneAreaComponent,
         ZoneAxisComponent,
-        CdkDragElement_1,
+        CdkDragElement,
         SeeClassementComponent,
         LoadingComponent,
         TooltipDirective,
-        DialogComponent_1,
+        DialogComponent,
         ImportJsonComponent,
         ClassementOptimiseComponent,
         ClassementSaveServerComponent,

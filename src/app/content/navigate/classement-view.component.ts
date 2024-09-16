@@ -1,10 +1,13 @@
-import { Component, ElementRef, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
+import { DatePipe, NgClass } from '@angular/common';
+import { Component, ElementRef, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
-
 import html2canvas from '@html2canvas/html2canvas';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
+import { MarkdownComponent } from 'ngx-markdown';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -18,15 +21,12 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { MessageError } from '../user/user.interface';
-import { MarkdownComponent } from 'ngx-markdown';
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { LoadingComponent } from '../../components/loader/loading.component';
-import { FormsModule } from '@angular/forms';
-import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { NgClass, DatePipe } from '@angular/common';
-import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
+import { LoaderItemComponent } from '../../components/loader/loader-item.component';
+import { LoadingComponent } from '../../components/loader/loading.component';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { MessageError } from '../user/user.interface';
 
 const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
 

@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { categories } from '../classement/classement-default';
-import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
+import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { categories } from '../classement/classement-default';
 
 @Component({
     selector: 'classement-template',

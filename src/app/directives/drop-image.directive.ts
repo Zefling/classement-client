@@ -1,4 +1,4 @@
-import { booleanAttribute, Directive, HostBinding, HostListener, input, output, inject } from '@angular/core';
+import { Directive, HostBinding, HostListener, booleanAttribute, inject, input, output } from '@angular/core';
 
 import { FileHandle } from '../interface/interface';
 import { GlobalService, TypeFile, typesMine } from '../services/global.service';

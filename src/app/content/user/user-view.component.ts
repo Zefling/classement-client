@@ -1,14 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
-import { DatePipe } from '@angular/common';
-import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
     selector: 'user-view',

@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import {
     ChangeDetectorRef,
     Component,
@@ -8,22 +9,22 @@ import {
     inject,
     input,
 } from '@angular/core';
-
-import { Subject, debounceTime } from 'rxjs';
-
-import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
-import { Utils } from 'src/app/tools/utils';
-
-import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
 import { Select2Module, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
+import { Subject, debounceTime } from 'rxjs';
+
 import { HelpBingoEmojiComponent } from 'src/app/content/navigate/help/help.bingo.component';
+import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { DataService } from 'src/app/services/data.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { Utils } from 'src/app/tools/utils';
+
 import { ContextMenuDirective } from '../../directives/context-menu.directive';
 import { NgInitDirective } from '../../directives/ngInit.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';

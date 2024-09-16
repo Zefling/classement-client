@@ -1,13 +1,14 @@
-import { booleanAttribute, Component, input, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, booleanAttribute, inject, input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
+
 import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({

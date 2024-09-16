@@ -2,13 +2,13 @@ import {
     Directive,
     HostBinding,
     HostListener,
-    input,
     OnChanges,
     OnDestroy,
     OnInit,
     Renderer2,
     SimpleChanges,
     inject,
+    input,
 } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';

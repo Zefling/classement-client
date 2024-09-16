@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, signal, inject } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { TranslocoService } from '@jsverse/transloco';

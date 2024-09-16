@@ -4,17 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
-
-
-
-
-
-
-
-
-
-
-
 const routes: Routes = [
     {
         path: 'login',

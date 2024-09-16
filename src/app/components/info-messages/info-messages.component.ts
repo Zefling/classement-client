@@ -1,6 +1,7 @@
 import { Component, Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
+
 import { InfoMessageComponent } from './info-message.component';
 
 export enum MessageType {

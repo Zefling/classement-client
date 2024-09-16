@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+import { Subject, firstValueFrom } from 'rxjs';
+
 import { Logger, LoggerLevel } from './logger';
 import { PreferencesService } from './preferences.service';
 
-import { firstValueFrom, Subject } from 'rxjs';
 import { MovieSearch, PageResult } from '../interface/movie';
 
 type Params =

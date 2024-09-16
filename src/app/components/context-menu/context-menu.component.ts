@@ -1,5 +1,7 @@
 import { Component, HostListener, input } from '@angular/core';
+
 import { TranslocoModule } from '@jsverse/transloco';
+
 import { ContextMenuDirective } from 'src/app/directives/context-menu.directive';
 
 type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<keyof T, Keys>> &

@@ -1,4 +1,6 @@
-import { Component, EventEmitter, inject, input, Output, viewChild } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -6,11 +8,9 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
-import { DatePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { GlobalService } from 'src/app/services/global.service';
 import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { categories } from '../classement/classement-default';

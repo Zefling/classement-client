@@ -1,8 +1,8 @@
 import { Component, DoCheck, OnDestroy, OnInit, inject, input, numberAttribute } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { RouterLink } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 
 interface Page {

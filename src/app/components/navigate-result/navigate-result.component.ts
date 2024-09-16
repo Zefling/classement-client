@@ -1,8 +1,9 @@
-import { Component, booleanAttribute, input } from '@angular/core';
-
 import { DatePipe } from '@angular/common';
+import { Component, booleanAttribute, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
 import { TranslocoPipe } from '@jsverse/transloco';
+
 import { Classement } from 'src/app/interface/interface';
 
 @Component({

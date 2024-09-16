@@ -3,14 +3,14 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    inject,
-    input,
     NgZone,
     OnChanges,
     OnDestroy,
+    SimpleChanges,
+    inject,
+    input,
     output,
     signal,
-    SimpleChanges,
     viewChild,
 } from '@angular/core';
 
