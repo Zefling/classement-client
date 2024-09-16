@@ -8,6 +8,7 @@ import {
     booleanAttribute,
     inject,
     input,
+    model,
     viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,10 @@ import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MessageService } from 'src/app/components/info-messages/info-messages.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
+import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -75,6 +80,9 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         SeeClassementComponent,
         TranslocoPipe,
         ThemeIconComponent,
+        TabsComponent,
+        TabTitleComponent,
+        TabContentComponent,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -85,10 +93,11 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly memory = inject(MemoryService);
     private readonly editor = inject(ClassementEditComponent, { host: true });
     private readonly dbService = inject(DBService);
+    private readonly messageService = inject(MessageService);
 
     // input
 
-    options = input.required<Options>();
+    options = model.required<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
 
     // viewChild
@@ -98,6 +107,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
     dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
     dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
+    exportDialog = viewChild.required<DialogComponent>('exportDialog');
     mode = viewChild.required<Select2>('mode');
 
     // template
@@ -119,9 +129,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
 
+    themeId = '';
     themeName = '';
     themeTmp?: Theme<string>;
     themeError = false;
+    themeDraft: Theme<string>[] = [];
+    themeServer: Theme<string>[] = [];
 
     private _sub = Subscriptions.instance();
 
@@ -420,7 +433,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     private optionToTheme() {
         const theme: Theme<string> = {
-            id: '',
+            id: this.themeId,
             name: this.themeName,
             options: this.options(),
         };
@@ -438,11 +451,23 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         return theme;
     }
 
-    saveDraft() {
-        this.dbService.saveLocalTheme(this.optionToTheme());
+    async exportDialogOpen() {
+        this.exportDialog().open();
+        this.themeDraft = await this.dbService.getLocalAllThemes();
+    }
+
+    async saveDraft() {
+        const theme = await this.dbService.saveLocalTheme(this.optionToTheme());
+        this.themeId = theme.id;
+        this.exportDialog().close();
+        this.messageService.addMessage('Brouillon sauvegardé');
     }
 
     saveServer() {}
+
+    updateDraft() {}
+
+    updateServer() {}
 
     export() {
         const theme = this.optionToTheme();

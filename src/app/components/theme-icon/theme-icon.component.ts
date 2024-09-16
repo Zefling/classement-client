@@ -4,7 +4,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { imageInfos } from 'src/app/content/classement/classement-default';
 
-import { Theme } from '../../interface/interface';
+import { Theme, ThemesNames } from '../../interface/interface';
 import { color } from '../../tools/function';
 
 @Component({
@@ -14,10 +14,10 @@ import { color } from '../../tools/function';
     standalone: true,
     imports: [TranslocoPipe],
 })
-export class ThemeIconComponent implements OnInit {
-    theme = input.required<Theme>();
+export class ThemeIconComponent<T = ThemesNames> implements OnInit {
+    theme = input.required<Theme<T>>();
 
-    select = output<Theme>();
+    select = output<Theme<T>>();
 
     styles: any;
 

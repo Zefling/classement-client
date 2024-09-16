@@ -780,7 +780,7 @@
     </div>
 
     <div class="buttons">
-      <button class="primary" (click)="exportDialog.open()">
+      <button class="primary" (click)="exportDialogOpen()">
         {{ (api ? 'generator.options.export.save' : 'generator.options.export') | transloco }}
       </button>
       <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
@@ -887,26 +887,76 @@
 
 <dialog-cmp class="auto-format" #exportDialog>
   <theme-icon [theme]="{ id: '', name: 'custom', options: this.options() }"></theme-icon>
-  <div>{{ 'generator.theme.name.question' | transloco }}</div>
-  <div>
-    <input type="text" [(ngModel)]="themeName" maxlength="100" />
-  </div>
-  <div class="buttons">
-    <button class="default" (click)="exportCancel()">
-      {{ 'generator.options.cancel' | transloco }}
-    </button>
-    <button class="primary" [disabled]="!themeName.trim()" (click)="saveDraft()">
-      {{ 'generator.options.draft' | transloco }}
-    </button>
-    @if (api) {
-      <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
-        {{ 'generator.options.save' | transloco }}
-      </button>
+  <tabs>
+    <tab-title id="new">Nouveau</tab-title>
+    <tab-content id="new">
+      <div>{{ 'generator.theme.name.question' | transloco }}</div>
+      <div>
+        <input type="text" [(ngModel)]="themeName" maxlength="100" />
+      </div>
+
+      <div class="buttons">
+        <button class="default" (click)="exportCancel()">
+          {{ 'generator.options.cancel' | transloco }}
+        </button>
+        <button class="primary" [disabled]="!themeName.trim()" (click)="saveDraft()">
+          {{ 'generator.options.draft' | transloco }}
+        </button>
+        @if (api) {
+          <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
+            {{ 'generator.options.save' | transloco }}
+          </button>
+        }
+        <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
+          {{ 'generator.options.export' | transloco }}
+        </button>
+      </div>
+    </tab-content>
+    @if (themeDraft.length) {
+      <tab-title id="local">Mise à jour brouillon</tab-title>
     }
-    <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
-      {{ 'generator.options.export' | transloco }}
-    </button>
-  </div>
+    @if (themeDraft.length) {
+      <tab-content id="local">
+        <div>Sélectionner le thème a remplacer</div>
+        <div>
+          @for (theme of themeDraft; track theme) {
+            <theme-icon [theme]="theme"></theme-icon>
+          }
+        </div>
+
+        <div class="buttons">
+          <button class="default" (click)="exportCancel()">
+            {{ 'generator.options.cancel' | transloco }}
+          </button>
+          <button class="primary" [disabled]="!themeName.trim()" (click)="updateDraft()">
+            {{ 'generator.options.update.draft' | transloco }}
+          </button>
+        </div>
+      </tab-content>
+    }
+    @if (api && themeServer.length) {
+      <tab-title id="server">Mise à jour compte</tab-title>
+    }
+    @if (api && themeServer.length) {
+      <tab-content id="server">
+        <div>Sélectionner le thème a remplacer</div>
+        <div>
+          @for (theme of themeServer; track theme) {
+            <theme-icon [theme]="theme"></theme-icon>
+          }
+        </div>
+
+        <div class="buttons">
+          <button class="default" (click)="exportCancel()">
+            {{ 'generator.options.cancel' | transloco }}
+          </button>
+          <button class="primary" [disabled]="!themeName.trim()" (click)="updateServer()">
+            {{ 'generator.options.update.server' | transloco }}
+          </button>
+        </div>
+      </tab-content>
+    }
+  </tabs>
 </dialog-cmp>
 
 <dialog-cmp class="auto-format" #importDialog>
