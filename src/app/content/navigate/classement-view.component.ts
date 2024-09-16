@@ -21,7 +21,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
@@ -44,7 +43,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         SeeClassementComponent,
         NgClass,
         LoaderItemComponent,
-        DialogComponent_1,
+        DialogComponent,
         DatePipe,
         TranslocoPipe,
     ],

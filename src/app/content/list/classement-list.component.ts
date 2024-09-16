@@ -18,10 +18,9 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { SortRuleDirective, SortableDirective as SortableDirective_1 } from '../../directives/sortable.directive';
+import { SortRuleDirective } from '../../directives/sortable.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
@@ -35,13 +34,13 @@ import { FileSizePipe } from '../../pipes/file-size';
     standalone: true,
     imports: [
         FormsModule,
-        SortableDirective_1,
+        SortableDirective,
         SortRuleDirective,
         TagListComponent,
         TooltipDirective,
         RouterLink,
         RouterLinkActive,
-        DialogComponent_1,
+        DialogComponent,
         ImportJsonComponent,
         DatePipe,
         TranslocoPipe,

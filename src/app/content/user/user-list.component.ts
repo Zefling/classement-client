@@ -17,12 +17,10 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { TabTitleComponent } from '../../components/tabs/tab-content.component';
 import { TabContentComponent } from '../../components/tabs/tab-title.component';
-import { TabsComponent as TabsComponent_1 } from '../../components/tabs/tabs.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { SortRuleDirective, SortableDirective as SortableDirective_1 } from '../../directives/sortable.directive';
+import { SortRuleDirective } from '../../directives/sortable.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';
 import { ClassementListComponent } from '../list/classement-list.component';
 
@@ -32,18 +30,18 @@ import { ClassementListComponent } from '../list/classement-list.component';
     styleUrls: ['./user-list.component.scss'],
     standalone: true,
     imports: [
-        TabsComponent_1,
+        TabsComponent,
         TabContentComponent,
         TabTitleComponent,
         FormsModule,
-        SortableDirective_1,
+        SortableDirective,
         SortRuleDirective,
         RouterLink,
         TagListComponent,
         TooltipDirective,
         RouterLinkActive,
         ClassementListComponent,
-        DialogComponent_1,
+        DialogComponent,
         DatePipe,
         TranslocoPipe,
     ],

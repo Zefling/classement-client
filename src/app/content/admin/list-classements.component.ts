@@ -11,7 +11,6 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { categories } from '../classement/classement-default';
 
@@ -20,7 +19,7 @@ import { categories } from '../classement/classement-default';
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
     standalone: true,
-    imports: [DialogComponent_1, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
+    imports: [DialogComponent, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);

@@ -24,7 +24,6 @@ import { Utils } from 'src/app/tools/utils';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
@@ -36,7 +35,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     styleUrls: ['./classement-edit-image.component.scss'],
     standalone: true,
     imports: [
-        DialogComponent_1,
+        DialogComponent,
         FormsModule,
         TextareaAutosizeDirective,
         DropImageDirective,

@@ -15,14 +15,12 @@ import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
-
 @Component({
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
     standalone: true,
-    imports: [DialogComponent_1, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
+    imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
     private readonly imdb = inject(APIImdbService);

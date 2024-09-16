@@ -5,7 +5,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Theme } from 'src/app/interface/interface';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
 
 @Component({
@@ -13,7 +12,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
     standalone: true,
-    imports: [DialogComponent_1, ThemeIconComponent, TranslocoPipe],
+    imports: [DialogComponent, ThemeIconComponent, TranslocoPipe],
 })
 export class ClassementThemesComponent {
     themes = input.required<Theme[]>();

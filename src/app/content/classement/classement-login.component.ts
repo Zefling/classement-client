@@ -10,7 +10,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { UserLoginComponent } from '../user/user-login.component';
 
 @Component({
@@ -18,7 +17,7 @@ import { UserLoginComponent } from '../user/user-login.component';
     templateUrl: './classement-login.component.html',
     styleUrls: ['./classement-login.component.scss'],
     standalone: true,
-    imports: [DialogComponent_1, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
+    imports: [DialogComponent, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
 })
 export class ClassementLoginComponent implements OnDestroy {
     private readonly edit = inject(ClassementEditComponent, { host: true });

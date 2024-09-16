@@ -19,7 +19,6 @@ import { Utils } from 'src/app/tools/utils';
 
 import { UserPassword } from './user-password';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 
@@ -32,7 +31,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         RouterLink,
         RouterLinkActive,
         NavigateResultComponent,
-        DialogComponent_1,
+        DialogComponent,
         FormsModule,
         ReactiveFormsModule,
         DropImageDirective,

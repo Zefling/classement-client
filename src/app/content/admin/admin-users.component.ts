@@ -16,7 +16,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ListClassementsComponent } from './list-classements.component';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { LoadingComponent } from '../../components/loader/loading.component';
 import { PaginationComponent } from '../../components/paginate/paginate.component';
 
@@ -29,7 +28,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
         FormsModule,
         LoadingComponent,
         PaginationComponent,
-        DialogComponent_1,
+        DialogComponent,
         ListClassementsComponent,
         ReactiveFormsModule,
         DatePipe,

@@ -19,6 +19,7 @@ import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { DBService } from 'src/app/services/db.service';
@@ -50,7 +51,6 @@ import { ClassementEditComponent } from './classement-edit.component';
 import { schemaTheme } from './classement-schemas';
 import { ClassementThemesComponent } from './classement-themes.component';
 
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
@@ -70,10 +70,11 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         TooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
-        DialogComponent_1,
+        DialogComponent,
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
+        ThemeIconComponent,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
