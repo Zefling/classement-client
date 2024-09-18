@@ -70,25 +70,15 @@
 }
 
 navigate-result {
-    display: flex;
     position: relative;
-    flex-wrap: nowrap;
     overflow: hidden;
     --image-size: 200px;
+    --cell: repeat(11, minmax(200px, 1fr));
 
     ::ng-deep {
         .classement {
-            flex: 1;
             min-width: var(--image-size);
             max-width: 320px;
-        }
-        figure {
-            flex-direction: column !important;
-        }
-
-        img {
-            width: 100% !important;
-            max-width: 100% !important;
         }
     }
 }
