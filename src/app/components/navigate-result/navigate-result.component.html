@@ -44,8 +44,8 @@
             <div class="date">
               {{ classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }}
             </div>
-            <div class="date change">
-              @if (classement.dateChange) {
+            @if (classement.dateChange) {
+              <div class="date change">
                 {{
                   'generator.ranking.change'
                     | transloco
@@ -53,15 +53,13 @@
                           DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | transloco),
                         }
                 }}
-              }
-            </div>
+              </div>
+            }
           }
         </figcaption>
       </figure>
-      @if (!isCategoryList() && !hideDerivatives()) {
-        <div class="template" [class.hide]="classement.templateTotal <= 1">
-          {{ 'navigate.count.derivatives' | transloco }} {{ classement.templateTotal }}
-        </div>
+      @if (!isCategoryList() && !hideDerivatives() && classement.templateTotal > 1) {
+        <div class="template">{{ 'navigate.count.derivatives' | transloco }} {{ classement.templateTotal }}</div>
       }
     </a>
   }
