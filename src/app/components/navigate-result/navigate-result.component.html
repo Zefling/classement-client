@@ -11,8 +11,10 @@
       "
       [queryParams]="isCategoryList() ? { category: classement.category } : {}"
     >
-      <figure [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | transloco">
-        <img [src]="classement.banner" [alt]="classement.name" />
+      <figure>
+        <div [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | transloco">
+          <img [src]="classement.banner" [alt]="classement.name" />
+        </div>
         <figcaption>
           @if (!isCategoryList()) {
             <div class="name">{{ classement.name }}</div>
