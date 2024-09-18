@@ -2,7 +2,7 @@
     --cell: repeat(auto-fill, minmax(200px, 1fr));
     display: grid;
     grid-template-columns: var(--cell);
-    grid-auto-rows: auto auto auto auto auto auto 1em auto 30px;
+    grid-auto-rows: auto auto auto auto auto auto 1em auto 5px;
     gap: 0 10px;
     margin-top: 20px;
 }
@@ -72,6 +72,7 @@ figcaption {
 }
 
 .template {
+    grid-row-start: span 1;
     margin: 5px 0 10px;
 }
 
