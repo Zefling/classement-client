@@ -921,9 +921,14 @@
     @if (themeDraft.length) {
       <tab-content id="local">
         <p>Sélectionner le thème a remplacer</p>
-        <div>
+        <div class="theme-list">
           @for (theme of themeDraft; track theme) {
-            <theme-icon [theme]="theme" custom></theme-icon>
+            <theme-icon
+              [theme]="theme"
+              custom
+              (select)="selectTheme($event)"
+              [class.selected]="theme === selectedTheme"
+            ></theme-icon>
           }
         </div>
 
@@ -931,7 +936,7 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.options.cancel' | transloco }}
           </button>
-          <button class="primary" [disabled]="!themeName.trim()" (click)="updateDraft()">
+          <button class="primary" [disabled]="!selectedTheme" (click)="updateDraft()">
             {{ 'generator.options.update.draft' | transloco }}
           </button>
         </p>

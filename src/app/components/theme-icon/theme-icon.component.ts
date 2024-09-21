@@ -36,7 +36,6 @@ export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('>>>', changes);
         if (changes['theme']) {
             this.ngOnInit();
         }

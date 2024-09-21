@@ -138,6 +138,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     themeDraft: Theme<string>[] = [];
     themeServer: Theme<string>[] = [];
     themeCurrent = signal<Theme<string> | undefined>(undefined);
+    selectedTheme?: Theme<string>;
 
     private _sub = Subscriptions.instance();
 
@@ -357,6 +358,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
+    selectTheme(theme: Theme<string>) {
+        this.selectedTheme = theme;
+    }
+
     changeCustomBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
@@ -476,7 +481,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     saveServer() {}
 
-    updateDraft() {}
+    async updateDraft() {
+        this.selectedTheme!.options = this.options();
+        const theme = await this.dbService.saveLocalTheme(this.selectedTheme!);
+        this.exportDialog().close();
+        this.messageService.addMessage('Brouillon mise à jour');
+    }
 
     updateServer() {}
 
@@ -493,6 +503,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     exportCancel() {
         this.themeName = '';
+        this.selectedTheme = undefined;
         this.dialogAdvancedOptionsExport().close();
     }
 

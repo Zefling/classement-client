@@ -68,7 +68,7 @@ export class DBService {
         return new Promise(async (resolve, reject) => {
             const formatData: any = {};
             const cloneItem = Utils.jsonCopy(item);
-            cloneItem.dateCreate = Utils.toISODate();
+            cloneItem.dateCreate = Utils.toISODate('', true);
             cloneItem.options.title = title;
             cloneItem.rankingId = undefined;
             if (newTemplate) {
@@ -135,10 +135,12 @@ export class DBService {
     saveLocalTheme(theme: Theme<string>): Promise<Theme<string>> {
         return new Promise(async (resolve, reject) => {
             let update = true;
+            console.log('>>>>>', theme.id, update);
             if (!theme.id) {
-                theme.id = await this._digestMessage(Utils.toISODate());
+                theme.id = await this._digestMessage(Utils.toISODate('', true));
                 update = false;
             }
+            console.log('>>>>>', theme, update);
             this._getDB()
                 .then(db => (update ? this._updateDB(db, Store.themes, theme) : this._saveDB(db, Store.themes, theme)))
                 .then(__ => resolve(theme))
