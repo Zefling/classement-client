@@ -1,4 +1,13 @@
-import { Component, HostListener, OnInit, input, output } from '@angular/core';
+import {
+    Component,
+    HostListener,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    booleanAttribute,
+    input,
+    output,
+} from '@angular/core';
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -14,8 +23,9 @@ import { color } from '../../tools/function';
     standalone: true,
     imports: [TranslocoPipe],
 })
-export class ThemeIconComponent<T = ThemesNames> implements OnInit {
+export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
     theme = input.required<Theme<T>>();
+    custom = input(false, { transform: booleanAttribute });
 
     select = output<Theme<T>>();
 
@@ -23,6 +33,13 @@ export class ThemeIconComponent<T = ThemesNames> implements OnInit {
 
     ngOnInit() {
         this.getStyles();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('>>>', changes);
+        if (changes['theme']) {
+            this.ngOnInit();
+        }
     }
 
     @HostListener('click')

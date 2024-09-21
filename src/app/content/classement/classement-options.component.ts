@@ -9,6 +9,7 @@ import {
     inject,
     input,
     model,
+    signal,
     viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +29,7 @@ import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.com
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { DBService } from 'src/app/services/db.service';
-import { TypeFile, typesMine } from 'src/app/services/global.service';
+import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { palette } from 'src/app/tools/function';
@@ -94,6 +95,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly editor = inject(ClassementEditComponent, { host: true });
     private readonly dbService = inject(DBService);
     private readonly messageService = inject(MessageService);
+    private readonly globalService = inject(GlobalService);
 
     // input
 
@@ -135,6 +137,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     themeError = false;
     themeDraft: Theme<string>[] = [];
     themeServer: Theme<string>[] = [];
+    themeCurrent = signal<Theme<string> | undefined>(undefined);
 
     private _sub = Subscriptions.instance();
 
@@ -144,11 +147,15 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.categories.onChange.subscribe(() => {
                 this.categoryUpdate();
             }),
+            this.globalService.onOptionChange.subscribe(() => {
+                this.updateCurrentTheme();
+            }),
         );
     }
 
     ngOnInit(): void {
         this.updateMode();
+        this.updateCurrentTheme();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -156,6 +163,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._modeTemp = undefined;
             this.updateMode();
         }
+    }
+
+    updateCurrentTheme() {
+        this.themeCurrent.set({ id: '', name: 'custom', options: this.options() });
     }
 
     updateMode() {
@@ -431,9 +442,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
-    private optionToTheme() {
+    private optionToTheme(id: string = this.themeId) {
         const theme: Theme<string> = {
-            id: this.themeId,
+            id,
             name: this.themeName,
             options: this.options(),
         };
@@ -457,7 +468,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     async saveDraft() {
-        const theme = await this.dbService.saveLocalTheme(this.optionToTheme());
+        const theme = await this.dbService.saveLocalTheme(this.optionToTheme(''));
         this.themeId = theme.id;
         this.exportDialog().close();
         this.messageService.addMessage('Brouillon sauvegardé');

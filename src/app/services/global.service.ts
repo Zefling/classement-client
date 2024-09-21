@@ -1,4 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 
 import { TranslocoService } from '@jsverse/transloco';
@@ -50,6 +51,7 @@ export class GlobalService {
     readonly onUpdateList = new Subject<void>();
     readonly onImageUpdate = new Subject<void>();
     readonly onOpenChoice = new Subject<void>();
+    readonly onOptionChange = new Subject<void>();
     readonly helpComponent = new Subject<Type<any> | undefined>();
 
     zoomActive = signal<boolean>(false);
@@ -75,6 +77,10 @@ export class GlobalService {
 
         this.browserSchema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         this.changeThemeClass();
+
+        toObservable(this.withChange).subscribe(() => {
+            this.onOptionChange.next();
+        });
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             this.browserSchema = event.matches ? 'dark' : 'light';

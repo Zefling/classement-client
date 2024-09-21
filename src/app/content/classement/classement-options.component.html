@@ -885,17 +885,20 @@
   }
 </dialog-cmp>
 
-<dialog-cmp class="auto-format" #exportDialog>
-  <theme-icon [theme]="{ id: '', name: 'custom', options: this.options() }"></theme-icon>
+<dialog-cmp #exportDialog>
+  @let current = themeCurrent();
+  @if (current) {
+    <theme-icon [theme]="current"></theme-icon>
+  }
   <tabs>
     <tab-title id="new">Nouveau</tab-title>
     <tab-content id="new">
-      <div>{{ 'generator.theme.name.question' | transloco }}</div>
+      <p>{{ 'generator.theme.name.question' | transloco }}</p>
       <div>
         <input type="text" [(ngModel)]="themeName" maxlength="100" />
       </div>
 
-      <div class="buttons">
+      <p class="buttons">
         <button class="default" (click)="exportCancel()">
           {{ 'generator.options.cancel' | transloco }}
         </button>
@@ -910,28 +913,28 @@
         <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
           {{ 'generator.options.export' | transloco }}
         </button>
-      </div>
+      </p>
     </tab-content>
     @if (themeDraft.length) {
       <tab-title id="local">Mise à jour brouillon</tab-title>
     }
     @if (themeDraft.length) {
       <tab-content id="local">
-        <div>Sélectionner le thème a remplacer</div>
+        <p>Sélectionner le thème a remplacer</p>
         <div>
           @for (theme of themeDraft; track theme) {
-            <theme-icon [theme]="theme"></theme-icon>
+            <theme-icon [theme]="theme" custom></theme-icon>
           }
         </div>
 
-        <div class="buttons">
+        <p class="buttons">
           <button class="default" (click)="exportCancel()">
             {{ 'generator.options.cancel' | transloco }}
           </button>
           <button class="primary" [disabled]="!themeName.trim()" (click)="updateDraft()">
             {{ 'generator.options.update.draft' | transloco }}
           </button>
-        </div>
+        </p>
       </tab-content>
     }
     @if (api && themeServer.length) {
@@ -939,21 +942,21 @@
     }
     @if (api && themeServer.length) {
       <tab-content id="server">
-        <div>Sélectionner le thème a remplacer</div>
+        <p>Sélectionner le thème a remplacer</p>
         <div>
           @for (theme of themeServer; track theme) {
             <theme-icon [theme]="theme"></theme-icon>
           }
         </div>
 
-        <div class="buttons">
+        <p class="buttons">
           <button class="default" (click)="exportCancel()">
             {{ 'generator.options.cancel' | transloco }}
           </button>
           <button class="primary" [disabled]="!themeName.trim()" (click)="updateServer()">
             {{ 'generator.options.update.server' | transloco }}
           </button>
-        </div>
+        </p>
       </tab-content>
     }
   </tabs>
