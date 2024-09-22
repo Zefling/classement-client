@@ -275,11 +275,6 @@
     },
     "options": {
       "group.title": "Options",
-      "import": "Importer",
-      "export": "Exporter",
-      "export.save": "Sauver ou exporter",
-      "save": "Sauver",
-      "draft": "Brouillon",
       "close": "Fermer",
       "cancel": "Annuler",
       "title": "Titre du classement :",
@@ -436,10 +431,22 @@
         "classic": "Classique"
       },
       "import": {
+        "button": "Importer",
         "info": "Merci d'importer un fichier de theme valide.",
         "invalid": "Le fichier de thème n'est pas valide",
         "valid": "Mettre en place le thème :"
-      }
+      },
+      "export": "Exporter",
+      "manage.my.themes": "Gérer mes thèmes",
+      "remove.draft": "Supprimer le bouillon",
+      "update.draft": "Mettre à jour le bouillon",
+      "save": "Sauver",
+      "draft": "Brouillon",
+      "new": "Nouveau",
+      "draft.update": "Mise à jour brouillon",
+      "draft.replace": "Sélectionner le thème a remplacer",
+      "account.update": "Mise à jour compte",
+      "account.replace": "Sélectionner le thème a remplacer"
     },
     "ranking": {
       "group.title": "Classement",

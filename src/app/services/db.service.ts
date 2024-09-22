@@ -135,12 +135,10 @@ export class DBService {
     saveLocalTheme(theme: Theme<string>): Promise<Theme<string>> {
         return new Promise(async (resolve, reject) => {
             let update = true;
-            console.log('>>>>>', theme.id, update);
             if (!theme.id) {
                 theme.id = await this._digestMessage(Utils.toISODate('', true));
                 update = false;
             }
-            console.log('>>>>>', theme, update);
             this._getDB()
                 .then(db => (update ? this._updateDB(db, Store.themes, theme) : this._saveDB(db, Store.themes, theme)))
                 .then(__ => resolve(theme))
@@ -148,6 +146,15 @@ export class DBService {
                 .finally(() => {
                     this.accessSubject.next();
                 });
+        });
+    }
+
+    deleteLocalTheme(id: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._deleteDB(db, Store.themes, id))
+                .then(__ => resolve())
+                .catch(_ => reject());
         });
     }
 

@@ -275,11 +275,6 @@
     },
     "options": {
       "group.title": "オプション",
-      "import": "インポート",
-      "export": "エクスポート",
-      "export.save": "セーブかエクスポート",
-      "save": "セーブ",
-      "draft": "ドラフト",
       "close": "閉じる",
       "cancel": "キャンセル",
       "title": "ランキングのタイトル：",
@@ -436,10 +431,22 @@
         "classic": "クラシック"
       },
       "import": {
+        "button": "インポート",
         "info": "有効なテーマ ファイルをインポートしてください。",
         "invalid": "テーマファイルが無効です",
         "valid": "テーマを設定します:"
-      }
+      },
+      "export": "エクスポート",
+      "manage.my.themes": "テーマを管理する",
+      "remove.draft": "ドラフトを削除する",
+      "update.draft": "ドラフトを更新する",
+      "save": "セーブ",
+      "draft": "ドラフト",
+      "new": "NEW",
+      "draft.update": "ドラフト更新",
+      "draft.replace": "置き換えるテーマを選択してください",
+      "account.update": "アカウントの更新",
+      "account.replace": "置き換えるテーマを選択してください"
     },
     "ranking": {
       "group.title": "ランキング",

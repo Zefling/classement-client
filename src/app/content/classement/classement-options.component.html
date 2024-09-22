@@ -780,11 +780,11 @@
     </div>
 
     <div class="buttons">
-      <button class="primary" (click)="exportDialogOpen()">
-        {{ (api ? 'generator.options.export.save' : 'generator.options.export') | transloco }}
+      <button class="primary" (click)="themesManager().exportDialogOpen()">
+        {{ 'generator.theme.manage.my.themes' | transloco }}
       </button>
       <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
-        {{ 'generator.options.import' | transloco }}
+        {{ 'generator.theme.import.button' | transloco }}
       </button>
       <button class="primary" (click)="dialogAdvancedOptions.close()">
         {{ 'generator.options.close' | transloco }}
@@ -793,179 +793,12 @@
 
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
-      <see-classement
-        id="test"
-        [options]="opts"
-        [groups]="[
-          {
-            name: 'Test\n**Markdown**',
-            bgColor: '#dc8add',
-            txtColor: '#000',
-            list: [
-              {
-                id: 'test-1',
-                url: './assets/images/tile_image_example1.webp',
-                name: 'tile_image_example',
-                title: 'Example',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 0,
-                y: 0,
-              },
-              {
-                id: 'test-2',
-                url: './assets/images/tile_image_example2.webp',
-                name: 'tile_image_example',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 200,
-                y: 0,
-              },
-              {
-                id: 'test-3',
-                url: './assets/images/tile_image_example3.webp',
-                name: 'tile_image_example',
-                title: 'Example',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 400,
-                y: 0,
-              },
-              {
-                id: 'test-4',
-                url: './assets/images/tile_image_example4.webp',
-                name: 'tile_image_example4',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 600,
-                y: 0,
-              },
-              {
-                id: 'text-1',
-                name: 'tile_text_example1',
-                title: 'Text',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 800,
-                y: 10,
-              },
-              {
-                id: 'text-2',
-                name: 'tile_text_example2',
-                title: 'Text Text Text',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 870,
-                y: 10,
-              },
-            ],
-          },
-        ]"
-        [list]="[]"
-        render
-        demo
-      ></see-classement>
+      <see-classement id="test" [options]="opts" [groups]="groupExample" [list]="[]" render demo></see-classement>
     </div>
   }
 </dialog-cmp>
 
-<dialog-cmp #exportDialog>
-  @let current = themeCurrent();
-  @if (current) {
-    <theme-icon [theme]="current"></theme-icon>
-  }
-  <tabs>
-    <tab-title id="new">Nouveau</tab-title>
-    <tab-content id="new">
-      <p>{{ 'generator.theme.name.question' | transloco }}</p>
-      <div>
-        <input type="text" [(ngModel)]="themeName" maxlength="100" />
-      </div>
-
-      <p class="buttons">
-        <button class="default" (click)="exportCancel()">
-          {{ 'generator.options.cancel' | transloco }}
-        </button>
-        <button class="primary" [disabled]="!themeName.trim()" (click)="saveDraft()">
-          {{ 'generator.options.draft' | transloco }}
-        </button>
-        @if (api) {
-          <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
-            {{ 'generator.options.save' | transloco }}
-          </button>
-        }
-        <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
-          {{ 'generator.options.export' | transloco }}
-        </button>
-      </p>
-    </tab-content>
-    @if (themeDraft.length) {
-      <tab-title id="local">Mise à jour brouillon</tab-title>
-    }
-    @if (themeDraft.length) {
-      <tab-content id="local">
-        <p>Sélectionner le thème a remplacer</p>
-        <div class="theme-list">
-          @for (theme of themeDraft; track theme) {
-            <theme-icon
-              [theme]="theme"
-              custom
-              (select)="selectTheme($event)"
-              [class.selected]="theme === selectedTheme"
-            ></theme-icon>
-          }
-        </div>
-
-        <p class="buttons">
-          <button class="default" (click)="exportCancel()">
-            {{ 'generator.options.cancel' | transloco }}
-          </button>
-          <button class="primary" [disabled]="!selectedTheme" (click)="updateDraft()">
-            {{ 'generator.options.update.draft' | transloco }}
-          </button>
-        </p>
-      </tab-content>
-    }
-    @if (api && themeServer.length) {
-      <tab-title id="server">Mise à jour compte</tab-title>
-    }
-    @if (api && themeServer.length) {
-      <tab-content id="server">
-        <p>Sélectionner le thème a remplacer</p>
-        <div>
-          @for (theme of themeServer; track theme) {
-            <theme-icon [theme]="theme"></theme-icon>
-          }
-        </div>
-
-        <p class="buttons">
-          <button class="default" (click)="exportCancel()">
-            {{ 'generator.options.cancel' | transloco }}
-          </button>
-          <button class="primary" [disabled]="!themeName.trim()" (click)="updateServer()">
-            {{ 'generator.options.update.server' | transloco }}
-          </button>
-        </p>
-      </tab-content>
-    }
-  </tabs>
-</dialog-cmp>
+<classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()"></classement-themes-manager>
 
 <dialog-cmp class="auto-format" #importDialog>
   <div>{{ 'generator.theme.import.info' | transloco }}</div>
@@ -984,16 +817,16 @@
 
     <div class="buttons">
       <button class="default" (click)="importCancel()">
-        {{ 'generator.options.cancel' | transloco }}
+        {{ 'generator.theme.cancel' | transloco }}
       </button>
       <button class="primary" (click)="importValidation()">
-        {{ 'generator.options.import' | transloco }}
+        {{ 'generator.theme.import' | transloco }}
       </button>
     </div>
   } @else {
     <div class="buttons">
       <button class="default" (click)="importCancel()">
-        {{ 'generator.options.cancel' | transloco }}
+        {{ 'generator.theme.cancel' | transloco }}
       </button>
     </div>
   }

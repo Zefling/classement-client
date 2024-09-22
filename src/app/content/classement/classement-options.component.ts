@@ -21,14 +21,9 @@ import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { DBService } from 'src/app/services/db.service';
 import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
@@ -54,7 +49,9 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
+import { groupExample } from './classement-options';
 import { schemaTheme } from './classement-schemas';
+import { ClassementThemesManagerComponent } from './classement-themes-manager.component';
 import { ClassementThemesComponent } from './classement-themes.component';
 
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
@@ -81,9 +78,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         SeeClassementComponent,
         TranslocoPipe,
         ThemeIconComponent,
-        TabsComponent,
-        TabTitleComponent,
-        TabContentComponent,
+        ClassementThemesManagerComponent,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -93,8 +88,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly categories = inject(CategoriesService);
     private readonly memory = inject(MemoryService);
     private readonly editor = inject(ClassementEditComponent, { host: true });
-    private readonly dbService = inject(DBService);
-    private readonly messageService = inject(MessageService);
     private readonly globalService = inject(GlobalService);
 
     // input
@@ -104,17 +97,18 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     // viewChild
 
-    classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
+    classementThemes = viewChild.required(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
     dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
     dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
     dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
-    exportDialog = viewChild.required<DialogComponent>('exportDialog');
+    themesManager = viewChild.required(ClassementThemesManagerComponent);
     mode = viewChild.required<Select2>('mode');
 
     // template
 
     api = environment.api?.active || false;
+    groupExample = groupExample;
 
     categoriesList: Category[] = [];
 
@@ -131,14 +125,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
 
-    themeId = '';
-    themeName = '';
     themeTmp?: Theme<string>;
     themeError = false;
-    themeDraft: Theme<string>[] = [];
-    themeServer: Theme<string>[] = [];
     themeCurrent = signal<Theme<string> | undefined>(undefined);
-    selectedTheme?: Theme<string>;
 
     private _sub = Subscriptions.instance();
 
@@ -358,10 +347,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
-    selectTheme(theme: Theme<string>) {
-        this.selectedTheme = theme;
-    }
-
     changeCustomBackground(event: string | FileHandle) {
         if ((event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
@@ -445,66 +430,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         } else if (options[axis] > 300) {
             options[axis] = 300;
         }
-    }
-
-    private optionToTheme(id: string = this.themeId) {
-        const theme: Theme<string> = {
-            id,
-            name: this.themeName,
-            options: this.options(),
-        };
-
-        // usage
-        delete (theme.options as any)['showAdvancedOptions']; // removed option
-        delete theme.options['autoSave'];
-        delete theme.options['streamMode'];
-        // infos
-        delete (theme.options as any)['title'];
-        delete (theme.options as any)['category'];
-        delete (theme.options as any)['description'];
-        delete (theme.options as any)['tags'];
-
-        return theme;
-    }
-
-    async exportDialogOpen() {
-        this.exportDialog().open();
-        this.themeDraft = await this.dbService.getLocalAllThemes();
-    }
-
-    async saveDraft() {
-        const theme = await this.dbService.saveLocalTheme(this.optionToTheme(''));
-        this.themeId = theme.id;
-        this.exportDialog().close();
-        this.messageService.addMessage('Brouillon sauvegardé');
-    }
-
-    saveServer() {}
-
-    async updateDraft() {
-        this.selectedTheme!.options = this.options();
-        const theme = await this.dbService.saveLocalTheme(this.selectedTheme!);
-        this.exportDialog().close();
-        this.messageService.addMessage('Brouillon mise à jour');
-    }
-
-    updateServer() {}
-
-    export() {
-        const theme = this.optionToTheme();
-
-        Utils.downloadFile(
-            JSON.stringify(theme),
-            Utils.normalizeFileName(`theme-${theme.options.mode}-${this.themeName}`) + '.json',
-            'text/plain',
-        );
-        this.exportCancel();
-    }
-
-    exportCancel() {
-        this.themeName = '';
-        this.selectedTheme = undefined;
-        this.dialogAdvancedOptionsExport().close();
     }
 
     importJsonFile(event: Event) {

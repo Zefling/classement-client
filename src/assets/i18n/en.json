@@ -275,11 +275,6 @@
     },
     "options": {
       "group.title": "Options",
-      "import": "Import",
-      "export": "Export",
-      "export.save": "Save or export",
-      "save": "Save",
-      "draft": "Draft",
       "close": "Close",
       "cancel": "Cancel",
       "title": "Ranking title:",
@@ -436,10 +431,22 @@
         "classic": "Classic"
       },
       "import": {
+        "button": "Import",
         "info": "Please import a valid theme file.",
         "invalid": "Theme file is not valid",
         "valid": "Set the theme:"
-      }
+      },
+      "export": "Export",
+      "manage.my.themes": "Manage my themes",
+      "remove.draft": "Remove draft",
+      "update.draft": "Update draft",
+      "save": "Save",
+      "draft": "Draft",
+      "new": "New",
+      "draft.update": "Update draft",
+      "draft.replace": "Select theme to replace",
+      "account.update": "Update account",
+      "account.replace": "Select theme to replace"
     },
     "ranking": {
       "group.title": "Ranking",
