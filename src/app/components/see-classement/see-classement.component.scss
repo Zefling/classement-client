@@ -115,18 +115,24 @@ img {
         white-space: pre-line;
     }
 
-    markdown ::ng-deep * {
-        margin: 0;
-        padding: 0;
-        color: var(--text-color);
-        list-style: none;
-
-        &:not(strong) {
-            font-weight: normal;
+    markdown ::ng-deep {
+        p {
+            white-space: pre;
         }
 
         a {
             pointer-events: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            list-style: none;
+
+            &:not(strong) {
+                font-weight: normal;
+            }
         }
     }
 }
