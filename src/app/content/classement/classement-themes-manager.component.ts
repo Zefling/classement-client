@@ -54,7 +54,7 @@ export class ClassementThemesManagerComponent {
     themeId = '';
     themeName = '';
 
-    themeDraft: Theme<string>[] = [];
+    themeBrowser: Theme<string>[] = [];
     themeServer: Theme<string>[] = [];
     selectedTheme?: Theme<string>;
 
@@ -84,26 +84,28 @@ export class ClassementThemesManagerComponent {
 
     async exportDialogOpen() {
         this.exportDialog().open();
-        this.themeDraft = await this.dbService.getLocalAllThemes();
+        this.themeBrowser = (await this.dbService.getLocalAllThemes()).filter(
+            t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
+        );
     }
 
-    async saveDraft() {
+    async saveBrowser() {
         const theme = await this.dbService.saveLocalTheme(this.optionToTheme(''));
         this.themeId = theme.id;
         this.exportDialog().close();
         this.messageService.addMessage('Brouillon sauvegardé');
     }
 
-    async updateDraft() {
+    async updateBrowser() {
         this.selectedTheme!.options = this.options();
         await this.dbService.saveLocalTheme(this.selectedTheme!);
         this.exportDialog().close();
         this.messageService.addMessage('Brouillon mise à jour');
     }
 
-    async removeDraft() {
+    async removeBrowser() {
         await this.dbService.deleteLocalTheme(this.selectedTheme!.id);
-        this.themeDraft.splice(this.themeDraft.indexOf(this.selectedTheme!), 1);
+        this.themeBrowser.splice(this.themeBrowser.indexOf(this.selectedTheme!), 1);
         this.exportDialog().close();
         this.messageService.addMessage('Brouillon supprimé');
     }

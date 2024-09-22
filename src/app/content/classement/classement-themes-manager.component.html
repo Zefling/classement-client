@@ -15,8 +15,8 @@
         <button class="default" (click)="exportCancel()">
           {{ 'generator.theme.cancel' | transloco }}
         </button>
-        <button class="primary" [disabled]="!themeName.trim()" (click)="saveDraft()">
-          {{ 'generator.theme.draft' | transloco }}
+        <button class="primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
+          {{ 'generator.theme.browser' | transloco }}
         </button>
         @if (api) {
           <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
@@ -28,14 +28,14 @@
         </button>
       </p>
     </tab-content>
-    @if (themeDraft.length) {
-      <tab-title id="local"> {{ 'generator.theme.draft.update' | transloco }}</tab-title>
+    @if (themeBrowser.length) {
+      <tab-title id="local"> {{ 'generator.theme.browser.update' | transloco }}</tab-title>
     }
-    @if (themeDraft.length) {
+    @if (themeBrowser.length) {
       <tab-content id="local">
-        <p>{{ 'generator.theme.draft.replace' | transloco }}</p>
+        <p>{{ 'generator.theme.browser.replace' | transloco }}</p>
         <div class="theme-list">
-          @for (theme of themeDraft; track theme) {
+          @for (theme of themeBrowser; track theme) {
             <theme-icon
               [theme]="theme"
               custom
@@ -49,11 +49,11 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="warn" [disabled]="!selectedTheme" (click)="removeDraft()">
-            {{ 'generator.theme.remove.draft' | transloco }}
+          <button class="warn" [disabled]="!selectedTheme" (click)="removeBrowser()">
+            {{ 'generator.theme.remove.browser' | transloco }}
           </button>
-          <button class="primary" [disabled]="!selectedTheme" (click)="updateDraft()">
-            {{ 'generator.theme.update.draft' | transloco }}
+          <button class="primary" [disabled]="!selectedTheme" (click)="updateBrowser()">
+            {{ 'generator.theme.update.browser' | transloco }}
           </button>
         </p>
       </tab-content>

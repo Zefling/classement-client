@@ -412,6 +412,8 @@
     "theme": {
       "link": "Choisir un thème",
       "info": "Selection de thème prédéfini :",
+      "default": "Thèmes génériques",
+      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
       "cancel": "Annuler",
       "validate": "Valider",
       "name": {
@@ -438,15 +440,15 @@
       },
       "export": "Exporter",
       "manage.my.themes": "Gérer mes thèmes",
-      "remove.draft": "Supprimer le bouillon",
-      "update.draft": "Mettre à jour le bouillon",
+      "remove.browser": "Supprimer le thème",
+      "update.browser": "Mettre à jour le thème",
       "save": "Sauver",
-      "draft": "Brouillon",
+      "browser": "Uniquement ce navigateur",
       "new": "Nouveau",
-      "draft.update": "Mise à jour brouillon",
-      "draft.replace": "Sélectionner le thème a remplacer",
-      "account.update": "Mise à jour compte",
-      "account.replace": "Sélectionner le thème a remplacer"
+      "browser.update": "Thème navigateur",
+      "browser.replace": "Sélectionner le thème à remplacer. Visible uniquement dans ce navigateur web.",
+      "account.update": "Thèmes de votre compte",
+      "account.replace": "Sélectionner le thème a remplacer sur votre compte."
     },
     "ranking": {
       "group.title": "Classement",

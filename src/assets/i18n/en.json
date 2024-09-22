@@ -412,6 +412,8 @@
     "theme": {
       "link": "Choose a theme",
       "info": "Predefined theme selection:",
+      "default": "Thèmes génériques",
+      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
       "cancel": "Cancel",
       "validate": "Validate",
       "name": {
@@ -438,15 +440,15 @@
       },
       "export": "Export",
       "manage.my.themes": "Manage my themes",
-      "remove.draft": "Remove draft",
-      "update.draft": "Update draft",
+      "remove.browser": "Remove theme",
+      "update.browser": "Update theme",
       "save": "Save",
-      "draft": "Draft",
+      "browser": "Only this browser",
       "new": "New",
-      "draft.update": "Update draft",
-      "draft.replace": "Select theme to replace",
-      "account.update": "Update account",
-      "account.replace": "Select theme to replace"
+      "browser.update": "Browser theme",
+      "browser.replace": "Select the theme to replace. Visible only in this web browser.",
+      "account.update": "Themes in your account",
+      "account.replace": "Select the theme to replace on your account."
     },
     "ranking": {
       "group.title": "Ranking",

@@ -1,9 +1,10 @@
-import { Component, input, output, viewChild } from '@angular/core';
+import { Component, OnInit, inject, input, output, viewChild } from '@angular/core';
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { Theme } from 'src/app/interface/interface';
+import { Options, Theme } from 'src/app/interface/interface';
+import { DBService } from 'src/app/services/db.service';
 
 import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
 
@@ -14,16 +15,28 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     standalone: true,
     imports: [DialogComponent, ThemeIconComponent, TranslocoPipe],
 })
-export class ClassementThemesComponent {
+export class ClassementThemesComponent implements OnInit {
+    // inject
+
+    private readonly dbService = inject(DBService);
+
     themes = input.required<Theme[]>();
+    options = input.required<Options>();
 
     change = output<Theme>();
 
     dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     currentTheme?: Theme;
+    themeDraft: Theme<string>[] = [];
 
-    changeTheme(theme: Theme) {
+    async ngOnInit() {
+        this.themeDraft = (await this.dbService.getLocalAllThemes()).filter(
+            t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
+        );
+    }
+
+    changeTheme(theme: Theme<any>) {
         this.currentTheme = theme;
     }
 

@@ -412,6 +412,8 @@
     "theme": {
       "link": "テーマを選ぶ",
       "info": "定義済みのテーマの選択：",
+      "default": "汎用テーマ",
+      "browser.themes": "このブラウザに保存されているテーマ",
       "cancel": "拒否する",
       "validate": "複製する",
       "name": {
@@ -438,15 +440,15 @@
       },
       "export": "エクスポート",
       "manage.my.themes": "テーマを管理する",
-      "remove.draft": "ドラフトを削除する",
-      "update.draft": "ドラフトを更新する",
+      "remove.browser": "テーマを削除する",
+      "update.browser": "テーマを更新する",
       "save": "セーブ",
-      "draft": "ドラフト",
+      "browser": "このブラウザのみ",
       "new": "NEW",
-      "draft.update": "ドラフト更新",
-      "draft.replace": "置き換えるテーマを選択してください",
-      "account.update": "アカウントの更新",
-      "account.replace": "置き換えるテーマを選択してください"
+      "browser.update": "ブラウザのテーマ",
+      "browser.replace": "置き換えるテーマを選択してください。このブラウザでのみ表示されます。",
+      "account.update": "あなたのアカウントのテーマ",
+      "account.replace": "アカウントで置き換えるテーマを選択してください。"
     },
     "ranking": {
       "group.title": "ランキング",
