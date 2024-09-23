@@ -1,4 +1,6 @@
 <dialog-cmp #exportDialog>
+  <h3>{{ 'generator.theme.manage.themes' | transloco }}</h3>
+
   @let current = themeCurrent();
   @if (current) {
     <theme-icon [theme]="current"></theme-icon>

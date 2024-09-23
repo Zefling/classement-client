@@ -411,7 +411,7 @@
     },
     "theme": {
       "link": "テーマを選ぶ",
-      "info": "定義済みのテーマの選択：",
+      "info": "定義済みのテーマの選択",
       "default": "汎用テーマ",
       "browser.themes": "このブラウザに保存されているテーマ",
       "cancel": "拒否する",
@@ -440,14 +440,15 @@
       },
       "export": "エクスポート",
       "manage.my.themes": "テーマを管理する",
+      "manage.themes": "テーマ管理",
       "remove.browser": "テーマを削除する",
       "update.browser": "テーマを更新する",
-      "save": "セーブ",
+      "save": "私のアカウントにセーブする",
       "browser": "このブラウザのみ",
       "new": "NEW",
-      "browser.update": "ブラウザのテーマ",
+      "browser.update": "このブラウザで",
       "browser.replace": "置き換えるテーマを選択してください。このブラウザでのみ表示されます。",
-      "account.update": "あなたのアカウントのテーマ",
+      "account.update": "私のアカウントで",
       "account.replace": "アカウントで置き換えるテーマを選択してください。"
     },
     "ranking": {
