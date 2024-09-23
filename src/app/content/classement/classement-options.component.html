@@ -812,7 +812,10 @@
 
   @if (themeTmp) {
     <div>
-      {{ 'generator.theme.import.valid' | transloco }}<strong>{{ themeTmp.name }}</strong>
+      {{ 'generator.theme.import.valid' | transloco }} <strong>{{ themeTmp.name }}</strong>
+      <br />
+      {{ 'generator.theme.import.mode' | transloco }}
+      <strong>{{ 'mode.name.' + themeTmp.options.mode.replace(replacePattern, 'default.teams') | transloco }}</strong>
     </div>
 
     <div class="buttons">
@@ -820,7 +823,7 @@
         {{ 'generator.theme.cancel' | transloco }}
       </button>
       <button class="primary" (click)="importValidation()">
-        {{ 'generator.theme.import' | transloco }}
+        {{ 'generator.theme.import.button' | transloco }}
       </button>
     </div>
   } @else {

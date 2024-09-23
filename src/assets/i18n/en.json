@@ -260,6 +260,7 @@
       "choice": "Choice at creation",
       "default": "Tierlist",
       "teams": "Teams",
+      "default.teams": "Tierlist & Teams",
       "iceberg": "Iceberg",
       "axis": "Axis",
       "bingo": "Bingo"
@@ -436,7 +437,8 @@
         "button": "Import",
         "info": "Please import a valid theme file.",
         "invalid": "Theme file is not valid",
-        "valid": "Set the theme:"
+        "valid": "Set the theme:",
+        "mode": "Works for mode(s):"
       },
       "export": "Export",
       "manage.my.themes": "Manage my themes",

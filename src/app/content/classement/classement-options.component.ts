@@ -129,6 +129,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     themeError = false;
     themeCurrent = signal<Theme<string> | undefined>(undefined);
 
+    protected replacePattern = /default|teams/;
+
     private _sub = Subscriptions.instance();
 
     constructor() {
@@ -448,7 +450,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
                     const url = data.target?.result as String;
                     const fileString = url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
-                    const importOptions = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Options;
+                    const importOptions = JSON.parse(
+                        Buffer.from(fileString!, 'base64').toString('utf-8'),
+                    ) as Theme<string>;
 
                     const ajv = new Ajv({
                         logger: {
@@ -467,11 +471,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     const valid = validate(importOptions);
 
                     if (valid) {
-                        this.themeTmp = {
-                            id: 'import',
-                            name: importOptions['themeName']!,
-                            options: importOptions,
-                        };
+                        this.themeTmp = importOptions;
                         this.themeError = false;
                     } else {
                         this.themeError = true;

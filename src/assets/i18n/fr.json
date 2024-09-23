@@ -260,6 +260,7 @@
       "choice": "Choix à la création",
       "default": "Tierlist",
       "teams": "Équipes",
+      "default.teams": "Tierlist & Équipes",
       "iceberg": "Iceberg",
       "axis": "Axes",
       "bingo": "Bingo"
@@ -436,7 +437,8 @@
         "button": "Importer",
         "info": "Merci d'importer un fichier de theme valide.",
         "invalid": "Le fichier de thème n'est pas valide",
-        "valid": "Mettre en place le thème :"
+        "valid": "Mettre en place le thème :",
+        "mode": "Fonctionne pour le ou les modes :"
       },
       "export": "Exporter",
       "manage.my.themes": "Gérer mes thèmes",
