@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnDestroy, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Buffer } from 'buffer';
 import { Subscription } from 'rxjs';
 
-import { FormsModule } from '@angular/forms';
 import { Data, FileString, importData } from '../../interface/interface';
 import { DBService } from '../../services/db.service';
 import { GlobalService, TypeFile } from '../../services/global.service';

@@ -16,8 +16,8 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
-
 import { environment } from 'src/environments/environment';
+
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { DialogComponent } from '../dialog/dialog.component';
 import { LightDarkComponent } from '../light-dark/light-dark.component';

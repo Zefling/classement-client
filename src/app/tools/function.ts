@@ -1,4 +1,5 @@
 import { Coloration } from 'coloration-lib';
+
 import { Palette } from '../interface/interface';
 
 export const color = (c: string, opacity: number): string | null => {

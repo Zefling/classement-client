@@ -260,6 +260,7 @@
       "choice": "Choice at creation",
       "default": "Tierlist",
       "teams": "Teams",
+      "default.teams": "Tierlist & Teams",
       "iceberg": "Iceberg",
       "axis": "Axis",
       "bingo": "Bingo"
@@ -275,8 +276,6 @@
     },
     "options": {
       "group.title": "Options",
-      "import": "Import",
-      "export": "Export",
       "close": "Close",
       "cancel": "Cancel",
       "title": "Ranking title:",
@@ -413,10 +412,13 @@
     },
     "theme": {
       "link": "Choose a theme",
-      "info": "Predefined theme selection:",
+      "info": "Predefined theme selection",
+      "default": "Thèmes génériques",
+      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
       "cancel": "Cancel",
       "validate": "Validate",
       "name": {
+        "question": "A little name for your theme?",
         "default": "Default",
         "compact": "Default compact",
         "square": "Square",
@@ -430,7 +432,26 @@
         "bingo-l": "Large",
         "grid": "Grid",
         "classic": "Classic"
-      }
+      },
+      "import": {
+        "button": "Import",
+        "info": "Please import a valid theme file.",
+        "invalid": "Theme file is not valid",
+        "valid": "Set the theme:",
+        "mode": "Works for mode(s):"
+      },
+      "export": "Export",
+      "manage.my.themes": "Manage my themes",
+      "manage.themes": "Theme management",
+      "remove.browser": "Remove theme",
+      "update.browser": "Update theme",
+      "save": "Save to my account",
+      "browser": "Only this browser",
+      "new": "New",
+      "browser.update": "In this browser",
+      "browser.replace": "Select the theme to replace. Visible only in this web browser.",
+      "account.update": "On my account",
+      "account.replace": "Select the theme to replace on your account."
     },
     "ranking": {
       "group.title": "Ranking",

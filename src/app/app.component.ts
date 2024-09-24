@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, inject, signal, Type, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, ElementRef, Type, inject, signal, viewChild } from '@angular/core';
 import { Event, Router, Scroll } from '@angular/router';
 
 import { filter } from 'rxjs';

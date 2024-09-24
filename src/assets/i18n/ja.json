@@ -260,6 +260,7 @@
       "choice": "作成時の選択",
       "default": "ティアリスト",
       "teams": "チーム",
+      "default.teams": "ティアリストかチーム",
       "iceberg": "氷山",
       "axis": "軸",
       "bingo": "ビンゴ"
@@ -275,8 +276,6 @@
     },
     "options": {
       "group.title": "オプション",
-      "import": "インポート",
-      "export": "エクスポート",
       "close": "閉じる",
       "cancel": "キャンセル",
       "title": "ランキングのタイトル：",
@@ -413,10 +412,13 @@
     },
     "theme": {
       "link": "テーマを選ぶ",
-      "info": "定義済みのテーマの選択：",
+      "info": "定義済みのテーマの選択",
+      "default": "汎用テーマ",
+      "browser.themes": "このブラウザに保存されているテーマ",
       "cancel": "拒否する",
       "validate": "複製する",
       "name": {
+        "question": "テーマにちょっとした名前はありますか？",
         "default": "デフォルト",
         "compact": "デフォルトのコンパクト",
         "square": "四角",
@@ -430,7 +432,26 @@
         "bingo-l": "高",
         "grid": "グリッド",
         "classic": "クラシック"
-      }
+      },
+      "import": {
+        "button": "インポート",
+        "info": "有効なテーマ ファイルをインポートしてください。",
+        "invalid": "テーマファイルが無効です",
+        "valid": "テーマを設定します:",
+        "mode": "モードの機能:"
+      },
+      "export": "エクスポート",
+      "manage.my.themes": "テーマを管理する",
+      "manage.themes": "テーマ管理",
+      "remove.browser": "テーマを削除する",
+      "update.browser": "テーマを更新する",
+      "save": "私のアカウントにセーブする",
+      "browser": "このブラウザのみ",
+      "new": "NEW",
+      "browser.update": "このブラウザで",
+      "browser.replace": "置き換えるテーマを選択してください。このブラウザでのみ表示されます。",
+      "account.update": "私のアカウントで",
+      "account.replace": "アカウントで置き換えるテーマを選択してください。"
     },
     "ranking": {
       "group.title": "ランキング",

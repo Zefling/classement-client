@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 import { UserPassword } from './user-password';
 
 @Component({

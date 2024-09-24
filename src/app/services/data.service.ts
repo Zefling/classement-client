@@ -1,5 +1,7 @@
 import { Injectable, inject } from '@angular/core';
+
 import { Subject } from 'rxjs';
+
 import { DBService } from './db.service';
 
 export type DataExtraCell<T> = { group: number; item: number; value: T };

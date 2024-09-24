@@ -1,39 +1,37 @@
+import { NgClass } from '@angular/common';
 import {
-    booleanAttribute,
     Component,
-    inject,
-    input,
     OnChanges,
     OnDestroy,
     OnInit,
     SimpleChanges,
+    booleanAttribute,
+    inject,
+    input,
+    model,
+    signal,
     viewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+import { TranslocoPipe } from '@jsverse/transloco';
+
+import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { TypeFile, typesMine } from 'src/app/services/global.service';
+import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
+import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { palette } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
-import { NgClass } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { TranslocoPipe } from '@jsverse/transloco';
-import Ajv, { DefinedError } from 'ajv';
-import { MemoryService } from 'src/app/services/memory.service';
-import { palette } from 'src/app/tools/function';
-import { Utils } from 'src/app/tools/utils';
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
-import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { DropImageDirective } from '../../directives/drop-image.directive';
-import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import {
     defaultGroup,
     imageInfos,
@@ -51,8 +49,16 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
+import { groupExample } from './classement-options';
 import { schemaTheme } from './classement-schemas';
+import { ClassementThemesManagerComponent } from './classement-themes-manager.component';
 import { ClassementThemesComponent } from './classement-themes.component';
+
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { DropImageDirective } from '../../directives/drop-image.directive';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
     selector: 'classement-options',
@@ -67,38 +73,46 @@ import { ClassementThemesComponent } from './classement-themes.component';
         TooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
-        DialogComponent_1,
+        DialogComponent,
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
+        ThemeIconComponent,
+        ClassementThemesManagerComponent,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
+    // inject
+
     private readonly optimiseImage = inject(OptimiseImageService);
     private readonly categories = inject(CategoriesService);
     private readonly memory = inject(MemoryService);
     private readonly editor = inject(ClassementEditComponent, { host: true });
+    private readonly globalService = inject(GlobalService);
 
     // input
 
-    options = input<Options>();
+    options = model.required<Options>();
     lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
 
     // viewChild
 
-    classementThemes = viewChild.required<ClassementThemesComponent>(ClassementThemesComponent);
+    classementThemes = viewChild.required(ClassementThemesComponent);
     dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
     dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
     dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
     dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
+    themesManager = viewChild.required(ClassementThemesManagerComponent);
     mode = viewChild.required<Select2>('mode');
 
+    // template
+
     api = environment.api?.active || false;
+    groupExample = groupExample;
 
     categoriesList: Category[] = [];
 
     listThemes!: Select2Data;
-
     themes!: Theme[];
 
     imagesList: ImagesNames[] = imagesThemes;
@@ -108,16 +122,14 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     listMode: Select2Data = listModes;
 
-    themeName = '';
-
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
 
-    themeTmp?: {
-        name: string;
-        options: Options;
-    };
+    themeTmp?: Theme<string>;
     themeError = false;
+    themeCurrent = signal<Theme<string> | undefined>(undefined);
+
+    protected replacePattern = /default|teams/;
 
     private _sub = Subscriptions.instance();
 
@@ -127,11 +139,15 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.categories.onChange.subscribe(() => {
                 this.categoryUpdate();
             }),
+            this.globalService.onOptionChange.subscribe(() => {
+                this.updateCurrentTheme();
+            }),
         );
     }
 
     ngOnInit(): void {
         this.updateMode();
+        this.updateCurrentTheme();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -139,6 +155,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._modeTemp = undefined;
             this.updateMode();
         }
+    }
+
+    updateCurrentTheme() {
+        this.themeCurrent.set({ id: '', name: 'custom', options: this.options() });
     }
 
     updateMode() {
@@ -414,32 +434,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
-    export() {
-        const theme = this.options() as any;
-        // usage
-        delete theme['showAdvancedOptions']; // removed option
-        delete theme['autoSave'];
-        delete theme['streamMode'];
-        // infos
-        delete theme['title'];
-        delete theme['category'];
-        delete theme['description'];
-        delete theme['tags'];
-        theme['themeName'] = this.themeName;
-
-        Utils.downloadFile(
-            JSON.stringify(theme),
-            Utils.normalizeFileName(`theme-${theme.mode}-${this.themeName}`) + '.json',
-            'text/plain',
-        );
-        this.exportCancel();
-    }
-
-    exportCancel() {
-        this.themeName = '';
-        this.dialogAdvancedOptionsExport().close();
-    }
-
     importJsonFile(event: Event) {
         const files = (event.target as any).files as FileList;
         for (let i = 0; i < files.length; i++) {
@@ -456,7 +450,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
                     const url = data.target?.result as String;
                     const fileString = url?.replace('data:application/json;base64,', '')?.replace('data:base64,', '');
-                    const importOptions = JSON.parse(Buffer.from(fileString!, 'base64').toString('utf-8')) as Options;
+                    const importOptions = JSON.parse(
+                        Buffer.from(fileString!, 'base64').toString('utf-8'),
+                    ) as Theme<string>;
 
                     const ajv = new Ajv({
                         logger: {
@@ -475,10 +471,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     const valid = validate(importOptions);
 
                     if (valid) {
-                        this.themeTmp = {
-                            name: importOptions['themeName']!,
-                            options: importOptions,
-                        };
+                        this.themeTmp = importOptions;
                         this.themeError = false;
                     } else {
                         this.themeError = true;

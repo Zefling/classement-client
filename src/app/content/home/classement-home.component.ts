@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { RouterLink } from '@angular/router';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, PreferencesData } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -11,6 +11,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
+
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 

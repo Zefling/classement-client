@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, HostBinding, HostListener, input, output } from '@angular/core';
+import { Component, HostBinding, HostListener, booleanAttribute, input, output } from '@angular/core';
 
 @Component({
     selector: 'dialog-cmp',

@@ -165,8 +165,9 @@ export type OptionGroup = {
     titleHorizontalPosition?: 'start' | 'center' | 'end';
 };
 
-export type Theme = {
-    name: ThemesNames;
+export type Theme<T = ThemesNames> = {
+    id: string;
+    name: T;
     options: Options;
 };
 
@@ -259,7 +260,8 @@ export type ThemesNames =
     | 'bingo-s'
     | 'bingo-m'
     | 'bingo-l'
-    | 'grid';
+    | 'grid'
+    | 'custom';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
 export type ModeNames = 'default' | 'teams' | 'iceberg' | 'axis' | 'bingo';

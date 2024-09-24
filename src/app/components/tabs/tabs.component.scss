@@ -1,6 +1,12 @@
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid var(--tabs-line-color);
+:host {
+    div {
+        all: unset;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid var(--tabs-line-color);
+    }
 }

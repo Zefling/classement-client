@@ -1,11 +1,26 @@
 <dialog-cmp class="auto-format">
-  <p>{{ 'generator.theme.info' | transloco }}</p>
+  <h3>{{ 'generator.theme.info' | transloco }}</h3>
 
+  <h4>{{ 'generator.theme.default' | transloco }}</h4>
   <div class="themes">
     @for (theme of themes(); track theme) {
       <theme-icon [theme]="theme" (select)="changeTheme($event)" [class.selected]="theme === currentTheme"></theme-icon>
     }
   </div>
+
+  @if (themeDraft.length > 0) {
+    <h4>{{ 'generator.theme.browser.themes' | transloco }}</h4>
+    <div class="themes">
+      @for (theme of themeDraft; track theme) {
+        <theme-icon
+          [theme]="theme"
+          custom
+          (select)="changeTheme($event)"
+          [class.selected]="theme === currentTheme"
+        ></theme-icon>
+      }
+    </div>
+  }
 
   <div>
     <button (click)="cancel()">{{ 'generator.theme.cancel' | transloco }}</button>

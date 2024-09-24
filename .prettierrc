@@ -6,7 +6,7 @@
     "arrowParens": "avoid",
     "trailingComma": "all",
     "bracketSpacing": true,
-    "plugins": ["prettier-plugin-css-order"],
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
     "importOrderParserPlugins": ["typescript", "decorators-legacy"],
     "importOrder": ["^@angular/", "^[@]", "^(?!src|[.])", "^[^.]", "^[.]/", "^[..]/", ".*"],
     "importOrderSeparation": true,

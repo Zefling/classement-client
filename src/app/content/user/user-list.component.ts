@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit, viewChild, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -14,16 +16,13 @@ import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-import { TabsComponent as TabsComponent_1 } from '../../components/tabs/tabs.component';
-import { TabContentComponent } from '../../components/tabs/tab-title.component';
+
 import { TabTitleComponent } from '../../components/tabs/tab-content.component';
-import { FormsModule } from '@angular/forms';
-import { SortableDirective as SortableDirective_1, SortRuleDirective } from '../../directives/sortable.directive';
+import { TabContentComponent } from '../../components/tabs/tab-title.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { SortRuleDirective } from '../../directives/sortable.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';
 import { ClassementListComponent } from '../list/classement-list.component';
-import { DialogComponent as DialogComponent_1 } from '../../components/dialog/dialog.component';
-import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'user-list',
@@ -31,18 +30,18 @@ import { DatePipe } from '@angular/common';
     styleUrls: ['./user-list.component.scss'],
     standalone: true,
     imports: [
-        TabsComponent_1,
+        TabsComponent,
         TabContentComponent,
         TabTitleComponent,
         FormsModule,
-        SortableDirective_1,
+        SortableDirective,
         SortRuleDirective,
         RouterLink,
         TagListComponent,
         TooltipDirective,
         RouterLinkActive,
         ClassementListComponent,
-        DialogComponent_1,
+        DialogComponent,
         DatePipe,
         TranslocoPipe,
     ],

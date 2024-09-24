@@ -5,4 +5,8 @@
   </div>
 </div>
 
-<div>{{ 'generator.theme.name.' + theme().name | transloco }}</div>
+@if (custom()) {
+  <div class="name">{{ theme().name }}</div>
+} @else if (theme().name !== 'custom') {
+  <div class="name">{{ 'generator.theme.name.' + theme().name | transloco }}</div>
+}

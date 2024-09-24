@@ -1,21 +1,21 @@
 import {
     Component,
     ElementRef,
-    inject,
-    input,
     OnChanges,
     OnDestroy,
-    output,
     SimpleChanges,
+    inject,
+    input,
+    output,
     viewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { Select2Module } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
-import { FormsModule } from '@angular/forms';
-import { Select2Module } from 'ng-select2-component';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
@@ -24,6 +24,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
+
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';

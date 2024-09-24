@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
 
+import { LoadingComponent } from './loading.component';
+
 import { FileSizePipe } from '../../pipes/file-size';
 import { UploadProgress } from '../../services/api.classement.service';
-import { LoadingComponent } from './loading.component';
 
 /**
  * Loader with message and/or progress bar

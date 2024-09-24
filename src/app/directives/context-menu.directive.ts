@@ -1,6 +1,6 @@
 import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { booleanAttribute, Directive, HostListener, input, inject } from '@angular/core';
+import { Directive, HostListener, booleanAttribute, inject, input } from '@angular/core';
 
 import {
     ContextMenuComponent,

@@ -1,9 +1,19 @@
-import { Component, HostListener, input, OnInit, output } from '@angular/core';
+import {
+    Component,
+    HostListener,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    booleanAttribute,
+    input,
+    output,
+} from '@angular/core';
+
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { imageInfos } from 'src/app/content/classement/classement-default';
 
-import { TranslocoPipe } from '@jsverse/transloco';
-import { Theme } from '../../interface/interface';
+import { Theme, ThemesNames } from '../../interface/interface';
 import { color } from '../../tools/function';
 
 @Component({
@@ -13,15 +23,22 @@ import { color } from '../../tools/function';
     standalone: true,
     imports: [TranslocoPipe],
 })
-export class ThemeIconComponent implements OnInit {
-    theme = input.required<Theme>();
+export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
+    theme = input.required<Theme<T>>();
+    custom = input(false, { transform: booleanAttribute });
 
-    select = output<Theme>();
+    select = output<Theme<T>>();
 
     styles: any;
 
     ngOnInit() {
         this.getStyles();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['theme']) {
+            this.ngOnInit();
+        }
     }
 
     @HostListener('click')

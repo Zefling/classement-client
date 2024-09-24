@@ -2,17 +2,18 @@ import { Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
+import { DataExtra } from './data.service';
 import { Logger, LoggerLevel } from './logger';
 
-import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData } from '../interface/interface';
+import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData, Theme } from '../interface/interface';
 import { Utils } from '../tools/utils';
-import { DataExtra } from './data.service';
 
 enum Store {
     infos = 'classementInfos',
     data = 'classementData',
     pref = 'preferences',
     extra = 'extraData',
+    themes = 'classementThemes',
 }
 
 type DBAttr = 'infos' | 'data' | 'pref' | 'extra';
@@ -64,27 +65,25 @@ export class DBService {
     }
 
     clone(item: FormattedInfos, title: string, newTemplate: boolean = false): Promise<FormattedInfos> {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             const formatData: any = {};
             const cloneItem = Utils.jsonCopy(item);
-            cloneItem.dateCreate = Utils.toISODate();
+            cloneItem.dateCreate = Utils.toISODate('', true);
             cloneItem.options.title = title;
             cloneItem.rankingId = undefined;
             if (newTemplate) {
                 cloneItem.templateId = undefined;
             }
-            this._digestMessage(cloneItem.dateCreate).then(id => {
-                cloneItem.id = id;
-                this._getDB()
-                    .then(db => this._saveDB(db, Store.infos, cloneItem))
-                    .then(db => this._getByIdDB(db, Store.data, item.id as string, formatData, 'data'))
-                    .then(db => {
-                        (formatData as FormattedInfosData).data.id = cloneItem.id;
-                        return this._saveDB(db, Store.data, formatData.data);
-                    })
-                    .then(__ => resolve(cloneItem))
-                    .catch(_ => reject());
-            });
+            cloneItem.id = await this._digestMessage(cloneItem.dateCreate);
+            this._getDB()
+                .then(db => this._saveDB(db, Store.infos, cloneItem))
+                .then(db => this._getByIdDB(db, Store.data, item.id as string, formatData, 'data'))
+                .then(db => {
+                    (formatData as FormattedInfosData).data.id = cloneItem.id;
+                    return this._saveDB(db, Store.data, formatData.data);
+                })
+                .then(__ => resolve(cloneItem))
+                .catch(_ => reject());
         });
     }
 
@@ -131,6 +130,46 @@ export class DBService {
                 .then(__ => resolve(formatData.pref.data))
                 .catch(_ => reject());
         });
+    }
+
+    saveLocalTheme(theme: Theme<string>): Promise<Theme<string>> {
+        return new Promise(async (resolve, reject) => {
+            let update = true;
+            if (!theme.id) {
+                theme.id = await this._digestMessage(Utils.toISODate('', true));
+                update = false;
+            }
+            this._getDB()
+                .then(db => (update ? this._updateDB(db, Store.themes, theme) : this._saveDB(db, Store.themes, theme)))
+                .then(__ => resolve(theme))
+                .catch(_ => reject())
+                .finally(() => {
+                    this.accessSubject.next();
+                });
+        });
+    }
+
+    deleteLocalTheme(id: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._deleteDB(db, Store.themes, id))
+                .then(__ => resolve())
+                .catch(_ => reject());
+        });
+    }
+
+    getLocalTheme(id: string) {
+        const theme: any = {};
+        return new Promise((resolve, reject) => {
+            this._getDB()
+                .then(db => this._getByIdDB(db, Store.themes, id, theme, 'data'))
+                .then(__ => resolve(theme))
+                .catch(_ => reject());
+        });
+    }
+
+    async getLocalAllThemes() {
+        return this._getInfosList<Theme>(await this._getDB(), Store.themes);
     }
 
     savePreferences(preferences: PreferencesData): Promise<PreferencesData> {
@@ -224,13 +263,13 @@ export class DBService {
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    private _getInfosList(db: IDBDatabase): Promise<FormattedInfos[]> {
+    private _getInfosList<T>(db: IDBDatabase, store = Store.infos): Promise<T[]> {
         return new Promise((resolve, reject) => {
             this.logger.log('Read Infos');
             const _this = this;
-            const list = db.transaction([Store.infos], 'readwrite').objectStore(Store.infos).getAll();
-            list.onsuccess = function (this: IDBRequest<FormattedInfos[]>) {
-                _this.logger.log('getInfosList', LoggerLevel.log, this.result);
+            const list = db.transaction([store], 'readwrite').objectStore(store).getAll();
+            list.onsuccess = function (this: IDBRequest<T[]>) {
+                _this.logger.log('getInfosList', LoggerLevel.log, store, this.result);
                 resolve(this.result);
             };
             list.onerror = () => {
@@ -359,7 +398,7 @@ export class DBService {
             if (this._db) {
                 resolve(this._db);
             } else {
-                const dbReq = indexedDB.open('classementDB', 5);
+                const dbReq = indexedDB.open('classementDB', 8);
 
                 dbReq.onerror = () => {
                     this.logger.log('Error for init Database.', LoggerLevel.error, dbReq.error);
@@ -386,6 +425,11 @@ export class DBService {
                     }
                     if (!names.contains(Store.extra)) {
                         dbReq.result.createObjectStore(Store.extra).createIndex('extra', 'extra', {
+                            unique: true,
+                        });
+                    }
+                    if (!names.contains(Store.themes)) {
+                        dbReq.result.createObjectStore(Store.themes).createIndex('themes', 'themes', {
                             unique: true,
                         });
                     }

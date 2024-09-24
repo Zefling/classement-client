@@ -105,7 +105,7 @@
   </div>
 }
 
-<classement-themes (change)="changeTheme($event)" [themes]="themes"></classement-themes>
+<classement-themes (change)="changeTheme($event)" [themes]="themes" [options]="options()"></classement-themes>
 
 <dialog-cmp class="auto-format" #dialogChangeMode>
   <p class="question">
@@ -780,11 +780,11 @@
     </div>
 
     <div class="buttons">
-      <button class="primary" (click)="exportDialog.open()">
-        {{ 'generator.options.export' | transloco }}
+      <button class="primary" (click)="themesManager().exportDialogOpen()">
+        {{ 'generator.theme.manage.my.themes' | transloco }}
       </button>
       <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
-        {{ 'generator.options.import' | transloco }}
+        {{ 'generator.theme.import.button' | transloco }}
       </button>
       <button class="primary" (click)="dialogAdvancedOptions.close()">
         {{ 'generator.options.close' | transloco }}
@@ -793,140 +793,43 @@
 
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
-      <see-classement
-        id="test"
-        [options]="opts"
-        [groups]="[
-          {
-            name: 'Test\n**Markdown**',
-            bgColor: '#dc8add',
-            txtColor: '#000',
-            list: [
-              {
-                id: 'test-1',
-                url: './assets/images/tile_image_example1.webp',
-                name: 'tile_image_example',
-                title: 'Example',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 0,
-                y: 0,
-              },
-              {
-                id: 'test-2',
-                url: './assets/images/tile_image_example2.webp',
-                name: 'tile_image_example',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 200,
-                y: 0,
-              },
-              {
-                id: 'test-3',
-                url: './assets/images/tile_image_example3.webp',
-                name: 'tile_image_example',
-                title: 'Example',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 400,
-                y: 0,
-              },
-              {
-                id: 'test-4',
-                url: './assets/images/tile_image_example4.webp',
-                name: 'tile_image_example4',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 600,
-                y: 0,
-              },
-              {
-                id: 'text-1',
-                name: 'tile_text_example1',
-                title: 'Text',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 800,
-                y: 10,
-              },
-              {
-                id: 'text-2',
-                name: 'tile_text_example2',
-                title: 'Text Text Text',
-                annotation: 'Test',
-                size: 0,
-                realSize: 0,
-                type: '',
-                date: 0,
-                x: 870,
-                y: 10,
-              },
-            ],
-          },
-        ]"
-        [list]="[]"
-        render
-        demo
-      ></see-classement>
+      <see-classement id="test" [options]="opts" [groups]="groupExample" [list]="[]" render demo></see-classement>
     </div>
   }
 </dialog-cmp>
 
-<dialog-cmp class="auto-format" #exportDialog>
-  <div>Un petit nom à votre thème ?</div>
-  <div>
-    <input type="text" [(ngModel)]="themeName" maxlength="100" />
-  </div>
-  <div class="buttons">
-    <button class="default" (click)="exportCancel()">
-      {{ 'generator.options.cancel' | transloco }}
-    </button>
-    <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
-      {{ 'generator.options.export' | transloco }}
-    </button>
-  </div>
-</dialog-cmp>
+<classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()"></classement-themes-manager>
 
 <dialog-cmp class="auto-format" #importDialog>
-  <div>Merci d'importer un fichier de theme valide.</div>
+  <div>{{ 'generator.theme.import.info' | transloco }}</div>
   <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
   </div>
 
   @if (themeError) {
-    <div class="error">Le fichier de thème n'est pas valide</div>
+    <div class="error">{{ 'generator.theme.import.invalid' | transloco }}</div>
   }
 
   @if (themeTmp) {
     <div>
-      Mettre en place le thème : <strong>{{ themeTmp.name }}</strong>
+      {{ 'generator.theme.import.valid' | transloco }} <strong>{{ themeTmp.name }}</strong>
+      <br />
+      {{ 'generator.theme.import.mode' | transloco }}
+      <strong>{{ 'mode.name.' + themeTmp.options.mode.replace(replacePattern, 'default.teams') | transloco }}</strong>
     </div>
 
     <div class="buttons">
       <button class="default" (click)="importCancel()">
-        {{ 'generator.options.cancel' | transloco }}
+        {{ 'generator.theme.cancel' | transloco }}
       </button>
       <button class="primary" (click)="importValidation()">
-        {{ 'generator.options.import' | transloco }}
+        {{ 'generator.theme.import.button' | transloco }}
       </button>
     </div>
   } @else {
     <div class="buttons">
       <button class="default" (click)="importCancel()">
-        {{ 'generator.options.cancel' | transloco }}
+        {{ 'generator.theme.cancel' | transloco }}
       </button>
     </div>
   }
