@@ -728,9 +728,10 @@
       "view": {
         "title": "Profile: ",
         "rankings": "Rankings",
+        "themes": "Themes",
         "empty": "No ranking for this user at this time."
       },
-      "list.browser.tab": "Drafts",
+      "list.browser.tab": "Drafts (on this browser only)",
       "list.server.tab": "On my account",
       "list.server.intro": "List of ranking saved on your account."
     },

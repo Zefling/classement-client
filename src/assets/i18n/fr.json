@@ -728,9 +728,10 @@
       "view": {
         "title": "Profil : ",
         "rankings": "Classements",
+        "themes": "Thèmes",
         "empty": "Aucun classement pour cet utilisateur pour le moment."
       },
-      "list.browser.tab": "Brouillons",
+      "list.browser.tab": "Brouillons (sur ce navigateur uniquement)",
       "list.server.tab": "Sur mon compte",
       "list.server.intro": "Liste des classements sauvegardés sur votre compte."
     },

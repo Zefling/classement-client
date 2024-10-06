@@ -41,6 +41,7 @@ export interface ClassementHistory {
 
 export interface User {
     classements?: Classement[];
+    themes?: ThemeData[];
     dateCreate: Date;
     id: number;
     username: string;
@@ -169,6 +170,21 @@ export type Theme<T = ThemesNames> = {
     id: string;
     name: T;
     options: Options;
+};
+
+export type ThemeData = {
+    name: string;
+    mode: ModeNames;
+    data: {
+        options: Options;
+    };
+    dateCreate: string;
+    dateChange: null;
+    themeId: string;
+    user: string;
+    hidden?: boolean;
+    deleted?: boolean;
+    withHistory?: boolean;
 };
 
 export interface IndexedData<T extends any> {

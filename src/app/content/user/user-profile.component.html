@@ -30,27 +30,63 @@
       <button (click)="changePassword()">{{ 'user.profile.change.password' | transloco }}</button>
       <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | transloco }}</button>
     </p>
-    @if (user.classements) {
-      <h2>{{ 'user.profile.view.rankings' | transloco }}</h2>
-      <div class="links">
-        @if (localSize) {
-          <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >{{ 'user.profile.list.browser.tab' | transloco }} ({{ localSize }})</a
-          >
-        }
-        @if (user.classements && localSize) {
-          <span> - </span>
-        }
-        @if (user.classements) {
-          <a routerLink="/user/lists/server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >{{ 'user.profile.list.server.tab' | transloco }} ({{ user.classements.length }})</a
-          >
-        }
-      </div>
-      @if (user.classements) {
-        <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+    <tabs>
+      <!-- classements -->
+      @if (user.classements || localSizeClassements) {
+        <tab-title id="rankings">{{ 'user.profile.view.rankings' | transloco }}</tab-title>
       }
-    }
+      @if (user.classements || localSizeClassements) {
+        <tab-content id="rankings">
+          <div class="links">
+            @if (localSizeClassements) {
+              <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                >{{ 'user.profile.list.browser.tab' | transloco }} ({{ localSizeClassements }})</a
+              >
+            }
+            @if (user.classements && localSizeClassements) {
+              <span> - </span>
+            }
+            @if (user.classements) {
+              <a routerLink="/user/lists/server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                >{{ 'user.profile.list.server.tab' | transloco }} ({{ user.classements.length }})</a
+              >
+            }
+          </div>
+          @if (user.classements) {
+            <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+          }
+        </tab-content>
+      }
+
+      <!-- themes -->
+      @if (user.themes?.length || localThemes?.length) {
+        <tab-title id="themes">{{ 'user.profile.view.themes' | transloco }}</tab-title>
+      }
+      @if (user.themes?.length || localThemes?.length) {
+        <tab-content id="themes">
+          @if (localThemes?.length) {
+            <h3>{{ 'user.profile.list.browser.tab' | transloco }} ({{ localThemes!.length }})</h3>
+            <div class="theme-list">
+              @for (theme of localThemes; track theme) {
+                <theme-icon [theme]="theme" custom></theme-icon>
+              }
+            </div>
+          }
+          @if (user.themes?.length) {
+            <h3>{{ 'user.profile.list.server.tab' | transloco }} ({{ user.themes!.length }})</h3>
+
+            <div class="theme-list">
+              @for (theme of user.themes; track theme) {
+                <theme-icon
+                  [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options }"
+                  custom
+                ></theme-icon>
+              }
+            </div>
+          }
+        </tab-content>
+      }
+    </tabs>
   </div>
 }
 

@@ -45,7 +45,7 @@ export class TabsComponent implements AfterContentInit {
 
     update(id: string, emit: boolean = true) {
         this.titles()?.forEach(e => {
-            if (e.id) {
+            if (e.id()) {
                 e.selected.set(e.id() === id);
             }
         });

@@ -62,8 +62,8 @@
         background-color: azure;
         padding: 0;
         width: var(--n-item-width);
-        max-width: var(--n-item-width);
+        max-width: min(var(--n-item-width), 300px);
         height: var(--n-item-height);
-        max-height: var(--n-item-height);
+        max-height: min(var(--n-item-height), 300px);
     }
 }
