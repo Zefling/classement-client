@@ -1,4 +1,4 @@
-import { Component, inject, input, model, viewChild } from '@angular/core';
+import { Component, OnInit, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoModule } from '@jsverse/transloco';
@@ -9,7 +9,8 @@ import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component
 import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
-import { Options, Theme } from 'src/app/interface/interface';
+import { Options, Theme, User } from 'src/app/interface/interface';
+import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
@@ -32,11 +33,12 @@ import { environment } from 'src/environments/environment';
         ThemeIconComponent,
     ],
 })
-export class ClassementThemesManagerComponent {
+export class ClassementThemesManagerComponent implements OnInit {
     // inject
 
     private readonly dbService = inject(DBService);
     private readonly messageService = inject(MessageService);
+    private readonly userService = inject(APIUserService);
 
     // input / model
 
@@ -51,12 +53,26 @@ export class ClassementThemesManagerComponent {
 
     api = environment.api?.active || false;
 
+    user?: User;
+
     themeId = '';
     themeName = '';
 
     themeBrowser: Theme<string>[] = [];
     themeServer: Theme<string>[] = [];
     selectedTheme?: Theme<string>;
+
+    constructor() {
+        if (this.api) {
+            this.user = this.userService.user;
+        }
+    }
+
+    ngOnInit(): void {
+        if (this.api) {
+            this.user = this.userService.user;
+        }
+    }
 
     selectTheme(theme: Theme<string>) {
         this.selectedTheme = theme;

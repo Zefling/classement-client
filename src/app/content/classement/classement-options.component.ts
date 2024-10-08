@@ -324,7 +324,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         this.classementThemes().dialog()!.open();
     }
 
-    changeTheme(theme: Theme) {
+    changeTheme(theme: Theme | Theme<string>) {
         const options = this.options()!;
         const mode = options.mode;
         Object.assign(

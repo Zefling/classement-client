@@ -415,6 +415,8 @@
       "info": "定義済みのテーマの選択",
       "default": "汎用テーマ",
       "browser.themes": "このブラウザに保存されているテーマ",
+      "user.themes": "あなたのアカウント内",
+      "users.themes": "公開テーマ",
       "cancel": "拒否する",
       "validate": "複製する",
       "name": {

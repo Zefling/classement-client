@@ -414,7 +414,9 @@
       "link": "Choisir un thème",
       "info": "Selection de thème prédéfini",
       "default": "Thèmes génériques",
-      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
+      "browser.themes": "Dans ce navigateur",
+      "user.themes": "Sur votre compte",
+      "users.themes": "Thèmes publics",
       "cancel": "Annuler",
       "validate": "Valider",
       "name": {

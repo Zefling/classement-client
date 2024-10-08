@@ -413,8 +413,10 @@
     "theme": {
       "link": "Choose a theme",
       "info": "Predefined theme selection",
-      "default": "Thèmes génériques",
-      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
+      "default": "Generic themes",
+      "browser.themes": "In this browser",
+      "user.themes": "In your account",
+      "users.themes": "Public themes",
       "cancel": "Cancel",
       "validate": "Validate",
       "name": {
