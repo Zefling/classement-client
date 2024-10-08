@@ -7,6 +7,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
 import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
+import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -27,6 +28,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
         TabContentComponent,
         TabTitleComponent,
         FormsModule,
+        NgModelChangeDebouncedDirective,
     ],
 })
 export class ClassementThemesComponent implements OnInit {
@@ -76,7 +78,6 @@ export class ClassementThemesComponent implements OnInit {
 
     keyUpdate(value: string) {
         value = value.toLocaleLowerCase();
-        // TODO
         this.keysThemes = [
             ...this.themes().filter(e => this.translate.translate(e.name).toLocaleLowerCase().includes(value)),
             ...this.themeDraft.filter(e => e.name.toLocaleLowerCase().includes(value)),

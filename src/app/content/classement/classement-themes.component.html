@@ -3,7 +3,13 @@
 
   <div class="search-theme">
     <label for="search-theme">Search</label>
-    <input id="search-theme" type="search" [(ngModel)]="key" (ngModelChange)="keyUpdate($event)" />
+    <input
+      id="search-theme"
+      type="search"
+      [(ngModel)]="key"
+      (ngModelChangeDebounced)="keyUpdate($event)"
+      ngModelChangeDebounceTime="300"
+    />
   </div>
 
   @if (!key || !key.trim()) {
