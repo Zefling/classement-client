@@ -9,6 +9,7 @@ import { TabContentComponent } from 'src/app/components/tabs/tab-title.component
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/interface';
+import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { environment } from 'src/environments/environment';
@@ -35,6 +36,7 @@ export class ClassementThemesComponent implements OnInit {
     // inject
 
     private readonly dbService = inject(DBService);
+    private readonly themeService = inject(APIThemeService);
     private readonly userService = inject(APIUserService);
     private readonly translate = inject(TranslocoService);
 
@@ -64,13 +66,19 @@ export class ClassementThemesComponent implements OnInit {
     themeDraft: Theme<string>[] = [];
     keysThemes: Theme<ThemesNames | string>[] = [];
 
-    constructor() {
+    async ngOnInit() {
         if (this.api) {
             this.user = this.userService.user;
+            this.themeService
+                .getThemesByCriterion({
+                    user: this.user?.id,
+                    mode: this.options().mode,
+                })
+                .then(result => {
+                    this.usersThemes = result.list;
+                });
         }
-    }
 
-    async ngOnInit() {
         this.themeDraft = (await this.dbService.getLocalAllThemes()).filter(
             t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
         );
@@ -86,6 +94,24 @@ export class ClassementThemesComponent implements OnInit {
                 ?.map<Theme<string>>(theme => ({ id: theme.themeId, name: theme.name, options: theme.data.options })) ??
                 []),
         ];
+
+        if (this.api) {
+            this.themeService
+                .getThemesByCriterion({
+                    user: this.user?.id,
+                    mode: this.options().mode,
+                    size: 25 - this.keysThemes.length,
+                })
+                .then(result => {
+                    this.keysThemes?.push(
+                        ...result.list.map(theme => ({
+                            id: theme.themeId,
+                            name: theme.name,
+                            options: theme.data.options,
+                        })),
+                    );
+                });
+        }
     }
 
     changeTheme(theme: Theme<any>) {
