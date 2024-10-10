@@ -83,6 +83,7 @@ export class ClassementThemesManagerComponent implements OnInit {
             id,
             name: this.themeName,
             options: this.options(),
+            source: 'local',
         };
 
         // usage

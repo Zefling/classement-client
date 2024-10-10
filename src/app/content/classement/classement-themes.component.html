@@ -49,10 +49,10 @@
           <div class="themes">
             @for (theme of user!.themes; track theme) {
               <theme-icon
-                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options }"
+                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options, source: 'user' }"
                 custom
                 (select)="changeTheme($event)"
-                [class.selected]="theme === currentTheme"
+                [class.selected]="theme.themeId === currentTheme?.id"
               ></theme-icon>
             }
           </div>
@@ -67,10 +67,10 @@
           <div class="themes">
             @for (theme of usersThemes; track theme) {
               <theme-icon
-                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options }"
+                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options, source: 'other' }"
                 custom
                 (select)="changeTheme($event)"
-                [class.selected]="theme === currentTheme"
+                [class.selected]="theme.themeId === currentTheme?.id"
               ></theme-icon>
             }
           </div>

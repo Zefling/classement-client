@@ -170,6 +170,7 @@ export type Theme<T = ThemesNames> = {
     id: string;
     name: T;
     options: Options;
+    source: 'default' | 'local' | 'user' | 'other';
 };
 
 export type ThemeData = {

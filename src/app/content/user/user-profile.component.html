@@ -78,7 +78,7 @@
             <div class="theme-list">
               @for (theme of user.themes; track theme) {
                 <theme-icon
-                  [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options }"
+                  [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options, source: 'user' }"
                   custom
                 ></theme-icon>
               }

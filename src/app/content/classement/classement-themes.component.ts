@@ -62,7 +62,7 @@ export class ClassementThemesComponent implements OnInit {
     user?: User;
     usersThemes?: ThemeData[];
 
-    currentTheme?: Theme | ThemeData;
+    currentTheme?: Theme;
     themeDraft: Theme<string>[] = [];
     keysThemes: Theme<ThemesNames | string>[] = [];
 
@@ -91,8 +91,12 @@ export class ClassementThemesComponent implements OnInit {
             ...this.themeDraft.filter(e => e.name.toLocaleLowerCase().includes(value)),
             ...(this.user?.themes
                 ?.filter(e => e.name.toLocaleLowerCase().includes(value))
-                ?.map<Theme<string>>(theme => ({ id: theme.themeId, name: theme.name, options: theme.data.options })) ??
-                []),
+                ?.map<Theme<string>>(theme => ({
+                    id: theme.themeId,
+                    name: theme.name,
+                    options: theme.data.options,
+                    source: 'user',
+                })) ?? []),
         ];
 
         if (this.api) {
@@ -104,10 +108,11 @@ export class ClassementThemesComponent implements OnInit {
                 })
                 .then(result => {
                     this.keysThemes?.push(
-                        ...result.list.map(theme => ({
+                        ...result.list.map<Theme<string>>(theme => ({
                             id: theme.themeId,
                             name: theme.name,
                             options: theme.data.options,
+                            source: 'other',
                         })),
                     );
                 });
@@ -125,15 +130,7 @@ export class ClassementThemesComponent implements OnInit {
 
     validate() {
         if (this.currentTheme) {
-            if ((this.currentTheme as ThemeData).data) {
-                this.change.emit({
-                    id: (this.currentTheme as ThemeData).themeId,
-                    name: (this.currentTheme as ThemeData).name,
-                    options: (this.currentTheme as ThemeData).data.options,
-                });
-            } else {
-                this.change.emit(this.currentTheme as Theme);
-            }
+            this.change.emit(this.currentTheme as Theme);
         }
         this.cancel();
     }

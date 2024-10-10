@@ -158,7 +158,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     updateCurrentTheme() {
-        this.themeCurrent.set({ id: '', name: 'custom', options: this.options() });
+        this.themeCurrent.set({ id: '', name: 'custom', options: this.options(), source: 'default' });
     }
 
     updateMode() {
