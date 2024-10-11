@@ -561,6 +561,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
         this.groups = classement.data.groups;
         this.list = classement.data.list;
+
         this.teamsModeUpdateTile();
         this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
@@ -573,8 +574,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     this.derivatives = classements;
                 });
         }
-
-        debugger;
 
         if (fork) {
             this.reset();

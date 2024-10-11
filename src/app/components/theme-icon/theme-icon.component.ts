@@ -47,27 +47,29 @@ export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
     }
 
     getStyles() {
-        const o = this.theme().options;
-        this.styles = {
-            '--o-item-width': o.itemWidth + 'px',
-            '--o-item-height': o.itemHeight + 'px',
-            '--o-item-padding': o.itemPadding + 'px',
-            '--o-item-border': o.borderSize + o.itemBorder + 'px',
-            '--o-item-margin': o.itemMargin + 'px',
-            '--o-content-box-background': color(o.itemBackgroundColor, o.itemBackgroundOpacity),
-            '--o-content-box-border': color(o.itemBorderColor, o.itemBorderOpacity),
-            '--o-drop-list-background': color(o.lineBackgroundColor, o.lineBackgroundOpacity),
-            '--o-drop-list-border-color': color(o.lineBorderColor, o.lineBorderOpacity),
-            '--o-image-background': o.imageBackgroundColor,
-            '--o-image-width': o.imageWidth + 'px',
-            '--o-image-url':
-                o.imageBackgroundImage !== 'none' && o.imageBackgroundImage !== 'custom'
-                    ? 'url(./assets/themes/' + imageInfos[o.imageBackgroundImage]!.normal + ')'
-                    : o.imageBackgroundImage !== 'custom'
-                      ? 'url(' + o.imageBackgroundCustom + ')'
-                      : null,
-            '--o-name-width': o.nameWidth + 'px',
-            '--o-name-font-size': o.nameFontSize + '%',
-        };
+        const options = this.theme().options;
+        if (options) {
+            this.styles = {
+                '--o-item-width': options.itemWidth + 'px',
+                '--o-item-height': options.itemHeight + 'px',
+                '--o-item-padding': options.itemPadding + 'px',
+                '--o-item-border': options.borderSize + options.itemBorder + 'px',
+                '--o-item-margin': options.itemMargin + 'px',
+                '--o-content-box-background': color(options.itemBackgroundColor, options.itemBackgroundOpacity),
+                '--o-content-box-border': color(options.itemBorderColor, options.itemBorderOpacity),
+                '--o-drop-list-background': color(options.lineBackgroundColor, options.lineBackgroundOpacity),
+                '--o-drop-list-border-color': color(options.lineBorderColor, options.lineBorderOpacity),
+                '--o-image-background': options.imageBackgroundColor,
+                '--o-image-width': options.imageWidth + 'px',
+                '--o-image-url':
+                    options.imageBackgroundImage !== 'none' && options.imageBackgroundImage !== 'custom'
+                        ? 'url(./assets/themes/' + imageInfos[options.imageBackgroundImage]!.normal + ')'
+                        : options.imageBackgroundImage !== 'custom'
+                          ? 'url(' + options.imageBackgroundCustom + ')'
+                          : null,
+                '--o-name-width': options.nameWidth + 'px',
+                '--o-name-font-size': options.nameFontSize + '%',
+            };
+        }
     }
 }
