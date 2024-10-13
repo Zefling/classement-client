@@ -10,8 +10,8 @@ import { debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
+import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { FileHandle, Theme, User } from 'src/app/interface/interface';

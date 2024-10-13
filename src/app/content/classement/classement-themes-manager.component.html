@@ -2,25 +2,52 @@
   <h3>{{ 'generator.theme.manage.themes' | transloco }}</h3>
 
   @let current = themeCurrent();
-  @if (current) {
-    <theme-icon [theme]="current"></theme-icon>
+  @if (current?.options) {
+    <theme-icon [theme]="current!"></theme-icon>
   }
   <tabs>
+    <!-- NEW -->
+
     <tab-title id="new"> {{ 'generator.theme.new' | transloco }}</tab-title>
     <tab-content id="new">
-      <p>{{ 'generator.theme.name.question' | transloco }}</p>
-      <div>
-        <input type="text" [(ngModel)]="themeName" maxlength="100" />
-      </div>
+      <p>
+        <label for="name">{{ 'generator.theme.name.question' | transloco }}</label>
+        <input id="name" type="text" [(ngModel)]="themeName" maxlength="100" />
+      </p>
+      @if (api) {
+        <p>
+          <label>
+            <input type="radio" [(ngModel)]="saveMode" name="save-mode" value="browser" />
+            {{ 'generator.theme.browser.save' | transloco }}
+          </label>
+          <label>
+            <input type="radio" [(ngModel)]="saveMode" name="save-mode" value="server" />
+            {{ 'generator.theme.account.save' | transloco }}
+          </label>
+        </p>
+      }
+      @if (saveMode === 'server') {
+        <p>
+          <label>
+            <input type="radio" [(ngModel)]="saveVisibility" name="save-visibility" value="public" />
+            {{ 'generator.theme.public' | transloco }}
+          </label>
+          <label>
+            <input type="radio" [(ngModel)]="saveVisibility" name="save-visibility" value="private" />
+            {{ 'generator.theme.private' | transloco }}
+          </label>
+        </p>
+      }
 
       <p class="buttons">
         <button class="default" (click)="exportCancel()">
           {{ 'generator.theme.cancel' | transloco }}
         </button>
-        <button class="primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
-          {{ 'generator.theme.browser' | transloco }}
-        </button>
-        @if (api) {
+        @if (saveMode === 'browser') {
+          <button class="primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
+            {{ 'generator.theme.browser' | transloco }}
+          </button>
+        } @else {
           <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
             {{ 'generator.theme.save' | transloco }}
           </button>
@@ -30,12 +57,26 @@
         </button>
       </p>
     </tab-content>
+
+    <!-- LOCAL -->
+
     @if (themeBrowser.length) {
       <tab-title id="local"> {{ 'generator.theme.browser.update' | transloco }}</tab-title>
     }
     @if (themeBrowser.length) {
       <tab-content id="local">
         <p>{{ 'generator.theme.browser.replace' | transloco }}</p>
+        <p>
+          <label for="name">{{ 'generator.theme.name.rename' | transloco }}</label>
+          <input
+            id="name"
+            type="text"
+            [(ngModel)]="themeName"
+            maxlength="100"
+            [placeholder]="selectedTheme?.name ?? ''"
+          />
+        </p>
+
         <div class="theme-list">
           @for (theme of themeBrowser; track theme) {
             <theme-icon
@@ -60,15 +101,33 @@
         </p>
       </tab-content>
     }
+
+    <!-- SERVER -->
+
     @if (api && themeServer.length) {
       <tab-title id="server"> {{ 'generator.theme.account.update' | transloco }}</tab-title>
     }
     @if (api && themeServer.length) {
       <tab-content id="server">
         <p>{{ 'generator.theme.account.replace' | transloco }}</p>
-        <div>
+        <p>
+          <label for="name">{{ 'generator.theme.name.rename' | transloco }}</label>
+          <input
+            id="name"
+            type="text"
+            [(ngModel)]="themeName"
+            maxlength="100"
+            [placeholder]="selectedTheme?.name ?? ''"
+          />
+        </p>
+        <div class="theme-list">
           @for (theme of themeServer; track theme) {
-            <theme-icon [theme]="theme"></theme-icon>
+            <theme-icon
+              [theme]="theme"
+              custom
+              (select)="selectTheme($event)"
+              [class.selected]="theme.id === selectedTheme?.id"
+            ></theme-icon>
           }
         </div>
 
@@ -76,7 +135,7 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="primary" [disabled]="!themeName.trim()" (click)="updateServer()">
+          <button class="primary" [disabled]="!selectedTheme" (click)="updateServer()">
             {{ 'generator.theme.update.server' | transloco }}
           </button>
         </p>

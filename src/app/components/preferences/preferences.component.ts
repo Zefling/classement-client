@@ -21,8 +21,8 @@ import { environment } from 'src/environments/environment';
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { DialogComponent } from '../dialog/dialog.component';
 import { LightDarkComponent } from '../light-dark/light-dark.component';
-import { TabTitleComponent } from '../tabs/tab-content.component';
-import { TabContentComponent } from '../tabs/tab-title.component';
+import { TabContentComponent } from '../tabs/tab-content.component';
+import { TabTitleComponent } from '../tabs/tab-title.component';
 import { TabsComponent } from '../tabs/tabs.component';
 
 const languages = [

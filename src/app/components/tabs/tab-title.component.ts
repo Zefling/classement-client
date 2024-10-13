@@ -12,7 +12,7 @@ import { TabsComponent } from './tabs.component';
     },
     standalone: true,
 })
-export class TabContentComponent {
+export class TabTitleComponent {
     private readonly tabs = inject(TabsComponent, { host: true });
 
     id = input<string>();

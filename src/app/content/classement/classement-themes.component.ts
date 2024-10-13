@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
+import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/interface';
@@ -92,7 +92,7 @@ export class ClassementThemesComponent implements OnInit {
             ...(this.user?.themes
                 ?.filter(e => e.name.toLocaleLowerCase().includes(value))
                 ?.map<Theme<string>>(theme => ({
-                    id: theme.themeId,
+                    id: theme.themeId!,
                     name: theme.name,
                     options: theme.data.options,
                     source: 'user',
@@ -109,7 +109,7 @@ export class ClassementThemesComponent implements OnInit {
                 .then(result => {
                     this.keysThemes?.push(
                         ...result.list.map<Theme<string>>(theme => ({
-                            id: theme.themeId,
+                            id: theme.themeId!,
                             name: theme.name,
                             options: theme.data.options,
                             source: 'other',

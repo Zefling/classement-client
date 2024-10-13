@@ -170,7 +170,8 @@ export type Theme<T = ThemesNames> = {
     id: string;
     name: T;
     options: Options;
-    source: 'default' | 'local' | 'user' | 'other';
+    source?: 'default' | 'local' | 'user' | 'other';
+    hidden?: boolean;
 };
 
 export type ThemeData = {
@@ -179,10 +180,10 @@ export type ThemeData = {
     data: {
         options: Options;
     };
-    dateCreate: string;
-    dateChange: null;
-    themeId: string;
-    user: string;
+    dateCreate?: string;
+    dateChange?: null;
+    themeId?: string;
+    user?: string;
     hidden?: boolean;
     deleted?: boolean;
     withHistory?: boolean;

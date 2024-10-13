@@ -412,13 +412,13 @@
     },
     "theme": {
       "link": "テーマを選ぶ",
-      "info": "定義済みのテーマの選択",
+      "info": "テーマを選択してください",
       "default": "汎用テーマ",
-      "browser.themes": "このブラウザに保存されているテーマ",
-      "user.themes": "あなたのアカウント内",
-      "users.themes": "公開テーマ",
       "cancel": "拒否する",
       "validate": "複製する",
+      "search": "検索する",
+      "public": "全員に公開",
+      "private": "自分だけ",
       "name": {
         "question": "テーマにちょっとした名前はありますか？",
         "default": "デフォルト",
@@ -447,13 +447,27 @@
       "manage.themes": "テーマ管理",
       "remove.browser": "テーマを削除する",
       "update.browser": "テーマを更新する",
-      "save": "私のアカウントにセーブする",
-      "browser": "このブラウザだけ",
+      "update.server": "テーマを更新する",
       "new": "NEW",
-      "browser.update": "このブラウザで",
-      "browser.replace": "置き換えるテーマを選択してください。このブラウザでのみ表示されます。",
-      "account.update": "私のアカウントで",
-      "account.replace": "アカウントで置き換えるテーマを選択してください。"
+      "browser": {
+        "themes": "このブラウザ内",
+        "save": "このブラウザだけ",
+        "update": "このブラウザで",
+        "replace": "置き換えるテーマを選択してください。このブラウザでのみ表示されます。",
+        "save.success": "ドラフトを保存しました",
+        "update.success": "ドラフト更新しました",
+        "delete": "ドラフトは削除されました"
+      },
+      "account": {
+        "themes": "自分のアカウントで",
+        "save": "私のアカウントに保存",
+        "update": "私のアカウントで",
+        "replace": "アカウントで置き換えるテーマを選択してください。",
+        "save.success": "テーマがアカウントに保存されました",
+        "update.success": "アカウントのテーマが更新されました",
+        "delete.success": "テーマがアカウントから削除されました"
+      },
+      "users.themes": "公開テーマ"
     },
     "ranking": {
       "group.title": "ランキング",

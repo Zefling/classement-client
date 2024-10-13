@@ -310,6 +310,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     advanceOptions() {
+        this.updateCurrentTheme();
         this.dialogAdvancedOptions().open();
     }
 

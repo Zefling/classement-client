@@ -2,7 +2,7 @@
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
 
   <div class="search-theme">
-    <label for="search-theme">Search</label>
+    <label for="search-theme">{{ 'generator.theme.search' | transloco }}</label>
     <input
       id="search-theme"
       type="search"
@@ -14,6 +14,8 @@
 
   @if (!key || !key.trim()) {
     <tabs>
+      <!-- default-->
+
       <tab-title id="default">{{ 'generator.theme.default' | transloco }}</tab-title>
       <tab-content id="default">
         <div class="themes">
@@ -26,6 +28,8 @@
           }
         </div>
       </tab-content>
+
+      <!-- browser-->
 
       <tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</tab-title>
       <tab-content id="browser">
@@ -41,15 +45,17 @@
         </div>
       </tab-content>
 
+      <!-- current user-->
+
       @if (api && user?.themes?.length) {
-        <tab-title id="user">{{ 'generator.theme.user.themes' | transloco }}</tab-title>
+        <tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</tab-title>
       }
       @if (api && user?.themes?.length) {
         <tab-content id="user">
           <div class="themes">
             @for (theme of user!.themes; track theme) {
               <theme-icon
-                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options, source: 'user' }"
+                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'user' }"
                 custom
                 (select)="changeTheme($event)"
                 [class.selected]="theme.themeId === currentTheme?.id"
@@ -59,6 +65,8 @@
         </tab-content>
       }
 
+      <!-- other users-->
+
       @if (api && usersThemes?.length) {
         <tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</tab-title>
       }
@@ -67,7 +75,7 @@
           <div class="themes">
             @for (theme of usersThemes; track theme) {
               <theme-icon
-                [theme]="{ id: theme.themeId, name: theme.name, options: theme.data.options, source: 'other' }"
+                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'other' }"
                 custom
                 (select)="changeTheme($event)"
                 [class.selected]="theme.themeId === currentTheme?.id"

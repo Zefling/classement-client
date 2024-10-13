@@ -1,15 +1,16 @@
 import { Component, OnInit, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-title.component';
+import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Options, Theme, User } from 'src/app/interface/interface';
+import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { Utils } from 'src/app/tools/utils';
@@ -39,6 +40,8 @@ export class ClassementThemesManagerComponent implements OnInit {
     private readonly dbService = inject(DBService);
     private readonly messageService = inject(MessageService);
     private readonly userService = inject(APIUserService);
+    private readonly themeService = inject(APIThemeService);
+    private readonly translate = inject(TranslocoService);
 
     // input / model
 
@@ -57,6 +60,8 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     themeId = '';
     themeName = '';
+    saveMode?: 'browser' | 'server' = 'browser';
+    saveVisibility?: 'public' | 'private' = 'public';
 
     themeBrowser: Theme<string>[] = [];
     themeServer: Theme<string>[] = [];
@@ -78,9 +83,9 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.selectedTheme = theme;
     }
 
-    private optionToTheme(id: string = this.themeId) {
+    private optionToTheme() {
         const theme: Theme<string> = {
-            id,
+            id: '',
             name: this.themeName,
             options: this.options(),
             source: 'local',
@@ -104,32 +109,67 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.themeBrowser = (await this.dbService.getLocalAllThemes()).filter(
             t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
         );
+        if (this.api) {
+            this.themeServer =
+                this.userService.user?.themes?.map<Theme<string>>(theme => ({
+                    id: theme.themeId!,
+                    name: theme.name,
+                    options: theme.data.options,
+                    source: 'user',
+                })) || [];
+        }
     }
 
     async saveBrowser() {
-        const theme = await this.dbService.saveLocalTheme(this.optionToTheme(''));
+        const theme = await this.dbService.saveLocalTheme(this.optionToTheme());
         this.themeId = theme.id;
         this.exportDialog().close();
-        this.messageService.addMessage('Brouillon sauvegardé');
+        this.messageService.addMessage(this.translate.translate('generator.theme.browser.save.success'));
     }
 
     async updateBrowser() {
+        if (this.themeName.trim()) {
+            this.selectedTheme!.name = this.themeName;
+        }
         this.selectedTheme!.options = this.options();
         await this.dbService.saveLocalTheme(this.selectedTheme!);
         this.exportDialog().close();
-        this.messageService.addMessage('Brouillon mise à jour');
+        this.messageService.addMessage(this.translate.translate('generator.theme.browser.update.success'));
     }
 
     async removeBrowser() {
         await this.dbService.deleteLocalTheme(this.selectedTheme!.id);
         this.themeBrowser.splice(this.themeBrowser.indexOf(this.selectedTheme!), 1);
         this.exportDialog().close();
-        this.messageService.addMessage('Brouillon supprimé');
+        this.messageService.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
     }
 
-    saveServer() {}
+    async saveServer() {
+        let theme = this.optionToTheme();
+        theme.hidden = this.saveVisibility === 'private';
+        delete theme.source;
+        const data = await this.themeService.saveTheme(theme);
+        this.user!.themes?.push(data);
+        this.themeId = theme.id;
+        this.exportDialog().close();
+        this.messageService.addMessage(this.translate.translate('generator.theme.account.save.success'));
+        this.themeName = '';
+        this.selectedTheme = undefined;
+    }
 
-    updateServer() {}
+    async updateServer() {
+        let theme = this.optionToTheme();
+        theme.hidden = this.saveVisibility === 'private';
+        delete theme.source;
+        const index = this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!;
+        const data = await this.themeService.saveTheme(theme, this.selectedTheme!.id);
+        this.user!.themes![index] = data;
+        this.themeId = theme.id;
+        this.exportDialog().close();
+        this.messageService.addMessage(this.translate.translate('generator.theme.account.update.success'));
+        this.themeName = '';
+        this.selectedTheme = undefined;
+    }
 
     export() {
         const theme = this.optionToTheme();

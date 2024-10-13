@@ -412,15 +412,16 @@
     },
     "theme": {
       "link": "Choose a theme",
-      "info": "Predefined theme selection",
+      "info": "Select a theme",
       "default": "Generic themes",
-      "browser.themes": "In this browser",
-      "user.themes": "In your account",
-      "users.themes": "Public themes",
       "cancel": "Cancel",
       "validate": "Validate",
+      "search": "Search",
+      "public": "Visible to all",
+      "private": "Only for you",
       "name": {
         "question": "A little name for your theme?",
+        "rename": "Do you want to change its name?",
         "default": "Default",
         "compact": "Default compact",
         "square": "Square",
@@ -447,13 +448,27 @@
       "manage.themes": "Theme management",
       "remove.browser": "Remove theme",
       "update.browser": "Update theme",
-      "save": "Save to my account",
-      "browser": "Only this browser",
+      "update.server": "Update theme",
       "new": "New",
-      "browser.update": "In this browser",
-      "browser.replace": "Select the theme to replace. Visible only in this web browser.",
-      "account.update": "On my account",
-      "account.replace": "Select the theme to replace on your account."
+      "browser": {
+        "themes": "In this browser",
+        "save": "Only this browser",
+        "update": "In this browser",
+        "replace": "Select the theme to replace. Visible only in this web browser.",
+        "save.success": "Draft saved",
+        "update.success": "Draft updated",
+        "delete": "Draft deleted"
+      },
+      "account": {
+        "themes": "On your account",
+        "save": "Save on my account",
+        "update": "On my account",
+        "replace": "Select the theme to replace on your account.",
+        "save.success": "Theme saved on your account",
+        "update.success": "Theme updated on your account",
+        "delete.success": "Theme deleted of your account"
+      },
+      "users.themes": "Public themes"
     },
     "ranking": {
       "group.title": "Ranking",

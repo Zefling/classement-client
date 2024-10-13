@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, contentChildren, output } from '@angular/core';
 
-import { TabTitleComponent } from './tab-content.component';
-import { TabContentComponent } from './tab-title.component';
+import { TabContentComponent } from './tab-content.component';
+import { TabTitleComponent } from './tab-title.component';
 
 @Component({
     selector: 'tabs',
