@@ -449,19 +449,22 @@
       "remove.browser": "Supprimer le thème",
       "update.browser": "Mettre à jour le thème",
       "update.server": "Mettre à jour le thème",
+      "remove.server": "Supprimer le thème",
       "new": "Nouveau",
       "browser": {
         "themes": "Dans ce navigateur",
         "save": "Uniquement ce navigateur",
+        "new": "Ajouter à ce navigateur",
         "update": "Dans ce navigateur",
         "replace": "Sélectionner le thème à remplacer. Visible uniquement dans ce navigateur web.",
         "save.success": "Brouillon sauvegardé",
         "update.success": "Brouillon mise à jour",
-        "delete": "Brouillon supprimé"
+        "delete.success": "Brouillon supprimé"
       },
       "account": {
         "themes": "Sur votre compte",
         "save": "Sauver sur mon compte",
+        "new": "Ajouter à votre compte",
         "update": "Sur mon compte",
         "replace": "Sélectionner le thème a remplacer sur votre compte.",
         "save.success": "Theme sauvegardé sur votre compte",
@@ -888,10 +891,13 @@
       "3202": "Pas de classement trouvé avec cet identifiant.",
       "3301": "Erreur de status.",
       "3400": "Sauvegarde en échec. Contactez l'administrateur si cela persiste.",
+      "3501": "Theme not found.",
+      "3502": "No theme found.",
       "4001": "Ce nom d'utilisateur existe déjà.",
       "4002": "Ce email existe déjà.",
       "4100": "Envoi de courriel impossible.",
       "5000": "Erreur de catégorie.",
+      "5100": "Données envoyées invalides. Il est possible qu'un champs ait une valeur non valide.",
       "9999": "Requête invalide.",
       "undefined": "⚠️ Une erreur serveur s'est produite."
     },

@@ -110,6 +110,23 @@ export class APIThemeService extends APICommon {
         });
     }
 
+    deleteTheme(id: string) {
+        return new Promise<void>((resolve, reject) => {
+            this.http
+                .delete<Message<void>>(`${environment.api.path}api/theme/${id}`, {
+                    ...this.header(),
+                })
+                .subscribe({
+                    next: () => {
+                        resolve();
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('delete', result));
+                    },
+                });
+        });
+    }
+
     private getEventMessage(
         event: HttpEvent<Message<ThemeData>> | HttpResponse<Message<ThemeData>>,
         classement: ThemeData,

@@ -45,11 +45,11 @@
         </button>
         @if (saveMode === 'browser') {
           <button class="primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
-            {{ 'generator.theme.browser' | transloco }}
+            {{ 'generator.theme.browser.new' | transloco }}
           </button>
         } @else {
           <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
-            {{ 'generator.theme.save' | transloco }}
+            {{ 'generator.theme.account.new' | transloco }}
           </button>
         }
         <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
@@ -134,6 +134,9 @@
         <p class="buttons">
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
+          </button>
+          <button class="warn" [disabled]="!selectedTheme" (click)="removeServer()">
+            {{ 'generator.theme.remove.server' | transloco }}
           </button>
           <button class="primary" [disabled]="!selectedTheme" (click)="updateServer()">
             {{ 'generator.theme.update.server' | transloco }}

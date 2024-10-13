@@ -171,6 +171,13 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.selectedTheme = undefined;
     }
 
+    async removeServer() {
+        await this.themeService.deleteTheme(this.selectedTheme!.id);
+        this.user!.themes!.splice(this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!, 1);
+        this.exportDialog().close();
+        this.messageService.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
+    }
+
     export() {
         const theme = this.optionToTheme();
 
