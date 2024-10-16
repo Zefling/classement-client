@@ -120,6 +120,17 @@
             [placeholder]="selectedTheme?.name ?? ''"
           />
         </p>
+        <p>
+          <label>
+            <input type="radio" [(ngModel)]="saveVisibility" name="save-visibility" value="public" />
+            {{ 'generator.theme.public' | transloco }}
+          </label>
+          <label>
+            <input type="radio" [(ngModel)]="saveVisibility" name="save-visibility" value="private" />
+            {{ 'generator.theme.private' | transloco }}
+          </label>
+        </p>
+
         <div class="theme-list">
           @for (theme of themeServer; track theme) {
             <theme-icon

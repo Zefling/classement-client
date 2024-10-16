@@ -81,15 +81,17 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     selectTheme(theme: Theme<string>) {
         this.selectedTheme = theme;
+        this.saveVisibility = theme.hidden ? 'private' : 'public';
     }
 
-    private optionToTheme() {
+    private optionToTheme(themeCurrent?: Theme<string>) {
         const theme: Theme<string> = {
             id: '',
-            name: this.themeName,
+            name: this.themeName.trim() || themeCurrent?.name || '',
             options: this.options(),
             source: 'local',
         };
+        theme.options.themeName = this.themeName.trim() || themeCurrent?.name || '';
 
         // usage
         delete (theme.options as any)['showAdvancedOptions']; // removed option
@@ -115,13 +117,14 @@ export class ClassementThemesManagerComponent implements OnInit {
                     id: theme.themeId!,
                     name: theme.name,
                     options: theme.data.options,
+                    hidden: theme.hidden,
                     source: 'user',
                 })) || [];
         }
     }
 
     async saveBrowser() {
-        const theme = await this.dbService.saveLocalTheme(this.optionToTheme());
+        const theme = await this.dbService.saveLocalTheme(this.optionToTheme(this.themeCurrent()));
         this.themeId = theme.id;
         this.exportDialog().close();
         this.messageService.addMessage(this.translate.translate('generator.theme.browser.save.success'));
@@ -158,7 +161,7 @@ export class ClassementThemesManagerComponent implements OnInit {
     }
 
     async updateServer() {
-        let theme = this.optionToTheme();
+        let theme = this.optionToTheme(this.selectedTheme);
         theme.hidden = this.saveVisibility === 'private';
         delete theme.source;
         const index = this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!;
