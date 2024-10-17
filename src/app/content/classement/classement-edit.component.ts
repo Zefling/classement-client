@@ -561,6 +561,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
         this.groups = classement.data.groups;
         this.list = classement.data.list;
+
         this.teamsModeUpdateTile();
         this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
@@ -573,8 +574,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     this.derivatives = classements;
                 });
         }
-
-        debugger;
 
         if (fork) {
             this.reset();
@@ -738,7 +737,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
         this.global.withChange.set(0);
-        this.memory.addUndo(this);
     }
 
     toTemplateNavigation() {
@@ -905,8 +903,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     globalChange() {
-        this.global.withChange.update(value => value + 1);
         this.memory.addUndo(this);
+        this.global.withChange.update(value => value + 1);
     }
 
     upLine(index: number) {

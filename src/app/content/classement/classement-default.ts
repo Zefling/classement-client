@@ -102,11 +102,13 @@ export const themes = themesLists;
 export const themesList: Theme[] = [
     {
         id: 'default',
+        source: 'default',
         name: 'default',
         options: { ...defaultOptions },
     },
     {
         id: 'default',
+        source: 'default',
         name: 'compact',
         options: {
             ...defaultOptions,
@@ -123,6 +125,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'square',
         options: {
             ...defaultOptions,
@@ -142,6 +145,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'sakura',
         options: {
             ...defaultOptions,
@@ -165,6 +169,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'night',
         options: {
             ...defaultOptions,
@@ -188,6 +193,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'ciel',
         options: {
             ...defaultOptions,
@@ -211,6 +217,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'classic',
         options: {
             ...defaultOptions,
@@ -237,6 +244,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'iceberg',
         options: {
             ...defaultOptions,
@@ -268,6 +276,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'axis',
         options: {
             ...defaultOptions,
@@ -295,6 +304,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'bingo-s',
         options: {
             ...defaultOptions,
@@ -319,6 +329,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'bingo-m',
         options: {
             ...defaultOptions,
@@ -343,6 +354,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'bingo-l',
         options: {
             ...defaultOptions,
@@ -367,6 +379,7 @@ export const themesList: Theme[] = [
     },
     {
         id: 'default',
+        source: 'default',
         name: 'grid',
         options: {
             ...defaultOptions,

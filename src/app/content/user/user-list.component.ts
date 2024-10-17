@@ -7,6 +7,8 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
+import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
 import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { Classement, User } from 'src/app/interface/interface';
@@ -17,8 +19,6 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { TabTitleComponent } from '../../components/tabs/tab-content.component';
-import { TabContentComponent } from '../../components/tabs/tab-title.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { SortRuleDirective } from '../../directives/sortable.directive';
 import { TooltipDirective } from '../../directives/tooltip.directive';

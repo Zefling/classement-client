@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, contentChildren, output } from '@angular/core';
 
-import { TabTitleComponent } from './tab-content.component';
-import { TabContentComponent } from './tab-title.component';
+import { TabContentComponent } from './tab-content.component';
+import { TabTitleComponent } from './tab-title.component';
 
 @Component({
     selector: 'tabs',
@@ -45,7 +45,7 @@ export class TabsComponent implements AfterContentInit {
 
     update(id: string, emit: boolean = true) {
         this.titles()?.forEach(e => {
-            if (e.id) {
+            if (e.id()) {
                 e.selected.set(e.id() === id);
             }
         });

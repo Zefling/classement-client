@@ -9,7 +9,7 @@ import { Component, input, model } from '@angular/core';
     },
     standalone: true,
 })
-export class TabTitleComponent {
+export class TabContentComponent {
     id = input<string>();
     selected = model<boolean>(false);
 }

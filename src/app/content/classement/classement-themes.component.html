@@ -1,17 +1,93 @@
 <dialog-cmp class="auto-format">
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
 
-  <h4>{{ 'generator.theme.default' | transloco }}</h4>
-  <div class="themes">
-    @for (theme of themes(); track theme) {
-      <theme-icon [theme]="theme" (select)="changeTheme($event)" [class.selected]="theme === currentTheme"></theme-icon>
-    }
+  <div class="search-theme">
+    <label for="search-theme">{{ 'generator.theme.search' | transloco }}</label>
+    <input
+      id="search-theme"
+      type="search"
+      [(ngModel)]="key"
+      (ngModelChangeDebounced)="keyUpdate($event)"
+      ngModelChangeDebounceTime="300"
+    />
   </div>
 
-  @if (themeDraft.length > 0) {
-    <h4>{{ 'generator.theme.browser.themes' | transloco }}</h4>
+  @if (!key || !key.trim()) {
+    <tabs>
+      <!-- default-->
+
+      <tab-title id="default">{{ 'generator.theme.default' | transloco }}</tab-title>
+      <tab-content id="default">
+        <div class="themes">
+          @for (theme of themes(); track theme) {
+            <theme-icon
+              [theme]="theme"
+              (select)="changeTheme($event)"
+              [class.selected]="theme === currentTheme"
+            ></theme-icon>
+          }
+        </div>
+      </tab-content>
+
+      <!-- browser-->
+
+      <tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</tab-title>
+      <tab-content id="browser">
+        <div class="themes">
+          @for (theme of themeDraft; track theme) {
+            <theme-icon
+              [theme]="theme"
+              custom
+              (select)="changeTheme($event)"
+              [class.selected]="theme === currentTheme"
+            ></theme-icon>
+          }
+        </div>
+      </tab-content>
+
+      <!-- current user-->
+
+      @if (api && user?.themes?.length) {
+        <tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</tab-title>
+      }
+      @if (api && user?.themes?.length) {
+        <tab-content id="user">
+          <div class="themes">
+            @for (theme of user!.themes; track theme) {
+              <theme-icon
+                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'user' }"
+                custom
+                (select)="changeTheme($event)"
+                [class.selected]="theme.themeId === currentTheme?.id"
+              ></theme-icon>
+            }
+          </div>
+        </tab-content>
+      }
+
+      <!-- other users-->
+
+      @if (api && usersThemes?.length) {
+        <tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</tab-title>
+      }
+      @if (api && usersThemes?.length) {
+        <tab-content id="users">
+          <div class="themes">
+            @for (theme of usersThemes; track theme) {
+              <theme-icon
+                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'other' }"
+                custom
+                (select)="changeTheme($event)"
+                [class.selected]="theme.themeId === currentTheme?.id"
+              ></theme-icon>
+            }
+          </div>
+        </tab-content>
+      }
+    </tabs>
+  } @else {
     <div class="themes">
-      @for (theme of themeDraft; track theme) {
+      @for (theme of keysThemes; track theme) {
         <theme-icon
           [theme]="theme"
           custom

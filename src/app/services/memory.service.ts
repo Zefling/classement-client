@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 import { Md5 } from 'ts-md5';
 
@@ -11,8 +11,8 @@ import { Utils } from '../tools/utils';
  */
 @Injectable({ providedIn: 'root' })
 export class MemoryService {
-    hasRedo = false;
-    hasUndo = false;
+    hasRedo = signal(false);
+    hasUndo = signal(false);
 
     #back: {
         options: Options;
@@ -21,6 +21,7 @@ export class MemoryService {
     }[] = [];
 
     #index = 0;
+    #inChange = false;
 
     #image: Record<string, string> = {};
 
@@ -31,6 +32,10 @@ export class MemoryService {
     }
 
     addUndo(parent: ClassementEditComponent) {
+        if (this.#inChange) {
+            return;
+        }
+
         if (this.#index < this.#back.length - 1) {
             this.#back.splice(this.#index + 1);
         }
@@ -56,24 +61,32 @@ export class MemoryService {
     }
 
     undo(parent: ClassementEditComponent) {
-        if (this.hasUndo) {
+        if (this.hasUndo()) {
+            this.#inChange = true;
             this.#index--;
             this.change(parent);
             this.update();
+            setTimeout(() => {
+                this.#inChange = false;
+            }, 20);
         }
     }
 
     redo(parent: ClassementEditComponent) {
-        if (this.hasRedo) {
+        if (this.hasRedo()) {
+            this.#inChange = true;
             this.#index++;
             this.change(parent);
             this.update();
+            setTimeout(() => {
+                this.#inChange = false;
+            }, 20);
         }
     }
 
     private update() {
-        this.hasUndo = this.#index > 0;
-        this.hasRedo = this.#index < this.#back.length - 1;
+        this.hasUndo.set(this.#index > 0);
+        this.hasRedo.set(this.#index < this.#back.length - 1);
     }
 
     private change(parent: ClassementEditComponent) {

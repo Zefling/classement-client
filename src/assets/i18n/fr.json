@@ -412,13 +412,16 @@
     },
     "theme": {
       "link": "Choisir un thème",
-      "info": "Selection de thème prédéfini",
+      "info": "Sélectionner un thème",
       "default": "Thèmes génériques",
-      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
       "cancel": "Annuler",
       "validate": "Valider",
+      "search": "Rechercher",
+      "public": "Visible de tous",
+      "private": "Uniquement pour vous",
       "name": {
         "question": "Un petit nom à votre thème ?",
+        "rename": "Voulez-vous changer son nom ?",
         "default": "Défaut",
         "compact": "Défaut compact",
         "square": "Carré",
@@ -445,13 +448,30 @@
       "manage.themes": "Gestion des thèmes",
       "remove.browser": "Supprimer le thème",
       "update.browser": "Mettre à jour le thème",
-      "save": "Sauver sur mon compte",
-      "browser": "Uniquement ce navigateur",
+      "update.server": "Mettre à jour le thème",
+      "remove.server": "Supprimer le thème",
       "new": "Nouveau",
-      "browser.update": "Dans ce navigateur",
-      "browser.replace": "Sélectionner le thème à remplacer. Visible uniquement dans ce navigateur web.",
-      "account.update": "Sur mon compte",
-      "account.replace": "Sélectionner le thème a remplacer sur votre compte."
+      "browser": {
+        "themes": "Dans ce navigateur",
+        "save": "Uniquement ce navigateur",
+        "new": "Ajouter à ce navigateur",
+        "update": "Dans ce navigateur",
+        "replace": "Sélectionner le thème à remplacer. Visible uniquement dans ce navigateur web.",
+        "save.success": "Brouillon sauvegardé",
+        "update.success": "Brouillon mise à jour",
+        "delete.success": "Brouillon supprimé"
+      },
+      "account": {
+        "themes": "Sur votre compte",
+        "save": "Sauver sur mon compte",
+        "new": "Ajouter à votre compte",
+        "update": "Sur mon compte",
+        "replace": "Sélectionner le thème a remplacer sur votre compte.",
+        "save.success": "Theme sauvegardé sur votre compte",
+        "update.success": "Theme mise à jour sur votre compte",
+        "delete.success": "Theme supprimé de votre compte"
+      },
+      "users.themes": "Thèmes publics"
     },
     "ranking": {
       "group.title": "Classement",
@@ -728,9 +748,10 @@
       "view": {
         "title": "Profil : ",
         "rankings": "Classements",
+        "themes": "Thèmes",
         "empty": "Aucun classement pour cet utilisateur pour le moment."
       },
-      "list.browser.tab": "Brouillons",
+      "list.browser.tab": "Brouillons (sur ce navigateur uniquement)",
       "list.server.tab": "Sur mon compte",
       "list.server.intro": "Liste des classements sauvegardés sur votre compte."
     },
@@ -870,10 +891,13 @@
       "3202": "Pas de classement trouvé avec cet identifiant.",
       "3301": "Erreur de status.",
       "3400": "Sauvegarde en échec. Contactez l'administrateur si cela persiste.",
+      "3501": "Theme not found.",
+      "3502": "No theme found.",
       "4001": "Ce nom d'utilisateur existe déjà.",
       "4002": "Ce email existe déjà.",
       "4100": "Envoi de courriel impossible.",
       "5000": "Erreur de catégorie.",
+      "5100": "Données envoyées invalides. Il est possible qu'un champs ait une valeur non valide.",
       "9999": "Requête invalide.",
       "undefined": "⚠️ Une erreur serveur s'est produite."
     },

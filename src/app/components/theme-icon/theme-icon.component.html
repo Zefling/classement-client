@@ -4,7 +4,9 @@
     <div class="item"><div class="image"></div></div>
   </div>
 </div>
-
+@if (theme().hidden) {
+  <div class="icon-private" title="{{ 'generator.theme.private' | transloco }}"></div>
+}
 @if (custom()) {
   <div class="name">{{ theme().name }}</div>
 } @else if (theme().name !== 'custom') {

@@ -29,6 +29,7 @@
     min-width: min(700px, 100dvw - 20px);
     max-width: calc(100dvw - 20px);
     min-height: 150px;
+    height: min-content;
     max-height: 95dvh;
 }
 

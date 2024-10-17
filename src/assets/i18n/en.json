@@ -412,13 +412,16 @@
     },
     "theme": {
       "link": "Choose a theme",
-      "info": "Predefined theme selection",
-      "default": "Thèmes génériques",
-      "browser.themes": "Les thèmes enregistrés dans ce navigateur",
+      "info": "Select a theme",
+      "default": "Generic themes",
       "cancel": "Cancel",
       "validate": "Validate",
+      "search": "Search",
+      "public": "Visible to all",
+      "private": "Only for you",
       "name": {
         "question": "A little name for your theme?",
+        "rename": "Do you want to change its name?",
         "default": "Default",
         "compact": "Default compact",
         "square": "Square",
@@ -445,13 +448,30 @@
       "manage.themes": "Theme management",
       "remove.browser": "Remove theme",
       "update.browser": "Update theme",
-      "save": "Save to my account",
-      "browser": "Only this browser",
+      "update.server": "Update theme",
+      "remove.server": "Remove theme",
       "new": "New",
-      "browser.update": "In this browser",
-      "browser.replace": "Select the theme to replace. Visible only in this web browser.",
-      "account.update": "On my account",
-      "account.replace": "Select the theme to replace on your account."
+      "browser": {
+        "themes": "In this browser",
+        "save": "Only this browser",
+        "new": "Add to this browser",
+        "update": "In this browser",
+        "replace": "Select the theme to replace. Visible only in this web browser.",
+        "save.success": "Draft saved",
+        "update.success": "Draft updated",
+        "delete": "Draft deleted"
+      },
+      "account": {
+        "themes": "On your account",
+        "save": "Save on my account",
+        "new": "Add to your account",
+        "update": "On my account",
+        "replace": "Select the theme to replace on your account.",
+        "save.success": "Theme saved on your account",
+        "update.success": "Theme updated on your account",
+        "delete.success": "Theme deleted of your account"
+      },
+      "users.themes": "Public themes"
     },
     "ranking": {
       "group.title": "Ranking",
@@ -728,9 +748,10 @@
       "view": {
         "title": "Profile: ",
         "rankings": "Rankings",
+        "themes": "Themes",
         "empty": "No ranking for this user at this time."
       },
-      "list.browser.tab": "Drafts",
+      "list.browser.tab": "Drafts (on this browser only)",
       "list.server.tab": "On my account",
       "list.server.intro": "List of ranking saved on your account."
     },
@@ -870,10 +891,13 @@
       "3202": "No ranking found with this id.",
       "3301": "Status error.",
       "3400": "Save failed. Contact administrator if this persists.",
+      "3501": "Thème non trouvé.",
+      "3502": "Pas de thème non trouvé.",
       "4001": "This username already exists.",
       "4002": "This email already exists.",
       "4100": "Cannot send email.",
       "5000": "Category error.",
+      "5100": "Invalid data sent. A field may have an invalid value.",
       "9999": "Invalid request.",
       "undefined": "⚠️ A server error has occurred."
     },

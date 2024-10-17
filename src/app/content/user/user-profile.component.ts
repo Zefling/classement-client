@@ -10,7 +10,11 @@ import { debounceTime } from 'rxjs';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { FileHandle, User } from 'src/app/interface/interface';
+import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
+import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
+import { TabsComponent } from 'src/app/components/tabs/tabs.component';
+import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
+import { FileHandle, Theme, User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -38,6 +42,10 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         ImageCropperComponent,
         DatePipe,
         TranslocoPipe,
+        TabsComponent,
+        TabTitleComponent,
+        TabContentComponent,
+        ThemeIconComponent,
     ],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
@@ -47,7 +55,8 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     user?: User;
 
-    localSize = 0;
+    localSizeClassements = 0;
+    localThemes?: Theme[];
 
     listener = Subscriptions.instance();
 
@@ -173,7 +182,8 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     }
 
     updateLocalListSize() {
-        this.dbService?.getLocalList().then(e => (this.localSize = e.length));
+        this.dbService?.getLocalList().then(e => (this.localSizeClassements = e.length));
+        this.dbService?.getLocalAllThemes().then(e => (this.localThemes = e));
     }
 
     updateTitle() {

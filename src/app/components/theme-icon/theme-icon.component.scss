@@ -62,8 +62,26 @@
         background-color: azure;
         padding: 0;
         width: var(--n-item-width);
-        max-width: var(--n-item-width);
+        max-width: min(var(--n-item-width), 300px);
         height: var(--n-item-height);
-        max-height: var(--n-item-height);
+        max-height: min(var(--n-item-height), 300px);
+    }
+}
+
+.icon-private {
+    position: relative;
+    height: 0;
+    top: -22px;
+    text-align: right;
+
+    &::before {
+        background: var(--box-shadow);
+        color: var(--content-box-text);
+        height: 20px;
+        display: inline-block;
+        width: 20px;
+        align-content: center;
+        text-align: center;
+        border-radius: 50px;
     }
 }

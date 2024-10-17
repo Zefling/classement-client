@@ -146,22 +146,22 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     ngOnInit(): void {
-        this.updateMode();
+        this.updateMode(true);
         this.updateCurrentTheme();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['options']) {
+        if (changes['options']?.previousValue) {
             this._modeTemp = undefined;
             this.updateMode();
         }
     }
 
     updateCurrentTheme() {
-        this.themeCurrent.set({ id: '', name: 'custom', options: this.options() });
+        this.themeCurrent.set({ id: '', name: 'custom', options: this.options(), source: 'default' });
     }
 
-    updateMode() {
+    updateMode(init: boolean = false) {
         const options = this.options();
         if (options) {
             const mode = this._modeTemp ?? options.mode ?? 'default';
@@ -185,14 +185,14 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     break;
             }
             if (!this._modeTemp || options.mode !== mode) {
-                this.updateList(mode);
+                this.updateList(mode, init);
             }
 
             this.themes = themesList.filter(e => this.themesList.includes(e.name));
         }
     }
 
-    updateList(mode: ModeNames = this._modeTemp ?? this.options()?.mode ?? 'default') {
+    updateList(mode: ModeNames = this._modeTemp ?? this.options()?.mode ?? 'default', init: boolean = false) {
         // list image
         this.listThemes = this.imagesList.map<Select2Option>(e => ({
             value: e,
@@ -203,7 +203,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             },
         }));
         const options = this.options();
-        if (options) {
+        if (options && !init) {
             let modeType = mode;
             switch (mode) {
                 case 'default':
@@ -310,6 +310,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     advanceOptions() {
+        this.updateCurrentTheme();
         this.dialogAdvancedOptions().open();
     }
 
@@ -324,7 +325,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         this.classementThemes().dialog()!.open();
     }
 
-    changeTheme(theme: Theme) {
+    changeTheme(theme: Theme | Theme<string>) {
         const options = this.options()!;
         const mode = options.mode;
         Object.assign(
