@@ -28,9 +28,9 @@
   </dt>
   <dd>{{ 'generator.help.shortcut.context.menu' | transloco }}</dd>
 
-  <dt [class.disabled]="!memory.hasUndo"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
+  <dt [class.disabled]="!memory.hasUndo()"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.z' | transloco }}</dd>
 
-  <dt [class.disabled]="!memory.hasRedo"><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
+  <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.u' | transloco }}</dd>
 </dl>
