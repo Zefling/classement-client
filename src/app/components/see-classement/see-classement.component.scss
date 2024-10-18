@@ -427,6 +427,12 @@ img {
 
 // bingo -----------------------------------------------------------
 
+div:has(> .mode-bingo) {
+    margin: auto;
+    width: auto;
+    min-width: auto;
+}
+
 .mode-bingo {
     margin: auto;
     width: auto;

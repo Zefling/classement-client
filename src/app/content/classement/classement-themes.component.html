@@ -1,4 +1,4 @@
-<dialog-cmp class="auto-format">
+<dialog-cmp class="auto-format" closeButton>
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
 
   <div class="search-theme">
@@ -19,7 +19,7 @@
       <tab-title id="default">{{ 'generator.theme.default' | transloco }}</tab-title>
       <tab-content id="default">
         <div class="themes">
-          @for (theme of themes(); track theme) {
+          @for (theme of themes; track theme) {
             <theme-icon
               [theme]="theme"
               (select)="changeTheme($event)"

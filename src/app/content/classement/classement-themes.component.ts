@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input, output, viewChild } from '@angular/core';
+import { Component, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -13,6 +13,8 @@ import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { environment } from 'src/environments/environment';
+
+import { themes, themesAxis, themesBingo, themesIceberg, themesList, themesLists } from './classement-default';
 
 import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
 
@@ -32,7 +34,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
         NgModelChangeDebouncedDirective,
     ],
 })
-export class ClassementThemesComponent implements OnInit {
+export class ClassementThemesComponent {
     // inject
 
     private readonly dbService = inject(DBService);
@@ -42,22 +44,24 @@ export class ClassementThemesComponent implements OnInit {
 
     // input
 
-    themes = input.required<Theme[]>();
-    options = input.required<Options>();
+    readonly options = input.required<Options>();
 
     // output
 
-    change = output<Theme | Theme<string>>();
+    readonly change = output<Theme | Theme<string>>();
 
     // viewChild
 
-    dialog = viewChild.required<DialogComponent>(DialogComponent);
+    readonly dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     // template
 
     api = environment.api?.active || false;
 
     key?: string;
+
+    themes!: Theme[];
+    themesList: ThemesNames[] = themes;
 
     user?: User;
     usersThemes?: ThemeData[];
@@ -66,7 +70,29 @@ export class ClassementThemesComponent implements OnInit {
     themeDraft: Theme<string>[] = [];
     keysThemes: Theme<ThemesNames | string>[] = [];
 
-    async ngOnInit() {
+    async open() {
+        this.dialog().open();
+
+        const options = this.options();
+        const mode = options.mode ?? 'default';
+
+        switch (mode) {
+            case 'iceberg':
+                this.themesList = themesIceberg;
+                break;
+            case 'axis':
+                this.themesList = themesAxis;
+                break;
+            case 'bingo':
+                this.themesList = themesBingo;
+                break;
+            default:
+                this.themesList = themesLists;
+                break;
+        }
+
+        this.themes = themesList.filter(e => this.themesList.includes(e.name));
+
         if (this.api) {
             this.user = this.userService.user;
             this.themeService
@@ -87,7 +113,7 @@ export class ClassementThemesComponent implements OnInit {
     keyUpdate(value: string) {
         value = value.toLocaleLowerCase();
         this.keysThemes = [
-            ...this.themes().filter(e => this.translate.translate(e.name).toLocaleLowerCase().includes(value)),
+            ...this.themes.filter(e => this.translate.translate(e.name).toLocaleLowerCase().includes(value)),
             ...this.themeDraft.filter(e => e.name.toLocaleLowerCase().includes(value)),
             ...(this.user?.themes
                 ?.filter(e => e.name.toLocaleLowerCase().includes(value))

@@ -92,18 +92,18 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     // input
 
-    options = model.required<Options>();
-    lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly options = model.required<Options>();
+    readonly lockCategory = input<boolean, any>(false, { transform: booleanAttribute });
 
     // viewChild
 
-    classementThemes = viewChild.required(ClassementThemesComponent);
-    dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
-    dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
-    dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
-    dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
-    themesManager = viewChild.required(ClassementThemesManagerComponent);
-    mode = viewChild.required<Select2>('mode');
+    readonly classementThemes = viewChild.required(ClassementThemesComponent);
+    readonly dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
+    readonly dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
+    readonly dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
+    readonly dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
+    readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
+    readonly mode = viewChild.required<Select2>('mode');
 
     // template
 
@@ -322,7 +322,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     themesOpen() {
-        this.classementThemes().dialog()!.open();
+        this.classementThemes().open();
     }
 
     changeTheme(theme: Theme | Theme<string>) {
