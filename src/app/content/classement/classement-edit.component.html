@@ -80,7 +80,7 @@
                             id="name-{{ indexGrp }}"
                             rows="1"
                             [(ngModel)]="group.name"
-                            (ngModelChange)="globalChange()"
+                            (ngModelChangeDebounced)="globalChange()"
                             maxlength="500"
                           ></textarea>
                         </div>

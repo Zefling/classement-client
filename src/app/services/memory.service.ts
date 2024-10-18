@@ -1,6 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 
 import { Md5 } from 'ts-md5';
+
+import { Logger, LoggerLevel } from './logger';
 
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 import { FileType, FormattedGroup, Options } from '../interface/interface';
@@ -11,6 +13,8 @@ import { Utils } from '../tools/utils';
  */
 @Injectable({ providedIn: 'root' })
 export class MemoryService {
+    private readonly logger = inject(Logger);
+
     hasRedo = signal(false);
     hasUndo = signal(false);
 
@@ -21,7 +25,7 @@ export class MemoryService {
     }[] = [];
 
     #index = 0;
-    #inChange = false;
+    inChange = false;
 
     #image: Record<string, string> = {};
 
@@ -32,7 +36,7 @@ export class MemoryService {
     }
 
     addUndo(parent: ClassementEditComponent) {
-        if (this.#inChange) {
+        if (this.inChange) {
             return;
         }
 
@@ -58,28 +62,32 @@ export class MemoryService {
         this.#index = this.#back.length - 1;
 
         this.update();
+
+        this.logger.log('add undo', LoggerLevel.info, this.#index);
     }
 
     undo(parent: ClassementEditComponent) {
         if (this.hasUndo()) {
-            this.#inChange = true;
+            this.logger.log('undo', LoggerLevel.info, this.#index);
+            this.inChange = true;
             this.#index--;
             this.change(parent);
             this.update();
             setTimeout(() => {
-                this.#inChange = false;
+                this.inChange = false;
             }, 20);
         }
     }
 
     redo(parent: ClassementEditComponent) {
         if (this.hasRedo()) {
-            this.#inChange = true;
+            this.logger.log('redo', LoggerLevel.info, this.#index);
+            this.inChange = true;
             this.#index++;
             this.change(parent);
             this.update();
             setTimeout(() => {
-                this.#inChange = false;
+                this.inChange = false;
             }, 20);
         }
     }
@@ -97,7 +105,7 @@ export class MemoryService {
         back.groups.forEach(list => list.list.forEach(e => this.decode(e)));
 
         parent.options = back.options;
-        parent.groups = back.groups;
+        parent.groups = Utils.jsonCopy(back.groups);
         parent.list = back.list;
     }
 

@@ -38,6 +38,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
+import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import {
     Classement,
     Data,
@@ -133,6 +134,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
+        NgModelChangeDebouncedDirective,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
@@ -542,6 +544,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.memory.reset();
                 this.resetCache();
                 this.helpInit();
+                this.memory.addUndo(this);
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -1105,6 +1108,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     reset() {
+        this.logger.log('reset', LoggerLevel.info);
+
         for (const line of this.groups) {
             line.list.forEach(item => {
                 if (item) {

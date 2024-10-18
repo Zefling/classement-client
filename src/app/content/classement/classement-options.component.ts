@@ -151,7 +151,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['options']?.previousValue) {
+        if (changes['options']?.previousValue && !this.memory.inChange) {
             this._modeTemp = undefined;
             this.updateMode();
         }
