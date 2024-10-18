@@ -66,6 +66,7 @@ export const defaultOptions: Options = {
     imageBackgroundCustom: '',
     mode: 'default',
     direction: 'ltr',
+    font: '',
 };
 
 export const imageInfos: Partial<Record<ImagesNames, { normal: string; mini: string }>> = {
@@ -449,4 +450,22 @@ export const listModes: Select2Data = [
     { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
     { value: 'axis', label: 'axis', data: { icon: 'axis' } },
     { value: 'bingo', label: 'bingo', data: { icon: 'bingo' } },
+];
+
+export const listFonts: Select2Data = [
+    { value: 'Cinzel', label: 'Cinzel' },
+    { value: 'Dela Gothic One', label: 'Dela Gothic One' },
+    { value: 'Hachi Maru Pop', label: 'Hachi Maru Pop' },
+    { value: 'Kalam', label: 'Kalam' },
+    { value: 'Klee One', label: 'Klee One' },
+    { value: 'Noto Sans', label: 'Noto Sans' },
+    { value: 'Noto Sans JP', label: 'Noto Sans JP' },
+    { value: 'Noto Sans KR', label: 'Noto Sans KR' },
+    { value: 'Noto Serif', label: 'Noto Serif' },
+    { value: 'Noto Serif JP', label: 'Noto Serif JP' },
+    { value: 'Noto Serif KR', label: 'Noto Serif KR' },
+    { value: '', label: 'Roboto', data: { note: 'font.default' } },
+    { value: 'Sunflower', label: 'Sunflower' },
+    { value: 'Train One', label: 'Train One' },
+    { value: 'Zen Maru Gothic', label: 'Zen Maru Gothic' },
 ];

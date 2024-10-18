@@ -779,6 +779,22 @@
           </div>
         </div>
       }
+
+      <div class="global-font">
+        <label for="option-font">{{ 'generator.options.font' | transloco }}</label>
+        <div>
+          <select2 id="option-font" [data]="fontList" [templates]="templatesFont" [(ngModel)]="opts.font" overlay>
+            <ng-template #templatesFont let-label="label" let-data="data">
+              <div class="list-option">
+                {{ label }}
+                @if (data?.note) {
+                  ({{ data.note | transloco }})
+                }
+              </div>
+            </ng-template></select2
+          >
+        </div>
+      </div>
     </div>
 
     <div class="buttons">

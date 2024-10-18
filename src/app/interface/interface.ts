@@ -157,6 +157,7 @@ export type ThemeOptions = {
     sizeX?: number;
     sizeY?: number;
     palette?: Palette;
+    font?: string;
 };
 export type Palette = (string | [string, string])[];
 

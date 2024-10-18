@@ -38,6 +38,9 @@
       "B4": " TiB"
     }
   },
+  "font": {
+    "default": "default"
+  },
   "licenses": {
     "title": "Overview of third-party licenses"
   },

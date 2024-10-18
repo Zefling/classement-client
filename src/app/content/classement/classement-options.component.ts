@@ -40,6 +40,7 @@ import {
     imagesIceberg,
     imagesLists,
     imagesThemes,
+    listFonts,
     listModes,
     themes,
     themesAxis,
@@ -121,6 +122,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     zoneMode: ModeNames[] = ['iceberg', 'axis'];
 
     listMode: Select2Data = listModes;
+    fontList: Select2Data = listFonts;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;

@@ -38,6 +38,9 @@
       "B4": " Tio"
     }
   },
+  "font": {
+    "default": "défaut"
+  },
   "licenses": {
     "title": "Présentation des licences tierces"
   },

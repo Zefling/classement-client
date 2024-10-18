@@ -251,6 +251,7 @@ export class GlobalService {
         );
         r(body, '--over-image-background-position', o.imagePosition, dash);
         r(body, '--over-image-background-size', o.imageSize, dash);
+        r(body, '--over-font', o.font, dash);
         // zone group
         r(body, '--over-group-line-size', (o.groupLineSize ?? defaultOptions.groupLineSize) + 'px', dash);
         r(body, '--over-group-line-color', color(o.groupLineColor, o.groupLineOpacity), dash);
