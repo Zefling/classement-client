@@ -99,6 +99,7 @@
         background: var(--color, #fff);
         width: 30px;
         height: 30px;
+        box-sizing: border-box;
 
         &:hover,
         &:focus {
