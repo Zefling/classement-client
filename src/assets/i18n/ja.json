@@ -302,6 +302,7 @@
       "border.spacing": "間隔：",
       "border.spacing.info": "マイナスのバリューを指定すると、線が結合されます。",
       "border.size": "ボーダーのサイズ：",
+      "font": "フォントを選択するには：",
       "item": {
         "title": "タイルのオプション",
         "width": "タイル幅",

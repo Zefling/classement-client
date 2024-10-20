@@ -302,6 +302,7 @@
       "border.spacing": "Espacement :",
       "border.spacing.info": "Avec une valeur négative, fusionne les lignes.",
       "border.size": "Taille de la bordure :",
+      "font": "Choisir une fonte :",
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",

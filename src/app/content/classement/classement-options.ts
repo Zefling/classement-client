@@ -3,7 +3,8 @@ import { FormattedGroup } from 'src/app/interface/interface';
 export const groupExample: FormattedGroup[] = [
     {
         name: `Test
-**Markdown**`,
+**Markdown**
+テスト`,
         bgColor: '#dc8add',
         txtColor: '#000',
         list: [
@@ -58,7 +59,7 @@ export const groupExample: FormattedGroup[] = [
             {
                 id: 'text-1',
                 name: 'tile_text_example1',
-                title: 'Text',
+                title: 'Œuf de phénix',
                 annotation: 'Test',
                 size: 0,
                 realSize: 0,
@@ -70,8 +71,8 @@ export const groupExample: FormattedGroup[] = [
             {
                 id: 'text-2',
                 name: 'tile_text_example2',
-                title: 'Text Text Text',
-                annotation: 'Test',
+                title: 'とり 鳥 トリ',
+                annotation: '',
                 size: 0,
                 realSize: 0,
                 type: '',

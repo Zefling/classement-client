@@ -162,7 +162,8 @@ img {
     max-width: min(100%, var(--over-item-max-width, 300px));
     overflow: visible;
     text-align: center;
-    white-space: break-spaces;
+    white-space: collapse;
+    word-break: keep-all;
 }
 
 .title {
@@ -290,6 +291,7 @@ img {
 
     .content-box {
         display: flex;
+        overflow: hidden;
     }
 }
 

@@ -302,6 +302,7 @@
       "border.spacing": "Spacing:",
       "border.spacing.info": "With a negative value, merges the lines.",
       "border.size": "Border size:",
+      "font": "Choose a font:",
       "item": {
         "title": "Tile options",
         "width": "Tile width",

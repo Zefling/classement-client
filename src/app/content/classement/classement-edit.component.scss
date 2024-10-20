@@ -451,7 +451,8 @@ span.group-options {
     word-wrap: break-word;
     max-width: min(100%, var(--over-item-max-width, 300px));
     overflow: visible;
-    white-space: break-spaces;
+    white-space: collapse;
+    word-break: keep-all;
 }
 
 .title {
