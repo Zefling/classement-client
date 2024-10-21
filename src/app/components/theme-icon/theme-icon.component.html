@@ -7,6 +7,9 @@
 @if (theme().hidden) {
   <div class="icon-private" title="{{ 'generator.theme.private' | transloco }}"></div>
 }
+@if (theme().showMode) {
+  <div class="mode" [attr.data-mode]="'mode.name.' + (theme().options.mode || 'default') | transloco"></div>
+}
 @if (custom()) {
   <div class="name">{{ theme().name }}</div>
 } @else if (theme().name !== 'custom') {

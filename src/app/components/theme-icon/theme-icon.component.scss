@@ -85,3 +85,21 @@
         border-radius: 50px;
     }
 }
+
+.mode {
+    height: 0;
+    position: relative;
+
+    &:before {
+        position: absolute;
+        top: -30px;
+        right: 20px;
+        text-align: right;
+        border: 1px solid;
+        border-radius: 15px;
+        background: var(--menu-cartouche-background);
+        padding: 1px 8px;
+        content: attr(data-mode);
+        font-size: 12px;
+    }
+}
