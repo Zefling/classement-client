@@ -31,19 +31,23 @@
 
       <!-- browser-->
 
-      <tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</tab-title>
-      <tab-content id="browser">
-        <div class="themes">
-          @for (theme of themeDraft; track theme) {
-            <theme-icon
-              [theme]="theme"
-              custom
-              (select)="changeTheme($event)"
-              [class.selected]="theme === currentTheme"
-            ></theme-icon>
-          }
-        </div>
-      </tab-content>
+      @if (themeDraft.length) {
+        <tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</tab-title>
+      }
+      @if (themeDraft.length) {
+        <tab-content id="browser">
+          <div class="themes">
+            @for (theme of themeDraft; track theme) {
+              <theme-icon
+                [theme]="theme"
+                custom
+                (select)="changeTheme($event)"
+                [class.selected]="theme === currentTheme"
+              ></theme-icon>
+            }
+          </div>
+        </tab-content>
+      }
 
       <!-- current user-->
 
