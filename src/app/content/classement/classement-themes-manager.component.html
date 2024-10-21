@@ -92,7 +92,7 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="warn" [disabled]="!selectedTheme" (click)="removeBrowser()">
+          <button class="warn" [disabled]="!selectedTheme" (click)="deleteMode = 'browser'; deleteConfirm.open()">
             {{ 'generator.theme.remove.browser' | transloco }}
           </button>
           <button class="primary" [disabled]="!selectedTheme" (click)="updateBrowser()">
@@ -146,7 +146,7 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="warn" [disabled]="!selectedTheme" (click)="removeServer()">
+          <button class="warn" [disabled]="!selectedTheme" (click)="deleteMode = 'server'; deleteConfirm.open()">
             {{ 'generator.theme.remove.server' | transloco }}
           </button>
           <button class="primary" [disabled]="!selectedTheme" (click)="updateServer()">
@@ -156,4 +156,22 @@
       </tab-content>
     }
   </tabs>
+</dialog-cmp>
+
+<dialog-cmp class="auto-format" #deleteConfirm>
+  <p>
+    {{ 'generator.theme.remove' | transloco }} <strong>{{ selectedTheme?.name }}</strong>
+  </p>
+  <p class="buttons">
+    <button class="default" (click)="deleteConfirm.close()">
+      {{ 'generator.theme.cancel' | transloco }}
+    </button>
+    <button
+      class="warn"
+      [disabled]="!selectedTheme"
+      (click)="deleteMode === 'server' ? removeServer() : removeBrowser(); deleteConfirm.close()"
+    >
+      {{ 'generator.theme.remove.confirm' | transloco }}
+    </button>
+  </p>
 </dialog-cmp>

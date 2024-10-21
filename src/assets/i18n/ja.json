@@ -423,6 +423,8 @@
       "search": "検索する",
       "public": "全員に公開",
       "private": "自分だけ",
+      "remove": "削除してもよろしいですか：",
+      "remove.confirm": "確かに",
       "name": {
         "question": "テーマにちょっとした名前はありますか？",
         "default": "デフォルト",

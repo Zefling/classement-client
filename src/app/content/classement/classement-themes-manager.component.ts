@@ -61,6 +61,7 @@ export class ClassementThemesManagerComponent implements OnInit {
     themeId = '';
     themeName = '';
     saveMode?: 'browser' | 'server' = 'browser';
+    deleteMode?: 'browser' | 'server' = 'browser';
     saveVisibility?: 'public' | 'private' = 'public';
 
     themeBrowser: Theme<string>[] = [];

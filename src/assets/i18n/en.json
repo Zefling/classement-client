@@ -423,6 +423,8 @@
       "search": "Search",
       "public": "Visible to all",
       "private": "Only for you",
+      "remove": "Are you sure you want to remove: ",
+      "remove.confirm": "I'm sure",
       "name": {
         "question": "A little name for your theme?",
         "rename": "Do you want to change its name?",

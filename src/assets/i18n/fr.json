@@ -423,6 +423,8 @@
       "search": "Rechercher",
       "public": "Visible de tous",
       "private": "Uniquement pour vous",
+      "remove": "Êtes-vous sur de supprimer : ",
+      "remove.confirm": "J'en suis sûr",
       "name": {
         "question": "Un petit nom à votre thème ?",
         "rename": "Voulez-vous changer son nom ?",
