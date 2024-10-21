@@ -23,17 +23,27 @@ import Moveable, { EVENTS } from 'moveable';
     standalone: true,
 })
 export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges {
-    private ngZone = inject(NgZone);
+    // input
 
-    private targetInternal = viewChild.required<ElementRef<HTMLElement>>('target');
-    private container = viewChild.required<ElementRef<HTMLElement>>('container');
+    private readonly ngZone = inject(NgZone);
 
-    target = input<string>();
-    transform = input<string>();
+    // input
 
-    transformTarget = signal<string>('');
+    readonly target = input<string>();
+    readonly transform = input<string>();
 
-    transformUpdate = output<string>();
+    // viewChild
+
+    private readonly targetInternal = viewChild.required<ElementRef<HTMLElement>>('target');
+    private readonly container = viewChild.required<ElementRef<HTMLElement>>('container');
+
+    // output
+
+    readonly transformUpdate = output<string>();
+
+    // template
+
+    readonly transformTarget = signal<string>('');
 
     protected moveable!: Moveable;
 

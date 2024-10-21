@@ -13,10 +13,14 @@ import { TabsComponent } from './tabs.component';
     standalone: true,
 })
 export class TabTitleComponent {
+    // inject
+
     private readonly tabs = inject(TabsComponent, { host: true });
 
-    id = input<string>();
-    selected = model<boolean>(false);
+    // input
+
+    readonly id = input<string>();
+    readonly selected = model<boolean>(false);
 
     @HostListener('click')
     onclick() {

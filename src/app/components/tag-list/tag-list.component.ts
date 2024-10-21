@@ -15,22 +15,26 @@ import { environment } from 'src/environments/environment';
     imports: [FormsModule],
 })
 export class TagListComponent implements OnInit {
+    // inject
+
     private readonly http = inject(HttpClient);
 
     // input
 
-    tags = input.required<string[]>();
-    readOnly = input(false, { transform: booleanAttribute });
-    allowTagClick = input(false, { transform: booleanAttribute });
+    readonly tags = input.required<string[]>();
+    readonly readOnly = input(false, { transform: booleanAttribute });
+    readonly allowTagClick = input(false, { transform: booleanAttribute });
 
     // output
 
-    update = output<string[]>();
-    tagClick = output<string>();
+    readonly update = output<string[]>();
+    readonly tagClick = output<string>();
 
     // viewChild
 
-    input = viewChild.required<ElementRef<HTMLInputElement>>('input');
+    readonly input = viewChild.required<ElementRef<HTMLInputElement>>('input');
+
+    // template
 
     proposals: string[] = [];
 

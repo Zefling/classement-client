@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnDestroy, OnInit, inject, input, numberAttribute } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { GlobalService } from '../../services/global.service';
 
@@ -20,30 +20,38 @@ interface Page {
     imports: [RouterLink],
 })
 export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
+    // inject
+
     private readonly global = inject(GlobalService);
 
-    page = input(1, { transform: numberAttribute });
-    total = input(0, { transform: numberAttribute });
-    base = input<string>();
-    size = input(25, { transform: numberAttribute });
-    queryParams = input<{}>({});
+    // input
 
-    start = input(3, { transform: numberAttribute });
-    middleStart = input(3, { transform: numberAttribute });
-    middleEnd = input(3, { transform: numberAttribute });
-    end = input(3, { transform: numberAttribute });
+    readonly page = input(1, { transform: numberAttribute });
+    readonly total = input(0, { transform: numberAttribute });
+    readonly base = input<string>();
+    readonly size = input(25, { transform: numberAttribute });
+    readonly queryParams = input<{}>({});
+
+    readonly start = input(3, { transform: numberAttribute });
+    readonly middleStart = input(3, { transform: numberAttribute });
+    readonly middleEnd = input(3, { transform: numberAttribute });
+    readonly end = input(3, { transform: numberAttribute });
+
+    // template
 
     pages: Page[] = [];
     currentPage = 1;
 
     private _test = 0;
 
-    onPageUpdate: Subscription;
+    private readonly subs = Subscriptions.instance();
 
     constructor() {
-        this.onPageUpdate = this.global.onPageUpdate.subscribe(page => {
-            this.update(page);
-        });
+        this.subs.push(
+            this.global.onPageUpdate.subscribe(page => {
+                this.update(page);
+            }),
+        );
     }
 
     ngOnInit(): void {
@@ -101,7 +109,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.onPageUpdate.unsubscribe();
+        this.subs.clear();
     }
 
     update(page: number, event: boolean = true): void {

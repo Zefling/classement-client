@@ -10,7 +10,15 @@ import { GlobalService } from 'src/app/services/global.service';
     standalone: true,
 })
 export class LightDarkComponent {
-    private global = inject(GlobalService);
+    // inject
+
+    private readonly global = inject(GlobalService);
+
+    // output
+
+    readonly change = output<PreferenceInterfaceTheme>();
+
+    // host
 
     @HostBinding('class.light')
     get classLight() {
@@ -21,8 +29,6 @@ export class LightDarkComponent {
     get classDark() {
         return this.global.currentTheme() === 'dark';
     }
-
-    change = output<PreferenceInterfaceTheme>();
 
     @HostListener('click')
     click() {

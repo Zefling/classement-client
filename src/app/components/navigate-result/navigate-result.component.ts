@@ -18,12 +18,15 @@ import { Classement } from 'src/app/interface/interface';
     imports: [RouterLink, DatePipe, TranslocoPipe],
 })
 export class NavigateResultComponent {
-    classements = input<Classement[]>([]);
-    hideDerivatives = input<boolean, any>(false, { transform: booleanAttribute });
-    hideUser = input<boolean, any>(false, { transform: booleanAttribute });
-    onlyRanking = input<boolean, any>(false, { transform: booleanAttribute });
+    // input
 
-    // host
-    isCategoryList = input<boolean, any>(false, { transform: booleanAttribute });
-    isHomeList = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly classements = input<Classement[]>([]);
+    readonly hideDerivatives = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly hideUser = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly onlyRanking = input<boolean, any>(false, { transform: booleanAttribute });
+
+    // input / host
+
+    readonly isCategoryList = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly isHomeList = input<boolean, any>(false, { transform: booleanAttribute });
 }

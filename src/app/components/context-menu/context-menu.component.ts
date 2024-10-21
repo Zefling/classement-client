@@ -37,8 +37,10 @@ export type ContextMenuMode = 'default' | 'bubble';
     },
 })
 export class ContextMenuComponent<T> {
-    items = input.required<ContextMenuData<T>>();
-    mode = input<ContextMenuMode>('default');
+    // input
+
+    readonly items = input.required<ContextMenuData<T>>();
+    readonly mode = input<ContextMenuMode>('default');
 
     active(item: ContextMenuItem<T>) {
         item.action(this.items().data);

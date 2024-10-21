@@ -24,10 +24,16 @@ import { color } from '../../tools/function';
     imports: [TranslocoPipe],
 })
 export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
-    theme = input.required<Theme<T>>();
-    custom = input(false, { transform: booleanAttribute });
+    // input
 
-    select = output<Theme<T>>();
+    readonly theme = input.required<Theme<T>>();
+    readonly custom = input(false, { transform: booleanAttribute });
+
+    // output
+
+    readonly select = output<Theme<T>>();
+
+    // template
 
     styles: any;
 

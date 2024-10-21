@@ -14,6 +14,8 @@ import { Component, input } from '@angular/core';
     standalone: true,
 })
 export class LoadingComponent {
-    size = input<string>();
-    tickWidth = input<string>();
+    // input
+
+    readonly size = input<string>();
+    readonly tickWidth = input<string>();
 }

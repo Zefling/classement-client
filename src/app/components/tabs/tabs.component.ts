@@ -10,10 +10,14 @@ import { TabTitleComponent } from './tab-title.component';
     standalone: true,
 })
 export class TabsComponent implements AfterContentInit {
-    titles = contentChildren(TabTitleComponent);
-    content = contentChildren(TabContentComponent);
+    // contentChildren
 
-    tabChange = output<string>();
+    readonly titles = contentChildren(TabTitleComponent);
+    readonly content = contentChildren(TabContentComponent);
+
+    // output
+
+    readonly tabChange = output<string>();
 
     ngAfterContentInit(): void {
         if (this.titles()?.length) {

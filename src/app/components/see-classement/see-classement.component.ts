@@ -61,24 +61,30 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     ],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
+    // inject
+
     private readonly globalService = inject(GlobalService);
     private readonly dataService = inject<DataService<ItemSelection, { checkChoice: string }>>(DataService);
     private readonly cd = inject(ChangeDetectorRef);
     private readonly prefs = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);
 
-    groups = input.required<FormattedGroup[]>();
-    list = input.required<FileType[]>();
-    imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
-    id = input.required<string>();
+    // input
 
-    options = input.required<Options>();
+    readonly groups = input.required<FormattedGroup[]>();
+    readonly list = input.required<FileType[]>();
+    readonly imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
+    readonly id = input.required<string>();
 
-    link = input<string>();
+    readonly options = input.required<Options>();
 
-    withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
-    render = input<boolean, any>(false, { transform: booleanAttribute });
-    demo = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly link = input<string>();
+
+    readonly withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly render = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly demo = input<boolean, any>(false, { transform: booleanAttribute });
+
+    // template
 
     nameOpacity!: string;
 

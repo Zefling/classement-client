@@ -32,12 +32,16 @@ export class MessageService {
     imports: [InfoMessageComponent],
 })
 export class InfoMessagesComponent {
-    messages: Message[] = [];
+    // inject
+
+    private readonly messageService = inject(MessageService);
+
+    // template
+
+    readonly messages: Message[] = [];
 
     constructor() {
-        const messageService = inject(MessageService);
-
-        messageService.onAddMessage.subscribe((message: Message) => {
+        this.messageService.onAddMessage.subscribe((message: Message) => {
             this.messages.push(message);
         });
     }

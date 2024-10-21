@@ -9,12 +9,14 @@ import { Component, HostBinding, HostListener, booleanAttribute, input, output }
 export class DialogComponent {
     // input
 
-    closeButton = input(false, { transform: booleanAttribute });
-    closeBackdrop = input(false, { transform: booleanAttribute });
+    readonly closeButton = input(false, { transform: booleanAttribute });
+    readonly closeBackdrop = input(false, { transform: booleanAttribute });
 
     // output
 
-    onClose = output();
+    readonly onClose = output();
+
+    // host
 
     @HostBinding('class.open') _open = false;
 

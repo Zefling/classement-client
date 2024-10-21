@@ -9,5 +9,5 @@ import { OptionGroup } from '../../interface/interface';
     standalone: true,
 })
 export class ZoneAxisComponent {
-    groups = input<OptionGroup[]>();
+    readonly groups = input<OptionGroup[]>();
 }

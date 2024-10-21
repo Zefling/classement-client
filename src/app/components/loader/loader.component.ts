@@ -16,7 +16,8 @@ import { UploadProgress } from '../../services/api.classement.service';
     imports: [LoadingComponent, FileSizePipe],
 })
 export class LoaderComponent {
-    message = input<string>();
+    // input
 
-    progress = input<UploadProgress>();
+    readonly message = input<string>();
+    readonly progress = input<UploadProgress>();
 }

@@ -9,11 +9,19 @@ import { Message } from './info-messages.component';
     standalone: true,
 })
 export class InfoMessageComponent {
+    // inject
+
     private readonly element = inject(ElementRef);
 
-    message = input<Message>();
+    // input
 
-    destruct = output<Message>();
+    readonly message = input<Message>();
+
+    // output
+
+    readonly destruct = output<Message>();
+
+    /// host
 
     @HostBinding('class')
     get classes() {

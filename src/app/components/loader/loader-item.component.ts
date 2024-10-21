@@ -10,8 +10,12 @@ import { Component, input, numberAttribute } from '@angular/core';
     standalone: true,
 })
 export class LoaderItemComponent {
-    mode = input<'tile' | 'list'>('tile');
-    nombre = input(2, { transform: numberAttribute });
+    // input
+
+    readonly mode = input<'tile' | 'list'>('tile');
+    readonly nombre = input(2, { transform: numberAttribute });
+
+    // template
 
     get list() {
         return new Array(this.nombre);

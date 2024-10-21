@@ -65,7 +65,9 @@ export class PreferencesDialogComponent {
 
     // output
 
-    mainMenuReduce = output<boolean>();
+    readonly mainMenuReduce = output<boolean>();
+
+    // template
 
     languages = languages;
 

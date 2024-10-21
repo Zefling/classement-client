@@ -23,28 +23,32 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     imports: [LoadingComponent, FormsModule, TranslocoPipe],
 })
 export class ImportJsonComponent implements OnDestroy {
+    // inject
+
     private readonly translate = inject(TranslocoService);
     private readonly globalService = inject(GlobalService);
     private readonly messageService = inject(MessageService);
     private readonly dbService = inject(DBService);
     private readonly logger = inject(Logger);
 
-    jsonTmp?: importData[];
-
-    onLoad = false;
-
     // input
 
-    multi = input(false, { transform: booleanAttribute });
-    actions = input<'importOnly' | 'all'>('all');
+    readonly multi = input(false, { transform: booleanAttribute });
+    readonly actions = input<'importOnly' | 'all'>('all');
 
     // output
 
-    load = output<ImportJsonEvent>();
+    readonly load = output<ImportJsonEvent>();
 
     // viewChild
 
-    fileImport = viewChild.required<ElementRef<HTMLInputElement>>('fileImport');
+    readonly fileImport = viewChild.required<ElementRef<HTMLInputElement>>('fileImport');
+
+    // template
+
+    jsonTmp?: importData[];
+
+    onLoad = false;
 
     private _sub: Subscription[] = [];
 

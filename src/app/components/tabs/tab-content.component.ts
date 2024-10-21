@@ -10,6 +10,8 @@ import { Component, input, model } from '@angular/core';
     standalone: true,
 })
 export class TabContentComponent {
-    id = input<string>();
-    selected = model<boolean>(false);
+    // input
+
+    readonly id = input<string>();
+    readonly selected = model<boolean>(false);
 }
