@@ -10,6 +10,7 @@
     background: var(--info-message-background);
     padding: 10px;
     min-width: 100px;
+    cursor: pointer;
 
     &.close {
         animation: 0.7s linear both moveTop;

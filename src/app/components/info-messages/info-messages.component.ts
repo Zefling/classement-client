@@ -1,4 +1,4 @@
-import { Component, Injectable, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injectable, inject } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -29,12 +29,14 @@ export class MessageService {
     templateUrl: './info-messages.component.html',
     styleUrls: ['./info-messages.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [InfoMessageComponent],
 })
 export class InfoMessagesComponent {
     // inject
 
     private readonly messageService = inject(MessageService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // template
 
@@ -43,10 +45,12 @@ export class InfoMessagesComponent {
     constructor() {
         this.messageService.onAddMessage.subscribe((message: Message) => {
             this.messages.push(message);
+            this.cd.detectChanges();
         });
     }
 
     destruct(message: Message) {
         this.messages.splice(this.messages.indexOf(message), 1);
+        this.cd.detectChanges();
     }
 }

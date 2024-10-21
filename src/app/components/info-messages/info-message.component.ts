@@ -1,4 +1,13 @@
-import { Component, ElementRef, HostBinding, HostListener, inject, input, output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    HostListener,
+    inject,
+    input,
+    output,
+} from '@angular/core';
 
 import { Message } from './info-messages.component';
 
@@ -7,6 +16,7 @@ import { Message } from './info-messages.component';
     templateUrl: './info-message.component.html',
     styleUrls: ['./info-message.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoMessageComponent {
     // inject

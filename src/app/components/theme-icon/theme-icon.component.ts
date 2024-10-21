@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     HostListener,
     OnChanges,
@@ -21,6 +22,7 @@ import { color } from '../../tools/function';
     templateUrl: './theme-icon.component.html',
     styleUrls: ['./theme-icon.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe],
 })
 export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {

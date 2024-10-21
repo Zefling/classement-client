@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, inject, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, inject, output } from '@angular/core';
 
 import { PreferenceInterfaceTheme } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
@@ -8,6 +8,7 @@ import { GlobalService } from 'src/app/services/global.service';
     templateUrl: './light-dark.component.html',
     styleUrls: ['./light-dark.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LightDarkComponent {
     // inject

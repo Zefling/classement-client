@@ -1,4 +1,4 @@
-import { Component, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 
 @Component({
     selector: 'tab-content',
@@ -8,6 +8,7 @@ import { Component, input, model } from '@angular/core';
         '[attr.id]': 'id()',
     },
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabContentComponent {
     // input

@@ -80,6 +80,10 @@ export class ClassementThemesManagerComponent implements OnInit {
         }
     }
 
+    tabChange() {
+        this.selectedTheme = undefined;
+    }
+
     selectTheme(theme: Theme<string>) {
         this.selectedTheme = theme;
         this.saveVisibility = theme.hidden ? 'private' : 'public';

@@ -173,6 +173,7 @@ export type Theme<T = ThemesNames> = {
     options: Options;
     source?: 'default' | 'local' | 'user' | 'other';
     hidden?: boolean;
+    showMode?: boolean;
 };
 
 export type ThemeData = {

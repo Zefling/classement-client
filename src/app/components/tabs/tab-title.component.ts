@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, input, model } from '@angular/core';
 
 import { TabsComponent } from './tabs.component';
 
@@ -11,6 +11,7 @@ import { TabsComponent } from './tabs.component';
         '[class.selected]': 'selected()',
     },
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabTitleComponent {
     // inject

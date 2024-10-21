@@ -5,7 +5,7 @@
   @if (current?.options) {
     <theme-icon [theme]="current!"></theme-icon>
   }
-  <tabs>
+  <tabs (tabChange)="tabChange()">
     <!-- NEW -->
 
     <tab-title id="new"> {{ 'generator.theme.new' | transloco }}</tab-title>

@@ -1,4 +1,4 @@
-import { Component, HostListener, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, input } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -35,6 +35,7 @@ export type ContextMenuMode = 'default' | 'bubble';
         '[class.default]': 'mode() === "default"',
         '[class.bubble]': 'mode() === "bubble"',
     },
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextMenuComponent<T> {
     // input

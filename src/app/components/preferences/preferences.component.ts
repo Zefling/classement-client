@@ -1,5 +1,5 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, inject, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, output, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -36,6 +36,7 @@ const languages = [
     templateUrl: './preferences.component.html',
     styleUrls: ['./preferences.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DialogComponent,
         FormsModule,
@@ -57,6 +58,7 @@ export class PreferencesDialogComponent {
     private readonly logger = inject(Logger);
     private readonly translate = inject(TranslocoService);
     private readonly globalService = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // viewChild
 
@@ -93,6 +95,7 @@ export class PreferencesDialogComponent {
 
     open() {
         this.preferences().open();
+        this.cd.detectChanges();
     }
 
     drop(event: CdkDragDrop<string[]>) {

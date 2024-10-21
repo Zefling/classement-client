@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, booleanAttribute, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, booleanAttribute, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -15,6 +15,7 @@ import { Classement } from 'src/app/interface/interface';
         '[class.list]': 'isHomeList()',
     },
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, DatePipe, TranslocoPipe],
 })
 export class NavigateResultComponent {

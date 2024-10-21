@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, contentChildren, output } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, contentChildren, output } from '@angular/core';
 
 import { TabContentComponent } from './tab-content.component';
 import { TabTitleComponent } from './tab-title.component';
@@ -8,6 +8,7 @@ import { TabTitleComponent } from './tab-title.component';
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss'],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterContentInit {
     // contentChildren
