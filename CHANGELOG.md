@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 3.0.0 (2024-10-XX)
+### 3.0.0 (2024-10-23)
 
 #### Standalone web app
 
