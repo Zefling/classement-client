@@ -79,7 +79,7 @@ img {
         background-repeat: repeat;
     }
 
-    * {
+    ::ng-deep * {
         font-family: var(--over-font), 'Roboto';
     }
 }
@@ -425,7 +425,7 @@ img {
         max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
     }
 
-    * {
+    ::ng-deep * {
         font-family: var(--over-font), 'Roboto';
     }
 
