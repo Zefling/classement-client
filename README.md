@@ -44,20 +44,32 @@ Current installation in this [website](https://classement.org/).
         -   ✅ Iceberg
         -   ✅ Axis
         -   ✅ Bingo
+            -   ✅ Bingo selection
+                -   ✅ Symbol
+                -   ✅ Emoji (with transformation)
     -   ✅ Advanced customization of tiles, lines, background, etc.
         -   ✅ Background image
         -   ✅ Direction
+        -   ✅ Color
+        -   ✅ Font
     -   ✅ Image tile
         -   ✅ Reduce size
         -   ✅ Change size
         -   ✅ Resize
-    -   ✅ Backup in browser or in Json
+    -   ✅ Ranking in browser or in Json
+        -   ✅ Browser save
         -   ✅ Import (one or more)
-        -   ✅ Export all
+        -   ✅ Export (one or all)
+        -   ✅ Clone
+    -   ✅ Theme in browser or in Json
+        -   ✅ Browser save
+        -   ✅ Import
+        -   ✅ Export
     -   ✅ Image export: PNG, JPG or WebP (except for Safari)
-    -   ✅ In-memory rankings clone
     -   ✅ Tags
     -   ✅ Preferences
+        -   ✅ Languages
+        -   ✅ Emoji
     -   ✅ External API
         -   ✅ IMDB
         -   ⬜ MAL
@@ -79,8 +91,8 @@ Current installation in this [website](https://classement.org/).
         -   ✅ Change password
         -   ✅ Change avatar
         -   ✅ Remove user
-    -   ✅ rankings
-        -   ✅ Save rankings on server
+    -   ✅ Rankings
+        -   ✅ Save on server
             -   ✅ Public
             -   ✅ Private
             -   ✅ Private with password
@@ -88,9 +100,11 @@ Current installation in this [website](https://classement.org/).
         -   ✅ See rankings form template
         -   ✅ Ranking view
             -   ✅ Ranking history
-            -   ✅ Bingo selection
-                -   ✅ Symbol
-                -   ✅ Emoji (with transformation)
+    -   ✅ Theme
+        -   ✅ Save on server
+            -   ✅ Public
+            -   ✅ Private
+        -   ✅ Search in public themes
     -   ✅ Admin
         -   ✅ Search users or rankings
         -   ✅ Edit profil & change roles

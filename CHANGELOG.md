@@ -1,5 +1,51 @@
 # Changelog - Standalone web app & API
 
+### 3.0.0 (2024-10-XX)
+
+#### Standalone web app
+
+-   Options & themes
+    -   Move advanced options without a dialog #83
+        -   Add preview with advanced options #86
+    -   Add JSON import/export of options (theme) #84
+    -   Add browser backup with theme manager #85
+        -   Add
+        -   Delete
+        -   Replace
+    -   Add font selection #81
+-   Add tabs in the themes dialog #85
+    -   generic themes
+    -   browser themes
+    -   search for themes
+-   Preferences
+    -   group emoji by ton, hear, etc. #80
+-   Improve dialog #82
+-   Fix bugs
+    -   Fix and improve undo-redo with groups and themes #87
+    -   Fix markdown with strong
+    -   Fix markdown render
+    -   Fix tile text color in some cases
+    -   Fix background in iceberg mode
+    -   Fix font & text in tiles
+    -   Bingo: fix text-only tile
+    -   Fix tile calculation for iceberg & axis
+    -   Fix background image initialization
+
+#### With API activated only
+
+-   Options & themes
+    -   Add account backup with theme manager #85
+        -   Add: private or public themes
+        -   Delete
+        -   Replace
+-   Add tabs in the themes dialog #85
+    -   your account themes
+    -   other users' public themes
+    -   search for themes
+-   Required: API `1.20` with schema validation
+
+---
+
 ### 2.5.2 (2024-09-07)
 
 #### Standalone web app
