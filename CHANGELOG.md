@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 3.0.1 (2024-10-24)
+
+#### Standalone web app
+
+-   Fix fonts with markdown
+-   Improve emoji list
+-   Improve advanced options on mobile
+-   Fix blocks in 3rd party licenses view
+
 ### 3.0.0 (2024-10-23)
 
 #### Standalone web app
