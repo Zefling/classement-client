@@ -176,8 +176,8 @@ export const emojis = Object.entries(emojiList)
     }));
 
 const element = new RegExp(
-    // tone                                           |sex              | hair                                  | emoji
-    '\u{1f3fb}|\u{1f3fc}|\u{1f3fd}|\u{1f3fe}|\u{1f3ff}|\u{2640}|\u{2642}|\u{1f9b0}|\u{1f9b1}|\u{1f9b3}|\u{1f9b3}|\u{fe0f}',
+    // tone                                              | emoji                | glu      |sex                | glu      | hair                                     | emoji
+    '(\u{1f3fb}|\u{1f3fc}|\u{1f3fd}|\u{1f3fe}|\u{1f3ff})?((\u{fe0f}.+\u{fe0f}?$)|(\u{200d})?(\u{2640}|\u{2642})?(\u{200d})?(\u{1f9b0}|\u{1f9b1}|\u{1f9b2}|\u{1f9b3})?(\u{fe0f}$)?)',
     'g',
 );
 const testEmoji = new RegExp('\u{fe0f}.*', 'g');
@@ -188,9 +188,15 @@ emojis
         g.options.forEach(o => {
             const first = o[0];
             const val = first?.replace(element, '');
+
             if (val !== first?.replace(testEmoji, '')) {
-                g.options.find(e => e[0]?.replace(testEmoji, '') === val)?.push(first);
-                delete o[0];
+                const e = g.options.find(e => e[0]?.replace(element, '') === val);
+                if (e) {
+                    if (e[0] !== first) {
+                        e.push(first);
+                        delete o[0];
+                    }
+                }
             }
         });
         g.options = g.options.filter(o => o[0]);
