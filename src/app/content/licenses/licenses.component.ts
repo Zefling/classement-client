@@ -30,7 +30,11 @@ export class LicensesComponent {
                 this.data = this.global.licenses = data
                     .replace(/Package: (.*)\n/g, '<h3>$1</h3>')
                     .replace(/License: "(.*)"\n/g, '<div class="license">$1</div><p>')
-                    .replace(/--*-/g, '</p></div><div class="block">')
+                    .replace(
+                        /--------------------------------------------------------------------------------/g,
+                        '</p></div><div class="block">',
+                    )
+                    .replace(/--*-/g, '<hr />')
                     .replace(/<p>\s*<\/p>/g, '')
                     .replace(/^<\/p><\/div>|<div class="block">\s*$/g, '');
             });
