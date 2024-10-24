@@ -443,6 +443,8 @@ button:disabled {
 
 [type='color'] {
     height: 30px;
+    min-width: 60px;
+    max-width: 200px;
 }
 
 input:not(:focus-visible):invalid {

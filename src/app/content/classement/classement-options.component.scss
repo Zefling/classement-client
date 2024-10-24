@@ -753,17 +753,28 @@ span.item-height {
     overflow: auto;
 }
 
+see-classement {
+    max-width: 100%;
+}
+
 @media screen and (max-width: 1200px) {
+    h4 {
+        margin: 10px;
+        text-align: center;
+        padding: 5px;
+    }
+
     .input-button {
         display: grid;
-        grid-template: 'a b c d' / 1fr 1fr auto;
+        grid-template: 'a a a' 'b c d' / auto auto auto;
     }
 
     .global-color {
         grid-template: 'a b d' / 1fr auto 1fr;
     }
 
-    .options {
+    .options,
+    .advanced-options {
         display: block;
     }
 

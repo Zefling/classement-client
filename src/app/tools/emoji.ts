@@ -191,11 +191,9 @@ emojis
 
             if (val !== first?.replace(testEmoji, '')) {
                 const e = g.options.find(e => e[0]?.replace(element, '') === val);
-                if (e) {
-                    if (e[0] !== first) {
-                        e.push(first);
-                        delete o[0];
-                    }
+                if (e && e[0] !== first) {
+                    e.push(first);
+                    delete o[0];
                 }
             }
         });
