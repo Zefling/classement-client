@@ -72,7 +72,7 @@ export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
                 '--o-image-url':
                     options.imageBackgroundImage !== 'none' && options.imageBackgroundImage !== 'custom'
                         ? 'url(./assets/themes/' + imageInfos[options.imageBackgroundImage]!.normal + ')'
-                        : options.imageBackgroundImage !== 'custom'
+                        : options.imageBackgroundImage === 'custom'
                           ? 'url(' + options.imageBackgroundCustom + ')'
                           : null,
                 '--o-name-width': options.nameWidth + 'px',
