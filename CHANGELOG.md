@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 3.0.2 (2024-10-25)
+
+#### Standalone web app
+
+-   Fix the background of the tiles of the themes
+-   Fix tile alignment & margin in navigation
+-   Fix tile names and group titles in preview
+
 ### 3.0.1 (2024-10-24)
 
 #### Standalone web app
