@@ -101,13 +101,13 @@
                               />
                             </div>
                           }
+                          @if (withAnnotation() && item.annotation) {
+                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                          }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
                               <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                             </div>
-                          }
-                          @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
                           }
                         </div>
                       </div>
@@ -204,13 +204,13 @@
                               ></div>
                             }
                           }
+                          @if (withAnnotation() && item.annotation) {
+                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                          }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
                               <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                             </div>
-                          }
-                          @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
                           }
                         </div>
                       </div>
