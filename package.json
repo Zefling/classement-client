@@ -22,6 +22,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build && npm run addlicenses",
+    "build:v": "ng build --verbose && npm run addlicenses",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "npx prettier --write .",

@@ -2,6 +2,7 @@
     display: block;
     position: relative;
     top: 10px;
+    cursor: pointer;
     box-sizing: border-box;
     box-shadow: 0 0 10px var(--info-message-box-shadow-color);
     border: 1px solid var(--info-message-border-color);
@@ -10,7 +11,6 @@
     background: var(--info-message-background);
     padding: 10px;
     min-width: 100px;
-    cursor: pointer;
 
     &.close {
         animation: 0.7s linear both moveTop;

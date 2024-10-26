@@ -70,36 +70,36 @@
 
 .icon-private {
     position: relative;
-    height: 0;
     top: -22px;
+    height: 0;
     text-align: right;
 
     &::before {
-        background: var(--box-shadow);
-        color: var(--content-box-text);
-        height: 20px;
         display: inline-block;
-        width: 20px;
         align-content: center;
-        text-align: center;
         border-radius: 50px;
+        background: var(--box-shadow);
+        width: 20px;
+        height: 20px;
+        color: var(--content-box-text);
+        text-align: center;
     }
 }
 
 .mode {
-    height: 0;
     position: relative;
+    height: 0;
 
     &:before {
         position: absolute;
         top: -30px;
         right: 20px;
-        text-align: right;
         border: 1px solid;
         border-radius: 15px;
         background: var(--menu-cartouche-background);
         padding: 1px 8px;
         content: attr(data-mode);
         font-size: 12px;
+        text-align: right;
     }
 }

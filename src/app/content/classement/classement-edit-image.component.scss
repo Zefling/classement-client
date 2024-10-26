@@ -94,12 +94,12 @@
 
     .color {
         cursor: pointer;
+        box-sizing: border-box;
         outline: 1px solid;
         border-radius: 50%;
         background: var(--color, #fff);
         width: 30px;
         height: 30px;
-        box-sizing: border-box;
 
         &:hover,
         &:focus {
