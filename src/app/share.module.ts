@@ -6,9 +6,8 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 import { Select2Module } from 'ng-select2-component';
 
-import { ComponentsModule } from './components/components.module';
-import { DirectiveModule } from './directives/directive.module';
-import { PipesModule } from './pipes/pipes.module';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { PreferencesDialogComponent } from './components/preferences/preferences.component';
 
 @NgModule({
     exports: [
@@ -19,9 +18,6 @@ import { PipesModule } from './pipes/pipes.module';
         ReactiveFormsModule,
         Select2Module,
         // internal
-        DirectiveModule,
-        ComponentsModule,
-        PipesModule,
     ],
     imports: [
         // external
@@ -31,9 +27,8 @@ import { PipesModule } from './pipes/pipes.module';
         ReactiveFormsModule,
         Select2Module,
         // internal
-        DirectiveModule,
-        ComponentsModule,
-        PipesModule,
+        DialogComponent,
+        PreferencesDialogComponent,
     ],
 })
 export class SharedModule {}
