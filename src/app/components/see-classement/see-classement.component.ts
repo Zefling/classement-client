@@ -224,7 +224,6 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
                     const value = this.bingoValue(data.groupIndex, data.index);
                     value.content = emoji;
                     value.visible = true;
-                    value.transform = defaultTransform;
                     this.bingoSetCheck(data.groupIndex, data.index, value);
                 },
             })),
