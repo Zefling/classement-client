@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 3.0.3 (2024-10-27)
+
+#### Standalone web app
+
+-   Perf: simplification of Angular modules
+-   Bingo: don't reset transformation when changing emoji
+
 ### 3.0.2 (2024-10-25)
 
 #### Standalone web app
