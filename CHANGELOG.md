@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 3.0.4 (2024-10-31)
+
+#### With API activated only
+
+-   Memory: fix undo/redo on server load
+-   Fix groups avec server save
+-   Update packages : Angular, Transloco, Select2, Cropper, Markdown
+
 ### 3.0.3 (2024-10-27)
 
 #### Standalone web app
@@ -66,7 +74,7 @@
     -   your account themes
     -   other users' public themes
     -   search for themes
--   Required: API `1.20` with schema validation
+-   Required: API `1.20.1` with schema validation
 
 ---
 
