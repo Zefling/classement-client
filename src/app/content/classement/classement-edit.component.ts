@@ -465,6 +465,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.memory.reset();
             this.resetCache();
             this.helpInit();
+            this.memory.addUndo(this);
 
             if (params['mode'] === 'bingo') {
                 this.groupsControl(this.groups, this.options);
@@ -589,6 +590,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.memory.reset();
         this.resetCache();
         this.helpInit();
+        this.memory.addUndo(this);
     }
 
     loadDerivativeClassement(classement: Classement) {
@@ -1175,6 +1177,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     updateAfterServerSave(action: { type: 'save' | 'remove'; classement: Classement }) {
+        this.memory.inChange = true;
         const classement = action.classement;
         let reset = false;
 
@@ -1215,6 +1218,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.memory.reset();
             this.resetCache();
         }
+        setTimeout(() => {
+            this.memory.inChange = false;
+        });
     }
 
     @HostListener('window:keydown.control.z', ['$event'])
