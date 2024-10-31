@@ -63,6 +63,8 @@ export class APIUserService extends APICommon {
             this.user.classements.forEach(d => {
                 if (typeof d.dateCreate === 'string') {
                     d.dateCreate = new Date(d.dateCreate);
+                } else if (d.dateChange && typeof d.dateChange === 'string') {
+                    d.dateChange = new Date(d.dateChange);
                 }
             });
             this.user.classements.sort((e, f) => new Date(f.dateCreate).getTime() - (e.dateCreate as Date).getTime());

@@ -118,10 +118,8 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['classement']) {
-            if (this.classement()?.hidden !== undefined) {
-                this.hidden = this.classement()!.hidden || false;
-            }
+        if (changes['classement'] && this.classement()?.hidden !== undefined) {
+            this.hidden = this.classement()!.hidden || false;
         }
     }
 
