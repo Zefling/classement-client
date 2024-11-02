@@ -435,6 +435,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                         break;
                     case 'default':
                     case 'teams':
+                    case 'column':
                         themes = themesLists;
                         break;
                 }
