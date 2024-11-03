@@ -264,7 +264,7 @@
       "default": "Tierlist",
       "teams": "Équipes",
       "default.teams": "Tierlist & Équipes",
-      "column": "Colonnes",
+      "columns": "Colonnes",
       "iceberg": "Iceberg",
       "axis": "Axes",
       "bingo": "Bingo"
@@ -556,7 +556,7 @@
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
         "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
-        "column": "Déplacer librement les tuiles dans chaque groupes verticaux.",
+        "columns": "Déplacer librement les tuiles dans chaque groupes verticaux.",
         "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
         "axis": "Déplacer librement dans l'espace défini suivant des axes.",
         "bingo": "Repartissez des tuiles dans une grille."
@@ -681,7 +681,7 @@
       "teams": {
         "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par groupe."
       },
-      "column": {
+      "columns": {
         "text": "Déplacer les tuiles par glissé-déposé dans les différentes colonnes."
       },
       "iceberg": {

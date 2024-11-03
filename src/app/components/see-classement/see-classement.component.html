@@ -129,10 +129,10 @@
           </tfoot>
         }
       </table>
-    } @else if (opts.mode === 'column') {
+    } @else if (opts.mode === 'columns') {
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
-        class="html2canvas-element mode-column"
+        class="html2canvas-element mode-columns"
         [attr.dir]="opts.direction"
         [class.line-fusion]="opts.borderSpacing < 0"
       >

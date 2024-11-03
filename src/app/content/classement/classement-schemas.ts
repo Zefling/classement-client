@@ -8,7 +8,7 @@ export const schemaTheme: Schema = {
         options: {
             type: 'object',
             properties: {
-                mode: { enum: ['default', 'teams', 'iceberg', 'axis', 'bingo'] },
+                mode: { enum: ['default', 'teams', 'columns', 'iceberg', 'axis', 'bingo'] },
                 groups: {
                     type: 'array',
                     items: {

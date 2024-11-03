@@ -284,7 +284,7 @@ export type ThemesNames =
     | 'custom';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
-export type ModeNames = 'default' | 'teams' | 'column' | 'iceberg' | 'axis' | 'bingo';
+export type ModeNames = 'default' | 'teams' | 'columns' | 'iceberg' | 'axis' | 'bingo';
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';
