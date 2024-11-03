@@ -73,7 +73,7 @@
           <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
         </label>
       }
-      @if (zoneMode.includes(opts.mode)) {
+      @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
           <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
@@ -217,7 +217,7 @@
           } @else {
             <span id="option-item-width-auto-info" class="item-width input">auto</span>
           }
-          @if (opts.itemWidthAuto) {
+          @if (opts.itemWidthAuto && opts.mode !== 'columns') {
             <input
               id="option-item-max-width"
               type="number"
@@ -237,7 +237,7 @@
               <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
             </label>
           }
-          @if (zoneMode.includes(opts.mode)) {
+          @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
             <label class="toggle-switch">
               <input id="option-item-height-auto" type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
               <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
@@ -811,7 +811,7 @@
 
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
-      <see-classement id="test" [options]="opts" [groups]="groupExample" [list]="[]" render demo></see-classement>
+      <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo></see-classement>
     </div>
   }
 </dialog-cmp>

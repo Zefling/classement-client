@@ -346,6 +346,7 @@
             class="table-classement"
             [attr.dir]="options.direction"
             [class.line-fusion]="options.borderSpacing < 0"
+            [class.width-max]="!options.itemWidthAuto"
           >
             <tbody>
               <tr [class.option-reduce]="options.itemHeight < 100">

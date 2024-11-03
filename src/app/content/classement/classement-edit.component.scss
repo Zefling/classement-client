@@ -755,11 +755,18 @@ span.group-options {
     }
 
     .table-classement {
+        margin: auto;
+        min-width: auto;
+
         tbody,
         tr,
         td,
         .drop-list {
             height: 100%;
+        }
+
+        &.width-max .content-box {
+            width: auto;
         }
     }
 }

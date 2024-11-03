@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 import {
     Component,
     OnChanges,
@@ -22,7 +22,16 @@ import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-c
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
-import { Category, FileHandle, ImagesNames, ModeNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
+import {
+    Category,
+    FileHandle,
+    FormattedGroup,
+    ImagesNames,
+    ModeNames,
+    Options,
+    Theme,
+    ThemesNames,
+} from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
 import { MemoryService } from 'src/app/services/memory.service';
@@ -50,7 +59,7 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
-import { groupExample } from './classement-options';
+import { groupExample, groupExampleColumns } from './classement-options';
 import { schemaTheme } from './classement-schemas';
 import { ClassementThemesManagerComponent } from './classement-themes-manager.component';
 import { ClassementThemesComponent } from './classement-themes.component';
@@ -80,6 +89,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         TranslocoPipe,
         ThemeIconComponent,
         ClassementThemesManagerComponent,
+        JsonPipe,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -109,7 +119,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     // template
 
     api = environment.api?.active || false;
-    groupExample = groupExample;
+    groupExample = signal<FormattedGroup[]>(groupExample);
 
     categoriesList: Category[] = [];
 
@@ -167,6 +177,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         const options = this.options();
         if (options) {
             const mode = this._modeTemp ?? options.mode ?? 'default';
+            this.groupExample.set(mode !== 'columns' ? groupExample : groupExampleColumns);
 
             switch (mode) {
                 case 'iceberg':
@@ -314,6 +325,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     advanceOptions() {
         this.updateCurrentTheme();
         this.dialogAdvancedOptions().open();
+        this.updateMode();
     }
 
     updateTags(tags: string[]) {
