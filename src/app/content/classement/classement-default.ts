@@ -53,6 +53,7 @@ export const defaultOptions: Options = {
     axisLineOpacity: 100,
     axisArrowWidth: 15,
     nameWidth: 150,
+    nameMinHeight: 90,
     nameFontSize: 120,
     nameBackgroundOpacity: 100,
     nameMarkdown: false,

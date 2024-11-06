@@ -232,6 +232,7 @@ export class GlobalService {
         r(body, '--over-drop-border-spacing', (o.borderSpacing ?? defaultOptions.borderSpacing) + 'px', dash);
         // name group
         r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
+        r(body, '--over-name-min-height', (o.nameMinHeight ?? defaultOptions.nameMinHeight) + 'px', dash);
         r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
         // image background
         r(body, '--over-image-background', o.imageBackgroundColor, dash);

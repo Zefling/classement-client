@@ -505,7 +505,7 @@
           <div class="name-width input-value">
             <div class="number-input">
               <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
-              <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
+              <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" min="0" max="300" />
               <span data-type="px"></span>
             </div>
           </div>
@@ -518,6 +518,15 @@
               </select>
             </div>
           </div>
+          @if (opts.mode === 'columns') {
+            <div class="name-min-height input-value">
+              <div class="number-input">
+                <label for="option-name-min-height">{{ 'generator.options.name.min.height' | transloco }}</label>
+                <input id="option-name-min-height" type="number" [(ngModel)]="opts.nameMinHeight" min="0" max="300" />
+                <span data-type="px"></span>
+              </div>
+            </div>
+          }
           <div class="name-markdown input-value">
             <label class="toggle-switch">
               <input type="checkbox" [(ngModel)]="opts.nameMarkdown" />

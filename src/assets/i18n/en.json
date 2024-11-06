@@ -365,6 +365,7 @@
       },
       "name": {
         "width": "Group name width:",
+        "min.height": "Group name minimum height:",
         "font.size": "Group name text size:",
         "opacity": "Group name background opacity:"
       },

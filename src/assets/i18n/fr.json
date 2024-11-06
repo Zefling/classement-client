@@ -365,6 +365,7 @@
       },
       "name": {
         "width": "Largeur des noms de groupe :",
+        "min.height": "Hauteur minimale des noms du groupe :",
         "font.size": "Taille du texte des noms de groupe :",
         "opacity": "Opacité du fond des noms de groupe :"
       },

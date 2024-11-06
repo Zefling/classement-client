@@ -142,6 +142,7 @@ export type ThemeOptions = {
     axisLineOpacity: number;
     axisArrowWidth: number;
     nameWidth: number;
+    nameMinHeight: number;
     nameFontSize: number;
     nameBackgroundOpacity: number;
     nameMarkdown: boolean;
