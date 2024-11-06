@@ -14,7 +14,7 @@
         position: relative;
         flex: 1;
         padding: var(--main-padding);
-        max-width: calc(100% - 10px);
+        max-width: calc(100% - (var(--main-padding-left) + var(--main-padding-right)));
     }
 }
 
@@ -732,7 +732,12 @@ span.group-options {
 
 .mode-columns {
     .names > div {
-        min-height: 90px;
+        min-height: var(--over-name-min-height, 90px);
+    }
+
+    .table-columns {
+        overflow-x: auto;
+        scrollbar-gutter: stable;
     }
 
     td.elements {

@@ -1,5 +1,8 @@
 :host {
-    --main-padding: 0 15px 30px 30px;
+    --main-padding-left: 30px;
+    --main-padding-right: 15px;
+    --main-padding: 0 var(--main-padding-right) 30px var(--main-padding-left);
+
     display: grid;
     grid-template:
         'header header header' 50px
