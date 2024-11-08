@@ -446,7 +446,7 @@ img {
 
     .names > * {
         align-content: center;
-        min-height: 90px;
+        min-height: var(--over-name-min-height, 90px);
     }
 
     tbody,
@@ -458,6 +458,8 @@ img {
     tr:first-child td {
         width: var(--over-name-width, 150px);
         min-width: var(--over-name-width, 150px);
+        height: var(--over-name-min-height, 90px);
+        min-height: var(--over-name-min-height, 90px);
     }
 
     .drop-list > div {

@@ -87,8 +87,7 @@ export const groupExample: FormattedGroup[] = [
 export const groupExampleColumns: FormattedGroup[] = [
     {
         name: `Test
-**Markdown**
-テスト`,
+**Markdown**`,
         bgColor: '#dc8add',
         txtColor: '#000000',
         list: [
@@ -108,7 +107,8 @@ export const groupExampleColumns: FormattedGroup[] = [
         ],
     },
     {
-        name: 'A',
+        name: `A
+テスト`,
         bgColor: '#f66151',
         txtColor: '#000000',
         list: [
