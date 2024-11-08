@@ -83,3 +83,122 @@ export const groupExample: FormattedGroup[] = [
         ],
     },
 ];
+
+export const groupExampleColumns: FormattedGroup[] = [
+    {
+        name: `Test
+**Markdown**`,
+        bgColor: '#dc8add',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-1',
+                url: './assets/images/tile_image_example1.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 0,
+                y: 0,
+            },
+        ],
+    },
+    {
+        name: `A
+テスト`,
+        bgColor: '#f66151',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-2',
+                url: './assets/images/tile_image_example2.webp',
+                name: 'tile_image_example',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 200,
+                y: 0,
+            },
+        ],
+    },
+    {
+        name: 'B',
+        bgColor: '#ffbe6f',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-3',
+                url: './assets/images/tile_image_example3.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 400,
+                y: 0,
+            },
+        ],
+    },
+    {
+        name: 'C',
+        bgColor: '#f9f06b',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-4',
+                url: './assets/images/tile_image_example4.webp',
+                name: 'tile_image_example4',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 600,
+                y: 0,
+            },
+        ],
+    },
+    {
+        name: 'D',
+        bgColor: '#8ff0a4',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'text-1',
+                name: 'tile_text_example1',
+                title: 'Œuf de phénix',
+                annotation: 'Test',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 800,
+                y: 10,
+            },
+        ],
+    },
+    {
+        name: 'E',
+        bgColor: '#99c1f1',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'text-2',
+                name: 'tile_text_example2',
+                title: 'とり 鳥 トリ',
+                annotation: '',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 870,
+                y: 10,
+            },
+        ],
+    },
+];

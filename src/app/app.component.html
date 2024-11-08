@@ -247,6 +247,10 @@
       <span class="icon-mode-teams"></span>
       <span>{{ 'mode.name.teams' | transloco }}</span>
     </li>
+    <li (click)="beginNew('columns')" (mouseenter)="_modeTemp = 'columns'" (mouseleave)="_modeTemp = ''" tabIndex="0">
+      <span class="icon-mode-columns"></span>
+      <span>{{ 'mode.name.columns' | transloco }}</span>
+    </li>
     <li (click)="beginNew('iceberg')" (mouseenter)="_modeTemp = 'iceberg'" (mouseleave)="_modeTemp = ''" tabIndex="0">
       <span class="icon-mode-iceberg"></span>
       <span>{{ 'mode.name.iceberg' | transloco }}</span>

@@ -73,7 +73,7 @@
           <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
         </label>
       }
-      @if (zoneMode.includes(opts.mode)) {
+      @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
         <label class="toggle-switch">
           <input type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
           <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
@@ -217,7 +217,7 @@
           } @else {
             <span id="option-item-width-auto-info" class="item-width input">auto</span>
           }
-          @if (opts.itemWidthAuto) {
+          @if (opts.itemWidthAuto && opts.mode !== 'columns') {
             <input
               id="option-item-max-width"
               type="number"
@@ -237,7 +237,7 @@
               <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
             </label>
           }
-          @if (zoneMode.includes(opts.mode)) {
+          @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
             <label class="toggle-switch">
               <input id="option-item-height-auto" type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
               <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
@@ -404,17 +404,19 @@
       }
       <!-- ###############################  line options ###############################  -->
       @if (!zoneMode.includes(opts.mode)) {
-        <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
+        @let direction = opts.mode === 'columns' ? 'column' : 'line';
+
+        <h4 class="title-line">{{ 'generator.options.' + direction + '.title' | transloco }}</h4>
         <div class="colors-line-back input-button">
           <div class="color">
             <label for="option-line-background-color">{{
-              'generator.options.line.background.color' | transloco
+              'generator.options.' + direction + '.background.color' | transloco
             }}</label>
             <input id="option-line-background-color" type="color" [(ngModel)]="opts.lineBackgroundColor" />
           </div>
           <div class="opacity">
             <label for="option-line-background-opacity">{{
-              'generator.options.line.background.opacity' | transloco
+              'generator.options.' + direction + '.background.opacity' | transloco
             }}</label>
             <input
               for="option-line-background-opacity"
@@ -435,11 +437,15 @@
         </div>
         <div class="colors-line-border input-button">
           <div class="color">
-            <label for="option-line-border-color">{{ 'generator.options.line.border.color' | transloco }}</label>
+            <label for="option-line-border-color">{{
+              'generator.options.' + direction + '.border.color' | transloco
+            }}</label>
             <input id="option-line-border-color" type="color" [(ngModel)]="opts.lineBorderColor" />
           </div>
           <div class="opacity">
-            <label for="option-line-border-opacity">{{ 'generator.options.line.border.opacity' | transloco }}</label>
+            <label for="option-line-border-opacity">{{
+              'generator.options.' + direction + '.border.opacity' | transloco
+            }}</label>
             <input
               id="option-line-border-opacity"
               type="range"
@@ -505,7 +511,7 @@
           <div class="name-width input-value">
             <div class="number-input">
               <label for="option-name-width">{{ 'generator.options.name.width' | transloco }}</label>
-              <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" />
+              <input id="option-name-width" type="number" [(ngModel)]="opts.nameWidth" min="50" max="300" />
               <span data-type="px"></span>
             </div>
           </div>
@@ -518,6 +524,15 @@
               </select>
             </div>
           </div>
+          @if (opts.mode === 'columns') {
+            <div class="name-min-height input-value">
+              <div class="number-input">
+                <label for="option-name-min-height">{{ 'generator.options.name.min.height' | transloco }}</label>
+                <input id="option-name-min-height" type="number" [(ngModel)]="opts.nameMinHeight" min="0" max="300" />
+                <span data-type="px"></span>
+              </div>
+            </div>
+          }
           <div class="name-markdown input-value">
             <label class="toggle-switch">
               <input type="checkbox" [(ngModel)]="opts.nameMarkdown" />
@@ -715,7 +730,7 @@
           <div class="color-render"></div>
         }
       </div>
-      @if (opts.mode !== 'bingo') {
+      @if (opts.mode !== 'bingo' && opts.mode !== 'columns') {
         <div class="global-width input-value">
           <div class="number-input">
             <label for="option-global-width">{{ 'generator.options.global.width' | transloco }}</label>
@@ -729,6 +744,14 @@
           <div class="number-input">
             <label for="option-global-height">{{ 'generator.options.global.height' | transloco }}</label>
             <input id="option-global-height" type="number" [(ngModel)]="opts.imageHeight" min="100" max="4000" />
+            <span data-type="px"></span>
+          </div>
+        </div>
+      } @else if (opts.mode === 'columns') {
+        <div class="global-width input-value">
+          <div class="number-input">
+            <label for="option-column-min-height">{{ 'generator.options.column.min.height' | transloco }}</label>
+            <input id="option-column-min-height" type="number" [(ngModel)]="opts.columnMinHeight" min="0" max="4000" />
             <span data-type="px"></span>
           </div>
         </div>
@@ -811,7 +834,7 @@
 
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
-      <see-classement id="test" [options]="opts" [groups]="groupExample" [list]="[]" render demo></see-classement>
+      <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo></see-classement>
     </div>
   }
 </dialog-cmp>

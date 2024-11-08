@@ -435,6 +435,45 @@ img {
     }
 }
 
+// columns -----------------------------------------------------------
+
+.mode-columns {
+    min-width: 0;
+
+    .render:has(> &) {
+        width: auto;
+    }
+
+    .names > * {
+        align-content: center;
+        min-height: var(--over-name-min-height, 90px);
+    }
+
+    tbody,
+    tr,
+    td {
+        height: 100%;
+    }
+
+    tr:first-child td {
+        width: var(--over-name-width, 150px);
+        min-width: var(--over-name-width, 150px);
+        height: var(--over-name-min-height, 90px);
+        min-height: var(--over-name-min-height, 90px);
+    }
+
+    .drop-list > div {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: var(--over-image-min-height-column, 250px);
+    }
+    .elements {
+        width: calc(100% / var(--col));
+    }
+}
+
 // bingo -----------------------------------------------------------
 
 div:has(> .mode-bingo) {

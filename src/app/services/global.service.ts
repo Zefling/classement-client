@@ -232,12 +232,20 @@ export class GlobalService {
         r(body, '--over-drop-border-spacing', (o.borderSpacing ?? defaultOptions.borderSpacing) + 'px', dash);
         // name group
         r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
+        r(body, '--over-name-min-height', (o.nameMinHeight ?? defaultOptions.nameMinHeight) + 'px', dash);
         r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
         // image background
         r(body, '--over-image-background', o.imageBackgroundColor, dash);
         r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
         if (o.mode === 'axis' || o.mode === 'iceberg') {
             r(body, '--over-image-height', (o.imageHeight ?? defaultOptions.imageHeight) + 'px', dash);
+        } else if (o.mode === 'columns') {
+            r(
+                body,
+                '--over-image-min-height-column',
+                (o.columnMinHeight ?? defaultOptions.columnMinHeight) + 'px',
+                dash,
+            );
         }
         r(
             body,

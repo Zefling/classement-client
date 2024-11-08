@@ -8,7 +8,7 @@ export const schemaTheme: Schema = {
         options: {
             type: 'object',
             properties: {
-                mode: { enum: ['default', 'teams', 'iceberg', 'axis', 'bingo'] },
+                mode: { enum: ['default', 'teams', 'columns', 'iceberg', 'axis', 'bingo'] },
                 groups: {
                     type: 'array',
                     items: {
@@ -69,13 +69,15 @@ export const schemaTheme: Schema = {
                 },
                 imageWidth: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
                 imageHeight: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
+                columnMinHeight: { type: 'number', minimum: 0, maximum: 4000, multipleOf: 1 },
                 imageSize: { enum: ['', 'cover'] },
                 imagePosition: { enum: ['', 'center'] },
                 axisLineWidth: { type: 'number', minimum: 0, maximum: 12, multipleOf: 1 },
                 axisLineColor: { type: 'string', pattern: '|#[0-9a-fA-F]{6}' },
                 axisLineOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 axisArrowWidth: { type: 'number', minimum: 0, maximum: 50, multipleOf: 1 },
-                nameWidth: { type: 'number' },
+                nameWidth: { type: 'number', minimum: 0, maximum: 300 },
+                nameMinHeight: { type: 'nameMinHeight', minimum: 0, maximum: 300 },
                 nameFontSize: { type: 'number' },
                 nameBackgroundOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 nameMarkdown: { type: 'boolean' },

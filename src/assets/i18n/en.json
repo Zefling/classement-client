@@ -264,6 +264,7 @@
       "default": "Tierlist",
       "teams": "Teams",
       "default.teams": "Tierlist & Teams",
+      "columns": "Columns",
       "iceberg": "Iceberg",
       "axis": "Axis",
       "bingo": "Bingo"
@@ -347,6 +348,14 @@
         "border.color": "Line border color:",
         "border.opacity": "Line border opacity:"
       },
+      "column": {
+        "title": "Columns options",
+        "background.color": "Column background color:",
+        "background.opacity": "Column background opacity:",
+        "border.color": "Column border color:",
+        "border.opacity": "Column border opacity:",
+        "min.height": "Columns minimum height:"
+      },
       "global": {
         "title": "Other options",
         "background": "Background color:",
@@ -364,6 +373,7 @@
       },
       "name": {
         "width": "Group name width:",
+        "min.height": "Group name minimum height:",
         "font.size": "Group name text size:",
         "opacity": "Group name background opacity:"
       },
@@ -555,6 +565,7 @@
         "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
         "default": "Freely move tiles in each group.",
         "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams.",
+        "columns": "Freely move tiles in each vertical group.",
         "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
         "axis": "Move freely in the defined space along axes.",
         "bingo": "Distribute tiles in a grid."
@@ -678,6 +689,9 @@
       },
       "teams": {
         "text": "Move tiles by drag and drop to copy them into groups. Each tile can be copied only once per group."
+      },
+      "columns": {
+        "text": "Move tiles by dragging and dropping them into different columns."
       },
       "iceberg": {
         "move": "Move tiles in the area.",

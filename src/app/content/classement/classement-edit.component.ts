@@ -310,8 +310,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
-            toObservable(this.global.withChange).subscribe(_withChange => {
+            toObservable(this.global.withChange).subscribe(withChange => {
                 if (
+                    withChange &&
                     this.options &&
                     !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
                 ) {
@@ -435,6 +436,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                         break;
                     case 'default':
                     case 'teams':
+                    case 'columns':
                         themes = themesLists;
                         break;
                 }

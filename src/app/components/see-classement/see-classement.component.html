@@ -129,6 +129,85 @@
           </tfoot>
         }
       </table>
+    } @else if (opts.mode === 'columns') {
+      <table
+        [id]="render() ? 'html2canvas-element' : 'preview-element'"
+        class="html2canvas-element mode-columns"
+        [attr.dir]="opts.direction"
+        [class.line-fusion]="opts.borderSpacing < 0"
+      >
+        @if (opts.title || demo()) {
+          <caption>
+            {{
+              opts.title || (demo() ? 'Example' : '')
+            }}
+          </caption>
+        }
+        <tbody [style.--col]="groups().length">
+          <tr>
+            @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+              <td
+                class="names"
+                [style.--name-background]="group.bgColor + nameOpacity"
+                [style.--text-color]="group.txtColor"
+              >
+                @if (opts.nameMarkdown) {
+                  <markdown [data]="group.name"></markdown>
+                } @else {
+                  <pre>{{ group.name }}</pre>
+                }
+              </td>
+            }
+          </tr>
+          <tr>
+            @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+              <td class="elements drop-list">
+                <div>
+                  @for (item of group.list; track item; let index = $index) {
+                    @if (item) {
+                      <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
+                        <div class="content-box">
+                          <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                            @if (item.url) {
+                              <div [class.image]="calcWidth(item, tile)">
+                                <img
+                                  (ngInit)="calcWidth(item, tile); detectChanges()"
+                                  (load)="calcWidth(item, tile); detectChanges()"
+                                  [class.cover]="opts.itemImageCover"
+                                  src="{{ imagesCache()[item.url] || item.url }}"
+                                  alt="{{ item.name }}"
+                                />
+                              </div>
+                            }
+                            @if (withAnnotation() && item.annotation) {
+                              <div class="tile-info" [tooltip]="item.annotation"></div>
+                            }
+                            @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
+                              <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                                <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                              </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  }
+                  @if (group.list.length === 0) {
+                    <div class="drop-zone-empty-list"></div>
+                  }
+                </div>
+              </td>
+            }
+          </tr>
+        </tbody>
+        @if (link()) {
+          <tfoot>
+            <tr>
+              <td colspan="2" class="link">{{ link() }}</td>
+            </tr>
+          </tfoot>
+        }
+      </table>
     } @else if (opts.mode === 'bingo') {
       @if (checkChoice === 'Z') {
         <div class="active-mode">

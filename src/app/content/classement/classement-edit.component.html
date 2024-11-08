@@ -341,6 +341,169 @@
               </tbody>
             </table>
           </div>
+        } @else if (options.mode === 'columns') {
+          <div class="table-columns">
+            <table
+              class="table-classement"
+              [attr.dir]="options.direction"
+              [class.line-fusion]="options.borderSpacing < 0"
+              [class.width-max]="!options.itemWidthAuto"
+            >
+              <tbody>
+                <tr [class.option-reduce]="options.itemHeight < 100">
+                  @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                    <td
+                      class="names"
+                      [style.--name-background]="group.bgColor + nameOpacity"
+                      [style.--text-color]="group.txtColor"
+                    >
+                      <div>
+                        <label class="name">
+                          <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                            <textarea
+                              #input
+                              id="name-{{ indexGrp }}"
+                              rows="1"
+                              [(ngModel)]="group.name"
+                              (ngModelChangeDebounced)="globalChange()"
+                              maxlength="500"
+                            ></textarea>
+                          </div>
+                        </label>
+                        <span
+                          class="color group-options icon-edit-2"
+                          (click)="updateGroupOption({ group, indexGrp, first, last })"
+                          (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                          tabindex="0"
+                        ></span>
+                        <span
+                          class="color bg-color icon-background-color"
+                          (click)="inputBgColor.click()"
+                          (keydown.enter)="inputBgColor.click()"
+                          tabindex="0"
+                        ></span>
+                        <span
+                          class="color txt-color icon-text-color"
+                          (click)="inputTxtColor.click()"
+                          (keydown.enter)="inputTxtColor.click()"
+                          tabindex="0"
+                        ></span>
+                        <div class="colors">
+                          <input
+                            class="color"
+                            type="color"
+                            [(ngModel)]="group.bgColor"
+                            (ngModelChange)="globalChange()"
+                            tabindex="-1"
+                            #inputBgColor
+                          />
+                          <input
+                            class="color"
+                            type="color"
+                            [(ngModel)]="group.txtColor"
+                            (ngModelChange)="globalChange()"
+                            tabindex="-1"
+                            #inputTxtColor
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  }
+                </tr>
+                <tr>
+                  @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                    <td class="elements">
+                      <div
+                        class="drop-list"
+                        cdkDropList
+                        cdkDropListOrientation="mixed"
+                        [cdkDropListData]="{ list: group.list, index: -1 }"
+                        (cdkDropListDropped)="drop($event)"
+                      >
+                        @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+                          @if (item) {
+                            <div
+                              class="content-box"
+                              cdkDrag
+                              removeTile
+                              (removeElement)="removeFromGroup(group, index)"
+                              [contextMenu]="{ contextMenu, data: { item, group, index } }"
+                              [style.--over-item-background]="item.bgColor"
+                              [style.--over-item-text-color]="item.txtColor"
+                            >
+                              <div
+                                class="content content-render"
+                                [class.with-annotation]="item.annotation"
+                                [ngClass]="options.itemTextPosition"
+                                [id]="item.id"
+                                #tile
+                              >
+                                @if (item.url) {
+                                  <div [class.image]="calcWidth(item, tile)">
+                                    <img
+                                      (ngInit)="calcWidth(item, tile); detectChanges()"
+                                      (load)="calcWidth(item, tile); detectChanges()"
+                                      [class.cover]="options.itemImageCover"
+                                      src="{{ item.url }}"
+                                      alt="{{ item.name }}"
+                                    />
+                                  </div>
+                                }
+                                @if (
+                                  item.title ||
+                                  (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
+                                ) {
+                                  <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                    <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                  </div>
+                                }
+                                <div class="tile-info" (click)="openTileInfo(item)"></div>
+                              </div>
+                            </div>
+                          }
+                        }
+                        @if (group.list.length === 0) {
+                          <div class="drop-zone-empty-list"></div>
+                        }
+                      </div>
+                    </td>
+                  }
+                </tr>
+                <tr>
+                  @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                    <td class="actions">
+                      <div class="button-actions">
+                        @if (!first) {
+                          <button class="button-left" (click)="upLine(indexGrp)">
+                            <span class="icon-left"></span>
+                          </button>
+                        }
+                        @if (!last) {
+                          <button class="button-right" (click)="downLine(indexGrp)">
+                            <span class="icon-right"></span>
+                          </button>
+                        }
+                        @if (!(first && last)) {
+                          <button class="button-suppr" (click)="deleteLine(indexGrp)">
+                            <span [title]="'generator.line.delete' | transloco" class="icon-remove"></span>
+                          </button>
+                        }
+                        <button class="button-add" (click)="addLine(indexGrp)">
+                          <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
+                        </button>
+                        <span
+                          tabindex="0"
+                          class="color group-options icon-edit-2"
+                          (click)="updateGroupOption({ group, indexGrp, first, last })"
+                          (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                        ></span>
+                      </div>
+                    </td>
+                  }
+                </tr>
+              </tbody>
+            </table>
+          </div>
         }
         <div class="current-list">
           <div class="drop-image-message">

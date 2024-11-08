@@ -264,6 +264,7 @@
       "default": "Tierlist",
       "teams": "Équipes",
       "default.teams": "Tierlist & Équipes",
+      "columns": "Colonnes",
       "iceberg": "Iceberg",
       "axis": "Axes",
       "bingo": "Bingo"
@@ -347,6 +348,14 @@
         "border.color": "Couleur de bordure d'une ligne :",
         "border.opacity": "Opacité de bordure d'une ligne :"
       },
+      "column": {
+        "title": "Options des colonnes",
+        "background.color": "Couleur du fond d'une colonne :",
+        "background.opacity": "Opacité du fond d'une colonne :",
+        "border.color": "Couleur de bordure d'une colonne :",
+        "border.opacity": "Opacité de bordure d'une colonne :",
+        "min.height": "Hauteur minimale des colonnes :"
+      },
       "global": {
         "title": "Autres options",
         "background": "Couleur du fond :",
@@ -364,6 +373,7 @@
       },
       "name": {
         "width": "Largeur des noms de groupe :",
+        "min.height": "Hauteur minimale des noms du groupe :",
         "font.size": "Taille du texte des noms de groupe :",
         "opacity": "Opacité du fond des noms de groupe :"
       },
@@ -555,6 +565,7 @@
         "question": "Changer des modes impliques une réinitialisation à vide des groupes.\nÊtes-vous sûr de vouloirs continuer ?",
         "default": "Déplacer librement les tuiles dans chaque groupes.",
         "teams": "Copier les tuiles dans chaque groupe.\nLes groupes ne peuvent contenir qu'une version de chaque tuile pour constituer des équipes.",
+        "columns": "Déplacer librement les tuiles dans chaque groupes verticaux.",
         "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
         "axis": "Déplacer librement dans l'espace défini suivant des axes.",
         "bingo": "Repartissez des tuiles dans une grille."
@@ -678,6 +689,9 @@
       },
       "teams": {
         "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par groupe."
+      },
+      "columns": {
+        "text": "Déplacer les tuiles par glissé-déposé dans les différentes colonnes."
       },
       "iceberg": {
         "move": "Déplacer les tuiles dans la zone.",
