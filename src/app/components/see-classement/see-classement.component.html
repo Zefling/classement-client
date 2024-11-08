@@ -135,6 +135,7 @@
         class="html2canvas-element mode-columns"
         [attr.dir]="opts.direction"
         [class.line-fusion]="opts.borderSpacing < 0"
+        [class.width-max]="!opts.itemWidthAuto"
       >
         @if (opts.title || demo()) {
           <caption>
@@ -165,7 +166,11 @@
                 <div>
                   @for (item of group.list; track item; let index = $index) {
                     @if (item) {
-                      <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
+                      <div
+                        class="content-item"
+                        [style.--over-item-background]="item.bgColor"
+                        [style.--over-item-text-color]="item.txtColor"
+                      >
                         <div class="content-box">
                           <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
                             @if (item.url) {

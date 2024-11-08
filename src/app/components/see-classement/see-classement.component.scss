@@ -472,6 +472,15 @@ img {
     .elements {
         width: calc(100% / var(--col));
     }
+
+    &.width-max {
+          .content-item {
+            width: 100%;
+        }
+        .content-box {
+            width: auto;
+        }
+    }
 }
 
 // bingo -----------------------------------------------------------
