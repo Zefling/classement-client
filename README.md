@@ -41,6 +41,7 @@ Current installation in this [website](https://classement.org/).
     -   ✅ Ranking Modes
         -   ✅ Tierlist
         -   ✅ Teams
+        -   ✅ Columns
         -   ✅ Iceberg
         -   ✅ Axis
         -   ✅ Bingo

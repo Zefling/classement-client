@@ -1,5 +1,20 @@
 # Changelog - Standalone web app & API
 
+### 3.1.0 (2024-11-08)
+
+#### Standalone web app
+
+-   Add mode: Columns #88
+    -   Allow ranking in column
+    -   Specific tile behavior for columns
+    -   Added specific options for columns
+
+#### With API activated only
+
+-   Required: API `1.21` for columns
+
+---
+
 ### 3.0.4 (2024-10-31)
 
 #### With API activated only
