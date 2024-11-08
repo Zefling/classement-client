@@ -348,6 +348,14 @@
         "border.color": "Couleur de bordure d'une ligne :",
         "border.opacity": "Opacité de bordure d'une ligne :"
       },
+      "column": {
+        "title": "Options des colonnes",
+        "background.color": "Couleur du fond d'une colonne :",
+        "background.opacity": "Opacité du fond d'une colonne :",
+        "border.color": "Couleur de bordure d'une colonne :",
+        "border.opacity": "Opacité de bordure d'une colonne :",
+        "min.height": "Hauteur minimale des colonnes :"
+      },
       "global": {
         "title": "Autres options",
         "background": "Couleur du fond :",

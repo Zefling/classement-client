@@ -69,6 +69,7 @@ export const schemaTheme: Schema = {
                 },
                 imageWidth: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
                 imageHeight: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
+                columnMinHeight: { type: 'number', minimum: 0, maximum: 4000, multipleOf: 1 },
                 imageSize: { enum: ['', 'cover'] },
                 imagePosition: { enum: ['', 'center'] },
                 axisLineWidth: { type: 'number', minimum: 0, maximum: 12, multipleOf: 1 },

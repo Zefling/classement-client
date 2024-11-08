@@ -48,6 +48,7 @@ export const defaultOptions: Options = {
     imageBackgroundColor: '',
     imageWidth: 1170,
     imageHeight: 600,
+    columnMinHeight: 250,
     axisLineWidth: 3,
     axisLineColor: '',
     axisLineOpacity: 100,

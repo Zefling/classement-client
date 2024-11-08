@@ -348,6 +348,14 @@
         "border.color": "Line border color:",
         "border.opacity": "Line border opacity:"
       },
+      "column": {
+        "title": "Columns options",
+        "background.color": "Column background color:",
+        "background.opacity": "Column background opacity:",
+        "border.color": "Column border color:",
+        "border.opacity": "Column border opacity:",
+        "min.height": "Columns minimum height:"
+      },
       "global": {
         "title": "Other options",
         "background": "Background color:",

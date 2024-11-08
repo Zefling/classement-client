@@ -747,7 +747,8 @@ span.group-options {
     table .drop-list {
         flex-direction: column;
         align-items: center;
-        min-height: 250px;
+        width: 100%;
+        min-height: var(--over-image-min-height-column, 250px);
     }
 
     .button-actions {

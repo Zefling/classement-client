@@ -137,6 +137,7 @@ export type ThemeOptions = {
     imageHeight?: number;
     imageSize?: 'cover';
     imagePosition?: 'center';
+    columnMinHeight?: number;
     axisLineWidth: number;
     axisLineColor: string;
     axisLineOpacity: number;

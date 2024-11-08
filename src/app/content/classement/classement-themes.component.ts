@@ -106,7 +106,9 @@ export class ClassementThemesComponent {
         }
 
         this.themeDraft = (await this.dbService.getLocalAllThemes()).filter(
-            t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
+            t =>
+                t.options.mode.replace(/teams|columns/, 'default') ===
+                this.options().mode.replace(/teams|columns/, 'default'),
         );
     }
 

@@ -348,6 +348,14 @@
         "border.color": "ラインボーダーの色：",
         "border.opacity": "ラインボーダーの不透明度："
       },
+      "column": {
+        "title": "カラムのオプション",
+        "background.color": "カラムの背景の色：",
+        "background.opacity": "カラムの背景の不透明度：",
+        "border.color": "カラムボーダーの色：",
+        "border.opacity": "カラムボーダーの不透明度：",
+        "min.height": "カラムの最小高さ："
+      },
       "global": {
         "title": "別のオプション",
         "background": "背景の色：",

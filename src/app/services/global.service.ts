@@ -239,6 +239,13 @@ export class GlobalService {
         r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
         if (o.mode === 'axis' || o.mode === 'iceberg') {
             r(body, '--over-image-height', (o.imageHeight ?? defaultOptions.imageHeight) + 'px', dash);
+        } else if (o.mode === 'columns') {
+            r(
+                body,
+                '--over-image-min-height-column',
+                (o.columnMinHeight ?? defaultOptions.columnMinHeight) + 'px',
+                dash,
+            );
         }
         r(
             body,
