@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 3.1.1 (2024-11-09)
+
+#### Standalone web app
+
+-   Colunms:
+    -   add help
+    -   fix link in image render
+-   Add bingo and columns to default preferences
+
 ### 3.1.0 (2024-11-08)
 
 #### Standalone web app
