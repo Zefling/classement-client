@@ -455,7 +455,7 @@ img {
         height: 100%;
     }
 
-    tr:first-child td {
+    tbody tr:first-child td {
         width: var(--over-name-width, 150px);
         min-width: var(--over-name-width, 150px);
         height: var(--over-name-min-height, 90px);

@@ -208,7 +208,7 @@
         @if (link()) {
           <tfoot>
             <tr>
-              <td colspan="2" class="link">{{ link() }}</td>
+              <td [attr.colspan]="groups().length" class="link">{{ link() }}</td>
             </tr>
           </tfoot>
         }
