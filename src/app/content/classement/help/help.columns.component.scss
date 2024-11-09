@@ -1,0 +1,29 @@
+dt {
+    font-weight: 500;
+}
+
+dd {
+    margin: 5px 10px 15px;
+}
+
+kbd {
+    box-shadow:
+        0 1px 1px var(--neutralA),
+        0 2px 0 var(--neutral0) inset;
+    border: 1px solid var(--neutral5);
+    border-radius: 3px;
+    background-color: var(--neutral2);
+    padding: 2px 5px;
+    color: var(--neutralA);
+    font-weight: 700;
+    font-size: 0.9em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.disabled {
+    &,
+    & + dd {
+        opacity: 0.3;
+    }
+}

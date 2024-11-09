@@ -1,0 +1,36 @@
+<h2>{{ 'mode.name.columns' | transloco }}</h2>
+
+<h3>{{ 'generator.help.title' | transloco }}</h3>
+
+<p>{{ 'generator.help.columns.text' | transloco }}</p>
+
+<h3>{{ 'generator.help.shortcut.title' | transloco }}</h3>
+
+<dl>
+  <dt><kbd>Ctrl</kbd> + <kbd>V</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.v' | transloco }}</dd>
+
+  <dt><kbd>Ctrl</kbd> + <kbd>S</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.s' | transloco }}</dd>
+
+  <dt><kbd>Ctrl</kbd> + <kbd>E</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.e' | transloco }}</dd>
+
+  <dt>
+    <kbd>{{ 'generator.help.shortcut.middle.click' | transloco }}</kbd>
+    {{ 'generator.help.shortcut.on.tile' | transloco }}
+  </dt>
+  <dd>{{ 'generator.help.shortcut.put.back.list' | transloco }}</dd>
+
+  <dt>
+    <kbd>{{ 'generator.help.shortcut.right.click' | transloco }}</kbd>
+    {{ 'generator.help.shortcut.on.tile' | transloco }}
+  </dt>
+  <dd>{{ 'generator.help.shortcut.context.menu' | transloco }}</dd>
+
+  <dt [class.disabled]="!memory.hasUndo()"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.z' | transloco }}</dd>
+
+  <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.u' | transloco }}</dd>
+</dl>

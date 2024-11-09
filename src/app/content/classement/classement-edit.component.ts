@@ -82,6 +82,7 @@ import { ClassementSaveServerComponent } from './classement-save-server.componen
 import { ExternalImdbComponent } from './external.imdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
 import { HelpBingoComponent } from './help/help.bingo.component';
+import { HelpColumnsComponent } from './help/help.columns.component';
 import { HelpIcebergComponent } from './help/help.iceberg.component';
 import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
@@ -604,6 +605,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         switch (this.options.mode) {
             case 'teams':
                 this.global.changeHelpComponent(HelpTeamsComponent);
+                break;
+            case 'columns':
+                this.global.changeHelpComponent(HelpColumnsComponent);
                 break;
             case 'iceberg':
                 this.global.changeHelpComponent(HelpIcebergComponent);
