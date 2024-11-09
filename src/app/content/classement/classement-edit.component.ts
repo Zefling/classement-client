@@ -423,9 +423,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
             // reset all + theme selection
             let defaultOptions: Options | undefined = undefined;
-            if (params['mode']) {
+            const paramMode = params['mode'];
+            if (paramMode) {
                 let themes: ThemesNames[] | undefined = undefined;
-                switch (params['mode']) {
+                switch (paramMode) {
                     case 'iceberg':
                         themes = themesIceberg;
                         break;
@@ -444,11 +445,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.location.replaceState('/edit/new');
                 if (themes) {
                     defaultOptions = Utils.jsonCopy(defaultTheme(themes[0])).options;
-                    defaultOptions.mode = params['mode'];
+                    defaultOptions.mode = paramMode;
                 }
             }
             if (!defaultOptions) {
                 defaultOptions = Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
+                if (this.preferencesService.preferences.mode !== 'choice') {
+                    defaultOptions.mode = this.preferencesService.preferences.mode;
+                }
             }
             this.new = true;
             this.options = {
@@ -470,7 +474,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.helpInit();
             this.memory.addUndo(this);
 
-            if (params['mode'] === 'bingo') {
+            if (this.options.mode === 'bingo') {
                 this.groupsControl(this.groups, this.options);
             }
         }
