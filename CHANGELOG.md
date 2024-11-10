@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 3.1.2 (2024-11-10)
+
+#### Standalone web app
+
+-   Fix annoying flashing in mode selection dialog
+-   Animation: `starting-style` on dialog
+-   Fix mode list on Chrome
+
 ### 3.1.1 (2024-11-09)
 
 #### Standalone web app
