@@ -53,6 +53,17 @@ export class AppComponent implements DoCheck {
     modeApi = environment.api?.active || false;
 
     _modeTemp?: string;
+    _index = 0;
+    _visiblity = false;
+
+    readonly modes: { id: ModeNames; icon?: string }[] = [
+        { id: 'default', icon: 'tierlist' },
+        { id: 'teams' },
+        { id: 'columns' },
+        { id: 'iceberg' },
+        { id: 'axis' },
+        { id: 'bingo' },
+    ];
 
     get routerUrl() {
         return this.router.url;

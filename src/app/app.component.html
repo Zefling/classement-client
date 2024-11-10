@@ -239,34 +239,26 @@
 <dialog-cmp class="auto-format mode-dialog" #choice closeBackdrop>
   <h2 class="title">{{ 'generator.choice.title' | transloco }}</h2>
   <menu class="choice-mode">
-    <li (click)="beginNew('default')" (mouseenter)="_modeTemp = 'default'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-tierlist"></span>
-      <span>{{ 'mode.name.default' | transloco }}</span>
-    </li>
-    <li (click)="beginNew('teams')" (mouseenter)="_modeTemp = 'teams'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-teams"></span>
-      <span>{{ 'mode.name.teams' | transloco }}</span>
-    </li>
-    <li (click)="beginNew('columns')" (mouseenter)="_modeTemp = 'columns'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-columns"></span>
-      <span>{{ 'mode.name.columns' | transloco }}</span>
-    </li>
-    <li (click)="beginNew('iceberg')" (mouseenter)="_modeTemp = 'iceberg'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-iceberg"></span>
-      <span>{{ 'mode.name.iceberg' | transloco }}</span>
-    </li>
-    <li (click)="beginNew('axis')" (mouseenter)="_modeTemp = 'axis'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-axis"></span>
-      <span>{{ 'mode.name.axis' | transloco }}</span>
-    </li>
-    <li (click)="beginNew('bingo')" (mouseenter)="_modeTemp = 'bingo'" (mouseleave)="_modeTemp = ''" tabIndex="0">
-      <span class="icon-mode-bingo"></span>
-      <span>{{ 'mode.name.bingo' | transloco }}</span>
-    </li>
+    @for (mode of modes; track $index; let index = $index) {
+      <li
+        id="mode_{{ mode.id }}"
+        (click)="beginNew(mode.id)"
+        (mouseenter)="_visiblity = true; _modeTemp = mode.id; _index = index"
+        (mouseleave)="_visiblity = false"
+        tabIndex="0"
+      >
+        <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
+        <span>{{ 'mode.name.' + mode.id | transloco }}</span>
+      </li>
+    }
   </menu>
-  <p class="info" [class.visible]="_modeTemp">
+  <p class="info-block" [class.visible]="_visiblity">
     <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
-    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
+    <span class="info" [style.--pos]="_index" [style.--size]="modes.length">
+      @for (mode of modes; track $index) {
+        <span>{{ 'generator.actions.change.mode.' + mode.id | transloco }}</span>
+      }
+    </span>
   </p>
 </dialog-cmp>
 

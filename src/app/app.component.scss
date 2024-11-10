@@ -189,6 +189,10 @@ header {
 
         [class] {
             font-size: 150px;
+
+            & + * {
+                font-size: 24px;
+            }
         }
 
         &:hover {
@@ -202,11 +206,23 @@ header {
 }
 
 .mode-dialog {
-    .info {
-        visibility: hidden;
+    .info-block {
+        opacity: 0;
+        transition: opacity 0.3s;
 
         &.visible {
-            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .info {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(var(--size), 100%);
+        overflow: hidden;
+
+        & > * {
+            transform: translateX(calc(-100% * var(--pos)));
         }
     }
 }
