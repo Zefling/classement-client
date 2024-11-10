@@ -4,7 +4,7 @@
 
 #### Standalone web app
 
--   Colunms:
+-   Columns:
     -   add help
     -   fix link in image render
 -   Add bingo and columns to default preferences
