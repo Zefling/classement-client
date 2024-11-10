@@ -23,6 +23,10 @@
 .content {
     display: flex;
     position: relative;
+    transform: scale(1);
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: opacity, transform;
     box-sizing: border-box;
     box-shadow: 0 0 5px 5px var(--dialog-shadow-color);
     background: var(--dialog-background);
@@ -31,6 +35,11 @@
     height: min-content;
     min-height: 150px;
     max-height: 95dvh;
+
+    @starting-style {
+        transform: scale(0.9);
+        opacity: 0;
+    }
 }
 
 .close {
