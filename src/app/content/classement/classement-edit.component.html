@@ -2,7 +2,7 @@
   <loader-cmp [message]="'generator.loading' | transloco"></loader-cmp>
 }
 
-<div drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
+<div class="classement-edit" drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
   <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
   <div class="top-actions">
@@ -33,7 +33,7 @@
   <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
 
   @if (options) {
-    <div [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
+    <div class="edit-zone" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
       <div class="classement-top">
         <h3>{{ 'generator.ranking.group.title' | transloco }}</h3>
         @if (classScreenMode !== 'default') {
@@ -617,7 +617,7 @@
       ></see-classement>
     </div>
 
-    <div>
+    <div class="actions">
       <div class="save-actions buttons">
         <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
           @if (!exportImageLoading) {

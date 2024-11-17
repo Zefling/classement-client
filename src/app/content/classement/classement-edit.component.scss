@@ -18,6 +18,27 @@
     }
 }
 
+.classement-edit {
+    display: grid;
+    grid-template: 'a b' 'c c' 'd d' 'e e';
+
+    h2 {
+        grid-area: a;
+    }
+    .top-actions {
+        grid-area: b;
+    }
+    classement-options {
+        grid-area: c;
+    }
+    .edit-zone {
+        grid-area: d;
+    }
+    .actions {
+        grid-area: e;
+    }
+}
+
 .top-actions {
     display: flex;
     flex-wrap: wrap;
