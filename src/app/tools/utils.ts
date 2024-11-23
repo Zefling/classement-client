@@ -277,9 +277,15 @@ export class Utils {
                     itemWidthAuto && !item.title
                         ? Math.round(Math.min(itemMaxWidth ?? 300, (width / height) * targetHeight)) + 'px'
                         : itemWidthAuto
-                          ? Math.min(
-                                itemMaxWidth ?? 300,
-                                Math.round(Math.max((width / height) * targetHeight, title?.clientWidth || 0)),
+                          ? Math.round(
+                                Math.min(
+                                    itemMaxWidth ?? 300,
+                                    Math.max(
+                                        (width / height) * targetHeight,
+                                        title?.clientWidth ?? 0,
+                                        title?.scrollWidth ?? 0,
+                                    ),
+                                ),
                             ) + 'px'
                           : '';
             }
