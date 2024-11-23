@@ -20,13 +20,18 @@
 
 .classement-edit {
     display: grid;
-    grid-template: 'a b' 'c c' 'd d' 'e e';
+    grid-template:
+        'a b' 3em
+        'c c'
+        'd d'
+        'e e';
 
     h2 {
         grid-area: a;
     }
     .top-actions {
         grid-area: b;
+        margin: 10px;
     }
     classement-options {
         grid-area: c;
