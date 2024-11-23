@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 3.1.3 (2024-11-23)
+
+#### Standalone web app
+
+-   Home: `target="_blank"` for external links
+-   Reduce init options height
+-   Fix title width in tile
+
 ### 3.1.2 (2024-11-10)
 
 #### Standalone web app
