@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 3.1.4 (2024-11-24)
+
+#### Standalone web app
+
+-   Add animation to navigation tiles
+-   Fix title width in tile (1px round ?)
+-   Adjust header in edit page
+-   Adjust grid of edit page
+
 ### 3.1.3 (2024-11-23)
 
 #### Standalone web app
