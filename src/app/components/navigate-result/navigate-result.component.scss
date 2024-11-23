@@ -75,19 +75,28 @@ figcaption {
     margin: 5px 0 0;
 }
 
-figure > div {
-    position: relative;
+figure {
+    transition: transform 0.2s linear;
 
-    &::before {
-        position: absolute;
-        right: 12px;
-        bottom: 12px;
-        border: 1px solid;
-        border-radius: 15px;
-        background: var(--menu-cartouche-background);
-        padding: 1px 8px;
-        content: attr(data-mode);
-        font-size: 12px;
+    &:hover {
+        transform: scale(1.02);
+        z-index: 1;
+    }
+
+    & > div {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid;
+            border-radius: 15px;
+            background: var(--menu-cartouche-background);
+            padding: 1px 8px;
+            content: attr(data-mode);
+            font-size: 12px;
+        }
     }
 }
 

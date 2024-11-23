@@ -70,10 +70,12 @@
 }
 
 navigate-result {
-    position: relative;
-    overflow: hidden;
     --image-size: 200px;
     --cell: repeat(11, minmax(200px, 1fr));
+    position: relative;
+    margin: -10px 0 0 -10px;
+    padding: 10px;
+    overflow: hidden;
 
     ::ng-deep {
         .classement {
@@ -90,7 +92,7 @@ navigate-result {
         display: block;
         position: absolute;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         backdrop-filter: blur(8px);
         mask-image: linear-gradient(to left, var(--background) 10px, transparent);
         background: linear-gradient(to left, var(--background) 10px, transparent);
