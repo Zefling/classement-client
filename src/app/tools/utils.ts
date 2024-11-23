@@ -282,8 +282,8 @@ export class Utils {
                                     itemMaxWidth ?? 300,
                                     Math.max(
                                         (width / height) * targetHeight,
-                                        title?.clientWidth ?? 0,
-                                        title?.scrollWidth ?? 0,
+                                        (title?.clientWidth ?? 0) + 1,
+                                        (title?.scrollWidth ?? 0) + 1,
                                     ),
                                 ),
                             ) + 'px'
