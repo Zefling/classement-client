@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+### 3.1.5 (2024-11-29)
+
+#### Standalone web app
+
+-   Update to Angular `19.0`
+
 ### 3.1.4 (2024-11-24)
 
 #### Standalone web app
