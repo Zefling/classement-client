@@ -9,13 +9,13 @@ import { Classement } from 'src/app/interface/interface';
 @Component({
     selector: 'navigate-result',
     templateUrl: './navigate-result.component.html',
-    styleUrls: ['./navigate-result.component.scss'],
+    styleUrls: ['./navigate-result.component.css'],
     host: {
         '[class.categories]': 'isCategoryList()',
         '[class.list]': 'isHomeList()',
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, DatePipe, TranslocoPipe]
+    imports: [RouterLink, DatePipe, TranslocoPipe],
 })
 export class NavigateResultComponent {
     // input

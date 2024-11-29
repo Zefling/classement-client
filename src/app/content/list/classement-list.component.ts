@@ -27,7 +27,7 @@ import { FileSizePipe } from '../../pipes/file-size';
 @Component({
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
-    styleUrls: ['./classement-list.component.scss'],
+    styleUrls: ['./classement-list.component.css'],
     host: {
         '[class.page]': 'pageMode()',
     },
@@ -44,7 +44,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
-    ]
+    ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);

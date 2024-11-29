@@ -9,8 +9,8 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 @Component({
     selector: 'third-party-licenses',
     templateUrl: './licenses.component.html',
-    styleUrls: ['./licenses.component.scss'],
-    imports: [TranslocoPipe]
+    styleUrls: ['./licenses.component.css'],
+    imports: [TranslocoPipe],
 })
 export class LicensesComponent {
     private readonly http = inject(HttpClient);

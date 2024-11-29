@@ -1,4 +1,4 @@
-@import './user-profile.errors.scss';
+@import './user-profile.errors.css';
 
 :host {
     display: block;

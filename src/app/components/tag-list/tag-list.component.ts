@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
-    styleUrls: ['./tag-list.component.scss'],
-    imports: [FormsModule]
+    styleUrls: ['./tag-list.component.css'],
+    imports: [FormsModule],
 })
 export class TagListComponent implements OnInit {
     // inject

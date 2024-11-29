@@ -20,7 +20,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
-    styleUrls: ['./admin-classements.component.scss'],
+    styleUrls: ['./admin-classements.component.css'],
     imports: [
         FormsModule,
         Select2Module,
@@ -28,7 +28,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
         PaginationComponent,
         ListClassementsComponent,
         TranslocoPipe,
-    ]
+    ],
 })
 export class AdminClassementsComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

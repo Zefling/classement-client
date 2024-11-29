@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
-import { MARKED_OPTIONS, MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
+import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,21 +17,14 @@ import { PreferencesDialogComponent } from './components/preferences/preferences
 import { TranslocoRootModule } from './transloco-root.module';
 
 // function that returns `MarkedOptions` with renderer override
-export function markedOptionsFactory(): MarkedOptions {
+export function markedOptionsFactory() {
     const renderer = new MarkedRenderer();
 
-    const linkRenderer = renderer.link;
-    renderer.link = (href, title, text) => {
-        const html = linkRenderer.call(renderer, href, title, text);
-        return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ');
+    renderer.link = ({ href, text }) => {
+        return `<a target="_blank" rel="nofollow" href="${href}">${text}</a>`;
     };
 
-    return {
-        renderer: renderer,
-        gfm: true,
-        breaks: false,
-        pedantic: false,
-    };
+    return { renderer };
 }
 
 @NgModule({

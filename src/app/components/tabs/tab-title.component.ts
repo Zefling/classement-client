@@ -5,7 +5,7 @@ import { TabsComponent } from './tabs.component';
 @Component({
     selector: 'tab-title',
     templateUrl: './tab-title.component.html',
-    styleUrls: ['./tab-title.component.scss'],
+    styleUrls: ['./tab-title.component.css'],
     host: {
         '[attr.id]': 'id()',
         '[class.selected]': 'selected()',

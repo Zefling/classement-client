@@ -1,5 +1,5 @@
-@import './user-profile.errors.scss';
-@import '../../styles/cropper.scss';
+@import './user-profile.errors.css';
+@import '../../styles/cropper.css';
 
 :host {
     --cropper-image-radius: 50%;

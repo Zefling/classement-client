@@ -66,7 +66,7 @@ dialog-cmp .colors-options textarea {
     text-align: center;
 }
 
-// drag'n drop --------------------------------------------------------------
+/* drag'n drop -------------------------------------------------------------- */
 
 .drop-list {
     display: flex;
@@ -170,7 +170,7 @@ dialog-cmp .colors-options textarea {
         0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
     border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
-    // fix size
+    /* fix size */
     padding: var(--over-item-padding, 10px) !important;
     width: var(--over-item-width, 150px) !important;
     min-width: 40px;
@@ -202,7 +202,7 @@ dialog-cmp .colors-options textarea {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-// drag'n drop file
+/* drag'n drop file */
 
 .drop-image-message {
     width: 100%;
@@ -212,7 +212,7 @@ dialog-cmp .colors-options textarea {
     background: var(--drop-image-zone-background);
 }
 
-// buttons -----------------------------------------------------------------
+/* buttons ----------------------------------------------------------------- */
 
 .button-actions {
     display: grid;
@@ -263,7 +263,7 @@ dialog-cmp .colors-options textarea {
     line-height: 0;
 }
 
-// images
+/* images */
 
 img {
     width: auto;
@@ -278,7 +278,7 @@ img {
     }
 }
 
-// table --------------------------------------------------------------------
+/* table -------------------------------------------------------------------- */
 
 .table-classement {
     border-spacing: var(--over-drop-border-spacing, var(--drop-list-border-spacing));
@@ -286,7 +286,7 @@ img {
     background-repeat: repeat;
     background-color: var(--over-image-background, var(--background));
     min-width: 100%;
-    height: 100%; // fix for Chromium
+    height: 100%; /* fix for Chromium */
 
     ::ng-deep * {
         font-family: var(--over-font), 'Roboto';
@@ -468,7 +468,7 @@ span.group-options {
     color: var(--alert-color);
 }
 
-// text only
+/* text only */
 .title:first-child {
     display: flex;
     justify-content: center;
@@ -477,7 +477,7 @@ span.group-options {
     --over-item-text-size: var(--over-item-text-only-size, 24px);
 }
 
-// image, text only
+/* image, text only */
 .title:not(:first-child),
 .title:first-child span {
     font-size: var(--over-item-text-size, 12px);
@@ -726,7 +726,7 @@ span.group-options {
     }
 }
 
-// zone : iceberg / axis -----------------------------------------------------------
+/* zone : iceberg / axis ----------------------------------------------------------- */
 
 .cdk-drop-zone {
     position: relative;
@@ -754,7 +754,7 @@ span.group-options {
     flex-wrap: wrap;
 }
 
-// columns ----------------------------------------------------------
+/* columns ---------------------------------------------------------- */
 
 .mode-columns {
     .names > div {
@@ -803,7 +803,7 @@ span.group-options {
     }
 }
 
-// bingo -----------------------------------------------------------
+/* bingo ----------------------------------------------------------- */
 
 .bingo-container {
     max-width: 100%;
@@ -855,14 +855,14 @@ span.group-options {
     }
 }
 
-// actions ------------------------------------------------------------------
+/* actions ------------------------------------------------------------------ */
 
 .save-actions {
     padding: 20px;
     text-align: center;
 }
 
-// render ------------------------------------------------------------------
+/* render ------------------------------------------------------------------ */
 
 .render {
     position: absolute;
@@ -879,7 +879,7 @@ loading-cmp {
     vertical-align: bottom;
 }
 
-// derivatives ------------------------------------------------------------------
+/* derivatives ------------------------------------------------------------------ */
 
 .table-derivatives {
     position: relative;
@@ -935,7 +935,7 @@ loading-cmp {
     }
 }
 
-// diff tile ------------------------------------------------------------------
+/* diff tile ------------------------------------------------------------------ */
 
 .content-diff {
     .container {
@@ -960,7 +960,7 @@ loading-cmp {
     }
 }
 
-// tablet / mobile ------------------------------------------------------------------
+/* tablet / mobile ------------------------------------------------------------------ */
 
 @media screen and (width < 1024px) {
     :host {
@@ -1082,7 +1082,7 @@ loading-cmp {
     }
 }
 
-// force reduce options ------------------------------------------------------------------
+/* force reduce options ------------------------------------------------------------------ */
 
 @media screen and (width > 769px) {
     :host.option-reduce {
@@ -1144,7 +1144,7 @@ loading-cmp {
     }
 }
 
-// mode no options ------------------------------------------------------------------
+/* mode no options ------------------------------------------------------------------ */
 
 :host.option-hidden {
     .table-classement {

@@ -24,7 +24,7 @@ import { listModes } from '../classement/classement-default';
 @Component({
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
-    styleUrls: ['./classement-navigate.component.scss'],
+    styleUrls: ['./classement-navigate.component.css'],
     imports: [
         FormsModule,
         Select2Module,
@@ -34,7 +34,7 @@ import { listModes } from '../classement/classement-default';
         NavigateResultComponent,
         LoaderItemComponent,
         TranslocoPipe,
-    ]
+    ],
 })
 export class ClassementNavigateComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

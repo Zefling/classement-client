@@ -12,8 +12,8 @@ import { UserPassword } from './user-password';
 @Component({
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',
-    styleUrls: ['./user-pw-lost-change.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, TranslocoPipe]
+    styleUrls: ['./user-pw-lost-change.component.css'],
+    imports: [FormsModule, ReactiveFormsModule, TranslocoPipe],
 })
 export class UserPwLostChangeComponent extends UserPassword {
     private readonly router = inject(Router);

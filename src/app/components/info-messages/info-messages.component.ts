@@ -27,9 +27,9 @@ export class MessageService {
 @Component({
     selector: 'info-messages',
     templateUrl: './info-messages.component.html',
-    styleUrls: ['./info-messages.component.scss'],
+    styleUrls: ['./info-messages.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [InfoMessageComponent]
+    imports: [InfoMessageComponent],
 })
 export class InfoMessagesComponent {
     // inject

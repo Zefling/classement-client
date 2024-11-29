@@ -16,14 +16,14 @@ import { PreferencesService } from './services/preferences.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    styleUrls: ['./app.component.css'],
     host: {
         '[class.show-menu]': 'asideOpen()',
         '[class.reduce-menu]': 'mainMenuReduce()',
         '[class.show-help]': 'showHelp()',
         '[style.--zoom]': 'preferencesService.preferences.zoomMobile',
     },
-    standalone: false
+    standalone: false,
 })
 export class AppComponent implements DoCheck {
     // injects

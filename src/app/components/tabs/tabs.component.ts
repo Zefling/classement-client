@@ -6,7 +6,7 @@ import { TabTitleComponent } from './tab-title.component';
 @Component({
     selector: 'tabs',
     templateUrl: './tabs.component.html',
-    styleUrls: ['./tabs.component.scss'],
+    styleUrls: ['./tabs.component.css'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

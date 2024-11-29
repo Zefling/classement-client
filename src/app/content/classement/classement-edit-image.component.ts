@@ -32,7 +32,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 @Component({
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
-    styleUrls: ['./classement-edit-image.component.scss'],
+    styleUrls: ['./classement-edit-image.component.css'],
     imports: [
         DialogComponent,
         FormsModule,
@@ -40,7 +40,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
         DropImageDirective,
         ImageCropperComponent,
         TranslocoPipe,
-    ]
+    ],
 })
 export class ClassementEditImageComponent implements OnChanges {
     private readonly cd = inject(ChangeDetectorRef);

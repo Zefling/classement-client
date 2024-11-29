@@ -1,4 +1,4 @@
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
     Component,
     OnChanges,
@@ -21,7 +21,6 @@ import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import {
     Category,
     FileHandle,
@@ -73,7 +72,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
 @Component({
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
-    styleUrls: ['./classement-options.component.scss'],
+    styleUrls: ['./classement-options.component.css'],
     imports: [
         FormsModule,
         Select2Module,
@@ -86,10 +85,8 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
-        ThemeIconComponent,
         ClassementThemesManagerComponent,
-        JsonPipe,
-    ]
+    ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
     // inject

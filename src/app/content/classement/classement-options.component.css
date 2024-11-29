@@ -24,10 +24,10 @@
         'sizes             colors-item-back    colors-item-border  .                   '
         'sizes             colors-item-text    min-line-text       max-line-text       '
         'size-item-text    size-item-text-only item-text-pos       item-text-back      '
-        // ----------------------------------------------------------------------------
+        /* ---------------------------------------------------------------------------- */
         'title-line        title-line          title-line          title-line          '
         var(--groups)
-        // ----------------------------------------------------------------------------
+        /* ---------------------------------------------------------------------------- */
         'title-other       title-other         title-other         title-other         '
         'colors-title-text global-width        global-image        global-color        '
         '.                 global-height       .                   global-font         '

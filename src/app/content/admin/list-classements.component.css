@@ -1,4 +1,4 @@
-@import '../list/classement-list.component.scss';
+@import '../list/classement-list.component.css';
 
 :host {
     margin: 0;

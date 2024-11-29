@@ -18,8 +18,8 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
 @Component({
     selector: 'import-json',
     templateUrl: './import-json.component.html',
-    styleUrls: ['./import-json.component.scss'],
-    imports: [LoadingComponent, FormsModule, TranslocoPipe]
+    styleUrls: ['./import-json.component.css'],
+    imports: [LoadingComponent, FormsModule, TranslocoPipe],
 })
 export class ImportJsonComponent implements OnDestroy {
     // inject

@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'classement-themes-manager',
     templateUrl: './classement-themes-manager.component.html',
-    styleUrls: ['./classement-themes-manager.component.scss'],
+    styleUrls: ['./classement-themes-manager.component.css'],
     imports: [
         // modules
         FormsModule,
@@ -30,7 +30,7 @@ import { environment } from 'src/environments/environment';
         TabContentComponent,
         TabTitleComponent,
         ThemeIconComponent,
-    ]
+    ],
 })
 export class ClassementThemesManagerComponent implements OnInit {
     // inject

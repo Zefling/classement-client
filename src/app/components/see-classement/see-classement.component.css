@@ -3,7 +3,7 @@
     margin: 15px;
 }
 
-// content --------------------------------------------------------------------
+/* content -------------------------------------------------------------------- */
 
 .elements {
     width: 100%;
@@ -45,7 +45,7 @@
     }
 }
 
-// images
+/* images */
 
 img {
     width: auto;
@@ -60,7 +60,7 @@ img {
     }
 }
 
-// table --------------------------------------------------------------------
+/* table -------------------------------------------------------------------- */
 
 .render {
     position: relative;
@@ -90,7 +90,7 @@ img {
     height: var(--over-image-height, auto);
 }
 
-// fix the preview background
+/* fix the preview background */
 :host.preview .render {
     background-image: var(--over-image-url);
     background-color: var(--over-image-background, var(--background));
@@ -141,7 +141,7 @@ img {
     }
 }
 
-// text only
+/* text only */
 .title:first-child,
 .only-text .title {
     display: flex;
@@ -151,7 +151,7 @@ img {
     --over-item-text-size: var(--over-item-text-only-size, 24px);
 }
 
-// image, text only
+/* image, text only */
 .title:not(:first-child),
 .title:first-child span {
     font-size: var(--over-item-text-size, 12px);
@@ -272,7 +272,7 @@ img {
 }
 
 .drop-list {
-    display: table-cell; // fix chromium
+    display: table-cell; /* fix chromium */
     border: var(--over-drop-list-border-size, var(--drop-list-border-size)) solid
         var(--over-drop-list-border-color, var(--drop-list-border-color));
     border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
@@ -284,7 +284,7 @@ img {
     overflow: hidden;
 
     & > div {
-        display: inline-flex; // fix chromium
+        display: inline-flex; /* fix chromium */
         vertical-align: bottom;
         text-align: center;
     }
@@ -313,10 +313,10 @@ caption,
 }
 
 img {
-    // fix chromium (see : https://github.com/niklasvh/html2canvas/issues/2829)
+    /* fix chromium (see : https://github.com/niklasvh/html2canvas/issues/2829) */
     display: initial !important;
     position: relative;
-    // fix html2canvas
+    /* fix html2canvas */
     margin: auto;
 }
 
@@ -393,7 +393,7 @@ img {
     }
 }
 
-// ----------------- ZONE -----------------
+/* ----------------- ZONE ----------------- */
 
 .zone-classement-container {
     padding: 0 2px 2px 0;
@@ -435,7 +435,7 @@ img {
     }
 }
 
-// columns -----------------------------------------------------------
+/* columns ----------------------------------------------------------- */
 
 .mode-columns {
     min-width: 0;
@@ -483,7 +483,7 @@ img {
     }
 }
 
-// bingo -----------------------------------------------------------
+/* bingo ----------------------------------------------------------- */
 
 div:has(> .mode-bingo) {
     margin: auto;
@@ -593,6 +593,6 @@ div:has(> .mode-bingo) {
 }
 
 .demo table {
-    // background on caption preview
+    /* background on caption preview */
     display: block;
 }

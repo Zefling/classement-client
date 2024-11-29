@@ -14,8 +14,8 @@ import { NumFormatPipe } from '../../pipes/num-format';
 @Component({
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',
-    styleUrls: ['./classement-optimise.component.scss'],
-    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe]
+    styleUrls: ['./classement-optimise.component.css'],
+    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe],
 })
 export class ClassementOptimiseComponent implements OnInit {
     private readonly optimiseImage = inject(OptimiseImageService);

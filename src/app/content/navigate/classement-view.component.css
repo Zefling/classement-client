@@ -3,7 +3,7 @@
     margin: var(--main-padding);
 }
 
-// info block
+/* info block */
 
 .infos {
     margin: 15px;
@@ -75,7 +75,7 @@
     font-size: 80%;
 }
 
-// preview
+/* preview */
 
 .preview {
     display: flex;
@@ -88,7 +88,7 @@
     }
 }
 
-// render
+/* render */
 
 .render {
     position: absolute;
@@ -101,7 +101,7 @@ loading-cmp {
     vertical-align: bottom;
 }
 
-// view modes
+/* view modes */
 
 .classement-top {
     display: flex;
@@ -141,7 +141,7 @@ loading-cmp {
     }
 }
 
-// derivatives ------------------------------------------------------------------
+/* derivatives ------------------------------------------------------------------ */
 
 .table-derivatives,
 .table-history {

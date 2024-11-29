@@ -5,7 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
     selector: 'help.bingo',
     templateUrl: './help.bingo.component.html',
-    styleUrls: ['./help.bingo.component.scss'],
-    imports: [TranslocoModule]
+    styleUrls: ['./help.bingo.component.css'],
+    imports: [TranslocoModule],
 })
 export class HelpBingoEmojiComponent {}

@@ -20,9 +20,9 @@ import { color } from '../../tools/function';
 @Component({
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',
-    styleUrls: ['./theme-icon.component.scss'],
+    styleUrls: ['./theme-icon.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TranslocoPipe]
+    imports: [TranslocoPipe],
 })
 export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
     // input

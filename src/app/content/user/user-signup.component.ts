@@ -17,8 +17,8 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'user-signup',
     templateUrl: './user-signup.component.html',
-    styleUrls: ['./user-signup.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, RouterLink, TranslocoPipe]
+    styleUrls: ['./user-signup.component.css'],
+    imports: [FormsModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
 })
 export class UserSignupComponent implements OnDestroy {
     private readonly router = inject(Router);

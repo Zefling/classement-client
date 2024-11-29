@@ -2,7 +2,7 @@
 
 @import '@angular/cdk/overlay-prebuilt.css';
 
-@import './fonts.scss';
+@import './fonts.css';
 
 .cdk-overlay-container {
     z-index: 10000;
@@ -15,7 +15,7 @@
 body.light-mode {
     color-scheme: light;
 
-    // palettes
+    /* palettes */
     --primaryH: 190;
     --L: 0%;
     --L0: 10%;
@@ -31,7 +31,7 @@ body.light-mode {
     --LA: 95%;
     --LB: 100%;
 
-    // option block
+    /* option block */
     --options-sizes-border-color: #8b441b;
     --options-sizes-border-text: #fff;
     --options-sizes-margin-color: #bbb;
@@ -40,7 +40,7 @@ body.light-mode {
     --options-sizes-height-color: #105f1e;
     --options-sizes-width-color: #50197e;
 
-    // icons
+    /* icons */
     --color-icon-deleted: #940d0d;
     --color-icon-admin: #9e7900;
     --color-icon-moderator: #8d3411;
@@ -48,7 +48,7 @@ body.light-mode {
     --color-icon-validated: #176b0c;
     --color-icon-user: #162d79;
 
-    // other
+    /* other */
     --loading-line-animation-color: 0 0 0;
     --box-shadow: hsl(0, 0%, 0%) 20%;
     --tile-add-filter: brightness(0.8);
@@ -58,7 +58,7 @@ body.light-mode {
 body.dark-mode {
     color-scheme: dark;
 
-    // palettes
+    /* palettes */
     --primaryH: 210;
     --L: 100%;
     --L0: 95%;
@@ -74,7 +74,7 @@ body.dark-mode {
     --LA: 5%;
     --LB: 0%;
 
-    // option block
+    /* option block */
     --options-sizes-border-color: yellow;
     --options-sizes-border-text: #000;
     --options-sizes-margin-color: #444;
@@ -83,7 +83,7 @@ body.dark-mode {
     --options-sizes-height-color: #00ff34;
     --options-sizes-width-color: #a12dff;
 
-    // icons
+    /* icons */
     --color-icon-deleted: #912e2e;
     --color-icon-admin: #dfbd00;
     --color-icon-moderator: #a56235;
@@ -91,7 +91,7 @@ body.dark-mode {
     --color-icon-validated: #47963d;
     --color-icon-user: #4767cf;
 
-    // other
+    /* other */
     --loading-line-animation-color: 255 255 255;
     --box-shadow: hsl(0, 0%, 0%) 25%;
     --tile-add-filter: brightness(1.2);
@@ -99,7 +99,7 @@ body.dark-mode {
 }
 
 body {
-    // palettes
+    /* palettes */
     --primary0: hsl(var(--primaryH), 5%, var(--L0));
     --primary1: hsl(var(--primaryH), 15%, var(--L1));
     --primary2: hsl(var(--primaryH), 15%, var(--L2));
@@ -147,7 +147,7 @@ body {
     --success9: hsl(120, 25%, var(--L9));
     --successA: hsl(120, 5%, var(--LA));
 
-    // global
+    /* global */
     --background: var(--primaryA);
     --text-color: var(--primary0);
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
@@ -156,7 +156,7 @@ body {
     --licence-color: var(--primary0);
     --color-mode-border-color: var(--primary0);
 
-    // menu
+    /* menu */
     --menu-border-color: var(--primary8);
     --menu-color: var(--primary0);
     --menu-separator: var(--primary6);
@@ -167,12 +167,12 @@ body {
     --menu-active-background: var(--primary6);
     --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
 
-    // context-menu
+    /* context-menu */
     --context-menu-background: var(--primary8);
     --context-menu-item: var(--primary7);
     --context-menu-item-hover: var(--primary6);
 
-    // default button
+    /* default button */
     --button-default-border-color: var(--neutral5);
     --button-default-background: var(--neutral7);
     --button-default-box-shadow: var(--neutral5);
@@ -182,7 +182,7 @@ body {
     --button-default-hover-box-shadow: var(--neutral7);
     --button-default-focus-border-color: var(--primary2);
 
-    // primary button
+    /* primary button */
     --button-primary-border-color: var(--primary7);
     --button-primary-background: var(--primary6);
     --button-primary-box-shadow: var(--primaryA);
@@ -192,7 +192,7 @@ body {
     --button-primary-hover-box-shadow: var(--primary7);
     --button-primary-focus-border-color: var(--primary3);
 
-    // warn button
+    /* warn button */
     --button-warn-border-color: var(--alert7);
     --button-warn-background: var(--alert8);
     --button-warn-box-shadow: var(--alertA);
@@ -202,11 +202,11 @@ body {
     --button-warn-hover-box-shadow: var(--alert7);
     --button-warn-focus-border-color: var(--alert5);
 
-    // link
+    /* link */
     --link-color: var(--primary3);
     --link-hover-color: var(--primary1);
 
-    // dialog
+    /* dialog */
     --dialog-backdrop-background: color-mix(in hsl, var(--primaryA) 60%, transparent);
     --dialog-backdrop-background-no-filter: color-mix(in hsl, var(--primaryA) 70%, transparent);
     --dialog-background: var(--neutral8);
@@ -215,7 +215,7 @@ body {
     --dialog-close-background: var(--neutral7);
     --dialog-close-background-hover: var(--neutral5);
 
-    // list
+    /* list */
     --list-header-background: var(--neutral9);
     --list-header-background-hover: var(--neutral8);
     --list-line-hover-background: var(--neutral7);
@@ -223,11 +223,11 @@ body {
     --no-result-background: var(--neutral9);
     --table-header-sortable-cell: var(--neutral7);
 
-    // option block
+    /* option block */
     --options-border-color: var(--neutral7);
     --options-background: var(--neutral8);
 
-    // input
+    /* input */
     --input-border-color: var(--primary4);
     --input-background: var(--primary8);
     --input-background-transparent: color-mix(in hsl, var(--input-background) 60%, transparent);
@@ -236,21 +236,21 @@ body {
     --input-focus-border-color: var(--neutral5);
     --input-color-shadow: var(--neutralA);
 
-    // avatar
+    /* avatar */
     --avatar-background: var(--primaryA);
     --avatar-icon-opacity: 0.17;
 
-    // drop list
+    /* drop list */
     --drop-list-border-color: var(--neutral6);
     --drop-list-border-size: 1px;
     --drop-list-background: var(--neutral7);
     --drop-list-border-radius: 4px;
     --drop-list-border-spacing: 1px;
 
-    // drop list (add image)
+    /* drop list (add image) */
     --drop-image-zone-background: var(--success9);
 
-    // item content-box
+    /* item content-box */
     --content-title-text-color: var(--neutral);
     --content-box-border: var(--neutral7);
     --content-box-background: var(--neutral8);
@@ -264,16 +264,16 @@ body {
     --tile-info-border-color2: #000;
     --tile-info-background: #fff5;
 
-    // zone
+    /* zone */
     --group-line-size: 1px;
     --group-line-color: var(--neutral6);
     --axis-line-color: var(--neutral1);
 
-    // info
+    /* info */
     --alert-color: var(--alert4);
     --alert-background: color-mix(in hsl, var(--alert8) 8%, transparent);
 
-    // message
+    /* message */
     --info-message-border-color: var(--neutral1);
     --info-message-background: var(--neutral5);
     --info-message-box-shadow-color: var(--neutralB);
@@ -283,35 +283,35 @@ body {
     --error-message-box-shadow-color: var(--neutralB);
     --error-message-progress-background: var(--alert5);
 
-    // loading
+    /* loading */
     --loading-color: var(--neutral0);
     --loading-tile-color: var(--primary8);
     --loading-background: color-mix(in hsl, var(--neutralA) 23%, transparent);
     --loading-text-color: var(--neutral0);
     --loading-text-shadow-color: var(--neutralB);
 
-    // cropper
+    /* cropper */
     --cropper-overlay-color: var(--neutralB);
     --cropper-outline-color: color-mix(in hsl, var(--neutralB) 30%, transparent);
 
-    // theme
+    /* theme */
     --theme-selection: var(--primary4);
     --theme-shadow-color: color-mix(in hsl, var(--primaryA) 40%, transparent);
 
-    // tooltip
+    /* tooltip */
     --tooltip-text-color: var(--neutral0);
     --tooltip-background: color-mix(in hsl, var(--primary8) 93%, transparent);
     --tooltip-shadow-color: var(--neutralB);
     --tooltip-border-color: var(--primary8);
 
-    // page
+    /* page */
     --page-item-text-color: var(--neutral1);
     --page-item-border-color: var(--neutral5);
     --page-item-current-test-color: var(--primary3);
     --page-item-current-background: var(--primary8);
     --page-item-hover-background: var(--neutral7);
 
-    // tabs
+    /* tabs */
     --tabs-line-color: var(--neutral6);
     --tab-border-color: var(--neutral6);
     --tab-text-color: var(--neutral4);
@@ -319,11 +319,11 @@ body {
     --tab-text-border-color: var(--neutral0);
     --tab-hover-border-color: var(--neutral0);
 
-    // box
+    /* box */
     --box-background: var(--neutral7);
     --box-border-color: var(--neutral5);
 
-    // select2
+    /* select2 */
     --select2-selection-focus-border-color: var(--input-focus-border-color);
     --select2-selection-text-color: var(--text-color);
     --select2-selection-background: var(--input-background);
@@ -341,19 +341,19 @@ body {
     --select2-search-border-color: var(--input-border-color);
     --select2-search-background: var(--text-color);
 
-    // tag
+    /* tag */
     --tag-background: var(--input-border-color);
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
 
-    // scrollbar
+    /* scrollbar */
 
     --scrollbar-color: var(--primary6);
     --scrollbar-color-hover: var(--primary4);
     --scrollbar-width: thin;
 
-    // symbol
+    /* symbol */
     --symbol-color: #c90f0f;
 }
 
@@ -371,7 +371,7 @@ html {
 *:focus,
 *:hover {
     transition-duration: 0.3s;
-    // color not possible in Chromium (too slow)
+    /* color not possible in Chromium (too slow) */
     transition-property: background-color, opacity, border, box-shadow, text-shadow, outline;
 }
 
@@ -442,9 +442,9 @@ button:disabled {
 }
 
 [type='color'] {
-    height: 30px;
     min-width: 60px;
     max-width: 200px;
+    height: 30px;
 }
 
 input:not(:focus-visible):invalid {
@@ -653,7 +653,7 @@ dialog-cmp.auto-format .main {
     }
 }
 
-// tooltip
+/* tooltip */
 
 [ng-reflect-tooltip] {
     cursor: help;
@@ -687,7 +687,7 @@ dialog-cmp.auto-format .main {
     }
 }
 
-// table / sortable
+/* table / sortable */
 
 .sort-cell {
     cursor: pointer;
@@ -739,7 +739,7 @@ dialog-cmp.auto-format .main {
     }
 }
 
-// -------------------- scrollbar ------------------------------------------------------------
+/* -------------------- scrollbar ------------------------------------------------------------ */
 
 body {
     @supports selector(::-webkit-scrollbar) {

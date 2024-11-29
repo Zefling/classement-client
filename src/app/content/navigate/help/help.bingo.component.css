@@ -1,4 +1,4 @@
-@import url('../../classement/help/help.tierlist.component.scss');
+@import url('../../classement/help/help.tierlist.component.css');
 
 :host ::ng-deep code {
     display: inline-block;

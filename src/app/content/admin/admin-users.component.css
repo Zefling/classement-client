@@ -1,4 +1,4 @@
-@import '../list/classement-list.component.scss';
+@import '../list/classement-list.component.css';
 
 .search {
     display: flex;

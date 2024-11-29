@@ -1,4 +1,4 @@
-@import '../../styles/cropper.scss';
+@import '../../styles/cropper.css';
 
 :host {
     --cropper-image-radius: 0;

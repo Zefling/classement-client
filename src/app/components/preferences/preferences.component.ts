@@ -34,7 +34,7 @@ const languages = [
 @Component({
     selector: 'preferences-dialog',
     templateUrl: './preferences.component.html',
-    styleUrls: ['./preferences.component.scss'],
+    styleUrls: ['./preferences.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DialogComponent,
@@ -48,7 +48,7 @@ const languages = [
         CdkDrag,
         ClickOutsideDirective,
         TranslocoPipe,
-    ]
+    ],
 })
 export class PreferencesDialogComponent {
     //inject

@@ -6,7 +6,7 @@ import { Component, input, numberAttribute } from '@angular/core';
 @Component({
     selector: 'loader-item',
     templateUrl: './loader-item.component.html',
-    styleUrls: ['./loader-item.component.scss'],
+    styleUrls: ['./loader-item.component.css'],
     standalone: true,
 })
 export class LoaderItemComponent {

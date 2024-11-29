@@ -17,8 +17,8 @@ import { categories } from '../classement/classement-default';
 @Component({
     selector: 'list-classements',
     templateUrl: './list-classements.component.html',
-    styleUrls: ['./list-classements.component.scss'],
-    imports: [DialogComponent, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe]
+    styleUrls: ['./list-classements.component.css'],
+    imports: [DialogComponent, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);

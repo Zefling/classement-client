@@ -14,8 +14,8 @@ import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.di
 @Component({
     selector: 'user-information',
     templateUrl: './user-information.component.html',
-    styleUrls: ['./user-information.component.scss'],
-    imports: [FormsModule, TextareaAutosizeDirective, TranslocoPipe]
+    styleUrls: ['./user-information.component.css'],
+    imports: [FormsModule, TextareaAutosizeDirective, TranslocoPipe],
 })
 export class UserInformationComponent {
     private readonly userService = inject(APIUserService);
