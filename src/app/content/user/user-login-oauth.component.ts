@@ -13,8 +13,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
     selector: 'user-login-oauth',
     templateUrl: './user-login-oauth.component.html',
     styleUrls: ['./user-login-oauth.component.scss'],
-    standalone: true,
-    imports: [RouterLink, LoaderComponent, TranslocoPipe],
+    imports: [RouterLink, LoaderComponent, TranslocoPipe]
 })
 export class UserLoginOauthComponent implements OnDestroy {
     private readonly router = inject(Router);

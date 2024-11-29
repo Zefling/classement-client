@@ -31,7 +31,6 @@ import { FileSizePipe } from '../../pipes/file-size';
     host: {
         '[class.page]': 'pageMode()',
     },
-    standalone: true,
     imports: [
         FormsModule,
         SortableDirective,
@@ -45,7 +44,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
-    ],
+    ]
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);

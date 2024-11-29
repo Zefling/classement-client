@@ -11,8 +11,7 @@ import { environment } from 'src/environments/environment';
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
-    standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule]
 })
 export class TagListComponent implements OnInit {
     // inject

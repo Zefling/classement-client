@@ -20,19 +20,17 @@ import { environment } from 'src/environments/environment';
     selector: 'classement-themes-manager',
     templateUrl: './classement-themes-manager.component.html',
     styleUrls: ['./classement-themes-manager.component.scss'],
-    standalone: true,
     imports: [
         // modules
         FormsModule,
         TranslocoModule,
-
         // components
         DialogComponent,
         TabsComponent,
         TabContentComponent,
         TabTitleComponent,
         ThemeIconComponent,
-    ],
+    ]
 })
 export class ClassementThemesManagerComponent implements OnInit {
     // inject

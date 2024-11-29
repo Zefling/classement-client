@@ -23,7 +23,6 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
-    standalone: true,
     imports: [
         FormsModule,
         LoadingComponent,
@@ -33,7 +32,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
         ReactiveFormsModule,
         DatePipe,
         TranslocoPipe,
-    ],
+    ]
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {
     private readonly userService = inject(APIUserService);

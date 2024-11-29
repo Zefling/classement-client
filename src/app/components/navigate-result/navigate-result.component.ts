@@ -14,9 +14,8 @@ import { Classement } from 'src/app/interface/interface';
         '[class.categories]': 'isCategoryList()',
         '[class.list]': 'isHomeList()',
     },
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, DatePipe, TranslocoPipe],
+    imports: [RouterLink, DatePipe, TranslocoPipe]
 })
 export class NavigateResultComponent {
     // input

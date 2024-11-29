@@ -29,13 +29,12 @@ export type ContextMenuMode = 'default' | 'bubble';
     selector: 'context-menu',
     templateUrl: './context-menu.component.html',
     styleUrls: ['./context-menu.component.scss'],
-    standalone: true,
     imports: [TranslocoModule],
     host: {
         '[class.default]': 'mode() === "default"',
         '[class.bubble]': 'mode() === "bubble"',
     },
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuComponent<T> {
     // input

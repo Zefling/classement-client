@@ -12,8 +12,7 @@ import { UploadProgress } from '../../services/api.classement.service';
     selector: 'loader-cmp',
     templateUrl: './loader.component.html',
     styleUrls: ['./loader.component.scss'],
-    standalone: true,
-    imports: [LoadingComponent, FileSizePipe],
+    imports: [LoadingComponent, FileSizePipe]
 })
 export class LoaderComponent {
     // input

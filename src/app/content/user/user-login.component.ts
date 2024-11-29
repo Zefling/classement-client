@@ -15,8 +15,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
     selector: 'user-login',
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
-    standalone: true,
-    imports: [FormsModule, RouterLink, LoaderComponent, TranslocoPipe],
+    imports: [FormsModule, RouterLink, LoaderComponent, TranslocoPipe]
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
     private readonly router = inject(Router);

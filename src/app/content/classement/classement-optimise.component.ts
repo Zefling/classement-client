@@ -15,8 +15,7 @@ import { NumFormatPipe } from '../../pipes/num-format';
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',
     styleUrls: ['./classement-optimise.component.scss'],
-    standalone: true,
-    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe],
+    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe]
 })
 export class ClassementOptimiseComponent implements OnInit {
     private readonly optimiseImage = inject(OptimiseImageService);

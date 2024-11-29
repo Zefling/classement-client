@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.teams',
     templateUrl: './help.teams.component.html',
     styleUrls: ['./help.teams.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpTeamsComponent {
     readonly memory = inject(MemoryService);

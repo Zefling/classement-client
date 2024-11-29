@@ -16,8 +16,7 @@ interface Page {
     selector: 'paginate-cmp',
     templateUrl: './paginate.component.html',
     styleUrls: ['./paginate.component.scss'],
-    standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink]
 })
 export class PaginationComponent implements OnInit, DoCheck, OnDestroy {
     // inject

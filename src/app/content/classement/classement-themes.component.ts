@@ -22,7 +22,6 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     selector: 'classement-themes',
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
-    standalone: true,
     imports: [
         DialogComponent,
         ThemeIconComponent,
@@ -32,7 +31,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
         TabTitleComponent,
         FormsModule,
         NgModelChangeDebouncedDirective,
-    ],
+    ]
 })
 export class ClassementThemesComponent {
     // inject

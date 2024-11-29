@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.tierlist',
     templateUrl: './help.tierlist.component.html',
     styleUrls: ['./help.tierlist.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpTierListComponent {
     readonly memory = inject(MemoryService);

@@ -28,7 +28,6 @@ import { ClassementListComponent } from '../list/classement-list.component';
     selector: 'user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
-    standalone: true,
     imports: [
         TabsComponent,
         TabContentComponent,
@@ -44,7 +43,7 @@ import { ClassementListComponent } from '../list/classement-list.component';
         DialogComponent,
         DatePipe,
         TranslocoPipe,
-    ],
+    ]
 })
 export class UserListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);

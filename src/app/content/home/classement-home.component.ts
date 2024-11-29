@@ -19,8 +19,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
-    standalone: true,
-    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
+    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe]
 })
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);

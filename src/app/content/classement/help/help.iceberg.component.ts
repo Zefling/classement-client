@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.iceberg',
     templateUrl: './help.iceberg.component.html',
     styleUrls: ['./help.iceberg.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpIcebergComponent {
     readonly memory = inject(MemoryService);

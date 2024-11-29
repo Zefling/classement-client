@@ -21,9 +21,8 @@ import { color } from '../../tools/function';
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',
     styleUrls: ['./theme-icon.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TranslocoPipe],
+    imports: [TranslocoPipe]
 })
 export class ThemeIconComponent<T = ThemesNames> implements OnInit, OnChanges {
     // input

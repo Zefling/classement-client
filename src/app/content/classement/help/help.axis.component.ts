@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.axis',
     templateUrl: './help.axis.component.html',
     styleUrls: ['./help.axis.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpAxisComponent {
     readonly memory = inject(MemoryService);

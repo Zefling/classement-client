@@ -16,8 +16,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
     selector: 'user-view',
     templateUrl: './user-view.component.html',
     styleUrls: ['./user-view.component.scss'],
-    standalone: true,
-    imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe],
+    imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe]
 })
 export class UserViewComponent {
     private readonly route = inject(ActivatedRoute);

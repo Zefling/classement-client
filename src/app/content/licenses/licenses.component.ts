@@ -10,8 +10,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'third-party-licenses',
     templateUrl: './licenses.component.html',
     styleUrls: ['./licenses.component.scss'],
-    standalone: true,
-    imports: [TranslocoPipe],
+    imports: [TranslocoPipe]
 })
 export class LicensesComponent {
     private readonly http = inject(HttpClient);

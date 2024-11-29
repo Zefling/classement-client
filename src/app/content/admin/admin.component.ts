@@ -7,7 +7,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
     selector: 'admin-page',
     templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.scss'],
-    standalone: true,
-    imports: [RouterLink, RouterLinkActive, RouterOutlet, TranslocoPipe],
+    imports: [RouterLink, RouterLinkActive, RouterOutlet, TranslocoPipe]
 })
 export class AdminComponent {}

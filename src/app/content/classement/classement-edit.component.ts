@@ -105,7 +105,6 @@ import { FileSizePipe } from '../../pipes/file-size';
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
-    standalone: true,
     imports: [
         LoaderComponent,
         DropImageDirective,
@@ -136,7 +135,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         TranslocoPipe,
         FileSizePipe,
         NgModelChangeDebouncedDirective,
-    ],
+    ]
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly dbService = inject(DBService);

@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.bingo',
     templateUrl: './help.bingo.component.html',
     styleUrls: ['./help.bingo.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpBingoComponent {
     readonly memory = inject(MemoryService);

@@ -16,8 +16,7 @@ import { categories } from '../classement/classement-default';
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
-    standalone: true,
-    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
+    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe]
 })
 export class ClassementTemplateComponent {
     private readonly classementService = inject(APIClassementService);

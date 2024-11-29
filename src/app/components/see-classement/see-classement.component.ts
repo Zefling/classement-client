@@ -45,7 +45,6 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
-    standalone: true,
     imports: [
         Select2Module,
         FormsModule,
@@ -58,7 +57,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
         ZoneAreaComponent,
         ZoneAxisComponent,
         TranslocoPipe,
-    ],
+    ]
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
     // inject

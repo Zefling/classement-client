@@ -8,8 +8,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.columns',
     templateUrl: './help.columns.component.html',
     styleUrls: ['./help.columns.component.scss'],
-    imports: [TranslocoModule],
-    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HelpColumnsComponent {
     readonly memory = inject(MemoryService);

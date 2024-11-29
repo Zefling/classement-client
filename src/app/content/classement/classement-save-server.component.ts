@@ -33,7 +33,6 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
     selector: 'classement-save-server',
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
-    standalone: true,
     imports: [
         DropImageDirective,
         FormsModule,
@@ -42,7 +41,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         TooltipDirective,
         LoaderComponent,
         TranslocoPipe,
-    ],
+    ]
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     private readonly userService = inject(APIUserService);

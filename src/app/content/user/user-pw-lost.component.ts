@@ -13,8 +13,7 @@ import { Utils } from 'src/app/tools/utils';
     selector: 'user-pw-lost',
     templateUrl: './user-pw-lost.component.html',
     styleUrls: ['./user-pw-lost.component.scss'],
-    standalone: true,
-    imports: [FormsModule, RouterLink, TranslocoPipe],
+    imports: [FormsModule, RouterLink, TranslocoPipe]
 })
 export class UserPwLostComponent implements OnDestroy {
     private readonly router = inject(Router);

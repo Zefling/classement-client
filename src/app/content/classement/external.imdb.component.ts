@@ -19,8 +19,7 @@ import { Utils } from 'src/app/tools/utils';
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
-    standalone: true,
-    imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
+    imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe]
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
     private readonly imdb = inject(APIImdbService);

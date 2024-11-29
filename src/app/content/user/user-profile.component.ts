@@ -30,7 +30,6 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     selector: 'user-profile',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss'],
-    standalone: true,
     imports: [
         RouterLink,
         RouterLinkActive,
@@ -46,7 +45,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         TabTitleComponent,
         TabContentComponent,
         ThemeIconComponent,
-    ],
+    ]
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
     private readonly router = inject(Router);

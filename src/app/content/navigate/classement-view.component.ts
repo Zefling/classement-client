@@ -33,7 +33,6 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     selector: 'classement-view',
     templateUrl: './classement-view.component.html',
     styleUrls: ['./classement-view.component.scss'],
-    standalone: true,
     imports: [
         RouterLink,
         MarkdownComponent,
@@ -46,7 +45,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         DialogComponent,
         DatePipe,
         TranslocoPipe,
-    ],
+    ]
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly classementService = inject(APIClassementService);

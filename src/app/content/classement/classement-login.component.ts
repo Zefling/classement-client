@@ -16,8 +16,7 @@ import { UserLoginComponent } from '../user/user-login.component';
     selector: 'classement-login',
     templateUrl: './classement-login.component.html',
     styleUrls: ['./classement-login.component.scss'],
-    standalone: true,
-    imports: [DialogComponent, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
+    imports: [DialogComponent, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe]
 })
 export class ClassementLoginComponent implements OnDestroy {
     private readonly edit = inject(ClassementEditComponent, { host: true });

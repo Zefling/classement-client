@@ -74,7 +74,6 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
-    standalone: true,
     imports: [
         FormsModule,
         Select2Module,
@@ -90,7 +89,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         ThemeIconComponent,
         ClassementThemesManagerComponent,
         JsonPipe,
-    ],
+    ]
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
     // inject

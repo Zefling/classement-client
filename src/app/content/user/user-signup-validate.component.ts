@@ -10,8 +10,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
     selector: 'user-signup-validate',
     templateUrl: './user-signup-validate.component.html',
     styleUrls: ['./user-signup-validate.component.scss'],
-    standalone: true,
-    imports: [TranslocoPipe],
+    imports: [TranslocoPipe]
 })
 export class UserSignupValidateComponent {
     private readonly userService = inject(APIUserService);

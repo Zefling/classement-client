@@ -23,6 +23,7 @@ import { PreferencesService } from './services/preferences.service';
         '[class.show-help]': 'showHelp()',
         '[style.--zoom]': 'preferencesService.preferences.zoomMobile',
     },
+    standalone: false
 })
 export class AppComponent implements DoCheck {
     // injects
