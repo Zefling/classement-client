@@ -443,6 +443,7 @@ export const categories: string[] = [
     'technology',
     'vehicle',
     'video.game',
+    'vtuber',
     'other',
 ];
 
