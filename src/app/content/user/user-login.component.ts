@@ -14,7 +14,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 @Component({
     selector: 'user-login',
     templateUrl: './user-login.component.html',
-    styleUrls: ['./user-login.component.css'],
+    styleUrls: ['./user-login.component.scss'],
     imports: [FormsModule, RouterLink, LoaderComponent, TranslocoPipe],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {

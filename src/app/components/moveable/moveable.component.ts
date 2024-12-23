@@ -19,7 +19,7 @@ import Moveable, { EVENTS } from 'moveable';
 @Component({
     selector: 'moveable-zone',
     templateUrl: './moveable.component.html',
-    styleUrls: ['./moveable.component.css'],
+    styleUrls: ['./moveable.component.scss'],
     standalone: true,
 })
 export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges {

@@ -20,7 +20,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
-    styleUrls: ['./admin-classements.component.css'],
+    styleUrls: ['./admin-classements.component.scss'],
     imports: [
         FormsModule,
         Select2Module,

@@ -18,7 +18,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
 @Component({
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
-    styleUrls: ['./classement-home.component.css'],
+    styleUrls: ['./classement-home.component.scss'],
     imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
 })
 export class ClassementHomeComponent {

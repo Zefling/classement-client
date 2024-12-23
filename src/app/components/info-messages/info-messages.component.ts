@@ -27,7 +27,7 @@ export class MessageService {
 @Component({
     selector: 'info-messages',
     templateUrl: './info-messages.component.html',
-    styleUrls: ['./info-messages.component.css'],
+    styleUrls: ['./info-messages.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [InfoMessageComponent],
 })

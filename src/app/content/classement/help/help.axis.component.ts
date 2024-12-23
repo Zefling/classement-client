@@ -7,7 +7,7 @@ import { MemoryService } from 'src/app/services/memory.service';
 @Component({
     selector: 'help.axis',
     templateUrl: './help.axis.component.html',
-    styleUrls: ['./help.axis.component.css'],
+    styleUrls: ['./help.axis.component.scss'],
     imports: [TranslocoModule],
 })
 export class HelpAxisComponent {

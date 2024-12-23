@@ -34,7 +34,7 @@ const languages = [
 @Component({
     selector: 'preferences-dialog',
     templateUrl: './preferences.component.html',
-    styleUrls: ['./preferences.component.css'],
+    styleUrls: ['./preferences.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DialogComponent,

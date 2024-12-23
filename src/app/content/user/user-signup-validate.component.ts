@@ -9,7 +9,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 @Component({
     selector: 'user-signup-validate',
     templateUrl: './user-signup-validate.component.html',
-    styleUrls: ['./user-signup-validate.component.css'],
+    styleUrls: ['./user-signup-validate.component.scss'],
     imports: [TranslocoPipe],
 })
 export class UserSignupValidateComponent {

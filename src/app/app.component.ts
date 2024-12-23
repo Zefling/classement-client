@@ -16,7 +16,7 @@ import { PreferencesService } from './services/preferences.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.scss'],
     host: {
         '[class.show-menu]': 'asideOpen()',
         '[class.reduce-menu]': 'mainMenuReduce()',

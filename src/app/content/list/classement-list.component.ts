@@ -27,7 +27,7 @@ import { FileSizePipe } from '../../pipes/file-size';
 @Component({
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
-    styleUrls: ['./classement-list.component.css'],
+    styleUrls: ['./classement-list.component.scss'],
     host: {
         '[class.page]': 'pageMode()',
     },

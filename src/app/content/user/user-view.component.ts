@@ -15,7 +15,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
 @Component({
     selector: 'user-view',
     templateUrl: './user-view.component.html',
-    styleUrls: ['./user-view.component.css'],
+    styleUrls: ['./user-view.component.scss'],
     imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe],
 })
 export class UserViewComponent {

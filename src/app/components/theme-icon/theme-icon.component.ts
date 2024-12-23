@@ -20,7 +20,7 @@ import { color } from '../../tools/function';
 @Component({
     selector: 'theme-icon',
     templateUrl: './theme-icon.component.html',
-    styleUrls: ['./theme-icon.component.css'],
+    styleUrls: ['./theme-icon.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe],
 })

@@ -44,7 +44,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
 @Component({
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
-    styleUrls: ['./see-classement.component.css'],
+    styleUrls: ['./see-classement.component.scss'],
     imports: [
         Select2Module,
         FormsModule,

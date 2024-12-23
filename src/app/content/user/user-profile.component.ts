@@ -29,7 +29,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
 @Component({
     selector: 'user-profile',
     templateUrl: './user-profile.component.html',
-    styleUrls: ['./user-profile.component.css'],
+    styleUrls: ['./user-profile.component.scss'],
     imports: [
         RouterLink,
         RouterLinkActive,

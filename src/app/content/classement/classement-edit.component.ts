@@ -104,7 +104,7 @@ import { FileSizePipe } from '../../pipes/file-size';
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
-    styleUrls: ['./classement-edit.component.css'],
+    styleUrls: ['./classement-edit.component.scss'],
     imports: [
         LoaderComponent,
         DropImageDirective,

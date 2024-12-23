@@ -15,7 +15,7 @@ import { categories } from '../classement/classement-default';
 @Component({
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
-    styleUrls: ['./classement-template.component.css'],
+    styleUrls: ['./classement-template.component.scss'],
     imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
 })
 export class ClassementTemplateComponent {

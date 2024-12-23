@@ -32,7 +32,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 @Component({
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
-    styleUrls: ['./classement-edit-image.component.css'],
+    styleUrls: ['./classement-edit-image.component.scss'],
     imports: [
         DialogComponent,
         FormsModule,

@@ -72,7 +72,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
 @Component({
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
-    styleUrls: ['./classement-options.component.css'],
+    styleUrls: ['./classement-options.component.scss'],
     imports: [
         FormsModule,
         Select2Module,

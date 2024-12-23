@@ -6,7 +6,7 @@ import { Component, input } from '@angular/core';
 @Component({
     selector: 'loading-cmp',
     templateUrl: './loading.component.html',
-    styleUrls: ['./loading.component.css'],
+    styleUrls: ['./loading.component.scss'],
     host: {
         '[style.--height]': 'size()',
         '[style.--width]': 'tickWidth()',

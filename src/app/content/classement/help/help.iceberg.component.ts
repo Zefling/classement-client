@@ -7,7 +7,7 @@ import { MemoryService } from 'src/app/services/memory.service';
 @Component({
     selector: 'help.iceberg',
     templateUrl: './help.iceberg.component.html',
-    styleUrls: ['./help.iceberg.component.css'],
+    styleUrls: ['./help.iceberg.component.scss'],
     imports: [TranslocoModule],
 })
 export class HelpIcebergComponent {

@@ -13,7 +13,7 @@ import {
 @Component({
     selector: 'dialog-cmp',
     templateUrl: './dialog.component.html',
-    styleUrls: ['./dialog.component.css'],
+    styleUrls: ['./dialog.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

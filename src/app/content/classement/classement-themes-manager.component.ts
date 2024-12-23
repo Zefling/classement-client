@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'classement-themes-manager',
     templateUrl: './classement-themes-manager.component.html',
-    styleUrls: ['./classement-themes-manager.component.css'],
+    styleUrls: ['./classement-themes-manager.component.scss'],
     imports: [
         // modules
         FormsModule,

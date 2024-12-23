@@ -15,7 +15,7 @@ import { UserLoginComponent } from '../user/user-login.component';
 @Component({
     selector: 'classement-login',
     templateUrl: './classement-login.component.html',
-    styleUrls: ['./classement-login.component.css'],
+    styleUrls: ['./classement-login.component.scss'],
     imports: [DialogComponent, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
 })
 export class ClassementLoginComponent implements OnDestroy {

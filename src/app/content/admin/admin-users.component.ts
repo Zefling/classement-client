@@ -22,7 +22,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
 @Component({
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
-    styleUrls: ['./admin-users.component.css'],
+    styleUrls: ['./admin-users.component.scss'],
     imports: [
         FormsModule,
         LoadingComponent,

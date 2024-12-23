@@ -21,7 +21,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
 @Component({
     selector: 'classement-themes',
     templateUrl: './classement-themes.component.html',
-    styleUrls: ['./classement-themes.component.css'],
+    styleUrls: ['./classement-themes.component.scss'],
     imports: [
         DialogComponent,
         ThemeIconComponent,

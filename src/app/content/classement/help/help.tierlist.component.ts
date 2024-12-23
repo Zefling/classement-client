@@ -7,7 +7,7 @@ import { MemoryService } from 'src/app/services/memory.service';
 @Component({
     selector: 'help.tierlist',
     templateUrl: './help.tierlist.component.html',
-    styleUrls: ['./help.tierlist.component.css'],
+    styleUrls: ['./help.tierlist.component.scss'],
     imports: [TranslocoModule],
 })
 export class HelpTierListComponent {

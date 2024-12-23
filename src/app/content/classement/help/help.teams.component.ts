@@ -7,7 +7,7 @@ import { MemoryService } from 'src/app/services/memory.service';
 @Component({
     selector: 'help.teams',
     templateUrl: './help.teams.component.html',
-    styleUrls: ['./help.teams.component.css'],
+    styleUrls: ['./help.teams.component.scss'],
     imports: [TranslocoModule],
 })
 export class HelpTeamsComponent {

@@ -6,7 +6,7 @@ import { GlobalService } from 'src/app/services/global.service';
 @Component({
     selector: 'light-dark',
     templateUrl: './light-dark.component.html',
-    styleUrls: ['./light-dark.component.css'],
+    styleUrls: ['./light-dark.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

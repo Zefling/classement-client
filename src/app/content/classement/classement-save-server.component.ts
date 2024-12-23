@@ -32,7 +32,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
 @Component({
     selector: 'classement-save-server',
     templateUrl: './classement-save-server.component.html',
-    styleUrls: ['./classement-save-server.component.css'],
+    styleUrls: ['./classement-save-server.component.scss'],
     imports: [
         DropImageDirective,
         FormsModule,

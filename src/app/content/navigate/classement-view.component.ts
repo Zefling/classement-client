@@ -32,7 +32,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
 @Component({
     selector: 'classement-view',
     templateUrl: './classement-view.component.html',
-    styleUrls: ['./classement-view.component.css'],
+    styleUrls: ['./classement-view.component.scss'],
     imports: [
         RouterLink,
         MarkdownComponent,

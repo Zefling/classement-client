@@ -18,7 +18,7 @@ import { Utils } from 'src/app/tools/utils';
 @Component({
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
-    styleUrls: ['./external.imdb.component.css'],
+    styleUrls: ['./external.imdb.component.scss'],
     imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {

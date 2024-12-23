@@ -9,7 +9,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 @Component({
     selector: 'third-party-licenses',
     templateUrl: './licenses.component.html',
-    styleUrls: ['./licenses.component.css'],
+    styleUrls: ['./licenses.component.scss'],
     imports: [TranslocoPipe],
 })
 export class LicensesComponent {

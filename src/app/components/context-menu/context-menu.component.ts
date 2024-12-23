@@ -28,7 +28,7 @@ export type ContextMenuMode = 'default' | 'bubble';
 @Component({
     selector: 'context-menu',
     templateUrl: './context-menu.component.html',
-    styleUrls: ['./context-menu.component.css'],
+    styleUrls: ['./context-menu.component.scss'],
     imports: [TranslocoModule],
     host: {
         '[class.default]': 'mode() === "default"',

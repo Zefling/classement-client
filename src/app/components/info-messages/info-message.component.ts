@@ -14,7 +14,7 @@ import { Message } from './info-messages.component';
 @Component({
     selector: 'info-message',
     templateUrl: './info-message.component.html',
-    styleUrls: ['./info-message.component.css'],
+    styleUrls: ['./info-message.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

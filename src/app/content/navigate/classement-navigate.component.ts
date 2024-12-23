@@ -24,7 +24,7 @@ import { listModes } from '../classement/classement-default';
 @Component({
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
-    styleUrls: ['./classement-navigate.component.css'],
+    styleUrls: ['./classement-navigate.component.scss'],
     imports: [
         FormsModule,
         Select2Module,

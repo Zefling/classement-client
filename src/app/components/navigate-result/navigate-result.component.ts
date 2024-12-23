@@ -9,7 +9,7 @@ import { Classement } from 'src/app/interface/interface';
 @Component({
     selector: 'navigate-result',
     templateUrl: './navigate-result.component.html',
-    styleUrls: ['./navigate-result.component.css'],
+    styleUrls: ['./navigate-result.component.scss'],
     host: {
         '[class.categories]': 'isCategoryList()',
         '[class.list]': 'isHomeList()',
