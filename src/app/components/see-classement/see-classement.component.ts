@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Module, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { Select2, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Subject, debounceTime } from 'rxjs';
 
@@ -46,7 +46,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
     imports: [
-        Select2Module,
+        Select2,
         FormsModule,
         NgClass,
         MarkdownComponent,

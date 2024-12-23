@@ -18,7 +18,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
-import { Select2, Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import {
@@ -75,7 +75,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
     styleUrls: ['./classement-options.component.scss'],
     imports: [
         FormsModule,
-        Select2Module,
+        Select2,
         NgClass,
         TextareaAutosizeDirective,
         TooltipDirective,

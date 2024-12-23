@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
-import { Select2Module } from 'ng-select2-component';
+import { Select2 } from 'ng-select2-component';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 import { PreferencesDialogComponent } from './components/preferences/preferences.component';
@@ -16,7 +16,7 @@ import { PreferencesDialogComponent } from './components/preferences/preferences
         TranslocoModule,
         FormsModule,
         ReactiveFormsModule,
-        Select2Module,
+        Select2,
         // internal
     ],
     imports: [
@@ -25,7 +25,7 @@ import { PreferencesDialogComponent } from './components/preferences/preferences
         TranslocoModule,
         FormsModule,
         ReactiveFormsModule,
-        Select2Module,
+        Select2,
         // internal
         DialogComponent,
         PreferencesDialogComponent,

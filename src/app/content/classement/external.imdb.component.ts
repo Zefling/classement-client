@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Select2Data, Select2Module, Select2Option } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Theme } from 'src/app/interface/interface';
@@ -19,7 +19,7 @@ import { Utils } from 'src/app/tools/utils';
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
-    imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2Module, DatePipe, TranslocoPipe],
+    imports: [DialogComponent, FormsModule, ReactiveFormsModule, Select2, DatePipe, TranslocoPipe],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
     private readonly imdb = inject(APIImdbService);

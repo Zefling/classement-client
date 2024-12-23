@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Module } from 'ng-select2-component';
+import { Select2 } from 'ng-select2-component';
 
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -21,14 +21,7 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
-    imports: [
-        FormsModule,
-        Select2Module,
-        LoadingComponent,
-        PaginationComponent,
-        ListClassementsComponent,
-        TranslocoPipe,
-    ],
+    imports: [FormsModule, Select2, LoadingComponent, PaginationComponent, ListClassementsComponent, TranslocoPipe],
 })
 export class AdminClassementsComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Data, Select2Module } from 'ng-select2-component';
+import { Select2, Select2Data } from 'ng-select2-component';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface/interface';
@@ -27,7 +27,7 @@ import { listModes } from '../classement/classement-default';
     styleUrls: ['./classement-navigate.component.scss'],
     imports: [
         FormsModule,
-        Select2Module,
+        Select2,
         NgClass,
         RouterLink,
         PaginationComponent,

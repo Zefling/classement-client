@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Module } from 'ng-select2-component';
+import { Select2 } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -36,7 +36,7 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
     imports: [
         DropImageDirective,
         FormsModule,
-        Select2Module,
+        Select2,
         ImageCropperComponent,
         TooltipDirective,
         LoaderComponent,
