@@ -2,7 +2,11 @@
   <loader-cmp [message]="'generator.loading' | transloco"></loader-cmp>
 }
 
-<div class="classement-edit" drop-image [disabled]="dialogSaveServer?._open || editImage?._open || false">
+<div
+  class="classement-edit"
+  drop-image
+  [disabled]="dialogSaveServer?._open || advance?.dialogAdvancedOptions()?._open || editImage?._open || false"
+>
   <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
   <div class="top-actions">
@@ -30,7 +34,7 @@
     </div>
   </div>
 
-  <classement-options [options]="options" [lockCategory]="lockCategory"></classement-options>
+  <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
 
   @if (options) {
     <div class="edit-zone" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
