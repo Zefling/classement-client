@@ -1,2 +1,2 @@
--   Zéfling
--   Ambroise Croizat
+- Zéfling
+- Ambroise Croizat

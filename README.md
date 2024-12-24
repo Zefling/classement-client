@@ -7,8 +7,8 @@ The lists are modifiable and configurable by options or drag'n drop.
 
 Currently 2 modes are possible:
 
--   Stand-alone: backup mode is in a browser database (IndexedDB).
--   With API: Back on serveur with [PHP](https://git.ikilote.net/classement/serveur).
+- Stand-alone: backup mode is in a browser database (IndexedDB).
+- With API: Back on serveur with [PHP](https://git.ikilote.net/classement/serveur).
 
 See `src/environments/environment*.ts` for change.
 
@@ -34,85 +34,85 @@ Current installation in this [website](https://classement.org/).
 
 ## Features
 
--   ✅ Stand-alone (without server)
-    -   ✅ Adding images by drag'n drop or copy-paste
-    -   ✅ Adding text under images
-    -   ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
-    -   ✅ Ranking Modes
-        -   ✅ Tierlist
-        -   ✅ Teams
-        -   ✅ Columns
-        -   ✅ Iceberg
-        -   ✅ Axis
-        -   ✅ Bingo
-            -   ✅ Bingo selection
-                -   ✅ Symbol
-                -   ✅ Emoji (with transformation)
-    -   ✅ Advanced customization of tiles, lines, background, etc.
-        -   ✅ Background image
-        -   ✅ Direction
-        -   ✅ Color
-        -   ✅ Font
-    -   ✅ Image tile
-        -   ✅ Reduce size
-        -   ✅ Change size
-        -   ✅ Resize
-    -   ✅ Ranking in browser or in Json
-        -   ✅ Browser save
-        -   ✅ Import (one or more)
-        -   ✅ Export (one or all)
-        -   ✅ Clone
-    -   ✅ Theme in browser or in Json
-        -   ✅ Browser save
-        -   ✅ Import
-        -   ✅ Export
-    -   ✅ Image export: PNG, JPG or WebP (except for Safari)
-    -   ✅ Tags
-    -   ✅ Preferences
-        -   ✅ Languages
-        -   ✅ Emoji
-    -   ✅ External API
-        -   ✅ IMDB
-        -   ⬜ MAL
--   ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
-    -   ✅ Create user
-        -   ✅ Simple create
-        -   ✅ Email confirmation
-        -   ✅ Normal connection
-        -   ✅ OAuth2 connection
-            -   ✅ Discord
-            -   ✅ Facebook
-            -   ❌ Google (abandoned, the code is not deleted, but impossible to test)
-        -   ✅ Password lost
-    -   ✅ Profile
-        -   ✅ See personal rankings
-        -   ✅ Remove ranking
-        -   ✅ Change username
-        -   ✅ Change email
-        -   ✅ Change password
-        -   ✅ Change avatar
-        -   ✅ Remove user
-    -   ✅ Rankings
-        -   ✅ Save on server
-            -   ✅ Public
-            -   ✅ Private
-            -   ✅ Private with password
-        -   ✅ Search in public rankings
-        -   ✅ See rankings form template
-        -   ✅ Ranking view
-            -   ✅ Ranking history
-    -   ✅ Theme
-        -   ✅ Save on server
-            -   ✅ Public
-            -   ✅ Private
-        -   ✅ Search in public themes
-    -   ✅ Admin
-        -   ✅ Search users or rankings
-        -   ✅ Edit profil & change roles
-        -   ✅ rankings change status
-        -   ✅ rankings change category
-        -   ✅ Remove user
-    -   ✅ Contact form
+- ✅ Stand-alone (without server)
+    - ✅ Adding images by drag'n drop or copy-paste
+    - ✅ Adding text under images
+    - ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
+    - ✅ Ranking Modes
+        - ✅ Tierlist
+        - ✅ Teams
+        - ✅ Columns
+        - ✅ Iceberg
+        - ✅ Axis
+        - ✅ Bingo
+            - ✅ Bingo selection
+                - ✅ Symbol
+                - ✅ Emoji (with transformation)
+    - ✅ Advanced customization of tiles, lines, background, etc.
+        - ✅ Background image
+        - ✅ Direction
+        - ✅ Color
+        - ✅ Font
+    - ✅ Image tile
+        - ✅ Reduce size
+        - ✅ Change size
+        - ✅ Resize
+    - ✅ Ranking in browser or in Json
+        - ✅ Browser save
+        - ✅ Import (one or more)
+        - ✅ Export (one or all)
+        - ✅ Clone
+    - ✅ Theme in browser or in Json
+        - ✅ Browser save
+        - ✅ Import
+        - ✅ Export
+    - ✅ Image export: PNG, JPG or WebP (except for Safari)
+    - ✅ Tags
+    - ✅ Preferences
+        - ✅ Languages
+        - ✅ Emoji
+    - ✅ External API
+        - ✅ IMDB
+        - ⬜ MAL
+- ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
+    - ✅ Create user
+        - ✅ Simple create
+        - ✅ Email confirmation
+        - ✅ Normal connection
+        - ✅ OAuth2 connection
+            - ✅ Discord
+            - ✅ Facebook
+            - ❌ Google (abandoned, the code is not deleted, but impossible to test)
+        - ✅ Password lost
+    - ✅ Profile
+        - ✅ See personal rankings
+        - ✅ Remove ranking
+        - ✅ Change username
+        - ✅ Change email
+        - ✅ Change password
+        - ✅ Change avatar
+        - ✅ Remove user
+    - ✅ Rankings
+        - ✅ Save on server
+            - ✅ Public
+            - ✅ Private
+            - ✅ Private with password
+        - ✅ Search in public rankings
+        - ✅ See rankings form template
+        - ✅ Ranking view
+            - ✅ Ranking history
+    - ✅ Theme
+        - ✅ Save on server
+            - ✅ Public
+            - ✅ Private
+        - ✅ Search in public themes
+    - ✅ Admin
+        - ✅ Search users or rankings
+        - ✅ Edit profil & change roles
+        - ✅ rankings change status
+        - ✅ rankings change category
+        - ✅ Remove user
+    - ✅ Contact form
 
 ## Development
 
