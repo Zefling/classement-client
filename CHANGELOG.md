@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 3.1.7 (2024-12-30)
+
+#### Standalone web app
+
+- Test if server is OK
+    - ModeAPI in computed() mode
+- Switch to stand-alone mode if no server found
+- Group information pages
+    - Add changelog page
+
 ### 3.1.6 (2024-12-24)
 
 #### Standalone web app

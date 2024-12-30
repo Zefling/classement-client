@@ -1,7 +1,7 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
@@ -66,7 +66,7 @@
     "buffer": "^6.0.3",
     "coloration-lib": "^0.2.0",
     "marked": "^15.0.3",
-    "ng-select2-component": "^17.0.0",
+    "ng-select2-component": "^17.1.0",
     "ngx-image-cropper": "^9.0.0",
     "ngx-markdown": "^19.0.0",
     "ngx-moveable": "^0.50.0",
