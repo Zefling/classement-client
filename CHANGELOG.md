@@ -10,6 +10,10 @@
 - Group information pages
     - Add changelog page
 
+#### With API activated only
+
+- Required: API `1.21.1` for test
+
 ### 3.1.6 (2024-12-24)
 
 #### Standalone web app
