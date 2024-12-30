@@ -3,6 +3,8 @@ import { Component, inject } from '@angular/core';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { MarkdownComponent } from 'ngx-markdown';
+
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
@@ -10,7 +12,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'infos-changelog',
     templateUrl: './infos-changelog.component.html',
     styleUrls: ['./infos-changelog.component.scss'],
-    imports: [TranslocoPipe],
+    imports: [TranslocoPipe, MarkdownComponent],
 })
 export class InfoChangelogComponent {
     private readonly http = inject(HttpClient);
