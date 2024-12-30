@@ -6,6 +6,8 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 import { Logger, LoggerLevel } from './logger';
 
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
@@ -54,6 +56,8 @@ export class GlobalService {
     readonly onOptionChange = new Subject<void>();
     readonly helpComponent = new Subject<Type<any> | undefined>();
 
+    withApi = signal(environment.api?.active || false);
+
     zoomActive = signal<boolean>(false);
 
     withChange = signal<number>(0);
@@ -61,6 +65,7 @@ export class GlobalService {
     lang!: string;
 
     licenses!: string;
+    changelog!: string;
 
     jsonTmp?: Data;
 

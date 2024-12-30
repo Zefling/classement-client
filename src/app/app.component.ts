@@ -1,4 +1,14 @@
-import { ChangeDetectorRef, Component, DoCheck, ElementRef, Type, inject, signal, viewChild } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    DoCheck,
+    ElementRef,
+    Type,
+    computed,
+    inject,
+    signal,
+    viewChild,
+} from '@angular/core';
 import { Event, Router, Scroll } from '@angular/router';
 
 import { filter } from 'rxjs';
@@ -51,7 +61,7 @@ export class AppComponent implements DoCheck {
     readonly modeModerator = signal<boolean>(false);
 
     loading = environment.api?.active;
-    modeApi = environment.api?.active || false;
+    modeApi = computed(() => this.globalService.withApi());
 
     _modeTemp?: string;
     _index = 0;
@@ -99,16 +109,26 @@ export class AppComponent implements DoCheck {
             this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
-        if (environment.api?.active) {
+        if (this.modeApi()) {
             this.userService
-                .initProfile()
+                .serverTest()
                 .then(() => {
-                    this.logger.log('Auto login success!!');
+                    this.logger.log('Server ok !');
+                    this.userService
+                        .initProfile()
+                        .then(() => {
+                            this.logger.log('Auto login success!!');
+                        })
+                        .catch(() => {
+                            this.logger.log('Auto login error!!', LoggerLevel.error);
+                        })
+                        .finally(() => {
+                            this.loading = false;
+                        });
                 })
                 .catch(() => {
-                    this.logger.log('Auto login error!!', LoggerLevel.error);
-                })
-                .finally(() => {
+                    this.globalService.withApi.set(false);
+                    this.logger.log('Server ko !', LoggerLevel.error);
                     this.loading = false;
                 });
         }
@@ -139,7 +159,7 @@ export class AppComponent implements DoCheck {
     }
 
     logout() {
-        if (environment.api?.active) {
+        if (this.modeApi()) {
             this.userService.loggedStatus().then(() => {
                 this.logger.log('logout start');
                 this.userService.logout().then(() => {

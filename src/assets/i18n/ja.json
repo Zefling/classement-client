@@ -16,13 +16,18 @@
     "admin.classements": "ランキング",
     "logout": "ログアウト",
     "information": "情報",
-    "licenses": "ライセンス",
     "preferences": "環境設定",
     "forgot.password": "パスワードを忘れてしまいました",
     "mode": {
       "reduce": "メニューを圧縮する",
       "expand": "メニューを解凍する"
     }
+  },
+  "infos": {
+    "title": "情報",
+    "message": "メッセージ",
+    "licenses": "ライセンス",
+    "changelog": "変更ログ"
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",
@@ -43,6 +48,9 @@
   },
   "licenses": {
     "title": "サードパーティライセンスの概要"
+  },
+  "changelog": {
+    "title": "変更ログ (英語)"
   },
   "home": {
     "info": "インフォメーション",

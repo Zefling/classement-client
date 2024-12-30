@@ -16,13 +16,18 @@
     "admin.classements": "Rankings",
     "logout": "Logout",
     "information": "Information",
-    "licenses": "Licenses",
     "preferences": "Preferences",
     "forgot.password": "Forgot your password",
     "mode": {
       "reduce": "Reduce menu",
       "expand": "Expand menu"
     }
+  },
+  "infos": {
+    "title": "Informations",
+    "message": "Message",
+    "licenses": "Licenses",
+    "changelog": "Changelog"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -43,6 +48,9 @@
   },
   "licenses": {
     "title": "Overview of third-party licenses"
+  },
+  "changelog": {
+    "title": "Changelog"
   },
   "home": {
     "info": "Information",

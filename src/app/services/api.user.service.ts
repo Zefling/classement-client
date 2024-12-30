@@ -83,6 +83,19 @@ export class APIUserService extends APICommon {
         });
     }
 
+    serverTest() {
+        return new Promise<void>((resolve, reject) => {
+            this.http.get<Message<User>>(`${environment.api.path}api/test`).subscribe({
+                next: () => {
+                    resolve();
+                },
+                error: () => {
+                    reject();
+                },
+            });
+        });
+    }
+
     initProfile(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.token = Utils.getCookie('x-token') || undefined;
@@ -99,6 +112,7 @@ export class APIUserService extends APICommon {
                         this.logged = true;
                         this.isModerator = this.user.roles?.includes(Role.MODERATOR) || false;
                         this.isAdmin = this.user.roles?.includes(Role.ADMIN) || false;
+                        console.log('>>>>>>>b');
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {

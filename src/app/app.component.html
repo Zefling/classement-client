@@ -59,7 +59,7 @@
           </a>
         </li>
       }
-      @if (modeApi) {
+      @if (modeApi()) {
         @if (logged) {
           <li class="section-top" [title]="'menu.my.lists' | transloco">
             <a
@@ -110,7 +110,7 @@
           <span>{{ 'menu.preferences' | transloco }}</span>
         </a>
       </li>
-      @if (modeApi) {
+      @if (modeApi()) {
         @if (modeModerator()) {
           <li [title]="'menu.admin' | transloco">
             <a
@@ -169,28 +169,17 @@
             </a>
           }
         </li>
-        <li class="information" [title]="'menu.information' | transloco">
-          <a
-            routerLink="/user/information"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            (click)="toggleMenu()"
-          >
-            <span class="icon icon-info"></span>
-            <span>{{ 'menu.information' | transloco }}</span>
-          </a>
-        </li>
       }
 
-      <li class="licenses" [title]="'menu.licenses' | transloco">
+      <li class="information" [title]="'menu.information' | transloco">
         <a
-          routerLink="/licenses"
+          routerLink="/infos"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           (click)="toggleMenu()"
         >
-          <span class="icon icon-licenses"></span>
-          <span>{{ 'menu.licenses' | transloco }}</span>
+          <span class="icon icon-info"></span>
+          <span>{{ 'menu.information' | transloco }}</span>
         </a>
       </li>
     </ul>

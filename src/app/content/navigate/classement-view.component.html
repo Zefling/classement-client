@@ -79,7 +79,7 @@
       @if (!currentUser) {
         <button (click)="openClassementFork()" class="primary">
           {{
-            (!apiActive
+            (!modeApi()
               ? 'generator.actions.edit.local.empty'
               : !logged
                 ? 'generator.actions.make.my.derivative.empty'

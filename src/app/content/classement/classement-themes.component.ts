@@ -1,4 +1,4 @@
-import { Component, inject, input, output, viewChild } from '@angular/core';
+import { Component, computed, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -12,7 +12,7 @@ import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/
 import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
-import { environment } from 'src/environments/environment';
+import { GlobalService } from 'src/app/services/global.service';
 
 import { themes, themesAxis, themesBingo, themesIceberg, themesList, themesLists } from './classement-default';
 
@@ -36,6 +36,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
 export class ClassementThemesComponent {
     // inject
 
+    private readonly global = inject(GlobalService);
     private readonly dbService = inject(DBService);
     private readonly themeService = inject(APIThemeService);
     private readonly userService = inject(APIUserService);
@@ -54,8 +55,7 @@ export class ClassementThemesComponent {
     readonly dialog = viewChild.required<DialogComponent>(DialogComponent);
 
     // template
-
-    api = environment.api?.active || false;
+    modeApi = computed(() => this.global.withApi());
 
     key?: string;
 
@@ -92,7 +92,7 @@ export class ClassementThemesComponent {
 
         this.themes = themesList.filter(e => this.themesList.includes(e.name));
 
-        if (this.api) {
+        if (this.modeApi()) {
             this.user = this.userService.user;
             this.themeService
                 .getThemesByCriterion({
@@ -126,7 +126,7 @@ export class ClassementThemesComponent {
                 })) ?? []),
         ];
 
-        if (this.api) {
+        if (this.modeApi()) {
             this.themeService
                 .getThemesByCriterion({
                     user: this.user?.id,

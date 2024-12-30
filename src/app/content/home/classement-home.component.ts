@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -31,7 +31,7 @@ export class ClassementHomeComponent {
 
     version = environment.version;
 
-    modeApi = environment.api?.active || false;
+    modeApi = computed(() => this.global.withApi());
 
     logged = false;
 
@@ -48,7 +48,7 @@ export class ClassementHomeComponent {
 
         this.preferences = this.preferencesService.preferences;
 
-        if (this.modeApi) {
+        if (this.modeApi()) {
             this.logged = !!this.userService.logged;
             this.loading = true;
             this.classementService

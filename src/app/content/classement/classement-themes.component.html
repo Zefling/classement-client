@@ -51,10 +51,10 @@
 
       <!-- current user-->
 
-      @if (api && user?.themes?.length) {
+      @if (modeApi() && user?.themes?.length) {
         <tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</tab-title>
       }
-      @if (api && user?.themes?.length) {
+      @if (modeApi() && user?.themes?.length) {
         <tab-content id="user">
           <div class="themes">
             @for (theme of user!.themes; track theme) {
@@ -71,10 +71,10 @@
 
       <!-- other users-->
 
-      @if (api && usersThemes?.length) {
+      @if (modeApi() && usersThemes?.length) {
         <tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</tab-title>
       }
-      @if (api && usersThemes?.length) {
+      @if (modeApi() && usersThemes?.length) {
         <tab-content id="users">
           <div class="themes">
             @for (theme of usersThemes; track theme) {

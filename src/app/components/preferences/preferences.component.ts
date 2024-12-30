@@ -1,5 +1,13 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, output, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    computed,
+    inject,
+    output,
+    viewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -16,7 +24,6 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
-import { environment } from 'src/environments/environment';
 
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -77,7 +84,7 @@ export class PreferencesDialogComponent {
     emojiList = emojis;
     emojiSort: string[] = [];
 
-    modeApi = environment.api?.active || false;
+    modeApi = computed(() => this.globalService.withApi());
 
     preferencesForm?: FormGroup;
 

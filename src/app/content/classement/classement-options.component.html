@@ -793,7 +793,9 @@
       </div>
       @if (opts.imageBackgroundImage === 'custom') {
         <div class="background-image-custom" drop-image mode="local" (file)="changeCustomBackground($event)">
-          <label class="required">{{ 'generator.options.background.custom' + (api ? '.api' : '') | transloco }}</label>
+          <label class="required">{{
+            'generator.options.background.custom' + (modeApi() ? '.api' : '') | transloco
+          }}</label>
           <input type="file" accept="image/*" required (change)="changeCustomBackgroundEvent($event)" />
           <div>
             @if (opts.imageBackgroundCustom) {

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, booleanAttribute, inject, input, viewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -16,7 +16,6 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-import { environment } from 'src/environments/environment';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
@@ -74,7 +73,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     serverIds: string[] = [];
 
-    modeApi = environment.api?.active || false;
+    modeApi = computed(() => this.global.withApi());
 
     changeTemplate = false;
 
@@ -124,7 +123,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (this.modeApi && this.userService.logged) {
+        if (this.modeApi() && this.userService.logged) {
             if (this.pageMode()) {
                 this.router.navigate(['/user/lists/browser']);
             } else {

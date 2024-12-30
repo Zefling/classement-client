@@ -19,6 +19,7 @@ import {
     HostListener,
     OnDestroy,
     OnInit,
+    computed,
     inject,
     viewChild,
     viewChildren,
@@ -63,7 +64,6 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-import { environment } from 'src/environments/environment';
 
 import {
     defaultGroup,
@@ -191,8 +191,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     classScreenMode: ScreenMode = 'default';
     lineOption: PreferenceLineOption = 'auto';
 
-    apiActive = environment.api?.active;
-
+    modeApi = computed(() => this.global.withApi());
     currentTile?: FileString;
 
     imdbActive = false;
@@ -354,7 +353,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
 
         this.shareUrl =
-            this.apiActive && this.classement?.rankingId
+            this.modeApi() && this.classement?.rankingId
                 ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
                 : '';
 
@@ -387,7 +386,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.exportImageLoading = true;
             this.exportImageDisabled = true;
 
-            if (this.apiActive) {
+            if (this.modeApi()) {
                 this.userService.loggedStatus().then(() => {
                     this.logged = this.userService.logged ?? false;
                     let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
@@ -414,7 +413,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.loadLocalClassement();
             }
         } else {
-            if (this.apiActive) {
+            if (this.modeApi()) {
                 this.userService.loggedStatus().then(() => {
                     this.logged = this.userService.logged ?? false;
                 });

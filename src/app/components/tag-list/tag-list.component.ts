@@ -1,10 +1,21 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    OnInit,
+    booleanAttribute,
+    computed,
+    inject,
+    input,
+    output,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Subject, debounceTime } from 'rxjs';
 
 import { Message } from 'src/app/content/user/user.interface';
+import { GlobalService } from 'src/app/services/global.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,6 +28,7 @@ export class TagListComponent implements OnInit {
     // inject
 
     private readonly http = inject(HttpClient);
+    private readonly globalService = inject(GlobalService);
 
     // input
 
@@ -37,10 +49,12 @@ export class TagListComponent implements OnInit {
 
     proposals: string[] = [];
 
+    modeApi = computed(() => this.globalService.withApi());
+
     private subject = new Subject<void>();
 
     ngOnInit(): void {
-        if (environment.api?.active) {
+        if (this.modeApi()) {
             this.subject.pipe(debounceTime(500)).subscribe(() => {
                 const tag = this.input().nativeElement.value.trim();
                 if (tag) {

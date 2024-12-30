@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input, model, viewChild } from '@angular/core';
+import { Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -13,8 +13,8 @@ import { Options, Theme, User } from 'src/app/interface/interface';
 import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Utils } from 'src/app/tools/utils';
-import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'classement-themes-manager',
@@ -35,6 +35,7 @@ import { environment } from 'src/environments/environment';
 export class ClassementThemesManagerComponent implements OnInit {
     // inject
 
+    private readonly globalService = inject(GlobalService);
     private readonly dbService = inject(DBService);
     private readonly messageService = inject(MessageService);
     private readonly userService = inject(APIUserService);
@@ -52,7 +53,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     // template
 
-    api = environment.api?.active || false;
+    modeApi = computed(() => this.globalService.withApi());
 
     user?: User;
 
@@ -67,13 +68,13 @@ export class ClassementThemesManagerComponent implements OnInit {
     selectedTheme?: Theme<string>;
 
     constructor() {
-        if (this.api) {
+        if (this.modeApi()) {
             this.user = this.userService.user;
         }
     }
 
     ngOnInit(): void {
-        if (this.api) {
+        if (this.modeApi()) {
             this.user = this.userService.user;
         }
     }
@@ -114,7 +115,7 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.themeBrowser = (await this.dbService.getLocalAllThemes()).filter(
             t => t.options.mode.replace('teams', 'default') === this.options().mode.replace('teams', 'default'),
         );
-        if (this.api) {
+        if (this.modeApi()) {
             this.themeServer =
                 this.userService.user?.themes?.map<Theme<string>>(theme => ({
                     id: theme.themeId!,

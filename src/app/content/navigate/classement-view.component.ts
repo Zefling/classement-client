@@ -1,5 +1,5 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, computed, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -19,7 +19,6 @@ import { FileFormatExport, GlobalService } from 'src/app/services/global.service
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-import { environment } from 'src/environments/environment';
 
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { LoadingComponent } from '../../components/loader/loading.component';
@@ -70,7 +69,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     logged? = false;
     exportImageDisabled = true;
 
-    apiActive = environment.api?.active;
+    modeApi = computed(() => this.global.withApi());
 
     imagesCache: Record<string, string | ArrayBuffer | null> = {};
 
@@ -102,7 +101,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                     this.id = params['id'];
                     this.historyId = params['history'] ? +params['history'] : undefined;
 
-                    if (this.apiActive) {
+                    if (this.modeApi()) {
                         this.userService.loggedStatus().then(() => {
                             let classement = this.userService.user?.classements?.find(
                                 e => e.rankingId === this.id || this.id === e.linkId,

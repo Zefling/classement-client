@@ -16,7 +16,7 @@
               }
             </select>
           </label>
-          @if (modeApi) {
+          @if (modeApi()) {
             <h3>{{ 'preferences.navigation.title' | transloco }}</h3>
             <h5>{{ 'preferences.navigation.page.size' | transloco }}</h5>
             <label>
@@ -91,10 +91,10 @@
             </select>
           }
         </tab-content>
-        @if (modeApi) {
+        @if (modeApi()) {
           <tab-title id="emoji"> {{ 'preferences.tab.emoji' | transloco }}</tab-title>
         }
-        @if (modeApi) {
+        @if (modeApi()) {
           <tab-content id="emoji" formGroupName="authApiKeys">
             <div class="current-emoji">
               <h3>{{ 'preferences.emoji.quick.list' | transloco }}</h3>

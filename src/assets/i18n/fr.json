@@ -16,13 +16,18 @@
     "admin.classements": "Classements",
     "logout": "Déconnexion",
     "information": "Information",
-    "licenses": "Licences",
     "preferences": "Préférences",
     "forgot.password": "Mot de passe perdu",
     "mode": {
       "reduce": "Réduire le menu",
       "expand": "Étendre le menu"
     }
+  },
+  "infos": {
+    "title": "Informations",
+    "message": "Message",
+    "licenses": "Licences",
+    "changelog": "Changelog"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -43,6 +48,9 @@
   },
   "licenses": {
     "title": "Présentation des licences tierces"
+  },
+  "changelog": {
+    "title": "Notes de version (Anglais)"
   },
   "home": {
     "info": "Information",

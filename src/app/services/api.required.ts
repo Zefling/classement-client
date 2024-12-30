@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { GlobalService } from './global.service';
 
 /**
  * @link from https://stackoverflow.com/questions/50250361/how-to-elegantly-get-full-url-from-the-activatedroutesnapshot
@@ -16,10 +16,12 @@ function getResolvedUrl(route: ActivatedRouteSnapshot): string {
 
 @Injectable({ providedIn: 'root' })
 export class APIRequired {
+    protected readonly globalService = inject(GlobalService);
+
     canActivate(
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        return environment.api?.active;
+        return this.globalService.withApi();
     }
 }

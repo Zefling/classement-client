@@ -12,7 +12,7 @@
       <span class="label">{{ 'menu.new' | transloco }}</span>
     </a>
   }
-  @if (modeApi) {
+  @if (modeApi()) {
     <a class="tile-navigate" routerLink="/navigate">
       <span class="icon icon-search"></span>
       <span class="label">{{ 'menu.navigate' | transloco }}</span>
@@ -28,7 +28,7 @@
   </a>
 </div>
 
-@if (modeApi) {
+@if (modeApi()) {
   <h3>{{ 'home.last' | transloco }}</h3>
   @if (!loading) {
     <div class="navigate-result">
@@ -42,7 +42,7 @@
 <h3>{{ 'home.info' | transloco }}</h3>
 <p>{{ 'home.intro' | transloco }}</p>
 <p>{{ 'home.philosophy' | transloco }}</p>
-@if (modeApi) {
+@if (modeApi()) {
   <p>
     <a routerLink="/user/information"> {{ 'home.feedback' | transloco }}</a>
   </p>

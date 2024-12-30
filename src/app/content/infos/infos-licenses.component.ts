@@ -7,12 +7,12 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
-    selector: 'third-party-licenses',
-    templateUrl: './licenses.component.html',
-    styleUrls: ['./licenses.component.scss'],
+    selector: 'infos-third-party-licenses',
+    templateUrl: './infos-licenses.component.html',
+    styleUrls: ['./infos-licenses.component.scss'],
     imports: [TranslocoPipe],
 })
-export class LicensesComponent {
+export class InfosLicensesComponent {
     private readonly http = inject(HttpClient);
     private readonly global = inject(GlobalService);
     private readonly translate = inject(TranslocoService);

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -12,16 +13,17 @@ import { Utils } from 'src/app/tools/utils';
 import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
 @Component({
-    selector: 'user-information',
-    templateUrl: './user-information.component.html',
-    styleUrls: ['./user-information.component.scss'],
+    selector: 'infos-message',
+    templateUrl: './infos-message.component.html',
+    styleUrls: ['./infos-message.component.scss'],
     imports: [FormsModule, TextareaAutosizeDirective, TranslocoPipe],
 })
-export class UserInformationComponent {
+export class InfosMessageComponent {
     private readonly userService = inject(APIUserService);
     private readonly messageService = inject(MessageService);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly router = inject(Router);
 
     text = '';
     username = '';
@@ -41,6 +43,10 @@ export class UserInformationComponent {
                 this.updateTitle();
             }),
         );
+
+        if (!this.global.withApi()) {
+            this.router.navigate(['/infos/licenses']);
+        }
     }
 
     updateTitle() {

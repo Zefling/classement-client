@@ -10,7 +10,7 @@
   <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
   <div class="top-actions">
-    @if (apiActive && classement && classement.templateTotal > 1) {
+    @if (modeApi() && classement && classement.templateTotal > 1) {
       <div class="server-api">
         <button class="button-add primary" (click)="toTemplateNavigation()">
           {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
@@ -655,7 +655,7 @@
           </label>
         }
       </div>
-      @if (apiActive) {
+      @if (modeApi()) {
         <div class="save-actions buttons">
           @if (logged) {
             <button [disabled]="!id" class="primary" (click)="copyLink()">

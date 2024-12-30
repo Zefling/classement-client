@@ -48,12 +48,6 @@ const routes: Routes = [
         canActivate: [DataChange, APIRequired],
     },
     {
-        path: 'information',
-        pathMatch: 'full',
-        loadComponent: () => import('./user-information.component').then(m => m.UserInformationComponent),
-        canActivate: [DataChange, APIRequired],
-    },
-    {
         path: 'lists',
         pathMatch: 'full',
         loadComponent: () => import('./user-list.component').then(m => m.UserListComponent),

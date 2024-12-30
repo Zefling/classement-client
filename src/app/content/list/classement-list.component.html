@@ -90,7 +90,7 @@
                 </div>
               }
               <div>
-                @if (modeApi && item.rankingId && serverIds.includes(item.rankingId)) {
+                @if (modeApi() && item.rankingId && serverIds.includes(item.rankingId)) {
                   <a
                     class="from"
                     [tooltip]="'list.server.link' | transloco: { id: item.rankingId }"

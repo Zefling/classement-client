@@ -6,6 +6,7 @@ import {
     OnInit,
     SimpleChanges,
     booleanAttribute,
+    computed,
     inject,
     input,
     model,
@@ -38,7 +39,6 @@ import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { palette } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
-import { environment } from 'src/environments/environment';
 
 import {
     defaultGroup,
@@ -114,7 +114,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     // template
 
-    api = environment.api?.active || false;
+    modeApi = computed(() => this.globalService.withApi());
+
     groupExample = signal<FormattedGroup[]>(groupExample);
 
     categoriesList: Category[] = [];

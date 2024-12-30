@@ -14,7 +14,7 @@
         <label for="name">{{ 'generator.theme.name.question' | transloco }}</label>
         <input id="name" type="text" [(ngModel)]="themeName" maxlength="100" />
       </p>
-      @if (api) {
+      @if (modeApi()) {
         <p>
           <label>
             <input type="radio" [(ngModel)]="saveMode" name="save-mode" value="browser" />
@@ -104,10 +104,10 @@
 
     <!-- SERVER -->
 
-    @if (api && themeServer.length) {
+    @if (modeApi() && themeServer.length) {
       <tab-title id="server"> {{ 'generator.theme.account.update' | transloco }}</tab-title>
     }
-    @if (api && themeServer.length) {
+    @if (modeApi() && themeServer.length) {
       <tab-content id="server">
         <p>{{ 'generator.theme.account.replace' | transloco }}</p>
         <p>

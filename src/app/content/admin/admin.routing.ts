@@ -8,7 +8,6 @@ import { DataChange } from 'src/app/services/data-change';
 const routes: Routes = [
     {
         path: '',
-
         loadComponent: () => import('./admin.component').then(m => m.AdminComponent),
         canActivate: [DataChange, APIRequired, APIModeration],
         children: [
