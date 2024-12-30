@@ -112,7 +112,6 @@ export class APIUserService extends APICommon {
                         this.logged = true;
                         this.isModerator = this.user.roles?.includes(Role.MODERATOR) || false;
                         this.isAdmin = this.user.roles?.includes(Role.ADMIN) || false;
-                        console.log('>>>>>>>b');
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {

@@ -34,6 +34,7 @@ import {
 } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
+import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { palette } from 'src/app/tools/function';
@@ -96,6 +97,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly memory = inject(MemoryService);
     private readonly editor = inject(ClassementEditComponent, { host: true });
     private readonly globalService = inject(GlobalService);
+    private readonly logger = inject(Logger);
 
     // input
 
@@ -353,7 +355,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
         if (options.palette) {
             const colors = palette(options.palette, this.editor.groups.length);
-            console.log(colors);
             this.editor.groups.forEach((group, index) => {
                 group.bgColor = colors[index];
             });
@@ -469,13 +470,13 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     const ajv = new Ajv({
                         logger: {
                             log: args => {
-                                console.log(args);
+                                this.logger.log('Ajv', LoggerLevel.info, args);
                             },
                             warn: args => {
-                                console.log(args);
+                                this.logger.log('Ajv wran', LoggerLevel.info, args);
                             },
                             error: args => {
-                                console.log(args);
+                                this.logger.log('Ajv error', LoggerLevel.info, args);
                             },
                         },
                     });
@@ -489,7 +490,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                         this.themeError = true;
 
                         for (const err of validate.errors as DefinedError[]) {
-                            console.log(err);
+                            this.logger.log('onloadend error', LoggerLevel.info, err);
                         }
                     }
                 };
