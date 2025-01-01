@@ -3,7 +3,6 @@ import {
     CDK_DRAG_CONFIG,
     CDK_DRAG_HANDLE,
     CDK_DRAG_PARENT,
-    CdkDrag,
     CdkDragHandle,
     CdkDropList,
     DragDrop,
@@ -22,6 +21,8 @@ import {
     SkipSelf,
     ViewContainerRef,
 } from '@angular/core';
+
+import { CdkDrag } from './drag';
 
 const DRAG_HOST_CLASS = 'cdk-drag';
 
@@ -90,5 +91,7 @@ export class CdkDragElement<T = any> extends CdkDrag {
             _selfHandle,
             _parentDrag,
         );
+
+        console.log('init');
     }
 }
