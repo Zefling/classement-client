@@ -28,7 +28,9 @@ export class InfoChangelogComponent {
             this.data = this.global.changelog;
         } else {
             this.http.get('./CHANGELOG.md', { responseType: 'text' }).subscribe(data => {
-                this.data = this.global.changelog = data;
+                this.data = this.global.changelog = data
+                    .replaceAll('### ', '#### ')
+                    .replaceAll('# Changelog -', '### Changelog -');
             });
         }
         this.listener.push(
