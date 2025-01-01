@@ -4,6 +4,8 @@
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ *
+ * File adapted from : https://raw.githubusercontent.com/angular/components/refs/tags/18.2.14/src/cdk/drag-drop/directives/drag.ts
  */
 import { Directionality } from '@angular/cdk/bidi';
 import { coerceElement, coerceNumberProperty } from '@angular/cdk/coercion';

@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 3.1.8 (2025-01-01)
+
+#### Standalone web app
+
+- Fix drag'n drop in zone mode (axis/iceberg) with old `drag.ts` (Angular `18.2.14`) (Break since Angular `19`)
+- Fix changelog page
+
 ### 3.1.7 (2024-12-30)
 
 #### Standalone web app
