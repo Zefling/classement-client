@@ -4,33 +4,11 @@
 
 @import './fonts.css';
 
-.cdk-overlay-container {
-    z-index: 10000;
-}
-
-.cdk-global-scrollblock {
-    overflow: hidden;
-}
+@import '../node_modules/@ikilote/magma/assets/styles/font-icon.css';
+@import '../node_modules/@ikilote/magma/assets/styles/css-var.css';
+@import '../node_modules/@ikilote/magma/assets/styles/style.css';
 
 body.light-mode {
-    color-scheme: light;
-
-    /* palettes */
-    --primaryH: 190;
-    --L: 0%;
-    --L0: 10%;
-    --L1: 20%;
-    --L2: 30%;
-    --L3: 40%;
-    --L4: 50%;
-    --L5: 60%;
-    --L6: 70%;
-    --L7: 80%;
-    --L8: 85%;
-    --L9: 90%;
-    --LA: 95%;
-    --LB: 100%;
-
     /* option block */
     --options-sizes-border-color: #8b441b;
     --options-sizes-border-text: #fff;
@@ -56,24 +34,6 @@ body.light-mode {
 }
 
 body.dark-mode {
-    color-scheme: dark;
-
-    /* palettes */
-    --primaryH: 210;
-    --L: 100%;
-    --L0: 95%;
-    --L1: 80%;
-    --L2: 70%;
-    --L3: 60%;
-    --L4: 50%;
-    --L5: 40%;
-    --L6: 35%;
-    --L7: 20%;
-    --L8: 10%;
-    --L9: 6%;
-    --LA: 5%;
-    --LB: 0%;
-
     /* option block */
     --options-sizes-border-color: yellow;
     --options-sizes-border-text: #000;
@@ -99,62 +59,11 @@ body.dark-mode {
 }
 
 body {
-    /* palettes */
-    --primary0: hsl(var(--primaryH), 5%, var(--L0));
-    --primary1: hsl(var(--primaryH), 15%, var(--L1));
-    --primary2: hsl(var(--primaryH), 15%, var(--L2));
-    --primary3: hsl(var(--primaryH), 15%, var(--L3));
-    --primary4: hsl(var(--primaryH), 15%, var(--L4));
-    --primary5: hsl(var(--primaryH), 15%, var(--L5));
-    --primary6: hsl(var(--primaryH), 15%, var(--L6));
-    --primary7: hsl(var(--primaryH), 15%, var(--L7));
-    --primary8: hsl(var(--primaryH), 15%, var(--L8));
-    --primary9: hsl(var(--primaryH), 15%, var(--L9));
-    --primaryA: hsl(var(--primaryH), 5%, var(--LA));
-    --neutral: hsl(0, 0%, var(--L));
-    --neutral0: hsl(0, 0%, var(--L0));
-    --neutral1: hsl(0, 0%, var(--L1));
-    --neutral2: hsl(0, 0%, var(--L2));
-    --neutral3: hsl(0, 0%, var(--L3));
-    --neutral4: hsl(0, 0%, var(--L4));
-    --neutral5: hsl(0, 0%, var(--L5));
-    --neutral6: hsl(0, 0%, var(--L6));
-    --neutral7: hsl(0, 0%, var(--L7));
-    --neutral8: hsl(0, 0%, var(--L8));
-    --neutral9: hsl(0, 0%, var(--L9));
-    --neutralA: hsl(0, 0%, var(--LA));
-    --neutralB: hsl(0, 0%, var(--LB));
-    --alert0: hsl(0, 5%, var(--L0));
-    --alert1: hsl(0, 15%, var(--L1));
-    --alert2: hsl(0, 25%, var(--L2));
-    --alert3: hsl(0, 45%, var(--L3));
-    --alert4: hsl(0, 55%, var(--L4));
-    --alert5: hsl(0, 75%, var(--L5));
-    --alert6: hsl(0, 65%, var(--L6));
-    --alert7: hsl(0, 55%, var(--L7));
-    --alert8: hsl(0, 45%, var(--L8));
-    --alert9: hsl(0, 25%, var(--L9));
-    --alertA: hsl(0, 5%, var(--LA));
-    --success0: hsl(120, 5%, var(--L0));
-    --success1: hsl(120, 15%, var(--L1));
-    --success2: hsl(120, 25%, var(--L2));
-    --success3: hsl(120, 45%, var(--L3));
-    --success4: hsl(120, 55%, var(--L4));
-    --success5: hsl(120, 55%, var(--L5));
-    --success6: hsl(120, 65%, var(--L6));
-    --success7: hsl(120, 55%, var(--L7));
-    --success8: hsl(120, 45%, var(--L8));
-    --success9: hsl(120, 25%, var(--L9));
-    --successA: hsl(120, 5%, var(--LA));
-
     /* global */
-    --background: var(--primaryA);
-    --text-color: var(--primary0);
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
     --header-background: var(--primary9);
     --aside-background: var(--primary9);
     --licence-color: var(--primary0);
-    --color-mode-border-color: var(--primary0);
 
     /* menu */
     --menu-border-color: var(--primary8);
@@ -167,54 +76,6 @@ body {
     --menu-active-background: var(--primary6);
     --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
 
-    /* context-menu */
-    --context-menu-background: var(--primary8);
-    --context-menu-item: var(--primary7);
-    --context-menu-item-hover: var(--primary6);
-
-    /* default button */
-    --button-default-border-color: var(--neutral5);
-    --button-default-background: var(--neutral7);
-    --button-default-box-shadow: var(--neutral5);
-    --button-default-color: var(--neutral0);
-    --button-default-hover-border-color: var(--neutral9);
-    --button-default-hover-background: var(--neutral6);
-    --button-default-hover-box-shadow: var(--neutral7);
-    --button-default-focus-border-color: var(--primary2);
-
-    /* primary button */
-    --button-primary-border-color: var(--primary7);
-    --button-primary-background: var(--primary6);
-    --button-primary-box-shadow: var(--primaryA);
-    --button-primary-color: var(--primary0);
-    --button-primary-hover-border-color: var(--primary9);
-    --button-primary-hover-background: var(--primary6);
-    --button-primary-hover-box-shadow: var(--primary7);
-    --button-primary-focus-border-color: var(--primary3);
-
-    /* warn button */
-    --button-warn-border-color: var(--alert7);
-    --button-warn-background: var(--alert8);
-    --button-warn-box-shadow: var(--alertA);
-    --button-warn-color: var(--alert0);
-    --button-warn-hover-border-color: var(--alert9);
-    --button-warn-hover-background: var(--alert6);
-    --button-warn-hover-box-shadow: var(--alert7);
-    --button-warn-focus-border-color: var(--alert5);
-
-    /* link */
-    --link-color: var(--primary3);
-    --link-hover-color: var(--primary1);
-
-    /* dialog */
-    --dialog-backdrop-background: color-mix(in hsl, var(--primaryA) 60%, transparent);
-    --dialog-backdrop-background-no-filter: color-mix(in hsl, var(--primaryA) 70%, transparent);
-    --dialog-background: var(--neutral8);
-    --dialog-shadow-color: color-mix(in hsl, var(--neutralA) 30%, transparent);
-    --dialog-close-shadow-color: var(--neutral5);
-    --dialog-close-background: var(--neutral7);
-    --dialog-close-background-hover: var(--neutral5);
-
     /* list */
     --list-header-background: var(--neutral9);
     --list-header-background-hover: var(--neutral8);
@@ -226,15 +87,6 @@ body {
     /* option block */
     --options-border-color: var(--neutral7);
     --options-background: var(--neutral8);
-
-    /* input */
-    --input-border-color: var(--primary4);
-    --input-background: var(--primary8);
-    --input-background-transparent: color-mix(in hsl, var(--input-background) 60%, transparent);
-    --input-item-color: var(--neutral7);
-    --input-item-active-color: var(--neutral1);
-    --input-focus-border-color: var(--neutral5);
-    --input-color-shadow: var(--neutralA);
 
     /* avatar */
     --avatar-background: var(--primaryA);
@@ -311,35 +163,9 @@ body {
     --page-item-current-background: var(--primary8);
     --page-item-hover-background: var(--neutral7);
 
-    /* tabs */
-    --tabs-line-color: var(--neutral6);
-    --tab-border-color: var(--neutral6);
-    --tab-text-color: var(--neutral4);
-    --tab-select-border-color: var(--neutral4);
-    --tab-text-border-color: var(--neutral0);
-    --tab-hover-border-color: var(--neutral0);
-
     /* box */
     --box-background: var(--neutral7);
     --box-border-color: var(--neutral5);
-
-    /* select2 */
-    --select2-selection-focus-border-color: var(--input-focus-border-color);
-    --select2-selection-text-color: var(--text-color);
-    --select2-selection-background: var(--input-background);
-    --select2-selection-border-color: var(--input-border-color);
-    --select2-selection-disabled-background: var(--input-background);
-    --select2-selection-disabled-border-color: var(--input-border-color);
-    --select2-single-height: auto;
-    --select2-dropdown-background: var(--input-background);
-    --select2-dropdown-border-color: var(--input-border-color);
-    --select2-option-text-color: var(--text-color);
-    --select2-option-selected-text-color: var(--text-color);
-    --select2-option-selected-background: var(--primary5);
-    --select2-option-highlighted-text-color: var(--text-color);
-    --select2-option-highlighted-background: var(--primary6);
-    --select2-search-border-color: var(--input-border-color);
-    --select2-search-background: var(--text-color);
 
     /* tag */
     --tag-background: var(--input-border-color);
@@ -347,32 +173,8 @@ body {
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);
 
-    /* scrollbar */
-
-    --scrollbar-color: var(--primary6);
-    --scrollbar-color-hover: var(--primary4);
-    --scrollbar-width: thin;
-
     /* symbol */
     --symbol-color: #c90f0f;
-}
-
-body,
-html {
-    margin: 0;
-    background: var(--background);
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    color: var(--text-color);
-}
-
-*,
-*:focus,
-*:hover {
-    transition-duration: 0.3s;
-    /* color not possible in Chromium (too slow) */
-    transition-property: background-color, opacity, border, box-shadow, text-shadow, outline;
 }
 
 .select2-container-dropdown {
@@ -381,31 +183,6 @@ html {
 
 * {
     font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
-}
-
-button,
-input::file-selector-button {
-    cursor: pointer;
-    margin: 0 5px;
-    outline: none;
-    box-shadow: 0 0 1px var(--button-default-box-shadow);
-    border: 2px solid var(--button-default-border-color);
-    border-radius: 5px;
-    background: var(--button-default-background);
-    padding: 10px;
-    color: var(--button-default-color);
-    caret-color: transparent;
-    font-size: 110%;
-
-    &:hover {
-        box-shadow: 0 0 6px var(--button-default-hover-box-shadow);
-        border: 2px solid var(--button-default-hover-border-color);
-        background: var(--button-default-hover-background);
-    }
-
-    &:focus {
-        border-color: var(--button-default-focus-border-color);
-    }
 }
 
 select2 {
@@ -420,115 +197,9 @@ select2 {
     }
 }
 
-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    max-width: 100%;
-}
-
-button:disabled {
-    opacity: 0.25;
-
-    &:hover {
-        box-shadow: 0 0 1px var(--button-default-box-shadow);
-        border: 2px solid var(--button-default-border-color);
-        background: var(--button-default-background);
-    }
-}
-
-[type='file'] {
-    cursor: pointer;
-}
-
-[type='color'] {
-    min-width: 60px;
-    max-width: 200px;
-    height: 30px;
-}
-
-input:not(:focus-visible):invalid {
-    text-decoration: underline wavy var(--alert5);
-}
-
-button.primary {
-    --button-default-border-color: var(--button-primary-border-color);
-    --button-default-background: var(--button-primary-background);
-    --button-default-box-shadow: var(--button-primary-box-shadow);
-    --button-default-color: var(--button-primary-color);
-    --button-default-hover-border-color: var(--button-primary-hover-border-color);
-    --button-default-hover-background: var(--button-primary-hover-background);
-    --button-default-hover-box-shadow: var(--button-primary-hover-box-shadow);
-    --button-default-focus-border-color: var(--button-primary-focus-border-color);
-}
-
-button.warn {
-    --button-default-border-color: var(--button-warn-border-color);
-    --button-default-background: var(--button-warn-background);
-    --button-default-box-shadow: var(--button-warn-box-shadow);
-    --button-default-color: var(--button-warn-color);
-    --button-default-hover-border-color: var(--button-warn-hover-border-color);
-    --button-default-hover-background: var(--button-warn-hover-background);
-    --button-default-hover-box-shadow: var(--button-warn-hover-box-shadow);
-    --button-default-focus-border-color: var(--button-warn-focus-border-color);
-}
-
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-
-    & > button {
-        margin: 0;
-    }
-
-    & > .line {
-        flex: 1 1 100%;
-    }
-}
-
-a {
-    cursor: pointer;
-    color: var(--link-color);
-    text-decoration: none;
-
-    &:hover {
-        color: var(--link-hover-color);
-    }
-
-    table & {
-        margin: auto 10px;
-    }
-}
-
 :where(label, .label):not(.name) {
     font-weight: 700;
     font-size: 90%;
-}
-
-:where(input:not([type='checkbox'], [type='radio']), .input, textarea, select) {
-    box-sizing: border-box;
-    outline: 1px solid transparent;
-    border: 1px solid var(--input-border-color);
-    border-radius: 3px;
-    background: var(--input-background);
-    padding: 5px 3px;
-    width: 100%;
-    color: var(--text-color);
-    font-size: 14px;
-
-    &:disabled {
-        opacity: 0.5;
-    }
-
-    &:focus {
-        outline-color: var(--input-focus-border-color);
-    }
-}
-
-input:where([type='range'], [type='checkbox'], [type='radio']) {
-    accent-color: var(--primary5);
 }
 
 dialog-cmp.auto-format .main {
@@ -736,33 +407,5 @@ dialog-cmp.auto-format .main {
 @supports (background: -webkit-named-image(i)) {
     .webp {
         display: none;
-    }
-}
-
-/* -------------------- scrollbar ------------------------------------------------------------ */
-
-body {
-    @supports selector(::-webkit-scrollbar) {
-        ::-webkit-scrollbar-button {
-            display: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: var(--scrollbar-color);
-
-            &:hover {
-                background: var(--scrollbar-color-hover);
-            }
-        }
-    }
-
-    @supports not selector(::-webkit-scrollbar-button) {
-        scrollbar-color: var(--scrollbar-color) transparent;
-        scrollbar-width: var(--scrollbar-width);
     }
 }
