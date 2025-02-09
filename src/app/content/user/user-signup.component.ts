@@ -1,7 +1,8 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import owasp from 'owasp-password-strength-test';
@@ -18,7 +19,15 @@ import { environment } from 'src/environments/environment';
     selector: 'user-signup',
     templateUrl: './user-signup.component.html',
     styleUrls: ['./user-signup.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink,
+        TranslocoPipe,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputPassword,
+    ],
 })
 export class UserSignupComponent implements OnDestroy {
     private readonly router = inject(Router);

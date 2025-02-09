@@ -51,22 +51,22 @@ export class InfosMessageComponent {
             username: {
                 default: this.userService.user?.username ?? '',
                 control: {
-                    required: { state: true, message: this.translate.translate(base + 'username.required') },
+                    required: { state: true, message: () => this.translate.translate(base + 'username.required') },
                 },
             },
             email: {
                 default: '',
                 control: {
-                    required: { state: true, message: this.translate.translate(base + 'email.required') },
-                    email: { message: this.translate.translate(base + 'email.email') },
+                    required: { state: true, message: () => this.translate.translate(base + 'email.required') },
+                    email: { message: () => this.translate.translate(base + 'email.email') },
                 },
             },
             message: {
                 default: '',
                 control: {
-                    required: { state: true, message: this.translate.translate(base + 'message.required') },
-                    minlength: { state: 20, message: this.translate.translate(base + 'message.minlength') },
-                    maxlength: { state: 5000, message: this.translate.translate(base + 'message.maxlength') },
+                    required: { state: true, message: () => this.translate.translate(base + 'message.required') },
+                    minlength: { state: 20, message: () => this.translate.translate(base + 'message.minlength') },
+                    maxlength: { state: 5000, message: () => this.translate.translate(base + 'message.maxlength') },
                 },
             },
         });

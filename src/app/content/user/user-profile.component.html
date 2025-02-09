@@ -100,12 +100,16 @@
 <dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
   <p>{{ 'user.username.change' | transloco }}</p>
 
-  <label for="username">{{ 'user.username.new' | transloco }}</label>
-  <div class="validity-input">
-    <input id="username" spellcheck="false" formControlName="username" />
-    <span class="validity" [class.valid]="usernameValidity">
-      {{ usernameValidity !== undefined ? (usernameValidity ? 'Ｏ' : 'Ｘ') : '' }}
-    </span>
+  <div>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.username.new' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="username"></mg-input-text>
+      @if (usernameValidity !== undefined) {
+        <mg-input-suffix class="validity" [class.valid]="usernameValidity">
+          {{ usernameValidity ? 'Ｏ' : 'Ｘ' }}
+        </mg-input-suffix>
+      }
+    </mg-input>
   </div>
 
   @if (showError[0]) {
@@ -127,28 +131,33 @@
 <dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
   <p>{{ 'user.password.change' | transloco }}</p>
 
-  <label for="password">{{ 'user.password.old' | transloco }}</label>
-  <input id="password" type="password" spellcheck="false" formControlName="passwordOld" />
-
-  <label for="password">{{ 'user.password.new' | transloco }}</label>
-  <input id="password" type="password" spellcheck="false" formControlName="password" />
-  <div class="level-strong">
-    @if (!strong) {
-      @for (lvl of passedTests; track lvl) {
-        <span [style.--level]="lvl"></span>
-      }
-    }
-    @if (strong) {
-      <span class="strong"></span>
-    }
-  </div>
-
-  <label for="password2">{{ 'user.password.confirm' | transloco }}</label>
-  <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-  <div class="level-strong">
-    @if (confirm) {
-      <span class="strong"></span>
-    }
+  <div>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.password.old' | transloco }}</mg-input-label>
+      <mg-input-password formControlName="passwordOld"></mg-input-password>
+    </mg-input>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.password.new' | transloco }}</mg-input-label>
+      <mg-input-password formControlName="password"></mg-input-password>
+      <mg-input-desc class="level-strong">
+        @if (!strong) {
+          @for (lvl of passedTests; track lvl) {
+            <span [style.--level]="lvl"></span>
+          }
+        } @else {
+          <span class="strong"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="password2"></mg-input-text>
+      <mg-input-desc class="level-strong">
+        @if (confirm) {
+          <span class="strong"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
   </div>
 
   @if (showError.length) {
@@ -167,20 +176,26 @@
 
 <dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
   <p>{{ 'user.email.change' | transloco }}</p>
-  <label for="email">{{ 'user.email.old' | transloco }}</label>
-  <input id="email" type="email" formControlName="emailOld" />
-  <div class="level-strong">
-    @if (changeEmailForm.get('emailOld')?.value) {
-      <span class="strong" [class.error-block]="!emailOldValid"></span>
-    }
-  </div>
 
-  <label for="email">{{ 'user.email.new' | transloco }}</label>
-  <input id="email" type="email" formControlName="emailNew" />
-  <div class="level-strong">
-    @if (changeEmailForm.get('emailNew')?.value) {
-      <span class="strong" [class.error-block]="!emailNewValid"></span>
-    }
+  <div>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.email.old' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="emailOld"></mg-input-text>
+      <mg-input-desc class="level-strong">
+        @if (changeEmailForm.value.emailOld) {
+          <span class="strong" [class.error-block]="!emailOldValid"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
+    <mg-input class="s-10">
+      <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="emailNew"></mg-input-text>
+      <mg-input-desc class="level-strong">
+        @if (changeEmailForm.value.emailNew) {
+          <span class="strong" [class.error-block]="!emailNewValid"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
   </div>
 
   @if (showError[0] || showError[1]) {

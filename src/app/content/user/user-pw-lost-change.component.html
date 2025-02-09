@@ -3,26 +3,29 @@
 <form class="form" [formGroup]="changePasswordForm">
   <p>{{ 'user.password.lost.change.intro' | transloco }}</p>
 
-  <label for="password">{{ 'user.password.new' | transloco }}</label>
-  <input id="password" type="password" spellcheck="false" formControlName="password" />
-  <div class="level-strong">
-    @if (!strong) {
-      @for (lvl of passedTests; track lvl) {
-        <span [style.--level]="lvl"></span>
+  <mg-input>
+    <mg-input-label>{{ 'user.password.new' | transloco }}</mg-input-label>
+    <mg-input-password formControlName="password"></mg-input-password>
+    <mg-input-desc class="level-strong">
+      @if (!strong) {
+        @for (lvl of passedTests; track lvl) {
+          <span [style.--level]="lvl"></span>
+        }
+      } @else {
+        <span class="strong"></span>
       }
-    }
-    @if (strong) {
-      <span class="strong"></span>
-    }
-  </div>
+    </mg-input-desc>
+  </mg-input>
 
-  <label for="password2">{{ 'user.password.confirm' | transloco }}</label>
-  <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-  <div class="level-strong">
-    @if (confirm) {
-      <span class="strong"></span>
-    }
-  </div>
+  <mg-input>
+    <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
+    <mg-input-password formControlName="password2"></mg-input-password>
+    <mg-input-desc class="level-strong">
+      @if (confirm) {
+        <span class="strong"></span>
+      }
+    </mg-input-desc>
+  </mg-input>
 
   @if (showError.length) {
     <ul class="list-error">

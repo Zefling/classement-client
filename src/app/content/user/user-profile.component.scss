@@ -58,19 +58,15 @@ label {
     }
 }
 
-.validity-input {
-    position: relative;
+.validity {
+    padding: 0 3px;
+    padding: 5px 8px;
+    color: var(--color-icon-deleted);
+    font-weight: 900;
+    font-size: 12.5px;
 
-    .validity {
-        position: absolute;
-        top: 1em;
-        right: calc(10% + 0.3em);
-        color: var(--color-icon-deleted);
-        font-weight: 900;
-
-        &.valid {
-            color: var(--color-icon-validated);
-        }
+    &.valid {
+        color: var(--color-icon-validated);
     }
 }
 

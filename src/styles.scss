@@ -125,16 +125,6 @@ body {
     --alert-color: var(--alert4);
     --alert-background: color-mix(in hsl, var(--alert8) 8%, transparent);
 
-    /* message */
-    --info-message-border-color: var(--neutral1);
-    --info-message-background: var(--neutral5);
-    --info-message-box-shadow-color: var(--neutralB);
-    --info-message-progress-background: var(--neutral1);
-    --error-message-border-color: var(-alert3);
-    --error-message-background: var(--alert7);
-    --error-message-box-shadow-color: var(--neutralB);
-    --error-message-progress-background: var(--alert5);
-
     /* loading */
     --loading-color: var(--neutral0);
     --loading-tile-color: var(--primary8);
@@ -177,24 +167,8 @@ body {
     --symbol-color: #c90f0f;
 }
 
-.select2-container-dropdown {
-    transition: none;
-}
-
 * {
     font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
-}
-
-select2 {
-    font-size: 14px;
-
-    &[ng-reflect-disabled='true'] {
-        opacity: 0.5;
-    }
-
-    [tabindex] {
-        outline: none;
-    }
 }
 
 :where(label, .label):not(.name) {
@@ -207,20 +181,17 @@ dialog-cmp.auto-format .main {
         font-weight: 700;
     }
 
-    :where(h2, h3, p, div) {
+    :where(h2, h3, p, :not(mg-input) > div) {
         margin: 0 auto;
         padding: 15px 0;
         text-align: center;
     }
-    div div {
+    :not(ng-input) > div div {
         padding: 10px 0;
     }
 
-    :where(input:not([type='checkbox'], [type='radio']), textarea, select) {
-        display: block;
+    mg-input {
         margin: auto;
-        width: 80%;
-        resize: vertical;
     }
 
     .note {

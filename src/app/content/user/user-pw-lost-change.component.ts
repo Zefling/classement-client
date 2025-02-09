@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputPassword } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -13,7 +14,7 @@ import { UserPassword } from './user-password';
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',
     styleUrls: ['./user-pw-lost-change.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, TranslocoPipe],
+    imports: [ReactiveFormsModule, TranslocoPipe, MagmaInput, MagmaInputElement, MagmaInputPassword],
 })
 export class UserPwLostChangeComponent extends UserPassword {
     private readonly router = inject(Router);

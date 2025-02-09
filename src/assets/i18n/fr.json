@@ -728,6 +728,8 @@
       "password.minlength": "Taille invalide du mot de passe.",
       "login": "Connexion",
       "email": "Courriel",
+      "email.required": "Ce courriel est requis.",
+      "email.email": "Ce courriel est invalide.",
       "password.lost": "J'ai perdu mon mot de passe",
       "signup": "Créer un compte",
       "oauth": {

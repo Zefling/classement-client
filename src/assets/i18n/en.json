@@ -728,6 +728,8 @@
       "password.minlength": "Password invalid size.",
       "login": "Login",
       "email": "Email",
+      "email.required": "This email is required.",
+      "email.email": "This email is not valid.",
       "password.lost": "I have lost my password",
       "signup": "Create an account",
       "oauth": {

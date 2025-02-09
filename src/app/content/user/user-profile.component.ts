@@ -3,6 +3,7 @@ import { Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/co
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
@@ -45,6 +46,10 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         TabTitleComponent,
         TabContentComponent,
         ThemeIconComponent,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputPassword,
     ],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {

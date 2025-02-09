@@ -34,13 +34,12 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     private readonly global = inject(GlobalService);
     private readonly fbe = inject(FormBuilderExtended);
 
-    showError = '';
+    private listener = Subscriptions.instance();
 
+    showError = '';
     loader = false;
 
-    popup = input<boolean, any>(false, { transform: booleanAttribute });
-
-    private listener = Subscriptions.instance();
+    readonly popup = input<boolean, any>(false, { transform: booleanAttribute });
 
     readonly formLogin: FormGroup<{
         username: FormControl<string>;
@@ -52,14 +51,14 @@ export class UserLoginComponent implements OnInit, OnDestroy {
             username: {
                 default: '',
                 control: {
-                    required: { state: true, message: this.translate.translate('user.login.username.required') },
+                    required: { state: true, message: () => this.translate.translate('user.login.username.required') },
                 },
             },
             password: {
                 default: '',
                 control: {
-                    minlength: { state: 10, message: this.translate.translate('user.login.password.minlength') },
-                    required: { state: true, message: this.translate.translate('user.login.password.required') },
+                    minlength: { state: 10, message: () => this.translate.translate('user.login.password.minlength') },
+                    required: { state: true, message: () => this.translate.translate('user.login.password.required') },
                 },
             },
         });
@@ -90,7 +89,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
         this.listener.clear();
     }
 
-    submit(event: MouseEvent) {
+    submit() {
         this.loader = true;
         this.fbe.validateForm(this.formLogin);
         console.log(this.formLogin.valid, this.formLogin.value.username, this.formLogin.value.password);
@@ -112,8 +111,6 @@ export class UserLoginComponent implements OnInit, OnDestroy {
         } else {
             this.loader = false;
         }
-        event.stopPropagation();
-        event.preventDefault();
     }
 
     oauth(service: string) {

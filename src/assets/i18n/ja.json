@@ -727,6 +727,8 @@
       "password.minlength": "パスワードのサイズが無効です。",
       "login": "ログイン",
       "email": "電子メール",
+      "email.required": "この電子メールが必要です。",
+      "email.email": "この電子メールは無効です。",
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
