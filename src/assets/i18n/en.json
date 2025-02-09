@@ -721,8 +721,11 @@
     "login": {
       "title": "Log in",
       "username": "Username",
+      "username.required": "Username is required.",
       "password": "Password",
       "password.bis": "Password (confirmation)",
+      "password.required": "Password is required.",
+      "password.minlength": "Password invalid size.",
       "login": "Login",
       "email": "Email",
       "password.lost": "I have lost my password",
@@ -845,7 +848,15 @@
         "email": "Email",
         "message": "Message",
         "required": "Required fields",
-        "send": "Send"
+        "send": "Send",
+        "error": {
+          "username.required": "Username is required.",
+          "email.required": "Email is required.",
+          "email.email": "This email is not valid.",
+          "message.required": "Message is required.",
+          "message.minlength": "The minimal length is {requiredLength} characters.",
+          "message.maxlength": "The maximal length is {requiredLength} characters."
+        }
       }
     }
   },

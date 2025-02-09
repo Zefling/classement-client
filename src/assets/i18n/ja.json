@@ -720,8 +720,11 @@
     "login": {
       "title": "ログインする",
       "username": "ユーザー名",
+      "username.required": "ユーザー名は必須です。",
       "password": "パスワード",
       "password.bis": "パスワード（確認）",
+      "password.required": "パスワードが必要です。",
+      "password.minlength": "パスワードのサイズが無効です。",
       "login": "ログイン",
       "email": "電子メール",
       "password.lost": "パスワードを紛失してしまいました",
@@ -844,7 +847,15 @@
         "email": "メール",
         "message": "メッセージ",
         "required": "必須フィールド",
-        "send": "送信する"
+        "send": "送信する",
+        "erreur": {
+          "username.required": "ユーザー名が必要です。",
+          "email.required": "電子メールが必要です。",
+          "email.email": "この電子メールは無効です。",
+          "message.required": "メッセージが必要です。",
+          "message.minlength": "最小の長さは{requiredLength}文字です。",
+          "message.maxLength": "最大の長さは{requiredLength}文字です。"
+        }
       }
     }
   },

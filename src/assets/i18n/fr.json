@@ -721,8 +721,11 @@
     "login": {
       "title": "Me connecter",
       "username": "Nom d'utilisateur",
+      "username.required": "Le nom d'utilisateur est requis.",
       "password": "Mot de passe",
       "password.bis": "Mot de passe (confirmation)",
+      "password.required": "Le mot de passe est requis.",
+      "password.minlength": "Taille invalide du mot de passe.",
       "login": "Connexion",
       "email": "Courriel",
       "password.lost": "J'ai perdu mon mot de passe",
@@ -845,7 +848,15 @@
         "email": "Courriel",
         "message": "Message",
         "required": "Champs requis",
-        "send": "Envoyer"
+        "send": "Envoyer",
+        "error": {
+          "username.required": "Le nom d'utilisateur est requis.",
+          "email.required": "Le courriel est requis.",
+          "email.email": "Ce courriel n'est pas valide.",
+          "message.required": "Le message est requis.",
+          "message.minlength": "La longueur minimale est {requiredLength} des caractères.",
+          "message.maxLength": "La longueur maximale est {requiredLength} des caractères."
+        }
       }
     }
   },

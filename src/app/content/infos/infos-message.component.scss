@@ -5,7 +5,8 @@
 
 form {
     display: grid;
-    grid-template: 'a b' 'c c' 'd d';
+    grid-template: 'a b' 'c c' 'd d' / 50% 50%;
+    align-items: baseline;
     gap: 5px;
 
     .message {
