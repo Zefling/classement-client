@@ -575,6 +575,7 @@ div:has(> .mode-bingo) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-end;
     gap: 15px;
     width: 100%;
 

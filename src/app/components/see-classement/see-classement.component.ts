@@ -11,9 +11,10 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaInput, MagmaInputCheckbox, MagmaInputElement, MagmaInputSelect } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Subject, debounceTime } from 'rxjs';
 
@@ -46,7 +47,6 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
     imports: [
-        Select2,
         FormsModule,
         NgClass,
         MarkdownComponent,
@@ -57,6 +57,10 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
         ZoneAreaComponent,
         ZoneAxisComponent,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputSelect,
+        MagmaInputCheckbox,
     ],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {

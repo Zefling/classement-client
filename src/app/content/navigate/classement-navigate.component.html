@@ -2,24 +2,20 @@
 
 @if (categoriesList) {
   <form class="search" (submit)="submit(true)">
-    <div class="name">
-      <label>{{ 'navigate.title' | transloco }}</label>
-      <input
-        type="search"
-        name="name"
-        [(ngModel)]="searchKey"
-        [class.empty]="searchKey === '' || searchKey === undefined"
-      />
-      <span (click)="searchKey = ''"></span>
-    </div>
+    <mg-input class="name">
+      <mg-input-label>{{ 'navigate.title' | transloco }}</mg-input-label>
+      <mg-input-text type="search" name="name" [(ngModel)]="searchKey" clearCross></mg-input-text>
+    </mg-input>
+
     <div class="line">
-      <div class="categories">
-        <label>{{ 'navigate.category' | transloco }}</label>
-        <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
-      </div>
-      <div class="modes">
-        <label for="option-mode">{{ 'generator.options.mode' | transloco }}</label>
-        <select2
+      <mg-input class="categories">
+        <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
+        <mg-input-select type="search" name="category" [data]="categoriesList" [(ngModel)]="category"></mg-input-select>
+      </mg-input>
+
+      <mg-input class="modes">
+        <mg-input-label>{{ 'navigate.mode' | transloco }}</mg-input-label>
+        <mg-input-select
           name="mode"
           [data]="listMode"
           [(ngModel)]="mode"
@@ -50,8 +46,9 @@
               <div>&nbsp;</div>
             }
           </ng-template>
-        </select2>
-      </div>
+          ></mg-input-select
+        >
+      </mg-input>
       <button type="submit">{{ 'navigate.search' | transloco }}</button>
     </div>
   </form>

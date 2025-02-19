@@ -871,6 +871,7 @@
     "title": "Title",
     "category": "Category",
     "categories": "ranking",
+    "mode": "Mode",
     "classements": "Ranking",
     "see.derivatives": "See the other versions of the ranking",
     "count.derivatives": "Versions of the ranking:",

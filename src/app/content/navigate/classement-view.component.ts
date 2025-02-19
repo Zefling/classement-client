@@ -5,6 +5,7 @@ import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
+import { MagmaInput, MagmaInputCheckbox, MagmaInputPassword } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
@@ -44,6 +45,9 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         DialogComponent,
         DatePipe,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputCheckbox,
+        MagmaInputPassword,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {

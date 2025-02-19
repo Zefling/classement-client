@@ -3,9 +3,10 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2, Select2Data } from 'ng-select2-component';
+import { Select2Data } from 'ng-select2-component';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface/interface';
@@ -27,13 +28,16 @@ import { listModes } from '../classement/classement-default';
     styleUrls: ['./classement-navigate.component.scss'],
     imports: [
         FormsModule,
-        Select2,
         NgClass,
         RouterLink,
         PaginationComponent,
         NavigateResultComponent,
         LoaderItemComponent,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputElement,
+        MagmaInputSelect,
     ],
 })
 export class ClassementNavigateComponent implements OnDestroy {
@@ -50,9 +54,9 @@ export class ClassementNavigateComponent implements OnDestroy {
     categoriesList?: Select2Data;
     categoriesType?: Select2Data;
 
-    searchKey?: string;
-    category?: string;
-    mode?: string;
+    searchKey: string = '';
+    category: string = '';
+    mode: string = '';
 
     classements: Classement[] = [];
 
@@ -79,12 +83,12 @@ export class ClassementNavigateComponent implements OnDestroy {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.logger.log('params', LoggerLevel.log, params);
-                this.searchKey = params['name'];
+                this.searchKey = params['name'] ?? '';
                 this.category = params['category'];
                 this.mode = params['mode'];
                 this.page = params['page'];
                 this.queryParams = { name: this.searchKey, category: this.category };
-                if (this.searchKey !== undefined || this.category !== undefined || params['page']) {
+                if (this.searchKey !== '' || this.category !== '' || params['page']) {
                     this.submit();
                 } else {
                     this.showCategoriesList();

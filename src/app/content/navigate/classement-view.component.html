@@ -147,10 +147,11 @@
     </button>
   </div>
   <div class="link-option">
-    <label
-      ><input type="checkbox" [(ngModel)]="showLink" />
-      <span>{{ 'generator.ranking.show.link' | transloco }}</span></label
-    >
+    <mg-input>
+      <mg-input-checkbox mode="toggle" [(ngModel)]="showLink">{{
+        'generator.ranking.show.link' | transloco
+      }}</mg-input-checkbox>
+    </mg-input>
   </div>
   @if (!exportImageDisabled) {
     <see-classement
@@ -254,7 +255,14 @@
   <div class="button-image-save">
     {{ 'navigate.password.required' | transloco }}
     <div>
-      <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
+      <mg-input>
+        <mg-input-password
+          id="classement-passeword"
+          name="classement-passeword"
+          autocomplete="off"
+          #password
+        ></mg-input-password>
+      </mg-input>
     </div>
     @if (showError) {
       <ul class="list-error">
@@ -263,7 +271,7 @@
     }
     <span>
       <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
-      <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
+      <button class="button-add primary" (click)="openClassementWithPassword(password.getValue()!)">
         {{ 'navigate.password.ok' | transloco }}
       </button>
     </span>
