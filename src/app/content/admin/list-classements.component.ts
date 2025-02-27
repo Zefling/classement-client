@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaDialog } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -18,7 +18,7 @@ import { categories } from '../classement/classement-default';
     selector: 'list-classements',
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
-    imports: [DialogComponent, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
+    imports: [MagmaDialog, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);
@@ -30,9 +30,9 @@ export class ListClassementsComponent {
     sort = input<SortClassementCol>();
     direction = input<SortDirection>();
 
-    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
-    dialogSeeClassement = viewChild.required<DialogComponent>('dialogSeeClassement');
-    dialogEditCategory = viewChild.required<DialogComponent>('dialogEditCategory');
+    dialogActionsClassement = viewChild.required<MagmaDialog>('dialogActionsClassement');
+    dialogSeeClassement = viewChild.required<MagmaDialog>('dialogSeeClassement');
+    dialogEditCategory = viewChild.required<MagmaDialog>('dialogEditCategory');
 
     currentClassement?: Classement;
 

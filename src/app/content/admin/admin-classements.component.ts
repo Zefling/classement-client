@@ -2,6 +2,7 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { MagmaPaginationComponent } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2 } from 'ng-select2-component';
@@ -15,13 +16,19 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { ListClassementsComponent } from './list-classements.component';
 
 import { LoadingComponent } from '../../components/loader/loading.component';
-import { PaginationComponent } from '../../components/paginate/paginate.component';
 
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
-    imports: [FormsModule, Select2, LoadingComponent, PaginationComponent, ListClassementsComponent, TranslocoPipe],
+    imports: [
+        FormsModule,
+        Select2,
+        LoadingComponent,
+        MagmaPaginationComponent,
+        ListClassementsComponent,
+        TranslocoPipe,
+    ],
 })
 export class AdminClassementsComponent implements OnDestroy {
     private readonly classementService = inject(APIClassementService);

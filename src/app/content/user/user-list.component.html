@@ -1,9 +1,9 @@
 <h2>{{ 'menu.my.lists' | transloco }}</h2>
 
-<tabs (tabChange)="tabChange($event)">
+<mg-tabs (tabChange)="tabChange($event)">
   <!-- server -->
-  <tab-title id="server">{{ 'user.profile.list.server.tab' | transloco }}</tab-title>
-  <tab-content id="server">
+  <mg-tab-title id="server">{{ 'user.profile.list.server.tab' | transloco }}</mg-tab-title>
+  <mg-tab-content id="server">
     <div class="infos">
       <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | transloco }}</p>
       <div class="list-actions">
@@ -40,7 +40,8 @@
                   [sort-rule]="{
                     type: 'translate',
                     attr: 'mode',
-                    translate: 'mode.name.%value%',
+                    translate: translateSort,
+                    translateId: 'mode.name.%value%',
                     default: 'default',
                   }"
                 >
@@ -51,7 +52,8 @@
                   [sort-rule]="{
                     type: 'translate',
                     attr: 'category',
-                    translate: 'category.%value%',
+                    translate: translateSort,
+                    translateId: 'category.%value%',
                   }"
                 >
                   {{ 'list.category.name' | transloco }}
@@ -95,13 +97,13 @@
                       @if (classement.localId && localIds.includes(classement.localId)) {
                         <a
                           class="from"
-                          [tooltip]="'list.local.link' | transloco: { id: classement.localId }"
+                          [mgTooltip]="'list.local.link' | transloco: { id: classement.localId }"
                           [routerLink]="['/edit', classement.localId]"
                           >➡ <span class="icon-browser"></span
                         ></a>
                       }
                       @if (classement.hidden) {
-                        <span class="private" [tooltip]="'list.hide.note' | transloco">
+                        <span class="private" [mgTooltip]="'list.hide.note' | transloco">
                           <span class="icon-private-search"></span> {{ 'list.status.hidden' | transloco }}
                         </span>
                       }
@@ -158,16 +160,16 @@
         }
       </ng-container>
     }
-  </tab-content>
+  </mg-tab-content>
 
   <!-- browser -->
-  <tab-title id="browser">{{ 'user.profile.list.browser.tab' | transloco }}</tab-title>
-  <tab-content id="browser">
+  <mg-tab-title id="browser">{{ 'user.profile.list.browser.tab' | transloco }}</mg-tab-title>
+  <mg-tab-content id="browser">
     <classement-list [pageMode]="false"></classement-list>
-  </tab-content>
-</tabs>
+  </mg-tab-content>
+</mg-tabs>
 
-<dialog-cmp class="auto-format" #dialogActionsClassement>
+<mg-dialog class="auto-format" #dialogActionsClassement>
   <p class="title">{{ currentClassement?.name || ('list.title.undefined' | transloco) }}</p>
 
   <div class="buttons">
@@ -201,4 +203,4 @@
       </div>
     }
   }
-</dialog-cmp>
+</mg-dialog>

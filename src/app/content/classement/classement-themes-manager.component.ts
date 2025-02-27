@@ -1,13 +1,10 @@
 import { Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaDialog, MagmaTabContent, MagmaTabTitle, MagmaTabs } from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Options, Theme, User } from 'src/app/interface/interface';
 import { APIThemeService } from 'src/app/services/api.theme.service';
@@ -25,10 +22,10 @@ import { Utils } from 'src/app/tools/utils';
         FormsModule,
         TranslocoModule,
         // components
-        DialogComponent,
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
+        MagmaDialog,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
         ThemeIconComponent,
     ],
 })
@@ -49,7 +46,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     // viewChild
 
-    exportDialog = viewChild.required<DialogComponent>('exportDialog');
+    exportDialog = viewChild.required<MagmaDialog>('exportDialog');
 
     // template
 

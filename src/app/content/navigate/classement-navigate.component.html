@@ -69,25 +69,27 @@
 
 @if (!loading) {
   @if (!isCategoryList && total && total / pageSize > 1) {
-    <paginate-cmp
+    <mg-paginate
+      linkId="nav"
       [total]="total"
       [page]="page"
       [base]="url"
       [queryParams]="queryParams"
       [size]="pageSize"
-    ></paginate-cmp>
+    ></mg-paginate>
   }
 
   <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
 
   @if (!isCategoryList && total && total / pageSize > 1) {
-    <paginate-cmp
+    <mg-paginate
+      linkId="nav"
       [total]="total"
       [page]="page"
       [base]="url"
       [queryParams]="queryParams"
       [size]="pageSize"
-    ></paginate-cmp>
+    ></mg-paginate>
   }
 } @else {
   <loader-item></loader-item>

@@ -637,7 +637,7 @@
       <div class="save-actions buttons">
         <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
           {{ 'generator.actions.save.local' | transloco }}
-          <span [tooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
+          <span [mgTooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
         </button>
         <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
           {{ 'generator.actions.export.json' | transloco }}
@@ -680,7 +680,7 @@
   }
 </div>
 
-<dialog-cmp class="auto-format" #dialogImage closeButton>
+<mg-dialog class="auto-format" #dialogImage closeButton>
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
@@ -690,13 +690,13 @@
     </span>
   </div>
   <div #image></div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogImport>
+<mg-dialog class="auto-format" #dialogImport>
   <import-json (load)="importJson($event)"></import-json>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogOptimise closeButton>
+<mg-dialog class="auto-format" #dialogOptimise closeButton>
   @if (dialogOptimise._open) {
     <classement-optimise
       [list]="list"
@@ -705,9 +705,9 @@
       [mode]="options.mode"
     ></classement-optimise>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogSaveServer>
+<mg-dialog #dialogSaveServer>
   @if (logged && dialogSaveServer._open) {
     <classement-save-server
       [classement]="classement"
@@ -718,9 +718,9 @@
       (action)="updateAfterServerSave($event)"
     ></classement-save-server>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogDerivatives closeButton>
+<mg-dialog #dialogDerivatives closeButton>
   @if (derivatives) {
     <table class="table-derivatives">
       <thead>
@@ -755,9 +755,9 @@
       </tbody>
     </table>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="content-diff" #dialogRankingDiff>
+<mg-dialog class="content-diff" #dialogRankingDiff>
   <div class="container">
     @if (diff?.length) {
       <div class="label">
@@ -796,9 +796,9 @@
       </button>
     </div>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogClear>
+<mg-dialog class="auto-format" #dialogClear>
   <p>
     {{ 'generator.actions.reset.groups.question' | transloco }}
   </p>
@@ -810,9 +810,9 @@
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogGroupOption>
+<mg-dialog class="auto-format" #dialogGroupOption>
   @if (currentGroup) {
     <div class="colors-options">
       <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
@@ -871,9 +871,9 @@
       </button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogTexts>
+<mg-dialog class="auto-format" #dialogTexts>
   <div class="add-text-dialog">
     <label class="name">
       <div>
@@ -892,7 +892,7 @@
       </button>
     </div>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
 <classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage></classement-edit-image>
 

@@ -1,15 +1,15 @@
-<dialog-cmp #exportDialog closeButton>
+<mg-dialog #exportDialog closeButton>
   <h3>{{ 'generator.theme.manage.themes' | transloco }}</h3>
 
   @let current = themeCurrent();
   @if (current?.options) {
     <theme-icon [theme]="current!"></theme-icon>
   }
-  <tabs (tabChange)="tabChange()">
+  <mg-tabs (tabChange)="tabChange()">
     <!-- NEW -->
 
-    <tab-title id="new"> {{ 'generator.theme.new' | transloco }}</tab-title>
-    <tab-content id="new">
+    <mg-tab-title id="new"> {{ 'generator.theme.new' | transloco }}</mg-tab-title>
+    <mg-tab-content id="new">
       <p>
         <label for="name">{{ 'generator.theme.name.question' | transloco }}</label>
         <input id="name" type="text" [(ngModel)]="themeName" maxlength="100" />
@@ -56,15 +56,15 @@
           {{ 'generator.theme.export' | transloco }}
         </button>
       </p>
-    </tab-content>
+    </mg-tab-content>
 
     <!-- LOCAL -->
 
     @if (themeBrowser.length) {
-      <tab-title id="local"> {{ 'generator.theme.browser.update' | transloco }}</tab-title>
+      <mg-tab-title id="local"> {{ 'generator.theme.browser.update' | transloco }}</mg-tab-title>
     }
     @if (themeBrowser.length) {
-      <tab-content id="local">
+      <mg-tab-content id="local">
         <p>{{ 'generator.theme.browser.replace' | transloco }}</p>
         <p>
           <label for="name">{{ 'generator.theme.name.rename' | transloco }}</label>
@@ -99,16 +99,16 @@
             {{ 'generator.theme.update.browser' | transloco }}
           </button>
         </p>
-      </tab-content>
+      </mg-tab-content>
     }
 
     <!-- SERVER -->
 
     @if (modeApi() && themeServer.length) {
-      <tab-title id="server"> {{ 'generator.theme.account.update' | transloco }}</tab-title>
+      <mg-tab-title id="server"> {{ 'generator.theme.account.update' | transloco }}</mg-tab-title>
     }
     @if (modeApi() && themeServer.length) {
-      <tab-content id="server">
+      <mg-tab-content id="server">
         <p>{{ 'generator.theme.account.replace' | transloco }}</p>
         <p>
           <label for="name">{{ 'generator.theme.name.rename' | transloco }}</label>
@@ -153,12 +153,12 @@
             {{ 'generator.theme.update.server' | transloco }}
           </button>
         </p>
-      </tab-content>
+      </mg-tab-content>
     }
-  </tabs>
-</dialog-cmp>
+  </mg-tabs>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #deleteConfirm>
+<mg-dialog class="auto-format" #deleteConfirm>
   <p>
     {{ 'generator.theme.remove' | transloco }} <strong>{{ selectedTheme?.name }}</strong>
   </p>
@@ -174,4 +174,4 @@
       {{ 'generator.theme.remove.confirm' | transloco }}
     </button>
   </p>
-</dialog-cmp>
+</mg-dialog>

@@ -1,4 +1,4 @@
-<dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
+<mg-dialog class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
   @let cTile = currentTile();
 
   @if (cTile) {
@@ -136,9 +136,9 @@
       <button class="warn" (click)="delete()">{{ 'generator.ranking.delete.tile' | transloco }}</button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogImageEdit>
+<mg-dialog class="auto-format" #dialogImageEdit>
   @if (cTile && dialogImageEdit._open) {
     <div drop-image mode="local" (file)="fileChange($event)">
       <div class="drop-image-message">{{ 'generator.ranking.image.drop' | transloco }}</div>
@@ -201,4 +201,4 @@
       </div>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>

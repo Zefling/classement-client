@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaInput, MagmaInputCheckbox } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Buffer } from 'buffer';
@@ -19,7 +20,7 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     selector: 'import-json',
     templateUrl: './import-json.component.html',
     styleUrls: ['./import-json.component.scss'],
-    imports: [LoadingComponent, FormsModule, TranslocoPipe],
+    imports: [LoadingComponent, FormsModule, TranslocoPipe, MagmaInput, MagmaInputCheckbox],
 })
 export class ImportJsonComponent implements OnDestroy {
     // inject

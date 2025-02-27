@@ -11,12 +11,12 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaDialog, MagmaTextareaAutosizeDirective } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subject, debounceTime } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
@@ -25,7 +25,6 @@ import { Utils } from 'src/app/tools/utils';
 import { ClassementEditComponent } from './classement-edit.component';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
-import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 
@@ -34,9 +33,9 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
     imports: [
-        DialogComponent,
+        MagmaDialog,
         FormsModule,
-        TextareaAutosizeDirective,
+        MagmaTextareaAutosizeDirective,
         DropImageDirective,
         ImageCropperComponent,
         TranslocoPipe,
@@ -50,8 +49,8 @@ export class ClassementEditImageComponent implements OnChanges {
 
     // viewChild
 
-    dialogInfo = viewChild.required<DialogComponent>('dialogInfo');
-    dialogImageEdit = viewChild.required<DialogComponent>('dialogImageEdit');
+    dialogInfo = viewChild.required<MagmaDialog>('dialogInfo');
+    dialogImageEdit = viewChild.required<MagmaDialog>('dialogImageEdit');
     bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
     ratioInput = viewChild.required<ElementRef<HTMLInputElement>>('ratioInput');
     imageCropper = viewChild.required<ImageCropperComponent>('imageCropper');

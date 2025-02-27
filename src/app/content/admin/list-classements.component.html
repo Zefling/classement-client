@@ -57,7 +57,7 @@
   </tbody>
 </table>
 
-<dialog-cmp class="auto-format" #dialogActionsClassement>
+<mg-dialog class="auto-format" #dialogActionsClassement>
   @if (currentClassement) {
     <p>{{ 'list.status.question' | transloco }}</p>
     <p class="title">{{ currentClassement.name || ('list.title.undefined' | transloco) }}</p>
@@ -79,9 +79,9 @@
       </button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogSeeClassement closeButton (onClose)="currentClassement = undefined">
+<mg-dialog #dialogSeeClassement closeButton (onClose)="currentClassement = undefined">
   @if (currentClassement) {
     <see-classement
       [options]="currentClassement.data.options"
@@ -90,9 +90,9 @@
       [id]="currentClassement.rankingId"
     ></see-classement>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogEditCategory closeButton class="auto-format">
+<mg-dialog #dialogEditCategory closeButton class="auto-format">
   @if (currentClassement) {
     <h3>{{ 'list.category.edit.title' | transloco }}</h3>
     <div>
@@ -120,4 +120,4 @@
       </button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>

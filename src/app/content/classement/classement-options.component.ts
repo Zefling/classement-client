@@ -15,13 +15,13 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MagmaDialog, MagmaTextareaAutosizeDirective, MagmaTooltipDirective } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import {
     Category,
     FileHandle,
@@ -67,8 +67,6 @@ import { ClassementThemesComponent } from './classement-themes.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
-import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
     selector: 'classement-options',
@@ -78,11 +76,11 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
         FormsModule,
         Select2,
         NgClass,
-        TextareaAutosizeDirective,
-        TooltipDirective,
+        MagmaTextareaAutosizeDirective,
+        MagmaTooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
-        DialogComponent,
+        MagmaDialog,
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
@@ -107,10 +105,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     // viewChild
 
     readonly classementThemes = viewChild.required(ClassementThemesComponent);
-    readonly dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
-    readonly dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
-    readonly dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
-    readonly dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
+    readonly dialogChangeMode = viewChild.required<MagmaDialog>('dialogChangeMode');
+    readonly dialogAdvancedOptions = viewChild.required<MagmaDialog>('dialogAdvancedOptions');
+    readonly dialogAdvancedOptionsExport = viewChild.required<MagmaDialog>('exportDialog');
+    readonly dialogAdvancedOptionsImport = viewChild.required<MagmaDialog>('importDialog');
     readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
     readonly mode = viewChild.required<Select2>('mode');
 

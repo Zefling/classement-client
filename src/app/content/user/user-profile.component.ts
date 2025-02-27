@@ -3,17 +3,22 @@ import { Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/co
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { FileHandle, Theme, User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -35,16 +40,16 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         RouterLink,
         RouterLinkActive,
         NavigateResultComponent,
-        DialogComponent,
+        MagmaDialog,
         FormsModule,
         ReactiveFormsModule,
         DropImageDirective,
         ImageCropperComponent,
         DatePipe,
         TranslocoPipe,
-        TabsComponent,
-        TabTitleComponent,
-        TabContentComponent,
+        MagmaTabs,
+        MagmaTabTitle,
+        MagmaTabContent,
         ThemeIconComponent,
         MagmaInput,
         MagmaInputElement,
@@ -64,11 +69,11 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     listener = Subscriptions.instance();
 
-    avatarDialog = viewChild.required<DialogComponent>('avatarDialog');
-    dialogChangePassword = viewChild.required<DialogComponent>('dialogChangePassword');
-    dialogChangeUsername = viewChild.required<DialogComponent>('dialogChangeUsername');
-    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
-    dialogChangeEmail = viewChild.required<DialogComponent>('dialogChangeEmail');
+    avatarDialog = viewChild.required<MagmaDialog>('avatarDialog');
+    dialogChangePassword = viewChild.required<MagmaDialog>('dialogChangePassword');
+    dialogChangeUsername = viewChild.required<MagmaDialog>('dialogChangeUsername');
+    dialogRemoveProfile = viewChild.required<MagmaDialog>('dialogRemoveProfile');
+    dialogChangeEmail = viewChild.required<MagmaDialog>('dialogChangeEmail');
 
     avatarInput = viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 

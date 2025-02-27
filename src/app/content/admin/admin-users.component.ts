@@ -3,9 +3,9 @@ import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { MagmaDialog, MagmaPaginationComponent } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
 import { Role } from 'src/app/services/api.moderation';
@@ -17,7 +17,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { ListClassementsComponent } from './list-classements.component';
 
 import { LoadingComponent } from '../../components/loader/loading.component';
-import { PaginationComponent } from '../../components/paginate/paginate.component';
 
 @Component({
     selector: 'admin-users',
@@ -26,8 +25,8 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
     imports: [
         FormsModule,
         LoadingComponent,
-        PaginationComponent,
-        DialogComponent,
+        MagmaPaginationComponent,
+        MagmaDialog,
         ListClassementsComponent,
         ReactiveFormsModule,
         DatePipe,
@@ -55,9 +54,9 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     sort: SortUserCol = 'dateCreate';
     direction: SortDirection = 'DESC';
 
-    dialogListClassements = viewChild.required<DialogComponent>('dialogListClassements');
-    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
-    dialogActionsUser = viewChild.required<DialogComponent>('dialogActionsUser');
+    dialogListClassements = viewChild.required<MagmaDialog>('dialogListClassements');
+    dialogRemoveProfile = viewChild.required<MagmaDialog>('dialogRemoveProfile');
+    dialogActionsUser = viewChild.required<MagmaDialog>('dialogActionsUser');
 
     currentUser?: User;
     userForm?: FormGroup;

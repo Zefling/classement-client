@@ -44,7 +44,8 @@
             [sort-rule]="{
               type: 'translate',
               attr: 'options.mode',
-              translate: 'mode.name.%value%',
+              translate: translateSort,
+              translateId: 'mode.name.%value%',
               default: 'default',
             }"
           >
@@ -52,7 +53,12 @@
           </th>
           <th
             class="category"
-            [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
+            [sort-rule]="{
+              type: 'translate',
+              attr: 'options.category',
+              translateId: 'category.%value%',
+              translate: translateSort,
+            }"
           >
             {{ 'list.category.name' | transloco }}
           </th>
@@ -93,7 +99,7 @@
                 @if (modeApi() && item.rankingId && serverIds.includes(item.rankingId)) {
                   <a
                     class="from"
-                    [tooltip]="'list.server.link' | transloco: { id: item.rankingId }"
+                    [mgTooltip]="'list.server.link' | transloco: { id: item.rankingId }"
                     [routerLink]="['/navigate/view', item.rankingId]"
                     >➡ <span class="icon-server"></span
                   ></a>
@@ -131,20 +137,20 @@
   }
 </ng-container>
 
-<dialog-cmp #dialogImport class="auto-format">
+<mg-dialog #dialogImport class="auto-format">
   <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogDelete class="auto-format dialog-delete">
+<mg-dialog #dialogDelete class="auto-format dialog-delete">
   <p>{{ 'list.delete.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div class="buttons">
     <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | transloco }}</button>
     <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogClone class="auto-format dialog-clone">
+<mg-dialog #dialogClone class="auto-format dialog-clone">
   <p>{{ 'list.clone.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div>
@@ -166,4 +172,4 @@
       {{ 'list.clone.edit' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>

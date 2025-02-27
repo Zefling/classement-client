@@ -215,7 +215,7 @@
   <info-messages></info-messages>
 </div>
 
-<dialog-cmp class="auto-format" #warningExit>
+<mg-dialog class="auto-format" #warningExit>
   <p class="title">{{ 'generator.change.warning' | transloco }}</p>
   <p>{{ 'generator.change.question' | transloco }}</p>
   <div>
@@ -223,9 +223,9 @@
     <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | transloco }}</button>
     <button class="warn" (click)="exit(true)">{{ 'list.delete.exit' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format mode-dialog" #choice closeBackdrop>
+<mg-dialog class="auto-format mode-dialog" #choice closeBackdrop>
   <h2 class="title">{{ 'generator.choice.title' | transloco }}</h2>
   <menu class="choice-mode">
     @for (mode of modes; track $index; let index = $index) {
@@ -249,6 +249,6 @@
       }
     </span>
   </p>
-</dialog-cmp>
+</mg-dialog>
 
 <preferences-dialog #pref (mainMenuReduce)="mainMenuReduce.set($event)"></preferences-dialog>

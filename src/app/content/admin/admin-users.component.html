@@ -24,7 +24,7 @@
 @if (!loading) {
   @if (users[page] && users[page].length) {
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
     <table>
       <thead>
@@ -96,18 +96,18 @@
       </tbody>
     </table>
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
   } @else {
     <p class="no-result">{{ 'list.no.result' | transloco }}</p>
   }
 }
 
-<dialog-cmp #dialogListClassements closeButton>
+<mg-dialog #dialogListClassements closeButton>
   <list-classements [classements]="currentUser?.classements"></list-classements>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogActionsUser>
+<mg-dialog class="auto-format" #dialogActionsUser>
   @if (currentUser && userForm) {
     <ng-container [formGroup]="userForm">
       <p>{{ 'user.status.warning' | transloco }}</p>
@@ -146,9 +146,9 @@
       </div>
     </ng-container>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogRemoveProfile>
+<mg-dialog class="auto-format" #dialogRemoveProfile>
   <p>{{ 'user.profile.remove.question.admin' | transloco }}</p>
   <p>
     <strong>{{ currentUser?.username }}</strong>
@@ -161,4 +161,4 @@
     <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | transloco }}</button>
     <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>

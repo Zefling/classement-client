@@ -95,7 +95,7 @@
         <input type="checkbox" [(ngModel)]="hidden" />
         {{ 'generator.server.not.public' | transloco }}
       </label>
-      <span [tooltip]="'list.hide.note' | transloco" class="icon-info"></span>
+      <span [mgTooltip]="'list.hide.note' | transloco" class="icon-info"></span>
     </div>
     @if (hidden) {
       <div class="password">
@@ -108,7 +108,7 @@
         <input type="checkbox" [(ngModel)]="saveLocal" />
         {{ 'generator.server.not.remove.local' | transloco }}
       </label>
-      <span [tooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span>
+      <span [mgTooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span>
     </div>
     @if (update) {
       <div class="public">
@@ -116,7 +116,7 @@
           <input type="checkbox" [(ngModel)]="history" />
           {{ 'generator.server.history.label' | transloco }}
         </label>
-        <span [tooltip]="'generator.server.history.info' | transloco" class="icon-info"></span>
+        <span [mgTooltip]="'generator.server.history.info' | transloco" class="icon-info"></span>
       </div>
     }
   }

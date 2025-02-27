@@ -94,7 +94,7 @@
       <label class="toggle-switch">
         <input type="checkbox" [(ngModel)]="opts.streamMode" />
         <span>{{ 'generator.options.stream.mode' | transloco }}</span>
-        <span [tooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
+        <span [mgTooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
       </label>
     </div>
 
@@ -109,7 +109,7 @@
   <classement-themes (change)="changeTheme($event)" [options]="options()"></classement-themes>
 }
 
-<dialog-cmp class="auto-format" #dialogChangeMode>
+<mg-dialog class="auto-format" #dialogChangeMode>
   <p class="question">
     {{ 'generator.actions.change.mode.question' | transloco }}
   </p>
@@ -126,9 +126,9 @@
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogAdvancedOptions class="dialog-options" closeBackdrop closeButton>
+<mg-dialog #dialogAdvancedOptions class="dialog-options" closeBackdrop closeButton>
   <p class="warning">
     {{ 'generator.options.advance.info' | transloco }}
   </p>
@@ -474,7 +474,7 @@
           <div class="number-input">
             <label for="option-border-spacing"
               >{{ 'generator.options.border.spacing' | transloco }}
-              <span [tooltip]="'generator.options.border.spacing.info' | transloco" class="icon-info"></span
+              <span [mgTooltip]="'generator.options.border.spacing.info' | transloco" class="icon-info"></span
             ></label>
             <input id="option-border-spacing" type="number" min="-1" max="20" [(ngModel)]="opts.borderSpacing" />
             <span data-type="px"></span>
@@ -839,11 +839,11 @@
       <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo></see-classement>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
 <classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()"></classement-themes-manager>
 
-<dialog-cmp class="auto-format" #importDialog>
+<mg-dialog class="auto-format" #importDialog>
   <div>{{ 'generator.theme.import.info' | transloco }}</div>
   <div>
     <input type="file" accept=".json" #fileImport (change)="importJsonFile($event)" />
@@ -876,4 +876,4 @@
       </button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>

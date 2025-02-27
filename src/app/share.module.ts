@@ -6,8 +6,8 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 import { Select2 } from 'ng-select2-component';
 
-import { DialogComponent } from './components/dialog/dialog.component';
-import { PreferencesDialogComponent } from './components/preferences/preferences.component';
+import { MagmaDialog } from './components/dialog/dialog.component';
+import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 
 @NgModule({
     exports: [
@@ -27,8 +27,8 @@ import { PreferencesDialogComponent } from './components/preferences/preferences
         ReactiveFormsModule,
         Select2,
         // internal
-        DialogComponent,
-        PreferencesDialogComponent,
+        MagmaDialog,
+        PreferencesMagmaDialog,
     ],
 })
 export class SharedModule {}

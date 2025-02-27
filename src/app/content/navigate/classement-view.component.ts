@@ -5,12 +5,11 @@ import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
-import { MagmaInput, MagmaInputCheckbox, MagmaInputPassword } from '@ikilote/magma';
+import { MagmaDialog, MagmaInput, MagmaInputCheckbox, MagmaInputPassword } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, ClassementHistory, ScreenMode } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -42,7 +41,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         SeeClassementComponent,
         NgClass,
         LoaderItemComponent,
-        DialogComponent,
+        MagmaDialog,
         DatePipe,
         TranslocoPipe,
         MagmaInput,
@@ -87,10 +86,10 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     showLink = true;
 
     image = viewChild.required<ElementRef>('image');
-    dialogImage = viewChild.required<DialogComponent>('dialogImage');
-    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
-    dialogHistory = viewChild.required<DialogComponent>('dialogHistory');
-    dialogPassword = viewChild.required<DialogComponent>('dialogPassword');
+    dialogImage = viewChild.required<MagmaDialog>('dialogImage');
+    dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
+    dialogHistory = viewChild.required<MagmaDialog>('dialogHistory');
+    dialogPassword = viewChild.required<MagmaDialog>('dialogPassword');
 
     private canvas?: HTMLCanvasElement;
     private id?: string;

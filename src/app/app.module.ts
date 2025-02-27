@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MagmaDialog } from '@ikilote/magma';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { InfoMessagesComponent } from './components/info-messages/info-messages.component';
 import { LoaderComponent } from './components/loader/loader.component';
-import { PreferencesDialogComponent } from './components/preferences/preferences.component';
+import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { TranslocoRootModule } from './transloco-root.module';
 
 // function that returns `MarkedOptions` with renderer override
@@ -46,8 +46,8 @@ export function markedOptionsFactory() {
 
         //internal
         LoaderComponent,
-        DialogComponent,
-        PreferencesDialogComponent,
+        MagmaDialog,
+        PreferencesMagmaDialog,
         InfoMessagesComponent,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],

@@ -30,13 +30,13 @@
       <button (click)="changePassword()">{{ 'user.profile.change.password' | transloco }}</button>
       <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | transloco }}</button>
     </p>
-    <tabs>
+    <mg-tabs>
       <!-- classements -->
       @if (user.classements || localSizeClassements) {
-        <tab-title id="rankings">{{ 'user.profile.view.rankings' | transloco }}</tab-title>
+        <mg-tab-title id="rankings">{{ 'user.profile.view.rankings' | transloco }}</mg-tab-title>
       }
       @if (user.classements || localSizeClassements) {
-        <tab-content id="rankings">
+        <mg-tab-content id="rankings">
           <div class="links">
             @if (localSizeClassements) {
               <a routerLink="/user/lists/browser" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
@@ -55,15 +55,15 @@
           @if (user.classements) {
             <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
           }
-        </tab-content>
+        </mg-tab-content>
       }
 
       <!-- themes -->
       @if (user.themes?.length || localThemes?.length) {
-        <tab-title id="themes">{{ 'user.profile.view.themes' | transloco }}</tab-title>
+        <mg-tab-title id="themes">{{ 'user.profile.view.themes' | transloco }}</mg-tab-title>
       }
       @if (user.themes?.length || localThemes?.length) {
-        <tab-content id="themes">
+        <mg-tab-content id="themes">
           @if (localThemes?.length) {
             <h3>{{ 'user.profile.list.browser.tab' | transloco }} ({{ localThemes!.length }})</h3>
             <div class="theme-list">
@@ -91,13 +91,13 @@
               }
             </div>
           }
-        </tab-content>
+        </mg-tab-content>
       }
-    </tabs>
+    </mg-tabs>
   </div>
 }
 
-<dialog-cmp class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
+<mg-dialog class="auto-format" #dialogChangeUsername [formGroup]="changeUsernameForm">
   <p>{{ 'user.username.change' | transloco }}</p>
 
   <div>
@@ -126,9 +126,9 @@
       {{ 'user.username.change.ok' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
+<mg-dialog class="auto-format" #dialogChangePassword [formGroup]="changePasswordForm">
   <p>{{ 'user.password.change' | transloco }}</p>
 
   <div>
@@ -172,9 +172,9 @@
     <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | transloco }}</button>
     <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
+<mg-dialog class="auto-format" #dialogChangeEmail [formGroup]="changeEmailForm">
   <p>{{ 'user.email.change' | transloco }}</p>
 
   <div>
@@ -212,9 +212,9 @@
     <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | transloco }}</button>
     <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogRemoveProfile>
+<mg-dialog class="auto-format" #dialogRemoveProfile>
   <p>{{ 'user.profile.remove.question' | transloco }}</p>
   <p class="alert">
     {{ 'user.profile.remove.warning' | transloco }}<br />
@@ -224,9 +224,9 @@
     <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | transloco }}</button>
     <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
+<mg-dialog class="auto-format" #avatarDialog drop-image mode="local" (file)="fileChange($event)">
   <h3>
     {{ 'user.profile.avatar.title' | transloco }}
   </h3>
@@ -282,4 +282,4 @@
       </button>
     }
   </div>
-</dialog-cmp>
+</mg-dialog>

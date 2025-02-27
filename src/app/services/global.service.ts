@@ -19,7 +19,6 @@ import {
     FileType,
     FormattedGroup,
     Options,
-    PreferenceInterfaceTheme,
     ThemeOptions,
 } from '../interface/interface';
 import { color } from '../tools/function';
@@ -69,9 +68,6 @@ export class GlobalService {
 
     jsonTmp?: Data;
 
-    browserSchema: PreferenceInterfaceTheme;
-    userSchema?: PreferenceInterfaceTheme;
-
     private renderer: Renderer2;
 
     constructor() {
@@ -80,16 +76,8 @@ export class GlobalService {
         // fix `NullInjectorError: No provider for Renderer2!`
         this.renderer = rendererFactory.createRenderer(null, null);
 
-        this.browserSchema = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        this.changeThemeClass();
-
         toObservable(this.withChange).subscribe(() => {
             this.onOptionChange.next();
-        });
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            this.browserSchema = event.matches ? 'dark' : 'light';
-            this.changeThemeClass();
         });
     }
 
@@ -354,20 +342,6 @@ export class GlobalService {
 
             img.src = typeof file === 'string' ? file : URL.createObjectURL(file);
         });
-    }
-
-    toggleTheme() {
-        this.userSchema = this.currentTheme() === 'light' ? 'dark' : 'light';
-    }
-
-    currentTheme(): PreferenceInterfaceTheme {
-        return this.userSchema ?? this.browserSchema ?? 'light';
-    }
-
-    changeThemeClass() {
-        this.logger.log('color theme:', LoggerLevel.log, this.userSchema);
-        this.renderer.addClass(document.body, this.currentTheme() === 'light' ? 'light-mode' : 'dark-mode');
-        this.renderer.removeClass(document.body, this.currentTheme() !== 'light' ? 'light-mode' : 'dark-mode');
     }
 
     saveImage(canvas: HTMLCanvasElement | undefined, title: string, type: FileFormatExport) {

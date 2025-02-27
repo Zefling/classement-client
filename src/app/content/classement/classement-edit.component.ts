@@ -29,17 +29,22 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
+import {
+    ContextMenuItem,
+    MagmaContextMenu,
+    MagmaDialog,
+    MagmaNgInitDirective,
+    MagmaNgModelChangeDebouncedDirective,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
-import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
-import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import {
     Classement,
     Data,
@@ -93,12 +98,9 @@ import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
-import { ContextMenuDirective } from '../../directives/context-menu.directive';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { CdkDropZone } from '../../directives/dropzone.directive';
-import { NgInitDirective } from '../../directives/ngInit.directive';
 import { RemoveTileDirective } from '../../directives/remove-tile.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
 @Component({
@@ -115,16 +117,16 @@ import { FileSizePipe } from '../../pipes/file-size';
         CdkDropList,
         CdkDrag,
         RemoveTileDirective,
-        ContextMenuDirective,
-        NgInitDirective,
+        MagmaContextMenu,
+        MagmaNgInitDirective,
         CdkDropZone,
         ZoneAreaComponent,
         ZoneAxisComponent,
         CdkDragElement,
         SeeClassementComponent,
         LoadingComponent,
-        TooltipDirective,
-        DialogComponent,
+        MagmaTooltipDirective,
+        MagmaDialog,
         ImportJsonComponent,
         ClassementOptimiseComponent,
         ClassementSaveServerComponent,
@@ -134,7 +136,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
-        NgModelChangeDebouncedDirective,
+        MagmaNgModelChangeDebouncedDirective,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
@@ -215,14 +217,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');
     currentList = viewChild<ElementRef<HTMLDivElement>>('currentList');
-    dialogImage = viewChild.required<DialogComponent>('dialogImage');
-    dialogImport = viewChild.required<DialogComponent>('dialogImport');
-    dialogOptimise = viewChild.required<DialogComponent>('dialogOptimise');
-    dialogSaveServer = viewChild.required<DialogComponent>('dialogSaveServer');
-    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
-    dialogRankingDiff = viewChild.required<DialogComponent>('dialogRankingDiff');
-    dialogGroupOption = viewChild.required<DialogComponent>('dialogGroupOption');
-    dialogTexts = viewChild.required<DialogComponent>('dialogTexts');
+    dialogImage = viewChild.required<MagmaDialog>('dialogImage');
+    dialogImport = viewChild.required<MagmaDialog>('dialogImport');
+    dialogOptimise = viewChild.required<MagmaDialog>('dialogOptimise');
+    dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
+    dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
+    dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
+    dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
+    dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
     editImage = viewChild.required<ClassementEditImageComponent>(ClassementEditImageComponent);
     login = viewChild.required<ClassementLoginComponent>(ClassementLoginComponent);
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);

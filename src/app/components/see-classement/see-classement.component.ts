@@ -11,7 +11,16 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaInput, MagmaInputCheckbox, MagmaInputElement, MagmaInputSelect } from '@ikilote/magma';
+import {
+    ContextMenuItem,
+    MagmaContextMenu,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaNgInitDirective,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
@@ -26,11 +35,7 @@ import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { ContextMenuDirective } from '../../directives/context-menu.directive';
-import { NgInitDirective } from '../../directives/ngInit.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { GlobalService } from '../../services/global.service';
-import { ContextMenuItem } from '../context-menu/context-menu.component';
 import { NgxMoveableComponent } from '../moveable/moveable.component';
 import { ZoneAreaComponent } from '../zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../zone-axis/zone-axis.component';
@@ -50,9 +55,8 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
         FormsModule,
         NgClass,
         MarkdownComponent,
-        NgInitDirective,
-        TooltipDirective,
-        ContextMenuDirective,
+        MagmaNgInitDirective,
+        MagmaTooltipDirective,
         NgxMoveableComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
@@ -61,6 +65,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
         MagmaInputElement,
         MagmaInputSelect,
         MagmaInputCheckbox,
+        MagmaContextMenu,
     ],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {

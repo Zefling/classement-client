@@ -1,4 +1,4 @@
-<dialog-cmp class="auto-format" closeButton>
+<mg-dialog class="auto-format" closeButton>
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
 
   <div class="search-theme">
@@ -13,11 +13,11 @@
   </div>
 
   @if (!key || !key.trim()) {
-    <tabs>
+    <mg-tabs>
       <!-- default-->
 
-      <tab-title id="default">{{ 'generator.theme.default' | transloco }}</tab-title>
-      <tab-content id="default">
+      <mg-tab-title id="default">{{ 'generator.theme.default' | transloco }}</mg-tab-title>
+      <mg-tab-content id="default">
         <div class="themes">
           @for (theme of themes; track theme) {
             <theme-icon
@@ -27,15 +27,15 @@
             ></theme-icon>
           }
         </div>
-      </tab-content>
+      </mg-tab-content>
 
       <!-- browser-->
 
       @if (themeDraft.length) {
-        <tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</tab-title>
+        <mg-tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</mg-tab-title>
       }
       @if (themeDraft.length) {
-        <tab-content id="browser">
+        <mg-tab-content id="browser">
           <div class="themes">
             @for (theme of themeDraft; track theme) {
               <theme-icon
@@ -46,16 +46,16 @@
               ></theme-icon>
             }
           </div>
-        </tab-content>
+        </mg-tab-content>
       }
 
       <!-- current user-->
 
       @if (modeApi() && user?.themes?.length) {
-        <tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</tab-title>
+        <mg-tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</mg-tab-title>
       }
       @if (modeApi() && user?.themes?.length) {
-        <tab-content id="user">
+        <mg-tab-content id="user">
           <div class="themes">
             @for (theme of user!.themes; track theme) {
               <theme-icon
@@ -66,16 +66,16 @@
               ></theme-icon>
             }
           </div>
-        </tab-content>
+        </mg-tab-content>
       }
 
       <!-- other users-->
 
       @if (modeApi() && usersThemes?.length) {
-        <tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</tab-title>
+        <mg-tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</mg-tab-title>
       }
       @if (modeApi() && usersThemes?.length) {
-        <tab-content id="users">
+        <mg-tab-content id="users">
           <div class="themes">
             @for (theme of usersThemes; track theme) {
               <theme-icon
@@ -86,9 +86,9 @@
               ></theme-icon>
             }
           </div>
-        </tab-content>
+        </mg-tab-content>
       }
-    </tabs>
+    </mg-tabs>
   } @else {
     <div class="themes">
       @for (theme of keysThemes; track theme) {
@@ -110,4 +110,4 @@
       </button>
     }
   </div>
-</dialog-cmp>
+</mg-dialog>

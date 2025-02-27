@@ -1,13 +1,15 @@
 import { Component, computed, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import {
+    MagmaDialog,
+    MagmaNgModelChangeDebouncedDirective,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
-import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/interface';
 import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -23,14 +25,14 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
     imports: [
-        DialogComponent,
+        MagmaDialog,
         ThemeIconComponent,
         TranslocoPipe,
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
         FormsModule,
-        NgModelChangeDebouncedDirective,
+        MagmaNgModelChangeDebouncedDirective,
     ],
 })
 export class ClassementThemesComponent {
@@ -52,7 +54,7 @@ export class ClassementThemesComponent {
 
     // viewChild
 
-    readonly dialog = viewChild.required<DialogComponent>(DialogComponent);
+    readonly dialog = viewChild.required<MagmaDialog>(MagmaDialog);
 
     // template
     modeApi = computed(() => this.global.withApi());

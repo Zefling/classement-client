@@ -102,7 +102,7 @@
                             </div>
                           }
                           @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                            <div class="tile-info" [mgTooltip]="item.annotation"></div>
                           }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -185,7 +185,7 @@
                               </div>
                             }
                             @if (withAnnotation() && item.annotation) {
-                              <div class="tile-info" [tooltip]="item.annotation"></div>
+                              <div class="tile-info" [mgTooltip]="item.annotation"></div>
                             }
                             @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                               <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -293,7 +293,7 @@
                             }
                           }
                           @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                            <div class="tile-info" [mgTooltip]="item.annotation"></div>
                           }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -364,7 +364,7 @@
                           </div>
                         }
                         @if (withAnnotation() && item.annotation) {
-                          <div class="tile-info" [tooltip]="item.annotation"></div>
+                          <div class="tile-info" [mgTooltip]="item.annotation"></div>
                         }
                       </div>
                     </div>

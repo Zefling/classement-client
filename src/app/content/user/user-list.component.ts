@@ -3,14 +3,18 @@ import { Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import {
+    MagmaDialog,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+    MagmaTooltipDirective,
+    SortRuleDirective,
+    SortableDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
-import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { Classement, User } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -20,8 +24,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { SortRuleDirective } from '../../directives/sortable.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { ClassementListComponent } from '../list/classement-list.component';
 
 @Component({
@@ -29,20 +31,20 @@ import { ClassementListComponent } from '../list/classement-list.component';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
     imports: [
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
         FormsModule,
-        SortableDirective,
-        SortRuleDirective,
         RouterLink,
         TagListComponent,
-        TooltipDirective,
+        MagmaTooltipDirective,
         RouterLinkActive,
         ClassementListComponent,
-        DialogComponent,
+        MagmaDialog,
         DatePipe,
         TranslocoPipe,
+        SortableDirective,
+        SortRuleDirective,
     ],
 })
 export class UserListComponent implements OnInit, OnDestroy {
@@ -55,9 +57,9 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly router = inject(Router);
     private readonly global = inject(GlobalService);
 
-    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
+    dialogActionsClassement = viewChild.required<MagmaDialog>('dialogActionsClassement');
     sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
-    tabs = viewChild.required<TabsComponent>(TabsComponent);
+    tabs = viewChild.required(MagmaTabs);
 
     filter = '';
 
@@ -70,6 +72,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     currentAction?: 'change' | 'delete';
 
     private listener = Subscriptions.instance();
+
+    translateSort = (value: string) => this.translate.translate(value);
 
     constructor() {
         this.user = this.userService.user;

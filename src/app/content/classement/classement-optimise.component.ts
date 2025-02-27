@@ -1,15 +1,14 @@
 import { Component, OnInit, inject, input } from '@angular/core';
 
+import { MagmaDialog, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
 import { LoadingComponent } from '../../components/loader/loading.component';
-import { NumFormatPipe } from '../../pipes/num-format';
 
 @Component({
     selector: 'classement-optimise',
@@ -24,7 +23,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     groups = input<FormattedGroup[]>();
     list = input<FileType[]>();
-    dialog = input<DialogComponent>();
+    dialog = input<MagmaDialog>();
     mode = input<ModeNames>();
 
     totalSize!: number;

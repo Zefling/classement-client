@@ -3,12 +3,11 @@ import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import { MagmaDialog, MagmaTooltipDirective, SortRuleDirective, SortableDirective } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { FormattedInfos } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -19,8 +18,6 @@ import { Utils } from 'src/app/tools/utils';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { SortRuleDirective } from '../../directives/sortable.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
 @Component({
@@ -35,10 +32,10 @@ import { FileSizePipe } from '../../pipes/file-size';
         SortableDirective,
         SortRuleDirective,
         TagListComponent,
-        TooltipDirective,
+        MagmaTooltipDirective,
         RouterLink,
         RouterLinkActive,
-        DialogComponent,
+        MagmaDialog,
         ImportJsonComponent,
         DatePipe,
         TranslocoPipe,
@@ -60,9 +57,9 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     // viewChild
 
-    dialogDelete = viewChild.required<DialogComponent>('dialogDelete');
-    dialogClone = viewChild.required<DialogComponent>('dialogClone');
-    dialogImport = viewChild.required<DialogComponent>('dialogImport');
+    dialogDelete = viewChild.required<MagmaDialog>('dialogDelete');
+    dialogClone = viewChild.required<MagmaDialog>('dialogClone');
+    dialogImport = viewChild.required<MagmaDialog>('dialogImport');
     sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
 
     filter = '';
@@ -80,6 +77,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     quota?: StorageEstimate;
 
     private listener = Subscriptions.instance();
+
+    translateSort = (value: string) => this.translate.translate(value);
 
     constructor() {
         this.updateTitle();

@@ -10,6 +10,16 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {
+    LightDark,
+    MagmaClickOutsideDirective,
+    MagmaDialog,
+    MagmaLightDark,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+    PreferenceInterfaceTheme,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import {
@@ -25,13 +35,6 @@ import { Logger } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 
-import { ClickOutsideDirective } from '../../directives/click-outside.directive';
-import { DialogComponent } from '../dialog/dialog.component';
-import { LightDarkComponent } from '../light-dark/light-dark.component';
-import { TabContentComponent } from '../tabs/tab-content.component';
-import { TabTitleComponent } from '../tabs/tab-title.component';
-import { TabsComponent } from '../tabs/tabs.component';
-
 const languages = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
@@ -44,32 +47,33 @@ const languages = [
     styleUrls: ['./preferences.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        DialogComponent,
+        MagmaDialog,
         FormsModule,
         ReactiveFormsModule,
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
-        LightDarkComponent,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
+        MagmaLightDark,
         CdkDropList,
         CdkDrag,
-        ClickOutsideDirective,
+        MagmaClickOutsideDirective,
         TranslocoPipe,
     ],
 })
-export class PreferencesDialogComponent {
+export class PreferencesMagmaDialog {
     //inject
 
     private readonly preferencesService = inject(PreferencesService);
     private readonly logger = inject(Logger);
     private readonly translate = inject(TranslocoService);
+    private readonly lightDark = inject(LightDark);
     private readonly globalService = inject(GlobalService);
     private readonly cd = inject(ChangeDetectorRef);
 
     // viewChild
 
-    readonly preferences = viewChild.required<DialogComponent>('preferences');
-    readonly preferencesTabs = viewChild('preferencesTabs', { read: TabsComponent });
+    readonly preferences = viewChild.required<MagmaDialog>('preferences');
+    readonly preferencesTabs = viewChild('preferencesTabs', { read: MagmaTabs });
 
     // output
 
@@ -169,12 +173,15 @@ export class PreferencesDialogComponent {
         }
     }
 
+    changeLightDark(value: PreferenceInterfaceTheme) {
+        this.preferencesForm!.get('interfaceTheme')?.setValue(value);
+    }
+
     private async initPreferences() {
         const initPreferences = await this.preferencesService.init();
 
         // theme
-        this.globalService.userSchema = initPreferences.interfaceTheme;
-        this.globalService.changeThemeClass();
+        this.lightDark.init(initPreferences.interfaceTheme);
 
         // autodetect language
         const l = languages.filter(i => navigator.language.startsWith(i.value));
@@ -187,7 +194,7 @@ export class PreferencesDialogComponent {
 
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
-            interfaceTheme: new FormControl(this.globalService.userSchema),
+            interfaceTheme: new FormControl(this.lightDark.currentTheme()),
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),
