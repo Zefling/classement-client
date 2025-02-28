@@ -3,7 +3,16 @@ import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { MagmaDialog, MagmaTooltipDirective, SortRuleDirective, SortableDirective } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
+    MagmaTooltipDirective,
+    SortRuleDirective,
+    SortableDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -40,6 +49,10 @@ import { FileSizePipe } from '../../pipes/file-size';
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
     ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {

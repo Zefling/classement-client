@@ -29,13 +29,14 @@
         [sortable-filter]="sortableFilter"
       >
         @if (user.classements?.length) {
-          <table>
-            <thead>
-              <tr>
-                <th class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
+          <table mg hoverRow>
+            <thead mg>
+              <tr mg>
+                <th mg class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
                   {{ 'list.title.name' | transloco }}
                 </th>
                 <th
+                  mg
                   class="mode"
                   [sort-rule]="{
                     type: 'translate',
@@ -48,6 +49,7 @@
                   {{ 'list.mode.name' | transloco }}
                 </th>
                 <th
+                  mg
                   class="category"
                   [sort-rule]="{
                     type: 'translate',
@@ -58,22 +60,22 @@
                 >
                   {{ 'list.category.name' | transloco }}
                 </th>
-                <th class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
+                <th mg class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
                   {{ 'list.date' | transloco }}
                 </th>
-                <th class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
+                <th mg class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
                   {{ 'list.count.group' | transloco }}
                 </th>
-                <th class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
+                <th mg class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
                   {{ 'list.count.item' | transloco }}
                 </th>
-                <th class="actions">{{ 'list.action.name' | transloco }}</th>
+                <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody mg>
               @for (classement of user.classements; track classement) {
-                <tr>
-                  <td class="title">
+                <tr mg>
+                  <td mg class="title">
                     <div>
                       <a [routerLink]="['/navigate/view', classement.rankingId]">
                         {{ classement.data.options.title || ('list.title.undefined' | transloco) }}</a
@@ -114,19 +116,19 @@
                       }
                     </div>
                   </td>
-                  <td class="mode">
+                  <td mg class="mode">
                     {{ 'mode.name.' + (classement.data.options.mode || 'default') | transloco }}
                   </td>
-                  <td class="category">
+                  <td mg class="category">
                     {{ 'category.' + (classement.data.options.category || 'undefined') | transloco }}
                   </td>
-                  <td class="date">
+                  <td mg class="date">
                     <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
                     <span>{{ classement.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
                   </td>
-                  <td class="groups">{{ classement.totalGroups }}</td>
-                  <td class="items">{{ classement.totalItems }}</td>
-                  <td class="actions">
+                  <td mg class="groups">{{ classement.totalGroups }}</td>
+                  <td mg class="items">{{ classement.totalItems }}</td>
+                  <td mg class="actions">
                     <button
                       class="primary"
                       [routerLink]="'/edit/' + classement.rankingId"

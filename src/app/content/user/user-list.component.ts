@@ -7,6 +7,10 @@ import {
     MagmaDialog,
     MagmaTabContent,
     MagmaTabTitle,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
     MagmaTabs,
     MagmaTooltipDirective,
     SortRuleDirective,
@@ -45,6 +49,10 @@ import { ClassementListComponent } from '../list/classement-list.component';
         TranslocoPipe,
         SortableDirective,
         SortRuleDirective,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
     ],
 })
 export class UserListComponent implements OnInit, OnDestroy {

@@ -33,13 +33,14 @@
 
 <ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
   @if (result && result.length) {
-    <table>
-      <thead>
-        <tr>
-          <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+    <table mg hoverRow>
+      <thead mg>
+        <tr mg>
+          <th mg class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
             {{ 'list.title.name' | transloco }}
           </th>
           <th
+            mg
             class="mode"
             [sort-rule]="{
               type: 'translate',
@@ -52,6 +53,7 @@
             {{ 'list.mode.name' | transloco }}
           </th>
           <th
+            mg
             class="category"
             [sort-rule]="{
               type: 'translate',
@@ -62,22 +64,22 @@
           >
             {{ 'list.category.name' | transloco }}
           </th>
-          <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
+          <th mg class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
             {{ 'list.date' | transloco }}
           </th>
-          <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
+          <th mg class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
             {{ 'list.count.group' | transloco }}
           </th>
-          <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
+          <th mg class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
             {{ 'list.count.item' | transloco }}
           </th>
-          <th class="actions">{{ 'list.action.name' | transloco }}</th>
+          <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody mg>
         @for (item of result; track item) {
-          <tr>
-            <td class="title">
+          <tr mg>
+            <td mg class="title">
               <div>
                 {{ item.options.title || ('list.title.undefined' | transloco) }}
               </div>
@@ -106,15 +108,15 @@
                 }
               </div>
             </td>
-            <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | transloco }}</td>
-            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | transloco }}</td>
-            <td class="date">
+            <td mg class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | transloco }}</td>
+            <td mg class="category">{{ 'category.' + (item.options.category || 'undefined') | transloco }}</td>
+            <td mg class="date">
               <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | transloco) }}</span>
               <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | transloco) }}</span>
             </td>
-            <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
-            <td class="items">{{ item.listLength || item.listLenght }}</td>
-            <td class="actions">
+            <td mg class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
+            <td mg class="items">{{ item.listLength || item.listLenght }}</td>
+            <td mg class="actions">
               <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | transloco }}">
                 <span class="icon-edit"></span>
               </button>

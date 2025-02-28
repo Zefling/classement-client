@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog } from '@ikilote/magma';
+import { MagmaDialog, MagmaTable, MagmaTableCell, MagmaTableGroup, MagmaTableRow } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MessageService } from 'src/app/components/info-messages/info-messages.component';
@@ -18,7 +18,17 @@ import { categories } from '../classement/classement-default';
     selector: 'list-classements',
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
-    imports: [MagmaDialog, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
+    imports: [
+        MagmaDialog,
+        SeeClassementComponent,
+        FormsModule,
+        DatePipe,
+        TranslocoPipe,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
+    ],
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);
