@@ -3,13 +3,7 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import {
-    MagmaInput,
-    MagmaInputElement,
-    MagmaInputSelect,
-    MagmaInputText,
-    MagmaPaginationComponent,
-} from '@ikilote/magma';
+import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText, MagmaPagination } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Data } from 'ng-select2-component';
@@ -35,7 +29,7 @@ import { listModes } from '../classement/classement-default';
         FormsModule,
         NgClass,
         RouterLink,
-        MagmaPaginationComponent,
+        MagmaPagination,
         NavigateResultComponent,
         LoaderItemComponent,
         TranslocoPipe,

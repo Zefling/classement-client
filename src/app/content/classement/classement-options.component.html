@@ -4,24 +4,22 @@
 
 @if (opts) {
   <div class="options {{ opts.mode }}">
-    <div class="title">
-      <label for="option-title">{{ 'generator.options.title' | transloco }}</label>
-      <div><input for="option-title" type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
-    </div>
-    <div class="categories">
-      <label for="option-category">{{ 'generator.options.group' | transloco }}</label>
-      <div>
-        <select2
-          id="option-category"
-          [data]="categoriesList"
-          [disabled]="lockCategory()"
-          [(ngModel)]="opts.category"
-        ></select2>
-      </div>
-    </div>
-    <div class="modes">
-      <label for="option-mode">{{ 'generator.options.mode' | transloco }}</label>
-      <select2
+    <mg-input class="title">
+      <mg-input-label for="option-title">{{ 'generator.options.title' | transloco }}</mg-input-label>
+      <mg-input-text for="option-title" maxlength="150" [(ngModel)]="opts.title"></mg-input-text>
+    </mg-input>
+    <mg-input class="categories">
+      <mg-input-label for="option-title">{{ 'generator.options.group' | transloco }}</mg-input-label>
+      <mg-input-select
+        id="option-category"
+        [data]="categoriesList"
+        [disabled]="lockCategory()"
+        [(ngModel)]="opts.category"
+      ></mg-input-select>
+    </mg-input>
+    <mg-input class="modes">
+      <mg-input-label for="option-mode">{{ 'generator.options.mode' | transloco }}</mg-input-label>
+      <mg-input-select
         #mode
         id="option-mode"
         [ngModel]="opts.mode"
@@ -45,21 +43,21 @@
               {{ 'mode.name.' + label | transloco }}
             </div>
           </div>
-        </ng-template>
-      </select2>
-    </div>
-    <div class="description">
-      <label for="option-description">{{ 'generator.options.description' | transloco }}</label>
-      <div>
-        <textarea id="option-description" autosize maxlength="1000" [(ngModel)]="opts.description"></textarea>
-        <div class="info-desc">
+        </ng-template></mg-input-select
+      >
+    </mg-input>
+    <mg-input class="description">
+      <mg-input-label>{{ 'generator.options.description' | transloco }}</mg-input-label>
+      <mg-input-textarea autosize maxlength="1000" [(ngModel)]="opts.description">
+        <mg-input-textarea-desc>
           @if (1000 - ((opts.description && opts.description.length) || 0) < 200) {
-            <span> {{ 1000 - opts.description.length }} - </span>
+            <span>{{ 1000 - opts.description.length }} - </span>
           }
           <span>Markdown</span>
-        </div>
-      </div>
-    </div>
+        </mg-input-textarea-desc>
+      </mg-input-textarea>
+    </mg-input>
+
     <div class="links">
       <a tabindex="0" (click)="advanceOptions()">{{ 'generator.options.advance' | transloco }}</a>
     </div>
@@ -68,34 +66,38 @@
     </div>
     <div class="width-auto">
       @if (opts.mode !== 'bingo') {
-        <label class="toggle-switch">
-          <input type="checkbox" [(ngModel)]="opts.itemWidthAuto" />
-          <span>{{ 'generator.options.item.width.auto' | transloco }}</span>
-        </label>
+        <mg-input>
+          <mg-input-checkbox [(ngModel)]="opts.itemWidthAuto">{{
+            'generator.options.item.width.auto' | transloco
+          }}</mg-input-checkbox>
+        </mg-input>
       }
       @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
-        <label class="toggle-switch">
-          <input type="checkbox" [(ngModel)]="opts.itemHeightAuto" />
-          <span>{{ 'generator.options.item.height.auto' | transloco }}</span>
-        </label>
+        <mg-input>
+          <mg-input-checkbox [(ngModel)]="opts.itemHeightAuto">{{
+            'generator.options.item.height.auto' | transloco
+          }}</mg-input-checkbox>
+        </mg-input>
       }
       @if (
         (!opts.itemWidthAuto &&
           (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
         opts.mode === 'bingo'
       ) {
-        <label class="toggle-switch">
-          <input type="checkbox" [(ngModel)]="opts.itemImageCover" />
-          <span>{{ 'generator.options.item.cover' | transloco }}</span>
-        </label>
+        <mg-input>
+          <mg-input-checkbox [(ngModel)]="opts.itemImageCover">{{
+            'generator.options.item.cover' | transloco
+          }}</mg-input-checkbox>
+        </mg-input>
       }
     </div>
     <div class="stream-mode">
-      <label class="toggle-switch">
-        <input type="checkbox" [(ngModel)]="opts.streamMode" />
-        <span>{{ 'generator.options.stream.mode' | transloco }}</span>
-        <span [mgTooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span>
-      </label>
+      <mg-input>
+        <mg-input-checkbox [(ngModel)]="opts.streamMode"
+          >{{ 'generator.options.stream.mode' | transloco }}
+          <span [mgTooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span
+        ></mg-input-checkbox>
+      </mg-input>
     </div>
 
     <div class="tags">

@@ -15,7 +15,16 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaTextareaAutosizeDirective, MagmaTooltipDirective } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaInputTextarea,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
@@ -76,7 +85,6 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         FormsModule,
         Select2,
         NgClass,
-        MagmaTextareaAutosizeDirective,
         MagmaTooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
@@ -85,6 +93,14 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         SeeClassementComponent,
         TranslocoPipe,
         ClassementThemesManagerComponent,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputTextarea,
+        MagmaInputCheckbox,
+        // MagmaInputColor,
+        // MagmaInputNumber,
+        MagmaInputSelect,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -110,7 +126,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     readonly dialogAdvancedOptionsExport = viewChild.required<MagmaDialog>('exportDialog');
     readonly dialogAdvancedOptionsImport = viewChild.required<MagmaDialog>('importDialog');
     readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
-    readonly mode = viewChild.required<Select2>('mode');
+    readonly mode = viewChild.required<MagmaInputSelect>('mode');
 
     // template
 
@@ -299,7 +315,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     modeChange(previous: ModeNames, event: ModeNames) {
-        if (this._previousMode && previous !== event) {
+        console.log('event', this._previousMode, previous, event);
+        if (!this._previousMode || (this._previousMode && previous !== event)) {
             this.dialogChangeMode().open();
         }
         this._previousMode = previous;
@@ -307,6 +324,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     modeChangeValid(ok: boolean) {
+        console.log('ok', ok);
         if (ok) {
             this.memory.reset();
             this.editor.reset();
@@ -315,6 +333,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.options()!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
             this.mode().writeValue(this._previousMode!);
+            this._previousMode = undefined;
         }
         this.dialogChangeMode().close();
     }

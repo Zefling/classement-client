@@ -3,7 +3,7 @@ import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { MagmaDialog, MagmaPaginationComponent } from '@ikilote/magma';
+import { MagmaDialog, MagmaPagination } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -25,7 +25,7 @@ import { LoadingComponent } from '../../components/loader/loading.component';
     imports: [
         FormsModule,
         LoadingComponent,
-        MagmaPaginationComponent,
+        MagmaPagination,
         MagmaDialog,
         ListClassementsComponent,
         ReactiveFormsModule,
