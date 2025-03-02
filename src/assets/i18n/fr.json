@@ -293,7 +293,6 @@
       "cancel": "Annuler",
       "title": "Titre du classement :",
       "title.color": "Couleur du texte du titre :",
-      "title.opacity": "Opacité du texte du titre :",
       "group": "Catégorie :",
       "description": "Description :",
       "mode": "Mode :",
@@ -326,16 +325,13 @@
         "border": "Bordure d'une tuile",
         "margin": "Marge d'une tuile",
         "background.color": "Couleur du fond d'une tuile :",
-        "background.opacity": "Opacité du fond d'une tuile :",
         "border.color": "Couleur de bordure d'une tuile :",
-        "border.opacity": "Opacité de bordure d'une tuile :",
         "text": {
           "size": "Taille du texte de la tuile :",
           "only.size": "Taille du texte si pas d'image :",
           "color": "Couleur du texte d'une tuile :",
           "opacity": "Opacité du texte d'une tuile :",
           "background.color": "Couleur de fond du texte :",
-          "background.opacity": "Opacité de fond du texte :",
           "position": "Position texte dans la tuile :",
           "position.bottom": "En dessous",
           "position.bottom.float": "En dessous flottant",
@@ -353,16 +349,13 @@
       "line": {
         "title": "Options des lignes",
         "background.color": "Couleur du fond d'une ligne :",
-        "background.opacity": "Opacité du fond d'une ligne :",
         "border.color": "Couleur de bordure d'une ligne :",
         "border.opacity": "Opacité de bordure d'une ligne :"
       },
       "column": {
         "title": "Options des colonnes",
         "background.color": "Couleur du fond d'une colonne :",
-        "background.opacity": "Opacité du fond d'une colonne :",
         "border.color": "Couleur de bordure d'une colonne :",
-        "border.opacity": "Opacité de bordure d'une colonne :",
         "min.height": "Hauteur minimale des colonnes :"
       },
       "global": {

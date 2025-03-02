@@ -473,3 +473,26 @@ export const listFonts: Select2Data = [
     { value: 'Train One', label: 'Train One' },
     { value: 'Zen Maru Gothic', label: 'Zen Maru Gothic' },
 ];
+
+export const textPosition: Select2Data = [
+    { value: 'bottom', label: 'bottom' },
+    { value: 'bottom-over', label: 'bottom.float' },
+    { value: 'bottom-over-hover', label: 'bottom.float.hover' },
+    { value: 'bottom-bubble', label: 'bottom.bubble' },
+    { value: 'top', label: 'top' },
+    { value: 'top-over', label: 'top.float' },
+    { value: 'top-over-hover', label: 'top.float.hover' },
+    { value: 'top-bubble', label: 'top.bubble' },
+    { value: 'hidden', label: 'hidden' },
+];
+
+export const direction: Select2Data = [
+    { value: 'rtl', label: 'rtl' },
+    { value: 'ltr', label: 'ltr' },
+];
+
+export const align: Select2Data = [
+    { value: 'start', label: 'start' },
+    { value: 'center', label: 'center' },
+    { value: 'end', label: 'end' },
+];

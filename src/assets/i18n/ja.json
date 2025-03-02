@@ -293,7 +293,6 @@
       "cancel": "キャンセル",
       "title": "ランキングのタイトル：",
       "title.color": "タイトルのテキストの色：",
-      "title.opacity": "タイトルのテキストの不透明度：",
       "group": "カテゴリー：",
       "description": "説明:",
       "mode": "モード:",
@@ -326,16 +325,13 @@
         "border": "タイルボーダー",
         "margin": "タイルマージン",
         "background.color": "タイルの背景の色：",
-        "background.opacity": "タイルの背景の不透明度：",
         "border.color": "タイルのボーダーの色：",
-        "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
           "size": "タイルのテキストのサイズ：",
           "only.size": "画像がない場合のテキストのサイズ:",
           "color": "タイルのテキストの色：",
           "opacity": "タイルのテキストの不透明度：",
           "background.color": "テキストの背景の色：",
-          "background.opacity": "テキストの背景の不透明度：",
           "position": "タイル内のテキストの位置：",
           "position.bottom": "下部に",
           "position.bottom.float": "フローティング下部に",
@@ -353,16 +349,13 @@
       "line": {
         "title": "ラインのオプション",
         "background.color": "ラインの背景の色：",
-        "background.opacity": "ラインの背景の不透明度：",
         "border.color": "ラインボーダーの色：",
         "border.opacity": "ラインボーダーの不透明度："
       },
       "column": {
         "title": "カラムのオプション",
         "background.color": "カラムの背景の色：",
-        "background.opacity": "カラムの背景の不透明度：",
         "border.color": "カラムボーダーの色：",
-        "border.opacity": "カラムボーダーの不透明度：",
         "min.height": "カラムの最小高さ："
       },
       "global": {

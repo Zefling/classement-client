@@ -19,7 +19,10 @@ import {
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
+    MagmaInputColor,
     MagmaInputElement,
+    MagmaInputNumber,
+    MagmaInputRange,
     MagmaInputSelect,
     MagmaInputText,
     MagmaInputTextarea,
@@ -29,7 +32,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
-import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import {
     Category,
@@ -51,7 +54,9 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 import {
+    align,
     defaultGroup,
+    direction,
     imageInfos,
     imagesAxis,
     imagesBingo,
@@ -60,6 +65,7 @@ import {
     imagesThemes,
     listFonts,
     listModes,
+    textPosition,
     themes,
     themesAxis,
     themesBingo,
@@ -83,24 +89,24 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     styleUrls: ['./classement-options.component.scss'],
     imports: [
         FormsModule,
-        Select2,
         NgClass,
-        MagmaTooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
-        MagmaDialog,
+        ClassementThemesManagerComponent,
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
-        ClassementThemesManagerComponent,
+        MagmaTooltipDirective,
+        MagmaDialog,
         MagmaInput,
         MagmaInputElement,
         MagmaInputText,
         MagmaInputTextarea,
         MagmaInputCheckbox,
-        // MagmaInputColor,
-        // MagmaInputNumber,
+        MagmaInputColor,
+        MagmaInputNumber,
         MagmaInputSelect,
+        MagmaInputRange,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -146,6 +152,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     listMode: Select2Data = listModes;
     fontList: Select2Data = listFonts;
+    textPosition: Select2Data = textPosition;
+    directionList: Select2Data = direction;
+    alignList: Select2Data = align;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
@@ -315,7 +324,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     modeChange(previous: ModeNames, event: ModeNames) {
-        console.log('event', this._previousMode, previous, event);
         if (!this._previousMode || (this._previousMode && previous !== event)) {
             this.dialogChangeMode().open();
         }
@@ -324,7 +332,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     modeChangeValid(ok: boolean) {
-        console.log('ok', ok);
         if (ok) {
             this.memory.reset();
             this.editor.reset();
@@ -405,54 +412,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 reader.readAsDataURL(data.file);
             }
         }
-    }
-
-    resetItemTextBackground() {
-        const options = this.options()!;
-        options.itemTextBackgroundColor = '';
-        options.itemTextBackgroundOpacity = 100;
-    }
-
-    resetItemBackground() {
-        const options = this.options()!;
-        options.itemBackgroundColor = '';
-        options.itemBackgroundOpacity = 100;
-    }
-
-    resetLineBackground() {
-        const options = this.options()!;
-        options.lineBackgroundColor = '';
-        options.lineBackgroundOpacity = 100;
-    }
-
-    resetLineBorder() {
-        const options = this.options()!;
-        options.lineBorderColor = '';
-        options.lineBorderOpacity = 100;
-    }
-
-    resetItemBorder() {
-        const options = this.options()!;
-        options.itemBorderColor = '';
-        options.itemBorderOpacity = 100;
-    }
-
-    resetItemText() {
-        const options = this.options()!;
-        options.itemTextColor = '';
-        options.itemTextOpacity = 100;
-    }
-
-    resetTitleText() {
-        const options = this.options()!;
-        options.titleTextColor = '';
-        options.titleTextOpacity = 100;
-    }
-
-    resetAxisLine() {
-        const options = this.options()!;
-        options.axisLineColor = '';
-        options.axisLineOpacity = 100;
     }
 
     updateSize(axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth', min: number) {
