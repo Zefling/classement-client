@@ -150,7 +150,7 @@ body {
     font-family: 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
 }
 
-:where(label, .label):not(.name) {
+:not(.label) > :where(label, .label):not(.name) {
     font-weight: 700;
     font-size: 90%;
 }

@@ -474,7 +474,7 @@ export const listFonts: Select2Data = [
     { value: 'Zen Maru Gothic', label: 'Zen Maru Gothic' },
 ];
 
-export const textPosition: Select2Data = [
+export const listTextPosition: Select2Data = [
     { value: 'bottom', label: 'bottom' },
     { value: 'bottom-over', label: 'bottom.float' },
     { value: 'bottom-over-hover', label: 'bottom.float.hover' },
@@ -486,12 +486,12 @@ export const textPosition: Select2Data = [
     { value: 'hidden', label: 'hidden' },
 ];
 
-export const direction: Select2Data = [
+export const listDirection: Select2Data = [
     { value: 'rtl', label: 'rtl' },
     { value: 'ltr', label: 'ltr' },
 ];
 
-export const align: Select2Data = [
+export const listAlign: Select2Data = [
     { value: 'start', label: 'start' },
     { value: 'center', label: 'center' },
     { value: 'end', label: 'end' },

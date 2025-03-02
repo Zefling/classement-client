@@ -1,3 +1,12 @@
+.main {
+    max-width: 800px;
+}
+
+.main,
+.local {
+    padding: 10px;
+}
+
 .edit-image {
     display: flex;
     justify-content: center;
@@ -65,6 +74,7 @@
     max-height: 500px;
 
     img {
+        max-width: inherit;
         max-height: inherit;
     }
 }

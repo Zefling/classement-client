@@ -11,7 +11,14 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaTextareaAutosizeDirective } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputColor,
+    MagmaInputElement,
+    MagmaInputText,
+    MagmaInputTextarea,
+} from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
@@ -34,8 +41,12 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     styleUrls: ['./classement-edit-image.component.scss'],
     imports: [
         MagmaDialog,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputTextarea,
+        MagmaInputColor,
         FormsModule,
-        MagmaTextareaAutosizeDirective,
         DropImageDirective,
         ImageCropperComponent,
         TranslocoPipe,

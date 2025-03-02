@@ -54,18 +54,18 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 import {
-    align,
     defaultGroup,
-    direction,
     imageInfos,
     imagesAxis,
     imagesBingo,
     imagesIceberg,
     imagesLists,
     imagesThemes,
+    listAlign,
+    listDirection,
     listFonts,
     listModes,
-    textPosition,
+    listTextPosition,
     themes,
     themesAxis,
     themesBingo,
@@ -152,9 +152,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     listMode: Select2Data = listModes;
     fontList: Select2Data = listFonts;
-    textPosition: Select2Data = textPosition;
-    directionList: Select2Data = direction;
-    alignList: Select2Data = align;
+    textPosition: Select2Data = listTextPosition;
+    directionList: Select2Data = listDirection;
+    alignList: Select2Data = listAlign;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
