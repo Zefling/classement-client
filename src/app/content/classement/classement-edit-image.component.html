@@ -12,13 +12,13 @@
         ></mg-input-text>
       </mg-input>
       <mg-input class="s-12">
-        <mg-input-label>{{ 'generator.ranking.title' | transloco }}</mg-input-label>
+        <mg-input-label>{{ 'generator.ranking.annotation' | transloco }}</mg-input-label>
         <mg-input-textarea
           autosize
           maxlength="500"
           id="tile-annotation"
-          [(ngModel)]="cTile.annotation"
-          (ngModelChange)="globalChange()"
+          [ngModel]="cTile.annotation ?? ''"
+          (ngModelChange)="globalChange(); cTile.annotation = $event"
         ></mg-input-textarea>
       </mg-input>
 

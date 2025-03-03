@@ -93,7 +93,6 @@ export class UserLoginComponent implements OnInit, OnDestroy {
         this.loader = true;
         this.fbe.validateForm(this.formLogin);
         if (this.formLogin.valid && this.formLogin.value.username && this.formLogin.value.password) {
-            debugger;
             this.userService
                 .login(this.formLogin.value.username, this.formLogin.value.password)
                 .then(() => {

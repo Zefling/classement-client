@@ -11,10 +11,18 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaTooltipDirective } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2 } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
@@ -35,11 +43,16 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     imports: [
         DropImageDirective,
         FormsModule,
-        Select2,
         ImageCropperComponent,
         MagmaTooltipDirective,
         LoaderComponent,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputElement,
+        MagmaInputSelect,
+        MagmaInputCheckbox,
+        MagmaInputPassword,
     ],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {

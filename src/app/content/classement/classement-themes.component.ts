@@ -3,6 +3,9 @@ import { FormsModule } from '@angular/forms';
 
 import {
     MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
     MagmaNgModelChangeDebouncedDirective,
     MagmaTabContent,
     MagmaTabTitle,
@@ -31,6 +34,9 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
         MagmaTabs,
         MagmaTabContent,
         MagmaTabTitle,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputElement,
         FormsModule,
         MagmaNgModelChangeDebouncedDirective,
     ],
@@ -59,7 +65,7 @@ export class ClassementThemesComponent {
     // template
     modeApi = computed(() => this.global.withApi());
 
-    key?: string;
+    key = '';
 
     themes!: Theme[];
     themesList: ThemesNames[] = themes;

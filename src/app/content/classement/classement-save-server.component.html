@@ -24,101 +24,112 @@
 
   @if (opts) {
     <h3>{{ 'generator.server.edit' | transloco }}</h3>
-    <div class="title">
-      <label>{{ 'generator.options.title' | transloco }}</label>
-      <div><input type="text" maxlength="150" [(ngModel)]="opts.title" /></div>
-    </div>
-    @if (!current?.user || current?.parent) {
-      <div class="categories">
-        <label>{{ 'generator.options.group' | transloco }}</label>
-        <div>
-          <select2 [data]="categoriesList" [(ngModel)]="opts.category"></select2>
-        </div>
+    <div>
+      <mg-input class="s-8 s-12-m title">
+        <mg-input-label>{{ 'generator.options.title' | transloco }}</mg-input-label>
+        <mg-input-text maxlength="150" [(ngModel)]="opts.title"></mg-input-text>
+      </mg-input>
+      @if (!current?.user || current?.parent) {
+        <mg-input class="s-4 s-12-m categories">
+          <mg-input-label>{{ 'generator.options.group' | transloco }}</mg-input-label>
+          <mg-input-select [data]="categoriesList" [(ngModel)]="opts.category"></mg-input-select>
+        </mg-input>
+      }
+      <div class="s-12 banner">
+        <label for="file-banner" class="required">{{ 'generator.server.banner.select' | transloco }}</label>
+        <input id="file-banner" type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
       </div>
-    }
-    <div class="banner">
-      <label class="required">{{ 'generator.server.banner.select' | transloco }}</label>
-      <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
-    </div>
-    <div class="cropper-line">
-      @if (imageChangedEvent || imageBase64) {
-        <div class="cropper">
-          <div class="label">{{ 'generator.server.banner.crop' | transloco }}</div>
-          <image-cropper
-            [imageChangedEvent]="imageChangedEvent"
-            [imageBase64]="imageBase64"
-            [maintainAspectRatio]="true"
-            [cropperMinWidth]="300"
-            [cropperMinHeight]="300"
-            [resizeToWidth]="300"
-            [resizeToHeight]="300"
-            [aspectRatio]="1 / 1"
-            [onlyScaleDown]="true"
-            format="webp"
-            (imageCropped)="imageCropped($event)"
-            (imageLoaded)="imageLoaded($event)"
-            (cropperReady)="cropperReady()"
-            (loadImageFailed)="loadImageFailed()"
-          ></image-cropper>
-        </div>
-      }
-      @if (croppedImage || current?.banner) {
-        <div class="image">
-          <div class="label">{{ 'generator.server.banner.image' | transloco }}</div>
-          <img [src]="croppedImage || current?.banner" />
-          @if (croppedImage) {
-            <button (click)="resetBanner()">
-              {{ 'generator.server.banner.reset' | transloco }}
-            </button>
-          }
-        </div>
-      }
-    </div>
-    @if (showError.length) {
-      <ul class="list-error">
-        @for (error of showError; track error) {
-          <li>{{ error }}</li>
+      <div class="s-12 cropper-line">
+        @if (imageChangedEvent || imageBase64) {
+          <div class="cropper">
+            <div class="label">{{ 'generator.server.banner.crop' | transloco }}</div>
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [imageBase64]="imageBase64"
+              [maintainAspectRatio]="true"
+              [cropperMinWidth]="300"
+              [cropperMinHeight]="300"
+              [resizeToWidth]="300"
+              [resizeToHeight]="300"
+              [aspectRatio]="1 / 1"
+              [onlyScaleDown]="true"
+              format="webp"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+          </div>
         }
-      </ul>
-    }
-    <div class="link">
-      <label>{{ 'generator.server.link' | transloco }}</label>
-      <div>
-        <input type="text" [ngModel]="current?.linkId" (ngModelChange)="testLink($event)" (blur)="linkFormat($event)" />
+        @if (croppedImage || current?.banner) {
+          <div class="image">
+            <div class="label">{{ 'generator.server.banner.image' | transloco }}</div>
+            <img [src]="croppedImage || current?.banner" />
+            @if (croppedImage) {
+              <button (click)="resetBanner()">
+                {{ 'generator.server.banner.reset' | transloco }}
+              </button>
+            }
+          </div>
+        }
       </div>
-      <span class="validity" [class.valid]="linkIdValid">
-        {{ linkIdValid !== undefined ? (linkIdValid ? 'Ｏ' : 'Ｘ') : '' }}
-      </span>
+      @if (showError.length) {
+        <ul class="list-error">
+          @for (error of showError; track error) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      }
+      <mg-input class="s-12 link">
+        <mg-input-label>{{ 'generator.server.link' | transloco }}</mg-input-label>
+
+        <mg-input-text
+          [ngModel]="current?.linkId"
+          (ngModelChange)="testLink($event)"
+          (blur)="linkFormat($event)"
+        ></mg-input-text>
+        @if (linkIdValid !== undefined) {
+          <mg-input-suffix class="validity" [class.valid]="linkIdValid">
+            {{ linkIdValid ? ' Ｏ ' : ' Ｘ ' }}
+          </mg-input-suffix>
+        }
+      </mg-input>
+      <mg-input class="s-6 s-12-m">
+        <mg-input-checkbox mode="toggle" [(ngModel)]="hidden">
+          {{ 'generator.server.not.public' | transloco }}
+        </mg-input-checkbox>
+        <mg-input-after>
+          <span [mgTooltip]="'list.hide.note' | transloco" class="icon-info"></span>
+        </mg-input-after>
+      </mg-input>
+
+      @if (hidden) {
+        <mg-input class="s-6 s-12-m">
+          <mg-input-label> {{ 'generator.server.password' | transloco }}</mg-input-label>
+          <mg-input-password mode="toggle" [(ngModel)]="password"></mg-input-password>
+        </mg-input>
+      }
+      <div class="break"></div>
+      <mg-input class="s-6 s-12-m">
+        <mg-input-checkbox mode="toggle" [(ngModel)]="saveLocal">
+          {{ 'generator.server.not.remove.local' | transloco }}
+        </mg-input-checkbox>
+        <mg-input-after
+          ><span [mgTooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span
+        ></mg-input-after>
+      </mg-input>
+
+      @if (update) {
+        <mg-input class="s-6 s-12-m">
+          <mg-input-checkbox mode="toggle" [(ngModel)]="history">
+            {{ 'generator.server.history.label' | transloco }}
+          </mg-input-checkbox>
+          <mg-input-after>
+            <span [mgTooltip]="'generator.server.history.info' | transloco" class="icon-info"></span>
+          </mg-input-after>
+        </mg-input>
+      }
     </div>
-    <div class="public">
-      <label>
-        <input type="checkbox" [(ngModel)]="hidden" />
-        {{ 'generator.server.not.public' | transloco }}
-      </label>
-      <span [mgTooltip]="'list.hide.note' | transloco" class="icon-info"></span>
-    </div>
-    @if (hidden) {
-      <div class="password">
-        <label>{{ 'generator.server.password' | transloco }}</label>
-        <div><input type="password" [(ngModel)]="password" /></div>
-      </div>
-    }
-    <div class="save-local">
-      <label>
-        <input type="checkbox" [(ngModel)]="saveLocal" />
-        {{ 'generator.server.not.remove.local' | transloco }}
-      </label>
-      <span [mgTooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span>
-    </div>
-    @if (update) {
-      <div class="public">
-        <label>
-          <input type="checkbox" [(ngModel)]="history" />
-          {{ 'generator.server.history.label' | transloco }}
-        </label>
-        <span [mgTooltip]="'generator.server.history.info' | transloco" class="icon-info"></span>
-      </div>
-    }
   }
 
   <p>

@@ -1,113 +1,114 @@
-<mg-dialog class="auto-format" closeButton>
+<mg-dialog closeButton>
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
+  <div>
+    <mg-input class="search-theme">
+      <mg-input-label>{{ 'generator.theme.search' | transloco }}</mg-input-label>
+      <mg-input-text
+        id="search-theme"
+        [(ngModel)]="key"
+        (ngModelChangeDebounced)="keyUpdate($event)"
+        ngModelChangeDebounceTime="300"
+        clearCross
+      ></mg-input-text>
+    </mg-input>
 
-  <div class="search-theme">
-    <label for="search-theme">{{ 'generator.theme.search' | transloco }}</label>
-    <input
-      id="search-theme"
-      type="search"
-      [(ngModel)]="key"
-      (ngModelChangeDebounced)="keyUpdate($event)"
-      ngModelChangeDebounceTime="300"
-    />
-  </div>
+    @if (!key || !key.trim()) {
+      <mg-tabs class="s-12">
+        <!-- default-->ks
 
-  @if (!key || !key.trim()) {
-    <mg-tabs>
-      <!-- default-->
-
-      <mg-tab-title id="default">{{ 'generator.theme.default' | transloco }}</mg-tab-title>
-      <mg-tab-content id="default">
-        <div class="themes">
-          @for (theme of themes; track theme) {
-            <theme-icon
-              [theme]="theme"
-              (select)="changeTheme($event)"
-              [class.selected]="theme === currentTheme"
-            ></theme-icon>
-          }
-        </div>
-      </mg-tab-content>
-
-      <!-- browser-->
-
-      @if (themeDraft.length) {
-        <mg-tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</mg-tab-title>
-      }
-      @if (themeDraft.length) {
-        <mg-tab-content id="browser">
+        <mg-tab-title id="default">{{ 'generator.theme.default' | transloco }}</mg-tab-title>
+        <mg-tab-content id="default">
           <div class="themes">
-            @for (theme of themeDraft; track theme) {
+            @for (theme of themes; track theme) {
               <theme-icon
                 [theme]="theme"
-                custom
                 (select)="changeTheme($event)"
                 [class.selected]="theme === currentTheme"
               ></theme-icon>
             }
           </div>
         </mg-tab-content>
-      }
 
-      <!-- current user-->
+        <!-- browser-->
 
-      @if (modeApi() && user?.themes?.length) {
-        <mg-tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</mg-tab-title>
-      }
-      @if (modeApi() && user?.themes?.length) {
-        <mg-tab-content id="user">
-          <div class="themes">
-            @for (theme of user!.themes; track theme) {
-              <theme-icon
-                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'user' }"
-                custom
-                (select)="changeTheme($event)"
-                [class.selected]="theme.themeId === currentTheme?.id"
-              ></theme-icon>
-            }
-          </div>
-        </mg-tab-content>
-      }
+        @if (themeDraft.length) {
+          <mg-tab-title id="browser">{{ 'generator.theme.browser.themes' | transloco }}</mg-tab-title>
+        }
+        @if (themeDraft.length) {
+          <mg-tab-content id="browser">
+            <div class="themes">
+              @for (theme of themeDraft; track theme) {
+                <theme-icon
+                  [theme]="theme"
+                  custom
+                  (select)="changeTheme($event)"
+                  [class.selected]="theme === currentTheme"
+                ></theme-icon>
+              }
+            </div>
+          </mg-tab-content>
+        }
 
-      <!-- other users-->
+        <!-- current user-->
 
-      @if (modeApi() && usersThemes?.length) {
-        <mg-tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</mg-tab-title>
-      }
-      @if (modeApi() && usersThemes?.length) {
-        <mg-tab-content id="users">
-          <div class="themes">
-            @for (theme of usersThemes; track theme) {
-              <theme-icon
-                [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'other' }"
-                custom
-                (select)="changeTheme($event)"
-                [class.selected]="theme.themeId === currentTheme?.id"
-              ></theme-icon>
-            }
-          </div>
-        </mg-tab-content>
-      }
-    </mg-tabs>
-  } @else {
-    <div class="themes">
-      @for (theme of keysThemes; track theme) {
-        <theme-icon
-          [theme]="theme"
-          custom
-          (select)="changeTheme($event)"
-          [class.selected]="theme === currentTheme"
-        ></theme-icon>
+        @if (modeApi() && user?.themes?.length) {
+          <mg-tab-title id="user">{{ 'generator.theme.account.themes' | transloco }}</mg-tab-title>
+        }
+        @if (modeApi() && user?.themes?.length) {
+          <mg-tab-content id="user">
+            <div class="themes">
+              @for (theme of user!.themes; track theme) {
+                <theme-icon
+                  [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'user' }"
+                  custom
+                  (select)="changeTheme($event)"
+                  [class.selected]="theme.themeId === currentTheme?.id"
+                ></theme-icon>
+              }
+            </div>
+          </mg-tab-content>
+        }
+
+        <!-- other users-->
+
+        @if (modeApi() && usersThemes?.length) {
+          <mg-tab-title id="users">{{ 'generator.theme.users.themes' | transloco }}</mg-tab-title>
+        }
+        @if (modeApi() && usersThemes?.length) {
+          <mg-tab-content id="users">
+            <div class="themes">
+              @for (theme of usersThemes; track theme) {
+                <theme-icon
+                  [theme]="{ id: theme.themeId!, name: theme.name, options: theme.data.options, source: 'other' }"
+                  custom
+                  (select)="changeTheme($event)"
+                  [class.selected]="theme.themeId === currentTheme?.id"
+                ></theme-icon>
+              }
+            </div>
+          </mg-tab-content>
+        }
+      </mg-tabs>
+    } @else {
+      <div class="s-12 themes">
+        @for (theme of keysThemes; track theme) {
+          <theme-icon
+            [theme]="theme"
+            custom
+            (select)="changeTheme($event)"
+            [class.selected]="theme === currentTheme"
+          ></theme-icon>
+        }
+      </div>
+    }
+
+    <div class="s-12 buttons">
+      <button (click)="cancel()">{{ 'generator.theme.cancel' | transloco }}</button>
+      @if (currentTheme) {
+        <button class="primary" (click)="validate()">
+          {{ 'generator.theme.validate' | transloco }}
+        </button>
       }
     </div>
-  }
-
-  <div>
-    <button (click)="cancel()">{{ 'generator.theme.cancel' | transloco }}</button>
-    @if (currentTheme) {
-      <button class="primary" (click)="validate()">
-        {{ 'generator.theme.validate' | transloco }}
-      </button>
-    }
   </div>
 </mg-dialog>
