@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 
 import {
     MagmaDialog,
+    MagmaMessage,
     MagmaTabContent,
     MagmaTabTitle,
     MagmaTable,
@@ -18,7 +19,6 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, User } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -59,7 +59,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);
     private readonly classementService = inject(APIClassementService);
     private readonly userService = inject(APIUserService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly route = inject(ActivatedRoute);
     private readonly router = inject(Router);
@@ -175,7 +175,7 @@ export class UserListComponent implements OnInit, OnDestroy {
                         Utils.updateClassements(this.user!.classements, classements, this.user);
                     }
 
-                    this.messageService.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
+                    this.mgMessage.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
                     this.currentClassement = undefined;
                 });
         } else {

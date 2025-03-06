@@ -19,13 +19,14 @@ import {
     MagmaInputPassword,
     MagmaInputSelect,
     MagmaInputText,
+    MagmaMessage,
+    MagmaMessageType,
     MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
 import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -58,7 +59,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly categories = inject(CategoriesService);
 
@@ -197,11 +198,11 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                 .then(classementSave => {
                     this.action.emit({ type: this.saveLocal ? 'save' : 'remove', classement: classementSave });
                     this.userService.updateClassement(classementSave);
-                    this.messageService.addMessage(this.translate.translate('message.server.save.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.server.save.success'));
                     this.cancel();
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 })
                 .finally(() => {
                     this.loading = false;

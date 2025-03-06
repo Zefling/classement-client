@@ -2,10 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaTable, MagmaTableCell, MagmaTableGroup, MagmaTableRow } from '@ikilote/magma';
+import { MagmaDialog, MagmaMessage, MagmaTable, MagmaTableCell, MagmaTableGroup, MagmaTableRow } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -32,7 +31,7 @@ import { categories } from '../classement/classement-default';
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly globalService = inject(GlobalService);
     private readonly translate = inject(TranslocoService);
 
@@ -99,7 +98,7 @@ export class ListClassementsComponent {
                     this.changeCategoryCancel();
                 }
 
-                this.messageService.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
+                this.mgMessage.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
             })
             .catch(e => {});
     }

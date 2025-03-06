@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaInput, MagmaInputCheckbox } from '@ikilote/magma';
+import { MagmaInput, MagmaInputCheckbox, MagmaMessage, MagmaMessageType } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Buffer } from 'buffer';
@@ -11,7 +11,6 @@ import { Data, FileString, importData } from '../../interface/interface';
 import { DBService } from '../../services/db.service';
 import { GlobalService, TypeFile } from '../../services/global.service';
 import { Logger, LoggerLevel } from '../../services/logger';
-import { MessageService, MessageType } from '../info-messages/info-messages.component';
 import { LoadingComponent } from '../loader/loading.component';
 
 export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Data };
@@ -27,7 +26,7 @@ export class ImportJsonComponent implements OnDestroy {
 
     private readonly translate = inject(TranslocoService);
     private readonly globalService = inject(GlobalService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly dbService = inject(DBService);
     private readonly logger = inject(Logger);
 
@@ -87,8 +86,8 @@ export class ImportJsonComponent implements OnDestroy {
                 if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
                     this.jsonTmp = [{ data: data, selected: true }];
                 } else {
-                    this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
-                        type: MessageType.error,
+                    this.mgMessage.addMessage(this.translate.translate('message.json.read.failed'), {
+                        type: MagmaMessageType.error,
                     });
                 }
             } else if (this.multi()) {
@@ -100,14 +99,14 @@ export class ImportJsonComponent implements OnDestroy {
                     );
                 }
             } else {
-                this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('message.json.read.failed'), {
+                    type: MagmaMessageType.error,
                 });
             }
         } catch (e) {
             this.logger.log('json error:', LoggerLevel.error, e);
-            this.messageService.addMessage(this.translate.translate('message.json.read.failed'), {
-                type: MessageType.error,
+            this.mgMessage.addMessage(this.translate.translate('message.json.read.failed'), {
+                type: MagmaMessageType.error,
             });
         }
     }

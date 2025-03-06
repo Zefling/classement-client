@@ -2,10 +2,17 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { FormBuilderExtended, MagmaInput, MagmaInputElement, MagmaInputText, MagmaInputTextarea } from '@ikilote/magma';
+import {
+    FormBuilderExtended,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
+    MagmaInputTextarea,
+    MagmaMessage,
+    MagmaMessageType,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -18,7 +25,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 })
 export class InfosMessageComponent {
     private readonly userService = inject(APIUserService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly router = inject(Router);
@@ -87,10 +94,10 @@ export class InfosMessageComponent {
                     message?.setValue('');
                     message?.markAsUntouched();
                     message?.markAsPristine();
-                    this.messageService.addMessage(this.translate.translate('message.contact.sent.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.contact.sent.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 });
         }
     }

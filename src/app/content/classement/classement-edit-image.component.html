@@ -17,7 +17,7 @@
           autosize
           maxlength="500"
           id="tile-annotation"
-          [ngModel]="cTile.annotation ?? ''"
+          [(ngModel)]="cTile.annotation"
           (ngModelChange)="globalChange(); cTile.annotation = $event"
         ></mg-input-textarea>
       </mg-input>

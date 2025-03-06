@@ -1,9 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { MagmaMessage } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, PreferencesData } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -24,7 +24,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly preferencesService = inject(PreferencesService);
@@ -58,7 +58,7 @@ export class ClassementHomeComponent {
                 })
                 .catch(() => {
                     this.classements = [];
-                    this.messageService.addMessage(this.translate.translate('message.navigate.access.error'));
+                    this.mgMessage.addMessage(this.translate.translate('message.navigate.access.error'));
                 })
                 .finally(() => {
                     this.loading = false;

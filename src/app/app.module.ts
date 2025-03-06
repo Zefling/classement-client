@@ -11,7 +11,6 @@ import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InfoMessagesComponent } from './components/info-messages/info-messages.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { TranslocoRootModule } from './transloco-root.module';
@@ -48,7 +47,6 @@ export function markedOptionsFactory() {
         LoaderComponent,
         MagmaDialog,
         PreferencesMagmaDialog,
-        InfoMessagesComponent,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],
     bootstrap: [AppComponent],

@@ -33,6 +33,8 @@ import {
     ContextMenuItem,
     MagmaContextMenu,
     MagmaDialog,
+    MagmaMessage,
+    MagmaMessageType,
     MagmaNgInitDirective,
     MagmaNgModelChangeDebouncedDirective,
     MagmaTooltipDirective,
@@ -43,7 +45,6 @@ import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
 import {
     Classement,
@@ -145,7 +146,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly route = inject(ActivatedRoute);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
     private readonly optimiseImage = inject(OptimiseImageService);
@@ -715,8 +716,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     }
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, {
-                        type: MessageType.error,
+                    this.mgMessage.addMessage(e, {
+                        type: MagmaMessageType.error,
                     });
                 })
                 .finally(() => {
@@ -760,10 +761,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     copyLink() {
         Utils.clipboard(this.shareUrl)
-            .then(() => this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
+            .then(() => this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
+                    type: MagmaMessageType.error,
                 }),
             );
     }
@@ -1142,7 +1143,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.list = this.list.filter(e => e);
 
         this.addIds();
-        this.messageService.addMessage(this.translate.translate('message.reset.groups'));
+        this.mgMessage.addMessage(this.translate.translate('message.reset.groups'));
     }
 
     @HostListener('window:keydown.control.s', ['$event'])
@@ -1166,13 +1167,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     this.classement.localId = this.id;
                 }
                 if (!silence) {
-                    this.messageService.addMessage(this.translate.translate('message.save.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.save.success'));
                 }
                 this.global.updateList();
             },
             _ => {
-                this.messageService.addMessage(this.translate.translate('message.save.failed'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('message.save.failed'), {
+                    type: MagmaMessageType.error,
                 });
             },
         );
@@ -1280,14 +1281,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.list = event.data?.list!;
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
-                this.messageService.addMessage(this.translate.translate('message.json.read.replace'));
+                this.mgMessage.addMessage(this.translate.translate('message.json.read.replace'));
                 this.html2canvasImagesCacheUpdate();
                 break;
             }
             case 'new': {
                 this.global.jsonTmp = event.data;
                 this.router.navigate(['edit', 'new']);
-                this.messageService.addMessage(this.translate.translate('message.json.read.new'));
+                this.mgMessage.addMessage(this.translate.translate('message.json.read.new'));
                 break;
             }
         }

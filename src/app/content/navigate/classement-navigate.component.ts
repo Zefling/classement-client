@@ -3,12 +3,18 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText, MagmaPagination } from '@ikilote/magma';
+import {
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaPagination,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Data } from 'ng-select2-component';
 
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -45,7 +51,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     private readonly router = inject(Router);
     private readonly route = inject(ActivatedRoute);
     private readonly logger = inject(Logger);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly categories = inject(CategoriesService);
     private readonly preferences = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);
@@ -123,7 +129,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             })
             .catch(() => {
                 this.classements = [];
-                this.messageService.addMessage(this.translate.translate('message.navigate.access.error'));
+                this.mgMessage.addMessage(this.translate.translate('message.navigate.access.error'));
             })
             .finally(() => {
                 this.loading = false;

@@ -5,6 +5,7 @@ import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
     MagmaDialog,
+    MagmaMessage,
     MagmaTable,
     MagmaTableCell,
     MagmaTableGroup,
@@ -16,7 +17,6 @@ import {
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { FormattedInfos } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -60,7 +60,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly router = inject(Router);
     private readonly translate = inject(TranslocoService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly global = inject(GlobalService);
     private readonly logger = inject(Logger);
 
@@ -211,7 +211,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
                 this.result.splice(this.result.indexOf(this.itemCurrent as FormattedInfos), 1);
-                this.messageService.addMessage(
+                this.mgMessage.addMessage(
                     this.translate
                         .translate('message.remove.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -231,7 +231,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.dbService.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
-                this.messageService.addMessage(
+                this.mgMessage.addMessage(
                     this.translate
                         .translate('message.clone.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -262,7 +262,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     .then(item => {
                         this.logger.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
 
-                        this.messageService.addMessage(
+                        this.mgMessage.addMessage(
                             this.translate
                                 .translate('message.add.success')
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -278,7 +278,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         }
                     })
                     .catch(() => {
-                        this.messageService.addMessage(this.translate.translate('message.add.error'));
+                        this.mgMessage.addMessage(this.translate.translate('message.add.error'));
                     });
                 break;
         }
