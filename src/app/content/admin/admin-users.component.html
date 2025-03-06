@@ -107,44 +107,52 @@
   <list-classements [classements]="currentUser?.classements"></list-classements>
 </mg-dialog>
 
-<mg-dialog class="auto-format" #dialogActionsUser>
+<mg-dialog #dialogActionsUser>
   @if (currentUser && userForm) {
-    <ng-container [formGroup]="userForm">
-      <p>{{ 'user.status.warning' | transloco }}</p>
-      <p class="title" [class.anonymous]="!currentUser.username">
+    <form class="dialog-action" [formGroup]="userForm">
+      <p class="s-12 title" [class.anonymous]="!currentUser.username">
         {{ currentUser.username || ('list.user.anonymous' | transloco) }}
       </p>
-      <label for="username">{{ 'user.login.username' | transloco }}</label>
-      <input id="username" type="text" formControlName="username" #username />
-      <label for="password">{{ 'user.login.password' | transloco }}</label>
-      <input id="password" type="password" spellcheck="false" formControlName="password" />
-      <label for="email">{{ 'user.login.email' | transloco }}</label>
-      <input id="email" type="email" formControlName="email" #email />
-      <div class="label">{{ 'user.status.list' | transloco }}</div>
-      @if (isAdmin) {
-        <label for="moderator">
-          <input id="moderator" type="checkbox" formControlName="moderator" />
-          {{ 'user.status.moderator' | transloco }}
-        </label>
-        <label for="admin">
-          <input id="admin" type="checkbox" formControlName="admin" #adminCheckbox />
-          {{ 'user.status.admin' | transloco }}
-        </label>
-      }
-      <label for="banned">
-        <input id="banned" type="checkbox" formControlName="banned" />
-        {{ 'user.status.banned' | transloco }}
-      </label>
+      <div class="s-12 warning">{{ 'user.status.warning' | transloco }}</div>
+
+      <mg-input class="s-6" id="username">
+        <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
+        <mg-input-text formControlName="username"></mg-input-text>
+      </mg-input>
+      <mg-input class="s-6" id="password">
+        <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
+        <mg-input-password formControlName="password"></mg-input-password>
+      </mg-input>
+      <mg-input class="s-6" id="email">
+        <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
+        <mg-input-text type="email" formControlName="username"></mg-input-text>
+      </mg-input>
+      <div class="s-6 status">
+        <div class="label">{{ 'user.status.list' | transloco }}</div>
+        @if (isAdmin) {
+          <mg-input id="moderator">
+            <mg-input-checkbox formControlName="moderator">{{ 'user.status.moderator' | transloco }}</mg-input-checkbox>
+          </mg-input>
+          <mg-input id="admin">
+            <mg-input-checkbox formControlName="admin">{{ 'user.status.admin' | transloco }}</mg-input-checkbox>
+          </mg-input>
+        }
+        <mg-input id="banned">
+          <mg-input-checkbox formControlName="banned">{{ 'user.status.banned' | transloco }}</mg-input-checkbox>
+        </mg-input>
+      </div>
+
       @if (showError) {
-        <div class="list-error">
+        <div class="s-12 list-error">
           {{ showError }}
         </div>
       }
-      <div>
+
+      <div class="s-12 buttons">
         <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | transloco }}</button>
         <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | transloco }}</button>
       </div>
-    </ng-container>
+    </form>
   }
 </mg-dialog>
 

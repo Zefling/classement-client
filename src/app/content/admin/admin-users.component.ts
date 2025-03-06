@@ -3,7 +3,17 @@ import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { MagmaDialog, MagmaMessage, MagmaMessageType, MagmaPagination } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaMessageType,
+    MagmaPagination,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
@@ -24,12 +34,17 @@ import { LoadingComponent } from '../../components/loader/loading.component';
     imports: [
         FormsModule,
         LoadingComponent,
-        MagmaPagination,
-        MagmaDialog,
         ListClassementsComponent,
         ReactiveFormsModule,
         DatePipe,
         TranslocoPipe,
+        MagmaPagination,
+        MagmaDialog,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputPassword,
+        MagmaInputCheckbox,
+        MagmaInputElement,
     ],
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {
