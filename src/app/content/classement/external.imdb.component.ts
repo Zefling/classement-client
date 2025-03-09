@@ -2,7 +2,14 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output, inject, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MagmaDialog } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+} from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
@@ -19,7 +26,19 @@ import { Utils } from 'src/app/tools/utils';
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
-    imports: [MagmaDialog, FormsModule, ReactiveFormsModule, Select2, DatePipe, TranslocoPipe],
+    imports: [
+        MagmaDialog,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputCheckbox,
+        MagmaInputSelect,
+        FormsModule,
+        ReactiveFormsModule,
+        Select2,
+        DatePipe,
+        TranslocoPipe,
+    ],
 })
 export class ExternalImdbComponent implements OnInit, OnDestroy {
     private readonly imdb = inject(APIImdbService);

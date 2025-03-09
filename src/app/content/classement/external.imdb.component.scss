@@ -1,6 +1,8 @@
 .movie-title {
     margin: 3px;
     padding: 0;
+    text-wrap: balance;
+    word-wrap: break-word;
 }
 
 .imdb {
@@ -49,7 +51,6 @@ form {
     border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
     background: var(--over-item-background, var(--content-box-background));
     padding: var(--over-item-padding, 10px);
-    color: var(--over-item-color, var(--content-box-color));
     font-size: 14px;
     text-align: center;
 

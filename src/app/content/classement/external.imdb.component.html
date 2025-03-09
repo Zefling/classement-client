@@ -5,20 +5,19 @@
     <div class="imdb">
       <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
       <form [formGroup]="searchMovieForm" (submit)="search()">
-        <div>
-          <label for="name">{{ 'generator.external.imbd.name' | transloco }}</label>
-          <input id="name" formControlName="query" />
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" formControlName="include_adult" />
-            {{ 'generator.external.imbd.adult.content' | transloco }}
-          </label>
-        </div>
-        <div>
-          <label for="language">{{ 'generator.external.imbd.language' | transloco }}</label>
-          <select2 overlay id="language" formControlName="language" [data]="languages" />
-        </div>
+        <mg-input class="s-12">
+          <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
+          <mg-input-text formControlName="query"></mg-input-text>
+        </mg-input>
+        <mg-input class="s-12">
+          <mg-input-checkbox formControlName="include_adult">{{
+            'generator.external.imbd.adult.content' | transloco
+          }}</mg-input-checkbox>
+        </mg-input>
+        <mg-input class="s-12">
+          <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
+          <mg-input-select overlay id="language" formControlName="language" [data]="languages"></mg-input-select>
+        </mg-input>
         <p class="buttons">
           <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
             {{ 'generator.external.imbd.search' | transloco }}
@@ -28,14 +27,16 @@
       @if (results?.length) {
         <div class="options">
           <div>
-            <label>
-              <input type="checkbox" [(ngModel)]="withTitle" />
-              {{ 'generator.external.imbd.with.title' | transloco }}
-            </label>
-            <label>
-              <input type="checkbox" [(ngModel)]="withYear" />
-              {{ 'generator.external.imbd.with.year' | transloco }}
-            </label>
+            <mg-input>
+              <mg-input-checkbox [(ngModel)]="withTitle">
+                {{ 'generator.external.imbd.with.title' | transloco }}</mg-input-checkbox
+              >
+            </mg-input>
+            <mg-input>
+              <mg-input-checkbox [(ngModel)]="withYear">
+                {{ 'generator.external.imbd.with.year' | transloco }}</mg-input-checkbox
+              >
+            </mg-input>
           </div>
         </div>
       }
