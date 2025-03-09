@@ -10,18 +10,16 @@
     </span>
   </p>
   <div class="list-actions">
-    <div class="filter">
-      <label for="browser-list-filter">{{ 'list.filter' | transloco }}</label>
-      <input
-        id="browser-list-filter"
-        type="search"
+    <mg-input class="filter" id="browser-list-filter">
+      <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
+      <mg-input-text
+        clearCross
         maxlength="150"
         [(ngModel)]="filter"
         #filterInput
         [class.empty]="filter === ''"
-      />
-      <span (click)="updateFilter(filterInput)"></span>
-    </div>
+      ></mg-input-text>
+    </mg-input>
     <button class="primary" (click)="exportAll()">
       {{ 'generator.actions.export.all.json' | transloco }}
     </button>
@@ -31,7 +29,7 @@
   </div>
 </div>
 
-<ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
+<ng-container [sortable]="result" [sortable-filter-input]="filterInput.inputElement" [sortable-filter]="sortableFilter">
   @if (result && result.length) {
     <table mg hoverRow>
       <thead mg>

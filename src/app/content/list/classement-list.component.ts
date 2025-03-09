@@ -5,14 +5,17 @@ import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
     MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
     MagmaMessage,
+    MagmaSortRuleDirective,
+    MagmaSortableDirective,
     MagmaTable,
     MagmaTableCell,
     MagmaTableGroup,
     MagmaTableRow,
     MagmaTooltipDirective,
-    SortRuleDirective,
-    SortableDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -38,21 +41,24 @@ import { FileSizePipe } from '../../pipes/file-size';
     },
     imports: [
         FormsModule,
-        SortableDirective,
-        SortRuleDirective,
         TagListComponent,
-        MagmaTooltipDirective,
         RouterLink,
         RouterLinkActive,
-        MagmaDialog,
         ImportJsonComponent,
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
+        MagmaTooltipDirective,
+        MagmaSortableDirective,
+        MagmaSortRuleDirective,
+        MagmaDialog,
         MagmaTable,
         MagmaTableGroup,
         MagmaTableRow,
         MagmaTableCell,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
     ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
@@ -73,7 +79,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     dialogDelete = viewChild.required<MagmaDialog>('dialogDelete');
     dialogClone = viewChild.required<MagmaDialog>('dialogClone');
     dialogImport = viewChild.required<MagmaDialog>('dialogImport');
-    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
+    sortableDirective = viewChild.required(MagmaSortableDirective);
 
     filter = '';
 
@@ -111,11 +117,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.global.setTitle('menu.list');
     }
 
-    updateFilter(filterInput: HTMLInputElement, filter: string = '') {
+    updateFilter(filterInput: MagmaInputText, filter: string = '') {
         this.filter = filter;
         setTimeout(() => {
-            filterInput.dispatchEvent(new InputEvent('input'));
-            filterInput.focus();
+            //  filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus(true);
         });
     }
 
@@ -130,7 +136,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         );
     };
 
-    tagClick(event: string, filterInput: HTMLInputElement) {
+    tagClick(event: string, filterInput: MagmaInputText) {
         this.updateFilter(filterInput, `#${event}`);
     }
 

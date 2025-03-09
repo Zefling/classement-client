@@ -89,8 +89,8 @@
     },
     "groups.title": "Groups",
     "group": {
-      "title": "Add",
       "new.line": {
+        "title": "Add",
         "below": "Add below",
         "above": "Add above",
         "ask.me": "Ask me"
@@ -102,11 +102,14 @@
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
+    "other": {
+      "title": "By default"
+    },
     "mode": {
-      "title": "Default mode"
+      "title": "Mode"
     },
     "theme": {
-      "title": "Default theme"
+      "title": "Theme"
     },
     "navigation": {
       "title": "Browse",

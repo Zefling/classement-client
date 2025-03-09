@@ -5,7 +5,12 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 
 import {
     MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
     MagmaMessage,
+    MagmaSortRuleDirective,
+    MagmaSortableDirective,
     MagmaTabContent,
     MagmaTabTitle,
     MagmaTable,
@@ -14,8 +19,6 @@ import {
     MagmaTableRow,
     MagmaTabs,
     MagmaTooltipDirective,
-    SortRuleDirective,
-    SortableDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -35,24 +38,27 @@ import { ClassementListComponent } from '../list/classement-list.component';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
     imports: [
-        MagmaTabs,
-        MagmaTabContent,
-        MagmaTabTitle,
         FormsModule,
         RouterLink,
         TagListComponent,
-        MagmaTooltipDirective,
         RouterLinkActive,
         ClassementListComponent,
-        MagmaDialog,
         DatePipe,
         TranslocoPipe,
-        SortableDirective,
-        SortRuleDirective,
+        MagmaSortableDirective,
+        MagmaSortRuleDirective,
+        MagmaDialog,
+        MagmaTooltipDirective,
         MagmaTable,
         MagmaTableGroup,
         MagmaTableRow,
         MagmaTableCell,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputElement,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
     ],
 })
 export class UserListComponent implements OnInit, OnDestroy {
@@ -66,7 +72,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly global = inject(GlobalService);
 
     dialogActionsClassement = viewChild.required<MagmaDialog>('dialogActionsClassement');
-    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
+    sortableDirective = viewChild.required(MagmaSortableDirective);
     tabs = viewChild.required(MagmaTabs);
 
     filter = '';
@@ -124,11 +130,11 @@ export class UserListComponent implements OnInit, OnDestroy {
         this.global.setTitle('menu.my.lists');
     }
 
-    updateFilter(filterInput: HTMLInputElement, filter: string = '') {
+    updateFilter(filterInput: MagmaInputText, filter: string = '') {
         this.filter = filter;
         setTimeout(() => {
-            filterInput.dispatchEvent(new InputEvent('input'));
-            filterInput.focus();
+            //  filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus(true);
         });
     }
 
@@ -142,7 +148,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         );
     };
 
-    tagClick(event: string, filterInput: HTMLInputElement) {
+    tagClick(event: string, filterInput: MagmaInputText) {
         this.updateFilter(filterInput, `#${event}`);
     }
 

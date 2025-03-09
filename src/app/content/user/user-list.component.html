@@ -7,25 +7,23 @@
     <div class="infos">
       <p><span class="icon-info"></span> {{ 'user.profile.list.server.intro' | transloco }}</p>
       <div class="list-actions">
-        <div class="filter">
-          <label for="browser-list-filter">{{ 'list.filter' | transloco }}</label>
-          <input
+        <mg-input class="filter">
+          <mg-input-label for="browser-list-filter">{{ 'list.filter' | transloco }}</mg-input-label>
+          <mg-input-text
             id="browser-list-filter"
-            type="search"
             maxlength="150"
             [(ngModel)]="filter"
-            #inputFilter
             [class.empty]="filter === ''"
-          />
-          <span class="empty" (click)="updateFilter(inputFilter)"></span>
-        </div>
+            #inputFilter
+          ></mg-input-text>
+        </mg-input>
       </div>
     </div>
 
     @if (user) {
       <ng-container
         [sortable]="user.classements"
-        [sortable-filter-input]="inputFilter"
+        [sortable-filter-input]="inputFilter.inputElement"
         [sortable-filter]="sortableFilter"
       >
         @if (user.classements?.length) {

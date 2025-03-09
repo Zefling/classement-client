@@ -1,5 +1,5 @@
 :host {
-    --main-padding-left: 30px;
+    --main-padding-left: 15px;
     --main-padding-right: 15px;
     --main-padding: 0 var(--main-padding-right) 30px var(--main-padding-left);
 
@@ -296,6 +296,8 @@ header {
 @media screen and (width < 1024px) {
     :host {
         --main-padding: 0 5px;
+        --main-padding-left: 5px;
+        --main-padding-right: 5px;
         --aside-width: 0;
         --show-mobile: block;
         --menu-transition: left 0.5s;

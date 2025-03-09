@@ -4,13 +4,13 @@
   <form class="search" (submit)="submit(true)">
     <mg-input class="name">
       <mg-input-label>{{ 'navigate.title' | transloco }}</mg-input-label>
-      <mg-input-text type="search" name="name" [(ngModel)]="searchKey" clearCross></mg-input-text>
+      <mg-input-text name="name" [(ngModel)]="searchKey" clearCross></mg-input-text>
     </mg-input>
 
     <div class="line">
       <mg-input class="categories">
         <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
-        <mg-input-select type="search" name="category" [data]="categoriesList" [(ngModel)]="category"></mg-input-select>
+        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category" clearCross></mg-input-select>
       </mg-input>
 
       <mg-input class="modes">

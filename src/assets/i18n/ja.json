@@ -89,8 +89,8 @@
     },
     "groups.title": "グループ",
     "group": {
-      "title": "追加",
       "new.line": {
+        "title": "追加",
         "below": "以下に追加",
         "above": "以下に追加",
         "ask.me": "何が欲しいか聞いてください"
@@ -102,11 +102,14 @@
         "hidden": "非表示: オプションは表示されず、このモードではグループを編集できません"
       }
     },
+    "other": {
+      "title": "デフォルト"
+    },
     "mode": {
-      "title": "デフォルトモード"
+      "title": "モード"
     },
     "theme": {
-      "title": "デフォルトのテーマ"
+      "title": "のテーマ"
     },
     "navigation": {
       "title": "ブラウズ",

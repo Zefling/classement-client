@@ -6,89 +6,107 @@
         <mg-tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</mg-tab-title>
         <mg-tab-content id="general">
           <h3>{{ 'preferences.interface.title' | transloco }}</h3>
-          <h5>{{ 'preferences.interface.light-dark' | transloco }}</h5>
-          <mg-light-dark (change)="changeLightDark($event)"></mg-light-dark>
-          <h5>{{ 'preferences.interface.language' | transloco }}</h5>
-          <label for="language">
-            <select id="language" formControlName="interfaceLanguage">
-              @for (lang of languages; track lang) {
-                <option [value]="lang.value">{{ lang.label }}</option>
-              }
-            </select>
-          </label>
+          <div class="label">{{ 'preferences.interface.light-dark' | transloco }}</div>
+          <p><mg-light-dark (change)="changeLightDark($event)"></mg-light-dark></p>
+          <mg-input id="language">
+            <mg-input-label>{{ 'preferences.interface.language' | transloco }}</mg-input-label>
+            <mg-input-select formControlName="interfaceLanguage" [data]="languages"> </mg-input-select>
+          </mg-input>
           @if (modeApi()) {
             <h3>{{ 'preferences.navigation.title' | transloco }}</h3>
-            <h5>{{ 'preferences.navigation.page.size' | transloco }}</h5>
-            <label>
-              {{ 'preferences.navigation.page.size.pre' | transloco }}
-              <input type="number" min="9" max="50" formControlName="pageSize" class="number-pages" />
-              {{ 'preferences.navigation.page.size.per' | transloco }}
-            </label>
+
+            <mg-input id="language">
+              <mg-input-label>{{ 'preferences.navigation.page.size' | transloco }}</mg-input-label>
+              <mg-input-before>{{ 'preferences.navigation.page.size.pre' | transloco }}</mg-input-before>
+              <mg-input-number
+                formControlName="pageSize"
+                min="9"
+                max="50"
+                noDecimal
+                noNegative
+                forceMinMax
+              ></mg-input-number>
+              <mg-input-after>{{ 'preferences.navigation.page.size.per' | transloco }}</mg-input-after>
+            </mg-input>
           }
         </mg-tab-content>
         <mg-tab-title id="editor"> {{ 'preferences.editor.title' | transloco }}</mg-tab-title>
         <mg-tab-content id="editor">
-          <h3>{{ 'preferences.editor.title' | transloco }}</h3>
-          <h4>{{ 'preferences.tiles.title' | transloco }}</h4>
-          <h5>{{ 'preferences.tile.title' | transloco }}</h5>
-          <label>
-            <input type="checkbox" formControlName="nameCopy" /> {{ 'preferences.tile.name.copy' | transloco }}
-          </label>
-          <h4>{{ 'preferences.groups.title' | transloco }}</h4>
-          <h5>{{ 'preferences.color.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="newColor" value="mixed" />
-            {{ 'preferences.color.new.color.mixed' | transloco }}
-          </label>
-          <label>
-            <input type="radio" formControlName="newColor" value="same" />
-            {{ 'preferences.color.new.color.same' | transloco }}
-          </label>
-          <h5>{{ 'preferences.group.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="newLine" value="below" />
-            {{ 'preferences.group.new.line.below' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="newLine" value="above" />
-            {{ 'preferences.group.new.line.above' | transloco }}
-          </label>
-          <!-- <label
-          ><input type="radio" formControlName="newLine" value="ask-me" />
-          {{ 'preferences.group.new.line.ask.me' | transloco }}
-        </label> -->
-          <h5>{{ 'preferences.group.line.option.title' | transloco }}</h5>
-          <label>
-            <input type="radio" formControlName="lineOption" value="auto" />
-            {{ 'preferences.group.line.option.auto' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="lineOption" value="reduce" />
-            {{ 'preferences.group.line.option.reduce' | transloco }}
-          </label>
-          <label
-            ><input type="radio" formControlName="lineOption" value="hidden" />
-            {{ 'preferences.group.line.option.hidden' | transloco }}
-          </label>
-          <h4>{{ 'preferences.mode.title' | transloco }}</h4>
-          <select formControlName="mode">
-            <option value="choice">{{ 'mode.name.choice' | transloco }}</option>
-            <option value="default">{{ 'mode.name.default' | transloco }}</option>
-            <option value="teams">{{ 'mode.name.teams' | transloco }}</option>
-            <option value="columns">{{ 'mode.name.columns' | transloco }}</option>
-            <option value="iceberg">{{ 'mode.name.iceberg' | transloco }}</option>
-            <option value="axis">{{ 'mode.name.axis' | transloco }}</option>
-            <option value="bingo">{{ 'mode.name.bingo' | transloco }}</option>
-          </select>
-          @if (preferencesForm.get('mode')?.value !== 'choice') {
-            <h4>{{ 'preferences.theme.title' | transloco }}</h4>
-            <select formControlName="theme">
-              @for (theme of themes; track theme) {
-                <option [value]="theme">
-                  {{ 'generator.theme.name.' + theme | transloco }}
-                </option>
-              }
-            </select>
+          <h3 class="s-12">{{ 'preferences.editor.title' | transloco }}</h3>
+          <h4 class="s-12">{{ 'preferences.tiles.title' | transloco }}</h4>
+
+          <mg-input class="s-12">
+            <mg-input-label>{{ 'preferences.tile.title' | transloco }}</mg-input-label>
+            <mg-input-checkbox formControlName="nameCopy">{{
+              'preferences.tile.name.copy' | transloco
+            }}</mg-input-checkbox>
+          </mg-input>
+
+          <h4 class="s-12">{{ 'preferences.groups.title' | transloco }}</h4>
+
+          <mg-input class="s-12">
+            <mg-input-label>{{ 'preferences.color.title' | transloco }}</mg-input-label>
+            <mg-input-radio formControlName="newColor" value="mixed">{{
+              'preferences.color.new.color.mixed' | transloco
+            }}</mg-input-radio>
+            <mg-input-radio formControlName="newColor" value="same">{{
+              'preferences.color.new.color.same' | transloco
+            }}</mg-input-radio>
+          </mg-input>
+
+          <mg-input class="s-12">
+            <mg-input-label>{{ 'preferences.group.new.line.title' | transloco }}</mg-input-label>
+            <mg-input-radio formControlName="newLine" value="below">{{
+              'preferences.group.new.line.below' | transloco
+            }}</mg-input-radio>
+            <mg-input-radio formControlName="newLine" value="above">{{
+              'preferences.group.new.line.above' | transloco
+            }}</mg-input-radio>
+          </mg-input>
+
+          <mg-input alignMode="column" class="s-12">
+            <mg-input-label>{{ 'preferences.group.line.option.title' | transloco }}</mg-input-label>
+            <mg-input-radio formControlName="lineOption" value="auto">{{
+              'preferences.group.line.option.auto' | transloco
+            }}</mg-input-radio>
+            <mg-input-radio formControlName="lineOption" value="reduce">{{
+              'preferences.group.line.option.reduce' | transloco
+            }}</mg-input-radio>
+            <mg-input-radio formControlName="lineOption" value="hidden">{{
+              'preferences.group.line.option.hidden' | transloco
+            }}</mg-input-radio>
+          </mg-input>
+
+          <h4 class="s-12">{{ 'preferences.other.title' | transloco }}</h4>
+
+          <mg-input class="s-6">
+            <mg-input-label>{{ 'preferences.mode.title' | transloco }}</mg-input-label>
+            <mg-input-select
+              [data]="modes"
+              [templates]="templatesModes"
+              formControlName="mode"
+              displaySearchStatus="hidden"
+              overlay
+              ><ng-template #templatesModes let-label="label">
+                {{ 'mode.name.' + label | transloco }}
+              </ng-template>
+            </mg-input-select>
+          </mg-input>
+
+          @if (preferencesForm.get('mode')?.value !== 'choice' && this.themes()) {
+            <mg-input class="s-6">
+              <mg-input-label>{{ 'preferences.theme.title' | transloco }}</mg-input-label>
+              <mg-input-select
+                [data]="themesList()!"
+                [templates]="themesTemplate"
+                formControlName="theme"
+                displaySearchStatus="hidden"
+                overlay
+                ><ng-template #themesTemplate let-label="label">
+                  {{ 'generator.theme.name.' + label | transloco }}
+                </ng-template>
+              </mg-input-select>
+            </mg-input>
           }
         </mg-tab-content>
         @if (modeApi()) {
@@ -151,13 +169,14 @@
         }
         <mg-tab-title id="api"> {{ 'preferences.tab.api' | transloco }}</mg-tab-title>
         <mg-tab-content id="api" formGroupName="authApiKeys">
-          <label>{{ 'preferences.imdb.key' | transloco }} </label>
-          <input type="text" formControlName="imdb" />
-          <div class="info">
-            <span class="icon-info"></span>
-            Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :
-            <a href="https://www.themoviedb.org/settings/api">API</a>
-          </div>
+          <mg-input class="s-12">
+            <mg-input-label>{{ 'preferences.imdb.key' | transloco }}</mg-input-label>
+            <mg-input-text formControlName="imdb"></mg-input-text>
+            <mg-input-desc>
+              <span class="icon-info"></span>
+              {{ 'preferences.imdb.info' | transloco }}<a href="https://www.themoviedb.org/settings/api">API</a>
+            </mg-input-desc>
+          </mg-input>
         </mg-tab-content>
       </mg-tabs>
       <div class="buttons">

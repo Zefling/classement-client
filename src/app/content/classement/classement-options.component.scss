@@ -663,6 +663,10 @@ see-classement {
     .options,
     .advanced-options {
         display: block;
+
+        mg-input {
+            width: 100%;
+        }
     }
 
     .tags {

@@ -152,7 +152,6 @@ body {
 
 :not(.label) > :where(label, .label):not(.name) {
     font-weight: 700;
-    font-size: 90%;
 }
 
 mg-dialog.auto-format .main {
