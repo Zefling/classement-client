@@ -18,11 +18,11 @@ import { categories } from '../classement/classement-default';
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
     imports: [
-        MagmaDialog,
         SeeClassementComponent,
         FormsModule,
         DatePipe,
         TranslocoPipe,
+        MagmaDialog,
         MagmaTable,
         MagmaTableGroup,
         MagmaTableRow,

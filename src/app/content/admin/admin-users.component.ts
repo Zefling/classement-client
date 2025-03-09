@@ -13,6 +13,10 @@ import {
     MagmaMessage,
     MagmaMessageType,
     MagmaPagination,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -40,6 +44,10 @@ import { LoadingComponent } from '../../components/loader/loading.component';
         TranslocoPipe,
         MagmaPagination,
         MagmaDialog,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
         MagmaInput,
         MagmaInputText,
         MagmaInputPassword,

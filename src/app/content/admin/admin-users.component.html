@@ -1,17 +1,10 @@
 <h3>{{ 'menu.admin.users' | transloco }}</h3>
 
 <form class="search" (submit)="submit()">
-  <div class="name">
-    <label>{{ 'list.user.name' | transloco }}</label>
-    <input
-      type="search"
-      name="searchKey"
-      [(ngModel)]="searchKey"
-      #filterInput
-      [class.empty]="searchKey === '' || searchKey === undefined"
-    />
-    <span (click)="resteFilter(filterInput)"></span>
-  </div>
+  <mg-input class="name">
+    <mg-input-label>{{ 'list.user.name' | transloco }}</mg-input-label>
+    <mg-input-text [(ngModel)]="searchKey" #filterInput clearCross></mg-input-text>
+  </mg-input>
   <div>
     <button type="submit">{{ 'navigate.search' | transloco }}</button>
   </div>
@@ -26,31 +19,31 @@
     @if (total) {
       <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
-    <table>
-      <thead>
-        <tr>
-          <th class="status">{{ 'list.status.list' | transloco }}</th>
-          <th class="user sort" (click)="sortUpdate('username')">
+    <table mg>
+      <thead mg>
+        <tr mg>
+          <th mg class="status">{{ 'list.status.list' | transloco }}</th>
+          <th mg class="user sort" (click)="sortUpdate('username')">
             {{ 'list.user.name' | transloco }}
             @if (sort === 'username') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="role">{{ 'list.roles.name' | transloco }}</th>
-          <th class="date sort" (click)="sortUpdate('dateCreate')">
+          <th mg class="role">{{ 'list.roles.name' | transloco }}</th>
+          <th mg class="date sort" (click)="sortUpdate('dateCreate')">
             {{ 'list.date' | transloco }}
             @if (sort === 'dateCreate') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="classements">{{ 'list.count.classements' | transloco }}</th>
-          <th class="actions">{{ 'list.action.name' | transloco }}</th>
+          <th mg class="classements">{{ 'list.count.classements' | transloco }}</th>
+          <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody mg>
         @for (user of users[page]; track user) {
-          <tr>
-            <td class="status">
+          <tr mg>
+            <td mg class="status">
               @if (!user.deleted) {
                 <span
                   class="icon"
@@ -63,10 +56,10 @@
                 <span class="icon icon-deleted" [title]="'list.status.deleted' | transloco"></span>
               }
             </td>
-            <td class="username" [class.anonymous]="!user.username">
+            <td mg class="username" [class.anonymous]="!user.username">
               {{ user.username || ('list.user.anonymous' | transloco) }}
             </td>
-            <td class="role">
+            <td mg class="role">
               @for (role of user.roles; track role) {
                 <span
                   class="icon"
@@ -77,12 +70,12 @@
                 ></span>
               }
             </td>
-            <td class="date">
+            <td mg class="date">
               <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
               <span>{{ user.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
-            <td class="classements">{{ user.classements?.length || 0 }}</td>
-            <td class="actions">
+            <td mg class="classements">{{ user.classements?.length || 0 }}</td>
+            <td mg class="actions">
               @if (user.classements?.length) {
                 <a (click)="see(user)">{{ 'list.action.see' | transloco }}</a>
               }

@@ -9,13 +9,7 @@
       <div class="list-actions">
         <mg-input class="filter">
           <mg-input-label for="browser-list-filter">{{ 'list.filter' | transloco }}</mg-input-label>
-          <mg-input-text
-            id="browser-list-filter"
-            maxlength="150"
-            [(ngModel)]="filter"
-            [class.empty]="filter === ''"
-            #inputFilter
-          ></mg-input-text>
+          <mg-input-text id="browser-list-filter" maxlength="150" [(ngModel)]="filter" #inputFilter></mg-input-text>
         </mg-input>
       </div>
     </div>
