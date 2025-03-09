@@ -2,8 +2,21 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaMessage, MagmaTable, MagmaTableCell, MagmaTableGroup, MagmaTableRow } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
+import { Select2Option } from 'ng-select2-component';
 
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
@@ -27,6 +40,10 @@ import { categories } from '../classement/classement-default';
         MagmaTableGroup,
         MagmaTableRow,
         MagmaTableCell,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputSelect,
     ],
 })
 export class ListClassementsComponent {
@@ -47,6 +64,7 @@ export class ListClassementsComponent {
 
     class?: Classement;
     catagories = categories;
+    catagoriesList = categories.map<Select2Option>(cat => ({ label: cat, value: cat }));
 
     @Output()
     updateClassements = new EventEmitter<Classement[]>();

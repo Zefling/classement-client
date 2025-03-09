@@ -92,30 +92,35 @@
   }
 </mg-dialog>
 
-<mg-dialog #dialogEditCategory closeButton class="auto-format">
+<mg-dialog #dialogEditCategory closeButton>
   @if (currentClassement) {
     <h3>{{ 'list.category.edit.title' | transloco }}</h3>
+
     <div>
-      <label for="current-cat">{{ 'list.category.current' | transloco }}</label>
-      <input
-        id="current-cat"
-        value="{{ 'category.' + (currentClassement.category || 'undefined') | transloco }}"
-        disabled
-      />
+      <mg-input class="s-6 s-12-s">
+        <mg-input-label>{{ 'list.category.current' | transloco }}</mg-input-label>
+        <mg-input-text
+          value="{{ 'category.' + (currentClassement.category || 'undefined') | transloco }}"
+          disabled
+        ></mg-input-text>
+      </mg-input>
+      <mg-input class="s-6 s-12-s">
+        <mg-input-label>{{ 'list.category.new' | transloco }}</mg-input-label>
+        <mg-input-select
+          #newCategory
+          [value]="currentClassement.category"
+          [data]="catagoriesList"
+          [templates]="templatesModes"
+          overlay
+          ><ng-template #templatesModes let-label="label">{{
+            'category.' + label | transloco
+          }}</ng-template></mg-input-select
+        >
+      </mg-input>
     </div>
-    <div>
-      <label for="new-cat">{{ 'list.category.new' | transloco }} </label>
-      <select id="new-cat" #newCategory>
-        @for (category of catagories; track category) {
-          <option [value]="category" [selected]="currentClassement.category === category">
-            {{ 'category.' + category | transloco }}
-          </option>
-        }
-      </select>
-    </div>
-    <div>
+    <div class="buttons">
       <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | transloco }}</button>
-      <button class="primary" (click)="changeStatusCurrentClassement(newCategory.value, 'category')">
+      <button class="primary" (click)="changeStatusCurrentClassement(newCategory.getValue(), 'category')">
         {{ 'list.category.edit' | transloco }}
       </button>
     </div>
