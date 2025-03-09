@@ -1,7 +1,17 @@
 import { Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MagmaDialog, MagmaMessage, MagmaTabContent, MagmaTabTitle, MagmaTabs } from '@ikilote/magma';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputRadio,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+} from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
@@ -21,11 +31,15 @@ import { Utils } from 'src/app/tools/utils';
         FormsModule,
         TranslocoModule,
         // components
+        ThemeIconComponent,
         MagmaDialog,
         MagmaTabs,
         MagmaTabContent,
         MagmaTabTitle,
-        ThemeIconComponent,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputRadio,
     ],
 })
 export class ClassementThemesManagerComponent implements OnInit {
