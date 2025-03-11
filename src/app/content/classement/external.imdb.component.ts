@@ -12,7 +12,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import { Theme } from 'src/app/interface/interface';
 import { Genres, MovieSearch } from 'src/app/interface/movie';
@@ -35,7 +35,6 @@ import { Utils } from 'src/app/tools/utils';
         MagmaInputSelect,
         FormsModule,
         ReactiveFormsModule,
-        Select2,
         DatePipe,
         TranslocoPipe,
     ],

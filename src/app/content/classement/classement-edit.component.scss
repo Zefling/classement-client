@@ -333,7 +333,6 @@ img {
         grid-template:
             'a a a a a' auto
             '. b e c .' var(--group-option-height, var(--group-option-height-reduce, 35px))
-            'd d d d d' 0
             / 1fr auto 1fr auto 1fr;
         height: 100%;
 
@@ -413,18 +412,6 @@ img {
     }
 }
 
-input.color {
-    display: inline;
-    opacity: 0;
-    margin: auto;
-    width: 0.1px;
-    height: 0.1px;
-}
-
-.colors {
-    grid-area: d;
-}
-
 .group-options {
     display: none;
 }
@@ -466,6 +453,10 @@ span.group-options {
     bottom: 0;
     padding: 2px;
     color: var(--alert-color);
+}
+
+.auto-save {
+    text-align: center;
 }
 
 /* text only */

@@ -135,7 +135,7 @@
   <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
 </mg-dialog>
 
-<mg-dialog #dialogDelete class="auto-format dialog-delete">
+<mg-dialog #dialogDelete class="dialog-delete">
   <p>{{ 'list.delete.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div class="buttons">
@@ -147,22 +147,26 @@
 <mg-dialog #dialogClone class="auto-format dialog-clone">
   <p>{{ 'list.clone.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
-  <div>
-    <label for="clone-title">{{ 'list.clone.title' | transloco }}</label>
-    <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
-  </div>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="changeTemplate" />
-    {{ 'list.clone.new.template' | transloco }}
-  </label>
+  <div>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'list.clone.title' | transloco }}</mg-input-label>
+      <mg-input-text maxlength="150" [value]="itemCurrent?.options?.title" #title></mg-input-text>
+    </mg-input>
+
+    <mg-input class="s-12">
+      <mg-input-checkbox maxlength="150" [(ngModel)]="changeTemplate">{{
+        'list.clone.new.template' | transloco
+      }}</mg-input-checkbox>
+    </mg-input>
+  </div>
 
   <div class="buttons">
     <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | transloco }}</button>
-    <button class="primary" (click)="cloneCurrent(true, title.value)">
+    <button class="primary" (click)="cloneCurrent(true, title.getValue())">
       {{ 'list.clone.validate' | transloco }}
     </button>
-    <button class="primary" (click)="cloneCurrent(true, title.value, true)">
+    <button class="primary" (click)="cloneCurrent(true, title.getValue(), true)">
       {{ 'list.clone.edit' | transloco }}
     </button>
   </div>

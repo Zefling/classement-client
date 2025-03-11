@@ -97,34 +97,18 @@
                       ></span>
                       <span
                         class="color bg-color icon-background-color"
-                        (click)="inputBgColor.click()"
-                        (keydown.enter)="inputBgColor.click()"
+                        [colorPicker]="group.bgColor"
+                        colorPickerAlpha
+                        (colorClose)="group.bgColor = $event"
                         tabindex="0"
                       ></span>
                       <span
                         class="color txt-color icon-text-color"
-                        (click)="inputTxtColor.click()"
-                        (keydown.enter)="inputTxtColor.click()"
+                        [colorPicker]="group.txtColor"
+                        colorPickerAlpha
+                        (colorClose)="group.txtColor = $event"
                         tabindex="0"
                       ></span>
-                      <div class="colors">
-                        <input
-                          class="color"
-                          type="color"
-                          [(ngModel)]="group.bgColor"
-                          (ngModelChange)="globalChange()"
-                          tabindex="-1"
-                          #inputBgColor
-                        />
-                        <input
-                          class="color"
-                          type="color"
-                          [(ngModel)]="group.txtColor"
-                          (ngModelChange)="globalChange()"
-                          tabindex="-1"
-                          #inputTxtColor
-                        />
-                      </div>
                     </div>
                   </td>
                   <td class="elements">
@@ -382,34 +366,18 @@
                         ></span>
                         <span
                           class="color bg-color icon-background-color"
-                          (click)="inputBgColor.click()"
-                          (keydown.enter)="inputBgColor.click()"
+                          [colorPicker]="group.bgColor"
+                          colorPickerAlpha
+                          (colorClose)="group.bgColor = $event"
                           tabindex="0"
                         ></span>
                         <span
                           class="color txt-color icon-text-color"
-                          (click)="inputTxtColor.click()"
-                          (keydown.enter)="inputTxtColor.click()"
+                          [colorPicker]="group.txtColor"
+                          colorPickerAlpha
+                          (colorClose)="group.txtColor = $event"
                           tabindex="0"
                         ></span>
-                        <div class="colors">
-                          <input
-                            class="color"
-                            type="color"
-                            [(ngModel)]="group.bgColor"
-                            (ngModelChange)="globalChange()"
-                            tabindex="-1"
-                            #inputBgColor
-                          />
-                          <input
-                            class="color"
-                            type="color"
-                            [(ngModel)]="group.txtColor"
-                            (ngModelChange)="globalChange()"
-                            tabindex="-1"
-                            #inputTxtColor
-                          />
-                        </div>
                       </div>
                     </td>
                   }
@@ -649,10 +617,11 @@
           {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
         @if (options && hasItems) {
-          <label class="line">
-            <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-            {{ 'generator.actions.save.local.auto' | transloco }}
-          </label>
+          <mg-input class="auto-save">
+            <mg-input-checkbox [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()">{{
+              'generator.actions.save.local.auto' | transloco
+            }}</mg-input-checkbox>
+          </mg-input>
         }
       </div>
       @if (modeApi()) {
@@ -815,8 +784,18 @@
 <mg-dialog class="auto-format" #dialogGroupOption>
   @if (currentGroup) {
     <div class="colors-options">
-      <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
-      <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
+      <span
+        class="color txt-color icon-text-color group-options"
+        [colorPicker]="currentGroup.group.txtColor"
+        colorPickerAlpha
+        (colorClose)="currentGroup.group.txtColor = $event"
+      ></span>
+      <span
+        class="color bg-color icon-background-color group-options"
+        [colorPicker]="currentGroup.group.bgColor"
+        colorPickerAlpha
+        (colorClose)="currentGroup.group.bgColor = $event"
+      ></span>
       <label class="name" [style.background-color]="currentGroup.group.bgColor">
         <div class="auto-resize" [attr.data-value]="input?.value">
           <textarea
@@ -830,22 +809,7 @@
         </div>
       </label>
     </div>
-    <div class="colors">
-      <input
-        class="color group-options"
-        type="color"
-        [(ngModel)]="currentGroup.group.bgColor"
-        (ngModelChange)="globalChange()"
-        #inputBgColorGroup
-      />
-      <input
-        class="color group-options"
-        type="color"
-        [(ngModel)]="currentGroup.group.txtColor"
-        (ngModelChange)="globalChange()"
-        #inputTxtColorGroup
-      />
-    </div>
+
     <div class="button-actions">
       @if (!currentGroup.first) {
         <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp)">↑</button>
