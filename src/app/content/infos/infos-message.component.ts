@@ -84,8 +84,7 @@ export class InfosMessageComponent {
     }
 
     send() {
-        this.formConfig.updateValueAndValidity({ onlySelf: true });
-        this.formConfig.markAllAsTouched();
+        this.fbe.validateForm(this.formConfig);
         if (this.formConfig.valid) {
             this.userService
                 .sendToAdmin(this.formConfig.value as { username: string; email: string; message: string })
