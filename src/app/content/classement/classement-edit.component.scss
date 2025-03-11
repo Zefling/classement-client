@@ -593,6 +593,7 @@ span.group-options {
     font-size: 75%;
     text-align: center;
     --ics: var(--input-color-shadow);
+    padding: 0;
     text-shadow:
         0 -1px var(--ics),
         0 1px var(--ics),
