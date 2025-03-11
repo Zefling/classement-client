@@ -59,6 +59,8 @@ body.dark-mode {
 }
 
 body {
+    --input-mark-top: -4px;
+
     /* global */
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
     --header-background: var(--primary9);
