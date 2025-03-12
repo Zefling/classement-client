@@ -87,6 +87,7 @@
               formControlName="mode"
               displaySearchStatus="hidden"
               overlay
+              listPosition="auto"
               ><ng-template #templatesModes let-label="label">
                 {{ 'mode.name.' + label | transloco }}
               </ng-template>
@@ -102,6 +103,7 @@
                 formControlName="theme"
                 displaySearchStatus="hidden"
                 overlay
+                listPosition="auto"
                 ><ng-template #themesTemplate let-label="label">
                   {{ 'generator.theme.name.' + label | transloco }}
                 </ng-template>

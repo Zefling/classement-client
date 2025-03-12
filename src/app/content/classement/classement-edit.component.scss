@@ -19,12 +19,13 @@
 }
 
 .classement-edit {
-    display: grid;
-    grid-template:
-        'a b' 3em
-        'c c'
-        'd d'
-        'e e' 1fr;
+    .classement-edit-header {
+        display: grid;
+        grid-template:
+            'a b' 3em
+            'c c';
+        width: 100%;
+    }
 
     h2 {
         grid-area: a;
@@ -35,12 +36,6 @@
     }
     classement-options {
         grid-area: c;
-    }
-    .edit-zone {
-        grid-area: d;
-    }
-    .actions {
-        grid-area: e;
     }
 }
 
@@ -957,6 +952,29 @@ loading-cmp {
 @media screen and (width < 1024px) {
     :host {
         margin: 0 0 30px 0;
+
+        & > div {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    h2 {
+        flex: 1;
+    }
+
+    :is(.mode-axis, .mode-iceberg, .mode-bingo) {
+        width: 100%;
+
+        & > div {
+            width: 100%;
+            overflow: auto;
+        }
+    }
+
+    .edit-zone,
+    :is(.mode-teams, .mode-columns) {
+        max-width: 100%;
     }
 
     .current-list {
@@ -967,7 +985,7 @@ loading-cmp {
         overflow: auto;
     }
 
-    .drop-list {
+    #list.drop-list {
         flex-wrap: nowrap;
         overflow: visible;
     }
@@ -994,7 +1012,7 @@ loading-cmp {
 
     .mode-bingo,
     .mode-axis,
-    .mode-column,
+    .mode-columns,
     .mode-default,
     .mode-iceberg,
     .mode-teams {
@@ -1004,7 +1022,7 @@ loading-cmp {
 
 @media screen and (width < 768px) {
     .drop-image-message {
-        font-size: 60%;
+        font-size: 80%;
     }
 
     .names {

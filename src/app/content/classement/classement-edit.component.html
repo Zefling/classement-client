@@ -7,34 +7,36 @@
   drop-image
   [disabled]="dialogSaveServer?._open || advance?.dialogAdvancedOptions()?._open || editImage?._open || false"
 >
-  <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
+  <div class="classement-edit-header">
+    <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
-  <div class="top-actions">
-    @if (modeApi() && classement && classement.templateTotal > 1) {
-      <div class="server-api">
-        <button class="button-add primary" (click)="toTemplateNavigation()">
-          {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
-        </button>
-        @if (derivatives && derivatives.length > 1) {
-          <button class="button-add primary" (click)="showDerivative()">
-            {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
+    <div class="top-actions">
+      @if (modeApi() && classement && classement.templateTotal > 1) {
+        <div class="server-api">
+          <button class="button-add primary" (click)="toTemplateNavigation()">
+            {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
+          </button>
+          @if (derivatives && derivatives.length > 1) {
+            <button class="button-add primary" (click)="showDerivative()">
+              {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
+            </button>
+          }
+          <button class="button-add primary" (click)="showRankingDiff()">
+            {{ 'generator.ranking.diff' | transloco }}
+          </button>
+        </div>
+      }
+      <div class="client-api">
+        @if (imdbActive) {
+          <button class="button-add primary" (click)="imdb().open()">
+            {{ 'IMDB' | transloco }}
           </button>
         }
-        <button class="button-add primary" (click)="showRankingDiff()">
-          {{ 'generator.ranking.diff' | transloco }}
-        </button>
       </div>
-    }
-    <div class="client-api">
-      @if (imdbActive) {
-        <button class="button-add primary" (click)="imdb().open()">
-          {{ 'IMDB' | transloco }}
-        </button>
-      }
     </div>
-  </div>
 
-  <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
+    <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
+  </div>
 
   @if (options) {
     <div class="edit-zone" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
