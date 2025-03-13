@@ -1,5 +1,14 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, computed, inject, viewChild } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    computed,
+    inject,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -12,12 +21,13 @@ import {
     MagmaInputPassword,
     MagmaMessage,
     MagmaMessageType,
+    MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { Classement, ClassementHistory, ScreenMode } from 'src/app/interface/interface';
+import { Classement, ClassementHistory, FileString, Options, ScreenMode } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -53,6 +63,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputPassword,
+        MagmaTooltipDirective,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
@@ -66,11 +77,14 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly meta = inject(Meta);
+    protected readonly cd = inject(ChangeDetectorRef);
 
     classement?: Classement;
     myClassement?: Classement;
     myClassements?: Classement[];
     myClassementCount = 0;
+
+    emptyGroups = false;
 
     loading = false;
 
@@ -204,6 +218,8 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     loadClassement(classement: Classement) {
         this.classement = classement;
+
+        this.emptyGroups = classement.data.groups.reduce<number>((val, group) => val + group.list.length, 0) === 0;
 
         Utils.formattedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
 
@@ -366,6 +382,12 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     saveImage(type: FileFormatExport) {
         this.global.saveImage(this.canvas, this.getFileName(), type);
+    }
+
+    calcWidth(options: Options, item: FileString, element: HTMLElement | null) {
+        // hack for calcule de width of the image
+        Utils.calcWidth(options, item, element);
+        return true;
     }
 
     private getFileName(): string {

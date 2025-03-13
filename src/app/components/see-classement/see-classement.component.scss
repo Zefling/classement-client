@@ -342,15 +342,6 @@ img {
     }
 }
 
-.title-item-width-auto {
-    text-align: center;
-
-    span {
-        display: inline-block;
-        white-space: nowrap;
-    }
-}
-
 .render:has(> #preview-element) {
     max-width: 100%;
     overflow: auto;
