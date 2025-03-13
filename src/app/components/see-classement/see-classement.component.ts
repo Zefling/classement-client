@@ -23,7 +23,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { Select2Option } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Subject, debounceTime } from 'rxjs';
 
@@ -174,8 +174,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
         this.sub.clear();
     }
 
-    updateIconStyle(type: Select2UpdateEvent<Select2UpdateValue>) {
-        this.dataService.saveOption('bingo', this.id(), { checkChoice: type.value as string });
+    updateIconStyle(type: string) {
+        this.dataService.saveOption('bingo', this.id(), { checkChoice: type });
     }
 
     bingoToggleCheck(group: number, item: number) {
