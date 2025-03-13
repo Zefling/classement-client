@@ -163,6 +163,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
 
     ngOnDestroy() {
         this.sub.clear();
+        this.globalService.changeHelpComponent();
     }
 
     updateIconStyle(type: Select2UpdateEvent<Select2UpdateValue>) {
