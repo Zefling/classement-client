@@ -89,8 +89,8 @@
     },
     "groups.title": "グループ",
     "group": {
-      "title": "追加",
       "new.line": {
+        "title": "追加",
         "below": "以下に追加",
         "above": "以下に追加",
         "ask.me": "何が欲しいか聞いてください"
@@ -102,11 +102,14 @@
         "hidden": "非表示: オプションは表示されず、このモードではグループを編集できません"
       }
     },
+    "other": {
+      "title": "デフォルト"
+    },
     "mode": {
-      "title": "デフォルトモード"
+      "title": "モード"
     },
     "theme": {
-      "title": "デフォルトのテーマ"
+      "title": "のテーマ"
     },
     "navigation": {
       "title": "ブラウズ",
@@ -293,7 +296,6 @@
       "cancel": "キャンセル",
       "title": "ランキングのタイトル：",
       "title.color": "タイトルのテキストの色：",
-      "title.opacity": "タイトルのテキストの不透明度：",
       "group": "カテゴリー：",
       "description": "説明:",
       "mode": "モード:",
@@ -326,16 +328,13 @@
         "border": "タイルボーダー",
         "margin": "タイルマージン",
         "background.color": "タイルの背景の色：",
-        "background.opacity": "タイルの背景の不透明度：",
         "border.color": "タイルのボーダーの色：",
-        "border.opacity": "タイルのボーダーの不透明度：",
         "text": {
           "size": "タイルのテキストのサイズ：",
           "only.size": "画像がない場合のテキストのサイズ:",
           "color": "タイルのテキストの色：",
           "opacity": "タイルのテキストの不透明度：",
           "background.color": "テキストの背景の色：",
-          "background.opacity": "テキストの背景の不透明度：",
           "position": "タイル内のテキストの位置：",
           "position.bottom": "下部に",
           "position.bottom.float": "フローティング下部に",
@@ -353,16 +352,13 @@
       "line": {
         "title": "ラインのオプション",
         "background.color": "ラインの背景の色：",
-        "background.opacity": "ラインの背景の不透明度：",
         "border.color": "ラインボーダーの色：",
         "border.opacity": "ラインボーダーの不透明度："
       },
       "column": {
         "title": "カラムのオプション",
         "background.color": "カラムの背景の色：",
-        "background.opacity": "カラムの背景の不透明度：",
         "border.color": "カラムボーダーの色：",
-        "border.opacity": "カラムボーダーの不透明度：",
         "min.height": "カラムの最小高さ："
       },
       "global": {
@@ -720,10 +716,15 @@
     "login": {
       "title": "ログインする",
       "username": "ユーザー名",
+      "username.required": "ユーザー名は必須です。",
       "password": "パスワード",
       "password.bis": "パスワード（確認）",
+      "password.required": "パスワードが必要です。",
+      "password.minlength": "パスワードのサイズが無効です。",
       "login": "ログイン",
       "email": "電子メール",
+      "email.required": "この電子メールが必要です。",
+      "email.email": "この電子メールは無効です。",
       "password.lost": "パスワードを紛失してしまいました",
       "signup": "アカウントを作成する",
       "oauth": {
@@ -844,7 +845,15 @@
         "email": "メール",
         "message": "メッセージ",
         "required": "必須フィールド",
-        "send": "送信する"
+        "send": "送信する",
+        "erreur": {
+          "username.required": "ユーザー名が必要です。",
+          "email.required": "電子メールが必要です。",
+          "email.email": "この電子メールは無効です。",
+          "message.required": "メッセージが必要です。",
+          "message.minlength": "最小の長さは{requiredLength}文字です。",
+          "message.maxLength": "最大の長さは{requiredLength}文字です。"
+        }
       }
     }
   },
@@ -857,6 +866,7 @@
     "title": "タイトル",
     "category": "カテゴリー",
     "categories": "カテゴリー",
+    "mode": "モード",
     "classements": "ランキング",
     "see.derivatives": "他のバージョンのランキングを見る",
     "count.derivatives": "バージョンのランキング:",

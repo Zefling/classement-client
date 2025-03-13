@@ -11,7 +11,7 @@
     flex: 5 5 300px;
 }
 
-dialog-cmp {
+mg-dialog {
     label,
     .label {
         display: block;
@@ -54,6 +54,36 @@ dialog-cmp {
     text-align: center;
 }
 
-dialog-cmp list-classements {
+mg-dialog list-classements {
     margin: 0 -30px;
+}
+
+.title {
+    font-weight: 700;
+    text-align: center;
+}
+
+.dialog-action {
+    box-sizing: border-box;
+    padding: 10px;
+    max-width: 700px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.warning {
+    font-style: italic;
+}
+
+.status {
+    position: relative;
+
+    .label {
+        position: absolute;
+        top: -8px;
+        width: 100%;
+        text-align: center;
+    }
 }

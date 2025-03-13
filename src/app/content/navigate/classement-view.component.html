@@ -147,10 +147,11 @@
     </button>
   </div>
   <div class="link-option">
-    <label
-      ><input type="checkbox" [(ngModel)]="showLink" />
-      <span>{{ 'generator.ranking.show.link' | transloco }}</span></label
-    >
+    <mg-input>
+      <mg-input-checkbox mode="toggle" [(ngModel)]="showLink">{{
+        'generator.ranking.show.link' | transloco
+      }}</mg-input-checkbox>
+    </mg-input>
   </div>
   @if (!exportImageDisabled) {
     <see-classement
@@ -198,7 +199,7 @@
   <loader-item></loader-item>
 }
 
-<dialog-cmp class="auto-format" #dialogImage closeButton>
+<mg-dialog class="auto-format" #dialogImage closeButton>
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
@@ -208,9 +209,9 @@
     </span>
   </div>
   <div #image></div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogDerivatives closeButton>
+<mg-dialog #dialogDerivatives closeButton>
   @if (myClassements) {
     <table class="table-derivatives">
       <thead>
@@ -248,13 +249,20 @@
       </tbody>
     </table>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogPassword>
+<mg-dialog class="auto-format" #dialogPassword>
   <div class="button-image-save">
     {{ 'navigate.password.required' | transloco }}
     <div>
-      <input type="password" id="classement-passeword" name="classement-passeword" autocomplete="off" #password />
+      <mg-input>
+        <mg-input-password
+          id="classement-passeword"
+          name="classement-passeword"
+          autocomplete="off"
+          #password
+        ></mg-input-password>
+      </mg-input>
     </div>
     @if (showError) {
       <ul class="list-error">
@@ -263,14 +271,14 @@
     }
     <span>
       <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
-      <button class="button-add primary" (click)="openClassementWithPassword(password.value)">
+      <button class="button-add primary" (click)="openClassementWithPassword(password.getValue()!)">
         {{ 'navigate.password.ok' | transloco }}
       </button>
     </span>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogHistory closeButton>
+<mg-dialog #dialogHistory closeButton>
   @if (classement && history) {
     <table class="table-history">
       <thead>
@@ -306,4 +314,4 @@
       </tbody>
     </table>
   }
-</dialog-cmp>
+</mg-dialog>

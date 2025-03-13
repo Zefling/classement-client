@@ -1,3 +1,5 @@
+import { PreferenceInterfaceTheme } from '@ikilote/magma';
+
 import { TypeFile } from '../services/global.service';
 
 export interface Classement {
@@ -244,7 +246,6 @@ export interface FormattedInfosData {
 
 export type ScreenMode = 'default' | 'enlarge' | 'fullscreen';
 
-export type PreferenceInterfaceTheme = 'dark' | 'light';
 export type PreferenceNewColor = 'mixed' | 'same';
 export type PreferenceNewLine = 'below' | 'above' | 'ask-me';
 export type PreferenceLineOption = 'auto' | 'reduce' | 'hidden';

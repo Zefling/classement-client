@@ -11,12 +11,13 @@ import {
 } from '@angular/core';
 import { Event, Router, Scroll } from '@angular/router';
 
+import { MagmaDialog } from '@ikilote/magma';
+
 import { filter } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { DialogComponent } from './components/dialog/dialog.component';
-import { PreferencesDialogComponent } from './components/preferences/preferences.component';
+import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
@@ -47,10 +48,10 @@ export class AppComponent implements DoCheck {
 
     // viewChild
 
-    readonly warningExit = viewChild.required<DialogComponent>('warningExit');
-    readonly choice = viewChild.required<DialogComponent>('choice');
+    readonly warningExit = viewChild.required<MagmaDialog>('warningExit');
+    readonly choice = viewChild.required<MagmaDialog>('choice');
     readonly main = viewChild.required<ElementRef<HTMLDivElement>>('main');
-    readonly preferences = viewChild.required<PreferencesDialogComponent>('pref');
+    readonly preferences = viewChild.required<PreferencesMagmaDialog>('pref');
 
     // signals
 

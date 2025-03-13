@@ -7,34 +7,36 @@
   drop-image
   [disabled]="dialogSaveServer?._open || advance?.dialogAdvancedOptions()?._open || editImage?._open || false"
 >
-  <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
+  <div class="classement-edit-header">
+    <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
-  <div class="top-actions">
-    @if (modeApi() && classement && classement.templateTotal > 1) {
-      <div class="server-api">
-        <button class="button-add primary" (click)="toTemplateNavigation()">
-          {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
-        </button>
-        @if (derivatives && derivatives.length > 1) {
-          <button class="button-add primary" (click)="showDerivative()">
-            {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
+    <div class="top-actions">
+      @if (modeApi() && classement && classement.templateTotal > 1) {
+        <div class="server-api">
+          <button class="button-add primary" (click)="toTemplateNavigation()">
+            {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
+          </button>
+          @if (derivatives && derivatives.length > 1) {
+            <button class="button-add primary" (click)="showDerivative()">
+              {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
+            </button>
+          }
+          <button class="button-add primary" (click)="showRankingDiff()">
+            {{ 'generator.ranking.diff' | transloco }}
+          </button>
+        </div>
+      }
+      <div class="client-api">
+        @if (imdbActive) {
+          <button class="button-add primary" (click)="imdb().open()">
+            {{ 'IMDB' | transloco }}
           </button>
         }
-        <button class="button-add primary" (click)="showRankingDiff()">
-          {{ 'generator.ranking.diff' | transloco }}
-        </button>
       </div>
-    }
-    <div class="client-api">
-      @if (imdbActive) {
-        <button class="button-add primary" (click)="imdb().open()">
-          {{ 'IMDB' | transloco }}
-        </button>
-      }
     </div>
-  </div>
 
-  <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
+    <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
+  </div>
 
   @if (options) {
     <div class="edit-zone" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
@@ -97,34 +99,18 @@
                       ></span>
                       <span
                         class="color bg-color icon-background-color"
-                        (click)="inputBgColor.click()"
-                        (keydown.enter)="inputBgColor.click()"
+                        [colorPicker]="group.bgColor"
+                        colorPickerAlpha
+                        (colorClose)="group.bgColor = $event"
                         tabindex="0"
                       ></span>
                       <span
                         class="color txt-color icon-text-color"
-                        (click)="inputTxtColor.click()"
-                        (keydown.enter)="inputTxtColor.click()"
+                        [colorPicker]="group.txtColor"
+                        colorPickerAlpha
+                        (colorClose)="group.txtColor = $event"
                         tabindex="0"
                       ></span>
-                      <div class="colors">
-                        <input
-                          class="color"
-                          type="color"
-                          [(ngModel)]="group.bgColor"
-                          (ngModelChange)="globalChange()"
-                          tabindex="-1"
-                          #inputBgColor
-                        />
-                        <input
-                          class="color"
-                          type="color"
-                          [(ngModel)]="group.txtColor"
-                          (ngModelChange)="globalChange()"
-                          tabindex="-1"
-                          #inputTxtColor
-                        />
-                      </div>
                     </div>
                   </td>
                   <td class="elements">
@@ -382,34 +368,18 @@
                         ></span>
                         <span
                           class="color bg-color icon-background-color"
-                          (click)="inputBgColor.click()"
-                          (keydown.enter)="inputBgColor.click()"
+                          [colorPicker]="group.bgColor"
+                          colorPickerAlpha
+                          (colorClose)="group.bgColor = $event"
                           tabindex="0"
                         ></span>
                         <span
                           class="color txt-color icon-text-color"
-                          (click)="inputTxtColor.click()"
-                          (keydown.enter)="inputTxtColor.click()"
+                          [colorPicker]="group.txtColor"
+                          colorPickerAlpha
+                          (colorClose)="group.txtColor = $event"
                           tabindex="0"
                         ></span>
-                        <div class="colors">
-                          <input
-                            class="color"
-                            type="color"
-                            [(ngModel)]="group.bgColor"
-                            (ngModelChange)="globalChange()"
-                            tabindex="-1"
-                            #inputBgColor
-                          />
-                          <input
-                            class="color"
-                            type="color"
-                            [(ngModel)]="group.txtColor"
-                            (ngModelChange)="globalChange()"
-                            tabindex="-1"
-                            #inputTxtColor
-                          />
-                        </div>
                       </div>
                     </td>
                   }
@@ -637,7 +607,7 @@
       <div class="save-actions buttons">
         <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
           {{ 'generator.actions.save.local' | transloco }}
-          <span [tooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
+          <span [mgTooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
         </button>
         <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
           {{ 'generator.actions.export.json' | transloco }}
@@ -649,10 +619,11 @@
           {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
         @if (options && hasItems) {
-          <label class="line">
-            <input type="checkbox" [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()" />
-            {{ 'generator.actions.save.local.auto' | transloco }}
-          </label>
+          <mg-input class="auto-save">
+            <mg-input-checkbox [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()">{{
+              'generator.actions.save.local.auto' | transloco
+            }}</mg-input-checkbox>
+          </mg-input>
         }
       </div>
       @if (modeApi()) {
@@ -680,7 +651,7 @@
   }
 </div>
 
-<dialog-cmp class="auto-format" #dialogImage closeButton>
+<mg-dialog class="auto-format" #dialogImage closeButton>
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
@@ -690,13 +661,13 @@
     </span>
   </div>
   <div #image></div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogImport>
+<mg-dialog class="auto-format" #dialogImport>
   <import-json (load)="importJson($event)"></import-json>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogOptimise closeButton>
+<mg-dialog class="auto-format" #dialogOptimise closeButton>
   @if (dialogOptimise._open) {
     <classement-optimise
       [list]="list"
@@ -705,9 +676,9 @@
       [mode]="options.mode"
     ></classement-optimise>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogSaveServer>
+<mg-dialog #dialogSaveServer>
   @if (logged && dialogSaveServer._open) {
     <classement-save-server
       [classement]="classement"
@@ -718,9 +689,9 @@
       (action)="updateAfterServerSave($event)"
     ></classement-save-server>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogDerivatives closeButton>
+<mg-dialog #dialogDerivatives closeButton>
   @if (derivatives) {
     <table class="table-derivatives">
       <thead>
@@ -755,9 +726,9 @@
       </tbody>
     </table>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="content-diff" #dialogRankingDiff>
+<mg-dialog class="content-diff" #dialogRankingDiff>
   <div class="container">
     @if (diff?.length) {
       <div class="label">
@@ -796,9 +767,9 @@
       </button>
     </div>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogClear>
+<mg-dialog class="auto-format" #dialogClear>
   <p>
     {{ 'generator.actions.reset.groups.question' | transloco }}
   </p>
@@ -810,13 +781,23 @@
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogGroupOption>
+<mg-dialog class="auto-format" #dialogGroupOption>
   @if (currentGroup) {
     <div class="colors-options">
-      <span class="color txt-color icon-text-color group-options" (click)="inputTxtColorGroup.click()"></span>
-      <span class="color bg-color icon-background-color group-options" (click)="inputBgColorGroup.click()"></span>
+      <span
+        class="color txt-color icon-text-color group-options"
+        [colorPicker]="currentGroup.group.txtColor"
+        colorPickerAlpha
+        (colorClose)="currentGroup.group.txtColor = $event"
+      ></span>
+      <span
+        class="color bg-color icon-background-color group-options"
+        [colorPicker]="currentGroup.group.bgColor"
+        colorPickerAlpha
+        (colorClose)="currentGroup.group.bgColor = $event"
+      ></span>
       <label class="name" [style.background-color]="currentGroup.group.bgColor">
         <div class="auto-resize" [attr.data-value]="input?.value">
           <textarea
@@ -830,22 +811,7 @@
         </div>
       </label>
     </div>
-    <div class="colors">
-      <input
-        class="color group-options"
-        type="color"
-        [(ngModel)]="currentGroup.group.bgColor"
-        (ngModelChange)="globalChange()"
-        #inputBgColorGroup
-      />
-      <input
-        class="color group-options"
-        type="color"
-        [(ngModel)]="currentGroup.group.txtColor"
-        (ngModelChange)="globalChange()"
-        #inputTxtColorGroup
-      />
-    </div>
+
     <div class="button-actions">
       @if (!currentGroup.first) {
         <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp)">↑</button>
@@ -871,9 +837,9 @@
       </button>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogTexts>
+<mg-dialog class="auto-format" #dialogTexts>
   <div class="add-text-dialog">
     <label class="name">
       <div>
@@ -892,7 +858,7 @@
       </button>
     </div>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
 <classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage></classement-edit-image>
 

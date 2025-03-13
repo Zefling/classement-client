@@ -15,13 +15,25 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputColor,
+    MagmaInputElement,
+    MagmaInputNumber,
+    MagmaInputRange,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaInputTextarea,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
-import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2Data, Select2Option } from 'ng-select2-component';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import {
     Category,
     FileHandle,
@@ -49,8 +61,11 @@ import {
     imagesIceberg,
     imagesLists,
     imagesThemes,
+    listAlign,
+    listDirection,
     listFonts,
     listModes,
+    listTextPosition,
     themes,
     themesAxis,
     themesBingo,
@@ -67,8 +82,6 @@ import { ClassementThemesComponent } from './classement-themes.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
-import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
     selector: 'classement-options',
@@ -76,17 +89,24 @@ import { TooltipDirective } from '../../directives/tooltip.directive';
     styleUrls: ['./classement-options.component.scss'],
     imports: [
         FormsModule,
-        Select2,
         NgClass,
-        TextareaAutosizeDirective,
-        TooltipDirective,
         TagListComponent,
         ClassementThemesComponent,
-        DialogComponent,
+        ClassementThemesManagerComponent,
         DropImageDirective,
         SeeClassementComponent,
         TranslocoPipe,
-        ClassementThemesManagerComponent,
+        MagmaTooltipDirective,
+        MagmaDialog,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputTextarea,
+        MagmaInputCheckbox,
+        MagmaInputColor,
+        MagmaInputNumber,
+        MagmaInputSelect,
+        MagmaInputRange,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {
@@ -107,12 +127,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     // viewChild
 
     readonly classementThemes = viewChild.required(ClassementThemesComponent);
-    readonly dialogChangeMode = viewChild.required<DialogComponent>('dialogChangeMode');
-    readonly dialogAdvancedOptions = viewChild.required<DialogComponent>('dialogAdvancedOptions');
-    readonly dialogAdvancedOptionsExport = viewChild.required<DialogComponent>('exportDialog');
-    readonly dialogAdvancedOptionsImport = viewChild.required<DialogComponent>('importDialog');
+    readonly dialogChangeMode = viewChild.required<MagmaDialog>('dialogChangeMode');
+    readonly dialogAdvancedOptions = viewChild.required<MagmaDialog>('dialogAdvancedOptions');
+    readonly dialogAdvancedOptionsExport = viewChild.required<MagmaDialog>('exportDialog');
+    readonly dialogAdvancedOptionsImport = viewChild.required<MagmaDialog>('importDialog');
     readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
-    readonly mode = viewChild.required<Select2>('mode');
+    readonly mode = viewChild.required<MagmaInputSelect>('mode');
 
     // template
 
@@ -132,6 +152,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     listMode: Select2Data = listModes;
     fontList: Select2Data = listFonts;
+    textPosition: Select2Data = listTextPosition;
+    directionList: Select2Data = listDirection;
+    alignList: Select2Data = listAlign;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
@@ -301,7 +324,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     modeChange(previous: ModeNames, event: ModeNames) {
-        if (this._previousMode && previous !== event) {
+        if (!this._previousMode || (this._previousMode && previous !== event)) {
             this.dialogChangeMode().open();
         }
         this._previousMode = previous;
@@ -317,6 +340,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.options()!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
         } else {
             this.mode().writeValue(this._previousMode!);
+            this._previousMode = undefined;
         }
         this.dialogChangeMode().close();
     }
@@ -388,54 +412,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 reader.readAsDataURL(data.file);
             }
         }
-    }
-
-    resetItemTextBackground() {
-        const options = this.options()!;
-        options.itemTextBackgroundColor = '';
-        options.itemTextBackgroundOpacity = 100;
-    }
-
-    resetItemBackground() {
-        const options = this.options()!;
-        options.itemBackgroundColor = '';
-        options.itemBackgroundOpacity = 100;
-    }
-
-    resetLineBackground() {
-        const options = this.options()!;
-        options.lineBackgroundColor = '';
-        options.lineBackgroundOpacity = 100;
-    }
-
-    resetLineBorder() {
-        const options = this.options()!;
-        options.lineBorderColor = '';
-        options.lineBorderOpacity = 100;
-    }
-
-    resetItemBorder() {
-        const options = this.options()!;
-        options.itemBorderColor = '';
-        options.itemBorderOpacity = 100;
-    }
-
-    resetItemText() {
-        const options = this.options()!;
-        options.itemTextColor = '';
-        options.itemTextOpacity = 100;
-    }
-
-    resetTitleText() {
-        const options = this.options()!;
-        options.titleTextColor = '';
-        options.titleTextOpacity = 100;
-    }
-
-    resetAxisLine() {
-        const options = this.options()!;
-        options.axisLineColor = '';
-        options.axisLineOpacity = 100;
     }
 
     updateSize(axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth', min: number) {

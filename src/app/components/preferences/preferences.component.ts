@@ -6,11 +6,31 @@ import {
     computed,
     inject,
     output,
+    signal,
     viewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {
+    LightDark,
+    MagmaClickOutsideDirective,
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputNumber,
+    MagmaInputRadio,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaLightDark,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+    PreferenceInterfaceTheme,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
+import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import {
     themes,
@@ -25,14 +45,7 @@ import { Logger } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 
-import { ClickOutsideDirective } from '../../directives/click-outside.directive';
-import { DialogComponent } from '../dialog/dialog.component';
-import { LightDarkComponent } from '../light-dark/light-dark.component';
-import { TabContentComponent } from '../tabs/tab-content.component';
-import { TabTitleComponent } from '../tabs/tab-title.component';
-import { TabsComponent } from '../tabs/tabs.component';
-
-const languages = [
+const languages: Select2Option[] = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
     { value: 'ja', label: '日本語' },
@@ -44,32 +57,40 @@ const languages = [
     styleUrls: ['./preferences.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        DialogComponent,
         FormsModule,
         ReactiveFormsModule,
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
-        LightDarkComponent,
         CdkDropList,
         CdkDrag,
-        ClickOutsideDirective,
         TranslocoPipe,
+        MagmaClickOutsideDirective,
+        MagmaDialog,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
+        MagmaLightDark,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputSelect,
+        MagmaInputNumber,
+        MagmaInputCheckbox,
+        MagmaInputRadio,
     ],
 })
-export class PreferencesDialogComponent {
+export class PreferencesMagmaDialog {
     //inject
 
     private readonly preferencesService = inject(PreferencesService);
     private readonly logger = inject(Logger);
     private readonly translate = inject(TranslocoService);
+    private readonly lightDark = inject(LightDark);
     private readonly globalService = inject(GlobalService);
     private readonly cd = inject(ChangeDetectorRef);
 
     // viewChild
 
-    readonly preferences = viewChild.required<DialogComponent>('preferences');
-    readonly preferencesTabs = viewChild('preferencesTabs', { read: TabsComponent });
+    readonly preferences = viewChild.required<MagmaDialog>('preferences');
+    readonly preferencesTabs = viewChild('preferencesTabs', { read: MagmaTabs });
 
     // output
 
@@ -79,7 +100,8 @@ export class PreferencesDialogComponent {
 
     languages = languages;
 
-    themes? = themes;
+    themes = signal<string[] | undefined>(themes);
+    themesList = computed(() => this.themes()?.map<Select2Option>(theme => ({ value: theme, label: theme })));
 
     emojiList = emojis;
     emojiSort: string[] = [];
@@ -87,6 +109,16 @@ export class PreferencesDialogComponent {
     modeApi = computed(() => this.globalService.withApi());
 
     preferencesForm?: FormGroup;
+
+    modes: Select2Data = [
+        { value: 'choice', label: 'choice' },
+        { value: 'default', label: 'default' },
+        { value: 'teams', label: 'teams' },
+        { value: 'columns', label: 'columns' },
+        { value: 'iceberg', label: 'iceberg' },
+        { value: 'axis', label: 'axis' },
+        { value: 'bingo', label: 'bingo' },
+    ];
 
     constructor() {
         // preferences
@@ -121,24 +153,26 @@ export class PreferencesDialogComponent {
     private initThemeByMode(mode: ModeNames | 'choice', updateThemeValue = true) {
         switch (mode) {
             case 'choice':
-                this.themes = undefined;
+                this.themes.set(undefined);
                 break;
             case 'iceberg':
-                this.themes = themesIceberg;
+                this.themes.set(themesIceberg);
                 break;
             case 'axis':
-                this.themes = themesAxis;
+                this.themes.set(themesAxis);
                 break;
             case 'bingo':
-                this.themes = themesBingo;
+                this.themes.set(themesBingo);
                 break;
             default:
-                this.themes = themesLists;
+                this.themes.set(themesLists);
                 break;
         }
 
+        this.cd.detectChanges();
+
         if (updateThemeValue) {
-            this.preferencesForm!.get('theme')?.setValue(this.themes?.[0]);
+            this.preferencesForm!.get('theme')?.setValue(this.themes()?.[0]);
         }
     }
 
@@ -169,15 +203,18 @@ export class PreferencesDialogComponent {
         }
     }
 
+    changeLightDark(value: PreferenceInterfaceTheme) {
+        this.preferencesForm!.get('interfaceTheme')?.setValue(value);
+    }
+
     private async initPreferences() {
         const initPreferences = await this.preferencesService.init();
 
         // theme
-        this.globalService.userSchema = initPreferences.interfaceTheme;
-        this.globalService.changeThemeClass();
+        this.lightDark.init(initPreferences.interfaceTheme);
 
         // autodetect language
-        const l = languages.filter(i => navigator.language.startsWith(i.value));
+        const l = languages.filter(i => navigator.language.startsWith(i.value as string));
         const selectedLang = l.length ? l[0].value : 'en';
 
         // menu
@@ -187,7 +224,7 @@ export class PreferencesDialogComponent {
 
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
-            interfaceTheme: new FormControl(this.globalService.userSchema),
+            interfaceTheme: new FormControl(this.lightDark.currentTheme()),
             nameCopy: new FormControl(initPreferences.nameCopy),
             newColor: new FormControl(initPreferences.newColor),
             newLine: new FormControl(initPreferences.newLine),

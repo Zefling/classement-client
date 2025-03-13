@@ -89,8 +89,8 @@
     },
     "groups.title": "Groupes",
     "group": {
-      "title": "Ajout",
       "new.line": {
+        "title": "Ajout",
         "below": "Ajouter en dessous",
         "above": "Ajouter au dessus",
         "ask.me": "Me demander"
@@ -102,11 +102,14 @@
         "hidden": "Caché : aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
       }
     },
+    "other": {
+      "title": "Par défaut"
+    },
     "mode": {
-      "title": "Mode par défaut"
+      "title": "Mode"
     },
     "theme": {
-      "title": "Théme par défaut"
+      "title": "Thème"
     },
     "navigation": {
       "title": "Parcourir",
@@ -293,7 +296,6 @@
       "cancel": "Annuler",
       "title": "Titre du classement :",
       "title.color": "Couleur du texte du titre :",
-      "title.opacity": "Opacité du texte du titre :",
       "group": "Catégorie :",
       "description": "Description :",
       "mode": "Mode :",
@@ -326,16 +328,13 @@
         "border": "Bordure d'une tuile",
         "margin": "Marge d'une tuile",
         "background.color": "Couleur du fond d'une tuile :",
-        "background.opacity": "Opacité du fond d'une tuile :",
         "border.color": "Couleur de bordure d'une tuile :",
-        "border.opacity": "Opacité de bordure d'une tuile :",
         "text": {
           "size": "Taille du texte de la tuile :",
           "only.size": "Taille du texte si pas d'image :",
           "color": "Couleur du texte d'une tuile :",
           "opacity": "Opacité du texte d'une tuile :",
           "background.color": "Couleur de fond du texte :",
-          "background.opacity": "Opacité de fond du texte :",
           "position": "Position texte dans la tuile :",
           "position.bottom": "En dessous",
           "position.bottom.float": "En dessous flottant",
@@ -353,16 +352,13 @@
       "line": {
         "title": "Options des lignes",
         "background.color": "Couleur du fond d'une ligne :",
-        "background.opacity": "Opacité du fond d'une ligne :",
         "border.color": "Couleur de bordure d'une ligne :",
         "border.opacity": "Opacité de bordure d'une ligne :"
       },
       "column": {
         "title": "Options des colonnes",
         "background.color": "Couleur du fond d'une colonne :",
-        "background.opacity": "Opacité du fond d'une colonne :",
         "border.color": "Couleur de bordure d'une colonne :",
-        "border.opacity": "Opacité de bordure d'une colonne :",
         "min.height": "Hauteur minimale des colonnes :"
       },
       "global": {
@@ -721,10 +717,15 @@
     "login": {
       "title": "Me connecter",
       "username": "Nom d'utilisateur",
+      "username.required": "Le nom d'utilisateur est requis.",
       "password": "Mot de passe",
       "password.bis": "Mot de passe (confirmation)",
+      "password.required": "Le mot de passe est requis.",
+      "password.minlength": "Taille invalide du mot de passe.",
       "login": "Connexion",
       "email": "Courriel",
+      "email.required": "Ce courriel est requis.",
+      "email.email": "Ce courriel est invalide.",
       "password.lost": "J'ai perdu mon mot de passe",
       "signup": "Créer un compte",
       "oauth": {
@@ -845,7 +846,15 @@
         "email": "Courriel",
         "message": "Message",
         "required": "Champs requis",
-        "send": "Envoyer"
+        "send": "Envoyer",
+        "error": {
+          "username.required": "Le nom d'utilisateur est requis.",
+          "email.required": "Le courriel est requis.",
+          "email.email": "Ce courriel n'est pas valide.",
+          "message.required": "Le message est requis.",
+          "message.minlength": "La longueur minimale est {requiredLength} des caractères.",
+          "message.maxLength": "La longueur maximale est {requiredLength} des caractères."
+        }
       }
     }
   },
@@ -857,6 +866,7 @@
     "back.search": "Revenir à la recherche",
     "title": "Titre",
     "category": "Catégorie",
+    "mode": "Mode",
     "categories": "Catégories",
     "classements": "Classements",
     "see.derivatives": "Voir les autres versions du classement",

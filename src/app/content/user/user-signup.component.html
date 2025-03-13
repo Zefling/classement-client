@@ -1,44 +1,51 @@
 <h1>{{ 'user.signup.title' | transloco }}</h1>
 
-<form class="form">
-  <ng-container [formGroup]="profileForm">
-    <label for="username">{{ 'user.login.username' | transloco }}</label>
-    <input id="username" type="text" formControlName="username" #username />
-    <div class="level-strong">
-      @if (username.value) {
-        <span class="strong" [class.error-block]="usernameExist"></span>
-      }
-    </div>
-
-    <label for="password">{{ 'user.login.password' | transloco }}</label>
-    <input id="password" type="password" spellcheck="false" formControlName="password" />
-    <div class="level-strong">
-      @if (!strong) {
-        @for (lvl of passedTests; track lvl) {
-          <span [style.--level]="lvl"></span>
+<form class="form" [formGroup]="profileForm">
+  <div>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="username"></mg-input-text>
+      <mg-input-desc class="level-strong">
+        @if (profileForm.value.username) {
+          <span class="strong" [class.error-block]="usernameExist"></span>
         }
-      }
-      @if (strong) {
-        <span class="strong"></span>
-      }
-    </div>
+      </mg-input-desc>
+    </mg-input>
 
-    <label for="password2">{{ 'user.login.password.bis' | transloco }}</label>
-    <input id="password2" type="password" spellcheck="false" formControlName="password2" />
-    <div class="level-strong">
-      @if (confirm) {
-        <span class="strong"></span>
-      }
-    </div>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
+      <mg-input-password formControlName="password" eye></mg-input-password>
+      <mg-input-desc class="level-strong">
+        @if (!strong) {
+          @for (lvl of passedTests; track lvl) {
+            <span [style.--level]="lvl"></span>
+          }
+        } @else {
+          <span class="strong"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
 
-    <label for="email">{{ 'user.login.email' | transloco }}</label>
-    <input id="email" type="email" formControlName="email" #email />
-    <div class="level-strong">
-      @if (email.value) {
-        <span class="strong" [class.error-block]="emailExist || emailInvalide"></span>
-      }
-    </div>
-  </ng-container>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.password.bis' | transloco }}</mg-input-label>
+      <mg-input-password formControlName="password2" eye></mg-input-password>
+      <mg-input-desc class="level-strong">
+        @if (confirm) {
+          <span class="strong"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
+
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="email"></mg-input-text>
+      <mg-input-desc class="level-strong">
+        @if (profileForm.value.email) {
+          <span class="strong" [class.error-block]="emailExist || emailInvalide"></span>
+        }
+      </mg-input-desc>
+    </mg-input>
+  </div>
 
   @if (showError.length) {
     <ul class="list-error">

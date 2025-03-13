@@ -3,16 +3,23 @@ import { Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/co
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaMessageType,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { FileHandle, Theme, User } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -34,17 +41,21 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         RouterLink,
         RouterLinkActive,
         NavigateResultComponent,
-        DialogComponent,
+        MagmaDialog,
         FormsModule,
         ReactiveFormsModule,
         DropImageDirective,
         ImageCropperComponent,
         DatePipe,
         TranslocoPipe,
-        TabsComponent,
-        TabTitleComponent,
-        TabContentComponent,
+        MagmaTabs,
+        MagmaTabTitle,
+        MagmaTabContent,
         ThemeIconComponent,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputPassword,
     ],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {
@@ -59,11 +70,11 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     listener = Subscriptions.instance();
 
-    avatarDialog = viewChild.required<DialogComponent>('avatarDialog');
-    dialogChangePassword = viewChild.required<DialogComponent>('dialogChangePassword');
-    dialogChangeUsername = viewChild.required<DialogComponent>('dialogChangeUsername');
-    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
-    dialogChangeEmail = viewChild.required<DialogComponent>('dialogChangeEmail');
+    avatarDialog = viewChild.required<MagmaDialog>('avatarDialog');
+    dialogChangePassword = viewChild.required<MagmaDialog>('dialogChangePassword');
+    dialogChangeUsername = viewChild.required<MagmaDialog>('dialogChangeUsername');
+    dialogRemoveProfile = viewChild.required<MagmaDialog>('dialogRemoveProfile');
+    dialogChangeEmail = viewChild.required<MagmaDialog>('dialogChangeEmail');
 
     avatarInput = viewChild.required<ElementRef<HTMLInputElement>>('avatarInput');
 
@@ -80,10 +91,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     constructor() {
         const userService = inject(APIUserService);
-        const messageService = inject(MessageService);
+        const mgMessage = inject(MagmaMessage);
         const translate = inject(TranslocoService);
 
-        super(userService, messageService, translate);
+        super(userService, mgMessage, translate);
 
         this.updateTitle();
 
@@ -231,10 +242,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .update(value.passwordOld, value.password, 'password')
                 .then(() => {
                     this.dialogChangePassword().close();
-                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.server.update.password.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 });
         }
     }
@@ -247,10 +258,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .update(value.emailOld, value.emailNew, 'email')
                 .then(() => {
                     this.dialogChangePassword().close();
-                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.server.update.password.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 });
         } else if (!value.emailOld && !value.emailNew) {
             this.showError[0] = this.translate.translate('error.email.old.invalid');
@@ -266,10 +277,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 .then(() => {
                     this.dialogChangeUsername().close();
                     this.user!.username = value.username;
-                    this.messageService.addMessage(this.translate.translate('message.user.username.update.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.user.username.update.success'));
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 });
         }
     }
@@ -284,11 +295,11 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
             .then(() => {
                 this.userService.reset();
                 this.dialogRemoveProfile().close();
-                this.messageService.addMessage(this.translate.translate('message.user.remove.success'));
+                this.mgMessage.addMessage(this.translate.translate('message.user.remove.success'));
                 this.router.navigate(['/user/login']);
             })
             .catch(e => {
-                this.messageService.addMessage(e, { type: MessageType.error });
+                this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
             });
     }
 
@@ -343,10 +354,10 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
                 this.user!.avatarUrl = data.url ? data.url + '?time=' + new Date().getTime() : undefined;
 
                 this.avatarDialog().close();
-                this.messageService.addMessage(this.translate.translate('message.user.avatar.update.success'));
+                this.mgMessage.addMessage(this.translate.translate('message.user.avatar.update.success'));
             })
             .catch(e => {
-                this.messageService.addMessage(e, { type: MessageType.error });
+                this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
             });
     }
 }

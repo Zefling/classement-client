@@ -91,7 +91,5 @@ export class CdkDragElement<T = any> extends CdkDrag {
             _selfHandle,
             _parentDrag,
         );
-
-        console.log('init');
     }
 }

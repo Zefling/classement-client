@@ -2,22 +2,15 @@
 
 @if (categoriesList) {
   <form class="search" (submit)="submit()">
-    <div class="name">
-      <label>{{ 'navigate.title' | transloco }}</label>
-      <input
-        type="search"
-        name="searchKey"
-        [(ngModel)]="searchKey"
-        #filterInput
-        [class.empty]="searchKey === '' || searchKey === undefined"
-      />
-      <span (click)="resteFilter(filterInput)"></span>
-    </div>
+    <mg-input class="name">
+      <mg-input-label>{{ 'navigate.title' | transloco }}</mg-input-label>
+      <mg-input-text name="searchKey" [(ngModel)]="searchKey" #filterInput clearCross></mg-input-text>
+    </mg-input>
     <div class="line">
-      <div class="categories">
-        <label>{{ 'navigate.category' | transloco }}</label>
-        <select2 name="category" [data]="categoriesList" [(ngModel)]="category"> </select2>
-      </div>
+      <mg-input class="categories">
+        <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
+        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category"></mg-input-select>
+      </mg-input>
       <button type="submit">{{ 'navigate.search' | transloco }}</button>
     </div>
   </form>
@@ -28,7 +21,7 @@
 } @else {
   @if (classements[page] && classements[page].length) {
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/classements"></mg-paginate>
     }
     <list-classements
       [classements]="classements[page]"
@@ -38,7 +31,7 @@
       (sortUpdate)="sortUpdate($event)"
     ></list-classements>
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/classements"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/classements"></mg-paginate>
     }
   } @else {
     <p class="no-result">{{ 'list.no.result' | transloco }}</p>

@@ -1,13 +1,19 @@
 import { Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputRadio,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaTabContent,
+    MagmaTabTitle,
+    MagmaTabs,
+} from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { TabContentComponent } from 'src/app/components/tabs/tab-content.component';
-import { TabTitleComponent } from 'src/app/components/tabs/tab-title.component';
-import { TabsComponent } from 'src/app/components/tabs/tabs.component';
 import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
 import { Options, Theme, User } from 'src/app/interface/interface';
 import { APIThemeService } from 'src/app/services/api.theme.service';
@@ -25,11 +31,15 @@ import { Utils } from 'src/app/tools/utils';
         FormsModule,
         TranslocoModule,
         // components
-        DialogComponent,
-        TabsComponent,
-        TabContentComponent,
-        TabTitleComponent,
         ThemeIconComponent,
+        MagmaDialog,
+        MagmaTabs,
+        MagmaTabContent,
+        MagmaTabTitle,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputRadio,
     ],
 })
 export class ClassementThemesManagerComponent implements OnInit {
@@ -37,7 +47,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     private readonly globalService = inject(GlobalService);
     private readonly dbService = inject(DBService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly userService = inject(APIUserService);
     private readonly themeService = inject(APIThemeService);
     private readonly translate = inject(TranslocoService);
@@ -49,7 +59,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     // viewChild
 
-    exportDialog = viewChild.required<DialogComponent>('exportDialog');
+    exportDialog = viewChild.required<MagmaDialog>('exportDialog');
 
     // template
 
@@ -131,7 +141,7 @@ export class ClassementThemesManagerComponent implements OnInit {
         const theme = await this.dbService.saveLocalTheme(this.optionToTheme(this.themeCurrent()));
         this.themeId = theme.id;
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.browser.save.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.browser.save.success'));
     }
 
     async updateBrowser() {
@@ -141,14 +151,14 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.selectedTheme!.options = this.options();
         await this.dbService.saveLocalTheme(this.selectedTheme!);
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.browser.update.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.browser.update.success'));
     }
 
     async removeBrowser() {
         await this.dbService.deleteLocalTheme(this.selectedTheme!.id);
         this.themeBrowser.splice(this.themeBrowser.indexOf(this.selectedTheme!), 1);
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
     }
 
     async saveServer() {
@@ -159,7 +169,7 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.user!.themes?.push(data);
         this.themeId = theme.id;
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.account.save.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.account.save.success'));
         this.themeName = '';
         this.selectedTheme = undefined;
     }
@@ -173,7 +183,7 @@ export class ClassementThemesManagerComponent implements OnInit {
         this.user!.themes![index] = data;
         this.themeId = theme.id;
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.account.update.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.account.update.success'));
         this.themeName = '';
         this.selectedTheme = undefined;
     }
@@ -182,7 +192,7 @@ export class ClassementThemesManagerComponent implements OnInit {
         await this.themeService.deleteTheme(this.selectedTheme!.id);
         this.user!.themes!.splice(this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!, 1);
         this.exportDialog().close();
-        this.messageService.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
+        this.mgMessage.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
     }
 
     export() {

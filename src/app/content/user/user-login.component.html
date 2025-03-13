@@ -1,16 +1,16 @@
 <h1>{{ 'user.login.title' | transloco }}</h1>
 
-<form class="form">
-  <label for="username">{{ 'user.login.username' | transloco }}</label>
-  <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
-  <label for="password">{{ 'user.login.password' | transloco }}</label>
-  <input
-    id="password"
-    type="password"
-    spellcheck="false"
-    [(ngModel)]="password"
-    [ngModelOptions]="{ standalone: true }"
-  />
+<form class="form" [formGroup]="formLogin">
+  <div>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
+      <mg-input-text formControlName="username"></mg-input-text>
+    </mg-input>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
+      <mg-input-password formControlName="password" eye></mg-input-password>
+    </mg-input>
+  </div>
 
   @if (showError) {
     <div class="list-error">

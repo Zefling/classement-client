@@ -411,18 +411,16 @@ export class APIUserService extends APICommon {
         });
     }
 
-    sendToAdmin(username: string, email: string, message: string): Promise<void> {
+    sendToAdmin(params: { username: string; email: string; message: string }): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http
-                .post<Message<void>>(`${environment.api.path}api/contact`, { username, email, message })
-                .subscribe({
-                    next: _ => {
-                        resolve();
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        reject(this.error('sendToAdmin', result));
-                    },
-                });
+            this.http.post<Message<void>>(`${environment.api.path}api/contact`, params).subscribe({
+                next: _ => {
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('sendToAdmin', result));
+                },
+            });
         });
     }
 }

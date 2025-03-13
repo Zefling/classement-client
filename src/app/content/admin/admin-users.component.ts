@@ -3,10 +3,23 @@ import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaMessageType,
+    MagmaPagination,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -17,7 +30,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { ListClassementsComponent } from './list-classements.component';
 
 import { LoadingComponent } from '../../components/loader/loading.component';
-import { PaginationComponent } from '../../components/paginate/paginate.component';
 
 @Component({
     selector: 'admin-users',
@@ -26,18 +38,27 @@ import { PaginationComponent } from '../../components/paginate/paginate.componen
     imports: [
         FormsModule,
         LoadingComponent,
-        PaginationComponent,
-        DialogComponent,
         ListClassementsComponent,
         ReactiveFormsModule,
         DatePipe,
         TranslocoPipe,
+        MagmaPagination,
+        MagmaDialog,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
+        MagmaInput,
+        MagmaInputText,
+        MagmaInputPassword,
+        MagmaInputCheckbox,
+        MagmaInputElement,
     ],
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly route = inject(ActivatedRoute);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly logger = inject(Logger);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
@@ -55,9 +76,9 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
     sort: SortUserCol = 'dateCreate';
     direction: SortDirection = 'DESC';
 
-    dialogListClassements = viewChild.required<DialogComponent>('dialogListClassements');
-    dialogRemoveProfile = viewChild.required<DialogComponent>('dialogRemoveProfile');
-    dialogActionsUser = viewChild.required<DialogComponent>('dialogActionsUser');
+    dialogListClassements = viewChild.required<MagmaDialog>('dialogListClassements');
+    dialogRemoveProfile = viewChild.required<MagmaDialog>('dialogRemoveProfile');
+    dialogActionsUser = viewChild.required<MagmaDialog>('dialogActionsUser');
 
     currentUser?: User;
     userForm?: FormGroup;
@@ -175,7 +196,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
             .adminUpdateUser(this.currentUser!.id, this.userForm?.value)
             .then(user => {
                 Object.assign(this.currentUser!, user);
-                this.messageService.addMessage(this.translate.translate('message.user.update.success'));
+                this.mgMessage.addMessage(this.translate.translate('message.user.update.success'));
                 this.changeStatusCancel();
             })
             .catch(e => {
@@ -202,10 +223,10 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 this.currentUser!.username = '';
                 this.currentUser!.roles = [];
                 this.cancelRemoveProfile();
-                this.messageService.addMessage(this.translate.translate('message.user.remove.success'));
+                this.mgMessage.addMessage(this.translate.translate('message.user.remove.success'));
             })
             .catch(e => {
-                this.messageService.addMessage(e, { type: MessageType.error });
+                this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
             });
     }
 

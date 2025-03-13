@@ -1,148 +1,164 @@
-<dialog-cmp class="auto-format" #dialogInfo closeButton (onClose)="_open = false">
+<mg-dialog #dialogInfo closeButton (onClose)="_open = false">
   @let cTile = currentTile();
-
   @if (cTile) {
-    <div>
-      <label for="ranking-title">{{ 'generator.ranking.title' | transloco }}</label> <br />
-      <input
-        maxlength="150"
-        id="ranking-title"
-        type="text"
-        [(ngModel)]="cTile.title"
-        (ngModelChange)="detectChanges()"
-      />
-    </div>
-    <div>
-      <label for="tile-annotation">{{ 'generator.ranking.annotation' | transloco }}</label> <br />
-      <textarea
-        autosize
-        maxlength="500"
-        id="tile-annotation"
-        [(ngModel)]="cTile.annotation"
-        (ngModelChange)="globalChange()"
-      >
-      </textarea>
-    </div>
-    <div>
-      <label for="tile-image">{{ 'generator.ranking.image' | transloco }}</label>
-      @if (cTile.url) {
-        <div class="image-preview-content">
-          <div class="image-preview">
-            <img [src]="cTile.url" />
-          </div>
-          <div class="image-preview-button">
-            <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
-              {{ 'generator.ranking.image.edit' | transloco }}
-            </button>
-            @if (cTile.url) {
-              <button (click)="cTile.url = ''; globalChange()" class="warn">
-                {{ 'generator.ranking.image.remove' | transloco }}
+    <div class="main">
+      <mg-input class="s-12">
+        <mg-input-label>{{ 'generator.ranking.title' | transloco }}</mg-input-label>
+        <mg-input-text
+          maxlength="150"
+          id="ranking-title"
+          [(ngModel)]="cTile.title"
+          (ngModelChange)="detectChanges()"
+        ></mg-input-text>
+      </mg-input>
+      <mg-input class="s-12">
+        <mg-input-label>{{ 'generator.ranking.annotation' | transloco }}</mg-input-label>
+        <mg-input-textarea
+          autosize
+          maxlength="500"
+          id="tile-annotation"
+          [(ngModel)]="cTile.annotation"
+          (ngModelChange)="globalChange(); cTile.annotation = $event"
+        ></mg-input-textarea>
+      </mg-input>
+
+      <div class="s-12">
+        <label for="tile-image">{{ 'generator.ranking.image' | transloco }}</label>
+        @if (cTile.url) {
+          <div class="image-preview-content">
+            <div class="image-preview">
+              <img [src]="cTile.url" />
+            </div>
+            <div class="image-preview-button">
+              <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
+                {{ 'generator.ranking.image.edit' | transloco }}
               </button>
-            }
+              @if (cTile.url) {
+                <button (click)="cTile.url = ''; globalChange()" class="warn">
+                  {{ 'generator.ranking.image.remove' | transloco }}
+                </button>
+              }
+            </div>
           </div>
-        </div>
-      } @else {
-        <div>
-          <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
-            {{ 'generator.ranking.image.add' | transloco }}
-          </button>
+        } @else {
           <div>
-            {{ 'generator.ranking.image.empty' | transloco }}
+            <button class="primary" (click)="croppedImage = data = cTile.url; openEdit()">
+              {{ 'generator.ranking.image.add' | transloco }}
+            </button>
+            <div>
+              {{ 'generator.ranking.image.empty' | transloco }}
+            </div>
           </div>
-        </div>
-      }
-    </div>
-    <div class="group-colors">
-      <div class="colors">
-        <label for="tile-bg-color">{{ 'generator.ranking.tile.color' | transloco }}</label>
-        <div class="new-color">
-          <input
-            [title]="'generator.ranking.tile.color.new' | transloco"
-            id="tile-bg-color"
-            type="color"
-            [(ngModel)]="cTile.bgColor"
-          />
-        </div>
-        <div
-          [title]="'generator.ranking.tile.color.remove' | transloco"
-          class="color remove"
-          (click)="cTile.bgColor = undefined"
-          tabindex="0"
-        ></div>
-        <div
-          [title]="'generator.ranking.tile.color.transparent' | transloco"
-          class="color transparent"
-          (click)="cTile.bgColor = 'transparent'"
-          tabindex="0"
-        ></div>
-        @for (color of colorListBg; track color) {
-          <div
-            [title]="'generator.ranking.tile.color.previous' | transloco"
-            class="color"
-            [style.--color]="color"
-            (click)="cTile.bgColor = color"
-            tabindex="0"
-          ></div>
         }
       </div>
-      <div class="colors">
-        <label for="tile-text-color">{{ 'generator.ranking.text.color' | transloco }}</label>
-        <div class="new-color">
-          <input
-            [title]="'generator.ranking.text.color.new' | transloco"
-            id="tile-text-color"
-            type="color"
-            [(ngModel)]="cTile.txtColor"
-          />
-        </div>
-        <div
-          [title]="'generator.ranking.text.color.remove' | transloco"
-          class="color remove"
-          (click)="cTile.txtColor = undefined"
-          tabindex="0"
-        ></div>
-        @for (color of colorListTxt; track color) {
-          <div
-            [style.--color]="color"
-            [title]="'generator.ranking.text.color.previous' | transloco"
-            class="color"
-            (click)="cTile.txtColor = color"
+
+      <div class="s-12 group-colors">
+        <div class="colors">
+          <span class="new-color">
+            <mg-input>
+              <mg-input-label>{{ 'generator.ranking.tile.color' | transloco }}</mg-input-label>
+              <mg-input-color
+                [title]="'generator.ranking.tile.color.new' | transloco"
+                id="tile-bg-color"
+                type="color"
+                alpha
+                [(ngModel)]="cTile.bgColor"
+              ></mg-input-color>
+            </mg-input>
+          </span>
+          <span
+            [title]="'generator.ranking.tile.color.remove' | transloco"
+            class="color remove"
+            (click)="cTile.bgColor = undefined"
             tabindex="0"
-          ></div>
+          ></span>
+          <span
+            [title]="'generator.ranking.tile.color.transparent' | transloco"
+            class="color transparent"
+            (click)="cTile.bgColor = 'transparent'"
+            tabindex="0"
+          ></span>
+          @for (color of colorListBg; track color) {
+            <span
+              [title]="'generator.ranking.tile.color.previous' | transloco"
+              class="color"
+              [style.--color]="color"
+              (click)="cTile.bgColor = color"
+              tabindex="0"
+            ></span>
+          }
+        </div>
+        <div class="colors">
+          <label for="tile-text-color"></label>
+          <span class="new-color">
+            <mg-input>
+              <mg-input-label>{{ 'generator.ranking.text.color' | transloco }}</mg-input-label>
+              <mg-input-color
+                [title]="'generator.ranking.text.color.new' | transloco"
+                id="tile-text-color"
+                type="color"
+                alpha
+                [(ngModel)]="cTile.txtColor"
+              ></mg-input-color>
+            </mg-input>
+          </span>
+          <span
+            [title]="'generator.ranking.text.color.remove' | transloco"
+            class="color remove"
+            (click)="cTile.txtColor = undefined"
+            tabindex="0"
+          ></span>
+          @for (color of colorListTxt; track color) {
+            <span
+              [style.--color]="color"
+              [title]="'generator.ranking.text.color.previous' | transloco"
+              class="color"
+              (click)="cTile.txtColor = color"
+              tabindex="0"
+            ></span>
+          }
+        </div>
+        @if (_options?.mode === 'iceberg' || _options?.mode === 'axis') {
+          <div class="position">
+            <div class="label">{{ 'generator.ranking.tile.position' | transloco }}</div>
+            <div class="new-color">
+              <button
+                [title]="'generator.ranking.tile.position.top' | transloco"
+                (click)="tileZIndex('top')"
+                class="top"
+              >
+                <span>↑</span>
+              </button>
+              <button [title]="'generator.ranking.tile.position.up' | transloco" (click)="tileZIndex('up')">↑</button>
+              <button [title]="'generator.ranking.tile.position.down' | transloco" (click)="tileZIndex('down')">
+                ↓
+              </button>
+              <button
+                [title]="'generator.ranking.tile.position.bottom' | transloco"
+                (click)="tileZIndex('bottom')"
+                class="bottom"
+              >
+                <span>↓</span>
+              </button>
+            </div>
+          </div>
         }
       </div>
-      @if (_options?.mode === 'iceberg' || _options?.mode === 'axis') {
-        <div class="position">
-          <div class="label">{{ 'generator.ranking.tile.position' | transloco }}</div>
-          <div class="new-color">
-            <button [title]="'generator.ranking.tile.position.top' | transloco" (click)="tileZIndex('top')" class="top">
-              <span>↑</span>
-            </button>
-            <button [title]="'generator.ranking.tile.position.up' | transloco" (click)="tileZIndex('up')">↑</button>
-            <button [title]="'generator.ranking.tile.position.down' | transloco" (click)="tileZIndex('down')">↓</button>
-            <button
-              [title]="'generator.ranking.tile.position.bottom' | transloco"
-              (click)="tileZIndex('bottom')"
-              class="bottom"
-            >
-              <span>↓</span>
-            </button>
-          </div>
-        </div>
-      }
-    </div>
-    <div class="buttons">
-      <button class="primary" (click)="close()">{{ 'generator.ranking.close' | transloco }}</button>
-      <button class="warn" (click)="delete()">{{ 'generator.ranking.delete.tile' | transloco }}</button>
+      <div class="s-12 buttons">
+        <button class="primary" (click)="close()">{{ 'generator.ranking.close' | transloco }}</button>
+        <button class="warn" (click)="delete()">{{ 'generator.ranking.delete.tile' | transloco }}</button>
+      </div>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogImageEdit>
+<mg-dialog #dialogImageEdit>
   @if (cTile && dialogImageEdit._open) {
-    <div drop-image mode="local" (file)="fileChange($event)">
-      <div class="drop-image-message">{{ 'generator.ranking.image.drop' | transloco }}</div>
-      <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
+    <div class="local" drop-image mode="local" (file)="fileChange($event)">
+      <div class="s-12">
+        <div class="drop-image-message">{{ 'generator.ranking.image.drop' | transloco }}</div>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
+      </div>
       @if (data?.startsWith('data') || imageChangedEvent) {
         <div class="edit-image">
           <div class="image">
@@ -191,7 +207,7 @@
           <img [src]="data" />
         </div>
       }
-      <div class="buttons">
+      <div class="buttons s-12">
         <button (click)="closeEdit()">
           {{ 'generator.ranking.image.edit.cancel' | transloco }}
         </button>
@@ -201,4 +217,4 @@
       </div>
     </div>
   }
-</dialog-cmp>
+</mg-dialog>

@@ -89,8 +89,8 @@
     },
     "groups.title": "Groups",
     "group": {
-      "title": "Add",
       "new.line": {
+        "title": "Add",
         "below": "Add below",
         "above": "Add above",
         "ask.me": "Ask me"
@@ -102,11 +102,14 @@
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
+    "other": {
+      "title": "By default"
+    },
     "mode": {
-      "title": "Default mode"
+      "title": "Mode"
     },
     "theme": {
-      "title": "Default theme"
+      "title": "Theme"
     },
     "navigation": {
       "title": "Browse",
@@ -293,7 +296,6 @@
       "cancel": "Cancel",
       "title": "Ranking title:",
       "title.color": "Title text color:",
-      "title.opacity": "Title text opacity:",
       "group": "Category:",
       "description": "Description:",
       "mode": "Mode:",
@@ -326,16 +328,13 @@
         "border": "Tile border",
         "margin": "Tile margin",
         "background.color": "Tile background color:",
-        "background.opacity": "Tile background opacity:",
         "border.color": "Tile border color:",
-        "border.opacity": "Tile border opacity:",
         "text": {
           "size": "Tile text size:",
           "only.size": "Text size if no image:",
           "color": "Tile text color:",
           "opacity": "Tile text opacity:",
           "background.color": "Text background color:",
-          "background.opacity": "Text background opacity:",
           "position": "Text position in the tile:",
           "position.bottom": "On bottom",
           "position.bottom.float": "On bottom floating",
@@ -353,16 +352,13 @@
       "line": {
         "title": "Line options",
         "background.color": "Line background color:",
-        "background.opacity": "Line background opacity:",
         "border.color": "Line border color:",
         "border.opacity": "Line border opacity:"
       },
       "column": {
         "title": "Columns options",
         "background.color": "Column background color:",
-        "background.opacity": "Column background opacity:",
         "border.color": "Column border color:",
-        "border.opacity": "Column border opacity:",
         "min.height": "Columns minimum height:"
       },
       "global": {
@@ -721,10 +717,15 @@
     "login": {
       "title": "Log in",
       "username": "Username",
+      "username.required": "Username is required.",
       "password": "Password",
       "password.bis": "Password (confirmation)",
+      "password.required": "Password is required.",
+      "password.minlength": "Password invalid size.",
       "login": "Login",
       "email": "Email",
+      "email.required": "This email is required.",
+      "email.email": "This email is not valid.",
       "password.lost": "I have lost my password",
       "signup": "Create an account",
       "oauth": {
@@ -845,7 +846,15 @@
         "email": "Email",
         "message": "Message",
         "required": "Required fields",
-        "send": "Send"
+        "send": "Send",
+        "error": {
+          "username.required": "Username is required.",
+          "email.required": "Email is required.",
+          "email.email": "This email is not valid.",
+          "message.required": "Message is required.",
+          "message.minlength": "The minimal length is {requiredLength} characters.",
+          "message.maxlength": "The maximal length is {requiredLength} characters."
+        }
       }
     }
   },
@@ -858,6 +867,7 @@
     "title": "Title",
     "category": "Category",
     "categories": "ranking",
+    "mode": "Mode",
     "classements": "Ranking",
     "see.derivatives": "See the other versions of the ranking",
     "count.derivatives": "Versions of the ranking:",

@@ -11,9 +11,19 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import {
+    ContextMenuItem,
+    MagmaContextMenu,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaNgInitDirective,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2, Select2Option, Select2UpdateEvent, Select2UpdateValue } from 'ng-select2-component';
+import { Select2Option } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Subject, debounceTime } from 'rxjs';
 
@@ -25,11 +35,7 @@ import { emojis } from 'src/app/tools/emoji';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { ContextMenuDirective } from '../../directives/context-menu.directive';
-import { NgInitDirective } from '../../directives/ngInit.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { GlobalService } from '../../services/global.service';
-import { ContextMenuItem } from '../context-menu/context-menu.component';
 import { NgxMoveableComponent } from '../moveable/moveable.component';
 import { ZoneAreaComponent } from '../zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../zone-axis/zone-axis.component';
@@ -46,17 +52,20 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
     imports: [
-        Select2,
         FormsModule,
         NgClass,
         MarkdownComponent,
-        NgInitDirective,
-        TooltipDirective,
-        ContextMenuDirective,
+        MagmaNgInitDirective,
+        MagmaTooltipDirective,
         NgxMoveableComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputSelect,
+        MagmaInputCheckbox,
+        MagmaContextMenu,
     ],
 })
 export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
@@ -166,8 +175,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
         this.globalService.changeHelpComponent();
     }
 
-    updateIconStyle(type: Select2UpdateEvent<Select2UpdateValue>) {
-        this.dataService.saveOption('bingo', this.id(), { checkChoice: type.value as string });
+    updateIconStyle(type: string) {
+        this.dataService.saveOption('bingo', this.id(), { checkChoice: type });
     }
 
     bingoToggleCheck(group: number, item: number) {

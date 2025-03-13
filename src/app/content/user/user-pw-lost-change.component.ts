@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaMessage, MagmaMessageType } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 
 import { UserPassword } from './user-password';
@@ -13,7 +13,7 @@ import { UserPassword } from './user-password';
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',
     styleUrls: ['./user-pw-lost-change.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, TranslocoPipe],
+    imports: [ReactiveFormsModule, TranslocoPipe, MagmaInput, MagmaInputElement, MagmaInputPassword],
 })
 export class UserPwLostChangeComponent extends UserPassword {
     private readonly router = inject(Router);
@@ -24,10 +24,10 @@ export class UserPwLostChangeComponent extends UserPassword {
 
     constructor() {
         const userService = inject(APIUserService);
-        const messageService = inject(MessageService);
+        const mgMessage = inject(MagmaMessage);
         const translate = inject(TranslocoService);
 
-        super(userService, messageService, translate);
+        super(userService, mgMessage, translate);
 
         this.activatedRoute.paramMap.subscribe(params => {
             const token = params.get('token');
@@ -53,11 +53,11 @@ export class UserPwLostChangeComponent extends UserPassword {
             this.userService
                 .passwordChange(value.password, this.token!)
                 .then(() => {
-                    this.messageService.addMessage(this.translate.translate('message.server.update.password.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.server.update.password.success'));
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, { type: MessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 });
         }
     }

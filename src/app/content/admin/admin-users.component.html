@@ -1,17 +1,10 @@
 <h3>{{ 'menu.admin.users' | transloco }}</h3>
 
 <form class="search" (submit)="submit()">
-  <div class="name">
-    <label>{{ 'list.user.name' | transloco }}</label>
-    <input
-      type="search"
-      name="searchKey"
-      [(ngModel)]="searchKey"
-      #filterInput
-      [class.empty]="searchKey === '' || searchKey === undefined"
-    />
-    <span (click)="resteFilter(filterInput)"></span>
-  </div>
+  <mg-input class="name">
+    <mg-input-label>{{ 'list.user.name' | transloco }}</mg-input-label>
+    <mg-input-text [(ngModel)]="searchKey" #filterInput clearCross></mg-input-text>
+  </mg-input>
   <div>
     <button type="submit">{{ 'navigate.search' | transloco }}</button>
   </div>
@@ -24,33 +17,33 @@
 @if (!loading) {
   @if (users[page] && users[page].length) {
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
-    <table>
-      <thead>
-        <tr>
-          <th class="status">{{ 'list.status.list' | transloco }}</th>
-          <th class="user sort" (click)="sortUpdate('username')">
+    <table mg>
+      <thead mg>
+        <tr mg>
+          <th mg class="status">{{ 'list.status.list' | transloco }}</th>
+          <th mg class="user sort" (click)="sortUpdate('username')">
             {{ 'list.user.name' | transloco }}
             @if (sort === 'username') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="role">{{ 'list.roles.name' | transloco }}</th>
-          <th class="date sort" (click)="sortUpdate('dateCreate')">
+          <th mg class="role">{{ 'list.roles.name' | transloco }}</th>
+          <th mg class="date sort" (click)="sortUpdate('dateCreate')">
             {{ 'list.date' | transloco }}
             @if (sort === 'dateCreate') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
-          <th class="classements">{{ 'list.count.classements' | transloco }}</th>
-          <th class="actions">{{ 'list.action.name' | transloco }}</th>
+          <th mg class="classements">{{ 'list.count.classements' | transloco }}</th>
+          <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody mg>
         @for (user of users[page]; track user) {
-          <tr>
-            <td class="status">
+          <tr mg>
+            <td mg class="status">
               @if (!user.deleted) {
                 <span
                   class="icon"
@@ -63,10 +56,10 @@
                 <span class="icon icon-deleted" [title]="'list.status.deleted' | transloco"></span>
               }
             </td>
-            <td class="username" [class.anonymous]="!user.username">
+            <td mg class="username" [class.anonymous]="!user.username">
               {{ user.username || ('list.user.anonymous' | transloco) }}
             </td>
-            <td class="role">
+            <td mg class="role">
               @for (role of user.roles; track role) {
                 <span
                   class="icon"
@@ -77,12 +70,12 @@
                 ></span>
               }
             </td>
-            <td class="date">
+            <td mg class="date">
               <span>{{ user.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
               <span>{{ user.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
             </td>
-            <td class="classements">{{ user.classements?.length || 0 }}</td>
-            <td class="actions">
+            <td mg class="classements">{{ user.classements?.length || 0 }}</td>
+            <td mg class="actions">
               @if (user.classements?.length) {
                 <a (click)="see(user)">{{ 'list.action.see' | transloco }}</a>
               }
@@ -96,59 +89,67 @@
       </tbody>
     </table>
     @if (total) {
-      <paginate-cmp [total]="total" [page]="page" base="/admin/users"></paginate-cmp>
+      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
   } @else {
     <p class="no-result">{{ 'list.no.result' | transloco }}</p>
   }
 }
 
-<dialog-cmp #dialogListClassements closeButton>
+<mg-dialog #dialogListClassements closeButton>
   <list-classements [classements]="currentUser?.classements"></list-classements>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogActionsUser>
+<mg-dialog #dialogActionsUser>
   @if (currentUser && userForm) {
-    <ng-container [formGroup]="userForm">
-      <p>{{ 'user.status.warning' | transloco }}</p>
-      <p class="title" [class.anonymous]="!currentUser.username">
+    <form class="dialog-action" [formGroup]="userForm">
+      <p class="s-12 title" [class.anonymous]="!currentUser.username">
         {{ currentUser.username || ('list.user.anonymous' | transloco) }}
       </p>
-      <label for="username">{{ 'user.login.username' | transloco }}</label>
-      <input id="username" type="text" formControlName="username" #username />
-      <label for="password">{{ 'user.login.password' | transloco }}</label>
-      <input id="password" type="password" spellcheck="false" formControlName="password" />
-      <label for="email">{{ 'user.login.email' | transloco }}</label>
-      <input id="email" type="email" formControlName="email" #email />
-      <div class="label">{{ 'user.status.list' | transloco }}</div>
-      @if (isAdmin) {
-        <label for="moderator">
-          <input id="moderator" type="checkbox" formControlName="moderator" />
-          {{ 'user.status.moderator' | transloco }}
-        </label>
-        <label for="admin">
-          <input id="admin" type="checkbox" formControlName="admin" #adminCheckbox />
-          {{ 'user.status.admin' | transloco }}
-        </label>
-      }
-      <label for="banned">
-        <input id="banned" type="checkbox" formControlName="banned" />
-        {{ 'user.status.banned' | transloco }}
-      </label>
+      <div class="s-12 warning">{{ 'user.status.warning' | transloco }}</div>
+
+      <mg-input class="s-6" id="username">
+        <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
+        <mg-input-text formControlName="username"></mg-input-text>
+      </mg-input>
+      <mg-input class="s-6" id="password">
+        <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
+        <mg-input-password formControlName="password"></mg-input-password>
+      </mg-input>
+      <mg-input class="s-6" id="email">
+        <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
+        <mg-input-text type="email" formControlName="username"></mg-input-text>
+      </mg-input>
+      <div class="s-6 status">
+        <div class="label">{{ 'user.status.list' | transloco }}</div>
+        @if (isAdmin) {
+          <mg-input id="moderator">
+            <mg-input-checkbox formControlName="moderator">{{ 'user.status.moderator' | transloco }}</mg-input-checkbox>
+          </mg-input>
+          <mg-input id="admin">
+            <mg-input-checkbox formControlName="admin">{{ 'user.status.admin' | transloco }}</mg-input-checkbox>
+          </mg-input>
+        }
+        <mg-input id="banned">
+          <mg-input-checkbox formControlName="banned">{{ 'user.status.banned' | transloco }}</mg-input-checkbox>
+        </mg-input>
+      </div>
+
       @if (showError) {
-        <div class="list-error">
+        <div class="s-12 list-error">
           {{ showError }}
         </div>
       }
-      <div>
+
+      <div class="s-12 buttons">
         <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | transloco }}</button>
         <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | transloco }}</button>
       </div>
-    </ng-container>
+    </form>
   }
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp class="auto-format" #dialogRemoveProfile>
+<mg-dialog class="auto-format" #dialogRemoveProfile>
   <p>{{ 'user.profile.remove.question.admin' | transloco }}</p>
   <p>
     <strong>{{ currentUser?.username }}</strong>
@@ -161,4 +162,4 @@
     <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | transloco }}</button>
     <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>

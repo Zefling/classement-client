@@ -1,13 +1,13 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText, MagmaMessage } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import owasp from 'owasp-password-strength-test';
 import { debounceTime } from 'rxjs';
 
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -18,12 +18,20 @@ import { environment } from 'src/environments/environment';
     selector: 'user-signup',
     templateUrl: './user-signup.component.html',
     styleUrls: ['./user-signup.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, RouterLink, TranslocoPipe],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink,
+        TranslocoPipe,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputPassword,
+    ],
 })
 export class UserSignupComponent implements OnDestroy {
     private readonly router = inject(Router);
     private readonly userService = inject(APIUserService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
 
@@ -146,7 +154,7 @@ export class UserSignupComponent implements OnDestroy {
             this.userService
                 .signup(value.username, value.password, value.email)
                 .then(() => {
-                    this.messageService.addMessage(this.translate.translate('message.user.sign.up.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.user.sign.up.success'));
                     this.router.navigate(['/user/login']);
                 })
                 .catch(e => {

@@ -29,17 +29,26 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
+import {
+    ContextMenuItem,
+    MagmaColorPicker,
+    MagmaContextMenu,
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaMessage,
+    MagmaMessageType,
+    MagmaNgInitDirective,
+    MagmaNgModelChangeDebouncedDirective,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
-import { ContextMenuItem } from 'src/app/components/context-menu/context-menu.component';
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
-import { NgModelChangeDebouncedDirective } from 'src/app/directives/ng-model-change-debounced.directive';
 import {
     Classement,
     Data,
@@ -93,12 +102,9 @@ import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
-import { ContextMenuDirective } from '../../directives/context-menu.directive';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { CdkDropZone } from '../../directives/dropzone.directive';
-import { NgInitDirective } from '../../directives/ngInit.directive';
 import { RemoveTileDirective } from '../../directives/remove-tile.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
 @Component({
@@ -106,35 +112,38 @@ import { FileSizePipe } from '../../pipes/file-size';
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
     imports: [
-        LoaderComponent,
-        DropImageDirective,
-        ClassementOptionsComponent,
         NgClass,
-        CdkDropListGroup,
         FormsModule,
+        DatePipe,
+        TranslocoPipe,
+        CdkDropListGroup,
+        CdkDragElement,
         CdkDropList,
         CdkDrag,
-        RemoveTileDirective,
-        ContextMenuDirective,
-        NgInitDirective,
         CdkDropZone,
+        RemoveTileDirective,
+        DropImageDirective,
+        LoadingComponent,
+        LoaderComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
-        CdkDragElement,
         SeeClassementComponent,
-        LoadingComponent,
-        TooltipDirective,
-        DialogComponent,
         ImportJsonComponent,
+        ClassementOptionsComponent,
         ClassementOptimiseComponent,
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
         ClassementLoginComponent,
         ExternalImdbComponent,
-        DatePipe,
-        TranslocoPipe,
         FileSizePipe,
-        NgModelChangeDebouncedDirective,
+        MagmaContextMenu,
+        MagmaNgInitDirective,
+        MagmaTooltipDirective,
+        MagmaDialog,
+        MagmaNgModelChangeDebouncedDirective,
+        MagmaInput,
+        MagmaInputCheckbox,
+        MagmaColorPicker,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
@@ -143,7 +152,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly route = inject(ActivatedRoute);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
     private readonly optimiseImage = inject(OptimiseImageService);
@@ -215,14 +224,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');
     currentList = viewChild<ElementRef<HTMLDivElement>>('currentList');
-    dialogImage = viewChild.required<DialogComponent>('dialogImage');
-    dialogImport = viewChild.required<DialogComponent>('dialogImport');
-    dialogOptimise = viewChild.required<DialogComponent>('dialogOptimise');
-    dialogSaveServer = viewChild.required<DialogComponent>('dialogSaveServer');
-    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
-    dialogRankingDiff = viewChild.required<DialogComponent>('dialogRankingDiff');
-    dialogGroupOption = viewChild.required<DialogComponent>('dialogGroupOption');
-    dialogTexts = viewChild.required<DialogComponent>('dialogTexts');
+    dialogImage = viewChild.required<MagmaDialog>('dialogImage');
+    dialogImport = viewChild.required<MagmaDialog>('dialogImport');
+    dialogOptimise = viewChild.required<MagmaDialog>('dialogOptimise');
+    dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
+    dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
+    dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
+    dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
+    dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
     editImage = viewChild.required<ClassementEditImageComponent>(ClassementEditImageComponent);
     login = viewChild.required<ClassementLoginComponent>(ClassementLoginComponent);
     imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
@@ -713,8 +722,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     }
                 })
                 .catch(e => {
-                    this.messageService.addMessage(e, {
-                        type: MessageType.error,
+                    this.mgMessage.addMessage(e, {
+                        type: MagmaMessageType.error,
                     });
                 })
                 .finally(() => {
@@ -758,10 +767,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     copyLink() {
         Utils.clipboard(this.shareUrl)
-            .then(() => this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
+            .then(() => this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
+                    type: MagmaMessageType.error,
                 }),
             );
     }
@@ -1140,7 +1149,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.list = this.list.filter(e => e);
 
         this.addIds();
-        this.messageService.addMessage(this.translate.translate('message.reset.groups'));
+        this.mgMessage.addMessage(this.translate.translate('message.reset.groups'));
     }
 
     @HostListener('window:keydown.control.s', ['$event'])
@@ -1164,13 +1173,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     this.classement.localId = this.id;
                 }
                 if (!silence) {
-                    this.messageService.addMessage(this.translate.translate('message.save.success'));
+                    this.mgMessage.addMessage(this.translate.translate('message.save.success'));
                 }
                 this.global.updateList();
             },
             _ => {
-                this.messageService.addMessage(this.translate.translate('message.save.failed'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('message.save.failed'), {
+                    type: MagmaMessageType.error,
                 });
             },
         );
@@ -1278,14 +1287,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.list = event.data?.list!;
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
-                this.messageService.addMessage(this.translate.translate('message.json.read.replace'));
+                this.mgMessage.addMessage(this.translate.translate('message.json.read.replace'));
                 this.html2canvasImagesCacheUpdate();
                 break;
             }
             case 'new': {
                 this.global.jsonTmp = event.data;
                 this.router.navigate(['edit', 'new']);
-                this.messageService.addMessage(this.translate.translate('message.json.read.new'));
+                this.mgMessage.addMessage(this.translate.translate('message.json.read.new'));
                 break;
             }
         }

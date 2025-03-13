@@ -5,12 +5,18 @@ import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputCheckbox,
+    MagmaInputPassword,
+    MagmaMessage,
+    MagmaMessageType,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService, MessageType } from 'src/app/components/info-messages/info-messages.component';
 import { Classement, ClassementHistory, ScreenMode } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -41,9 +47,12 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         SeeClassementComponent,
         NgClass,
         LoaderItemComponent,
-        DialogComponent,
+        MagmaDialog,
         DatePipe,
         TranslocoPipe,
+        MagmaInput,
+        MagmaInputCheckbox,
+        MagmaInputPassword,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
@@ -53,7 +62,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly route = inject(ActivatedRoute);
     private readonly logger = inject(Logger);
     private readonly bdService = inject(DBService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly meta = inject(Meta);
@@ -83,10 +92,10 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     showLink = true;
 
     image = viewChild.required<ElementRef>('image');
-    dialogImage = viewChild.required<DialogComponent>('dialogImage');
-    dialogDerivatives = viewChild.required<DialogComponent>('dialogDerivatives');
-    dialogHistory = viewChild.required<DialogComponent>('dialogHistory');
-    dialogPassword = viewChild.required<DialogComponent>('dialogPassword');
+    dialogImage = viewChild.required<MagmaDialog>('dialogImage');
+    dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
+    dialogHistory = viewChild.required<MagmaDialog>('dialogHistory');
+    dialogPassword = viewChild.required<MagmaDialog>('dialogPassword');
 
     private canvas?: HTMLCanvasElement;
     private id?: string;
@@ -256,10 +265,10 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     copyLink() {
         Utils.clipboard(this.getLink())
-            .then(() => this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
+            .then(() => this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
-                this.messageService.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
-                    type: MessageType.error,
+                this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
+                    type: MagmaMessageType.error,
                 }),
             );
     }

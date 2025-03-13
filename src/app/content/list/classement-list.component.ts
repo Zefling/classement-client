@@ -3,12 +3,23 @@ import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaSortRuleDirective,
+    MagmaSortableDirective,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
+    MagmaTooltipDirective,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
-import { SortableDirective } from 'src/app/directives/sortable.directive';
 import { FormattedInfos } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -19,8 +30,6 @@ import { Utils } from 'src/app/tools/utils';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
-import { SortRuleDirective } from '../../directives/sortable.directive';
-import { TooltipDirective } from '../../directives/tooltip.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
 @Component({
@@ -32,17 +41,24 @@ import { FileSizePipe } from '../../pipes/file-size';
     },
     imports: [
         FormsModule,
-        SortableDirective,
-        SortRuleDirective,
         TagListComponent,
-        TooltipDirective,
         RouterLink,
         RouterLinkActive,
-        DialogComponent,
         ImportJsonComponent,
         DatePipe,
         TranslocoPipe,
         FileSizePipe,
+        MagmaTooltipDirective,
+        MagmaSortableDirective,
+        MagmaSortRuleDirective,
+        MagmaDialog,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
     ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
@@ -50,7 +66,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly router = inject(Router);
     private readonly translate = inject(TranslocoService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly global = inject(GlobalService);
     private readonly logger = inject(Logger);
 
@@ -60,10 +76,10 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     // viewChild
 
-    dialogDelete = viewChild.required<DialogComponent>('dialogDelete');
-    dialogClone = viewChild.required<DialogComponent>('dialogClone');
-    dialogImport = viewChild.required<DialogComponent>('dialogImport');
-    sortableDirective = viewChild.required<SortableDirective>(SortableDirective);
+    dialogDelete = viewChild.required<MagmaDialog>('dialogDelete');
+    dialogClone = viewChild.required<MagmaDialog>('dialogClone');
+    dialogImport = viewChild.required<MagmaDialog>('dialogImport');
+    sortableDirective = viewChild.required(MagmaSortableDirective);
 
     filter = '';
 
@@ -80,6 +96,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     quota?: StorageEstimate;
 
     private listener = Subscriptions.instance();
+
+    translateSort = (value: string) => this.translate.translate(value);
 
     constructor() {
         this.updateTitle();
@@ -99,11 +117,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         this.global.setTitle('menu.list');
     }
 
-    updateFilter(filterInput: HTMLInputElement, filter: string = '') {
+    updateFilter(filterInput: MagmaInputText, filter: string = '') {
         this.filter = filter;
         setTimeout(() => {
-            filterInput.dispatchEvent(new InputEvent('input'));
-            filterInput.focus();
+            //  filterInput.dispatchEvent(new InputEvent('input'));
+            filterInput.focus(true);
         });
     }
 
@@ -118,7 +136,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         );
     };
 
-    tagClick(event: string, filterInput: HTMLInputElement) {
+    tagClick(event: string, filterInput: MagmaInputText) {
         this.updateFilter(filterInput, `#${event}`);
     }
 
@@ -199,7 +217,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
                 this.result.splice(this.result.indexOf(this.itemCurrent as FormattedInfos), 1);
-                this.messageService.addMessage(
+                this.mgMessage.addMessage(
                     this.translate
                         .translate('message.remove.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -219,7 +237,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
             this.dbService.clone(this.itemCurrent, value || '', this.changeTemplate).then(item => {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
-                this.messageService.addMessage(
+                this.mgMessage.addMessage(
                     this.translate
                         .translate('message.clone.success')
                         .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -250,7 +268,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     .then(item => {
                         this.logger.log(`Add line: ${event.data?.id} - ${item.infos.id}`);
 
-                        this.messageService.addMessage(
+                        this.mgMessage.addMessage(
                             this.translate
                                 .translate('message.add.success')
                                 .replace('%title%', this._getTitle(this.itemCurrent!)),
@@ -266,7 +284,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         }
                     })
                     .catch(() => {
-                        this.messageService.addMessage(this.translate.translate('message.add.error'));
+                        this.mgMessage.addMessage(this.translate.translate('message.add.error'));
                     });
                 break;
         }

@@ -2,10 +2,22 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import {
+    MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaMessage,
+    MagmaTable,
+    MagmaTableCell,
+    MagmaTableGroup,
+    MagmaTableRow,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { MessageService } from 'src/app/components/info-messages/info-messages.component';
+import { Select2Option } from 'ng-select2-component';
+
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -18,11 +30,25 @@ import { categories } from '../classement/classement-default';
     selector: 'list-classements',
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
-    imports: [DialogComponent, SeeClassementComponent, FormsModule, DatePipe, TranslocoPipe],
+    imports: [
+        SeeClassementComponent,
+        FormsModule,
+        DatePipe,
+        TranslocoPipe,
+        MagmaDialog,
+        MagmaTable,
+        MagmaTableGroup,
+        MagmaTableRow,
+        MagmaTableCell,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaInputSelect,
+    ],
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);
-    private readonly messageService = inject(MessageService);
+    private readonly mgMessage = inject(MagmaMessage);
     private readonly globalService = inject(GlobalService);
     private readonly translate = inject(TranslocoService);
 
@@ -30,14 +56,15 @@ export class ListClassementsComponent {
     sort = input<SortClassementCol>();
     direction = input<SortDirection>();
 
-    dialogActionsClassement = viewChild.required<DialogComponent>('dialogActionsClassement');
-    dialogSeeClassement = viewChild.required<DialogComponent>('dialogSeeClassement');
-    dialogEditCategory = viewChild.required<DialogComponent>('dialogEditCategory');
+    dialogActionsClassement = viewChild.required<MagmaDialog>('dialogActionsClassement');
+    dialogSeeClassement = viewChild.required<MagmaDialog>('dialogSeeClassement');
+    dialogEditCategory = viewChild.required<MagmaDialog>('dialogEditCategory');
 
     currentClassement?: Classement;
 
     class?: Classement;
     catagories = categories;
+    catagoriesList = categories.map<Select2Option>(cat => ({ label: cat, value: cat }));
 
     @Output()
     updateClassements = new EventEmitter<Classement[]>();
@@ -89,7 +116,7 @@ export class ListClassementsComponent {
                     this.changeCategoryCancel();
                 }
 
-                this.messageService.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
+                this.mgMessage.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
             })
             .catch(e => {});
     }

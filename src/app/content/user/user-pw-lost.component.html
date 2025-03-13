@@ -1,10 +1,16 @@
 <h1>{{ 'user.password.lost.title' | transloco }}</h1>
 
 @if (!valide) {
-  <form class="form">
+  <form class="form" [formGroup]="form">
     <p>{{ 'user.password.lost.info' | transloco }}</p>
-    <label for="email">{{ 'user.login.email' | transloco }}</label>
-    <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
+
+    <div>
+      <mg-input class="s-12">
+        <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
+        <mg-input-text formControlName="email">></mg-input-text>
+      </mg-input>
+    </div>
+
     @if (showError) {
       <div class="list-error">
         {{ showError }}

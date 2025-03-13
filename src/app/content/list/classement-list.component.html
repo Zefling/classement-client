@@ -10,18 +10,10 @@
     </span>
   </p>
   <div class="list-actions">
-    <div class="filter">
-      <label for="browser-list-filter">{{ 'list.filter' | transloco }}</label>
-      <input
-        id="browser-list-filter"
-        type="search"
-        maxlength="150"
-        [(ngModel)]="filter"
-        #filterInput
-        [class.empty]="filter === ''"
-      />
-      <span (click)="updateFilter(filterInput)"></span>
-    </div>
+    <mg-input class="filter" id="browser-list-filter">
+      <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
+      <mg-input-text clearCross maxlength="150" [(ngModel)]="filter" #filterInput></mg-input-text>
+    </mg-input>
     <button class="primary" (click)="exportAll()">
       {{ 'generator.actions.export.all.json' | transloco }}
     </button>
@@ -31,47 +23,55 @@
   </div>
 </div>
 
-<ng-container [sortable]="result" [sortable-filter-input]="filterInput" [sortable-filter]="sortableFilter">
+<ng-container [sortable]="result" [sortable-filter-input]="filterInput.inputElement" [sortable-filter]="sortableFilter">
   @if (result && result.length) {
-    <table>
-      <thead>
-        <tr>
-          <th class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+    <table mg hoverRow>
+      <thead mg>
+        <tr mg>
+          <th mg class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
             {{ 'list.title.name' | transloco }}
           </th>
           <th
+            mg
             class="mode"
             [sort-rule]="{
               type: 'translate',
               attr: 'options.mode',
-              translate: 'mode.name.%value%',
+              translate: translateSort,
+              translateId: 'mode.name.%value%',
               default: 'default',
             }"
           >
             {{ 'list.mode.name' | transloco }}
           </th>
           <th
+            mg
             class="category"
-            [sort-rule]="{ type: 'translate', attr: 'options.category', translate: 'category.%value%' }"
+            [sort-rule]="{
+              type: 'translate',
+              attr: 'options.category',
+              translateId: 'category.%value%',
+              translate: translateSort,
+            }"
           >
             {{ 'list.category.name' | transloco }}
           </th>
-          <th class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
+          <th mg class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
             {{ 'list.date' | transloco }}
           </th>
-          <th class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
+          <th mg class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
             {{ 'list.count.group' | transloco }}
           </th>
-          <th class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
+          <th mg class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
             {{ 'list.count.item' | transloco }}
           </th>
-          <th class="actions">{{ 'list.action.name' | transloco }}</th>
+          <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody mg>
         @for (item of result; track item) {
-          <tr>
-            <td class="title">
+          <tr mg>
+            <td mg class="title">
               <div>
                 {{ item.options.title || ('list.title.undefined' | transloco) }}
               </div>
@@ -93,22 +93,22 @@
                 @if (modeApi() && item.rankingId && serverIds.includes(item.rankingId)) {
                   <a
                     class="from"
-                    [tooltip]="'list.server.link' | transloco: { id: item.rankingId }"
+                    [mgTooltip]="'list.server.link' | transloco: { id: item.rankingId }"
                     [routerLink]="['/navigate/view', item.rankingId]"
                     >➡ <span class="icon-server"></span
                   ></a>
                 }
               </div>
             </td>
-            <td class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | transloco }}</td>
-            <td class="category">{{ 'category.' + (item.options.category || 'undefined') | transloco }}</td>
-            <td class="date">
+            <td mg class="mode">{{ 'mode.name.' + (item.options.mode || 'default') | transloco }}</td>
+            <td mg class="category">{{ 'category.' + (item.options.category || 'undefined') | transloco }}</td>
+            <td mg class="date">
               <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.dd/MM/yyyy' | transloco) }}</span>
               <span>{{ item.dateChange || item.dateCreate || item.date | date: ('date.HH:mm' | transloco) }}</span>
             </td>
-            <td class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
-            <td class="items">{{ item.listLength || item.listLenght }}</td>
-            <td class="actions">
+            <td mg class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
+            <td mg class="items">{{ item.listLength || item.listLenght }}</td>
+            <td mg class="actions">
               <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | transloco }}">
                 <span class="icon-edit"></span>
               </button>
@@ -131,39 +131,43 @@
   }
 </ng-container>
 
-<dialog-cmp #dialogImport class="auto-format">
+<mg-dialog #dialogImport class="auto-format">
   <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogDelete class="auto-format dialog-delete">
+<mg-dialog #dialogDelete class="dialog-delete">
   <p>{{ 'list.delete.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div class="buttons">
     <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | transloco }}</button>
     <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | transloco }}</button>
   </div>
-</dialog-cmp>
+</mg-dialog>
 
-<dialog-cmp #dialogClone class="auto-format dialog-clone">
+<mg-dialog #dialogClone class="auto-format dialog-clone">
   <p>{{ 'list.clone.question' | transloco }}</p>
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
-  <div>
-    <label for="clone-title">{{ 'list.clone.title' | transloco }}</label>
-    <div><input id="clone-title" type="text" maxlength="150" [value]="itemCurrent?.options?.title" #title /></div>
-  </div>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="changeTemplate" />
-    {{ 'list.clone.new.template' | transloco }}
-  </label>
+  <div>
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'list.clone.title' | transloco }}</mg-input-label>
+      <mg-input-text maxlength="150" [value]="itemCurrent?.options?.title" #title></mg-input-text>
+    </mg-input>
+
+    <mg-input class="s-12">
+      <mg-input-checkbox maxlength="150" [(ngModel)]="changeTemplate">{{
+        'list.clone.new.template' | transloco
+      }}</mg-input-checkbox>
+    </mg-input>
+  </div>
 
   <div class="buttons">
     <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | transloco }}</button>
-    <button class="primary" (click)="cloneCurrent(true, title.value)">
+    <button class="primary" (click)="cloneCurrent(true, title.getValue())">
       {{ 'list.clone.validate' | transloco }}
     </button>
-    <button class="primary" (click)="cloneCurrent(true, title.value, true)">
+    <button class="primary" (click)="cloneCurrent(true, title.getValue(), true)">
       {{ 'list.clone.edit' | transloco }}
     </button>
   </div>
-</dialog-cmp>
+</mg-dialog>

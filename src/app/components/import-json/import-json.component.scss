@@ -5,10 +5,6 @@
         display: flex;
         flex: 0;
         text-align: center;
-
-        input {
-            width: auto;
-        }
     }
 
     .infos-list {
@@ -27,6 +23,7 @@
 
     &:hover {
         cursor: pointer;
+        background-color: var(--primary6);
     }
 }
 

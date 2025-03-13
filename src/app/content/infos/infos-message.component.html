@@ -9,29 +9,23 @@
 <h3>{{ 'user.information.contact.admin.title' | transloco }}</h3>
 <p [innerText]="'user.information.contact.admin.text' | transloco"></p>
 
-<form>
-  <div class="username">
-    <label for="username">{{ 'user.information.contact.admin.username' | transloco }}<span>*</span></label>
-    <input id="username" type="text" [(ngModel)]="username" [ngModelOptions]="{ standalone: true }" />
-  </div>
-  <div class="email">
-    <label for="email">{{ 'user.information.contact.admin.email' | transloco }}<span>*</span></label>
-    <input id="email" type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" />
-  </div>
-  <div class="message">
-    <label for="text">{{ 'user.information.contact.admin.message' | transloco }}<span>*</span></label>
-    <textarea
-      autosize
-      maxlength="5000"
-      name="text"
-      [(ngModel)]="text"
-      rows="5"
-      [ngModelOptions]="{ standalone: true }"
-    ></textarea>
-    <span>*</span> {{ 'user.information.contact.admin.required' | transloco }}
-  </div>
+<form [formGroup]="formConfig">
+  <mg-input class="username">
+    <mg-input-label>{{ 'user.information.contact.admin.username' | transloco }}<span>*</span></mg-input-label>
+    <mg-input-text id="username" formControlName="username"></mg-input-text>
+  </mg-input>
+  <mg-input class="email">
+    <mg-input-label>{{ 'user.information.contact.admin.email' | transloco }}<span>*</span></mg-input-label>
+    <mg-input-text id="email" formControlName="email"></mg-input-text>
+  </mg-input>
+  <mg-input class="message">
+    <mg-input-label> {{ 'user.information.contact.admin.message' | transloco }}<span>*</span> </mg-input-label>
+    <mg-input-textarea id="text" formControlName="message" autosize maxlength="5000"></mg-input-textarea>
+    <mg-input-desc><span>*</span>{{ 'user.information.contact.admin.required' | transloco }}</mg-input-desc>
+  </mg-input>
+
   <p>
-    <button (click)="send()" [disabled]="invalideMessage()">
+    <button (click)="send()">
       {{ 'user.information.contact.admin.send' | transloco }}
     </button>
   </p>

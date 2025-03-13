@@ -3,9 +3,9 @@
 @if (opts) {
   @if (!render() && opts.mode === 'bingo') {
     <div class="options">
-      <div class="select">
-        <label for="icon-validated">{{ 'action.validated.label' | transloco }}</label>
-        <select2
+      <mg-input class="select">
+        <mg-input-label>{{ 'action.validated.label' | transloco }}</mg-input-label>
+        <mg-input-select
           id="icon-category"
           [data]="checkChoices"
           [(ngModel)]="checkChoice"
@@ -41,8 +41,8 @@
               </div>
             </div>
           </ng-template>
-        </select2>
-      </div>
+        </mg-input-select>
+      </mg-input>
       <div>
         <button (click)="bingoClear()">{{ 'action.validated.clear' | transloco }}</button>
       </div>
@@ -102,7 +102,7 @@
                             </div>
                           }
                           @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                            <div class="tile-info" [mgTooltip]="item.annotation"></div>
                           }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -185,7 +185,7 @@
                               </div>
                             }
                             @if (withAnnotation() && item.annotation) {
-                              <div class="tile-info" [tooltip]="item.annotation"></div>
+                              <div class="tile-info" [mgTooltip]="item.annotation"></div>
                             }
                             @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                               <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -216,7 +216,11 @@
     } @else if (opts.mode === 'bingo') {
       @if (checkChoice === 'Z') {
         <div class="active-mode">
-          <label> <input type="checkbox" [(ngModel)]="editMode" />{{ 'action.emoji.edit.mode' | transloco }}</label>
+          <mg-input>
+            <mg-input-checkbox [(ngModel)]="editMode" mode="toggle">{{
+              'action.emoji.edit.mode' | transloco
+            }}</mg-input-checkbox>
+          </mg-input>
         </div>
       }
 
@@ -289,7 +293,7 @@
                             }
                           }
                           @if (withAnnotation() && item.annotation) {
-                            <div class="tile-info" [tooltip]="item.annotation"></div>
+                            <div class="tile-info" [mgTooltip]="item.annotation"></div>
                           }
                           @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
                             <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
@@ -360,7 +364,7 @@
                           </div>
                         }
                         @if (withAnnotation() && item.annotation) {
-                          <div class="tile-info" [tooltip]="item.annotation"></div>
+                          <div class="tile-info" [mgTooltip]="item.annotation"></div>
                         }
                       </div>
                     </div>
