@@ -21,7 +21,6 @@ import {
     MagmaInputPassword,
     MagmaMessage,
     MagmaMessageType,
-    MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -40,6 +39,7 @@ import { LoaderItemComponent } from '../../components/loader/loader-item.compone
 import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { TileComponent } from '../../components/tile/tile.component';
 import { MessageError } from '../user/user.interface';
 
 const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
@@ -63,7 +63,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputPassword,
-        MagmaTooltipDirective,
+        TileComponent,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {

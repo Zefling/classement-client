@@ -1,0 +1,26 @@
+@let opts = options();
+@let itm = item();
+
+<div class="content-box">
+  <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+    @if (itm.url) {
+      <div [class.image]="calcWidth(tile)">
+        <img
+          (ngInit)="calcWidth(tile); cd.detectChanges()"
+          (load)="calcWidth(tile); cd.detectChanges()"
+          [class.cover]="opts.itemImageCover"
+          src="{{ imagesCache()?.[itm.url] || itm.url }}"
+          alt="{{ itm.name }}"
+        />
+      </div>
+    }
+    @if (itm.annotation) {
+      <div class="tile-info" [mgTooltip]="itm.annotation"></div>
+    }
+    @if (itm.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
+      <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+        <span class="title-span" (ngInit)="cd.detectChanges()">{{ itm.title || '' }}</span>
+      </div>
+    }
+  </div>
+</div>

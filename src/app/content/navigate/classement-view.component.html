@@ -198,35 +198,7 @@
     <div class="drop-list">
       @for (item of classement.data.list; track item; let index = $index) {
         @if (item) {
-          <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">
-            <div class="content-box">
-              <div class="content content-render" [ngClass]="classement.data.options.itemTextPosition" #tile>
-                @if (item.url) {
-                  <div [class.image]="calcWidth(classement.data.options, item, tile)">
-                    <img
-                      (ngInit)="calcWidth(classement.data.options, item, tile); cd.detectChanges()"
-                      (load)="calcWidth(classement.data.options, item, tile); cd.detectChanges()"
-                      [class.cover]="classement.data.options.itemImageCover"
-                      src="{{ item.url }}"
-                      alt="{{ item.name }}"
-                    />
-                  </div>
-                }
-                @if (item.annotation) {
-                  <div class="tile-info" [mgTooltip]="item.annotation"></div>
-                }
-                @if (
-                  item.title ||
-                  (classement.data.options.itemTextMinLine &&
-                    !classement.data.options.itemTextPosition.endsWith('bubble'))
-                ) {
-                  <div class="title" [class.title-item-width-auto]="classement.data.options.itemWidthAuto">
-                    <span class="title-span" (ngInit)="cd.detectChanges()">{{ item.title || '' }}</span>
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
+          <tile-item [item]="item" [options]="classement.data.options"></tile-item>
         }
       }
     </div>
