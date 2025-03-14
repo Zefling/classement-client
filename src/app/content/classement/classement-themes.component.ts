@@ -137,6 +137,7 @@ export class ClassementThemesComponent {
         if (this.modeApi()) {
             this.themeService
                 .getThemesByCriterion({
+                    name: value,
                     user: this.user?.id,
                     mode: this.options().mode,
                     size: 25 - this.keysThemes.length,
