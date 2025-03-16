@@ -28,6 +28,7 @@
       <div [title]="'list.count.item' | transloco"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
       <div class="mode">
         {{ 'mode.name.' + (classement.mode || 'default') | transloco }}
+        {{ classement.adult ? ' - 🔞' : '' }}
       </div>
     </div>
     <div class="username">

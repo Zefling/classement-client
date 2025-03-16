@@ -112,7 +112,7 @@
       <div class="break"></div>
       <mg-input class="s-6 s-12-m">
         <mg-input-checkbox mode="toggle" [(ngModel)]="saveLocal">
-          {{ 'generator.server.not.remove.local' | transloco }}
+          {{ 'generator.server.not.remove.local.label' | transloco }}
         </mg-input-checkbox>
         <mg-input-after
           ><span [mgTooltip]="'generator.server.not.remove.local.info' | transloco" class="icon-info"></span
@@ -129,6 +129,14 @@
           </mg-input-after>
         </mg-input>
       }
+      <mg-input class="s-6 s-12-m">
+        <mg-input-checkbox mode="toggle" [(ngModel)]="adult">
+          {{ 'generator.server.adult.label' | transloco }}
+        </mg-input-checkbox>
+        <mg-input-after
+          ><span [mgTooltip]="'generator.server.adult.info' | transloco" class="icon-info"></span
+        ></mg-input-after>
+      </mg-input>
     </div>
   }
 

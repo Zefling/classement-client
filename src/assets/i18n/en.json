@@ -115,7 +115,13 @@
       "title": "Browse",
       "page.size": "Number of tiles per page in “Browse”",
       "page.size.pre": " ",
-      "page.size.per": "tiles per page"
+      "page.size.per": "tiles per page",
+      "adult": {
+        "label": "Display Adult Content",
+        "input": "By enabling this option, I certify that",
+        "desc.1": "I am of legal age to access adult content in my jurisdiction.",
+        "desc.2": "I understand that this content may include sexually explicit, pornographic, or extremely violent elements."
+      }
     },
     "interface": {
       "title": "Interface",
@@ -644,14 +650,20 @@
         "reset": "Reset"
       },
       "not.public": "Do not make public.",
-      "not.remove.local": "Keep locally.",
-      "not.remove.local.info": "If unchecked, the version saved in the browser will be deleted.",
       "cancel": "Cancel",
       "save": "Save",
       "password": "Set a password (optional)",
+      "not.remove.local": {
+        "label": "Keep locally.",
+        "info": "If unchecked, the version saved in the browser will be deleted."
+      },
       "history": {
         "label": "Historize the old version",
         "info": "This allows you to keep track before changing the ranking."
+      },
+      "adult": {
+        "label": "Adult content restrictions",
+        "info": "This option is for content that is sexually explicit, pornographic, or extremely violent. Please note that this does not permit the posting of illegal content. A moderator may, at their discretion, classify your content as adult-only."
       },
       "link": "Replace the default ID with a more readable name (optional)"
     },

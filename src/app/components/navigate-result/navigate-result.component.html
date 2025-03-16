@@ -12,7 +12,11 @@
       [queryParams]="isCategoryList() ? { category: classement.category } : {}"
     >
       <figure>
-        <div [attr.data-mode]="'mode.name.' + (classement.mode || 'default') | transloco">
+        <div
+          [attr.data-mode]="
+            ('mode.name.' + (classement.mode || 'default') | transloco) + (classement.adult ? ' - 🔞' : '')
+          "
+        >
           <img [src]="classement.banner" [alt]="classement.name" />
         </div>
         <figcaption>

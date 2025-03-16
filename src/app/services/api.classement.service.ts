@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
+import { PreferencesService } from './preferences.service';
 
 import { Message, MessageError } from '../content/user/user.interface';
 import { Classement, ClassementHistory, SortClassementCol, SortDirection } from '../interface/interface';
@@ -32,6 +33,7 @@ export type UploadProgress = { percent: number; loaded: number; total: number };
 export class APIClassementService extends APICommon {
     private readonly http = inject(HttpClient);
     private readonly userService = inject(APIUserService);
+    private readonly prefs = inject(PreferencesService);
 
     progressValue = new Subject<UploadProgress>();
 
@@ -42,7 +44,6 @@ export class APIClassementService extends APICommon {
     constructor() {
         const translate = inject(TranslocoService);
         const logger = inject(Logger);
-
         super(translate, logger);
     }
 
@@ -74,8 +75,10 @@ export class APIClassementService extends APICommon {
         mode?: string;
         page?: number;
         size?: number;
+        adult?: boolean;
     }): Promise<SearchResult> {
-        return new Promise<SearchResult>((resolve, reject) => {
+        return new Promise<SearchResult>(async (resolve, reject) => {
+            criterion.adult = (await this.prefs.init()).adult;
             let params = new HttpParams();
             for (const i in criterion) {
                 if ((criterion as any)[i] !== undefined) {
@@ -96,11 +99,12 @@ export class APIClassementService extends APICommon {
     }
 
     getClassementsByTemplateId(id: string, userId?: number): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
+        return new Promise<Classement[]>(async (resolve, reject) => {
+            const adult = (await this.prefs.init()).adult ? 'true' : 'false';
             this.http
                 .get<
                     Message<Classement[]>
-                >(`${environment.api.path}api/classements/template/${id}${userId ? `?userId=${userId}` : ''}`)
+                >(`${environment.api.path}api/classements/template/${id}?adult=${adult}${userId ? `&userId=${userId}` : ''}}`)
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -128,9 +132,10 @@ export class APIClassementService extends APICommon {
     }
 
     getClassementsLast(limit: number = 11): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
+        return new Promise<Classement[]>(async (resolve, reject) => {
+            const adult = (await this.prefs.init()).adult ? 'true' : 'false';
             this.http
-                .get<Message<Classement[]>>(`${environment.api.path}api/classements/last?limit=${limit}`)
+                .get<Message<Classement[]>>(`${environment.api.path}api/classements/last?adult=${adult}&limit=${limit}`)
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -143,15 +148,18 @@ export class APIClassementService extends APICommon {
     }
 
     getClassementsHome(): Promise<Classement[]> {
-        return new Promise<Classement[]>((resolve, reject) => {
-            this.http.get<Message<Classement[]>>(`${environment.api.path}api/categories/home`).subscribe({
-                next: result => {
-                    resolve(result.message);
-                },
-                error: (result: HttpErrorResponse) => {
-                    reject(this.error('home', result));
-                },
-            });
+        return new Promise<Classement[]>(async (resolve, reject) => {
+            const adult = (await this.prefs.init()).adult ? 'true' : 'false';
+            this.http
+                .get<Message<Classement[]>>(`${environment.api.path}api/categories/home?adult=${adult}`)
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('home', result));
+                    },
+                });
         });
     }
 

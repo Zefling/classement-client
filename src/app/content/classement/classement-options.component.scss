@@ -21,9 +21,9 @@
     display: grid;
     grid-template:
         'title-item        title-item          title-item          title-item          title-item          '
-        'sizes             colors-item-back    colors-item-border  colors-item-text    item-text-pos       '
+        'sizes             colors-item-back    colors-item-border  colors-item-text    .                   '
         'sizes             size-item-text      size-item-text-only min-line-text       max-line-text       '
-        'sizes             item-text-back      .                   .                   .                   '
+        'sizes             item-text-pos       item-text-back      .                   .                   '
         /* ---------------------------------------------------------------------------- */
         'title-line        title-line          title-line          title-line          title-line          '
         var(--groups)

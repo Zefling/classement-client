@@ -5,17 +5,16 @@
       <mg-tabs #preferencesTabs>
         <mg-tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</mg-tab-title>
         <mg-tab-content id="general">
-          <h3>{{ 'preferences.interface.title' | transloco }}</h3>
-          <div class="label">{{ 'preferences.interface.light-dark' | transloco }}</div>
-          <p><mg-light-dark (change)="changeLightDark($event)"></mg-light-dark></p>
-          <mg-input id="language">
+          <h3 class="s-12">{{ 'preferences.interface.title' | transloco }}</h3>
+          <div class="s-12 label">{{ 'preferences.interface.light-dark' | transloco }}</div>
+          <mg-light-dark (change)="changeLightDark($event)"></mg-light-dark>
+          <mg-input id="language" class="s-12">
             <mg-input-label>{{ 'preferences.interface.language' | transloco }}</mg-input-label>
             <mg-input-select formControlName="interfaceLanguage" [data]="languages"> </mg-input-select>
           </mg-input>
           @if (modeApi()) {
-            <h3>{{ 'preferences.navigation.title' | transloco }}</h3>
-
-            <mg-input id="language">
+            <h3 class="s-12">{{ 'preferences.navigation.title' | transloco }}</h3>
+            <mg-input id="language" class="s-12">
               <mg-input-label>{{ 'preferences.navigation.page.size' | transloco }}</mg-input-label>
               <mg-input-before>{{ 'preferences.navigation.page.size.pre' | transloco }}</mg-input-before>
               <mg-input-number
@@ -28,6 +27,18 @@
               ></mg-input-number>
               <mg-input-after>{{ 'preferences.navigation.page.size.per' | transloco }}</mg-input-after>
             </mg-input>
+            <mg-input class="s-12">
+              <mg-input-label>{{ 'preferences.navigation.adult.label' | transloco }}</mg-input-label>
+              <mg-input-checkbox formControlName="adult" mode="toggle">{{
+                'preferences.navigation.adult.input' | transloco
+              }}</mg-input-checkbox>
+              <mg-input-desc
+                ><ul>
+                  <li>{{ 'preferences.navigation.adult.desc.1' | transloco }}</li>
+                  <li>{{ 'preferences.navigation.adult.desc.2' | transloco }}</li>
+                </ul></mg-input-desc
+              >
+            </mg-input>
           }
         </mg-tab-content>
         <mg-tab-title id="editor"> {{ 'preferences.editor.title' | transloco }}</mg-tab-title>
@@ -37,7 +48,7 @@
 
           <mg-input class="s-12">
             <mg-input-label>{{ 'preferences.tile.title' | transloco }}</mg-input-label>
-            <mg-input-checkbox formControlName="nameCopy">{{
+            <mg-input-checkbox formControlName="nameCopy" mode="toggle">{{
               'preferences.tile.name.copy' | transloco
             }}</mg-input-checkbox>
           </mg-input>

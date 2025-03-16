@@ -96,6 +96,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     hidden = false;
     history = false;
     loading = false;
+    adult = false;
     progress?: UploadProgress;
 
     showError: string[] = [];
@@ -169,6 +170,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             hidden: this.hidden ?? false,
             password: this.password,
             history: this.history,
+            adult: this.adult,
         } as any;
 
         if (!classement.name) {

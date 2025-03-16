@@ -616,14 +616,16 @@
         <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
           {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
-        @if (options && hasItems) {
-          <mg-input class="auto-save">
+      </div>
+      @if (options && hasItems) {
+        <div class="auto-save">
+          <mg-input>
             <mg-input-checkbox [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()">{{
               'generator.actions.save.local.auto' | transloco
             }}</mg-input-checkbox>
           </mg-input>
-        }
-      </div>
+        </div>
+      }
       @if (modeApi()) {
         <div class="save-actions buttons">
           @if (logged) {

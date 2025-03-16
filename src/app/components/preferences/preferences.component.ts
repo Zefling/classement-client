@@ -234,6 +234,7 @@ export class PreferencesMagmaDialog {
             pageSize: new FormControl(initPreferences.pageSize),
             mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),
             zoomMobile: new FormControl(initPreferences.zoomMobile),
+            adult: new FormControl(initPreferences.adult),
             authApiKeys: new FormGroup({
                 imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
             }),

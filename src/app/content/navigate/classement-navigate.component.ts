@@ -88,12 +88,13 @@ export class ClassementNavigateComponent implements OnDestroy {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.logger.log('params', LoggerLevel.log, params);
-                this.searchKey = params['name'] ?? '';
+                this.searchKey = params['name'];
                 this.category = params['category'];
                 this.mode = params['mode'];
                 this.page = params['page'];
                 this.queryParams = { name: this.searchKey, category: this.category };
-                if (this.searchKey !== '' || this.category !== '' || params['page']) {
+
+                if (this.searchKey || this.category || this.page) {
                     this.submit();
                 } else {
                     this.showCategoriesList();
@@ -119,6 +120,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     showCategoriesList() {
+        console.error('showCategoriesList ?');
         this.isCategoryList = true;
         this.loading = true;
         this.classementService
@@ -141,6 +143,9 @@ export class ClassementNavigateComponent implements OnDestroy {
             this.page = 1;
             this.global.onPageUpdate.next(1);
         }
+
+        console.error('submit ?');
+
         this.loading = true;
         this.classementService
             .getClassementsByCriterion({

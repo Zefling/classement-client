@@ -115,7 +115,13 @@
       "title": "Parcourir",
       "page.size": "Nombre de tuiles par page dans « Parcourir »",
       "page.size.pre": " ",
-      "page.size.per": "tuiles par page"
+      "page.size.per": "tuiles par page",
+      "adult": {
+        "label": "Afficher le contenu pour adulte",
+        "input": "En activant cette option, je certifie que",
+        "desc.1": "Je suis majeur(e) et j'ai l'âge légal pour accéder à des contenus réservés aux adultes dans ma juridiction.",
+        "desc.2": "Je comprends que ce contenu peut inclure des éléments sexuellement explicites, pornographiques ou extrêmement violents."
+      }
     },
     "interface": {
       "title": "Interface",
@@ -644,14 +650,20 @@
         "reset": "Réinitialiser"
       },
       "not.public": "Ne pas rendre public.",
-      "not.remove.local": "Garder localement.",
-      "not.remove.local.info": "Si non coché, la version sauvegardée dans le navigateur sera supprimée.",
       "cancel": "Annuler",
       "save": "Sauvegarder",
       "password": "Définir un mot de passe (facultatif)",
+      "not.remove.local": {
+        "label": "Garder localement.",
+        "info": "Si non coché, la version sauvegardée dans le navigateur sera supprimée."
+      },
       "history": {
         "label": "Historiser l'ancienne version",
         "info": "Cela permet de garder une trace avant modification du classement."
+      },
+      "adult": {
+        "label": "Contenu réservé aux adultes",
+        "info": "Cette option est destinée aux contenus à caractère sexuel explicite, pornographique ou extrêmement violent. Veuillez noter que cela ne permet pas la publication de contenus illégaux. Un modérateur peut, à sa discrétion, classer votre contenu comme réservé aux adultes."
       },
       "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif) :"
     },

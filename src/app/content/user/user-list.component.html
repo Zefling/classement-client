@@ -109,10 +109,11 @@
                     </div>
                   </td>
                   <td mg class="mode">
-                    {{ 'mode.name.' + (classement.data.options.mode || 'default') | transloco }}
+                    {{ 'mode.name.' + (classement.mode || 'default') | transloco }}
+                    {{ classement.adult ? ' - 🔞' : '' }}
                   </td>
                   <td mg class="category">
-                    {{ 'category.' + (classement.data.options.category || 'undefined') | transloco }}
+                    {{ 'category.' + (classement.category || 'undefined') | transloco }}
                   </td>
                   <td mg class="date">
                     <span>{{ classement.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>

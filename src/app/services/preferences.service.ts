@@ -31,6 +31,7 @@ export class PreferencesService {
         mainMenuReduce: false,
         emojiList: ['🥰', '😍', '🤩', '🤪', '😁', '😏'],
         zoomMobile: 100,
+        adult: false,
         authApiKeys: {
             imdb: '',
         },

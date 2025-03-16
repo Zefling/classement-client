@@ -31,6 +31,7 @@ export interface Classement {
     history?: boolean;
     historyId?: string;
     withHistory?: number;
+    adult?: boolean;
 }
 
 export interface ClassementHistory {
@@ -263,6 +264,7 @@ export interface PreferencesData {
     mainMenuReduce: boolean;
     emojiList: string[];
     zoomMobile: number;
+    adult: boolean;
     authApiKeys: {
         imdb: string;
     };
