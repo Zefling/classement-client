@@ -324,7 +324,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     }
 
     openMyClassement() {
-        this.router.navigate(['edit', this.classement!.linkId || this.myClassement!.rankingId]);
+        this.router.navigate(['edit', Utils.getClassementId(this.myClassement!)]);
     }
 
     loadLocalClassement(id: string) {

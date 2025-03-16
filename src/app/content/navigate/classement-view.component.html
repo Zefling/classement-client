@@ -88,17 +88,11 @@
             ) | transloco
           }}
         </button>
+      } @else if (!myClassement) {
+        <button (click)="openClassement()" class="primary">
+          {{ 'generator.actions.edit.my.derivative' | transloco }}
+        </button>
       }
-      <!-- <button (click)="openClassement()" *ngIf="!currentUser">
-      {{
-      (!apiActive
-      ? 'generator.actions.edit.local'
-      : !logged
-      ? 'generator.actions.make.my.derivative'
-      : 'generator.actions.new.derivative'
-      ) | transloco
-      }}
-    </button> -->
     </div>
     <div class="buttons">
       @if (history?.length) {
