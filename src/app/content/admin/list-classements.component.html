@@ -47,6 +47,7 @@
           {{ classement.deleted ? ('list.status.deleted' | transloco) : '' }}
           {{ classement.hidden ? ('list.status.hidden' | transloco) : '' }}
           {{ classement.parent ? ('list.status.parent' | transloco) : '' }}
+          {{ classement.adult ? ('list.status.adult' | transloco) : '' }}
         </td>
         <td mg class="actions">
           <a (click)="see(classement)">{{ 'list.action.see' | transloco }}</a>
@@ -69,6 +70,13 @@
         [class.primary]="currentClassement!.hidden"
       >
         {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | transloco }}
+      </button>
+      <button
+        (click)="changeStatusCurrentClassement(!currentClassement!.adult, 'adult')"
+        [class.warn]="!currentClassement!.adult"
+        [class.primary]="currentClassement!.adult"
+      >
+        {{ (!currentClassement!.hidden ? 'list.adult.content' : 'list.for.all.content') | transloco }}
       </button>
       <button
         (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"

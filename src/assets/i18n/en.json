@@ -191,6 +191,7 @@
       "deleted": "Deleted",
       "hidden": "Private",
       "parent": "Parent",
+      "adult": "Adult",
       "with.password": "With password",
       "question": "Are you sure you want to edit one of statuses?",
       "validated": "validated",
@@ -226,6 +227,12 @@
       "private": "Make private",
       "note": "A private ranking will not be able to be found with navigation or search.",
       "note2": "But you can share it with its share link."
+    },
+    "adult": {
+      "content": "Adult Content"
+    },
+    "for.all": {
+      "content": "For all Content"
     },
     "clone": {
       "question": "Are you sure you want to clone?",
@@ -1013,6 +1020,8 @@
       "restored.success": "😊 The ranking has been successfully restored.",
       "hidden.success": "🫣 The ranking has been successfully made private.",
       "showed.success": "😊 The ranking has been successfully made public.",
+      "adult.success": "🫣 The ranking has been successfully made adult content.",
+      "for.all.success": "😊 The ranking has been successfully made for all content.",
       "update.password.success": "😊 Your password has been successfully updated."
     },
     "contact": {

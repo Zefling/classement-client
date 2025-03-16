@@ -89,7 +89,7 @@ export class ListClassementsComponent {
         this.dialogEditCategory().open();
     }
 
-    changeStatusCurrentClassement(status: boolean | string, type: 'delete' | 'hide' | 'category'): void {
+    changeStatusCurrentClassement(status: boolean | string, type: 'delete' | 'hide' | 'category' | 'adult'): void {
         this.classementService
             .statusClassement(this.currentClassement!.rankingId, status, type, true)
             .then(classements => {
@@ -100,11 +100,13 @@ export class ListClassementsComponent {
                     typeName = status ? 'deleted' : 'restored';
                 } else if (type === 'hide') {
                     typeName = status ? 'hidden' : 'showed';
+                } else if (type === 'adult') {
+                    typeName = status ? 'adult' : 'for.all';
                 } else if (type === 'category') {
                     typeName = type;
                 }
 
-                if (type === 'delete' || type === 'hide') {
+                if (type === 'delete' || type === 'hide' || type === 'adult') {
                     Utils.updateClassements(this.classements(), classements);
                     this.changeStatusCancel();
                 } else if (type === 'category') {

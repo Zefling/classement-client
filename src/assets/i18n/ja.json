@@ -191,6 +191,7 @@
       "deleted": "削除された",
       "hidden": "非公開",
       "parent": "親",
+      "adult": "成人向け",
       "with.password": "パスワードあり",
       "question": "ステータスの一つを変更してもよろしいですか？",
       "validated": "有効",
@@ -226,6 +227,12 @@
       "private": "非公開する",
       "note": "ブラウジングまたは検索で非公開のランキングを見つけることができません。",
       "note2": "ただし、共有リンクを使用して共有できます。"
+    },
+    "adult": {
+      "content": "成人向けコンテンツ"
+    },
+    "for.all": {
+      "content": "全年齢対象コンテンツ"
     },
     "clone": {
       "question": "複製してもよろしいですか？",
@@ -1012,6 +1019,8 @@
       "restored.success": "😊 ランキングは正常に復元されました。",
       "hidden.success": "🫣 ランキングは非公開に成功しました。",
       "showed.success": "😊 ランキングは公開に成功しました。",
+      "adult.success": "🫣 ランキングは成人向けに成功しました。",
+      "for.all.success": "😊 ランキングは全年齢対象に成功しました。",
       "update.password.success": "😊 パスワードは正常に更新されました。"
     },
     "contact": {

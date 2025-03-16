@@ -238,7 +238,7 @@ export class APIClassementService extends APICommon {
     statusClassement(
         rankingId: string,
         status: boolean | string,
-        type: 'delete' | 'hide' | 'category',
+        type: 'delete' | 'hide' | 'category' | 'adult',
         admin = false,
     ): Promise<Classement[]> {
         return new Promise<Classement[]>((resolve, reject) => {

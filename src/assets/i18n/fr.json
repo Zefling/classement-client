@@ -191,6 +191,7 @@
       "deleted": "Supprimé",
       "hidden": "Privé",
       "parent": "Parent",
+      "adult": "Adulte",
       "with.password": "Avec mot de passe",
       "question": "Êtes-vous sûr de vouloir changer un des status ?",
       "validated": "validé",
@@ -226,6 +227,12 @@
       "private": "Rendre privé",
       "note": "Un classement privé ne pourra pas être trouvé avec la navigation ou la recherche.",
       "note2": "Mais vous pouvez le partager avec son lien de partage."
+    },
+    "adult": {
+      "content": "Contenu adulte"
+    },
+    "for.all": {
+      "content": "Contenu tout public"
     },
     "clone": {
       "question": "Êtes-vous sûr de vouloir cloner ?",
@@ -1012,7 +1019,9 @@
       "deleted.success": "🗑 Le classement a été effacé avec succès.",
       "restored.success": "😊 La classement a été restauré avec succès.",
       "hidden.success": "🫣 Le classement a été rendu privé avec succès.",
-      "showed.success": "😊 La classement a été rendu public avec succès.",
+      "showed.success": "😊 Le classement a été rendu public avec succès.",
+      "adult.success": "🫣 Le classement a été rendu pour adulte avec succès.",
+      "for.all.success": "😊 Le classement a été rendu tout public avec succès.",
       "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
     },
     "contact": {
