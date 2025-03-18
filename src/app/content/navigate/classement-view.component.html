@@ -274,12 +274,12 @@
         <li>{{ showError }}</li>
       </ul>
     }
-    <span>
+    <p>
       <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
       <button class="button-add primary" (click)="openClassementWithPassword(password.getValue()!)">
         {{ 'navigate.password.ok' | transloco }}
       </button>
-    </span>
+    </p>
   </div>
 </mg-dialog>
 
@@ -319,4 +319,31 @@
       </tbody>
     </table>
   }
+</mg-dialog>
+
+<mg-dialog #dialogCopy closeButton>
+  <p>{{ 'generator.fork.question' | transloco }}</p>
+  <mg-input alignMode="column">
+    <mg-input-checkbox [(ngModel)]="optionFork" value="image" disabled>
+      {{ 'generator.fork.options.image' | transloco }}
+    </mg-input-checkbox>
+    <mg-input-checkbox [(ngModel)]="optionFork" value="annotations">
+      {{ 'generator.fork.options.annotations' | transloco }}
+    </mg-input-checkbox>
+    <mg-input-checkbox [(ngModel)]="optionFork" value="bg-color">
+      {{ 'generator.fork.options.bg-color' | transloco }}
+    </mg-input-checkbox>
+    <mg-input-checkbox [(ngModel)]="optionFork" value="txt-color">
+      {{ 'generator.fork.options.txt-color' | transloco }}
+    </mg-input-checkbox>
+    <mg-input-checkbox [(ngModel)]="optionFork" value="reset-groups">
+      {{ 'generator.fork.options.reset-groups' | transloco }}
+    </mg-input-checkbox>
+  </mg-input>
+  <p>
+    <button class="button-add" (click)="cancelCopy()">{{ 'generator.fork.cancel' | transloco }}</button>
+    <button class="button-add primary" (click)="openClassementForkWithOptions()">
+      {{ 'generator.fork.ok' | transloco }}
+    </button>
+  </p>
 </mg-dialog>

@@ -59,9 +59,11 @@
       </mg-input-textarea>
     </mg-input>
 
-    <div class="links">
-      <a tabindex="0" (click)="advanceOptions()">{{ 'generator.options.advance' | transloco }}</a>
-    </div>
+    @if (showAdvanceOptions) {
+      <div class="links">
+        <a tabindex="0" (click)="advanceOptions()">{{ 'generator.options.advance' | transloco }}</a>
+      </div>
+    }
     <div class="themes">
       <a tabindex="0" (click)="themesOpen()">{{ 'generator.theme.link' | transloco }}</a>
     </div>

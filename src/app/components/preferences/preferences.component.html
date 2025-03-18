@@ -27,6 +27,14 @@
               ></mg-input-number>
               <mg-input-after>{{ 'preferences.navigation.page.size.per' | transloco }}</mg-input-after>
             </mg-input>
+
+            <mg-input class="s-12">
+              <mg-input-label>{{ 'preferences.fork.advanced.label' | transloco }}</mg-input-label>
+              <mg-input-checkbox formControlName="advancedFork" mode="toggle">{{
+                'preferences.fork.advanced.desc' | transloco
+              }}</mg-input-checkbox>
+            </mg-input>
+
             <mg-input class="s-12">
               <mg-input-label>{{ 'preferences.navigation.adult.label' | transloco }}</mg-input-label>
               <mg-input-checkbox formControlName="adult" mode="toggle">{{
@@ -43,8 +51,16 @@
         </mg-tab-content>
         <mg-tab-title id="editor"> {{ 'preferences.editor.title' | transloco }}</mg-tab-title>
         <mg-tab-content id="editor">
-          <h3 class="s-12">{{ 'preferences.editor.title' | transloco }}</h3>
-          <h4 class="s-12">{{ 'preferences.tiles.title' | transloco }}</h4>
+          <h3 class="s-12">{{ 'preferences.options.title' | transloco }}</h3>
+
+          <mg-input class="s-12">
+            <mg-input-label>{{ 'preferences.options.advanced.label' | transloco }}</mg-input-label>
+            <mg-input-checkbox formControlName="advancedOptions" mode="toggle">{{
+              'preferences.options.advanced.desc' | transloco
+            }}</mg-input-checkbox>
+          </mg-input>
+
+          <h3 class="s-12">{{ 'preferences.tiles.title' | transloco }}</h3>
 
           <mg-input class="s-12">
             <mg-input-label>{{ 'preferences.tile.title' | transloco }}</mg-input-label>
@@ -53,7 +69,7 @@
             }}</mg-input-checkbox>
           </mg-input>
 
-          <h4 class="s-12">{{ 'preferences.groups.title' | transloco }}</h4>
+          <h3 class="s-12">{{ 'preferences.groups.title' | transloco }}</h3>
 
           <mg-input alignMode="column" class="s-12">
             <mg-input-label>{{ 'preferences.color.title' | transloco }}</mg-input-label>
@@ -88,7 +104,7 @@
             }}</mg-input-radio>
           </mg-input>
 
-          <h4 class="s-12">{{ 'preferences.other.title' | transloco }}</h4>
+          <h3 class="s-12">{{ 'preferences.other.title' | transloco }}</h3>
 
           <mg-input class="s-6">
             <mg-input-label>{{ 'preferences.mode.title' | transloco }}</mg-input-label>

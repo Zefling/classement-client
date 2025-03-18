@@ -49,6 +49,7 @@ import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.serv
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { palette } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
@@ -118,6 +119,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly editor = inject(ClassementEditComponent, { host: true });
     private readonly globalService = inject(GlobalService);
     private readonly logger = inject(Logger);
+    private readonly prefs = inject(PreferencesService);
 
     // input
 
@@ -163,6 +165,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     themeError = false;
     themeCurrent = signal<Theme<string> | undefined>(undefined);
 
+    showAdvanceOptions = false;
+
     protected replacePattern = /default|teams/;
 
     private _sub = Subscriptions.instance();
@@ -176,7 +180,11 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.globalService.onOptionChange.subscribe(() => {
                 this.updateCurrentTheme();
             }),
+            this.prefs.onChange.subscribe(() => {
+                this.updatePrefs();
+            }),
         );
+        this.updatePrefs();
     }
 
     ngOnInit(): void {
@@ -189,6 +197,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._modeTemp = undefined;
             this.updateMode();
         }
+    }
+
+    updatePrefs() {
+        this.prefs.init().then(pref => (this.showAdvanceOptions = pref.advancedOptions));
     }
 
     updateCurrentTheme() {

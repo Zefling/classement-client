@@ -102,6 +102,15 @@
         "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
       }
     },
+    "fork.advanced": {
+      "label": "Make my ranking",
+      "desc": "Add a dialog of options when I want to make my ranking from another"
+    },
+    "options": {
+      "title": "Options",
+      "advanced.label": "Advanced options",
+      "advanced.desc": "Enable the advanced options dialog"
+    },
     "other": {
       "title": "By default"
     },
@@ -302,6 +311,18 @@
     },
     "choice": {
       "title": "Choose a  ranking method"
+    },
+    "fork": {
+      "question": "What do you want to do?",
+      "options": {
+        "image": "Keep images & titles",
+        "annotations": "Keep annotations",
+        "bg-color": "Keep tile background colors",
+        "txt-color": "Keep tile text colors",
+        "reset-groups": "Empty groups"
+      },
+      "ok": "Ok",
+      "cancel": "Cancel"
     },
     "options": {
       "group.title": "Options",

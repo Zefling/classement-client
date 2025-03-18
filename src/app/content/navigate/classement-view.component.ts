@@ -32,6 +32,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { FileFormatExport, GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
+import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -76,6 +77,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly mgMessage = inject(MagmaMessage);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly prefs = inject(PreferencesService);
     private readonly meta = inject(Meta);
     protected readonly cd = inject(ChangeDetectorRef);
 
@@ -103,6 +105,8 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     classScreenMode: ScreenMode = 'default';
 
+    optionFork = ['image', 'txt-color', 'bg-color', 'annotations', 'reset-groups'];
+
     showLink = true;
 
     image = viewChild.required<ElementRef>('image');
@@ -110,6 +114,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
     dialogHistory = viewChild.required<MagmaDialog>('dialogHistory');
     dialogPassword = viewChild.required<MagmaDialog>('dialogPassword');
+    dialogCopy = viewChild.required<MagmaDialog>('dialogCopy');
 
     private canvas?: HTMLCanvasElement;
     private id?: string;
@@ -293,8 +298,20 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
         this.router.navigate(['edit', Utils.getClassementId(this.classement!)]);
     }
 
-    openClassementFork() {
-        this.router.navigate(['edit', Utils.getClassementId(this.classement!), 'fork']);
+    async openClassementFork() {
+        if ((await this.prefs.init()).advancedFork) {
+            this.dialogCopy().open();
+        } else {
+            this.router.navigate(['edit', Utils.getClassementId(this.classement!), 'fork']);
+        }
+    }
+
+    cancelCopy() {
+        this.dialogCopy().close();
+    }
+
+    openClassementForkWithOptions() {
+        this.router.navigate(['edit', Utils.getClassementId(this.classement!), 'fork', this.optionFork?.join(',')]);
     }
 
     seeMyClassement() {

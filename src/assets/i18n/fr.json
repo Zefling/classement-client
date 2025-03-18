@@ -102,6 +102,15 @@
         "hidden": "Caché : aucune option visible et les groupes ne peuvent pas être modifiés dans ce mode."
       }
     },
+    "fork.advanced": {
+      "label": "Faire mon classement",
+      "desc": "Ajouter une dialogue d'options quand je veux faire mon classement à partir d'une autre"
+    },
+    "options": {
+      "title": "Options",
+      "advanced.label": "Options avancées",
+      "advanced.desc": "Activer la dialogue des options avancées"
+    },
     "other": {
       "title": "Par défaut"
     },
@@ -302,6 +311,18 @@
     },
     "choice": {
       "title": "Choisissez un mode de classement"
+    },
+    "fork": {
+      "question": "Qu'est ce que tu veux faire ?",
+      "options": {
+        "image": "Grader les images & titres",
+        "annotations": "Garder les annotations",
+        "bg-color": "Garder la couleurs des fonds de tuiles",
+        "txt-color": "Garder la couleurs des texte de tuiles",
+        "reset-groups": "Vider les groupes"
+      },
+      "ok": "Ok",
+      "cancel": "Annuler"
     },
     "options": {
       "group.title": "Options",

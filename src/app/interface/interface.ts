@@ -265,6 +265,8 @@ export interface PreferencesData {
     emojiList: string[];
     zoomMobile: number;
     adult: boolean;
+    advancedOptions: boolean;
+    advancedFork: boolean;
     authApiKeys: {
         imdb: string;
     };

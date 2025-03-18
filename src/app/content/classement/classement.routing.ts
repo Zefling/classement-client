@@ -5,6 +5,12 @@ import { DataChange } from 'src/app/services/data-change';
 
 const routes: Routes = [
     {
+        path: ':id/:mode/:options',
+        pathMatch: 'full',
+        loadComponent: () => import('./classement-edit.component').then(m => m.ClassementEditComponent),
+        canActivate: [DataChange],
+    },
+    {
         path: ':id/:mode',
         pathMatch: 'full',
         loadComponent: () => import('./classement-edit.component').then(m => m.ClassementEditComponent),

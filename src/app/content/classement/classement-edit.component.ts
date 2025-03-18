@@ -391,6 +391,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
         if (params['id'] && params['id'] !== 'new') {
             const fork = params['mode'] === 'fork';
+            const forkOptions: string[] | undefined = params['options']?.split(',') ?? undefined;
             this.id = params['id'];
             this.exportImageLoading = true;
             this.exportImageDisabled = true;
@@ -404,13 +405,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     }
                     if (classement) {
                         this.logger.log('loadServerClassement (user)');
-                        this.loadServerClassement(classement, fork);
+                        this.loadServerClassement(classement, fork, forkOptions);
                     } else {
                         this.classementService
                             .getClassement(this.id!)
                             .then(classement => {
                                 this.logger.log('loadServerClassement (server)');
-                                this.loadServerClassement(classement, fork);
+                                this.loadServerClassement(classement, fork, forkOptions);
                             })
                             .catch(() => {
                                 this.logger.log('loadLocalClassement (browser)');
@@ -567,7 +568,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             });
     }
 
-    loadServerClassement(classement: Classement, fork: boolean, withDerivative: boolean = true) {
+    loadServerClassement(classement: Classement, fork: boolean, forkOptions: string[] | undefined) {
         this.classement = classement;
         this.options = {
             ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
@@ -585,7 +586,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
         this.html2canvasImagesCacheUpdate();
 
-        if (withDerivative && this.logged) {
+        if (this.logged) {
             this.classementService
                 .getClassementsByTemplateId(this.classement?.templateId, this.userService.user?.id)
                 .then(classements => {
@@ -594,7 +595,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
 
         if (fork) {
-            this.reset();
+            if (forkOptions === undefined || forkOptions.includes('reset-groups')) {
+                this.reset();
+            }
+            if (Array.isArray(forkOptions)) {
+                this.list.forEach(item => this.resetByOptions(item, forkOptions));
+                this.groups.forEach(group => group.list.forEach(item => this.resetByOptions(item, forkOptions)));
+            }
+
             this.id = undefined;
             this.new = true;
             classement.linkId = '';
@@ -605,6 +613,20 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.resetCache();
         this.helpInit();
         this.memory.addUndo(this);
+    }
+
+    resetByOptions(item: FileType, forkOptions: string[]) {
+        if (item) {
+            if (!forkOptions.includes('txt-color')) {
+                item.txtColor = undefined;
+            }
+            if (!forkOptions.includes('bg-color')) {
+                item.bgColor = undefined;
+            }
+            if (!forkOptions.includes('annotations')) {
+                item.annotation = undefined;
+            }
+        }
     }
 
     loadDerivativeClassement(classement: Classement) {

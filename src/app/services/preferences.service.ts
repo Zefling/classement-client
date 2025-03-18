@@ -32,6 +32,8 @@ export class PreferencesService {
         emojiList: ['🥰', '😍', '🤩', '🤪', '😁', '😏'],
         zoomMobile: 100,
         adult: false,
+        advancedOptions: false,
+        advancedFork: false,
         authApiKeys: {
             imdb: '',
         },
