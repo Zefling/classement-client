@@ -44,7 +44,6 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Coloration } from 'coloration-lib';
 import { Subject, debounceTime, first } from 'rxjs';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -71,6 +70,7 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
+import { color, mixColor } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -163,6 +163,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly imdbService = inject(APIImdbService);
     private readonly memory = inject(MemoryService);
 
+    color = color;
+
     new = false;
     id?: string;
 
@@ -177,7 +179,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     diff?: FileString[];
 
     options!: Options;
-    nameOpacity!: string;
+    nameOpacity!: number;
     currentGroup?: GroupOption;
 
     changeTimer: any[] = [];
@@ -342,7 +344,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.lineOption = this.preferencesService.preferences.lineOption;
 
         this.global.updateVarCss(this.options, this.imagesCache);
-        this.nameOpacity = this.global.getValuesFromOptions(this.options).nameOpacity;
+        this.nameOpacity = Math.round(this.options.nameBackgroundOpacity * 2.55);
 
         // fix category with select2
         this.options.category ??= '';
@@ -1081,8 +1083,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         const nextIndex = isBelow ? index + 1 : index;
         const colorIndex = isBelow ? Math.min(index + 1, this.groups.length - 1) : Math.max(index - 1, 0);
 
-        const mixColor = (color1: string, color2: string) =>
-            new Coloration(color1).addColor({ maskColor: color2, maskOpacity: 0.5 }).toHEX();
         const bgColor =
             index < this.groups.length - 1 && this.preferencesService.preferences.newColor !== 'same'
                 ? mixColor(this.groups[index].bgColor, this.groups[colorIndex].bgColor)

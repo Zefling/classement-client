@@ -32,6 +32,7 @@ import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface
 import { DataService } from 'src/app/services/data.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
+import { color } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -94,7 +95,9 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
 
     // template
 
-    nameOpacity!: string;
+    color = color;
+
+    nameOpacity!: number;
 
     checkChoices: Select2Option[] = [
         { value: 'A', label: 'check.round' },
@@ -167,7 +170,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
     }
 
     ngDoCheck(): void {
-        this.nameOpacity = this.globalService.getValuesFromOptions(this.options()).nameOpacity;
+        this.nameOpacity = Math.round(this.options().nameBackgroundOpacity * 2.55);
     }
 
     ngOnDestroy() {

@@ -264,15 +264,6 @@ export class GlobalService {
         }
     }
 
-    getValuesFromOptions(o: Options) {
-        return {
-            nameOpacity:
-                Math.round(o.nameBackgroundOpacity * 2.55)
-                    ?.toString(16)
-                    .padStart(2, '0') ?? 'FF',
-        };
-    }
-
     private _fixImage(item: FileString) {
         if (item.type?.startsWith('image') && !item.width) {
             this.imageDimensions(item.url!)

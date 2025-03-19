@@ -1,9 +1,14 @@
-import { Coloration } from 'coloration-lib';
+import Color from 'colorjs.io';
 
 import { Palette } from '../interface/interface';
 
 export const color = (c: string, opacity: number): string | null => {
-    return c ? new Coloration(c).addColor({ alpha: (-1 * (100 - opacity)) / 100 }).toHEX() : null;
+    if (c) {
+        const color = new Color(c);
+        color.alpha = opacity / 255;
+        return color.toString({ format: 'hex' });
+    }
+    return null;
 };
 
 export const palette = (palette: Palette, item: number): string[] => {
@@ -19,9 +24,9 @@ export const palette = (palette: Palette, item: number): string[] => {
     const list: string[] = [];
     palette.forEach(e => {
         if (Array.isArray(e)) {
-            const color = new Coloration(e[0]);
+            const color = new Color(e[0]);
             for (let i = 0; i < expandSize; i++) {
-                list.push(color.maskColor(e[1], i / (expandSize - 1)).toHEX());
+                list.push(toHEX(color.mix(e[1], i / (expandSize - 1))));
             }
         } else {
             list.push(e);
@@ -29,4 +34,12 @@ export const palette = (palette: Palette, item: number): string[] => {
     });
 
     return list;
+};
+
+export const mixColor = (color1: string, color2: string) => {
+    return toHEX(new Color(color1).mix(color2, 0.5));
+};
+
+export const toHEX = (c: Color): string => {
+    return c.toGamut({ space: 'srgb' }).to('srgb').toString({ format: 'hex' });
 };
