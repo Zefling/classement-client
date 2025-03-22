@@ -1,5 +1,37 @@
 # Changelog - Standalone web app & API
 
+### 4.0.0 (2025-03-22)
+
+> Migration to the **Magma** framework `0.4.0` ([magma.ikilote.net](https://magma.ikilote.net))<br>
+> A framework started with the components of this project
+
+#### Standalone web app
+
+- **Magma**
+    - Use new inputs for all forms
+    - Add a color picker with alpha support
+    - Rewrite a part of advanced options panel
+- Remove `coloration-lib` and use `colorjs.io`
+- Add options for the fork #90
+- In preferences, add options:
+    - advanced options (now, hide by default)
+    - fork ranking (no active by default)
+- Fix missing edit button for personal ranking
+- Fix color select for background name group
+
+> Update to Angular `19.2.3`
+
+#### With API activated only
+
+- Allow indicating that the content is 18+ #94
+- Add a list of tiles below when no tiles are present in the view #98
+- Fix theme server search
+- Fix Bingo help persisting
+
+> Required: API `1.30.0` for test
+
+---
+
 ### 3.1.8 (2025-01-01)
 
 #### Standalone web app
@@ -19,7 +51,7 @@
 
 #### With API activated only
 
-- Required: API `1.21.1` for test
+> Required: API `1.21.1` for test
 
 ### 3.1.6 (2024-12-24)
 
@@ -33,7 +65,7 @@
 
 #### Standalone web app
 
-- Update to Angular `19.0`
+> Update to Angular `19.0`
 
 ### 3.1.4 (2024-11-24)
 
@@ -80,7 +112,7 @@
 
 #### With API activated only
 
-- Required: API `1.21` for columns
+> Required: API `1.21` for columns
 
 ---
 
