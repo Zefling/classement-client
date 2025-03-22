@@ -153,7 +153,7 @@
 </mg-dialog>
 
 <mg-dialog #dialogImageEdit>
-  @if (cTile && dialogImageEdit._open) {
+  @if (cTile && dialogImageEdit.isOpen()) {
     <div class="local" drop-image mode="local" (file)="fileChange($event)">
       <div class="s-12">
         <div class="drop-image-message">{{ 'generator.ranking.image.drop' | transloco }}</div>

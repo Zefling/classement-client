@@ -5,7 +5,7 @@
 <div
   class="classement-edit"
   drop-image
-  [disabled]="dialogSaveServer?._open || advance?.dialogAdvancedOptions()?._open || editImage?._open || false"
+  [disabled]="dialogSaveServer?.isOpen() || advance?.dialogAdvancedOptions()?.isOpen() || editImage?._open || false"
 >
   <div class="classement-edit-header">
     <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
@@ -668,7 +668,7 @@
 </mg-dialog>
 
 <mg-dialog class="auto-format" #dialogOptimise closeButton>
-  @if (dialogOptimise._open) {
+  @if (dialogOptimise.isOpen()) {
     <classement-optimise
       [list]="list"
       [groups]="groups"
@@ -679,7 +679,7 @@
 </mg-dialog>
 
 <mg-dialog #dialogSaveServer>
-  @if (logged && dialogSaveServer._open) {
+  @if (logged && dialogSaveServer.isOpen()) {
     <classement-save-server
       [classement]="classement"
       [options]="options"

@@ -181,13 +181,10 @@ export class AppComponent implements DoCheck {
         this.warningExit().close();
     }
 
-    openChoice(event: MouseEvent) {
+    openChoice() {
         this.toggleMenu();
         if (this.preferences().preferencesForm?.get('mode')?.value === 'choice') {
             this.choice().open();
-
-            event.stopPropagation();
-            event.preventDefault();
         }
     }
 

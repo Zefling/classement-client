@@ -96,9 +96,13 @@
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | transloco }}</span>
           </a>
-        }
-        @if (preferences().preferencesForm?.get('mode')?.value === 'choice') {
-          <a (click)="openChoice($event)" [class.active]="routerUrl.startsWith('/edit/new')">
+        } @else {
+          <a
+            tabindex="0"
+            (click)="openChoice()"
+            (keydown.enter)="openChoice()"
+            [class.active]="routerUrl.startsWith('/edit/new')"
+          >
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | transloco }}</span>
           </a>
@@ -136,8 +140,7 @@
               <span>{{ 'menu.profile' | transloco }}</span>
             </a>
           </li>
-        }
-        @if (!logged) {
+        } @else {
           <li [title]="'menu.login' | transloco">
             <a
               routerLink="/user/login"
@@ -163,7 +166,7 @@
         }
         <li [title]="'menu.logout' | transloco">
           @if (logged) {
-            <a class="logout" (click)="logout()">
+            <a class="logout" (click)="logout()" (keydown.enter)="logout()" tabindex="0">
               <span class="icon icon-logout"></span>
               <span>{{ 'menu.logout' | transloco }}</span>
             </a>
@@ -184,8 +187,10 @@
       </li>
     </ul>
     <div
+      tabindex="0"
       class="menu-mode"
       (click)="toggleResizeMenu()"
+      (keydown.enter)="toggleResizeMenu()"
       [title]="
         (preferences().preferencesForm?.get('mainMenuReduce')?.value ? 'menu.mode.reduce' : 'menu.mode.expand')
           | transloco
