@@ -187,6 +187,11 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         this.updatePrefs();
     }
 
+    advanceOptions() {
+        this.updateCurrentTheme();
+        this.dialogAdvancedOptions().open();
+    }
+
     ngOnInit(): void {
         this.updateMode(true);
         this.updateCurrentTheme();
@@ -209,7 +214,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     updateMode(init: boolean = false) {
         const options = this.options();
+
         if (options) {
+            if (init && !this._modeTemp) {
+                this._modeTemp = options.mode;
+            }
+
             const mode = this._modeTemp ?? options.mode ?? 'default';
             this.groupExample.set(mode !== 'columns' ? groupExample : groupExampleColumns);
 
@@ -355,12 +365,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this._previousMode = undefined;
         }
         this.dialogChangeMode().close();
-    }
-
-    advanceOptions() {
-        this.updateCurrentTheme();
-        this.dialogAdvancedOptions().open();
-        this.updateMode();
     }
 
     updateTags(tags: string[]) {
