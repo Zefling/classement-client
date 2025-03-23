@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 4.0.1 (2025-03-23)
+
+#### Standalone web app
+
+- Fix context menu in editor
+- Fix advanced options that remove tiles
+
+> Update to magma `0.4.1`
+
 ### 4.0.0 (2025-03-22)
 
 > Migration to the **Magma** framework `0.4.0` ([magma.ikilote.net](https://magma.ikilote.net))<br>
