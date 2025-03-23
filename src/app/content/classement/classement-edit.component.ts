@@ -252,31 +252,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         const userService = this.userService;
 
         this.updateTitle();
-
-        this.contextMenu.push(
-            {
-                icon: 'icon-down',
-                label: 'generator.context.menu.back.list',
-                action: data => {
-                    this.removeFromGroup(data.group, data.index);
-                },
-            },
-            {
-                icon: 'icon-edit-2',
-                label: 'generator.context.menu.edit',
-                action: data => {
-                    this.openTileInfo(data.item as FileString);
-                },
-            },
-            {
-                icon: 'icon-remove',
-                label: 'generator.context.menu.remove',
-                action: data => {
-                    this.currentTile = data.item as FileString;
-                    this.deleteCurrent();
-                },
-            },
-        );
+        this.contextMenuGenerate();
 
         this._sub.push(
             this.route.params.subscribe(params => {
@@ -319,6 +295,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             }),
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
+                this.contextMenuGenerate();
             }),
             toObservable(this.global.withChange).subscribe(withChange => {
                 if (
@@ -330,6 +307,33 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
             }),
         );
+    }
+
+    contextMenuGenerate() {
+        this.contextMenu = [
+            {
+                icon: 'icon-down',
+                label: this.translate.translate('generator.context.menu.back.list'),
+                action: data => {
+                    this.removeFromGroup(data.group, data.index);
+                },
+            },
+            {
+                icon: 'icon-edit-2',
+                label: this.translate.translate('generator.context.menu.edit'),
+                action: data => {
+                    this.openTileInfo(data.item as FileString);
+                },
+            },
+            {
+                icon: 'icon-remove',
+                label: this.translate.translate('generator.context.menu.remove'),
+                action: data => {
+                    this.currentTile = data.item as FileString;
+                    this.deleteCurrent();
+                },
+            },
+        ];
     }
 
     ngOnInit(): void {
