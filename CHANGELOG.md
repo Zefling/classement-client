@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+### 4.0.2 (2025-03-30)
+
+#### Standalone web app
+
+- Fix alternative url id (linkId)
+
 ### 4.0.1 (2025-03-23)
 
 #### Standalone web app
