@@ -214,19 +214,15 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     testLink(linkId: string) {
         if (linkId.trim()) {
-            this.classementService
-                .testLink(linkId.trim().replace(/\s/g, '_'), this.classement()?.rankingId)
-                .then(linkIdValid => {
-                    this.linkIdValid = linkIdValid;
-                });
+            const value = linkId.trim().replace(/\s/g, '_');
+            this.classementService.testLink(value, this.classement()?.rankingId).then(linkIdValid => {
+                this.linkIdValid = linkIdValid;
+                this.linkId = value;
+            });
         } else {
             this.linkIdValid = undefined;
         }
         this.linkChange = true;
-    }
-
-    linkFormat(event: FocusEvent) {
-        this.linkId = (event.target as HTMLInputElement).value.trim().replace(/\s/g, '_');
     }
 
     resetBanner() {

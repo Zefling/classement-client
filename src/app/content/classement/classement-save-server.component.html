@@ -83,11 +83,7 @@
       <mg-input class="s-12 link">
         <mg-input-label>{{ 'generator.server.link' | transloco }}</mg-input-label>
 
-        <mg-input-text
-          [ngModel]="current?.linkId"
-          (ngModelChange)="testLink($event)"
-          (blur)="linkFormat($event)"
-        ></mg-input-text>
+        <mg-input-text [ngModel]="current?.linkId" (ngModelChange)="testLink($event)"></mg-input-text>
         @if (linkIdValid !== undefined) {
           <mg-input-suffix class="validity" [class.valid]="linkIdValid">
             {{ linkIdValid ? ' Ｏ ' : ' Ｘ ' }}
