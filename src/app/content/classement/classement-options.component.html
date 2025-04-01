@@ -333,6 +333,7 @@
           [templates]="templatesText"
           displaySearchStatus="hidden"
           overlay
+          nativeKeyboard
           ><ng-template #templatesText let-label="label">
             {{ 'generator.options.item.text.position.' + label | transloco }}
           </ng-template>
@@ -447,6 +448,7 @@
               [templates]="templatesDirection"
               displaySearchStatus="hidden"
               overlay
+              nativeKeyboard
               ><ng-template #templatesDirection let-label="label">
                 {{ 'generator.options.group.direction.' + label | transloco }}
               </ng-template>
@@ -532,6 +534,7 @@
                   [templates]="templatesVAlign"
                   displaySearchStatus="hidden"
                   overlay
+                  nativeKeyboard
                   ><ng-template #templatesVAlign let-label="label">
                     {{ 'generator.options.zone.title.align.vertical.' + label | transloco }}
                   </ng-template>
@@ -546,6 +549,7 @@
                   [templates]="templatesHAlign"
                   displaySearchStatus="hidden"
                   overlay
+                  nativeKeyboard
                   ><ng-template #templatesHAlign let-label="label">
                     {{ 'generator.options.zone.title.align.horizontal.' + label | transloco }}
                   </ng-template>
@@ -675,6 +679,7 @@
           resultMaxHeight="300px"
           displaySearchStatus="hidden"
           overlay
+          nativeKeyboard
           ><ng-template #templates let-data="data">
             <div class="list-option">
               <div class="view" [style.--url]="data.image"></div>
@@ -707,7 +712,7 @@
 
       <mg-input class="global-font">
         <mg-input-label>{{ 'generator.options.font' | transloco }}</mg-input-label>
-        <mg-input-select [data]="fontList" [templates]="templatesFont" [(ngModel)]="opts.font" overlay>
+        <mg-input-select [data]="fontList" [templates]="templatesFont" [(ngModel)]="opts.font" overlay nativeKeyboard>
           <ng-template #templatesFont let-label="label" let-data="data">
             <div class="list-option">
               {{ label }}
