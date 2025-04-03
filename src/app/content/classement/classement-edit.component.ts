@@ -275,9 +275,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.imdbService.onChange.subscribe(() => {
                 this.initAPI();
             }),
-            global.onFileLoaded.subscribe(file => {
+            global.onFileLoaded.subscribe(async file => {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
-                    this.addFile(file.file);
+                    await this.addFile(file.file);
                 }
                 this.updateSize();
             }),
@@ -1106,10 +1106,19 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    addFile(file: FileString) {
+    async addFile(file: FileString) {
         if (this.preferencesService.preferences.nameCopy) {
             // remove extension
             file.title = (file.name || '').replace(/_/g, ' ').replace(/\.(\w+)$/, '');
+        }
+
+        const autoResize = this.preferencesService.preferences.autoResize;
+        if (autoResize && autoResize !== 'origin') {
+            const [maxWidth, maxHeight] = autoResize.split('×');
+            const fileOp = await this.optimiseImage.resize(file, +maxWidth, +maxHeight);
+            if (fileOp.reduceFile) {
+                file = fileOp.reduceFile;
+            }
         }
 
         this.list.push(file);

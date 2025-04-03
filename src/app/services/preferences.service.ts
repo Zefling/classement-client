@@ -25,6 +25,7 @@ export class PreferencesService {
         newColor: 'mixed',
         newLine: 'below',
         mode: 'choice',
+        autoResize: 'origin',
         theme: themes[0],
         lineOption: 'auto',
         pageSize: 24,

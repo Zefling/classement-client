@@ -78,7 +78,13 @@
     "tiles.title": "Tuiles",
     "tile": {
       "title": "Titre de tuile",
-      "name.copy": "Copier le nom de l'image (sans l'extension) dans le titre"
+      "name.copy": "Copier le nom de l'image (sans l'extension) dans le titre",
+      "image": {
+        "auto.resize": "Redimensionnement automatique",
+        "no.resize": "Pas de redimensionnement",
+        "300": "300×300",
+        "500": "500×500"
+      }
     },
     "color": {
       "title": "Couleur",

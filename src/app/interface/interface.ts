@@ -259,6 +259,7 @@ export interface PreferencesData {
     newLine: PreferenceNewLine;
     lineOption: PreferenceLineOption;
     mode: ModeNames | 'choice';
+    autoResize: '300×300' | '500×500' | 'origin';
     theme: ThemesNames | undefined;
     pageSize: number;
     mainMenuReduce: boolean;

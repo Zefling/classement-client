@@ -120,6 +120,12 @@ export class PreferencesMagmaDialog {
         { value: 'bingo', label: 'bingo' },
     ];
 
+    resizeMode: Select2Data = [
+        { value: 'origin', label: 'no.resize' },
+        { value: '300×300', label: '300' },
+        { value: '500×500', label: '500' },
+    ];
+
     constructor() {
         // preferences
         this.initPreferences().then(() => {
@@ -230,6 +236,7 @@ export class PreferencesMagmaDialog {
             newLine: new FormControl(initPreferences.newLine),
             lineOption: new FormControl(initPreferences.lineOption),
             mode: new FormControl(initPreferences.mode),
+            autoResize: new FormControl(initPreferences.autoResize),
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
             mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),

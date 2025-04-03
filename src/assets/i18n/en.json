@@ -78,7 +78,13 @@
     "tiles.title": "Tiles",
     "tile": {
       "title": "Tile title",
-      "name.copy": "Copy the name of the image (without the extension) in the title"
+      "name.copy": "Copy the name of the image (without the extension) in the title",
+      "image": {
+        "auto.resize": "Automatic resize",
+        "no.resize": "No resize",
+        "300": "300×300",
+        "500": "500×500"
+      }
     },
     "color": {
       "title": "Color",

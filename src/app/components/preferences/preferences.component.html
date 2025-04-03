@@ -69,6 +69,22 @@
             }}</mg-input-checkbox>
           </mg-input>
 
+          <mg-input class="s-6">
+            <mg-input-label>{{ 'preferences.tile.image.auto.resize' | transloco }}</mg-input-label>
+            <mg-input-select
+              formControlName="autoResize"
+              [templates]="templatesResizes"
+              [data]="resizeMode"
+              displaySearchStatus="hidden"
+              listPosition="auto"
+              overlay
+              nativeKeyboard
+              ><ng-template #templatesResizes let-label="label">
+                {{ 'preferences.tile.image.' + label | transloco }}
+              </ng-template></mg-input-select
+            >
+          </mg-input>
+
           <h3 class="s-12">{{ 'preferences.groups.title' | transloco }}</h3>
 
           <mg-input alignMode="column" class="s-12">
@@ -113,8 +129,9 @@
               [templates]="templatesModes"
               formControlName="mode"
               displaySearchStatus="hidden"
-              overlay
               listPosition="auto"
+              overlay
+              nativeKeyboard
               ><ng-template #templatesModes let-label="label">
                 {{ 'mode.name.' + label | transloco }}
               </ng-template>
