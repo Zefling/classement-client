@@ -29,13 +29,57 @@ export class MemoryService {
 
     #image: Record<string, string> = {};
 
+    private debounceTimeout: any = undefined;
+
     reset() {
         this.#back = [];
         this.#image = {};
         this.#index = 0;
     }
 
-    addUndo(parent: ClassementEditComponent) {
+    addUndo(parent: ClassementEditComponent, delay: number = 1000) {
+        if (this.debounceTimeout) {
+            this.clearTimer();
+        }
+
+        this.debounceTimeout = setTimeout(() => {
+            this.addUndoAction(parent);
+            this.clearTimer();
+        }, delay);
+    }
+
+    undo(parent: ClassementEditComponent) {
+        if (this.hasUndo()) {
+            this.logger.log('undo', LoggerLevel.info, this.#index);
+            this.inChange = true;
+            this.#index--;
+            this.change(parent);
+            this.update();
+            setTimeout(() => {
+                this.inChange = false;
+            }, 20);
+        }
+    }
+
+    redo(parent: ClassementEditComponent) {
+        if (this.hasRedo()) {
+            this.logger.log('redo', LoggerLevel.info, this.#index);
+            this.inChange = true;
+            this.#index++;
+            this.change(parent);
+            this.update();
+            setTimeout(() => {
+                this.inChange = false;
+            }, 20);
+        }
+    }
+
+    private clearTimer() {
+        clearTimeout(this.debounceTimeout);
+        this.debounceTimeout = undefined;
+    }
+
+    private addUndoAction(parent: ClassementEditComponent) {
         if (this.inChange) {
             return;
         }
@@ -64,32 +108,6 @@ export class MemoryService {
         this.update();
 
         this.logger.log('add undo', LoggerLevel.info, this.#index);
-    }
-
-    undo(parent: ClassementEditComponent) {
-        if (this.hasUndo()) {
-            this.logger.log('undo', LoggerLevel.info, this.#index);
-            this.inChange = true;
-            this.#index--;
-            this.change(parent);
-            this.update();
-            setTimeout(() => {
-                this.inChange = false;
-            }, 20);
-        }
-    }
-
-    redo(parent: ClassementEditComponent) {
-        if (this.hasRedo()) {
-            this.logger.log('redo', LoggerLevel.info, this.#index);
-            this.inChange = true;
-            this.#index++;
-            this.change(parent);
-            this.update();
-            setTimeout(() => {
-                this.inChange = false;
-            }, 20);
-        }
     }
 
     private update() {
