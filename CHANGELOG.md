@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 4.0.3 (2025-04-04)
+
+#### Standalone web app
+
+- Add auto-resize preference #99
+- Add debounce when adding to undo list #100
+- Advanced options: native keyboard for select
+
 ### 4.0.2 (2025-03-30)
 
 #### Standalone web app
