@@ -110,7 +110,7 @@
 
       <mg-input class="s-6" id="username">
         <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
-        <mg-input-text formControlName="username"></mg-input-text>
+        <mg-input-text formControlName="username" [placeholder]="currentUser.username"></mg-input-text>
       </mg-input>
       <mg-input class="s-6" id="password">
         <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
@@ -118,7 +118,7 @@
       </mg-input>
       <mg-input class="s-6" id="email">
         <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
-        <mg-input-text type="email" formControlName="username"></mg-input-text>
+        <mg-input-text type="email" formControlName="email" [placeholder]="currentUser.email"></mg-input-text>
       </mg-input>
       <div class="s-6 status">
         <div class="label">{{ 'user.status.list' | transloco }}</div>
