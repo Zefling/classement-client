@@ -761,6 +761,8 @@
       "title": "Log in",
       "username": "Username",
       "username.required": "Username is required.",
+      "username.email": "Username or email",
+      "username.email.required": "Username or email is required.",
       "password": "Password",
       "password.bis": "Password (confirmation)",
       "password.required": "Password is required.",
@@ -945,7 +947,7 @@
   },
   "error": {
     "api-code": {
-      "1001": "No username.",
+      "1001": "No usernameo or email.",
       "1010": "No password.",
       "1011": "No old password.",
       "1012": "No new password.",

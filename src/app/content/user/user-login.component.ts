@@ -51,7 +51,10 @@ export class UserLoginComponent implements OnInit, OnDestroy {
             username: {
                 default: '',
                 control: {
-                    required: { state: true, message: () => this.translate.translate('user.login.username.required') },
+                    required: {
+                        state: true,
+                        message: () => this.translate.translate('user.login.username.email.required'),
+                    },
                 },
             },
             password: {

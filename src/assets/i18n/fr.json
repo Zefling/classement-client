@@ -761,6 +761,8 @@
       "title": "Me connecter",
       "username": "Nom d'utilisateur",
       "username.required": "Le nom d'utilisateur est requis.",
+      "username.email": "Nom d'utilisateur ou e-mail",
+      "username.email.required": "Le nom d'utilisateur ou l'e-mail est requis.",
       "password": "Mot de passe",
       "password.bis": "Mot de passe (confirmation)",
       "password.required": "Le mot de passe est requis.",
@@ -945,7 +947,7 @@
   },
   "error": {
     "api-code": {
-      "1001": "Pas de nom d'utilisateur.",
+      "1001": "Pas de nom d'utilisateur ou e-mail.",
       "1010": "Pas de mot de passe.",
       "1011": "Pas d'ancien mot de passe.",
       "1012": "Pas de nouveau mot de passe.",
