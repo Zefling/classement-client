@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 4.0.4 (2025-04-27)
+
+#### With API activated only
+
+- Username or email on login #101
+- Admin: show previous information for user
+
+> Required: API `1.30.1` for test
+
 ### 4.0.3 (2025-04-04)
 
 #### Standalone web app
