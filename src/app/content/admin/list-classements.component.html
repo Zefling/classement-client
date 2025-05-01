@@ -1,7 +1,7 @@
 <table mg hoverRow>
   <thead mg>
     <tr mg>
-      <th mg class="title sort" (click)="sortUpdate.emit('name')">
+      <th mg class="title sort" (clickEnter)="sortUpdate.emit('name')">
         {{ 'list.title.name' | transloco }}
         @if (sort() === 'name') {
           <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
@@ -9,13 +9,13 @@
       </th>
       <th mg class="user">{{ 'list.user.name' | transloco }}</th>
       <th mg class="mode">{{ 'list.mode.name' | transloco }}</th>
-      <th mg class="category sort" (click)="sortUpdate.emit('category')">
+      <th mg class="category sort" (clickEnter)="sortUpdate.emit('category')">
         {{ 'list.category.name' | transloco }}
         @if (sort() === 'category') {
           <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
         }
       </th>
-      <th mg class="date sort" (click)="sortUpdate.emit('dateCreate')">
+      <th mg class="date sort" (clickEnter)="sortUpdate.emit('dateCreate')">
         {{ 'list.date' | transloco }}
         @if (sort() === 'dateCreate') {
           <span class="{{ direction() === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
@@ -33,7 +33,7 @@
         <td mg class="title">{{ classement.data.options.title || ('list.title.undefined' | transloco) }}</td>
         <td mg class="user">{{ classement.user || ('list.user.anonymous' | transloco) }}</td>
         <td mg class="mode">{{ 'mode.name.' + (classement.mode || 'default') | transloco }}</td>
-        <td mg class="category" (click)="editCategory(classement)">
+        <td mg class="category" (clickEnter)="editCategory(classement)">
           {{ 'category.' + (classement.category || 'undefined') | transloco }}
           <span class="icon-edit-2"></span>
         </td>
@@ -50,8 +50,8 @@
           {{ classement.adult ? ('list.status.adult' | transloco) : '' }}
         </td>
         <td mg class="actions">
-          <a (click)="see(classement)">{{ 'list.action.see' | transloco }}</a>
-          <a (click)="update(classement)">{{ 'list.action.update' | transloco }}</a>
+          <a (clickEnter)="see(classement)">{{ 'list.action.see' | transloco }}</a>
+          <a (clickEnter)="update(classement)">{{ 'list.action.update' | transloco }}</a>
         </td>
       </tr>
     }

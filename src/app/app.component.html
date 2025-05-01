@@ -97,19 +97,14 @@
             <span>{{ 'menu.new' | transloco }}</span>
           </a>
         } @else {
-          <a
-            tabindex="0"
-            (click)="openChoice()"
-            (keydown.enter)="openChoice()"
-            [class.active]="routerUrl.startsWith('/edit/new')"
-          >
+          <a (clickEnter)="openChoice()" [class.active]="routerUrl.startsWith('/edit/new')">
             <span class="icon icon-add"></span>
             <span>{{ 'menu.new' | transloco }}</span>
           </a>
         }
       </li>
       <li [title]="'menu.preferences' | transloco">
-        <a (click)="openPreferences()" (keydown.enter)="openPreferences()" tabIndex="0">
+        <a (clickEnter)="openPreferences()">
           <span class="icon icon-params"></span>
           <span>{{ 'menu.preferences' | transloco }}</span>
         </a>

@@ -19,7 +19,7 @@
       <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
     </div>
     <div>
-      <a (click)="toggle()">{{
+      <a (clickEnter)="toggle()">{{
         (!detail ? 'generator.optimise.show.detail' : 'generator.optimise.hide.detail') | transloco
       }}</a>
     </div>

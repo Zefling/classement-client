@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MagmaDialog } from '@ikilote/magma';
+import { MagmaClickEnterDirective, MagmaDialog } from '@ikilote/magma';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
@@ -46,6 +46,7 @@ export function markedOptionsFactory() {
         //internal
         LoaderComponent,
         MagmaDialog,
+        MagmaClickEnterDirective,
         PreferencesMagmaDialog,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],

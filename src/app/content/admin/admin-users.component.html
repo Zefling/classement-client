@@ -23,14 +23,14 @@
       <thead mg>
         <tr mg>
           <th mg class="status">{{ 'list.status.list' | transloco }}</th>
-          <th mg class="user sort" (click)="sortUpdate('username')">
+          <th mg class="user sort" (clickEnter)="sortUpdate('username')">
             {{ 'list.user.name' | transloco }}
             @if (sort === 'username') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
             }
           </th>
           <th mg class="role">{{ 'list.roles.name' | transloco }}</th>
-          <th mg class="date sort" (click)="sortUpdate('dateCreate')">
+          <th mg class="date sort" (clickEnter)="sortUpdate('dateCreate')">
             {{ 'list.date' | transloco }}
             @if (sort === 'dateCreate') {
               <span class="{{ direction === 'ASC' ? 'icon-down' : 'icon-up' }}"></span>
@@ -77,11 +77,11 @@
             <td mg class="classements">{{ user.classements?.length || 0 }}</td>
             <td mg class="actions">
               @if (user.classements?.length) {
-                <a (click)="see(user)">{{ 'list.action.see' | transloco }}</a>
+                <a (clickEnter)="see(user)">{{ 'list.action.see' | transloco }}</a>
               }
               @if (!user.deleted) {
-                <a (click)="update(user)">{{ 'list.action.update' | transloco }}</a>
-                <a (click)="removeProfile(user)">{{ 'list.action.remove' | transloco }}</a>
+                <a (clickEnter)="update(user)">{{ 'list.action.update' | transloco }}</a>
+                <a (clickEnter)="removeProfile(user)">{{ 'list.action.remove' | transloco }}</a>
               }
             </td>
           </tr>

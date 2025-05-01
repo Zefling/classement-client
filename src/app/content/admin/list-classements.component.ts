@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output, inject, input, viewChild } from '@angu
 import { FormsModule } from '@angular/forms';
 
 import {
+    MagmaClickEnterDirective,
     MagmaDialog,
     MagmaInput,
     MagmaInputElement,
@@ -44,6 +45,7 @@ import { categories } from '../classement/classement-default';
         MagmaInputElement,
         MagmaInputText,
         MagmaInputSelect,
+        MagmaClickEnterDirective,
     ],
 })
 export class ListClassementsComponent {

@@ -31,6 +31,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import html2canvas from '@html2canvas/html2canvas';
 import {
     ContextMenuItem,
+    MagmaClickEnterDirective,
     MagmaColorPicker,
     MagmaContextMenu,
     MagmaDialog,
@@ -144,6 +145,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaInput,
         MagmaInputCheckbox,
         MagmaColorPicker,
+        MagmaClickEnterDirective,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {

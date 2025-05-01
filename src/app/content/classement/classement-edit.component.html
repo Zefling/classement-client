@@ -719,7 +719,7 @@
             <td class="groups">{{ derivative.totalGroups }}</td>
             <td class="items">{{ derivative.totalItems }}</td>
             <td class="actions">
-              <a (click)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | transloco }}</a>
+              <a (clickEnter)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | transloco }}</a>
             </td>
           </tr>
         }
