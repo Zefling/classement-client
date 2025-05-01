@@ -23,9 +23,8 @@ import {
     MagmaInputSelect,
     MagmaInputText,
     MagmaLightDark,
-    MagmaTabContent,
-    MagmaTabTitle,
     MagmaTabs,
+    MagmaTabsModule,
     PreferenceInterfaceTheme,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -64,9 +63,7 @@ const languages: Select2Option[] = [
         TranslocoPipe,
         MagmaClickOutsideDirective,
         MagmaDialog,
-        MagmaTabs,
-        MagmaTabContent,
-        MagmaTabTitle,
+        MagmaTabsModule,
         MagmaLightDark,
         MagmaInput,
         MagmaInputElement,

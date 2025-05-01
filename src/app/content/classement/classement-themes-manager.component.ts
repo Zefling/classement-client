@@ -8,9 +8,7 @@ import {
     MagmaInputRadio,
     MagmaInputText,
     MagmaMessage,
-    MagmaTabContent,
-    MagmaTabTitle,
-    MagmaTabs,
+    MagmaTabsModule,
 } from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
@@ -33,9 +31,7 @@ import { Utils } from 'src/app/tools/utils';
         // components
         ThemeIconComponent,
         MagmaDialog,
-        MagmaTabs,
-        MagmaTabContent,
-        MagmaTabTitle,
+        MagmaTabsModule,
         MagmaInput,
         MagmaInputElement,
         MagmaInputText,

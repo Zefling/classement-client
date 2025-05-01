@@ -19,7 +19,7 @@
     @if (total) {
       <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users"></mg-paginate>
     }
-    <table mg>
+    <table mg hoverRow>
       <thead mg>
         <tr mg>
           <th mg class="status">{{ 'list.status.list' | transloco }}</th>

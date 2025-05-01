@@ -7,9 +7,7 @@ import {
     MagmaInputElement,
     MagmaInputText,
     MagmaNgModelChangeDebouncedDirective,
-    MagmaTabContent,
-    MagmaTabTitle,
-    MagmaTabs,
+    MagmaTabsModule,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -31,9 +29,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
         MagmaDialog,
         ThemeIconComponent,
         TranslocoPipe,
-        MagmaTabs,
-        MagmaTabContent,
-        MagmaTabTitle,
+        MagmaTabsModule,
         MagmaInput,
         MagmaInputText,
         MagmaInputElement,

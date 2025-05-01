@@ -11,9 +11,7 @@ import {
     MagmaInputText,
     MagmaMessage,
     MagmaMessageType,
-    MagmaTabContent,
-    MagmaTabTitle,
-    MagmaTabs,
+    MagmaTabsModule,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -48,9 +46,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         ImageCropperComponent,
         DatePipe,
         TranslocoPipe,
-        MagmaTabs,
-        MagmaTabTitle,
-        MagmaTabContent,
+        MagmaTabsModule,
         ThemeIconComponent,
         MagmaInput,
         MagmaInputElement,
