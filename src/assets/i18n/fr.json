@@ -83,7 +83,8 @@
         "auto.resize": "Redimensionnement automatique",
         "no.resize": "Pas de redimensionnement",
         "300": "300×300",
-        "500": "500×500"
+        "500": "500×500",
+        "info": "Les images peuvent être lourdes ; si elles prennent trop de place en mémoire, les performances peuvent être fortement dégradées. Le redimensionnement automatique peut corriger cela."
       }
     },
     "color": {

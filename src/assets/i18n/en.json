@@ -83,7 +83,8 @@
         "auto.resize": "Automatic resize",
         "no.resize": "No resize",
         "300": "300×300",
-        "500": "500×500"
+        "500": "500×500",
+        "info": "Images can be heavy; if they take up too much memory space, performance can be significantly degraded. Automatic resizing can fix this."
       }
     },
     "color": {
