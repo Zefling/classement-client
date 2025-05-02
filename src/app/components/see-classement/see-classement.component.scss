@@ -523,6 +523,12 @@ div:has(> .mode-bingo) {
     }
 }
 
+.bingo-info {
+    margin: 10px 0 5px;
+    font-size: 90%;
+    text-align: center;
+}
+
 .clickable {
     cursor: pointer;
 }

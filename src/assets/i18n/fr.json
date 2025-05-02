@@ -935,6 +935,8 @@
     "validated": {
       "label": "Choisir un symbole :",
       "clear": "Réinitialiser",
+      "info": "Cliquez sur une tuile pour cocher ou décocher une tuile",
+      "info.bingo": "Cliquez sur une tuile pour placer ou supprimer un emoji d'une tuile. Clic droit pour sélectionner l'emoji.",
       "name": {
         "check.round": "Coche entourée",
         "check": "Coche",

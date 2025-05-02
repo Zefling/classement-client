@@ -222,6 +222,11 @@
             }}</mg-input-checkbox>
           </mg-input>
         </div>
+        <div class="bingo-info">
+          {{ 'action.validated.info.bingo' | transloco }}
+        </div>
+      } @else {
+        <div class="bingo-info">{{ 'action.validated.info' | transloco }}</div>
       }
 
       <table

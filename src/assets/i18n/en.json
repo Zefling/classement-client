@@ -935,6 +935,8 @@
     "validated": {
       "label": "Choose a symbol:",
       "clear": "Reset",
+      "info": "Click on a tile to check or uncheck it.",
+      "info.bingo": "Click on a tile to place or remove an emoji from it. Right-click to select the emoji.",
       "name": {
         "check.round": "Check circled",
         "check": "Check",
