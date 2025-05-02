@@ -1,5 +1,20 @@
 # Changelog - Standalone web app & API
 
+### 4.0.5 (2025-05-02)
+
+#### Standalone web app
+
+- Add info for resize preference
+- Update packages (**Angular**, **Magma** and others)
+- Use Magma `clickEnter` instead of click
+
+> Update to magma `0.5.2`
+
+#### With API activated only
+
+- Bingo: add text to help users #102
+- Admin: add all tiles and description in ranking view #103
+
 ### 4.0.4 (2025-04-27)
 
 #### With API activated only
@@ -30,7 +45,7 @@
 - Fix context menu in editor
 - Fix advanced options that remove tiles
 
-> Update to magma `0.4.1`
+> Update to **Magma** `0.4.1`
 
 ### 4.0.0 (2025-03-22)
 
