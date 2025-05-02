@@ -91,12 +91,22 @@
 
 <mg-dialog #dialogSeeClassement closeButton (onClose)="currentClassement = undefined">
   @if (currentClassement) {
+    <classement-infos [classementInfo]="currentClassement"></classement-infos>
+
     <see-classement
       [options]="currentClassement.data.options"
       [groups]="currentClassement.data.groups"
       [list]="currentClassement.data.list"
       [id]="currentClassement.rankingId"
     ></see-classement>
+
+    <div class="drop-list">
+      @for (item of currentClassement.data.list; track item; let index = $index) {
+        @if (item) {
+          <tile-item [item]="item" [options]="currentClassement.data.options"></tile-item>
+        }
+      }
+    </div>
   }
 </mg-dialog>
 

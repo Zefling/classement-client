@@ -24,8 +24,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { MarkdownComponent } from 'ngx-markdown';
-
+import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
 import { Classement, ClassementHistory, FileString, Options, ScreenMode } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -39,7 +38,6 @@ import { Utils } from 'src/app/tools/utils';
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { TileComponent } from '../../components/tile/tile.component';
 import { MessageError } from '../user/user.interface';
 
@@ -51,11 +49,10 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     styleUrls: ['./classement-view.component.scss'],
     imports: [
         RouterLink,
-        MarkdownComponent,
-        TagListComponent,
         LoadingComponent,
         FormsModule,
         SeeClassementComponent,
+        ClassementInfosComponent,
         NgClass,
         LoaderItemComponent,
         MagmaDialog,

@@ -25,3 +25,24 @@
     padding: 30px 0 15px;
     text-align: center;
 }
+
+/* --- Tile list --- */
+
+.drop-list {
+    display: table-cell; /* fix chromium */
+    border: var(--over-drop-list-border-size, var(--drop-list-border-size)) solid
+        var(--over-drop-list-border-color, var(--drop-list-border-color));
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
+    background: var(--over-drop-list-background, var(--drop-list-background));
+    min-height: calc(
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
+    );
+    overflow: hidden;
+
+    & > * {
+        display: inline-flex; /* fix chromium */
+        vertical-align: bottom;
+        text-align: center;
+    }
+}

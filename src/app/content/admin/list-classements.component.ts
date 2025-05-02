@@ -18,7 +18,10 @@ import {
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Option } from 'ng-select2-component';
+import { MarkdownModule } from 'ngx-markdown';
 
+import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
+import { TileComponent } from 'src/app/components/tile/tile.component';
 import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -33,6 +36,7 @@ import { categories } from '../classement/classement-default';
     styleUrls: ['./list-classements.component.scss'],
     imports: [
         SeeClassementComponent,
+        ClassementInfosComponent,
         FormsModule,
         DatePipe,
         TranslocoPipe,
@@ -46,6 +50,8 @@ import { categories } from '../classement/classement-default';
         MagmaInputText,
         MagmaInputSelect,
         MagmaClickEnterDirective,
+        MarkdownModule,
+        TileComponent,
     ],
 })
 export class ListClassementsComponent {
