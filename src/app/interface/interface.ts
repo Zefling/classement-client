@@ -96,7 +96,7 @@ export type Options = ThemeOptions & {
 };
 export type ThemeOptions = {
     titleTextColor: string;
-    titleTextOpacity: number;
+    titleTextOpacity: number | undefined;
     itemWidth: number;
     itemWidthAuto: boolean;
     itemImageCover: boolean;
@@ -109,14 +109,14 @@ export type ThemeOptions = {
     itemMargin: number;
     itemBackgroundColor: string;
     itemBorderColor: string;
-    itemBackgroundOpacity: number;
-    itemBorderOpacity: number;
+    itemBackgroundOpacity?: number | undefined;
+    itemBorderOpacity?: number | undefined;
     itemTextMinLine: number;
     itemTextMaxLine: number;
     itemTextSize: number;
     itemTextOnlySize: number;
     itemTextColor: string;
-    itemTextOpacity: number;
+    itemTextOpacity?: number | undefined;
     itemTextPosition:
         | 'hidden'
         | 'bottom'
@@ -128,11 +128,11 @@ export type ThemeOptions = {
         | 'top-over-hover'
         | 'top-bubble';
     itemTextBackgroundColor: string;
-    itemTextBackgroundOpacity: number;
+    itemTextBackgroundOpacity?: number | undefined;
     lineBackgroundColor: string;
     lineBorderColor: string;
-    lineBackgroundOpacity: number;
-    lineBorderOpacity: number;
+    lineBackgroundOpacity?: number | undefined;
+    lineBorderOpacity?: number | undefined;
     imageBackgroundColor: string;
     imageBackgroundImage: ImagesNames;
     imageBackgroundCustom: string;
@@ -143,7 +143,7 @@ export type ThemeOptions = {
     columnMinHeight?: number;
     axisLineWidth: number;
     axisLineColor: string;
-    axisLineOpacity: number;
+    axisLineOpacity?: number | undefined;
     axisArrowWidth: number;
     nameWidth: number;
     nameMinHeight: number;
@@ -155,7 +155,7 @@ export type ThemeOptions = {
     borderSize: number;
     groupLineSize: number;
     groupLineColor: string;
-    groupLineOpacity: number;
+    groupLineOpacity?: number | undefined;
     direction: 'ltr' | 'rtl';
     autoSave?: boolean;
     streamMode?: boolean;

@@ -265,15 +265,30 @@
       </div>
       <mg-input class="colors-item-back">
         <mg-input-label>{{ 'generator.options.item.background.color' | transloco }}</mg-input-label>
-        <mg-input-color [(ngModel)]="opts.itemBackgroundColor" alpha clearButton></mg-input-color>
+        <mg-input-color
+          [(ngModel)]="opts.itemBackgroundColor"
+          alpha
+          clearButton
+          (ngModelChange)="opts.itemBackgroundOpacity = undefined"
+        ></mg-input-color>
       </mg-input>
       <mg-input class="colors-item-border">
         <mg-input-label>{{ 'generator.options.item.border.color' | transloco }}</mg-input-label>
-        <mg-input-color [(ngModel)]="opts.itemBorderColor" alpha clearButton></mg-input-color>
+        <mg-input-color
+          [(ngModel)]="opts.itemBorderColor"
+          alpha
+          clearButton
+          (ngModelChange)="opts.itemBorderOpacity = undefined"
+        ></mg-input-color>
       </mg-input>
       <mg-input class="colors-item-text">
         <mg-input-label>{{ 'generator.options.item.text.color' | transloco }}</mg-input-label>
-        <mg-input-color [(ngModel)]="opts.itemTextColor" alpha clearButton></mg-input-color>
+        <mg-input-color
+          [(ngModel)]="opts.itemTextColor"
+          alpha
+          clearButton
+          (ngModelChange)="opts.itemTextOpacity = undefined"
+        ></mg-input-color>
       </mg-input>
       @if (!opts.itemWidthAuto) {
         <mg-input class="min-line-text">
@@ -343,7 +358,12 @@
       @if (opts.itemTextPosition && opts.itemTextPosition.match('.*(over|bubble).*')) {
         <mg-input class="item-text-back">
           <mg-input-label>{{ 'generator.options.item.text.background.color' | transloco }}</mg-input-label>
-          <mg-input-color [(ngModel)]="opts.itemTextBackgroundColor" alpha clearButton></mg-input-color>
+          <mg-input-color
+            [(ngModel)]="opts.itemTextBackgroundColor"
+            alpha
+            clearButton
+            (ngModelChange)="opts.itemTextBackgroundOpacity = undefined"
+          ></mg-input-color>
         </mg-input>
       }
       <!-- ###############################  line options ###############################  -->
@@ -354,12 +374,22 @@
 
         <mg-input class="colors-line-back">
           <mg-input-label>{{ 'generator.options.' + direction + '.background.color' | transloco }}</mg-input-label>
-          <mg-input-color [(ngModel)]="opts.lineBackgroundColor" alpha clearButton></mg-input-color>
+          <mg-input-color
+            [(ngModel)]="opts.lineBackgroundColor"
+            alpha
+            clearButton
+            (ngModelChange)="opts.lineBackgroundOpacity = undefined"
+          ></mg-input-color>
         </mg-input>
 
         <mg-input class="colors-line-border">
           <mg-input-label>{{ 'generator.options.' + direction + '.border.color' | transloco }}</mg-input-label>
-          <mg-input-color [(ngModel)]="opts.lineBorderColor" alpha clearButton></mg-input-color>
+          <mg-input-color
+            [(ngModel)]="opts.lineBorderColor"
+            alpha
+            clearButton
+            (ngModelChange)="opts.lineBorderOpacity = undefined"
+          ></mg-input-color>
         </mg-input>
 
         <mg-input class="border-radius">
@@ -573,7 +603,12 @@
 
         <mg-input class="colors-group-line">
           <mg-input-label>{{ 'generator.options.separator.line.color' | transloco }}</mg-input-label>
-          <mg-input-color [(ngModel)]="opts.groupLineColor" alpha clearButton></mg-input-color>
+          <mg-input-color
+            [(ngModel)]="opts.groupLineColor"
+            alpha
+            clearButton
+            (ngModelChange)="opts.groupLineOpacity = undefined"
+          ></mg-input-color>
         </mg-input>
       } @else if (opts.mode === 'axis') {
         <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
@@ -617,7 +652,12 @@
 
         <mg-input class="colors-axis-line">
           <mg-input-label>{{ 'generator.options.separator.line.color' | transloco }}</mg-input-label>
-          <mg-input-color [(ngModel)]="opts.axisLineColor" alpha clearButton></mg-input-color>
+          <mg-input-color
+            [(ngModel)]="opts.axisLineColor"
+            alpha
+            clearButton
+            (ngModelChange)="opts.axisLineOpacity = undefined"
+          ></mg-input-color>
         </mg-input>
       }
       <!-- ###############################  other options ###############################  -->
@@ -625,7 +665,12 @@
 
       <mg-input class="colors-title-text">
         <mg-input-label>{{ 'generator.options.title.color' | transloco }}</mg-input-label>
-        <mg-input-color [(ngModel)]="opts.titleTextColor" alpha clearButton></mg-input-color>
+        <mg-input-color
+          [(ngModel)]="opts.titleTextColor"
+          alpha
+          clearButton
+          (ngModelChange)="opts.titleTextOpacity = undefined"
+        ></mg-input-color>
       </mg-input>
 
       @if (opts.mode !== 'bingo' && opts.mode !== 'columns') {

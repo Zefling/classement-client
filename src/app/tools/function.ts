@@ -2,10 +2,12 @@ import Color from 'colorjs.io';
 
 import { Palette } from '../interface/interface';
 
-export const color = (c: string, opacity: number): string | null => {
+export const color = (c: string, opacity: number | undefined): string | null => {
     if (c) {
         const color = new Color(c);
-        color.alpha = opacity / 255;
+        if (opacity !== undefined) {
+            color.alpha = opacity / 255;
+        }
         return color.toString({ format: 'hex' });
     }
     return null;
