@@ -25,7 +25,14 @@ import {
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
-import { Classement, ClassementHistory, FileString, Options, ScreenMode } from 'src/app/interface/interface';
+import {
+    Classement,
+    ClassementHistory,
+    FileString,
+    MessageError,
+    Options,
+    ScreenMode,
+} from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
@@ -39,7 +46,6 @@ import { LoaderItemComponent } from '../../components/loader/loader-item.compone
 import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TileComponent } from '../../components/tile/tile.component';
-import { MessageError } from '../user/user.interface';
 
 const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
 

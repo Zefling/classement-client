@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+import { LightDark } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject, last, map, tap } from 'rxjs';
@@ -19,8 +20,7 @@ import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 import { Logger, LoggerLevel } from './logger';
 
-import { Message } from '../content/user/user.interface';
-import { Theme, ThemeData } from '../interface/interface';
+import { Message, Theme, ThemeData } from '../interface/interface';
 
 type EventMessage<T> = { event: HttpEvent<Message<T>> | HttpResponse<Message<T>>; message: string };
 type ResponseMessage<T> = { event: HttpResponse<Message<T>>; message: string };
@@ -29,8 +29,9 @@ export type UploadProgress = { percent: number; loaded: number; total: number };
 
 @Injectable({ providedIn: 'root' })
 export class APIThemeService extends APICommon {
-    private readonly http = inject(HttpClient);
-    private readonly userService = inject(APIUserService);
+    protected readonly http = inject(HttpClient);
+    protected readonly userService = inject(APIUserService);
+    protected readonly lightDark = inject(LightDark);
 
     progressValue = new Subject<UploadProgress>();
 

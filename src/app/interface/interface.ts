@@ -300,3 +300,85 @@ export type SortClassementCol = 'name' | 'category' | 'dateCreate';
 export type SortDirection = 'ASC' | 'DESC';
 
 export type ImageCache = Record<string, string | ArrayBuffer | null>;
+
+// message / API
+
+export interface Message<T> {
+    code: number;
+    message: T;
+    status: 'OK';
+}
+
+export interface MessageError {
+    code: number;
+    errorCode: number;
+    errorMessage: string;
+    status: 'KO';
+}
+
+export interface Login {
+    user: string;
+    token: string;
+}
+
+// stats
+
+export type TargetStatsResult = 'user' | 'classement';
+export type PeriodStatsResult = 'day' | 'week' | 'month';
+
+export interface StatsResultUserDate {
+    date: string;
+    count: number;
+    validated: number;
+    deleted: number;
+}
+export interface StatsResultUserWeek {
+    year: number;
+    week: number;
+    count: number;
+    validated: number;
+    deleted: number;
+}
+export interface StatsResultUserMonth {
+    year: number;
+    month: number;
+    count: number;
+    validated: number;
+    deleted: number;
+}
+
+export interface StatsResultClassementDate {
+    date: string;
+    count: number;
+    deleted: number;
+    hide: number;
+    parent: number;
+}
+export interface StatsResultClassementWeek {
+    year: number;
+    week: number;
+    count: number;
+    deleted: number;
+    hide: number;
+    parent: number;
+}
+export interface StatsResultClassementMonth {
+    year: number;
+    month: number;
+    count: number;
+    deleted: number;
+    hide: number;
+    parent: number;
+}
+
+export interface StatsResult<
+    T =
+        | StatsResultClassementDate
+        | StatsResultClassementWeek
+        | StatsResultClassementMonth
+        | StatsResultUserDate
+        | StatsResultUserWeek
+        | StatsResultUserMonth,
+> {
+    stats: T[];
+}

@@ -14,6 +14,7 @@
     "admin": "管理",
     "admin.users": "ユーザー",
     "admin.classements": "ランキング",
+    "admin.stats": "統計",
     "logout": "ログアウト",
     "information": "情報",
     "preferences": "環境設定",
@@ -21,6 +22,31 @@
     "mode": {
       "reduce": "メニューを圧縮する",
       "expand": "メニューを解凍する"
+    }
+  },
+
+  "admin": {
+    "selection": {
+      "day": "日ごと",
+      "week": "週ごと",
+      "month": "月ごと"
+    },
+    "user": {
+      "day": "1日あたりの登録数",
+      "week": "1週間あたりの登録数",
+      "month": "1ヶ月あたりの登録数",
+      "total": "合計",
+      "deleted": "削除済み",
+      "validated": "検証済み"
+    },
+    "classement": {
+      "day": "1日あたりのランキング数",
+      "week": "1週間あたりのランキング数",
+      "month": "1ヶ月あたりのランキング数",
+      "total": "合計",
+      "deleted": "削除済み",
+      "hide": "非表示",
+      "parent": "親"
     }
   },
   "infos": {

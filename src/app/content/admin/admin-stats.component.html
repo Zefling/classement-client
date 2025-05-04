@@ -1,0 +1,34 @@
+<h3>{{ 'menu.admin.stats' | transloco }}</h3>
+
+<p>
+  <mg-input class="s-3">
+    <mg-input-select
+      [data]="period"
+      [(ngModel)]="selectedPeriod"
+      (ngModelChange)="update($event)"
+      [templates]="template"
+    >
+      <ng-template #template let-label="label">
+        {{ 'admin.selection.' + label | transloco }}
+      </ng-template>
+    </mg-input-select>
+  </mg-input>
+</p>
+
+@if (chartOptionUser) {
+  <div
+    echarts
+    [options]="chartOptionUser"
+    class="stats-chart"
+    [theme]="lightDark.isLight() ? 'vintage' : 'dark-blue'"
+  ></div>
+}
+
+@if (chartOptionClassement) {
+  <div
+    echarts
+    [options]="chartOptionClassement"
+    class="stats-chart"
+    [theme]="lightDark.isLight() ? 'vintage' : 'dark-blue'"
+  ></div>
+}

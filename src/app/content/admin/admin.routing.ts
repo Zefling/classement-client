@@ -22,6 +22,11 @@ const routes: Routes = [
                 loadComponent: () => import('./admin-classements.component').then(m => m.AdminClassementsComponent),
             },
             {
+                path: 'stats',
+                pathMatch: 'full',
+                loadComponent: () => import('./admin-stats.component').then(m => m.AdminStatsComponent),
+            },
+            {
                 path: '**',
                 redirectTo: 'users',
             },

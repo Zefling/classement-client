@@ -14,6 +14,7 @@
     "admin": "Admin",
     "admin.users": "Users",
     "admin.classements": "Rankings",
+    "admin.stats": "Stats",
     "logout": "Logout",
     "information": "Information",
     "preferences": "Preferences",
@@ -21,6 +22,30 @@
     "mode": {
       "reduce": "Reduce menu",
       "expand": "Expand menu"
+    }
+  },
+  "admin": {
+    "selection": {
+      "day": "By day",
+      "week": "By week",
+      "month": "By month"
+    },
+    "user": {
+      "day": "Number of registrations per day",
+      "week": "Number of registrations per week",
+      "month": "Number of registrations per month",
+      "total": "total",
+      "deleted": "deleted",
+      "validated": "validated"
+    },
+    "classement": {
+      "day": "Number of rankings per day",
+      "week": "Number of rankings per week",
+      "month": "Number of rankings per month",
+      "total": "total",
+      "deleted": "deleted",
+      "hide": "hidden",
+      "parent": "parent"
     }
   },
   "infos": {

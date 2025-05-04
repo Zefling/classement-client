@@ -14,6 +14,7 @@
     "admin": "Administration",
     "admin.users": "Utilisateurs",
     "admin.classements": "Classements",
+    "admin.stats": "Stats",
     "logout": "Déconnexion",
     "information": "Information",
     "preferences": "Préférences",
@@ -21,6 +22,30 @@
     "mode": {
       "reduce": "Réduire le menu",
       "expand": "Étendre le menu"
+    }
+  },
+  "admin": {
+    "selection": {
+      "day": "Par jour",
+      "week": "Par semaine",
+      "month": "Par mois"
+    },
+    "user": {
+      "day": "Nombre d'inscription par jour",
+      "week": "Nombre d'inscription par semaine",
+      "month": "Nombre d'inscription par mois",
+      "total": "total",
+      "deleted": "supprimé",
+      "validated": "validé"
+    },
+    "classement": {
+      "day": "Nombre de classements par jour",
+      "week": "Nombre de classements par semaine",
+      "month": "Nombre de classements par mois",
+      "total": "total",
+      "deleted": "supprimé",
+      "hide": "caché",
+      "parent": "parent"
     }
   },
   "infos": {

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { Logger, LoggerLevel } from './logger';
 
-import { MessageError } from '../content/user/user.interface';
+import { MessageError } from '../interface/interface';
 
 export abstract class APICommon {
     abstract token?: string;

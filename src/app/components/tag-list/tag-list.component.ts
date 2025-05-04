@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { Message } from 'src/app/content/user/user.interface';
+import { Message } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { environment } from 'src/environments/environment';
 
