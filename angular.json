@@ -45,7 +45,10 @@
               "buffer",
               "@html2canvas/html2canvas",
               "owasp-password-strength-test",
-              "ajv"
+              "ajv",
+              "bowser",
+              "echarts/theme/vintage.js",
+              "echarts/theme/dark-blue.js"
             ],
             "browser": "src/main.ts"
           },

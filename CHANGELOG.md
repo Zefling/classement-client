@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 4.0.6 (2025-05-04)
+
+#### Standalone web app
+
+- Fix unnecessary opacity and backward compatibility values
+
+#### With API activated only
+
+- Admin: add user / ranking charts #104
+
+> Required: API `1.31.0`
+
 ### 4.0.5 (2025-05-02)
 
 #### Standalone web app
