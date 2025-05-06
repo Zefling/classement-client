@@ -11,11 +11,14 @@
 */
 
 // list of regexp apply on the source file (respect order):
+//
 // /.*(unqualified|minimally-qualified).*\n//
 // /.*;.*# (.*) E\d+.*\n/$1,/
 // /# subgroup: (.*)\n(.*),/'$1': '$2',/
 // /.*subtotal.*\n.*subtotal.*/},/
 // /# group: (.*)\n\n/'$1': {/
+//
+// use: https://test.ikilote.net/regexp-script/
 
 const emojiList = {
     'Smileys & Emotion': {
