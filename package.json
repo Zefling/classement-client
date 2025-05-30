@@ -35,15 +35,15 @@
     "npm": ">= 10.2.4"
   },
   "dependencies": {
-    "@angular/animations": "^19.2.9",
-    "@angular/cdk": "^19.2.14",
-    "@angular/common": "^19.2.9",
-    "@angular/compiler": "^19.2.9",
-    "@angular/core": "^19.2.9",
-    "@angular/forms": "^19.2.9",
-    "@angular/platform-browser": "^19.2.9",
-    "@angular/platform-browser-dynamic": "^19.2.9",
-    "@angular/router": "^19.2.9",
+    "@angular/animations": "^20.0.0",
+    "@angular/cdk": "^20.0.1",
+    "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/platform-browser-dynamic": "^20.0.0",
+    "@angular/router": "^20.0.0",
     "@fontsource/cinzel": "^5.2.5",
     "@fontsource/dela-gothic-one": "^5.2.5",
     "@fontsource/hachi-maru-pop": "^5.2.5",
@@ -60,7 +60,7 @@
     "@fontsource/train-one": "^5.2.5",
     "@fontsource/zen-maru-gothic": "^5.2.5",
     "@html2canvas/html2canvas": "^1.6.3",
-    "@ikilote/magma": "^0.5.2",
+    "@ikilote/magma": "^0.6.0",
     "@jsverse/transloco": "^7.6.1",
     "ajv": "^8.17.1",
     "buffer": "^6.0.3",
@@ -80,9 +80,9 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.10",
-    "@angular/cli": "^19.2.10",
-    "@angular/compiler-cli": "^19.2.9",
+    "@angular/build": "^20.0.0",
+    "@angular/cli": "^20.0.0",
+    "@angular/compiler-cli": "^20.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/marked": "^6.0.0",
@@ -97,6 +97,6 @@
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
     "prettier-plugin-css-order": "^2.1.2",
-    "typescript": "~5.6.3"
+    "typescript": "~5.8.3"
   }
 }

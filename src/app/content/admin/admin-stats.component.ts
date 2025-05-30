@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -47,7 +47,7 @@ echarts.use([
     selector: 'admin-stats',
     templateUrl: './admin-stats.component.html',
     styleUrls: ['./admin-stats.component.scss'],
-    imports: [CommonModule, NgxEchartsDirective, TranslocoPipe, FormsModule, MagmaInput, MagmaInputSelect],
+    imports: [NgxEchartsDirective, TranslocoPipe, FormsModule, MagmaInput, MagmaInputSelect],
     providers: [provideEchartsCore({ echarts })],
 })
 export class AdminStatsComponent {

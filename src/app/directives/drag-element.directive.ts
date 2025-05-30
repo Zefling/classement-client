@@ -8,18 +8,19 @@ import {
     DragDrop,
     DragDropConfig,
 } from '@angular/cdk/drag-drop';
-import { DOCUMENT } from '@angular/common';
+
 import {
-    ChangeDetectorRef,
-    Directive,
-    ElementRef,
-    Inject,
-    InjectionToken,
-    NgZone,
-    Optional,
-    Self,
-    SkipSelf,
-    ViewContainerRef,
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  Inject,
+  InjectionToken,
+  NgZone,
+  Optional,
+  Self,
+  SkipSelf,
+  ViewContainerRef,
+  DOCUMENT
 } from '@angular/core';
 
 import { CdkDrag } from './drag';
