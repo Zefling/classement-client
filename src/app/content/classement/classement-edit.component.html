@@ -119,6 +119,8 @@
                       cdkDropListOrientation="mixed"
                       [cdkDropListData]="{ list: group.list, index: -1 }"
                       (cdkDropListDropped)="drop($event)"
+                      [class.selectable-group]="group !== selectionGroup && selectionGroup !== null"
+                      (click)="selectionGroupForItem(group)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                         @if (item) {
@@ -127,9 +129,12 @@
                             cdkDrag
                             removeTile
                             (removeElement)="removeFromGroup(group, index)"
+                            (click)="selectItem($event, group, item)"
+                            (clickOutside)="selectItem(null, null, null)"
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
+                            [class.selection-item]="item === selectionTile"
                           >
                             <div
                               class="content content-render"
@@ -391,6 +396,8 @@
                         cdkDropListOrientation="mixed"
                         [cdkDropListData]="{ list: group.list, index: -1 }"
                         (cdkDropListDropped)="drop($event)"
+                        [class.selectable-group]="group !== selectionGroup && selectionGroup !== null"
+                        (click)="selectionGroupForItem(group)"
                       >
                         @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                           @if (item) {
@@ -399,9 +406,12 @@
                               cdkDrag
                               removeTile
                               (removeElement)="removeFromGroup(group, index)"
+                              (click)="selectItem($event, group, item)"
+                              (clickOutside)="selectItem(null, null, null)"
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
+                              [class.selection-item]="item === selectionTile"
                             >
                               <div
                                 class="content content-render"
@@ -502,6 +512,9 @@
                   [style.--over-item-background]="item.bgColor"
                   [style.--over-item-text-color]="item.txtColor"
                   class="content-box"
+                  [class.selection-item]="item === selectionTile"
+                  (click)="selectItem($event, null, item)"
+                  (clickOutside)="selectItem(null, null, null)"
                 >
                   @if (!options.streamMode) {
                     <div
@@ -531,10 +544,10 @@
                     </div>
                   } @else {
                     <div
+                      #tile
                       class="content content-render"
                       [ngClass]="options.itemTextPosition"
                       [class.cover]="options.itemImageCover"
-                      #tile
                       [style.width.px]="calcWidth(item, tile)"
                     >
                       @if (item.url) {

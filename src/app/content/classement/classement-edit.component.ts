@@ -32,6 +32,7 @@ import html2canvas from '@html2canvas/html2canvas';
 import {
     ContextMenuItem,
     MagmaClickEnterDirective,
+    MagmaClickOutsideDirective,
     MagmaColorPicker,
     MagmaContextMenu,
     MagmaDialog,
@@ -146,6 +147,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaInputCheckbox,
         MagmaColorPicker,
         MagmaClickEnterDirective,
+        MagmaClickOutsideDirective,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
@@ -242,6 +244,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     tiles = viewChildren<CdkDragElement>(CdkDragElement);
 
     contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
+
+    selectionTile: FileType = null;
+    selectionGroup: FormattedGroup | null = null;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -1041,6 +1046,30 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
         this.globalChange();
         this.change();
+    }
+
+    selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType) {
+        if (this.options.mode === 'default' || this.options.mode === 'columns') {
+            this.selectionTile = item;
+            this.selectionGroup = group;
+            event?.stopPropagation();
+        }
+    }
+
+    groupItem(group: FormattedGroup | null) {
+        if (this.options.mode === 'default' || this.options.mode === 'columns') {
+            this.selectionGroup = group;
+        }
+    }
+
+    selectionGroupForItem(group: FormattedGroup | null) {
+        if (this.options.mode === 'default' || this.options.mode === 'columns') {
+            if (this.selectionTile && group !== null && group) {
+                const target = this.selectionGroup?.list ?? this.list;
+                const index = target.indexOf(this.selectionTile);
+                group.list.push(...target.splice(index, 1));
+            }
+        }
     }
 
     initItem(element: CdkDragElement, pos: Point) {

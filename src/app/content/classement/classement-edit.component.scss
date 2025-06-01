@@ -106,6 +106,10 @@ mg-dialog .colors-options textarea {
     max-height: var(--over-item-max-height, 300px);
     color: var(--over-item-color, var(--content-box-color));
     font-size: 14px;
+
+    &.selection-item {
+        outline: 2px solid var(--neutral0);
+    }
 }
 
 .content {
@@ -683,6 +687,10 @@ span.group-options {
         margin-bottom: -2px;
     }
 
+    .selectable-group:hover {
+        outline: 2px solid var(--neutral0);
+    }
+
     .line-fusion {
         td.names {
             border-top-right-radius: 0;
@@ -782,6 +790,10 @@ span.group-options {
         td,
         .drop-list {
             height: 100%;
+        }
+
+        .selectable-group:hover {
+            outline: 2px solid var(--neutral0);
         }
 
         &.width-max .content-box {
