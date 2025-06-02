@@ -119,7 +119,7 @@
                       cdkDropListOrientation="mixed"
                       [cdkDropListData]="{ list: group.list, index: -1 }"
                       (cdkDropListDropped)="drop($event)"
-                      [class.selectable-group]="group !== selectionGroup && selectionGroup !== null"
+                      [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
                       (click)="selectionGroupForItem(group)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
@@ -396,7 +396,7 @@
                         cdkDropListOrientation="mixed"
                         [cdkDropListData]="{ list: group.list, index: -1 }"
                         (cdkDropListDropped)="drop($event)"
-                        [class.selectable-group]="group !== selectionGroup && selectionGroup !== null"
+                        [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
                         (click)="selectionGroupForItem(group)"
                       >
                         @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {

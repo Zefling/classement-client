@@ -1049,7 +1049,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType) {
-        if (this.options.mode === 'default' || this.options.mode === 'columns') {
+        if (this.options.mode === 'default' || this.options.mode === 'columns' || this.options.mode === 'teams') {
             this.selectionTile = item;
             this.selectionGroup = group;
             event?.stopPropagation();
@@ -1057,17 +1057,30 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     groupItem(group: FormattedGroup | null) {
-        if (this.options.mode === 'default' || this.options.mode === 'columns') {
+        if (this.options.mode === 'default' || this.options.mode === 'columns' || this.options.mode === 'teams') {
             this.selectionGroup = group;
         }
     }
 
     selectionGroupForItem(group: FormattedGroup | null) {
         if (this.options.mode === 'default' || this.options.mode === 'columns') {
-            if (this.selectionTile && group !== null && group) {
-                const target = this.selectionGroup?.list ?? this.list;
-                const index = target.indexOf(this.selectionTile);
-                group.list.push(...target.splice(index, 1));
+            if (this.selectionTile && group) {
+                const originList = this.selectionGroup?.list ?? this.list;
+                const index = originList.indexOf(this.selectionTile);
+                group.list.push(...originList.splice(index, 1));
+            }
+        } else if (this.options.mode === 'teams') {
+            if (this.selectionTile && group) {
+                if (this.selectionGroup) {
+                    const index = this.selectionGroup.list.indexOf(this.selectionTile);
+                    if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
+                        group.list.push(...this.selectionGroup.list.splice(index, 1));
+                    } else {
+                        this.selectionGroup.list.splice(index, 1);
+                    }
+                } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
+                    group.list.push(this.selectionTile);
+                }
             }
         }
     }
