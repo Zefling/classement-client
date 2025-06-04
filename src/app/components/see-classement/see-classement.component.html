@@ -243,9 +243,15 @@
           </caption>
         }
         <tbody>
-          @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+          @for (
+            group of groups();
+            track group || indexGrp;
+            let indexGrp = $index;
+            let first = $first;
+            let last = $last
+          ) {
             <tr>
-              @for (item of group.list; track item; let index = $index) {
+              @for (item of group.list; track item || index; let index = $index) {
                 <td class="elements drop-list">
                   @if (item) {
                     <div [style.--over-item-background]="item.bgColor" [style.--over-item-text-color]="item.txtColor">

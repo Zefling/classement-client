@@ -816,6 +816,10 @@ span.group-options {
         min-width: auto;
     }
 
+    .selectable-group:hover {
+        outline: 2px solid var(--neutral0);
+    }
+
     .elements,
     .elements > div {
         --border: var(--over-item-border) * 2 + var(--over-item-padding) * 2 + var(--over-item-margin) * 2;

@@ -284,6 +284,12 @@
                           cdkDropList
                           [cdkDropListData]="{ list: group.list, index }"
                           (cdkDropListDropped)="drop($event)"
+                          [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
+                          (click)="
+                            !selectionTile
+                              ? selectItem($event, group, item, index)
+                              : selectionGroupForItem(group, index)
+                          "
                         >
                           @if (item) {
                             <div

@@ -247,6 +247,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     selectionTile: FileType = null;
     selectionGroup: FormattedGroup | null = null;
+    selectionIndex: number | null = null;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -671,7 +672,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     trackByFnFileString(_index: number, item: FileType) {
-        return item?.url || item?.id;
+        return item?.url || item?.id || _index;
     }
 
     calcWidth(item: FileString, tile: HTMLElement | null) {
@@ -1048,40 +1049,63 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType) {
-        if (this.options.mode === 'default' || this.options.mode === 'columns' || this.options.mode === 'teams') {
+    selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType, index: number | null = null) {
+        if (
+            this.options.mode === 'default' ||
+            this.options.mode === 'columns' ||
+            this.options.mode === 'teams' ||
+            this.options.mode === 'bingo'
+        ) {
             this.selectionTile = item;
             this.selectionGroup = group;
+            this.selectionIndex = index;
             event?.stopPropagation();
         }
     }
 
-    groupItem(group: FormattedGroup | null) {
-        if (this.options.mode === 'default' || this.options.mode === 'columns' || this.options.mode === 'teams') {
-            this.selectionGroup = group;
-        }
-    }
-
-    selectionGroupForItem(group: FormattedGroup | null) {
-        if (this.options.mode === 'default' || this.options.mode === 'columns') {
-            if (this.selectionTile && group) {
-                const originList = this.selectionGroup?.list ?? this.list;
-                const index = originList.indexOf(this.selectionTile);
-                group.list.push(...originList.splice(index, 1));
-            }
-        } else if (this.options.mode === 'teams') {
-            if (this.selectionTile && group) {
-                if (this.selectionGroup) {
-                    const index = this.selectionGroup.list.indexOf(this.selectionTile);
-                    if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
-                        group.list.push(...this.selectionGroup.list.splice(index, 1));
-                    } else {
-                        this.selectionGroup.list.splice(index, 1);
-                    }
-                } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
-                    group.list.push(this.selectionTile);
+    selectionGroupForItem(group: FormattedGroup | null, indexTarget: number | null = null) {
+        switch (this.options.mode) {
+            case 'default':
+            case 'columns':
+                if (this.selectionTile && group) {
+                    const originList = this.selectionGroup?.list ?? this.list;
+                    const index = originList.indexOf(this.selectionTile);
+                    group.list.push(...originList.splice(index, 1));
                 }
-            }
+                break;
+            case 'teams':
+                if (this.selectionTile && group) {
+                    if (this.selectionGroup) {
+                        const index = this.selectionGroup.list.indexOf(this.selectionTile);
+                        if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
+                            group.list.push(...this.selectionGroup.list.splice(index, 1));
+                        } else {
+                            this.selectionGroup.list.splice(index, 1);
+                        }
+                    } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
+                        group.list.push(this.selectionTile);
+                    }
+                }
+                break;
+            case 'bingo':
+                if (this.selectionTile && group) {
+                    const originList = this.selectionGroup?.list ?? this.list;
+                    const index = originList.indexOf(this.selectionTile);
+                    const back = group.list[indexTarget!];
+
+                    if (this.selectionGroup) {
+                        // from group
+                        group.list[indexTarget!] = originList[index];
+                        originList[index] = back;
+                    } else {
+                        // from list
+                        group.list[indexTarget!] = originList.splice(index, 1)[0];
+                        if (back) {
+                            this.list.push(back);
+                        }
+                    }
+                }
+                break;
         }
     }
 
