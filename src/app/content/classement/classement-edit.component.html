@@ -290,6 +290,7 @@
                               ? selectItem($event, group, item, index)
                               : selectionGroupForItem(group, index)
                           "
+                          (clickOutside)="selectItem(null, null, null)"
                         >
                           @if (item) {
                             <div

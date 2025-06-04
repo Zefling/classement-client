@@ -108,7 +108,9 @@ mg-dialog .colors-options textarea {
     font-size: 14px;
 
     &.selection-item {
+        z-index: 1;
         outline: 2px solid var(--neutral0);
+        outline-offset: -2px;
     }
 }
 
@@ -486,6 +488,7 @@ span.group-options {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: var(--over-item-text-max-line);
+        line-clamp: var(--over-item-text-max-line);
         min-height: calc(1.25em * var(--over-item-text-min-line));
         overflow: hidden;
     }
