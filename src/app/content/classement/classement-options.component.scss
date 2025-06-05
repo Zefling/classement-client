@@ -1,11 +1,11 @@
 .options {
     display: grid;
     grid-template:
-        'title             title               categories          modes               '
-        'description       description         description         description         '
-        'theme             width-auto          stream-mode         links               '
-        'tags              tags                tags                tags                '
-        / 1fr 1fr 1fr 1fr;
+        'title             title             categories     categories          modes               '
+        'description       description       description    description         description         '
+        'theme             width-auto        cover          stream-mode         links               '
+        'tags              tags              tags           tags                tags                '
+        / 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     border: solid 1px var(--options-border-color);
     border-radius: 5px;
@@ -23,7 +23,7 @@
         'title-item        title-item          title-item          title-item          title-item          '
         'sizes             colors-item-back    colors-item-border  colors-item-text    .                   '
         'sizes             size-item-text      size-item-text-only min-line-text       max-line-text       '
-        'sizes             item-text-pos       item-text-back      .                   .                   '
+        'sizes             cover               item-text-pos       item-text-back      .                   '
         /* ---------------------------------------------------------------------------- */
         'title-line        title-line          title-line          title-line          title-line          '
         var(--groups)
@@ -280,6 +280,14 @@ h4 {
 
 .axis-arrow-size {
     grid-area: axis-arrow-size;
+}
+
+.cover {
+    grid-area: cover;
+
+    mg-input {
+        width: calc(100% - 15px);
+    }
 }
 
 mg-input-number {

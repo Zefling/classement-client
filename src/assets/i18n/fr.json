@@ -386,7 +386,6 @@
         "width": "Largeur d'une tuile",
         "max.width": "Largeur max d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
-        "cover": "Couvrir toute la tuile",
         "height": "Hauteur d'une tuile",
         "max.height": "Hauteur max d'une tuile",
         "height.auto": "Hauteur automatique des tuiles",
@@ -395,6 +394,12 @@
         "margin": "Marge d'une tuile",
         "background.color": "Couleur du fond d'une tuile :",
         "border.color": "Couleur de bordure d'une tuile :",
+        "coverage": {
+          "label": "Comment afficher l'image",
+          "default": "L'image ne peux pas être agrandi",
+          "cover": "Couvrir toute la tuile au maximum",
+          "opti": "Couvrir au mieux sans débordement"
+        },
         "text": {
           "size": "Taille du texte de la tuile :",
           "only.size": "Taille du texte si pas d'image :",

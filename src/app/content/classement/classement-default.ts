@@ -488,3 +488,9 @@ export const listAlign: Select2Data = [
     { value: 'center', label: 'center' },
     { value: 'end', label: 'end' },
 ];
+
+export const listCover: Select2Data = [
+    { label: 'default', value: false },
+    { label: 'cover', value: true },
+    { label: 'opti', value: 'opti' },
+];

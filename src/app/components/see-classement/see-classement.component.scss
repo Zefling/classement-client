@@ -53,10 +53,15 @@ img {
     height: auto;
     max-height: 100%;
 
-    &.cover {
+    &.cover,
+    &.opti {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    &.opti {
+        object-fit: contain;
     }
 }
 

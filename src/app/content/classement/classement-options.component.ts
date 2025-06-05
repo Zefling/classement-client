@@ -63,6 +63,7 @@ import {
     imagesLists,
     imagesThemes,
     listAlign,
+    listCover,
     listDirection,
     listFonts,
     listModes,
@@ -152,11 +153,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     zoneMode: ModeNames[] = ['iceberg', 'axis'];
 
-    listMode: Select2Data = listModes;
-    fontList: Select2Data = listFonts;
-    textPosition: Select2Data = listTextPosition;
-    directionList: Select2Data = listDirection;
-    alignList: Select2Data = listAlign;
+    listMode = listModes;
+    fontList = listFonts;
+    textPosition = listTextPosition;
+    directionList = listDirection;
+    alignList = listAlign;
+    listCover = listCover;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;

@@ -8,7 +8,8 @@
         <img
           (ngInit)="calcWidth(tile); cd.detectChanges()"
           (load)="calcWidth(tile); cd.detectChanges()"
-          [class.cover]="opts.itemImageCover"
+          [class.cover]="opts.itemImageCover === true"
+          [class.opti]="opts.itemImageCover === 'opti'"
           src="{{ imagesCache()?.[itm.url] || itm.url }}"
           alt="{{ itm.name }}"
         />

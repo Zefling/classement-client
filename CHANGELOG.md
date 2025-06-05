@@ -1,5 +1,21 @@
 # Changelog - Standalone web app & API
 
+### 4.1.0 (2025-06-05)
+
+#### Standalone web app
+
+- Add tile selection on click for #108
+    - tierlist
+    - teams
+    - columns
+    - bingo
+- Update emoji list (`16.0`)
+- Fix outline in menu
+
+> Update to Angular `20.0`
+
+---
+
 ### 4.0.6 (2025-05-04)
 
 #### Standalone web app

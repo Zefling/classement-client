@@ -395,6 +395,12 @@
         "margin": "Tile margin",
         "background.color": "Tile background color:",
         "border.color": "Tile border color:",
+        "coverage": {
+          "label": "How to display the image",
+          "default": "The image cannot be enlarged",
+          "cover": "Cover the entire tile as much as possible",
+          "opti": "Cover as well as possible without overflowing"
+        },
         "text": {
           "size": "Tile text size:",
           "only.size": "Text size if no image:",

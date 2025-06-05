@@ -99,7 +99,7 @@ export type ThemeOptions = {
     titleTextOpacity: number | undefined;
     itemWidth: number;
     itemWidthAuto: boolean;
-    itemImageCover: boolean;
+    itemImageCover: boolean | 'opti';
     itemMaxWidth: number;
     itemHeight: number;
     itemHeightAuto: boolean;

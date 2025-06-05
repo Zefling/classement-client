@@ -82,18 +82,22 @@
           }}</mg-input-checkbox>
         </mg-input>
       }
-      @if (
-        (!opts.itemWidthAuto &&
-          (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
-        opts.mode === 'bingo'
-      ) {
-        <mg-input>
-          <mg-input-checkbox [(ngModel)]="opts.itemImageCover">{{
-            'generator.options.item.cover' | transloco
-          }}</mg-input-checkbox>
-        </mg-input>
-      }
     </div>
+    @if (
+      (!opts.itemWidthAuto &&
+        (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+      opts.mode === 'bingo'
+    ) {
+      <div class="cover">
+        <mg-input>
+          <mg-input-select [(ngModel)]="opts.itemImageCover" [data]="listCover" [templates]="templatesCoverage"
+            ><ng-template #templatesCoverage let-label="label">
+              {{ 'generator.options.item.coverage.' + label | transloco }}
+            </ng-template></mg-input-select
+          >
+        </mg-input>
+      </div>
+    }
     <div class="stream-mode">
       <mg-input>
         <mg-input-checkbox [(ngModel)]="opts.streamMode"
@@ -250,19 +254,23 @@
               }}</mg-input-checkbox>
             </mg-input>
           }
-          @if (
-            (!opts.itemWidthAuto &&
-              (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
-            opts.mode === 'bingo'
-          ) {
-            <mg-input>
-              <mg-input-checkbox [(ngModel)]="opts.itemImageCover">{{
-                'generator.options.item.cover' | transloco
-              }}</mg-input-checkbox>
-            </mg-input>
-          }
         </div>
       </div>
+
+      @if (
+        (!opts.itemWidthAuto &&
+          (!zoneMode.includes(opts.mode) || (zoneMode.includes(opts.mode) && !opts.itemHeightAuto))) ||
+        opts.mode === 'bingo'
+      ) {
+        <mg-input class="cover">
+          <mg-input-label>{{ 'generator.options.item.coverage.label' | transloco }}</mg-input-label>
+          <mg-input-select [(ngModel)]="opts.itemImageCover" [data]="listCover" [templates]="templatesCoverageO"
+            ><ng-template #templatesCoverageO let-label="label">
+              {{ 'generator.options.item.coverage.' + label | transloco }}
+            </ng-template></mg-input-select
+          >
+        </mg-input>
+      }
       <mg-input class="colors-item-back">
         <mg-input-label>{{ 'generator.options.item.background.color' | transloco }}</mg-input-label>
         <mg-input-color
