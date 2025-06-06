@@ -22,7 +22,7 @@
     .classement-edit-header {
         display: grid;
         grid-template:
-            'a b' 3em
+            'a b' minmax(3em, auto)
             'c c';
         width: 100%;
     }
@@ -32,7 +32,8 @@
     }
     .top-actions {
         grid-area: b;
-        margin: 10px;
+        gap: 10px;
+        margin-top: 10px;
     }
     classement-options {
         grid-area: c;
@@ -44,8 +45,12 @@
     flex-wrap: wrap;
 
     .server-api {
+        display: flex;
         flex: fit-content;
-        text-align: start;
+        flex-wrap: wrap;
+        justify-content: end;
+        align-items: self-start;
+        gap: 10px 0;
     }
 
     .client-api {
@@ -124,7 +129,7 @@ mg-dialog .colors-options textarea {
     max-height: 100%;
 
     &.cover {
-        width: 100%;
+        width: max-content;
     }
 
     .image {
@@ -1045,6 +1050,18 @@ loading-cmp {
 }
 
 @media screen and (width < 768px) {
+    .classement-edit .classement-edit-header {
+        grid-template: 'a' 'b' ' c';
+
+        .server-api {
+            justify-content: center;
+        }
+
+        .client-api {
+            text-align: center;
+        }
+    }
+
     .drop-image-message {
         font-size: 80%;
     }

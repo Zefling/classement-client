@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 4.1.0 (2025-06-05)
+### 4.1.0 (2025-06-xx)
 
 #### Standalone web app
 
@@ -9,10 +9,15 @@
     - teams
     - columns
     - bingo
+- Add cover: `contain` for image #109
 - Update emoji list (`16.0`)
+- Fix buttons in mobile mode (top of edit page) #106
+- Fix tile size in mobile mode (edit list)
 - Fix outline in menu
 
 > Update to Angular `20.0`
+
+> Required: API `1.31.1`
 
 ---
 

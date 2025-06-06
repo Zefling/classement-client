@@ -148,8 +148,8 @@
                                   <img
                                     (ngInit)="calcWidth(item, tile); detectChanges()"
                                     (load)="calcWidth(item, tile); detectChanges()"
-                                    [class.cover]="options.itemImageCover === true"
-                                    [class.opti]="options.itemImageCover === 'opti'"
+                                    [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                                    [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                                     src="{{ item.url }}"
                                     alt="{{ item.name }}"
                                   />
@@ -254,8 +254,8 @@
                           <img
                             (ngInit)="calcWidth(item, tile); detectChanges()"
                             (load)="calcWidth(item, tile); detectChanges()"
-                            [class.cover]="options.itemImageCover === true"
-                            [class.opti]="options.itemImageCover === 'opti'"
+                            [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                            [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                             src="{{ item.url }}"
                             alt="{{ item.name }}"
                           />
@@ -316,8 +316,8 @@
                                     <img
                                       (ngInit)="calcWidth(item, tile); detectChanges()"
                                       (load)="calcWidth(item, tile); detectChanges()"
-                                      [class.cover]="options.itemImageCover === true"
-                                      [class.opti]="options.itemImageCover === 'opti'"
+                                      [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                                      [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                                       src="{{ item.url }}"
                                       alt="{{ item.name }}"
                                     />
@@ -435,8 +435,8 @@
                                     <img
                                       (ngInit)="calcWidth(item, tile); detectChanges()"
                                       (load)="calcWidth(item, tile); detectChanges()"
-                                      [class.cover]="options.itemImageCover === true"
-                                      [class.opti]="options.itemImageCover === 'opti'"
+                                      [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                                      [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                                       src="{{ item.url }}"
                                       alt="{{ item.name }}"
                                     />
@@ -540,8 +540,8 @@
                       <img
                         [src]="item.url"
                         [alt]="item.name"
-                        [class.cover]="options.itemImageCover === true"
-                        [class.opti]="options.itemImageCover === 'opti'"
+                        [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                        [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                         (load)="detectChanges()"
                       />
                       <input
@@ -567,8 +567,8 @@
                           <img
                             (ngInit)="detectChanges()"
                             (load)="detectChanges()"
-                            [class.cover]="options.itemImageCover === true"
-                            [class.opti]="options.itemImageCover === 'opti'"
+                            [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                            [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
                             src="{{ item.url }}"
                             alt="{{ item.name }}"
                           />
