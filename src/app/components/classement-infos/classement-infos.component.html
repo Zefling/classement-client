@@ -61,7 +61,11 @@
 @if (classement.data.options.tags && classement.data.options.tags.length) {
   <div class="tags">
     <span>{{ 'generator.options.tags' | transloco }}</span>
-    <tag-list [tags]="classement.data.options.tags" readOnly></tag-list>
+    <tag-list
+      [tags]="classement.data.options.tags"
+      [link]="classement.parent ? 'parent' : 'children'"
+      readOnly
+    ></tag-list>
   </div>
 }
 

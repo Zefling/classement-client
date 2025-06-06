@@ -2,6 +2,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 5px;
+    margin-left: 5px;
 }
 
 button {
@@ -22,10 +23,19 @@ label {
 }
 
 .tag {
+    border-radius: 15px;
     padding: 3px 0 3px 10px;
 
     &:only-child {
         padding: 3px 10px;
+    }
+
+    &[href] {
+        color: var(--tag-background-link-color);
+
+        &:hover {
+            background: var(--tag-background-hover);
+        }
     }
 }
 

@@ -62,6 +62,8 @@ export class ClassementNavigateComponent implements OnDestroy {
     searchKey: string = '';
     category: string = '';
     mode: string = '';
+    tag: string = '';
+    all: boolean = false;
 
     classements: Classement[] = [];
 
@@ -91,10 +93,18 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.searchKey = params['name'];
                 this.category = params['category'];
                 this.mode = params['mode'];
+                this.all = params['all'];
+                this.tag = params['tag'];
                 this.page = params['page'];
-                this.queryParams = { name: this.searchKey, category: this.category };
+                this.queryParams = {
+                    name: this.searchKey,
+                    category: this.category,
+                    mode: this.mode,
+                    tag: this.tag,
+                    all: this.all,
+                };
 
-                if (this.searchKey || this.category || this.page) {
+                if (this.searchKey || this.category || this.mode || this.page || this.tag) {
                     this.submit();
                 } else {
                     this.showCategoriesList();
@@ -151,6 +161,8 @@ export class ClassementNavigateComponent implements OnDestroy {
             .getClassementsByCriterion({
                 name: this.searchKey,
                 category: this.category,
+                all: this.all,
+                tag: this.tag,
                 mode: this.mode,
                 page: this.page,
                 size: this.pageSize,
@@ -162,6 +174,8 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.mode = this.mode;
                 this.searchKey = this.searchKey;
                 this.isCategoryList = false;
+                this.all = this.all;
+                this.tag = this.tag;
             })
             .catch(() => {
                 this.classements = [];
@@ -170,7 +184,11 @@ export class ClassementNavigateComponent implements OnDestroy {
             .finally(() => {
                 this.router.navigate(
                     ['navigate'],
-                    this.searchKey === undefined && this.category === undefined && this.page === undefined
+                    this.searchKey === undefined &&
+                        this.category === undefined &&
+                        this.mode === undefined &&
+                        this.page === undefined &&
+                        this.tag === undefined
                         ? {}
                         : {
                               queryParams: {
@@ -178,6 +196,8 @@ export class ClassementNavigateComponent implements OnDestroy {
                                   category: this.category,
                                   mode: this.mode,
                                   page: this.page,
+                                  tag: this.tag,
+                                  all: this.all,
                               },
                           },
                 );

@@ -82,6 +82,8 @@ export class APIClassementService extends APICommon {
         page?: number;
         size?: number;
         adult?: boolean;
+        tag?: string;
+        all?: boolean;
     }): Promise<SearchResult> {
         return new Promise<SearchResult>(async (resolve, reject) => {
             criterion.adult = (await this.prefs.init()).adult;

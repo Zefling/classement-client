@@ -11,6 +11,7 @@ import {
     viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { Subject, debounceTime } from 'rxjs';
 
@@ -22,7 +23,7 @@ import { environment } from 'src/environments/environment';
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
-    imports: [FormsModule],
+    imports: [FormsModule, RouterLink],
 })
 export class TagListComponent implements OnInit {
     // inject
@@ -35,6 +36,7 @@ export class TagListComponent implements OnInit {
     readonly tags = input.required<string[]>();
     readonly readOnly = input(false, { transform: booleanAttribute });
     readonly allowTagClick = input(false, { transform: booleanAttribute });
+    readonly link = input<'parent' | 'children'>();
 
     // output
 

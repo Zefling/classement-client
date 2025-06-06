@@ -10,14 +10,14 @@
     - columns
     - bingo
 - Add cover: `contain` for image #109
+- Add link on tag on preview page #107
 - Update emoji list (`16.0`)
 - Fix buttons in mobile mode (top of edit page) #106
 - Fix tile size in mobile mode (edit list)
 - Fix outline in menu
 
-> Update to Angular `20.0`
-
-> Required: API `1.31.1`
+> Update to Angular `20.0`\
+> Required: API `1.32.0`
 
 ---
 

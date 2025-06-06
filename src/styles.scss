@@ -140,6 +140,8 @@ body {
 
     /* tag */
     --tag-background: var(--input-border-color);
+    --tag-background-hover: var(--primary1);
+    --tag-background-link-color: var(--neutralB);
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);

@@ -1,6 +1,10 @@
 @for (tag of tags(); track tag) {
   <div [class.allow-tag-click]="allowTagClick()" (click)="allowTagClick() ? onTagClick(tag) : null">
-    <span class="tag">{{ tag }}</span>
+    @if (link()) {
+      <a class="tag" routerLink="/navigate" [queryParams]="{ tag: tag, all: link() === 'children' }">{{ tag }}</a>
+    } @else {
+      <span class="tag">{{ tag }}</span>
+    }
     @if (!readOnly()) {
       <button (click)="remove(tag)">×</button>
     }
