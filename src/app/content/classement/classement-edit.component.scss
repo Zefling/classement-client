@@ -829,7 +829,8 @@ span.group-options {
         min-width: auto;
     }
 
-    .selectable-group:hover {
+    .selectable-group:hover,
+    .selection-item {
         outline: 2px solid var(--neutral0);
     }
 

@@ -286,7 +286,8 @@
                           cdkDropList
                           [cdkDropListData]="{ list: group.list, index }"
                           (cdkDropListDropped)="drop($event)"
-                          [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
+                          [class.selectable-group]="selectionTile && item !== selectionTile"
+                          [class.selection-item]="item && item === selectionTile"
                           (click)="
                             !selectionTile
                               ? selectItem($event, group, item, index)
