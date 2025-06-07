@@ -57,6 +57,17 @@ export const groupExample: FormattedGroup[] = [
                 y: 0,
             },
             {
+                id: 'test-5',
+                url: './assets/images/tile_image_example5.png',
+                name: 'tile_image_example5',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+                x: 700,
+                y: 0,
+            },
+            {
                 id: 'text-1',
                 name: 'tile_text_example1',
                 title: 'Œuf de phénix',
