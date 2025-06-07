@@ -27,8 +27,7 @@
           {{ 'generator.actions.edit.my.derivative' | transloco }}
         </button>
       }
-    </div>
-    <div class="buttons">
+
       @if (history?.length) {
         <button (click)="seeHistory()" class="primary">
           {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory }})

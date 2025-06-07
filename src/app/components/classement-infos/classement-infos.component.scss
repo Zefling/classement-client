@@ -1,10 +1,25 @@
 /* info block */
 
 :host {
-    display: block;
-    margin: 15px;
+    display: grid;
+    grid-template: 'infos image' 'content content'/ 1fr auto;
+    gap: 15px;
+    box-sizing: content-box;
+    margin: 15px 0;
     border: 1px solid var(--menu-separator);
     padding: 15px;
+}
+
+.banner {
+    grid-area: image;
+    height: fit-content;
+    max-height: 250px;
+}
+.infos {
+    grid-area: infos;
+}
+.content {
+    grid-area: content;
 }
 
 .groups {
