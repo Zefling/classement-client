@@ -6,7 +6,7 @@
 
 @if (onLoad) {
   <div>
-    <span><loading-cmp size="30px" tickWidth="2px"></loading-cmp>{{ 'generator.loading' | transloco }}</span>
+    <span><loading-cmp size="30px" tickWidth="2px" />{{ 'generator.loading' | transloco }}</span>
   </div>
 }
 
@@ -27,7 +27,7 @@
       @if (!file.error) {
         @if (multi()) {
           <span class="input">
-            <mg-input><mg-input-checkbox [(ngModel)]="file.selected"></mg-input-checkbox></mg-input>
+            <mg-input><mg-input-checkbox [(ngModel)]="file.selected" /></mg-input>
           </span>
         }
         <div class="infos-list">

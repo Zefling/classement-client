@@ -1,5 +1,5 @@
 @if (loading) {
-  <loader-cmp [message]="'generator.loading' | transloco"></loader-cmp>
+  <loader-cmp [message]="'generator.loading' | transloco" />
 }
 
 <header>
@@ -205,12 +205,12 @@
 </aside>
 <aside class="aside-help">
   @if (helpComponent) {
-    <ng-container [ngComponentOutlet]="helpComponent"></ng-container>
+    <ng-container [ngComponentOutlet]="helpComponent" />
   }
 </aside>
 <div #main>
   @if (!loading) {
-    <router-outlet></router-outlet>
+    <router-outlet />
   }
 </div>
 
@@ -250,4 +250,4 @@
   </p>
 </mg-dialog>
 
-<preferences-dialog #pref (mainMenuReduce)="mainMenuReduce.set($event)"></preferences-dialog>
+<preferences-dialog #pref (mainMenuReduce)="mainMenuReduce.set($event)" />

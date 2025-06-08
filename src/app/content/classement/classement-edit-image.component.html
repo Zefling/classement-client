@@ -4,12 +4,7 @@
     <div class="main">
       <mg-input class="s-12">
         <mg-input-label>{{ 'generator.ranking.title' | transloco }}</mg-input-label>
-        <mg-input-text
-          maxlength="150"
-          id="ranking-title"
-          [(ngModel)]="cTile.title"
-          (ngModelChange)="detectChanges()"
-        ></mg-input-text>
+        <mg-input-text maxlength="150" id="ranking-title" [(ngModel)]="cTile.title" (ngModelChange)="detectChanges()" />
       </mg-input>
       <mg-input class="s-12">
         <mg-input-label>{{ 'generator.ranking.annotation' | transloco }}</mg-input-label>
@@ -19,7 +14,7 @@
           id="tile-annotation"
           [(ngModel)]="cTile.annotation"
           (ngModelChange)="globalChange(); cTile.annotation = $event"
-        ></mg-input-textarea>
+        />
       </mg-input>
 
       <div class="s-12">
@@ -63,7 +58,7 @@
                 type="color"
                 alpha
                 [(ngModel)]="cTile.bgColor"
-              ></mg-input-color>
+              />
             </mg-input>
           </span>
           <span
@@ -99,7 +94,7 @@
                 type="color"
                 alpha
                 [(ngModel)]="cTile.txtColor"
-              ></mg-input-color>
+              />
             </mg-input>
           </span>
           <span
@@ -181,7 +176,7 @@
               (imageLoaded)="imageLoaded($event)"
               (cropperReady)="cropperReady()"
               (loadImageFailed)="loadImageFailed()"
-            ></image-cropper>
+            />
             <div class="change">
               <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
               <button [class.selected]="mode === 1" (click)="changeRatio(1, '1:1')">1:1</button>

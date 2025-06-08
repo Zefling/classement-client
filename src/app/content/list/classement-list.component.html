@@ -12,7 +12,7 @@
   <div class="list-actions">
     <mg-input class="filter" id="browser-list-filter">
       <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
-      <mg-input-text clearCross maxlength="150" [(ngModel)]="filter" #filterInput></mg-input-text>
+      <mg-input-text clearCross maxlength="150" [(ngModel)]="filter" #filterInput />
     </mg-input>
     <button class="primary" (click)="exportAll()">
       {{ 'generator.actions.export.all.json' | transloco }}
@@ -151,7 +151,7 @@
   <div>
     <mg-input class="s-12">
       <mg-input-label>{{ 'list.clone.title' | transloco }}</mg-input-label>
-      <mg-input-text maxlength="150" [value]="itemCurrent?.options?.title" #title></mg-input-text>
+      <mg-input-text maxlength="150" [value]="itemCurrent?.options?.title" #title />
     </mg-input>
 
     <mg-input class="s-12">

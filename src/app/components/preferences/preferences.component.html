@@ -7,24 +7,17 @@
         <mg-tab-content id="general">
           <h3 class="s-12">{{ 'preferences.interface.title' | transloco }}</h3>
           <div class="s-12 label">{{ 'preferences.interface.light-dark' | transloco }}</div>
-          <mg-light-dark (change)="changeLightDark($event)"></mg-light-dark>
+          <mg-light-dark (change)="changeLightDark($event)" />
           <mg-input id="language" class="s-12">
             <mg-input-label>{{ 'preferences.interface.language' | transloco }}</mg-input-label>
-            <mg-input-select formControlName="interfaceLanguage" [data]="languages"> </mg-input-select>
+            <mg-input-select formControlName="interfaceLanguage" [data]="languages" />
           </mg-input>
           @if (modeApi()) {
             <h3 class="s-12">{{ 'preferences.navigation.title' | transloco }}</h3>
             <mg-input id="language" class="s-12">
               <mg-input-label>{{ 'preferences.navigation.page.size' | transloco }}</mg-input-label>
               <mg-input-before>{{ 'preferences.navigation.page.size.pre' | transloco }}</mg-input-before>
-              <mg-input-number
-                formControlName="pageSize"
-                min="9"
-                max="50"
-                noDecimal
-                noNegative
-                forceMinMax
-              ></mg-input-number>
+              <mg-input-number formControlName="pageSize" min="9" max="50" noDecimal noNegative forceMinMax />
               <mg-input-after>{{ 'preferences.navigation.page.size.per' | transloco }}</mg-input-after>
             </mg-input>
 
@@ -40,12 +33,12 @@
               <mg-input-checkbox formControlName="adult" mode="toggle">{{
                 'preferences.navigation.adult.input' | transloco
               }}</mg-input-checkbox>
-              <mg-input-desc
-                ><ul>
+              <mg-input-desc>
+                <ul>
                   <li>{{ 'preferences.navigation.adult.desc.1' | transloco }}</li>
                   <li>{{ 'preferences.navigation.adult.desc.2' | transloco }}</li>
-                </ul></mg-input-desc
-              >
+                </ul>
+              </mg-input-desc>
             </mg-input>
           }
         </mg-tab-content>
@@ -81,8 +74,8 @@
               nativeKeyboard
               ><ng-template #templatesResizes let-label="label">
                 {{ 'preferences.tile.image.' + label | transloco }}
-              </ng-template></mg-input-select
-            >
+              </ng-template>
+            </mg-input-select>
           </mg-input>
           <small class="s-6"> <span class="icon-info"></span> {{ 'preferences.tile.image.info' | transloco }} </small>
 
@@ -218,7 +211,7 @@
         <mg-tab-content id="api" formGroupName="authApiKeys">
           <mg-input class="s-12">
             <mg-input-label>{{ 'preferences.imdb.key' | transloco }}</mg-input-label>
-            <mg-input-text formControlName="imdb"></mg-input-text>
+            <mg-input-text formControlName="imdb" />
             <mg-input-desc>
               <span class="icon-info"></span>
               {{ 'preferences.imdb.info' | transloco }}<a href="https://www.themoviedb.org/settings/api">API</a>

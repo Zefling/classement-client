@@ -7,7 +7,7 @@
       <form [formGroup]="searchMovieForm" (submit)="search()">
         <mg-input class="s-12">
           <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
-          <mg-input-text formControlName="query"></mg-input-text>
+          <mg-input-text formControlName="query" />
         </mg-input>
         <mg-input class="s-12">
           <mg-input-checkbox formControlName="include_adult">{{
@@ -16,7 +16,7 @@
         </mg-input>
         <mg-input class="s-12">
           <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
-          <mg-input-select overlay id="language" formControlName="language" [data]="languages"></mg-input-select>
+          <mg-input-select overlay id="language" formControlName="language" [data]="languages" />
         </mg-input>
         <p class="buttons">
           <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">

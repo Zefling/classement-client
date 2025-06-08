@@ -32,10 +32,10 @@
   <h3>{{ 'home.last' | transloco }}</h3>
   @if (!loading) {
     <div class="navigate-result">
-      <navigate-result [classements]="classements" hideDerivatives onlyRanking isHomeList></navigate-result>
+      <navigate-result [classements]="classements" hideDerivatives onlyRanking isHomeList />
     </div>
   } @else {
-    <loader-item></loader-item>
+    <loader-item />
   }
 }
 

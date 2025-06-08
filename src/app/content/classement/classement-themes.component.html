@@ -9,7 +9,7 @@
         (ngModelChangeDebounced)="keyUpdate($event)"
         ngModelChangeDebounceTime="300"
         clearCross
-      ></mg-input-text>
+      />
     </mg-input>
 
     @if (!key || !key.trim()) {
@@ -20,11 +20,7 @@
         <mg-tab-content id="default">
           <div class="themes">
             @for (theme of themes; track theme) {
-              <theme-icon
-                [theme]="theme"
-                (select)="changeTheme($event)"
-                [class.selected]="theme === currentTheme"
-              ></theme-icon>
+              <theme-icon [theme]="theme" (select)="changeTheme($event)" [class.selected]="theme === currentTheme" />
             }
           </div>
         </mg-tab-content>
@@ -43,7 +39,7 @@
                   custom
                   (select)="changeTheme($event)"
                   [class.selected]="theme === currentTheme"
-                ></theme-icon>
+                />
               }
             </div>
           </mg-tab-content>
@@ -63,7 +59,7 @@
                   custom
                   (select)="changeTheme($event)"
                   [class.selected]="theme.themeId === currentTheme?.id"
-                ></theme-icon>
+                />
               }
             </div>
           </mg-tab-content>
@@ -83,7 +79,7 @@
                   custom
                   (select)="changeTheme($event)"
                   [class.selected]="theme.themeId === currentTheme?.id"
-                ></theme-icon>
+                />
               }
             </div>
           </mg-tab-content>
@@ -92,12 +88,7 @@
     } @else {
       <div class="s-12 themes">
         @for (theme of keysThemes; track theme) {
-          <theme-icon
-            [theme]="theme"
-            custom
-            (select)="changeTheme($event)"
-            [class.selected]="theme === currentTheme"
-          ></theme-icon>
+          <theme-icon [theme]="theme" custom (select)="changeTheme($event)" [class.selected]="theme === currentTheme" />
         }
       </div>
     }

@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <classement-options [options]="options" [lockCategory]="lockCategory" #advance></classement-options>
+    <classement-options [options]="options" [lockCategory]="lockCategory" #advance />
   </div>
 
   @if (options) {
@@ -218,10 +218,10 @@
               @if (options.groups?.length) {
                 @switch (options.mode) {
                   @case ('iceberg') {
-                    <zone-area [groups]="options.groups"></zone-area>
+                    <zone-area [groups]="options.groups" />
                   }
                   @case ('axis') {
-                    <zone-axis [groups]="options.groups"></zone-axis>
+                    <zone-axis [groups]="options.groups" />
                   }
                 }
               }
@@ -613,7 +613,7 @@
         [withAnnotation]="false"
         [imagesCache]="imagesCache"
         [id]="classement?.rankingId || 'new'"
-      ></see-classement>
+      />
     </div>
 
     <div class="actions">
@@ -623,7 +623,7 @@
             <span class="icon-share"></span>
           }
           @if (exportImageLoading) {
-            <loading-cmp size="22px" tickWidth="2px"></loading-cmp>
+            <loading-cmp size="22px" tickWidth="2px" />
           }
           {{ 'generator.actions.export.image' | transloco }}
         </button>
@@ -691,17 +691,12 @@
 </mg-dialog>
 
 <mg-dialog class="auto-format" #dialogImport>
-  <import-json (load)="importJson($event)"></import-json>
+  <import-json (load)="importJson($event)" />
 </mg-dialog>
 
 <mg-dialog class="auto-format" #dialogOptimise closeButton>
   @if (dialogOptimise.isOpen()) {
-    <classement-optimise
-      [list]="list"
-      [groups]="groups"
-      [dialog]="dialogOptimise"
-      [mode]="options.mode"
-    ></classement-optimise>
+    <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options.mode" />
   }
 </mg-dialog>
 
@@ -714,7 +709,7 @@
       [groups]="groups"
       [dialog]="dialogSaveServer"
       (action)="updateAfterServerSave($event)"
-    ></classement-save-server>
+    />
   }
 </mg-dialog>
 
@@ -886,8 +881,8 @@
   </div>
 </mg-dialog>
 
-<classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage></classement-edit-image>
+<classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage />
 
-<classement-login></classement-login>
+<classement-login />
 
-<external-imdb></external-imdb>
+<external-imdb />

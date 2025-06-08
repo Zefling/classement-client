@@ -6,7 +6,7 @@
   <div class="options {{ opts.mode }}">
     <mg-input class="title">
       <mg-input-label for="option-title">{{ 'generator.options.title' | transloco }}</mg-input-label>
-      <mg-input-text for="option-title" maxlength="150" [(ngModel)]="opts.title"></mg-input-text>
+      <mg-input-text for="option-title" maxlength="150" [(ngModel)]="opts.title" />
     </mg-input>
     <mg-input class="categories">
       <mg-input-label for="option-title">{{ 'generator.options.group' | transloco }}</mg-input-label>
@@ -15,7 +15,7 @@
         [data]="categoriesList"
         [disabled]="lockCategory()"
         [(ngModel)]="opts.category"
-      ></mg-input-select>
+      />
     </mg-input>
     <mg-input class="modes">
       <mg-input-label for="option-mode">{{ 'generator.options.mode' | transloco }}</mg-input-label>
@@ -109,13 +109,13 @@
 
     <div class="tags">
       {{ 'generator.options.tags' | transloco }}
-      <tag-list [tags]="opts.tags" (update)="updateTags($event)"></tag-list>
+      <tag-list [tags]="opts.tags" (update)="updateTags($event)" />
     </div>
   </div>
 }
 
 @if (options()) {
-  <classement-themes (change)="changeTheme($event)" [options]="options()"></classement-themes>
+  <classement-themes (change)="changeTheme($event)" [options]="options()" />
 }
 
 <mg-dialog class="auto-format" #dialogChangeMode>
@@ -278,7 +278,7 @@
           alpha
           clearButton
           (ngModelChange)="opts.itemBackgroundOpacity = undefined"
-        ></mg-input-color>
+        />
       </mg-input>
       <mg-input class="colors-item-border">
         <mg-input-label>{{ 'generator.options.item.border.color' | transloco }}</mg-input-label>
@@ -287,7 +287,7 @@
           alpha
           clearButton
           (ngModelChange)="opts.itemBorderOpacity = undefined"
-        ></mg-input-color>
+        />
       </mg-input>
       <mg-input class="colors-item-text">
         <mg-input-label>{{ 'generator.options.item.text.color' | transloco }}</mg-input-label>
@@ -296,55 +296,27 @@
           alpha
           clearButton
           (ngModelChange)="opts.itemTextOpacity = undefined"
-        ></mg-input-color>
+        />
       </mg-input>
       @if (!opts.itemWidthAuto) {
         <mg-input class="min-line-text">
           <mg-input-label>{{ 'generator.options.item.text.min.line' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.itemTextMinLine"
-            min="0"
-            max="10"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.itemTextMinLine" min="0" max="10" step="1" noDecimal noNegative />
         </mg-input>
         <mg-input class="max-line-text">
           <mg-input-label>{{ 'generator.options.item.text.max.line' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.itemTextMaxLine"
-            min="0"
-            max="10"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.itemTextMaxLine" min="0" max="10" step="1" noDecimal noNegative />
         </mg-input>
       }
       <mg-input class="size-item-text">
         <mg-input-label>{{ 'generator.options.item.text.size' | transloco }}</mg-input-label>
-        <mg-input-number
-          [(ngModel)]="opts.itemTextSize"
-          min="6"
-          max="100"
-          step="1"
-          noDecimal
-          noNegative
-        ></mg-input-number>
+        <mg-input-number [(ngModel)]="opts.itemTextSize" min="6" max="100" step="1" noDecimal noNegative />
         <mg-input-suffix>px</mg-input-suffix>
       </mg-input>
 
       <mg-input class="size-item-text-only">
         <mg-input-label>{{ 'generator.options.item.text.size' | transloco }}</mg-input-label>
-        <mg-input-number
-          [(ngModel)]="opts.itemTextOnlySize"
-          min="6"
-          max="100"
-          step="1"
-          noDecimal
-          noNegative
-        ></mg-input-number>
+        <mg-input-number [(ngModel)]="opts.itemTextOnlySize" min="6" max="100" step="1" noDecimal noNegative />
         <mg-input-suffix>px</mg-input-suffix>
       </mg-input>
 
@@ -371,7 +343,7 @@
             alpha
             clearButton
             (ngModelChange)="opts.itemTextBackgroundOpacity = undefined"
-          ></mg-input-color>
+          />
         </mg-input>
       }
       <!-- ###############################  line options ###############################  -->
@@ -387,7 +359,7 @@
             alpha
             clearButton
             (ngModelChange)="opts.lineBackgroundOpacity = undefined"
-          ></mg-input-color>
+          />
         </mg-input>
 
         <mg-input class="colors-line-border">
@@ -397,45 +369,24 @@
             alpha
             clearButton
             (ngModelChange)="opts.lineBorderOpacity = undefined"
-          ></mg-input-color>
+          />
         </mg-input>
 
         <mg-input class="border-radius">
           <mg-input-label>{{ 'generator.options.border.radius' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.borderRadius"
-            min="0"
-            max="50"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.borderRadius" min="0" max="50" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
 
         <mg-input class="border-spacing">
           <mg-input-label>{{ 'generator.options.border.spacing' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.borderSpacing"
-            min="-1"
-            max="20"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.borderSpacing" min="-1" max="20" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
 
         <mg-input class="border-size">
           <mg-input-label>{{ 'generator.options.border.size' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.borderSize"
-            min="0"
-            max="20"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.borderSize" min="0" max="20" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
 
@@ -454,27 +405,13 @@
 
           <mg-input class="font-size">
             <mg-input-label>{{ 'generator.options.name.font.size' | transloco }}</mg-input-label>
-            <mg-input-number
-              [(ngModel)]="opts.nameFontSize"
-              min="50"
-              max="300"
-              step="1"
-              noDecimal
-              noNegative
-            ></mg-input-number>
+            <mg-input-number [(ngModel)]="opts.nameFontSize" min="50" max="300" step="1" noDecimal noNegative />
             <mg-input-suffix>%</mg-input-suffix>
           </mg-input>
 
           <mg-input class="name-width">
             <mg-input-label>{{ 'generator.options.name.width' | transloco }}</mg-input-label>
-            <mg-input-number
-              [(ngModel)]="opts.nameWidth"
-              min="50"
-              max="300"
-              step="1"
-              noDecimal
-              noNegative
-            ></mg-input-number>
+            <mg-input-number [(ngModel)]="opts.nameWidth" min="50" max="300" step="1" noDecimal noNegative />
             <mg-input-suffix>%</mg-input-suffix>
           </mg-input>
 
@@ -496,14 +433,7 @@
           @if (opts.mode === 'columns') {
             <mg-input class="name-min-height">
               <mg-input-label>{{ 'generator.options.name.min.height' | transloco }}</mg-input-label>
-              <mg-input-number
-                [(ngModel)]="opts.nameMinHeight"
-                min="0"
-                max="300"
-                step="1"
-                noDecimal
-                noNegative
-              ></mg-input-number>
+              <mg-input-number [(ngModel)]="opts.nameMinHeight" min="0" max="300" step="1" noDecimal noNegative />
               <mg-input-suffix>%</mg-input-suffix>
             </mg-input>
           }
@@ -523,7 +453,7 @@
               step="1"
               noDecimal
               noNegative
-            ></mg-input-number>
+            />
             <mg-input-after
               ><span>×</span>
               <mg-input>
@@ -535,7 +465,7 @@
                   step="1"
                   noDecimal
                   noNegative
-                ></mg-input-number>
+                />
               </mg-input>
             </mg-input-after>
           </mg-input>
@@ -553,7 +483,7 @@
             step="1"
             noDecimal
             noNegative
-          ></mg-input-number>
+          />
         </mg-input>
 
         <div class="zone-title-groups">
@@ -561,7 +491,7 @@
             <div>
               <mg-input>
                 <mg-input-label>{{ 'generator.options.zone.title.name' | transloco }}</mg-input-label>
-                <mg-input-text [(ngModel)]="item.title"></mg-input-text>
+                <mg-input-text [(ngModel)]="item.title" />
               </mg-input>
 
               <mg-input>
@@ -599,14 +529,7 @@
 
         <mg-input class="group-line-width">
           <mg-input-label>{{ 'generator.options.separator.line.width' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.groupLineSize"
-            min="0"
-            max="50"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.groupLineSize" min="0" max="50" step="1" noDecimal noNegative />
         </mg-input>
 
         <mg-input class="colors-group-line">
@@ -616,7 +539,7 @@
             alpha
             clearButton
             (ngModelChange)="opts.groupLineOpacity = undefined"
-          ></mg-input-color>
+          />
         </mg-input>
       } @else if (opts.mode === 'axis') {
         <h4 class="title-line">{{ 'generator.options.line.title' | transloco }}</h4>
@@ -627,34 +550,20 @@
               <mg-input-label>{{
                 (index % 2 === 0 ? 'generator.options.zone.axis.name' : 'generator.options.zone.area.name') | transloco
               }}</mg-input-label>
-              <mg-input-text [(ngModel)]="item.title"></mg-input-text>
+              <mg-input-text [(ngModel)]="item.title" />
             </mg-input>
           }
         </div>
 
         <mg-input class="axis-line-width">
           <mg-input-label>{{ 'generator.options.axis.line.width' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.axisLineWidth"
-            min="0"
-            max="12"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.axisLineWidth" min="0" max="12" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
 
         <mg-input class="axis-arrow-size">
           <mg-input-label>{{ 'generator.options.axis.arrow.size' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.axisArrowWidth"
-            min="0"
-            max="50"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.axisArrowWidth" min="0" max="50" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
 
@@ -665,7 +574,7 @@
             alpha
             clearButton
             (ngModelChange)="opts.axisLineOpacity = undefined"
-          ></mg-input-color>
+          />
         </mg-input>
       }
       <!-- ###############################  other options ###############################  -->
@@ -678,47 +587,26 @@
           alpha
           clearButton
           (ngModelChange)="opts.titleTextOpacity = undefined"
-        ></mg-input-color>
+        />
       </mg-input>
 
       @if (opts.mode !== 'bingo' && opts.mode !== 'columns') {
         <mg-input class="global-width">
           <mg-input-label>{{ 'generator.options.global.width' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.imageWidth"
-            min="100"
-            max="4000"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.imageWidth" min="100" max="4000" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
       }
       @if (zoneMode.includes(opts.mode)) {
         <mg-input class="global-height">
           <mg-input-label>{{ 'generator.options.global.height' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.imageHeight"
-            min="100"
-            max="4000"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.imageHeight" min="100" max="4000" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
       } @else if (opts.mode === 'columns') {
         <mg-input class="global-width">
           <mg-input-label>{{ 'generator.options.column.min.height' | transloco }}</mg-input-label>
-          <mg-input-number
-            [(ngModel)]="opts.columnMinHeight"
-            min="0"
-            max="4000"
-            step="1"
-            noDecimal
-            noNegative
-          ></mg-input-number>
+          <mg-input-number [(ngModel)]="opts.columnMinHeight" min="0" max="4000" step="1" noDecimal noNegative />
           <mg-input-suffix>px</mg-input-suffix>
         </mg-input>
       }
@@ -746,7 +634,7 @@
 
       <mg-input class="global-color">
         <mg-input-label>{{ 'generator.options.global.background' | transloco }}</mg-input-label>
-        <mg-input-color [(ngModel)]="opts.imageBackgroundColor" clearButton></mg-input-color>
+        <mg-input-color [(ngModel)]="opts.imageBackgroundColor" clearButton />
       </mg-input>
 
       @if (opts.imageBackgroundImage === 'custom') {
@@ -792,12 +680,12 @@
 
     <!-- ############################### render example ###############################  -->
     <div class="option-preview">
-      <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo></see-classement>
+      <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo />
     </div>
   }
 </mg-dialog>
 
-<classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()"></classement-themes-manager>
+<classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()" />
 
 <mg-dialog class="auto-format" #importDialog>
   <div>{{ 'generator.theme.import.info' | transloco }}</div>

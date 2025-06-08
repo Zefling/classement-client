@@ -117,10 +117,7 @@
     <div>
       <mg-input class="s-6 s-12-s">
         <mg-input-label>{{ 'list.category.current' | transloco }}</mg-input-label>
-        <mg-input-text
-          value="{{ 'category.' + (currentClassement.category || 'undefined') | transloco }}"
-          disabled
-        ></mg-input-text>
+        <mg-input-text value="{{ 'category.' + (currentClassement.category || 'undefined') | transloco }}" disabled />
       </mg-input>
       <mg-input class="s-6 s-12-s">
         <mg-input-label>{{ 'list.category.new' | transloco }}</mg-input-label>

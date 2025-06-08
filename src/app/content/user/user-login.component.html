@@ -4,11 +4,11 @@
   <div>
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.username.email' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="username"></mg-input-text>
+      <mg-input-text formControlName="username" />
     </mg-input>
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="password" eye></mg-input-password>
+      <mg-input-password formControlName="password" eye />
     </mg-input>
   </div>
 
@@ -53,5 +53,5 @@
 }
 
 @if (loader) {
-  <loader-cmp></loader-cmp>
+  <loader-cmp />
 }

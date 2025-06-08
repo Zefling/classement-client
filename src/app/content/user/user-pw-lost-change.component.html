@@ -5,7 +5,7 @@
 
   <mg-input>
     <mg-input-label>{{ 'user.password.new' | transloco }}</mg-input-label>
-    <mg-input-password formControlName="password"></mg-input-password>
+    <mg-input-password formControlName="password" />
     <mg-input-desc class="level-strong">
       @if (!strong) {
         @for (lvl of passedTests; track lvl) {
@@ -19,7 +19,7 @@
 
   <mg-input>
     <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
-    <mg-input-password formControlName="password2"></mg-input-password>
+    <mg-input-password formControlName="password2" />
     <mg-input-desc class="level-strong">
       @if (confirm) {
         <span class="strong"></span>

@@ -24,7 +24,7 @@
     </div>
     <h2>{{ 'user.profile.view.rankings' | transloco }}</h2>
     @if (user.classements) {
-      <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+      <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking />
     } @else {
       <div>
         {{ 'user.profile.view.empty' | transloco }}

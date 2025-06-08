@@ -4,7 +4,7 @@
   <div>
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.username' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="username"></mg-input-text>
+      <mg-input-text formControlName="username" />
       <mg-input-desc class="level-strong">
         @if (profileForm.value.username) {
           <span class="strong" [class.error-block]="usernameExist"></span>
@@ -14,7 +14,7 @@
 
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.password' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="password" eye></mg-input-password>
+      <mg-input-password formControlName="password" eye />
       <mg-input-desc class="level-strong">
         @if (!strong) {
           @for (lvl of passedTests; track lvl) {
@@ -28,7 +28,7 @@
 
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.password.bis' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="password2" eye></mg-input-password>
+      <mg-input-password formControlName="password2" eye />
       <mg-input-desc class="level-strong">
         @if (confirm) {
           <span class="strong"></span>
@@ -38,7 +38,7 @@
 
     <mg-input class="s-12">
       <mg-input-label>{{ 'user.login.email' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="email"></mg-input-text>
+      <mg-input-text formControlName="email" />
       <mg-input-desc class="level-strong">
         @if (profileForm.value.email) {
           <span class="strong" [class.error-block]="emailExist || emailInvalide"></span>

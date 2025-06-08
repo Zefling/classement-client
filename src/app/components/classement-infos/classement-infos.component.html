@@ -41,7 +41,7 @@
   </div>
   @if (classement.data.options.description) {
     <div class="desc">
-      <markdown [data]="classement.data.options.description"></markdown>
+      <markdown [data]="classement.data.options.description" />
     </div>
   }
   <div class="dates">
@@ -63,14 +63,10 @@
   @if (classement.data.options.tags && classement.data.options.tags.length) {
     <div class="tags">
       <span>{{ 'generator.options.tags' | transloco }}</span>
-      <tag-list
-        [tags]="classement.data.options.tags"
-        [link]="classement.parent ? 'parent' : 'children'"
-        readOnly
-      ></tag-list>
+      <tag-list [tags]="classement.data.options.tags" [link]="classement.parent ? 'parent' : 'children'" readOnly />
     </div>
   }
 </div>
 <div class="content">
-  <ng-content></ng-content>
+  <ng-content />
 </div>

@@ -27,12 +27,12 @@
     <div>
       <mg-input class="s-8 s-12-m title">
         <mg-input-label>{{ 'generator.options.title' | transloco }}</mg-input-label>
-        <mg-input-text maxlength="150" [(ngModel)]="opts.title"></mg-input-text>
+        <mg-input-text maxlength="150" [(ngModel)]="opts.title" />
       </mg-input>
       @if (!current?.user || current?.parent) {
         <mg-input class="s-4 s-12-m categories">
           <mg-input-label>{{ 'generator.options.group' | transloco }}</mg-input-label>
-          <mg-input-select [data]="categoriesList" [(ngModel)]="opts.category"></mg-input-select>
+          <mg-input-select [data]="categoriesList" [(ngModel)]="opts.category" />
         </mg-input>
       }
       <div class="s-12 banner">
@@ -83,7 +83,7 @@
       <mg-input class="s-12 link">
         <mg-input-label>{{ 'generator.server.link' | transloco }}</mg-input-label>
 
-        <mg-input-text [ngModel]="current?.linkId" (ngModelChange)="testLink($event)"></mg-input-text>
+        <mg-input-text [ngModel]="current?.linkId" (ngModelChange)="testLink($event)" />
         @if (linkIdValid !== undefined) {
           <mg-input-suffix class="validity" [class.valid]="linkIdValid">
             {{ linkIdValid ? ' Ｏ ' : ' Ｘ ' }}
@@ -102,7 +102,7 @@
       @if (hidden) {
         <mg-input class="s-6 s-12-m">
           <mg-input-label> {{ 'generator.server.password' | transloco }}</mg-input-label>
-          <mg-input-password mode="toggle" [(ngModel)]="password"></mg-input-password>
+          <mg-input-password mode="toggle" [(ngModel)]="password" />
         </mg-input>
       }
       <div class="break"></div>
@@ -144,5 +144,5 @@
   </p>
 </div>
 @if (loading) {
-  <loader-cmp message="Sauvegarde en cours" [progress]="progress"></loader-cmp>
+  <loader-cmp message="Sauvegarde en cours" [progress]="progress" />
 }

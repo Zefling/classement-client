@@ -4,13 +4,13 @@
   <form class="search" (submit)="submit(true)">
     <mg-input class="name">
       <mg-input-label>{{ 'navigate.title' | transloco }}</mg-input-label>
-      <mg-input-text name="name" [(ngModel)]="searchKey" clearCross></mg-input-text>
+      <mg-input-text name="name" [(ngModel)]="searchKey" clearCross />
     </mg-input>
 
     <div class="line">
       <mg-input class="categories">
         <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
-        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category" clearCross></mg-input-select>
+        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category" clearCross />
       </mg-input>
 
       <mg-input class="modes">
@@ -76,10 +76,10 @@
       [base]="url"
       [queryParams]="queryParams"
       [size]="pageSize"
-    ></mg-paginate>
+    />
   }
 
-  <navigate-result [classements]="classements" [isCategoryList]="isCategoryList"></navigate-result>
+  <navigate-result [classements]="classements" [isCategoryList]="isCategoryList" />
 
   @if (!isCategoryList && total && total / pageSize > 1) {
     <mg-paginate
@@ -89,8 +89,8 @@
       [base]="url"
       [queryParams]="queryParams"
       [size]="pageSize"
-    ></mg-paginate>
+    />
   }
 } @else {
-  <loader-item></loader-item>
+  <loader-item />
 }

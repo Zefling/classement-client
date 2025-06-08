@@ -3,7 +3,7 @@
 
   @let current = themeCurrent();
   @if (current?.options) {
-    <theme-icon [theme]="current!"></theme-icon>
+    <theme-icon [theme]="current!" />
   }
   <mg-tabs (tabChange)="tabChange()">
     <!-- NEW -->
@@ -13,7 +13,7 @@
       <p>
         <mg-input>
           <mg-input-label> {{ 'generator.theme.name.question' | transloco }}</mg-input-label>
-          <mg-input-text [(ngModel)]="themeName" maxlength="100"></mg-input-text>
+          <mg-input-text [(ngModel)]="themeName" maxlength="100" />
         </mg-input>
       </p>
       @if (modeApi()) {
@@ -73,21 +73,21 @@
             <mg-input-label> {{ 'generator.theme.name.rename' | transloco }}</mg-input-label>
             <mg-input-text
               name="name"
-              [(ngModel)]="themeName"
               maxlength="100"
+              [(ngModel)]="themeName"
               [placeholder]="selectedTheme?.name ?? ''"
-            ></mg-input-text>
+            />
           </mg-input>
         </p>
 
         <div class="theme-list">
           @for (theme of themeBrowser; track theme) {
             <theme-icon
-              [theme]="theme"
               custom
+              [theme]="theme"
               (select)="selectTheme($event)"
               [class.selected]="theme === selectedTheme"
-            ></theme-icon>
+            />
           }
         </div>
 
@@ -121,7 +121,7 @@
               [(ngModel)]="themeName"
               maxlength="100"
               [placeholder]="selectedTheme?.name ?? ''"
-            ></mg-input-text>
+            />
           </mg-input>
         </p>
         <p>
@@ -142,7 +142,7 @@
               custom
               (select)="selectTheme($event)"
               [class.selected]="theme.id === selectedTheme?.id"
-            ></theme-icon>
+            />
           }
         </div>
 

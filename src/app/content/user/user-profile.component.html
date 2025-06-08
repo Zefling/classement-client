@@ -53,7 +53,7 @@
             }
           </div>
           @if (user.classements) {
-            <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking></navigate-result>
+            <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking />
           }
         </mg-tab-content>
       }
@@ -68,7 +68,7 @@
             <h3>{{ 'user.profile.list.browser.tab' | transloco }} ({{ localThemes!.length }})</h3>
             <div class="theme-list">
               @for (theme of localThemes; track theme) {
-                <theme-icon [theme]="theme" custom></theme-icon>
+                <theme-icon [theme]="theme" custom />
               }
             </div>
           }
@@ -87,7 +87,7 @@
                     showMode: true,
                   }"
                   custom
-                ></theme-icon>
+                />
               }
             </div>
           }
@@ -103,7 +103,7 @@
   <div>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.username.new' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="username"></mg-input-text>
+      <mg-input-text formControlName="username" />
       @if (usernameValidity !== undefined) {
         <mg-input-suffix class="validity" [class.valid]="usernameValidity">
           {{ usernameValidity ? 'Ｏ' : 'Ｘ' }}
@@ -134,11 +134,11 @@
   <div>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.old' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="passwordOld"></mg-input-password>
+      <mg-input-password formControlName="passwordOld" />
     </mg-input>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.new' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="password"></mg-input-password>
+      <mg-input-password formControlName="password" />
       <mg-input-desc class="level-strong">
         @if (!strong) {
           @for (lvl of passedTests; track lvl) {
@@ -151,7 +151,7 @@
     </mg-input>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="password2"></mg-input-text>
+      <mg-input-text formControlName="password2" />
       <mg-input-desc class="level-strong">
         @if (confirm) {
           <span class="strong"></span>
@@ -180,7 +180,7 @@
   <div>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.email.old' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="emailOld"></mg-input-text>
+      <mg-input-text formControlName="emailOld" />
       <mg-input-desc class="level-strong">
         @if (changeEmailForm.value.emailOld) {
           <span class="strong" [class.error-block]="!emailOldValid"></span>
@@ -189,7 +189,7 @@
     </mg-input>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="emailNew"></mg-input-text>
+      <mg-input-text formControlName="emailNew" />
       <mg-input-desc class="level-strong">
         @if (changeEmailForm.value.emailNew) {
           <span class="strong" [class.error-block]="!emailNewValid"></span>
@@ -254,7 +254,7 @@
           (imageLoaded)="imageLoaded($event)"
           (cropperReady)="cropperReady()"
           (loadImageFailed)="loadImageFailed()"
-        ></image-cropper>
+        />
       </div>
     }
     @if (croppedImage || user!.avatarUrl) {

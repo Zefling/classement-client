@@ -12,15 +12,15 @@
 <form [formGroup]="formConfig">
   <mg-input class="username">
     <mg-input-label>{{ 'user.information.contact.admin.username' | transloco }}<span>*</span></mg-input-label>
-    <mg-input-text id="username" formControlName="username"></mg-input-text>
+    <mg-input-text id="username" formControlName="username" />
   </mg-input>
   <mg-input class="email">
     <mg-input-label>{{ 'user.information.contact.admin.email' | transloco }}<span>*</span></mg-input-label>
-    <mg-input-text id="email" formControlName="email"></mg-input-text>
+    <mg-input-text id="email" formControlName="email" />
   </mg-input>
   <mg-input class="message">
     <mg-input-label> {{ 'user.information.contact.admin.message' | transloco }}<span>*</span> </mg-input-label>
-    <mg-input-textarea id="text" formControlName="message" autosize maxlength="5000"></mg-input-textarea>
+    <mg-input-textarea id="text" formControlName="message" autosize maxlength="5000" />
     <mg-input-desc><span>*</span>{{ 'user.information.contact.admin.required' | transloco }}</mg-input-desc>
   </mg-input>
 
