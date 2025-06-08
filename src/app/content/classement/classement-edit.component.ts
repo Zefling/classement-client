@@ -1050,17 +1050,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType, index: number | null = null) {
-        if (
-            this.options.mode === 'default' ||
-            this.options.mode === 'columns' ||
-            this.options.mode === 'teams' ||
-            this.options.mode === 'bingo'
-        ) {
-            this.selectionTile = item;
-            this.selectionGroup = group;
-            this.selectionIndex = index;
-            event?.stopPropagation();
-        }
+        this.selectionTile = item;
+        this.selectionGroup = group;
+        this.selectionIndex = index;
+        event?.stopPropagation();
     }
 
     selectionGroupForItem(group: FormattedGroup | null, indexTarget: number | null = null) {
@@ -1106,6 +1099,18 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     }
                 }
                 break;
+        }
+    }
+
+    clickZone(event: MouseEvent) {
+        if (this.selectionTile) {
+            const rect = document.getElementById('zone')!.getBoundingClientRect();
+            const index = this.list.indexOf(this.selectionTile);
+            const item = this.list.splice(index, 1)[0]!;
+            const rctItem = document.getElementById(item.id)!.getBoundingClientRect();
+            item.x = Math.min(Math.max(0, event.clientX - rect.left - rctItem.width / 2), rect.width - rctItem.width);
+            item.y = Math.min(Math.max(0, event.clientY - rect.top - rctItem.height / 2), rect.height - rctItem.height);
+            this.groups[0].list.push(item);
         }
     }
 

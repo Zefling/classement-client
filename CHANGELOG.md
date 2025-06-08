@@ -8,6 +8,8 @@
     - tierlist
     - teams
     - columns
+    - iceberg
+    - axis
     - bingo
 - Add cover: `contain` for image #109
 - Add link on tag on preview page #107

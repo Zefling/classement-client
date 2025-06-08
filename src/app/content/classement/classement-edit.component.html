@@ -208,10 +208,11 @@
           <div class="zone-classement-container">
             <div
               id="zone"
+              class="zone-classement"
               cdkDropZone
               [cdkDropListData]="{ list: groups[0].list }"
               (cdkDropListDropped)="drop($event)"
-              class="zone-classement"
+              (click)="clickZone($event)"
               (dblclick)="createTile($event)"
               (auxclick)="stopEvent($event)"
             >
@@ -527,6 +528,7 @@
                   [class.selection-item]="item === selectionTile"
                   (click)="selectItem($event, null, item)"
                   (clickOutside)="selectItem(null, null, null)"
+                  [id]="item.id"
                 >
                   @if (!options.streamMode) {
                     <div
