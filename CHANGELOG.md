@@ -1,6 +1,6 @@
 # Changelog - Standalone web app & API
 
-### 4.1.0 (2025-06-xx)
+### 4.1.0 (2025-06-08)
 
 #### Standalone web app
 
