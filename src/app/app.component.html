@@ -226,20 +226,22 @@
 
 <mg-dialog class="auto-format mode-dialog" #choice closeBackdrop>
   <h2 class="title">{{ 'generator.choice.title' | transloco }}</h2>
-  <menu class="choice-mode">
-    @for (mode of modes; track $index; let index = $index) {
-      <li
-        id="mode_{{ mode.id }}"
-        (click)="beginNew(mode.id)"
-        (mouseenter)="_visiblity = true; _modeTemp = mode.id; _index = index"
-        (mouseleave)="_visiblity = false"
-        tabIndex="0"
-      >
-        <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
-        <span>{{ 'mode.name.' + mode.id | transloco }}</span>
-      </li>
-    }
-  </menu>
+  <nav class="choice-mode">
+    <ul>
+      @for (mode of modes; track $index; let index = $index) {
+        <li
+          id="mode_{{ mode.id }}"
+          (click)="beginNew(mode.id)"
+          (mouseenter)="_visiblity = true; _modeTemp = mode.id; _index = index"
+          (mouseleave)="_visiblity = false"
+          tabIndex="0"
+        >
+          <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
+          <span>{{ 'mode.name.' + mode.id | transloco }}</span>
+        </li>
+      }
+    </ul>
+  </nav>
   <p class="info-block" [class.visible]="_visiblity">
     <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
     <span class="info" [style.--pos]="_index" [style.--size]="modes.length">

@@ -1,17 +1,19 @@
 <h1>{{ 'infos.title' | transloco }}</h1>
 
-<menu class="menu">
-  @if (modeApi()) {
-    <li routerLink="/infos/message" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
-      {{ 'infos.message' | transloco }}
+<nav class="menu">
+  <ul>
+    @if (modeApi()) {
+      <li routerLink="/infos/message" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+        {{ 'infos.message' | transloco }}
+      </li>
+    }
+    <li routerLink="/infos/licenses" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+      {{ 'infos.licenses' | transloco }}
     </li>
-  }
-  <li routerLink="/infos/licenses" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
-    {{ 'infos.licenses' | transloco }}
-  </li>
-  <li routerLink="/infos/changelog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
-    {{ 'infos.changelog' | transloco }}
-  </li>
-</menu>
+    <li routerLink="/infos/changelog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+      {{ 'infos.changelog' | transloco }}
+    </li>
+  </ul>
+</nav>
 
 <router-outlet />
