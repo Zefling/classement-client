@@ -70,6 +70,9 @@
 @if (!loading) {
   @if (!isCategoryList && total && total / pageSize > 1) {
     <mg-paginate
+      showTotal
+      [textTotal]="'generic.pages.total' | transloco"
+      [textPage]="'generic.pages.page' | transloco"
       linkId="nav"
       [total]="total"
       [page]="page"
@@ -83,6 +86,9 @@
 
   @if (!isCategoryList && total && total / pageSize > 1) {
     <mg-paginate
+      showTotal
+      [textTotal]="'generic.pages.total' | transloco"
+      [textPage]="'generic.pages.page' | transloco"
       linkId="nav"
       [total]="total"
       [page]="page"

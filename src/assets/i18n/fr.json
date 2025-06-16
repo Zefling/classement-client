@@ -1,6 +1,18 @@
 {
   "classement": "Classement",
   "help": "Aide",
+  "generic": {
+    "dialog": {
+      "close": "Fermer la dialogue"
+    },
+    "tabs": {
+      "return": "Retour aux onglets"
+    },
+    "pages": {
+      "total": "Total : %",
+      "page": "Page %p / %t"
+    }
+  },
   "menu": {
     "home": "Accueil",
     "list": "Liste locale",

@@ -1,4 +1,11 @@
-<mg-dialog #dialogInfo closeButton (onClose)="_open = false">
+<mg-dialog
+  #dialogInfo
+  closeButton
+  [closeButtonTitle]="'generic.dialog.close' | transloco"
+  (onClose)="_open = false"
+  stop-propagation
+  stopKeydown
+>
   @let cTile = currentTile();
   @if (cTile) {
     <div class="main">

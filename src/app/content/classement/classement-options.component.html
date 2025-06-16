@@ -137,7 +137,13 @@
   </div>
 </mg-dialog>
 
-<mg-dialog #dialogAdvancedOptions class="dialog-options" closeBackdrop closeButton>
+<mg-dialog
+  #dialogAdvancedOptions
+  class="dialog-options"
+  closeBackdrop
+  closeButton
+  [closeButtonTitle]="'generic.dialog.close' | transloco"
+>
   <p class="warning">
     {{ 'generator.options.advance.info' | transloco }}
   </p>

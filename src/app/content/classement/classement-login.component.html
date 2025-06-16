@@ -1,4 +1,4 @@
-<mg-dialog #dialogLogin closeButton>
+<mg-dialog #dialogLogin closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <ng-component *ngComponentOutlet="loginComponent; inputs: { popup: true }" />
 
   <p class="info">

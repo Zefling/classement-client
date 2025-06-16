@@ -17,7 +17,15 @@
 @if (!loading) {
   @if (users[page] && users[page].length) {
     @if (total) {
-      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users" />
+      <mg-paginate
+        showTotal
+        [textTotal]="'generic.pages.total' | transloco"
+        [textPage]="'generic.pages.page' | transloco"
+        linkId="nav"
+        [total]="total"
+        [page]="page"
+        base="/admin/users"
+      />
     }
     <table mg hoverRow>
       <thead mg>
@@ -89,14 +97,22 @@
       </tbody>
     </table>
     @if (total) {
-      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/users" />
+      <mg-paginate
+        showTotal
+        [textTotal]="'generic.pages.total' | transloco"
+        [textPage]="'generic.pages.page' | transloco"
+        linkId="nav"
+        [total]="total"
+        [page]="page"
+        base="/admin/users"
+      />
     }
   } @else {
     <p class="no-result">{{ 'list.no.result' | transloco }}</p>
   }
 }
 
-<mg-dialog #dialogListClassements closeButton>
+<mg-dialog #dialogListClassements closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <list-classements [classements]="currentUser?.classements" />
 </mg-dialog>
 

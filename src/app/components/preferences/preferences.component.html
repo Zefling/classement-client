@@ -1,8 +1,14 @@
-<mg-dialog class="preferences" #preferences closeBackdrop closeButton>
+<mg-dialog
+  class="preferences"
+  #preferences
+  closeBackdrop
+  closeButton
+  [closeButtonTitle]="'generic.dialog.close' | transloco"
+>
   @if (preferencesForm) {
     <ng-container [formGroup]="preferencesForm">
-      <h2>{{ 'preferences.title' | transloco }}</h2>
-      <mg-tabs #preferencesTabs>
+      <h2>{{ 'generic.tabs.return' | transloco }}</h2>
+      <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco" #preferencesTabs>
         <mg-tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</mg-tab-title>
         <mg-tab-content id="general">
           <h3 class="s-12">{{ 'preferences.interface.title' | transloco }}</h3>

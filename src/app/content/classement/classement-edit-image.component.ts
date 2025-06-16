@@ -18,6 +18,7 @@ import {
     MagmaInputElement,
     MagmaInputText,
     MagmaInputTextarea,
+    MagmaStopPropagationDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -46,6 +47,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
         MagmaInputText,
         MagmaInputTextarea,
         MagmaInputColor,
+        MagmaStopPropagationDirective,
         FormsModule,
         DropImageDirective,
         ImageCropperComponent,

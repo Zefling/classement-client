@@ -1,6 +1,18 @@
 {
   "classement": "Classement",
   "help": "ヘルプ",
+  "generic": {
+    "dialog": {
+      "close": "ダイアログを閉じる"
+    },
+    "tabs": {
+      "return": "タブに戻る"
+    },
+    "pages": {
+      "total": "合計: %",
+      "page": "ページ %p / %t"
+    }
+  },
   "menu": {
     "home": "ホーム",
     "list": "ローカルリスト",

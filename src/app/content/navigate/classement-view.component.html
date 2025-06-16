@@ -137,7 +137,7 @@
   <loader-item></loader-item>
 }
 
-<mg-dialog class="auto-format" #dialogImage closeButton>
+<mg-dialog class="auto-format" #dialogImage closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
@@ -149,7 +149,7 @@
   <div #image></div>
 </mg-dialog>
 
-<mg-dialog #dialogDerivatives closeButton>
+<mg-dialog #dialogDerivatives closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (myClassements) {
     <table class="table-derivatives">
       <thead>
@@ -216,7 +216,7 @@
   </div>
 </mg-dialog>
 
-<mg-dialog #dialogHistory closeButton>
+<mg-dialog #dialogHistory closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (classement && history) {
     <table class="table-history">
       <thead>
@@ -254,7 +254,7 @@
   }
 </mg-dialog>
 
-<mg-dialog #dialogCopy closeButton>
+<mg-dialog #dialogCopy closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <p>{{ 'generator.fork.question' | transloco }}</p>
   <mg-input alignMode="column">
     <mg-input-checkbox [(ngModel)]="optionFork" value="image" disabled>

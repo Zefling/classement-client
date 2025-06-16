@@ -1,11 +1,11 @@
-<mg-dialog #exportDialog closeButton>
+<mg-dialog #exportDialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <h3>{{ 'generator.theme.manage.themes' | transloco }}</h3>
 
   @let current = themeCurrent();
   @if (current?.options) {
     <theme-icon [theme]="current!" />
   }
-  <mg-tabs (tabChange)="tabChange()">
+  <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco" (tabChange)="tabChange()">
     <!-- NEW -->
 
     <mg-tab-title id="new"> {{ 'generator.theme.new' | transloco }}</mg-tab-title>

@@ -1,6 +1,6 @@
 <h2>{{ 'menu.my.lists' | transloco }}</h2>
 
-<mg-tabs (tabChange)="tabChange($event)">
+<mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco" (tabChange)="tabChange($event)">
   <!-- server -->
   <mg-tab-title id="server">{{ 'user.profile.list.server.tab' | transloco }}</mg-tab-title>
   <mg-tab-content id="server">

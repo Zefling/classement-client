@@ -680,7 +680,7 @@
   }
 </div>
 
-<mg-dialog class="auto-format" #dialogImage closeButton>
+<mg-dialog class="auto-format" #dialogImage closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
@@ -696,7 +696,7 @@
   <import-json (load)="importJson($event)" />
 </mg-dialog>
 
-<mg-dialog class="auto-format" #dialogOptimise closeButton>
+<mg-dialog class="auto-format" #dialogOptimise closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (dialogOptimise.isOpen()) {
     <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options.mode" />
   }
@@ -715,7 +715,7 @@
   }
 </mg-dialog>
 
-<mg-dialog #dialogDerivatives closeButton>
+<mg-dialog #dialogDerivatives closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (derivatives) {
     <table class="table-derivatives">
       <thead>

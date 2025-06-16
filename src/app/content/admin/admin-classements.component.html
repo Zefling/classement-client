@@ -21,7 +21,15 @@
 } @else {
   @if (classements[page] && classements[page].length) {
     @if (total) {
-      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/classements" />
+      <mg-paginate
+        showTotal
+        [textTotal]="'generic.pages.total' | transloco"
+        [textPage]="'generic.pages.page' | transloco"
+        linkId="nav"
+        [total]="total"
+        [page]="page"
+        base="/admin/classements"
+      />
     }
     <list-classements
       [classements]="classements[page]"
@@ -31,7 +39,15 @@
       (sortUpdate)="sortUpdate($event)"
     />
     @if (total) {
-      <mg-paginate linkId="nav" [total]="total" [page]="page" base="/admin/classements" />
+      <mg-paginate
+        showTotal
+        [textTotal]="'generic.pages.total' | transloco"
+        [textPage]="'generic.pages.page' | transloco"
+        linkId="nav"
+        [total]="total"
+        [page]="page"
+        base="/admin/classements"
+      />
     }
   } @else {
     <p class="no-result">{{ 'list.no.result' | transloco }}</p>

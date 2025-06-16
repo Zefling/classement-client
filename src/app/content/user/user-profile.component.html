@@ -30,7 +30,7 @@
       <button (click)="changePassword()">{{ 'user.profile.change.password' | transloco }}</button>
       <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | transloco }}</button>
     </p>
-    <mg-tabs>
+    <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco">
       <!-- classements -->
       @if (user.classements || localSizeClassements) {
         <mg-tab-title id="rankings">{{ 'user.profile.view.rankings' | transloco }}</mg-tab-title>

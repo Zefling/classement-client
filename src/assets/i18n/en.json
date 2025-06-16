@@ -1,6 +1,18 @@
 {
   "classement": "Classement",
   "help": "Help",
+  "generic": {
+    "dialog": {
+      "close": "Close the dialog"
+    },
+    "tabs": {
+      "return": "Return to tabs"
+    },
+    "pages": {
+      "total": "Total: %",
+      "page": "Page %p / %t"
+    }
+  },
   "menu": {
     "home": "Home",
     "list": "Local list",

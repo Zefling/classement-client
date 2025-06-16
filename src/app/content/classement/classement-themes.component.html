@@ -1,4 +1,4 @@
-<mg-dialog closeButton>
+<mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <h3>{{ 'generator.theme.info' | transloco }}</h3>
   <div>
     <mg-input class="search-theme">
@@ -13,7 +13,7 @@
     </mg-input>
 
     @if (!key || !key.trim()) {
-      <mg-tabs class="s-12">
+      <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco" class="s-12">
         <!-- default-->
 
         <mg-tab-title id="default">{{ 'generator.theme.default' | transloco }}</mg-tab-title>

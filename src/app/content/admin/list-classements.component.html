@@ -89,7 +89,12 @@
   }
 </mg-dialog>
 
-<mg-dialog #dialogSeeClassement closeButton (onClose)="currentClassement = undefined">
+<mg-dialog
+  #dialogSeeClassement
+  closeButton
+  [closeButtonTitle]="'generic.dialog.close' | transloco"
+  (onClose)="currentClassement = undefined"
+>
   @if (currentClassement) {
     <classement-infos [classementInfo]="currentClassement"></classement-infos>
 
@@ -110,7 +115,7 @@
   }
 </mg-dialog>
 
-<mg-dialog #dialogEditCategory closeButton>
+<mg-dialog #dialogEditCategory closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (currentClassement) {
     <h3>{{ 'list.category.edit.title' | transloco }}</h3>
 
