@@ -86,3 +86,15 @@
     padding: 10px 0 10px;
     font-size: 80%;
 }
+
+@media screen and (width < 768px) {
+    :host {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .banner {
+        display: block;
+        margin: auto;
+    }
+}
