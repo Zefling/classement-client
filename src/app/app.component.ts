@@ -40,16 +40,17 @@ export class AppComponent implements DoCheck {
     // injects
 
     protected readonly globalService = inject(GlobalService);
-    private readonly router = inject(Router);
-    private readonly logger = inject(Logger);
+    protected readonly router = inject(Router);
+    protected readonly logger = inject(Logger);
     protected readonly preferencesService = inject(PreferencesService);
-    private readonly userService = inject(APIUserService);
-    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+    protected readonly userService = inject(APIUserService);
+    protected readonly changeDetectorRef = inject(ChangeDetectorRef);
 
     // viewChild
 
     readonly warningExit = viewChild.required<MagmaDialog>('warningExit');
     readonly choice = viewChild.required<MagmaDialog>('choice');
+    readonly menu = viewChild.required<ElementRef<HTMLDivElement>>('menu');
     readonly main = viewChild.required<ElementRef<HTMLDivElement>>('main');
     readonly preferences = viewChild.required<PreferencesMagmaDialog>('pref');
 
@@ -146,8 +147,14 @@ export class AppComponent implements DoCheck {
         this.preferences().open();
     }
 
-    toggleMenu() {
+    toggleMenu(target: 'none' | 'main' | 'menu' = 'main') {
         this.asideOpen.set(!this.asideOpen());
+
+        if (target === 'main') {
+            this.main().nativeElement.focus();
+        } else if (target === 'menu') {
+            this.menu().nativeElement.focus();
+        }
     }
 
     toggleHelp() {
@@ -182,7 +189,6 @@ export class AppComponent implements DoCheck {
     }
 
     openChoice() {
-        this.toggleMenu();
         if (this.preferences().preferencesForm?.get('mode')?.value === 'choice') {
             this.choice().open();
         }

@@ -262,7 +262,7 @@ header {
     }
 }
 
-:host > div {
+main {
     position: relative;
     grid-area: main;
     overflow: auto;

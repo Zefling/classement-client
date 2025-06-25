@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MagmaClickEnterDirective, MagmaDialog } from '@ikilote/magma';
+import { MagmaClickEnterDirective, MagmaDialog, MagmaLimitFocusDirective } from '@ikilote/magma';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
@@ -48,6 +48,7 @@ export function markedOptionsFactory() {
         MagmaDialog,
         MagmaClickEnterDirective,
         PreferencesMagmaDialog,
+        MagmaLimitFocusDirective,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],
     bootstrap: [AppComponent],
