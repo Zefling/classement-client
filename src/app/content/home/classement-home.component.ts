@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -19,7 +20,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
-    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
+    imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
 })
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);

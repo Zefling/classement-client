@@ -48,10 +48,75 @@
   </p>
 }
 
+<ng-template #tanuki>
+  <svg title="GitLab" width="36" height="36" class="gitlab-tanuki-logo" viewBox="0 0 36 36" role="img">
+    <path fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+    <path fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+    <path fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+    <path fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+    <path fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+    <path fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+    <path fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+  </svg>
+</ng-template>
+<ng-template #github>
+  <svg
+    width="36"
+    height="36"
+    version="1.2"
+    x="0px"
+    y="0px"
+    viewBox="0 0 2350 2314.8"
+    xml:space="preserve"
+    class="github-logo"
+    role="img"
+    title="Github"
+  >
+    <path
+      d="M1175,0C525.8,0,0,525.8,0,1175c0,552.2,378.9,1010.5,890.1,1139.7c-5.9-14.7-8.8-35.3-8.8-55.8v-199.8H734.4
+     c-79.3,0-152.8-35.2-185.1-99.9c-38.2-70.5-44.1-179.2-141-246.8c-29.4-23.5-5.9-47,26.4-44.1c61.7,17.6,111.6,58.8,158.6,120.4
+     c47,61.7,67.6,76.4,155.7,76.4c41.1,0,105.7-2.9,164.5-11.8c32.3-82.3,88.1-155.7,155.7-190.9c-393.6-47-581.6-240.9-581.6-505.3
+     c0-114.6,49.9-223.3,132.2-317.3c-26.4-91.1-61.7-279.1,11.8-352.5c176.3,0,282,114.6,308.4,143.9c88.1-29.4,185.1-47,284.9-47
+     c102.8,0,196.8,17.6,284.9,47c26.4-29.4,132.2-143.9,308.4-143.9c70.5,70.5,38.2,261.4,8.8,352.5c82.3,91.1,129.3,202.7,129.3,317.3
+     c0,264.4-185.1,458.3-575.7,499.4c108.7,55.8,185.1,214.4,185.1,331.9V2256c0,8.8-2.9,17.6-2.9,26.4
+     C2021,2123.8,2350,1689.1,2350,1175C2350,525.8,1824.2,0,1175,0L1175,0z"
+    />
+  </svg>
+</ng-template>
+<ng-template #frama>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="gitlab-framagit-logo"
+    viewBox="0 0 14.29 14.29"
+    width="36"
+    height="36"
+    role="img"
+    title="Framagit"
+  >
+    <g fill="#725794" transform="matrix(.02569 0 0 .02569 -.25 -.08)">
+      <circle cx="74.91" cy="180.35" r="55" />
+      <circle cx="137.6" cy="317.44" r="42.5" />
+      <circle cx="189.82" cy="434.27" r="31" />
+    </g>
+    <g fill="#dd6418" transform="matrix(.02569 0 0 .02569 -.25 -.08)">
+      <circle cx="515.92" cy="412.86" r="26" />
+      <circle cx="499.71" cy="484.31" r="21" />
+    </g>
+    <path
+      fill="#dd6418"
+      d="M12.24 3.93c-.15.05-.64-.02-.64-.02.14.09.23.33.22.5-.48-.06-.67-.22-1.11-.45 0 0 .3.36.6.57.54.41 1.03.9 1.33 1.37.15.23.19.26.2.16a3.3 3.3 0 00-.52-1.87c-.06-.09-.07-.19-.08-.26z"
+    />
+    <path
+      class="body"
+      d="M.68.2C.53.2.45.33.56.43 5.51 2.78 4.78 5 5.42 7.55c.17.69 1.32 6.06 7.37 6.58.23.02.3-.25.06-.31-4.94-1.32-6.13-9.95-2.68-10.27.48-.04.63.16 1 .28.36.12.93.16 1.1.13.32-.6-.25-1.28-.73-1.78.52-.34 2.2-.71 2.4-.8.13-.05.07-.25-.04-.27-.77.05-2.6.2-3.43.52-1.45-.88-3.34-.2-4.3 1.3C5.19 1.5 3.81 1.08.67.2zM8.8 1.54c.74 0 .72.31-.24.64a3.76 3.76 0 00-2.38 2.2c-.11-.17.43-2.56 2.62-2.84z"
+    />
+  </svg>
+</ng-template>
+
 <div class="infos">
   <div class="licence">
     <div class="logo">
-      <div class="text">{{ 'home.source.license' | transloco }}</div>
+      <h4 class="text">{{ 'home.source.license' | transloco }}</h4>
 
       <!-- source : GLP3 -->
       <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 1072 1024" role="img">
@@ -74,69 +139,46 @@
   </div>
   <div class="source">
     <div class="logo">
-      <div class="text">{{ 'home.source.code' | transloco }}</div>
+      <h4 class="text">{{ 'home.source.code' | transloco }}</h4>
 
       <!-- source : Gitlab -->
-      <svg title="GitLab" width="36" height="36" class="gtilab-tanuki-logo" viewBox="0 0 36 36" role="img">
-        <path fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
-        <path fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
-        <path fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
-        <path fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
-        <path fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
-        <path fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
-        <path fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
-      </svg>
     </div>
     <div class="source-links">
-      <div class="link">
-        <a href="https://git.ikilote.net/classement/classement" target="_blank">{{
-          'home.source.client' | transloco
-        }}</a>
+      <div>
+        {{ 'home.source.client' | transloco }}
+        <div class="source-links link">
+          <a href="https://git.ikilote.net/classement/classement" target="_blank">
+            <ng-container *ngTemplateOutlet="tanuki" />
+          </a>
+          <a href="https://github.com/Zefling/classement-client" target="_blank">
+            <ng-container *ngTemplateOutlet="github" />
+          </a>
+          <a href="https://framagit.org/classement/client" target="_blank">
+            <ng-container *ngTemplateOutlet="frama" />
+          </a>
+        </div>
       </div>
-      <div class="link">
-        <a href="https://git.ikilote.net/classement/serveur" target="_blank">{{ 'home.source.server' | transloco }}</a>
+      <div>
+        {{ 'home.source.server' | transloco }}
+        <div class="source-links link">
+          <a href="https://git.ikilote.net/classement/serveur" target="_blank">
+            <ng-container *ngTemplateOutlet="tanuki" />
+          </a>
+          <a href="https://github.com/Zefling/classement-server" target="_blank">
+            <ng-container *ngTemplateOutlet="github" />
+          </a>
+          <a href="https://framagit.org/classement/server" target="_blank">
+            <ng-container *ngTemplateOutlet="frama" />
+          </a>
+        </div>
       </div>
-      <div class="link">
-        <a href="https://git.ikilote.net/classement/classicone" target="_blank">{{
-          'home.source.icons' | transloco
-        }}</a>
-      </div>
-    </div>
-
-    <div class="logo">
-      <!-- source : Github -->
-      <svg
-        width="36"
-        height="36"
-        version="1.2"
-        x="0px"
-        y="0px"
-        viewBox="0 0 2350 2314.8"
-        xml:space="preserve"
-        class="github-logo"
-        role="img"
-      >
-        <path
-          d="M1175,0C525.8,0,0,525.8,0,1175c0,552.2,378.9,1010.5,890.1,1139.7c-5.9-14.7-8.8-35.3-8.8-55.8v-199.8H734.4
-     c-79.3,0-152.8-35.2-185.1-99.9c-38.2-70.5-44.1-179.2-141-246.8c-29.4-23.5-5.9-47,26.4-44.1c61.7,17.6,111.6,58.8,158.6,120.4
-     c47,61.7,67.6,76.4,155.7,76.4c41.1,0,105.7-2.9,164.5-11.8c32.3-82.3,88.1-155.7,155.7-190.9c-393.6-47-581.6-240.9-581.6-505.3
-     c0-114.6,49.9-223.3,132.2-317.3c-26.4-91.1-61.7-279.1,11.8-352.5c176.3,0,282,114.6,308.4,143.9c88.1-29.4,185.1-47,284.9-47
-     c102.8,0,196.8,17.6,284.9,47c26.4-29.4,132.2-143.9,308.4-143.9c70.5,70.5,38.2,261.4,8.8,352.5c82.3,91.1,129.3,202.7,129.3,317.3
-     c0,264.4-185.1,458.3-575.7,499.4c108.7,55.8,185.1,214.4,185.1,331.9V2256c0,8.8-2.9,17.6-2.9,26.4
-     C2021,2123.8,2350,1689.1,2350,1175C2350,525.8,1824.2,0,1175,0L1175,0z"
-        />
-      </svg>
-    </div>
-    <div class="source-links">
-      <div class="link">
-        <a href="https://github.com/Zefling/classement-client" target="_blank">{{
-          'home.source.client' | transloco
-        }}</a>
-      </div>
-      <div class="link">
-        <a href="https://github.com/Zefling/classement-server" target="_blank">{{
-          'home.source.server' | transloco
-        }}</a>
+      <div>
+        {{ 'home.source.icons' | transloco }}
+        <div class="source-links link">
+          <a href="https://git.ikilote.net/classement/classicone" target="_blank">
+            <ng-container *ngTemplateOutlet="tanuki" />
+          </a>
+        </div>
       </div>
     </div>
   </div>

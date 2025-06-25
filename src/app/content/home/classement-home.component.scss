@@ -13,14 +13,6 @@
     }
 }
 
-.github-logo {
-    margin-top: 10px;
-
-    path {
-        fill: var(--neutral0);
-    }
-}
-
 .source,
 .licence {
     text-align: center;
@@ -107,7 +99,23 @@ navigate-result {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    gap: 30px;
+
+    .source-links {
+        gap: 15px;
+        margin-top: 5px;
+
+        svg {
+            max-width: 24px;
+            max-height: 24px;
+        }
+    }
+}
+
+.github-logo path,
+.gitlab-framagit-logo .body {
+    fill: var(--neutral0);
 }
 
 @media (hover: none) {
