@@ -38,6 +38,8 @@ import {
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
+    MagmaLoader,
+    MagmaLoaderMessage,
     MagmaMessage,
     MagmaMessageType,
     MagmaNgInitDirective,
@@ -100,7 +102,6 @@ import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
-import { LoaderComponent } from '../../components/loader/loader.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
@@ -125,7 +126,6 @@ import { FileSizePipe } from '../../pipes/file-size';
         CdkDropZone,
         RemoveTileDirective,
         DropImageDirective,
-        LoaderComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
         SeeClassementComponent,
@@ -147,6 +147,8 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaColorPicker,
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
+        MagmaLoader,
+        MagmaLoaderMessage,
         MagmaSpinner,
     ],
 })

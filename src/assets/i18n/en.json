@@ -727,6 +727,9 @@
       "not.public": "Do not make public.",
       "cancel": "Cancel",
       "save": "Save",
+      "save.read": "Reading data in progress (1/3)",
+      "save.send": "Sending in progress (2/3)",
+      "save.progress": "Saving in progress (3/3)",
       "password": "Set a password (optional)",
       "not.remove.local": {
         "label": "Keep locally.",

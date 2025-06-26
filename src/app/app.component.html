@@ -1,6 +1,9 @@
-@if (loading) {
-  <loader-cmp [message]="'generator.loading' | transloco" />
-}
+<mg-loader [loading]="loading">
+  <mg-spinner />
+  <mg-loader-message>
+    {{ 'generator.loading' | transloco }}
+  </mg-loader-message>
+</mg-loader>
 
 <header>
   <div class="title">{{ 'classement' | transloco }}</div>

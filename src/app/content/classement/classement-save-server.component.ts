@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import {
     Component,
     ElementRef,
@@ -7,6 +8,7 @@ import {
     inject,
     input,
     output,
+    signal,
     viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +21,12 @@ import {
     MagmaInputPassword,
     MagmaInputSelect,
     MagmaInputText,
+    MagmaLoader,
+    MagmaLoaderMessage,
     MagmaMessage,
     MagmaMessageType,
+    MagmaProgress,
+    MagmaSpinner,
     MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -28,13 +34,13 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
-import { APIClassementService, UploadProgress } from 'src/app/services/api.classement.service';
+import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { LoaderComponent } from '../../components/loader/loader.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 
 @Component({
@@ -46,7 +52,6 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         FormsModule,
         ImageCropperComponent,
         MagmaTooltipDirective,
-        LoaderComponent,
         TranslocoPipe,
         MagmaInput,
         MagmaInputText,
@@ -54,9 +59,15 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         MagmaInputSelect,
         MagmaInputCheckbox,
         MagmaInputPassword,
+        MagmaLoader,
+        MagmaLoaderMessage,
+        MagmaSpinner,
+        MagmaProgress,
+        JsonPipe,
     ],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
+    private readonly global = inject(GlobalService);
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
     private readonly mgMessage = inject(MagmaMessage);
@@ -97,7 +108,11 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     history = false;
     loading = false;
     adult = false;
-    progress?: UploadProgress;
+
+    lang = this.global.lang;
+    step = signal<'read' | 'send' | 'save'>('read');
+    loaded = signal<number | undefined>(undefined);
+    total = signal<number | undefined>(undefined);
 
     showError: string[] = [];
 
@@ -124,7 +139,13 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
             }),
             this.classementService.progressValue.subscribe(value => {
                 if (this.loading) {
-                    this.progress = value;
+                    this.loaded.set(value.loaded);
+                    this.total.set(value.total);
+                    if (value.loaded < value.total) {
+                        this.step.set('send');
+                    } else {
+                        this.step.set('save');
+                    }
                 }
             }),
         );
@@ -194,7 +215,9 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
         if (!this.showError.length) {
             this.loading = true;
-            this.progress = undefined;
+            this.step.set('read');
+            this.loaded.set(undefined);
+            this.total.set(undefined);
             this.classementService
                 .saveClassement(classement)
                 .then(classementSave => {

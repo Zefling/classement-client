@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MagmaLoader, MagmaSpinner } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { User } from 'src/app/interface/interface';
@@ -9,14 +10,13 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { LoaderComponent } from '../../components/loader/loader.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 
 @Component({
     selector: 'user-view',
     templateUrl: './user-view.component.html',
     styleUrls: ['./user-view.component.scss'],
-    imports: [LoaderComponent, NavigateResultComponent, DatePipe, TranslocoPipe],
+    imports: [NavigateResultComponent, DatePipe, TranslocoPipe, MagmaLoader, MagmaSpinner],
 })
 export class UserViewComponent {
     private readonly route = inject(ActivatedRoute);

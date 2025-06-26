@@ -143,6 +143,40 @@
     </button>
   </p>
 </div>
-@if (loading) {
-  <loader-cmp message="Sauvegarde en cours" [progress]="progress" />
-}
+
+{{ 'unit.file' | transloco | json }}
+
+<mg-loader [loading]="loading">
+  <mg-spinner />
+  <mg-loader-message>
+    @switch (step()) {
+      @case ('read') {
+        {{ 'generator.server.save.read' | transloco }}
+      }
+      @case ('send') {
+        {{ 'generator.server.save.send' | transloco }}
+      }
+      @case ('save') {
+        {{ 'generator.server.save.progress' | transloco }}
+      }
+    }
+  </mg-loader-message>
+  @if (total()) {
+    <mg-progress
+      [loaded]="loaded()"
+      [total]="step() === 'send' ? total() : 0"
+      [sizeFormat]="{
+        language: lang,
+        translate: {
+          unitTableBinary: [
+            'unit.file.B0' | transloco,
+            'unit.file.B1' | transloco,
+            'unit.file.B2' | transloco,
+            'unit.file.B3' | transloco,
+            'unit.file.B4' | transloco,
+          ],
+        },
+      }"
+    />
+  }
+</mg-loader>

@@ -2,7 +2,15 @@ import { Component, OnDestroy, OnInit, booleanAttribute, inject, input } from '@
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { FormBuilderExtended, MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText } from '@ikilote/magma';
+import {
+    FormBuilderExtended,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaLoader,
+    MagmaSpinner,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -10,21 +18,20 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
-import { LoaderComponent } from '../../components/loader/loader.component';
-
 @Component({
     selector: 'user-login',
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
     imports: [
         RouterLink,
-        LoaderComponent,
         TranslocoPipe,
         ReactiveFormsModule,
         MagmaInput,
         MagmaInputElement,
         MagmaInputPassword,
         MagmaInputText,
+        MagmaLoader,
+        MagmaSpinner,
     ],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {

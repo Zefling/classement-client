@@ -1,6 +1,9 @@
-@if (!options) {
-  <loader-cmp [message]="'generator.loading' | transloco"></loader-cmp>
-}
+<mg-loader [loading]="!options">
+  <mg-spinner />
+  <mg-loader-message>
+    {{ 'generator.loading' | transloco }}
+  </mg-loader-message>
+</mg-loader>
 
 <div
   class="classement-edit"

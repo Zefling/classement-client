@@ -4,14 +4,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MagmaClickEnterDirective, MagmaDialog, MagmaLimitFocusDirective } from '@ikilote/magma';
+import {
+    MagmaClickEnterDirective,
+    MagmaDialog,
+    MagmaLimitFocusDirective,
+    MagmaLoader,
+    MagmaLoaderMessage,
+    MagmaSpinner,
+} from '@ikilote/magma';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { MARKED_OPTIONS, MarkdownModule, MarkedRenderer } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoaderComponent } from './components/loader/loader.component';
 import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { TranslocoRootModule } from './transloco-root.module';
 
@@ -44,11 +50,13 @@ export function markedOptionsFactory() {
         TranslocoRootModule,
 
         //internal
-        LoaderComponent,
+        PreferencesMagmaDialog,
         MagmaDialog,
         MagmaClickEnterDirective,
-        PreferencesMagmaDialog,
         MagmaLimitFocusDirective,
+        MagmaLoader,
+        MagmaSpinner,
+        MagmaLoaderMessage,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],
     bootstrap: [AppComponent],

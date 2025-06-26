@@ -1,6 +1,6 @@
-@if (loading) {
-  <loader-cmp></loader-cmp>
-}
+<mg-loader [loading]="loading">
+  <mg-spinner />
+</mg-loader>
 
 @if (user) {
   <h1>{{ 'user.profile.view.title' | transloco }}{{ user.username }}</h1>

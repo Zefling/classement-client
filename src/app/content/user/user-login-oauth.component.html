@@ -18,6 +18,6 @@
   </div>
 </div>
 
-@if (loader) {
-  <loader-cmp />
-}
+<mg-loader [loading]="loader">
+  <mg-spinner />
+</mg-loader>
