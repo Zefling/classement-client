@@ -14,7 +14,7 @@
   <div>
     <div>
       @if (progress !== total) {
-        <loading-cmp class="loading" size="20px" tickWidth="2px"></loading-cmp>
+        <mg-spinner class="loading" size="20px" tickWidth="2px" />
       }
       <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
     </div>

@@ -2,7 +2,14 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText, MagmaPagination } from '@ikilote/magma';
+import {
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputText,
+    MagmaPagination,
+    MagmaSpinner,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
@@ -13,15 +20,12 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ListClassementsComponent } from './list-classements.component';
 
-import { LoadingComponent } from '../../components/loader/loading.component';
-
 @Component({
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
     imports: [
         FormsModule,
-        LoadingComponent,
         ListClassementsComponent,
         TranslocoPipe,
         MagmaPagination,
@@ -29,6 +33,7 @@ import { LoadingComponent } from '../../components/loader/loading.component';
         MagmaInputElement,
         MagmaInputText,
         MagmaInputSelect,
+        MagmaSpinner,
     ],
 })
 export class AdminClassementsComponent implements OnDestroy {

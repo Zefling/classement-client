@@ -14,6 +14,7 @@ import {
     MagmaMessage,
     MagmaMessageType,
     MagmaPagination,
+    MagmaSpinner,
     MagmaTable,
     MagmaTableCell,
     MagmaTableGroup,
@@ -30,15 +31,12 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ListClassementsComponent } from './list-classements.component';
 
-import { LoadingComponent } from '../../components/loader/loading.component';
-
 @Component({
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
     imports: [
         FormsModule,
-        LoadingComponent,
         ListClassementsComponent,
         ReactiveFormsModule,
         DatePipe,
@@ -49,6 +47,7 @@ import { LoadingComponent } from '../../components/loader/loading.component';
         MagmaTableGroup,
         MagmaTableRow,
         MagmaTableCell,
+        MagmaSpinner,
         MagmaInput,
         MagmaInputText,
         MagmaInputPassword,

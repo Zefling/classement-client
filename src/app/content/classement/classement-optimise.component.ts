@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, input } from '@angular/core';
 
-import { MagmaClickEnterDirective, MagmaDialog, NumFormatPipe } from '@ikilote/magma';
+import { MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
@@ -8,13 +8,11 @@ import { GlobalService } from 'src/app/services/global.service';
 import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
-import { LoadingComponent } from '../../components/loader/loading.component';
-
 @Component({
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',
     styleUrls: ['./classement-optimise.component.scss'],
-    imports: [LoadingComponent, TranslocoPipe, NumFormatPipe, MagmaClickEnterDirective],
+    imports: [TranslocoPipe, NumFormatPipe, MagmaClickEnterDirective, MagmaSpinner],
 })
 export class ClassementOptimiseComponent implements OnInit {
     private readonly optimiseImage = inject(OptimiseImageService);

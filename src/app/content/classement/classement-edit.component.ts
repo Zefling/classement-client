@@ -42,6 +42,7 @@ import {
     MagmaMessageType,
     MagmaNgInitDirective,
     MagmaNgModelChangeDebouncedDirective,
+    MagmaSpinner,
     MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -100,7 +101,6 @@ import { HelpTierListComponent } from './help/help.tierlist.component';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
-import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
@@ -125,7 +125,6 @@ import { FileSizePipe } from '../../pipes/file-size';
         CdkDropZone,
         RemoveTileDirective,
         DropImageDirective,
-        LoadingComponent,
         LoaderComponent,
         ZoneAreaComponent,
         ZoneAxisComponent,
@@ -148,6 +147,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaColorPicker,
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
+        MagmaSpinner,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {

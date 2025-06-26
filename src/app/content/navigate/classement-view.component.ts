@@ -21,6 +21,7 @@ import {
     MagmaInputPassword,
     MagmaMessage,
     MagmaMessageType,
+    MagmaSpinner,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -43,7 +44,6 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
 import { LoaderItemComponent } from '../../components/loader/loader-item.component';
-import { LoadingComponent } from '../../components/loader/loading.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TileComponent } from '../../components/tile/tile.component';
 
@@ -55,7 +55,6 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     styleUrls: ['./classement-view.component.scss'],
     imports: [
         RouterLink,
-        LoadingComponent,
         FormsModule,
         SeeClassementComponent,
         ClassementInfosComponent,
@@ -64,6 +63,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaDialog,
         DatePipe,
         TranslocoPipe,
+        MagmaSpinner,
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputPassword,

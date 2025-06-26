@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-import { LoadingComponent } from './loading.component';
+import { MagmaSpinner } from '@ikilote/magma';
 
 import { FileSizePipe } from '../../pipes/file-size';
 import { UploadProgress } from '../../services/api.classement.service';
@@ -12,7 +12,7 @@ import { UploadProgress } from '../../services/api.classement.service';
     selector: 'loader-cmp',
     templateUrl: './loader.component.html',
     styleUrls: ['./loader.component.scss'],
-    imports: [LoadingComponent, FileSizePipe],
+    imports: [MagmaSpinner, FileSizePipe],
 })
 export class LoaderComponent {
     // input
