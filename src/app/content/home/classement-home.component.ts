@@ -2,7 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MagmaMessage } from '@ikilote/magma';
+import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessage } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Classement, PreferencesData } from 'src/app/interface/interface';
@@ -13,14 +13,13 @@ import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
-import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 
 @Component({
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
-    imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
+    imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
 })
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);

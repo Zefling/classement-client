@@ -8,6 +8,8 @@ import {
     MagmaInputElement,
     MagmaInputSelect,
     MagmaInputText,
+    MagmaLoaderBlock,
+    MagmaLoaderTile,
     MagmaMessage,
     MagmaPagination,
 } from '@ikilote/magma';
@@ -23,7 +25,6 @@ import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { listModes } from '../classement/classement-default';
 
@@ -37,8 +38,9 @@ import { listModes } from '../classement/classement-default';
         RouterLink,
         MagmaPagination,
         NavigateResultComponent,
-        LoaderItemComponent,
         TranslocoPipe,
+        MagmaLoaderBlock,
+        MagmaLoaderTile,
         MagmaInput,
         MagmaInputText,
         MagmaInputElement,

@@ -19,6 +19,8 @@ import {
     MagmaInput,
     MagmaInputCheckbox,
     MagmaInputPassword,
+    MagmaLoaderBlock,
+    MagmaLoaderTile,
     MagmaMessage,
     MagmaMessageType,
     MagmaSpinner,
@@ -43,7 +45,6 @@ import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
-import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TileComponent } from '../../components/tile/tile.component';
 
@@ -59,7 +60,6 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         SeeClassementComponent,
         ClassementInfosComponent,
         NgClass,
-        LoaderItemComponent,
         MagmaDialog,
         DatePipe,
         TranslocoPipe,
@@ -67,6 +67,8 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputPassword,
+        MagmaLoaderBlock,
+        MagmaLoaderTile,
         TileComponent,
     ],
 })

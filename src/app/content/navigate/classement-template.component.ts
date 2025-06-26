@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
+import { MagmaLoaderBlock, MagmaLoaderTile } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
@@ -8,7 +9,6 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { LoaderItemComponent } from '../../components/loader/loader-item.component';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { categories } from '../classement/classement-default';
 
@@ -16,7 +16,7 @@ import { categories } from '../classement/classement-default';
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
-    imports: [RouterLink, NavigateResultComponent, LoaderItemComponent, TranslocoPipe],
+    imports: [RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
 })
 export class ClassementTemplateComponent {
     private readonly classementService = inject(APIClassementService);
