@@ -1,72 +1,77 @@
 @let classement = classementInfo();
 
-<img [src]="classement.banner" [alt]="classement.name" class="banner" />
-<div class="infos">
-  <h3 class="name">
-    <span>{{ classement.name }}</span>
-    @if (classement.historyId) {
-      <span class="history">{{ 'generator.actions.history.warning' | transloco }}</span>
-    }
-  </h3>
-  <div class="category">
-    {{ 'category.' + (classement.category || 'undefined') | transloco }}
-  </div>
-  <div class="groups">
-    @if (classement.mode === 'default' || classement.mode === 'teams') {
-      <div [title]="'list.count.group' | transloco"><span class="icon-group"></span> {{ classement.totalGroups }}</div>
-    }
-    <div [title]="'list.count.item' | transloco"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
-    <div class="mode">
-      {{ 'mode.name.' + (classement.mode || 'default') | transloco }}
-      {{ classement.adult ? ' - 🔞' : '' }}
+@if (classement) {
+  <img [src]="classement.banner" [alt]="classement.name" class="banner" />
+  <div class="infos">
+    <h3 class="name">
+      <span>{{ classement.name }}</span>
+      @if (classement.historyId) {
+        <span class="history">{{ 'generator.actions.history.warning' | transloco }}</span>
+      }
+    </h3>
+    <div class="category">
+      {{ 'category.' + (classement.category || 'undefined') | transloco }}
     </div>
-  </div>
-  <div class="username">
-    @if (classement.user) {
-      <a [routerLink]="['/user', '@' + classement.user]">
-        @if (classement.userAvatar) {
-          <div>
-            <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
-          </div>
-        }
-        <div>
-          {{ 'user.by' | transloco: { author: classement.user } }}
+    <div class="groups">
+      undefined
+      @if (classement.mode === 'default' || classement.mode === 'teams') {
+        <div [title]="'list.count.group' | transloco">
+          <span class="icon-group"></span> {{ classement.totalGroups }}
         </div>
-      </a>
-    } @else {
-      <div>
-        {{ 'user.by' | transloco: { author: ('list.user.anonymous' | transloco) } }}
+      }
+      <div [title]="'list.count.item' | transloco"><span class="icon-tile"></span> {{ classement.totalItems }}</div>
+      <div class="mode">
+        {{ 'mode.name.' + (classement.mode || 'default') | transloco }}
+        {{ classement.adult ? ' - 🔞' : '' }}
+      </div>
+    </div>
+    <div class="username">
+      @if (classement.user) {
+        <a [routerLink]="['/user', '@' + classement.user]">
+          @if (classement.userAvatar) {
+            <div>
+              <img class="avatar" [src]="classement.userAvatar" alt="avatar" />
+            </div>
+          }
+          <div>
+            {{ 'user.by' | transloco: { author: classement.user } }}
+          </div>
+        </a>
+      } @else {
+        <div>
+          {{ 'user.by' | transloco: { author: ('list.user.anonymous' | transloco) } }}
+        </div>
+      }
+    </div>
+    @if (classement.data.options.description) {
+      <div class="desc">
+        <markdown [data]="classement.data.options.description" />
       </div>
     }
-  </div>
-  @if (classement.data.options.description) {
-    <div class="desc">
-      <markdown [data]="classement.data.options.description" />
-    </div>
-  }
-  <div class="dates">
-    <div class="date">
-      {{
-        'generator.ranking.create'
-          | transloco: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
-      }}
-    </div>
-    @if (classement.dateChange) {
+    <div class="dates">
       <div class="date">
         {{
-          'generator.ranking.change'
-            | transloco: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
+          'generator.ranking.create'
+            | transloco: { DATE: classement.dateCreate | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
         }}
+      </div>
+      @if (classement.dateChange) {
+        <div class="date">
+          {{
+            'generator.ranking.change'
+              | transloco: { DATE: classement.dateChange | date: ('date.dd/MM/yyyy HH:mm' | transloco) }
+          }}
+        </div>
+      }
+    </div>
+    @if (classement.data.options.tags && classement.data.options.tags.length) {
+      <div class="tags">
+        <span>{{ 'generator.options.tags' | transloco }}</span>
+        <tag-list [tags]="classement.data.options.tags" [link]="classement.parent ? 'parent' : 'children'" readOnly />
       </div>
     }
   </div>
-  @if (classement.data.options.tags && classement.data.options.tags.length) {
-    <div class="tags">
-      <span>{{ 'generator.options.tags' | transloco }}</span>
-      <tag-list [tags]="classement.data.options.tags" [link]="classement.parent ? 'parent' : 'children'" readOnly />
-    </div>
-  }
-</div>
-<div class="content">
-  <ng-content />
-</div>
+  <div class="content">
+    <ng-content />
+  </div>
+}

@@ -245,13 +245,13 @@
           (mouseleave)="_visiblity = false"
         >
           <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
-          <span>{{ 'mode.name.' + mode.id | transloco }}</span>
+          <span>{{ 'mode.name.' + (mode.id || 'default') | transloco }}</span>
         </li>
       }
     </ul>
   </nav>
   <p class="info-block" [class.visible]="_visiblity">
-    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
+    <strong>{{ 'mode.name.' + (_modeTemp || 'default') | transloco }}</strong>
     <span class="info" [style.--pos]="_index" [style.--size]="modes.length">
       @for (mode of modes; track $index) {
         <span>{{ 'generator.actions.change.mode.' + mode.id | transloco }}</span>

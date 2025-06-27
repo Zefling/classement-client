@@ -81,9 +81,9 @@ export class GlobalService {
         });
     }
 
-    setTitle(key: string, admin = false) {
+    setTitle(key: string, admin = false, translate = true) {
         this.title.setTitle(
-            `${this.translate.translate(key)}${
+            `${translate ? this.translate.translate(key) : key}${
                 admin ? `- ${this.translate.translate('menu.admin')}` : ''
             } - ${this.translate.translate('classement')}`,
         );
@@ -176,13 +176,13 @@ export class GlobalService {
     ): Promise<Record<string, string | ArrayBuffer | null>> {
         const cache: Record<string, string | ArrayBuffer | null> = {};
         for (const item of list) {
-            if (item?.url) {
+            if (item?.url && item.url.endsWith('.webp')) {
                 cache[item.url] = await Utils.ulrToBase64(item.url);
             }
         }
         for (const group of groups) {
             for (const item of group.list) {
-                if (item?.url) {
+                if (item?.url && item.url.endsWith('.webp')) {
                     cache[item.url] = await Utils.ulrToBase64(item.url);
                 }
             }

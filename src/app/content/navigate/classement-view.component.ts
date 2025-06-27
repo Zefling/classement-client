@@ -200,7 +200,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     }
 
     updateTitle(classement: Classement) {
-        this.global.setTitle(classement.data.options.title);
+        this.global.setTitle(classement.data.options.title, false, false);
     }
 
     openClassementWithPassword(password: string) {
