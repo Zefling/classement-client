@@ -132,7 +132,6 @@ export class ClassementNavigateComponent implements OnDestroy {
     }
 
     showCategoriesList() {
-        console.error('showCategoriesList ?');
         this.isCategoryList = true;
         this.loading = true;
         this.classementService
@@ -155,8 +154,6 @@ export class ClassementNavigateComponent implements OnDestroy {
             this.page = 1;
             this.global.onPageUpdate.next(1);
         }
-
-        console.error('submit ?');
 
         this.loading = true;
         this.classementService

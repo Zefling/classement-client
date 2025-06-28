@@ -669,7 +669,8 @@
         "info": "Ajouter des tuiles de textes : une ligne par tuile, les ligne vides sont ignorées.",
         "ok": "Ok",
         "cancel": "Annuler"
-      }
+      },
+      "IMDB": "IMDB"
     },
     "context.menu": {
       "back.list": "Remettre dans la liste",

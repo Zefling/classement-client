@@ -670,7 +670,8 @@
         "info": "Add text tiles: one line per tile, empty lines are ignored.",
         "ok": "Ok",
         "cancel": "Cancel"
-      }
+      },
+      "IMDB": "IMDB"
     },
     "context.menu": {
       "back.list": "Return to list",
