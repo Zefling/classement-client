@@ -66,7 +66,7 @@ export class APIThemeService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('byOptions', result));
+                    reject(this.logger.error('byOptions', result));
                 },
             });
         });
@@ -101,11 +101,11 @@ export class APIThemeService extends APICommon {
                         if (result.event.body) {
                             resolve(result.event.body.message);
                         } else {
-                            reject(this.error('save', { error: 0 } as HttpErrorResponse));
+                            reject(this.logger.error('save', { error: 0 } as HttpErrorResponse));
                         }
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('save', result));
+                        reject(this.logger.error('save', result));
                     },
                 });
         });
@@ -122,7 +122,7 @@ export class APIThemeService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('delete', result));
+                        reject(this.logger.error('delete', result));
                     },
                 });
         });

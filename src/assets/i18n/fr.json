@@ -1031,6 +1031,7 @@
       "4100": "Envoi de courriel impossible.",
       "5000": "Erreur de catégorie.",
       "5100": "Données envoyées invalides. Il est possible qu'un champs ait une valeur non valide.",
+      "6000": "Chargement du graphique en échec.",
       "9999": "Requête invalide.",
       "undefined": "⚠️ Une erreur serveur s'est produite."
     },

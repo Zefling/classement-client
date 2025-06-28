@@ -1032,6 +1032,7 @@
       "4100": "Cannot send email.",
       "5000": "Category error.",
       "5100": "Invalid data sent. A field may have an invalid value.",
+      "6000": "Chart loading failed.",
       "9999": "Invalid request.",
       "undefined": "⚠️ A server error has occurred."
     },

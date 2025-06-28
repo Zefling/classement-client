@@ -40,4 +40,8 @@ export class Logger {
                 break;
         }
     }
+
+    error(value: string, ...values: any[]) {
+        this.log(value, LoggerLevel.error, ...values);
+    }
 }

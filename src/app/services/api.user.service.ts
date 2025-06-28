@@ -118,7 +118,7 @@ export class APIUserService extends APICommon {
                         if ((result.error as MessageError).errorCode === 1030) {
                             Utils.removeCookie('x-token');
                         }
-                        reject(this.error('invalide token', result));
+                        reject(this.logger.error('invalide token', result));
                     },
                     complete: () => {
                         this.afterLogin.next();
@@ -144,7 +144,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('signup', result));
+                        reject(this.logger.error('signup', result));
                     },
                 });
         });
@@ -157,7 +157,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('userValidate', result));
+                    reject(this.logger.error('userValidate', result));
                 },
             });
         });
@@ -185,7 +185,7 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     this.afterLogout.next();
-                    reject(this.error('login', result));
+                    reject(this.logger.error('login', result));
                 },
             });
         });
@@ -213,7 +213,7 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     this.afterLogout.next();
-                    reject(this.error('login', result));
+                    reject(this.logger.error('login', result));
                 },
             });
         });
@@ -230,7 +230,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('passwordLost', result));
+                        reject(this.logger.error('passwordLost', result));
                     },
                 });
         });
@@ -248,7 +248,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('passwordLost', result));
+                        reject(this.logger.error('passwordLost', result));
                     },
                 });
         });
@@ -264,7 +264,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('logout', result));
+                    reject(this.logger.error('logout', result));
                 },
             });
         });
@@ -301,7 +301,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('update', result));
+                        reject(this.logger.error('update', result));
                     },
                 });
         });
@@ -314,7 +314,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('remove', result));
+                    reject(this.logger.error('remove', result));
                 },
             });
         });
@@ -334,7 +334,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('update', result));
+                        reject(this.logger.error('update', result));
                     },
                 });
         });
@@ -347,7 +347,7 @@ export class APIUserService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('getUser', result));
+                    reject(this.logger.error('getUser', result));
                 },
             });
         });
@@ -376,7 +376,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('adminGetUser', result));
+                        reject(this.logger.error('adminGetUser', result));
                     },
                 });
         });
@@ -391,7 +391,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('adminUpdateUser', result));
+                        reject(this.logger.error('adminUpdateUser', result));
                     },
                 });
         });
@@ -404,7 +404,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('adminRemoveUser', result));
+                    reject(this.logger.error('adminRemoveUser', result));
                 },
             });
         });
@@ -417,7 +417,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('sendToAdmin', result));
+                    reject(this.logger.error('sendToAdmin', result));
                 },
             });
         });
