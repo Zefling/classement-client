@@ -96,7 +96,13 @@ export class MemoryService {
 
         // save image
         copy.list.forEach(e => this.code(e));
-        copy.groups.forEach(list => list.list.forEach(e => this.code(e)));
+        (copy.list as any).id = (parent.list as any).id;
+        (copy.list as any).type = (parent.list as any).type;
+        copy.groups.forEach((list, index) => {
+            list.list.forEach(e => this.code(e));
+            (list.list as any).id = (parent.groups[index].list as any).id;
+            (list.list as any).type = (parent.groups[index].list as any).type;
+        });
 
         this.#back.push(copy);
 
@@ -120,10 +126,18 @@ export class MemoryService {
 
         // save image
         back.list.forEach(e => this.decode(e));
-        back.groups.forEach(list => list.list.forEach(e => this.decode(e)));
+
+        (back.list as any).id = (this.#back[this.#index].list as any).id;
+        (back.list as any).type = (this.#back[this.#index].list as any).type;
+
+        back.groups.forEach((list, index) => {
+            list.list.forEach(e => this.decode(e));
+            (list.list as any).id = (this.#back[this.#index].groups[index].list as any).id;
+            (list.list as any).type = (this.#back[this.#index].groups[index].list as any).type;
+        });
 
         parent.options = back.options;
-        parent.groups = Utils.jsonCopy(back.groups);
+        parent.groups = back.groups;
         parent.list = back.list;
     }
 

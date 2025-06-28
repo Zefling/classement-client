@@ -1474,29 +1474,27 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     addIds() {
         // for groups
         this.groups.forEach(group => {
-            if (!(group.list as any).id) {
-                // add ids to identify lists
-                (group.list as any).type = `group`;
-                (group.list as any).id = `group-${Utils.randomNumber()}`;
-            }
+            // add ids to identify lists
+            (group.list as any).type ??= `group`;
+            (group.list as any).id ??= `group-${Utils.randomNumber()}`;
+
             group.list.forEach(tile => {
-                if (tile && !tile.id) {
+                if (tile) {
                     // add ids to identify tiles
-                    tile.id = `tile-${Utils.randomNumber()}`;
+                    tile.id ??= `tile-${Utils.randomNumber()}`;
                 }
             });
         });
 
         // for list
-        if (!(this.list as any).id) {
-            // add ids to identify lists
-            (this.list as any).type = `list`;
-            (this.list as any).id = 'list';
-        }
+        // add ids to identify lists
+        (this.list as any).type ??= `list`;
+        (this.list as any).id ??= 'list';
+
         this.list.forEach(tile => {
-            if (tile && !tile.id) {
+            if (tile) {
                 // add ids to identify tiles
-                tile.id = `tile-${Utils.randomNumber()}`;
+                tile.id ??= `tile-${Utils.randomNumber()}`;
             }
         });
     }
