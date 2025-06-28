@@ -36,7 +36,6 @@ import { listModes } from '../classement/classement-default';
         FormsModule,
         NgClass,
         RouterLink,
-        MagmaPagination,
         NavigateResultComponent,
         TranslocoPipe,
         MagmaLoaderBlock,
@@ -45,6 +44,7 @@ import { listModes } from '../classement/classement-default';
         MagmaInputText,
         MagmaInputElement,
         MagmaInputSelect,
+        MagmaPagination,
     ],
 })
 export class ClassementNavigateComponent implements OnDestroy {

@@ -3,7 +3,7 @@
 <form class="search" (submit)="submit()">
   <mg-input class="name">
     <mg-input-label>{{ 'list.user.name' | transloco }}</mg-input-label>
-    <mg-input-text [(ngModel)]="searchKey" #filterInput clearCross />
+    <mg-input-text name="searchKey" [(ngModel)]="searchKey" #filterInput clearCross />
   </mg-input>
   <div>
     <button type="submit">{{ 'navigate.search' | transloco }}</button>

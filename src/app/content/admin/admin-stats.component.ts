@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -111,7 +110,6 @@ export class AdminStatsComponent {
                 const deletedLg = this.translate.translate('admin.user.deleted');
                 const validatedLg = this.translate.translate('admin.user.validated');
 
-                console.log(this.lightDark.currentTheme());
                 this.chartOptionUser = {
                     darkMode: this.lightDark.currentTheme() === 'dark',
                     title: {

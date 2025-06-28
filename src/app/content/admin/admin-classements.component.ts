@@ -49,8 +49,8 @@ export class AdminClassementsComponent implements OnDestroy {
 
     loading = false;
 
-    searchKey?: string;
-    category?: string;
+    searchKey: string = '';
+    category: string = '';
 
     classements: Record<number, Classement[]> = {};
     total?: number = 0;

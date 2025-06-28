@@ -66,7 +66,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     private _sub = Subscriptions.instance();
 
-    searchKey?: string;
+    searchKey: string = '';
 
     loading = false;
 
