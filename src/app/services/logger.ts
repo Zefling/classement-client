@@ -15,6 +15,8 @@ export enum LoggerLevel {
  */
 @Injectable({ providedIn: 'root' })
 export class Logger {
+    suffix = '[classement] ';
+
     log(value: string, level: LoggerLevel = LoggerLevel.log, ...values: any[]) {
         if (level < (LoggerLevel as any)[environment.minLogLevel || 'info'] || 0) {
             return;
@@ -22,19 +24,19 @@ export class Logger {
 
         switch (level) {
             case LoggerLevel.log:
-                console.log(value, ...values);
+                console.log(this.suffix + value, ...values);
                 break;
             case LoggerLevel.info:
-                console.info(value, ...values);
+                console.info(this.suffix + value, ...values);
                 break;
             case LoggerLevel.debug:
-                console.debug(value, ...values);
+                console.debug(this.suffix + value, ...values);
                 break;
             case LoggerLevel.warn:
-                console.warn(value, ...values);
+                console.warn(this.suffix + value, ...values);
                 break;
             case LoggerLevel.error:
-                console.error(value, ...values);
+                console.error(this.suffix + value, ...values);
                 break;
         }
     }
