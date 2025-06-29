@@ -13,6 +13,14 @@ a.classement {
     grid-row-start: span 9;
     width: 100%;
     height: 100%;
+
+    &:focus {
+        outline: none;
+
+        figure {
+            outline: 2px solid var(--link-focus-border-color);
+        }
+    }
 }
 
 :where(figure, .template) {
