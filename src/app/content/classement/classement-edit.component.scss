@@ -668,6 +668,22 @@ span.group-options {
     overflow: auto;
 }
 
+.current-list {
+    width: 100%;
+
+    .cdk-drop-list,
+    .cdk-drop-list .content-box {
+        min-width: 80px;
+        min-height: 40px;
+
+        &.add-file,
+        &.add-text {
+            box-sizing: border-box;
+            padding: 5px;
+        }
+    }
+}
+
 .stream-mode {
     .drop-image-message span,
     .tile-info,
@@ -677,19 +693,12 @@ span.group-options {
     .input-title {
         visibility: hidden;
     }
-}
 
-.current-list {
-    width: 100%;
-
-    .cdk-drop-list,
-    .cdk-drop-list .content-box {
-        min-height: 40px;
-
-        &.add-file,
-        &.add-text {
-            box-sizing: border-box;
-            padding: 5px;
+    .current-list {
+        .cdk-drop-list,
+        .cdk-drop-list .content-box {
+            min-width: auto;
+            min-height: auto;
         }
     }
 }
