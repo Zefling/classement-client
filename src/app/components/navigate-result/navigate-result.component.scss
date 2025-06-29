@@ -34,7 +34,9 @@ a.classement {
     }
 
     img {
+        display: block;
         max-width: 100%;
+        max-height: 100%;
     }
 
     @media screen and (max-width: 450px) {
@@ -84,7 +86,10 @@ figure {
     }
 
     & > div {
+        display: flex;
         position: relative;
+        justify-content: center;
+        align-items: center;
 
         &::before {
             position: absolute;
