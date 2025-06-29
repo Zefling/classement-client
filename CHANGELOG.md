@@ -1,5 +1,31 @@
 # Changelog - Standalone web app & API
 
+### 4.2.0 (2025-06-29)
+
+#### Standalone web app
+
+- Better keyboard navigation in menu
+- Add Framagit links
+- Update to **Magma** `0.8.1`
+    - Replace loading-cmp by mg-spinner
+    - Replace loader-item by mg-loader-block
+    - Replace loader-cmp by mg-loader
+    - Improve save progress steps
+- Add suffix for logger service
+- Adjust category input size
+- Fix `ctrl-Z`/`U` for teams (problem with id & type)
+- Fix minimal width for tile list for edit ranking
+
+#### With API activated only
+
+- Fix mobile for banner in view #110
+- Fix bad usage of menu tag (replace by nav tag)
+- Fix image alignment in navigation tiles
+- Fix translations
+- Fix focus for navigation tiles
+
+---
+
 ### 4.1.0 (2025-06-08)
 
 #### Standalone web app
