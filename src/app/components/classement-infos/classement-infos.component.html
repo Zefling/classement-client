@@ -13,7 +13,6 @@
       {{ 'category.' + (classement.category || 'undefined') | transloco }}
     </div>
     <div class="groups">
-      undefined
       @if (classement.mode === 'default' || classement.mode === 'teams') {
         <div [title]="'list.count.group' | transloco">
           <span class="icon-group"></span> {{ classement.totalGroups }}
