@@ -576,7 +576,11 @@
         "update.success": "Theme updated on your account",
         "delete.success": "Theme deleted of your account"
       },
-      "users.themes": "Public themes"
+      "users.themes": "Public themes",
+      "create": {
+        "normal": "Enable advanced options in: Preferences (main menu) » Editor » Options. Then go to the advanced options (link under the description on the right) to create or manage your themes.",
+        "advance": "Go to the advanced options (link under the description on the right) to create or manage your themes."
+      }
     },
     "ranking": {
       "group.title": "Ranking",

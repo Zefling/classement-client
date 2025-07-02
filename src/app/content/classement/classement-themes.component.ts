@@ -8,6 +8,7 @@ import {
     MagmaInputText,
     MagmaNgModelChangeDebouncedDirective,
     MagmaTabsModule,
+    MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -16,6 +17,7 @@ import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { PreferencesService } from 'src/app/services/preferences.service';
 
 import { themes, themesAxis, themesBingo, themesIceberg, themesList, themesLists } from './classement-default';
 
@@ -26,15 +28,16 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
     imports: [
-        MagmaDialog,
-        ThemeIconComponent,
+        FormsModule,
         TranslocoPipe,
+        ThemeIconComponent,
+        MagmaDialog,
         MagmaTabsModule,
         MagmaInput,
         MagmaInputText,
         MagmaInputElement,
-        FormsModule,
         MagmaNgModelChangeDebouncedDirective,
+        MagmaTooltipDirective,
     ],
 })
 export class ClassementThemesComponent {
@@ -45,6 +48,7 @@ export class ClassementThemesComponent {
     private readonly themeService = inject(APIThemeService);
     private readonly userService = inject(APIUserService);
     private readonly translate = inject(TranslocoService);
+    private readonly preference = inject(PreferencesService);
 
     // input
 
@@ -73,11 +77,15 @@ export class ClassementThemesComponent {
     themeDraft: Theme<string>[] = [];
     keysThemes: Theme<ThemesNames | string>[] = [];
 
+    advancedOptions = false;
+
     async open() {
         this.dialog().open();
 
         const options = this.options();
         const mode = options.mode ?? 'default';
+
+        this.advancedOptions = this.preference.preferences.advancedOptions;
 
         switch (mode) {
             case 'iceberg':

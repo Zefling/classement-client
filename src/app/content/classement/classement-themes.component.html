@@ -1,5 +1,14 @@
 <mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  <h3>{{ 'generator.theme.info' | transloco }}</h3>
+  <div class="title-help">
+    <h3>{{ 'generator.theme.info' | transloco }}</h3>
+    <div
+      class="button-help"
+      [mgTooltip]="(advancedOptions ? 'generator.theme.create.advance' : 'generator.theme.create.normal') | transloco"
+    >
+      ?
+    </div>
+  </div>
+
   <div>
     <mg-input class="search-theme">
       <mg-input-label>{{ 'generator.theme.search' | transloco }}</mg-input-label>

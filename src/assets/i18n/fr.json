@@ -575,7 +575,11 @@
         "update.success": "Theme mise à jour sur votre compte",
         "delete.success": "Theme supprimé de votre compte"
       },
-      "users.themes": "Thèmes publics"
+      "users.themes": "Thèmes publics",
+      "create": {
+        "normal": "Activer les options avancées dans les :Paramètres (menu principal) » Éditeur » Options. Puis dans se rendre dans les options avancées (lien sous la description à droite) pour créer ou gérer vos thèmes.",
+        "advance": "Aller dans les options avancées (lien sous la description à droite) pour créer ou gérer vos thèmes."
+      }
     },
     "ranking": {
       "group.title": "Classement",
