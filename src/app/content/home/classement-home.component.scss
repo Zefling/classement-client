@@ -118,6 +118,15 @@ navigate-result {
     fill: var(--neutral0);
 }
 
+.badges {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    height: 20px;
+}
+
 @media (hover: none) {
     navigate-result {
         overflow-x: auto;
