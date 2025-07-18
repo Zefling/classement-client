@@ -1051,7 +1051,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    selectItem(event: MouseEvent | null, group: FormattedGroup | null, item: FileType, index: number | null = null) {
+    selectItem(
+        event: KeyboardEvent | MouseEvent | null,
+        group: FormattedGroup | null,
+        item: FileType,
+        index: number | null = null,
+    ) {
         this.selectionTile = item;
         this.selectionGroup = group;
         this.selectionIndex = index;
@@ -1104,14 +1109,20 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
     }
 
-    clickZone(event: MouseEvent) {
+    clickZone(event: MouseEvent | KeyboardEvent) {
         if (this.selectionTile) {
             const rect = document.getElementById('zone')!.getBoundingClientRect();
             const index = this.list.indexOf(this.selectionTile);
             const item = this.list.splice(index, 1)[0]!;
             const rctItem = document.getElementById(item.id)!.getBoundingClientRect();
-            item.x = Math.min(Math.max(0, event.clientX - rect.left - rctItem.width / 2), rect.width - rctItem.width);
-            item.y = Math.min(Math.max(0, event.clientY - rect.top - rctItem.height / 2), rect.height - rctItem.height);
+            item.x = Math.min(
+                Math.max(0, ((event as any)?.clientX ?? 0) - rect.left - rctItem.width / 2),
+                rect.width - rctItem.width,
+            );
+            item.y = Math.min(
+                Math.max(0, ((event as any)?.clientY ?? 0) - rect.top - rctItem.height / 2),
+                rect.height - rctItem.height,
+            );
             this.groups[0].list.push(item);
         }
     }

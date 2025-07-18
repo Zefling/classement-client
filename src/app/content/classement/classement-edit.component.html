@@ -96,15 +96,14 @@
                       </label>
                       <span
                         class="color group-options icon-edit-2"
-                        (click)="updateGroupOption({ group, indexGrp, first, last })"
-                        (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                        tabindex="0"
+                        (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                       ></span>
                       <span
                         class="color bg-color icon-background-color"
                         [colorPicker]="group.bgColor"
                         (colorClose)="group.bgColor = $event"
                         tabindex="0"
+                        type="button"
                       ></span>
                       <span
                         class="color txt-color icon-text-color"
@@ -112,6 +111,7 @@
                         colorPickerAlpha
                         (colorClose)="group.txtColor = $event"
                         tabindex="0"
+                        type="button"
                       ></span>
                     </div>
                   </td>
@@ -123,7 +123,7 @@
                       [cdkDropListData]="{ list: group.list, index: -1 }"
                       (cdkDropListDropped)="drop($event)"
                       [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
-                      (click)="selectionGroupForItem(group)"
+                      (clickEnter)="selectionGroupForItem(group)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                         @if (item) {
@@ -132,7 +132,7 @@
                             cdkDrag
                             removeTile
                             (removeElement)="removeFromGroup(group, index)"
-                            (click)="selectItem($event, group, item)"
+                            (clickEnter)="selectItem($event, group, item)"
                             (clickOutside)="selectItem(null, null, null)"
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
@@ -165,7 +165,7 @@
                                   <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                                 </div>
                               }
-                              <div class="tile-info" (click)="openTileInfo(item)"></div>
+                              <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
                             </div>
                           </div>
                         }
@@ -196,10 +196,8 @@
                         <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
                       </button>
                       <span
-                        tabindex="0"
                         class="color group-options icon-edit-2"
-                        (click)="updateGroupOption({ group, indexGrp, first, last })"
-                        (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                        (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                       ></span>
                     </div>
                   </td>
@@ -215,7 +213,7 @@
               cdkDropZone
               [cdkDropListData]="{ list: groups[0].list }"
               (cdkDropListDropped)="drop($event)"
-              (click)="clickZone($event)"
+              (clickEnter)="clickZone($event)"
               (dblclick)="createTile($event)"
               (auxclick)="stopEvent($event)"
             >
@@ -270,7 +268,7 @@
                           <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                         </div>
                       }
-                      <div class="tile-info" (click)="openTileInfo(item)"></div>
+                      <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
                     </div>
                   </div>
                 }
@@ -292,7 +290,7 @@
                           (cdkDropListDropped)="drop($event)"
                           [class.selectable-group]="selectionTile && item !== selectionTile"
                           [class.selection-item]="item && item === selectionTile"
-                          (click)="
+                          (clickEnter)="
                             !selectionTile
                               ? selectItem($event, group, item, index)
                               : selectionGroupForItem(group, index)
@@ -336,7 +334,7 @@
                                     <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                                   </div>
                                 }
-                                <div class="tile-info" (click)="openTileInfo(item)"></div>
+                                <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
                               </div>
                             </div>
                           } @else {
@@ -381,15 +379,14 @@
                         </label>
                         <span
                           class="color group-options icon-edit-2"
-                          (click)="updateGroupOption({ group, indexGrp, first, last })"
-                          (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
-                          tabindex="0"
+                          (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                         ></span>
                         <span
                           class="color bg-color icon-background-color"
                           [colorPicker]="group.bgColor"
                           (colorClose)="group.bgColor = $event"
                           tabindex="0"
+                          type="button"
                         ></span>
                         <span
                           class="color txt-color icon-text-color"
@@ -397,6 +394,7 @@
                           colorPickerAlpha
                           (colorClose)="group.txtColor = $event"
                           tabindex="0"
+                          type="button"
                         ></span>
                       </div>
                     </td>
@@ -412,7 +410,7 @@
                         [cdkDropListData]="{ list: group.list, index: -1 }"
                         (cdkDropListDropped)="drop($event)"
                         [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
-                        (click)="selectionGroupForItem(group)"
+                        (clickEnter)="selectionGroupForItem(group)"
                       >
                         @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                           @if (item) {
@@ -421,7 +419,7 @@
                               cdkDrag
                               removeTile
                               (removeElement)="removeFromGroup(group, index)"
-                              (click)="selectItem($event, group, item)"
+                              (clickEnter)="selectItem($event, group, item)"
                               (clickOutside)="selectItem(null, null, null)"
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
@@ -455,7 +453,7 @@
                                     <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
                                   </div>
                                 }
-                                <div class="tile-info" (click)="openTileInfo(item)"></div>
+                                <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
                               </div>
                             </div>
                           }
@@ -490,10 +488,8 @@
                           <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
                         </button>
                         <span
-                          tabindex="0"
                           class="color group-options icon-edit-2"
-                          (click)="updateGroupOption({ group, indexGrp, first, last })"
-                          (keydown.enter)="updateGroupOption({ group, indexGrp, first, last })"
+                          (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                         ></span>
                       </div>
                     </td>
@@ -529,7 +525,7 @@
                   [style.--over-item-text-color]="item.txtColor"
                   class="content-box"
                   [class.selection-item]="item === selectionTile"
-                  (click)="selectItem($event, null, item)"
+                  (clickEnter)="selectItem($event, null, item)"
                   (clickOutside)="selectItem(null, null, null)"
                   [id]="item.id"
                 >
@@ -558,7 +554,7 @@
                         (ngModelChange)="globalChange()"
                         (blur)="change()"
                       />
-                      <div class="tile-info" (click)="openTileInfo(item)"></div>
+                      <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
                     </div>
                   } @else {
                     <div
@@ -599,10 +595,10 @@
                 (cdkDropListDropped)="drop($event)"
               ></div>
             }
-            <div class="content-box add-file" (click)="addFiles()">
+            <div class="content-box add-file" (clickEnter)="addFiles()">
               <span>{{ 'generator.ranking.add.image' | transloco }}</span>
             </div>
-            <div class="content-box add-text" (click)="addTextsDialog()">
+            <div class="content-box add-text" (clickEnter)="addTextsDialog()">
               <span>{{ 'generator.ranking.add.text' | transloco }}</span>
             </div>
           </div>
@@ -763,7 +759,7 @@
       </div>
       <div class="elements drop-list">
         @for (item of diff; track item) {
-          <div class="content-box" (click)="addTile(item)">
+          <div class="content-box" (clickEnter)="addTile(item)">
             <div
               class="content content-render"
               [ngClass]="options.itemTextPosition"
