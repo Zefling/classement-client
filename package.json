@@ -60,7 +60,7 @@
     "@fontsource/train-one": "^5.2.6",
     "@fontsource/zen-maru-gothic": "^5.2.6",
     "@html2canvas/html2canvas": "^1.6.3",
-    "@ikilote/magma": "^0.8.1",
+    "@ikilote/magma": "^0.8.2",
     "@jsverse/transloco": "^7.6.1",
     "ajv": "^8.17.1",
     "buffer": "^6.0.3",
