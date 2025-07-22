@@ -1071,6 +1071,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     const originList = this.selectionGroup?.list ?? this.list;
                     const index = originList.indexOf(this.selectionTile);
                     group.list.push(...originList.splice(index, 1));
+                    this.selectionTile = null;
                 }
                 break;
             case 'teams':
@@ -1082,8 +1083,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                         } else {
                             this.selectionGroup.list.splice(index, 1);
                         }
+                        this.selectionTile = null;
                     } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
                         group.list.push(this.selectionTile);
+                        this.selectionTile = null;
                     }
                 }
                 break;
@@ -1104,6 +1107,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                             this.list.push(back);
                         }
                     }
+                    this.selectionTile = null;
                 }
                 break;
         }
