@@ -250,6 +250,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     selectionTile: FileType = null;
     selectionGroup: FormattedGroup | null = null;
     selectionIndex: number | null = null;
+    selectionDiv: HTMLDivElement | null = null;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -1051,16 +1052,77 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
+    selectMoveItem(event: KeyboardEvent, group: FileType[], item?: FileType, index?: number) {
+        if (item === undefined) {
+            index = group.indexOf(this.selectionTile);
+        }
+
+        if (index !== undefined && index !== -1) {
+            switch (event.key) {
+                case 'ArrowLeft':
+                    if (index > 0) {
+                        const tile = group.splice(index, 1)[0];
+                        group.splice(index - 1, 0, tile);
+                        this.selectionTile = tile;
+                        setTimeout(() => {
+                            this.selectionDiv?.focus();
+                        });
+                        event.stopPropagation();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (index < group.length) {
+                        const tile = group.splice(index, 1)[0];
+                        group.splice(index + 1, 0, tile);
+                        this.selectionTile = tile;
+                        setTimeout(() => {
+                            this.selectionDiv?.focus();
+                        });
+                        event.stopPropagation();
+                    }
+                    break;
+            }
+        }
+
+        this.cd.detectChanges();
+    }
+
     selectItem(
-        event: KeyboardEvent | MouseEvent | null,
-        group: FormattedGroup | null,
-        item: FileType,
+        event: KeyboardEvent | MouseEvent | null = null,
+        group: FormattedGroup | null = null,
+        item: FileType = null,
         index: number | null = null,
+        div: HTMLDivElement | null = null,
     ) {
         this.selectionTile = item;
         this.selectionGroup = group;
         this.selectionIndex = index;
+        div?.focus();
         event?.stopPropagation();
+    }
+
+    selectItemByKey(
+        event: KeyboardEvent,
+        group: FormattedGroup | null,
+        item: FileType,
+        div: HTMLDivElement,
+        index: number | null = null,
+    ) {
+        switch (event.key) {
+            case 'ArrowLeft':
+            case 'ArrowRight':
+                this.selectionTile = item;
+                this.selectionGroup = group;
+                this.selectionIndex = index;
+                this.selectionDiv = div;
+                break;
+        }
+    }
+
+    initSelectedItem(div: HTMLDivElement, item: FileType) {
+        if (item?.id && item?.id === this.selectionTile?.id) {
+            div.focus();
+        }
     }
 
     selectionGroupForItem(group: FormattedGroup | null, indexTarget: number | null = null) {
@@ -1071,7 +1133,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     const originList = this.selectionGroup?.list ?? this.list;
                     const index = originList.indexOf(this.selectionTile);
                     group.list.push(...originList.splice(index, 1));
-                    this.selectionTile = null;
+                    this.clearSelection();
                 }
                 break;
             case 'teams':
@@ -1083,10 +1145,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                         } else {
                             this.selectionGroup.list.splice(index, 1);
                         }
-                        this.selectionTile = null;
+                        this.clearSelection();
                     } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
                         group.list.push(this.selectionTile);
-                        this.selectionTile = null;
+                        this.clearSelection();
                     }
                 }
                 break;
@@ -1107,10 +1169,18 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                             this.list.push(back);
                         }
                     }
-                    this.selectionTile = null;
+                    this.clearSelection();
                 }
                 break;
         }
+    }
+
+    clearSelection() {
+        this.selectionTile = null;
+        this.selectionGroup = null;
+        this.selectionIndex = null;
+        this.globalChange();
+        this.change();
     }
 
     clickZone(event: MouseEvent | KeyboardEvent) {

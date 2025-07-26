@@ -5,6 +5,8 @@
   </mg-loader-message>
 </mg-loader>
 
+<!-- !MARK: options -->
+
 <div
   class="classement-edit"
   drop-image
@@ -62,6 +64,8 @@
         }
       </div>
       <div cdkDropListGroup class="mode-{{ options.mode }}">
+        <!-- !MARK: tierlist / teams -->
+
         @if (options.mode === 'default' || options.mode === 'teams') {
           <table
             class="table-classement"
@@ -124,6 +128,7 @@
                       (cdkDropListDropped)="drop($event)"
                       [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
                       (clickEnter)="selectionGroupForItem(group)"
+                      (keydown)="selectMoveItem($event, group.list)"
                     >
                       @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                         @if (item) {
@@ -132,8 +137,10 @@
                             cdkDrag
                             removeTile
                             (removeElement)="removeFromGroup(group, index)"
-                            (clickEnter)="selectItem($event, group, item)"
-                            (clickOutside)="selectItem(null, null, null)"
+                            #itemDiv
+                            (clickEnter)="selectItem($event, group, item, index, itemDiv)"
+                            (clickOutside)="selectItem()"
+                            (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
@@ -206,6 +213,8 @@
             </tbody>
           </table>
         } @else if (options.mode === 'iceberg' || options.mode === 'axis') {
+          <!-- !MARK: iceberg / axis -->
+
           <div class="zone-classement-container">
             <div
               id="zone"
@@ -276,6 +285,8 @@
             </div>
           </div>
         } @else if (options.mode === 'bingo') {
+          <!-- !MARK: bingo -->
+
           <div class="bingo-container">
             <table class="table-classement" [class.line-fusion]="options.borderSpacing < 0">
               <tbody>
@@ -349,6 +360,8 @@
             </table>
           </div>
         } @else if (options.mode === 'columns') {
+          <!-- !MARK: columns -->
+
           <div class="table-columns">
             <table
               class="table-classement"
@@ -499,7 +512,10 @@
             </table>
           </div>
         }
-        <div class="current-list">
+
+        <!-- !MARK: list tiles -->
+
+        <div class="current-list" (keydown)="selectMoveItem($event, list)">
           <div class="drop-image-message">
             <span>{{ 'generator.ranking.drop.image' | transloco }}</span>
             @if (scrollArrows) {
@@ -525,8 +541,10 @@
                   [style.--over-item-text-color]="item.txtColor"
                   class="content-box"
                   [class.selection-item]="item === selectionTile"
-                  (clickEnter)="selectItem($event, null, item)"
-                  (clickOutside)="selectItem(null, null, null)"
+                  #itemDiv
+                  (clickEnter)="selectItem($event, null, item, index, itemDiv)"
+                  (clickOutside)="selectItem()"
+                  (keydown)="selectItemByKey($event, null, item, itemDiv, index)"
                   [id]="item.id"
                 >
                   @if (!options.streamMode) {
@@ -605,6 +623,8 @@
         </div>
       </div>
 
+      <!-- !MARK: render -->
+
       <see-classement
         class="render"
         render
@@ -616,6 +636,8 @@
         [id]="classement?.rankingId || 'new'"
       />
     </div>
+
+    <!-- !MARK: action buttons -->
 
     <div class="actions">
       <div class="save-actions buttons">
@@ -678,6 +700,8 @@
     </div>
   }
 </div>
+
+<!-- !MARK: dialogs -->
 
 <mg-dialog class="auto-format" #dialogImage closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <div class="button-image-save">

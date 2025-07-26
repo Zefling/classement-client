@@ -709,7 +709,7 @@ span.group-options {
         margin-bottom: -2px;
     }
 
-    .selectable-group:hover {
+    .selectable-group:focus:not(:has(.selection-item:focus)) {
         outline: 2px solid var(--neutral0);
     }
     .selection-item {
@@ -818,7 +818,7 @@ span.group-options {
             height: 100%;
         }
 
-        .selectable-group:hover {
+        .selectable-group:focus {
             outline: 2px solid var(--neutral0);
         }
 
@@ -842,7 +842,7 @@ span.group-options {
         min-width: auto;
     }
 
-    .selectable-group:hover {
+    .selectable-group:focus:not(:has(.selection-item:focus)) {
         outline: 2px solid var(--neutral0);
     }
     .selection-item {
