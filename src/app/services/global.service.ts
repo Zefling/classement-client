@@ -357,4 +357,22 @@ export class GlobalService {
     private downloadImage(data: string, filename: string) {
         Utils.downloadFile(data, filename);
     }
+
+    altImage(groups: FormattedGroup[]) {
+        const colon = this.translate.translate('generic.punctuation.colon');
+        const comma = this.translate.translate('generic.punctuation.comma');
+
+        return groups
+            .map(group => {
+                return (
+                    group.name +
+                    colon +
+                    group.list
+                        .map(e => e?.title)
+                        .filter(e => e)
+                        .join(comma)
+                );
+            })
+            .join('\n');
+    }
 }

@@ -19,6 +19,7 @@ import {
     MagmaInput,
     MagmaInputCheckbox,
     MagmaInputPassword,
+    MagmaInputTextarea,
     MagmaLoaderBlock,
     MagmaLoaderTile,
     MagmaMessage,
@@ -67,6 +68,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputPassword,
+        MagmaInputTextarea,
         MagmaLoaderBlock,
         MagmaLoaderTile,
         TileComponent,
@@ -113,6 +115,8 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     optionFork = ['image', 'txt-color', 'bg-color', 'annotations', 'reset-groups'];
 
     showLink = true;
+
+    altImage = '';
 
     image = viewChild.required<ElementRef>('image');
     dialogImage = viewChild.required<MagmaDialog>('dialogImage');
@@ -390,6 +394,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     exportImage() {
         this.dialogImage().open();
+        this.altImage = this.global.altImage(this.classement!.data.groups);
         html2canvas(document.getElementById('html2canvas-element')!, {
             logging: false,
             allowTaint: true,

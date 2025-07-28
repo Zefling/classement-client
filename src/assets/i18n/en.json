@@ -11,6 +11,10 @@
     "pages": {
       "total": "Total: %",
       "page": "Page %p / %t"
+    },
+    "punctuation": {
+      "colon": ": ",
+      "comma": ", "
     }
   },
   "menu": {
@@ -674,6 +678,9 @@
         "info": "Add text tiles: one line per tile, empty lines are ignored.",
         "ok": "Ok",
         "cancel": "Cancel"
+      },
+      "alt": {
+        "detail": "Alternative description text"
       },
       "IMDB": "IMDB"
     },

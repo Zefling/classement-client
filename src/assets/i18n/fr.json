@@ -11,6 +11,10 @@
     "pages": {
       "total": "Total : %",
       "page": "Page %p / %t"
+    },
+    "punctuation": {
+      "colon": " : ",
+      "comma": ", "
     }
   },
   "menu": {
@@ -673,6 +677,9 @@
         "info": "Ajouter des tuiles de textes : une ligne par tuile, les ligne vides sont ignorées.",
         "ok": "Ok",
         "cancel": "Annuler"
+      },
+      "alt": {
+        "detail": "Texte de description alternatif "
       },
       "IMDB": "IMDB"
     },

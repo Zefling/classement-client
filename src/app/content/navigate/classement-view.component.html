@@ -149,6 +149,12 @@
       <button class="button-add primary webp" (click)="saveImage('WEBP')">WebP</button>
     </span>
   </div>
+  <details class="alt">
+    <summary>{{ 'generator.actions.alt.detail' | transloco }}</summary>
+    <mg-input>
+      <mg-input-textarea [value]="altImage" readonly></mg-input-textarea>
+    </mg-input>
+  </details>
   <div #image></div>
 </mg-dialog>
 

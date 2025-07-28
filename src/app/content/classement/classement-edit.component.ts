@@ -38,6 +38,7 @@ import {
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
+    MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
     MagmaMessage,
@@ -45,6 +46,7 @@ import {
     MagmaNgInitDirective,
     MagmaNgModelChangeDebouncedDirective,
     MagmaSpinner,
+    MagmaStopPropagationDirective,
     MagmaTooltipDirective,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -144,12 +146,14 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaNgModelChangeDebouncedDirective,
         MagmaInput,
         MagmaInputCheckbox,
+        MagmaInputTextarea,
         MagmaColorPicker,
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
         MagmaLoader,
         MagmaLoaderMessage,
         MagmaSpinner,
+        MagmaStopPropagationDirective,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
@@ -210,6 +214,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     modeApi = computed(() => this.global.withApi());
     currentTile?: FileString;
+
+    altImage = '';
 
     imdbActive = false;
 
@@ -1289,6 +1295,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     async exportImage() {
         this.dialogImage().open();
+        this.altImage = this.global.altImage(this.groups);
         const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
             logging: false,
             allowTaint: true,
