@@ -1058,12 +1058,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    selectMoveItem(event: KeyboardEvent, group: FileType[], item?: FileType, index?: number) {
-        if (item === undefined) {
-            index = group.indexOf(this.selectionTile);
-        }
+    selectMoveItem(event: KeyboardEvent, group: FileType[]) {
+        const index = group.indexOf(this.selectionTile);
+        const indexGp = this.groups.findIndex(e => e.list === group);
 
-        if (index !== undefined && index !== -1) {
+        if (index !== undefined && index !== -1 && event.ctrlKey) {
             switch (event.key) {
                 case 'ArrowLeft':
                     if (index > 0) {
@@ -1074,6 +1073,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                             this.selectionDiv?.focus();
                         });
                         event.stopPropagation();
+                        event.preventDefault();
                     }
                     break;
                 case 'ArrowRight':
@@ -1085,7 +1085,42 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                             this.selectionDiv?.focus();
                         });
                         event.stopPropagation();
+                        event.preventDefault();
                     }
+                    break;
+                case 'ArrowUp':
+                    console.log('indexGp ', indexGp);
+                    if (indexGp > 0) {
+                        const tile = group.splice(index, 1)[0];
+                        this.groups[indexGp - 1].list.push(tile);
+                        this.selectionTile = tile;
+                        setTimeout(() => {
+                            this.selectionDiv?.focus();
+                        });
+                    } else if (indexGp === -1) {
+                        const tile = group.splice(index, 1)[0];
+                        this.groups[this.groups.length - 1].list.push(tile);
+                        this.selectionTile = tile;
+                        setTimeout(() => {
+                            this.selectionDiv?.focus();
+                        });
+                    }
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+
+                    break;
+                case 'ArrowDown':
+                    if (indexGp < this.groups.length - 1 && indexGp !== -1) {
+                        const tile = group.splice(index, 1)[0];
+                        this.groups[indexGp + 1].list.push(tile);
+                        this.selectionTile = tile;
+                        setTimeout(() => {
+                            this.selectionDiv?.focus();
+                        });
+                    }
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+
                     break;
             }
         }
@@ -1121,6 +1156,15 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.selectionGroup = group;
                 this.selectionIndex = index;
                 this.selectionDiv = div;
+                break;
+            case 'ArrowUp':
+            case 'ArrowDown':
+                if (event.ctrlKey) {
+                    this.selectionTile = item;
+                    this.selectionGroup = group;
+                    this.selectionIndex = index;
+                    this.selectionDiv = div;
+                }
                 break;
         }
     }

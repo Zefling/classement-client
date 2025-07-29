@@ -141,6 +141,7 @@
                             (clickEnter)="selectItem($event, group, item, index, itemDiv)"
                             (clickOutside)="selectItem()"
                             (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
+                            (ngInit)="selectionDiv = itemDiv"
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
@@ -545,6 +546,7 @@
                   (clickEnter)="selectItem($event, null, item, index, itemDiv)"
                   (clickOutside)="selectItem()"
                   (keydown)="selectItemByKey($event, null, item, itemDiv, index)"
+                  (ngInit)="selectionDiv = itemDiv"
                   [id]="item.id"
                 >
                   @if (!options.streamMode) {
