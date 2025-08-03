@@ -1036,7 +1036,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     stopEvent(event: Event) {
-        if (event instanceof MouseEvent && event.button === 1) {
+        if ((event instanceof MouseEvent && event.button === 1) || event instanceof KeyboardEvent) {
             // prevent copy on Linux
             event.stopPropagation();
             event.preventDefault();
@@ -1068,64 +1068,66 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     if (index > 0) {
                         const tile = group.splice(index, 1)[0];
                         group.splice(index - 1, 0, tile);
-                        this.selectionTile = tile;
-                        setTimeout(() => {
-                            this.selectionDiv?.focus();
-                        });
-                        event.stopPropagation();
-                        event.preventDefault();
+                        this.selectMoveItemValidatedKey(event, tile);
                     }
                     break;
                 case 'ArrowRight':
                     if (index < group.length) {
                         const tile = group.splice(index, 1)[0];
                         group.splice(index + 1, 0, tile);
-                        this.selectionTile = tile;
-                        setTimeout(() => {
-                            this.selectionDiv?.focus();
-                        });
-                        event.stopPropagation();
-                        event.preventDefault();
+                        this.selectMoveItemValidatedKey(event, tile);
                     }
                     break;
                 case 'ArrowUp':
-                    console.log('indexGp ', indexGp);
                     if (indexGp > 0) {
                         const tile = group.splice(index, 1)[0];
                         this.groups[indexGp - 1].list.push(tile);
-                        this.selectionTile = tile;
-                        setTimeout(() => {
-                            this.selectionDiv?.focus();
-                        });
+                        this.selectMoveItemValidatedKey(event, tile);
                     } else if (indexGp === -1) {
-                        const tile = group.splice(index, 1)[0];
-                        this.groups[this.groups.length - 1].list.push(tile);
-                        this.selectionTile = tile;
-                        setTimeout(() => {
-                            this.selectionDiv?.focus();
-                        });
+                        let tile: FileType;
+                        const targetList = this.groups[this.groups.length - 1].list;
+                        if (this.options.mode === 'teams') {
+                            tile = group[index];
+                            if (!targetList.find(targetTile => targetTile!.id === tile!.id)) {
+                                targetList.push(tile);
+                            }
+                        } else {
+                            tile = group.splice(index, 1)[0];
+                            targetList.push(tile);
+                        }
+                        this.selectMoveItemValidatedKey(event, tile);
+                    } else {
+                        this.stopEvent(event);
                     }
-                    event.stopImmediatePropagation();
-                    event.preventDefault();
-
                     break;
                 case 'ArrowDown':
                     if (indexGp < this.groups.length - 1 && indexGp !== -1) {
                         const tile = group.splice(index, 1)[0];
-                        this.groups[indexGp + 1].list.push(tile);
-                        this.selectionTile = tile;
-                        setTimeout(() => {
-                            this.selectionDiv?.focus();
-                        });
+                        const targetList = this.groups[indexGp + 1].list;
+                        if (this.options.mode === 'teams') {
+                            if (!targetList.find(targetTile => targetTile!.id === tile!.id)) {
+                                targetList.push(tile);
+                            }
+                        } else {
+                            targetList.push(tile);
+                        }
+                        this.selectMoveItemValidatedKey(event, tile);
+                    } else {
+                        this.stopEvent(event);
                     }
-                    event.stopImmediatePropagation();
-                    event.preventDefault();
-
                     break;
             }
         }
+    }
 
+    private selectMoveItemValidatedKey(event: KeyboardEvent, tile: FileType) {
+        this.selectionTile = tile;
+        this.stopEvent(event);
         this.cd.detectChanges();
+
+        setTimeout(() => {
+            this.selectionDiv?.focus();
+        });
     }
 
     selectItem(

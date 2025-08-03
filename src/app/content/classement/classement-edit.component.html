@@ -145,7 +145,7 @@
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
-                            [class.selection-item]="item === selectionTile"
+                            [class.selection-item]="item === selectionTile && group === selectionGroup"
                           >
                             <div
                               class="content content-render"
@@ -301,7 +301,7 @@
                           [cdkDropListData]="{ list: group.list, index }"
                           (cdkDropListDropped)="drop($event)"
                           [class.selectable-group]="selectionTile && item !== selectionTile"
-                          [class.selection-item]="item && item === selectionTile"
+                          [class.selection-item]="item && item === selectionTile && group === selectionGroup"
                           (clickEnter)="
                             !selectionTile
                               ? selectItem($event, group, item, index)
@@ -438,7 +438,7 @@
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
-                              [class.selection-item]="item === selectionTile"
+                              [class.selection-item]="item === selectionTile && group === selectionGroup"
                             >
                               <div
                                 class="content content-render"
@@ -541,7 +541,7 @@
                   [style.--over-item-background]="item.bgColor"
                   [style.--over-item-text-color]="item.txtColor"
                   class="content-box"
-                  [class.selection-item]="item === selectionTile"
+                  [class.selection-item]="item === selectionTile && selectionGroup === null"
                   #itemDiv
                   (clickEnter)="selectItem($event, null, item, index, itemDiv)"
                   (clickOutside)="selectItem()"
