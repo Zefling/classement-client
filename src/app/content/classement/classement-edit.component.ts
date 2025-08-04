@@ -1079,18 +1079,22 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     }
                     break;
                 case 'ArrowUp':
-                    if (indexGp > 0) {
-                        const tile = group.splice(index, 1)[0];
-                        this.groups[indexGp - 1].list.push(tile);
-                        this.selectMoveItemValidatedKey(event, tile);
-                    } else if (indexGp === -1) {
+                    if (indexGp) {
                         let tile: FileType;
-                        const targetList = this.groups[this.groups.length - 1].list;
+                        let i = indexGp === -1 ? this.groups.length - 1 : indexGp - 1;
+                        let targetList = this.groups[i].list;
                         if (this.options.mode === 'teams') {
                             tile = group[index];
-                            if (!targetList.find(targetTile => targetTile!.id === tile!.id)) {
-                                targetList.push(tile);
+                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
+                                targetList = this.groups[--i]?.list;
                             }
+                            if (!targetList) {
+                                this.stopEvent(event);
+                                break;
+                            } else if (indexGp !== -1) {
+                                tile = group.splice(index, 1)[0];
+                            }
+                            targetList.push(tile);
                         } else {
                             tile = group.splice(index, 1)[0];
                             targetList.push(tile);
@@ -1102,15 +1106,21 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     break;
                 case 'ArrowDown':
                     if (indexGp < this.groups.length - 1 && indexGp !== -1) {
-                        const tile = group.splice(index, 1)[0];
-                        const targetList = this.groups[indexGp + 1].list;
+                        const tile = group[index];
+                        let i = indexGp + 1;
+                        let targetList = this.groups[i].list;
                         if (this.options.mode === 'teams') {
-                            if (!targetList.find(targetTile => targetTile!.id === tile!.id)) {
-                                targetList.push(tile);
+                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
+                                targetList = this.groups[++i]?.list;
                             }
-                        } else {
-                            targetList.push(tile);
+                            if (!targetList) {
+                                this.stopEvent(event);
+                                break;
+                            }
                         }
+                        group.splice(index, 1)[0];
+                        targetList.push(tile);
+
                         this.selectMoveItemValidatedKey(event, tile);
                     } else {
                         this.stopEvent(event);
@@ -1152,12 +1162,17 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         index: number | null = null,
     ) {
         switch (event.key) {
+            case 'Tab':
+                this.clearSelection();
+                break;
             case 'ArrowLeft':
             case 'ArrowRight':
-                this.selectionTile = item;
-                this.selectionGroup = group;
-                this.selectionIndex = index;
-                this.selectionDiv = div;
+                if (event.ctrlKey) {
+                    this.selectionTile = item;
+                    this.selectionGroup = group;
+                    this.selectionIndex = index;
+                    this.selectionDiv = div;
+                }
                 break;
             case 'ArrowUp':
             case 'ArrowDown':
