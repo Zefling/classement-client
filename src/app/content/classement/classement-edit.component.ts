@@ -91,6 +91,7 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
+import { ClassementEditKeyBoardService } from './classement-edit.keyboard.service';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
@@ -167,11 +168,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly classementService = inject(APIClassementService);
     private readonly optimiseImage = inject(OptimiseImageService);
     private readonly logger = inject(Logger);
-    private readonly cd = inject(ChangeDetectorRef);
+    public readonly cd = inject(ChangeDetectorRef);
     private readonly location = inject(Location);
     private readonly preferencesService = inject(PreferencesService);
     private readonly imdbService = inject(APIImdbService);
     private readonly memory = inject(MemoryService);
+    private readonly keyboard = inject(ClassementEditKeyBoardService);
 
     color = color;
 
@@ -1035,14 +1037,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
     }
 
-    stopEvent(event: Event) {
-        if ((event instanceof MouseEvent && event.button === 1) || event instanceof KeyboardEvent) {
-            // prevent copy on Linux
-            event.stopPropagation();
-            event.preventDefault();
-        }
-    }
-
     removeFromGroup(group: FormattedGroup, index: number) {
         const item =
             this.options.mode !== 'bingo' ? group.list.splice(index, 1)[0] : group.list.splice(index, 1, null)[0];
@@ -1058,86 +1052,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    selectMoveItem(event: KeyboardEvent, group: FileType[]) {
-        const index = group.indexOf(this.selectionTile);
-        const indexGp = this.groups.findIndex(e => e.list === group);
-
-        if (index !== undefined && index !== -1 && event.ctrlKey) {
-            switch (event.key) {
-                case 'ArrowLeft':
-                    if (index > 0) {
-                        const tile = group.splice(index, 1)[0];
-                        group.splice(index - 1, 0, tile);
-                        this.selectMoveItemValidatedKey(event, tile);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (index < group.length) {
-                        const tile = group.splice(index, 1)[0];
-                        group.splice(index + 1, 0, tile);
-                        this.selectMoveItemValidatedKey(event, tile);
-                    }
-                    break;
-                case 'ArrowUp':
-                    if (indexGp) {
-                        let tile: FileType;
-                        let i = indexGp === -1 ? this.groups.length - 1 : indexGp - 1;
-                        let targetList = this.groups[i].list;
-                        if (this.options.mode === 'teams') {
-                            tile = group[index];
-                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
-                                targetList = this.groups[--i]?.list;
-                            }
-                            if (!targetList) {
-                                this.stopEvent(event);
-                                break;
-                            } else if (indexGp !== -1) {
-                                tile = group.splice(index, 1)[0];
-                            }
-                            targetList.push(tile);
-                        } else {
-                            tile = group.splice(index, 1)[0];
-                            targetList.push(tile);
-                        }
-                        this.selectMoveItemValidatedKey(event, tile);
-                    } else {
-                        this.stopEvent(event);
-                    }
-                    break;
-                case 'ArrowDown':
-                    if (indexGp < this.groups.length - 1 && indexGp !== -1) {
-                        const tile = group[index];
-                        let i = indexGp + 1;
-                        let targetList = this.groups[i].list;
-                        if (this.options.mode === 'teams') {
-                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
-                                targetList = this.groups[++i]?.list;
-                            }
-                            if (!targetList) {
-                                this.stopEvent(event);
-                                break;
-                            }
-                        }
-                        group.splice(index, 1)[0];
-                        targetList.push(tile);
-
-                        this.selectMoveItemValidatedKey(event, tile);
-                    } else {
-                        this.stopEvent(event);
-                    }
-                    break;
-            }
-        }
+    stopEvent(event: Event) {
+        this.keyboard.stopEvent(event);
     }
 
-    private selectMoveItemValidatedKey(event: KeyboardEvent, tile: FileType) {
-        this.selectionTile = tile;
-        this.stopEvent(event);
-        this.cd.detectChanges();
-
-        setTimeout(() => {
-            this.selectionDiv?.focus();
-        });
+    selectMoveItem(event: KeyboardEvent, group: FileType[]) {
+        this.keyboard.selectMoveItem(this, event, group);
     }
 
     selectItem(
@@ -1147,11 +1067,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         index: number | null = null,
         div: HTMLDivElement | null = null,
     ) {
-        this.selectionTile = item;
-        this.selectionGroup = group;
-        this.selectionIndex = index;
-        div?.focus();
-        event?.stopPropagation();
+        this.keyboard.selectItem(this, event, group, item, index, div);
     }
 
     selectItemByKey(
@@ -1161,93 +1077,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         div: HTMLDivElement,
         index: number | null = null,
     ) {
-        switch (event.key) {
-            case 'Tab':
-                this.clearSelection();
-                break;
-            case 'ArrowLeft':
-            case 'ArrowRight':
-                if (event.ctrlKey) {
-                    this.selectionTile = item;
-                    this.selectionGroup = group;
-                    this.selectionIndex = index;
-                    this.selectionDiv = div;
-                }
-                break;
-            case 'ArrowUp':
-            case 'ArrowDown':
-                if (event.ctrlKey) {
-                    this.selectionTile = item;
-                    this.selectionGroup = group;
-                    this.selectionIndex = index;
-                    this.selectionDiv = div;
-                }
-                break;
-        }
-    }
-
-    initSelectedItem(div: HTMLDivElement, item: FileType) {
-        if (item?.id && item?.id === this.selectionTile?.id) {
-            div.focus();
-        }
+        this.keyboard.selectItemByKey(this, event, group, item, div, index);
     }
 
     selectionGroupForItem(group: FormattedGroup | null, indexTarget: number | null = null) {
-        switch (this.options.mode) {
-            case 'default':
-            case 'columns':
-                if (this.selectionTile && group) {
-                    const originList = this.selectionGroup?.list ?? this.list;
-                    const index = originList.indexOf(this.selectionTile);
-                    group.list.push(...originList.splice(index, 1));
-                    this.clearSelection();
-                }
-                break;
-            case 'teams':
-                if (this.selectionTile && group) {
-                    if (this.selectionGroup) {
-                        const index = this.selectionGroup.list.indexOf(this.selectionTile);
-                        if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
-                            group.list.push(...this.selectionGroup.list.splice(index, 1));
-                        } else {
-                            this.selectionGroup.list.splice(index, 1);
-                        }
-                        this.clearSelection();
-                    } else if (!group.list.find(tile => tile!.id === this.selectionTile!.id)) {
-                        group.list.push(this.selectionTile);
-                        this.clearSelection();
-                    }
-                }
-                break;
-            case 'bingo':
-                if (this.selectionTile && group) {
-                    const originList = this.selectionGroup?.list ?? this.list;
-                    const index = originList.indexOf(this.selectionTile);
-                    const back = group.list[indexTarget!];
-
-                    if (this.selectionGroup) {
-                        // from group
-                        group.list[indexTarget!] = originList[index];
-                        originList[index] = back;
-                    } else {
-                        // from list
-                        group.list[indexTarget!] = originList.splice(index, 1)[0];
-                        if (back) {
-                            this.list.push(back);
-                        }
-                    }
-                    this.clearSelection();
-                }
-                break;
-        }
-    }
-
-    clearSelection() {
-        this.selectionTile = null;
-        this.selectionGroup = null;
-        this.selectionIndex = null;
-        this.globalChange();
-        this.change();
+        this.keyboard.selectionGroupForItem(this, group, indexTarget);
     }
 
     clickZone(event: MouseEvent | KeyboardEvent) {
