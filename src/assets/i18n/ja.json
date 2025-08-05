@@ -781,7 +781,7 @@
         "ctrl.s": "下書きをセーブします。",
         "ctrl.e": "下書きをエクスポートします。",
         "ctrl.z": "元に戻します。",
-        "ctrl.u": "やり直します。",
+        "ctrl.shift.z": "やり直します。",
         "right.click": "右クリック",
         "middle.click": "中クリック",
         "double.click": "ダブルクリック",

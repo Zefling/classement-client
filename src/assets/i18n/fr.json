@@ -780,7 +780,7 @@
         "ctrl.s": "Sauvegarder le brouillon.",
         "ctrl.e": "Exporter le brouillon.",
         "ctrl.z": "Annuler.",
-        "ctrl.u": "Refaire.",
+        "ctrl.shift.z": "Refaire.",
         "right.click": "Clic droit",
         "middle.click": "Clic central",
         "double.click": "Double clic",

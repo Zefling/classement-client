@@ -1346,12 +1346,16 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     undo(event: Event) {
         this.memory.undo(this);
         this.undoRedoUpdate(event);
+        event.stopPropagation();
+        event.preventDefault();
     }
 
-    @HostListener('window:keydown.control.u', ['$event'])
+    @HostListener('window:keydown.control.shift.z', ['$event'])
     redo(event: Event) {
         this.memory.redo(this);
         this.undoRedoUpdate(event);
+        event.stopPropagation();
+        event.preventDefault();
     }
 
     private undoRedoUpdate(event: Event) {
