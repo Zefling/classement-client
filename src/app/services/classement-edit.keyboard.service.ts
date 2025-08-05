@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 import { FileType, FormattedGroup } from 'src/app/interface/interface';
 
-import { ClassementEditComponent } from './classement-edit.component';
+import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 
 @Injectable({ providedIn: 'root' })
 export abstract class ClassementEditKeyBoardService {
+    readonly selectTile = signal(false);
+    readonly selectMainLine = signal(false);
+
     selectMoveItem(component: ClassementEditComponent, event: KeyboardEvent, group: FileType[]) {
         const index = group.indexOf(component.selectionTile);
         const indexGp = component.groups.findIndex(e => e.list === group);
@@ -126,7 +129,7 @@ export abstract class ClassementEditKeyBoardService {
     private selectMoveItemValidatedKey(component: ClassementEditComponent, event: KeyboardEvent, tile: FileType) {
         component.selectionTile = tile;
         component.stopEvent(event);
-        component.cd.detectChanges();
+        component.detectorChanges();
 
         setTimeout(() => {
             component.selectionDiv?.focus();
@@ -144,6 +147,7 @@ export abstract class ClassementEditKeyBoardService {
         component.selectionTile = item;
         component.selectionGroup = group;
         component.selectionIndex = index;
+        this.update(component, group?.list);
         div?.focus();
         event?.stopPropagation();
     }
@@ -167,6 +171,7 @@ export abstract class ClassementEditKeyBoardService {
                     component.selectionGroup = group;
                     component.selectionIndex = index;
                     component.selectionDiv = div;
+                    this.update(component, group?.list);
                 }
                 break;
             case 'ArrowUp':
@@ -176,9 +181,15 @@ export abstract class ClassementEditKeyBoardService {
                     component.selectionGroup = group;
                     component.selectionIndex = index;
                     component.selectionDiv = div;
+                    this.update(component, group?.list);
                 }
                 break;
         }
+    }
+
+    private update(component: ClassementEditComponent, group?: FileType[]) {
+        this.selectTile.set(component.selectionTile !== null);
+        this.selectMainLine.set(component.groups.findIndex(e => e.list === group) === -1);
     }
 
     initSelectedItem(component: ClassementEditComponent, div: HTMLDivElement, item: FileType) {
@@ -247,6 +258,7 @@ export abstract class ClassementEditKeyBoardService {
         component.selectionIndex = null;
         component.globalChange();
         component.change();
+        this.update(component);
     }
 
     stopEvent(event: Event) {

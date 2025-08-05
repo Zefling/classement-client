@@ -792,13 +792,28 @@
         "context.menu": "Show the context menu."
       },
       "default": {
-        "text": "Move tiles by drag and drop."
+        "text": "Move tiles by drag and drop.",
+        "shortcut": {
+          "in.line": "Move the selected tile left or right within a line.",
+          "change.line": "Move the selected tile to the upper or lower line.",
+          "main.line.up": "Move the selected tile from the main list to the last line of the ranking."
+        }
       },
       "teams": {
-        "text": "Move tiles by drag and drop to copy them into groups. Each tile can be copied only once per group."
+        "text": "Move tiles by drag and drop to copy them into groups. Each tile can be copied once per group.",
+        "shortcut": {
+          "in.line": "Move the selected tile left or right within a line.",
+          "change.line": "Move the selected tile to the upper or lower line.",
+          "main.line.up": "Copy the selected tile from the main list to the last line of the ranking."
+        }
       },
       "columns": {
-        "text": "Move tiles by dragging and dropping them into different columns."
+        "text": "Move tiles by drag and drop into different columns.",
+        "shortcut": {
+          "in.line": "Move the selected tile up or down within the column.",
+          "change.line": "Move the selected tile to the left or right side line.",
+          "main.line.up": "Copy the selected tile from the main list to the first column of the ranking."
+        }
       },
       "iceberg": {
         "move": "Move tiles in the area.",

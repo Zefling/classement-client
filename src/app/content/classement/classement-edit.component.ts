@@ -71,6 +71,7 @@ import {
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { APIUserService } from 'src/app/services/api.user.service';
+import { ClassementEditKeyBoardService } from 'src/app/services/classement-edit.keyboard.service';
 import { DBService } from 'src/app/services/db.service';
 import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
@@ -91,7 +92,6 @@ import {
     themesLists,
 } from './classement-default';
 import { ClassementEditImageComponent } from './classement-edit-image.component';
-import { ClassementEditKeyBoardService } from './classement-edit.keyboard.service';
 import { ClassementLoginComponent } from './classement-login.component';
 import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
@@ -168,12 +168,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly classementService = inject(APIClassementService);
     private readonly optimiseImage = inject(OptimiseImageService);
     private readonly logger = inject(Logger);
-    public readonly cd = inject(ChangeDetectorRef);
     private readonly location = inject(Location);
     private readonly preferencesService = inject(PreferencesService);
     private readonly imdbService = inject(APIImdbService);
     private readonly memory = inject(MemoryService);
     private readonly keyboard = inject(ClassementEditKeyBoardService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     color = color;
 
@@ -310,7 +310,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.saveLocal(false, false);
             }),
             this._detectChange.pipe(debounceTime(10)).subscribe(() => {
-                this.cd.detectChanges();
+                this.detectorChanges();
             }),
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
@@ -326,6 +326,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
             }),
         );
+    }
+
+    detectorChanges() {
+        this.cd.detectChanges();
     }
 
     contextMenuGenerate() {
@@ -806,6 +810,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
         this.global.withChange.set(0);
+        this.keyboard.clearSelection(this);
     }
 
     toTemplateNavigation() {

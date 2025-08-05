@@ -33,4 +33,18 @@
 
   <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>U</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.u' | transloco }}</dd>
+
+  @if (!keyboard.selectMainLine()) {
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.change.line' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.in.line' | transloco }}</dd>
+  } @else {
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
+    <dd>{{ 'generator.help.default.shortcut.change.line' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.main.line.up' | transloco }}</dd>
+  }
 </dl>

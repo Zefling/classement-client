@@ -791,13 +791,28 @@
         "context.menu": "Affichage du menu contextuel."
       },
       "default": {
-        "text": "Déplacer les tuiles par glissé-déposé."
+        "text": "Déplacer les tuiles par glissé-déposé.",
+        "shortcut": {
+          "in.line": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur d'une ligne.",
+          "change.line": "Déplacer la tuile sélectionnée dans la ligne supérieure ou inférieure.",
+          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement."
+        }
       },
       "teams": {
-        "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par groupe."
+        "text": "Déplacer les tuiles par glissé-déposé pour les copier dans les groupes. Chaque tuile peut être copier une seule fois par groupe.",
+        "shortcut": {
+          "in.line": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur d'une ligne.",
+          "change.line": "Déplacer la tuile sélectionnée dans la ligne supérieure ou inférieure.",
+          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement."
+        }
       },
       "columns": {
-        "text": "Déplacer les tuiles par glissé-déposé dans les différentes colonnes."
+        "text": "Déplacer les tuiles par glissé-déposé dans les différentes colonnes.",
+        "shortcut": {
+          "in.line": "Déplacer la tuile sélectionnée vers le haut ou vers le bas à l'intérieur de la colonne.",
+          "change.line": "Déplacer la tuile sélectionnée dans la colonne latérale gauche ou droite.",
+          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la première colonne du classement."
+        }
       },
       "iceberg": {
         "move": "Déplacer les tuiles dans la zone.",
