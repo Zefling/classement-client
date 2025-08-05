@@ -425,6 +425,7 @@
                         (cdkDropListDropped)="drop($event)"
                         [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
                         (clickEnter)="selectionGroupForItem(group)"
+                        (keydown)="selectMoveItem($event, group.list)"
                       >
                         @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                           @if (item) {
@@ -433,8 +434,11 @@
                               cdkDrag
                               removeTile
                               (removeElement)="removeFromGroup(group, index)"
-                              (clickEnter)="selectItem($event, group, item)"
-                              (clickOutside)="selectItem(null, null, null)"
+                              #itemDiv
+                              (clickEnter)="selectItem($event, group, item, index, itemDiv)"
+                              (clickOutside)="selectItem()"
+                              (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
+                              (ngInit)="selectionDiv = itemDiv"
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"

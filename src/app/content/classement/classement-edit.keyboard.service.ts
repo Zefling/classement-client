@@ -13,73 +13,113 @@ export abstract class ClassementEditKeyBoardService {
         if (index !== undefined && index !== -1 && event.ctrlKey) {
             switch (event.key) {
                 case 'ArrowLeft':
-                    if (index > 0) {
-                        const tile = group.splice(index, 1)[0];
-                        group.splice(index - 1, 0, tile);
-                        this.selectMoveItemValidatedKey(component, event, tile);
+                    if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveUp(component, event, group, index, indexGp);
+                    } else {
+                        this.moveLeft(component, event, group, index);
                     }
                     break;
                 case 'ArrowRight':
-                    if (index < group.length) {
-                        const tile = group.splice(index, 1)[0];
-                        group.splice(index + 1, 0, tile);
-                        this.selectMoveItemValidatedKey(component, event, tile);
+                    if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveDown(component, event, group, index, indexGp);
+                    } else {
+                        this.moveRight(component, event, group, index);
                     }
                     break;
                 case 'ArrowUp':
-                    if (indexGp) {
-                        let tile: FileType;
-                        let i =
-                            indexGp === -1
-                                ? component.options.mode === 'columns'
-                                    ? 0
-                                    : component.groups.length - 1
-                                : indexGp - 1;
-                        let targetList = component.groups[i].list;
-                        if (component.options.mode === 'teams') {
-                            tile = group[index];
-                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
-                                targetList = component.groups[--i]?.list;
-                            }
-                            if (!targetList) {
-                                this.stopEvent(event);
-                                break;
-                            } else if (indexGp !== -1) {
-                                tile = group.splice(index, 1)[0];
-                            }
-                            targetList.push(tile);
-                        } else {
-                            tile = group.splice(index, 1)[0];
-                            targetList.push(tile);
-                        }
-                        this.selectMoveItemValidatedKey(component, event, tile);
+                    if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveLeft(component, event, group, index);
                     } else {
-                        this.stopEvent(event);
+                        this.moveUp(component, event, group, index, indexGp);
                     }
                     break;
                 case 'ArrowDown':
-                    if (indexGp < component.groups.length - 1 && indexGp !== -1) {
-                        const tile = group[index];
-                        let i = indexGp + 1;
-                        let targetList = component.groups[i].list;
-                        if (component.options.mode === 'teams') {
-                            while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
-                                targetList = component.groups[++i]?.list;
-                            }
-                            if (!targetList) {
-                                this.stopEvent(event);
-                                break;
-                            }
-                        }
-                        group.splice(index, 1)[0];
-                        targetList.push(tile);
-
-                        this.selectMoveItemValidatedKey(component, event, tile);
+                    if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveRight(component, event, group, index);
                     } else {
-                        this.stopEvent(event);
+                        this.moveDown(component, event, group, index, indexGp);
                     }
                     break;
             }
+        }
+    }
+
+    private moveLeft(component: ClassementEditComponent, event: KeyboardEvent, group: FileType[], index: number) {
+        if (index > 0) {
+            const tile = group.splice(index, 1)[0];
+            group.splice(index - 1, 0, tile);
+            this.selectMoveItemValidatedKey(component, event, tile);
+        }
+    }
+
+    private moveRight(component: ClassementEditComponent, event: KeyboardEvent, group: FileType[], index: number) {
+        if (index < group.length) {
+            const tile = group.splice(index, 1)[0];
+            group.splice(index + 1, 0, tile);
+            this.selectMoveItemValidatedKey(component, event, tile);
+        }
+    }
+
+    private moveUp(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
+        if (indexGp) {
+            let tile: FileType;
+            let i =
+                indexGp === -1 ? (component.options.mode === 'columns' ? 0 : component.groups.length - 1) : indexGp - 1;
+            let targetList = component.groups[i].list;
+            if (component.options.mode === 'teams') {
+                tile = group[index];
+                while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
+                    targetList = component.groups[--i]?.list;
+                }
+                if (!targetList) {
+                    this.stopEvent(event);
+                    return;
+                } else if (indexGp !== -1) {
+                    tile = group.splice(index, 1)[0];
+                }
+                targetList.push(tile);
+            } else {
+                tile = group.splice(index, 1)[0];
+                targetList.push(tile);
+            }
+            this.selectMoveItemValidatedKey(component, event, tile);
+        } else {
+            this.stopEvent(event);
+        }
+    }
+
+    private moveDown(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
+        if (indexGp < component.groups.length - 1 && indexGp !== -1) {
+            const tile = group[index];
+            let i = indexGp + 1;
+            let targetList = component.groups[i].list;
+            if (component.options.mode === 'teams') {
+                while (targetList?.find(targetTile => targetTile?.id === tile!.id)) {
+                    targetList = component.groups[++i]?.list;
+                }
+                if (!targetList) {
+                    this.stopEvent(event);
+                    return;
+                }
+            }
+            group.splice(index, 1)[0];
+            targetList.push(tile);
+
+            this.selectMoveItemValidatedKey(component, event, tile);
+        } else {
+            this.stopEvent(event);
         }
     }
 
