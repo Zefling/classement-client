@@ -136,7 +136,7 @@
                             class="content-box"
                             cdkDrag
                             removeTile
-                            (removeElement)="removeFromGroup(group, index)"
+                            (removeElement)="removeFromGroup(group.list, index)"
                             #itemDiv
                             (clickEnter)="selectItem($event, group, item, index, itemDiv)"
                             (clickOutside)="selectItem()"
@@ -249,7 +249,7 @@
                     (cdkDragEnded)="moveItemEnd()"
                     [cdkDragData]="{ x: item.x || 0, y: item.y || 0 }"
                     removeTile
-                    (removeElement)="removeFromGroup(groups[0], index)"
+                    (removeElement)="removeFromGroup(groups[0].list, index)"
                     [contextMenu]="{ contextMenu, data: { item, group: groups[0], index } }"
                     [style.--over-item-background]="item.bgColor"
                     [style.--over-item-text-color]="item.txtColor"
@@ -316,7 +316,7 @@
                               class="content-box"
                               cdkDrag
                               removeTile
-                              (removeElement)="removeFromGroup(group, index)"
+                              (removeElement)="removeFromGroup(group.list, index)"
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
@@ -436,7 +436,7 @@
                               class="content-box"
                               cdkDrag
                               removeTile
-                              (removeElement)="removeFromGroup(group, index)"
+                              (removeElement)="removeFromGroup(group.list, index)"
                               #itemDiv
                               (clickEnter)="selectItem($event, group, item, index, itemDiv)"
                               (clickOutside)="selectItem()"

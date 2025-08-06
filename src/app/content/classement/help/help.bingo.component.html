@@ -17,13 +17,13 @@
   <dd>{{ 'generator.help.shortcut.ctrl.e' | transloco }}</dd>
 
   <dt>
-    <kbd>{{ 'generator.help.shortcut.middle.click' | transloco }}</kbd>
+    <kbd>{{ 'generator.help.shortcut.key.middle.click' | transloco }}</kbd>
     {{ 'generator.help.shortcut.on.tile' | transloco }}
   </dt>
   <dd>{{ 'generator.help.shortcut.put.back.list' | transloco }}</dd>
 
   <dt>
-    <kbd>{{ 'generator.help.shortcut.right.click' | transloco }}</kbd>
+    <kbd>{{ 'generator.help.shortcut.key.right.click' | transloco }}</kbd>
     {{ 'generator.help.shortcut.on.tile' | transloco }}
   </dt>
   <dd>{{ 'generator.help.shortcut.context.menu' | transloco }}</dd>
@@ -34,16 +34,25 @@
   <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>⇧</kbd> + <kbd>Z</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.shift.z' | transloco }}</dd>
 
-  @if (!keyboard.selectMainLine()) {
-    <dt [class.disabled]="!keyboard.selectTile()">
-      <kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd>/<kbd>↑</kbd>/<kbd>↓</kbd>
-    </dt>
-    <dd>{{ 'generator.help.bingo.shortcut.move' | transloco }}</dd>
-  } @else {
+  @if (keyboard.selectMainLine()) {
     <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
     <dd>{{ 'generator.help.default.shortcut.change.line' | transloco }}</dd>
 
     <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
     <dd>{{ 'generator.help.bingo.shortcut.main.line.up' | transloco }}</dd>
+  } @else {
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd>/<kbd>↑</kbd>/<kbd>↓</kbd>
+    </dt>
+    <dd>{{ 'generator.help.bingo.shortcut.move' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.delete' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.shortcut.ctrl.delete' | transloco }}</dd>
   }
+  <dt [class.disabled]="!keyboard.selectTile()">
+    <kbd>{{ 'generator.help.shortcut.key.esc' | transloco }}</kbd>
+  </dt>
+  <dd>{{ 'generator.help.shortcut.esc' | transloco }}</dd>
 </dl>

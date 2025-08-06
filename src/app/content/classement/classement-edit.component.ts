@@ -338,7 +338,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 icon: 'icon-down',
                 label: this.translate.translate('generator.context.menu.back.list'),
                 action: data => {
-                    this.removeFromGroup(data.group, data.index);
+                    this.removeFromGroup(data.group.list, data.index);
                 },
             },
             {
@@ -1042,9 +1042,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
     }
 
-    removeFromGroup(group: FormattedGroup, index: number) {
-        const item =
-            this.options.mode !== 'bingo' ? group.list.splice(index, 1)[0] : group.list.splice(index, 1, null)[0];
+    removeFromGroup(group: FileType[], index: number) {
+        const item = this.options.mode !== 'bingo' ? group.splice(index, 1)[0] : group.splice(index, 1, null)[0];
 
         if (item) {
             item.x = 0;

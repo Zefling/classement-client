@@ -775,20 +775,26 @@
     "help": {
       "title": "Présentation",
       "shortcut": {
+        "key": {
+          "right.click": "Clic droit",
+          "middle.click": "Clic central",
+          "double.click": "Double clic",
+          "delete": "Suppr",
+          "esc": "Échap"
+        },
         "title": "Raccourcis clavier",
         "ctrl.v": "Copier une ou plusieurs images qui seront ajoutées. Fonctionne aussi avec du texte, où chaque ligne de texte créée une nouvelle tuile.",
         "ctrl.s": "Sauvegarder le brouillon.",
         "ctrl.e": "Exporter le brouillon.",
         "ctrl.z": "Annuler.",
         "ctrl.shift.z": "Refaire.",
-        "right.click": "Clic droit",
-        "middle.click": "Clic central",
-        "double.click": "Double clic",
+        "ctrl.delete": "Remettre dans la liste principale.",
         "on.tile": "sur une tuile",
         "on.zone": "dans une zone",
         "put.back.list": "Remettre dans la liste.",
         "create": "Création d'une tuile à l'endroit visé.",
-        "context.menu": "Affichage du menu contextuel."
+        "context.menu": "Affichage du menu contextuel.",
+        "esc": "Désélectionner la tuile."
       },
       "default": {
         "text": "Déplacer les tuiles par glissé-déposé.",

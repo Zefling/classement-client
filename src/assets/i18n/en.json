@@ -776,20 +776,26 @@
     "help": {
       "title": "Presentation",
       "shortcut": {
+        "key": {
+          "right.click": "Right click",
+          "middle.click": "Middle click",
+          "double.click": "Double click",
+          "delete": "Delete",
+          "esc": "Esc"
+        },
         "title": "Keyboard shortcuts",
         "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
-        "ctrl.s": "Save draft.",
-        "ctrl.e": "Export draft.",
+        "ctrl.s": "Save the draft.",
+        "ctrl.e": "Export the draft.",
         "ctrl.z": "Undo.",
         "ctrl.shift.z": "Redo.",
-        "right.click": "Right click",
-        "middle.click": "Middle click",
-        "double.click": "Double click",
+        "ctrl.delete": "Put back into the main list.",
         "on.tile": "on a tile",
         "on.zone": "in a zone",
-        "put.back.list": "Put back in the list.",
-        "create": "Create a tile at the target location.",
-        "context.menu": "Show the context menu."
+        "put.back.list": "Put back into the list.",
+        "create": "Create a tile at the targeted location.",
+        "context.menu": "Display the context menu.",
+        "esc": "Deselect the tile."
       },
       "default": {
         "text": "Move tiles by drag and drop.",

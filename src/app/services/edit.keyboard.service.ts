@@ -47,6 +47,13 @@ export abstract class EditKeyBoardService {
                         this.moveDown(component, event, group, index, indexGp);
                     }
                     break;
+                case 'Delete':
+                    if (group) {
+                        component.removeFromGroup(group, index);
+                        this.clearSelection(component);
+                        this.stopEvent(event);
+                    }
+                    break;
             }
         }
     }
@@ -259,7 +266,7 @@ export abstract class EditKeyBoardService {
         index: number | null = null,
     ) {
         switch (event.key) {
-            case 'Tab':
+            case 'Escape':
                 this.clearSelection(component);
                 break;
             case 'ArrowLeft':
@@ -271,6 +278,13 @@ export abstract class EditKeyBoardService {
                     component.selectionGroup = group;
                     component.selectionIndex = index;
                     this.update(component, group?.list);
+                }
+                break;
+            case 'Delete':
+                if (event.ctrlKey && group && index) {
+                    component.removeFromGroup(group.list, index);
+                    this.clearSelection(component);
+                    this.stopEvent(event);
                 }
                 break;
         }
