@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
+import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
 import { MemoryService } from 'src/app/services/memory.service';
 
 @Component({
@@ -12,4 +13,5 @@ import { MemoryService } from 'src/app/services/memory.service';
 })
 export class HelpBingoComponent {
     readonly memory = inject(MemoryService);
+    readonly keyboard = inject(EditKeyBoardService);
 }

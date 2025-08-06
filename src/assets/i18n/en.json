@@ -825,7 +825,11 @@
       },
       "bingo": {
         "grid": "Fill a grid to make a list or a top.",
-        "view": "In visualization mode, after saving, allows you to select the tiles."
+        "view": "In visualization mode, after saving, allows you to select the tiles.",
+        "shortcut": {
+          "move": "Move the selected tile in the chosen direction (by swapping).",
+          "main.line.up": "Copy the selected tile from the main list to the last available cell."
+        }
       }
     }
   },

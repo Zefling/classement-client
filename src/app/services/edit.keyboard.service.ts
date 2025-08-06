@@ -5,7 +5,7 @@ import { FileType, FormattedGroup } from 'src/app/interface/interface';
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 
 @Injectable({ providedIn: 'root' })
-export abstract class ClassementEditKeyBoardService {
+export abstract class EditKeyBoardService {
     readonly selectTile = signal(false);
     readonly selectMainLine = signal(false);
 

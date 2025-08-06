@@ -71,8 +71,8 @@ import {
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { APIUserService } from 'src/app/services/api.user.service';
-import { ClassementEditKeyBoardService } from 'src/app/services/classement-edit.keyboard.service';
 import { DBService } from 'src/app/services/db.service';
+import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
 import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
@@ -172,7 +172,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly preferencesService = inject(PreferencesService);
     private readonly imdbService = inject(APIImdbService);
     private readonly memory = inject(MemoryService);
-    private readonly keyboard = inject(ClassementEditKeyBoardService);
+    private readonly keyboard = inject(EditKeyBoardService);
     private readonly cd = inject(ChangeDetectorRef);
 
     color = color;
