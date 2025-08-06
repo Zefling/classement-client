@@ -19,26 +19,30 @@ export abstract class ClassementEditKeyBoardService {
                     if (component.options.mode === 'columns' && indexGp !== -1) {
                         this.moveUp(component, event, group, index, indexGp);
                     } else {
-                        this.moveLeft(component, event, group, index);
+                        this.moveLeft(component, event, group, index, indexGp);
                     }
                     break;
                 case 'ArrowRight':
                     if (component.options.mode === 'columns' && indexGp !== -1) {
                         this.moveDown(component, event, group, index, indexGp);
                     } else {
-                        this.moveRight(component, event, group, index);
+                        this.moveRight(component, event, group, index, indexGp);
                     }
                     break;
                 case 'ArrowUp':
-                    if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveLeft(component, event, group, index);
+                    if (component.options.mode === 'bingo') {
+                        this.moveUpBingo(component, event, group, index, indexGp);
+                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveLeft(component, event, group, index, indexGp);
                     } else {
                         this.moveUp(component, event, group, index, indexGp);
                     }
                     break;
                 case 'ArrowDown':
-                    if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveRight(component, event, group, index);
+                    if (component.options.mode === 'bingo' && indexGp !== -1) {
+                        this.moveDownBingo(component, event, group, index, indexGp);
+                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                        this.moveRight(component, event, group, index, indexGp);
                     } else {
                         this.moveDown(component, event, group, index, indexGp);
                     }
@@ -47,22 +51,47 @@ export abstract class ClassementEditKeyBoardService {
         }
     }
 
-    private moveLeft(component: ClassementEditComponent, event: KeyboardEvent, group: FileType[], index: number) {
+    private moveLeft(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
         if (index > 0) {
             const tile = group.splice(index, 1)[0];
             group.splice(index - 1, 0, tile);
-            this.selectMoveItemValidatedKey(component, event, tile);
+            this.selectMoveItemValidatedKey(
+                component,
+                event,
+                tile,
+                component.options.mode === 'bingo'
+                    ? `tr:nth-child(${indexGp + 1}) > td:nth-child(${index}) > div`
+                    : null,
+            );
         }
     }
 
-    private moveRight(component: ClassementEditComponent, event: KeyboardEvent, group: FileType[], index: number) {
+    private moveRight(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
         if (index < group.length) {
             const tile = group.splice(index, 1)[0];
             group.splice(index + 1, 0, tile);
-            this.selectMoveItemValidatedKey(component, event, tile);
+            this.selectMoveItemValidatedKey(
+                component,
+                event,
+                tile,
+                component.options.mode === 'bingo'
+                    ? `tr:nth-child(${indexGp + 1}) > td:nth-child(${index + 2}) > div`
+                    : null,
+            );
         }
     }
-
     private moveUp(
         component: ClassementEditComponent,
         event: KeyboardEvent,
@@ -97,6 +126,41 @@ export abstract class ClassementEditKeyBoardService {
         }
     }
 
+    private moveUpBingo(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
+        if (indexGp === -1) {
+            for (let i = component.groups.length - 1; i >= 0; i--) {
+                for (let j = component.groups[i].list.length - 1; j >= 0; j--) {
+                    if (component.groups[i].list[j] === null) {
+                        const tile = group.splice(index, 1)[0];
+                        component.groups[i].list[j] = tile;
+                        this.selectMoveItemValidatedKey(component, event, tile);
+                        return;
+                    }
+                }
+            }
+        } else if (indexGp) {
+            const tile = group[index];
+            const i = indexGp - 1;
+            const targetList = component.groups[i].list;
+
+            group.splice(index, 0, targetList.splice(index, 1, group.splice(index, 1)[0])[0])[0];
+
+            this.selectMoveItemValidatedKey(
+                component,
+                event,
+                tile,
+                `tr:nth-child(${indexGp}) > td:nth-child(${index + 1}) > div`,
+            );
+        }
+        this.stopEvent(event);
+    }
+
     private moveDown(
         component: ClassementEditComponent,
         event: KeyboardEvent,
@@ -126,13 +190,47 @@ export abstract class ClassementEditKeyBoardService {
         }
     }
 
-    private selectMoveItemValidatedKey(component: ClassementEditComponent, event: KeyboardEvent, tile: FileType) {
+    private moveDownBingo(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+        indexGp: number,
+    ) {
+        if (indexGp < component.groups.length - 1 && indexGp !== -1) {
+            const tile = group[index];
+            const i = indexGp + 1;
+            const targetList = component.groups[i].list;
+
+            group.splice(index, 0, targetList.splice(index, 1, group.splice(index, 1)[0])[0])[0];
+
+            this.selectMoveItemValidatedKey(
+                component,
+                event,
+                tile,
+                `tr:nth-child(${indexGp + 2}) > td:nth-child(${index + 1}) > div`,
+            );
+        } else {
+            this.stopEvent(event);
+        }
+    }
+
+    private selectMoveItemValidatedKey(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        tile: FileType,
+        target?: HTMLDivElement | string | null,
+    ) {
         component.selectionTile = tile;
         component.stopEvent(event);
         component.detectorChanges();
 
         setTimeout(() => {
-            component.selectionDiv?.focus();
+            (
+                (typeof target === 'string' ? document.querySelector<HTMLDivElement>(target) : target) ??
+                component.selectionDiv
+            )?.focus();
+            this.clearSelection(component);
         });
     }
 
@@ -166,21 +264,12 @@ export abstract class ClassementEditKeyBoardService {
                 break;
             case 'ArrowLeft':
             case 'ArrowRight':
-                if (event.ctrlKey) {
-                    component.selectionTile = item;
-                    component.selectionGroup = group;
-                    component.selectionIndex = index;
-                    component.selectionDiv = div;
-                    this.update(component, group?.list);
-                }
-                break;
             case 'ArrowUp':
             case 'ArrowDown':
                 if (event.ctrlKey) {
                     component.selectionTile = item;
                     component.selectionGroup = group;
                     component.selectionIndex = index;
-                    component.selectionDiv = div;
                     this.update(component, group?.list);
                 }
                 break;
@@ -256,6 +345,7 @@ export abstract class ClassementEditKeyBoardService {
         component.selectionTile = null;
         component.selectionGroup = null;
         component.selectionIndex = null;
+        component.selectionDiv = null;
         component.globalChange();
         component.change();
         this.update(component);

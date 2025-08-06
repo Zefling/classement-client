@@ -292,7 +292,7 @@
             <table class="table-classement" [class.line-fusion]="options.borderSpacing < 0">
               <tbody>
                 @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
-                  <tr>
+                  <tr (keydown)="selectMoveItem($event, group.list)">
                     @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
                       <td class="elements">
                         <div
@@ -302,12 +302,14 @@
                           (cdkDropListDropped)="drop($event)"
                           [class.selectable-group]="selectionTile && item !== selectionTile"
                           [class.selection-item]="item && item === selectionTile && group === selectionGroup"
+                          #itemDiv
                           (clickEnter)="
                             !selectionTile
-                              ? selectItem($event, group, item, index)
+                              ? selectItem($event, group, item, index, itemDiv)
                               : selectionGroupForItem(group, index)
                           "
-                          (clickOutside)="selectItem(null, null, null)"
+                          (clickOutside)="selectItem()"
+                          (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
                         >
                           @if (item) {
                             <div
@@ -318,6 +320,7 @@
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
+                              (ngInit)="selectionDiv = itemDiv"
                             >
                               <div
                                 class="content content-render"
