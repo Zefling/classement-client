@@ -47,6 +47,7 @@ export class OptimiseImageService {
                                         type: resizedBlob.type,
                                         date: sourceFile.date,
                                         title: sourceFile.title,
+                                        annotation: sourceFile.annotation,
                                         width: width,
                                         height: height,
                                     },

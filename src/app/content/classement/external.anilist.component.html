@@ -1,0 +1,100 @@
+<mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  <h2>{{ 'generator.external.anilist.title' | transloco }}</h2>
+
+  @if (searchAnilistForm) {
+    <div class="import-form">
+      <img class="logo" src="./assets/images/anilit_icon.svg" />
+      <form [formGroup]="searchAnilistForm" (submit)="search()">
+        <mg-input class="s-12">
+          <mg-input-label>{{ 'generator.external.anilist.name' | transloco }}</mg-input-label>
+          <mg-input-text formControlName="query" />
+        </mg-input>
+        <mg-input class="s-12">
+          <mg-input-label>{{ 'generator.external.anilist.type.media' | transloco }}</mg-input-label>
+          <mg-input-radio formControlName="type" value="ANIME">{{
+            'generator.external.anilist.type.anime' | transloco
+          }}</mg-input-radio>
+          <mg-input-radio formControlName="type" value="MANGA">{{
+            'generator.external.anilist.type.manga' | transloco
+          }}</mg-input-radio>
+        </mg-input>
+
+        <p class="buttons">
+          <button type="submit" [disabled]="!searchAnilistForm.get('query')?.value.trim()">
+            {{ 'generator.external.anilist.search' | transloco }}
+          </button>
+        </p>
+      </form>
+      @if (results?.length) {
+        <div class="options">
+          <div>
+            <div class="s-12">
+              <mg-input>
+                <mg-input-checkbox [(ngModel)]="withTitle">
+                  {{ 'generator.external.anilist.with.title' | transloco }}</mg-input-checkbox
+                >
+              </mg-input>
+              @if (withTitle) {
+                <mg-input>
+                  <mg-input-checkbox [(ngModel)]="withYear">
+                    {{ 'generator.external.anilist.with.year' | transloco }}</mg-input-checkbox
+                  >
+                </mg-input>
+              }
+            </div>
+
+            @if (withTitle) {
+              <mg-input class="s-6">
+                <mg-input-label>{{ 'generator.external.anilist.for.title.choice' | transloco }}</mg-input-label>
+                <mg-input-select
+                  [data]="[
+                    { value: 'english', label: 'generator.external.anilist.for.title.english' | transloco },
+                    { value: 'romaji', label: 'generator.external.anilist.for.title.romaji' | transloco },
+                    { value: 'native', label: 'generator.external.anilist.for.title.native' | transloco },
+                  ]"
+                  [(ngModel)]="titleSource"
+                />
+              </mg-input>
+            }
+
+            <mg-input class="s-6">
+              <mg-input-label>{{ 'generator.external.anilist.annotation' | transloco }}</mg-input-label>
+              <mg-input-checkbox value="english" [(ngModel)]="include">{{
+                'generator.external.anilist.for.title.english' | transloco
+              }}</mg-input-checkbox>
+              <mg-input-checkbox value="romaji" [(ngModel)]="include">{{
+                'generator.external.anilist.for.title.romaji' | transloco
+              }}</mg-input-checkbox>
+              <mg-input-checkbox value="native" [(ngModel)]="include">{{
+                'generator.external.anilist.for.title.native' | transloco
+              }}</mg-input-checkbox>
+            </mg-input>
+          </div>
+        </div>
+      }
+      <div class="tiles">
+        @for (ani of results; track ani) {
+          <div class="content-box" [class.disabled]="ani.disabled" (click)="addTile(ani)">
+            <div class="content">
+              <img [src]="baseImg + ani.coverImage?.extraLarge" alt="poster_path" />
+              <div class="tile-title">
+                @if (withTitle) {
+                  <span>{{
+                    titleSource === 'english'
+                      ? ani.title.english || ani.title.romaji
+                      : titleSource === 'romaji'
+                        ? ani.title.romaji || ani.title.english
+                        : ani.title.native || ani.title.romaji || ani.title.english
+                  }}</span>
+                }
+                @if (withYear) {
+                  <span> ({{ ani.startDate.year }})</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</mg-dialog>

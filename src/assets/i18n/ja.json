@@ -211,9 +211,8 @@
       "key": "IMDB認証キー",
       "info": "このキーには、IMDBのアカウントとAPIアクセス要求が必要です。ここ："
     },
-    "mal": {
-      "key": "MAL認証キー",
-      "info": "このキーには、MALのアカウントとAPIアクセス要求が必要です。ここ："
+    "anilist": {
+      "activate": "サービスを有効にします"
     }
   },
   "list": {
@@ -682,7 +681,8 @@
       "alt": {
         "detail": "代替説明テキスト"
       },
-      "IMDB": "IMDB"
+      "IMDB": "IMDB",
+      "anilist": "AniList"
     },
     "context.menu": {
       "back.list": "リストに戻す",
@@ -758,7 +758,7 @@
       "link": "デフォルトのIDを読みやすい名前に置き換えます(オプション)："
     },
     "external": {
-      "imbd": {
+      "imdb": {
         "title": "IMDBで映画を検索します",
         "name": "映画の名前：",
         "adult.content": "アダルトコンテンツを追加する",
@@ -767,10 +767,24 @@
         "with.title": "タイトル付きで",
         "with.year": "年付きで"
       },
-      "mal": {
-        "title": "MAL で映画を検索します",
-        "name": "アニメの名前:",
-        "search": "検索"
+      "anilist": {
+        "title": "Anilistでアニメまたは漫画を検索",
+        "name": "シリーズ名：",
+        "type": {
+          "media": "メディアタイプ：",
+          "manga": "漫画",
+          "anime": "アニメ"
+        },
+        "for.title": {
+          "english": "英語",
+          "romaji": "ローマ字",
+          "native": "原語",
+          "choice": "タイルのタイトルとして使用"
+        },
+        "annotation": "注釈に含める（少なくとも1つの場合）",
+        "search": "検索",
+        "with.title": "タイトル付きで",
+        "with.year": "年付きで"
       }
     },
     "help": {

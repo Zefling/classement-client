@@ -1,11 +1,11 @@
-.movie-title {
+.tile-title {
     margin: 3px;
     padding: 0;
     text-wrap: balance;
     word-wrap: break-word;
 }
 
-.imdb {
+.import-form {
     display: grid;
     grid-template:
         'a b'
@@ -29,13 +29,10 @@ form {
     grid-area: c;
 }
 
-.movies {
-    grid-area: d;
-}
-
-.movies {
+.tiles {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-area: d;
     gap: 10px;
 }
 

@@ -62,7 +62,14 @@ export interface FileHandle {
     target?: FileReader | null;
 }
 
-export type FileStream = { filter: TypeFile; file: FileString };
+export type FileStream = {
+    filter: TypeFile;
+    file: FileString;
+    add?: {
+        title?: boolean;
+        annotation?: boolean;
+    };
+};
 export type FileType = FileString | null;
 export type FileString = {
     id: string;
@@ -270,6 +277,9 @@ export interface PreferencesData {
     advancedFork: boolean;
     authApiKeys: {
         imdb: string;
+    };
+    api: {
+        anilist: boolean;
     };
 }
 

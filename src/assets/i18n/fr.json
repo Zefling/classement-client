@@ -210,9 +210,8 @@
       "key": "Clef d'authentification IMDB",
       "info": "Cette clé nécessite un compte chez IMDB et une demande d'accès à l'API. Ici :"
     },
-    "mal": {
-      "key": "Clef d'authentification MAL",
-      "info": "Cette clé nécessite un compte chez MAL et une demande d'accès à l'API. Ici :"
+    "anilist": {
+      "activate": "Activer le service"
     }
   },
   "list": {
@@ -681,7 +680,8 @@
       "alt": {
         "detail": "Texte de description alternatif "
       },
-      "IMDB": "IMDB"
+      "IMDB": "IMDB",
+      "anilist": "AniList"
     },
     "context.menu": {
       "back.list": "Remettre dans la liste",
@@ -757,7 +757,7 @@
       "link": "Remplacer l'identifiant par défaut par un nom plus lisible (facultatif) :"
     },
     "external": {
-      "imbd": {
+      "imdb": {
         "title": "Rechercher un film sur IMDB",
         "name": "Nom d'un film :",
         "adult.content": "Inclure le contenu adulte",
@@ -766,10 +766,24 @@
         "with.title": "avec le titre",
         "with.year": "avec l'année"
       },
-      "mal": {
-        "title": "Rechercher un film sur MAL",
-        "name": "Nom d'un anime :",
-        "search": "Rechercher"
+      "anilist": {
+        "title": "Rechercher un anime ou manga sur Anilist",
+        "name": "Nom de la série :",
+        "type": {
+          "media": "Type de média :",
+          "manga": "Manga",
+          "anime": "Anime"
+        },
+        "for.title": {
+          "english": "Anglais",
+          "romaji": "Rōmaji",
+          "native": "Natif",
+          "choice": "Utiliser pour le titre de la tuile"
+        },
+        "annotation": "À inclure dans l'annotation (si au moins 1)",
+        "search": "Rechercher",
+        "with.title": "avec le titre",
+        "with.year": "avec l'année"
       }
     },
     "help": {

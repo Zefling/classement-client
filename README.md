@@ -72,8 +72,16 @@ Current installation in this [website](https://classement.org/).
         - ✅ Languages
         - ✅ Emoji
     - ✅ External API
-        - ✅ IMDB
+        - ✅ IMDB (API key required)
+        - ✅ anilist
         - ⬜ MAL
+    - ✅ Keyboard navigation for edit rankings
+        - ✅ Tierlist
+        - ✅ Teams
+        - ✅ Columns
+        - ⬜ Iceberg
+        - ⬜ Axis
+        - ✅ Bingo
 - ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     - ✅ Create user
         - ✅ Simple create
@@ -109,9 +117,10 @@ Current installation in this [website](https://classement.org/).
     - ✅ Admin
         - ✅ Search users or rankings
         - ✅ Edit profil & change roles
-        - ✅ rankings change status
-        - ✅ rankings change category
+        - ✅ Rankings change status
+        - ✅ Rankings change category
         - ✅ Remove user
+        - ✅ Stats
     - ✅ Contact form
 
 ## Development

@@ -63,6 +63,20 @@ export class Utils {
         return areTheSame;
     }
 
+    static objectAssignNested(target: any, ...sources: any[]) {
+        sources.forEach(source => {
+            Object.keys(source).forEach(key => {
+                const sourceVal = source[key];
+                const targetVal = target[key];
+                target[key] =
+                    typeof targetVal === 'object' && typeof sourceVal === 'object'
+                        ? this.objectAssignNested(targetVal, sourceVal)
+                        : sourceVal;
+            });
+        });
+        return target;
+    }
+
     static downloadFile(content: string, fileName: string, contentType?: string) {
         var a = document.createElement('a');
         if (content.startsWith('data:')) {

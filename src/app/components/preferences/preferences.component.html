@@ -214,15 +214,32 @@
           </mg-tab-content>
         }
         <mg-tab-title id="api"> {{ 'preferences.tab.api' | transloco }}</mg-tab-title>
-        <mg-tab-content id="api" formGroupName="authApiKeys">
-          <mg-input class="s-12">
-            <mg-input-label>{{ 'preferences.imdb.key' | transloco }}</mg-input-label>
-            <mg-input-text formControlName="imdb" />
-            <mg-input-desc>
-              <span class="icon-info"></span>
-              {{ 'preferences.imdb.info' | transloco }}<a href="https://www.themoviedb.org/settings/api">API</a>
-            </mg-input-desc>
-          </mg-input>
+        <mg-tab-content id="api">
+          <div class="api">
+            <h3>
+              {{ 'generator.actions.IMDB' | transloco }}
+            </h3>
+            <div formGroupName="authApiKeys">
+              <mg-input class="s-12">
+                <mg-input-label>{{ 'preferences.imdb.key' | transloco }}</mg-input-label>
+                <mg-input-text formControlName="imdb" />
+                <mg-input-desc>
+                  <span class="icon-info"></span>
+                  {{ 'preferences.imdb.info' | transloco }} <a href="https://www.themoviedb.org/settings/api">API</a>
+                </mg-input-desc>
+              </mg-input>
+            </div>
+            <h3>
+              {{ 'generator.actions.anilist' | transloco }}
+            </h3>
+            <ng-container formGroupName="api">
+              <mg-input>
+                <mg-input-checkbox formControlName="anilist" mode="toggle">{{
+                  'preferences.anilist.activate' | transloco
+                }}</mg-input-checkbox>
+              </mg-input>
+            </ng-container>
+          </div>
         </mg-tab-content>
       </mg-tabs>
       <div class="buttons">

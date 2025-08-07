@@ -37,6 +37,11 @@
             {{ 'generator.actions.IMDB' | transloco }}
           </button>
         }
+        @if (anilistActive) {
+          <button class="button-add primary" (click)="anilist().open()">
+            {{ 'generator.actions.anilist' | transloco }}
+          </button>
+        }
       </div>
     </div>
 
@@ -929,3 +934,5 @@
 <classement-login />
 
 <external-imdb />
+
+<external-anilist />

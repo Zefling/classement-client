@@ -1,26 +1,26 @@
 <mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  <h2>{{ 'generator.external.imbd.title' | transloco }}</h2>
+  <h2>{{ 'generator.external.imdb.title' | transloco }}</h2>
 
   @if (keyApi && languages && searchMovieForm) {
-    <div class="imdb">
+    <div class="import-form">
       <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
       <form [formGroup]="searchMovieForm" (submit)="search()">
         <mg-input class="s-12">
-          <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
+          <mg-input-label>{{ 'generator.external.imdb.name' | transloco }}</mg-input-label>
           <mg-input-text formControlName="query" />
         </mg-input>
         <mg-input class="s-12">
           <mg-input-checkbox formControlName="include_adult">{{
-            'generator.external.imbd.adult.content' | transloco
+            'generator.external.imdb.adult.content' | transloco
           }}</mg-input-checkbox>
         </mg-input>
         <mg-input class="s-12">
-          <mg-input-label>{{ 'generator.external.imbd.name' | transloco }}</mg-input-label>
+          <mg-input-label>{{ 'generator.external.imdb.name' | transloco }}</mg-input-label>
           <mg-input-select overlay id="language" formControlName="language" [data]="languages" />
         </mg-input>
         <p class="buttons">
           <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
-            {{ 'generator.external.imbd.search' | transloco }}
+            {{ 'generator.external.imdb.search' | transloco }}
           </button>
         </p>
       </form>
@@ -29,24 +29,24 @@
           <div>
             <mg-input>
               <mg-input-checkbox [(ngModel)]="withTitle">
-                {{ 'generator.external.imbd.with.title' | transloco }}</mg-input-checkbox
+                {{ 'generator.external.imdb.with.title' | transloco }}</mg-input-checkbox
               >
             </mg-input>
             <mg-input>
               <mg-input-checkbox [(ngModel)]="withYear">
-                {{ 'generator.external.imbd.with.year' | transloco }}</mg-input-checkbox
+                {{ 'generator.external.imdb.with.year' | transloco }}</mg-input-checkbox
               >
             </mg-input>
           </div>
         </div>
       }
-      <div class="movies">
+      <div class="tiles">
         @for (movie of results; track movie) {
           @if (movie.poster_path) {
             <div class="content-box" [class.disabled]="movie.disabled" (click)="addTile(movie)">
               <div class="content">
                 <img [src]="baseImg + movie.poster_path" alt="poster_path" />
-                <div class="movie-title">
+                <div class="tile-title">
                   @if (withTitle) {
                     <span>{{ movie.title }}</span>
                   }

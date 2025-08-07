@@ -244,6 +244,9 @@ export class PreferencesMagmaDialog {
             authApiKeys: new FormGroup({
                 imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
             }),
+            api: new FormGroup({
+                anilist: new FormControl(initPreferences.api.anilist ?? true),
+            }),
         });
 
         this.preferencesForm.valueChanges.subscribe(() => {

@@ -58,6 +58,7 @@ import { CdkDragElement } from 'src/app/directives/drag-element.directive';
 import {
     Classement,
     Data,
+    FileStream,
     FileString,
     FileType,
     FormattedGroup,
@@ -96,6 +97,7 @@ import { ClassementLoginComponent } from './classement-login.component';
 import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
+import { ExternalAnilistComponent } from './external.anilist.component';
 import { ExternalImdbComponent } from './external.imdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
 import { HelpBingoComponent } from './help/help.bingo.component';
@@ -139,6 +141,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         ClassementEditImageComponent,
         ClassementLoginComponent,
         ExternalImdbComponent,
+        ExternalAnilistComponent,
         FileSizePipe,
         MagmaContextMenu,
         MagmaNgInitDirective,
@@ -220,6 +223,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     altImage = '';
 
     imdbActive = false;
+    anilistActive = false;
 
     inputTexts = '';
 
@@ -248,10 +252,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
     dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
     dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
-    editImage = viewChild.required<ClassementEditImageComponent>(ClassementEditImageComponent);
-    login = viewChild.required<ClassementLoginComponent>(ClassementLoginComponent);
-    imdb = viewChild.required<ExternalImdbComponent>(ExternalImdbComponent);
-    tiles = viewChildren<CdkDragElement>(CdkDragElement);
+    editImage = viewChild.required(ClassementEditImageComponent);
+    login = viewChild.required(ClassementLoginComponent);
+    imdb = viewChild.required(ExternalImdbComponent);
+    anilist = viewChild.required<ExternalAnilistComponent>(ExternalAnilistComponent);
+    tiles = viewChildren(CdkDragElement);
 
     contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
 
@@ -296,7 +301,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             }),
             global.onFileLoaded.subscribe(async file => {
                 if (file.filter === TypeFile.image || file.filter === TypeFile.text) {
-                    await this.addFile(file.file);
+                    await this.addFile(file);
                 }
                 this.updateSize();
             }),
@@ -413,6 +418,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     initAPI() {
         this.imdbActive = this.imdbService.isActive();
+        this.anilistActive = this.preferencesService.preferences.api.anilist;
     }
 
     initWithParams(params: Params) {
@@ -1171,10 +1177,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.change();
     }
 
-    async addFile(file: FileString) {
-        if (this.preferencesService.preferences.nameCopy) {
-            // remove extension
-            file.title = (file.name || '').replace(/_/g, ' ').replace(/\.(\w+)$/, '');
+    async addFile(stream: FileStream) {
+        let file = stream.file;
+
+        if (this.preferencesService.preferences.nameCopy && !stream.add?.title) {
+            file.title = (file.name || '').replace(/_/g, ' ').replace(/\.(\w+)$/, ''); // remove extension
         }
 
         const autoResize = this.preferencesService.preferences.autoResize;

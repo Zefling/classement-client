@@ -6,6 +6,7 @@ import { DBService } from './db.service';
 
 import { themes } from '../content/classement/classement-default';
 import { PreferencesData } from '../interface/interface';
+import { Utils } from '../tools/utils';
 
 /**
  * For persistence during the session of use
@@ -38,6 +39,9 @@ export class PreferencesService {
         authApiKeys: {
             imdb: '',
         },
+        api: {
+            anilist: true,
+        },
     };
 
     get preferences(): PreferencesData {
@@ -53,7 +57,7 @@ export class PreferencesService {
                     .loadPreferences()
                     .then(preferences => {
                         if (preferences) {
-                            Object.assign(this.initPreferences, preferences);
+                            Utils.objectAssignNested(this.initPreferences, preferences);
                         }
                     })
                     .catch(() => {

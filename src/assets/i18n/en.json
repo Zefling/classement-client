@@ -210,9 +210,8 @@
       "key": "IMDB authentication key",
       "info": "This key requires an account with IMDB and an API access request. Here:"
     },
-    "mal": {
-      "key": "MAL authentication key",
-      "info": "This key requires an account with MAL and an API access request. Here:"
+    "anilist": {
+      "activate": "Activate the service"
     }
   },
   "list": {
@@ -682,7 +681,8 @@
       "alt": {
         "detail": "Alternative description text"
       },
-      "IMDB": "IMDB"
+      "IMDB": "IMDB",
+      "anilist": "AniList"
     },
     "context.menu": {
       "back.list": "Return to list",
@@ -758,7 +758,7 @@
       "link": "Replace the default ID with a more readable name (optional)"
     },
     "external": {
-      "imbd": {
+      "imdb": {
         "title": "Search for a movie on IMDB",
         "name": "Movie name:",
         "adult.content": "Include adult content",
@@ -767,10 +767,24 @@
         "with.title": "with the title",
         "with.year": "with the year"
       },
-      "mal": {
-        "title": "Search for a movie on MAL",
-        "name": "Name of an anime:",
-        "search": "Search"
+      "anilist": {
+        "title": "Search for an anime or manga on Anilist",
+        "name": "Series name:",
+        "type": {
+          "media": "Media type:",
+          "manga": "Manga",
+          "anime": "Anime"
+        },
+        "for.title": {
+          "english": "English",
+          "romaji": "Romaji",
+          "native": "Native",
+          "choice": "Use for the tile title"
+        },
+        "annotation": "To include in the annotation (if at least 1)",
+        "search": "Search",
+        "with.title": "with the title",
+        "with.year": "with the year"
       }
     },
     "help": {
