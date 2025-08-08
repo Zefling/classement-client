@@ -773,6 +773,12 @@ span.group-options {
 .mode-axis {
     display: flex;
     flex-wrap: wrap;
+
+    .zone-classement.click-enter {
+        --click-enter-hover-filter: none;
+        --click-enter-hover-background: var(--over-image-background, var(--drop-list-background)) var(--over-image-url)
+            var(--over-image-background-position) / var(--over-image-background-size);
+    }
 }
 
 /* columns ---------------------------------------------------------- */

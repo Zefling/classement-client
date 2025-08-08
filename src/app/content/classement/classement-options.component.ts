@@ -181,7 +181,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 this.categoryUpdate();
             }),
             this.globalService.onOptionChange.subscribe(() => {
-                this.updateCurrentTheme();
+                setTimeout(() => {
+                    this.updateCurrentTheme();
+                });
             }),
             this.prefs.onChange.subscribe(() => {
                 this.updatePrefs();
