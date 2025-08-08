@@ -27,6 +27,7 @@ import {
     MagmaInputText,
     MagmaInputTextarea,
     MagmaTooltipDirective,
+    randomNumber,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -525,7 +526,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         this.optimiseImage
             .resize(
                 {
-                    id: `tile-${Utils.randomNumber()}`,
+                    id: `tile-${randomNumber()}`,
                     url: image,
                     name: 'background',
                     size: image.length,

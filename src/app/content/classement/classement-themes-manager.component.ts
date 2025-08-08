@@ -9,6 +9,7 @@ import {
     MagmaInputText,
     MagmaMessage,
     MagmaTabsModule,
+    downloadFile,
 } from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
@@ -194,7 +195,7 @@ export class ClassementThemesManagerComponent implements OnInit {
     export() {
         const theme = this.optionToTheme();
 
-        Utils.downloadFile(
+        downloadFile(
             JSON.stringify(theme),
             Utils.normalizeFileName(`theme-${theme.options.mode}-${this.themeName}`) + '.json',
             'text/plain',

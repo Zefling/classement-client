@@ -19,6 +19,7 @@ import {
     MagmaInputText,
     MagmaInputTextarea,
     MagmaStopPropagationDirective,
+    blobToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -28,7 +29,6 @@ import { Subject, debounceTime } from 'rxjs';
 import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
 import { Logger, LoggerLevel } from 'src/app/services/logger';
-import { Utils } from 'src/app/tools/utils';
 
 import { ClassementEditComponent } from './classement-edit.component';
 
@@ -206,7 +206,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     async fileChangeEvent(event: Event) {
         this.imageChangedEvent = event;
-        this.data = await Utils.blobToBase64((event as any).target.files[0]);
+        this.data = await blobToBase64((event as any).target.files[0]);
     }
 
     fileChange(event: FileHandle | string) {
@@ -217,7 +217,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
-            this.croppedImage = await Utils.blobToBase64(event.blob);
+            this.croppedImage = await blobToBase64(event.blob);
         }
     }
 

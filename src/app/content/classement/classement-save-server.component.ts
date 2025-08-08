@@ -28,6 +28,7 @@ import {
     MagmaProgress,
     MagmaSpinner,
     MagmaTooltipDirective,
+    blobToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -39,7 +40,6 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
 
@@ -266,7 +266,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
 
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
-            this.croppedImage = await Utils.blobToBase64(event.blob);
+            this.croppedImage = await blobToBase64(event.blob);
         }
     }
 

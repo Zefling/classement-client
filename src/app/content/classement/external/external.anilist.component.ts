@@ -9,6 +9,8 @@ import {
     MagmaInputRadio,
     MagmaInputSelect,
     MagmaInputText,
+    randomNumber,
+    ulrToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -17,7 +19,6 @@ import { Genres } from 'src/app/interface/movie';
 import { APIAnilistService, AniListMedia } from 'src/app/services/api.anilist.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
-import { Utils } from 'src/app/tools/utils';
 
 @Component({
     selector: 'external-anilist',
@@ -82,11 +83,11 @@ export class ExternalAnilistComponent {
 
     async addTile(ani: AniListMedia) {
         if (!ani.disabled) {
-            const image = (await Utils.ulrToBase64(this.baseImg + ani.coverImage?.extraLarge)) as string;
+            const image = (await ulrToBase64(this.baseImg + ani.coverImage?.extraLarge)) as string;
             this.globalService.onFileLoaded.next({
                 filter: TypeFile.image,
                 file: {
-                    id: `tile-${Utils.randomNumber()}`,
+                    id: `tile-${randomNumber()}`,
                     title:
                         (this.withTitle
                             ? this.titleSource === 'english'

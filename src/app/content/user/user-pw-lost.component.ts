@@ -2,13 +2,12 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { FormBuilderExtended, MagmaInput, MagmaInputElement, MagmaInputText } from '@ikilote/magma';
+import { FormBuilderExtended, MagmaInput, MagmaInputElement, MagmaInputText, testEmail } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 @Component({
     selector: 'user-pw-lost',
@@ -73,7 +72,7 @@ export class UserPwLostComponent implements OnDestroy {
         if (this.form.valid) {
             if (this.email.trim() === '') {
                 this.showError = this.translate.translate('error.api-code.1020');
-            } else if (!Utils.testEmail(this.email)) {
+            } else if (!testEmail(this.email)) {
                 this.showError = this.translate.translate('error.email.invalid');
             }
 

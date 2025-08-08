@@ -25,6 +25,7 @@ import {
     MagmaMessage,
     MagmaMessageType,
     MagmaSpinner,
+    clipboardWrite,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -294,7 +295,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     }
 
     copyLink() {
-        Utils.clipboard(this.getLink())
+        clipboardWrite(this.getLink())
             .then(() => this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
                 this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {

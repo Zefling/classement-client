@@ -1,12 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 
+import { objectAssignNested } from '@ikilote/magma';
+
 import { Subject } from 'rxjs';
 
 import { DBService } from './db.service';
 
 import { themes } from '../content/classement/classement-default';
 import { PreferencesData } from '../interface/interface';
-import { Utils } from '../tools/utils';
 
 /**
  * For persistence during the session of use
@@ -57,7 +58,7 @@ export class PreferencesService {
                     .loadPreferences()
                     .then(preferences => {
                         if (preferences) {
-                            Utils.objectAssignNested(this.initPreferences, preferences);
+                            objectAssignNested(this.initPreferences, preferences);
                         }
                     })
                     .catch(() => {

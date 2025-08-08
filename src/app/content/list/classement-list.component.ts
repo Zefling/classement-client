@@ -13,6 +13,7 @@ import {
     MagmaSortableModule,
     MagmaTableModule,
     MagmaTooltipDirective,
+    downloadFile,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -175,7 +176,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                 });
             }
 
-            Utils.downloadFile(JSON.stringify(list), 'classements.json', 'text/plain');
+            downloadFile(JSON.stringify(list), 'classements.json', 'text/plain');
         });
     }
 

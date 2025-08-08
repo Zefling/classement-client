@@ -9,6 +9,8 @@ import {
     MagmaInputElement,
     MagmaInputSelect,
     MagmaInputText,
+    randomNumber,
+    ulrToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -20,7 +22,6 @@ import { APIImdbService } from 'src/app/services/api.imdb.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 @Component({
     selector: 'external-imdb',
@@ -120,12 +121,12 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
 
     async addTile(movie: MovieSearch) {
         if (!movie.disabled) {
-            const image = (await Utils.ulrToBase64(this.baseImg + movie.poster_path)) as string;
+            const image = (await ulrToBase64(this.baseImg + movie.poster_path)) as string;
 
             this.globalService.onFileLoaded.next({
                 filter: TypeFile.image,
                 file: {
-                    id: `tile-${Utils.randomNumber()}`,
+                    id: `tile-${randomNumber()}`,
                     title:
                         (this.withTitle ? movie.title : '') +
                         (this.withYear ? ' (' + new Date(movie.release_date).getFullYear() + ')' : ''),

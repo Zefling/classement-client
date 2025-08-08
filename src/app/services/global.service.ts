@@ -2,6 +2,7 @@ import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inj
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 
+import { downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
@@ -22,7 +23,6 @@ import {
     ThemeOptions,
 } from '../interface/interface';
 import { color } from '../tools/function';
-import { Utils } from '../tools/utils';
 
 export enum TypeFile {
     image = 'image',
@@ -113,7 +113,7 @@ export class GlobalService {
                 this.onFileLoaded.next({
                     filter: TypeFile.text,
                     file: {
-                        id: `tile-${Utils.randomNumber()}`,
+                        id: `tile-${randomNumber()}`,
                         name: '',
                         url: '',
                         size: trimString.length,
@@ -177,18 +177,18 @@ export class GlobalService {
         const cache: Record<string, string | ArrayBuffer | null> = {};
         for (const item of list) {
             if (item?.url && item.url.endsWith('.webp')) {
-                cache[item.url] = await Utils.ulrToBase64(item.url);
+                cache[item.url] = await ulrToBase64(item.url);
             }
         }
         for (const group of groups) {
             for (const item of group.list) {
                 if (item?.url && item.url.endsWith('.webp')) {
-                    cache[item.url] = await Utils.ulrToBase64(item.url);
+                    cache[item.url] = await ulrToBase64(item.url);
                 }
             }
         }
         if (options.imageBackgroundCustom) {
-            cache[options.imageBackgroundCustom] = await Utils.ulrToBase64(options.imageBackgroundCustom);
+            cache[options.imageBackgroundCustom] = await ulrToBase64(options.imageBackgroundCustom);
         }
         return cache;
     }
@@ -285,7 +285,7 @@ export class GlobalService {
                         this.onFileLoaded.next({
                             filter,
                             file: {
-                                id: `tile-${Utils.randomNumber()}`,
+                                id: `tile-${randomNumber()}`,
                                 name: file.file.name,
                                 url: url,
                                 size: url.length,
@@ -303,7 +303,7 @@ export class GlobalService {
                 this.onFileLoaded.next({
                     filter,
                     file: {
-                        id: `tile-${Utils.randomNumber()}`,
+                        id: `tile-${randomNumber()}`,
                         name: file.file.name,
                         url: url,
                         size: url.length,
@@ -355,7 +355,7 @@ export class GlobalService {
     }
 
     private downloadImage(data: string, filename: string) {
-        Utils.downloadFile(data, filename);
+        downloadFile(data, filename);
     }
 
     altImage(groups: FormattedGroup[]) {

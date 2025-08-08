@@ -2,7 +2,14 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaInputText, MagmaMessage } from '@ikilote/magma';
+import {
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputPassword,
+    MagmaInputText,
+    MagmaMessage,
+    testEmail,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import owasp from 'owasp-password-strength-test';
@@ -11,7 +18,6 @@ import { debounceTime } from 'rxjs';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -89,7 +95,7 @@ export class UserSignupComponent implements OnDestroy {
             .get('email')
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
-                if (Utils.testEmail(value)) {
+                if (testEmail(value)) {
                     this.emailInvalide = false;
                     this.userService.test('email', value).then(test => {
                         this.emailExist = test;

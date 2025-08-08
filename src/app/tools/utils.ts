@@ -1,8 +1,5 @@
 import { Classement, FileString, FileType, FormattedGroup, Options, User } from '../interface/interface';
 
-const emailTest =
-    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-
 const isObject = (a: Record<string, any>, b: Record<string, any>) =>
     typeof a === 'object' && !Array.isArray(a) && !!a && !!b;
 
@@ -63,40 +60,6 @@ export class Utils {
         return areTheSame;
     }
 
-    static objectAssignNested(target: any, ...sources: any[]) {
-        sources.forEach(source => {
-            Object.keys(source).forEach(key => {
-                const sourceVal = source[key];
-                const targetVal = target[key];
-                target[key] =
-                    typeof targetVal === 'object' && typeof sourceVal === 'object'
-                        ? this.objectAssignNested(targetVal, sourceVal)
-                        : sourceVal;
-            });
-        });
-        return target;
-    }
-
-    static downloadFile(content: string, fileName: string, contentType?: string) {
-        var a = document.createElement('a');
-        if (content.startsWith('data:')) {
-            a.href = content;
-        } else {
-            var file = new Blob([content], contentType ? { type: contentType } : undefined);
-            a.href = URL.createObjectURL(file);
-        }
-        a.download = fileName;
-        a.click();
-    }
-
-    static blobToBase64(blob: Blob): Promise<string> {
-        return new Promise(resolve => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.readAsDataURL(blob);
-        });
-    }
-
     static jsonCopy<T>(o: T): T {
         return JSON.parse(JSON.stringify(o));
     }
@@ -135,67 +98,6 @@ export class Utils {
             }
         }
         return true;
-    }
-
-    static testEmail(email: string): boolean {
-        return email ? String(email).match(emailTest) !== null : false;
-    }
-
-    static async ulrToBase64(url: string): Promise<string | ArrayBuffer | null> {
-        return new Promise<string | ArrayBuffer | null>(async (resolve, reject) => {
-            try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    credentials: 'omit',
-                    mode: 'cors', // Chromium
-                    headers: {
-                        'Sec-Fetch-Dest': 'image',
-                        'Sec-Fetch-Mode': 'cors',
-                        'Sec-Fetch-Site': 'same-site',
-                    },
-                });
-                if (response.status === 200) {
-                    const imageBlob = await response.blob();
-
-                    var reader = new FileReader();
-                    reader.readAsDataURL(imageBlob);
-                    reader.onloadend = function () {
-                        const base64data = reader.result;
-                        if (base64data instanceof ArrayBuffer) {
-                            resolve(base64data);
-                        } else if (base64data) {
-                            // fix typemine
-                            resolve(
-                                base64data.replace('data:application/octet-stream;base64,', 'data:image/webp;base64,'),
-                            );
-                        } else {
-                            reject('Image error');
-                        }
-                        resolve(base64data);
-                    };
-                    reader.onerror = () => {
-                        reject('Image error');
-                    };
-                } else {
-                    reject('HTTP-Error: ' + response.status);
-                }
-            } catch (e) {
-                reject('HTTP-Error: CORS');
-            }
-        });
-    }
-
-    static clipboard(text: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            navigator.clipboard.writeText(text).then(
-                () => {
-                    resolve();
-                },
-                () => {
-                    reject();
-                },
-            );
-        });
     }
 
     static removeClassement(classementsSource: Classement[] | undefined, classementsChange: Classement) {
@@ -306,13 +208,6 @@ export class Utils {
         }
     }
 
-    static getNestedValue(object: any, path: (string | number)[] | string): any {
-        if (typeof path === 'string') {
-            path = path !== '' ? path.split('.') : [];
-        }
-        return path.reduce((obj, key) => (obj ? obj[key] : undefined), object);
-    }
-
     static formattedTilesByMode(options: Options, groups: FormattedGroup[], list: FileType[]) {
         if (options.mode === 'teams') {
             groups.forEach(group => {
@@ -323,10 +218,6 @@ export class Utils {
 
     static listIsType(list: FileType[], group: string): boolean {
         return (list as any).type === group;
-    }
-
-    static randomNumber() {
-        return `${Math.round(Math.random() * 999_999_999)}`.padStart(9, '0');
     }
 
     static getClassementId(classement: Classement) {

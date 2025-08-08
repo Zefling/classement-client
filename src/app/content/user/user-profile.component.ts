@@ -12,6 +12,8 @@ import {
     MagmaMessage,
     MagmaMessageType,
     MagmaTabsModule,
+    blobToBase64,
+    testEmail,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -24,7 +26,6 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 import { UserPassword } from './user-password';
 
@@ -160,14 +161,14 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
         });
 
         this.changeEmailForm.get('emailOld')?.valueChanges.subscribe(value => {
-            this.emailOldValid = Utils.testEmail(value);
+            this.emailOldValid = testEmail(value);
             this.showError[0] = value && !this.emailOldValid ? this.translate.translate('error.email.old.invalid') : '';
         });
         this.changeEmailForm
             .get('emailNew')
             ?.valueChanges.pipe(debounceTime(500))
             .subscribe(value => {
-                if (Utils.testEmail(value)) {
+                if (testEmail(value)) {
                     this.userService
                         .test('email', value)
                         .then(test => {
@@ -315,7 +316,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
-            this.croppedImage = await Utils.blobToBase64(event.blob);
+            this.croppedImage = await blobToBase64(event.blob);
         }
     }
 

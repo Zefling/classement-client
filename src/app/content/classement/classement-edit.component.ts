@@ -48,6 +48,9 @@ import {
     MagmaSpinner,
     MagmaStopPropagationDirective,
     MagmaTooltipDirective,
+    clipboardWrite,
+    downloadFile,
+    randomNumber,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -824,7 +827,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     copyLink() {
-        Utils.clipboard(this.shareUrl)
+        clipboardWrite(this.shareUrl)
             .then(() => this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.success')))
             .catch(_e =>
                 this.mgMessage.addMessage(this.translate.translate('generator.ranking.copy.link.error'), {
@@ -1388,7 +1391,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     saveJson() {
         if (this.hasItems) {
-            Utils.downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
+            downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
         }
     }
 
@@ -1478,12 +1481,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.groups.forEach(group => {
             // add ids to identify lists
             (group.list as any).type ??= `group`;
-            (group.list as any).id ??= `group-${Utils.randomNumber()}`;
+            (group.list as any).id ??= `group-${randomNumber()}`;
 
             group.list.forEach(tile => {
                 if (tile) {
                     // add ids to identify tiles
-                    tile.id ??= `tile-${Utils.randomNumber()}`;
+                    tile.id ??= `tile-${randomNumber()}`;
                 }
             });
         });
@@ -1496,7 +1499,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.list.forEach(tile => {
             if (tile) {
                 // add ids to identify tiles
-                tile.id ??= `tile-${Utils.randomNumber()}`;
+                tile.id ??= `tile-${randomNumber()}`;
             }
         });
     }
