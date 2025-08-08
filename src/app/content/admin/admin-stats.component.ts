@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LightDark, MagmaInput, MagmaInputSelect } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { getWeek } from 'date-fns';
 import { EChartsCoreOption } from 'echarts';
 import { LineChart, ThemeRiverChart } from 'echarts/charts';
 import {
@@ -258,16 +259,19 @@ export class AdminStatsComponent {
         }
 
         const result: T[] = [];
-        let currentDate = new Date(data[0].date);
-        let nextIndex = 1;
-        const endDate = new Date(data[data.length - 1].date);
+
+        const date = new Date();
+        date.setFullYear(new Date().getFullYear() - 1);
+        let currentDate = date;
+        let nextIndex = 0;
+        const endDate = new Date();
 
         while (currentDate <= endDate) {
             const [currentDateStr] = currentDate.toISOString().split('T');
 
             if (nextIndex < data.length && currentDateStr === data[nextIndex].date) {
-                result.push(data[nextIndex]);
-                nextIndex++;
+                console.log(data[nextIndex]);
+                result.push(data[nextIndex++]);
             } else {
                 result.push({
                     date: currentDateStr,
@@ -277,7 +281,7 @@ export class AdminStatsComponent {
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
-
+        console.log(data, result);
         return result;
     }
 
@@ -288,21 +292,22 @@ export class AdminStatsComponent {
         if (data.length === 0) return data;
 
         const result: T[] = [];
-        let currentYear = data[0].year;
-        let currentWeek = data[0].week;
-        let nextIndex = 1;
+        const start = new Date();
+        start.setFullYear(start.getFullYear() - 1);
+        let currentYear = start.getFullYear();
+        let currentWeek = getWeek(start, { weekStartsOn: 1, firstWeekContainsDate: 4 }); // ISO week
+        let nextIndex = 0;
 
-        while (
-            currentYear < data[data.length - 1].year ||
-            (currentYear === data[data.length - 1].year && currentWeek <= data[data.length - 1].week)
-        ) {
+        const yearLimit = new Date().getFullYear();
+        const weekLimit = getWeek(new Date(), { weekStartsOn: 1, firstWeekContainsDate: 4 }); // ISO week
+
+        while (currentYear < yearLimit || (currentYear === yearLimit && currentWeek <= weekLimit)) {
             if (
                 nextIndex < data.length &&
                 currentYear === data[nextIndex].year &&
                 currentWeek === data[nextIndex].week
             ) {
-                result.push(data[nextIndex]);
-                nextIndex++;
+                result.push(data[nextIndex++]);
             } else {
                 result.push({
                     year: currentYear,
@@ -330,21 +335,20 @@ export class AdminStatsComponent {
         if (data.length === 0) return data;
 
         const result: T[] = [];
-        let currentYear = data[0].year;
-        let currentMonth = data[0].month;
-        let nextIndex = 1;
+        let currentYear = new Date().getFullYear() - 1;
+        let currentMonth = new Date().getMonth() + 1;
+        let nextIndex = 0;
 
-        while (
-            currentYear < data[data.length - 1].year ||
-            (currentYear === data[data.length - 1].year && currentMonth <= data[data.length - 1].month)
-        ) {
+        const yearLimit = new Date().getFullYear();
+        const monthLimit = new Date().getMonth() + 1;
+
+        while (currentYear < yearLimit || (currentYear === yearLimit && currentMonth <= monthLimit)) {
             if (
                 nextIndex < data.length &&
                 currentYear === data[nextIndex].year &&
                 currentMonth === data[nextIndex].month
             ) {
-                result.push(data[nextIndex]);
-                nextIndex++;
+                result.push(data[nextIndex++]);
             } else {
                 result.push({
                     year: currentYear,
