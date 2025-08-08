@@ -411,6 +411,7 @@ export const categories: string[] = [
     'book',
     'brand',
     'comics',
+    'community',
     'computer',
     'ecology',
     'entertainment',
