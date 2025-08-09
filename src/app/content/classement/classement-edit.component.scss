@@ -776,8 +776,11 @@ span.group-options {
 
     .zone-classement.click-enter {
         --click-enter-hover-filter: none;
-        --click-enter-hover-background: var(--over-image-background, var(--drop-list-background)) var(--over-image-url)
-            var(--over-image-background-position) / var(--over-image-background-size);
+        background-image: var(--over-image-url);
+        background-position: var(--over-image-background-position);
+        background-size: var(--over-image-background-size);
+        background-repeat: repeat;
+        background-color: var(--over-image-background, var(--drop-list-background));
     }
 
     .content-box {
