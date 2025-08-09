@@ -95,59 +95,69 @@
 
     :nth-child(1) {
         grid-area: t;
-        & > span {
+        & > :where(span, input) {
             top: 2px;
             left: 2px;
         }
     }
     :nth-child(2) {
         grid-area: tr;
-        & > span {
+        & > :where(span, input) {
             top: 2px;
             right: 2px;
+            text-align: right;
         }
     }
     :nth-child(3) {
         grid-area: r;
 
-        & > span {
+        & > :where(span, input) {
             top: 2px;
             right: 2px;
+            text-align: right;
         }
     }
     :nth-child(4) {
         grid-area: br;
-        & > span {
+        & > :where(span, input) {
             right: 2px;
             bottom: 2px;
+            text-align: right;
         }
     }
     :nth-child(5) {
         grid-area: b;
-        & > span {
+        & > :where(span, input) {
             bottom: 2px;
             left: 2px;
         }
     }
     :nth-child(6) {
         grid-area: bl;
-        & > span {
+        & > :where(span, input) {
             bottom: 2px;
             left: 2px;
         }
     }
     :nth-child(7) {
         grid-area: l;
-        & > span {
+        & > :where(span, input) {
             top: 2px;
             left: 2px;
         }
     }
     :nth-child(8) {
         grid-area: tl;
-        & > span {
+        & > :where(span, input) {
             top: 2px;
             left: 2px;
         }
+    }
+
+    input {
+        margin: 0;
+        border: 0;
+        padding: 2px;
+        width: 150px;
     }
 }

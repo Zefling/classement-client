@@ -1,13 +1,14 @@
 import { Component, input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { OptionGroup } from '../../interface/interface';
+import { Options } from 'src/app/interface/interface';
 
 @Component({
     selector: 'zone-axis',
     templateUrl: './zone-axis.component.html',
     styleUrls: ['./zone-axis.component.scss'],
-    standalone: true,
+    imports: [FormsModule],
 })
 export class ZoneAxisComponent {
-    readonly groups = input<OptionGroup[]>();
+    readonly options = input.required<Options>();
 }

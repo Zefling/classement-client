@@ -392,6 +392,8 @@
       "advance.info": "Advanced options, you can change a lot of things, be careful to keep it usable.",
       "stream.mode": "Stream mode",
       "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
+      "edit.mode": "Axis Editing",
+      "edit.mode.info": "Display the editing of axis names.",
       "border.radius": "Corner radius:",
       "border.spacing": "Spacing:",
       "border.spacing.info": "With a negative value, merges the lines.",

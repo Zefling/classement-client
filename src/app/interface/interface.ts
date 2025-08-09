@@ -152,6 +152,7 @@ export type ThemeOptions = {
     axisLineColor: string;
     axisLineOpacity?: number | undefined;
     axisArrowWidth: number;
+    zoneFieldEdit?: boolean;
     nameWidth: number;
     nameMinHeight: number;
     nameFontSize: number;

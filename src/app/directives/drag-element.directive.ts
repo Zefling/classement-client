@@ -8,19 +8,18 @@ import {
     DragDrop,
     DragDropConfig,
 } from '@angular/cdk/drag-drop';
-
 import {
-  ChangeDetectorRef,
-  Directive,
-  ElementRef,
-  Inject,
-  InjectionToken,
-  NgZone,
-  Optional,
-  Self,
-  SkipSelf,
-  ViewContainerRef,
-  DOCUMENT
+    ChangeDetectorRef,
+    DOCUMENT,
+    Directive,
+    ElementRef,
+    Inject,
+    InjectionToken,
+    NgZone,
+    Optional,
+    Self,
+    SkipSelf,
+    ViewContainerRef,
 } from '@angular/core';
 
 import { CdkDrag } from './drag';
@@ -38,7 +37,6 @@ export const CDK_DROP_LIST = new InjectionToken<CdkDropList>('CdkDropList');
 @Directive({
     selector: '[cdkDragElement]',
     exportAs: 'cdkDragElement',
-    standalone: true,
     host: {
         class: DRAG_HOST_CLASS,
         '[class.cdk-drag-disabled]': 'disabled',

@@ -10,7 +10,6 @@ import { Utils } from 'src/app/tools/utils';
     selector: 'tile-item',
     templateUrl: './tile.component.html',
     styleUrls: ['./tile.component.scss'],
-    standalone: true,
     host: {
         '[style.--over-item-background]': 'item().bgColor',
         '[style.--over-item-text-color]': 'item().txtColor',

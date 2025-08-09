@@ -3,18 +3,28 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+
+    :has(:not(input)) {
+        pointer-events: none;
+    }
 
     & > * {
         display: flex;
         flex: 1;
-        justify-content: var(--h);
-        align-items: var(--v);
+        justify-content: var(--h, flex-start);
+        align-items: var(--v, flex-start);
 
         &:not(:first-child) {
             border-top: var(--over-group-line-size, var(--group-line-size)) solid
                 var(--over-group-line-color, var(--group-line-color));
         }
+    }
+
+    input {
+        margin: 0;
+        border: 0;
+        padding: 2px;
+        width: 150px;
     }
 }
 

@@ -392,6 +392,8 @@
       "advance.info": "Options avancées, vous pouvez modifier beaucoup de choses, faites attention à ce que cela reste utilisable.",
       "stream.mode": "Mode streamer",
       "stream.mode.info": "Ce mode cache l'ajout (sauf par copier-coller ou glissé-déposé), l'édition, la suppression et l’annotation de tuile.",
+      "edit.mode": "Édition des axes",
+      "edit.mode.info": "Afficher l'édition du nom des axes.",
       "border.radius": "Arrondi d'angle :",
       "border.spacing": "Espacement :",
       "border.spacing.info": "Avec une valeur négative, fusionne les lignes.",

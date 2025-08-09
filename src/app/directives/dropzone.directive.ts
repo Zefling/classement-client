@@ -12,7 +12,6 @@ import { Directive } from '@angular/core';
 @Directive({
     selector: '[cdkDropZone], cdk-drop-zone',
     exportAs: 'cdkDropZone',
-    standalone: true,
     providers: [
         // Prevent child drop lists from picking up the same group as their parent.
         { provide: CDK_DROP_LIST_GROUP, useValue: undefined },

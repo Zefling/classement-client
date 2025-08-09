@@ -7,7 +7,6 @@ import { GlobalService } from '../services/global.service';
 @Pipe({
     name: 'fileSize',
     pure: false,
-    standalone: true,
 })
 export class FileSizePipe implements PipeTransform {
     private readonly globalService = inject(GlobalService);

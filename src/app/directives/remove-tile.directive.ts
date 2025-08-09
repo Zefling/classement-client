@@ -2,7 +2,6 @@ import { Directive, HostListener, output } from '@angular/core';
 
 @Directive({
     selector: '[removeTile]',
-    standalone: true,
 })
 export class RemoveTileDirective {
     removeElement = output<void>();

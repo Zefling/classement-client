@@ -21,6 +21,7 @@ import {
     OnInit,
     computed,
     inject,
+    signal,
     viewChild,
     viewChildren,
 } from '@angular/core';
@@ -229,6 +230,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     anilistActive = false;
 
     inputTexts = '';
+
+    editField = signal(false);
 
     @HostBinding('class.option-reduce')
     get optionReduce() {

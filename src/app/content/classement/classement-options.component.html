@@ -105,6 +105,15 @@
           <span [mgTooltip]="'generator.options.stream.mode.info' | transloco" class="icon-info"></span
         ></mg-input-checkbox>
       </mg-input>
+
+      @if (zoneMode.includes(opts.mode)) {
+        <mg-input>
+          <mg-input-checkbox [(ngModel)]="opts.zoneFieldEdit"
+            >{{ 'generator.options.edit.mode' | transloco }}
+            <span [mgTooltip]="'generator.options.edit.mode.info' | transloco" class="icon-info"></span
+          ></mg-input-checkbox>
+        </mg-input>
+      }
     </div>
 
     <div class="tags">

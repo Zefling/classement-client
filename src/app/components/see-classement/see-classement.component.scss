@@ -330,6 +330,7 @@ img {
     position: absolute;
     top: 0px;
     right: 0px;
+    border-radius: 50%;
 
     &::before {
         display: block;

@@ -4,9 +4,13 @@
 </div>
 
 <div class="names">
-  @for (group of groups(); track group) {
+  @for (group of options().groups; track group) {
     <div [style.--h]="group.titleHorizontalPosition" [style.--v]="group.titleVerticalPosition" class="name">
-      <span class="group-title">{{ group.title }}</span>
+      @if (options().zoneFieldEdit) {
+        <input class="group-title" [(ngModel)]="group.title" />
+      } @else {
+        <span class="group-title">{{ group.title }}</span>
+      }
     </div>
   }
 </div>

@@ -343,10 +343,10 @@
             @if (opts.groups?.length) {
               @switch (opts.mode) {
                 @case ('iceberg') {
-                  <zone-area [groups]="opts.groups"></zone-area>
+                  <zone-area [options]="opts" />
                 }
                 @case ('axis') {
-                  <zone-axis [groups]="opts.groups"></zone-axis>
+                  <zone-axis [options]="opts" />
                 }
               }
             }
