@@ -267,6 +267,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     selectionGroup: FormattedGroup | null = null;
     selectionIndex: number | null = null;
     selectionDiv: HTMLDivElement | null = null;
+    selectionDrag: CdkDragElement<any> | null = null;
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -415,16 +416,16 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.global.zoomActive.set(false);
     }
 
-    updateTitle() {
+    private updateTitle() {
         this.global.setTitle('menu.edit');
     }
 
-    initAPI() {
+    private initAPI() {
         this.imdbActive = this.imdbService.isActive();
         this.anilistActive = this.preferencesService.preferences.api.anilist;
     }
 
-    initWithParams(params: Params) {
+    private initWithParams(params: Params) {
         this.lockCategory = false;
 
         if (params['id'] && params['id'] !== 'new') {
@@ -606,7 +607,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             });
     }
 
-    loadServerClassement(classement: Classement, fork: boolean, forkOptions: string[] | undefined) {
+    private loadServerClassement(classement: Classement, fork: boolean, forkOptions: string[] | undefined) {
         this.classement = classement;
         this.options = {
             ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
@@ -653,7 +654,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.memory.addUndo(this);
     }
 
-    resetByOptions(item: FileType, forkOptions: string[]) {
+    private resetByOptions(item: FileType, forkOptions: string[]) {
         if (item) {
             if (!forkOptions.includes('txt-color')) {
                 item.txtColor = undefined;
@@ -816,7 +817,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         });
     }
 
-    resetCache() {
+    private resetCache() {
         this._optionsCache = Utils.jsonCopy(this.options);
         this.global.withChange.set(0);
         this.keyboard.clearSelection(this);
@@ -1087,10 +1088,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         event: KeyboardEvent,
         group: FormattedGroup | null,
         item: FileType,
-        div: HTMLDivElement,
         index: number | null = null,
+        drag: CdkDragElement<any> | null = null,
     ) {
-        this.keyboard.selectItemByKey(this, event, group, item, div, index);
+        this.keyboard.selectItemByKey(this, event, group, item, index, drag);
     }
 
     selectionGroupForItem(group: FormattedGroup | null, indexTarget: number | null = null) {
@@ -1101,17 +1102,19 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         if (this.selectionTile) {
             const rect = document.getElementById('zone')!.getBoundingClientRect();
             const index = this.list.indexOf(this.selectionTile);
-            const item = this.list.splice(index, 1)[0]!;
-            const rctItem = document.getElementById(item.id)!.getBoundingClientRect();
-            item.x = Math.min(
-                Math.max(0, ((event as any)?.clientX ?? 0) - rect.left - rctItem.width / 2),
-                rect.width - rctItem.width,
-            );
-            item.y = Math.min(
-                Math.max(0, ((event as any)?.clientY ?? 0) - rect.top - rctItem.height / 2),
-                rect.height - rctItem.height,
-            );
-            this.groups[0].list.push(item);
+            if (index !== -1) {
+                const item = this.list.splice(index, 1)[0]!;
+                const rctItem = document.getElementById(item.id)!.getBoundingClientRect();
+                item.x = Math.min(
+                    Math.max(0, ((event as any)?.clientX ?? 0) - rect.left - rctItem.width / 2),
+                    rect.width - rctItem.width,
+                );
+                item.y = Math.min(
+                    Math.max(0, ((event as any)?.clientY ?? 0) - rect.top - rctItem.height / 2),
+                    rect.height - rctItem.height,
+                );
+                this.groups[0].list.push(item);
+            }
         }
     }
 

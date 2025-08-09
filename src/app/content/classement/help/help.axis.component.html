@@ -40,4 +40,27 @@
 
   <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>⇧</kbd> + <kbd>Z</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.shift.z' | transloco }}</dd>
+
+  @if (keyboard.selectMainLine()) {
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
+    <dd>{{ 'generator.help.default.shortcut.change.line' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
+    <dd>{{ 'generator.help.zone.shortcut.main.line.up' | transloco }}</dd>
+  } @else {
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd>/<kbd>↑</kbd>/<kbd>↓</kbd>
+    </dt>
+    <dd>{{ 'generator.help.zone.shortcut.move.normal' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>←</kbd>/<kbd>→</kbd>/<kbd>↑</kbd>/<kbd>↓</kbd>
+    </dt>
+    <dd>{{ 'generator.help.zone.shortcut.move.slow' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.delete' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.shortcut.ctrl.delete' | transloco }}</dd>
+  }
 </dl>

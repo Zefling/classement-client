@@ -145,7 +145,7 @@
                             #itemDiv
                             (clickEnter)="selectItem($event, group, item, index, itemDiv)"
                             (clickOutside)="selectItem()"
-                            (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
+                            (keydown)="selectItemByKey($event, group, item, index)"
                             (ngInit)="selectionDiv = itemDiv"
                             [contextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
@@ -228,9 +228,10 @@
               cdkDropZone
               [cdkDropListData]="{ list: groups[0].list }"
               (cdkDropListDropped)="drop($event)"
-              (clickEnter)="clickZone($event)"
+              (clickEnter)="clickZone($event); selectionGroupForItem(groups[0])"
               (dblclick)="createTile($event)"
               (auxclick)="stopEvent($event)"
+              (keydown)="selectMoveItem($event, groups[0].list)"
             >
               @if (options.groups?.length) {
                 @switch (options.mode) {
@@ -258,6 +259,11 @@
                     [contextMenu]="{ contextMenu, data: { item, group: groups[0], index } }"
                     [style.--over-item-background]="item.bgColor"
                     [style.--over-item-text-color]="item.txtColor"
+                    #itemDiv
+                    (clickEnter)="selectItem($event, groups[0], item, index, itemDiv)"
+                    (clickOutside)="selectItem()"
+                    (keydown)="selectItemByKey($event, groups[0], item, index, element)"
+                    (ngInit)="selectionDiv = itemDiv; selectionDrag = element"
                   >
                     <div
                       class="content content-render"
@@ -314,7 +320,7 @@
                               : selectionGroupForItem(group, index)
                           "
                           (clickOutside)="selectItem()"
-                          (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
+                          (keydown)="selectItemByKey($event, group, item, index)"
                         >
                           @if (item) {
                             <div
@@ -445,7 +451,7 @@
                               #itemDiv
                               (clickEnter)="selectItem($event, group, item, index, itemDiv)"
                               (clickOutside)="selectItem()"
-                              (keydown)="selectItemByKey($event, group, item, itemDiv, index)"
+                              (keydown)="selectItemByKey($event, group, item, index)"
                               (ngInit)="selectionDiv = itemDiv"
                               [contextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
@@ -557,7 +563,7 @@
                   #itemDiv
                   (clickEnter)="selectItem($event, null, item, index, itemDiv)"
                   (clickOutside)="selectItem()"
-                  (keydown)="selectItemByKey($event, null, item, itemDiv, index)"
+                  (keydown)="selectItemByKey($event, null, item, index)"
                   (ngInit)="selectionDiv = itemDiv"
                   [id]="item.id"
                 >

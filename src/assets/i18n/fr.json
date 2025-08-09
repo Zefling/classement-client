@@ -850,6 +850,13 @@
           "move": "Déplacer la tuile sélectionnée dans la direction choisie (par intervertissement).",
           "main.line.up": "Copier la tuile sélectionnée depuis la liste principale vers la dernière cellule disponible."
         }
+      },
+      "zone": {
+        "shortcut": {
+          "move.normal": "Déplacer la tuile sélectionnée dans la direction choisie (de 15px par pas).",
+          "move.slow": "Déplacer la tuile sélectionnée dans la direction choisie (de 1px par pas).",
+          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale vers la zone de déplacement."
+        }
       }
     }
   },

@@ -79,8 +79,8 @@ Current installation in this [website](https://classement.org/).
         - ✅ Tierlist
         - ✅ Teams
         - ✅ Columns
-        - ⬜ Iceberg
-        - ⬜ Axis
+        - ✅ Iceberg
+        - ✅ Axis
         - ✅ Bingo
 - ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     - ✅ Create user

@@ -851,6 +851,13 @@
           "move": "Move the selected tile in the chosen direction (by swapping).",
           "main.line.up": "Copy the selected tile from the main list to the last available cell."
         }
+      },
+      "zone": {
+        "shortcut": {
+          "move.normal": "Move the selected tile in the chosen direction (15px per step).",
+          "move.slow": "Move the selected tile in the chosen direction (1px per step).",
+          "main.line.up": "Move the selected tile from the main list to the movement zone."
+        }
       }
     }
   },

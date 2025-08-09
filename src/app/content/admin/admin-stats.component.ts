@@ -270,7 +270,6 @@ export class AdminStatsComponent {
             const [currentDateStr] = currentDate.toISOString().split('T');
 
             if (nextIndex < data.length && currentDateStr === data[nextIndex].date) {
-                console.log(data[nextIndex]);
                 result.push(data[nextIndex++]);
             } else {
                 result.push({
@@ -281,7 +280,6 @@ export class AdminStatsComponent {
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
-        console.log(data, result);
         return result;
     }
 
