@@ -63,4 +63,9 @@
     </dt>
     <dd>{{ 'generator.help.shortcut.ctrl.delete' | transloco }}</dd>
   }
+
+  <dt [class.disabled]="!keyboard.selectTile()">
+    <kbd>{{ 'generator.help.shortcut.key.esc' | transloco }}</kbd>
+  </dt>
+  <dd>{{ 'generator.help.shortcut.esc' | transloco }}</dd>
 </dl>

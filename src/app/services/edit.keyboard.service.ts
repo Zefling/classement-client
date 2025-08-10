@@ -56,6 +56,12 @@ export abstract class EditKeyBoardService {
                         this.moveDown(component, event, group, index, indexGp);
                     }
                     break;
+                case 'Home':
+                    this.moveLeft(component, event, group, index, indexGp, true);
+                    break;
+                case 'End':
+                    this.moveRight(component, event, group, index, indexGp, true);
+                    break;
                 case 'Delete':
                     if (group) {
                         component.removeFromGroup(group, index);
@@ -73,9 +79,10 @@ export abstract class EditKeyBoardService {
         group: FileType[],
         index: number,
         indexGp: number,
+        limit: boolean = false,
     ) {
         if (index > 0) {
-            this.moveInset(component, event, group, group.splice(index, 1)[0], index - 1, indexGp);
+            this.moveInset(component, event, group, group.splice(index, 1)[0], limit ? 0 : index - 1, indexGp);
         }
     }
 
@@ -106,9 +113,17 @@ export abstract class EditKeyBoardService {
         group: FileType[],
         index: number,
         indexGp: number,
+        limit: boolean = false,
     ) {
         if (index < group.length) {
-            this.moveInset(component, event, group, group.splice(index, 1)[0], index + 1, indexGp);
+            this.moveInset(
+                component,
+                event,
+                group,
+                group.splice(index, 1)[0],
+                limit ? group.length : index + 1,
+                indexGp,
+            );
         }
     }
 
@@ -395,6 +410,8 @@ export abstract class EditKeyBoardService {
             case 'ArrowRight':
             case 'ArrowUp':
             case 'ArrowDown':
+            case 'Home':
+            case 'End':
                 if (event.ctrlKey) {
                     component.selectionTile = item;
                     component.selectionGroup = group;

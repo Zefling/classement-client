@@ -798,7 +798,9 @@
           "middle.click": "Middle click",
           "double.click": "Double click",
           "delete": "Delete",
-          "esc": "Esc"
+          "esc": "Esc",
+          "home": "Home",
+          "end": "End"
         },
         "title": "Keyboard shortcuts",
         "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
@@ -819,7 +821,8 @@
         "shortcut": {
           "in.line": "Move the selected tile left or right within a line.",
           "change.line": "Move the selected tile to the upper or lower line.",
-          "main.line.up": "Move the selected tile from the main list to the last line of the ranking."
+          "main.line.up": "Move the selected tile from the main list to the last line of the ranking.",
+          "home.end": "Move the tile to the beginning or end of the line."
         }
       },
       "teams": {
@@ -835,7 +838,8 @@
         "shortcut": {
           "in.line": "Move the selected tile up or down within the column.",
           "change.line": "Move the selected tile to the left or right side line.",
-          "main.line.up": "Copy the selected tile from the main list to the first column of the ranking."
+          "main.line.up": "Copy the selected tile from the main list to the first column of the ranking.",
+          "home.end": "Move the tile to the beginning or end of the column."
         }
       },
       "iceberg": {

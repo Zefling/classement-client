@@ -51,6 +51,12 @@
   }
 
   <dt [class.disabled]="!keyboard.selectTile()">
+    <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+    <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+  </dt>
+  <dd>{{ 'generator.help.default.shortcut.home.end' | transloco }}</dd>
+
+  <dt [class.disabled]="!keyboard.selectTile()">
     <kbd>{{ 'generator.help.shortcut.key.esc' | transloco }}</kbd>
   </dt>
   <dd>{{ 'generator.help.shortcut.esc' | transloco }}</dd>

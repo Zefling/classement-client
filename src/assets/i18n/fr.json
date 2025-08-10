@@ -797,7 +797,9 @@
           "middle.click": "Clic central",
           "double.click": "Double clic",
           "delete": "Suppr",
-          "esc": "Échap"
+          "esc": "Échap",
+          "home": "⭦",
+          "end": "Fin"
         },
         "title": "Raccourcis clavier",
         "ctrl.v": "Copier une ou plusieurs images qui seront ajoutées. Fonctionne aussi avec du texte, où chaque ligne de texte créée une nouvelle tuile.",
@@ -818,7 +820,8 @@
         "shortcut": {
           "in.line": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur d'une ligne.",
           "change.line": "Déplacer la tuile sélectionnée dans la ligne supérieure ou inférieure.",
-          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement."
+          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement.",
+          "home.end": "Déplacer la tuile au début ou à la fin de la ligne."
         }
       },
       "teams": {
@@ -834,7 +837,8 @@
         "shortcut": {
           "in.line": "Déplacer la tuile sélectionnée vers le haut ou vers le bas à l'intérieur de la colonne.",
           "change.line": "Déplacer la tuile sélectionnée dans la colonne latérale gauche ou droite.",
-          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la première colonne du classement."
+          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la première colonne du classement.",
+          "home.end": "Déplacer la tuile au début ou à la fin de la colonne."
         }
       },
       "iceberg": {

@@ -40,12 +40,24 @@
 
     <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
     <dd>{{ 'generator.help.columns.shortcut.main.line.up' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.default.shortcut.home.end' | transloco }}</dd>
   } @else {
     <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
     <dd>{{ 'generator.help.columns.shortcut.change.line' | transloco }}</dd>
 
     <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd></dt>
     <dd>{{ 'generator.help.columns.shortcut.in.line' | transloco }}</dd>
+
+    <dt [class.disabled]="!keyboard.selectTile()">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.columns.shortcut.home.end' | transloco }}</dd>
 
     <dt [class.disabled]="!keyboard.selectTile()">
       <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.delete' | transloco }}</kbd>
