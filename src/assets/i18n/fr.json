@@ -1143,6 +1143,9 @@
     "reset": {
       "groups": "😊 Remise à zéro des groupes."
     },
+    "category": {
+      "success": "😊 Catégorie mise à jour avec succès."
+    },
     "add": {
       "success": "😊 Ajout du classement « %title% » réussi."
     },

@@ -225,10 +225,10 @@
     },
     "date": "日付",
     "category": {
-      "name": "カテゴリー",
+      "name": "カテゴリ",
       "edit.title": "カテゴリを編集する",
       "current": "現在のカテゴリ:",
-      "new": "新たなカテゴリー:",
+      "new": "新たなカテゴリ:",
       "cancel": "キャンセル",
       "edit": "編集する"
     },
@@ -379,7 +379,7 @@
       "cancel": "キャンセル",
       "title": "ランキングのタイトル：",
       "title.color": "タイトルのテキストの色：",
-      "group": "カテゴリー：",
+      "group": "カテゴリ：",
       "description": "説明:",
       "mode": "モード:",
       "tags": "タグ:",
@@ -698,7 +698,7 @@
     },
     "json": {
       "title": "タイトル：",
-      "category": "カテゴリー：",
+      "category": "カテゴリ：",
       "count.group": "グループ数：",
       "count.item": "アイテム数：",
       "cancel": "キャンセル",
@@ -1022,8 +1022,8 @@
     "back.category": "カテゴリのリストに戻る",
     "back.search": "検索に戻る",
     "title": "タイトル",
-    "category": "カテゴリー",
-    "categories": "カテゴリー",
+    "category": "カテゴリ",
+    "categories": "カテゴリ",
     "mode": "モード",
     "classements": "ランキング",
     "see.derivatives": "他のバージョンのランキングを見る",
@@ -1143,6 +1143,9 @@
     },
     "reset": {
       "groups": "😊 グループをリセットします。"
+    },
+    "category": {
+      "success": "😊 カテゴリが正常に更新されました。"
     },
     "add": {
       "success": "😊 「％title％」のランキングを追加しました。"

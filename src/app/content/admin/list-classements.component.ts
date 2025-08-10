@@ -71,8 +71,8 @@ export class ListClassementsComponent {
     currentClassement?: Classement;
 
     class?: Classement;
-    catagories = categories;
-    catagoriesList = categories.map<Select2Option>(cat => ({ label: cat, value: cat }));
+    categoriesList = categories.map<Select2Option>(cat => ({ label: cat, value: cat }));
+    newCategory?: string;
 
     @Output()
     updateClassements = new EventEmitter<Classement[]>();

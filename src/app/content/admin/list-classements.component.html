@@ -127,10 +127,10 @@
       <mg-input class="s-6 s-12-s">
         <mg-input-label>{{ 'list.category.new' | transloco }}</mg-input-label>
         <mg-input-select
-          #newCategory
-          [value]="currentClassement.category"
-          [data]="catagoriesList"
+          [ngModel]="currentClassement.category"
+          [data]="categoriesList"
           [templates]="templatesModes"
+          (ngModelChange)="newCategory = $event"
           overlay
           ><ng-template #templatesModes let-label="label">{{
             'category.' + label | transloco
@@ -140,7 +140,7 @@
     </div>
     <div class="buttons">
       <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | transloco }}</button>
-      <button class="primary" (click)="changeStatusCurrentClassement(newCategory.getValue(), 'category')">
+      <button class="primary" (click)="changeStatusCurrentClassement(newCategory, 'category')">
         {{ 'list.category.edit' | transloco }}
       </button>
     </div>
