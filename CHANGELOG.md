@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 4.3.1 (2025-08-11)
+
+#### Standalone web app
+
+- Add title in `alt` #120
+
+#### With API activated only
+
+- Admin
+    - fix category edit
+    - stats: fix 53rd week
+
 ### 4.3.0 (2025-08-10)
 
 #### Standalone web app
