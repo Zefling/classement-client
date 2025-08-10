@@ -1,5 +1,49 @@
 # Changelog - Standalone web app & API
 
+### 4.3.0 (2025-08-10)
+
+#### Standalone web app
+
+- Improve tile selection on keyboard
+- Add keyboard navigation:
+    - Main list: #114
+        - `ctrl` + `←` / `→` / `home` / `end`: to move in main line
+        - `ctrl` + `↑` : move / copy in ranking
+    - Tierlist / Teams / Bingo: #114
+        - `ctrl` + `←` / `→` / `home` / `end`: to move in line
+        - `ctrl` + `↑` / `↓`: change line
+        - `ctrl` + `delete`: back to main list
+    - Columns: #114
+        - `ctrl` + `↑` / `↓` / `home` / `end`: to move in column
+        - `ctrl` + `←` / `→`: change column
+        - `ctrl` + `delete`: back to main list
+    - Iceberg / Axis: #119
+        - `ctrl` + `↑` / `↓` / `←` / `→`: move in zone (15px step)
+        - `ctrl` + `⇧` + `↑` / `↓` / `←` / `→`: move in zone (1px step)
+        - `ctrl` + `delete`: back to main list
+    - Update **Help** panel (?) with new shortcuts
+- Replace `ctrl` + `u` by `ctrl` + `⇧` + `Z`
+- Add **Anilist** dialog to import anime or manga tiles #111
+- Add `alt` text in image export dialog #117
+- Add badges in **Home** page #113
+- Add help (?) ni **Theme** dialog to create a new theme
+- Add “community” category
+- Iceberg / Axis:
+    - Ability to edit section titles directly in the zone #118
+    - Fix background on mouse over
+    - Fix current theme
+
+> Update to **Angular** `20.1`, **Magma** `0.8.5`
+
+#### With API activated only
+
+- Fix deletion of unwanted text #112
+- Admin: fix stats #115
+
+> Required: API `1.32.1`
+
+---
+
 ### 4.2.0 (2025-06-29)
 
 #### Standalone web app
