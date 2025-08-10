@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import {
+    Logger,
+    LoggerLevel,
     MagmaInput,
     MagmaInputElement,
     MagmaInputSelect,
@@ -21,7 +23,6 @@ import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 

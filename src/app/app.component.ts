@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { Event, Router, Scroll } from '@angular/router';
 
-import { MagmaDialog } from '@ikilote/magma';
+import { Logger, LoggerLevel, MagmaDialog } from '@ikilote/magma';
 
 import { filter } from 'rxjs';
 
@@ -21,7 +21,6 @@ import { PreferencesMagmaDialog } from './components/preferences/preferences.com
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
-import { Logger, LoggerLevel } from './services/logger';
 import { PreferencesService } from './services/preferences.service';
 
 @Component({
@@ -91,6 +90,8 @@ export class AppComponent implements DoCheck {
     private route?: string;
 
     constructor() {
+        Logger.suffix = '[classement]';
+
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit().open();
             this.route = route;

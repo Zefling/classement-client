@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
+    Logger,
     MagmaDialog,
     MagmaInput,
     MagmaInputElement,
@@ -14,6 +15,8 @@ import {
     MagmaTableModule,
     MagmaTooltipDirective,
     downloadFile,
+    normalizeString,
+    toISODate,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -22,9 +25,7 @@ import { FormattedInfos } from 'src/app/interface/interface';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 import { ImportJsonComponent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
@@ -122,11 +123,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     sortableFilter = (key: string, item: FormattedInfos, _index: number): boolean => {
         return (
             (!key.startsWith('#') &&
-                Utils.normalizeString(item.options.title || this.translate.translate('list.title.undefined')).includes(
-                    Utils.normalizeString(key),
+                normalizeString(item.options.title || this.translate.translate('list.title.undefined')).includes(
+                    normalizeString(key),
                 )) ||
             (key.startsWith('#') &&
-                item.options.tags?.map(e => `#${Utils.normalizeString(e)}`).includes(`${Utils.normalizeString(key)}`))
+                item.options.tags?.map(e => `#${normalizeString(e)}`).includes(`${normalizeString(key)}`))
         );
     };
 
@@ -170,8 +171,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         // data
                         groups: info.data.groups,
                         list: info.data.list,
-                        dateCreate: Utils.toISODate(info.infos.dateCreate || info.infos.data),
-                        dateChange: Utils.toISODate(info.infos.dateChange),
+                        dateCreate: toISODate(info.infos.dateCreate || info.infos.data),
+                        dateChange: toISODate(info.infos.dateChange),
                     });
                 });
             }

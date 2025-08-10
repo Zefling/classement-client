@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+import { Logger, LoggerLevel, getCookie, removeCookie, setCookie } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
@@ -10,7 +11,6 @@ import { environment } from 'src/environments/environment';
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
-import { Logger, LoggerLevel } from './logger';
 
 import { Classement, Login, Message, MessageError, SortDirection, SortUserCol, User } from '../interface/interface';
 import { Utils } from '../tools/utils';
@@ -97,7 +97,7 @@ export class APIUserService extends APICommon {
 
     initProfile(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.token = Utils.getCookie('x-token') || undefined;
+            this.token = getCookie('x-token') || undefined;
             if (this.token) {
                 this.http.get<Message<User>>(`${environment.api.path}api/user/current`, this.header()).subscribe({
                     next: result => {
@@ -116,7 +116,7 @@ export class APIUserService extends APICommon {
                     error: (result: HttpErrorResponse) => {
                         this.logged = false;
                         if ((result.error as MessageError).errorCode === 1030) {
-                            Utils.removeCookie('x-token');
+                            removeCookie('x-token');
                         }
                         reject(this.logger.error('invalide token', result));
                     },
@@ -170,7 +170,7 @@ export class APIUserService extends APICommon {
                     this.token = result.message.token;
                     this.logged = true;
 
-                    Utils.setCookie('x-token', this.token);
+                    setCookie('x-token', this.token);
 
                     this.initProfile()
                         .then(() => {
@@ -178,7 +178,7 @@ export class APIUserService extends APICommon {
                         })
                         .catch(errorCode => {
                             if ((errorCode.error as MessageError).errorCode === 1030) {
-                                Utils.removeCookie('x-token');
+                                removeCookie('x-token');
                             }
                             reject(errorCode);
                         });
@@ -198,7 +198,7 @@ export class APIUserService extends APICommon {
                     this.token = result.message.token;
                     this.logged = true;
 
-                    Utils.setCookie('x-token', this.token);
+                    setCookie('x-token', this.token);
 
                     this.initProfile()
                         .then(() => {
@@ -206,7 +206,7 @@ export class APIUserService extends APICommon {
                         })
                         .catch((errorCode: HttpErrorResponse) => {
                             if ((errorCode.error as MessageError).errorCode === 1030) {
-                                Utils.removeCookie('x-token');
+                                removeCookie('x-token');
                             }
                             reject(errorCode);
                         });
@@ -259,7 +259,7 @@ export class APIUserService extends APICommon {
             this.http.delete<Message<Login>>(`${environment.api.path}api/logout`, this.header()).subscribe({
                 next: () => {
                     this.reset();
-                    Utils.removeCookie('x-token');
+                    removeCookie('x-token');
                     this.afterLogout.next();
                     resolve();
                 },

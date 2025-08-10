@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { LightDark } from '@ikilote/magma';
+import { LightDark, Logger, LoggerLevel } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject, last, map, tap } from 'rxjs';
@@ -18,7 +18,6 @@ import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
-import { Logger, LoggerLevel } from './logger';
 
 import { Message, Theme, ThemeData } from '../interface/interface';
 

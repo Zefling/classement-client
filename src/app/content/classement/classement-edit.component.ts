@@ -32,6 +32,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import html2canvas from '@html2canvas/html2canvas';
 import {
     ContextMenuItem,
+    Logger,
+    LoggerLevel,
     MagmaClickEnterDirective,
     MagmaClickOutsideDirective,
     MagmaColorPicker,
@@ -51,7 +53,10 @@ import {
     MagmaTooltipDirective,
     clipboardWrite,
     downloadFile,
+    jsonCopy,
+    objectsAreSame,
     randomNumber,
+    toISODate,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -79,7 +84,6 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
 import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
@@ -332,7 +336,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 if (
                     withChange &&
                     this.options &&
-                    !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
+                    !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
                 ) {
                     this.memory.addUndo(this);
                 }
@@ -388,16 +392,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         // fix category with select2
         this.options.category ??= '';
 
-        if (
-            this.options &&
-            !Utils.objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
-        ) {
+        if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
             this.globalChange();
             this.logger.log('Option change');
             if (!this.global.withChange()) {
                 this.change();
             }
-            this._optionsCache = Utils.jsonCopy(this.options);
+            this._optionsCache = jsonCopy(this.options);
         }
 
         this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
@@ -494,12 +495,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
                 this.location.replaceState('/edit/new');
                 if (themes) {
-                    defaultOptions = Utils.jsonCopy(defaultTheme(themes[0])).options;
+                    defaultOptions = jsonCopy(defaultTheme(themes[0])).options;
                     defaultOptions.mode = paramMode;
                 }
             }
             if (!defaultOptions) {
-                defaultOptions = Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
+                defaultOptions = jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options);
                 if (this.preferencesService.preferences.mode !== 'choice') {
                     defaultOptions.mode = this.preferencesService.preferences.mode;
                 }
@@ -511,7 +512,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 ...{ showAdvancedOptions: false },
             };
 
-            this.groups = this.global.jsonTmp?.groups || Utils.jsonCopy(defaultGroup);
+            this.groups = this.global.jsonTmp?.groups || jsonCopy(defaultGroup);
             this.list = this.global.jsonTmp?.list || [];
             this.addIds();
             this.id = undefined;
@@ -586,7 +587,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
 
                 this.options = {
-                    ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
+                    ...jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
                     ...data.infos.options,
                     ...{ showAdvancedOptions: false },
                 };
@@ -613,7 +614,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private loadServerClassement(classement: Classement, fork: boolean, forkOptions: string[] | undefined) {
         this.classement = classement;
         this.options = {
-            ...Utils.jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
+            ...jsonCopy(defaultTheme(this.preferencesService.preferences.theme).options),
             ...classement.data.options,
             ...{ showAdvancedOptions: false, category: classement.category },
         };
@@ -821,7 +822,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     private resetCache() {
-        this._optionsCache = Utils.jsonCopy(this.options);
+        this._optionsCache = jsonCopy(this.options);
         this.global.withChange.set(0);
         this.keyboard.clearSelection(this);
     }
@@ -1473,8 +1474,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             parentId: this.classement?.parentId,
             banner: this.classement?.banner,
             linkId: this.classement?.linkId,
-            dateCreate: Utils.toISODate(this.classement?.dateCreate, true),
-            dateChange: Utils.toISODate(this.classement?.dateChange),
+            dateCreate: toISODate(this.classement?.dateCreate, true),
+            dateChange: toISODate(this.classement?.dateChange),
         };
     }
 

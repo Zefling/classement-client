@@ -12,6 +12,8 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import {
+    Logger,
+    LoggerLevel,
     MagmaDialog,
     MagmaInput,
     MagmaInputColor,
@@ -28,7 +30,6 @@ import { Subject, debounceTime } from 'rxjs';
 
 import { FileHandle, FileString, Options } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 
 import { ClassementEditComponent } from './classement-edit.component';
 

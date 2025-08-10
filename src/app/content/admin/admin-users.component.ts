@@ -4,6 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { ActivatedRoute } from '@angular/router';
 
 import {
+    Logger,
+    LoggerLevel,
     MagmaClickEnterDirective,
     MagmaDialog,
     MagmaInput,
@@ -26,7 +28,6 @@ import { SortDirection, SortUserCol, User } from 'src/app/interface/interface';
 import { Role } from 'src/app/services/api.moderation';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ListClassementsComponent } from './list-classements.component';

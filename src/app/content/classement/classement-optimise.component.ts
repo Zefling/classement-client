@@ -1,11 +1,10 @@
 import { Component, OnInit, inject, input } from '@angular/core';
 
-import { MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
+import { Logger, MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger } from 'src/app/services/logger';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 
 @Component({

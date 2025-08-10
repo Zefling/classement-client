@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { Subject } from 'rxjs';
+import { Logger, LoggerLevel } from '@ikilote/magma';
 
-import { Logger, LoggerLevel } from './logger';
+import { Subject } from 'rxjs';
 
 interface AniList {
     data: {

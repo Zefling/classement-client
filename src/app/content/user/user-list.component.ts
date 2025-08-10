@@ -15,6 +15,7 @@ import {
     MagmaTabs,
     MagmaTabsModule,
     MagmaTooltipDirective,
+    normalizeString,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -130,11 +131,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     sortableFilter = (key: string, item: Classement, _index: number): boolean => {
         return (
-            (!key.startsWith('#') && Utils.normalizeString(item.name).includes(Utils.normalizeString(key))) ||
+            (!key.startsWith('#') && normalizeString(item.name).includes(normalizeString(key))) ||
             (key.startsWith('#') &&
-                item?.data?.options?.tags
-                    ?.map(e => `#${Utils.normalizeString(e)}`)
-                    .includes(`${Utils.normalizeString(key)}`))
+                item?.data?.options?.tags?.map(e => `#${normalizeString(e)}`).includes(`${normalizeString(key)}`))
         );
     };
 

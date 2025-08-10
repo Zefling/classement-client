@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 
+import { Logger, LoggerLevel, jsonCopy, toISODate } from '@ikilote/magma';
+
 import { Subject } from 'rxjs';
 
 import { DataExtra } from './data.service';
-import { Logger, LoggerLevel } from './logger';
 
 import { Data, FormattedInfos, FormattedInfosData, IndexedData, PreferencesData, Theme } from '../interface/interface';
-import { Utils } from '../tools/utils';
 
 enum Store {
     infos = 'classementInfos',
@@ -67,8 +67,8 @@ export class DBService {
     clone(item: FormattedInfos, title: string, newTemplate: boolean = false): Promise<FormattedInfos> {
         return new Promise(async (resolve, reject) => {
             const formatData: any = {};
-            const cloneItem = Utils.jsonCopy(item);
-            cloneItem.dateCreate = Utils.toISODate('', true);
+            const cloneItem = jsonCopy(item);
+            cloneItem.dateCreate = toISODate('', true);
             cloneItem.options.title = title;
             cloneItem.rankingId = undefined;
             if (newTemplate) {
@@ -136,7 +136,7 @@ export class DBService {
         return new Promise(async (resolve, reject) => {
             let update = true;
             if (!theme.id) {
-                theme.id = await this._digestMessage(Utils.toISODate('', true));
+                theme.id = await this._digestMessage(toISODate('', true));
                 update = false;
             }
             this._getDB()
@@ -236,8 +236,8 @@ export class DBService {
             infos: {
                 id,
                 options: data.options,
-                dateCreate: Utils.toISODate(data.dateCreate, true),
-                dateChange: Utils.toISODate(data.dateChange),
+                dateCreate: toISODate(data.dateCreate, true),
+                dateChange: toISODate(data.dateChange),
                 groupsLength: data.groups?.length || 0,
                 listLength:
                     (data.list?.length || 0) +

@@ -16,6 +16,8 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import {
+    Logger,
+    LoggerLevel,
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
@@ -27,6 +29,7 @@ import {
     MagmaInputText,
     MagmaInputTextarea,
     MagmaTooltipDirective,
+    jsonCopy,
     randomNumber,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -47,13 +50,11 @@ import {
 } from 'src/app/interface/interface';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { palette } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 import {
     defaultGroup,
@@ -301,7 +302,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     protected updateAction(action: string, value: any) {
         if (action === 'groups') {
-            this.editor.groups = Utils.jsonCopy(value);
+            this.editor.groups = jsonCopy(value);
         } else if (action === 'sizeX') {
             if (this.editor.groups[0].list.length < value) {
                 this.editor.groupsControl(this.editor.groups, this.editor.options);

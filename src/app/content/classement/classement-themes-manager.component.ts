@@ -10,6 +10,7 @@ import {
     MagmaMessage,
     MagmaTabsModule,
     downloadFile,
+    normalizeFileName,
 } from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
@@ -19,7 +20,6 @@ import { APIThemeService } from 'src/app/services/api.theme.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { Utils } from 'src/app/tools/utils';
 
 @Component({
     selector: 'classement-themes-manager',
@@ -197,7 +197,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
         downloadFile(
             JSON.stringify(theme),
-            Utils.normalizeFileName(`theme-${theme.options.mode}-${this.themeName}`) + '.json',
+            normalizeFileName(`theme-${theme.options.mode}-${this.themeName}`) + '.json',
             'text/plain',
         );
         this.exportCancel();

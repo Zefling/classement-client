@@ -15,6 +15,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import html2canvas from '@html2canvas/html2canvas';
 import {
+    Logger,
+    LoggerLevel,
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
@@ -42,7 +44,6 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { FileFormatExport, GlobalService } from 'src/app/services/global.service';
-import { Logger, LoggerLevel } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';

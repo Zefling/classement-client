@@ -1,13 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+import { Logger } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { environment } from 'src/environments/environment';
 
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
-import { Logger } from './logger';
 
 import { Message, PeriodStatsResult, StatsResult, TargetStatsResult } from '../interface/interface';
 

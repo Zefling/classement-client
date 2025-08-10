@@ -2,14 +2,12 @@ import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inj
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 
-import { downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
+import { Logger, LoggerLevel, downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-
-import { Logger, LoggerLevel } from './logger';
 
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
 import {

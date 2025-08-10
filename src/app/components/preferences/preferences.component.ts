@@ -13,6 +13,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 
 import {
     LightDark,
+    Logger,
     MagmaClickOutsideDirective,
     MagmaDialog,
     MagmaInput,
@@ -40,7 +41,6 @@ import {
 } from 'src/app/content/classement/classement-default';
 import { ModeNames } from 'src/app/interface/interface';
 import { GlobalService } from 'src/app/services/global.service';
-import { Logger } from 'src/app/services/logger';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
 

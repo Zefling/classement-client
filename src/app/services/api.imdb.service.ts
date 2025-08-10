@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+import { Logger, LoggerLevel } from '@ikilote/magma';
+
 import { Subject, firstValueFrom } from 'rxjs';
 
-import { Logger, LoggerLevel } from './logger';
 import { PreferencesService } from './preferences.service';
 
 import { MovieSearch, PageResult } from '../interface/movie';

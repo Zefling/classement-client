@@ -1,10 +1,9 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
+import { Logger, LoggerLevel } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { environment } from 'src/environments/environment';
-
-import { Logger, LoggerLevel } from './logger';
 
 import { MessageError } from '../interface/interface';
 

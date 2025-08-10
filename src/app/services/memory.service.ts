@@ -1,12 +1,11 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import { Md5 } from 'ts-md5';
+import { Logger, LoggerLevel, jsonCopy } from '@ikilote/magma';
 
-import { Logger, LoggerLevel } from './logger';
+import { Md5 } from 'ts-md5';
 
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 import { FileType, FormattedGroup, Options } from '../interface/interface';
-import { Utils } from '../tools/utils';
 
 /**
  * For persistence during the session of use
@@ -89,9 +88,9 @@ export class MemoryService {
         }
 
         const copy = {
-            options: Utils.jsonCopy(parent.options),
-            groups: Utils.jsonCopy(parent.groups),
-            list: Utils.jsonCopy(parent.list),
+            options: jsonCopy(parent.options),
+            groups: jsonCopy(parent.groups),
+            list: jsonCopy(parent.list),
         };
 
         // save image
@@ -122,7 +121,7 @@ export class MemoryService {
     }
 
     private change(parent: ClassementEditComponent) {
-        const back = Utils.jsonCopy(this.#back[this.#index]);
+        const back = jsonCopy(this.#back[this.#index]);
 
         // save image
         back.list.forEach(e => this.decode(e));
