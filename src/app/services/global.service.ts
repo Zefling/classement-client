@@ -356,21 +356,26 @@ export class GlobalService {
         downloadFile(data, filename);
     }
 
-    altImage(groups: FormattedGroup[]) {
+    altImage(options: Options, groups: FormattedGroup[]) {
         const colon = this.translate.translate('generic.punctuation.colon');
         const comma = this.translate.translate('generic.punctuation.comma');
 
-        return groups
-            .map(group => {
-                return (
-                    group.name +
-                    colon +
-                    group.list
-                        .map(e => e?.title)
-                        .filter(e => e)
-                        .join(comma)
-                );
-            })
-            .join('\n');
+        return (
+            `${options.title} (${this.translate.translate(
+                'mode.name.' + (options.mode || 'default'),
+            )} - ${this.translate.translate('category.' + (options.category || 'undefined'))})\n\n` +
+            groups
+                .map(group => {
+                    return (
+                        group.name +
+                        colon +
+                        group.list
+                            .map(e => e?.title)
+                            .filter(e => e)
+                            .join(comma)
+                    );
+                })
+                .join('\n')
+        );
     }
 }

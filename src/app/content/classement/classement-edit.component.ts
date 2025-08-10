@@ -1211,7 +1211,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     async exportImage() {
         this.dialogImage().open();
-        this.altImage = this.global.altImage(this.groups);
+        this.altImage = this.global.altImage(this.options, this.groups);
         const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
             logging: false,
             allowTaint: true,

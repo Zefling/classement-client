@@ -396,7 +396,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     exportImage() {
         this.dialogImage().open();
-        this.altImage = this.global.altImage(this.classement!.data.groups);
+        this.altImage = this.global.altImage(this.classement!.data.options, this.classement!.data.groups);
         html2canvas(document.getElementById('html2canvas-element')!, {
             logging: false,
             allowTaint: true,
