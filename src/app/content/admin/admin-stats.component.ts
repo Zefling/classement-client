@@ -314,8 +314,8 @@ export class AdminStatsComponent {
                 });
             }
 
-            if (currentWeek === 52) {
-                // Assuming 52 weeks in a year
+            if (currentWeek === 53) {
+                // Assuming 53 weeks in a year
                 currentWeek = 1;
                 currentYear++;
             } else {
