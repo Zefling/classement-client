@@ -41,6 +41,6 @@ export class InfoChangelogComponent {
     }
 
     updateTitle() {
-        this.global.setTitle('menu.changelog');
+        this.global.setTitle('infos.changelog');
     }
 }

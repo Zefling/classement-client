@@ -46,6 +46,6 @@ export class InfosLicensesComponent {
     }
 
     updateTitle() {
-        this.global.setTitle('menu.licenses');
+        this.global.setTitle('infos.licenses');
     }
 }

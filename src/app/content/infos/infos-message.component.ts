@@ -80,7 +80,7 @@ export class InfosMessageComponent {
     }
 
     updateTitle() {
-        this.global.setTitle('menu.information');
+        this.global.setTitle('infos.information');
     }
 
     send() {
