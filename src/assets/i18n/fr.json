@@ -1144,9 +1144,6 @@
     "reset": {
       "groups": "😊 Remise à zéro des groupes."
     },
-    "category": {
-      "success": "😊 Catégorie mise à jour avec succès."
-    },
     "add": {
       "success": "😊 Ajout du classement « %title% » réussi."
     },
@@ -1166,7 +1163,8 @@
       "showed.success": "😊 Le classement a été rendu public avec succès.",
       "adult.success": "🫣 Le classement a été rendu pour adulte avec succès.",
       "for.all.success": "😊 Le classement a été rendu tout public avec succès.",
-      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès."
+      "update.password.success": "😊 Votre mot de passé a été mise à jour avec succès.",
+      "category.success": "😊 Catégorie mise à jour avec succès."
     },
     "contact": {
       "sent.success": "😊 Le message a été envoyé à l'administrateur avec succès."

@@ -1145,9 +1145,6 @@
     "reset": {
       "groups": "😊 Reset groups."
     },
-    "category": {
-      "success": "😊 Category has been successfully updated."
-    },
     "add": {
       "success": "😊 successfully added “%title%” ranking."
     },
@@ -1167,7 +1164,8 @@
       "showed.success": "😊 The ranking has been successfully made public.",
       "adult.success": "🫣 The ranking has been successfully made adult content.",
       "for.all.success": "😊 The ranking has been successfully made for all content.",
-      "update.password.success": "😊 Your password has been successfully updated."
+      "update.password.success": "😊 Your password has been successfully updated.",
+      "category.success": "😊 Category has been successfully updated."
     },
     "contact": {
       "sent.success": "😊 Message has been successfully sent to the administrator."
