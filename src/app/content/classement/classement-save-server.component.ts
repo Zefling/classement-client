@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
     Component,
     ElementRef,
@@ -63,7 +62,6 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         MagmaLoaderMessage,
         MagmaSpinner,
         MagmaProgress,
-        JsonPipe,
     ],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
