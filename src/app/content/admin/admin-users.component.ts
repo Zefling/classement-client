@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import {
     Logger,
-    LoggerLevel,
     MagmaClickEnterDirective,
     MagmaDialog,
     MagmaInput,
@@ -202,8 +201,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 this.changeStatusCancel();
             })
             .catch(e => {
-                this.logger.log(e, LoggerLevel.warn);
-                this.showError = e;
+                this.showError = this.translate.translate('error.api-code.' + e.error.errorCode);
             });
     }
 

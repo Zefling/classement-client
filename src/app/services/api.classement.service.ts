@@ -68,7 +68,8 @@ export class APIClassementService extends APICommon {
                         if ((result.error as MessageError)?.code === 401) {
                             reject(result.error as MessageError);
                         } else {
-                            reject(this.logger.error('classement', result));
+                            this.logger.error('classement', result);
+                            reject(result);
                         }
                     },
                 });
@@ -100,7 +101,8 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.logger.error('byOptions', result));
+                    this.logger.error('byOptions', result);
+                    reject(result);
                 },
             });
         });
@@ -118,7 +120,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('templateId', result));
+                        this.logger.error('templateId', result);
+                        reject(result);
                     },
                 });
         });
@@ -133,7 +136,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('templateId', result));
+                        this.logger.error('templateId', result);
+                        reject(result);
                     },
                 });
         });
@@ -149,7 +153,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('last', result));
+                        this.logger.error('last', result);
+                        reject(result);
                     },
                 });
         });
@@ -165,7 +170,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('home', result));
+                        this.logger.error('home', result);
+                        reject(result);
                     },
                 });
         });
@@ -194,7 +200,8 @@ export class APIClassementService extends APICommon {
                         }
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('save', result));
+                        this.logger.error('save', result);
+                        reject(result);
                     },
                 });
         });
@@ -212,7 +219,8 @@ export class APIClassementService extends APICommon {
                         resolve(result);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('home', result));
+                        this.logger.error('home', result);
+                        reject(result);
                     },
                 });
         });
@@ -264,7 +272,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('adminStatusClassement', result));
+                        this.logger.error('adminStatusClassement', result);
+                        reject(result);
                     },
                 });
         });
@@ -297,7 +306,8 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('adminGetClassements', result));
+                        this.logger.error('adminGetClassements', result);
+                        reject(result);
                     },
                 });
         });

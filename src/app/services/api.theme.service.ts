@@ -65,7 +65,8 @@ export class APIThemeService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.logger.error('byOptions', result));
+                    this.logger.error('byOptions', result);
+                    reject(result);
                 },
             });
         });
@@ -104,7 +105,8 @@ export class APIThemeService extends APICommon {
                         }
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('save', result));
+                        this.logger.error('save', result);
+                        reject(result);
                     },
                 });
         });
@@ -121,7 +123,8 @@ export class APIThemeService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.logger.error('delete', result));
+                        this.logger.error('delete', result);
+                        reject(result);
                     },
                 });
         });

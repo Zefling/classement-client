@@ -1066,6 +1066,7 @@
       "1011": "No old password.",
       "1012": "No new password.",
       "1013": "Invalid password.",
+      "1014": "Size password (8).",
       "1020": "No email.",
       "1021": "Old email does not match.",
       "1025": "This username is already yours.",
