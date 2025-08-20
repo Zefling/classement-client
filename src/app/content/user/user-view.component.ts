@@ -2,8 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MagmaLoader, MagmaSpinner } from '@ikilote/magma';
-import { Logger } from '@ikilote/magma';
+import { Logger, MagmaLoader, MagmaSpinner } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { User } from 'src/app/interface/interface';
@@ -36,7 +35,7 @@ export class UserViewComponent {
                 this.loading = true;
                 try {
                     if (params['id']?.startsWith('@')) {
-                        this.user = await this.userService.getUser(params['id'].substring(1));
+                        this.user = await this.userService.getUser(decodeURIComponent(params['id'].substring(1)));
                         this.user.classements?.sort(
                             (a, b) =>
                                 (new Date(b.dateChange)?.getTime() || new Date(b.dateCreate).getTime()) -
