@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 4.3.3 (2025-08-21)
+
+#### With API activated only
+
+- Fix username encoding for profile page
+- Fix url encoding
+
+> Required: API `2.0.1`
+
 ### 4.3.2 (2025-08-20)
 
 #### Standalone web app
@@ -14,7 +23,7 @@
 - Fix error in API
 - Fix admin error message
 
-> ⚠️ Required: API `2.0.0` (see )
+> ⚠️ Required: API `2.0.0` (see changelog)
 
 ### 4.3.1 (2025-08-11)
 
