@@ -24,8 +24,8 @@ import {
     MagmaInputTextarea,
     MagmaLoaderBlock,
     MagmaLoaderTile,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaSpinner,
     clipboardWrite,
 } from '@ikilote/magma';
@@ -83,7 +83,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly route = inject(ActivatedRoute);
     private readonly logger = inject(Logger);
     private readonly bdService = inject(DBService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly prefs = inject(PreferencesService);

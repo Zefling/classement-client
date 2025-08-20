@@ -7,7 +7,7 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
-    MagmaMessage,
+    MagmaMessages,
     testEmail,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -37,7 +37,7 @@ import { environment } from 'src/environments/environment';
 export class UserSignupComponent implements OnDestroy {
     private readonly router = inject(Router);
     private readonly userService = inject(APIUserService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
 

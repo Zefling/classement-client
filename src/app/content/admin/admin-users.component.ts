@@ -4,7 +4,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { ActivatedRoute } from '@angular/router';
 
 import {
-    Logger,
     MagmaClickEnterDirective,
     MagmaDialog,
     MagmaInput,
@@ -12,8 +11,8 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaPagination,
     MagmaSpinner,
     MagmaTable,
@@ -59,8 +58,7 @@ import { ListClassementsComponent } from './list-classements.component';
 export class AdminUsersComponent implements DoCheck, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly route = inject(ActivatedRoute);
-    private readonly mgMessage = inject(MagmaMessage);
-    private readonly logger = inject(Logger);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
 

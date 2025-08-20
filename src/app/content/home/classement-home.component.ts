@@ -2,7 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessage } from '@ikilote/magma';
+import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Classement, PreferencesData } from 'src/app/interface/interface';
@@ -24,7 +24,7 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly preferencesService = inject(PreferencesService);

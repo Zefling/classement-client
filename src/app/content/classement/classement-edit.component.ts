@@ -44,8 +44,8 @@ import {
     MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaNgInitDirective,
     MagmaNgModelChangeDebouncedDirective,
     MagmaSpinner,
@@ -174,7 +174,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private readonly route = inject(ActivatedRoute);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
     private readonly optimiseImage = inject(OptimiseImageService);

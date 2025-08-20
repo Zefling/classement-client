@@ -9,7 +9,7 @@ import {
     MagmaInputElement,
     MagmaInputSelect,
     MagmaInputText,
-    MagmaMessage,
+    MagmaMessages,
     MagmaTable,
     MagmaTableCell,
     MagmaTableGroup,
@@ -56,7 +56,7 @@ import { categories } from '../classement/classement-default';
 })
 export class ListClassementsComponent {
     private readonly classementService = inject(APIClassementService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly globalService = inject(GlobalService);
     private readonly translate = inject(TranslocoService);
 

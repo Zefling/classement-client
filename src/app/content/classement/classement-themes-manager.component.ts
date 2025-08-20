@@ -7,7 +7,7 @@ import {
     MagmaInputElement,
     MagmaInputRadio,
     MagmaInputText,
-    MagmaMessage,
+    MagmaMessages,
     MagmaTabsModule,
     downloadFile,
     normalizeFileName,
@@ -44,7 +44,7 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     private readonly globalService = inject(GlobalService);
     private readonly dbService = inject(DBService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly userService = inject(APIUserService);
     private readonly themeService = inject(APIThemeService);
     private readonly translate = inject(TranslocoService);

@@ -9,7 +9,7 @@ import {
     MagmaInput,
     MagmaInputElement,
     MagmaInputText,
-    MagmaMessage,
+    MagmaMessages,
     MagmaSortableDirective,
     MagmaSortableModule,
     MagmaTableModule,
@@ -61,7 +61,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly router = inject(Router);
     private readonly translate = inject(TranslocoService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly global = inject(GlobalService);
     private readonly logger = inject(Logger);
 

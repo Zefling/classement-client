@@ -8,7 +8,7 @@ import {
     MagmaInput,
     MagmaInputElement,
     MagmaInputText,
-    MagmaMessage,
+    MagmaMessages,
     MagmaSortableDirective,
     MagmaSortableModule,
     MagmaTableModule,
@@ -56,7 +56,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly dbService = inject(DBService);
     private readonly classementService = inject(APIClassementService);
     private readonly userService = inject(APIUserService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly route = inject(ActivatedRoute);
     private readonly router = inject(Router);

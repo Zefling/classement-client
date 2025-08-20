@@ -6,8 +6,8 @@ import {
     LoggerLevel,
     MagmaInput,
     MagmaInputCheckbox,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaSpinner,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -32,7 +32,7 @@ export class ImportJsonComponent implements OnDestroy {
 
     private readonly translate = inject(TranslocoService);
     private readonly globalService = inject(GlobalService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly dbService = inject(DBService);
     private readonly logger = inject(Logger);
 

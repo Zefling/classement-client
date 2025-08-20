@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 
-import { MagmaMessage } from '@ikilote/magma';
+import { MagmaMessages } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import oWasp from 'owasp-password-strength-test';
@@ -16,7 +16,7 @@ export abstract class UserPassword {
 
     constructor(
         protected userService: APIUserService,
-        protected mgMessage: MagmaMessage,
+        protected mgMessage: MagmaMessages,
         protected translate: TranslocoService,
     ) {
         this.changePasswordForm = new FormGroup(this.formGroupPasswordForm());

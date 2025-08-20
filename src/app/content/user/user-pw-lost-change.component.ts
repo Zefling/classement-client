@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaMessage, MagmaMessageType } from '@ikilote/magma';
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaMessageType, MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -24,7 +24,7 @@ export class UserPwLostChangeComponent extends UserPassword {
 
     constructor() {
         const userService = inject(APIUserService);
-        const mgMessage = inject(MagmaMessage);
+        const mgMessage = inject(MagmaMessages);
         const translate = inject(TranslocoService);
 
         super(userService, mgMessage, translate);

@@ -12,7 +12,7 @@ import {
     MagmaInputText,
     MagmaLoaderBlock,
     MagmaLoaderTile,
-    MagmaMessage,
+    MagmaMessages,
     MagmaPagination,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -54,7 +54,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     private readonly router = inject(Router);
     private readonly route = inject(ActivatedRoute);
     private readonly logger = inject(Logger);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly categories = inject(CategoriesService);
     private readonly preferences = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);

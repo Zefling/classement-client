@@ -9,8 +9,8 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaTabsModule,
     blobToBase64,
     testEmail,
@@ -88,7 +88,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
 
     constructor() {
         const userService = inject(APIUserService);
-        const mgMessage = inject(MagmaMessage);
+        const mgMessage = inject(MagmaMessages);
         const translate = inject(TranslocoService);
 
         super(userService, mgMessage, translate);

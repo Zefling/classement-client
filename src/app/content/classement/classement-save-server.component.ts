@@ -22,8 +22,8 @@ import {
     MagmaInputText,
     MagmaLoader,
     MagmaLoaderMessage,
-    MagmaMessage,
     MagmaMessageType,
+    MagmaMessages,
     MagmaProgress,
     MagmaSpinner,
     MagmaTooltipDirective,
@@ -68,7 +68,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     private readonly global = inject(GlobalService);
     private readonly userService = inject(APIUserService);
     private readonly classementService = inject(APIClassementService);
-    private readonly mgMessage = inject(MagmaMessage);
+    private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly categories = inject(CategoriesService);
 
