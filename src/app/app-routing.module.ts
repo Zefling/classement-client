@@ -41,7 +41,9 @@ const routes: Routes = [
             const reg = /^(?<symbol>[~])(?<id>.*)$/;
             const param = url[0].toString();
             const match = param.match(reg);
-            return match ? { consumed: url, posParams: { id: new UrlSegment(match['2'], {}) } } : null;
+            return match
+                ? { consumed: url, posParams: { id: new UrlSegment(decodeURIComponent(match['2']), {}) } }
+                : null;
         },
         redirectTo: '/navigate/view/:id',
     },
