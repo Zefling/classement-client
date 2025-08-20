@@ -1,5 +1,21 @@
 # Changelog - Standalone web app & API
 
+### 4.3.2 (2025-08-20)
+
+#### Standalone web app
+
+- Fix titles
+- Fix a forgotten test
+
+> Update to **Angular** `20.2`, **Magma** `0.8.6`
+
+#### With API activated only
+
+- Fix error in API
+- Fix admin error message
+
+> ⚠️ Required: API `2.0.0` (see )
+
 ### 4.3.1 (2025-08-11)
 
 #### Standalone web app

@@ -1,21 +1,22 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
     "email": "zefling@ikilote.net",
-    "url": "http://ikilote.net"
+    "url": "https://ikilote.net"
   },
   "markdown": "standard",
   "homepage": "https://classement.org",
   "bugs": {
-    "email": "zefling@ikilote.net"
+    "email": "zefling@ikilote.net",
+    "url": "https://classement.org/infos/message"
   },
   "repository": {
     "type": "git",
-    "url": "http://git.ikilote.net/classement/classement.git"
+    "url": "https://git.ikilote.net/classement/classement.git"
   },
   "scripts": {
     "postinstall": "npm audit fix",
