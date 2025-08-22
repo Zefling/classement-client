@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 4.3.4 (2025-08-22)
+
+#### With API activated only
+
+- Fix typo in url #123
+
+> Required: API `2.0.2`
+
 ### 4.3.3 (2025-08-21)
 
 #### With API activated only
