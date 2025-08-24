@@ -1,14 +1,16 @@
-import { Component, OnDestroy, OnInit, booleanAttribute, inject, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, booleanAttribute, inject, input, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 import {
     FormBuilderExtended,
+    MagmaBlockMessage,
     MagmaInput,
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
     MagmaLoader,
+    MagmaMessage,
     MagmaSpinner,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -32,6 +34,8 @@ import { environment } from 'src/environments/environment';
         MagmaInputText,
         MagmaLoader,
         MagmaSpinner,
+        MagmaMessage,
+        MagmaBlockMessage,
     ],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
@@ -43,7 +47,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
 
     private listener = Subscriptions.instance();
 
-    showError = '';
+    showError = signal('');
     loader = false;
 
     readonly popup = input<boolean, any>(false, { transform: booleanAttribute });
@@ -111,7 +115,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
                     }
                 })
                 .catch(e => {
-                    this.showError = e;
+                    this.showError.set(this.translate.translate('error.username.or.email'));
                 })
                 .finally(() => {
                     this.loader = false;

@@ -1113,8 +1113,11 @@
       "category.empty": "La catégorie ne peut pas être vide.",
       "banner.empty": "La bannière ne peut pas être vide."
     },
-    "username.exist": "Ce nom d'utilisateur existe déjà.",
-    "username.yours": "Ce nom d'utilisateur est déjà le votre.",
+    "username": {
+      "or.email": "Le nom d'utilisateur ou l'e-mail sont invalides.",
+      "exist": "Ce nom d'utilisateur existe déjà.",
+      "yours": "Ce nom d'utilisateur est déjà le votre."
+    },
     "email": {
       "exist": "Cet courriel a déjà été utilisé.",
       "invalid": "Le courriel est invalide.",

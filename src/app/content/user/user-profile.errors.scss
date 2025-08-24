@@ -19,9 +19,6 @@
     }
 }
 
-.alert {
-    margin: auto;
-    border: 1px solid var(--alert-color);
-    width: 80%;
-    color: var(--alert-color);
+mg-message {
+    margin-top: 15px;
 }

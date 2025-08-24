@@ -29,13 +29,6 @@
     }
 }
 
-.error {
-    padding-top: 15px;
-    color: var(--alert-color);
-    text-align: center;
-}
-
-:host .list-error {
-    margin: 30px;
-    padding: 15px 40px;
+mg-message {
+    margin-top: 15px;
 }

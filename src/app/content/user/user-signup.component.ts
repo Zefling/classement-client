@@ -7,6 +7,7 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
+    MagmaMessage,
     MagmaMessages,
     testEmail,
 } from '@ikilote/magma';
@@ -32,6 +33,7 @@ import { environment } from 'src/environments/environment';
         MagmaInputElement,
         MagmaInputText,
         MagmaInputPassword,
+        MagmaMessage,
     ],
 })
 export class UserSignupComponent implements OnDestroy {

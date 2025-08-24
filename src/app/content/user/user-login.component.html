@@ -12,10 +12,13 @@
     </mg-input>
   </div>
 
-  @if (showError) {
-    <div class="list-error">
-      {{ showError }}
-    </div>
+  @let error = showError();
+  @if (error) {
+    <mg-message type="error">
+      <mg-message-block>
+        {{ error }}
+      </mg-message-block>
+    </mg-message>
   }
 
   <div class="buttons">

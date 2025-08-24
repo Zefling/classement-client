@@ -2,7 +2,15 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { FormBuilderExtended, MagmaInput, MagmaInputElement, MagmaInputText, testEmail } from '@ikilote/magma';
+import {
+    FormBuilderExtended,
+    MagmaBlockMessage,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputText,
+    MagmaMessage,
+    testEmail,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -13,7 +21,16 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'user-pw-lost',
     templateUrl: './user-pw-lost.component.html',
     styleUrls: ['./user-pw-lost.component.scss'],
-    imports: [RouterLink, TranslocoPipe, ReactiveFormsModule, MagmaInput, MagmaInputElement, MagmaInputText],
+    imports: [
+        RouterLink,
+        TranslocoPipe,
+        ReactiveFormsModule,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputText,
+        MagmaMessage,
+        MagmaBlockMessage,
+    ],
 })
 export class UserPwLostComponent implements OnDestroy {
     private readonly router = inject(Router);
@@ -22,7 +39,6 @@ export class UserPwLostComponent implements OnDestroy {
     private readonly global = inject(GlobalService);
     private readonly fbe = inject(FormBuilderExtended);
 
-    email = '';
     showError = '';
     valide = false;
 
@@ -70,15 +86,16 @@ export class UserPwLostComponent implements OnDestroy {
 
         this.fbe.validateForm(this.form);
         if (this.form.valid) {
-            if (this.email.trim() === '') {
+            const email = this.form.value.email;
+            if (!email || email?.trim() === '') {
                 this.showError = this.translate.translate('error.api-code.1020');
-            } else if (!testEmail(this.email)) {
+            } else if (!testEmail(email)) {
                 this.showError = this.translate.translate('error.email.invalid');
             }
 
             if (!this.showError.length) {
                 this.userService
-                    .passwordLost(this.email)
+                    .passwordLost(email!)
                     .then(() => {
                         this.valide = true;
                     })

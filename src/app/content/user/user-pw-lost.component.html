@@ -12,18 +12,22 @@
     </div>
 
     @if (showError) {
-      <div class="list-error">
-        {{ showError }}
-      </div>
+      <mg-message type="error">
+        <mg-message-block>
+          {{ showError }}
+        </mg-message-block>
+      </mg-message>
     }
     <div class="button">
       <button (click)="submit()">{{ 'user.password.lost.action' | transloco }}</button>
     </div>
   </form>
 } @else {
-  <div>
-    {{ 'user.password.lost.send' | transloco }}
-  </div>
+  <mg-message type="success">
+    <mg-message-block>
+      {{ 'user.password.lost.send' | transloco }}
+    </mg-message-block>
+  </mg-message>
 }
 
 <div class="links">
