@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 4.3.5 (2025-08-25)
+
+#### Standalone web app
+
+- Add 8 new categories
+
+#### With API activated only
+
+- Fix login, sign-up, password lost forms
+
+> Required: API `2.0.4`
+
 ### 4.3.4 (2025-08-22)
 
 #### With API activated only
