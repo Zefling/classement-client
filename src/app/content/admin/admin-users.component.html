@@ -152,8 +152,12 @@
       </div>
 
       @if (showError) {
-        <div class="s-12 list-error">
-          {{ showError }}
+        <div class="s-12">
+          <mg-message type="error">
+            <mg-message-block>
+              {{ showError }}
+            </mg-message-block>
+          </mg-message>
         </div>
       }
 

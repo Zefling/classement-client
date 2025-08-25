@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { ActivatedRoute } from '@angular/router';
 
 import {
+    MagmaBlockMessage,
     MagmaClickEnterDirective,
     MagmaDialog,
     MagmaInput,
@@ -11,6 +12,7 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
+    MagmaMessage,
     MagmaMessageType,
     MagmaMessages,
     MagmaPagination,
@@ -53,6 +55,8 @@ import { ListClassementsComponent } from './list-classements.component';
         MagmaInputCheckbox,
         MagmaInputElement,
         MagmaClickEnterDirective,
+        MagmaMessage,
+        MagmaBlockMessage,
     ],
 })
 export class AdminUsersComponent implements DoCheck, OnDestroy {

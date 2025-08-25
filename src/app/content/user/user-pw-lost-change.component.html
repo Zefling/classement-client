@@ -28,11 +28,13 @@
   </mg-input>
 
   @if (showError.length) {
-    <ul class="list-error">
-      @for (error of showError; track error) {
-        <li>{{ error }}</li>
-      }
-    </ul>
+    <mg-message type="error">
+      <ul>
+        @for (error of showError; track error) {
+          <li>{{ error }}</li>
+        }
+      </ul>
+    </mg-message>
   }
 
   <div class="button">

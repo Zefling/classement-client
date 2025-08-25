@@ -73,13 +73,7 @@
           </div>
         }
       </div>
-      @if (showError.length) {
-        <ul class="list-error">
-          @for (error of showError; track error) {
-            <li>{{ error }}</li>
-          }
-        </ul>
-      }
+
       <mg-input class="s-12 link">
         <mg-input-label>{{ 'generator.server.link' | transloco }}</mg-input-label>
 
@@ -133,6 +127,18 @@
           ><span [mgTooltip]="'generator.server.adult.info' | transloco" class="icon-info"></span
         ></mg-input-after>
       </mg-input>
+
+      @if (showError.length) {
+        <div class="s-12">
+          <mg-message type="error">
+            <ul>
+              @for (error of showError; track error) {
+                <li>{{ error }}</li>
+              }
+            </ul>
+          </mg-message>
+        </div>
+      }
     </div>
   }
 

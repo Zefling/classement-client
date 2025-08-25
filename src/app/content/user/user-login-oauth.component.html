@@ -1,9 +1,9 @@
 <h1>{{ 'user.login.title' | transloco }}</h1>
 
 @if (showError) {
-  <div class="list-error">
-    {{ showError }}
-  </div>
+  <mg-message type="error">
+    <mg-message-block>{{ showError }}</mg-message-block>
+  </mg-message>
 }
 
 <div class="links">

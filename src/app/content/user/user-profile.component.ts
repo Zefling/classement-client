@@ -9,6 +9,7 @@ import {
     MagmaInputElement,
     MagmaInputPassword,
     MagmaInputText,
+    MagmaMessage,
     MagmaMessageType,
     MagmaMessages,
     MagmaTabsModule,
@@ -53,6 +54,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         MagmaInputElement,
         MagmaInputText,
         MagmaInputPassword,
+        MagmaMessage,
     ],
 })
 export class UserProfileComponent extends UserPassword implements OnDestroy {

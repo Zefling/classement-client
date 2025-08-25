@@ -22,6 +22,7 @@ import {
     MagmaInputText,
     MagmaLoader,
     MagmaLoaderMessage,
+    MagmaMessage,
     MagmaMessageType,
     MagmaMessages,
     MagmaProgress,
@@ -62,6 +63,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         MagmaLoaderMessage,
         MagmaSpinner,
         MagmaProgress,
+        MagmaMessage,
     ],
 })
 export class ClassementSaveServerComponent implements OnChanges, OnDestroy {

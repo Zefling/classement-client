@@ -211,11 +211,13 @@
         ></mg-input-password>
       </mg-input>
     </div>
+
     @if (showError) {
-      <ul class="list-error">
-        <li>{{ showError }}</li>
-      </ul>
+      <mg-message type="error">
+        <mg-message-block>{{ showError }}</mg-message-block>
+      </mg-message>
     }
+
     <p>
       <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
       <button class="button-add primary" (click)="openClassementWithPassword(password.getValue()!)">

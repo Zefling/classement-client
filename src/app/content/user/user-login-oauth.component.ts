@@ -1,7 +1,7 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { MagmaLoader, MagmaSpinner } from '@ikilote/magma';
+import { MagmaBlockMessage, MagmaLoader, MagmaMessage, MagmaSpinner } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { APIUserService } from 'src/app/services/api.user.service';
@@ -12,7 +12,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'user-login-oauth',
     templateUrl: './user-login-oauth.component.html',
     styleUrls: ['./user-login-oauth.component.scss'],
-    imports: [RouterLink, TranslocoPipe, MagmaLoader, MagmaSpinner],
+    imports: [RouterLink, TranslocoPipe, MagmaLoader, MagmaSpinner, MagmaMessage, MagmaBlockMessage],
 })
 export class UserLoginOauthComponent implements OnDestroy {
     private readonly router = inject(Router);

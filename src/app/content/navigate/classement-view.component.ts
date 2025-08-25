@@ -17,6 +17,7 @@ import html2canvas from '@html2canvas/html2canvas';
 import {
     Logger,
     LoggerLevel,
+    MagmaBlockMessage,
     MagmaDialog,
     MagmaInput,
     MagmaInputCheckbox,
@@ -24,6 +25,7 @@ import {
     MagmaInputTextarea,
     MagmaLoaderBlock,
     MagmaLoaderTile,
+    MagmaMessage,
     MagmaMessageType,
     MagmaMessages,
     MagmaSpinner,
@@ -74,6 +76,8 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaLoaderBlock,
         MagmaLoaderTile,
         TileComponent,
+        MagmaMessage,
+        MagmaBlockMessage,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
