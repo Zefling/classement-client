@@ -132,8 +132,8 @@
     {{ 'generator.actions.change.mode.question' | transloco }}
   </p>
   <p class="info">
-    <strong>{{ 'mode.name.' + _modeTemp | transloco }}</strong>
-    <span>{{ 'generator.actions.change.mode.' + _modeTemp | transloco }}</span>
+    <strong>{{ 'mode.name.' + (_modeTemp || 'default') | transloco }}</strong>
+    <span>{{ 'generator.actions.change.mode.' + (_modeTemp || 'default') | transloco }}</span>
   </p>
 
   <div class="buttons">

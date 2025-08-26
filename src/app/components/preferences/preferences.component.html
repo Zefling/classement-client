@@ -133,7 +133,7 @@
               overlay
               nativeKeyboard
               ><ng-template #templatesModes let-label="label">
-                {{ 'mode.name.' + label | transloco }}
+                {{ 'mode.name.' + (label || 'default') | transloco }}
               </ng-template>
             </mg-input-select>
           </mg-input>
