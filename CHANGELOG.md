@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 4.3.6 (2025-08-26)
+
+#### Standalone web app
+
+- Use `mg-message` for error blocks #124
+- Remove unnecessary class icon
+- Minor fixes
+
+#### With API activated only
+
+- Admin: fix CSS icon position #126
+
 ### 4.3.5 (2025-08-25)
 
 #### Standalone web app
