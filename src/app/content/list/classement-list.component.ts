@@ -7,6 +7,7 @@ import {
     Logger,
     MagmaDialog,
     MagmaInput,
+    MagmaInputCheckbox,
     MagmaInputElement,
     MagmaInputText,
     MagmaMessages,
@@ -54,6 +55,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaInput,
         MagmaInputElement,
         MagmaInputText,
+        MagmaInputCheckbox,
     ],
 })
 export class ClassementListComponent implements OnInit, OnDestroy {
