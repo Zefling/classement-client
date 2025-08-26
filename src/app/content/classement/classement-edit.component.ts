@@ -822,9 +822,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     private resetCache() {
-        this._optionsCache = jsonCopy(this.options);
-        this.global.withChange.set(0);
-        this.keyboard.clearSelection(this);
+        if (!objectsAreSame(this._optionsCache, this.options)) {
+            this._optionsCache = jsonCopy(this.options);
+            this.global.withChange.set(0);
+            this.keyboard.clearSelection(this);
+        }
     }
 
     toTemplateNavigation() {
