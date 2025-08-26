@@ -1,5 +1,12 @@
 # Changelog - Standalone web app & API
 
+### 4.3.7 (2025-08-26)
+
+#### Standalone web app
+
+- Fix infinite save when autoSave is selected
+- Adjust background color when hovering over group
+
 ### 4.3.6 (2025-08-26)
 
 #### Standalone web app
