@@ -6,7 +6,7 @@ export const color = (c: string, opacity: number | undefined): string | null => 
     if (c) {
         const color = new Color(c);
         if (opacity !== undefined) {
-            color.alpha = opacity / 255;
+            color.alpha = opacity / 100;
         }
         return color.toString({ format: 'hex' });
     }
