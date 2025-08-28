@@ -1,27 +1,29 @@
+@let baseText = 'generator.external.anilist.';
+
 <mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  <h2>{{ 'generator.external.anilist.title' | transloco }}</h2>
+  <h2>{{ baseText + 'title' | transloco }}</h2>
 
   @if (searchAnilistForm) {
     <div class="import-form">
       <img class="logo" src="./assets/images/anilit_icon.svg" />
       <form [formGroup]="searchAnilistForm" (submit)="search()">
         <mg-input class="s-12">
-          <mg-input-label>{{ 'generator.external.anilist.name' | transloco }}</mg-input-label>
+          <mg-input-label>{{ baseText + 'name' | transloco }}</mg-input-label>
           <mg-input-text formControlName="query" />
         </mg-input>
         <mg-input class="s-12">
-          <mg-input-label>{{ 'generator.external.anilist.type.media' | transloco }}</mg-input-label>
+          <mg-input-label>{{ baseText + 'type.media' | transloco }}</mg-input-label>
           <mg-input-radio formControlName="type" value="ANIME">{{
-            'generator.external.anilist.type.anime' | transloco
+            baseText + 'type.anime' | transloco
           }}</mg-input-radio>
           <mg-input-radio formControlName="type" value="MANGA">{{
-            'generator.external.anilist.type.manga' | transloco
+            baseText + 'type.manga' | transloco
           }}</mg-input-radio>
         </mg-input>
 
         <p class="buttons">
           <button type="submit" [disabled]="!searchAnilistForm.get('query')?.value.trim()">
-            {{ 'generator.external.anilist.search' | transloco }}
+            {{ baseText + 'search' | transloco }}
           </button>
         </p>
       </form>
@@ -31,26 +33,26 @@
             <div class="s-12">
               <mg-input>
                 <mg-input-checkbox [(ngModel)]="withTitle">
-                  {{ 'generator.external.anilist.with.title' | transloco }}</mg-input-checkbox
-                >
+                  {{ baseText + 'with.title' | transloco }}
+                </mg-input-checkbox>
               </mg-input>
               @if (withTitle) {
                 <mg-input>
                   <mg-input-checkbox [(ngModel)]="withYear">
-                    {{ 'generator.external.anilist.with.year' | transloco }}</mg-input-checkbox
-                  >
+                    {{ baseText + 'with.year' | transloco }}
+                  </mg-input-checkbox>
                 </mg-input>
               }
             </div>
 
             @if (withTitle) {
               <mg-input class="s-6">
-                <mg-input-label>{{ 'generator.external.anilist.for.title.choice' | transloco }}</mg-input-label>
+                <mg-input-label>{{ baseText + 'for.title.choice' | transloco }}</mg-input-label>
                 <mg-input-select
                   [data]="[
-                    { value: 'english', label: 'generator.external.anilist.for.title.english' | transloco },
-                    { value: 'romaji', label: 'generator.external.anilist.for.title.romaji' | transloco },
-                    { value: 'native', label: 'generator.external.anilist.for.title.native' | transloco },
+                    { value: 'english', label: baseText + 'for.title.english' | transloco },
+                    { value: 'romaji', label: baseText + 'for.title.romaji' | transloco },
+                    { value: 'native', label: baseText + 'for.title.native' | transloco },
                   ]"
                   [(ngModel)]="titleSource"
                 />
@@ -58,15 +60,15 @@
             }
 
             <mg-input class="s-6">
-              <mg-input-label>{{ 'generator.external.anilist.annotation' | transloco }}</mg-input-label>
+              <mg-input-label>{{ baseText + 'annotation' | transloco }}</mg-input-label>
               <mg-input-checkbox value="english" [(ngModel)]="include">{{
-                'generator.external.anilist.for.title.english' | transloco
+                baseText + 'for.title.english' | transloco
               }}</mg-input-checkbox>
               <mg-input-checkbox value="romaji" [(ngModel)]="include">{{
-                'generator.external.anilist.for.title.romaji' | transloco
+                baseText + 'for.title.romaji' | transloco
               }}</mg-input-checkbox>
               <mg-input-checkbox value="native" [(ngModel)]="include">{{
-                'generator.external.anilist.for.title.native' | transloco
+                baseText + 'for.title.native' | transloco
               }}</mg-input-checkbox>
             </mg-input>
           </div>

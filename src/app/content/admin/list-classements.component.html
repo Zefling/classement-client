@@ -96,19 +96,19 @@
   (onClose)="currentClassement = undefined"
 >
   @if (currentClassement) {
-    <classement-infos [classementInfo]="currentClassement"></classement-infos>
+    <classement-infos [classementInfo]="currentClassement" />
 
     <see-classement
       [options]="currentClassement.data.options"
       [groups]="currentClassement.data.groups"
       [list]="currentClassement.data.list"
       [id]="currentClassement.rankingId"
-    ></see-classement>
+    />
 
     <div class="drop-list">
       @for (item of currentClassement.data.list; track item; let index = $index) {
         @if (item) {
-          <tile-item [item]="item" [options]="currentClassement.data.options"></tile-item>
+          <tile-item [item]="item" [options]="currentClassement.data.options" />
         }
       }
     </div>
@@ -132,10 +132,8 @@
           [templates]="templatesModes"
           (ngModelChange)="newCategory = $event"
           overlay
-          ><ng-template #templatesModes let-label="label">{{
-            'category.' + label | transloco
-          }}</ng-template></mg-input-select
-        >
+          ><ng-template #templatesModes let-label="label">{{ 'category.' + label | transloco }}</ng-template>
+        </mg-input-select>
       </mg-input>
     </div>
     <div class="buttons">
