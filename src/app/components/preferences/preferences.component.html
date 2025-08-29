@@ -7,7 +7,7 @@
 >
   @if (preferencesForm) {
     <ng-container [formGroup]="preferencesForm">
-      <h2>{{ 'generic.tabs.return' | transloco }}</h2>
+      <h2>{{ 'preferences.title' | transloco }}</h2>
       <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco" #preferencesTabs>
         <mg-tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</mg-tab-title>
         <mg-tab-content id="general">
