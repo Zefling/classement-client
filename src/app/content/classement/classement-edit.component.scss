@@ -208,16 +208,6 @@ mg-dialog .colors-options textarea {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* drag'n drop file */
-
-.drop-image-message {
-    width: 100%;
-}
-
-.drop-image-zone {
-    background: var(--drop-image-zone-background);
-}
-
 /* buttons ----------------------------------------------------------------- */
 
 .button-actions {
@@ -1018,6 +1008,39 @@ mg-spinner {
     }
 }
 
+/* drag'n drop file */
+
+.drop-image-zone {
+    background: var(--drop-image-zone-background);
+}
+
+.pin.current-list {
+    position: sticky;
+    bottom: 0;
+    background: var(--background);
+    max-width: 100%;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.drop-image-message {
+    display: flex;
+    position: sticky;
+    left: 0;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 100%;
+    min-height: 20px;
+
+    .arrows {
+        right: 8px;
+        width: 25px;
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
 /* tablet / mobile ------------------------------------------------------------------ */
 
 @media screen and (width < 1024px) {
@@ -1062,18 +1085,10 @@ mg-spinner {
     }
 
     .drop-image-message {
-        display: flex;
-        position: sticky;
-        left: 0;
-        justify-content: space-between;
-        align-items: flex-end;
         cursor: e-resize;
-        max-width: 100%;
-        min-height: 20px;
 
         .arrows {
-            right: 8px;
-            font-size: 18px;
+            width: auto;
         }
     }
 
@@ -1105,6 +1120,7 @@ mg-spinner {
     }
 
     .drop-image-message {
+        justify-content: space-between;
         font-size: 80%;
     }
 

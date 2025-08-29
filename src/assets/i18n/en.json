@@ -640,7 +640,11 @@
       "image.edit": "Edit image",
       "image.edit.cancel": "Cancel",
       "image.edit.ok": "Validate",
-      "image.add": "Add image"
+      "image.add": "Add image",
+      "pin": {
+        "pinned": "Pinned",
+        "unpinned": "Unpinned"
+      }
     },
     "line": {
       "add": "Add",

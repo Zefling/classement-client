@@ -639,7 +639,11 @@
       "image.edit": "Éditer l'image",
       "image.edit.cancel": "Annuler",
       "image.edit.ok": "Valider",
-      "image.add": "Ajouter une image"
+      "image.add": "Ajouter une image",
+      "pin": {
+        "pinned": "Épingler",
+        "unpinned": "Désépingler"
+      }
     },
     "line": {
       "add": "Ajout",

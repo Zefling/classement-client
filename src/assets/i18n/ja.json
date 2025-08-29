@@ -640,7 +640,11 @@
       "image.edit": "画像を編集する",
       "image.edit.cancel": "キャンセル",
       "image.edit.ok": "OK",
-      "image.add": "画像を追加する"
+      "image.add": "画像を追加する",
+      "pin": {
+        "pinned": "ピン留めする",
+        "unpinned": "ピン留めを解除する"
+      }
     },
     "line": {
       "add": "追加",

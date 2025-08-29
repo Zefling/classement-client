@@ -237,6 +237,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     editField = signal(false);
 
+    pinnedList = false;
+
     @HostBinding('class.option-reduce')
     get optionReduce() {
         return this.lineOption === 'reduce';

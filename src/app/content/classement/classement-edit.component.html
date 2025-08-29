@@ -534,11 +534,18 @@
 
         <!-- !MARK: list tiles -->
 
-        <div class="current-list" (keydown)="selectMoveItem($event, list)">
+        <div class="current-list" (keydown)="selectMoveItem($event, list)" [class.pin]="pinnedList">
           <div class="drop-image-message">
             <span>{{ 'generator.ranking.drop.image' | transloco }}</span>
             @if (scrollArrows) {
               <span class="arrows">⇄</span>
+            } @else {
+              <span
+                class="arrows"
+                (clickEnter)="pinnedList = !pinnedList"
+                [title]="'generator.ranking.pin.' + (pinnedList ? 'unpinned' : 'pinned') | transloco"
+                >{{ pinnedList ? '⤓' : '⤒' }}</span
+              >
             }
           </div>
           <div
