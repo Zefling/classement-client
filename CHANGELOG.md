@@ -1,5 +1,15 @@
 # Changelog - Standalone web app & API
 
+### 4.3.8 (2025-08-29)
+
+#### Standalone web app
+
+- Try to detect when the web app is updated
+- Ability to pin the main list
+- Fix preferences title dialog
+- Fix alpha calculation with `Color.js`
+- Fix width for edit-zone in mobile
+
 ### 4.3.7 (2025-08-26)
 
 #### Standalone web app
