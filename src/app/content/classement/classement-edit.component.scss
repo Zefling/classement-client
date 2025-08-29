@@ -1051,8 +1051,8 @@ mg-spinner {
         }
     }
 
-    .edit-zone,
-    :is(.mode-teams, .mode-columns) {
+    :is(.edit-zone, .mode-teams, .mode-columns) {
+        width: 100%;
         max-width: 100%;
     }
 
