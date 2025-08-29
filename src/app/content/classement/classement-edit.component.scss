@@ -687,11 +687,7 @@ span.group-options {
 
 .stream-mode {
     .drop-image-message span,
-    .tile-info,
-    .add-file,
-    .add-text,
-    .btn-delete,
-    .input-title {
+    :where(.tile-info, .add-file, .add-text, .btn-delete, .input-title) {
         visibility: hidden;
     }
 
@@ -704,18 +700,14 @@ span.group-options {
     }
 }
 
-.mode-default,
-.mode-teams,
-.mode-columns,
-.mode-bingo {
+:where(.mode-default, .mode-teams, .mode-columns, .mode-bingo) {
     // fix background
     .click-enter[tabindex]:not(button, a[href]):hover {
         background: var(--over-drop-list-background, var(--drop-list-background));
     }
 }
 
-.mode-default,
-.mode-teams {
+:where(.mode-default, .mode-teams) {
     .drop-list {
         margin-bottom: -2px;
     }
