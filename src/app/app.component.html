@@ -249,8 +249,8 @@
         <li
           id="mode_{{ mode.id }}"
           (clickEnter)="beginNew(mode.id)"
-          (mouseenter)="_visiblity = true; _modeTemp = mode.id; _index = index"
-          (mouseleave)="_visiblity = false"
+          (mouseenter)="_visibility = true; _modeTemp = mode.id; _index = index"
+          (mouseleave)="_visibility = false"
         >
           <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
           <span>{{ 'mode.name.' + (mode.id || 'default') | transloco }}</span>
@@ -258,7 +258,7 @@
       }
     </ul>
   </nav>
-  <p class="info-block" [class.visible]="_visiblity">
+  <p class="info-block" [class.visible]="_visibility">
     <strong>{{ 'mode.name.' + (_modeTemp || 'default') | transloco }}</strong>
     <span class="info" [style.--pos]="_index" [style.--size]="modes.length">
       @for (mode of modes; track $index) {
