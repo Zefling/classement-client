@@ -1187,5 +1187,10 @@
     "navigate": {
       "access.error": "⚠️ Impossible de récupérer les listes de classements."
     }
+  },
+  "update": {
+    "message": "Une mise à jour du site est disponible. Continuer sans actualiser la page peut entraîner des problèmes de navigation ou une perte de données. Vous pouvez cependant rester sur cette page pour sauvegarder votre travail si cela est possible.",
+    "stay": "Rester sur cette page",
+    "reload": "Recharger la page"
   }
 }

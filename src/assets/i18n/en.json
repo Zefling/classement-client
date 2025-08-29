@@ -1188,5 +1188,10 @@
     "navigate": {
       "access.error": "⚠️ Unable to retrieve tier lists."
     }
+  },
+  "update": {
+    "message": "A site update is available. Continuing without refreshing the page may cause navigation issues or data loss. However, you can stay on this page to save your work if possible.",
+    "stay": "Stay on this page",
+    "reload": "Reload the page"
   }
 }

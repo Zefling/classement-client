@@ -21,6 +21,7 @@ import { PreferencesMagmaDialog } from './components/preferences/preferences.com
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
+import { ModuleErrorHandler } from './services/module-error-handler';
 import { PreferencesService } from './services/preferences.service';
 
 @Component({
@@ -44,11 +45,13 @@ export class AppComponent implements DoCheck {
     protected readonly preferencesService = inject(PreferencesService);
     protected readonly userService = inject(APIUserService);
     protected readonly changeDetectorRef = inject(ChangeDetectorRef);
+    protected readonly moduleErrorHandler = inject(ModuleErrorHandler);
 
     // viewChild
 
     readonly warningExit = viewChild.required<MagmaDialog>('warningExit');
     readonly choice = viewChild.required<MagmaDialog>('choice');
+    readonly reloadChoice = viewChild.required<MagmaDialog>('reloadDialog');
     readonly menu = viewChild.required<ElementRef<HTMLDivElement>>('menu');
     readonly main = viewChild.required<ElementRef<HTMLDivElement>>('main');
     readonly preferences = viewChild.required<PreferencesMagmaDialog>('pref');
@@ -66,7 +69,7 @@ export class AppComponent implements DoCheck {
 
     _modeTemp?: string;
     _index = 0;
-    _visiblity = false;
+    _visibility = false;
 
     readonly modes: { id: ModeNames; icon?: string }[] = [
         { id: 'default', icon: 'tierlist' },
@@ -110,6 +113,10 @@ export class AppComponent implements DoCheck {
         this.router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
             this.changeDetectorRef.detectChanges();
             this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
+        });
+
+        this.moduleErrorHandler.reload.subscribe(() => {
+            this.reloadChoice().open();
         });
 
         if (this.modeApi()) {
@@ -187,6 +194,10 @@ export class AppComponent implements DoCheck {
             this.router.navigate([this.route]);
         }
         this.warningExit().close();
+    }
+
+    reload() {
+        window.location.reload();
     }
 
     openChoice() {

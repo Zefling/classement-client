@@ -227,6 +227,14 @@
   </div>
 </mg-dialog>
 
+<mg-dialog class="auto-format" #reloadDialog>
+  <p class="title">{{ 'update.message' | transloco }}</p>
+  <div>
+    <button class="warn" (click)="reloadDialog.close()">{{ 'update.stay' | transloco }}</button>
+    <button class="primary" (click)="reload()">{{ 'update.reload' | transloco }}</button>
+  </div>
+</mg-dialog>
+
 <mg-dialog
   class="auto-format mode-dialog"
   #choice
