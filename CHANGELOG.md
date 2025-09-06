@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 4.3.9 (2025-0-29)
+
+#### Standalone web app
+
+- Add discord link (fix mobile)
+
+> Update to **Magma** `0.9.1`
+
+#### With API activated only
+
+> Required: API `2.0.5`
+
 ### 4.3.8 (2025-08-29)
 
 #### Standalone web app
