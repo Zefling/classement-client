@@ -111,7 +111,8 @@
       "name": "Classement(クラスメント)：",
       "version": "バージョン {{ version }}"
     },
-    "last": "最後のランキング"
+    "last": "最後のランキング",
+    "community": "コミュニティ"
   },
   "preferences": {
     "title": "環境設定",

@@ -110,7 +110,8 @@
       "name": "Classement: ",
       "version": "version {{ version }}"
     },
-    "last": "Latest rankings"
+    "last": "Latest rankings",
+    "community": "Community"
   },
   "preferences": {
     "title": "Preferences",

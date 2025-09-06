@@ -10,12 +10,12 @@
 
     & > div {
         flex: 1;
+        text-align: center;
     }
 }
 
-.source,
-.licence {
-    text-align: center;
+.img-block {
+    display: inline-block;
 }
 
 .licence svg {

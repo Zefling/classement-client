@@ -14,12 +14,21 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 import { environment } from 'src/environments/environment';
 
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { AdminRoutingModule } from '../admin/admin.routing';
 
 @Component({
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
-    imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
+    imports: [
+        NgTemplateOutlet,
+        RouterLink,
+        NavigateResultComponent,
+        TranslocoPipe,
+        MagmaLoaderBlock,
+        MagmaLoaderTile,
+        AdminRoutingModule,
+    ],
 })
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);
