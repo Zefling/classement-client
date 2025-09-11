@@ -6,8 +6,6 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
@@ -84,7 +82,7 @@ export class APIUserService extends APICommon {
 
     serverTest() {
         return new Promise<void>((resolve, reject) => {
-            this.http.get<Message<User>>(`${environment.api.path}api/test`).subscribe({
+            this.http.get<Message<User>>(this.apiPath(`test`)).subscribe({
                 next: () => {
                     resolve();
                 },
@@ -99,7 +97,7 @@ export class APIUserService extends APICommon {
         return new Promise<void>((resolve, reject) => {
             this.token = getCookie('x-token') || undefined;
             if (this.token) {
-                this.http.get<Message<User>>(`${environment.api.path}api/user/current`, this.header()).subscribe({
+                this.http.get<Message<User>>(this.apiPath(`user/current`), this.header()).subscribe({
                     next: result => {
                         this.logger.log('valide token', LoggerLevel.log, result.message);
                         this.user = result.message;
@@ -135,7 +133,7 @@ export class APIUserService extends APICommon {
     signup(username: string, password: string, email: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(`${environment.api.path}api/${this.globalService.lang}/signup`, {
+                .post<Message<Login>>(this.apiPath(`${this.globalService.lang}/signup`), {
                     username,
                     password,
                     email,
@@ -154,7 +152,7 @@ export class APIUserService extends APICommon {
 
     userValidate(token: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.get<Message<Login>>(`${environment.api.path}api/signup/validity/${token}`).subscribe({
+            this.http.get<Message<Login>>(this.apiPath(`signup/validity/${token}`)).subscribe({
                 next: _ => {
                     resolve();
                 },
@@ -168,7 +166,7 @@ export class APIUserService extends APICommon {
 
     login(username: string, password: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.post<Message<Login>>(`${environment.api.path}api/login`, { username, password }).subscribe({
+            this.http.post<Message<Login>>(this.apiPath(`login`), { username, password }).subscribe({
                 next: result => {
                     this.token = result.message.token;
                     this.logged = true;
@@ -197,7 +195,7 @@ export class APIUserService extends APICommon {
 
     loginOauth(token: string, service: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.post<Message<Login>>(`${environment.api.path}api/login/oauth`, { token, service }).subscribe({
+            this.http.post<Message<Login>>(this.apiPath(`login/oauth`), { token, service }).subscribe({
                 next: result => {
                     this.token = result.message.token;
                     this.logged = true;
@@ -227,7 +225,7 @@ export class APIUserService extends APICommon {
     passwordLost(identifier: string) {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(`${environment.api.path}api/${this.globalService.lang}/password-lost`, {
+                .post<Message<Login>>(this.apiPath(`${this.globalService.lang}/password-lost`), {
                     identifier,
                 })
                 .subscribe({
@@ -245,7 +243,7 @@ export class APIUserService extends APICommon {
     passwordChange(password: string, token: string) {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .post<Message<Login>>(`${environment.api.path}api/password-change`, {
+                .post<Message<Login>>(this.apiPath(`password-change`), {
                     password,
                     token,
                 })
@@ -263,7 +261,7 @@ export class APIUserService extends APICommon {
 
     logout() {
         return new Promise<void>((resolve, reject) => {
-            this.http.delete<Message<Login>>(`${environment.api.path}api/logout`, this.header()).subscribe({
+            this.http.delete<Message<Login>>(this.apiPath(`logout`), this.header()).subscribe({
                 next: () => {
                     this.reset();
                     removeCookie('x-token');
@@ -282,7 +280,7 @@ export class APIUserService extends APICommon {
         return new Promise<boolean>((resolve, reject) => {
             let param: any = {};
             param[type] = value;
-            this.http.post<boolean>(`${environment.api.path}api/test`, param).subscribe({
+            this.http.post<boolean>(this.apiPath(`test`), param).subscribe({
                 next: result => {
                     resolve(result);
                 },
@@ -302,23 +300,21 @@ export class APIUserService extends APICommon {
                 param[type + 'Old'] = oldValue;
                 param[type + 'New'] = newValue;
             }
-            this.http
-                .post<Message<void>>(`${environment.api.path}api/user/update/${type}`, param, this.header())
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        this.logger.error('update', result);
-                        reject(result);
-                    },
-                });
+            this.http.post<Message<void>>(this.apiPath(`user/update/${type}`), param, this.header()).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    this.logger.error('update', result);
+                    reject(result);
+                },
+            });
         });
     }
 
     remove(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.delete<Message<User>>(`${environment.api.path}api/user`, this.header()).subscribe({
+            this.http.delete<Message<User>>(this.apiPath(`user`), this.header()).subscribe({
                 next: _ => {
                     resolve();
                 },
@@ -338,7 +334,7 @@ export class APIUserService extends APICommon {
             this.http
                 .post<
                     Message<{ avatar: boolean; url: string }>
-                >(`${environment.api.path}api/user/update/avatar`, param, this.header())
+                >(this.apiPath(`user/update/avatar`), param, this.header())
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -353,7 +349,7 @@ export class APIUserService extends APICommon {
 
     getUser(userId: string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
-            this.http.get<Message<User>>(`${environment.api.path}api/profile/${userId}`).subscribe({
+            this.http.get<Message<User>>(this.apiPath(`profile/${userId}`)).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
@@ -379,7 +375,7 @@ export class APIUserService extends APICommon {
             }
 
             this.http
-                .get<Message<{ total: number; list: User[] }>>(`${environment.api.path}api/admin/users`, {
+                .get<Message<{ total: number; list: User[] }>>(this.apiPath(`admin/users`), {
                     params,
                     ...this.header(),
                 })
@@ -397,23 +393,21 @@ export class APIUserService extends APICommon {
 
     adminUpdateUser(id: number, param: {}) {
         return new Promise<User>((resolve, reject) => {
-            this.http
-                .post<Message<User>>(`${environment.api.path}api/admin/user/${id}`, param, this.header())
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        this.logger.error('adminUpdateUser', result);
-                        reject(result);
-                    },
-                });
+            this.http.post<Message<User>>(this.apiPath(`admin/user/${id}`), param, this.header()).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    this.logger.error('adminUpdateUser', result);
+                    reject(result);
+                },
+            });
         });
     }
 
     adminRemoveUser(id: number): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.delete<Message<User>>(`${environment.api.path}api/admin/user/${id}`, this.header()).subscribe({
+            this.http.delete<Message<User>>(this.apiPath(`admin/user/${id}`), this.header()).subscribe({
                 next: _ => {
                     resolve();
                 },
@@ -427,7 +421,7 @@ export class APIUserService extends APICommon {
 
     sendToAdmin(params: { username: string; email: string; message: string }): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.http.post<Message<void>>(`${environment.api.path}api/contact`, params).subscribe({
+            this.http.post<Message<void>>(this.apiPath(`contact`), params).subscribe({
                 next: _ => {
                     resolve();
                 },

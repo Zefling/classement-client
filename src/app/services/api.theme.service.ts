@@ -14,8 +14,6 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject, last, map, tap } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 
@@ -60,7 +58,7 @@ export class APIThemeService extends APICommon {
                 }
             }
 
-            this.http.get<Message<SearchResult>>(`${environment.api.path}api/themes`, { params }).subscribe({
+            this.http.get<Message<SearchResult>>(this.apiPath(`themes`), { params }).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
@@ -84,7 +82,7 @@ export class APIThemeService extends APICommon {
         } as ThemeData;
 
         return new Promise<ThemeData>((resolve, reject) => {
-            const req = new HttpRequest('POST', `${environment.api.path}api/theme`, data, {
+            const req = new HttpRequest('POST', this.apiPath(`theme`), data, {
                 ...this.header(),
                 reportProgress: true,
                 responseType: 'json',
@@ -115,7 +113,7 @@ export class APIThemeService extends APICommon {
     deleteTheme(id: string) {
         return new Promise<void>((resolve, reject) => {
             this.http
-                .delete<Message<void>>(`${environment.api.path}api/theme/${id}`, {
+                .delete<Message<void>>(this.apiPath(`theme/${id}`), {
                     ...this.header(),
                 })
                 .subscribe({

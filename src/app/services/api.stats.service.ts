@@ -4,8 +4,6 @@ import { Injectable, inject } from '@angular/core';
 import { Logger } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
-import { environment } from 'src/environments/environment';
-
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 
@@ -36,7 +34,7 @@ export class APIStatsService extends APICommon {
             }
 
             this.http
-                .get<Message<StatsResult<T>>>(`${environment.api.path}api/admin/stats`, {
+                .get<Message<StatsResult<T>>>(this.apiPath(`admin/stats`), {
                     params,
                     ...this.header(),
                     responseType: 'json',

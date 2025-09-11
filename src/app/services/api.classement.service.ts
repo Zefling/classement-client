@@ -15,8 +15,6 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject, last, map, tap } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-
 import { APICommon } from './api.common';
 import { APIUserService } from './api.user.service';
 import { PreferencesService } from './preferences.service';
@@ -58,7 +56,7 @@ export class APIClassementService extends APICommon {
             this.http
                 .get<
                     Message<Classement>
-                >(`${environment.api.path}api/classement/${rankingId}${history ? `?history=${history}` : ''}`, password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined)
+                >(this.apiPath(`classement/${rankingId}${history ? `?history=${history}` : ''}`), password ? { headers: new HttpHeaders({ 'X-PASSWORD': password }) } : undefined)
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -96,7 +94,7 @@ export class APIClassementService extends APICommon {
             }
             this.logger.log('options', LoggerLevel.log, criterion, 'params', params);
 
-            this.http.get<Message<SearchResult>>(`${environment.api.path}api/classements`, { params }).subscribe({
+            this.http.get<Message<SearchResult>>(this.apiPath(`classements`), { params }).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
@@ -111,9 +109,7 @@ export class APIClassementService extends APICommon {
     getClassementsByTemplateId(id: string, userId?: number): Promise<Classement[]> {
         return new Promise<Classement[]>(async (resolve, reject) => {
             const adult = (await this.prefs.init()).adult ? 'true' : 'false';
-            const url = `${environment.api.path}api/classements/template/${id}?adult=${adult}${
-                userId ? `&userId=${userId}` : ''
-            }`;
+            const url = this.apiPath(`classements/template/${id}?adult=${adult}${userId ? `&userId=${userId}` : ''}`);
             this.http.get<Message<Classement[]>>(url).subscribe({
                 next: result => {
                     resolve(result.message);
@@ -128,17 +124,15 @@ export class APIClassementService extends APICommon {
 
     getClassementsHistory(id: string): Promise<ClassementHistory[]> {
         return new Promise<ClassementHistory[]>((resolve, reject) => {
-            this.http
-                .get<Message<ClassementHistory[]>>(`${environment.api.path}api/classement/history/${id}`)
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        this.logger.error('templateId', result);
-                        reject(result);
-                    },
-                });
+            this.http.get<Message<ClassementHistory[]>>(this.apiPath(`classement/history/${id}`)).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    this.logger.error('templateId', result);
+                    reject(result);
+                },
+            });
         });
     }
 
@@ -146,7 +140,7 @@ export class APIClassementService extends APICommon {
         return new Promise<Classement[]>(async (resolve, reject) => {
             const adult = (await this.prefs.init()).adult ? 'true' : 'false';
             this.http
-                .get<Message<Classement[]>>(`${environment.api.path}api/classements/last?adult=${adult}&limit=${limit}`)
+                .get<Message<Classement[]>>(this.apiPath(`classements/last?adult=${adult}&limit=${limit}`))
                 .subscribe({
                     next: result => {
                         resolve(result.message);
@@ -162,23 +156,21 @@ export class APIClassementService extends APICommon {
     getClassementsHome(): Promise<Classement[]> {
         return new Promise<Classement[]>(async (resolve, reject) => {
             const adult = (await this.prefs.init()).adult ? 'true' : 'false';
-            this.http
-                .get<Message<Classement[]>>(`${environment.api.path}api/categories/home?adult=${adult}`)
-                .subscribe({
-                    next: result => {
-                        resolve(result.message);
-                    },
-                    error: (result: HttpErrorResponse) => {
-                        this.logger.error('home', result);
-                        reject(result);
-                    },
-                });
+            this.http.get<Message<Classement[]>>(this.apiPath(`categories/home?adult=${adult}`)).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    this.logger.error('home', result);
+                    reject(result);
+                },
+            });
         });
     }
 
     saveClassement(classement: Classement) {
         return new Promise<Classement>((resolve, reject) => {
-            const req = new HttpRequest('POST', `${environment.api.path}api/classement`, classement, {
+            const req = new HttpRequest('POST', this.apiPath(`classement`), classement, {
                 ...this.header(),
                 reportProgress: true,
                 responseType: 'json',
@@ -209,7 +201,7 @@ export class APIClassementService extends APICommon {
     testLink(linkId: string, rankingId?: string) {
         return new Promise<boolean>((resolve, reject) => {
             this.http
-                .post<boolean>(`${environment.api.path}api/testId`, {
+                .post<boolean>(this.apiPath(`testId`), {
                     linkId,
                     rankingId,
                 })
@@ -259,7 +251,7 @@ export class APIClassementService extends APICommon {
         return new Promise<Classement[]>((resolve, reject) => {
             this.http
                 .post<Message<Classement[]>>(
-                    `${environment.api.path}api/${admin ? 'admin/' : ''}classement/status/${rankingId}`,
+                    this.apiPath(`${admin ? 'admin/' : ''}classement/status/${rankingId}`),
                     {
                         type,
                         status,
@@ -296,7 +288,7 @@ export class APIClassementService extends APICommon {
             this.logger.log('params', LoggerLevel.log, params);
 
             this.http
-                .get<Message<{ total: number; list: Classement[] }>>(`${environment.api.path}api/admin/classements`, {
+                .get<Message<{ total: number; list: Classement[] }>>(this.apiPath(`admin/classements`), {
                     params,
                     ...this.header(),
                 })

@@ -24,6 +24,10 @@ export abstract class APICommon {
         };
     }
 
+    protected apiPath(path: string) {
+        return `${environment.api.path}api/${path}`;
+    }
+
     protected error(message: string, result: HttpErrorResponse) {
         if (!environment.production) {
             this.logger.log(message, LoggerLevel.error, result);
