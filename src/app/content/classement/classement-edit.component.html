@@ -93,6 +93,7 @@
                     <div>
                       <label class="name">
                         <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                          <!-- not use magma -->
                           <textarea
                             #input
                             id="name-{{ indexGrp }}"
@@ -395,6 +396,7 @@
                       <div>
                         <label class="name">
                           <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                            <!-- not use magma -->
                             <textarea
                               #input
                               id="name-{{ indexGrp }}"
@@ -882,6 +884,7 @@
       ></span>
       <label class="name" [style.background-color]="currentGroup.group.bgColor">
         <div class="auto-resize" [attr.data-value]="input?.value">
+          <!-- not use magma -->
           <textarea
             #input
             rows="1"
@@ -927,9 +930,9 @@
       <div>
         {{ 'generator.actions.texts.info' | transloco }}
       </div>
-      <div class="auto-resize" [attr.data-value]="inputText?.value">
-        <textarea #inputText [(ngModel)]="inputTexts" rows="1" maxlength="2000"></textarea>
-      </div>
+      <mg-input class="s-12">
+        <mg-input-textarea autosize maxlength="2000" [(ngModel)]="inputTexts" />
+      </mg-input>
     </label>
     <div class="buttons">
       <button class="default" (click)="closeTexts()">

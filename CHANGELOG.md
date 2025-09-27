@@ -10,7 +10,7 @@
 
 #### Standalone web app
 
-- Add discord link (fix mobile)
+- Add discord link
 
 > Update to **Magma** `0.9.1`
 
