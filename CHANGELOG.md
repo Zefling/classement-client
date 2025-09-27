@@ -1,5 +1,11 @@
 # Changelog - Standalone web app & API
 
+### 4.3.10 (2025-09-29)
+
+#### Standalone web app
+
+- Increase the size of the dialog box to generate text tiles to 2000 characters
+
 ### 4.3.9 (2025-09-29)
 
 #### Standalone web app
