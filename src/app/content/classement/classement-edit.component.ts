@@ -256,6 +256,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         return this.options?.mode === 'iceberg' || this.options?.mode === 'axis';
     }
 
+    @HostBinding('class.stream-mode')
+    get streamMode() {
+        return this.options?.streamMode;
+    }
+
     image = viewChild.required<ElementRef<HTMLDivElement>>('image');
     currentList = viewChild<ElementRef<HTMLDivElement>>('currentList');
     dialogImage = viewChild.required<MagmaDialog>('dialogImage');

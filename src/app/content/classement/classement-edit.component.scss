@@ -413,8 +413,19 @@ img {
     }
 }
 
-.group-options {
-    display: none;
+.classement-edit {
+    .group-options,
+    span.group-options {
+        display: none;
+    }
+}
+
+span.group-options {
+    grid-area: e;
+}
+
+span.txt-color {
+    grid-area: c;
 }
 
 span.color {
@@ -434,14 +445,6 @@ span.color {
         width: 24px;
         height: 24px;
     }
-}
-
-span.txt-color {
-    grid-area: c;
-}
-span.group-options {
-    display: none;
-    grid-area: e;
 }
 
 [drop-image] .content-box {
@@ -675,7 +678,7 @@ span.group-options {
     }
 }
 
-.stream-mode {
+:host.stream-mode {
     .drop-image-message span:first-child,
     :where(.tile-info, .add-file, .add-text, .btn-delete, .input-title) {
         visibility: hidden;
@@ -1195,7 +1198,7 @@ mg-spinner {
 
 @media screen and (width > 769px) {
     :host.option-reduce,
-    .stream-mode {
+    :host.stream-mode {
         --group-option-height: 0;
 
         .table-classement {

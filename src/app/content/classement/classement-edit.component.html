@@ -49,7 +49,7 @@
   </div>
 
   @if (options) {
-    <div class="edit-zone" [class.stream-mode]="options.streamMode" [ngClass]="classScreenMode" #div>
+    <div class="edit-zone" [ngClass]="classScreenMode" #div>
       <div class="classement-top">
         <h3>{{ 'generator.ranking.group.title' | transloco }}</h3>
         @if (classScreenMode !== 'default') {
