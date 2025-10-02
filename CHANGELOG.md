@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+### 4.3.11 (2025-10-02)
+
+#### Standalone web app
+
+- Add an option to randomize after emptying groups
+- Add contexte menu on list
+- Fix magma usage for textarea
+- Fix background image list
+- Fix stream mode for pin list
+- Improve streamer mode for options
+
 ### 4.3.10 (2025-09-27)
 
 #### Standalone web app
