@@ -195,6 +195,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
     advanceOptions() {
         this.updateCurrentTheme();
+        this.limitBackgroundImage();
         this.dialogAdvancedOptions().open();
     }
 
@@ -256,15 +257,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     updateList(mode: ModeNames = this._modeTemp ?? this.options()?.mode ?? 'default', init: boolean = false) {
-        // list image
-        this.listThemes = this.imagesList.map<Select2Option>(e => ({
-            value: e,
-            label: e,
-            data: {
-                image: this.getImageUrl(e),
-                label: e,
-            },
-        }));
+        this.limitBackgroundImage();
         const options = this.options();
         if (options && !init) {
             let modeType = mode;
@@ -298,6 +291,17 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             // fix ids
             this.editor.addIds();
         }
+    }
+
+    protected limitBackgroundImage() {
+        this.listThemes = this.imagesList.map<Select2Option>(e => ({
+            value: e,
+            label: e,
+            data: {
+                image: this.getImageUrl(e),
+                label: e,
+            },
+        }));
     }
 
     protected updateAction(action: string, value: any) {
