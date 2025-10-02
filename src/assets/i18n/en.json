@@ -682,6 +682,7 @@
       "reset.groups": {
         "button": "Clear Groups",
         "question": "Are you sure you want to clear groups?",
+        "clear.list": "Disorder tiles when emptying the list",
         "ok": "Ok",
         "cancel": "Cancel"
       },

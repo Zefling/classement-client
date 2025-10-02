@@ -681,6 +681,7 @@
       "reset.groups": {
         "button": "Vider les groupes",
         "question": "Êtes-vous sûr de vouloir vider les groupes ?",
+        "clear.list": "Mettre les tuiles en désordre quand on vide la liste",
         "ok": "Ok",
         "cancel": "Annuler"
       },

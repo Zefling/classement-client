@@ -858,11 +858,18 @@
   <p>
     {{ 'generator.actions.reset.groups.question' | transloco }}
   </p>
+  <p>
+    <mg-input>
+      <mg-input-checkbox [(ngModel)]="dialogClearRandomize"
+        >{{ 'generator.actions.reset.groups.clear.list' | transloco }}
+      </mg-input-checkbox>
+    </mg-input>
+  </p>
   <div class="buttons">
     <button (click)="dialogClear.close()">
       {{ 'generator.actions.reset.groups.cancel' | transloco }}
     </button>
-    <button class="warn" (click)="reset(); dialogClear.close()">
+    <button class="warn" (click)="reset(dialogClearRandomize); dialogClear.close()">
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>

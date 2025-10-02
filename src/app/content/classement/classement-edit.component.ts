@@ -87,7 +87,7 @@ import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/glob
 import { MemoryService } from 'src/app/services/memory.service';
 import { OptimiseImageService } from 'src/app/services/optimise-image.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
-import { color, mixColor } from 'src/app/tools/function';
+import { color, mixColor, randomizeArray } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 import { Utils } from 'src/app/tools/utils';
 
@@ -238,6 +238,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     editField = signal(false);
 
     pinnedList = false;
+
+    dialogClearRandomize = false;
 
     @HostBinding('class.option-reduce')
     get optionReduce() {
@@ -1248,7 +1250,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
     }
 
-    reset() {
+    reset(dialogClearRandomize = false) {
         this.logger.log('reset', LoggerLevel.info);
 
         for (const line of this.groups) {
@@ -1269,6 +1271,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         }
 
         this.list = this.list.filter(e => e);
+
+        if (dialogClearRandomize) {
+            this.logger.log('randomize list', LoggerLevel.info);
+            this.list = randomizeArray(this.list);
+        }
 
         this.addIds();
         this.mgMessage.addMessage(this.translate.translate('message.reset.groups'));

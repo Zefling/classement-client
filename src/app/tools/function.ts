@@ -45,3 +45,10 @@ export const mixColor = (color1: string, color2: string) => {
 export const toHEX = (c: Color): string => {
     return c.toGamut({ space: 'srgb' }).to('srgb').toString({ format: 'hex' });
 };
+
+export function randomizeArray<T>(c: T[]): T[] {
+    return c
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+}
