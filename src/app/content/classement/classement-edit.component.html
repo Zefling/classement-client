@@ -575,6 +575,7 @@
                   (keydown)="selectItemByKey($event, null, item, index)"
                   (ngInit)="selectionDiv = itemDiv"
                   [id]="item.id"
+                  [contextMenu]="{ contextMenu: contextMenuList, data: { item, index } }"
                 >
                   @if (!options.streamMode) {
                     <div

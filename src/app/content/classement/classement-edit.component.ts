@@ -278,6 +278,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     tiles = viewChildren(CdkDragElement);
 
     contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
+    contextMenuList: ContextMenuItem<{ item: FileType; index: number }>[] = [];
 
     selectionTile: FileType = null;
     selectionGroup: FormattedGroup | null = null;
@@ -366,6 +367,24 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                     this.removeFromGroup(data.group.list, data.index);
                 },
             },
+            {
+                icon: 'icon-edit-2',
+                label: this.translate.translate('generator.context.menu.edit'),
+                action: data => {
+                    this.openTileInfo(data.item as FileString);
+                },
+            },
+            {
+                icon: 'icon-remove',
+                label: this.translate.translate('generator.context.menu.remove'),
+                action: data => {
+                    this.currentTile = data.item as FileString;
+                    this.deleteCurrent();
+                },
+            },
+        ];
+
+        this.contextMenuList = [
             {
                 icon: 'icon-edit-2',
                 label: this.translate.translate('generator.context.menu.edit'),
