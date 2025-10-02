@@ -1194,7 +1194,8 @@ mg-spinner {
 /* force reduce options ------------------------------------------------------------------ */
 
 @media screen and (width > 769px) {
-    :host.option-reduce {
+    :host.option-reduce,
+    .stream-mode {
         --group-option-height: 0;
 
         .table-classement {
