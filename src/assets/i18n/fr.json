@@ -269,7 +269,7 @@
     "local.link": "Ce classement est lié un brouillons sur ce navigateur.\nCliquez ici pour voir le brouillon sauvegardé sur ce navigateur.\nId : {{ id }}",
     "delete": {
       "question": "Êtes-vous sûr de vouloir supprimer ce classement ?",
-      "exit.save": "Sauvegarder un bouillon et quitter",
+      "exit.save": "Sauvegarder un brouillon et quitter",
       "exit": "Quitter",
       "cancel": "Annuler",
       "delete": "Supprimer",

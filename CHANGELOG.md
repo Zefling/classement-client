@@ -5,7 +5,7 @@
 #### Standalone web app
 
 - Add an option to randomize after emptying groups
-- Add contexte menu on list
+- Add context menu on list
 - Fix magma usage for textarea
 - Fix background image list
 - Fix stream mode for pin list
