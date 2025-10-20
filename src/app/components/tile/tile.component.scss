@@ -74,9 +74,9 @@
     &:not(.title-item-width-auto) span {
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        min-height: calc(1.25em * var(--over-item-text-min-line));
         -webkit-line-clamp: var(--over-item-text-max-line);
         line-clamp: var(--over-item-text-max-line);
-        min-height: calc(1.25em * var(--over-item-text-min-line));
         overflow: hidden;
     }
 }
@@ -86,6 +86,7 @@
 
     span {
         display: inline-block;
+        margin-bottom: -2px;
         max-width: var(--over-item-max-width, 300px);
         overflow: hidden;
         text-overflow: ellipsis;
