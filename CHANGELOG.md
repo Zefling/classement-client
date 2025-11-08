@@ -1,5 +1,19 @@
 # Changelog - Standalone web app & API
 
+### 4.3.12 (2025-11-08)
+
+#### Standalone web app
+
+- Fix title position
+- Fix error messages
+- Fix color button in standard modev
+
+> Update to **Angular** `20.3`
+
+#### With API activated only
+
+- Add control option before save
+
 ### 4.3.11 (2025-10-02)
 
 #### Standalone web app
