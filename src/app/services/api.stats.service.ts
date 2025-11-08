@@ -44,8 +44,7 @@ export class APIStatsService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('stats', result);
-                        reject(result);
+                        reject(this.error('stats', result));
                     },
                 });
         });

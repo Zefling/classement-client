@@ -116,8 +116,7 @@ export class APIUserService extends APICommon {
                         if ((result.error as MessageError).errorCode === 1030) {
                             removeCookie('x-token');
                         }
-                        this.logger.error('invalide token', result);
-                        reject(result);
+                        reject(this.error('invalide token', result));
                     },
                     complete: () => {
                         this.afterLogin.next();
@@ -143,8 +142,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('signup', result);
-                        reject(result);
+                        reject(this.error('signup', result));
                     },
                 });
         });
@@ -157,8 +155,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('userValidate', result);
-                    reject(result);
+                    reject(this.error('userValidate', result));
                 },
             });
         });
@@ -186,8 +183,7 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     this.afterLogout.next();
-                    this.logger.error('login', result);
-                    reject(result);
+                    reject(this.error('login', result));
                 },
             });
         });
@@ -215,8 +211,7 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     this.afterLogout.next();
-                    this.logger.error('login', result);
-                    reject(result);
+                    reject(this.error('login', result));
                 },
             });
         });
@@ -233,8 +228,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('passwordLost', result);
-                        reject(result);
+                        reject(this.error('passwordLost', result));
                     },
                 });
         });
@@ -252,8 +246,7 @@ export class APIUserService extends APICommon {
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('passwordLost', result);
-                        reject(result);
+                        reject(this.error('passwordLost', result));
                     },
                 });
         });
@@ -269,8 +262,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('logout', result);
-                    reject(result);
+                    reject(this.error('logout', result));
                 },
             });
         });
@@ -305,8 +297,7 @@ export class APIUserService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('update', result);
-                    reject(result);
+                    reject(this.error('update', result));
                 },
             });
         });
@@ -319,8 +310,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('remove', result);
-                    reject(result);
+                    reject(this.error('remove', result));
                 },
             });
         });
@@ -340,8 +330,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('update', result);
-                        reject(result);
+                        reject(this.error('update', result));
                     },
                 });
         });
@@ -354,8 +343,7 @@ export class APIUserService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('getUser', result);
-                    reject(result);
+                    reject(this.error('getUser', result));
                 },
             });
         });
@@ -384,8 +372,7 @@ export class APIUserService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('adminGetUser', result);
-                        reject(result);
+                        reject(this.error('adminGetUser', result));
                     },
                 });
         });
@@ -398,8 +385,7 @@ export class APIUserService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('adminUpdateUser', result);
-                    reject(result);
+                    reject(this.error('adminUpdateUser', result));
                 },
             });
         });
@@ -412,8 +398,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('adminRemoveUser', result);
-                    reject(result);
+                    reject(this.error('adminRemoveUser', result));
                 },
             });
         });
@@ -426,8 +411,7 @@ export class APIUserService extends APICommon {
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('sendToAdmin', result);
-                    reject(result);
+                    reject(this.error('sendToAdmin', result));
                 },
             });
         });

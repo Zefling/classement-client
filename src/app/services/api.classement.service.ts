@@ -66,8 +66,7 @@ export class APIClassementService extends APICommon {
                         if ((result.error as MessageError)?.code === 401) {
                             reject(result.error as MessageError);
                         } else {
-                            this.logger.error('classement', result);
-                            reject(result);
+                            reject(this.error('classement', result));
                         }
                     },
                 });
@@ -99,8 +98,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('byOptions', result);
-                    reject(result);
+                    reject(this.error('byOptions', result));
                 },
             });
         });
@@ -115,8 +113,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('templateId', result);
-                    reject(result);
+                    reject(this.error('templateId', result));
                 },
             });
         });
@@ -129,8 +126,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('templateId', result);
-                    reject(result);
+                    reject(this.error('templateId', result));
                 },
             });
         });
@@ -146,8 +142,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('last', result);
-                        reject(result);
+                        reject(this.error('last', result));
                     },
                 });
         });
@@ -161,8 +156,7 @@ export class APIClassementService extends APICommon {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    this.logger.error('home', result);
-                    reject(result);
+                    reject(this.error('home', result));
                 },
             });
         });
@@ -187,12 +181,12 @@ export class APIClassementService extends APICommon {
                         if (result.event.body) {
                             resolve(result.event.body.message);
                         } else {
-                            reject(this.logger.error('save', { error: 0 } as HttpErrorResponse));
+                            this.logger.error('save', { error: 0 } as HttpErrorResponse);
+                            reject({ message: 'no.body', error: 0 });
                         }
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('save', result);
-                        reject(result);
+                        reject(this.error('save', result));
                     },
                 });
         });
@@ -210,8 +204,7 @@ export class APIClassementService extends APICommon {
                         resolve(result);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('home', result);
-                        reject(result);
+                        reject(this.error('home', result));
                     },
                 });
         });
@@ -263,8 +256,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('adminStatusClassement', result);
-                        reject(result);
+                        reject(this.error('adminStatusClassement', result));
                     },
                 });
         });
@@ -297,8 +289,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        this.logger.error('adminGetClassements', result);
-                        reject(result);
+                        reject(this.error('adminGetClassements', result));
                     },
                 });
         });

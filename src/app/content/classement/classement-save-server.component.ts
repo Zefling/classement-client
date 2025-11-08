@@ -227,7 +227,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                     this.cancel();
                 })
                 .catch(e => {
-                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
+                    this.mgMessage.addMessage(e.message, { type: MagmaMessageType.error });
                 })
                 .finally(() => {
                     this.loading = false;
