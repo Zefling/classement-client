@@ -52,3 +52,15 @@ export function randomizeArray<T>(c: T[]): T[] {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 }
+
+export function minMax(value: any, min: number, max: number, _multipleOf: number) {
+    return Math.min(max, Math.max(min, value));
+}
+
+export function boolean(value: any) {
+    return value === true || value === 'true';
+}
+
+export function inList(value: any, list: any[]) {
+    return list.includes(value) ? value : list[0];
+}

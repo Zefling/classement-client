@@ -39,6 +39,7 @@ import { APIClassementService } from 'src/app/services/api.classement.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { boolean, inList, minMax } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
@@ -171,6 +172,10 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         const current = this.classement();
         const options = this.options();
 
+        if (options) {
+            this.fixOptions(options);
+        }
+
         const list = this.list();
         const groups = this.groups();
 
@@ -227,12 +232,77 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                     this.cancel();
                 })
                 .catch(e => {
-                    this.mgMessage.addMessage(e.message, { type: MagmaMessageType.error });
+                    this.mgMessage.addMessage(e, { type: MagmaMessageType.error });
                 })
                 .finally(() => {
                     this.loading = false;
                 });
         }
+    }
+
+    fixOptions(options: Options) {
+        options.titleTextOpacity = minMax(options.titleTextOpacity ?? 100, 0, 100, 1);
+        options.itemWidth = minMax(options.itemWidth ?? 100, 16, 300, 1);
+        options.itemWidthAuto = boolean(options.itemWidthAuto ?? true);
+        options.itemImageCover = inList(options.itemImageCover ?? true, [true, false, 'opti']);
+        options.itemMaxWidth = minMax(options.itemMaxWidth ?? 300, 16, 300, 1);
+        options.itemHeight = minMax(options.itemHeight ?? 100, 16, 300, 1);
+        options.itemHeightAuto = boolean(options.itemHeightAuto ?? false);
+        options.itemMaxHeight = minMax(options.itemMaxHeight ?? 300, 16, 300, 1);
+        options.itemPadding = minMax(options.itemPadding ?? 0, 0, 20, 1);
+        options.itemMargin = minMax(options.itemMargin ?? 0, 0, 20, 1);
+        options.itemBackgroundOpacity = minMax(options.itemBackgroundOpacity ?? 40, 0, 100, 1);
+        options.itemBorderOpacity = minMax(options.itemBorderOpacity ?? 30, 0, 100, 1);
+        options.itemTextMinLine = minMax(options.itemTextMinLine ?? 0, 0, 10, 1);
+        options.itemTextMaxLine = minMax(options.itemTextMaxLine ?? 10, 0, 10, 1);
+        options.itemTextSize = minMax(options.itemTextSize ?? 12, 6, 100, 1);
+        options.itemTextOnlySize = minMax(options.itemTextOnlySize ?? 24, 6, 100, 1);
+        options.itemTextPosition = inList(options.itemTextPosition ?? 'bottom', [
+            'hidden',
+            'bottom',
+            'bottom-over',
+            'bottom-over-hover',
+            'bottom-bubble',
+            'top',
+            'top-over',
+            'top-over-hover',
+            'top-bubble',
+        ]);
+
+        options.itemTextBackgroundOpacity = minMax(options.itemTextBackgroundOpacity ?? 80, 0, 100, 1);
+        options.lineBackgroundOpacity = minMax(options.lineBackgroundOpacity ?? 60, 0, 100, 1);
+        options.lineBorderOpacity = minMax(options.lineBorderOpacity ?? 60, 0, 100, 1);
+        options.imageBackgroundImage = inList(options.imageBackgroundImage ?? 'none', [
+            'none',
+            'custom',
+            'sakura',
+            'etoile',
+            'ciel',
+            'iceberg',
+            'axis',
+        ]);
+        options.imageWidth = minMax(options.imageWidth ?? 1170, 100, 4000, 1);
+        options.imageHeight = minMax(options.imageHeight ?? 1000, 100, 4000, 1);
+        options.imageSize = inList(options.imageSize ?? 'center', ['', 'cover']);
+        options.imagePosition = inList(options.imagePosition, ['', 'center']);
+        options.columnMinHeight = minMax(options.columnMinHeight ?? 250, 0, 4000, 1);
+        options.axisLineWidth = minMax(options.axisLineWidth ?? 3, 0, 12, 1);
+        options.axisArrowWidth = minMax(options.axisArrowWidth ?? 15, 0, 50, 1);
+        options.nameWidth = minMax(options.nameWidth ?? 90, 50, 300, 1);
+        options.nameMinHeight = minMax(options.nameMinHeight, 0, 300, 1);
+        options.nameFontSize = minMax(options.nameFontSize ?? 120, 50, 300, 1);
+        options.nameBackgroundOpacity = minMax(options.nameBackgroundOpacity ?? 100, 0, 100, 1);
+        options.nameMarkdown = boolean(options.nameMarkdown);
+        options.borderRadius = minMax(options.borderRadius ?? 4, 0, 50, 1);
+        options.borderSpacing = minMax(options.borderSpacing ?? 1, -1, 20, 1);
+        options.borderSize = minMax(options.borderSize ?? 1, 0, 20, 1);
+        options.groupLineSize = minMax(options.groupLineSize ?? 1, 0, 50, 1);
+        options.groupLineOpacity = minMax(options.groupLineOpacity ?? 80, 0, 100, 1);
+        options.direction = inList(options.direction ?? 'ltr', ['ltr', 'rtl']);
+        options.sizeX = minMax(options.sizeX ?? 5, 2, 20, 1);
+        options.sizeY = minMax(options.sizeY ?? 5, 2, 20, 1);
+        options.streamMode = boolean(options.streamMode);
+        options.autoSave = boolean(options.autoSave);
     }
 
     testLink(linkId: string) {
