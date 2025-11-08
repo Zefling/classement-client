@@ -424,10 +424,6 @@ span.group-options {
     grid-area: e;
 }
 
-span.txt-color {
-    grid-area: c;
-}
-
 span.color {
     display: block;
     grid-area: b;
@@ -444,6 +440,10 @@ span.color {
     .option-reduce & {
         width: 24px;
         height: 24px;
+    }
+
+    &.txt-color {
+        grid-area: c;
     }
 }
 
