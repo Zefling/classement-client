@@ -6,7 +6,7 @@
 
 - Fix title position
 - Fix error messages
-- Fix color button in standard modev
+- Fix color button in standard mode
 
 > Update to **Angular** `20.3`
 

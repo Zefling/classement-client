@@ -14,13 +14,13 @@
       </div>
     </div>
 
-    @if (user) {
+    @if (user && user.classements) {
       <ng-container
         [sortable]="user.classements"
         [sortable-filter-input]="inputFilter.inputElement"
         [sortable-filter]="sortableFilter"
       >
-        @if (user.classements?.length) {
+        @if (user.classements.length) {
           <table mg hoverRow>
             <thead mg>
               <tr mg>

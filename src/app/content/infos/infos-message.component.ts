@@ -54,7 +54,7 @@ export class InfosMessageComponent {
 
         const base = 'user.information.contact.admin.error.';
 
-        this.formConfig = this.fbe.groupWithErrorNonNullable({
+        this.formConfig = this.fbe.groupWithError({
             username: {
                 default: this.userService.user?.username ?? '',
                 control: {

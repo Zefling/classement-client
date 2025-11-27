@@ -51,7 +51,7 @@ export class UserPwLostComponent implements OnDestroy {
     constructor() {
         this.updateTitle();
 
-        this.form = this.fbe.groupWithErrorNonNullable({
+        this.form = this.fbe.groupWithError({
             email: {
                 default: 'Test',
                 control: {

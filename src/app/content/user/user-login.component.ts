@@ -58,7 +58,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     }>;
 
     constructor() {
-        this.formLogin = this.fbe.groupWithErrorNonNullable({
+        this.formLogin = this.fbe.groupWithError({
             username: {
                 default: '',
                 control: {
