@@ -125,7 +125,7 @@ export class AdminStatsComponent {
                     grid: {
                         left: '3%',
                         right: '4%',
-                        bottom: '3%',
+                        bottom: '40x',
                         containLabel: true,
                     },
                     xAxis: {
@@ -209,7 +209,7 @@ export class AdminStatsComponent {
                     grid: {
                         left: '3%',
                         right: '4%',
-                        bottom: '3%',
+                        bottom: '40x',
                         containLabel: true,
                     },
                     xAxis: {
