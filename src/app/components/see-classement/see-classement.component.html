@@ -79,7 +79,7 @@
                 [style.--text-color]="group.txtColor"
               >
                 @if (opts.nameMarkdown) {
-                  <markdown [data]="group.name"></markdown>
+                  <markdown [data]="group.name" />
                 } @else {
                   <pre>{{ group.name }}</pre>
                 }
@@ -154,7 +154,7 @@
                 [style.--text-color]="group.txtColor"
               >
                 @if (opts.nameMarkdown) {
-                  <markdown [data]="group.name"></markdown>
+                  <markdown [data]="group.name" />
                 } @else {
                   <pre>{{ group.name }}</pre>
                 }
