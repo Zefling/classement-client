@@ -366,15 +366,17 @@ export class GlobalService {
             )} - ${this.translate.translate('category.' + (options.category || 'undefined'))})\n\n` +
             groups
                 .map(group => {
-                    return (
-                        group.name +
-                        colon +
-                        group.list
-                            .map(e => e?.title)
-                            .filter(e => e)
-                            .join(comma)
-                    );
+                    const list = group.list
+                        .map(e => e?.title)
+                        .filter(e => e)
+                        .join(comma);
+                    return (options.mode !== 'iceberg' && options.mode !== 'axis') || list
+                        ? (options.mode === 'default' || options.mode === 'teams' || options.mode === 'columns'
+                              ? group.name + colon
+                              : '') + list
+                        : '';
                 })
+                .filter(e => (options.mode === 'iceberg' || options.mode === 'axis' ? e : true))
                 .join('\n')
         );
     }
