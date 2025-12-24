@@ -626,26 +626,28 @@
         </mg-input>
       }
 
-      <mg-input class="background-image">
-        <mg-input-label>{{ 'generator.options.global.image' | transloco }}</mg-input-label>
-        <mg-input-select
-          [(ngModel)]="opts.imageBackgroundImage"
-          [data]="listThemes"
-          [templates]="templates"
-          resultMaxHeight="300px"
-          displaySearchStatus="hidden"
-          overlay
-          nativeKeyboard
-          ><ng-template #templates let-data="data">
-            <div class="list-option">
-              <div class="view" [style.--url]="data.image"></div>
-              <div class="desc">
-                {{ 'generator.options.global.name.image.' + data.label | transloco }}
+      @if (listThemes) {
+        <mg-input class="background-image">
+          <mg-input-label>{{ 'generator.options.global.image' | transloco }}</mg-input-label>
+          <mg-input-select
+            [(ngModel)]="opts.imageBackgroundImage"
+            [data]="listThemes"
+            [templates]="templates"
+            resultMaxHeight="300px"
+            displaySearchStatus="hidden"
+            overlay
+            nativeKeyboard
+            ><ng-template #templates let-data="data">
+              <div class="list-option">
+                <div class="view" [style.--url]="data.image"></div>
+                <div class="desc">
+                  {{ 'generator.options.global.name.image.' + data.label | transloco }}
+                </div>
               </div>
-            </div>
-          </ng-template>
-        </mg-input-select>
-      </mg-input>
+            </ng-template>
+          </mg-input-select>
+        </mg-input>
+      }
 
       <mg-input class="global-color">
         <mg-input-label>{{ 'generator.options.global.background' | transloco }}</mg-input-label>
