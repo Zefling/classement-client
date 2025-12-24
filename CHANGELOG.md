@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+### 4.3.13 (2025-12-24)
+
+#### Standalone web app
+
+- Improve alt text
+- Fix background image selection
+
+> - Update to **Angular** `21.0`
+> - Update to **Magma** `1.1.1`
+> - Update to **ECharts** `6.0.0`
+
 ### 4.3.12 (2025-11-08)
 
 #### Standalone web app
