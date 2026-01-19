@@ -1,7 +1,7 @@
 :host {
-    --main-padding-left: 15px;
-    --main-padding-right: 15px;
-    --main-padding: 0 var(--main-padding-right) 30px var(--main-padding-left);
+    --main-padding-inline-start: 15px;
+    --main-padding-inline-end: 15px;
+    --main-padding: 0 var(--main-padding-inline-end) 30px var(--main-padding-inline-start);
 
     display: grid;
     grid-template:
@@ -284,8 +284,8 @@ main {
 @media screen and (width < 1024px) {
     :host {
         --main-padding: 0 5px;
-        --main-padding-left: 5px;
-        --main-padding-right: 5px;
+        --main-padding-inline-start: 5px;
+        --main-padding-inline-end: 5px;
         --aside-width: 0;
         --show-mobile: block;
         --menu-transition: left 0.5s;

@@ -14,7 +14,7 @@
         position: relative;
         flex: 1;
         padding: var(--main-padding);
-        max-width: calc(100% - (var(--main-padding-left) + var(--main-padding-right)));
+        max-width: calc(100% - (var(--main-padding-inline-start) + var(--main-padding-inline-end)));
     }
 }
 
@@ -977,7 +977,7 @@ mg-spinner {
 
         .groups,
         .items {
-            padding-right: 10px;
+            padding-inline-end: 10px;
             text-align: center;
         }
 

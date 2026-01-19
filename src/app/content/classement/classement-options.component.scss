@@ -458,7 +458,7 @@ textarea {
 .image {
     grid-row: 6;
     grid-column: 3;
-    margin-left: 3px;
+    margin-inline-start: 3px;
     font-weight: 400;
     font-size: 11px;
 }
@@ -470,7 +470,7 @@ textarea {
     font-size: 11px;
 
     span {
-        margin-left: -2px;
+        margin-inline-start: -2px;
         border-radius: 3px;
         background: var(--options-sizes-border-color);
         color: var(--options-sizes-border-text);
@@ -481,7 +481,7 @@ textarea {
     position: relative;
     grid-row: 6/10;
     grid-column: 5;
-    margin-right: 6px;
+    margin-inline-end: 6px;
     border: 1px solid var(--options-sizes-height-color);
     border-width: 0 1px 0 0;
 
@@ -538,7 +538,7 @@ textarea {
 
 .item-width {
     grid-area: width;
-    margin-left: -20px;
+    margin-inline-start: -20px;
 }
 
 .item-height {
@@ -559,7 +559,7 @@ span.item-height {
 .item-max-width {
     grid-area: max-width;
     justify-self: end;
-    margin-right: 10px;
+    margin-inline-end: 10px;
 }
 
 .item-max-height {
