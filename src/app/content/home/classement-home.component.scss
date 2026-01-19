@@ -70,6 +70,10 @@ navigate-result {
     padding: 10px;
     overflow: hidden;
 
+    :host-context([dir='rtl']) & {
+        margin: -10px -10px 0 0;
+    }
+
     ::ng-deep {
         .classement {
             min-width: var(--image-size);
@@ -82,17 +86,23 @@ navigate-result {
     position: relative;
 
     &::before {
+        --dir: -90deg;
+        --gradient: linear-gradient(var(--dir), var(--background) 10px, transparent);
         display: block;
         position: absolute;
-        right: 0;
         z-index: 2;
         backdrop-filter: blur(8px);
-        mask-image: linear-gradient(to left, var(--background) 10px, transparent);
-        background: linear-gradient(to left, var(--background) 10px, transparent);
+        mask-image: var(--gradient);
+        inset-inline-end: 0;
+        background: var(--gradient);
         width: 150px;
         height: 100%;
         pointer-events: none;
         content: '';
+
+        :host-context([dir='rtl']) & {
+            --dir: 90deg;
+        }
     }
 }
 
