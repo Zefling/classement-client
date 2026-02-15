@@ -63,48 +63,48 @@ body {
 
     /* global */
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
-    --header-background: var(--primary9);
-    --aside-background: var(--primary9);
-    --licence-color: var(--primary0);
+    --header-background: var(--primary100);
+    --aside-background: var(--primary100);
+    --licence-color: var(--primary950);
 
     /* menu */
-    --menu-border-color: var(--primary8);
-    --menu-color: var(--primary0);
-    --menu-separator: var(--primary6);
-    --menu-background: var(--primary8);
-    --menu-hover-color: var(--primary0);
-    --menu-hover-background: var(--primary7);
-    --menu-active-color: var(--primary0);
-    --menu-active-background: var(--primary6);
-    --menu-cartouche-background: color-mix(in hsl, var(--primary8) 80%, transparent);
+    --menu-border-color: var(--primary200);
+    --menu-color: var(--primary950);
+    --menu-separator: var(--primary400);
+    --menu-background: var(--primary200);
+    --menu-hover-color: var(--primary950);
+    --menu-hover-background: var(--primary300);
+    --menu-active-color: var(--primary950);
+    --menu-active-background: var(--primary400);
+    --menu-cartouche-background: color-mix(in hsl, var(--primary200) 80%, transparent);
 
     /* option block */
-    --options-border-color: var(--neutral7);
-    --options-background: var(--neutral8);
+    --options-border-color: var(--neutral300);
+    --options-background: var(--neutral200);
 
     /* avatar */
-    --avatar-background: var(--primaryA);
+    --avatar-background: var(--primary050);
     --avatar-icon-opacity: 0.17;
 
     /* drop list */
-    --drop-list-border-color: var(--neutral6);
+    --drop-list-border-color: var(--neutral400);
     --drop-list-border-size: 1px;
-    --drop-list-background: var(--neutral7);
+    --drop-list-background: var(--neutral300);
     --drop-list-border-radius: 4px;
     --drop-list-border-spacing: 1px;
 
     /* drop list (add image) */
-    --drop-image-zone-background: var(--success9);
+    --drop-image-zone-background: var(--success100);
 
     /* item content-box */
-    --content-title-text-color: var(--neutral);
-    --content-box-border: var(--neutral7);
-    --content-box-background: var(--neutral8);
-    --content-box-color: var(--neutral9);
+    --content-title-text-color: var(--neutral990);
+    --content-box-border: var(--neutral300);
+    --content-box-background: var(--neutral200);
+    --content-box-color: var(--neutral100);
     --content-box-text-background: #000000bf;
     --content-box-over-text: #fff;
-    --tile-add-file-background: var(--neutral8);
-    --tile-add-file-color: var(--neutral3);
+    --tile-add-file-background: var(--neutral200);
+    --tile-add-file-color: var(--neutral700);
     --tile-info-text-color: #fff;
     --tile-info-border-color: #fff;
     --tile-info-border-color2: #000;
@@ -112,36 +112,36 @@ body {
 
     /* zone */
     --group-line-size: 1px;
-    --group-line-color: var(--neutral6);
-    --axis-line-color: var(--neutral1);
+    --group-line-color: var(--neutral400);
+    --axis-line-color: var(--neutral900);
 
     /* info */
-    --alert-color: var(--alert4);
-    --alert-background: color-mix(in hsl, var(--alert8) 8%, transparent);
+    --alert-color: var(--alert600);
+    --alert-background: color-mix(in hsl, var(--alert200) 8%, transparent);
 
     /* loading */
-    --loading-color: var(--neutral0);
-    --loading-tile-color: var(--primary8);
-    --loading-background: color-mix(in hsl, var(--neutralA) 23%, transparent);
-    --loading-text-color: var(--neutral0);
-    --loading-text-shadow-color: var(--neutralB);
+    --loading-color: var(--neutral950);
+    --loading-tile-color: var(--primary200);
+    --loading-background: color-mix(in hsl, var(--neutral050) 23%, transparent);
+    --loading-text-color: var(--neutral950);
+    --loading-text-shadow-color: var(--neutral000);
 
     /* cropper */
-    --cropper-overlay-color: var(--neutralB);
-    --cropper-outline-color: color-mix(in hsl, var(--neutralB) 30%, transparent);
+    --cropper-overlay-color: var(--neutral000);
+    --cropper-outline-color: color-mix(in hsl, var(--neutral000) 30%, transparent);
 
     /* theme */
-    --theme-selection: var(--primary4);
-    --theme-shadow-color: color-mix(in hsl, var(--primaryA) 40%, transparent);
+    --theme-selection: var(--primary600);
+    --theme-shadow-color: color-mix(in hsl, var(--primary050) 40%, transparent);
 
     /* box */
-    --box-background: var(--neutral7);
-    --box-border-color: var(--neutral5);
+    --box-background: var(--neutral300);
+    --box-border-color: var(--neutral500);
 
     /* tag */
     --tag-background: var(--input-border-color);
-    --tag-background-hover: var(--primary1);
-    --tag-background-link-color: var(--neutralB);
+    --tag-background-hover: var(--primary900);
+    --tag-background-link-color: var(--neutral000);
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);

@@ -114,7 +114,7 @@ mg-dialog .colors-options textarea {
 
     &.selection-item {
         z-index: 1;
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
         outline-offset: -2px;
     }
 }
@@ -707,10 +707,10 @@ span.color {
     }
 
     .selectable-group:focus:not(:has(.selection-item:focus)) {
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
     }
     .selection-item {
-        outline: 3px solid var(--neutral0);
+        outline: 3px solid var(--neutral950);
         outline-offset: -1px;
     }
 
@@ -829,7 +829,7 @@ span.color {
         }
 
         .selectable-group:focus {
-            outline: 2px solid var(--neutral0);
+            outline: 2px solid var(--neutral950);
         }
 
         &.width-max .content-box {
@@ -853,10 +853,10 @@ span.color {
     }
 
     .selectable-group:focus:not(:has(.selection-item:focus)) {
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
     }
     .selection-item {
-        outline: 3px solid var(--neutral0);
+        outline: 3px solid var(--neutral950);
         outline-offset: -1px;
     }
 
