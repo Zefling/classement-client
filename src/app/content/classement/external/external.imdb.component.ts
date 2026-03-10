@@ -77,6 +77,8 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
             language = 'fr-FR';
         } else if ((this.prefs.preferences.interfaceLanguage = 'ja')) {
             language = 'ja-JP';
+        } else if ((this.prefs.preferences.interfaceLanguage = 'ar')) {
+            language = 'ar';
         }
         this.searchMovieForm = new FormGroup({
             query: new FormControl(''),

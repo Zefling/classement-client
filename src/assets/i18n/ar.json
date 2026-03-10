@@ -1,9 +1,9 @@
 {
   "language": {
-    "dir": "ltr"
+    "dir": "rtl"
   },
   "classement": "Classement",
-  "help": "Help",
+  "help": "يساعد",
   "generic": {
     "dialog": {
       "close": "Close the dialog"
@@ -21,14 +21,14 @@
     }
   },
   "menu": {
-    "home": "Home",
+    "home": "الصفحة الرئيسية",
     "list": "Local list",
     "my.lists": "My lists",
-    "new": "New",
+    "new": "جديد",
     "edit": "Edit",
-    "login": "Login",
+    "login": "تسجيل الدخول",
     "profile": "My profile",
-    "sign-up": "Sign up",
+    "sign-up": "اشتراك",
     "navigate": "Browse",
     "admin": "Admin",
     "admin.users": "Users",
