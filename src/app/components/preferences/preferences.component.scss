@@ -138,3 +138,19 @@ mg-input-before {
 mg-input-after {
     padding-inline-start: 5px;
 }
+
+.dir-ltr {
+    direction: ltr;
+    text-align: initial;
+}
+
+.dir-rtl {
+    direction: rtl;
+    text-align: initial;
+}
+
+.label-ld {
+    position: relative;
+    top: -19px;
+    margin-bottom: -14px;
+}

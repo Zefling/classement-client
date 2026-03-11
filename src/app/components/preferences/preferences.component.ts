@@ -48,7 +48,7 @@ const languages: Select2Option[] = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
     { value: 'ja', label: '日本語' },
-    { value: 'ar', label: 'عربي' },
+    { value: 'ar', label: 'عربي', data: { rtl: true } },
 ];
 
 @Component({
