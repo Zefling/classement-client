@@ -437,6 +437,10 @@ span.color {
     color: #000;
     font-size: 24px;
 
+    &:hover {
+        --over-drop-list-background: #fff6;
+    }
+
     .option-reduce & {
         width: 24px;
         height: 24px;

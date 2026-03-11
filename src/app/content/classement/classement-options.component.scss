@@ -6,6 +6,7 @@
         'theme             width-auto        cover          stream-mode         links               '
         'tags              tags              tags           tags                tags                '
         / 1fr 1fr 1fr 1fr 1fr;
+    align-items: baseline;
     gap: 10px;
     border: solid 1px var(--options-border-color);
     border-radius: 5px;
