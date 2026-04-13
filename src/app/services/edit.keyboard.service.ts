@@ -521,6 +521,13 @@ export abstract class EditKeyBoardService {
                         }
                     }
                     this.clearSelection(component);
+                    const id = group.list[indexTarget!]?.id;
+
+                    if (id) {
+                        setTimeout(() => {
+                            document.getElementById(id)?.parentElement?.parentElement?.focus();
+                        });
+                    }
                 }
                 break;
         }
