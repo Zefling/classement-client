@@ -414,10 +414,12 @@
       "item": {
         "title": "خيارات البلاطة",
         "width": "عرض البلاطة",
+        "min.width": "Min width of a tile",
         "max.width": "الحد الأقصى لعرض البلاطة",
         "width.auto": "عرض البلاطة تلقائي",
         "cover": "تغطية البلاطة بالكامل",
         "height": "ارتفاع البلاطة",
+        "min.height": "Min height of a tile",
         "max.height": "الحد الأقصى لارتفاع البلاطة",
         "height.auto": "ارتفاع البلاطة تلقائي",
         "padding": "حشو البلاطة",
@@ -809,6 +811,10 @@
     },
     "help": {
       "title": "عرض تقديمي",
+      "section": {
+        "global": "Global",
+        "tile": "Tile"
+      },
       "shortcut": {
         "key": {
           "right.click": "النقر بزر الفأرة الأيمن",
@@ -817,9 +823,12 @@
           "delete": "حذف",
           "esc": "Esc",
           "home": "الرئيسية",
-          "end": "النهاية"
+          "end": "النهاية",
+          "page.up": "Page Up",
+          "page.down": "Page Down"
         },
         "title": "اختصارات لوحة المفاتيح",
+        "mouse": "Mouse shortcuts",
         "ctrl.v": "نسخ صورة أو أكثر لإضافتها. يعمل أيضاً مع النص، حيث يُنشئ كل سطر نصي بلاطة جديدة.",
         "ctrl.s": "حفظ المسودة.",
         "ctrl.e": "تصدير المسودة.",
@@ -831,7 +840,8 @@
         "put.back.list": "إعادة إلى القائمة.",
         "create": "إنشاء بلاطة في الموقع المستهدف.",
         "context.menu": "عرض قائمة السياق.",
-        "esc": "إلغاء تحديد البلاطة."
+        "esc": "إلغاء تحديد البلاطة.",
+        "e": "Open the tile editing dialog"
       },
       "default": {
         "text": "تحريك البلاطات بالسحب والإفلات.",
@@ -839,7 +849,12 @@
           "in.line": "تحريك البلاطة المحددة يساراً أو يميناً داخل السطر.",
           "change.line": "تحريك البلاطة المحددة إلى السطر الأعلى أو الأسفل.",
           "main.line.up": "تحريك البلاطة المحددة من القائمة الرئيسية إلى آخر سطر في التصنيف.",
-          "home.end": "تحريك البلاطة إلى بداية أو نهاية السطر."
+          "home.end": "تحريك البلاطة إلى بداية أو نهاية السطر.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last tile of the line."
         }
       },
       "teams": {
@@ -847,7 +862,13 @@
         "shortcut": {
           "in.line": "تحريك البلاطة المحددة يساراً أو يميناً داخل السطر.",
           "change.line": "تحريك البلاطة المحددة إلى السطر الأعلى أو الأسفل.",
-          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر سطر في التصنيف."
+          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر سطر في التصنيف.",
+          "home.end": "Move the tile to the beginning or end of the line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last line."
         }
       },
       "columns": {
@@ -856,7 +877,12 @@
           "in.line": "تحريك البلاطة المحددة لأعلى أو لأسفل داخل العمود.",
           "change.line": "تحريك البلاطة المحددة إلى السطر الجانبي الأيسر أو الأيمن.",
           "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى أول عمود في التصنيف.",
-          "home.end": "تحريك البلاطة إلى بداية أو نهاية العمود."
+          "home.end": "تحريك البلاطة إلى بداية أو نهاية العمود.",
+          "focus.in.line": "Move focus left or right within a column.",
+          "focus.change.line": "Move focus to the upper or lower column.",
+          "focus.change.line.first.end": "Move focus to the first or last column.",
+          "focus.line.up": "Move focus to the last column.",
+          "focus.line.first.end": "Move focus to the first or last column."
         }
       },
       "iceberg": {
@@ -872,14 +898,26 @@
         "view": "في وضع العرض، بعد الحفظ، يتيح لك تحديد البلاطات.",
         "shortcut": {
           "move": "تحريك البلاطة المحددة في الاتجاه المختار (بالتبادل).",
-          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر خلية متاحة."
+          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر خلية متاحة.",
+          "home.end": "Move the tile to the beginning or end of the line.",
+          "change.line": "Move the selected tile to the left or right side line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last tile of the line."
         }
       },
       "zone": {
         "shortcut": {
           "move.normal": "تحريك البلاطة المحددة في الاتجاه المختار (15 بكسل لكل خطوة).",
           "move.slow": "تحريك البلاطة المحددة في الاتجاه المختار (1 بكسل لكل خطوة).",
-          "main.line.up": "تحريك البلاطة المحددة من القائمة الرئيسية إلى منطقة الحركة."
+          "main.line.up": "تحريك البلاطة المحددة من القائمة الرئيسية إلى منطقة الحركة.",
+          "change.line": "Move the selected tile to the left or right side line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.line.up": "Move focus to the last tile placed.",
+          "focus.change": "Move focus between tiles.",
+          "focus.main": "Move focus in the list."
         }
       }
     }

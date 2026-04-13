@@ -227,6 +227,14 @@ mg-dialog.auto-format .main {
     text-align: center;
 }
 
+.tabs nav {
+    line-height: 24px;
+}
+
+[dir='rtl'] .list-option {
+    direction: rtl;
+}
+
 /** Safari */
 @supports (background: -webkit-named-image(i)) {
     .webp {
