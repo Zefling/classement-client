@@ -83,16 +83,6 @@ export abstract class EditKeyBoardService {
                         }
                         break;
                 }
-            } else {
-                switch (event.key) {
-                    case 'Delete':
-                        if (indexGp === -1) {
-                            component.removeItem(index);
-                            this.clearSelection(component);
-                            this.stopEvent(event);
-                        }
-                        break;
-                }
             }
         }
     }
@@ -428,6 +418,7 @@ export abstract class EditKeyBoardService {
     ) {
         switch (event.key) {
             case 'e':
+                // edit tile
                 if (item) {
                     component.openTileInfo(item);
                 }
@@ -450,12 +441,19 @@ export abstract class EditKeyBoardService {
                     component.selectionDrag = drag;
                     this.update(component, group?.list);
                 } else {
+                    // navigate between tile with keyboard
                     this.navigateFocus(component, event, group, index);
                 }
                 break;
             case 'Delete':
                 if (event.ctrlKey && group && index) {
+                    // move tile form group at list
                     component.removeFromGroup(group.list, index);
+                    this.clearSelection(component);
+                    this.stopEvent(event);
+                } else if (!group && index) {
+                    // delete tile in list
+                    component.removeItem(index);
                     this.clearSelection(component);
                     this.stopEvent(event);
                 }
@@ -534,49 +532,85 @@ export abstract class EditKeyBoardService {
         group: FormattedGroup | null,
         index: number | null,
     ) {
-        if (index === null) return;
+        if (index === null) {
+            return;
+        }
 
         const currentList = group ? group.list : component.list;
         const indexGp = group ? component.groups.indexOf(group) : -1;
-        const firstNonEmptyGp = component.groups.findIndex(g => g.list.some(t => t !== null));
-        const lastNonEmptyGp = component.groups.reduce((last, g, i) => (g.list.some(t => t !== null) ? i : last), -1);
+        const firstNonEmptyGp = component.groups.findIndex(g => g.list.some(t => t !== undefined));
+        const lastNonEmptyGp = component.groups.reduce(
+            (last, g, i) => (g.list.some(t => t !== undefined) ? i : last),
+            -1,
+        );
 
         let targetList: FileType[] | null = null;
         let targetIndex = index;
+        let key = event.key;
 
-        switch (event.key) {
+        if (component.options.mode === 'columns' && indexGp !== -1) {
+            switch (key) {
+                case 'ArrowLeft':
+                    key = 'ArrowUp';
+                    break;
+                case 'ArrowRight':
+                    key = 'ArrowDown';
+                    break;
+                case 'ArrowUp':
+                    key = 'ArrowLeft';
+                    break;
+                case 'ArrowDown':
+                    key = 'ArrowRight';
+                    break;
+                case 'Home':
+                    key = 'PageUp';
+                    break;
+                case 'End':
+                    key = 'PageDown';
+                    break;
+                case 'PageUp':
+                    key = 'Home';
+                    break;
+                case 'PageDown':
+                    key = 'End';
+                    break;
+            }
+        }
+
+        switch (key) {
             case 'ArrowLeft':
-                if (index > firstNonEmptyGp) {
-                    targetList = currentList;
-                    targetIndex = index - 1;
+                if (index > 0) {
+                    ({ targetList, targetIndex } = this.focusListPrev(currentList, index));
                 }
                 break;
             case 'ArrowRight':
                 if (index < currentList.length - 1) {
-                    targetList = currentList;
-                    targetIndex = index + 1;
+                    ({ targetList, targetIndex } = this.focusListNext(currentList, index));
                 }
                 break;
             case 'ArrowUp':
                 if (indexGp > firstNonEmptyGp) {
-                    const prevIdx = component.groups.slice(0, indexGp).findLastIndex(g => g.list.some(t => t !== null));
-                    targetList = component.groups[prevIdx].list;
+                    targetList = this.focusRowPrev(component, indexGp);
                 } else if (indexGp === -1 && lastNonEmptyGp !== -1) {
-                    targetList = component.groups[lastNonEmptyGp].list;
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
                 }
+
+                if (targetList) {
+                    targetIndex = targetList[index] !== undefined ? index : 0;
+                }
+
                 break;
             case 'ArrowDown':
                 if (indexGp === lastNonEmptyGp) {
                     targetList = component.list;
                 } else if (indexGp <= lastNonEmptyGp && indexGp !== -1) {
-                    const nextIdx =
-                        component.groups.slice(indexGp + 1).findIndex(g => g.list.some(t => t !== null)) + 1 + indexGp;
-                    targetList = component.groups[nextIdx].list;
+                    targetList = this.focusRowNext(component, indexGp);
+                    targetIndex = targetList[index] !== undefined ? index : 0;
                 }
                 break;
             case 'Home':
                 targetList = currentList;
-                targetIndex = firstNonEmptyGp;
+                targetIndex = 0;
                 break;
             case 'End':
                 targetList = currentList;
@@ -584,9 +618,9 @@ export abstract class EditKeyBoardService {
                 break;
             case 'PageUp': {
                 if (indexGp === -1) {
-                    targetList = component.groups[lastNonEmptyGp].list;
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
                 } else if (indexGp !== firstNonEmptyGp) {
-                    targetList = component.groups[firstNonEmptyGp].list;
+                    targetList = this.focusRowFirst(component, firstNonEmptyGp);
                 }
                 break;
             }
@@ -594,24 +628,71 @@ export abstract class EditKeyBoardService {
                 if (indexGp === lastNonEmptyGp) {
                     targetList = component.list;
                 } else if (indexGp !== -1) {
-                    targetList = component.groups[lastNonEmptyGp].list;
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
                 }
                 break;
             }
         }
 
-        if (!targetList) return;
+        if (!targetList) {
+            return;
+        }
 
         // clamp index to target list bounds
         targetIndex = Math.max(0, Math.min(targetIndex, targetList.length - 1));
         const targetTile = targetList[targetIndex];
-        if (!targetTile) return;
+        if (targetTile === undefined) {
+            return;
+        }
 
-        const el = document.getElementById(targetTile.id);
+        let el;
+        if (targetTile !== null) {
+            el = document.getElementById(targetTile.id);
+        }
+        if (!el && targetList) {
+            const indexList = component.groups.findIndex(g => g.list === targetList);
+            el = document.querySelector(
+                `.table-classement tr:nth-child(${indexList + 1}) > td:nth-child(${targetIndex + 1}) > div`,
+            );
+        }
         const div = el?.closest<HTMLDivElement>('.click-enter') ?? (el?.parentElement as HTMLDivElement | null);
         div?.focus();
         div?.scrollIntoView({ block: 'nearest' });
         this.stopEvent(event);
+    }
+
+    private focusListPrev(currentList: FileType[], index: number) {
+        const prevIdx = currentList.slice(0, index).findLastIndex(t => t !== undefined);
+        return {
+            targetList: currentList,
+            targetIndex: prevIdx,
+        };
+    }
+
+    private focusListNext(currentList: FileType[], index: number) {
+        const nextIdx = currentList.slice(index + 1).findIndex(t => t !== undefined) + 1 + index;
+        return {
+            targetList: currentList,
+            targetIndex: nextIdx,
+        };
+    }
+
+    private focusRowPrev(component: ClassementEditComponent, indexGp: number) {
+        const prevIdx = component.groups.slice(0, indexGp).findLastIndex(g => g.list.some(t => t !== undefined));
+        return component.groups[prevIdx].list;
+    }
+
+    private focusRowNext(component: ClassementEditComponent, indexGp: number) {
+        const nextIdx =
+            component.groups.slice(indexGp + 1).findIndex(g => g.list.some(t => t !== undefined)) + 1 + indexGp;
+        return component.groups[nextIdx].list;
+    }
+
+    private focusRowFirst(component: ClassementEditComponent, firstNonEmptyGp: number) {
+        return component.groups[firstNonEmptyGp].list;
+    }
+    private focusRowLast(component: ClassementEditComponent, lastNonEmptyGp: number) {
+        return component.groups[lastNonEmptyGp].list;
     }
 
     clearSelection(component: ClassementEditComponent) {
