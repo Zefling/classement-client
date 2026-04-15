@@ -411,10 +411,12 @@
       "item": {
         "title": "Tile options",
         "width": "Tile width",
+        "min.width": "Min width of a tile",
         "max.width": "Max width of a tile",
         "width.auto": "Automatic tile width",
         "cover": "Cover the entire tile",
         "height": "Height of a tile",
+        "min.height": "Min height of a tile",
         "max.height": "Max height of a tile",
         "height.auto": "Automatic tile height",
         "padding": "Tile padding",
@@ -466,6 +468,7 @@
         "width": "Render image width:",
         "height": "Height of rendered image:",
         "image": "Background image:",
+        "image.opacity": "Background image opacity:",
         "name.image": {
           "none": "Default",
           "sakura": "Sakura",

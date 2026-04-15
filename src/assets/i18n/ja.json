@@ -412,10 +412,12 @@
       "item": {
         "title": "タイルのオプション",
         "width": "タイル幅",
+        "min.width": "タイルの最小幅",
         "max.width": "タイルの最大幅",
         "width.auto": "自動タイル幅",
         "cover": "タイル全体を覆う",
         "height": "タイルの高さ",
+        "min.height": "タイルの最小高さ",
         "max.height": "タイルの最大高さ",
         "height.auto": "自動タイル高さ",
         "padding": "タイルパディング",
@@ -467,6 +469,7 @@
         "width": "レンダリング画像の幅：",
         "height": "レンダリング画像の高さ:",
         "image": "背景画像：",
+        "image.opacity": "背景画像の不透明度:",
         "name.image": {
           "none": "デフォルト",
           "sakura": "桜",
