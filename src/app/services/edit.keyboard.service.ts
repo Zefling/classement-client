@@ -656,7 +656,7 @@ export abstract class EditKeyBoardService {
         if (targetTile !== null) {
             el = document.getElementById(targetTile.id);
         }
-        if (!el && targetList) {
+        if (component.options.mode === 'bingo' && !el && targetList) {
             const indexList = component.groups.findIndex(g => g.list === targetList);
             el = document.querySelector(
                 `.table-classement tr:nth-child(${indexList + 1}) > td:nth-child(${targetIndex + 1}) > div`,
