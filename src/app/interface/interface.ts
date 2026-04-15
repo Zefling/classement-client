@@ -107,9 +107,11 @@ export type ThemeOptions = {
     itemWidth: number;
     itemWidthAuto: boolean;
     itemImageCover: boolean | 'opti';
+    itemMinWidth: number;
     itemMaxWidth: number;
     itemHeight: number;
     itemHeightAuto: boolean;
+    itemMinHeight: number;
     itemMaxHeight: number;
     itemPadding: number;
     itemBorder: number;
@@ -142,6 +144,7 @@ export type ThemeOptions = {
     lineBorderOpacity?: number | undefined;
     imageBackgroundColor: string;
     imageBackgroundImage: ImagesNames;
+    imageBackgroundOpacity: number;
     imageBackgroundCustom: string;
     imageWidth: number;
     imageHeight?: number;

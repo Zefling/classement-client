@@ -214,6 +214,16 @@
           } @else {
             <span id="option-item-height-auto-info" class="item-height input">auto</span>
           }
+          <input
+            id="option-item-min-height"
+            type="number"
+            min="150"
+            max="300"
+            class="item-min-height"
+            [(ngModel)]="opts.itemMinWidth"
+            (ngModelChange)="updateSize('itemMinHeight', 100)"
+            title="{{ 'generator.options.item.min.height' | transloco }}"
+          />
           @if (opts.itemHeightAuto) {
             <input
               id="option-item-max-height"
@@ -253,6 +263,16 @@
               title="{{ 'generator.options.item.max.width' | transloco }}"
             />
           }
+          <input
+            id="option-item-min-width"
+            type="number"
+            min="150"
+            max="300"
+            class="item-min-width"
+            [(ngModel)]="opts.itemMinWidth"
+            (ngModelChange)="updateSize('itemMinWidth', 100)"
+            title="{{ 'generator.options.item.min.Width' | transloco }}"
+          />
         </div>
         <div>
           @if (opts.mode !== 'bingo') {
@@ -408,14 +428,7 @@
         @if (opts.mode !== 'bingo') {
           <mg-input class="name-bg-opacity">
             <mg-input-label>{{ 'generator.options.name.opacity' | transloco }}</mg-input-label>
-            <mg-input-range
-              [(ngModel)]="opts.nameBackgroundOpacity"
-              max="100"
-              min="0"
-              step="1"
-              noDecimal
-              noNegative
-            ></mg-input-range>
+            <mg-input-range [(ngModel)]="opts.nameBackgroundOpacity" max="100" min="0" step="1" noDecimal noNegative />
           </mg-input>
 
           <mg-input class="font-size">
@@ -666,6 +679,13 @@
             }
           </div>
         </div>
+      }
+
+      @if (opts.imageBackgroundImage !== 'none') {
+        <mg-input class="background-image-opacity">
+          <mg-input-label>{{ 'generator.options.global.image.opacity' | transloco }}</mg-input-label>
+          <mg-input-range [(ngModel)]="opts.imageBackgroundOpacity" max="100" min="0" step="1" noDecimal noNegative />
+        </mg-input>
       }
 
       <mg-input class="global-font">

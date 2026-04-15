@@ -1,4 +1,7 @@
 import { Schema } from 'ajv';
+import { Select2Option } from 'ng-select2-component';
+
+import { imagesNames, listTextPosition } from './classement-default';
 
 export const schemaTheme: Schema = {
     type: 'object',
@@ -25,9 +28,11 @@ export const schemaTheme: Schema = {
                 itemWidth: { type: 'number', minimum: 16, maximum: 300, multipleOf: 1 },
                 itemWidthAuto: { type: 'boolean' },
                 itemImageCover: { enum: [true, false, 'opti'] },
+                itemMinWidth: { type: 'number', minimum: 0, maximum: 300, multipleOf: 1 },
                 itemMaxWidth: { type: 'number', minimum: 16, maximum: 300, multipleOf: 1 },
                 itemHeight: { type: 'number', minimum: 16, maximum: 300, multipleOf: 1 },
                 itemHeightAuto: { type: 'boolean' },
+                itemMinHeight: { type: 'number', minimum: 0, maximum: 300, multipleOf: 1 },
                 itemMaxHeight: { type: 'number', minimum: 16, maximum: 300, multipleOf: 1 },
                 itemPadding: { type: 'number', minimum: 0, maximum: 20, multipleOf: 1 },
                 itemBorder: { type: 'number', minimum: 0, maximum: 20, multipleOf: 1 },
@@ -43,17 +48,7 @@ export const schemaTheme: Schema = {
                 itemTextColor: { type: 'string' },
                 itemTextOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 itemTextPosition: {
-                    enum: [
-                        'hidden',
-                        'bottom',
-                        'bottom-over',
-                        'bottom-over-hover',
-                        'bottom-bubble',
-                        'top',
-                        'top-over',
-                        'top-over-hover',
-                        'top-bubble',
-                    ],
+                    enum: (listTextPosition as Select2Option[]).map(v => v.value),
                 },
                 itemTextBackgroundColor: { type: 'string', pattern: '|#[0-9a-fA-F]{6}' },
                 itemTextBackgroundOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
@@ -62,7 +57,8 @@ export const schemaTheme: Schema = {
                 lineBackgroundOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 lineBorderOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 imageBackgroundColor: { type: 'string', pattern: '|#[0-9a-fA-F]{6}' },
-                imageBackgroundImage: { enum: ['none', 'custom', 'sakura', 'etoile', 'ciel', 'iceberg', 'axis'] },
+                imageBackgroundOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
+                imageBackgroundImage: { enum: imagesNames },
                 imageBackgroundCustom: {
                     type: 'string',
                     pattern: '|data:image\\/.*|https:\\/\\/api\\.classement\\.net\\/images\\/.*\\.webp',

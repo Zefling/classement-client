@@ -21,9 +21,11 @@ export const defaultOptions: Options = {
     itemWidth: 100,
     itemWidthAuto: true,
     itemImageCover: false,
+    itemMinWidth: 0,
     itemMaxWidth: 300,
     itemHeight: 100,
     itemHeightAuto: false,
+    itemMinHeight: 0,
     itemMaxHeight: 300,
     itemPadding: 3,
     itemBorder: 1,
@@ -57,6 +59,7 @@ export const defaultOptions: Options = {
     groupLineColor: '',
     groupLineSize: 1,
     imageBackgroundImage: 'none',
+    imageBackgroundOpacity: 100,
     imageBackgroundCustom: '',
     mode: 'default',
     direction: 'ltr',
@@ -87,6 +90,7 @@ export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
 export const imagesAxis: ImagesNames[] = ['none', 'custom'];
 export const imagesBingo: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesThemes = imagesLists;
+export const imagesNames = [...new Set([...imagesLists, ...imagesIceberg, ...imagesAxis, ...imagesBingo])];
 
 export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'classic', 'sakura', 'night', 'ciel'];
 export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
