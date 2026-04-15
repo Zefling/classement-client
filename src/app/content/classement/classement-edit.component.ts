@@ -1022,7 +1022,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
 
     globalChange() {
         this.memory.addUndo(this);
-        this.global.withChange.update(value => value + 1);
     }
 
     upLine(index: number) {
