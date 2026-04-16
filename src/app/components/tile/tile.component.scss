@@ -16,8 +16,10 @@
     background: var(--over-item-background, var(--content-box-background));
     padding: var(--over-item-padding, 10px);
     width: var(--over-item-width, 150px);
+    min-width: var(--over-item-min-width, 0px);
     max-width: var(--over-item-max-width, 300px);
     height: var(--over-item-height, 150px);
+    min-height: var(--over-item-min-height, 0px);
     max-height: var(--over-item-max-height, 300px);
     overflow: hidden;
     color: var(--over-item-color, var(--content-box-color));
@@ -87,6 +89,7 @@
     span {
         display: inline-block;
         margin-bottom: -2px;
+        min-width: var(--over-item-min-width, 0px);
         max-width: var(--over-item-max-width, 300px);
         overflow: hidden;
         text-overflow: ellipsis;

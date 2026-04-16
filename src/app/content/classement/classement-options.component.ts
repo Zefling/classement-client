@@ -440,12 +440,24 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         }
     }
 
-    updateSize(axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth', min: number) {
+    updateSize(
+        axis: 'itemHeight' | 'itemWidth' | 'itemMaxHeight' | 'itemMaxWidth' | 'itemMinHeight' | 'itemMinWidth',
+        min: number,
+    ) {
         const options = this.options()!;
+
+        // make adjustments to avoid exceeding the limits
         if (options[axis] < min) {
             options[axis] = min;
         } else if (options[axis] > 300) {
             options[axis] = 300;
+        }
+
+        // the normal size must not be less than the minimum size.
+        if (axis === 'itemMinHeight' && options['itemHeight'] < options[axis]) {
+            options['itemHeight'] = options[axis];
+        } else if (axis === 'itemMinWidth' && options['itemWidth'] < options[axis]) {
+            options['itemWidth'] = options[axis];
         }
     }
 

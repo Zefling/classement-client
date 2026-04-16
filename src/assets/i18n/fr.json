@@ -411,9 +411,11 @@
       "item": {
         "title": "Options des tuiles",
         "width": "Largeur d'une tuile",
+        "min.width": "Largeur min d'une tuile",
         "max.width": "Largeur max d'une tuile",
         "width.auto": "Largeur automatique des tuiles",
         "height": "Hauteur d'une tuile",
+        "min.height": "Hauteur min d'une tuile",
         "max.height": "Hauteur max d'une tuile",
         "height.auto": "Hauteur automatique des tuiles",
         "padding": "Rembourrage d'une tuile",
@@ -465,6 +467,7 @@
         "width": "Largeur de l'image rendue :",
         "height": "Hauteur de l'image rendue :",
         "image": "Image de fond :",
+        "image.opacity": "Opacité de l'image de fond :",
         "name.image": {
           "none": "Défaut",
           "sakura": "Sakura",

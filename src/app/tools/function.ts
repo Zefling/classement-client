@@ -42,6 +42,12 @@ export const mixColor = (color1: string, color2: string) => {
     return toHEX(new Color(color1).mix(color2, 0.5));
 };
 
+export const alphaColor = (color: string, opacity: number) => {
+    const c = new Color(color);
+    c.alpha = (100 - opacity) / 100;
+    return toHEX(c);
+};
+
 export const toHEX = (c: Color): string => {
     return c.toGamut({ space: 'srgb' }).to('srgb').toString({ format: 'hex' });
 };
