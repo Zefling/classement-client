@@ -116,7 +116,7 @@ export class MemoryService {
         this.update();
 
         this.global.withChange.set(this.#index);
-        this.logger.log('add undo', LoggerLevel.error, this.#index);
+        this.logger.log('add undo', LoggerLevel.info, this.#index);
     }
 
     private update() {
