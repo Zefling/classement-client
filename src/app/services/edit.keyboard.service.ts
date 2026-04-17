@@ -388,7 +388,6 @@ export abstract class EditKeyBoardService {
             div?.focus();
             div?.scrollIntoView({ block: 'center' });
             component.globalChange();
-            this.clearSelection(component);
         });
     }
 
@@ -555,31 +554,49 @@ export abstract class EditKeyBoardService {
         let targetIndex = index;
         let key = event.key;
 
-        if (component.options.mode === 'columns' && indexGp !== -1) {
-            switch (key) {
-                case 'ArrowLeft':
-                    key = 'ArrowUp';
+        if (indexGp !== -1) {
+            switch (component.options.mode) {
+                case 'columns':
+                    switch (key) {
+                        case 'ArrowLeft':
+                            key = 'ArrowUp';
+                            break;
+                        case 'ArrowRight':
+                            key = 'ArrowDown';
+                            break;
+                        case 'ArrowUp':
+                            key = 'ArrowLeft';
+                            break;
+                        case 'ArrowDown':
+                            key = 'ArrowRight';
+                            break;
+                        case 'Home':
+                            key = 'PageUp';
+                            break;
+                        case 'End':
+                            key = 'PageDown';
+                            break;
+                        case 'PageUp':
+                            key = 'Home';
+                            break;
+                        case 'PageDown':
+                            key = 'End';
+                            break;
+                    }
                     break;
-                case 'ArrowRight':
-                    key = 'ArrowDown';
-                    break;
-                case 'ArrowUp':
-                    key = 'ArrowLeft';
-                    break;
-                case 'ArrowDown':
-                    key = 'ArrowRight';
-                    break;
-                case 'Home':
-                    key = 'PageUp';
-                    break;
-                case 'End':
-                    key = 'PageDown';
-                    break;
-                case 'PageUp':
-                    key = 'Home';
-                    break;
-                case 'PageDown':
-                    key = 'End';
+                case 'bingo':
+                case 'axis':
+                    switch (key) {
+                        case 'ArrowUp':
+                            key = 'ArrowLeft';
+                            break;
+                        case 'PageUp':
+                            key = 'Home';
+                            break;
+                        case 'PageDown':
+                            key = 'End';
+                            break;
+                    }
                     break;
             }
         }

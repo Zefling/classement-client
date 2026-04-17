@@ -6,6 +6,8 @@
 
 <h3>{{ 'generator.help.shortcut.title' | transloco }}</h3>
 
+<h4>{{ 'generator.help.section.global' | transloco }}</h4>
+
 <dl>
   <dt><kbd>Ctrl</kbd> + <kbd>V</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.v' | transloco }}</dd>
@@ -16,6 +18,80 @@
   <dt><kbd>Ctrl</kbd> + <kbd>E</kbd></dt>
   <dd>{{ 'generator.help.shortcut.ctrl.e' | transloco }}</dd>
 
+  <dt [class.disabled]="!memory.hasUndo()"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.z' | transloco }}</dd>
+
+  <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>⇧</kbd> + <kbd>Z</kbd></dt>
+  <dd>{{ 'generator.help.shortcut.ctrl.shift.z' | transloco }}</dd>
+</dl>
+
+<h4>{{ 'generator.help.section.tile' | transloco }}</h4>
+
+<dl [class.disabled]="!keyboard.selectTile()">
+  <dt class="select-tile"><kbd>←</kbd>/<kbd>→</kbd></dt>
+  <dd>{{ 'generator.help.columns.shortcut.focus.change.line' | transloco }}</dd>
+
+  @if (keyboard.selectMainLine()) {
+    <dt class="select-tile">
+      <kbd>↑</kbd> / <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.columns.shortcut.focus.line.up' | transloco }}</dd>
+  } @else {
+    <dt class="select-tile"><kbd>↑</kbd>/<kbd>↓</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.focus.in.line' | transloco }}</dd>
+
+    <dt class="select-tile">
+      <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.columns.shortcut.focus.change.line.first.end' | transloco }}</dd>
+
+    <dt class="select-tile">
+      <kbd>{{ 'generator.help.shortcut.key.page.up' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.page.down' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.columns.shortcut.focus.line.first.end' | transloco }}</dd>
+  }
+
+  @if (keyboard.selectMainLine()) {
+    <dt class="select-tile"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
+    <dd>{{ 'generator.help.default.shortcut.change.line' | transloco }}</dd>
+
+    <dt class="select-tile"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.main.line.up' | transloco }}</dd>
+
+    <dt class="select-tile">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.default.shortcut.home.end' | transloco }}</dd>
+  } @else {
+    <dt class="select-tile"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.change.line' | transloco }}</dd>
+
+    <dt class="select-tile"><kbd>Ctrl</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd></dt>
+    <dd>{{ 'generator.help.columns.shortcut.in.line' | transloco }}</dd>
+
+    <dt class="select-tile">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
+      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.columns.shortcut.home.end' | transloco }}</dd>
+
+    <dt class="select-tile">
+      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.delete' | transloco }}</kbd>
+    </dt>
+    <dd>{{ 'generator.help.shortcut.ctrl.delete' | transloco }}</dd>
+  }
+  <dt class="select-tile">
+    <kbd>{{ 'generator.help.shortcut.key.esc' | transloco }}</kbd>
+  </dt>
+  <dd>{{ 'generator.help.shortcut.esc' | transloco }}</dd>
+</dl>
+
+<h3>{{ 'generator.help.shortcut.mouse' | transloco }}</h3>
+
+<dl>
   <dt>
     <kbd>{{ 'generator.help.shortcut.key.middle.click' | transloco }}</kbd>
     {{ 'generator.help.shortcut.on.tile' | transloco }}
@@ -27,45 +103,4 @@
     {{ 'generator.help.shortcut.on.tile' | transloco }}
   </dt>
   <dd>{{ 'generator.help.shortcut.context.menu' | transloco }}</dd>
-
-  <dt [class.disabled]="!memory.hasUndo()"><kbd>Ctrl</kbd> + <kbd>Z</kbd></dt>
-  <dd>{{ 'generator.help.shortcut.ctrl.z' | transloco }}</dd>
-
-  <dt [class.disabled]="!memory.hasRedo()"><kbd>Ctrl</kbd> + <kbd>⇧</kbd> + <kbd>Z</kbd></dt>
-  <dd>{{ 'generator.help.shortcut.ctrl.shift.z' | transloco }}</dd>
-
-  @if (keyboard.selectMainLine()) {
-    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
-    <dd>{{ 'generator.help.default.shortcut.change.line' | transloco }}</dd>
-
-    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd></dt>
-    <dd>{{ 'generator.help.columns.shortcut.main.line.up' | transloco }}</dd>
-
-    <dt [class.disabled]="!keyboard.selectTile()">
-      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
-      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
-    </dt>
-    <dd>{{ 'generator.help.default.shortcut.home.end' | transloco }}</dd>
-  } @else {
-    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>←</kbd>/<kbd>→</kbd></dt>
-    <dd>{{ 'generator.help.columns.shortcut.change.line' | transloco }}</dd>
-
-    <dt [class.disabled]="!keyboard.selectTile()"><kbd>Ctrl</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd></dt>
-    <dd>{{ 'generator.help.columns.shortcut.in.line' | transloco }}</dd>
-
-    <dt [class.disabled]="!keyboard.selectTile()">
-      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.home' | transloco }}</kbd> /
-      <kbd>{{ 'generator.help.shortcut.key.end' | transloco }}</kbd>
-    </dt>
-    <dd>{{ 'generator.help.columns.shortcut.home.end' | transloco }}</dd>
-
-    <dt [class.disabled]="!keyboard.selectTile()">
-      <kbd>Ctrl</kbd> + <kbd>{{ 'generator.help.shortcut.key.delete' | transloco }}</kbd>
-    </dt>
-    <dd>{{ 'generator.help.shortcut.ctrl.delete' | transloco }}</dd>
-  }
-  <dt [class.disabled]="!keyboard.selectTile()">
-    <kbd>{{ 'generator.help.shortcut.key.esc' | transloco }}</kbd>
-  </dt>
-  <dd>{{ 'generator.help.shortcut.esc' | transloco }}</dd>
 </dl>
