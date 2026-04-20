@@ -12,11 +12,18 @@
         <mg-tab-title id="general"> {{ 'preferences.tab.general' | transloco }}</mg-tab-title>
         <mg-tab-content id="general">
           <h3 class="s-12">{{ 'preferences.interface.title' | transloco }}</h3>
-          <div class="s-12 label">{{ 'preferences.interface.light-dark' | transloco }}</div>
-          <mg-light-dark (change)="changeLightDark($event)" />
-          <mg-input id="language" class="s-12">
+          <div class="s-6">
+            <div class="label label-ld">{{ 'preferences.interface.light-dark' | transloco }}</div>
+            <mg-light-dark (change)="changeLightDark($event)" />
+          </div>
+
+          <mg-input id="language" class="s-6">
             <mg-input-label>{{ 'preferences.interface.language' | transloco }}</mg-input-label>
-            <mg-input-select formControlName="interfaceLanguage" [data]="languages" />
+            <mg-input-select formControlName="interfaceLanguage" [data]="languages" [templates]="templatesLanguages">
+              <ng-template #templatesLanguages let-label="label" let-data="data">
+                <div [class.dir-rtl]="data?.rtl" [class.dir-ltr]="!data?.rtl">{{ label }}</div>
+              </ng-template>
+            </mg-input-select>
           </mg-input>
           @if (modeApi()) {
             <h3 class="s-12">{{ 'preferences.navigation.title' | transloco }}</h3>

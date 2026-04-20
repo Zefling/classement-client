@@ -48,6 +48,7 @@ const languages: Select2Option[] = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
     { value: 'ja', label: '日本語' },
+    { value: 'ar', label: 'عربي', data: { rtl: true } },
 ];
 
 @Component({
@@ -148,6 +149,7 @@ export class PreferencesMagmaDialog {
         this.logger.log('Update language: ' + lang);
         this.translate.load(lang).subscribe(() => {
             this.translate.setActiveLang(lang);
+            document.documentElement.setAttribute('dir', this.translate.translate('language.dir'));
         });
         document.documentElement.setAttribute('lang', lang);
         this.globalService.lang = lang;

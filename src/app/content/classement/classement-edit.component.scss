@@ -14,7 +14,7 @@
         position: relative;
         flex: 1;
         padding: var(--main-padding);
-        max-width: calc(100% - (var(--main-padding-left) + var(--main-padding-right)));
+        max-width: calc(100% - (var(--main-padding-inline-start) + var(--main-padding-inline-end)));
     }
 }
 
@@ -116,7 +116,7 @@ mg-dialog .colors-options textarea {
 
     &.selection-item {
         z-index: 1;
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
         outline-offset: -2px;
     }
 }
@@ -439,6 +439,10 @@ span.color {
     color: #000;
     font-size: 24px;
 
+    &:hover {
+        --over-drop-list-background: #fff6;
+    }
+
     .option-reduce & {
         width: 24px;
         height: 24px;
@@ -710,10 +714,10 @@ span.color {
     }
 
     .selectable-group:focus:not(:has(.selection-item:focus)) {
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
     }
     .selection-item {
-        outline: 3px solid var(--neutral0);
+        outline: 3px solid var(--neutral950);
         outline-offset: -1px;
     }
 
@@ -832,7 +836,7 @@ span.color {
         }
 
         .selectable-group:focus {
-            outline: 2px solid var(--neutral0);
+            outline: 2px solid var(--neutral950);
         }
 
         &.width-max .content-box {
@@ -856,10 +860,10 @@ span.color {
     }
 
     .selectable-group:focus:not(:has(.selection-item:focus)) {
-        outline: 2px solid var(--neutral0);
+        outline: 2px solid var(--neutral950);
     }
     .selection-item {
-        outline: 3px solid var(--neutral0);
+        outline: 3px solid var(--neutral950);
         outline-offset: -1px;
     }
 
@@ -980,7 +984,7 @@ mg-spinner {
 
         .groups,
         .items {
-            padding-right: 10px;
+            padding-inline-end: 10px;
             text-align: center;
         }
 

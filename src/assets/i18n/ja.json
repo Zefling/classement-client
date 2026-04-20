@@ -1,4 +1,7 @@
 {
+  "language": {
+    "dir": "ltr"
+  },
   "classement": "Classement",
   "help": "ヘルプ",
   "generic": {
