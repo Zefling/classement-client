@@ -4,6 +4,8 @@ import { Logger, LoggerLevel, jsonCopy } from '@ikilote/magma';
 
 import { Md5 } from 'ts-md5';
 
+import { GlobalService } from './global.service';
+
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 import { FileType, FormattedGroup, Options } from '../interface/interface';
 
@@ -13,6 +15,7 @@ import { FileType, FormattedGroup, Options } from '../interface/interface';
 @Injectable({ providedIn: 'root' })
 export class MemoryService {
     private readonly logger = inject(Logger);
+    private readonly global = inject(GlobalService);
 
     hasRedo = signal(false);
     hasUndo = signal(false);
@@ -112,6 +115,7 @@ export class MemoryService {
 
         this.update();
 
+        this.global.withChange.set(this.#index);
         this.logger.log('add undo', LoggerLevel.info, this.#index);
     }
 

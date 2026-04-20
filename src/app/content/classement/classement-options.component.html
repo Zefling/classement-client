@@ -2,6 +2,8 @@
 
 @let opts = options();
 
+<!-- MARK: options standard -->
+
 @if (opts) {
   <div class="options {{ opts.mode }}">
     <mg-input class="title">
@@ -127,6 +129,8 @@
   <classement-themes (change)="changeTheme($event)" [options]="options()" />
 }
 
+<!-- MARK: dialog change mode -->
+
 <mg-dialog class="auto-format" #dialogChangeMode>
   <p class="question">
     {{ 'generator.actions.change.mode.question' | transloco }}
@@ -146,6 +150,8 @@
   </div>
 </mg-dialog>
 
+<!-- MARK: dialog advanced options -->
+
 <mg-dialog
   #dialogAdvancedOptions
   class="dialog-options"
@@ -159,7 +165,7 @@
 
   @if (opts) {
     <div class="advanced-options {{ opts.mode }}">
-      <!-- ###############################  tile options ############################### -->
+      <!-- ############################### MARK: tile options ############################### -->
       <h4 class="title-item">{{ 'generator.options.item.title' | transloco }}</h4>
       <div class="sizes">
         <label for="option-item-margin">{{ 'generator.options.sizes' | transloco }}</label>
@@ -200,6 +206,16 @@
             [(ngModel)]="opts.itemPadding"
             title="{{ 'generator.options.item.padding' | transloco }}"
           />
+          <input
+            id="option-item-min-height"
+            type="number"
+            min="0"
+            max="300"
+            class="item-min-height"
+            [(ngModel)]="opts.itemMinHeight"
+            (ngModelChange)="updateSize('itemMinHeight', 0)"
+            title="{{ 'generator.options.item.min.height' | transloco }}"
+          />
           @if (!opts.itemHeightAuto) {
             <input
               id="option-item-height"
@@ -227,6 +243,16 @@
             />
           }
           <span class="image">{{ 'generator.options.image' | transloco }}</span>
+          <input
+            id="option-item-min-width"
+            type="number"
+            min="0"
+            max="300"
+            class="item-min-width"
+            [(ngModel)]="opts.itemMinWidth"
+            (ngModelChange)="updateSize('itemMinWidth', 0)"
+            title="{{ 'generator.options.item.min.Width' | transloco }}"
+          />
           @if (!opts.itemWidthAuto) {
             <input
               id="option-item-width"
@@ -361,7 +387,7 @@
           />
         </mg-input>
       }
-      <!-- ###############################  line options ###############################  -->
+      <!-- ############################### MARK: line options ###############################  -->
       @if (!zoneMode.includes(opts.mode)) {
         @let direction = opts.mode === 'columns' ? 'column' : 'line';
 
@@ -408,14 +434,7 @@
         @if (opts.mode !== 'bingo') {
           <mg-input class="name-bg-opacity">
             <mg-input-label>{{ 'generator.options.name.opacity' | transloco }}</mg-input-label>
-            <mg-input-range
-              [(ngModel)]="opts.nameBackgroundOpacity"
-              max="100"
-              min="0"
-              step="1"
-              noDecimal
-              noNegative
-            ></mg-input-range>
+            <mg-input-range [(ngModel)]="opts.nameBackgroundOpacity" max="100" min="0" step="1" noDecimal noNegative />
           </mg-input>
 
           <mg-input class="font-size">
@@ -592,7 +611,7 @@
           />
         </mg-input>
       }
-      <!-- ###############################  other options ###############################  -->
+      <!-- ############################### MARK: other options ###############################  -->
       <h4 class="title-other">{{ 'generator.options.global.title' | transloco }}</h4>
 
       <mg-input class="colors-title-text">
@@ -668,6 +687,13 @@
         </div>
       }
 
+      @if (opts.imageBackgroundImage !== 'none') {
+        <mg-input class="background-image-opacity">
+          <mg-input-label>{{ 'generator.options.global.image.opacity' | transloco }}</mg-input-label>
+          <mg-input-range [(ngModel)]="opts.imageBackgroundOpacity" max="100" min="0" step="1" noDecimal noNegative />
+        </mg-input>
+      }
+
       <mg-input class="global-font">
         <mg-input-label>{{ 'generator.options.font' | transloco }}</mg-input-label>
         <mg-input-select [data]="fontList" [templates]="templatesFont" [(ngModel)]="opts.font" overlay nativeKeyboard>
@@ -695,14 +721,18 @@
       </button>
     </div>
 
-    <!-- ############################### render example ###############################  -->
+    <!-- ############################### MARK: render example ###############################  -->
     <div class="option-preview">
       <see-classement id="test" [options]="opts" [groups]="groupExample()" [list]="[]" render demo />
     </div>
   }
 </mg-dialog>
 
+<!-- MARK: classement themes manager -->
+
 <classement-themes-manager [options]="options()" [themeCurrent]="themeCurrent()" />
+
+<!-- MARK: dialog import -->
 
 <mg-dialog class="auto-format" #importDialog>
   <div>{{ 'generator.theme.import.info' | transloco }}</div>

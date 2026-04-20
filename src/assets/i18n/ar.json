@@ -2,76 +2,76 @@
   "language": {
     "dir": "rtl"
   },
-  "classement": "Classement",
-  "help": "يساعد",
+  "classement": "التصنيف",
+  "help": "مساعدة",
   "generic": {
     "dialog": {
-      "close": "Close the dialog"
+      "close": "إغلاق"
     },
     "tabs": {
-      "return": "Return to tabs"
+      "return": "العودة إلى علامات التبويب"
     },
     "pages": {
-      "total": "Total: %",
-      "page": "Page %p / %t"
+      "total": "المجموع: %",
+      "page": "الصفحة %p / %t"
     },
     "punctuation": {
       "colon": ": ",
-      "comma": ", "
+      "comma": "، "
     }
   },
   "menu": {
-    "home": "الصفحة الرئيسية",
-    "list": "Local list",
-    "my.lists": "My lists",
+    "home": "الرئيسية",
+    "list": "القائمة المحلية",
+    "my.lists": "قوائمي",
     "new": "جديد",
-    "edit": "Edit",
+    "edit": "تعديل",
     "login": "تسجيل الدخول",
-    "profile": "My profile",
-    "sign-up": "اشتراك",
-    "navigate": "Browse",
-    "admin": "Admin",
-    "admin.users": "Users",
-    "admin.classements": "Rankings",
-    "admin.stats": "Stats",
-    "logout": "Logout",
-    "information": "Information",
-    "preferences": "Preferences",
-    "forgot.password": "Forgot your password",
+    "profile": "ملفي الشخصي",
+    "sign-up": "إنشاء حساب",
+    "navigate": "تصفح",
+    "admin": "المشرف",
+    "admin.users": "المستخدمون",
+    "admin.classements": "التصنيفات",
+    "admin.stats": "الإحصائيات",
+    "logout": "تسجيل الخروج",
+    "information": "معلومات",
+    "preferences": "التفضيلات",
+    "forgot.password": "نسيت كلمة المرور",
     "mode": {
-      "reduce": "Reduce menu",
-      "expand": "Expand menu"
+      "reduce": "تصغير",
+      "expand": "توسيع"
     }
   },
   "admin": {
     "selection": {
-      "day": "By day",
-      "week": "By week",
-      "month": "By month"
+      "day": "حسب اليوم",
+      "week": "حسب الأسبوع",
+      "month": "حسب الشهر"
     },
     "user": {
-      "day": "Number of registrations per day",
-      "week": "Number of registrations per week",
-      "month": "Number of registrations per month",
-      "total": "total",
-      "deleted": "deleted",
-      "validated": "validated"
+      "day": "عدد التسجيلات في اليوم",
+      "week": "عدد التسجيلات في الأسبوع",
+      "month": "عدد التسجيلات في الشهر",
+      "total": "المجموع",
+      "deleted": "محذوف",
+      "validated": "مُفعَّل"
     },
     "classement": {
-      "day": "Number of rankings per day",
-      "week": "Number of rankings per week",
-      "month": "Number of rankings per month",
-      "total": "total",
-      "deleted": "deleted",
-      "hide": "hidden",
-      "parent": "parent"
+      "day": "عدد التصنيفات في اليوم",
+      "week": "عدد التصنيفات في الأسبوع",
+      "month": "عدد التصنيفات في الشهر",
+      "total": "المجموع",
+      "deleted": "محذوف",
+      "hide": "مخفي",
+      "parent": "أصل"
     }
   },
   "infos": {
-    "title": "Informations",
-    "message": "Message",
-    "licenses": "Licenses",
-    "changelog": "Changelog"
+    "title": "معلومات",
+    "message": "رسالة",
+    "licenses": "التراخيص",
+    "changelog": "سجل التغييرات"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -80,1127 +80,1127 @@
   },
   "unit": {
     "file": {
-      "B0": " B",
-      "B1": " KiB",
-      "B2": " MiB",
-      "B3": " GiB",
-      "B4": " TiB"
+      "B0": " ب",
+      "B1": " كيبي",
+      "B2": " ميبي",
+      "B3": " جيبي",
+      "B4": " تيبي"
     }
   },
   "font": {
-    "default": "default"
+    "default": "افتراضي"
   },
   "licenses": {
-    "title": "Overview of third-party licenses"
+    "title": "نظرة عامة على تراخيص الطرف الثالث"
   },
   "changelog": {
-    "title": "Changelog"
+    "title": "سجل التغييرات"
   },
   "home": {
-    "info": "Information",
-    "intro": "A Web application to make a ranking by images or texts.",
-    "philosophy": "This is a free and open source project, you can help the project by giving feedback.",
-    "feedback": "Make feedback",
+    "info": "معلومات",
+    "intro": "تطبيق ويب لإنشاء تصنيفات بالصور أو النصوص.",
+    "philosophy": "هذا مشروع مجاني ومفتوح المصدر، يمكنك المساعدة في تطويره بتقديم ملاحظاتك.",
+    "feedback": "إرسال ملاحظة",
     "source": {
-      "code": "Source code",
-      "license": "License",
-      "gpl3": "GNU General Public License v3.0",
-      "client": "Client",
-      "server": "Server",
-      "icons": "Icons"
+      "code": "الكود المصدري",
+      "license": "الرخصة",
+      "gpl3": "رخصة GNU العامة الإصدار 3.0",
+      "client": "العميل",
+      "server": "الخادم",
+      "icons": "الأيقونات"
     },
     "app": {
-      "name": "Classement: ",
-      "version": "version {{ version }}"
+      "name": "التصنيف: ",
+      "version": "الإصدار {{ version }}"
     },
-    "last": "Latest rankings",
-    "community": "Community"
+    "last": "أحدث التصنيفات",
+    "community": "المجتمع"
   },
   "preferences": {
-    "title": "Preferences",
-    "close": "Close",
-    "editor.title": "Editor",
-    "tiles.title": "Tiles",
+    "title": "التفضيلات",
+    "close": "إغلاق",
+    "editor.title": "المحرر",
+    "tiles.title": "البلاطات",
     "tile": {
-      "title": "Tile title",
-      "name.copy": "Copy the name of the image (without the extension) in the title",
+      "title": "عنوان البلاطة",
+      "name.copy": "نسخ اسم الصورة (بدون الامتداد) في العنوان",
       "image": {
-        "auto.resize": "Automatic resize",
-        "no.resize": "No resize",
+        "auto.resize": "تغيير الحجم تلقائياً",
+        "no.resize": "بدون تغيير الحجم",
         "300": "300×300",
         "500": "500×500",
-        "info": "Images can be heavy; if they take up too much memory space, performance can be significantly degraded. Automatic resizing can fix this."
+        "info": "قد تكون الصور ثقيلة؛ إذا استهلكت ذاكرة كبيرة، قد يتأثر الأداء بشكل ملحوظ. يمكن لتغيير الحجم التلقائي إصلاح ذلك."
       }
     },
     "color": {
-      "title": "Color",
+      "title": "اللون",
       "new.color": {
-        "mixed": "Calculate an intermediate color when adding a line",
-        "same": "Take the color of the reference lines"
+        "mixed": "احسب لوناً وسيطاً عند إضافة سطر",
+        "same": "خذ لون الأسطر المرجعية"
       }
     },
-    "groups.title": "Groups",
+    "groups.title": "المجموعات",
     "group": {
       "new.line": {
-        "title": "Add",
-        "below": "Add below",
-        "above": "Add above",
-        "ask.me": "Ask me"
+        "title": "إضافة",
+        "below": "إضافة أدناه",
+        "above": "إضافة أعلاه",
+        "ask.me": "اسألني"
       },
       "line.option": {
-        "title": "Options display mode",
-        "auto": "Automatic: depending on mobile mode or not",
-        "reduce": "Reduced: reduce to the minimum in the interface",
-        "hidden": "Hidden: no options visible, and groups cannot be edited in this mode."
+        "title": "وضع عرض الخيارات",
+        "auto": "تلقائي: حسب وضع الجوال أو لا",
+        "reduce": "مصغّر: تقليل إلى الحد الأدنى في الواجهة",
+        "hidden": "مخفي: لا توجد خيارات مرئية، ولا يمكن تعديل المجموعات في هذا الوضع."
       }
     },
     "fork.advanced": {
-      "label": "Make my ranking",
-      "desc": "Add a dialog of options when I want to make my ranking from another"
+      "label": "إنشاء تصنيفي",
+      "desc": "إضافة مربع حوار للخيارات عند رغبتي في إنشاء تصنيفي من تصنيف آخر"
     },
     "options": {
-      "title": "Options",
-      "advanced.label": "Advanced options",
-      "advanced.desc": "Enable the advanced options dialog"
+      "title": "الخيارات",
+      "advanced.label": "خيارات متقدمة",
+      "advanced.desc": "تفعيل مربع حوار الخيارات المتقدمة"
     },
     "other": {
-      "title": "By default"
+      "title": "افتراضي"
     },
     "mode": {
-      "title": "Mode"
+      "title": "الوضع"
     },
     "theme": {
-      "title": "Theme"
+      "title": "المظهر"
     },
     "navigation": {
-      "title": "Browse",
-      "page.size": "Number of tiles per page in “Browse”",
+      "title": "تصفح",
+      "page.size": "عدد البلاطات في الصفحة في \"التصفح\"",
       "page.size.pre": " ",
-      "page.size.per": "tiles per page",
+      "page.size.per": "بلاطات في الصفحة",
       "adult": {
-        "label": "Display Adult Content",
-        "input": "By enabling this option, I certify that",
-        "desc.1": "I am of legal age to access adult content in my jurisdiction.",
-        "desc.2": "I understand that this content may include sexually explicit, pornographic, or extremely violent elements."
+        "label": "عرض المحتوى للبالغين",
+        "input": "بتفعيل هذا الخيار، أؤكد أنني",
+        "desc.1": "في السن القانونية للوصول إلى محتوى البالغين في منطقة ولايتي القضائية.",
+        "desc.2": "أدرك أن هذا المحتوى قد يتضمن عناصر جنسية صريحة أو إباحية أو عنيفة بشكل مفرط."
       }
     },
     "interface": {
-      "title": "Interface",
-      "light-dark": "Theme",
-      "language": "Language"
+      "title": "الواجهة",
+      "light-dark": "المظهر",
+      "language": "اللغة"
     },
     "tab": {
-      "general": "General",
-      "emoji": "Emoji",
+      "general": "عام",
+      "emoji": "رموز تعبيرية",
       "api": "API"
     },
     "emoji": {
-      "quick.list": "Quick list",
-      "quick.list.info": "Sortable list, click to remove an emoji.",
-      "all.list": "List of emoji to choose from",
-      "edit.list": "Edit list",
-      "remove": "Remove emoji",
-      "Smileys & Emotion": "Smileys & Emotions",
-      "People & Body": "People & Body",
-      "Animals & Nature": "Animals & Nature",
-      "Food & Drink": "Food & Drink",
-      "Travel & Places": "Travel & Places",
-      "Activities": "Activities",
-      "Objects": "Objects",
-      "Symbols": "Symbols",
-      "Flags": "Flags"
+      "quick.list": "قائمة سريعة",
+      "quick.list.info": "قائمة قابلة للترتيب، انقر لإزالة رمز تعبيري.",
+      "all.list": "قائمة الرموز التعبيرية للاختيار منها",
+      "edit.list": "تعديل القائمة",
+      "remove": "إزالة الرمز التعبيري",
+      "Smileys & Emotion": "الوجوه التعبيرية والمشاعر",
+      "People & Body": "الأشخاص والجسم",
+      "Animals & Nature": "الحيوانات والطبيعة",
+      "Food & Drink": "الطعام والشراب",
+      "Travel & Places": "السفر والأماكن",
+      "Activities": "الأنشطة",
+      "Objects": "الأشياء",
+      "Symbols": "الرموز",
+      "Flags": "الأعلام"
     },
     "imdb": {
-      "key": "IMDB authentication key",
-      "info": "This key requires an account with IMDB and an API access request. Here:"
+      "key": "مفتاح مصادقة IMDB",
+      "info": "يتطلب هذا المفتاح حساباً على IMDB وطلب وصول إلى API. هنا:"
     },
     "anilist": {
-      "activate": "Activate the service"
+      "activate": "تفعيل الخدمة"
     }
   },
   "list": {
-    "intro": "List of rankings in memory in your Web browser only.",
-    "space": "Space use: ",
-    "filter": "Filter:",
+    "intro": "قائمة التصنيفات المحفوظة في متصفح الويب الخاص بك فقط.",
+    "space": "المساحة المستخدمة: ",
+    "filter": "تصفية:",
     "title": {
-      "name": "Title",
-      "undefined": "No title"
+      "name": "العنوان",
+      "undefined": "بدون عنوان"
     },
-    "date": "Date",
+    "date": "التاريخ",
     "category": {
-      "name": "Category",
-      "edit.title": "Edit a category",
-      "current": "Current Category",
-      "new": "New category",
-      "cancel": "Cancel",
-      "edit": "Edit"
+      "name": "الفئة",
+      "edit.title": "تعديل فئة",
+      "current": "الفئة الحالية",
+      "new": "فئة جديدة",
+      "cancel": "إلغاء",
+      "edit": "تعديل"
     },
     "mode": {
-      "name": "Mode"
+      "name": "الوضع"
     },
     "roles": {
-      "name": "Roles"
+      "name": "الأدوار"
     },
     "count": {
-      "group": "Number of groups",
-      "item": "Number of items",
-      "classements": "Number of rankings"
+      "group": "عدد المجموعات",
+      "item": "عدد العناصر",
+      "classements": "عدد التصنيفات"
     },
     "status": {
-      "list": "Status",
-      "deleted": "Deleted",
-      "hidden": "Private",
-      "parent": "Parent",
-      "adult": "Adult",
-      "with.password": "With password",
-      "question": "Are you sure you want to edit one of statuses?",
-      "validated": "validated",
-      "notValidated": "not validated"
+      "list": "الحالة",
+      "deleted": "محذوف",
+      "hidden": "خاص",
+      "parent": "أصل",
+      "adult": "للبالغين",
+      "with.password": "بكلمة مرور",
+      "question": "هل أنت متأكد أنك تريد تعديل إحدى الحالات؟",
+      "validated": "مُفعَّل",
+      "notValidated": "غير مُفعَّل"
     },
     "action": {
-      "name": "Action",
-      "edit": "Edit",
-      "clone": "Clone",
-      "see": "See",
-      "update": "Update",
-      "remove": "Remove",
-      "replace": "Replace"
+      "name": "إجراء",
+      "edit": "تعديل",
+      "clone": "استنساخ",
+      "see": "عرض",
+      "update": "تحديث",
+      "remove": "حذف",
+      "replace": "استبدال"
     },
-    "no.result": "No results.",
-    "create.new": "Create your ranking.",
-    "server.link": "This ranking is linked to a ranking of your account.\nClick here to see the version saved to your account.\nId: {{ id }}",
-    "local.link": "This ranking is linked to a draft ranking of this browser.\nClick here to see the draft saved to this browser.\nId: {{ id }}",
+    "no.result": "لا توجد نتائج.",
+    "create.new": "أنشئ تصنيفك.",
+    "server.link": "هذا التصنيف مرتبط بتصنيف في حسابك.\nانقر هنا لرؤية الإصدار المحفوظ في حسابك.\nالمعرف: {{ id }}",
+    "local.link": "هذا التصنيف مرتبط بمسودة تصنيف في هذا المتصفح.\nانقر هنا لرؤية المسودة المحفوظة في هذا المتصفح.\nالمعرف: {{ id }}",
     "delete": {
-      "question": "Are you sure you want to delete this ranking?",
-      "exit.save": "Save a draft and exit",
-      "exit": "Exit",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "restore": "Restore"
+      "question": "هل أنت متأكد أنك تريد حذف هذا التصنيف؟",
+      "exit.save": "حفظ مسودة والخروج",
+      "exit": "خروج",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "restore": "استعادة"
     },
     "show": {
-      "question": "Are you sure you want to make this ranking public?",
-      "public": "Make public"
+      "question": "هل أنت متأكد أنك تريد جعل هذا التصنيف عاماً؟",
+      "public": "جعله عاماً"
     },
     "hide": {
-      "question": "Are you sure you want to make this ranking private?",
-      "private": "Make private",
-      "note": "A private ranking will not be able to be found with navigation or search.",
-      "note2": "But you can share it with its share link."
+      "question": "هل أنت متأكد أنك تريد جعل هذا التصنيف خاصاً؟",
+      "private": "جعله خاصاً",
+      "note": "لن يمكن العثور على التصنيف الخاص عبر التصفح أو البحث.",
+      "note2": "لكن يمكنك مشاركته عبر رابط المشاركة."
     },
     "adult": {
-      "content": "Adult Content"
+      "content": "محتوى للبالغين"
     },
     "for.all": {
-      "content": "For all Content"
+      "content": "محتوى للجميع"
     },
     "clone": {
-      "question": "Are you sure you want to clone?",
-      "new.template": "New template: The new ranking will have no link to the old one, otherwise it will be considered as a derivative.",
-      "title": "Change title:",
-      "validate": "Clone",
-      "edit": "Clone & edit",
-      "cancel": "Cancel"
+      "question": "هل أنت متأكد أنك تريد الاستنساخ؟",
+      "new.template": "قالب جديد: لن يكون للتصنيف الجديد أي رابط بالقديم، وإلا سيُعتبر مشتقاً.",
+      "title": "تغيير العنوان:",
+      "validate": "استنساخ",
+      "edit": "استنساخ وتعديل",
+      "cancel": "إلغاء"
     },
     "user": {
-      "name": "User",
-      "anonymous": "Anonymous"
+      "name": "المستخدم",
+      "anonymous": "مجهول"
     },
-    "current": "Current"
+    "current": "الحالي"
   },
   "category": {
-    "animal": "Animal",
-    "anime": "Anime",
-    "application": "Application software",
-    "astronomy": "Astronomy",
-    "biology": "Biology",
-    "board.game": "Board games",
-    "book": "Book",
-    "brand": "Brand",
-    "character": "Character",
-    "clothing": "Clothing",
-    "comics": "Comics",
-    "community": "Community",
-    "computer": "Computer",
-    "ecology": "Ecology",
-    "entertainment": "Entertainment",
-    "figure": "Figure",
-    "food": "Food",
-    "game": "Game",
-    "geography": "Geography",
-    "history": "History",
-    "language": "Language",
-    "manga": "Manga",
-    "mathematical": "Mathematical",
-    "mineralogy": "Mineralogy",
-    "movie": "Movies",
-    "music": "Music",
-    "people": "People",
-    "place": "Place",
-    "plant": "Plant",
-    "politics": "Politics",
-    "programming": "Programming",
-    "roleplaying": "Role-playing",
-    "science": "Science",
-    "series": "Series",
-    "show": "Show",
-    "sport": "Sport",
-    "technology": "Technology",
-    "vehicle": "Vehicle",
-    "video.game": "Video games",
+    "animal": "حيوان",
+    "anime": "أنيمي",
+    "application": "برامج تطبيقية",
+    "astronomy": "علم الفلك",
+    "biology": "علم الأحياء",
+    "board.game": "ألعاب الطاولة",
+    "book": "كتاب",
+    "brand": "علامة تجارية",
+    "character": "شخصية",
+    "clothing": "ملابس",
+    "comics": "قصص مصورة",
+    "community": "مجتمع",
+    "computer": "حاسوب",
+    "ecology": "علم البيئة",
+    "entertainment": "ترفيه",
+    "figure": "شخصية مجسمة",
+    "food": "طعام",
+    "game": "لعبة",
+    "geography": "جغرافيا",
+    "history": "تاريخ",
+    "language": "لغة",
+    "manga": "مانغا",
+    "mathematical": "رياضيات",
+    "mineralogy": "علم المعادن",
+    "movie": "أفلام",
+    "music": "موسيقى",
+    "people": "أشخاص",
+    "place": "مكان",
+    "plant": "نبات",
+    "politics": "سياسة",
+    "programming": "برمجة",
+    "roleplaying": "لعب الأدوار",
+    "science": "علوم",
+    "series": "مسلسلات",
+    "show": "عروض",
+    "sport": "رياضة",
+    "technology": "تكنولوجيا",
+    "vehicle": "مركبة",
+    "video.game": "ألعاب الفيديو",
     "vtuber": "VTuber",
-    "other": "Other",
-    "undefined": "undefined"
+    "other": "أخرى",
+    "undefined": "غير محدد"
   },
   "mode": {
     "name": {
-      "choice": "Choice at creation",
-      "default": "Tierlist",
-      "teams": "Teams",
-      "default.teams": "Tierlist & Teams",
-      "columns": "Columns",
-      "iceberg": "Iceberg",
-      "axis": "Axis",
-      "bingo": "Bingo"
+      "choice": "الاختيار عند الإنشاء",
+      "default": "قائمة التصنيف",
+      "teams": "فرق",
+      "default.teams": "قائمة التصنيف والفرق",
+      "columns": "أعمدة",
+      "iceberg": "جبل الجليد",
+      "axis": "محاور",
+      "bingo": "بينغو"
     }
   },
   "generator": {
     "title": {
-      "new": "New ranking",
-      "edit": "Edit ranking"
+      "new": "تصنيف جديد",
+      "edit": "تعديل التصنيف"
     },
     "choice": {
-      "title": "Choose a  ranking method"
+      "title": "اختر طريقة التصنيف"
     },
     "fork": {
-      "question": "What do you want to do?",
+      "question": "ماذا تريد أن تفعل؟",
       "options": {
-        "image": "Keep images & titles",
-        "annotations": "Keep annotations",
-        "bg-color": "Keep tile background colors",
-        "txt-color": "Keep tile text colors",
-        "reset-groups": "Empty groups"
+        "image": "الاحتفاظ بالصور والعناوين",
+        "annotations": "الاحتفاظ بالتعليقات التوضيحية",
+        "bg-color": "الاحتفاظ بألوان خلفية البلاطات",
+        "txt-color": "الاحتفاظ بألوان نص البلاطات",
+        "reset-groups": "تفريغ المجموعات"
       },
-      "ok": "Ok",
-      "cancel": "Cancel"
+      "ok": "موافق",
+      "cancel": "إلغاء"
     },
     "options": {
-      "group.title": "Options",
-      "close": "Close",
-      "cancel": "Cancel",
-      "title": "Ranking title:",
-      "title.color": "Title text color:",
-      "group": "Category:",
-      "description": "Description:",
-      "mode": "Mode:",
-      "tags": "Tags:",
-      "sizes": "Tile sizes:",
-      "margin": "Margin",
-      "padding": "Padding",
-      "border": "Border",
-      "image": "Image",
-      "clear": "Clear",
-      "advance": "Advanced options",
-      "advance.info": "Advanced options, you can change a lot of things, be careful to keep it usable.",
-      "stream.mode": "Stream mode",
-      "stream.mode.info": "This mode hides adding (except by copy-paste or drag'n-drop), editing, deleting and annotating tiles.",
-      "edit.mode": "Axis Editing",
-      "edit.mode.info": "Display the editing of axis names.",
-      "border.radius": "Corner radius:",
-      "border.spacing": "Spacing:",
-      "border.spacing.info": "With a negative value, merges the lines.",
-      "border.size": "Border size:",
-      "font": "Choose a font:",
+      "group.title": "الخيارات",
+      "close": "إغلاق",
+      "cancel": "إلغاء",
+      "title": "عنوان التصنيف:",
+      "title.color": "لون نص العنوان:",
+      "group": "الفئة:",
+      "description": "الوصف:",
+      "mode": "الوضع:",
+      "tags": "الوسوم:",
+      "sizes": "أحجام البلاطات:",
+      "margin": "الهامش",
+      "padding": "الحشو",
+      "border": "الإطار",
+      "image": "الصورة",
+      "clear": "مسح",
+      "advance": "خيارات متقدمة",
+      "advance.info": "خيارات متقدمة، يمكنك تغيير الكثير من الأشياء، احرص على إبقائها قابلة للاستخدام.",
+      "stream.mode": "وضع البث",
+      "stream.mode.info": "هذا الوضع يخفي إضافة (إلا عبر النسخ واللصق أو السحب والإفلات) وتعديل وحذف البلاطات والتعليق عليها.",
+      "edit.mode": "تعديل المحور",
+      "edit.mode.info": "عرض تعديل أسماء المحاور.",
+      "border.radius": "نصف قطر الزاوية:",
+      "border.spacing": "التباعد:",
+      "border.spacing.info": "بقيمة سالبة، يتم دمج الأسطر.",
+      "border.size": "حجم الإطار:",
+      "font": "اختر خطاً:",
       "item": {
-        "title": "Tile options",
-        "width": "Tile width",
-        "max.width": "Max width of a tile",
-        "width.auto": "Automatic tile width",
-        "cover": "Cover the entire tile",
-        "height": "Height of a tile",
-        "max.height": "Max height of a tile",
-        "height.auto": "Automatic tile height",
-        "padding": "Tile padding",
-        "border": "Tile border",
-        "margin": "Tile margin",
-        "background.color": "Tile background color:",
-        "border.color": "Tile border color:",
+        "title": "خيارات البلاطة",
+        "width": "عرض البلاطة",
+        "max.width": "الحد الأقصى لعرض البلاطة",
+        "width.auto": "عرض البلاطة تلقائي",
+        "cover": "تغطية البلاطة بالكامل",
+        "height": "ارتفاع البلاطة",
+        "max.height": "الحد الأقصى لارتفاع البلاطة",
+        "height.auto": "ارتفاع البلاطة تلقائي",
+        "padding": "حشو البلاطة",
+        "border": "إطار البلاطة",
+        "margin": "هامش البلاطة",
+        "background.color": "لون خلفية البلاطة:",
+        "border.color": "لون إطار البلاطة:",
         "coverage": {
-          "label": "How to display the image",
-          "default": "The image cannot be enlarged",
-          "cover": "Cover the entire tile as much as possible",
-          "opti": "Cover as well as possible without overflowing"
+          "label": "كيفية عرض الصورة",
+          "default": "لا يمكن تكبير الصورة",
+          "cover": "تغطية البلاطة بالكامل قدر الإمكان",
+          "opti": "التغطية بأفضل طريقة ممكنة دون تجاوز الحدود"
         },
         "text": {
-          "size": "Tile text size:",
-          "only.size": "Text size if no image:",
-          "color": "Tile text color:",
-          "opacity": "Tile text opacity:",
-          "background.color": "Text background color:",
-          "position": "Text position in the tile:",
-          "position.bottom": "On bottom",
-          "position.bottom.float": "On bottom floating",
-          "position.bottom.float.hover": "On bottom floating on hover",
-          "position.bottom.bubble": "On bottom in bubble",
-          "position.top": "On top",
-          "position.top.float": "On top floating",
-          "position.top.float.hover": "On top floating on hover",
-          "position.top.bubble": "On top in bubble",
-          "position.hidden": "Hidden",
-          "min.line": "Minimum number of lines:",
-          "max.line": "Maximum number of lines:"
+          "size": "حجم نص البلاطة:",
+          "only.size": "حجم النص إذا لم تكن هناك صورة:",
+          "color": "لون نص البلاطة:",
+          "opacity": "شفافية نص البلاطة:",
+          "background.color": "لون خلفية النص:",
+          "position": "موضع النص في البلاطة:",
+          "position.bottom": "في الأسفل",
+          "position.bottom.float": "في الأسفل عائم",
+          "position.bottom.float.hover": "في الأسفل عائم عند التمرير",
+          "position.bottom.bubble": "في الأسفل في فقاعة",
+          "position.top": "في الأعلى",
+          "position.top.float": "في الأعلى عائم",
+          "position.top.float.hover": "في الأعلى عائم عند التمرير",
+          "position.top.bubble": "في الأعلى في فقاعة",
+          "position.hidden": "مخفي",
+          "min.line": "الحد الأدنى لعدد الأسطر:",
+          "max.line": "الحد الأقصى لعدد الأسطر:"
         }
       },
       "line": {
-        "title": "Line options",
-        "background.color": "Line background color:",
-        "border.color": "Line border color:",
-        "border.opacity": "Line border opacity:"
+        "title": "خيارات السطر",
+        "background.color": "لون خلفية السطر:",
+        "border.color": "لون إطار السطر:",
+        "border.opacity": "شفافية إطار السطر:"
       },
       "column": {
-        "title": "Columns options",
-        "background.color": "Column background color:",
-        "border.color": "Column border color:",
-        "min.height": "Columns minimum height:"
+        "title": "خيارات الأعمدة",
+        "background.color": "لون خلفية العمود:",
+        "border.color": "لون إطار العمود:",
+        "min.height": "الحد الأدنى لارتفاع الأعمدة:"
       },
       "global": {
-        "title": "Other options",
-        "background": "Background color:",
-        "width": "Render image width:",
-        "height": "Height of rendered image:",
-        "image": "Background image:",
+        "title": "خيارات أخرى",
+        "background": "لون الخلفية:",
+        "width": "عرض الصورة المصدرة:",
+        "height": "ارتفاع الصورة المصدرة:",
+        "image": "صورة الخلفية:",
         "name.image": {
-          "none": "Default",
-          "sakura": "Sakura",
-          "etoile": "Etoile",
-          "ciel": "Sky",
-          "iceberg": "Iceberg",
-          "custom": "Custom"
+          "none": "افتراضي",
+          "sakura": "ساكورا",
+          "etoile": "إيتوال",
+          "ciel": "سماء",
+          "iceberg": "جبل الجليد",
+          "custom": "مخصص"
         }
       },
       "name": {
-        "width": "Group name width:",
-        "min.height": "Group name minimum height:",
-        "font.size": "Group name text size:",
-        "opacity": "Group name background opacity:"
+        "width": "عرض اسم المجموعة:",
+        "min.height": "الحد الأدنى لارتفاع اسم المجموعة:",
+        "font.size": "حجم نص اسم المجموعة:",
+        "opacity": "شفافية خلفية اسم المجموعة:"
       },
       "group.direction": {
-        "label": "Direction:",
-        "rtl": "Right to left",
-        "ltr": "Left to right"
+        "label": "الاتجاه:",
+        "rtl": "من اليمين إلى اليسار",
+        "ltr": "من اليسار إلى اليمين"
       },
-      "size": "Grid size (width × height):",
-      "group.markdown": "Markdown in group names",
+      "size": "حجم الشبكة (العرض × الارتفاع):",
+      "group.markdown": "Markdown في أسماء المجموعات",
       "background": {
-        "custom": "Select a custom background image",
-        "custom.api": "Select a custom background image (max 1000×1000)"
+        "custom": "اختر صورة خلفية مخصصة",
+        "custom.api": "اختر صورة خلفية مخصصة (بحد أقصى 1000×1000)"
       },
       "zone.title": {
-        "number": "Number of groups with title:",
-        "name": "Group name:",
+        "number": "عدد المجموعات ذات العنوان:",
+        "name": "اسم المجموعة:",
         "align": {
           "vertical": {
-            "label": "Vertical alignment:",
-            "start": "Up",
-            "center": "Middle",
-            "end": "Down"
+            "label": "المحاذاة الرأسية:",
+            "start": "أعلى",
+            "center": "وسط",
+            "end": "أسفل"
           },
           "horizontal": {
-            "label": "Horizontal alignment:",
-            "start": "Start",
-            "center": "Center",
-            "end": "End"
+            "label": "المحاذاة الأفقية:",
+            "start": "بداية",
+            "center": "وسط",
+            "end": "نهاية"
           }
         }
       },
       "separator": {
-        "line.width": "Separator line width:",
-        "line.color": "Separator line color:",
-        "line.opacity": "Separator line opacity:"
+        "line.width": "عرض خط الفاصل:",
+        "line.color": "لون خط الفاصل:",
+        "line.opacity": "شفافية خط الفاصل:"
       },
-      "zone.axis.name": "Axis name:",
-      "zone.area.name": "Area name:",
+      "zone.axis.name": "اسم المحور:",
+      "zone.area.name": "اسم المنطقة:",
       "axis": {
-        "line.width": "Axis width:",
-        "line.color": "Axis color:",
-        "arrow.size": "Arrow size:"
+        "line.width": "عرض المحور:",
+        "line.color": "لون المحور:",
+        "arrow.size": "حجم السهم:"
       }
     },
     "screen": {
-      "default": "Default display",
-      "window": "Maximize to window",
-      "fullscreen": "Full screen"
+      "default": "العرض الافتراضي",
+      "window": "التكبير إلى النافذة",
+      "fullscreen": "ملء الشاشة"
     },
     "theme": {
-      "link": "Choose a theme",
-      "info": "Select a theme",
-      "default": "Generic themes",
-      "cancel": "Cancel",
-      "validate": "Validate",
-      "search": "Search",
-      "public": "Visible to all",
-      "private": "Only for you",
-      "remove": "Are you sure you want to remove: ",
-      "remove.confirm": "I'm sure",
+      "link": "اختر مظهراً",
+      "info": "حدد مظهراً",
+      "default": "مظاهر عامة",
+      "cancel": "إلغاء",
+      "validate": "تأكيد",
+      "search": "بحث",
+      "public": "مرئي للجميع",
+      "private": "لك فقط",
+      "remove": "هل أنت متأكد أنك تريد حذف: ",
+      "remove.confirm": "أنا متأكد",
       "name": {
-        "question": "A little name for your theme?",
-        "rename": "Do you want to change its name?",
-        "default": "Default",
-        "compact": "Default compact",
-        "square": "Square",
-        "sakura": "Sakura",
-        "night": "Night",
-        "ciel": "Sky",
-        "iceberg": "Iceberg",
-        "axis": "Axis",
-        "bingo-s": "Small",
-        "bingo-m": "Medium",
-        "bingo-l": "Large",
-        "grid": "Grid",
-        "classic": "Classic"
+        "question": "اسم صغير لمظهرك؟",
+        "rename": "هل تريد تغيير اسمه؟",
+        "default": "افتراضي",
+        "compact": "افتراضي مضغوط",
+        "square": "مربع",
+        "sakura": "ساكورا",
+        "night": "ليلي",
+        "ciel": "سماء",
+        "iceberg": "جبل الجليد",
+        "axis": "محاور",
+        "bingo-s": "صغير",
+        "bingo-m": "متوسط",
+        "bingo-l": "كبير",
+        "grid": "شبكة",
+        "classic": "كلاسيكي"
       },
       "import": {
-        "button": "Import",
-        "info": "Please import a valid theme file.",
-        "invalid": "Theme file is not valid",
-        "valid": "Set the theme:",
-        "mode": "Works for mode(s):"
+        "button": "استيراد",
+        "info": "يرجى استيراد ملف مظهر صحيح.",
+        "invalid": "ملف المظهر غير صالح",
+        "valid": "تعيين المظهر:",
+        "mode": "يعمل مع الوضع (الأوضاع):"
       },
-      "export": "Export",
-      "manage.my.themes": "Manage my themes",
-      "manage.themes": "Theme management",
-      "remove.browser": "Remove theme",
-      "update.browser": "Update theme",
-      "update.server": "Update theme",
-      "remove.server": "Remove theme",
-      "new": "New",
+      "export": "تصدير",
+      "manage.my.themes": "إدارة مظاهري",
+      "manage.themes": "إدارة المظاهر",
+      "remove.browser": "حذف المظهر",
+      "update.browser": "تحديث المظهر",
+      "update.server": "تحديث المظهر",
+      "remove.server": "حذف المظهر",
+      "new": "جديد",
       "browser": {
-        "themes": "In this browser",
-        "save": "Only this browser",
-        "new": "Add to this browser",
-        "update": "In this browser",
-        "replace": "Select the theme to replace. Visible only in this web browser.",
-        "save.success": "Draft saved",
-        "update.success": "Draft updated",
-        "delete": "Draft deleted"
+        "themes": "في هذا المتصفح",
+        "save": "هذا المتصفح فقط",
+        "new": "إضافة إلى هذا المتصفح",
+        "update": "في هذا المتصفح",
+        "replace": "اختر المظهر المراد استبداله. مرئي فقط في هذا المتصفح.",
+        "save.success": "تم حفظ المسودة",
+        "update.success": "تم تحديث المسودة",
+        "delete": "تم حذف المسودة"
       },
       "account": {
-        "themes": "On your account",
-        "save": "Save on my account",
-        "new": "Add to your account",
-        "update": "On my account",
-        "replace": "Select the theme to replace on your account.",
-        "save.success": "Theme saved on your account",
-        "update.success": "Theme updated on your account",
-        "delete.success": "Theme deleted of your account"
+        "themes": "في حسابك",
+        "save": "حفظ في حسابي",
+        "new": "إضافة إلى حسابك",
+        "update": "في حسابي",
+        "replace": "اختر المظهر المراد استبداله في حسابك.",
+        "save.success": "تم حفظ المظهر في حسابك",
+        "update.success": "تم تحديث المظهر في حسابك",
+        "delete.success": "تم حذف المظهر من حسابك"
       },
-      "users.themes": "Public themes",
+      "users.themes": "المظاهر العامة",
       "create": {
-        "normal": "Enable advanced options in: Preferences (main menu) » Editor » Options. Then go to the advanced options (link under the description on the right) to create or manage your themes.",
-        "advance": "Go to the advanced options (link under the description on the right) to create or manage your themes."
+        "normal": "فعّل الخيارات المتقدمة في: التفضيلات (القائمة الرئيسية) » المحرر » الخيارات. ثم انتقل إلى الخيارات المتقدمة (الرابط أسفل الوصف على اليمين) لإنشاء مظاهرك أو إدارتها.",
+        "advance": "انتقل إلى الخيارات المتقدمة (الرابط أسفل الوصف على اليمين) لإنشاء مظاهرك أو إدارتها."
       }
     },
     "ranking": {
-      "group.title": "Ranking",
-      "name": "Name",
-      "list": "List",
-      "drop.image": "Copy-paste or drop here ↓ one or a group of images (JPG, PNG, GIF, WebP) or text",
-      "add.image": "Click here to add one or a group of images",
-      "add.text": "Click here to add one or a group of texts",
-      "share.link": "Share this ranking with your friends",
-      "show.link": "Show link in image",
-      "see": "See your ranking",
-      "copy.link.success": "The link was successfully copied to the clipboard",
-      "copy.link.error": "Failed to copy link to clipboard",
-      "diff": "Tiles from other related ranking",
-      "add.tile": "Click on the tiles you want to add to your list.",
-      "no.tile": "There are no tiles.",
-      "delete.tile": "Delete the tile",
-      "tile.color": "Tile background color",
-      "tile.color.remove": "Remove color.",
-      "tile.color.transparent": "Transparent background.",
-      "tile.color.new": "Add a color.",
-      "tile.color.previous": "A color already used.",
-      "text.color": "Tile text color",
-      "text.color.remove": "Remove color.",
-      "text.color.new": "Add a color.",
-      "text.color.previous": "A color already in use.",
-      "tile.position": "Position of the tile",
-      "tile.position.top": "Top",
-      "tile.position.up": "Move up",
-      "tile.position.down": "Go down",
-      "tile.position.bottom": "Bottom",
-      "close": "Close",
-      "title": "Title",
-      "annotation": "Annotation",
-      "create": "Created on {{ DATE }}",
-      "change": "Changed on {{ DATE }}",
-      "image": "Image",
-      "image.drop": "Copy-paste or drop an image (JPG, PNG, GIF, WebP) here",
-      "image.ratio": "Ratio",
-      "image.ratio.help": "(4:3, 4/3 or 1.33)",
-      "image.empty": "No image",
-      "image.remove": "Removed image",
-      "image.edit": "Edit image",
-      "image.edit.cancel": "Cancel",
-      "image.edit.ok": "Validate",
-      "image.add": "Add image",
+      "group.title": "التصنيف",
+      "name": "الاسم",
+      "list": "القائمة",
+      "drop.image": "انسخ والصق أو أسقط هنا ↓ صورة واحدة أو مجموعة صور (JPG, PNG, GIF, WebP) أو نصاً",
+      "add.image": "انقر هنا لإضافة صورة واحدة أو مجموعة صور",
+      "add.text": "انقر هنا لإضافة نص واحد أو مجموعة نصوص",
+      "share.link": "شارك هذا التصنيف مع أصدقائك",
+      "show.link": "إظهار الرابط في الصورة",
+      "see": "اعرض تصنيفك",
+      "copy.link.success": "تم نسخ الرابط إلى الحافظة بنجاح",
+      "copy.link.error": "فشل نسخ الرابط إلى الحافظة",
+      "diff": "بلاطات من تصنيف آخر مرتبط",
+      "add.tile": "انقر على البلاطات التي تريد إضافتها إلى قائمتك.",
+      "no.tile": "لا توجد بلاطات.",
+      "delete.tile": "حذف البلاطة",
+      "tile.color": "لون خلفية البلاطة",
+      "tile.color.remove": "إزالة اللون.",
+      "tile.color.transparent": "خلفية شفافة.",
+      "tile.color.new": "إضافة لون.",
+      "tile.color.previous": "لون مستخدم مسبقاً.",
+      "text.color": "لون نص البلاطة",
+      "text.color.remove": "إزالة اللون.",
+      "text.color.new": "إضافة لون.",
+      "text.color.previous": "لون مستخدم مسبقاً.",
+      "tile.position": "موضع البلاطة",
+      "tile.position.top": "الأعلى",
+      "tile.position.up": "تحريك لأعلى",
+      "tile.position.down": "تحريك لأسفل",
+      "tile.position.bottom": "الأسفل",
+      "close": "إغلاق",
+      "title": "العنوان",
+      "annotation": "تعليق توضيحي",
+      "create": "تم الإنشاء في {{ DATE }}",
+      "change": "تم التعديل في {{ DATE }}",
+      "image": "صورة",
+      "image.drop": "انسخ والصق أو أسقط صورة (JPG, PNG, GIF, WebP) هنا",
+      "image.ratio": "النسبة",
+      "image.ratio.help": "(4:3، 4/3 أو 1.33)",
+      "image.empty": "لا توجد صورة",
+      "image.remove": "تمت إزالة الصورة",
+      "image.edit": "تعديل الصورة",
+      "image.edit.cancel": "إلغاء",
+      "image.edit.ok": "تأكيد",
+      "image.add": "إضافة صورة",
       "pin": {
-        "pinned": "Pinned",
-        "unpinned": "Unpinned"
+        "pinned": "مثبّت",
+        "unpinned": "غير مثبّت"
       }
     },
     "line": {
-      "add": "Add",
-      "delete": "Del."
+      "add": "إضافة",
+      "delete": "حذف"
     },
     "actions": {
-      "export.image": "Image export",
-      "save.local": "Save as draft",
-      "save.local.info": "The backup is made in your browser's memory only. You will be able to find it only on this one as long as the data is persisted. For a more lasting backup: export your data or save to your account.",
-      "save.local.auto": "Save as automatic draft with each change.",
-      "save.server": "Save to your account",
-      "export.json": "Export",
-      "export.all.json": "Export all",
-      "import.json": "Import",
-      "save.image": "Save as:",
-      "edit.local.empty": "Edit empty local version",
-      "see.my.derivative": "See my ranking",
-      "see.my.last.derivative": "See my last ranking",
-      "see.this.derivative": "See this ranking",
-      "make.my.derivative.empty": "Make my ranking from this one",
-      "edit.my.derivative": "Edit my ranking",
-      "edit.my.last.derivative": "Edit my last ranking",
-      "new.derivative.empty": "Make my classification from this one",
-      "my.derivative.count": "Note: You currently have {{ count }} derivatives of this ranking.",
+      "export.image": "تصدير كصورة",
+      "save.local": "حفظ كمسودة",
+      "save.local.info": "يتم الحفظ في ذاكرة متصفحك فقط. ستتمكن من إيجاده فقط على هذا المتصفح طالما بقيت البيانات محفوظة. للحفظ الدائم: صدّر بياناتك أو احفظها في حسابك.",
+      "save.local.auto": "حفظ تلقائي كمسودة مع كل تغيير.",
+      "save.server": "حفظ في حسابك",
+      "export.json": "تصدير",
+      "export.all.json": "تصدير الكل",
+      "import.json": "استيراد",
+      "save.image": "حفظ بصيغة:",
+      "edit.local.empty": "تعديل نسخة محلية فارغة",
+      "see.my.derivative": "اعرض تصنيفي",
+      "see.my.last.derivative": "اعرض آخر تصنيف لي",
+      "see.this.derivative": "اعرض هذا التصنيف",
+      "make.my.derivative.empty": "أنشئ تصنيفي من هذا",
+      "edit.my.derivative": "تعديل تصنيفي",
+      "edit.my.last.derivative": "تعديل آخر تصنيف لي",
+      "new.derivative.empty": "أنشئ تصنيفي من هذا",
+      "my.derivative.count": "ملاحظة: لديك حالياً {{ count }} مشتقات من هذا التصنيف.",
       "change.mode": {
-        "question": "Changing modes involves resetting groups to empty.\nAre you sure you want to continue?",
-        "default": "Freely move tiles in each group.",
-        "teams": "Copy tiles in each group.\nGroups can only contain one version of each tile to form teams.",
-        "columns": "Freely move tiles in each vertical group.",
-        "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
-        "axis": "Move freely in the defined space along axes.",
-        "bingo": "Distribute tiles in a grid."
+        "question": "تغيير الوضع يستلزم إعادة تعيين المجموعات إلى فارغة.\nهل أنت متأكد أنك تريد المتابعة؟",
+        "default": "تحريك البلاطات بحرية في كل مجموعة.",
+        "teams": "نسخ البلاطات في كل مجموعة.\nيمكن لكل مجموعة أن تحتوي على نسخة واحدة فقط من كل بلاطة لتشكيل فرق.",
+        "columns": "تحريك البلاطات بحرية في كل مجموعة رأسية.",
+        "iceberg": "التحرك بحرية في المساحة المحددة على نموذج جبل الجليد (أو صورة أخرى).",
+        "axis": "التحرك بحرية في المساحة المحددة على طول المحاور.",
+        "bingo": "توزيع البلاطات في شبكة."
       },
       "reset.groups": {
-        "button": "Clear Groups",
-        "question": "Are you sure you want to clear groups?",
-        "clear.list": "Disorder tiles when emptying the list",
-        "ok": "Ok",
-        "cancel": "Cancel"
+        "button": "مسح المجموعات",
+        "question": "هل أنت متأكد أنك تريد مسح المجموعات؟",
+        "clear.list": "تعشيش البلاطات عند تفريغ القائمة",
+        "ok": "موافق",
+        "cancel": "إلغاء"
       },
       "history": {
-        "warning": "Old version",
-        "show": "See old versions"
+        "warning": "نسخة قديمة",
+        "show": "عرض الإصدارات القديمة"
       },
       "texts": {
-        "info": "Add text tiles: one line per tile, empty lines are ignored.",
-        "ok": "Ok",
-        "cancel": "Cancel"
+        "info": "إضافة بلاطات نصية: سطر واحد لكل بلاطة، الأسطر الفارغة يتم تجاهلها.",
+        "ok": "موافق",
+        "cancel": "إلغاء"
       },
       "alt": {
-        "detail": "Alternative description text"
+        "detail": "نص الوصف البديل"
       },
       "IMDB": "IMDB",
       "anilist": "AniList"
     },
     "context.menu": {
-      "back.list": "Return to list",
-      "edit": "Edit",
-      "remove": "Delete"
+      "back.list": "العودة إلى القائمة",
+      "edit": "تعديل",
+      "remove": "حذف"
     },
     "change": {
-      "warning": "You have made changes!",
-      "question": "Are you sure you want to leave this page?"
+      "warning": "لقد أجريت تغييرات!",
+      "question": "هل أنت متأكد أنك تريد مغادرة هذه الصفحة؟"
     },
     "json": {
-      "title": "Title:",
-      "category": "Category:",
-      "count.group": "Number of groups:",
-      "count.item": "Number of items:",
-      "cancel": "Cancel",
+      "title": "العنوان:",
+      "category": "الفئة:",
+      "count.group": "عدد المجموعات:",
+      "count.item": "عدد العناصر:",
+      "cancel": "إلغاء",
       "import": {
-        "list": "Import a ranking:",
-        "list.multi": "Import one or more rankings:",
-        "replace": "Import and replace",
-        "new": "Import into a new ranking",
-        "add": "Import this ranking",
-        "multi.replace": "Import and replace if exists",
-        "multi.add": "Add import"
+        "list": "استيراد تصنيف:",
+        "list.multi": "استيراد تصنيف واحد أو أكثر:",
+        "replace": "استيراد واستبدال",
+        "new": "استيراد إلى تصنيف جديد",
+        "add": "استيراد هذا التصنيف",
+        "multi.replace": "استيراد واستبدال إذا كان موجوداً",
+        "multi.add": "إضافة الاستيراد"
       },
-      "select.all": "Select all",
-      "unselect.all": "Unselect all"
+      "select.all": "تحديد الكل",
+      "unselect.all": "إلغاء تحديد الكل"
     },
     "optimise": {
-      "info": "Convert image to WebP 300×300.",
-      "button.optimise": "Optimise",
-      "current": "Current size: {{ totalSize }} bytes for {{ totalImage }} images.",
-      "show.detail": "Show details",
-      "hide.detail": "Hide details",
-      "reduce.files": "Reduced number of files: {{ countResize }}",
-      "reduce.size": "Total reduce size: {{ reduceSize }} bytes",
-      "final.size": "File size: {{ finalSize }} bytes ({{percent}})",
-      "size": "{{ size }} bytes",
-      "validate": "Validate"
+      "info": "تحويل الصورة إلى WebP بحجم 300×300.",
+      "button.optimise": "تحسين",
+      "current": "الحجم الحالي: {{ totalSize }} بايت لـ {{ totalImage }} صورة.",
+      "show.detail": "إظهار التفاصيل",
+      "hide.detail": "إخفاء التفاصيل",
+      "reduce.files": "عدد الملفات المخفضة: {{ countResize }}",
+      "reduce.size": "إجمالي الحجم المخفض: {{ reduceSize }} بايت",
+      "final.size": "حجم الملف: {{ finalSize }} بايت ({{percent}})",
+      "size": "{{ size }} بايت",
+      "validate": "تأكيد"
     },
-    "loading": "Loading…",
+    "loading": "جاري التحميل…",
     "server": {
-      "update": "Update your ranking",
-      "new": "Save a new ranking",
-      "from": "Original ranking",
-      "username": "Username:",
-      "edit": "Edit",
+      "update": "تحديث تصنيفك",
+      "new": "حفظ تصنيف جديد",
+      "from": "التصنيف الأصلي",
+      "username": "اسم المستخدم:",
+      "edit": "تعديل",
       "banner": {
-        "select": "Select a banner image",
-        "crop": "Crop",
-        "image": "Banner image",
-        "reset": "Reset"
+        "select": "اختر صورة بانر",
+        "crop": "اقتصاص",
+        "image": "صورة البانر",
+        "reset": "إعادة تعيين"
       },
-      "not.public": "Do not make public.",
-      "cancel": "Cancel",
-      "save": "Save",
-      "save.read": "Reading data in progress (1/3)",
-      "save.send": "Sending in progress (2/3)",
-      "save.progress": "Saving in progress (3/3)",
-      "password": "Set a password (optional)",
+      "not.public": "عدم النشر للعموم.",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "save.read": "قراءة البيانات جارية (1/3)",
+      "save.send": "الإرسال جارٍ (2/3)",
+      "save.progress": "الحفظ جارٍ (3/3)",
+      "password": "تعيين كلمة مرور (اختياري)",
       "not.remove.local": {
-        "label": "Keep locally.",
-        "info": "If unchecked, the version saved in the browser will be deleted."
+        "label": "الاحتفاظ محلياً.",
+        "info": "إذا لم يتم التحديد، سيتم حذف النسخة المحفوظة في المتصفح."
       },
       "history": {
-        "label": "Historize the old version",
-        "info": "This allows you to keep track before changing the ranking."
+        "label": "أرشفة النسخة القديمة",
+        "info": "يتيح لك ذلك الاحتفاظ بسجل قبل تغيير التصنيف."
       },
       "adult": {
-        "label": "Adult content restrictions",
-        "info": "This option is for content that is sexually explicit, pornographic, or extremely violent. Please note that this does not permit the posting of illegal content. A moderator may, at their discretion, classify your content as adult-only."
+        "label": "قيود محتوى البالغين",
+        "info": "هذا الخيار مخصص للمحتوى الجنسي الصريح أو الإباحي أو العنيف بشكل مفرط. يرجى ملاحظة أن هذا لا يسمح بنشر المحتوى غير القانوني. يجوز للمشرف، وفق تقديره، تصنيف محتواك كمحتوى للبالغين فقط."
       },
-      "link": "Replace the default ID with a more readable name (optional)"
+      "link": "استبدل المعرف الافتراضي باسم أكثر قابلية للقراءة (اختياري)"
     },
     "external": {
       "imdb": {
-        "title": "Search for a movie on IMDB",
-        "name": "Movie name:",
-        "adult.content": "Include adult content",
-        "language": "Language:",
-        "search": "Search",
-        "with.title": "with the title",
-        "with.year": "with the year"
+        "title": "البحث عن فيلم على IMDB",
+        "name": "اسم الفيلم:",
+        "adult.content": "تضمين محتوى البالغين",
+        "language": "اللغة:",
+        "search": "بحث",
+        "with.title": "بالعنوان",
+        "with.year": "بالسنة"
       },
       "anilist": {
-        "title": "Search for an anime or manga on Anilist",
-        "name": "Series name:",
+        "title": "البحث عن أنيمي أو مانغا على Anilist",
+        "name": "اسم المسلسل:",
         "type": {
-          "media": "Media type:",
-          "manga": "Manga",
-          "anime": "Anime"
+          "media": "نوع الوسائط:",
+          "manga": "مانغا",
+          "anime": "أنيمي"
         },
         "for.title": {
-          "english": "English",
-          "romaji": "Romaji",
-          "native": "Native",
-          "choice": "Use for the tile title"
+          "english": "الإنجليزية",
+          "romaji": "روماجي",
+          "native": "المحلية",
+          "choice": "استخدام لعنوان البلاطة"
         },
-        "annotation": "To include in the annotation (if at least 1)",
-        "search": "Search",
-        "with.title": "with the title",
-        "with.year": "with the year"
+        "annotation": "للتضمين في التعليق التوضيحي (إذا كان هناك 1 على الأقل)",
+        "search": "بحث",
+        "with.title": "بالعنوان",
+        "with.year": "بالسنة"
       }
     },
     "help": {
-      "title": "Presentation",
+      "title": "عرض تقديمي",
       "shortcut": {
         "key": {
-          "right.click": "Right click",
-          "middle.click": "Middle click",
-          "double.click": "Double click",
-          "delete": "Delete",
+          "right.click": "النقر بزر الفأرة الأيمن",
+          "middle.click": "النقر بالزر الأوسط",
+          "double.click": "النقر المزدوج",
+          "delete": "حذف",
           "esc": "Esc",
-          "home": "Home",
-          "end": "End"
+          "home": "الرئيسية",
+          "end": "النهاية"
         },
-        "title": "Keyboard shortcuts",
-        "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
-        "ctrl.s": "Save the draft.",
-        "ctrl.e": "Export the draft.",
-        "ctrl.z": "Undo.",
-        "ctrl.shift.z": "Redo.",
-        "ctrl.delete": "Put back into the main list.",
-        "on.tile": "on a tile",
-        "on.zone": "in a zone",
-        "put.back.list": "Put back into the list.",
-        "create": "Create a tile at the targeted location.",
-        "context.menu": "Display the context menu.",
-        "esc": "Deselect the tile."
+        "title": "اختصارات لوحة المفاتيح",
+        "ctrl.v": "نسخ صورة أو أكثر لإضافتها. يعمل أيضاً مع النص، حيث يُنشئ كل سطر نصي بلاطة جديدة.",
+        "ctrl.s": "حفظ المسودة.",
+        "ctrl.e": "تصدير المسودة.",
+        "ctrl.z": "تراجع.",
+        "ctrl.shift.z": "إعادة.",
+        "ctrl.delete": "إعادة إلى القائمة الرئيسية.",
+        "on.tile": "على بلاطة",
+        "on.zone": "في منطقة",
+        "put.back.list": "إعادة إلى القائمة.",
+        "create": "إنشاء بلاطة في الموقع المستهدف.",
+        "context.menu": "عرض قائمة السياق.",
+        "esc": "إلغاء تحديد البلاطة."
       },
       "default": {
-        "text": "Move tiles by drag and drop.",
+        "text": "تحريك البلاطات بالسحب والإفلات.",
         "shortcut": {
-          "in.line": "Move the selected tile left or right within a line.",
-          "change.line": "Move the selected tile to the upper or lower line.",
-          "main.line.up": "Move the selected tile from the main list to the last line of the ranking.",
-          "home.end": "Move the tile to the beginning or end of the line."
+          "in.line": "تحريك البلاطة المحددة يساراً أو يميناً داخل السطر.",
+          "change.line": "تحريك البلاطة المحددة إلى السطر الأعلى أو الأسفل.",
+          "main.line.up": "تحريك البلاطة المحددة من القائمة الرئيسية إلى آخر سطر في التصنيف.",
+          "home.end": "تحريك البلاطة إلى بداية أو نهاية السطر."
         }
       },
       "teams": {
-        "text": "Move tiles by drag and drop to copy them into groups. Each tile can be copied once per group.",
+        "text": "تحريك البلاطات بالسحب والإفلات لنسخها في المجموعات. يمكن نسخ كل بلاطة مرة واحدة لكل مجموعة.",
         "shortcut": {
-          "in.line": "Move the selected tile left or right within a line.",
-          "change.line": "Move the selected tile to the upper or lower line.",
-          "main.line.up": "Copy the selected tile from the main list to the last line of the ranking."
+          "in.line": "تحريك البلاطة المحددة يساراً أو يميناً داخل السطر.",
+          "change.line": "تحريك البلاطة المحددة إلى السطر الأعلى أو الأسفل.",
+          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر سطر في التصنيف."
         }
       },
       "columns": {
-        "text": "Move tiles by drag and drop into different columns.",
+        "text": "تحريك البلاطات بالسحب والإفلات إلى أعمدة مختلفة.",
         "shortcut": {
-          "in.line": "Move the selected tile up or down within the column.",
-          "change.line": "Move the selected tile to the left or right side line.",
-          "main.line.up": "Copy the selected tile from the main list to the first column of the ranking.",
-          "home.end": "Move the tile to the beginning or end of the column."
+          "in.line": "تحريك البلاطة المحددة لأعلى أو لأسفل داخل العمود.",
+          "change.line": "تحريك البلاطة المحددة إلى السطر الجانبي الأيسر أو الأيمن.",
+          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى أول عمود في التصنيف.",
+          "home.end": "تحريك البلاطة إلى بداية أو نهاية العمود."
         }
       },
       "iceberg": {
-        "move": "Move tiles in the area.",
-        "options": "In the options choose the number of levels."
+        "move": "تحريك البلاطات في المنطقة.",
+        "options": "في الخيارات اختر عدد المستويات."
       },
       "axis": {
-        "move": "Move tiles in the area.",
-        "options": "In the options choose the names of the axes."
+        "move": "تحريك البلاطات في المنطقة.",
+        "options": "في الخيارات اختر أسماء المحاور."
       },
       "bingo": {
-        "grid": "Fill a grid to make a list or a top.",
-        "view": "In visualization mode, after saving, allows you to select the tiles.",
+        "grid": "ملء شبكة لإنشاء قائمة أو تصنيف.",
+        "view": "في وضع العرض، بعد الحفظ، يتيح لك تحديد البلاطات.",
         "shortcut": {
-          "move": "Move the selected tile in the chosen direction (by swapping).",
-          "main.line.up": "Copy the selected tile from the main list to the last available cell."
+          "move": "تحريك البلاطة المحددة في الاتجاه المختار (بالتبادل).",
+          "main.line.up": "نسخ البلاطة المحددة من القائمة الرئيسية إلى آخر خلية متاحة."
         }
       },
       "zone": {
         "shortcut": {
-          "move.normal": "Move the selected tile in the chosen direction (15px per step).",
-          "move.slow": "Move the selected tile in the chosen direction (1px per step).",
-          "main.line.up": "Move the selected tile from the main list to the movement zone."
+          "move.normal": "تحريك البلاطة المحددة في الاتجاه المختار (15 بكسل لكل خطوة).",
+          "move.slow": "تحريك البلاطة المحددة في الاتجاه المختار (1 بكسل لكل خطوة).",
+          "main.line.up": "تحريك البلاطة المحددة من القائمة الرئيسية إلى منطقة الحركة."
         }
       }
     }
   },
   "user": {
-    "by": "By {{ author }}",
+    "by": "بواسطة {{ author }}",
     "login": {
-      "title": "Log in",
-      "username": "Username",
-      "username.required": "Username is required.",
-      "username.email": "Username or email",
-      "username.email.required": "Username or email is required.",
-      "password": "Password",
-      "password.bis": "Password (confirmation)",
-      "password.required": "Password is required.",
-      "password.minlength": "Password invalid size.",
-      "login": "Login",
-      "email": "Email",
-      "email.required": "This email is required.",
-      "email.email": "This email is not valid.",
-      "password.lost": "I have lost my password",
-      "signup": "Create an account",
+      "title": "تسجيل الدخول",
+      "username": "اسم المستخدم",
+      "username.required": "اسم المستخدم مطلوب.",
+      "username.email": "اسم المستخدم أو البريد الإلكتروني",
+      "username.email.required": "اسم المستخدم أو البريد الإلكتروني مطلوب.",
+      "password": "كلمة المرور",
+      "password.bis": "كلمة المرور (تأكيد)",
+      "password.required": "كلمة المرور مطلوبة.",
+      "password.minlength": "حجم كلمة المرور غير صالح.",
+      "login": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "email.required": "البريد الإلكتروني مطلوب.",
+      "email.email": "هذا البريد الإلكتروني غير صالح.",
+      "password.lost": "لقد نسيت كلمة المرور",
+      "signup": "إنشاء حساب",
       "oauth": {
-        "label": "Connection with",
+        "label": "الاتصال بـ",
         "label.after": " ",
-        "create": "Create with",
+        "create": "إنشاء بـ",
         "create.after": " ",
         "discord": "Discord",
         "facebook": "Facebook",
         "google": "Google"
       },
       "generator": {
-        "info": "Information",
-        "text1": "To create an account or login with Discord or Facebook requires a page reload.",
-        "text2": "To not lose your ranking: close this dialog, save your browser and create your account or log in.",
-        "text3": "You can then reload your ranking from “My List” with the “Browser List” tab."
+        "info": "معلومات",
+        "text1": "إنشاء حساب أو تسجيل الدخول عبر Discord أو Facebook يتطلب إعادة تحميل الصفحة.",
+        "text2": "لعدم فقدان تصنيفك: أغلق هذا الحوار، احفظ متصفحك وأنشئ حسابك أو سجل الدخول.",
+        "text3": "يمكنك بعد ذلك إعادة تحميل تصنيفك من \"قائمتي\" بعلامة تبويب \"قائمة المتصفح\"."
       }
     },
     "profile": {
-      "title": "My profile",
-      "username": "User:",
-      "since": "Since:",
-      "email": "Email:",
-      "total": "Total:",
-      "actions": "Actions",
+      "title": "ملفي الشخصي",
+      "username": "المستخدم:",
+      "since": "منذ:",
+      "email": "البريد الإلكتروني:",
+      "total": "المجموع:",
+      "actions": "الإجراءات",
       "change": {
-        "email": "Change email",
-        "password": "Change password",
-        "username": "Change username"
+        "email": "تغيير البريد الإلكتروني",
+        "password": "تغيير كلمة المرور",
+        "username": "تغيير اسم المستخدم"
       },
       "remove": {
-        "profile": "Delete your profile",
-        "question": "Are you sure you want to delete your account?",
-        "question.admin": "Are you sure you want to delete this account?",
-        "warning": "Please note that this action will be irreversible.",
-        "warning2": "This account will be anonymized and unrecoverable: deletion of username and email.",
-        "cancel": "Cancel",
-        "ok": "Ok"
+        "profile": "حذف ملفك الشخصي",
+        "question": "هل أنت متأكد أنك تريد حذف حسابك؟",
+        "question.admin": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+        "warning": "يرجى ملاحظة أن هذا الإجراء لا رجعة فيه.",
+        "warning2": "سيتم جعل هذا الحساب مجهول الهوية وغير قابل للاسترداد: حذف اسم المستخدم والبريد الإلكتروني.",
+        "cancel": "إلغاء",
+        "ok": "موافق"
       },
       "avatar": {
-        "title": "Change my avatar",
-        "select": "Select an image for my avatar",
-        "crop": "Crop selected image",
-        "image": "Image for my avatar",
-        "delete": "Delete",
-        "cancel": "Cancel",
-        "update": "Update",
-        "remove": "Remove my avatar"
+        "title": "تغيير صورتي الرمزية",
+        "select": "اختر صورة لصورتي الرمزية",
+        "crop": "اقتصاص الصورة المحددة",
+        "image": "صورة لصورتي الرمزية",
+        "delete": "حذف",
+        "cancel": "إلغاء",
+        "update": "تحديث",
+        "remove": "إزالة صورتي الرمزية"
       },
       "view": {
-        "title": "Profile: ",
-        "rankings": "Rankings",
-        "themes": "Themes",
-        "empty": "No ranking for this user at this time."
+        "title": "الملف الشخصي: ",
+        "rankings": "التصنيفات",
+        "themes": "المظاهر",
+        "empty": "لا يوجد تصنيف لهذا المستخدم في الوقت الحالي."
       },
-      "list.browser.tab": "Drafts (on this browser only)",
-      "list.server.tab": "On my account",
-      "list.server.intro": "List of ranking saved on your account."
+      "list.browser.tab": "المسودات (على هذا المتصفح فقط)",
+      "list.server.tab": "في حسابي",
+      "list.server.intro": "قائمة التصنيفات المحفوظة في حسابك."
     },
     "signup": {
-      "title": "Create my account",
-      "action": "Submit"
+      "title": "إنشاء حسابي",
+      "action": "إرسال"
     },
     "password": {
-      "old": "Old password",
-      "new": "New password",
-      "confirm": "Confirm the new password",
-      "change": "Change password",
-      "change.cancel": "Cancel",
-      "change.ok": "Ok",
+      "old": "كلمة المرور القديمة",
+      "new": "كلمة المرور الجديدة",
+      "confirm": "تأكيد كلمة المرور الجديدة",
+      "change": "تغيير كلمة المرور",
+      "change.cancel": "إلغاء",
+      "change.ok": "موافق",
       "lost": {
-        "title": "I have lost my password",
-        "info": "Send password renewal email.",
-        "action": "Send",
+        "title": "لقد فقدت كلمة مروري",
+        "info": "إرسال بريد إلكتروني لتجديد كلمة المرور.",
+        "action": "إرسال",
         "change": {
-          "title": "Change your password",
-          "intro": "Enter your new password"
+          "title": "تغيير كلمة مرورك",
+          "intro": "أدخل كلمة مرورك الجديدة"
         },
-        "send": "If this email exists, a password change email will be sent to it."
+        "send": "إذا كان هذا البريد الإلكتروني موجوداً، سيتم إرسال بريد إلكتروني لتغيير كلمة المرور إليه."
       }
     },
     "username": {
-      "change": "Change username",
-      "new": "New name",
-      "change.cancel": "Cancel",
-      "change.ok": "Ok"
+      "change": "تغيير اسم المستخدم",
+      "new": "الاسم الجديد",
+      "change.cancel": "إلغاء",
+      "change.ok": "موافق"
     },
     "email": {
-      "change": "Change email",
-      "old": "Old email",
-      "new": "New email",
-      "change.cancel": "Cancel",
-      "change.ok": "Ok"
+      "change": "تغيير البريد الإلكتروني",
+      "old": "البريد الإلكتروني القديم",
+      "new": "البريد الإلكتروني الجديد",
+      "change.cancel": "إلغاء",
+      "change.ok": "موافق"
     },
     "status": {
-      "warning": "Warning: You are changing a user's information.",
-      "list": "List of roles",
-      "moderator": "Moderator",
-      "admin": "Admin",
-      "banned": "Banned",
-      "change.cancel": "Cancel",
-      "change.edit": "Edit"
+      "warning": "تحذير: أنت تغير معلومات مستخدم.",
+      "list": "قائمة الأدوار",
+      "moderator": "مشرف",
+      "admin": "مدير",
+      "banned": "محظور",
+      "change.cancel": "إلغاء",
+      "change.edit": "تعديل"
     },
     "information": {
-      "title": "Information",
+      "title": "معلومات",
       "data.privacy": {
-        "title": "Data Privacy",
-        "text": "Data requested when connecting via a third-party service is limited to the minimum for account creation: email and pseudonym or first name."
+        "title": "خصوصية البيانات",
+        "text": "البيانات المطلوبة عند الاتصال عبر خدمة طرف ثالث محدودة بالحد الأدنى لإنشاء الحساب: البريد الإلكتروني والاسم المستعار أو الاسم الأول."
       },
       "data.deletion": {
-        "title": "Data deletion",
-        "text": "If you delete your account, your creations will still be available anonymously. If you want them completely destroyed, contact the administrator."
+        "title": "حذف البيانات",
+        "text": "إذا حذفت حسابك، ستبقى إبداعاتك متاحة بشكل مجهول. إذا أردت حذفها كلياً، تواصل مع المدير."
       },
       "contact.admin": {
-        "title": "Contact the administrator",
-        "text": "Make a complaint, request information, report a bug, etc.\nAdd information that allows you to be identified, username or email, in your request message so that you can be answered or identified.",
-        "username": "Username",
-        "email": "Email",
-        "message": "Message",
-        "required": "Required fields",
-        "send": "Send",
+        "title": "تواصل مع المدير",
+        "text": "تقديم شكوى، طلب معلومات، الإبلاغ عن خطأ، إلخ.\nأضف معلومات تسمح بالتعرف عليك، اسم المستخدم أو البريد الإلكتروني، في رسالة طلبك حتى يمكن الرد عليك أو التعرف عليك.",
+        "username": "اسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "message": "الرسالة",
+        "required": "الحقول المطلوبة",
+        "send": "إرسال",
         "error": {
-          "username.required": "Username is required.",
-          "email.required": "Email is required.",
-          "email.email": "This email is not valid.",
-          "message.required": "Message is required.",
-          "message.minlength": "The minimal length is {requiredLength} characters.",
-          "message.maxlength": "The maximal length is {requiredLength} characters."
+          "username.required": "اسم المستخدم مطلوب.",
+          "email.required": "البريد الإلكتروني مطلوب.",
+          "email.email": "هذا البريد الإلكتروني غير صالح.",
+          "message.required": "الرسالة مطلوبة.",
+          "message.minlength": "الحد الأدنى للطول هو {requiredLength} حرفاً.",
+          "message.maxlength": "الحد الأقصى للطول هو {requiredLength} حرفاً."
         }
       }
     }
   },
   "navigate": {
-    "search": "Search",
-    "search.nothing": "Nothing was found.",
-    "template": "Search by model",
-    "back.category": "Return to the list of categories",
-    "back.search": "Return to search",
-    "title": "Title",
-    "category": "Category",
-    "categories": "ranking",
-    "mode": "Mode",
-    "classements": "Ranking",
-    "see.derivatives": "See the other versions of the ranking",
-    "count.derivatives": "Versions of the ranking:",
-    "my.derivatives": "My ranking versions",
-    "visualization": "Visualization",
+    "search": "بحث",
+    "search.nothing": "لم يتم العثور على شيء.",
+    "template": "البحث حسب النموذج",
+    "back.category": "العودة إلى قائمة الفئات",
+    "back.search": "العودة إلى البحث",
+    "title": "العنوان",
+    "category": "الفئة",
+    "categories": "تصنيف",
+    "mode": "الوضع",
+    "classements": "التصنيف",
+    "see.derivatives": "اعرض الإصدارات الأخرى من التصنيف",
+    "count.derivatives": "إصدارات التصنيف:",
+    "my.derivatives": "إصدارات تصنيفي",
+    "visualization": "عرض",
     "password": {
-      "required": "Password required to view this ranking",
-      "cancel": "Cancel",
-      "ok": "Ok"
+      "required": "كلمة المرور مطلوبة لعرض هذا التصنيف",
+      "cancel": "إلغاء",
+      "ok": "موافق"
     },
     "help": {
       "bingo": {
-        "text": "With Emoji mode, you can choose what you want to use in the “<strong>preferences</strong>” panel, and transform them with the edit mode.",
-        "shortcut.context.menu": "Select the emoji of your choice, delete it or edit the emoji list with <code>⋯</code>"
+        "text": "في وضع الرموز التعبيرية، يمكنك اختيار ما تريد استخدامه في لوحة \"<strong>التفضيلات</strong>\"، وتحويلها بوضع التعديل.",
+        "shortcut.context.menu": "حدد الرمز التعبيري الذي تريده، احذفه أو عدّل قائمة الرموز التعبيرية بـ <code>⋯</code>"
       }
     }
   },
   "action": {
     "validated": {
-      "label": "Choose a symbol:",
-      "clear": "Reset",
-      "info": "Click on a tile to check or uncheck it.",
-      "info.bingo": "Click on a tile to place or remove an emoji from it. Right-click to select the emoji.",
+      "label": "اختر رمزاً:",
+      "clear": "إعادة تعيين",
+      "info": "انقر على بلاطة لتحديدها أو إلغاء تحديدها.",
+      "info.bingo": "انقر على بلاطة لوضع رمز تعبيري عليها أو إزالته. انقر بالزر الأيمن لتحديد الرمز التعبيري.",
       "name": {
-        "check.round": "Check circled",
-        "check": "Check",
-        "circle": "Circle",
-        "hanamaru": "Hanamaru",
-        "heart": "Heart",
-        "emoji": "Emoji"
+        "check.round": "علامة صح دائرية",
+        "check": "علامة صح",
+        "circle": "دائرة",
+        "hanamaru": "هانامارو",
+        "heart": "قلب",
+        "emoji": "رمز تعبيري"
       }
     },
-    "emoji.edit.mode": "Emoji edit mode"
+    "emoji.edit.mode": "وضع تعديل الرموز التعبيرية"
   },
   "error": {
     "api-code": {
-      "1001": "No usernameo or email.",
-      "1010": "No password.",
-      "1011": "No old password.",
-      "1012": "No new password.",
-      "1013": "Invalid password.",
-      "1014": "Size password (8).",
-      "1020": "No email.",
-      "1021": "Old email does not match.",
-      "1025": "This username is already yours.",
-      "1026": "This username already exists.",
-      "1030": "Invalid login token.",
-      "1031": "Token not found.",
-      "1040": "This associated login service does not exist.",
-      "1100": "Invalid test.",
-      "2000": "Unable to save: Duplicate content.",
-      "3000": "User not found.",
-      "3001": "Permission not possible. (Moderator level required)",
-      "3002": "Permission not possible. (Admin level required)",
-      "3003": "User information not found for this action.",
-      "3010": "Your account has been banned. Contact the administrator for more information.",
-      "3020": "Your account has not been validated. If the validation token is expired, request a password change.",
-      "3101": "Ranking not found.",
-      "3102": "No ranking found.",
-      "3103": "No archived ranking found.",
-      "3110": "Invalid password.",
-      "3201": "Original ranking not found.",
-      "3202": "No ranking found with this id.",
-      "3301": "Status error.",
-      "3400": "Save failed. Contact administrator if this persists.",
-      "3501": "Thème non trouvé.",
-      "3502": "Pas de thème non trouvé.",
-      "4001": "This username already exists.",
-      "4002": "This email already exists.",
-      "4100": "Cannot send email.",
-      "5000": "Category error.",
-      "5100": "Invalid data sent. A field may have an invalid value.",
-      "6000": "Chart loading failed.",
-      "9999": "Invalid request.",
-      "undefined": "⚠️ A server error has occurred."
+      "1001": "لا يوجد اسم مستخدم أو بريد إلكتروني.",
+      "1010": "لا توجد كلمة مرور.",
+      "1011": "لا توجد كلمة مرور قديمة.",
+      "1012": "لا توجد كلمة مرور جديدة.",
+      "1013": "كلمة المرور غير صالحة.",
+      "1014": "حجم كلمة المرور (8).",
+      "1020": "لا يوجد بريد إلكتروني.",
+      "1021": "البريد الإلكتروني القديم غير متطابق.",
+      "1025": "اسم المستخدم هذا ملكك بالفعل.",
+      "1026": "اسم المستخدم هذا موجود بالفعل.",
+      "1030": "رمز تسجيل الدخول غير صالح.",
+      "1031": "الرمز غير موجود.",
+      "1040": "خدمة تسجيل الدخول المرتبطة هذه غير موجودة.",
+      "1100": "اختبار غير صالح.",
+      "2000": "تعذر الحفظ: محتوى مكرر.",
+      "3000": "المستخدم غير موجود.",
+      "3001": "الإذن غير ممكن. (يلزم مستوى المشرف)",
+      "3002": "الإذن غير ممكن. (يلزم مستوى المدير)",
+      "3003": "معلومات المستخدم غير موجودة لهذا الإجراء.",
+      "3010": "تم حظر حسابك. تواصل مع المدير للمزيد من المعلومات.",
+      "3020": "لم يتم تفعيل حسابك. إذا انتهت صلاحية رمز التفعيل، اطلب تغيير كلمة المرور.",
+      "3101": "التصنيف غير موجود.",
+      "3102": "لم يتم العثور على تصنيف.",
+      "3103": "لم يتم العثور على تصنيف مؤرشف.",
+      "3110": "كلمة المرور غير صالحة.",
+      "3201": "التصنيف الأصلي غير موجود.",
+      "3202": "لم يتم العثور على تصنيف بهذا المعرف.",
+      "3301": "خطأ في الحالة.",
+      "3400": "فشل الحفظ. تواصل مع المدير إذا استمر هذا.",
+      "3501": "المظهر غير موجود.",
+      "3502": "لم يتم العثور على مظهر.",
+      "4001": "اسم المستخدم هذا موجود بالفعل.",
+      "4002": "البريد الإلكتروني هذا موجود بالفعل.",
+      "4100": "تعذر إرسال البريد الإلكتروني.",
+      "5000": "خطأ في الفئة.",
+      "5100": "بيانات مرسلة غير صالحة. قد يحتوي أحد الحقول على قيمة غير صالحة.",
+      "6000": "فشل تحميل الرسم البياني.",
+      "9999": "طلب غير صالح.",
+      "undefined": "⚠️ حدث خطأ في الخادم."
     },
     "classement": {
-      "name.empty": "The title cannot be empty.",
-      "category.empty": "Category cannot be empty.",
-      "banner.empty": "Banner cannot be empty."
+      "name.empty": "العنوان لا يمكن أن يكون فارغاً.",
+      "category.empty": "الفئة لا يمكن أن تكون فارغة.",
+      "banner.empty": "البانر لا يمكن أن يكون فارغاً."
     },
     "username": {
-      "or.email": "Username or email is invalid.",
-      "exist": "This username already exists.",
-      "yours": "This username is already yours."
+      "or.email": "اسم المستخدم أو البريد الإلكتروني غير صالح.",
+      "exist": "اسم المستخدم هذا موجود بالفعل.",
+      "yours": "اسم المستخدم هذا ملكك بالفعل."
     },
     "email": {
-      "exist": "This email has already been used.",
-      "invalid": "The email is invalid.",
-      "old.invalid": "The old email is invalid.",
-      "new.invalid": "The new email is invalid.",
-      "already.used": "This email is already used by another user."
+      "exist": "هذا البريد الإلكتروني مستخدم بالفعل.",
+      "invalid": "البريد الإلكتروني غير صالح.",
+      "old.invalid": "البريد الإلكتروني القديم غير صالح.",
+      "new.invalid": "البريد الإلكتروني الجديد غير صالح.",
+      "already.used": "هذا البريد الإلكتروني مستخدم بالفعل من قبل مستخدم آخر."
     },
-    "pw.duplicate": "The passwords are not identical.",
+    "pw.duplicate": "كلمتا المرور غير متطابقتين.",
     "owasp": {
-      "The password must be at least * characters long.": "The password must be at least % characters long.",
-      "The password must be fewer than * characters.": "The password must be fewer than % characters.",
-      "The password must contain at least one lowercase letter.": "The password must contain at least one lowercase letter.",
-      "The password must contain at least one uppercase letter.": "The password must contain at least one uppercase letter.",
-      "The password must contain at least one number.": "The password must contain at least one number.",
-      "The password must contain at least one special character.": "The password must contain at least one special character (eg.: &!#,).",
-      "The password may not contain sequences of three or more repeated characters.": "The password may not contain sequences of three or more repeated characters."
+      "The password must be at least * characters long.": "يجب أن تكون كلمة المرور على الأقل % حرفاً.",
+      "The password must be fewer than * characters.": "يجب أن تكون كلمة المرور أقل من % حرفاً.",
+      "The password must contain at least one lowercase letter.": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.",
+      "The password must contain at least one uppercase letter.": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+      "The password must contain at least one number.": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+      "The password must contain at least one special character.": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل (مثل: &!#،).",
+      "The password may not contain sequences of three or more repeated characters.": "يجب ألا تحتوي كلمة المرور على تسلسلات من ثلاثة أحرف متكررة أو أكثر."
     }
   },
   "message": {
     "save": {
-      "success": "😊 successfully saved in browser.",
-      "failed": "⚠️ Failed to save in browser."
+      "success": "😊 تم الحفظ بنجاح في المتصفح.",
+      "failed": "⚠️ فشل الحفظ في المتصفح."
     },
     "json.read": {
-      "failed": "⚠️ Failed to read file. The format is not recognized.",
-      "replace": "😊 Uploaded file successful. Replaced successfully.",
-      "new": "😊 successfully uploaded file to new ranking."
+      "failed": "⚠️ فشل قراءة الملف. التنسيق غير معروف.",
+      "replace": "😊 تم رفع الملف بنجاح. تم الاستبدال بنجاح.",
+      "new": "😊 تم رفع الملف بنجاح إلى تصنيف جديد."
     },
     "remove": {
-      "success": "🗑 Removed from ranking “%title%” successful."
+      "success": "🗑 تمت إزالة \"%title%\" من التصنيف بنجاح."
     },
     "clone": {
-      "success": "😊 successfully duplicated ranking as “%title%”."
+      "success": "😊 تم استنساخ التصنيف بنجاح باسم \"%title%\"."
     },
     "reset": {
-      "groups": "😊 Reset groups."
+      "groups": "😊 تمت إعادة تعيين المجموعات."
     },
     "add": {
-      "success": "😊 successfully added “%title%” ranking."
+      "success": "😊 تمت إضافة تصنيف \"%title%\" بنجاح."
     },
     "user": {
-      "sign.up.success": "😊 User created.",
-      "validate.success": "😊 User validated successfully. You can now login.",
-      "update.success": "😊 User updated successfully.",
-      "remove.success": "😲 User anonymized successfully.",
-      "avatar.update.success": "😊 Avatar has been successfully updated.",
-      "username.update.success": "😊 Username has been successfully updated."
+      "sign.up.success": "😊 تم إنشاء المستخدم.",
+      "validate.success": "😊 تم تفعيل المستخدم بنجاح. يمكنك الآن تسجيل الدخول.",
+      "update.success": "😊 تم تحديث المستخدم بنجاح.",
+      "remove.success": "😲 تم جعل المستخدم مجهول الهوية بنجاح.",
+      "avatar.update.success": "😊 تم تحديث الصورة الرمزية بنجاح.",
+      "username.update.success": "😊 تم تحديث اسم المستخدم بنجاح."
     },
     "server": {
-      "save.success": "😊 The save was successful.",
-      "deleted.success": "🗑 The ranking has been successfully removed.",
-      "restored.success": "😊 The ranking has been successfully restored.",
-      "hidden.success": "🫣 The ranking has been successfully made private.",
-      "showed.success": "😊 The ranking has been successfully made public.",
-      "adult.success": "🫣 The ranking has been successfully made adult content.",
-      "for.all.success": "😊 The ranking has been successfully made for all content.",
-      "update.password.success": "😊 Your password has been successfully updated.",
-      "category.success": "😊 Category has been successfully updated."
+      "save.success": "😊 تم الحفظ بنجاح.",
+      "deleted.success": "🗑 تم حذف التصنيف بنجاح.",
+      "restored.success": "😊 تم استعادة التصنيف بنجاح.",
+      "hidden.success": "🫣 تم جعل التصنيف خاصاً بنجاح.",
+      "showed.success": "😊 تم جعل التصنيف عاماً بنجاح.",
+      "adult.success": "🫣 تم تصنيف التصنيف كمحتوى للبالغين بنجاح.",
+      "for.all.success": "😊 تم جعل التصنيف للجميع بنجاح.",
+      "update.password.success": "😊 تم تحديث كلمة مرورك بنجاح.",
+      "category.success": "😊 تم تحديث الفئة بنجاح."
     },
     "contact": {
-      "sent.success": "😊 Message has been successfully sent to the administrator."
+      "sent.success": "😊 تم إرسال الرسالة إلى المدير بنجاح."
     },
     "token": {
-      "invalid": "⚠️ Invalid account creation token.",
-      "not": "⚠️ No account creation token."
+      "invalid": "⚠️ رمز إنشاء الحساب غير صالح.",
+      "not": "⚠️ لا يوجد رمز إنشاء حساب."
     },
     "navigate": {
-      "access.error": "⚠️ Unable to retrieve tier lists."
+      "access.error": "⚠️ تعذر استرداد قوائم التصنيف."
     }
   },
   "update": {
-    "message": "A site update is available. Continuing without refreshing the page may cause navigation issues or data loss. However, you can stay on this page to save your work if possible.",
-    "stay": "Stay on this page",
-    "reload": "Reload the page"
+    "message": "يتوفر تحديث للموقع. الاستمرار دون تحديث الصفحة قد يتسبب في مشاكل في التنقل أو فقدان البيانات. ومع ذلك، يمكنك البقاء على هذه الصفحة لحفظ عملك إذا أمكن.",
+    "stay": "البقاء في هذه الصفحة",
+    "reload": "إعادة تحميل الصفحة"
   }
 }

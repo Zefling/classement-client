@@ -31,7 +31,7 @@
         /* ---------------------------------------------------------------------------- */
         'title-other       title-other         title-other         title-other         title-other         '
         'global-width      global-image        global-color        global-font         colors-title-text   '
-        'global-height     image-custom        image-custom        image-custom        image-custom        '
+        'global-height     image-custom        image-custom        image-custom        image-opacity       '
         / 1fr 1fr 1fr 1fr 1fr;
     align-items: baseline;
 
@@ -245,6 +245,10 @@ h4 {
     grid-area: global-image;
 }
 
+.background-image-opacity {
+    grid-area: image-opacity;
+}
+
 .name-width {
     grid-area: name-width;
 }
@@ -390,17 +394,17 @@ textarea {
 .item-options {
     display: grid;
     grid-template:
-        '.   .   .   .      margin     .         .   .' 15px
-        '.   .   .   .      border     .         .   .' 5px
-        '.   .   .   .      border     .         .   .' 5px
-        '.   .   .   .      border     .         .   .' 5px
-        '.   .   .   .      padding    .         .   .' 17px
-        '.   .   .   .      .          .         .   .' 15px
-        '.   .   .   .      height     .         .   .' 15px
-        '.   .   .   width  .          max-width .   .' 15px
-        '.   .   .   .      max-height .         .   .' 30px
-        '.   .   .   .      .          .         .   .' 5px
-        '.   .   .   .      .          .         .   .' 0px /
+        '.   .          .   .      margin     .         .   .' 15px
+        '.   .          .   .      border     .         .   .' 5px
+        '.   .          .   .      border     .         .   .' 5px
+        '.   .          .   .      border     .         .   .' 5px
+        '.   .          .   .      padding    .         .   .' 17px
+        '.   .          .   .      min-height .         .   .' 15px
+        '.   .          .   .      height     .         .   .' 15px
+        '.   min-width  .   width  .          max-width .   .' 15px
+        '.   .          .   .      max-height .         .   .' 30px
+        '.   .          .   .      .          .         .   .' 5px
+        '.   .          .   .      .          .         .   .' 0px /
         0px 5px 60px 1fr 20px 1.5fr 5px 0px;
     background: var(--options-sizes-margin-color);
     padding: 5px;
@@ -544,7 +548,7 @@ textarea {
 
 .item-height {
     grid-area: height;
-    margin-top: -7px;
+    margin-top: 8px;
 }
 
 span.item-width,
@@ -557,10 +561,22 @@ span.item-height {
     line-height: 2px;
 }
 
+.item-min-width {
+    grid-area: min-width;
+    justify-self: end;
+    margin-inline-end: -39px;
+}
+
 .item-max-width {
     grid-area: max-width;
     justify-self: end;
     margin-inline-end: 10px;
+}
+
+.item-min-height {
+    grid-area: min-height;
+    align-self: center;
+    margin-top: 10px;
 }
 
 .item-max-height {

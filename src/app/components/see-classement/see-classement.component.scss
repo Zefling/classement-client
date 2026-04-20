@@ -19,8 +19,10 @@
     background: var(--over-item-background, var(--content-box-background));
     padding: var(--over-item-padding, 10px);
     width: var(--over-item-width, 150px);
+    min-width: var(--over-item-min-width, 0px);
     max-width: var(--over-item-max-width, 300px);
     height: var(--over-item-height, 150px);
+    min-height: var(--over-item-min-height, 0px);
     max-height: var(--over-item-max-height, 300px);
     color: var(--over-item-color, var(--content-box-color));
     font-size: 14px;
@@ -69,7 +71,7 @@ img {
 
 .render {
     position: relative;
-    width: var(--over-image-width, 1170px);
+    width: var(--over-image-width, var(--image-width));
 }
 
 .html2canvas-element {
@@ -416,11 +418,13 @@ img {
     background-size: var(--over-image-background-size);
     background-repeat: repeat;
     background-color: var(--over-image-background, var(--drop-list-background));
-    width: var(--over-image-width, 1170px);
-    height: var(--over-image-height, 600px);
+    width: var(--over-image-width, var(--image-width));
+    height: var(--over-image-height, var(--image-height));
 
     :host:not(.render) & img {
+        min-width: var(--over-item-min-width, 0px);
         max-width: min(var(--over-item-max-width, var(--over-item-width, 300px)), 300px);
+        min-height: var(--over-item-min-height, 0px);
         max-height: min(var(--over-item-max-height, var(--over-item-height, 300px)), 300px);
     }
 

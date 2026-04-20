@@ -22,7 +22,7 @@
     position: absolute;
     top: 0;
     left: -100000px;
-    width: var(--over-image-width, 1170px);
+    width: var(--over-image-width, var(--image-width));
 }
 
 mg-spinner {

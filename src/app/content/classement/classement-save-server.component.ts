@@ -32,6 +32,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import { Select2Option } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
@@ -41,6 +42,8 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { boolean, inList, minMax } from 'src/app/tools/function';
 import { Subscriptions } from 'src/app/tools/subscriptions';
+
+import { imagesNames, listTextPosition } from './classement-default';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
 
@@ -245,9 +248,11 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         options.itemWidth = minMax(options.itemWidth ?? 100, 16, 300, 1);
         options.itemWidthAuto = boolean(options.itemWidthAuto ?? true);
         options.itemImageCover = inList(options.itemImageCover ?? true, [true, false, 'opti']);
+        options.itemMinWidth = minMax(options.itemMinWidth ?? 0, 0, 300, 1);
         options.itemMaxWidth = minMax(options.itemMaxWidth ?? 300, 16, 300, 1);
         options.itemHeight = minMax(options.itemHeight ?? 100, 16, 300, 1);
         options.itemHeightAuto = boolean(options.itemHeightAuto ?? false);
+        options.itemMinHeight = minMax(options.itemMinHeight ?? 0, 0, 300, 1);
         options.itemMaxHeight = minMax(options.itemMaxHeight ?? 300, 16, 300, 1);
         options.itemPadding = minMax(options.itemPadding ?? 0, 0, 20, 1);
         options.itemMargin = minMax(options.itemMargin ?? 0, 0, 20, 1);
@@ -257,30 +262,15 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         options.itemTextMaxLine = minMax(options.itemTextMaxLine ?? 10, 0, 10, 1);
         options.itemTextSize = minMax(options.itemTextSize ?? 12, 6, 100, 1);
         options.itemTextOnlySize = minMax(options.itemTextOnlySize ?? 24, 6, 100, 1);
-        options.itemTextPosition = inList(options.itemTextPosition ?? 'bottom', [
-            'hidden',
-            'bottom',
-            'bottom-over',
-            'bottom-over-hover',
-            'bottom-bubble',
-            'top',
-            'top-over',
-            'top-over-hover',
-            'top-bubble',
-        ]);
-
+        options.itemTextPosition = inList(
+            options.itemTextPosition ?? 'bottom',
+            (listTextPosition as Select2Option[]).map(v => v.value),
+        );
         options.itemTextBackgroundOpacity = minMax(options.itemTextBackgroundOpacity ?? 80, 0, 100, 1);
         options.lineBackgroundOpacity = minMax(options.lineBackgroundOpacity ?? 60, 0, 100, 1);
         options.lineBorderOpacity = minMax(options.lineBorderOpacity ?? 60, 0, 100, 1);
-        options.imageBackgroundImage = inList(options.imageBackgroundImage ?? 'none', [
-            'none',
-            'custom',
-            'sakura',
-            'etoile',
-            'ciel',
-            'iceberg',
-            'axis',
-        ]);
+        options.imageBackgroundOpacity = minMax(options.imageBackgroundOpacity ?? 100, 0, 100, 1);
+        options.imageBackgroundImage = inList(options.imageBackgroundImage ?? 'none', imagesNames);
         options.imageWidth = minMax(options.imageWidth ?? 1170, 100, 4000, 1);
         options.imageHeight = minMax(options.imageHeight ?? 1000, 100, 4000, 1);
         options.imageSize = inList(options.imageSize ?? 'center', ['', 'cover']);

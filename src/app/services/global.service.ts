@@ -2,7 +2,7 @@ import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inj
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 
-import { Logger, LoggerLevel, downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
+import { LightDark, Logger, LoggerLevel, downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
@@ -20,7 +20,7 @@ import {
     Options,
     ThemeOptions,
 } from '../interface/interface';
-import { color } from '../tools/function';
+import { alphaColor, color } from '../tools/function';
 
 export enum TypeFile {
     image = 'image',
@@ -42,6 +42,7 @@ export class GlobalService {
     private readonly logger = inject(Logger);
     private readonly title = inject(Title);
     private readonly translate = inject(TranslocoService);
+    private readonly lightDark = inject(LightDark);
 
     readonly onForceExit = new Subject<string | undefined>();
     readonly onFileLoaded = new Subject<FileStream>();
@@ -139,7 +140,7 @@ export class GlobalService {
                     data.target = ev.target;
                 };
                 reader.onloadend = (_ev: ProgressEvent<FileReader>) => {
-                    this._format(data, filter);
+                    this.format(data, filter);
                 };
                 reader.readAsDataURL(data.file);
             }
@@ -149,13 +150,13 @@ export class GlobalService {
     fixImageSize(groups: FormattedGroup[], list: FileType[]) {
         list.forEach(item => {
             if (item) {
-                this._fixImage(item);
+                this.fixImage(item);
             }
         });
         groups.forEach(group =>
             group.list.forEach(item => {
                 if (item) {
-                    this._fixImage(item);
+                    this.fixImage(item);
                 }
             }),
         );
@@ -201,9 +202,11 @@ export class GlobalService {
         const itemWidth = o.itemWidthAuto ? 'min-content' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
         r(body, '--over-item-max-width', o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
+        r(body, '--over-item-min-width', o.itemMinWidth ? o.itemMinWidth + 'px' : null, dash);
         const itemHeight = o.itemHeightAuto ? 'min-content' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
         r(body, '--over-item-height', itemHeight, dash);
         r(body, '--over-item-max-height', o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
+        r(body, '--over-item-min-height', o.itemMinHeight ? o.itemMinHeight + 'px' : null, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);
         r(body, '--over-item-margin', (o.itemMargin ?? defaultOptions.itemMargin) + 'px', dash);
@@ -238,16 +241,7 @@ export class GlobalService {
                 dash,
             );
         }
-        r(
-            body,
-            '--over-image-url',
-            o.imageBackgroundImage !== 'none'
-                ? o.imageBackgroundImage === 'custom'
-                    ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
-                    : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`
-                : null,
-            dash,
-        );
+        r(body, '--over-image-url', o.imageBackgroundImage !== 'none' ? this.customImage(o, cache) : null, dash);
         r(body, '--over-image-background-position', o.imagePosition, dash);
         r(body, '--over-image-background-size', o.imageSize, dash);
         r(body, '--over-font', o.font, dash);
@@ -262,7 +256,19 @@ export class GlobalService {
         }
     }
 
-    private _fixImage(item: FileString) {
+    private customImage(o: Options, cache?: Record<string, string | ArrayBuffer | null>): string {
+        const color = o.imageBackgroundOpacity
+            ? alphaColor(o.imageBackgroundColor || this.lightDark.isLight() ? '#FFF' : '#000', o.imageBackgroundOpacity)
+            : null;
+        return (
+            (color ? `linear-gradient(to left, ${color},  ${color}), ` : '') +
+            (o.imageBackgroundImage === 'custom'
+                ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
+                : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`)
+        );
+    }
+
+    private fixImage(item: FileString) {
         if (item.type?.startsWith('image') && !item.width) {
             this.imageDimensions(item.url!)
                 .then(size => {
@@ -273,7 +279,7 @@ export class GlobalService {
         }
     }
 
-    private _format(file: FileHandle, filter: TypeFile) {
+    private format(file: FileHandle, filter: TypeFile) {
         const url = file.target?.result ? String(file.target?.result) : undefined;
         if (url) {
             this.logger.log('Add file:', LoggerLevel.log, file.file.name);
