@@ -6,7 +6,7 @@
   "help": "مساعدة",
   "generic": {
     "dialog": {
-      "close": "إغلاق مربع الحوار"
+      "close": "إغلاق"
     },
     "tabs": {
       "return": "العودة إلى علامات التبويب"
@@ -39,8 +39,8 @@
     "preferences": "التفضيلات",
     "forgot.password": "نسيت كلمة المرور",
     "mode": {
-      "reduce": "تصغير القائمة",
-      "expand": "توسيع القائمة"
+      "reduce": "تصغير",
+      "expand": "توسيع"
     }
   },
   "admin": {
