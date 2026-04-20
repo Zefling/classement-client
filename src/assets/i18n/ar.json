@@ -471,6 +471,7 @@
         "width": "عرض الصورة المصدرة:",
         "height": "ارتفاع الصورة المصدرة:",
         "image": "صورة الخلفية:",
+        "image.opacity": "Background image opacity:",
         "name.image": {
           "none": "افتراضي",
           "sakura": "ساكورا",
