@@ -222,12 +222,20 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     updateMode(init: boolean = false) {
         const options = this.options();
 
+        // clear list
+        for (const line of this.editor.groups) {
+            if (this._modeTemp !== 'bingo') {
+                line.list = line.list.map(t => t);
+            }
+        }
+
         if (options) {
             if (init && !this._modeTemp) {
                 this._modeTemp = options.mode;
             }
 
             const mode = this._modeTemp ?? options.mode ?? 'default';
+            // demo
             this.groupExample.set(mode !== 'columns' ? groupExample : groupExampleColumns);
 
             switch (mode) {
@@ -268,6 +276,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                     break;
                 case 'teams':
                     modeType = 'default';
+                    this.updateAction('groups', defaultGroup);
+                    break;
+                case 'columns':
+                    modeType = 'columns';
                     this.updateAction('groups', defaultGroup);
                     break;
                 case 'axis':

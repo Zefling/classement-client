@@ -811,6 +811,10 @@
     },
     "help": {
       "title": "Présentation",
+      "section": {
+        "global": "Globaux",
+        "tile": "Tuile"
+      },
       "shortcut": {
         "key": {
           "right.click": "Clic droit",
@@ -819,9 +823,12 @@
           "delete": "Suppr",
           "esc": "Échap",
           "home": "⭦",
-          "end": "Fin"
+          "end": "Fin",
+          "page.up": "⇞",
+          "page.down": "⇟"
         },
         "title": "Raccourcis clavier",
+        "mouse": "Raccourcis souris",
         "ctrl.v": "Copier une ou plusieurs images qui seront ajoutées. Fonctionne aussi avec du texte, où chaque ligne de texte créée une nouvelle tuile.",
         "ctrl.s": "Sauvegarder le brouillon.",
         "ctrl.e": "Exporter le brouillon.",
@@ -833,7 +840,8 @@
         "put.back.list": "Remettre dans la liste.",
         "create": "Création d'une tuile à l'endroit visé.",
         "context.menu": "Affichage du menu contextuel.",
-        "esc": "Désélectionner la tuile."
+        "esc": "Désélectionner la tuile.",
+        "e": "Ouvrir la dialogue d'édition de la tuile"
       },
       "default": {
         "text": "Déplacer les tuiles par glissé-déposé.",
@@ -841,7 +849,12 @@
           "in.line": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur d'une ligne.",
           "change.line": "Déplacer la tuile sélectionnée dans la ligne supérieure ou inférieure.",
           "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement.",
-          "home.end": "Déplacer la tuile au début ou à la fin de la ligne."
+          "home.end": "Déplacer la tuile au début ou à la fin de la ligne.",
+          "focus.in.line": "Déplacer le focus à gauche ou à droite à l'intérieur d'une ligne.",
+          "focus.change.line": "Déplacer le focus dans la ligne supérieure ou inférieure.",
+          "focus.change.line.first.end": "Déplacer le focus dans la première ou la dernière ligne.",
+          "focus.line.up": "Déplacer le focus dans la dernière ligne.",
+          "focus.line.first.end": "Déplacer le focus dans la première ou la dernière tuile de la ligne."
         }
       },
       "teams": {
@@ -849,7 +862,13 @@
         "shortcut": {
           "in.line": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur d'une ligne.",
           "change.line": "Déplacer la tuile sélectionnée dans la ligne supérieure ou inférieure.",
-          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement."
+          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement.",
+          "home.end": "Déplacer la tuile au début ou à la fin de la ligne.",
+          "focus.in.line": "Déplacer le focus à gauche ou à droite à l'intérieur d'une ligne.",
+          "focus.change.line": "Déplacer le focus dans la ligne supérieure ou inférieure.",
+          "focus.change.line.first.end": "Déplacer le focus dans la première ou la dernière ligne.",
+          "focus.line.up": "Déplacer le focus dans la dernière ligne.",
+          "focus.line.first.end": "Déplacer le focus dans la première ou la dernière ligne."
         }
       },
       "columns": {
@@ -858,7 +877,12 @@
           "in.line": "Déplacer la tuile sélectionnée vers le haut ou vers le bas à l'intérieur de la colonne.",
           "change.line": "Déplacer la tuile sélectionnée dans la colonne latérale gauche ou droite.",
           "main.line.up": "Copier la tuile sélectionnée depuis la liste principale dans la première colonne du classement.",
-          "home.end": "Déplacer la tuile au début ou à la fin de la colonne."
+          "home.end": "Déplacer la tuile au début ou à la fin de la colonne.",
+          "focus.in.line": "Déplacer le focus à gauche ou à droite à l'intérieur d'une colonne.",
+          "focus.change.line": "Déplacer le focus dans la colonne supérieure ou inférieure.",
+          "focus.change.line.first.end": "Déplacer le focus dans la première ou la dernière colonne.",
+          "focus.line.up": "Déplacer le focus dans la dernière colonne.",
+          "focus.line.first.end": "Déplacer le focus dans la première ou la dernière colonne."
         }
       },
       "iceberg": {
@@ -874,14 +898,26 @@
         "view": "En mode visualisation après sauvegarde permet de sélectionner les tuiles.",
         "shortcut": {
           "move": "Déplacer la tuile sélectionnée dans la direction choisie (par intervertissement).",
-          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale vers la dernière cellule disponible."
+          "main.line.up": "Copier la tuile sélectionnée depuis la liste principale vers la dernière cellule disponible.",
+          "home.end": "Déplacer la tuile au début ou à la fin de la ligne.",
+          "change.line": "Déplacer la tuile sélectionnée dans la colonne latérale gauche ou droite.",
+          "focus.in.line": "Déplacer le focus à gauche ou à droite à l'intérieur d'une ligne.",
+          "focus.change.line": "Déplacer le focus dans la ligne supérieure ou inférieure.",
+          "focus.change.line.first.end": "Déplacer le focus dans la première ou la dernière ligne.",
+          "focus.line.up": "Déplacer le focus dans la dernière ligne.",
+          "focus.line.first.end": "Déplacer le focus dans la première ou la dernière tuile de la ligne."
         }
       },
       "zone": {
         "shortcut": {
           "move.normal": "Déplacer la tuile sélectionnée dans la direction choisie (de 15px par pas).",
           "move.slow": "Déplacer la tuile sélectionnée dans la direction choisie (de 1px par pas).",
-          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale vers la zone de déplacement."
+          "main.line.up": "Déplacer la tuile sélectionnée depuis la liste principale vers la zone de déplacement.",
+          "change.line": "Déplacer la tuile sélectionnée dans la colonne latérale gauche ou droite.",
+          "focus.in.line": "Déplacer le focus à gauche ou à droite à l'intérieur d'une ligne.",
+          "focus.line.up": "Déplacer le focus sur la dernière tuile placée.",
+          "focus.change": "Déplacer le focus entre les tuiles.",
+          "focus.main": "Déplacer le focus dans la liste."
         }
       }
     }
