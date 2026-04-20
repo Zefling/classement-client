@@ -14,61 +14,75 @@ export abstract class EditKeyBoardService {
         const index = group.indexOf(component.selectionTile);
         const indexGp = component.groups.findIndex(e => e.list === group);
 
-        if (index !== undefined && index !== -1 && event.ctrlKey) {
-            switch (event.key) {
-                case 'ArrowLeft':
-                    if ((component.options.mode === 'axis' || component.options.mode === 'iceberg') && indexGp !== -1) {
-                        this.moveLeftZone(component, event, group, index, event.shiftKey ? 1 : 15);
-                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveUp(component, event, group, index, indexGp);
-                    } else {
-                        this.moveLeft(component, event, group, index, indexGp);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if ((component.options.mode === 'axis' || component.options.mode === 'iceberg') && indexGp !== -1) {
-                        this.moveRightZone(component, event, group, index, event.shiftKey ? 1 : 15);
-                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveDown(component, event, group, index, indexGp);
-                    } else {
-                        this.moveRight(component, event, group, index, indexGp);
-                    }
-                    break;
-                case 'ArrowUp':
-                    if ((component.options.mode === 'axis' || component.options.mode === 'iceberg') && indexGp !== -1) {
-                        this.moveUpZone(component, event, group, index, event.shiftKey ? 1 : 15);
-                    } else if (component.options.mode === 'bingo') {
-                        this.moveUpBingo(component, event, group, index, indexGp);
-                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveLeft(component, event, group, index, indexGp);
-                    } else {
-                        this.moveUp(component, event, group, index, indexGp);
-                    }
-                    break;
-                case 'ArrowDown':
-                    if ((component.options.mode === 'axis' || component.options.mode === 'iceberg') && indexGp !== -1) {
-                        this.moveDownZone(component, event, group, index, event.shiftKey ? 1 : 15);
-                    } else if (component.options.mode === 'bingo' && indexGp !== -1) {
-                        this.moveDownBingo(component, event, group, index, indexGp);
-                    } else if (component.options.mode === 'columns' && indexGp !== -1) {
-                        this.moveRight(component, event, group, index, indexGp);
-                    } else {
-                        this.moveDown(component, event, group, index, indexGp);
-                    }
-                    break;
-                case 'Home':
-                    this.moveLeft(component, event, group, index, indexGp, true);
-                    break;
-                case 'End':
-                    this.moveRight(component, event, group, index, indexGp, true);
-                    break;
-                case 'Delete':
-                    if (group) {
-                        component.removeFromGroup(group, index);
-                        this.clearSelection(component);
-                        this.stopEvent(event);
-                    }
-                    break;
+        if (index !== undefined && index !== -1) {
+            if (event.ctrlKey) {
+                switch (event.key) {
+                    case 'ArrowLeft':
+                        if (
+                            (component.options.mode === 'axis' || component.options.mode === 'iceberg') &&
+                            indexGp !== -1
+                        ) {
+                            this.moveLeftZone(component, event, group, index, event.shiftKey ? 1 : 15);
+                        } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                            this.moveUp(component, event, group, index, indexGp);
+                        } else {
+                            this.moveLeft(component, event, group, index, indexGp);
+                        }
+                        break;
+                    case 'ArrowRight':
+                        if (
+                            (component.options.mode === 'axis' || component.options.mode === 'iceberg') &&
+                            indexGp !== -1
+                        ) {
+                            this.moveRightZone(component, event, group, index, event.shiftKey ? 1 : 15);
+                        } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                            this.moveDown(component, event, group, index, indexGp);
+                        } else {
+                            this.moveRight(component, event, group, index, indexGp);
+                        }
+                        break;
+                    case 'ArrowUp':
+                        if (
+                            (component.options.mode === 'axis' || component.options.mode === 'iceberg') &&
+                            indexGp !== -1
+                        ) {
+                            this.moveUpZone(component, event, group, index, event.shiftKey ? 1 : 15);
+                        } else if (component.options.mode === 'bingo') {
+                            this.moveUpBingo(component, event, group, index, indexGp);
+                        } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                            this.moveLeft(component, event, group, index, indexGp);
+                        } else {
+                            this.moveUp(component, event, group, index, indexGp);
+                        }
+                        break;
+                    case 'ArrowDown':
+                        if (
+                            (component.options.mode === 'axis' || component.options.mode === 'iceberg') &&
+                            indexGp !== -1
+                        ) {
+                            this.moveDownZone(component, event, group, index, event.shiftKey ? 1 : 15);
+                        } else if (component.options.mode === 'bingo' && indexGp !== -1) {
+                            this.moveDownBingo(component, event, group, index, indexGp);
+                        } else if (component.options.mode === 'columns' && indexGp !== -1) {
+                            this.moveRight(component, event, group, index, indexGp);
+                        } else {
+                            this.moveDown(component, event, group, index, indexGp);
+                        }
+                        break;
+                    case 'Home':
+                        this.moveLeft(component, event, group, index, indexGp, true);
+                        break;
+                    case 'End':
+                        this.moveRight(component, event, group, index, indexGp, true);
+                        break;
+                    case 'Delete':
+                        if (group) {
+                            component.removeFromGroup(group, index);
+                            this.clearSelection(component);
+                            this.stopEvent(event);
+                        }
+                        break;
+                }
             }
         }
     }
@@ -374,7 +388,6 @@ export abstract class EditKeyBoardService {
             div?.focus();
             div?.scrollIntoView({ block: 'center' });
             component.globalChange();
-            this.clearSelection(component);
         });
     }
 
@@ -403,6 +416,12 @@ export abstract class EditKeyBoardService {
         drag: CdkDragElement<any> | null = null,
     ) {
         switch (event.key) {
+            case 'e':
+                // edit tile
+                if (item) {
+                    component.openTileInfo(item);
+                }
+                break;
             case 'Escape':
                 this.clearSelection(component);
                 break;
@@ -412,17 +431,28 @@ export abstract class EditKeyBoardService {
             case 'ArrowDown':
             case 'Home':
             case 'End':
+            case 'PageUp':
+            case 'PageDown':
                 if (event.ctrlKey) {
                     component.selectionTile = item;
                     component.selectionGroup = group;
                     component.selectionIndex = index;
                     component.selectionDrag = drag;
                     this.update(component, group?.list);
+                } else {
+                    // navigate between tile with keyboard
+                    this.navigateFocus(component, event, group, index);
                 }
                 break;
             case 'Delete':
                 if (event.ctrlKey && group && index) {
+                    // move tile form group at list
                     component.removeFromGroup(group.list, index);
+                    this.clearSelection(component);
+                    this.stopEvent(event);
+                } else if (!group && index) {
+                    // delete tile in list
+                    component.removeItem(index);
                     this.clearSelection(component);
                     this.stopEvent(event);
                 }
@@ -490,9 +520,203 @@ export abstract class EditKeyBoardService {
                         }
                     }
                     this.clearSelection(component);
+                    const id = group.list[indexTarget!]?.id;
+
+                    if (id) {
+                        setTimeout(() => {
+                            document.getElementById(id)?.parentElement?.parentElement?.focus();
+                        });
+                    }
                 }
                 break;
         }
+    }
+
+    private navigateFocus(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FormattedGroup | null,
+        index: number | null,
+    ) {
+        if (index === null) {
+            return;
+        }
+
+        const currentList = group ? group.list : component.list;
+        const indexGp = group ? component.groups.indexOf(group) : -1;
+        const firstNonEmptyGp = component.groups.findIndex(g => g.list.some(t => t !== undefined));
+        const lastNonEmptyGp = component.groups.reduce(
+            (last, g, i) => (g.list.some(t => t !== undefined) ? i : last),
+            -1,
+        );
+
+        let targetList: FileType[] | null = null;
+        let targetIndex = index;
+        let key = event.key;
+
+        if (indexGp !== -1) {
+            switch (component.options.mode) {
+                case 'columns':
+                    switch (key) {
+                        case 'ArrowLeft':
+                            key = 'ArrowUp';
+                            break;
+                        case 'ArrowRight':
+                            key = 'ArrowDown';
+                            break;
+                        case 'ArrowUp':
+                            key = 'ArrowLeft';
+                            break;
+                        case 'ArrowDown':
+                            key = 'ArrowRight';
+                            break;
+                        case 'Home':
+                            key = 'PageUp';
+                            break;
+                        case 'End':
+                            key = 'PageDown';
+                            break;
+                        case 'PageUp':
+                            key = 'Home';
+                            break;
+                        case 'PageDown':
+                            key = 'End';
+                            break;
+                    }
+                    break;
+                case 'bingo':
+                case 'axis':
+                    switch (key) {
+                        case 'ArrowUp':
+                            key = 'ArrowLeft';
+                            break;
+                        case 'PageUp':
+                            key = 'Home';
+                            break;
+                        case 'PageDown':
+                            key = 'End';
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        switch (key) {
+            case 'ArrowLeft':
+                if (index > 0) {
+                    ({ targetList, targetIndex } = this.focusListPrev(currentList, index));
+                }
+                break;
+            case 'ArrowRight':
+                if (index < currentList.length - 1) {
+                    ({ targetList, targetIndex } = this.focusListNext(currentList, index));
+                }
+                break;
+            case 'ArrowUp':
+                if (indexGp > firstNonEmptyGp) {
+                    targetList = this.focusRowPrev(component, indexGp);
+                } else if (indexGp === -1 && lastNonEmptyGp !== -1) {
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
+                }
+
+                if (targetList) {
+                    targetIndex = targetList[index] !== undefined ? index : 0;
+                }
+
+                break;
+            case 'ArrowDown':
+                if (indexGp === lastNonEmptyGp) {
+                    targetList = component.list;
+                } else if (indexGp <= lastNonEmptyGp && indexGp !== -1) {
+                    targetList = this.focusRowNext(component, indexGp);
+                    targetIndex = targetList[index] !== undefined ? index : 0;
+                }
+                break;
+            case 'Home':
+                targetList = currentList;
+                targetIndex = 0;
+                break;
+            case 'End':
+                targetList = currentList;
+                targetIndex = currentList.length - 1;
+                break;
+            case 'PageUp': {
+                if (indexGp === -1) {
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
+                } else if (indexGp !== firstNonEmptyGp) {
+                    targetList = this.focusRowFirst(component, firstNonEmptyGp);
+                }
+                break;
+            }
+            case 'PageDown': {
+                if (indexGp === lastNonEmptyGp) {
+                    targetList = component.list;
+                } else if (indexGp !== -1) {
+                    targetList = this.focusRowLast(component, lastNonEmptyGp);
+                }
+                break;
+            }
+        }
+
+        if (!targetList) {
+            return;
+        }
+
+        // clamp index to target list bounds
+        targetIndex = Math.max(0, Math.min(targetIndex, targetList.length - 1));
+        const targetTile = targetList[targetIndex];
+        if (targetTile === undefined) {
+            return;
+        }
+
+        let el;
+        if (targetTile !== null) {
+            el = document.getElementById(targetTile.id);
+        }
+        if (component.options.mode === 'bingo' && !el && targetList) {
+            const indexList = component.groups.findIndex(g => g.list === targetList);
+            el = document.querySelector(
+                `.table-classement tr:nth-child(${indexList + 1}) > td:nth-child(${targetIndex + 1}) > div`,
+            );
+        }
+        const div = el?.closest<HTMLDivElement>('.click-enter') ?? (el?.parentElement as HTMLDivElement | null);
+        div?.focus();
+        div?.scrollIntoView({ block: 'nearest' });
+        this.stopEvent(event);
+    }
+
+    private focusListPrev(currentList: FileType[], index: number) {
+        const prevIdx = currentList.slice(0, index).findLastIndex(t => t !== undefined);
+        return {
+            targetList: currentList,
+            targetIndex: prevIdx,
+        };
+    }
+
+    private focusListNext(currentList: FileType[], index: number) {
+        const nextIdx = currentList.slice(index + 1).findIndex(t => t !== undefined) + 1 + index;
+        return {
+            targetList: currentList,
+            targetIndex: nextIdx,
+        };
+    }
+
+    private focusRowPrev(component: ClassementEditComponent, indexGp: number) {
+        const prevIdx = component.groups.slice(0, indexGp).findLastIndex(g => g.list.some(t => t !== undefined));
+        return component.groups[prevIdx].list;
+    }
+
+    private focusRowNext(component: ClassementEditComponent, indexGp: number) {
+        const nextIdx =
+            component.groups.slice(indexGp + 1).findIndex(g => g.list.some(t => t !== undefined)) + 1 + indexGp;
+        return component.groups[nextIdx].list;
+    }
+
+    private focusRowFirst(component: ClassementEditComponent, firstNonEmptyGp: number) {
+        return component.groups[firstNonEmptyGp].list;
+    }
+    private focusRowLast(component: ClassementEditComponent, lastNonEmptyGp: number) {
+        return component.groups[lastNonEmptyGp].list;
     }
 
     clearSelection(component: ClassementEditComponent) {

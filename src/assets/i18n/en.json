@@ -809,6 +809,10 @@
     },
     "help": {
       "title": "Presentation",
+      "section": {
+        "global": "Global",
+        "tile": "Tile"
+      },
       "shortcut": {
         "key": {
           "right.click": "Right click",
@@ -817,9 +821,12 @@
           "delete": "Delete",
           "esc": "Esc",
           "home": "Home",
-          "end": "End"
+          "end": "End",
+          "page.up": "Page Up",
+          "page.down": "Page Down"
         },
         "title": "Keyboard shortcuts",
+        "mouse": "Mouse shortcuts",
         "ctrl.v": "Copy one or more images that will be added. Also works with text, where each line of text creates a new tile.",
         "ctrl.s": "Save the draft.",
         "ctrl.e": "Export the draft.",
@@ -831,7 +838,8 @@
         "put.back.list": "Put back into the list.",
         "create": "Create a tile at the targeted location.",
         "context.menu": "Display the context menu.",
-        "esc": "Deselect the tile."
+        "esc": "Deselect the tile.",
+        "e": "Open the tile editing dialog"
       },
       "default": {
         "text": "Move tiles by drag and drop.",
@@ -839,7 +847,12 @@
           "in.line": "Move the selected tile left or right within a line.",
           "change.line": "Move the selected tile to the upper or lower line.",
           "main.line.up": "Move the selected tile from the main list to the last line of the ranking.",
-          "home.end": "Move the tile to the beginning or end of the line."
+          "home.end": "Move the tile to the beginning or end of the line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last tile of the line."
         }
       },
       "teams": {
@@ -847,7 +860,13 @@
         "shortcut": {
           "in.line": "Move the selected tile left or right within a line.",
           "change.line": "Move the selected tile to the upper or lower line.",
-          "main.line.up": "Copy the selected tile from the main list to the last line of the ranking."
+          "main.line.up": "Copy the selected tile from the main list to the last line of the ranking.",
+          "home.end": "Move the tile to the beginning or end of the line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last line."
         }
       },
       "columns": {
@@ -856,7 +875,12 @@
           "in.line": "Move the selected tile up or down within the column.",
           "change.line": "Move the selected tile to the left or right side line.",
           "main.line.up": "Copy the selected tile from the main list to the first column of the ranking.",
-          "home.end": "Move the tile to the beginning or end of the column."
+          "home.end": "Move the tile to the beginning or end of the column.",
+          "focus.in.line": "Move focus left or right within a column.",
+          "focus.change.line": "Move focus to the upper or lower column.",
+          "focus.change.line.first.end": "Move focus to the first or last column.",
+          "focus.line.up": "Move focus to the last column.",
+          "focus.line.first.end": "Move focus to the first or last column."
         }
       },
       "iceberg": {
@@ -872,14 +896,26 @@
         "view": "In visualization mode, after saving, allows you to select the tiles.",
         "shortcut": {
           "move": "Move the selected tile in the chosen direction (by swapping).",
-          "main.line.up": "Copy the selected tile from the main list to the last available cell."
+          "main.line.up": "Copy the selected tile from the main list to the last available cell.",
+          "home.end": "Move the tile to the beginning or end of the line.",
+          "change.line": "Move the selected tile to the left or right side line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.change.line": "Move focus to the upper or lower line.",
+          "focus.change.line.first.end": "Move focus to the first or last line.",
+          "focus.line.up": "Move focus to the last line.",
+          "focus.line.first.end": "Move focus to the first or last tile of the line."
         }
       },
       "zone": {
         "shortcut": {
           "move.normal": "Move the selected tile in the chosen direction (15px per step).",
           "move.slow": "Move the selected tile in the chosen direction (1px per step).",
-          "main.line.up": "Move the selected tile from the main list to the movement zone."
+          "main.line.up": "Move the selected tile from the main list to the movement zone.",
+          "change.line": "Move the selected tile to the left or right side line.",
+          "focus.in.line": "Move focus left or right within a line.",
+          "focus.line.up": "Move focus to the last tile placed.",
+          "focus.change": "Move focus between tiles.",
+          "focus.main": "Move focus in the list."
         }
       }
     }
