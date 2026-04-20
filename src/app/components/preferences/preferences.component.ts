@@ -51,6 +51,8 @@ const languages: Select2Option[] = [
     { value: 'ar', label: 'عربي', data: { rtl: true } },
 ];
 
+export type LanguagesList = 'en' | 'fr' | 'ja' | 'ar';
+
 @Component({
     selector: 'preferences-dialog',
     templateUrl: './preferences.component.html',
@@ -145,7 +147,7 @@ export class PreferencesMagmaDialog {
         this.savePref();
     }
 
-    updateLanguage(lang: string) {
+    updateLanguage(lang: LanguagesList) {
         this.logger.log('Update language: ' + lang);
         this.translate.load(lang).subscribe(() => {
             this.translate.setActiveLang(lang);
@@ -266,7 +268,7 @@ export class PreferencesMagmaDialog {
             });
         });
 
-        this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: string) => {
+        this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: LanguagesList) => {
             this.updateLanguage(value);
         });
     }

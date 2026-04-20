@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
+import { LanguagesList } from '../components/preferences/preferences.component';
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
 import {
     Data,
@@ -60,7 +61,7 @@ export class GlobalService {
 
     withChange = signal<number>(0);
 
-    lang!: string;
+    lang: LanguagesList = 'en';
 
     licenses!: string;
     changelog!: string;

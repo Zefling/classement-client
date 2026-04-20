@@ -540,6 +540,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 ...{ showAdvancedOptions: false },
             };
 
+            if (this.global.lang === 'ar') {
+                this.options.direction = 'rtl';
+            }
+
             this.groups = this.global.jsonTmp?.groups || jsonCopy(defaultGroup);
             this.list = this.global.jsonTmp?.list || [];
             this.addIds();
