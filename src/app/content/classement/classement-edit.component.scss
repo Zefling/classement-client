@@ -926,7 +926,7 @@ span.color {
 .render {
     position: absolute;
     top: 0;
-    left: -100000px;
+    inset-inline-start: -100000px;
     width: var(--over-image-width, var(--image-width));
 }
 
