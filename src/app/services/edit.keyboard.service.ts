@@ -554,6 +554,17 @@ export abstract class EditKeyBoardService {
         let targetIndex = index;
         let key = event.key;
 
+        if (component.options.direction === 'rtl') {
+            switch (key) {
+                case 'ArrowLeft':
+                    key = 'ArrowRight';
+                    break;
+                case 'ArrowRight':
+                    key = 'ArrowLeft';
+                    break;
+            }
+        }
+
         if (indexGp !== -1) {
             switch (component.options.mode) {
                 case 'columns':
