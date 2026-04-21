@@ -20,6 +20,12 @@
       "comma": "、"
     }
   },
+  "magma": {
+    "color.piker": {
+      "hsl": "HSL",
+      "palette": "パレット"
+    }
+  },
   "menu": {
     "home": "ホーム",
     "list": "ローカルリスト",
@@ -43,7 +49,6 @@
       "expand": "メニューを解凍する"
     }
   },
-
   "admin": {
     "selection": {
       "day": "日ごと",

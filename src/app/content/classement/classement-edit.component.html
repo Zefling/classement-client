@@ -112,6 +112,10 @@
                         class="color bg-color icon-background-color"
                         [colorPicker]="group.bgColor"
                         (colorClose)="group.bgColor = $event"
+                        [colorPickerTexts]="{
+                          hsl: 'magma.color.piker.hsl' | transloco,
+                          palette: 'magma.color.piker.palette' | transloco,
+                        }"
                         tabindex="0"
                         type="button"
                       ></span>
@@ -119,6 +123,10 @@
                         class="color txt-color icon-text-color"
                         [colorPicker]="group.txtColor"
                         colorPickerAlpha
+                        [colorPickerTexts]="{
+                          hsl: 'magma.color.piker.hsl' | transloco,
+                          palette: 'magma.color.piker.palette' | transloco,
+                        }"
                         (colorClose)="group.txtColor = $event"
                         tabindex="0"
                         type="button"

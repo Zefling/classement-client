@@ -65,6 +65,10 @@
                 type="color"
                 alpha
                 [(ngModel)]="cTile.bgColor"
+                [texts]="{
+                  hsl: 'magma.color.piker.hsl' | transloco,
+                  palette: 'magma.color.piker.palette' | transloco,
+                }"
               />
             </mg-input>
           </span>
@@ -101,6 +105,10 @@
                 type="color"
                 alpha
                 [(ngModel)]="cTile.txtColor"
+                [texts]="{
+                  hsl: 'magma.color.piker.hsl' | transloco,
+                  palette: 'magma.color.piker.palette' | transloco,
+                }"
               />
             </mg-input>
           </span>

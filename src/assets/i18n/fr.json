@@ -20,6 +20,12 @@
       "comma": ", "
     }
   },
+  "magma": {
+    "color.piker": {
+      "hsl": "TSL",
+      "palette": "Palette"
+    }
+  },
   "menu": {
     "home": "Accueil",
     "list": "Liste locale",
