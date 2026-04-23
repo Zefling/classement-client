@@ -231,8 +231,9 @@ mg-dialog.auto-format .main {
     line-height: 24px;
 }
 
-[dir='rtl'] .list-option {
+[dir='rtl'] .select2-results__option {
     direction: rtl;
+    text-align: start;
 }
 
 /** Safari */
