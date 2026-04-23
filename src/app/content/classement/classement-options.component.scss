@@ -486,15 +486,18 @@ textarea {
     position: relative;
     grid-row: 6/10;
     grid-column: 5;
-    margin-inline-end: 6px;
+    margin: 0;
+    inset-inline-start: 14px;
     border: 1px solid var(--options-sizes-height-color);
     border-width: 0 1px 0 0;
+    width: 0px;
 
     &::before,
     &::after {
         display: block;
         position: absolute;
         transform: translateX(10.5px) rotate(-135deg);
+        inset-inline-start: -13px;
         border: 1px solid var(--options-sizes-height-color);
         border-width: 0 1px 1px 0;
         width: 5px;
@@ -504,6 +507,13 @@ textarea {
     &::after {
         bottom: 0;
         transform: translateX(10.5px) rotate(45deg);
+    }
+
+    :dir(rtl) & {
+        &::before,
+        &::after {
+            inset-inline-start: 8px;
+        }
     }
 }
 
@@ -526,9 +536,22 @@ textarea {
         height: 5px;
         content: ' ';
     }
+
     &::after {
-        right: 0;
         transform: translateY(-3.5px) rotate(-45deg);
+        inset-inline-end: 0;
+    }
+
+    /* Adaptation RTL */
+    :dir(rtl) & {
+        &::before,
+        &::after {
+            transform: translateY(-3.5px) rotate(-45deg);
+        }
+
+        &::after {
+            transform: translateY(-3.5px) rotate(-225deg);
+        }
     }
 }
 
