@@ -9,5 +9,5 @@ if (environment.production) {
 }
 
 platformBrowser()
-    .bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()], })
+    .bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()] })
     .catch(err => console.error(err));

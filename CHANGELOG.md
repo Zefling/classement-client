@@ -1,5 +1,29 @@
 # Changelog - Standalone web app & API
 
+### 4.4.0 (2026-05-03)
+
+- Add logical CSS (RTL)
+- Add **Arabic language**
+- Add navigation with arrows
+    - `Arrow`, `PageUp`/`Down`, `Home`/`End` : for navigation between tiles
+    - `e` : open edit tile
+    - `delete` (on list) : remove tile
+- Add 3 options
+    - tile min height
+    - tile min width
+    - background image opacity
+- Update help panel
+- Update to **emoji 17.0**
+- Fix unnecessary withChange in globalChange
+
+> - Update to **Magma** `1.7.0`
+
+#### With API activated only
+
+> Required: API `2.0.6`
+
+---
+
 ### 4.3.13 (2025-12-24)
 
 #### Standalone web app
