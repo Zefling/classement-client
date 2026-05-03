@@ -154,3 +154,7 @@ mg-input-after {
     top: -19px;
     margin-bottom: -14px;
 }
+
+::ng-deep .select2-results__option > .lang-option {
+    line-height: 25px;
+}

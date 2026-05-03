@@ -19,9 +19,14 @@
 
           <mg-input id="language" class="s-6">
             <mg-input-label>{{ 'preferences.interface.language' | transloco }}</mg-input-label>
-            <mg-input-select formControlName="interfaceLanguage" [data]="languages" [templates]="templatesLanguages">
+            <mg-input-select
+              formControlName="interfaceLanguage"
+              [data]="languages"
+              [templates]="templatesLanguages"
+              overlay
+            >
               <ng-template #templatesLanguages let-label="label" let-data="data">
-                <div [class.dir-rtl]="data?.rtl" [class.dir-ltr]="!data?.rtl">{{ label }}</div>
+                <div class="lang-option" [class.dir-rtl]="data?.rtl" [class.dir-ltr]="!data?.rtl">{{ label }}</div>
               </ng-template>
             </mg-input-select>
           </mg-input>
