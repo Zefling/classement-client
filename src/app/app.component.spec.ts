@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            changeDetection: ChangeDetectionStrategy.OnPush,
             imports: [RouterTestingModule],
             declarations: [AppComponent],
         }).compileComponents();

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Options } from 'src/app/interface/interface';
@@ -7,6 +7,7 @@ import { Options } from 'src/app/interface/interface';
     selector: 'zone-area',
     templateUrl: './zone-area.component.html',
     styleUrls: ['./zone-area.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule],
 })
 export class ZoneAreaComponent {

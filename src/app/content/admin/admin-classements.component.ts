@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,6 +24,8 @@ import { ListClassementsComponent } from './list-classements.component';
     selector: 'admin-classements',
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ListClassementsComponent,

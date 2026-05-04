@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -41,6 +42,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
         MagmaInput,

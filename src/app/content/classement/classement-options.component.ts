@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     Component,
     OnChanges,
     OnDestroy,
@@ -91,6 +92,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -34,6 +34,7 @@ import { ClassementListComponent } from '../list/classement-list.component';
     selector: 'user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         RouterLink,

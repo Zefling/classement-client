@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -36,6 +36,8 @@ import { ListClassementsComponent } from './list-classements.component';
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ListClassementsComponent,

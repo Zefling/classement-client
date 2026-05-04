@@ -19,6 +19,7 @@ import { PreferencesMagmaDialog } from './components/preferences/preferences.com
         Select2,
         // internal
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         // external
         CommonModule,

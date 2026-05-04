@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -33,6 +33,8 @@ import { listModes } from '../classement/classement-default';
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
     styleUrls: ['./classement-navigate.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,

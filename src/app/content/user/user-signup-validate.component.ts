@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MagmaMessages } from '@ikilote/magma';
@@ -10,6 +10,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
     selector: 'user-signup-validate',
     templateUrl: './user-signup-validate.component.html',
     styleUrls: ['./user-signup-validate.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe],
 })
 export class UserSignupValidateComponent {

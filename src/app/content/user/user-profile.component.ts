@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -37,6 +37,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     selector: 'user-profile',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterLink,
         RouterLinkActive,

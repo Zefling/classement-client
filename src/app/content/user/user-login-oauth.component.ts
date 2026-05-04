@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { MagmaBlockMessage, MagmaLoader, MagmaMessage, MagmaSpinner } from '@ikilote/magma';
@@ -12,6 +12,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'user-login-oauth',
     templateUrl: './user-login-oauth.component.html',
     styleUrls: ['./user-login-oauth.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, TranslocoPipe, MagmaLoader, MagmaSpinner, MagmaMessage, MagmaBlockMessage],
 })
 export class UserLoginOauthComponent implements OnDestroy {

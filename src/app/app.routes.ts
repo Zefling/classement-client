@@ -1,37 +1,33 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlSegment } from '@angular/router';
+import { Routes, UrlSegment } from '@angular/router';
 
-import { environment } from 'src/environments/environment';
-
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
-        loadChildren: () => import('./content/home/classement-home.module').then(m => m.ClassementHomeModule),
+        loadChildren: () => import('./content/home/classement-home.routes').then(m => m.HOME_ROUTES),
     },
     {
         path: 'list',
-        loadChildren: () => import('./content/list/classement-list.module').then(m => m.ClassementListModule),
+        loadChildren: () => import('./content/list/classement-list.routes').then(m => m.LIST_ROUTES),
     },
     {
         path: 'infos',
-        loadChildren: () => import('./content/infos/infos.module').then(m => m.InfosModule),
+        loadChildren: () => import('./content/infos/infos.routes').then(m => m.INFOS_ROUTES),
     },
     {
         path: 'edit',
-        loadChildren: () => import('./content/classement/classement.module').then(m => m.ClassementModule),
+        loadChildren: () => import('./content/classement/classement.routes').then(m => m.CLASSEMENT_ROUTES),
     },
     {
         path: 'user',
-        loadChildren: () => import('./content/user/user.module').then(m => m.UserModule),
+        loadChildren: () => import('./content/user/user.routes').then(m => m.USER_ROUTES),
     },
     {
         path: 'navigate',
-        loadChildren: () =>
-            import('./content/navigate/classement-navigate.module').then(m => m.ClassementNavigateModule),
+        loadChildren: () => import('./content/navigate/classement-navigate.routes').then(m => m.NAVIGATE_ROUTES),
     },
     {
         path: 'admin',
-        loadChildren: () => import('./content/admin/admin.module').then(m => m.AdminModule),
+        loadChildren: () => import('./content/admin/admin.routes').then(m => m.ADMIN_ROUTES),
     },
     {
         matcher: url => {
@@ -64,10 +60,3 @@ const routes: Routes = [
         redirectTo: '/',
     },
 ];
-
-@NgModule({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterModule.forRoot(routes, { enableTracing: environment.debugRouter })],
-    exports: [RouterModule],
-})
-export class AppRoutingModule {}

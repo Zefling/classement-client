@@ -34,6 +34,7 @@ export function markedOptionsFactory() {
 
 @NgModule({
     declarations: [AppComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         FormsModule,

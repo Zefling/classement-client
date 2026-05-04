@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -25,6 +25,7 @@ import { GlobalService } from 'src/app/services/global.service';
     selector: 'classement-themes-manager',
     templateUrl: './classement-themes-manager.component.html',
     styleUrls: ['./classement-themes-manager.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         // modules
         FormsModule,

@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     ElementRef,
     OnChanges,
@@ -51,6 +52,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     selector: 'classement-save-server',
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DropImageDirective,
         FormsModule,

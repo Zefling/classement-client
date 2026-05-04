@@ -13,6 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })

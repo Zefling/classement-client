@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { APIModeration } from 'src/app/services/api.moderation';
 import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
-const routes: Routes = [
+export const ADMIN_ROUTES: Routes = [
     {
         path: '',
         loadComponent: () => import('./admin.component').then(m => m.AdminComponent),
@@ -33,10 +32,3 @@ const routes: Routes = [
         ],
     },
 ];
-
-@NgModule({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-})
-export class AdminRoutingModule {}

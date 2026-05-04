@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-const routes: Routes = [
+export const INFOS_ROUTES: Routes = [
     {
         path: '',
         loadComponent: () => import('./infos.component').then(m => m.InfosComponent),
@@ -31,10 +30,3 @@ const routes: Routes = [
         ],
     },
 ];
-
-@NgModule({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-})
-export class InfosRoutingModule {}

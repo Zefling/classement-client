@@ -1,5 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    OnDestroy,
+    OnInit,
+    booleanAttribute,
+    computed,
+    inject,
+    input,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -36,6 +46,8 @@ import { FileSizePipe } from '../../pipes/file-size';
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[class.page]': 'pageMode()',
     },

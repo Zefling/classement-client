@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages } from '@ikilote/magma';
@@ -19,6 +19,8 @@ import { NavigateResultComponent } from '../../components/navigate-result/naviga
     selector: 'classement-home',
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
 })
 export class ClassementHomeComponent {

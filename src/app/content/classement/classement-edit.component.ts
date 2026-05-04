@@ -11,6 +11,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { DatePipe, Location, NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     DoCheck,
@@ -127,6 +128,7 @@ import { FileSizePipe } from '../../pipes/file-size';
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgClass,
         FormsModule,

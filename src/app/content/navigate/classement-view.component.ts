@@ -1,5 +1,6 @@
 import { DatePipe, NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -59,6 +60,8 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
     selector: 'classement-view',
     templateUrl: './classement-view.component.html',
     styleUrls: ['./classement-view.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterLink,
         FormsModule,
