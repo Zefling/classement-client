@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages } from '@ikilote/magma';
@@ -30,6 +30,7 @@ export class ClassementHomeComponent {
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
     private readonly preferencesService = inject(PreferencesService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     version = environment.version;
 
@@ -64,6 +65,7 @@ export class ClassementHomeComponent {
                 })
                 .finally(() => {
                     this.loading = false;
+                    this.cd.markForCheck();
                 });
         }
 

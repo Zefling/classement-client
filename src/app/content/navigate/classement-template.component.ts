@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile } from '@ikilote/magma';
@@ -26,6 +26,7 @@ export class ClassementTemplateComponent {
     private readonly route = inject(ActivatedRoute);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     categories = categories;
 
@@ -58,6 +59,7 @@ export class ClassementTemplateComponent {
                         })
                         .finally(() => {
                             this.loading = false;
+                            this.cd.markForCheck();
                         });
                 }
             }),

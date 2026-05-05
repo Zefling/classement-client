@@ -18,11 +18,15 @@ import { Utils } from 'src/app/tools/utils';
     imports: [NgClass, MagmaTooltipDirective],
 })
 export class TileComponent {
-    protected readonly cd = inject(ChangeDetectorRef);
+    private readonly cd = inject(ChangeDetectorRef);
 
     readonly item = input.required<FileString>();
     readonly options = input.required<Options>();
     readonly imagesCache = input<Record<string, string | ArrayBuffer | null> | undefined>();
+
+    markForCheck() {
+        this.cd.markForCheck();
+    }
 
     calcWidth(element: HTMLElement | null) {
         // hack for calcule de width of the image

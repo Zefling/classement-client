@@ -95,7 +95,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     private readonly global = inject(GlobalService);
     private readonly prefs = inject(PreferencesService);
     private readonly meta = inject(Meta);
-    protected readonly cd = inject(ChangeDetectorRef);
+    private readonly cd = inject(ChangeDetectorRef);
 
     classement?: Classement;
     myClassement?: Classement;
@@ -271,6 +271,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                         classements.sort((e, f) => new Date(f.dateCreate).getTime() - new Date(e.dateCreate).getTime());
                         this.myClassement = classements[0];
                     }
+                    this.cd.markForCheck();
                 });
         }
 
@@ -278,7 +279,10 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
             this.global
                 .imagesCache(this.classement!.data.options, this.classement!.data.groups!)
                 .then(cache => Object.assign(this.imagesCache, cache))
-                .finally(() => (this.exportImageDisabled = false));
+                .finally(() => {
+                    this.exportImageDisabled = false;
+                    this.cd.markForCheck();
+                });
         });
 
         // load history
@@ -292,8 +296,11 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                     );
                 }
                 classement.withHistory = history?.length;
+                this.cd.markForCheck();
             });
         }
+
+        this.cd.markForCheck();
     }
 
     getLink() {
@@ -394,6 +401,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                         this.classement!.banner = classement.banner;
                     }
                 }
+                this.cd.markForCheck();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -413,6 +421,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
             element.innerHTML = '';
             element.appendChild(canvas);
             this.canvas = canvas;
+            this.cd.markForCheck();
         });
     }
 

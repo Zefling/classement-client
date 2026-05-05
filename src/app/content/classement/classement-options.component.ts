@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     OnChanges,
     OnDestroy,
@@ -13,6 +14,7 @@ import {
     model,
     signal,
     viewChild,
+    viewChildren,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -125,6 +127,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly globalService = inject(GlobalService);
     private readonly logger = inject(Logger);
     private readonly prefs = inject(PreferencesService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -140,6 +143,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     readonly dialogAdvancedOptionsImport = viewChild.required<MagmaDialog>('importDialog');
     readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
     readonly mode = viewChild.required<MagmaInputSelect>('mode');
+    readonly classementExample = viewChildren(SeeClassementComponent);
 
     // template
 
@@ -346,6 +350,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 });
             }
         }
+        this.detectChange();
     }
 
     updateListGroup(size: number) {
@@ -473,6 +478,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         } else if (axis === 'itemMinWidth' && options['itemWidth'] < options[axis]) {
             options['itemWidth'] = options[axis];
         }
+
+        this.cd.markForCheck();
+        this.detectChange();
     }
 
     importJsonFile(event: Event) {
@@ -573,6 +581,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             .then(file => {
                 this.options()!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
                 this.updateList();
+                this.detectChange();
             });
+    }
+
+    detectChange() {
+        this.classementExample()?.[0]?.detectChanges();
+        this.editor.effect();
     }
 }

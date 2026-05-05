@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -44,6 +44,7 @@ export class AdminClassementsComponent implements OnDestroy {
     private readonly categories = inject(CategoriesService);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     private _sub = Subscriptions.instance();
 
@@ -121,6 +122,7 @@ export class AdminClassementsComponent implements OnDestroy {
                 })
                 .finally(() => {
                     this.loading = false;
+                    this.cd.markForCheck();
                 });
         } else {
             this.page = page;

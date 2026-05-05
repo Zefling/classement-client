@@ -6,8 +6,8 @@
     @if (itm.url) {
       <div [class.image]="calcWidth(tile)">
         <img
-          (ngInit)="calcWidth(tile); cd.detectChanges()"
-          (load)="calcWidth(tile); cd.detectChanges()"
+          (ngInit)="calcWidth(tile); markForCheck()"
+          (load)="calcWidth(tile); markForCheck()"
           [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
           [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
           src="{{ imagesCache()?.[itm.url] || itm.url }}"
@@ -20,7 +20,7 @@
     }
     @if (itm.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
       <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
-        <span class="title-span" (ngInit)="cd.detectChanges()">{{ itm.title || '' }}</span>
+        <span class="title-span" (ngInit)="markForCheck()">{{ itm.title || '' }}</span>
       </div>
     }
   </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { LightDark, MagmaInput, MagmaInputSelect } from '@ikilote/magma';
@@ -56,6 +56,7 @@ export class AdminStatsComponent {
     stats = inject(APIStatsService);
     lightDark = inject(LightDark);
     translate = inject(TranslocoService);
+    private cd = inject(ChangeDetectorRef);
 
     chartOptionUser?: EChartsCoreOption;
     chartOptionClassement?: EChartsCoreOption;
@@ -159,6 +160,7 @@ export class AdminStatsComponent {
                         },
                     ],
                 };
+                this.cd.markForCheck();
             });
     }
 
@@ -249,6 +251,7 @@ export class AdminStatsComponent {
                         },
                     ],
                 };
+                this.cd.markForCheck();
             });
     }
 

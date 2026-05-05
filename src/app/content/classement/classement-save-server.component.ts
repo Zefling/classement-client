@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     OnChanges,
@@ -79,6 +80,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly categories = inject(CategoriesService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -329,6 +331,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
             this.croppedImage = await blobToBase64(event.blob);
+            this.cd.markForCheck();
         }
     }
 

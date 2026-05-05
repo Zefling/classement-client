@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     OnDestroy,
     OnInit,
@@ -78,6 +79,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly mgMessage = inject(MagmaMessages);
     private readonly global = inject(GlobalService);
     private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -202,6 +204,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
             navigator.storage.estimate().then(quota => {
                 this.quota = quota;
+                this.cd.markForCheck();
             });
         });
     }

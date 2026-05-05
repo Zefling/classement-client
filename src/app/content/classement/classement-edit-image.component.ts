@@ -99,7 +99,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     constructor() {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
-            this.cd.detectChanges();
+            this.cd.markForCheck();
             this.globalChange();
         });
     }
@@ -221,6 +221,7 @@ export class ClassementEditImageComponent implements OnChanges {
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
             this.croppedImage = await blobToBase64(event.blob);
+            this.cd.markForCheck();
         }
     }
 

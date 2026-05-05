@@ -8,6 +8,7 @@ import {
     computed,
     effect,
     inject,
+    isDevMode,
     signal,
     viewChild,
 } from '@angular/core';
@@ -73,7 +74,7 @@ export class AppComponent {
     protected readonly logger = inject(Logger);
     protected readonly preferencesService = inject(PreferencesService);
     protected readonly userService = inject(APIUserService);
-    protected readonly changeDetectorRef = inject(ChangeDetectorRef);
+    protected readonly cd = inject(ChangeDetectorRef);
     protected readonly moduleErrorHandler = inject(ModuleErrorHandler);
 
     // viewChild
@@ -127,7 +128,11 @@ export class AppComponent {
     private route?: string;
 
     constructor() {
-        Logger.suffix = '[classement]';
+        Logger.suffix = '[Classement] ';
+
+        if (isDevMode()) {
+            Logger.minLogLevel = 'log';
+        }
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit().open();
@@ -145,7 +150,7 @@ export class AppComponent {
         });
 
         this.router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
-            this.changeDetectorRef.markForCheck();
+            this.cd.markForCheck();
             this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
@@ -168,6 +173,7 @@ export class AppComponent {
                         })
                         .finally(() => {
                             this.loading = false;
+                            this.cd.markForCheck();
                         });
                 })
                 .catch(() => {

@@ -1,5 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+    inject,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -62,6 +70,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly route = inject(ActivatedRoute);
     private readonly router = inject(Router);
     private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     dialogActionsClassement = viewChild.required<MagmaDialog>('dialogActionsClassement');
     sortableDirective = viewChild.required(MagmaSortableDirective);
@@ -173,6 +182,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
                     this.mgMessage.addMessage(this.translate.translate(`message.server.${typeName!}.success`));
                     this.currentClassement = undefined;
+                    this.cd.markForCheck();
                 });
         } else {
             this.currentClassement = undefined;
