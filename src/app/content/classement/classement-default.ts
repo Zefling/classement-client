@@ -61,6 +61,8 @@ export const defaultOptions: Options = {
     imageBackgroundImage: 'none',
     imageBackgroundOpacity: 100,
     imageBackgroundCustom: '',
+    imageSize: 'auto',
+    imagePosition: 'auto',
     mode: 'default',
     direction: 'ltr',
     font: '',
@@ -287,7 +289,7 @@ export const themesList: Theme[] = [
             itemHeightAuto: true,
             imageHeight: 1000,
             imageWidth: 1000,
-            imageSize: 'cover',
+            imageSize: 'auto',
             imagePosition: 'center',
             groups: [
                 { title: 'Y' },

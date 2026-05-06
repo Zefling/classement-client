@@ -379,7 +379,7 @@ export abstract class EditKeyBoardService {
     ) {
         component.selectionTile = tile;
         component.stopEvent(event);
-        component.detectorChanges();
+        component.detectChanges();
 
         setTimeout(() => {
             const div =

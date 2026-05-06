@@ -337,11 +337,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.saveLocal(false, false);
             }),
             global.onOptionChange.subscribe(() => {
-                this.cd.markForCheck();
+                this.detectChanges();
             }),
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
                 this.contextMenuGenerate();
+                this.detectChanges();
             }),
             toObservable(this.global.withChange).subscribe(withChange => {
                 if (
@@ -393,11 +394,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     protected preferencesUpdate() {
         this.initAPI();
         this.lineOption = this.preferencesService.preferences.lineOption;
-        this.detectorChanges();
-    }
-
-    detectorChanges() {
-        this.cd.markForCheck();
+        this.detectChanges();
     }
 
     contextMenuGenerate() {

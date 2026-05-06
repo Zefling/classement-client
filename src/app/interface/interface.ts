@@ -148,8 +148,8 @@ export type ThemeOptions = {
     imageBackgroundCustom: string;
     imageWidth: number;
     imageHeight?: number;
-    imageSize?: 'cover';
-    imagePosition?: 'center';
+    imageSize?: 'auto' | 'cover';
+    imagePosition?: 'auto' | 'center';
     columnMinHeight?: number;
     axisLineWidth: number;
     axisLineColor: string;
