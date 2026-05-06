@@ -313,10 +313,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 }
             }),
             this.preferencesService.onInit.subscribe(() => {
-                this.initAPI();
+                this.preferencesUpdate();
             }),
             this.preferencesService.onChange.subscribe(() => {
-                this.initAPI();
+                this.preferencesUpdate();
             }),
             this.imdbService.onChange.subscribe(() => {
                 this.initAPI();
@@ -388,6 +388,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         if (currentList) {
             this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
         }
+    }
+
+    protected preferencesUpdate() {
+        this.initAPI();
+        this.lineOption = this.preferencesService.preferences.lineOption;
+        this.detectorChanges();
     }
 
     detectorChanges() {
