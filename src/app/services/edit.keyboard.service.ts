@@ -157,7 +157,7 @@ export abstract class EditKeyBoardService {
         let target: HTMLDivElement | string | null = null;
         if (component.options.mode === 'bingo' && indexGp !== -1) {
             target = `tr:nth-child(${indexGp + 1}) > td:nth-child(${indexPos + 1}) > div`;
-        } else if (component.selectionDiv?.id !== group[indexPos]?.id) {
+        } else if (group[indexPos] && component.selectionDiv?.id !== group[indexPos]?.id) {
             target = document.getElementById(group[indexPos]!.id) as HTMLDivElement;
             if (!target.classList.contains('click-enter')) {
                 target = target.parentElement as HTMLDivElement;
@@ -670,6 +670,7 @@ export abstract class EditKeyBoardService {
         }
 
         if (!targetList) {
+            this.stopEvent(event);
             return;
         }
 
@@ -677,6 +678,7 @@ export abstract class EditKeyBoardService {
         targetIndex = Math.max(0, Math.min(targetIndex, targetList.length - 1));
         const targetTile = targetList[targetIndex];
         if (targetTile === undefined) {
+            this.stopEvent(event);
             return;
         }
 
