@@ -100,6 +100,9 @@ img {
 /* fix the preview background */
 :host.preview .render {
     background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
     background-color: var(--over-image-background, var(--background));
 
     table {

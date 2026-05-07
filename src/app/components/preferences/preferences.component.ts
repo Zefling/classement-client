@@ -139,7 +139,7 @@ export class PreferencesMagmaDialog {
 
     open() {
         this.preferences().open();
-        this.cd.detectChanges();
+        this.cd.markForCheck();
     }
 
     drop(event: CdkDragDrop<string[]>) {
@@ -176,7 +176,7 @@ export class PreferencesMagmaDialog {
                 break;
         }
 
-        this.cd.detectChanges();
+        this.cd.markForCheck();
 
         if (updateThemeValue) {
             this.preferencesForm!.get('theme')?.setValue(this.themes()?.[0]);

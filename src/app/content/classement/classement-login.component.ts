@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, OnDestroy, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject, viewChild } from '@angular/core';
 import { ɵEmptyOutletComponent } from '@angular/router';
 
 import { MagmaDialog } from '@ikilote/magma';
@@ -16,6 +16,7 @@ import { UserLoginComponent } from '../user/user-login.component';
     selector: 'classement-login',
     templateUrl: './classement-login.component.html',
     styleUrls: ['./classement-login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MagmaDialog, NgComponentOutlet, ɵEmptyOutletComponent, TranslocoPipe],
 })
 export class ClassementLoginComponent implements OnDestroy {

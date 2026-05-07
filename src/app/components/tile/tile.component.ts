@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input } from '@angular/core';
 
 import { MagmaTooltipDirective } from '@ikilote/magma';
 
@@ -14,14 +14,19 @@ import { Utils } from 'src/app/tools/utils';
         '[style.--over-item-background]': 'item().bgColor',
         '[style.--over-item-text-color]': 'item().txtColor',
     },
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, MagmaTooltipDirective],
 })
 export class TileComponent {
-    protected readonly cd = inject(ChangeDetectorRef);
+    private readonly cd = inject(ChangeDetectorRef);
 
     readonly item = input.required<FileString>();
     readonly options = input.required<Options>();
     readonly imagesCache = input<Record<string, string | ArrayBuffer | null> | undefined>();
+
+    markForCheck() {
+        this.cd.markForCheck();
+    }
 
     calcWidth(element: HTMLElement | null) {
         // hack for calcule de width of the image

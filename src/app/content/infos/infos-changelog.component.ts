@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -12,6 +12,8 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'infos-changelog',
     templateUrl: './infos-changelog.component.html',
     styleUrls: ['./infos-changelog.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe, MarkdownComponent],
 })
 export class InfoChangelogComponent {

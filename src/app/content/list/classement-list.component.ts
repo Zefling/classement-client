@@ -1,5 +1,16 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, booleanAttribute, computed, inject, input, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+    booleanAttribute,
+    computed,
+    inject,
+    input,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Data, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -36,6 +47,8 @@ import { FileSizePipe } from '../../pipes/file-size';
     selector: 'classement-list',
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[class.page]': 'pageMode()',
     },
@@ -66,6 +79,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     private readonly mgMessage = inject(MagmaMessages);
     private readonly global = inject(GlobalService);
     private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -190,6 +204,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
             navigator.storage.estimate().then(quota => {
                 this.quota = quota;
+                this.cd.markForCheck();
             });
         });
     }

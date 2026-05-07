@@ -1,5 +1,7 @@
 import { NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     OnChanges,
     OnDestroy,
@@ -12,6 +14,7 @@ import {
     model,
     signal,
     viewChild,
+    viewChildren,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -91,6 +94,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,
@@ -123,6 +127,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly globalService = inject(GlobalService);
     private readonly logger = inject(Logger);
     private readonly prefs = inject(PreferencesService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -138,6 +143,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     readonly dialogAdvancedOptionsImport = viewChild.required<MagmaDialog>('importDialog');
     readonly themesManager = viewChild.required(ClassementThemesManagerComponent);
     readonly mode = viewChild.required<MagmaInputSelect>('mode');
+    readonly classementExample = viewChildren(SeeClassementComponent);
 
     // template
 
@@ -344,6 +350,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 });
             }
         }
+        this.detectChange();
     }
 
     updateListGroup(size: number) {
@@ -382,6 +389,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             this.updateMode();
             this.editor.helpInit();
             this.options()!.itemHeightAuto = this.zoneMode.includes(this._modeTemp!);
+            this.editor.effect();
         } else {
             this.mode().writeValue(this._previousMode!);
             this._previousMode = undefined;
@@ -471,6 +479,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         } else if (axis === 'itemMinWidth' && options['itemWidth'] < options[axis]) {
             options['itemWidth'] = options[axis];
         }
+
+        this.cd.markForCheck();
+        this.detectChange();
     }
 
     importJsonFile(event: Event) {
@@ -571,6 +582,12 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             .then(file => {
                 this.options()!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
                 this.updateList();
+                this.detectChange();
             });
+    }
+
+    detectChange() {
+        this.classementExample()?.[0]?.detectChanges();
+        this.editor.effect();
     }
 }

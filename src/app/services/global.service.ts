@@ -194,6 +194,7 @@ export class GlobalService {
     }
 
     updateVarCss(o: Options, cache?: Record<string, string | ArrayBuffer | null>): void {
+        this.logger.log('CCS var update', LoggerLevel.log, o);
         const body = document.body;
         const r = this.renderer.setStyle;
         const dash = RendererStyleFlags2.DashCase;
@@ -202,11 +203,11 @@ export class GlobalService {
         // item
         const itemWidth = o.itemWidthAuto ? 'min-content' : (o.itemWidth ?? defaultOptions.itemWidth) + 'px';
         r(body, '--over-item-width', itemWidth, dash);
-        r(body, '--over-item-max-width', o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
+        r(body, '--over-item-max-width', !o.itemWidthAuto ? o.itemMaxWidth + 'px' : null, dash);
         r(body, '--over-item-min-width', o.itemMinWidth ? o.itemMinWidth + 'px' : null, dash);
         const itemHeight = o.itemHeightAuto ? 'min-content' : (o.itemHeight ?? defaultOptions.itemHeight) + 'px';
         r(body, '--over-item-height', itemHeight, dash);
-        r(body, '--over-item-max-height', o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
+        r(body, '--over-item-max-height', !o.itemHeightAuto ? o.itemMaxHeight + 'px' : null, dash);
         r(body, '--over-item-min-height', o.itemMinHeight ? o.itemMinHeight + 'px' : null, dash);
         r(body, '--over-item-padding', (o.itemPadding ?? defaultOptions.itemPadding) + 'px', dash);
         r(body, '--over-item-border', (o.itemBorder ?? defaultOptions.itemBorder) + 'px', dash);

@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -41,6 +42,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
         MagmaInput,
@@ -97,7 +99,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     constructor() {
         this._detectChange.pipe(debounceTime(10)).subscribe(() => {
-            this.cd.detectChanges();
+            this.cd.markForCheck();
             this.globalChange();
         });
     }
@@ -219,6 +221,7 @@ export class ClassementEditImageComponent implements OnChanges {
     async imageCropped(event: ImageCroppedEvent) {
         if (event.blob) {
             this.croppedImage = await blobToBase64(event.blob);
+            this.cd.markForCheck();
         }
     }
 

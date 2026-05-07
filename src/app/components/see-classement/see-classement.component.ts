@@ -1,8 +1,8 @@
 import { NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DoCheck,
     OnDestroy,
     OnInit,
     booleanAttribute,
@@ -25,7 +25,6 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Option } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
-import { Subject, debounceTime } from 'rxjs';
 
 import { HelpBingoEmojiComponent } from 'src/app/content/navigate/help/help.bingo.component';
 import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
@@ -52,6 +51,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,
@@ -69,7 +69,7 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
         MagmaContextMenu,
     ],
 })
-export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
+export class SeeClassementComponent implements OnInit, OnDestroy {
     // inject
 
     private readonly globalService = inject(GlobalService);
@@ -115,15 +115,9 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
 
     contextMenuBingo: ContextMenuItem<{ item: FileType; groupIndex: number; index: number }>[] = [];
 
-    private _detectChange = new Subject<void>();
-
     private sub = Subscriptions.instance();
 
     constructor() {
-        this._detectChange.pipe(debounceTime(10)).subscribe(() => {
-            this.cd.detectChanges();
-        });
-
         this.sub.push(
             this.prefs.onChange.subscribe(() => {
                 this.getContextMenu();
@@ -167,10 +161,6 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
         }
 
         this.getContextMenu();
-    }
-
-    ngDoCheck(): void {
-        this.nameOpacity = Math.round(this.options().nameBackgroundOpacity * 2.55);
     }
 
     ngOnDestroy() {
@@ -254,7 +244,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy, DoCheck {
     }
 
     detectChanges() {
-        this._detectChange.next();
+        this.cd.markForCheck();
     }
 
     calcWidth(item: FileString, element: HTMLElement | null) {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile } from '@ikilote/magma';
@@ -16,6 +16,8 @@ import { categories } from '../classement/classement-default';
     selector: 'classement-template',
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
 })
 export class ClassementTemplateComponent {
@@ -24,6 +26,7 @@ export class ClassementTemplateComponent {
     private readonly route = inject(ActivatedRoute);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     categories = categories;
 
@@ -56,6 +59,7 @@ export class ClassementTemplateComponent {
                         })
                         .finally(() => {
                             this.loading = false;
+                            this.cd.markForCheck();
                         });
                 }
             }),

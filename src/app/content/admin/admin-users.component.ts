@@ -1,5 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Component, DoCheck, OnDestroy, inject, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    effect,
+    inject,
+    viewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -36,6 +44,8 @@ import { ListClassementsComponent } from './list-classements.component';
     selector: 'admin-users',
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ListClassementsComponent,
@@ -59,12 +69,13 @@ import { ListClassementsComponent } from './list-classements.component';
         MagmaBlockMessage,
     ],
 })
-export class AdminUsersComponent implements DoCheck, OnDestroy {
+export class AdminUsersComponent implements OnDestroy {
     private readonly userService = inject(APIUserService);
     private readonly route = inject(ActivatedRoute);
     private readonly mgMessage = inject(MagmaMessages);
     private readonly translate = inject(TranslocoService);
     private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     private _sub = Subscriptions.instance();
 
@@ -103,21 +114,21 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
             }),
         );
         this.isAdmin = this.userService.isAdmin;
+
+        effect(() => {
+            if (this.userForm?.get('banned') && this.currentUser) {
+                const banner = this.userForm.get('banned')!;
+                if ((this.disabledBanned() && banner.enabled) || this.currentUser.id === this.userService.user!.id) {
+                    banner.disable();
+                } else if (!this.disabledBanned() && banner.disabled) {
+                    banner.enable();
+                }
+            }
+        });
     }
 
     updateTitle() {
         this.global.setTitle('menu.admin.users', true);
-    }
-
-    ngDoCheck(): void {
-        if (this.userForm?.get('banned') && this.currentUser) {
-            const banner = this.userForm.get('banned')!;
-            if ((this.disabledBanned() && banner.enabled) || this.currentUser.id === this.userService.user!.id) {
-                banner.disable();
-            } else if (!this.disabledBanned() && banner.disabled) {
-                banner.enable();
-            }
-        }
     }
 
     ngOnDestroy(): void {
@@ -126,7 +137,6 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
 
     resteFilter(filterInput: HTMLInputElement) {
         this.searchKey = '';
-        this.ngDoCheck();
         setTimeout(() => {
             filterInput.dispatchEvent(new InputEvent('input'));
             filterInput.focus();
@@ -156,6 +166,7 @@ export class AdminUsersComponent implements DoCheck, OnDestroy {
                 })
                 .finally(() => {
                     this.loading = false;
+                    this.cd.markForCheck();
                 });
         } else {
             this.page = page;

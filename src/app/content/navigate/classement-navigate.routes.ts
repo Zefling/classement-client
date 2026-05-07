@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { APIRequired } from 'src/app/services/api.required';
 import { DataChange } from 'src/app/services/data-change';
 
-const routes: Routes = [
+export const NAVIGATE_ROUTES: Routes = [
     {
         path: 'template/:id',
         pathMatch: 'full',
@@ -30,9 +29,3 @@ const routes: Routes = [
         canActivate: [DataChange, APIRequired],
     },
 ];
-
-@NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-})
-export class ClassementNavigateRoutingModule {}

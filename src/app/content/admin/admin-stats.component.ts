@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { LightDark, MagmaInput, MagmaInputSelect } from '@ikilote/magma';
@@ -47,6 +47,8 @@ echarts.use([
     selector: 'admin-stats',
     templateUrl: './admin-stats.component.html',
     styleUrls: ['./admin-stats.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgxEchartsDirective, TranslocoPipe, FormsModule, MagmaInput, MagmaInputSelect],
     providers: [provideEchartsCore({ echarts })],
 })
@@ -54,6 +56,7 @@ export class AdminStatsComponent {
     stats = inject(APIStatsService);
     lightDark = inject(LightDark);
     translate = inject(TranslocoService);
+    private cd = inject(ChangeDetectorRef);
 
     chartOptionUser?: EChartsCoreOption;
     chartOptionClassement?: EChartsCoreOption;
@@ -157,6 +160,7 @@ export class AdminStatsComponent {
                         },
                     ],
                 };
+                this.cd.markForCheck();
             });
     }
 
@@ -247,6 +251,7 @@ export class AdminStatsComponent {
                         },
                     ],
                 };
+                this.cd.markForCheck();
             });
     }
 

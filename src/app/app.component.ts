@@ -1,17 +1,31 @@
+import { NgComponentOutlet } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DoCheck,
     ElementRef,
     Type,
     computed,
+    effect,
     inject,
+    isDevMode,
     signal,
     viewChild,
 } from '@angular/core';
-import { Event, Router, Scroll } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Event, Router, RouterLink, RouterLinkActive, RouterOutlet, Scroll } from '@angular/router';
 
-import { Logger, LoggerLevel, MagmaDialog } from '@ikilote/magma';
+import {
+    Logger,
+    LoggerLevel,
+    MagmaClickEnterDirective,
+    MagmaDialog,
+    MagmaLimitFocusDirective,
+    MagmaLoader,
+    MagmaLoaderMessage,
+    MagmaSpinner,
+} from '@ikilote/magma';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { filter } from 'rxjs';
 
@@ -28,15 +42,31 @@ import { PreferencesService } from './services/preferences.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        FormsModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+        NgComponentOutlet,
+        TranslocoPipe,
+        MagmaLoader,
+        MagmaSpinner,
+        MagmaLoaderMessage,
+        MagmaDialog,
+        MagmaClickEnterDirective,
+        MagmaLimitFocusDirective,
+        PreferencesMagmaDialog,
+    ],
     host: {
         '[class.show-menu]': 'asideOpen()',
         '[class.reduce-menu]': 'mainMenuReduce()',
         '[class.show-help]': 'showHelp()',
         '[style.--zoom]': 'preferencesService.preferences.zoomMobile',
     },
-    standalone: false,
 })
-export class AppComponent implements DoCheck {
+export class AppComponent {
     // injects
 
     protected readonly globalService = inject(GlobalService);
@@ -44,7 +74,7 @@ export class AppComponent implements DoCheck {
     protected readonly logger = inject(Logger);
     protected readonly preferencesService = inject(PreferencesService);
     protected readonly userService = inject(APIUserService);
-    protected readonly changeDetectorRef = inject(ChangeDetectorRef);
+    protected readonly cd = inject(ChangeDetectorRef);
     protected readonly moduleErrorHandler = inject(ModuleErrorHandler);
 
     // viewChild
@@ -63,6 +93,11 @@ export class AppComponent implements DoCheck {
     readonly showHelp = signal<boolean>(false);
     readonly showHelpButton = signal<boolean>(false);
     readonly modeModerator = signal<boolean>(false);
+
+    private readonly _moderatorEffect = effect(() => {
+        const modeModerator = this.userService.isModerator || this.userService.isAdmin || false;
+        this.modeModerator.set(modeModerator);
+    });
 
     loading = environment.api?.active;
     modeApi = computed(() => this.globalService.withApi());
@@ -93,7 +128,11 @@ export class AppComponent implements DoCheck {
     private route?: string;
 
     constructor() {
-        Logger.suffix = '[classement]';
+        Logger.suffix = '[Classement] ';
+
+        if (isDevMode()) {
+            Logger.minLogLevel = 'log';
+        }
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit().open();
@@ -111,7 +150,7 @@ export class AppComponent implements DoCheck {
         });
 
         this.router.events.pipe(filter((event: Event): event is Scroll => event instanceof Scroll)).subscribe(e => {
-            this.changeDetectorRef.detectChanges();
+            this.cd.markForCheck();
             this.main().nativeElement.scroll({ top: 0, behavior: 'auto' });
         });
 
@@ -134,6 +173,7 @@ export class AppComponent implements DoCheck {
                         })
                         .finally(() => {
                             this.loading = false;
+                            this.cd.markForCheck();
                         });
                 })
                 .catch(() => {
@@ -141,13 +181,6 @@ export class AppComponent implements DoCheck {
                     this.logger.log('Server ko !', LoggerLevel.error);
                     this.loading = false;
                 });
-        }
-    }
-
-    ngDoCheck() {
-        const modeModerator = this.userService?.isModerator || this.userService?.isAdmin || false;
-        if (this.modeModerator() !== modeModerator) {
-            this.modeModerator.set(modeModerator);
         }
     }
 

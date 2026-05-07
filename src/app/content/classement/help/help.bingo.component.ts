@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -9,6 +9,7 @@ import { MemoryService } from 'src/app/services/memory.service';
     selector: 'help.bingo',
     templateUrl: './help.bingo.component.html',
     styleUrls: ['./help.bingo.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoModule],
 })
 export class HelpBingoComponent {

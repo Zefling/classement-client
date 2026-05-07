@@ -1,9 +1,9 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
-    NgZone,
     OnChanges,
     OnDestroy,
     SimpleChanges,
@@ -24,7 +24,7 @@ import Moveable, { EVENTS } from 'moveable';
 export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges {
     // input
 
-    private readonly ngZone = inject(NgZone);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -70,25 +70,21 @@ export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges
                 if (transform) {
                     this.transformUpdate.emit(event.target.style.transform);
                     this.transformTarget.set(transform);
+                    this.cd.markForCheck();
                 }
             };
         });
         setTimeout(() => {
-            this.moveable = this.ngZone.runOutsideAngular(
-                () =>
-                    new Moveable(this.container().nativeElement, {
-                        target: this.target()
-                            ? document.getElementById(this.target()!)
-                            : this.targetInternal().nativeElement,
-                        scalable: true,
-                        throttleScale: 0,
-                        keepRatio: true,
-                        rotatable: true,
-                        draggable: true,
-                        renderDirections: ['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se'],
-                        warpSelf: true,
-                    }),
-            );
+            this.moveable = new Moveable(this.container().nativeElement, {
+                target: this.target() ? document.getElementById(this.target()!) : this.targetInternal().nativeElement,
+                scalable: true,
+                throttleScale: 0,
+                keepRatio: true,
+                rotatable: true,
+                draggable: true,
+                renderDirections: ['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se'],
+                warpSelf: true,
+            });
 
             this.moveable.on(events);
         }, 100);

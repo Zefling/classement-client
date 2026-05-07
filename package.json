@@ -76,8 +76,7 @@
     "pica": "^9.0.1",
     "rxjs": "~7.8.2",
     "ts-md5": "^2.0.1",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.2.8",

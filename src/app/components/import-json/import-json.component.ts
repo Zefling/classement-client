@@ -1,4 +1,14 @@
-import { Component, ElementRef, OnDestroy, booleanAttribute, inject, input, output, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnDestroy,
+    booleanAttribute,
+    inject,
+    input,
+    output,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -25,6 +35,7 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     selector: 'import-json',
     templateUrl: './import-json.component.html',
     styleUrls: ['./import-json.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, TranslocoPipe, MagmaInput, MagmaInputCheckbox, MagmaSpinner],
 })
 export class ImportJsonComponent implements OnDestroy {

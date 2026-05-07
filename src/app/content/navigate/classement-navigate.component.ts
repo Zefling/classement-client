@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -33,6 +33,8 @@ import { listModes } from '../classement/classement-default';
     selector: 'classement-navigate',
     templateUrl: './classement-navigate.component.html',
     styleUrls: ['./classement-navigate.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,
@@ -58,6 +60,7 @@ export class ClassementNavigateComponent implements OnDestroy {
     private readonly categories = inject(CategoriesService);
     private readonly preferences = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     categoriesList?: Select2Data;
     categoriesType?: Select2Data;
@@ -147,6 +150,7 @@ export class ClassementNavigateComponent implements OnDestroy {
             })
             .finally(() => {
                 this.loading = false;
+                this.cd.markForCheck();
             });
     }
 
@@ -202,6 +206,7 @@ export class ClassementNavigateComponent implements OnDestroy {
                           },
                 );
                 this.loading = false;
+                this.cd.markForCheck();
             });
     }
 

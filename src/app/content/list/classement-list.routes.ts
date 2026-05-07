@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DataChange } from 'src/app/services/data-change';
 
-const routes: Routes = [
+export const LIST_ROUTES: Routes = [
     {
         path: '',
         pathMatch: 'full',
@@ -11,9 +10,3 @@ const routes: Routes = [
         canActivate: [DataChange],
     },
 ];
-
-@NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-})
-export class ClassementListRoutingModule {}

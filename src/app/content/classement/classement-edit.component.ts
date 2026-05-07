@@ -11,15 +11,16 @@ import {
 } from '@angular/cdk/drag-drop';
 import { DatePipe, Location, NgClass } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DoCheck,
     ElementRef,
     HostBinding,
     HostListener,
     OnDestroy,
     OnInit,
     computed,
+    effect,
     inject,
     signal,
     viewChild,
@@ -60,7 +61,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Subject, debounceTime, first } from 'rxjs';
+import { first } from 'rxjs';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
 import { CdkDragElement } from 'src/app/directives/drag-element.directive';
@@ -127,6 +128,7 @@ import { FileSizePipe } from '../../pipes/file-size';
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgClass,
         FormsModule,
@@ -168,7 +170,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaStopPropagationDirective,
     ],
 })
-export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
+export class ClassementEditComponent implements OnDestroy, OnInit {
     private readonly dbService = inject(DBService);
     private readonly router = inject(Router);
     private readonly route = inject(ActivatedRoute);
@@ -290,7 +292,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
     private _inputFile!: HTMLInputElement;
-    private _detectChange = new Subject<void>();
 
     constructor() {
         const global = this.global;
@@ -312,10 +313,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
             }),
             this.preferencesService.onInit.subscribe(() => {
-                this.initAPI();
+                this.preferencesUpdate();
             }),
             this.preferencesService.onChange.subscribe(() => {
-                this.initAPI();
+                this.preferencesUpdate();
             }),
             this.imdbService.onChange.subscribe(() => {
                 this.initAPI();
@@ -335,12 +336,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             global.onLocalSave.subscribe(() => {
                 this.saveLocal(false, false);
             }),
-            this._detectChange.pipe(debounceTime(10)).subscribe(() => {
-                this.detectorChanges();
+            global.onOptionChange.subscribe(() => {
+                this.detectChanges();
             }),
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
                 this.contextMenuGenerate();
+                this.detectChanges();
             }),
             toObservable(this.global.withChange).subscribe(withChange => {
                 if (
@@ -352,10 +354,47 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 }
             }),
         );
+
+        effect(() => {
+            this.effect();
+        });
     }
 
-    detectorChanges() {
-        this.cd.detectChanges();
+    effect() {
+        if (!this.options) {
+            return;
+        }
+        this.lineOption = this.preferencesService.preferences.lineOption;
+        this.global.updateVarCss(this.options, this.imagesCache);
+        this.nameOpacity = Math.round(this.options.nameBackgroundOpacity * 2.55);
+        this.options.category ??= '';
+
+        if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
+            this.globalChange();
+            this.logger.log('Option change');
+            if (!this.global.withChange()) {
+                this.change();
+            }
+            this._optionsCache = jsonCopy(this.options);
+        }
+
+        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
+
+        this.shareUrl =
+            this.modeApi() && this.classement?.rankingId
+                ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
+                : '';
+
+        const currentList = this.currentList()?.nativeElement;
+        if (currentList) {
+            this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
+        }
+    }
+
+    protected preferencesUpdate() {
+        this.initAPI();
+        this.lineOption = this.preferencesService.preferences.lineOption;
+        this.detectChanges();
     }
 
     contextMenuGenerate() {
@@ -407,41 +446,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.global.zoomActive.set(true);
     }
 
-    ngDoCheck(): void {
-        if (!this.options) {
-            return;
-        }
-
-        this.lineOption = this.preferencesService.preferences.lineOption;
-
-        this.global.updateVarCss(this.options, this.imagesCache);
-        this.nameOpacity = Math.round(this.options.nameBackgroundOpacity * 2.55);
-
-        // fix category with select2
-        this.options.category ??= '';
-
-        if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
-            this.globalChange();
-            this.logger.log('Option change');
-            if (!this.global.withChange()) {
-                this.change();
-            }
-            this._optionsCache = jsonCopy(this.options);
-        }
-
-        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
-
-        this.shareUrl =
-            this.modeApi() && this.classement?.rankingId
-                ? `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement)}`
-                : '';
-
-        const currentList = this.currentList()?.nativeElement;
-        if (currentList) {
-            this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
-        }
-    }
-
     ngOnDestroy(): void {
         this._sub.clear();
         this.global.changeHelpComponent();
@@ -468,6 +472,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
             this.exportImageDisabled = true;
 
             if (this.modeApi()) {
+                this.logger.log('API mode');
                 this.userService.loggedStatus().then(() => {
                     this.logged = this.userService.logged ?? false;
                     let classement = this.userService.user?.classements?.find(e => e.rankingId === this.id);
@@ -478,6 +483,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                         this.logger.log('loadServerClassement (user)');
                         this.loadServerClassement(classement, fork, forkOptions);
                     } else {
+                        this.logger.log('no cache found');
                         this.classementService
                             .getClassement(this.id!)
                             .then(classement => {
@@ -636,6 +642,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
                 this.resetCache();
                 this.helpInit();
                 this.memory.addUndo(this);
+                this.detectChanges();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -760,7 +767,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     detectChanges() {
-        this._detectChange.next();
+        this.cd.markForCheck();
     }
 
     @HostListener('window:beforeunload', ['$event'])
@@ -1240,6 +1247,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
         this.addIds();
         this.globalChange();
         this.change();
+        this.cd.detectChanges();
     }
 
     async exportImage() {
@@ -1413,7 +1421,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit, DoCheck {
     }
 
     private undoRedoUpdate(event: Event) {
-        this._detectChange.next();
+        this.cd.markForCheck();
         event.preventDefault();
 
         setTimeout(() => {

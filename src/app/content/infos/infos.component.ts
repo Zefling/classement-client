@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -9,6 +9,8 @@ import { GlobalService } from 'src/app/services/global.service';
     selector: 'infos-page',
     templateUrl: './infos.component.html',
     styleUrls: ['./infos.component.scss'],
+
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive, RouterOutlet, TranslocoPipe],
 })
 export class InfosComponent {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -27,6 +27,7 @@ import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.compo
     selector: 'classement-themes',
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         TranslocoPipe,

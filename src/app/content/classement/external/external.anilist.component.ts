@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -24,6 +24,7 @@ import { PreferencesService } from 'src/app/services/preferences.service';
     selector: 'external-anilist',
     templateUrl: './external.anilist.component.html',
     styleUrls: ['./external.anilist.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
         MagmaInput,

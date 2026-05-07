@@ -1,5 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, OnDestroy, OnInit, Output, inject, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    Output,
+    inject,
+    viewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -27,6 +36,7 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
     selector: 'external-imdb',
     templateUrl: './external.imdb.component.html',
     styleUrls: ['./external.imdb.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
         MagmaInput,

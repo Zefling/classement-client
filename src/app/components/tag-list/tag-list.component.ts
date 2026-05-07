@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
+    ChangeDetectionStrategy,
     Component,
     ElementRef,
     OnInit,
@@ -23,6 +24,7 @@ import { environment } from 'src/environments/environment';
     selector: 'tag-list',
     templateUrl: './tag-list.component.html',
     styleUrls: ['./tag-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, RouterLink],
 })
 export class TagListComponent implements OnInit {
