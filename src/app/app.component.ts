@@ -94,11 +94,6 @@ export class AppComponent {
     readonly showHelpButton = signal<boolean>(false);
     readonly modeModerator = signal<boolean>(false);
 
-    private readonly _moderatorEffect = effect(() => {
-        const modeModerator = this.userService.isModerator || this.userService.isAdmin || false;
-        this.modeModerator.set(modeModerator);
-    });
-
     loading = environment.api?.active;
     modeApi = computed(() => this.globalService.withApi());
 
@@ -133,6 +128,10 @@ export class AppComponent {
         if (isDevMode()) {
             Logger.minLogLevel = 'log';
         }
+
+        effect(() => {
+            this.moderatorUpdate();
+        });
 
         this.globalService.onForceExit.subscribe((route?: string) => {
             this.warningExit().open();
@@ -173,6 +172,7 @@ export class AppComponent {
                         })
                         .finally(() => {
                             this.loading = false;
+                            this.moderatorUpdate();
                             this.cd.markForCheck();
                         });
                 })
@@ -242,5 +242,10 @@ export class AppComponent {
     beginNew(mode: ModeNames) {
         this.router.navigate(['edit', 'new', mode]);
         this.choice().close();
+    }
+
+    private moderatorUpdate() {
+        const modeModerator = this.userService.isModerator || this.userService.isAdmin || false;
+        this.modeModerator.set(modeModerator);
     }
 }
