@@ -2,6 +2,8 @@
 
 ### 4.4.0 (2026-05-03)
 
+#### Standalone web app
+
 - Add logical CSS (RTL)
 - Add **Arabic language**
 - Add navigation with arrows
