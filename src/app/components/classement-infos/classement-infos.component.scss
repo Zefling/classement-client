@@ -2,7 +2,7 @@
 
 :host {
     display: grid;
-    grid-template: 'infos image' 'content content'/ 1fr auto;
+    grid-template: 'infos image' 'content content' 'vote vote'/ 1fr auto;
     gap: 15px;
     box-sizing: content-box;
     margin: 15px 0;
@@ -88,6 +88,7 @@
 }
 
 .votes {
+    grid-area: vote;
     text-align: center;
 
     .selected {
