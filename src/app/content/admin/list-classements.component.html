@@ -96,7 +96,7 @@
   (onClose)="currentClassement = undefined"
 >
   @if (currentClassement) {
-    <classement-infos [classementInfo]="currentClassement" />
+    <classement-infos [classementInfo]="currentClassement" readonly />
 
     <see-classement
       [options]="currentClassement.data.options"

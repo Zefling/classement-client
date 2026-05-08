@@ -42,6 +42,11 @@ export interface ClassementHistory {
     name?: string;
 }
 
+export interface ClassementVotes {
+    votes: Record<string, number>;
+    userVotes: string[];
+}
+
 export interface User {
     classements?: Classement[];
     themes?: ThemeData[];

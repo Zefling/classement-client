@@ -70,6 +70,21 @@
       </div>
     }
   </div>
+  <div class="votes">
+    @for (vote of votes(); track vote) {
+      @if (logged && !readonly()) {
+        <button (click)="updateVote(vote.emoji)" [class.selected]="vote.selected">
+          <span>{{ vote.emoji }}</span>
+          <span>{{ vote.total }}</span>
+        </button>
+      } @else {
+        <button disabled class="readonly">
+          <span>{{ vote.emoji }}</span>
+          <span>{{ vote.total }}</span>
+        </button>
+      }
+    }
+  </div>
   <div class="content">
     <ng-content />
   </div>

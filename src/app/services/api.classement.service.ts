@@ -22,6 +22,7 @@ import { PreferencesService } from './preferences.service';
 import {
     Classement,
     ClassementHistory,
+    ClassementVotes,
     Message,
     MessageError,
     SortClassementCol,
@@ -290,6 +291,36 @@ export class APIClassementService extends APICommon {
                     },
                     error: (result: HttpErrorResponse) => {
                         reject(this.error('adminGetClassements', result));
+                    },
+                });
+        });
+    }
+
+    getClassementVotes(rankingId: string) {
+        return new Promise<ClassementVotes>(async (resolve, reject) => {
+            this.http
+                .get<Message<ClassementVotes>>(this.apiPath(`classement/${rankingId}/votes`), this.header(false))
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('home', result));
+                    },
+                });
+        });
+    }
+
+    updateClassementVote(rankingId: string, vote: string[]) {
+        return new Promise<ClassementVotes>(async (resolve, reject) => {
+            this.http
+                .post<Message<ClassementVotes>>(this.apiPath(`classement/${rankingId}/vote`), { vote }, this.header())
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('home', result));
                     },
                 });
         });

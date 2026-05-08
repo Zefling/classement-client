@@ -87,6 +87,19 @@
     font-size: 80%;
 }
 
+.votes {
+    text-align: center;
+
+    .selected {
+        background-color: var(--primary300);
+    }
+
+    .readonly {
+        opacity: 1;
+        background-color: var(--neutral050);
+    }
+}
+
 @media screen and (width < 768px) {
     :host {
         display: flex;

@@ -15,12 +15,16 @@ export abstract class APICommon {
         protected readonly logger: Logger,
     ) {}
 
-    protected header(): {} {
+    protected header(requiredToken: boolean = true): {} {
         return {
             withCredentials: true,
-            headers: new HttpHeaders({
-                'X-AUTH-TOKEN': this.token ?? '',
-            }),
+            headers: new HttpHeaders(
+                requiredToken || this.token
+                    ? {
+                          'X-AUTH-TOKEN': this.token ?? '',
+                      }
+                    : {},
+            ),
         };
     }
 
