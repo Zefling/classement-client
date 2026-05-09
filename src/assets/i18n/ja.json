@@ -18,6 +18,9 @@
     "punctuation": {
       "colon": "：",
       "comma": "、"
+    },
+    "view": {
+      "total": "{VIEW, plural, =0 {視聴なし} other {# 回視聴}}"
     }
   },
   "magma": {

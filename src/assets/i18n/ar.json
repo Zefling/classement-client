@@ -18,6 +18,9 @@
     "punctuation": {
       "colon": ": ",
       "comma": "، "
+    },
+    "view": {
+      "total": "{VIEW, plural, =0 {لا توجد مشاهدات} one {مشاهدة واحدة} two {مشاهدتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}"
     }
   },
   "magma": {

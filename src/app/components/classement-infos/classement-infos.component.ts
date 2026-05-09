@@ -30,14 +30,19 @@ export class ClassementInfosComponent implements OnInit {
     readonly = input(false, { transform: booleanAttribute });
 
     votes = signal<VoteResult>([]);
+    viewCount = signal(0);
 
     get logged() {
         return this.userService.logged;
     }
 
     ngOnInit(): void {
+        this.viewCount.set(this.classementInfo().viewCount ?? 0);
         this.api.getClassementVotes(this.classementInfo().rankingId).then(votes => {
             this.listVote(votes);
+        });
+        this.api.getClassementViews(this.classementInfo().rankingId).then(view => {
+            this.viewCount.set(view.viewCount);
         });
     }
 

@@ -3,6 +3,7 @@ import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core
 import { provideRouter } from '@angular/router';
 
 import { provideTransloco } from '@jsverse/transloco';
+import { provideTranslocoMessageformat } from '@jsverse/transloco-messageformat';
 
 import { MARKED_OPTIONS, MarkedRenderer, provideMarkdown } from 'ngx-markdown';
 
@@ -15,8 +16,9 @@ import { environment } from '../environments/environment';
 export function markedOptionsFactory() {
     const renderer = new MarkedRenderer();
 
-    renderer.link = ({ href, text }) => {
-        return `<a target="_blank" rel="nofollow" href="${href}">${text}</a>`;
+    renderer.link = ({ href, title, text }) => {
+        const titleAttr = title ? ` title="${title}"` : '';
+        return `<a target="_blank" rel="nofollow" href="${href}"${titleAttr}>${text}</a>`;
     };
 
     return { renderer };
@@ -36,6 +38,12 @@ export const appConfig: ApplicationConfig = {
                 prodMode: environment.production,
             },
             loader: TranslocoHttpLoader,
+        }),
+        provideTranslocoMessageformat({
+            biDiSupport: true,
+            customFormatters: {
+                upcase: value => `${value}`.toUpperCase(),
+            },
         }),
         provideMarkdown({
             loader: HttpClient,

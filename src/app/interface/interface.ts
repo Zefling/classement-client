@@ -32,6 +32,7 @@ export interface Classement {
     historyId?: string;
     withHistory?: number;
     adult?: boolean;
+    viewCount?: number;
 }
 
 export interface ClassementHistory {
@@ -45,6 +46,10 @@ export interface ClassementHistory {
 export interface ClassementVotes {
     votes: Record<string, number>;
     userVotes: string[];
+}
+
+export interface ClassementViews {
+    viewCount: number;
 }
 
 export interface User {

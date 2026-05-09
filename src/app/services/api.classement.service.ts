@@ -22,6 +22,7 @@ import { PreferencesService } from './preferences.service';
 import {
     Classement,
     ClassementHistory,
+    ClassementViews,
     ClassementVotes,
     Message,
     MessageError,
@@ -257,7 +258,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('adminStatusClassement', result));
+                        reject(this.error(admin ? 'adminStatusClassement' : 'statusClassement', result));
                     },
                 });
         });
@@ -305,7 +306,7 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('home', result));
+                        reject(this.error('getClassementVotes', result));
                     },
                 });
         });
@@ -320,7 +321,22 @@ export class APIClassementService extends APICommon {
                         resolve(result.message);
                     },
                     error: (result: HttpErrorResponse) => {
-                        reject(this.error('home', result));
+                        reject(this.error('updateClassementVote', result));
+                    },
+                });
+        });
+    }
+
+    getClassementViews(rankingId: string) {
+        return new Promise<ClassementViews>(async (resolve, reject) => {
+            this.http
+                .post<Message<ClassementViews>>(this.apiPath(`classement/${rankingId}/views`), this.header(false))
+                .subscribe({
+                    next: result => {
+                        resolve(result.message);
+                    },
+                    error: (result: HttpErrorResponse) => {
+                        reject(this.error('getClassementViews', result));
                     },
                 });
         });

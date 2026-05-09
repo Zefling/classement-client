@@ -18,6 +18,9 @@
     "punctuation": {
       "colon": " : ",
       "comma": ", "
+    },
+    "view": {
+      "total": "{VIEW, plural, =0 {Aucune vue} one {1 vue} other {# vues}}"
     }
   },
   "magma": {

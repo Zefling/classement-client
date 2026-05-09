@@ -63,6 +63,9 @@
         </div>
       }
     </div>
+    <div class="view">
+      {{ 'generic.view.total' | transloco: { VIEW: classement.viewCount } }}
+    </div>
     @if (classement.data.options.tags && classement.data.options.tags.length) {
       <div class="tags">
         <span>{{ 'generator.options.tags' | transloco }}</span>
