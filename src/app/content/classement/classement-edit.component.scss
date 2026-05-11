@@ -22,11 +22,15 @@
     .classement-edit-header {
         display: grid;
         grid-template:
+            'r r'
             'a b' minmax(3em, auto)
-            'c c';
+            'c c' / auto 1fr;
         width: 100%;
     }
-
+    .aria-link {
+        grid-area: r;
+        margin-top: 10px;
+    }
     h2 {
         grid-area: a;
     }
@@ -48,7 +52,7 @@
         display: flex;
         flex: fit-content;
         flex-wrap: wrap;
-        justify-content: end;
+        justify-content: start;
         align-items: self-start;
         gap: 10px 0;
     }
@@ -1119,7 +1123,7 @@ mg-spinner {
 
 @media screen and (width < 768px) {
     .classement-edit .classement-edit-header {
-        grid-template: 'a' 'b' ' c';
+        grid-template: 'r' 'a' 'b' ' c';
 
         .server-api {
             justify-content: center;

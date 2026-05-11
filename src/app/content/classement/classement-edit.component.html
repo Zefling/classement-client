@@ -13,14 +13,19 @@
   [disabled]="dialogSaveServer?.isOpen() || advance?.dialogAdvancedOptions()?.isOpen() || editImage?._open || false"
 >
   <div class="classement-edit-header">
+    @if (modeApi() && classement && classement.templateTotal > 1) {
+      <div class="aria-link">
+        <a class="icon-left" (click)="toTemplateNavigation()">
+          {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
+        </a>
+      </div>
+    }
+
     <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
     <div class="top-actions">
       @if (modeApi() && classement && classement.templateTotal > 1) {
         <div class="server-api">
-          <button class="button-add primary" (click)="toTemplateNavigation()">
-            {{ 'navigate.see.derivatives' | transloco }} ({{ classement.templateTotal }})
-          </button>
           @if (derivatives && derivatives.length > 1) {
             <button class="button-add primary" (click)="showDerivative()">
               {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
