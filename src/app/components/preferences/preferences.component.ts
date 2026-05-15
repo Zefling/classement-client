@@ -27,6 +27,8 @@ import {
     MagmaTabs,
     MagmaTabsModule,
     PreferenceInterfaceTheme,
+    jsonCopy,
+    objectAssignNested,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
@@ -39,7 +41,8 @@ import {
     themesIceberg,
     themesLists,
 } from 'src/app/content/classement/classement-default';
-import { ModeNames } from 'src/app/interface/interface';
+import { ModeNames, PreferencesData } from 'src/app/interface/interface';
+import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { emojis } from 'src/app/tools/emoji';
@@ -81,6 +84,7 @@ export class PreferencesMagmaDialog {
     //inject
 
     private readonly preferencesService = inject(PreferencesService);
+    private readonly userService = inject(APIUserService);
     private readonly logger = inject(Logger);
     private readonly translate = inject(TranslocoService);
     private readonly lightDark = inject(LightDark);
@@ -108,7 +112,10 @@ export class PreferencesMagmaDialog {
 
     modeApi = computed(() => this.globalService.withApi());
 
+    loggedUInUser = false;
+
     preferencesForm?: FormGroup;
+    preferencesFormBackup?: PreferencesData;
 
     modes: Select2Data = [
         { value: 'choice', label: 'choice' },
@@ -128,12 +135,48 @@ export class PreferencesMagmaDialog {
 
     constructor() {
         // preferences
-        this.initPreferences().then(() => {
+        this.initPrefs().then(() => {
             this.updateLanguage(this.preferencesForm!.get('interfaceLanguage')!.value);
         });
         this.preferencesService.openPref.subscribe(panelName => {
             this.preferences().open();
             this.preferencesTabs()?.update(panelName);
+        });
+        this.preferencesService.fromApi.subscribe(data => {
+            this.loggedUInUser = data !== null;
+            if (this.preferencesForm) {
+                if (data) {
+                    const userData = jsonCopy(this.preferencesService.defaultPreferences);
+                    objectAssignNested(userData, data);
+
+                    // emoji list
+                    if (data.emojiList) {
+                        userData.emojiList = data.emojiList;
+                    }
+
+                    this.initDataPref(userData);
+
+                    // form data
+                    const form = jsonCopy<any>(userData);
+                    if (form.emojiList) {
+                        delete form.emojiList;
+                    }
+                    this.preferencesForm.setValue(form);
+                } else if (this.preferencesFormBackup) {
+                    const userData = jsonCopy(this.preferencesService.defaultPreferences);
+                    objectAssignNested(userData, this.preferencesFormBackup);
+
+                    this.initDataPref(userData);
+
+                    // form data
+                    const form = jsonCopy<any>(userData);
+                    if (form.emojiList) {
+                        delete form.emojiList;
+                    }
+                    form.theme ??= 'default';
+                    this.preferencesForm.setValue(form);
+                }
+            }
         });
     }
 
@@ -214,20 +257,18 @@ export class PreferencesMagmaDialog {
         this.preferencesForm!.get('interfaceTheme')?.setValue(value);
     }
 
-    private async initPreferences() {
+    save() {
+        const data = this.preferencesForm!.value;
+        data.emojiList = this.emojiSort;
+        this.userService.savePreferences(data);
+    }
+
+    private async initPrefs() {
         const initPreferences = await this.preferencesService.init();
 
-        // theme
-        this.lightDark.init(initPreferences.interfaceTheme);
+        this.preferencesFormBackup = initPreferences;
 
-        // autodetect language
-        const l = languages.filter(i => navigator.language.startsWith(i.value as string));
-        const selectedLang = l.length ? l[0].value : 'en';
-
-        // menu
-        this.mainMenuReduce.emit(initPreferences.mainMenuReduce);
-
-        this.emojiSort = initPreferences.emojiList;
+        const { selectedLang } = this.initDataPref(initPreferences);
 
         this.preferencesForm = new FormGroup({
             interfaceLanguage: new FormControl(initPreferences.interfaceLanguage ?? selectedLang),
@@ -252,30 +293,45 @@ export class PreferencesMagmaDialog {
                 anilist: new FormControl(initPreferences.api.anilist ?? true),
             }),
         });
-
         this.preferencesForm.valueChanges.subscribe(() => {
             this.savePref();
         });
-
         this.preferencesForm.get('mode')?.valueChanges.subscribe((mode: ModeNames | 'choice') => {
             this.initThemeByMode(mode);
         });
-        this.initThemeByMode(initPreferences.mode, false);
-
         this.preferencesForm.get('pageSize')?.valueChanges.subscribe((value: number) => {
             this.preferencesForm!.get('pageSize')?.setValue(Math.min(50, Math.max(9, value || 24)), {
                 emitEvent: false,
             });
         });
-
         this.preferencesForm.get('interfaceLanguage')?.valueChanges.subscribe((value: LanguagesList) => {
             this.updateLanguage(value);
         });
     }
 
+    private initDataPref(initPreferences: PreferencesData) {
+        // theme
+        this.lightDark.init(initPreferences.interfaceTheme);
+
+        // autodetect language
+        const l = languages.filter(i => navigator.language.startsWith(i.value as string));
+        const selectedLang = l.length ? l[0].value : 'en';
+
+        // menu
+        this.mainMenuReduce.emit(initPreferences.mainMenuReduce);
+
+        this.emojiSort = initPreferences.emojiList;
+
+        this.initThemeByMode(initPreferences.mode, false);
+
+        return { selectedLang };
+    }
+
     private savePref() {
-        const data = this.preferencesForm!.value;
-        data.emojiList = this.emojiSort;
-        this.preferencesService.saveAndUpdate(data);
+        if (!this.loggedUInUser) {
+            const data = this.preferencesForm!.value;
+            data.emojiList = this.emojiSort;
+            this.preferencesService.saveAndUpdate(data);
+        }
     }
 }

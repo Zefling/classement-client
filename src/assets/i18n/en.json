@@ -128,6 +128,7 @@
   "preferences": {
     "title": "Preferences",
     "close": "Close",
+    "save": "Save to my account",
     "editor.title": "Editor",
     "tiles.title": "Tiles",
     "tile": {

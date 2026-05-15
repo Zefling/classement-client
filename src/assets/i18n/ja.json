@@ -128,6 +128,7 @@
   "preferences": {
     "title": "環境設定",
     "close": "閉めて",
+    "save": "自分のアカウントにセーブする",
     "editor.title": "エディター",
     "tiles.title": "タイル",
     "tile": {

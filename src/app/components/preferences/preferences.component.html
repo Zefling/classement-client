@@ -255,6 +255,9 @@
         </mg-tab-content>
       </mg-tabs>
       <div class="buttons">
+        @if (modeApi() && loggedUInUser) {
+          <button class="primary" (click)="save()">{{ 'preferences.save' | transloco }}</button>
+        }
         <button (click)="preferences.close()">{{ 'preferences.close' | transloco }}</button>
       </div>
     </ng-container>

@@ -142,6 +142,15 @@ export class AppComponent {
             this.choice().open();
         });
 
+        this.userService.afterLogin.subscribe(() => {
+            this.moderatorUpdate();
+            this.cd.markForCheck();
+        });
+        this.userService.afterLogout.subscribe(() => {
+            this.moderatorUpdate();
+            this.cd.markForCheck();
+        });
+
         this.globalService.helpComponent.subscribe(helpComponent => {
             this.showHelp.set(false);
             this.showHelpButton.set(helpComponent !== undefined);

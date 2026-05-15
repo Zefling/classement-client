@@ -6,17 +6,29 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
+import { PreferencesService } from 'src/app/services/preferences.service';
+
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
 
-import { Classement, Login, Message, MessageError, SortDirection, SortUserCol, User } from '../interface/interface';
+import {
+    Classement,
+    Login,
+    Message,
+    MessageError,
+    PreferencesData,
+    SortDirection,
+    SortUserCol,
+    User,
+} from '../interface/interface';
 import { Utils } from '../tools/utils';
 
 @Injectable({ providedIn: 'root' })
 export class APIUserService extends APICommon {
     private readonly http = inject(HttpClient);
     private readonly globalService = inject(GlobalService);
+    private readonly preferencesService = inject(PreferencesService);
 
     afterLogin = new Subject<void>();
     afterLogout = new Subject<void>();
@@ -98,8 +110,9 @@ export class APIUserService extends APICommon {
             this.token = getCookie('x-token') || undefined;
             if (this.token) {
                 this.http.get<Message<User>>(this.apiPath(`user/current`), this.header()).subscribe({
-                    next: result => {
+                    next: async result => {
                         this.logger.log('valide token', LoggerLevel.log, result.message);
+
                         this.user = result.message;
                         if (this.user.classements?.length) {
                             this.user.classements = this.user.classements.sort(
@@ -109,6 +122,15 @@ export class APIUserService extends APICommon {
                         this.logged = true;
                         this.isModerator = this.user.roles?.includes(Role.MODERATOR) || false;
                         this.isAdmin = this.user.roles?.includes(Role.ADMIN) || false;
+
+                        try {
+                            const preferences = await this.loadPreferences();
+                            if (preferences) {
+                                this.preferencesService.fromApi.next(preferences);
+                            }
+                        } catch (e) {
+                            this.logger.info('No preferences');
+                        }
                         resolve();
                     },
                     error: (result: HttpErrorResponse) => {
@@ -259,6 +281,7 @@ export class APIUserService extends APICommon {
                     this.reset();
                     removeCookie('x-token');
                     this.afterLogout.next();
+                    this.preferencesService.fromApi.next(null);
                     resolve();
                 },
                 error: (result: HttpErrorResponse) => {
@@ -412,6 +435,32 @@ export class APIUserService extends APICommon {
                 },
                 error: (result: HttpErrorResponse) => {
                     reject(this.error('sendToAdmin', result));
+                },
+            });
+        });
+    }
+
+    loadPreferences() {
+        return new Promise<PreferencesData>((resolve, reject) => {
+            this.http.get<Message<PreferencesData>>(this.apiPath(`preferences`), this.header()).subscribe({
+                next: result => {
+                    resolve(result.message);
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('loadPreferences', result));
+                },
+            });
+        });
+    }
+
+    savePreferences(data: PreferencesData) {
+        return new Promise<void>((resolve, reject) => {
+            this.http.post<Message<void>>(this.apiPath(`preferences`), data, this.header()).subscribe({
+                next: _ => {
+                    resolve();
+                },
+                error: (result: HttpErrorResponse) => {
+                    reject(this.error('savePreferences', result));
                 },
             });
         });

@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 
-import { objectAssignNested } from '@ikilote/magma';
+import { jsonCopy, objectAssignNested } from '@ikilote/magma';
 
 import { Subject } from 'rxjs';
 
+import { themes } from './../content/classement/classement-default';
 import { DBService } from './db.service';
 
-import { themes } from '../content/classement/classement-default';
 import { PreferencesData } from '../interface/interface';
 
 /**
@@ -19,10 +19,11 @@ export class PreferencesService {
     readonly onInit = new Subject<void>();
     readonly onChange = new Subject<PreferencesData>();
     readonly openPref = new Subject<string>();
+    readonly fromApi = new Subject<PreferencesData | null>();
 
     hasInit = false;
 
-    private initPreferences: PreferencesData = {
+    readonly defaultPreferences: PreferencesData = {
         nameCopy: false,
         newColor: 'mixed',
         newLine: 'below',
@@ -44,6 +45,8 @@ export class PreferencesService {
             anilist: true,
         },
     };
+
+    private initPreferences: PreferencesData = jsonCopy(this.defaultPreferences);
 
     get preferences(): PreferencesData {
         return this.initPreferences;

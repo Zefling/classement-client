@@ -281,7 +281,7 @@ export interface PreferencesData {
     lineOption: PreferenceLineOption;
     mode: ModeNames | 'choice';
     autoResize: '300×300' | '500×500' | 'origin';
-    theme: ThemesNames | undefined;
+    theme: ThemesNames | null;
     pageSize: number;
     mainMenuReduce: boolean;
     emojiList: string[];
