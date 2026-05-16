@@ -27,15 +27,15 @@ import { Select2Data, Select2Option } from 'ng-select2-component';
 
 import { Theme } from 'src/app/interface/interface';
 import { Genres, MovieSearch } from 'src/app/interface/movie';
-import { APIImdbService } from 'src/app/services/api.imdb.service';
+import { APITmdbService } from 'src/app/services/api.tmdb.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 @Component({
-    selector: 'external-imdb',
-    templateUrl: './external.imdb.component.html',
-    styleUrls: ['./external.imdb.component.scss'],
+    selector: 'external-tmdb',
+    templateUrl: './external.tmdb.component.html',
+    styleUrls: ['./external.tmdb.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
@@ -50,8 +50,8 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
         TranslocoPipe,
     ],
 })
-export class ExternalImdbComponent implements OnInit, OnDestroy {
-    private readonly imdb = inject(APIImdbService);
+export class ExternalTmdbComponent implements OnInit, OnDestroy {
+    private readonly tmdb = inject(APITmdbService);
     private readonly prefs = inject(PreferencesService);
     private readonly globalService = inject(GlobalService);
 
@@ -72,11 +72,11 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
     languages?: Select2Data;
 
     get keyApi() {
-        return this.prefs.preferences.authApiKeys.imdb;
+        return this.prefs.preferences.authApiKeys.tmdb;
     }
 
     get baseImg() {
-        return this.imdb.baseImg;
+        return this.tmdb.baseImg;
     }
 
     private _sub = Subscriptions.instance();
@@ -119,14 +119,14 @@ export class ExternalImdbComponent implements OnInit, OnDestroy {
     }
 
     init() {
-        this.imdb
+        this.tmdb
             .acceptedLanguages()
             .then(list => (this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }))));
     }
 
     async search() {
         if (this.searchMovieForm!.value?.query?.trim()) {
-            const page = await this.imdb.searchMovies({ ...this.searchMovieForm!.value, page: 1 });
+            const page = await this.tmdb.searchMovies({ ...this.searchMovieForm!.value, page: 1 });
             this.results = page.results?.length ? page.results : [];
         }
     }

@@ -220,9 +220,9 @@
       "Symbols": "Symbols",
       "Flags": "Flags"
     },
-    "imdb": {
-      "key": "IMDB authentication key",
-      "info": "This key requires an account with IMDB and an API access request. Here:"
+    "tmdb": {
+      "key": "TMDB authentication key",
+      "info": "This key requires an account with TMDB and an API access request. Here:"
     },
     "anilist": {
       "activate": "Activate the service"
@@ -714,7 +714,7 @@
       "alt": {
         "detail": "Alternative description text"
       },
-      "IMDB": "IMDB",
+      "TMDB": "TMDB",
       "anilist": "AniList"
     },
     "context.menu": {
@@ -791,8 +791,8 @@
       "link": "Replace the default ID with a more readable name (optional)"
     },
     "external": {
-      "imdb": {
-        "title": "Search for a movie on IMDB",
+      "tmdb": {
+        "title": "Search for a movie on TMDB",
         "name": "Movie name:",
         "adult.content": "Include adult content",
         "language": "Language:",

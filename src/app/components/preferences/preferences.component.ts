@@ -287,7 +287,7 @@ export class PreferencesMagmaDialog {
             advancedOptions: new FormControl(initPreferences.advancedOptions),
             advancedFork: new FormControl(initPreferences.advancedFork),
             authApiKeys: new FormGroup({
-                imdb: new FormControl(initPreferences.authApiKeys.imdb ?? ''),
+                tmdb: new FormControl(initPreferences.authApiKeys.tmdb ?? ''),
             }),
             api: new FormGroup({
                 anilist: new FormControl(initPreferences.api.anilist ?? true),

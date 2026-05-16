@@ -79,7 +79,7 @@ Current installation in this [website](https://classement.org/).
         - ✅ Languages
         - ✅ Emoji
     - ✅ External API
-        - ✅ IMDB (API key required)
+        - ✅ TMDB (API key required)
         - ✅ anilist
         - ⬜ MAL
     - ✅ Keyboard navigation for edit rankings

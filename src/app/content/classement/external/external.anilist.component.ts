@@ -61,7 +61,7 @@ export class ExternalAnilistComponent {
     include = [''];
 
     get keyApi() {
-        return this.prefs.preferences.authApiKeys.imdb;
+        return this.prefs.preferences.authApiKeys.tmdb;
     }
 
     get baseImg() {

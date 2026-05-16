@@ -39,7 +39,7 @@ export class PreferencesService {
         advancedOptions: false,
         advancedFork: false,
         authApiKeys: {
-            imdb: '',
+            tmdb: '',
         },
         api: {
             anilist: true,

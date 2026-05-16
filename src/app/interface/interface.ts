@@ -290,7 +290,7 @@ export interface PreferencesData {
     advancedOptions: boolean;
     advancedFork: boolean;
     authApiKeys: {
-        imdb: string;
+        tmdb: string;
     };
     api: {
         anilist: boolean;

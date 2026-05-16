@@ -1,11 +1,11 @@
-@let baseText = 'generator.external.imdb.';
+@let baseText = 'generator.external.tmdb.';
 
 <mg-dialog closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <h2>{{ baseText + 'title' | transloco }}</h2>
 
   @if (keyApi && languages && searchMovieForm) {
     <div class="import-form">
-      <img class="logo" src="./assets/images/imdb_blue_square_2.svg" />
+      <img class="logo" src="./assets/images/tmdb_blue_square_2.svg" />
       <form [formGroup]="searchMovieForm" (submit)="search()">
         <mg-input class="s-12">
           <mg-input-label>{{ baseText + 'name' | transloco }}</mg-input-label>

@@ -40,8 +40,12 @@ import {
     MagmaColorPicker,
     MagmaContextMenu,
     MagmaDialog,
+    MagmaEllipsisButton,
+    MagmaEllipsisItemComponent,
     MagmaInput,
     MagmaInputCheckbox,
+    MagmaInputElement,
+    MagmaInputText,
     MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
@@ -80,7 +84,7 @@ import {
     ThemesNames,
 } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIImdbService } from 'src/app/services/api.imdb.service';
+import { APITmdbService } from 'src/app/services/api.tmdb.service';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { DBService } from 'src/app/services/db.service';
 import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
@@ -107,7 +111,7 @@ import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
 import { ExternalAnilistComponent } from './external/external.anilist.component';
-import { ExternalImdbComponent } from './external/external.imdb.component';
+import { ExternalTmdbComponent } from './external/external.tmdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
 import { HelpBingoComponent } from './help/help.bingo.component';
 import { HelpColumnsComponent } from './help/help.columns.component';
@@ -150,7 +154,7 @@ import { FileSizePipe } from '../../pipes/file-size';
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
         ClassementLoginComponent,
-        ExternalImdbComponent,
+        ExternalTmdbComponent,
         ExternalAnilistComponent,
         FileSizePipe,
         MagmaContextMenu,
@@ -159,7 +163,9 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaDialog,
         MagmaNgModelChangeDebouncedDirective,
         MagmaInput,
+        MagmaInputElement,
         MagmaInputCheckbox,
+        MagmaInputText,
         MagmaInputTextarea,
         MagmaColorPicker,
         MagmaClickEnterDirective,
@@ -168,6 +174,8 @@ import { FileSizePipe } from '../../pipes/file-size';
         MagmaLoaderMessage,
         MagmaSpinner,
         MagmaStopPropagationDirective,
+        MagmaEllipsisButton,
+        MagmaEllipsisItemComponent,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit {
@@ -183,7 +191,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     private readonly logger = inject(Logger);
     private readonly location = inject(Location);
     private readonly preferencesService = inject(PreferencesService);
-    private readonly imdbService = inject(APIImdbService);
+    private readonly tmdbService = inject(APITmdbService);
     private readonly memory = inject(MemoryService);
     private readonly keyboard = inject(EditKeyBoardService);
     private readonly cd = inject(ChangeDetectorRef);
@@ -232,7 +240,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     altImage = '';
 
-    imdbActive = false;
+    tmdbActive = false;
     anilistActive = false;
 
     inputTexts = '';
@@ -271,11 +279,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
     dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
     dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
+    dialogRankingImportTile = viewChild.required<MagmaDialog>('dialogRankingImportTile');
     dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
     dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
     editImage = viewChild.required(ClassementEditImageComponent);
     login = viewChild.required(ClassementLoginComponent);
-    imdb = viewChild.required(ExternalImdbComponent);
+    tmdb = viewChild.required(ExternalTmdbComponent);
     anilist = viewChild.required<ExternalAnilistComponent>(ExternalAnilistComponent);
     tiles = viewChildren(CdkDragElement);
 
@@ -318,7 +327,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             this.preferencesService.onChange.subscribe(() => {
                 this.preferencesUpdate();
             }),
-            this.imdbService.onChange.subscribe(() => {
+            this.tmdbService.onChange.subscribe(() => {
                 this.initAPI();
             }),
             global.onFileLoaded.subscribe(async file => {
@@ -457,7 +466,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     private initAPI() {
-        this.imdbActive = this.imdbService.isActive();
+        this.tmdbActive = this.tmdbService.isActive();
         this.anilistActive = this.preferencesService.preferences.api.anilist;
     }
 
@@ -832,9 +841,18 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 })
                 .finally(() => {
                     //  this.loading = false;
+                    this.detectChanges();
                 });
 
             this.dialogRankingDiff().open();
+        }
+    }
+
+    importTiles() {
+        if (this.classement) {
+            //
+
+            this.dialogRankingImportTile().open();
         }
     }
 

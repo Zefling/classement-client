@@ -24,7 +24,7 @@ type search = {
 };
 
 @Injectable({ providedIn: 'root' })
-export class APIImdbService {
+export class APITmdbService {
     private readonly http = inject(HttpClient);
     private readonly prefs = inject(PreferencesService);
     private readonly logger = inject(Logger);
@@ -79,8 +79,8 @@ export class APIImdbService {
     }
 
     async acceptedLanguages() {
-        if (this.prefs.preferences.authApiKeys.imdb.trim() !== this.key) {
-            this.key = this.prefs.preferences.authApiKeys.imdb.trim();
+        if (this.prefs.preferences.authApiKeys.tmdb.trim() !== this.key) {
+            this.key = this.prefs.preferences.authApiKeys.tmdb.trim();
 
             if (!this.key) {
                 this.languages = undefined;
