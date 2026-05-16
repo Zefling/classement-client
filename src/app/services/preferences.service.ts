@@ -62,6 +62,15 @@ export class PreferencesService {
                     .then(preferences => {
                         if (preferences) {
                             objectAssignNested(this.initPreferences, preferences);
+
+                            // retro compatibility imdb → tmdb
+                            const authApiKeys = this.initPreferences.authApiKeys;
+                            if ((authApiKeys as any)?.imdb) {
+                                if (!authApiKeys.tmdb) {
+                                    authApiKeys.tmdb = (authApiKeys as any)?.imdb;
+                                    delete (authApiKeys as any).imdb;
+                                }
+                            }
                         }
                     })
                     .catch(() => {
