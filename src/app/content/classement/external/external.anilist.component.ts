@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Output,
+    inject,
+    viewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -43,6 +51,7 @@ export class ExternalAnilistComponent {
     private readonly anilist = inject(APIAnilistService);
     private readonly prefs = inject(PreferencesService);
     private readonly globalService = inject(GlobalService);
+    protected readonly cd = inject(ChangeDetectorRef);
 
     dialog = viewChild.required<MagmaDialog>(MagmaDialog);
 
@@ -79,6 +88,7 @@ export class ExternalAnilistComponent {
         if (this.searchAnilistForm!.value?.query?.trim()) {
             const data = await this.anilist.search({ ...this.searchAnilistForm!.value, pageSize: 12 });
             this.results = data.data.Page.media?.length ? data.data.Page.media : [];
+            this.cd.markForCheck();
         }
     }
 
@@ -120,6 +130,7 @@ export class ExternalAnilistComponent {
             });
 
             ani.disabled = true;
+            this.cd.markForCheck();
         }
     }
 

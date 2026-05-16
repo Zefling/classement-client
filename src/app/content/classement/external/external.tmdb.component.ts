@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
-    EventEmitter,
     OnDestroy,
     OnInit,
-    Output,
     inject,
+    output,
     viewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,9 +25,9 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
 
-import { Theme } from 'src/app/interface/interface';
 import { Genres, MovieSearch } from 'src/app/interface/movie';
 import { APITmdbService } from 'src/app/services/api.tmdb.service';
+import { APIUserService } from 'src/app/services/api.user.service';
 import { GlobalService, TypeFile } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
@@ -52,13 +52,14 @@ import { Subscriptions } from 'src/app/tools/subscriptions';
 })
 export class ExternalTmdbComponent implements OnInit, OnDestroy {
     private readonly tmdb = inject(APITmdbService);
+    private readonly user = inject(APIUserService);
     private readonly prefs = inject(PreferencesService);
     private readonly globalService = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
+
+    readonly change = output<void>();
 
     dialog = viewChild.required<MagmaDialog>(MagmaDialog);
-
-    @Output()
-    change = new EventEmitter<Theme>();
 
     searchMovieForm?: FormGroup;
 
@@ -90,6 +91,7 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
         } else if ((this.prefs.preferences.interfaceLanguage = 'ar')) {
             language = 'ar';
         }
+
         this.searchMovieForm = new FormGroup({
             query: new FormControl(''),
             include_adult: new FormControl(''),
@@ -101,9 +103,7 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        if (this.keyApi) {
-            this.init();
-        }
+        this.init();
         this._sub.push(
             this.prefs.onInit.subscribe(() => {
                 this.init();
@@ -118,16 +118,45 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
         this._sub.clear();
     }
 
-    init() {
-        this.tmdb
-            .acceptedLanguages()
-            .then(list => (this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }))));
+    async init() {
+        if (this.user.logged) {
+            await this.loadServer();
+        } else if (this.prefs.preferences.authApiKeys.tmdb.trim()) {
+            await this.loadLocal();
+        }
+    }
+
+    private async loadLocal() {
+        if (!this.tmdb.active) {
+            const list = await this.tmdb.acceptedLanguagesServer();
+            if (list) {
+                this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }));
+                this.change.emit();
+            }
+        } else {
+            this.change.emit();
+        }
+    }
+
+    private async loadServer() {
+        if (!this.tmdb.active) {
+            const list = await this.tmdb.acceptedLanguagesServer();
+            if (list) {
+                this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }));
+                this.change.emit();
+            } else {
+                this.loadLocal();
+            }
+        } else {
+            this.change.emit();
+        }
     }
 
     async search() {
         if (this.searchMovieForm!.value?.query?.trim()) {
             const page = await this.tmdb.searchMovies({ ...this.searchMovieForm!.value, page: 1 });
             this.results = page.results?.length ? page.results : [];
+            this.cd.markForCheck();
         }
     }
 
@@ -152,6 +181,7 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
             });
 
             movie.disabled = true;
+            this.cd.markForCheck();
         }
     }
 

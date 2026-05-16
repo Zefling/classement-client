@@ -42,12 +42,12 @@
         </div>
       }
       <div class="client-api">
-        @if (tmdbActive) {
+        @if (tmdbActive()) {
           <button class="button-add primary" (click)="tmdb().open()">
             {{ 'generator.actions.TMDB' | transloco }}
           </button>
         }
-        @if (anilistActive) {
+        @if (anilistActive()) {
           <button class="button-add primary" (click)="anilist().open()">
             {{ 'generator.actions.anilist' | transloco }}
           </button>
@@ -992,6 +992,6 @@
 
 <classement-login />
 
-<external-tmdb />
+<external-tmdb (change)="tmdbActive.set(true); detectChanges()" />
 
 <external-anilist />

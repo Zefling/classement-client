@@ -179,22 +179,22 @@ import { FileSizePipe } from '../../pipes/file-size';
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit {
-    private readonly dbService = inject(DBService);
-    private readonly router = inject(Router);
-    private readonly route = inject(ActivatedRoute);
-    private readonly translate = inject(TranslocoService);
-    private readonly global = inject(GlobalService);
-    private readonly mgMessage = inject(MagmaMessages);
-    private readonly userService = inject(APIUserService);
-    private readonly classementService = inject(APIClassementService);
-    private readonly optimiseImage = inject(OptimiseImageService);
-    private readonly logger = inject(Logger);
-    private readonly location = inject(Location);
-    private readonly preferencesService = inject(PreferencesService);
-    private readonly tmdbService = inject(APITmdbService);
-    private readonly memory = inject(MemoryService);
-    private readonly keyboard = inject(EditKeyBoardService);
-    private readonly cd = inject(ChangeDetectorRef);
+    protected readonly dbService = inject(DBService);
+    protected readonly router = inject(Router);
+    protected readonly route = inject(ActivatedRoute);
+    protected readonly translate = inject(TranslocoService);
+    protected readonly global = inject(GlobalService);
+    protected readonly mgMessage = inject(MagmaMessages);
+    protected readonly userService = inject(APIUserService);
+    protected readonly classementService = inject(APIClassementService);
+    protected readonly optimiseImage = inject(OptimiseImageService);
+    protected readonly logger = inject(Logger);
+    protected readonly location = inject(Location);
+    protected readonly preferencesService = inject(PreferencesService);
+    protected readonly tmdbService = inject(APITmdbService);
+    protected readonly memory = inject(MemoryService);
+    protected readonly keyboard = inject(EditKeyBoardService);
+    protected readonly cd = inject(ChangeDetectorRef);
 
     color = color;
 
@@ -240,8 +240,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     altImage = '';
 
-    tmdbActive = false;
-    anilistActive = false;
+    tmdbActive = signal(false);
+    anilistActive = signal(false);
 
     inputTexts = '';
 
@@ -466,8 +466,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     private initAPI() {
-        this.tmdbActive = this.tmdbService.isActive();
-        this.anilistActive = this.preferencesService.preferences.api.anilist;
+        this.anilistActive.set(this.preferencesService.preferences.api.anilist);
     }
 
     private initWithParams(params: Params) {

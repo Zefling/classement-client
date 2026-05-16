@@ -30,47 +30,49 @@
       @if (results?.length) {
         <div class="options">
           <div>
-            <div class="s-12">
-              <mg-input>
-                <mg-input-checkbox [(ngModel)]="withTitle">
-                  {{ baseText + 'with.title' | transloco }}
-                </mg-input-checkbox>
-              </mg-input>
-              @if (withTitle) {
+            <div>
+              <div class="s-6">
                 <mg-input>
-                  <mg-input-checkbox [(ngModel)]="withYear">
-                    {{ baseText + 'with.year' | transloco }}
+                  <mg-input-checkbox [(ngModel)]="withTitle" (ngModelChange)="cd.markForCheck()">
+                    {{ baseText + 'with.title' | transloco }}
                   </mg-input-checkbox>
+                </mg-input>
+                @if (withTitle) {
+                  <mg-input>
+                    <mg-input-checkbox [(ngModel)]="withYear" (ngModelChange)="cd.markForCheck()">
+                      {{ baseText + 'with.year' | transloco }}
+                    </mg-input-checkbox>
+                  </mg-input>
+                }
+              </div>
+              <mg-input class="s-6">
+                <mg-input-label>{{ baseText + 'annotation' | transloco }}</mg-input-label>
+                <mg-input-checkbox value="english" [(ngModel)]="include">{{
+                  baseText + 'for.title.english' | transloco
+                }}</mg-input-checkbox>
+                <mg-input-checkbox value="romaji" [(ngModel)]="include">{{
+                  baseText + 'for.title.romaji' | transloco
+                }}</mg-input-checkbox>
+                <mg-input-checkbox value="native" [(ngModel)]="include">{{
+                  baseText + 'for.title.native' | transloco
+                }}</mg-input-checkbox>
+              </mg-input>
+
+              @if (withTitle) {
+                <mg-input class="s-6">
+                  <mg-input-label>{{ baseText + 'for.title.choice' | transloco }}</mg-input-label>
+                  <mg-input-select
+                    [data]="[
+                      { value: 'english', label: baseText + 'for.title.english' | transloco },
+                      { value: 'romaji', label: baseText + 'for.title.romaji' | transloco },
+                      { value: 'native', label: baseText + 'for.title.native' | transloco },
+                    ]"
+                    [(ngModel)]="titleSource"
+                    (ngModelChange)="cd.markForCheck()"
+                  />
                 </mg-input>
               }
             </div>
-
-            @if (withTitle) {
-              <mg-input class="s-6">
-                <mg-input-label>{{ baseText + 'for.title.choice' | transloco }}</mg-input-label>
-                <mg-input-select
-                  [data]="[
-                    { value: 'english', label: baseText + 'for.title.english' | transloco },
-                    { value: 'romaji', label: baseText + 'for.title.romaji' | transloco },
-                    { value: 'native', label: baseText + 'for.title.native' | transloco },
-                  ]"
-                  [(ngModel)]="titleSource"
-                />
-              </mg-input>
-            }
-
-            <mg-input class="s-6">
-              <mg-input-label>{{ baseText + 'annotation' | transloco }}</mg-input-label>
-              <mg-input-checkbox value="english" [(ngModel)]="include">{{
-                baseText + 'for.title.english' | transloco
-              }}</mg-input-checkbox>
-              <mg-input-checkbox value="romaji" [(ngModel)]="include">{{
-                baseText + 'for.title.romaji' | transloco
-              }}</mg-input-checkbox>
-              <mg-input-checkbox value="native" [(ngModel)]="include">{{
-                baseText + 'for.title.native' | transloco
-              }}</mg-input-checkbox>
-            </mg-input>
           </div>
         </div>
       }
@@ -88,9 +90,9 @@
                         ? ani.title.romaji || ani.title.english
                         : ani.title.native || ani.title.romaji || ani.title.english
                   }}</span>
-                }
-                @if (withYear) {
-                  <span> ({{ ani.startDate.year }})</span>
+                  @if (withYear) {
+                    <span> ({{ ani.startDate.year }})</span>
+                  }
                 }
               </div>
             </div>
