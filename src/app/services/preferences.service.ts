@@ -47,9 +47,10 @@ export class PreferencesService {
     };
 
     private initPreferences: PreferencesData = jsonCopy(this.defaultPreferences);
+    serverPreferences?: PreferencesData;
 
     get preferences(): PreferencesData {
-        return this.initPreferences;
+        return this.serverPreferences ?? this.initPreferences;
     }
 
     init(): Promise<PreferencesData> {

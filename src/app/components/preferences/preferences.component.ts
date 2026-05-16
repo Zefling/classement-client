@@ -156,6 +156,8 @@ export class PreferencesMagmaDialog {
 
                     this.initDataPref(userData);
 
+                    this.preferencesService.serverPreferences = userData;
+
                     // form data
                     const form = jsonCopy<any>(userData);
                     if (form.emojiList) {
@@ -167,6 +169,8 @@ export class PreferencesMagmaDialog {
                     objectAssignNested(userData, this.preferencesFormBackup);
 
                     this.initDataPref(userData);
+
+                    this.preferencesService.serverPreferences = undefined;
 
                     // form data
                     const form = jsonCopy<any>(userData);
