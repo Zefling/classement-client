@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, output, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    computed,
+    inject,
+    input,
+    output,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -50,6 +59,7 @@ export class ClassementThemesComponent {
     private readonly userService = inject(APIUserService);
     private readonly translate = inject(TranslocoService);
     private readonly preference = inject(PreferencesService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -114,6 +124,7 @@ export class ClassementThemesComponent {
                 })
                 .then(result => {
                     this.usersThemes = result.list;
+                    this.cd.markForCheck();
                 });
         }
 
@@ -122,6 +133,8 @@ export class ClassementThemesComponent {
                 t.options.mode.replace(/teams|columns/, 'default') ===
                 this.options().mode.replace(/teams|columns/, 'default'),
         );
+
+        this.cd.markForCheck();
     }
 
     keyUpdate(value: string) {
