@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
 
 import { Logger, MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -26,7 +26,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     totalSize!: number;
     total!: number;
-    progress: number;
+    progress = signal(0);
     totalResize: number;
     countResize: number;
     reduceSize: number;
@@ -39,7 +39,7 @@ export class ClassementOptimiseComponent implements OnInit {
     detail = false;
 
     constructor() {
-        this.progress = 0;
+        this.progress.set(0);
         this.totalResize = 0;
         this.countResize = 0;
         this.reduceSize = 0;
@@ -61,7 +61,7 @@ export class ClassementOptimiseComponent implements OnInit {
     async optimise() {
         this.logger.log('optimise');
         this.start = true;
-        this.progress = 0;
+        this.progress.set(0);
         this.totalResize = 0;
         this.countResize = 0;
         this.reduceSize = 0;
@@ -98,7 +98,7 @@ export class ClassementOptimiseComponent implements OnInit {
 
     private async optimiseImg(fileString: FileString) {
         const file = await this.optimiseImage.resize(fileString, 300, 300);
-        this.progress++;
+        this.progress.update(e => e + 1);
         this.totalResize += file.reduceFile?.realSize || 0;
         this.countResize += file.reduce > 0 ? 1 : 0;
         this.reduceSize += file.reduce;

@@ -47,3 +47,13 @@ img {
     vertical-align: middle;
     margin-inline-end: 5px;
 }
+
+.reset {
+    all: unset !important;
+    display: block !important;
+    width: 100% !important;
+
+    & ::ng-deep div {
+        padding: 0 !important;
+    }
+}

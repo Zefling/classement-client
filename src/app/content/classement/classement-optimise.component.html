@@ -13,10 +13,12 @@
 @if (start) {
   <div>
     <div>
-      @if (progress !== total) {
-        <mg-spinner class="loading" size="20px" tickWidth="2px" />
+      @if (progress() !== total) {
+        <div class="reset">
+          <mg-spinner class="loading" size="20px" tickWidth="2px" />
+        </div>
       }
-      <progress [max]="total" [value]="progress"></progress> {{ progress }} / {{ total }}
+      <progress [max]="total" [value]="progress()"></progress> {{ progress() }} / {{ total }}
     </div>
     <div>
       <a (clickEnter)="toggle()">{{
@@ -36,7 +38,7 @@
       }}
     </div>
     <div>
-      @if (progress === total) {
+      @if (progress() === total) {
         <button class="primary" (click)="optimiseAccept()">
           {{ 'generator.optimise.validate' | transloco }}
         </button>
