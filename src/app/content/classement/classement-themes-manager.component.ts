@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+    computed,
+    inject,
+    input,
+    model,
+    viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -49,6 +59,7 @@ export class ClassementThemesManagerComponent implements OnInit {
     private readonly userService = inject(APIUserService);
     private readonly themeService = inject(APIThemeService);
     private readonly translate = inject(TranslocoService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input / model
 
@@ -76,9 +87,7 @@ export class ClassementThemesManagerComponent implements OnInit {
     selectedTheme?: Theme<string>;
 
     constructor() {
-        if (this.modeApi()) {
-            this.user = this.userService.user;
-        }
+        this.ngOnInit();
     }
 
     ngOnInit(): void {
@@ -133,6 +142,7 @@ export class ClassementThemesManagerComponent implements OnInit {
                     source: 'user',
                 })) || [];
         }
+        this.cd.markForCheck();
     }
 
     async saveBrowser() {
