@@ -18,6 +18,7 @@ import {
     MagmaInputElement,
     MagmaInputSelect,
     MagmaInputText,
+    isEmpty,
     randomNumber,
     ulrToBase64,
 } from '@ikilote/magma';
@@ -130,11 +131,11 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
         if (!this.tmdb.active) {
             const list = await this.tmdb.acceptedLanguagesServer();
             if (list) {
-                this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }));
-                this.change.emit();
+                this.updateLang(list);
+                this.detectChange();
             }
         } else {
-            this.change.emit();
+            this.detectChange();
         }
     }
 
@@ -142,14 +143,19 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
         if (!this.tmdb.active) {
             const list = await this.tmdb.acceptedLanguagesServer();
             if (list) {
-                this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }));
-                this.change.emit();
+                this.updateLang(list);
+                this.detectChange();
             } else {
                 this.loadLocal();
             }
         } else {
-            this.change.emit();
+            this.detectChange();
         }
+    }
+
+    detectChange() {
+        this.cd.markForCheck();
+        this.change.emit();
     }
 
     async search() {
@@ -186,10 +192,17 @@ export class ExternalTmdbComponent implements OnInit, OnDestroy {
     }
 
     open() {
+        this.updateLang(this.tmdb.languageList);
         this.dialog().open();
     }
 
     close() {
         this.dialog().close();
+    }
+
+    private updateLang(list?: string[]) {
+        if (!isEmpty(list)) {
+            this.languages = list?.map<Select2Option>(e => ({ label: e, value: e }));
+        }
     }
 }

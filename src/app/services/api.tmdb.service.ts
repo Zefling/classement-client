@@ -47,6 +47,10 @@ export class APITmdbService extends APICommon {
         return this.userService.token!;
     }
 
+    get languageList() {
+        return this.languages;
+    }
+
     constructor() {
         const translate = inject(TranslocoService);
         const logger = inject(Logger);
