@@ -92,6 +92,11 @@ export class PreferencesService {
         this.onChange.next(data);
     }
 
+    saveTemporaire(data: PreferencesData) {
+        this.serverPreferences = data;
+        this.onChange.next(data);
+    }
+
     openPanel(tabs: string) {
         this.openPref.next(tabs);
     }

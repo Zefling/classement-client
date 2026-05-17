@@ -332,10 +332,12 @@ export class PreferencesMagmaDialog {
     }
 
     private savePref() {
+        const data = this.preferencesForm!.value;
+        data.emojiList = this.emojiSort;
         if (!this.loggedUInUser) {
-            const data = this.preferencesForm!.value;
-            data.emojiList = this.emojiSort;
             this.preferencesService.saveAndUpdate(data);
+        } else {
+            this.preferencesService.saveTemporaire(data);
         }
     }
 }
