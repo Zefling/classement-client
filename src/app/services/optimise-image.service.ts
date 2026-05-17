@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import Pica from 'pica';
+import { Pica } from 'pica';
 
 import { FileHandle, FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from '../interface/interface';
 
