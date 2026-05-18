@@ -30,4 +30,8 @@
 mg-spinner {
     vertical-align: middle;
     padding: 5px;
+
+    & ::ng-deep div {
+        padding: 0 !important;
+    }
 }

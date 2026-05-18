@@ -47,18 +47,18 @@
 
 <div class="buttons-list button-image-save">
   <button class="button-add" (click)="cancelJson()">{{ 'generator.json.cancel' | transloco }}</button>
-  @if (jsonTmp) {
+  @if (jsonTmp?.length) {
     @if (!multi()) {
       @if (actions() === 'all') {
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'replace')">
+        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'replace')">
           {{ 'generator.json.import.replace' | transloco }}
         </button>
 
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'new')">
           {{ 'generator.json.import.new' | transloco }}
         </button>
       } @else if (actions() === 'importOnly') {
-        <button class="button-add primary" (click)="importJson(jsonTmp[0], 'new')">
+        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'new')">
           {{ 'generator.json.import.add' | transloco }}
         </button>
       }

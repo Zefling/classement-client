@@ -1466,6 +1466,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     importJson(event: ImportJsonEvent) {
+        this.memory.inChange = true;
         switch (this.new && event.action === 'new' ? 'replace' : event.action) {
             case 'replace': {
                 this.groups = event.data?.groups!;
@@ -1484,6 +1485,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             }
         }
         this.dialogImport().close();
+        this.effect();
+        setTimeout(() => {
+            this.memory.inChange = false;
+        });
     }
 
     screenMode(mode: 'default' | 'enlarge' | 'fullscreen', div?: HTMLDivElement) {

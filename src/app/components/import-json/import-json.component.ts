@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     OnDestroy,
@@ -46,6 +47,7 @@ export class ImportJsonComponent implements OnDestroy {
     private readonly mgMessage = inject(MagmaMessages);
     private readonly dbService = inject(DBService);
     private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -99,6 +101,8 @@ export class ImportJsonComponent implements OnDestroy {
 
             this.jsonTmp = [];
 
+            console.log('data', Array.isArray(data));
+
             if (!Array.isArray(data)) {
                 if (Array.isArray(data.groups) && data.groups.length > 0 && Array.isArray(data.list) && data.options) {
                     this.jsonTmp = [{ data: data, selected: true }];
@@ -126,6 +130,7 @@ export class ImportJsonComponent implements OnDestroy {
                 type: MagmaMessageType.error,
             });
         }
+        this.cd.markForCheck();
     }
 
     selectAll(select: boolean) {
