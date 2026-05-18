@@ -23,7 +23,12 @@
   </div>
 </div>
 
-<ng-container [sortable]="result" [sortable-filter-input]="filterInput.inputElement" [sortable-filter]="sortableFilter">
+<ng-container
+  [sortable]="result"
+  [sortable-filter-input]="filterInput.inputElement"
+  [sortable-filter]="sortableFilter"
+  (sortable-change)="updateList($event)"
+>
   @if (result && result.length) {
     <table mg hoverRow>
       <thead mg>
@@ -69,7 +74,7 @@
         </tr>
       </thead>
       <tbody mg>
-        @for (item of result; track item) {
+        @for (item of result; track item.id) {
           <tr mg>
             <td mg class="title">
               <div>

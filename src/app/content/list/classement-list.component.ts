@@ -94,7 +94,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
 
     filter = '';
 
-    result!: FormattedInfos[];
+    result: FormattedInfos[] = [];
 
     itemCurrent?: FormattedInfos;
 
@@ -122,6 +122,11 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                 this.updateTitle();
             }),
         );
+    }
+
+    updateList($event: FormattedInfos[]) {
+        this.result = $event;
+        this.cd.markForCheck();
     }
 
     updateTitle() {
@@ -200,7 +205,8 @@ export class ClassementListComponent implements OnInit, OnDestroy {
     showList() {
         this.dbService.getLocalList().then(result => {
             this.result = result;
-            this.sortableDirective().sortLines();
+            this.sortableDirective().sortLinesFromList(result);
+            this.cd.markForCheck();
 
             navigator.storage.estimate().then(quota => {
                 this.quota = quota;
@@ -228,7 +234,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
         } else if (this.itemCurrent?.id) {
             this.dbService.delete(this.itemCurrent.id).then(() => {
                 this.logger.log(`Remove line: ${this.itemCurrent?.id}`);
-                this.result.splice(this.result.indexOf(this.itemCurrent as FormattedInfos), 1);
+                this.result.splice(this.result.indexOf(this.itemCurrent!), 1);
                 this.mgMessage.addMessage(
                     this.translate
                         .translate('message.remove.success')
@@ -250,9 +256,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                 this.logger.log(`Clone line: ${this.itemCurrent?.id} - ${item.id}`);
 
                 this.mgMessage.addMessage(
-                    this.translate
-                        .translate('message.clone.success')
-                        .replace('%title%', this._getTitle(this.itemCurrent!)),
+                    this.translate.translate('message.clone.success').replace('%title%', this._getTitle(item)),
                 );
                 this.itemCurrent = undefined;
                 this.dialogClone().close();
@@ -260,7 +264,7 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/edit/' + item.id]);
                 } else {
                     this.result.push(item);
-                    this.sortableDirective().sortLines();
+                    this.sortableDirective().sortLinesFromList(this.result);
                 }
             });
         }
@@ -283,14 +287,14 @@ export class ClassementListComponent implements OnInit, OnDestroy {
                         this.mgMessage.addMessage(
                             this.translate
                                 .translate('message.add.success')
-                                .replace('%title%', this._getTitle(this.itemCurrent!)),
+                                .replace('%title%', this._getTitle(item.infos!)),
                         );
                         this.itemCurrent = undefined;
                         this.dialogClone().close();
                         const index = this.result.findIndex(e => e.id === item.infos.id);
                         if (index === -1) {
                             this.result.push(item.infos);
-                            this.sortableDirective().sortLines();
+                            this.sortableDirective().sortLinesFromList(this.result);
                         } else {
                             this.result[index] = item.infos;
                         }

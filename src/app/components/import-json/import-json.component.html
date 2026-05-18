@@ -30,13 +30,14 @@
             <mg-input><mg-input-checkbox [(ngModel)]="file.selected" /></mg-input>
           </span>
         }
+        @let data = file.data!;
         <div class="infos-list">
           <span>{{ 'generator.json.title' | transloco }}</span>
-          <span>{{ file.data!.options.title || ('list.title.undefined' | transloco) }}</span>
+          <span>{{ data.options.title || ('list.title.undefined' | transloco) }}</span>
           <span>{{ 'generator.json.category' | transloco }}</span>
-          <span>{{ 'category.' + (file.data!.options.category || 'undefined') | transloco }}</span>
+          <span>{{ 'category.' + (data.options.category || 'undefined') | transloco }}</span>
           <span>{{ 'generator.json.count.group' | transloco }}</span>
-          <span>{{ file.data!.groups.length || 0 }}</span>
+          <span>{{ data.groups.length || 0 }}</span>
           <span>{{ 'generator.json.count.item' | transloco }}</span>
           <span>{{ countItem(file) }}</span>
         </div>

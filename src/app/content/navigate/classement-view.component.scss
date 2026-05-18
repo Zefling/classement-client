@@ -114,16 +114,6 @@ mg-spinner {
     border-spacing: 0;
     width: calc(100% + 60px);
 
-    thead {
-        position: sticky;
-        top: 0;
-        background: var(--list-header-background);
-    }
-
-    th {
-        padding: 7px;
-    }
-
     td {
         padding: 10px 5px;
 
