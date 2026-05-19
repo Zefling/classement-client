@@ -261,16 +261,19 @@ export class GlobalService {
         }
     }
 
-    private customImage(o: Options, cache?: Record<string, string | ArrayBuffer | null>): string {
+    private customImage(o: Options, cache?: Record<string, string | ArrayBuffer | null>): string | null {
         const color = o.imageBackgroundOpacity
-            ? alphaColor(o.imageBackgroundColor || this.lightDark.isLight() ? '#FFF' : '#000', o.imageBackgroundOpacity)
+            ? alphaColor(
+                  o.imageBackgroundColor || (this.lightDark.isLight() ? '#FFF' : '#000'),
+                  o.imageBackgroundOpacity,
+              )
             : null;
-        return (
-            (color ? `linear-gradient(to left, ${color},  ${color}), ` : '') +
-            (o.imageBackgroundImage === 'custom'
-                ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
-                : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`)
-        );
+        return !color
+            ? null
+            : `linear-gradient(to left, ${color},  ${color}), ` +
+                  (o.imageBackgroundImage === 'custom'
+                      ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
+                      : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`);
     }
 
     private fixImage(item: FileString) {
