@@ -345,22 +345,46 @@ export class GlobalService {
     }
 
     saveImage(canvas: HTMLCanvasElement | undefined, title: string, type: FileFormatExport) {
-        if (canvas) {
-            switch (type) {
-                case 'PNG':
-                    this.downloadImage(canvas.toDataURL('image/png'), title + '.png');
-                    break;
-                case 'JPG':
-                    this.downloadImage(canvas.toDataURL('image/jpeg', 1.0), title + '.jpeg');
-                    break;
-                case 'WEBP':
-                    this.downloadImage(canvas.toDataURL('image/webp', 1.0), title + '.webp');
-                    break;
-            }
+        if (!canvas) {
+            return;
         }
+
+        let mimeType: string;
+        let extension: string;
+        let quality: number | undefined;
+
+        switch (type) {
+            case 'PNG':
+                mimeType = 'image/png';
+                extension = '.png';
+                quality = undefined;
+                break;
+            case 'JPG':
+                mimeType = 'image/jpeg';
+                extension = '.jpeg';
+                quality = 1.0;
+                break;
+
+            case 'WEBP':
+            default:
+                mimeType = 'image/webp';
+                extension = '.webp';
+                quality = 1.0;
+                break;
+        }
+
+        canvas.toBlob(
+            blob => {
+                if (blob) {
+                    this.downloadImage(blob, title + extension);
+                }
+            },
+            mimeType,
+            quality,
+        );
     }
 
-    private downloadImage(data: string, filename: string) {
+    private downloadImage(data: string | Blob, filename: string) {
         downloadFile(data, filename);
     }
 
