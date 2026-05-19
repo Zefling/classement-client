@@ -1,0 +1,42 @@
+<mg-dialog class="content-diff" #dialogRankingDiff>
+  <div class="container">
+    @if (diff.length) {
+      <div class="label">
+        {{ 'generator.ranking.add.tile' | transloco }}
+      </div>
+      <div class="elements list">
+        @for (item of diff; track item) {
+          <div class="content-box" (clickEnter)="addTileToList(item)">
+            <div
+              class="content content-render"
+              [ngClass]="options()?.itemTextPosition"
+              [style.width.px]="
+                options()?.itemWidthAuto
+                  ? ((item.width || 150) / (item.height || 150)) * (options()?.itemHeight || 150)
+                  : null
+              "
+            >
+              @if (item.url) {
+                <div class="image">
+                  <img src="{{ imagesCache()?.[item.url] || item.url }}" alt="{{ item.name }}" />
+                </div>
+              }
+              @if (item.title || (options()?.itemTextMinLine && !options()?.itemTextPosition?.endsWith('bubble'))) {
+                <div class="title">
+                  <span>{{ item.title || '' }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="content-diff">{{ 'generator.ranking.no.tile' | transloco }}</div>
+    }
+    <div class="buttons">
+      <button class="primary" (click)="close()">
+        {{ 'generator.ranking.close' | transloco }}
+      </button>
+    </div>
+  </div>
+</mg-dialog>

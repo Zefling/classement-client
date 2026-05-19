@@ -1,0 +1,50 @@
+@if (currentGroup()) {
+  <div class="colors-options">
+    <span
+      class="color txt-color icon-text-color group-options"
+      [colorPicker]="currentGroup()!.group.txtColor"
+      colorPickerAlpha
+      (colorClose)="currentGroup()!.group.txtColor = $event"
+    ></span>
+    <span
+      class="color bg-color icon-background-color group-options"
+      [colorPicker]="currentGroup()!.group.bgColor"
+      (colorClose)="currentGroup()!.group.bgColor = $event"
+    ></span>
+    <label class="name" [style.background-color]="currentGroup()!.group.bgColor">
+      <div class="auto-resize" [attr.data-value]="input?.value">
+        <!-- not use magma -->
+        <textarea
+          #input
+          rows="1"
+          [(ngModel)]="currentGroup()!.group.name"
+          (ngModelChange)="globalChange.emit()"
+          maxlength="500"
+          [style.color]="currentGroup()!.group.txtColor"
+        ></textarea>
+      </div>
+    </label>
+  </div>
+
+  <div class="button-actions">
+    @if (!currentGroup()!.first) {
+      <button class="button-up group-options" (click)="upLine.emit(currentGroup()!.indexGrp)">↑</button>
+    }
+    @if (!currentGroup()!.last) {
+      <button class="button-down group-options" (click)="downLine.emit(currentGroup()!.indexGrp)">↓</button>
+    }
+    @if (!(currentGroup()!.first && currentGroup()!.last)) {
+      <button class="button-suppr group-options" (click)="deleteLine.emit(currentGroup()!.indexGrp); dialog()?.close()">
+        {{ 'generator.line.delete' | transloco }}
+      </button>
+    }
+    <button class="button-add group-options" (click)="addLine.emit(currentGroup()!.indexGrp); dialog()?.close()">
+      {{ 'generator.line.add' | transloco }}
+    </button>
+  </div>
+  <div class="buttons">
+    <button class="primary" (click)="dialog()?.close()">
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    </button>
+  </div>
+}

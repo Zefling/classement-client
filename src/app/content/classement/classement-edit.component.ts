@@ -9,7 +9,7 @@ import {
     moveItemInArray,
     transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { DatePipe, Location, NgClass } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -106,10 +106,15 @@ import {
 } from './classement-default';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
+import { ClassementClearComponent } from './dialogs/classement-clear.component';
+import { ClassementDerivativesComponent } from './dialogs/classement-derivatives.component';
 import { ClassementEditImageComponent } from './dialogs/classement-edit-image.component';
+import { ClassementGroupOptionComponent } from './dialogs/classement-group-option.component';
 import { ClassementImportTileComponent } from './dialogs/classement-import-tile.component';
 import { ClassementLoginComponent } from './dialogs/classement-login.component';
 import { ClassementOptimiseComponent } from './dialogs/classement-optimise.component';
+import { ClassementRankingDiffComponent } from './dialogs/classement-ranking-diff.component';
+import { ClassementTextsComponent } from './dialogs/classement-texts.component';
 import { ExternalAnilistComponent } from './external/external.anilist.component';
 import { ExternalTmdbComponent } from './external/external.tmdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
@@ -139,7 +144,6 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         // libs
         NgClass,
         FormsModule,
-        DatePipe,
         TranslocoPipe,
         CdkDropListGroup,
         CdkDragElement,
@@ -177,6 +181,11 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         ClassementEditImageComponent,
         ClassementLoginComponent,
         ClassementImportTileComponent,
+        ClassementClearComponent,
+        ClassementDerivativesComponent,
+        ClassementGroupOptionComponent,
+        ClassementRankingDiffComponent,
+        ClassementTextsComponent,
         ExternalTmdbComponent,
         ExternalAnilistComponent,
         FileSizePipe,
@@ -215,8 +224,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     list: FileType[] = [];
     lockCategory = false;
 
-    diff?: FileString[];
-
     options!: Options;
     nameOpacity!: number;
     currentGroup?: GroupOption;
@@ -249,13 +256,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     tmdbActive = signal(false);
     anilistActive = signal(false);
 
-    inputTexts = '';
-
     editField = signal(false);
 
     pinnedList = false;
-
-    dialogClearRandomize = false;
 
     @HostBinding('class.option-reduce')
     get optionReduce() {
@@ -283,10 +286,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     dialogImport = viewChild.required<MagmaDialog>('dialogImport');
     dialogOptimise = viewChild.required<MagmaDialog>('dialogOptimise');
     dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
-    dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
-    dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
     dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
-    dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
     editImage = viewChild.required(ClassementEditImageComponent);
     login = viewChild.required(ClassementLoginComponent);
     tmdb = viewChild.required(ExternalTmdbComponent);
@@ -727,11 +727,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
     }
 
-    loadDerivativeClassement(classement: Classement) {
-        this.router.navigate(['edit', Utils.getClassementId(classement)]);
-        this.dialogDerivatives().close();
-    }
-
     helpInit() {
         switch (this.options.mode) {
             case 'teams':
@@ -796,72 +791,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
     }
 
-    showDerivative() {
-        this.dialogDerivatives().open();
-    }
-
-    showRankingDiff() {
-        if (this.classement) {
-            //this.loading = true;
-            this.classementService
-                .getClassementsByTemplateId(this.classement.templateId)
-                .then(classements => {
-                    this.diff = [];
-                    // current tiles
-                    const list: FileType[] = [];
-                    list.push(...this.list);
-                    this.groups.forEach(e => list.push(...e.list));
-
-                    if (classements?.length) {
-                        classements.forEach(classement => {
-                            const listCompare = [];
-                            listCompare.push(...classement.data.list);
-                            classement.data.groups.forEach(e => listCompare.push(...e.list));
-
-                            listCompare.forEach(tile => {
-                                if (tile) {
-                                    // compare with exist
-                                    for (const item of list) {
-                                        if (
-                                            item &&
-                                            (item.url === tile.url || (!item.url && item.title == tile.title))
-                                        ) {
-                                            return;
-                                        }
-                                    }
-                                    // compare with previous added
-                                    for (const item of this.diff!) {
-                                        if (item.url === tile.url || (!item.url && item.title == tile.title)) {
-                                            return;
-                                        }
-                                    }
-                                    this.diff?.push(tile);
-                                }
-                            });
-                        });
-                    }
-                })
-                .catch(e => {
-                    this.mgMessage.addMessage(e, {
-                        type: MagmaMessageType.error,
-                    });
-                })
-                .finally(() => {
-                    //  this.loading = false;
-                    this.detectChanges();
-                });
-
-            this.dialogRankingDiff().open();
-        }
-    }
-
-    addTile(tile: FileString, diff = true) {
+    addTile(tile: FileString) {
         this.list.push(tile);
         this.addIds();
-
-        if (diff) {
-            this.diff!.splice(this.diff!.indexOf(tile), 1);
-        }
     }
 
     createTile(event: MouseEvent) {
@@ -1035,20 +967,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
 
         this._inputFile.click();
-    }
-
-    addTextsDialog() {
-        this.dialogTexts().open();
-    }
-
-    closeTexts() {
-        this.inputTexts = '';
-        this.dialogTexts().close();
-    }
-
-    addTexts() {
-        this.global.addTexts(this.inputTexts);
-        this.closeTexts();
     }
 
     globalChange() {
@@ -1255,7 +1173,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
 
         const autoResize = this.preferencesService.preferences.autoResize;
-        if (autoResize && autoResize !== 'origin') {
+        if (autoResize && autoResize !== 'origin' && file.url) {
             const [maxWidth, maxHeight] = autoResize.split('×');
             const fileOp = await this.optimiseImage.resize(file, +maxWidth, +maxHeight);
             if (fileOp.reduceFile) {

@@ -1,0 +1,36 @@
+<mg-dialog #dialogDerivatives closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  @if (derivatives()) {
+    <table mg hoverRow class="table-derivatives">
+      <thead mg>
+        <tr mg>
+          <th mg class="title">{{ 'list.title.name' | transloco }}</th>
+          <th mg class="date">{{ 'list.date' | transloco }}</th>
+          <th mg class="groups">{{ 'list.count.group' | transloco }}</th>
+          <th mg class="items">{{ 'list.count.item' | transloco }}</th>
+          <th mg class="actions">{{ 'list.action.name' | transloco }}</th>
+        </tr>
+      </thead>
+      <tbody mg>
+        @for (derivative of derivatives(); track derivative) {
+          <tr mg [class.current]="derivative.rankingId === currentRankingId()">
+            <td mg class="title">
+              {{ derivative.data.options.title || ('list.title.undefined' | transloco) }}
+              @if (derivative.rankingId === currentRankingId()) {
+                <span class="icon-left"></span> {{ 'list.current' | transloco }}
+              }
+            </td>
+            <td mg class="date">
+              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
+              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
+            </td>
+            <td mg class="groups">{{ derivative.totalGroups }}</td>
+            <td mg class="items">{{ derivative.totalItems }}</td>
+            <td mg class="actions">
+              <a (clickEnter)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | transloco }}</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</mg-dialog>

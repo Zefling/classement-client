@@ -1,0 +1,20 @@
+<mg-dialog class="auto-format" #dialogTexts>
+  <div class="add-text-dialog">
+    <label class="name">
+      <div>
+        {{ 'generator.actions.texts.info' | transloco }}
+      </div>
+      <mg-input class="s-12">
+        <mg-input-textarea autosize maxlength="2000" [(ngModel)]="inputTexts" />
+      </mg-input>
+    </label>
+    <div class="buttons">
+      <button class="default" (click)="close()">
+        {{ 'generator.actions.texts.cancel' | transloco }}
+      </button>
+      <button class="primary" (click)="addTexts()">
+        {{ 'generator.actions.texts.ok' | transloco }}
+      </button>
+    </div>
+  </div>
+</mg-dialog>

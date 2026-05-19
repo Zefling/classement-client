@@ -123,6 +123,9 @@ export class GlobalService {
                         title: trimString,
                         width: 150,
                     },
+                    add: {
+                        title: true, // force title
+                    },
                 });
             }
         }

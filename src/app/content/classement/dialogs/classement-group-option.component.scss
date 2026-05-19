@@ -1,0 +1,139 @@
+.colors-options {
+    display: grid;
+    grid-template: 'a b' 'c b' / 70px 1fr;
+    gap: 5px;
+    width: 100%;
+
+    textarea {
+        outline: none;
+        border: none !important;
+        background: transparent;
+        text-align: center;
+    }
+
+    .txt-color {
+        grid-area: a;
+        padding: 5px;
+    }
+
+    .bg-color {
+        grid-area: c;
+        padding: 5px;
+    }
+
+    .name {
+        grid-area: b;
+    }
+}
+
+.button-actions {
+    display: grid;
+    grid-template: 'up suppr' 1fr 'down add' 1fr / auto 1fr;
+    gap: 3px;
+    margin: auto;
+    max-width: 150px;
+
+    button {
+        display: inline-block;
+    }
+}
+
+.button-up {
+    grid-area: up;
+}
+
+.button-down {
+    grid-area: down;
+}
+
+.button-right {
+    grid-area: right;
+}
+
+.button-left {
+    grid-area: left;
+}
+
+.button-suppr {
+    grid-area: suppr;
+}
+
+.button-add {
+    grid-area: add;
+}
+
+span.color {
+    display: block;
+    grid-area: b;
+    cursor: pointer;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #fff8;
+    padding: 2px 5px;
+    width: 30px;
+    height: 30px;
+    color: #000;
+    font-size: 24px;
+}
+
+.auto-resize {
+    display: inline-grid;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    font-weight: inherit;
+    font-size: inherit;
+
+    @supports (field-sizing: content) {
+        textarea {
+            field-sizing: content;
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
+        }
+    }
+
+    @supports not (field-sizing: content) {
+        &::after,
+        textarea {
+            grid-area: 1 / 1;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
+        }
+
+        &::after {
+            visibility: hidden;
+            border-color: transparent;
+            content: attr(data-value) ' ';
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }
+
+    &.no-border {
+        &::after,
+        textarea {
+            appearance: none;
+            outline: 0;
+            border: 0;
+            background: none;
+            text-align: center;
+        }
+    }
+}

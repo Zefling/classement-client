@@ -28,12 +28,12 @@
         <div class="server-api">
           <mg-ellipsis-button>
             @if (derivatives && derivatives.length > 1) {
-              <mg-ellipsis-item (click)="showDerivative()">
+              <mg-ellipsis-item (click)="dialogDerivatives.open()">
                 {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
               </mg-ellipsis-item>
             }
             @if (classement) {
-              <mg-ellipsis-item (click)="showRankingDiff()">
+              <mg-ellipsis-item (click)="dialogRankingDiff.open()">
                 {{ 'generator.ranking.diff' | transloco }}
               </mg-ellipsis-item>
             }
@@ -669,7 +669,7 @@
             <div class="content-box add-file" (clickEnter)="addFiles()">
               <span>{{ 'generator.ranking.add.image' | transloco }}</span>
             </div>
-            <div class="content-box add-text" (clickEnter)="addTextsDialog()">
+            <div class="content-box add-text" (clickEnter)="dialogTexts.open()">
               <span>{{ 'generator.ranking.add.text' | transloco }}</span>
             </div>
           </div>
@@ -776,181 +776,33 @@
   <div #image></div>
 </mg-dialog>
 
-<mg-dialog #dialogDerivatives closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  @if (derivatives) {
-    <table class="table-derivatives">
-      <thead>
-        <tr>
-          <th class="title">{{ 'list.title.name' | transloco }}</th>
-          <th class="date">{{ 'list.date' | transloco }}</th>
-          <th class="groups">{{ 'list.count.group' | transloco }}</th>
-          <th class="items">{{ 'list.count.item' | transloco }}</th>
-          <th class="actions">{{ 'list.action.name' | transloco }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (derivative of derivatives; track derivative) {
-          <tr [class.current]="derivative.rankingId === classement?.rankingId">
-            <td class="title">
-              {{ derivative.data.options.title || ('list.title.undefined' | transloco) }}
-              @if (derivative.rankingId === classement?.rankingId) {
-                <span class="icon-left"></span> {{ 'list.current' | transloco }}
-              }
-            </td>
-            <td class="date">
-              <span>{{ derivative.dateCreate | date: ('date.dd/MM/yyyy' | transloco) }}</span>
-              <span>{{ derivative.dateCreate | date: ('date.HH:mm' | transloco) }}</span>
-            </td>
-            <td class="groups">{{ derivative.totalGroups }}</td>
-            <td class="items">{{ derivative.totalItems }}</td>
-            <td class="actions">
-              <a (clickEnter)="loadDerivativeClassement(derivative)">{{ 'list.action.replace' | transloco }}</a>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  }
-</mg-dialog>
+<classement-derivatives #dialogDerivatives [derivatives]="derivatives" [currentRankingId]="classement?.rankingId" />
 
-<mg-dialog class="content-diff" #dialogRankingDiff>
-  <div class="container">
-    @if (diff?.length) {
-      <div class="label">
-        {{ 'generator.ranking.add.tile' | transloco }}
-      </div>
-      <div class="elements drop-list">
-        @for (item of diff; track item) {
-          <div class="content-box" (clickEnter)="addTile(item)">
-            <div
-              class="content content-render"
-              [ngClass]="options.itemTextPosition"
-              [style.width.px]="
-                options.itemWidthAuto ? ((item.width || 150) / (item.height || 150)) * options.itemHeight : null
-              "
-            >
-              @if (item.url) {
-                <div class="image">
-                  <img src="{{ imagesCache[item.url] || item.url }}" alt="{{ item.name }}" />
-                </div>
-              }
-              @if (item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))) {
-                <div class="title">
-                  <span>{{ item.title || '' }}</span>
-                </div>
-              }
-            </div>
-          </div>
-        }
-      </div>
-    } @else {
-      <div class="content-diff">{{ 'generator.ranking.no.tile' | transloco }}</div>
-    }
-    <div class="buttons">
-      <button class="primary" (click)="dialogRankingDiff.close()">
-        {{ 'generator.ranking.close' | transloco }}
-      </button>
-    </div>
-  </div>
-</mg-dialog>
+<classement-ranking-diff
+  #dialogRankingDiff
+  [templateId]="classement?.templateId"
+  [list]="list"
+  [groups]="groups"
+  [options]="options"
+  [imagesCache]="imagesCache"
+  (addTile)="addTile($event)"
+/>
 
-<mg-dialog class="auto-format" #dialogClear>
-  <p>
-    {{ 'generator.actions.reset.groups.question' | transloco }}
-  </p>
-  <p>
-    <mg-input>
-      <mg-input-checkbox [(ngModel)]="dialogClearRandomize"
-        >{{ 'generator.actions.reset.groups.clear.list' | transloco }}
-      </mg-input-checkbox>
-    </mg-input>
-  </p>
-  <div class="buttons">
-    <button (click)="dialogClear.close()">
-      {{ 'generator.actions.reset.groups.cancel' | transloco }}
-    </button>
-    <button class="warn" (click)="reset(dialogClearRandomize); dialogClear.close()">
-      {{ 'generator.actions.reset.groups.ok' | transloco }}
-    </button>
-  </div>
-</mg-dialog>
+<classement-clear #dialogClear (reset)="reset($event)" />
 
 <mg-dialog class="auto-format" #dialogGroupOption>
-  @if (currentGroup) {
-    <div class="colors-options">
-      <span
-        class="color txt-color icon-text-color group-options"
-        [colorPicker]="currentGroup.group.txtColor"
-        colorPickerAlpha
-        (colorClose)="currentGroup.group.txtColor = $event"
-      ></span>
-      <span
-        class="color bg-color icon-background-color group-options"
-        [colorPicker]="currentGroup.group.bgColor"
-        (colorClose)="currentGroup.group.bgColor = $event"
-      ></span>
-      <label class="name" [style.background-color]="currentGroup.group.bgColor">
-        <div class="auto-resize" [attr.data-value]="input?.value">
-          <!-- not use magma -->
-          <textarea
-            #input
-            rows="1"
-            [(ngModel)]="currentGroup.group.name"
-            (ngModelChange)="globalChange()"
-            maxlength="500"
-            [style.color]="currentGroup.group.txtColor"
-          ></textarea>
-        </div>
-      </label>
-    </div>
-
-    <div class="button-actions">
-      @if (!currentGroup.first) {
-        <button class="button-up group-options" (click)="upLine(currentGroup.indexGrp)">↑</button>
-      }
-      @if (!currentGroup.last) {
-        <button class="button-down group-options" (click)="downLine(currentGroup.indexGrp)">↓</button>
-      }
-      @if (!(currentGroup.first && currentGroup.last)) {
-        <button
-          class="button-suppr group-options"
-          (click)="deleteLine(currentGroup.indexGrp); dialogGroupOption.close()"
-        >
-          {{ 'generator.line.delete' | transloco }}
-        </button>
-      }
-      <button class="button-add group-options" (click)="addLine(currentGroup.indexGrp); dialogGroupOption.close()">
-        {{ 'generator.line.add' | transloco }}
-      </button>
-    </div>
-    <div class="buttons">
-      <button class="primary" (click)="dialogGroupOption.close()">
-        {{ 'generator.actions.reset.groups.ok' | transloco }}
-      </button>
-    </div>
-  }
+  <classement-group-option
+    [currentGroup]="currentGroup"
+    [dialog]="dialogGroupOption"
+    (globalChange)="globalChange()"
+    (upLine)="upLine($event)"
+    (downLine)="downLine($event)"
+    (deleteLine)="deleteLine($event)"
+    (addLine)="addLine($event)"
+  />
 </mg-dialog>
 
-<mg-dialog class="auto-format" #dialogTexts>
-  <div class="add-text-dialog">
-    <label class="name">
-      <div>
-        {{ 'generator.actions.texts.info' | transloco }}
-      </div>
-      <mg-input class="s-12">
-        <mg-input-textarea autosize maxlength="2000" [(ngModel)]="inputTexts" />
-      </mg-input>
-    </label>
-    <div class="buttons">
-      <button class="default" (click)="closeTexts()">
-        {{ 'generator.actions.texts.cancel' | transloco }}
-      </button>
-      <button class="primary" (click)="addTexts()">
-        {{ 'generator.actions.texts.ok' | transloco }}
-      </button>
-    </div>
-  </div>
-</mg-dialog>
+<classement-texts #dialogTexts />
 
 <mg-dialog #dialogSaveServer>
   @if (logged && dialogSaveServer.isOpen()) {
@@ -975,7 +827,7 @@
   }
 </mg-dialog>
 
-<classement-import-tile #dialogRankingImportTile (addTile)="addTile($event, false)" />
+<classement-import-tile #dialogRankingImportTile (addTile)="addTile($event)" />
 
 <classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage />
 

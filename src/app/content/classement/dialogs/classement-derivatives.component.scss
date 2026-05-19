@@ -1,0 +1,33 @@
+.table-derivatives {
+    margin: 20px 0;
+    width: 100%;
+
+    a {
+        white-space: nowrap;
+    }
+
+    tbody {
+        .current {
+            color: var(--list-selected-text);
+        }
+
+        .date {
+            text-align: center;
+
+            span {
+                display: block;
+                margin: auto 5px;
+            }
+        }
+
+        .groups,
+        .items {
+            padding-inline-end: 10px;
+            text-align: center;
+        }
+
+        .actions {
+            text-align: center;
+        }
+    }
+}

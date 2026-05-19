@@ -1,0 +1,20 @@
+<mg-dialog class="auto-format" #dialogClear>
+  <p>
+    {{ 'generator.actions.reset.groups.question' | transloco }}
+  </p>
+  <p>
+    <mg-input>
+      <mg-input-checkbox [(ngModel)]="randomize"
+        >{{ 'generator.actions.reset.groups.clear.list' | transloco }}
+      </mg-input-checkbox>
+    </mg-input>
+  </p>
+  <div class="buttons">
+    <button (click)="close()">
+      {{ 'generator.actions.reset.groups.cancel' | transloco }}
+    </button>
+    <button class="warn" (click)="close()">
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    </button>
+  </div>
+</mg-dialog>

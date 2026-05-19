@@ -380,6 +380,7 @@ img {
             resize: none;
             color: var(--text-color);
             font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
         }
     }
 
@@ -397,6 +398,7 @@ img {
             resize: none;
             color: var(--text-color);
             font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
         }
 
         &::after {
@@ -944,75 +946,6 @@ mg-spinner {
 }
 
 /* derivatives ------------------------------------------------------------------ */
-
-.table-derivatives {
-    position: relative;
-    margin: 0 -30px;
-    border-spacing: 0;
-
-    td {
-        padding: 10px 5px;
-
-        a {
-            white-space: nowrap;
-        }
-    }
-
-    tbody {
-        tr:hover {
-            cursor: default;
-            background: var(--list-line-hover-background);
-        }
-
-        .current {
-            color: var(--list-selected-text);
-        }
-
-        .date {
-            text-align: center;
-
-            span {
-                display: block;
-                margin: auto 5px;
-            }
-        }
-
-        .groups,
-        .items {
-            padding-inline-end: 10px;
-            text-align: center;
-        }
-
-        .actions {
-            text-align: center;
-        }
-    }
-}
-
-/* diff tile ------------------------------------------------------------------ */
-
-.content-diff {
-    .container {
-        padding: 30px 0;
-    }
-
-    .drop-list {
-        border: none;
-        background: none;
-    }
-
-    .content-box {
-        cursor: pointer;
-
-        &:hover {
-            filter: var(--tile-add-filter);
-        }
-    }
-
-    .buttons {
-        padding-top: 30px;
-    }
-}
 
 /* drag'n drop file */
 
