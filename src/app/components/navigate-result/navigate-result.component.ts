@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, booleanAttribute, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, booleanAttribute, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { MagmaClickEnterDirective } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { Classement } from 'src/app/interface/interface';
@@ -15,7 +16,7 @@ import { Classement } from 'src/app/interface/interface';
         '[class.list]': 'isHomeList()',
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, DatePipe, TranslocoPipe],
+    imports: [RouterLink, DatePipe, TranslocoPipe, MagmaClickEnterDirective],
 })
 export class NavigateResultComponent {
     // input
@@ -24,9 +25,12 @@ export class NavigateResultComponent {
     readonly hideDerivatives = input<boolean, any>(false, { transform: booleanAttribute });
     readonly hideUser = input<boolean, any>(false, { transform: booleanAttribute });
     readonly onlyRanking = input<boolean, any>(false, { transform: booleanAttribute });
+    readonly isAction = input(false, { transform: booleanAttribute });
 
     // input / host
 
     readonly isCategoryList = input<boolean, any>(false, { transform: booleanAttribute });
     readonly isHomeList = input<boolean, any>(false, { transform: booleanAttribute });
+
+    action = output<Classement>();
 }

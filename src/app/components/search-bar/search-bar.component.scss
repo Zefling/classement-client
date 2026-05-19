@@ -1,0 +1,47 @@
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.line {
+    display: flex;
+    flex: 2 2 450px;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.name {
+    flex: 5 5 300px;
+}
+
+.categories,
+.modes {
+    flex: 1 1 170px;
+
+    .list-mode {
+        display: flex;
+        gap: 10px;
+
+        .view span {
+            vertical-align: -4px;
+            font-size: 20px;
+        }
+        .desc {
+            text-align: left;
+        }
+
+        &.option {
+            flex-direction: column;
+            align-items: center;
+
+            .view span {
+                font-size: 40px;
+                text-align: left;
+            }
+            .desc {
+                text-align: center;
+            }
+        }
+    }
+}

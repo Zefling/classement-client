@@ -353,9 +353,6 @@ export class GlobalService {
                 case 'WEBP':
                     this.downloadImage(canvas.toDataURL('image/webp', 1.0), title + '.webp');
                     break;
-                case 'AVIF':
-                    this.downloadImage(canvas.toDataURL('image/avif', 1.0), title + '.avif');
-                    break;
             }
         }
     }

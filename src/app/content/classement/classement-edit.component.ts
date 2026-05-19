@@ -44,8 +44,6 @@ import {
     MagmaEllipsisItemComponent,
     MagmaInput,
     MagmaInputCheckbox,
-    MagmaInputElement,
-    MagmaInputText,
     MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
@@ -65,6 +63,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
+import Bowser from 'bowser';
 import { first } from 'rxjs';
 
 import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
@@ -105,11 +104,12 @@ import {
     themesIceberg,
     themesLists,
 } from './classement-default';
-import { ClassementEditImageComponent } from './classement-edit-image.component';
-import { ClassementLoginComponent } from './classement-login.component';
-import { ClassementOptimiseComponent } from './classement-optimise.component';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
+import { ClassementEditImageComponent } from './dialogs/classement-edit-image.component';
+import { ClassementImportTileComponent } from './dialogs/classement-import-tile.component';
+import { ClassementLoginComponent } from './dialogs/classement-login.component';
+import { ClassementOptimiseComponent } from './dialogs/classement-optimise.component';
 import { ExternalAnilistComponent } from './external/external.anilist.component';
 import { ExternalTmdbComponent } from './external/external.tmdb.component';
 import { HelpAxisComponent } from './help/help.axis.component';
@@ -128,12 +128,15 @@ import { CdkDropZone } from '../../directives/dropzone.directive';
 import { RemoveTileDirective } from '../../directives/remove-tile.directive';
 import { FileSizePipe } from '../../pipes/file-size';
 
+const browser = Bowser.getParser(window.navigator.userAgent);
+
 @Component({
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
+        // libs
         NgClass,
         FormsModule,
         DatePipe,
@@ -143,6 +146,25 @@ import { FileSizePipe } from '../../pipes/file-size';
         CdkDropList,
         CdkDrag,
         CdkDropZone,
+        // magma
+        MagmaContextMenu,
+        MagmaNgInitDirective,
+        MagmaTooltipDirective,
+        MagmaDialog,
+        MagmaNgModelChangeDebouncedDirective,
+        MagmaInput,
+        MagmaInputCheckbox,
+        MagmaInputTextarea,
+        MagmaColorPicker,
+        MagmaClickEnterDirective,
+        MagmaClickOutsideDirective,
+        MagmaLoader,
+        MagmaLoaderMessage,
+        MagmaSpinner,
+        MagmaStopPropagationDirective,
+        MagmaEllipsisButton,
+        MagmaEllipsisItemComponent,
+        // internal
         RemoveTileDirective,
         DropImageDirective,
         ZoneAreaComponent,
@@ -154,28 +176,10 @@ import { FileSizePipe } from '../../pipes/file-size';
         ClassementSaveServerComponent,
         ClassementEditImageComponent,
         ClassementLoginComponent,
+        ClassementImportTileComponent,
         ExternalTmdbComponent,
         ExternalAnilistComponent,
         FileSizePipe,
-        MagmaContextMenu,
-        MagmaNgInitDirective,
-        MagmaTooltipDirective,
-        MagmaDialog,
-        MagmaNgModelChangeDebouncedDirective,
-        MagmaInput,
-        MagmaInputElement,
-        MagmaInputCheckbox,
-        MagmaInputText,
-        MagmaInputTextarea,
-        MagmaColorPicker,
-        MagmaClickEnterDirective,
-        MagmaClickOutsideDirective,
-        MagmaLoader,
-        MagmaLoaderMessage,
-        MagmaSpinner,
-        MagmaStopPropagationDirective,
-        MagmaEllipsisButton,
-        MagmaEllipsisItemComponent,
     ],
 })
 export class ClassementEditComponent implements OnDestroy, OnInit {
@@ -204,6 +208,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     classement?: Classement;
 
     derivatives?: Classement[];
+
+    classementsSearch?: Classement[];
 
     groups: FormattedGroup[] = [];
     list: FileType[] = [];
@@ -279,7 +285,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
     dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
     dialogRankingDiff = viewChild.required<MagmaDialog>('dialogRankingDiff');
-    dialogRankingImportTile = viewChild.required<MagmaDialog>('dialogRankingImportTile');
     dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
     dialogTexts = viewChild.required<MagmaDialog>('dialogTexts');
     editImage = viewChild.required(ClassementEditImageComponent);
@@ -296,6 +301,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     selectionIndex: number | null = null;
     selectionDiv: HTMLDivElement | null = null;
     selectionDrag: CdkDragElement<any> | null = null;
+
+    // export
+    webp = browser.isEngine('blink') || browser.isEngine('gecko');
 
     private _canvas?: HTMLCanvasElement;
     private _sub = Subscriptions.instance();
@@ -847,18 +855,13 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
     }
 
-    importTiles() {
-        if (this.classement) {
-            //
-
-            this.dialogRankingImportTile().open();
-        }
-    }
-
-    addTile(tile: FileString) {
+    addTile(tile: FileString, diff = true) {
         this.list.push(tile);
         this.addIds();
-        this.diff!.splice(this.diff!.indexOf(tile), 1);
+
+        if (diff) {
+            this.diff!.splice(this.diff!.indexOf(tile), 1);
+        }
     }
 
     createTile(event: MouseEvent) {

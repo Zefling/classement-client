@@ -1,0 +1,59 @@
+<mg-dialog
+  class="content-diff"
+  closeButton
+  (onClose)="closeDialog()"
+  [closeButtonTitle]="'generic.dialog.close' | transloco"
+>
+  <div class="container">
+    <search-bar (search)="search($event)" />
+
+    @if (classements && !classement) {
+      <div class="navigate-result">
+        <navigate-result [classements]="classements" onlyRanking isAction (action)="selectClassement($event)" />
+      </div>
+    } @else if (classement) {
+      @let options = classement.data.options;
+
+      <h3>
+        {{ options.title }}
+      </h3>
+
+      <div class="list">
+        @for (item of list; track $index) {
+          <ng-container [ngTemplateOutlet]="templateTile" [ngTemplateOutletContext]="{ options, item }" />
+        } @empty {
+          {{ 'generator.ranking.no.other.tile' | transloco }}
+        }
+      </div>
+    }
+
+    <div class="buttons">
+      <button class="primary" (click)="closeDialog()">
+        {{ 'generator.ranking.close' | transloco }}
+      </button>
+    </div>
+  </div>
+</mg-dialog>
+
+<ng-template #templateTile let-options="options" let-item="item">
+  <div class="content-box" (clickEnter)="addTileAndRemove(item)">
+    <div
+      class="content content-render"
+      [ngClass]="options.itemTextPosition"
+      [style.width.px]="
+        options.itemWidthAuto ? ((item.width || 150) / (item.height || 150)) * options.itemHeight : null
+      "
+    >
+      @if (item.url) {
+        <div class="image">
+          <img src="{{ item.url }}" alt="{{ item.name }}" />
+        </div>
+      }
+      @if (item.title || (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))) {
+        <div class="title">
+          <span>{{ item.title || '' }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</ng-template>

@@ -1,58 +1,6 @@
 <h2>{{ 'menu.navigate' | transloco }}</h2>
 
-@if (categoriesList) {
-  <form class="search" (submit)="submit(true)">
-    <mg-input class="name">
-      <mg-input-label>{{ 'navigate.title' | transloco }}</mg-input-label>
-      <mg-input-text name="name" [(ngModel)]="searchKey" clearCross />
-    </mg-input>
-
-    <div class="line">
-      <mg-input class="categories">
-        <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
-        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category" clearCross />
-      </mg-input>
-
-      <mg-input class="modes">
-        <mg-input-label>{{ 'navigate.mode' | transloco }}</mg-input-label>
-        <mg-input-select
-          name="mode"
-          [data]="listMode"
-          [(ngModel)]="mode"
-          [templates]="{ template: templateMode, templateSelection: templateSelectionMode }"
-          grid="80px"
-        >
-          <ng-template #templateMode let-label="label" let-data="data">
-            @if (data) {
-              <div class="list-mode option">
-                <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
-                <div class="desc">
-                  {{ 'mode.name.' + label | transloco }}
-                </div>
-              </div>
-            } @else {
-              <div>&nbsp;</div>
-            }
-          </ng-template>
-          <ng-template #templateSelectionMode let-label="label" let-data="data">
-            @if (data) {
-              <div class="list-mode">
-                <div class="view"><span [ngClass]="'icon-mode-' + data.icon"></span></div>
-                <div class="desc">
-                  {{ 'mode.name.' + label | transloco }}
-                </div>
-              </div>
-            } @else {
-              <div>&nbsp;</div>
-            }
-          </ng-template>
-          ></mg-input-select
-        >
-      </mg-input>
-      <button type="submit">{{ 'navigate.search' | transloco }}</button>
-    </div>
-  </form>
-}
+<search-bar [data]="fields" (search)="search($event)" />
 
 <h3>
   {{ (isCategoryList ? 'navigate.categories' : 'navigate.classements') | transloco }}

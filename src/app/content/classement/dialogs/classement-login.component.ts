@@ -8,9 +8,9 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { APIUserService } from 'src/app/services/api.user.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
-import { ClassementEditComponent } from './classement-edit.component';
+import { ClassementEditComponent } from './../classement-edit.component';
 
-import { UserLoginComponent } from '../user/user-login.component';
+import { UserLoginComponent } from '../../user/user-login.component';
 
 @Component({
     selector: 'classement-login',

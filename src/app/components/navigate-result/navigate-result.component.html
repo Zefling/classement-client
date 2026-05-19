@@ -3,13 +3,16 @@
     <a
       class="classement"
       [routerLink]="
-        isCategoryList()
-          ? ['/navigate']
-          : classement.templateTotal <= 1 || this.onlyRanking()
-            ? ['/navigate/view', classement.linkId || classement.rankingId]
-            : ['/navigate/template', classement.templateId]
+        isAction()
+          ? null
+          : isCategoryList()
+            ? ['/navigate']
+            : classement.templateTotal <= 1 || this.onlyRanking()
+              ? ['/navigate/view', classement.linkId || classement.rankingId]
+              : ['/navigate/template', classement.templateId]
       "
       [queryParams]="isCategoryList() ? { category: classement.category } : {}"
+      (clickEnter)="isAction() ? action.emit(classement) : null"
     >
       <figure>
         <div

@@ -1,33 +1,18 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import {
-    Logger,
-    LoggerLevel,
-    MagmaInput,
-    MagmaInputElement,
-    MagmaInputSelect,
-    MagmaInputText,
-    MagmaLoaderBlock,
-    MagmaLoaderTile,
-    MagmaMessages,
-    MagmaPagination,
-} from '@ikilote/magma';
+import { Logger, LoggerLevel, MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages, MagmaPagination } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Data } from 'ng-select2-component';
-
+import { SearchBarComponent, SearchFormFields } from 'src/app/components/search-bar/search-bar.component';
 import { Classement } from 'src/app/interface/interface';
 import { APIClassementService } from 'src/app/services/api.classement.service';
-import { CategoriesService } from 'src/app/services/categories.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
-import { listModes } from '../classement/classement-default';
 
 @Component({
     selector: 'classement-navigate',
@@ -37,17 +22,13 @@ import { listModes } from '../classement/classement-default';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
-        NgClass,
         RouterLink,
         NavigateResultComponent,
         TranslocoPipe,
         MagmaLoaderBlock,
         MagmaLoaderTile,
-        MagmaInput,
-        MagmaInputText,
-        MagmaInputElement,
-        MagmaInputSelect,
         MagmaPagination,
+        SearchBarComponent,
     ],
 })
 export class ClassementNavigateComponent implements OnDestroy {
@@ -57,17 +38,11 @@ export class ClassementNavigateComponent implements OnDestroy {
     private readonly route = inject(ActivatedRoute);
     private readonly logger = inject(Logger);
     private readonly mgMessage = inject(MagmaMessages);
-    private readonly categories = inject(CategoriesService);
     private readonly preferences = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);
     private readonly cd = inject(ChangeDetectorRef);
 
-    categoriesList?: Select2Data;
-    categoriesType?: Select2Data;
-
-    searchKey: string = '';
-    category: string = '';
-    mode: string = '';
+    fields: SearchFormFields = { searchKey: '', category: '', mode: '' };
     tag: string = '';
     all: boolean = false;
 
@@ -86,8 +61,6 @@ export class ClassementNavigateComponent implements OnDestroy {
 
     isCategoryList = false;
 
-    listMode: Select2Data = [{ label: '', value: '' }, ...listModes];
-
     private _sub = Subscriptions.instance();
 
     constructor() {
@@ -96,35 +69,31 @@ export class ClassementNavigateComponent implements OnDestroy {
         this._sub.push(
             this.route.queryParams.subscribe(params => {
                 this.logger.log('params', LoggerLevel.log, params);
-                this.searchKey = params['name'];
-                this.category = params['category'];
-                this.mode = params['mode'];
+                this.fields.searchKey = params['name'];
+                this.fields.category = params['category'];
+                this.fields.mode = params['mode'];
                 this.all = params['all'];
                 this.tag = params['tag'];
                 this.page = params['page'];
                 this.queryParams = {
-                    name: this.searchKey,
-                    category: this.category,
-                    mode: this.mode,
+                    name: this.fields.searchKey,
+                    category: this.fields.category,
+                    mode: this.fields.mode,
                     tag: this.tag,
                     all: this.all,
                 };
 
-                if (this.searchKey || this.category || this.mode || this.page || this.tag) {
+                if (this.fields.searchKey || this.fields.category || this.fields.mode || this.page || this.tag) {
                     this.submit();
                 } else {
                     this.showCategoriesList();
                 }
             }),
-            this.categories.onChange.subscribe(() => {
-                this.categoryUpdate();
-            }),
+
             this.translate.langChanges$.subscribe(() => {
                 this.updateTitle();
             }),
         );
-
-        this.categoryUpdate();
     }
 
     updateTitle() {
@@ -154,6 +123,11 @@ export class ClassementNavigateComponent implements OnDestroy {
             });
     }
 
+    search(fields: SearchFormFields) {
+        this.fields = fields;
+        this.submit(true);
+    }
+
     submit(reset: boolean = false) {
         if (reset) {
             this.page = 1;
@@ -163,20 +137,18 @@ export class ClassementNavigateComponent implements OnDestroy {
         this.loading = true;
         this.classementService
             .getClassementsByCriterion({
-                name: this.searchKey,
-                category: this.category,
+                name: this.fields.searchKey,
+                category: this.fields.category,
                 all: this.all,
                 tag: this.tag,
-                mode: this.mode,
+                mode: this.fields.mode,
                 page: this.page,
                 size: this.pageSize,
             })
             .then(classements => {
                 this.classements = classements.list;
                 this.total = classements.total;
-                this.category = this.category;
-                this.mode = this.mode;
-                this.searchKey = this.searchKey;
+                this.fields = this.fields;
                 this.isCategoryList = false;
                 this.all = this.all;
                 this.tag = this.tag;
@@ -188,17 +160,17 @@ export class ClassementNavigateComponent implements OnDestroy {
             .finally(() => {
                 this.router.navigate(
                     ['navigate'],
-                    this.searchKey === undefined &&
-                        this.category === undefined &&
-                        this.mode === undefined &&
+                    this.fields.searchKey === undefined &&
+                        this.fields.category === undefined &&
+                        this.fields.mode === undefined &&
                         this.page === undefined &&
                         this.tag === undefined
                         ? {}
                         : {
                               queryParams: {
-                                  name: this.searchKey,
-                                  category: this.category,
-                                  mode: this.mode,
+                                  name: this.fields.searchKey,
+                                  category: this.fields.category,
+                                  mode: this.fields.mode,
                                   page: this.page,
                                   tag: this.tag,
                                   all: this.all,
@@ -208,9 +180,5 @@ export class ClassementNavigateComponent implements OnDestroy {
                 this.loading = false;
                 this.cd.markForCheck();
             });
-    }
-
-    private categoryUpdate() {
-        this.categoriesList = [{ value: '', label: '\u00a0' }, ...this.categories.categoriesList];
     }
 }

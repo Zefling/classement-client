@@ -24,7 +24,7 @@
     <h2>{{ 'generator.title.' + (id ? 'edit' : 'new') | transloco }}</h2>
 
     <div class="top-actions">
-      @if (modeApi() && classement && classement.templateTotal > 1) {
+      @if (modeApi()) {
         <div class="server-api">
           <mg-ellipsis-button>
             @if (derivatives && derivatives.length > 1) {
@@ -32,10 +32,12 @@
                 {{ 'navigate.my.derivatives' | transloco }} ({{ derivatives.length }})
               </mg-ellipsis-item>
             }
-            <mg-ellipsis-item (click)="showRankingDiff()">
-              {{ 'generator.ranking.diff' | transloco }}
-            </mg-ellipsis-item>
-            <mg-ellipsis-item (click)="importTiles()">
+            @if (classement) {
+              <mg-ellipsis-item (click)="showRankingDiff()">
+                {{ 'generator.ranking.diff' | transloco }}
+              </mg-ellipsis-item>
+            }
+            <mg-ellipsis-item (click)="dialogRankingImportTile.open()">
               {{ 'generator.ranking.import' | transloco }}
             </mg-ellipsis-item>
           </mg-ellipsis-button>
@@ -760,7 +762,9 @@
     <span>
       <button class="button-add primary png" (click)="saveImage('PNG')">PNG</button>
       <button class="button-add primary jpg" (click)="saveImage('JPG')">Jpeg</button>
-      <button class="button-add primary webp" (click)="saveImage('WEBP')">WebP</button>
+      @if (webp) {
+        <button class="button-add primary webp" (click)="saveImage('WEBP')">WebP</button>
+      }
     </span>
   </div>
   <details class="alt">
@@ -770,29 +774,6 @@
     </mg-input>
   </details>
   <div #image></div>
-</mg-dialog>
-
-<mg-dialog class="auto-format" #dialogImport>
-  <import-json (load)="importJson($event)" />
-</mg-dialog>
-
-<mg-dialog class="auto-format" #dialogOptimise closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  @if (dialogOptimise.isOpen()) {
-    <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options.mode" />
-  }
-</mg-dialog>
-
-<mg-dialog #dialogSaveServer>
-  @if (logged && dialogSaveServer.isOpen()) {
-    <classement-save-server
-      [classement]="classement"
-      [options]="options"
-      [list]="list"
-      [groups]="groups"
-      [dialog]="dialogSaveServer"
-      (action)="updateAfterServerSave($event)"
-    />
-  }
 </mg-dialog>
 
 <mg-dialog #dialogDerivatives closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
@@ -867,23 +848,6 @@
     }
     <div class="buttons">
       <button class="primary" (click)="dialogRankingDiff.close()">
-        {{ 'generator.ranking.close' | transloco }}
-      </button>
-    </div>
-  </div>
-</mg-dialog>
-
-<mg-dialog class="content-diff" #dialogRankingImportTile>
-  <div class="container">
-    <div>
-      <mg-input>
-        <mg-input-label>Chercher un classement</mg-input-label>
-        <mg-input-text />
-      </mg-input>
-    </div>
-
-    <div class="buttons">
-      <button class="primary" (click)="dialogRankingImportTile.close()">
         {{ 'generator.ranking.close' | transloco }}
       </button>
     </div>
@@ -987,6 +951,31 @@
     </div>
   </div>
 </mg-dialog>
+
+<mg-dialog #dialogSaveServer>
+  @if (logged && dialogSaveServer.isOpen()) {
+    <classement-save-server
+      [classement]="classement"
+      [options]="options"
+      [list]="list"
+      [groups]="groups"
+      [dialog]="dialogSaveServer"
+      (action)="updateAfterServerSave($event)"
+    />
+  }
+</mg-dialog>
+
+<mg-dialog class="auto-format" #dialogImport>
+  <import-json (load)="importJson($event)" />
+</mg-dialog>
+
+<mg-dialog class="auto-format" #dialogOptimise closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  @if (dialogOptimise.isOpen()) {
+    <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options.mode" />
+  }
+</mg-dialog>
+
+<classement-import-tile #dialogRankingImportTile (addTile)="addTile($event, false)" />
 
 <classement-edit-image [currentTile]="currentTile" (deleteCurrent)="deleteCurrent()" #editImage />
 
