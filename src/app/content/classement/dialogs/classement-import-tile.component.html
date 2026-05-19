@@ -9,7 +9,13 @@
 
     @if (classements && !classement) {
       <div class="navigate-result">
-        <navigate-result [classements]="classements" onlyRanking isAction (action)="selectClassement($event)" />
+        <navigate-result
+          [classements]="classements"
+          onlyRanking
+          isAction
+          hideDerivatives
+          (action)="selectClassement($event)"
+        />
       </div>
     } @else if (classement) {
       @let options = classement.data.options;
