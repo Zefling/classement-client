@@ -430,6 +430,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             });
             delete options.palette;
         }
+        this.detectChange();
     }
 
     changeCustomBackground(event: string | FileHandle) {
