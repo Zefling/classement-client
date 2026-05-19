@@ -292,6 +292,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     tmdb = viewChild.required(ExternalTmdbComponent);
     anilist = viewChild.required<ExternalAnilistComponent>(ExternalAnilistComponent);
     tiles = viewChildren(CdkDragElement);
+    seeClassement = viewChildren(SeeClassementComponent);
 
     contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
     contextMenuList: ContextMenuItem<{ item: FileType; index: number }>[] = [];
@@ -779,6 +780,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     detectChanges() {
         this.cd.markForCheck();
+        this.seeClassement().forEach(view => {
+            view.detectChanges();
+        });
     }
 
     @HostListener('window:beforeunload', ['$event'])
@@ -1359,7 +1363,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     private undoRedoUpdate(event: Event) {
-        this.cd.markForCheck();
+        this.detectChanges();
         event.preventDefault();
 
         setTimeout(() => {
