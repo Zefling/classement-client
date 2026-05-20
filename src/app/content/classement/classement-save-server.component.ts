@@ -243,6 +243,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
                 })
                 .finally(() => {
                     this.loading = false;
+                    this.cd.markForCheck();
                 });
         }
     }

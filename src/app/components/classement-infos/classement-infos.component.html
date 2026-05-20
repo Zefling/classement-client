@@ -73,6 +73,9 @@
       </div>
     }
   </div>
+  <div class="content">
+    <ng-content />
+  </div>
   <div class="votes">
     @for (vote of votes(); track vote) {
       @if (logged && !readonly()) {
@@ -87,8 +90,5 @@
         </button>
       }
     }
-  </div>
-  <div class="content">
-    <ng-content />
   </div>
 }

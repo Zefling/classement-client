@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Logger, MagmaLoader, MagmaSpinner } from '@ikilote/magma';
@@ -23,6 +23,7 @@ export class UserViewComponent {
     private readonly router = inject(Router);
     private readonly userService = inject(APIUserService);
     private readonly logger = inject(Logger);
+    private readonly cd = inject(ChangeDetectorRef);
 
     user?: User;
 
@@ -43,6 +44,7 @@ export class UserViewComponent {
                                 (new Date(a.dateChange)?.getTime() || new Date(a.dateCreate).getTime()),
                         );
                         this.loading = false;
+                        this.cd.markForCheck();
                     }
                 } finally {
                     if (this.loading) {

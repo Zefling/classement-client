@@ -189,6 +189,7 @@ export class AppComponent {
                     this.globalService.withApi.set(false);
                     this.logger.log('Server ko !', LoggerLevel.error);
                     this.loading = false;
+                    this.cd.markForCheck();
                 });
         }
     }
