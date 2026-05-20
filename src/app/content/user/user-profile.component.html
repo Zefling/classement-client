@@ -136,11 +136,11 @@
   <div>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.old' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="passwordOld" />
+      <mg-input-password formControlName="passwordOld" eye />
     </mg-input>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.new' | transloco }}</mg-input-label>
-      <mg-input-password formControlName="password" />
+      <mg-input-password formControlName="password" eye />
       <mg-input-desc class="level-strong">
         @if (!strong) {
           @for (lvl of passedTests; track lvl) {
@@ -153,7 +153,7 @@
     </mg-input>
     <mg-input class="s-10">
       <mg-input-label>{{ 'user.password.confirm' | transloco }}</mg-input-label>
-      <mg-input-text formControlName="password2" />
+      <mg-input-password formControlName="password2" eye />
       <mg-input-desc class="level-strong">
         @if (confirm) {
           <span class="strong"></span>
@@ -206,7 +206,9 @@
     <mg-message type="error">
       <ul>
         @for (error of showError; track error) {
-          <li>{{ error }}</li>
+          @if (error) {
+            <li>{{ error }}</li>
+          }
         }
       </ul>
     </mg-message>

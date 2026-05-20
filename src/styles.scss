@@ -181,6 +181,11 @@ mg-dialog.auto-format .main {
         margin: auto;
     }
 
+    mg-message ul {
+        margin: 0;
+        text-align: start;
+    }
+
     .note {
         font-size: 90%;
     }
