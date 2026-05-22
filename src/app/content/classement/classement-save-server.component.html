@@ -32,7 +32,7 @@
       @if (!current?.user || current?.parent) {
         <mg-input class="s-4 s-12-m categories">
           <mg-input-label>{{ 'generator.options.group' | transloco }}</mg-input-label>
-          <mg-input-select [data]="categoriesList" [(ngModel)]="opts.category" />
+          <mg-input-select highlightText [data]="categoriesList" [(ngModel)]="opts.category" />
         </mg-input>
       }
       <div class="s-12 banner">

@@ -9,7 +9,7 @@
     <div class="line">
       <mg-input class="categories">
         <mg-input-label>{{ 'navigate.category' | transloco }}</mg-input-label>
-        <mg-input-select name="category" [data]="categoriesList" [(ngModel)]="category" />
+        <mg-input-select highlightText name="category" [data]="categoriesList" [(ngModel)]="category" />
       </mg-input>
       <button type="submit">{{ 'navigate.search' | transloco }}</button>
     </div>

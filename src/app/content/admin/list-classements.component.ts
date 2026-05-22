@@ -17,7 +17,7 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Select2Option } from 'ng-select2-component';
+import { Select2HighlightPipe, Select2Option } from 'ng-select2-component';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
@@ -54,6 +54,7 @@ import { categories } from '../classement/classement-default';
         MagmaClickEnterDirective,
         MarkdownModule,
         TileComponent,
+        Select2HighlightPipe,
     ],
 })
 export class ListClassementsComponent {

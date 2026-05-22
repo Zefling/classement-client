@@ -17,6 +17,7 @@
         [data]="categoriesList"
         [disabled]="lockCategory()"
         [(ngModel)]="opts.category"
+        highlightText
       />
     </mg-input>
     <mg-input class="modes">
@@ -890,10 +891,17 @@
           (ngModelChange)="detectChange()"
           overlay
           nativeKeyboard
+          highlightText
         >
-          <ng-template #templatesFont let-label="label" let-data="data">
+          <ng-template
+            #templatesFont
+            let-label="label"
+            let-data="data"
+            let-searchText="searchText"
+            let-highlightText="highlightText"
+          >
             <div class="list-option">
-              {{ label }}
+              <span [innerHTML]="label | highlightText: searchText : !highlightText"></span>
               @if (data?.note) {
                 ({{ data.note | transloco }})
               }

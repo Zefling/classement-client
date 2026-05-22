@@ -39,7 +39,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
-import { Select2Data, Select2Option } from 'ng-select2-component';
+import { Select2Data, Select2HighlightPipe, Select2Option } from 'ng-select2-component';
 
 import {
     Category,
@@ -115,6 +115,7 @@ import { DropImageDirective } from '../../directives/drop-image.directive';
         MagmaInputNumber,
         MagmaInputSelect,
         MagmaInputRange,
+        Select2HighlightPipe,
     ],
 })
 export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy {

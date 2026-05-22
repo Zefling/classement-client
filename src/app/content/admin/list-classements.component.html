@@ -132,7 +132,11 @@
           [templates]="templatesModes"
           (ngModelChange)="newCategory = $event"
           overlay
-          ><ng-template #templatesModes let-label="label">{{ 'category.' + label | transloco }}</ng-template>
+          highlightText
+        >
+          <ng-template #templatesModes let-label="label" let-searchText="searchText" let-highlightText="highlightText">
+            <span [innerHTML]="'category.' + label | transloco | highlightText: searchText : !highlightText"></span>
+          </ng-template>
         </mg-input-select>
       </mg-input>
     </div>

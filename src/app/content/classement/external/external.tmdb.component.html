@@ -18,7 +18,7 @@
         </mg-input>
         <mg-input class="s-12">
           <mg-input-label>{{ baseText + 'name' | transloco }}</mg-input-label>
-          <mg-input-select overlay id="language" formControlName="language" [data]="languages" />
+          <mg-input-select highlightText overlay id="language" formControlName="language" [data]="languages" />
         </mg-input>
         <p class="buttons">
           <button type="submit" [disabled]="!searchMovieForm.get('query')?.value.trim()">
