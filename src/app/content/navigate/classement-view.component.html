@@ -91,7 +91,7 @@
       [id]="classement.rankingId"
       [imagesCache]="imagesCache"
       [link]="showLink ? getLink() : ''"
-    ></see-classement>
+    />
   }
   <div [ngClass]="classScreenMode" #div>
     <div class="classement-top">
@@ -119,14 +119,14 @@
       [list]="classement.data.list"
       [id]="classement.rankingId"
       withAnnotation
-    ></see-classement>
+    />
   </div>
 
   @if (emptyGroups) {
     <div class="drop-list">
       @for (item of classement.data.list; track item; let index = $index) {
         @if (item) {
-          <tile-item [item]="item" [options]="classement.data.options"></tile-item>
+          <tile-item [item]="item" [options]="classement.data.options" />
         }
       }
     </div>

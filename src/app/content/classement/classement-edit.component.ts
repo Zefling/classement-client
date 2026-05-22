@@ -781,7 +781,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     detectChanges() {
         this.cd.markForCheck();
         this.seeClassement().forEach(view => {
-            view.detectChanges();
+            view.markForCheck();
         });
     }
 

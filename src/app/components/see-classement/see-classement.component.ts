@@ -134,13 +134,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             await this.dataService.init(mode, this.id());
             const options = this.dataService.getOptions(mode, this.id());
             if (options) {
-                this.checkChoice = options.checkChoice;
-                if (options.checkChoice === 'Z') {
-                    this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
-                } else {
-                    this.globalService.changeHelpComponent();
-                }
-                this.cd.detectChanges();
+                this.updateHelp(options);
             }
         }
 
@@ -148,14 +142,11 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             this.sub.push(
                 this.dataService.onOptionChange.subscribe(options => {
                     if (options && this.checkChoice !== options.checkChoice) {
-                        this.checkChoice = options.checkChoice;
-                        if (options.checkChoice === 'Z') {
-                            this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
-                        } else {
-                            this.globalService.changeHelpComponent();
-                        }
-                        this.cd.detectChanges();
+                        this.updateHelp(options);
                     }
+                }),
+                this.dataService.onChange.subscribe(() => {
+                    this.detectChanges();
                 }),
             );
         }
@@ -166,6 +157,16 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.sub.clear();
         this.globalService.changeHelpComponent();
+    }
+
+    updateHelp(options: { checkChoice: string }) {
+        this.checkChoice = options.checkChoice;
+        if (options.checkChoice === 'Z') {
+            this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
+        } else {
+            this.globalService.changeHelpComponent();
+        }
+        this.detectChanges();
     }
 
     updateIconStyle(type: string) {
@@ -205,7 +206,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     bingoTransform(group: number, item: number, value: ItemSelection, event: string) {
         value.transform = event;
-        return this.dataService.change('bingo', this.id(), group, item, this.bingoValue(group, item));
+        this.dataService.change('bingo', this.id(), group, item, this.bingoValue(group, item));
     }
 
     async getContextMenu() {
@@ -244,6 +245,10 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     }
 
     detectChanges() {
+        this.cd.detectChanges();
+    }
+
+    markForCheck() {
         this.cd.markForCheck();
     }
 

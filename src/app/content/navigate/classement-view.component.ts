@@ -271,7 +271,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                         classements.sort((e, f) => new Date(f.dateCreate).getTime() - new Date(e.dateCreate).getTime());
                         this.myClassement = classements[0];
                     }
-                    this.cd.markForCheck();
+                    this.markForCheck();
                 });
         }
 
@@ -281,7 +281,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                 .then(cache => Object.assign(this.imagesCache, cache))
                 .finally(() => {
                     this.exportImageDisabled = false;
-                    this.cd.markForCheck();
+                    this.markForCheck();
                 });
         });
 
@@ -296,11 +296,11 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                     );
                 }
                 classement.withHistory = history?.length;
-                this.cd.markForCheck();
+                this.markForCheck();
             });
         }
 
-        this.cd.markForCheck();
+        this.markForCheck();
     }
 
     getLink() {
@@ -401,7 +401,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                         this.classement!.banner = classement.banner;
                     }
                 }
-                this.cd.markForCheck();
+                this.markForCheck();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -421,7 +421,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
             element.innerHTML = '';
             element.appendChild(canvas);
             this.canvas = canvas;
-            this.cd.markForCheck();
+            this.markForCheck();
         });
     }
 
@@ -437,5 +437,9 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     private getFileName(): string {
         return this.classement!.data.options.title.trim() || this.translate.translate('list.title.undefined');
+    }
+
+    markForCheck() {
+        this.cd.markForCheck();
     }
 }

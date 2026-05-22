@@ -15,6 +15,7 @@ export class DataService<T, U> {
     private readonly data: Record<string, DataExtra<T, U>> = {};
 
     readonly onOptionChange = new Subject<U>();
+    readonly onChange = new Subject<Record<string, DataExtra<T, U>>>();
 
     async init(type: string, id: string) {
         if (!this.data[type]) {
@@ -63,6 +64,7 @@ export class DataService<T, U> {
         }
 
         this.db.saveExtraData<T, U>(type, this.data[type]);
+        this.onChange.next(this.data);
     }
 
     value(type: string, id: string, group: number, item: number): T | undefined {

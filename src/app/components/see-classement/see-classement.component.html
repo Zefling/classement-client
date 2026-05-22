@@ -51,6 +51,8 @@
 
   <div class="render" [class.demo]="demo()">
     @if (opts.mode === 'default' || opts.mode === 'teams' || !opts.mode) {
+      <!-- MARK: default/teams -------
+       -->
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element"
@@ -131,6 +133,8 @@
         }
       </table>
     } @else if (opts.mode === 'columns') {
+      <!-- MARK: columns ---------------
+       -->
       <table
         [id]="render() ? 'html2canvas-element' : 'preview-element'"
         class="html2canvas-element mode-columns"
@@ -216,6 +220,8 @@
         }
       </table>
     } @else if (opts.mode === 'bingo') {
+      <!-- MARK: bingo -------------------
+       -->
       @if (checkChoice === 'Z') {
         <div class="active-mode">
           <mg-input>
@@ -332,6 +338,8 @@
         }
       </table>
     } @else if (opts.mode === 'iceberg' || opts.mode === 'axis') {
+      <!-- MARK: iceberg/axis ----------
+       -->
       <div [id]="render() ? 'html2canvas-element' : 'preview-element'" class="html2canvas-element with-zone">
         @if (opts.title || demo()) {
           <div class="global-title">
