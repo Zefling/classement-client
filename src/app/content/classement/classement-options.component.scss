@@ -5,13 +5,17 @@
         'description       description       description    description         description         '
         'theme             width-auto        cover          stream-mode         links               '
         'tags              tags              tags           tags                tags                '
-        / 1fr 1fr 1fr 1fr 1fr;
+        / 1fr 1.5fr 1.5fr 1fr 1fr;
     align-items: baseline;
     gap: 10px;
     border: solid 1px var(--options-border-color);
     border-radius: 5px;
     background: var(--options-background);
     padding: 10px;
+
+    & > * {
+        min-width: 0;
+    }
 }
 
 .advanced-options {
@@ -33,11 +37,15 @@
         'global-width      global-image        global-color        global-font         colors-title-text   '
         'global-height     image-custom        image-custom        image-custom        image-opacity       '
         / 1fr 1fr 1fr 1fr 1fr;
-    align-items: baseline;
 
+    align-items: baseline;
     gap: 10px;
     background: var(--options-background);
     padding: 10px 0;
+
+    & > * {
+        min-width: 0;
+    }
 
     &.iceberg {
         --groups: 'zone-title-number zone-title-groups   zone-title-groups   zone-title-groups   .                   '
