@@ -232,7 +232,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     logged = false;
 
-    hasItems = false;
+    hasItems = signal(false);
 
     exportImageLoading = false;
     exportImageDisabled = false;
@@ -396,7 +396,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             this._optionsCache = jsonCopy(this.options);
         }
 
-        this.hasItems = this.list.length > 0 || this.groups.some(e => e.list.length > 0);
+        this.updateActiveActions();
 
         this.shareUrl =
             this.modeApi() && this.classement?.rankingId
@@ -407,6 +407,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         if (currentList) {
             this.scrollArrows = currentList.scrollWidth > currentList.clientWidth;
         }
+    }
+
+    updateActiveActions() {
+        this.hasItems.set(this.list.length > 0 || this.groups.some(e => e.list.length > 0));
     }
 
     protected preferencesUpdate() {
@@ -798,6 +802,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     addTile(tile: FileString) {
         this.list.push(tile);
         this.addIds();
+        this.updateActiveActions();
     }
 
     createTile(event: MouseEvent) {
@@ -950,6 +955,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
         this.detectChanges();
         this.change();
+        this.updateActiveActions();
     }
 
     addFiles() {
@@ -982,6 +988,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.addIds();
         this.globalChange();
         this.change();
+        this.updateActiveActions();
 
         this.currentGroup = {
             group: this.groups[index - 1],
@@ -996,6 +1003,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.addIds();
         this.globalChange();
         this.change();
+        this.updateActiveActions();
 
         this.currentGroup = {
             group: this.groups[index + 1],
@@ -1014,6 +1022,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.addIds();
         this.globalChange();
         this.change();
+        this.updateActiveActions();
     }
 
     deleteCurrent() {
@@ -1035,6 +1044,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             this.globalChange();
             this.updateSize();
             this.change();
+            this.updateActiveActions();
         }
     }
 
@@ -1050,6 +1060,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
         this.globalChange();
         this.change();
+        this.updateActiveActions();
     }
 
     stopEvent(event: Event) {
@@ -1189,7 +1200,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.addIds();
         this.globalChange();
         this.change();
-        this.cd.detectChanges();
+        this.updateActiveActions();
     }
 
     async exportImage() {
@@ -1260,7 +1271,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     @HostListener('window:keydown.control.s', ['$event'])
     keySaveLocal(event: Event) {
-        if (this.hasItems) {
+        if (this.hasItems()) {
             this.saveLocal();
         }
         event.preventDefault();
@@ -1378,14 +1389,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     @HostListener('window:keydown.control.e', ['$event'])
     keySaveJson(event: Event) {
-        if (this.hasItems) {
+        if (this.hasItems()) {
             this.saveJson();
         }
         event.preventDefault();
     }
 
     saveJson() {
-        if (this.hasItems) {
+        if (this.hasItems()) {
             downloadFile(JSON.stringify(this.getData()), this.getFileName() + '.json', 'text/plain');
         }
     }

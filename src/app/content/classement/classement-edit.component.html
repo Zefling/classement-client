@@ -706,11 +706,11 @@
       </div>
 
       <div class="save-actions buttons">
-        <button class="primary" (click)="saveLocal()" [disabled]="!hasItems">
+        <button class="primary" (click)="saveLocal()" [disabled]="!hasItems()">
           {{ 'generator.actions.save.local' | transloco }}
           <span [mgTooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
         </button>
-        <button class="primary" (click)="saveJson()" [disabled]="!hasItems">
+        <button class="primary" (click)="saveJson()" [disabled]="!hasItems()">
           {{ 'generator.actions.export.json' | transloco }}
         </button>
         <button class="primary" (click)="dialogImport.open()">
@@ -720,7 +720,7 @@
           {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
       </div>
-      @if (options && hasItems) {
+      @if (options && hasItems()) {
         <div class="auto-save">
           <mg-input>
             <mg-input-checkbox [(ngModel)]="options.autoSave" (ngModelChange)="globalChange()">{{
@@ -739,14 +739,14 @@
               {{ 'generator.ranking.see' | transloco }}
             </button>
           }
-          <button class="primary" (click)="saveServer()" [disabled]="!hasItems">
+          <button class="primary" (click)="saveServer()" [disabled]="!hasItems()">
             {{ 'generator.actions.save.server' | transloco }}
           </button>
         </div>
       }
 
       <div class="save-actions buttons">
-        <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems">
+        <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems()">
           {{ 'generator.actions.reset.groups.button' | transloco }}
         </button>
       </div>
