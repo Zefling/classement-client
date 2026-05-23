@@ -675,6 +675,10 @@ span.color {
     width: 100%;
     height: 100%;
     overflow: auto;
+
+    & h3 {
+        margin: 15px;
+    }
 }
 
 .current-list {
