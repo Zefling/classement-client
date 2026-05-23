@@ -91,7 +91,7 @@
                     readOnly
                     allowTagClick
                     (tagClick)="tagClick($event, filterInput)"
-                  ></tag-list>
+                  />
                 </div>
               }
               <div>
@@ -137,7 +137,7 @@
 </ng-container>
 
 <mg-dialog #dialogImport class="auto-format">
-  <import-json (load)="importJson($event)" actions="importOnly" [multi]="true"></import-json>
+  <import-json (load)="importJson($event)" actions="importOnly" [multi]="true" />
 </mg-dialog>
 
 <mg-dialog #dialogDelete class="dialog-delete">
