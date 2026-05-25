@@ -12,7 +12,7 @@ import { APIUserService } from 'src/app/services/api.user.service';
 import { Classement, ClassementVotes } from '../../interface/interface';
 import { TagListComponent } from '../tag-list/tag-list.component';
 
-const emojiList = ['👍', '👎', '😍', ' 😱', '🤢', '🥵', '💩'];
+const emojiList = ['👍', '👎', '😂', '😍', '😎', ' 😱', '🤢', '🥵', '💩'];
 type VoteResult = { emoji: string; selected: boolean; total: number }[];
 
 @Component({
