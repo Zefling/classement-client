@@ -2,7 +2,10 @@
   "language": {
     "dir": "ltr"
   },
-  "classement": "Classement",
+  "classement": {
+    "title": "Classement",
+    "reading": " "
+  },
   "help": "Help",
   "generic": {
     "dialog": {
@@ -80,7 +83,8 @@
     "title": "Informations",
     "message": "Message",
     "licenses": "Licenses",
-    "changelog": "Changelog"
+    "changelog": "Changelog",
+    "contributors": "Contributors"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -104,6 +108,9 @@
   },
   "changelog": {
     "title": "Changelog"
+  },
+  "contributors": {
+    "title": "Contributors"
   },
   "home": {
     "info": "Information",

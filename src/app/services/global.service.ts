@@ -65,6 +65,7 @@ export class GlobalService {
 
     licenses!: string;
     changelog!: string;
+    contributors!: string;
 
     jsonTmp?: Data;
 

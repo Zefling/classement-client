@@ -2,7 +2,10 @@
   "language": {
     "dir": "rtl"
   },
-  "classement": "Classement",
+  "classement": {
+    "title": "Classement",
+    "reading": " "
+  },
   "help": "مساعدة",
   "generic": {
     "dialog": {
@@ -80,7 +83,8 @@
     "title": "معلومات",
     "message": "رسالة",
     "licenses": "التراخيص",
-    "changelog": "سجل التغييرات"
+    "changelog": "سجل التغييرات",
+    "contributors": "Contributors"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -104,6 +108,9 @@
   },
   "changelog": {
     "title": "سجل التغييرات"
+  },
+  "contributors": {
+    "title": "Contributors"
   },
   "home": {
     "info": "معلومات",

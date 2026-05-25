@@ -44,7 +44,7 @@ Current installation in this [website](https://classement.org/).
 - ✅ Stand-alone (without server)
     - ✅ Adding images by drag'n drop or copy-paste
     - ✅ Adding text under images
-    - ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (One tile per line)
+    - ✅ Possibility to have tiles with only text: copy-paste or drag'n drop of text (one tile per line)
     - ✅ Ranking Modes
         - ✅ Tierlist
         - ✅ Teams
@@ -79,9 +79,8 @@ Current installation in this [website](https://classement.org/).
         - ✅ Languages
         - ✅ Emoji
     - ✅ External API
-        - ✅ TMDB (API key required)
+        - ✅ TMDB (server API if connected or API key required)
         - ✅ anilist
-        - ⬜ MAL
     - ✅ Keyboard navigation for edit rankings
         - ✅ Tierlist
         - ✅ Teams

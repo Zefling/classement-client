@@ -6,7 +6,9 @@
 </mg-loader>
 
 <header>
-  <div class="title">{{ 'classement' | transloco }}</div>
+  <div class="title">
+    {{ 'classement.title' | transloco }} <span class="reading">{{ 'classement.reading' | transloco }}</span>
+  </div>
   <div class="actions">
     @if (preferencesService.preferences.zoomMobile && globalService.zoomActive()) {
       <div class="zoom-mobile">

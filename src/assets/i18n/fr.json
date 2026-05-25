@@ -2,7 +2,10 @@
   "language": {
     "dir": "ltr"
   },
-  "classement": "Classement",
+  "classement": {
+    "title": "Classement",
+    "reading": " "
+  },
   "help": "Aide",
   "generic": {
     "dialog": {
@@ -80,7 +83,8 @@
     "title": "Informations",
     "message": "Message",
     "licenses": "Licences",
-    "changelog": "Changelog"
+    "changelog": "Changelog",
+    "contributors": "Contributeurs"
   },
   "date": {
     "dd/MM/yyyy": "dd/MM/yyyy",
@@ -104,6 +108,9 @@
   },
   "changelog": {
     "title": "Notes de version (Anglais)"
+  },
+  "contributors": {
+    "title": "Contributeurs (Anglais)"
   },
   "home": {
     "info": "Information",

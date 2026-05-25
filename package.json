@@ -27,7 +27,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "npx prettier --write .",
-    "addchanglog": "cp CHANGELOG.md dist/classement/browser/",
+    "addchanglog": "cp CHANGELOG.md CONTRIBUTORS.md dist/classement/browser/",
     "addlicenses": "mv dist/classement/3rdpartylicenses.txt dist/classement/browser/3rdpartylicenses.txt"
   },
   "private": true,

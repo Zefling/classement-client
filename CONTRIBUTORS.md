@@ -1,8 +1,8 @@
-Lead maintainer:
+### Lead maintainer
 
-- Zéfling @zefling
+- Zéfling (@zefling)
 
-Translate:
+### Translate
 
 - Ambroise Croizat: English review
-- Ichou abdelali @abdelaliichou: Arabic version
+- Ichou abdelali (@abdelaliichou): Arabic version

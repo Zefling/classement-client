@@ -24,6 +24,11 @@ export const INFOS_ROUTES: Routes = [
                 loadComponent: () => import('./infos-changelog.component').then(m => m.InfoChangelogComponent),
             },
             {
+                path: 'contributors',
+                pathMatch: 'full',
+                loadComponent: () => import('./infos-contributors.component').then(m => m.InfoContributorsComponent),
+            },
+            {
                 path: '**',
                 redirectTo: 'message',
             },

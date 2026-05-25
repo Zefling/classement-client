@@ -48,7 +48,9 @@
               "ajv",
               "bowser",
               "echarts/theme/vintage.js",
-              "echarts/theme/dark-blue.js"
+              "echarts/theme/dark-blue.js",
+              "@messageformat/core",
+              "messageformat"
             ],
             "browser": "src/main.ts"
           },

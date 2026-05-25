@@ -2,7 +2,10 @@
   "language": {
     "dir": "ltr"
   },
-  "classement": "Classement",
+  "classement": {
+    "title": "Classement",
+    "reading": "クラスマン"
+  },
   "help": "ヘルプ",
   "generic": {
     "dialog": {
@@ -80,7 +83,8 @@
     "title": "情報",
     "message": "メッセージ",
     "licenses": "ライセンス",
-    "changelog": "変更ログ"
+    "changelog": "変更ログ",
+    "contributors": "貢献者"
   },
   "date": {
     "dd/MM/yyyy": "yyyy/MM/dd",
@@ -104,6 +108,9 @@
   },
   "changelog": {
     "title": "変更ログ (英語)"
+  },
+  "contributors": {
+    "title": "貢献者 (英語)"
   },
   "home": {
     "info": "インフォメーション",
