@@ -150,11 +150,11 @@ export class PreferencesMagmaDialog {
                     objectAssignNested(userData, data);
 
                     // emoji list
-                    if (data.emojiList) {
+                    if (Array.isArray(data.emojiList)) {
                         userData.emojiList = data.emojiList;
                     }
 
-                    this.initDataPref(userData);
+                    const { selectedLang, lightDark } = this.initDataPref(userData);
 
                     this.preferencesService.serverPreferences = userData;
 
@@ -163,12 +163,17 @@ export class PreferencesMagmaDialog {
                     if (form.emojiList) {
                         delete form.emojiList;
                     }
+
+                    form.interfaceLanguage ??= selectedLang;
+                    form.interfaceTheme ??= lightDark;
+                    form.theme ??= 'default';
+
                     this.preferencesForm.setValue(form);
                 } else if (this.preferencesFormBackup) {
                     const userData = jsonCopy(this.preferencesService.defaultPreferences);
                     objectAssignNested(userData, this.preferencesFormBackup);
 
-                    this.initDataPref(userData);
+                    const { selectedLang, lightDark } = this.initDataPref(userData);
 
                     this.preferencesService.serverPreferences = undefined;
 
@@ -177,7 +182,11 @@ export class PreferencesMagmaDialog {
                     if (form.emojiList) {
                         delete form.emojiList;
                     }
+
+                    form.interfaceLanguage ??= selectedLang;
+                    form.interfaceTheme ??= lightDark;
                     form.theme ??= 'default';
+
                     this.preferencesForm.setValue(form);
                 }
             }
@@ -328,7 +337,7 @@ export class PreferencesMagmaDialog {
 
         this.initThemeByMode(initPreferences.mode, false);
 
-        return { selectedLang };
+        return { selectedLang, lightDark: this.lightDark.currentTheme };
     }
 
     private savePref() {

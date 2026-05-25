@@ -441,13 +441,17 @@ export class APIUserService extends APICommon {
     }
 
     loadPreferences() {
-        return new Promise<PreferencesData>((resolve, reject) => {
+        return new Promise<PreferencesData | {}>((resolve, reject) => {
             this.http.get<Message<PreferencesData>>(this.apiPath(`preferences`), this.header()).subscribe({
                 next: result => {
                     resolve(result.message);
                 },
                 error: (result: HttpErrorResponse) => {
-                    reject(this.error('loadPreferences', result));
+                    if ((result.error as MessageError).errorCode === 3601) {
+                        resolve({});
+                    } else {
+                        reject(this.error('loadPreferences', result));
+                    }
                 },
             });
         });

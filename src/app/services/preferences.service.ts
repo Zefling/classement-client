@@ -19,7 +19,7 @@ export class PreferencesService {
     readonly onInit = new Subject<void>();
     readonly onChange = new Subject<PreferencesData>();
     readonly openPref = new Subject<string>();
-    readonly fromApi = new Subject<PreferencesData | null>();
+    readonly fromApi = new Subject<PreferencesData | { emojiList?: string[] } | null>();
 
     hasInit = false;
 
