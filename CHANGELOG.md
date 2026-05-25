@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 5.0.1 (2026-05-26)
+
+#### With API activated only
+
+- Add more emojis for votes
+- Fix preferences init
+
+> Required: API `^3.0.2`
+
 ### 5.0.0 (2026-05-25)
 
 **This version is a major code refactoring with the switch to _zoneless_ on the client side, and a major rewrite due to a switch to _Symfony 8_ and many new features in the server API.<br>The advantage of _zoneless_ is to have better performance.**
