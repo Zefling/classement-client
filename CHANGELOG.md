@@ -1,5 +1,35 @@
 # Changelog - Standalone web app & API
 
+### 5.0.0 (2026-05-25)
+
+**This version is a major code refactoring with the switch to _zoneless_ on the client side, and a major rewrite due to a switch to _Symfony 8_ and many new features in the server API.<br>The advantage of _zoneless_ is to have better performance.**
+
+#### Standalone web app
+
+- Remove `zone.js` for better performances #132
+  - Improve image render
+  - Fix admin menu
+  - Fix minor bugs
+- Fix background change update #133
+- Rename IMDB to TMDB
+- Fix problems with array handling (clone, import)
+- Fix image background opacity
+
+#### With API activated only
+
+- Add emoji vote (user only) #20
+- Add view number #104
+- Add the ability to save preferences (user only) #47
+- Editor:
+  - Add TMDB support form server API  (user only) #122
+  - Add import tiles form any ranking #129
+  - Derivatives link: move button to link
+  - Move top actions in an ellipsis menu
+
+> Required: API `^3.0.0`
+
+---
+
 ### 4.4.0 (2026-05-03)
 
 #### Standalone web app
@@ -18,7 +48,7 @@
 - Update to **emoji 17.0**
 - Fix unnecessary withChange in globalChange
 
-> - Update to **Magma** `1.7.0`
+> Update to **Magma** `1.7.0`
 
 #### With API activated only
 
