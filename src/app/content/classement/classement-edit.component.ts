@@ -411,6 +411,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     updateActiveActions() {
         this.hasItems.set(this.list.length > 0 || this.groups.some(e => e.list.length > 0));
+        this.cd.markForCheck();
     }
 
     protected preferencesUpdate() {
@@ -587,6 +588,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             if (this.options.mode === 'bingo') {
                 this.groupsControl(this.groups, this.options);
             }
+
+            this.detectChanges();
         }
     }
 
@@ -716,6 +719,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.resetCache();
         this.helpInit();
         this.memory.addUndo(this);
+        this.detectChanges();
     }
 
     private resetByOptions(item: FileType, forkOptions: string[]) {
