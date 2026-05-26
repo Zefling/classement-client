@@ -1,5 +1,14 @@
 # Changelog - Standalone web app & API
 
+### 5.0.2 (2026-05-26)
+
+#### With API activated only
+
+- Fix avatar size
+- Fix change detection after initializing the ranking and adding an image
+
+> Required: API `^3.0.3`
+
 ### 5.0.1 (2026-05-26)
 
 #### With API activated only
