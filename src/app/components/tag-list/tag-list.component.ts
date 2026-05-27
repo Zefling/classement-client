@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     OnInit,
@@ -32,6 +33,7 @@ export class TagListComponent implements OnInit {
 
     private readonly http = inject(HttpClient);
     private readonly globalService = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     // input
 
@@ -68,6 +70,9 @@ export class TagListComponent implements OnInit {
                         },
                         error: (_result: HttpErrorResponse) => {
                             this.proposals = [];
+                        },
+                        complete: () => {
+                            this.cd.markForCheck();
                         },
                     });
                 }
