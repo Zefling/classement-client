@@ -15,7 +15,6 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    HostBinding,
     HostListener,
     OnDestroy,
     OnInit,
@@ -190,6 +189,12 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         ExternalAnilistComponent,
         FileSizePipe,
     ],
+    host: {
+        '[class.option-reduce]': 'optionReduce',
+        '[class.option-hidden]': 'optionHidden',
+        '[class.no-animation]': 'noAnimation',
+        '[class.stream-mode]': 'streamMode',
+    },
 })
 export class ClassementEditComponent implements OnDestroy, OnInit {
     protected readonly dbService = inject(DBService);
@@ -261,22 +266,18 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     pinnedList = false;
 
-    @HostBinding('class.option-reduce')
     get optionReduce() {
         return this.lineOption === 'reduce';
     }
 
-    @HostBinding('class.option-hidden')
     get optionHidden() {
         return this.lineOption === 'hidden';
     }
 
-    @HostBinding('class.no-animation')
     get noAnimation() {
         return this.options?.mode === 'iceberg' || this.options?.mode === 'axis';
     }
 
-    @HostBinding('class.stream-mode')
     get streamMode() {
         return this.options?.streamMode;
     }
