@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+### 5.0.3 (2026-05-28)
+
+#### Standalone web app
+
+- Improve image generation with loading message
+- Fix preferences update on ranking edit
+
+#### With API activated only
+
+- Fix tag suggestion (datalist)
+
 ### 5.0.2 (2026-05-26)
 
 #### With API activated only
