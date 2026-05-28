@@ -668,7 +668,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.resetCache();
                 this.helpInit();
                 this.memory.addUndo(this);
-                this.detectChanges();
+                this.preferencesUpdate();
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -721,7 +721,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.resetCache();
         this.helpInit();
         this.memory.addUndo(this);
-        this.detectChanges();
+        this.preferencesUpdate();
     }
 
     private resetByOptions(item: FileType, forkOptions: string[]) {
