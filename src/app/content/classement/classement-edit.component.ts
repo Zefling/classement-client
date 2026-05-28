@@ -236,6 +236,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     exportImageLoading = false;
     exportImageDisabled = false;
+    loading = signal('');
 
     size = 0;
 
@@ -1207,18 +1208,22 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.updateActiveActions();
     }
 
-    async exportImage() {
-        this.dialogImage().open();
-        this.altImage = this.global.altImage(this.options, this.groups);
-        const canvas = await html2canvas(document.getElementById('html2canvas-element') as HTMLElement, {
-            logging: false,
-            allowTaint: true,
-            scale: 2,
+    exportImage() {
+        this.loading.set('generator.actions.export.image.loading');
+        setTimeout(async () => {
+            this.altImage = this.global.altImage(this.options, this.groups);
+            const canvas = await html2canvas(document.getElementById('html2canvas-element')!, {
+                logging: false,
+                allowTaint: true,
+                scale: 2,
+            });
+            this.dialogImage().open();
+            const element = this.image().nativeElement;
+            element.innerHTML = '';
+            element.appendChild(canvas);
+            this._canvas = canvas;
+            this.loading.set('');
         });
-        const element = this.image().nativeElement;
-        element.innerHTML = '';
-        element.appendChild(canvas);
-        this._canvas = canvas;
     }
 
     saveImage(type: FileFormatExport) {
@@ -1467,6 +1472,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 .finally(() => {
                     this.exportImageDisabled = false;
                     this.exportImageLoading = false;
+                    this.cd.detectChanges();
                 });
         });
     }

@@ -1,7 +1,7 @@
-<mg-loader [loading]="!options">
+<mg-loader [loading]="!options || loading() !== ''">
   <mg-spinner />
   <mg-loader-message>
-    {{ 'generator.loading' | transloco }}
+    {{ loading() || 'generator.loading' | transloco }}
   </mg-loader-message>
 </mg-loader>
 

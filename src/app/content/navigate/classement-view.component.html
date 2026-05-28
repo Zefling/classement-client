@@ -140,6 +140,15 @@
   </mg-loader-block>
 }
 
+@if (loadingMessage()) {
+  <mg-loader [loading]="true">
+    <mg-spinner />
+    <mg-loader-message>
+      {{ loadingMessage() | transloco }}
+    </mg-loader-message>
+  </mg-loader>
+}
+
 <mg-dialog class="auto-format" #dialogImage closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}

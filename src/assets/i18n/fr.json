@@ -677,6 +677,7 @@
     },
     "actions": {
       "export.image": "Export en image",
+      "export.image.loading": "Génération de l'image en cours.",
       "save.local": "Sauvegarde comme brouillon",
       "save.local.info": "La sauvegarde est fait dans la mémoire de votre navigateur uniquement. Vous pourrez la retrouver uniquement sur celui-ci tant que les données sont persistées. Pour une sauvegarde plus pérenne : export vos données ou sauvegardez sur votre compte.",
       "save.local.auto": "Sauvegarde comme brouillon automatique à chaque changement.",

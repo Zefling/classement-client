@@ -8,6 +8,7 @@ import {
     OnInit,
     computed,
     inject,
+    signal,
     viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +25,9 @@ import {
     MagmaInputCheckbox,
     MagmaInputPassword,
     MagmaInputTextarea,
+    MagmaLoader,
     MagmaLoaderBlock,
+    MagmaLoaderMessage,
     MagmaLoaderTile,
     MagmaMessage,
     MagmaMessageType,
@@ -81,6 +84,8 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         TileComponent,
         MagmaMessage,
         MagmaBlockMessage,
+        MagmaLoader,
+        MagmaLoaderMessage,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
@@ -105,6 +110,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     emptyGroups = false;
 
     loading = false;
+    loadingMessage = signal('');
 
     currentUser = false;
     logged? = false;
@@ -410,18 +416,21 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     }
 
     exportImage() {
-        this.dialogImage().open();
-        this.altImage = this.global.altImage(this.classement!.data.options, this.classement!.data.groups);
-        html2canvas(document.getElementById('html2canvas-element')!, {
-            logging: false,
-            allowTaint: true,
-            scale: 2,
-        }).then(canvas => {
+        this.loadingMessage.set('generator.actions.export.image.loading');
+        setTimeout(async () => {
+            this.altImage = this.global.altImage(this.classement!.data.options, this.classement!.data.groups);
+            const canvas = await html2canvas(document.getElementById('html2canvas-element')!, {
+                logging: false,
+                allowTaint: true,
+                scale: 2,
+            });
+            this.dialogImage().open();
             const element = this.image().nativeElement;
             element.innerHTML = '';
             element.appendChild(canvas);
             this.canvas = canvas;
             this.markForCheck();
+            this.loadingMessage.set('');
         });
     }
 

@@ -678,6 +678,7 @@
     },
     "actions": {
       "export.image": "Image export",
+      "export.image.loading": "Image generation in progress.",
       "save.local": "Save as draft",
       "save.local.info": "The backup is made in your browser's memory only. You will be able to find it only on this one as long as the data is persisted. For a more lasting backup: export your data or save to your account.",
       "save.local.auto": "Save as automatic draft with each change.",
