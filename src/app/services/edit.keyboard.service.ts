@@ -1,9 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 
-import { FileType, FormattedGroup } from 'src/app/interface/interface';
-
 import { ClassementEditComponent } from '../content/classement/classement-edit.component';
 import { CdkDragElement } from '../directives/drag-element.directive';
+import { FileType, FormattedGroup } from '../interface/interface';
 
 @Injectable({ providedIn: 'root' })
 export abstract class EditKeyBoardService {

@@ -2,17 +2,23 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, injec
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { Logger, LoggerLevel, MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages, MagmaPagination } from '@ikilote/magma';
+import {
+    Logger,
+    LoggerLevel,
+    MagmaLoaderBlock,
+    MagmaLoaderTile,
+    MagmaMessages,
+    MagmaPagination,
+    Subscriptions,
+} from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { SearchBarComponent, SearchFormFields } from 'src/app/components/search-bar/search-bar.component';
-import { Classement } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { SearchBarComponent, SearchFormFields } from '../../components/search-bar/search-bar.component';
+import { Classement } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
 
 @Component({
     selector: 'classement-navigate',

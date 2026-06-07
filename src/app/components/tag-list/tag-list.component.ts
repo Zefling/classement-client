@@ -17,9 +17,9 @@ import { RouterLink } from '@angular/router';
 
 import { Subject, debounceTime } from 'rxjs';
 
-import { Message } from 'src/app/interface/interface';
-import { GlobalService } from 'src/app/services/global.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { Message } from '../../interface/interface';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'tag-list',

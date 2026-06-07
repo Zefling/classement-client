@@ -12,9 +12,9 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { APIUserService } from 'src/app/services/api.user.service';
-
 import { UserPassword } from './user-password';
+
+import { APIUserService } from '../../services/api.user.service';
 
 @Component({
     selector: 'user-pw-lost-change',

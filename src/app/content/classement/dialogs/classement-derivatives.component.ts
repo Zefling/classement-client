@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { MagmaClickEnterDirective, MagmaDialog, MagmaTableModule } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Classement } from 'src/app/interface/interface';
-import { Utils } from 'src/app/tools/utils';
+import { Classement } from '../../../interface/interface';
+import { Utils } from '../../../tools/utils';
 
 @Component({
     selector: 'classement-derivatives',

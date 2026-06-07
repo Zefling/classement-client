@@ -20,22 +20,21 @@ import {
     MagmaInputSelect,
     MagmaNgInitDirective,
     MagmaTooltipDirective,
+    Subscriptions,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { Select2Option } from 'ng-select2-component';
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { HelpBingoEmojiComponent } from 'src/app/content/navigate/help/help.bingo.component';
-import { FileString, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
-import { DataService } from 'src/app/services/data.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { emojis } from 'src/app/tools/emoji';
-import { color } from 'src/app/tools/function';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
-
+import { HelpBingoEmojiComponent } from '../../content/navigate/help/help.bingo.component';
+import { FileString, FileType, FormattedGroup, Options } from '../../interface/interface';
+import { DataService } from '../../services/data.service';
 import { GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
+import { emojis } from '../../tools/emoji';
+import { color } from '../../tools/function';
+import { Utils } from '../../tools/utils';
 import { NgxMoveableComponent } from '../moveable/moveable.component';
 import { ZoneAreaComponent } from '../zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../zone-axis/zone-axis.component';

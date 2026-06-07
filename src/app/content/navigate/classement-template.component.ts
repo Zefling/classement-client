@@ -1,15 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { MagmaLoaderBlock, MagmaLoaderTile } from '@ikilote/magma';
+import { MagmaLoaderBlock, MagmaLoaderTile, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Classement } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { Classement } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { GlobalService } from '../../services/global.service';
 import { categories } from '../classement/classement-default';
 
 @Component({

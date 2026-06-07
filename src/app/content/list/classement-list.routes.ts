@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { DataChange } from 'src/app/services/data-change';
+import { DataChange } from '../../services/data-change';
 
 export const LIST_ROUTES: Routes = [
     {

@@ -33,11 +33,14 @@ import {
     MagmaMessageType,
     MagmaMessages,
     MagmaSpinner,
+    Subscriptions,
     clipboardWrite,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
+import { ClassementInfosComponent } from '../../components/classement-infos/classement-infos.component';
+import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { TileComponent } from '../../components/tile/tile.component';
 import {
     Classement,
     ClassementHistory,
@@ -45,17 +48,13 @@ import {
     MessageError,
     Options,
     ScreenMode,
-} from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { FileFormatExport, GlobalService } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
-
-import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { TileComponent } from '../../components/tile/tile.component';
+} from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { FileFormatExport, GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
+import { Utils } from '../../tools/utils';
 
 const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:image', 'title', 'description', 'image'];
 

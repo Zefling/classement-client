@@ -776,11 +776,15 @@
   <div #image></div>
 </mg-dialog>
 
-<classement-derivatives #dialogDerivatives [derivatives]="derivatives" [currentRankingId]="classement?.rankingId" />
+<classement-derivatives
+  #dialogDerivatives
+  [derivatives]="derivatives"
+  [currentRankingId]="$safeNavigationMigration(classement?.rankingId)"
+/>
 
 <classement-ranking-diff
   #dialogRankingDiff
-  [templateId]="classement?.templateId"
+  [templateId]="$safeNavigationMigration(classement?.templateId)"
   [list]="list"
   [groups]="groups"
   [options]="options"

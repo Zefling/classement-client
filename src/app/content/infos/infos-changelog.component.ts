@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'infos-changelog',

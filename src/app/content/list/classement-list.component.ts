@@ -26,22 +26,20 @@ import {
     MagmaSortableModule,
     MagmaTableModule,
     MagmaTooltipDirective,
+    Subscriptions,
     downloadFile,
     normalizeString,
     toISODate,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { FormattedInfos } from 'src/app/interface/interface';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
-import { ImportJsonComponent } from '../../components/import-json/import-json.component';
+import { ImportJsonComponent, ImportJsonEvent } from '../../components/import-json/import-json.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { FormattedInfos } from '../../interface/interface';
 import { FileSizePipe } from '../../pipes/file-size';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'classement-list',

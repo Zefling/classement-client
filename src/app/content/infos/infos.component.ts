@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'infos-page',

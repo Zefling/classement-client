@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input, o
 import { MagmaClickEnterDirective, MagmaDialog, MagmaMessageType, MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Classement, FileString, FileType, FormattedGroup, ImageCache, Options } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
+import { Classement, FileString, FileType, FormattedGroup, ImageCache, Options } from '../../../interface/interface';
+import { APIClassementService } from '../../../services/api.classement.service';
 
 @Component({
     selector: 'classement-ranking-diff',

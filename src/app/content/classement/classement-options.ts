@@ -1,4 +1,4 @@
-import { FormattedGroup } from 'src/app/interface/interface';
+import { FormattedGroup } from '../../interface/interface';
 
 export const groupExample: FormattedGroup[] = [
     {

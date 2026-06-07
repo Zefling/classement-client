@@ -2,14 +2,12 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Logger, MagmaLoader, MagmaSpinner } from '@ikilote/magma';
+import { Logger, MagmaLoader, MagmaSpinner, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { User } from 'src/app/interface/interface';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { User } from '../../interface/interface';
+import { APIUserService } from '../../services/api.user.service';
 
 @Component({
     selector: 'user-view',

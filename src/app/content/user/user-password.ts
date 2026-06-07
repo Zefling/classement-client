@@ -5,7 +5,7 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import oWasp from 'owasp-password-strength-test';
 
-import { APIUserService } from 'src/app/services/api.user.service';
+import { APIUserService } from '../../services/api.user.service';
 
 export abstract class UserPassword {
     showError: string[] = [];

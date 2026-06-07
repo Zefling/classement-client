@@ -2,18 +2,16 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages } from '@ikilote/magma';
+import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Classement, PreferencesData } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { environment } from 'src/environments/environment';
-
+import { environment } from '../../../environments/environment';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { Classement, PreferencesData } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APIUserService } from '../../services/api.user.service';
+import { GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
 
 @Component({
     selector: 'classement-home',

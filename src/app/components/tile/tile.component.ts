@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input } 
 
 import { MagmaTooltipDirective } from '@ikilote/magma';
 
-import { FileString, Options } from 'src/app/interface/interface';
-import { Utils } from 'src/app/tools/utils';
+import { FileString, Options } from '../../interface/interface';
+import { Utils } from '../../tools/utils';
 
 @Component({
     selector: 'tile-item',

@@ -32,6 +32,7 @@ import {
     MagmaInputText,
     MagmaInputTextarea,
     MagmaTooltipDirective,
+    Subscriptions,
     jsonCopy,
     randomNumber,
 } from '@ikilote/magma';
@@ -40,24 +41,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
 import { Select2Data, Select2HighlightPipe, Select2Option } from 'ng-select2-component';
-
-import {
-    Category,
-    FileHandle,
-    FormattedGroup,
-    ImagesNames,
-    ModeNames,
-    Options,
-    Theme,
-    ThemesNames,
-} from 'src/app/interface/interface';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { GlobalService, TypeFile, typesMine } from 'src/app/services/global.service';
-import { MemoryService } from 'src/app/services/memory.service';
-import { OptimiseImageService } from 'src/app/services/optimise-image.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { palette } from 'src/app/tools/function';
-import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import {
     defaultGroup,
@@ -89,6 +72,22 @@ import { ClassementThemesComponent } from './classement-themes.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
+import {
+    Category,
+    FileHandle,
+    FormattedGroup,
+    ImagesNames,
+    ModeNames,
+    Options,
+    Theme,
+    ThemesNames,
+} from '../../interface/interface';
+import { CategoriesService } from '../../services/categories.service';
+import { GlobalService, TypeFile, typesMine } from '../../services/global.service';
+import { MemoryService } from '../../services/memory.service';
+import { OptimiseImageService } from '../../services/optimise-image.service';
+import { PreferencesService } from '../../services/preferences.service';
+import { palette } from '../../tools/function';
 
 @Component({
     selector: 'classement-options',

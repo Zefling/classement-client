@@ -1,4 +1,4 @@
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideZonelessChangeDetection(),
         provideRouter(routes),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideTransloco({
             config: {
                 availableLangs: ['en', 'fr', 'ja', 'ar'],

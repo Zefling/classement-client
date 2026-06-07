@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { APIRequired } from 'src/app/services/api.required';
-import { DataChange } from 'src/app/services/data-change';
+import { APIRequired } from '../../services/api.required';
+import { DataChange } from '../../services/data-change';
 
 export const USER_ROUTES: Routes = [
     {

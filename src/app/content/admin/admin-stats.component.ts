@@ -29,8 +29,8 @@ import {
     StatsResultUserDate,
     StatsResultUserMonth,
     StatsResultUserWeek,
-} from 'src/app/interface/interface';
-import { APIStatsService } from 'src/app/services/api.stats.service';
+} from '../../interface/interface';
+import { APIStatsService } from '../../services/api.stats.service';
 
 echarts.use([
     LineChart,

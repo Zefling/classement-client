@@ -1,18 +1,19 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, output, viewChild } from '@angular/core';
 
 import { MagmaClickEnterDirective, MagmaDialog } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { NavigateResultComponent } from 'src/app/components/navigate-result/navigate-result.component';
-import { SearchBarComponent, SearchFormFields } from 'src/app/components/search-bar/search-bar.component';
-import { Classement, FileString } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
+import { NavigateResultComponent } from '../../../components/navigate-result/navigate-result.component';
+import { SearchBarComponent, SearchFormFields } from '../../../components/search-bar/search-bar.component';
+import { Classement, FileString } from '../../../interface/interface';
+import { APIClassementService } from '../../../services/api.classement.service';
 
 @Component({
     selector: 'classement-import-tile',
     templateUrl: './classement-import-tile.component.html',
     styleUrl: './classement-import-tile.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         NgClass,
         NgTemplateOutlet,

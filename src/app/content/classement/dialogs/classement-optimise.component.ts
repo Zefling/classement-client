@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } fro
 import { Logger, MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from 'src/app/interface/interface';
-import { GlobalService } from 'src/app/services/global.service';
-import { OptimiseImageService } from 'src/app/services/optimise-image.service';
+import { FileString, FileType, FormattedGroup, ModeNames, OptimizedFile } from '../../../interface/interface';
+import { GlobalService } from '../../../services/global.service';
+import { OptimiseImageService } from '../../../services/optimise-image.service';
 
 @Component({
     selector: 'classement-optimise',

@@ -29,14 +29,14 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { filter } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-
 import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { ModuleErrorHandler } from './services/module-error-handler';
 import { PreferencesService } from './services/preferences.service';
+
+import { environment } from '../environments/environment';
 
 @Component({
     selector: 'app-root',

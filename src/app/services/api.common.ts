@@ -3,8 +3,7 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Logger, LoggerLevel } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
-import { environment } from 'src/environments/environment';
-
+import { environment } from '../../environments/environment';
 import { MessageError } from '../interface/interface';
 
 export abstract class APICommon {

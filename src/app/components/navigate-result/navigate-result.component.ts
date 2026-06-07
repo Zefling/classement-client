@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MagmaClickEnterDirective } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Classement } from 'src/app/interface/interface';
+import { Classement } from '../../interface/interface';
 
 @Component({
     selector: 'navigate-result',

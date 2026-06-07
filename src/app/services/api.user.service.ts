@@ -6,12 +6,11 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
-import { PreferencesService } from 'src/app/services/preferences.service';
-
 import { APICommon } from './api.common';
 import { Role } from './api.moderation';
 import { GlobalService } from './global.service';
 
+import { PreferencesService } from '../services/preferences.service';
 import {
     Classement,
     Login,

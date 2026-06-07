@@ -53,6 +53,7 @@ import {
     MagmaSpinner,
     MagmaStopPropagationDirective,
     MagmaTooltipDirective,
+    Subscriptions,
     clipboardWrite,
     downloadFile,
     jsonCopy,
@@ -64,35 +65,6 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import Bowser from 'bowser';
 import { first } from 'rxjs';
-
-import { ImportJsonEvent } from 'src/app/components/import-json/import-json.component';
-import { CdkDragElement } from 'src/app/directives/drag-element.directive';
-import {
-    Classement,
-    Data,
-    FileStream,
-    FileString,
-    FileType,
-    FormattedGroup,
-    GroupOption,
-    ImageCache,
-    Options,
-    PreferenceLineOption,
-    ScreenMode,
-    ThemesNames,
-} from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APITmdbService } from 'src/app/services/api.tmdb.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
-import { FileFormatExport, GlobalService, TypeFile } from 'src/app/services/global.service';
-import { MemoryService } from 'src/app/services/memory.service';
-import { OptimiseImageService } from 'src/app/services/optimise-image.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { color, mixColor, randomizeArray } from 'src/app/tools/function';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
 
 import {
     defaultGroup,
@@ -123,14 +95,40 @@ import { HelpIcebergComponent } from './help/help.iceberg.component';
 import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
 
-import { ImportJsonComponent } from '../../components/import-json/import-json.component';
+import { ImportJsonComponent, ImportJsonEvent } from '../../components/import-json/import-json.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
 import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
+import { CdkDragElement } from '../../directives/drag-element.directive';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { CdkDropZone } from '../../directives/dropzone.directive';
 import { RemoveTileDirective } from '../../directives/remove-tile.directive';
+import {
+    Classement,
+    Data,
+    FileStream,
+    FileString,
+    FileType,
+    FormattedGroup,
+    GroupOption,
+    ImageCache,
+    Options,
+    PreferenceLineOption,
+    ScreenMode,
+    ThemesNames,
+} from '../../interface/interface';
 import { FileSizePipe } from '../../pipes/file-size';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APITmdbService } from '../../services/api.tmdb.service';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { EditKeyBoardService } from '../../services/edit.keyboard.service';
+import { FileFormatExport, GlobalService, TypeFile } from '../../services/global.service';
+import { MemoryService } from '../../services/memory.service';
+import { OptimiseImageService } from '../../services/optimise-image.service';
+import { PreferencesService } from '../../services/preferences.service';
+import { color, mixColor, randomizeArray } from '../../tools/function';
+import { Utils } from '../../tools/utils';
 
 const browser = Bowser.getParser(window.navigator.userAgent);
 

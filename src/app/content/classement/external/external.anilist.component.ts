@@ -22,11 +22,11 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Theme } from 'src/app/interface/interface';
-import { Genres } from 'src/app/interface/movie';
-import { APIAnilistService, AniListMedia } from 'src/app/services/api.anilist.service';
-import { GlobalService, TypeFile } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
+import { Theme } from '../../../interface/interface';
+import { Genres } from '../../../interface/movie';
+import { APIAnilistService, AniListMedia } from '../../../services/api.anilist.service';
+import { GlobalService, TypeFile } from '../../../services/global.service';
+import { PreferencesService } from '../../../services/preferences.service';
 
 @Component({
     selector: 'external-anilist',

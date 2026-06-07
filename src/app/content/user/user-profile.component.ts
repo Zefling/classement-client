@@ -21,6 +21,7 @@ import {
     MagmaMessageType,
     MagmaMessages,
     MagmaTabsModule,
+    Subscriptions,
     blobToBase64,
     testEmail,
 } from '@ikilote/magma';
@@ -29,17 +30,15 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
 
-import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
-import { FileHandle, Theme, User } from 'src/app/interface/interface';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { UserPassword } from './user-password';
 
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
+import { FileHandle, Theme, User } from '../../interface/interface';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'user-profile',

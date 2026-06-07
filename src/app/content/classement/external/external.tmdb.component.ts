@@ -18,6 +18,7 @@ import {
     MagmaInputElement,
     MagmaInputSelect,
     MagmaInputText,
+    Subscriptions,
     isEmpty,
     randomNumber,
     ulrToBase64,
@@ -26,12 +27,11 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { Select2Data, Select2Option } from 'ng-select2-component';
 
-import { Genres, MovieSearch } from 'src/app/interface/movie';
-import { APITmdbService } from 'src/app/services/api.tmdb.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { GlobalService, TypeFile } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
+import { Genres, MovieSearch } from '../../../interface/movie';
+import { APITmdbService } from '../../../services/api.tmdb.service';
+import { APIUserService } from '../../../services/api.user.service';
+import { GlobalService, TypeFile } from '../../../services/global.service';
+import { PreferencesService } from '../../../services/preferences.service';
 
 @Component({
     selector: 'external-tmdb',

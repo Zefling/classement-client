@@ -113,7 +113,7 @@
 }
 
 <mg-dialog #dialogListClassements closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
-  <list-classements [classements]="currentUser?.classements" />
+  <list-classements [classements]="$safeNavigationMigration(currentUser?.classements)" />
 </mg-dialog>
 
 <mg-dialog #dialogActionsUser>

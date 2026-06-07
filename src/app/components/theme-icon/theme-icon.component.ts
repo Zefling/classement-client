@@ -12,8 +12,7 @@ import {
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { imageInfos } from 'src/app/content/classement/classement-default';
-
+import { imageInfos } from '../../content/classement/classement-default';
 import { Theme, ThemesNames } from '../../interface/interface';
 import { color } from '../../tools/function';
 

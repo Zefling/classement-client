@@ -6,10 +6,9 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { MarkdownModule } from 'ngx-markdown';
 
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-
 import { Classement, ClassementVotes } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APIUserService } from '../../services/api.user.service';
 import { TagListComponent } from '../tag-list/tag-list.component';
 
 const emojiList = ['👍', '👎', '😂', '😍', '😎', ' 😱', '🤢', '🥵', '💩'];

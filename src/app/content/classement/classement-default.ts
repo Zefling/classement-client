@@ -1,6 +1,6 @@
 import { Select2Data } from 'ng-select2-component';
 
-import { FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from 'src/app/interface/interface';
+import { FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from '../../interface/interface';
 
 export const defaultGroup: FormattedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },

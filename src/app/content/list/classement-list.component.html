@@ -156,7 +156,7 @@
   <div>
     <mg-input class="s-12">
       <mg-input-label>{{ 'list.clone.title' | transloco }}</mg-input-label>
-      <mg-input-text maxlength="150" [value]="itemCurrent?.options?.title" #title />
+      <mg-input-text maxlength="150" [value]="$safeNavigationMigration(itemCurrent?.options?.title)" #title />
     </mg-input>
 
     <mg-input class="s-12">

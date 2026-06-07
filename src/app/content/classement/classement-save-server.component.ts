@@ -30,6 +30,7 @@ import {
     MagmaProgress,
     MagmaSpinner,
     MagmaTooltipDirective,
+    Subscriptions,
     blobToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -37,17 +38,15 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { Select2Option } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
-import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { boolean, inList, minMax } from 'src/app/tools/function';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { imagesNames, listTextPosition } from './classement-default';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
+import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APIUserService } from '../../services/api.user.service';
+import { CategoriesService } from '../../services/categories.service';
+import { GlobalService } from '../../services/global.service';
+import { boolean, inList, minMax } from '../../tools/function';
 
 @Component({
     selector: 'classement-save-server',

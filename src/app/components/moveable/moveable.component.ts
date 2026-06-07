@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -19,6 +20,7 @@ import Moveable, { EVENTS } from 'moveable';
 @Component({
     selector: 'moveable-zone',
     templateUrl: './moveable.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./moveable.component.scss'],
 })
 export class NgxMoveableComponent implements OnDestroy, AfterViewInit, OnChanges {

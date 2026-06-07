@@ -9,7 +9,7 @@
           <div class="content-box" (clickEnter)="addTileToList(item)">
             <div
               class="content content-render"
-              [ngClass]="options()?.itemTextPosition"
+              [ngClass]="$safeNavigationMigration(options()?.itemTextPosition)"
               [style.width.px]="
                 options()?.itemWidthAuto
                   ? ((item.width || 150) / (item.height || 150)) * (options()?.itemHeight || 150)

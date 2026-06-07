@@ -21,13 +21,13 @@ import {
     MagmaLoader,
     MagmaMessage,
     MagmaSpinner,
+    Subscriptions,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { APIUserService } from 'src/app/services/api.user.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { APIUserService } from '../../services/api.user.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'user-login',

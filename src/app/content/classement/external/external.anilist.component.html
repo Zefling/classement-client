@@ -80,7 +80,7 @@
         @for (ani of results; track ani) {
           <div class="content-box" [class.disabled]="ani.disabled" (click)="addTile(ani)">
             <div class="content">
-              <img [src]="baseImg + ani.coverImage?.extraLarge" alt="poster_path" />
+              <img [src]="baseImg + $safeNavigationMigration(ani.coverImage?.extraLarge)" alt="poster_path" />
               <div class="tile-title">
                 @if (withTitle) {
                   <span>{{

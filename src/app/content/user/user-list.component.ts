@@ -23,19 +23,18 @@ import {
     MagmaTabs,
     MagmaTabsModule,
     MagmaTooltipDirective,
+    Subscriptions,
     normalizeString,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Classement, User } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-import { Utils } from 'src/app/tools/utils';
-
 import { TagListComponent } from '../../components/tag-list/tag-list.component';
+import { Classement, User } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { GlobalService } from '../../services/global.service';
+import { Utils } from '../../tools/utils';
 import { ClassementListComponent } from '../list/classement-list.component';
 
 @Component({

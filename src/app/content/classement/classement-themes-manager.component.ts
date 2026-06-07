@@ -24,12 +24,12 @@ import {
 } from '@ikilote/magma';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
-import { ThemeIconComponent } from 'src/app/components/theme-icon/theme-icon.component';
-import { Options, Theme, User } from 'src/app/interface/interface';
-import { APIThemeService } from 'src/app/services/api.theme.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
+import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
+import { Options, Theme, User } from '../../interface/interface';
+import { APIThemeService } from '../../services/api.theme.service';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'classement-themes-manager',

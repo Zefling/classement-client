@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Options } from 'src/app/interface/interface';
+import { Options } from '../../interface/interface';
 
 @Component({
     selector: 'zone-area',

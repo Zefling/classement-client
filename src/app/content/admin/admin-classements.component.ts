@@ -9,16 +9,16 @@ import {
     MagmaInputText,
     MagmaPagination,
     MagmaSpinner,
+    Subscriptions,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Category, Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
-
 import { ListClassementsComponent } from './list-classements.component';
+
+import { Category, Classement, SortClassementCol, SortDirection } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { CategoriesService } from '../../services/categories.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'admin-classements',

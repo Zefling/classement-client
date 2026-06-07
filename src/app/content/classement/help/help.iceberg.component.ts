@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
-import { EditKeyBoardService } from 'src/app/services/edit.keyboard.service';
-import { MemoryService } from 'src/app/services/memory.service';
+import { EditKeyBoardService } from '../../../services/edit.keyboard.service';
+import { MemoryService } from '../../../services/memory.service';
 
 @Component({
     selector: 'help.iceberg',

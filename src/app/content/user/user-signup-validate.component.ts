@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { APIUserService } from 'src/app/services/api.user.service';
+import { APIUserService } from '../../services/api.user.service';
 
 @Component({
     selector: 'user-signup-validate',

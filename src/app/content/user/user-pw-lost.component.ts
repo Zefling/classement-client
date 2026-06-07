@@ -9,13 +9,13 @@ import {
     MagmaInputElement,
     MagmaInputText,
     MagmaMessage,
+    Subscriptions,
     testEmail,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { APIUserService } from 'src/app/services/api.user.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
+import { APIUserService } from '../../services/api.user.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
     selector: 'user-pw-lost',

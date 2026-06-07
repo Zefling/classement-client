@@ -14,10 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Select2Data } from 'node_modules/ng-select2-component/public_api';
+import { Select2Data } from 'ng-select2-component';
 
-import { listModes } from 'src/app/content/classement/classement-default';
-import { CategoriesService } from 'src/app/services/categories.service';
+import { listModes } from '../../content/classement/classement-default';
+import { CategoriesService } from '../../services/categories.service';
 
 export type SearchFormFields = { searchKey: string; category: string; mode: string };
 

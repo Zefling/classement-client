@@ -29,12 +29,10 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subject, debounceTime } from 'rxjs';
 
-import { FileHandle, FileString, Options } from 'src/app/interface/interface';
-import { GlobalService } from 'src/app/services/global.service';
-
-import { ClassementEditComponent } from '../classement-edit.component';
-
 import { DropImageDirective } from '../../../directives/drop-image.directive';
+import { FileHandle, FileString, Options } from '../../../interface/interface';
+import { GlobalService } from '../../../services/global.service';
+import { ClassementEditComponent } from '../classement-edit.component';
 
 const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MagmaDialog, MagmaInput, MagmaInputTextarea } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from '../../../services/global.service';
 
 @Component({
     selector: 'classement-texts',

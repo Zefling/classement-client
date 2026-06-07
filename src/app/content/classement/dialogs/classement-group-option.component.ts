@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MagmaColorPicker, MagmaDialog } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { GroupOption } from 'src/app/interface/interface';
+import { GroupOption } from '../../../interface/interface';
 
 @Component({
     selector: 'classement-group-option',

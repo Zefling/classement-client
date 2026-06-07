@@ -7,7 +7,6 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
 
 import { LanguagesList } from '../components/preferences/preferences.component';
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
@@ -22,6 +21,7 @@ import {
     ThemeOptions,
 } from '../interface/interface';
 import { alphaColor, color } from '../tools/function';
+import { environment } from '../../environments/environment';
 
 export enum TypeFile {
     image = 'image',

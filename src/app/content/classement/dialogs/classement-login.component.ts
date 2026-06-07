@@ -2,14 +2,12 @@ import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, inject, viewChild } from '@angular/core';
 import { ɵEmptyOutletComponent } from '@angular/router';
 
-import { MagmaDialog } from '@ikilote/magma';
+import { MagmaDialog, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
-
-import { APIUserService } from 'src/app/services/api.user.service';
-import { Subscriptions } from 'src/app/tools/subscriptions';
 
 import { ClassementEditComponent } from './../classement-edit.component';
 
+import { APIUserService } from '../../../services/api.user.service';
 import { UserLoginComponent } from '../../user/user-login.component';
 
 @Component({

@@ -20,14 +20,13 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { Select2HighlightPipe, Select2Option } from 'ng-select2-component';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { ClassementInfosComponent } from 'src/app/components/classement-infos/classement-infos.component';
-import { TileComponent } from 'src/app/components/tile/tile.component';
-import { Classement, SortClassementCol, SortDirection } from 'src/app/interface/interface';
-import { APIClassementService } from 'src/app/services/api.classement.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Utils } from 'src/app/tools/utils';
-
+import { ClassementInfosComponent } from '../../components/classement-infos/classement-infos.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
+import { TileComponent } from '../../components/tile/tile.component';
+import { Classement, SortClassementCol, SortDirection } from '../../interface/interface';
+import { APIClassementService } from '../../services/api.classement.service';
+import { GlobalService } from '../../services/global.service';
+import { Utils } from '../../tools/utils';
 import { categories } from '../classement/classement-default';
 
 @Component({

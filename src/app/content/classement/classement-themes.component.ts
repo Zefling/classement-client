@@ -21,16 +21,15 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { Options, Theme, ThemeData, ThemesNames, User } from 'src/app/interface/interface';
-import { APIThemeService } from 'src/app/services/api.theme.service';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { DBService } from 'src/app/services/db.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-
 import { themes, themesAxis, themesBingo, themesIceberg, themesList, themesLists } from './classement-default';
 
 import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
+import { Options, Theme, ThemeData, ThemesNames, User } from '../../interface/interface';
+import { APIThemeService } from '../../services/api.theme.service';
+import { APIUserService } from '../../services/api.user.service';
+import { DBService } from '../../services/db.service';
+import { GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
 
 @Component({
     selector: 'classement-themes',

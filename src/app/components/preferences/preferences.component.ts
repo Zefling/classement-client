@@ -40,12 +40,12 @@ import {
     themesBingo,
     themesIceberg,
     themesLists,
-} from 'src/app/content/classement/classement-default';
-import { ModeNames, PreferencesData } from 'src/app/interface/interface';
-import { APIUserService } from 'src/app/services/api.user.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { PreferencesService } from 'src/app/services/preferences.service';
-import { emojis } from 'src/app/tools/emoji';
+} from '../../content/classement/classement-default';
+import { ModeNames, PreferencesData } from '../../interface/interface';
+import { APIUserService } from '../../services/api.user.service';
+import { GlobalService } from '../../services/global.service';
+import { PreferencesService } from '../../services/preferences.service';
+import { emojis } from '../../tools/emoji';
 
 const languages: Select2Option[] = [
     { value: 'en', label: 'English' },
