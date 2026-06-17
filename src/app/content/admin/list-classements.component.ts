@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -76,11 +76,9 @@ export class ListClassementsComponent {
     categoriesList = categories.map<Select2Option>(cat => ({ label: cat, value: cat }));
     newCategory?: string;
 
-    @Output()
-    updateClassements = new EventEmitter<Classement[]>();
+    readonly updateClassements = output<Classement[]>();
 
-    @Output()
-    sortUpdate = new EventEmitter<SortClassementCol>();
+    readonly sortUpdate = output<SortClassementCol>();
 
     see(classement: Classement) {
         this.currentClassement = classement;
@@ -103,7 +101,7 @@ export class ListClassementsComponent {
         this.classementService
             .statusClassement(this.currentClassement!.rankingId, status, type, true)
             .then(classements => {
-                this.updateClassements.next(classements);
+                this.updateClassements.emit(classements);
                 let typeName: string;
 
                 if (type === 'delete') {

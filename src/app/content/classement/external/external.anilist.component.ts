@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Output,
-    inject,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, output, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -55,8 +47,7 @@ export class ExternalAnilistComponent {
 
     dialog = viewChild.required<MagmaDialog>(MagmaDialog);
 
-    @Output()
-    change = new EventEmitter<Theme>();
+    readonly change = output<Theme>();
 
     searchAnilistForm?: FormGroup;
 
