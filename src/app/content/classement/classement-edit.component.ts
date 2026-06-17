@@ -985,6 +985,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     globalChange() {
         this.memory.addUndo(this);
+        this.updateActiveActions();
     }
 
     upLine(index: number) {
