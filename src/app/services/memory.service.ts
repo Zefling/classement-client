@@ -32,6 +32,7 @@ export class MemoryService {
     #image: Record<string, string> = {};
 
     private debounceTimeout: any = undefined;
+    private structuralTimeout: any = undefined;
 
     reset() {
         this.#back = [];
@@ -40,14 +41,29 @@ export class MemoryService {
     }
 
     addUndo(parent: ClassementEditComponent, delay: number = 1000) {
-        if (this.debounceTimeout) {
-            this.clearTimer();
+        if (delay === 0) {
+            // Structural action: flush any pending options debounce first, then snapshot immediately
+            if (this.debounceTimeout) {
+                this.clearDebounceTimer();
+                this.addUndoAction(parent);
+            }
+            if (this.structuralTimeout) {
+                clearTimeout(this.structuralTimeout);
+            }
+            this.structuralTimeout = setTimeout(() => {
+                this.addUndoAction(parent);
+                this.structuralTimeout = undefined;
+            }, 0);
+        } else {
+            // Options/input debounce: reset the debounce timer
+            if (this.debounceTimeout) {
+                this.clearDebounceTimer();
+            }
+            this.debounceTimeout = setTimeout(() => {
+                this.addUndoAction(parent);
+                this.clearDebounceTimer();
+            }, delay);
         }
-
-        this.debounceTimeout = setTimeout(() => {
-            this.addUndoAction(parent);
-            this.clearTimer();
-        }, delay);
     }
 
     undo(parent: ClassementEditComponent) {
@@ -76,7 +92,7 @@ export class MemoryService {
         }
     }
 
-    private clearTimer() {
+    private clearDebounceTimer() {
         clearTimeout(this.debounceTimeout);
         this.debounceTimeout = undefined;
     }

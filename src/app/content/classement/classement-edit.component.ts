@@ -25,7 +25,6 @@ import {
     viewChild,
     viewChildren,
 } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -362,15 +361,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.contextMenuGenerate();
                 this.detectChanges();
             }),
-            toObservable(this.global.withChange).subscribe(withChange => {
-                if (
-                    withChange &&
-                    this.options &&
-                    !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])
-                ) {
-                    this.memory.addUndo(this);
-                }
-            }),
         );
 
         effect(() => {
@@ -388,7 +378,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.options.category ??= '';
 
         if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
-            this.globalChange();
+            this.memory.addUndo(this, 1000);
+            this.updateActiveActions();
             this.logger.log('Option change');
             if (!this.global.withChange()) {
                 this.change();
@@ -984,7 +975,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     globalChange() {
-        this.memory.addUndo(this);
+        this.memory.addUndo(this, 0);
         this.updateActiveActions();
     }
 
