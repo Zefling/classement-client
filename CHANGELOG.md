@@ -1,5 +1,19 @@
 # Changelog - Standalone web app & API
 
+### 5.0.4 (2026-06-29)
+
+#### Standalone web app
+
+- Improve undo/redo
+- Fix save button on edit
+
+#### With API activated only
+
+- Add a search bar to the homepage
+
+> - Update to **Angular** `22.0`
+> - Update to **Magma** `1.8`
+
 ### 5.0.3 (2026-05-28)
 
 #### Standalone web app
@@ -36,9 +50,9 @@
 #### Standalone web app
 
 - Remove `zone.js` for better performances #132
-  - Improve image render
-  - Fix admin menu
-  - Fix minor bugs
+    - Improve image render
+    - Fix admin menu
+    - Fix minor bugs
 - Fix background change update #133
 - Rename IMDB to TMDB
 - Fix problems with array handling (clone, import)
@@ -50,10 +64,10 @@
 - Add view number #104
 - Add the ability to save preferences (user only) #47
 - Editor:
-  - Add TMDB support form server API  (user only) #122
-  - Add import tiles form any ranking #129
-  - Derivatives link: move button to link
-  - Move top actions in an ellipsis menu
+    - Add TMDB support form server API (user only) #122
+    - Add import tiles form any ranking #129
+    - Derivatives link: move button to link
+    - Move top actions in an ellipsis menu
 
 > Required: API `^3.0.0`
 
