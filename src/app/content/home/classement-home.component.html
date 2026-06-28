@@ -29,6 +29,10 @@
 </div>
 
 @if (modeApi()) {
+  <h3>{{ 'menu.navigate' | transloco }}</h3>
+
+  <search-bar (search)="search($event)" />
+
   <h3>{{ 'home.last' | transloco }}</h3>
   @if (!loading) {
     <div class="navigate-result">

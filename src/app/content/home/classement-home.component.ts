@@ -1,12 +1,13 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Params, Router, RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { environment } from '../../../environments/environment';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
+import { SearchBarComponent, SearchFormFields } from '../../components/search-bar/search-bar.component';
 import { Classement, PreferencesData } from '../../interface/interface';
 import { APIClassementService } from '../../services/api.classement.service';
 import { APIUserService } from '../../services/api.user.service';
@@ -19,7 +20,15 @@ import { PreferencesService } from '../../services/preferences.service';
     styleUrls: ['./classement-home.component.scss'],
 
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgTemplateOutlet, RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
+    imports: [
+        NgTemplateOutlet,
+        RouterLink,
+        NavigateResultComponent,
+        SearchBarComponent,
+        TranslocoPipe,
+        MagmaLoaderBlock,
+        MagmaLoaderTile,
+    ],
 })
 export class ClassementHomeComponent {
     private readonly userService = inject(APIUserService);
@@ -29,6 +38,7 @@ export class ClassementHomeComponent {
     private readonly global = inject(GlobalService);
     private readonly preferencesService = inject(PreferencesService);
     private readonly cd = inject(ChangeDetectorRef);
+    private readonly router = inject(Router);
 
     version = environment.version;
 
@@ -84,5 +94,20 @@ export class ClassementHomeComponent {
 
     ngOnDestroy(): void {
         this.listener.clear();
+    }
+
+    search(fields: SearchFormFields) {
+        const queryParams: Params = {};
+        if (fields.searchKey) {
+            queryParams['name'] = fields.searchKey;
+        }
+        if (fields.category) {
+            queryParams['category'] = fields.category;
+        }
+        if (fields.mode) {
+            queryParams['mode'] = fields.mode;
+        }
+
+        this.router.navigate(['/navigate'], { queryParams });
     }
 }
