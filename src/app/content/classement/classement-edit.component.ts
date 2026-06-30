@@ -300,7 +300,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     selectionGroup: FormattedGroup | null = null;
     selectionIndex: number | null = null;
     selectionDiv: HTMLDivElement | null = null;
-    selectionDrag: CdkDragElement<any> | null = null;
+    selectionDrag: CdkDragElement | null = null;
 
     // export
     webp = browser.isEngine('blink') || browser.isEngine('gecko');
@@ -1082,7 +1082,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         group: FormattedGroup | null,
         item: FileType,
         index: number | null = null,
-        drag: CdkDragElement<any> | null = null,
+        drag: CdkDragElement | null = null,
     ) {
         this.keyboard.selectItemByKey(this, event, group, item, index, drag);
     }
@@ -1112,8 +1112,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     initItem(element: CdkDragElement, pos: Point) {
-        element.freeDragPosition = pos;
-        element.ngAfterViewInit();
+        element.setFreeDragPosition(pos);
     }
 
     moveItem(event: CdkDragMove<any>, item: FileString, _element: CdkDragElement) {
@@ -1380,8 +1379,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         setTimeout(() => {
             if (this.options.mode === 'axis' || this.options.mode === 'iceberg') {
                 this.tiles().forEach(element => {
-                    element.freeDragPosition = element.data;
-                    element.ngAfterViewInit();
+                    element.setFreeDragPosition(element.data);
                 });
             }
         });

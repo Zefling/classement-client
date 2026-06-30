@@ -412,7 +412,7 @@ export abstract class EditKeyBoardService {
         group: FormattedGroup | null,
         item: FileType,
         index: number | null = null,
-        drag: CdkDragElement<any> | null = null,
+        drag: CdkDragElement | null = null,
     ) {
         switch (event.key) {
             case 'e':
