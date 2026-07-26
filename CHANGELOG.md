@@ -6,7 +6,7 @@
  
 - Modernize `cdkDropZone`/`cdkDragElement`
  
-> - Update to **Magma** `1.10` 
+> - Update to **Magma** `1.11`
 
 ### 5.0.4 (2026-06-29)
 
