@@ -1,5 +1,13 @@
 # Changelog - Standalone web app & API
 
+### 5.0.5 (2026-07-26)
+
+#### Standalone web app
+ 
+- Modernize `cdkDropZone`/`cdkDragElement`
+ 
+> - Update to **Magma** `1.10` 
+
 ### 5.0.4 (2026-06-29)
 
 #### Standalone web app
@@ -7,12 +15,13 @@
 - Improve undo/redo
 - Fix save button on edit
 
+> - Update to **Angular** `22.0`
+> - Update to **Magma** `1.8`
+
 #### With API activated only
 
 - Add a search bar to the homepage
 
-> - Update to **Angular** `22.0`
-> - Update to **Magma** `1.8`
 
 ### 5.0.3 (2026-05-28)
 

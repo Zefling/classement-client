@@ -1,7 +1,7 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
@@ -90,11 +90,7 @@
     "@types/pica": "^9.0.5",
     "baseline-browser-mapping": "^2.11.4",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~6.3.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.2.0",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.23",
     "prettier": "^3.9.6",
     "prettier-plugin-css-order": "^2.2.0",
