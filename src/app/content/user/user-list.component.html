@@ -17,20 +17,20 @@
     @if (user && user.classements) {
       <ng-container
         [sortable]="user.classements"
-        [sortable-filter-input]="inputFilter.inputElement"
-        [sortable-filter]="sortableFilter"
+        [sortableFilterInput]="inputFilter.inputElement"
+        [sortableFilter]="sortableFilter"
       >
         @if (user.classements.length) {
           <table mg hoverRow>
             <thead mg>
               <tr mg>
-                <th mg class="title" [sort-rule]="{ type: 'string', attr: 'name' }">
+                <th mg class="title" [sortRule]="{ type: 'string', attr: 'name' }">
                   {{ 'list.title.name' | transloco }}
                 </th>
                 <th
                   mg
                   class="mode"
-                  [sort-rule]="{
+                  [sortRule]="{
                     type: 'translate',
                     attr: 'mode',
                     translate: translateSort,
@@ -43,7 +43,7 @@
                 <th
                   mg
                   class="category"
-                  [sort-rule]="{
+                  [sortRule]="{
                     type: 'translate',
                     attr: 'category',
                     translate: translateSort,
@@ -52,13 +52,13 @@
                 >
                   {{ 'list.category.name' | transloco }}
                 </th>
-                <th mg class="date" [sort-rule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
+                <th mg class="date" [sortRule]="{ type: 'date', attr: 'dateCreate', init: 'desc' }">
                   {{ 'list.date' | transloco }}
                 </th>
-                <th mg class="groups" [sort-rule]="{ type: 'number', attr: 'totalGroups' }">
+                <th mg class="groups" [sortRule]="{ type: 'number', attr: 'totalGroups' }">
                   {{ 'list.count.group' | transloco }}
                 </th>
-                <th mg class="items" [sort-rule]="{ type: 'number', attr: 'totalItems' }">
+                <th mg class="items" [sortRule]="{ type: 'number', attr: 'totalItems' }">
                   {{ 'list.count.item' | transloco }}
                 </th>
                 <th mg class="actions">{{ 'list.action.name' | transloco }}</th>

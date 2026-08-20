@@ -7,7 +7,7 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
 
-
+import { environment } from '../../environments/environment';
 import { LanguagesList } from '../components/preferences/preferences.component';
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
 import {
@@ -21,7 +21,6 @@ import {
     ThemeOptions,
 } from '../interface/interface';
 import { alphaColor, color } from '../tools/function';
-import { environment } from '../../environments/environment';
 
 export enum TypeFile {
     image = 'image',
@@ -86,7 +85,7 @@ export class GlobalService {
         this.title.setTitle(
             `${translate ? this.translate.translate(key) : key}${
                 admin ? `- ${this.translate.translate('menu.admin')}` : ''
-            } - ${this.translate.translate('classement')}`,
+            } - ${this.translate.translate('classement.title')}`,
         );
     }
 

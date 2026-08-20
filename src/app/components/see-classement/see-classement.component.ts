@@ -168,8 +168,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.detectChanges();
     }
 
-    updateIconStyle(type: string) {
-        this.dataService.saveOption('bingo', this.id(), { checkChoice: type });
+    updateIconStyle(type: unknown) {
+        this.dataService.saveOption('bingo', this.id(), { checkChoice: type as string });
     }
 
     bingoToggleCheck(group: number, item: number) {

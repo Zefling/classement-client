@@ -168,7 +168,7 @@
                             (clickOutside)="selectItem()"
                             (keydown)="selectItemByKey($event, group, item, index)"
                             (ngInit)="selectionDiv = itemDiv"
-                            [contextMenu]="{ contextMenu, data: { item, group, index } }"
+                            [mgContextMenu]="{ contextMenu, data: { item, group, index } }"
                             [style.--over-item-background]="item.bgColor"
                             [style.--over-item-text-color]="item.txtColor"
                             [class.selection-item]="item === selectionTile && group === selectionGroup"
@@ -277,7 +277,7 @@
                     [cdkDragData]="{ x: item.x || 0, y: item.y || 0 }"
                     removeTile
                     (removeElement)="removeFromGroup(groups[0].list, index)"
-                    [contextMenu]="{ contextMenu, data: { item, group: groups[0], index } }"
+                    [mgContextMenu]="{ contextMenu, data: { item, group: groups[0], index } }"
                     [style.--over-item-background]="item.bgColor"
                     [style.--over-item-text-color]="item.txtColor"
                     #itemDiv
@@ -349,7 +349,7 @@
                               cdkDrag
                               removeTile
                               (removeElement)="removeFromGroup(group.list, index)"
-                              [contextMenu]="{ contextMenu, data: { item, group, index } }"
+                              [mgContextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
                               (ngInit)="selectionDiv = itemDiv"
@@ -475,7 +475,7 @@
                               (clickOutside)="selectItem()"
                               (keydown)="selectItemByKey($event, group, item, index)"
                               (ngInit)="selectionDiv = itemDiv"
-                              [contextMenu]="{ contextMenu, data: { item, group, index } }"
+                              [mgContextMenu]="{ contextMenu, data: { item, group, index } }"
                               [style.--over-item-background]="item.bgColor"
                               [style.--over-item-text-color]="item.txtColor"
                               [class.selection-item]="item === selectionTile && group === selectionGroup"
@@ -595,7 +595,7 @@
                   (keydown)="selectItemByKey($event, null, item, index)"
                   (ngInit)="selectionDiv = itemDiv"
                   [id]="item.id"
-                  [contextMenu]="{ contextMenu: contextMenuList, data: { item, index } }"
+                  [mgContextMenu]="{ contextMenu: contextMenuList, data: { item, index } }"
                 >
                   @if (!options.streamMode) {
                     <div
@@ -618,14 +618,14 @@
                         class="input-title"
                         input="text"
                         maxlength="150"
-                        stop-propagation
+                        stopPropagation
                         stopClick
                         stopKeydown
                         [(ngModel)]="item.title"
                         (ngModelChange)="globalChange()"
                         (blur)="change()"
                       />
-                      <div class="tile-info" (clickEnter)="openTileInfo(item)" stop-propagation stopClick></div>
+                      <div class="tile-info" (clickEnter)="openTileInfo(item)" stopPropagation stopClick></div>
                     </div>
                   } @else {
                     <div

@@ -25,21 +25,21 @@
 
 <ng-container
   [sortable]="result"
-  [sortable-filter-input]="filterInput.inputElement"
-  [sortable-filter]="sortableFilter"
-  (sortable-change)="updateList($event)"
+  [sortableFilterInput]="filterInput.inputElement"
+  [sortableFilter]="sortableFilter"
+  (sortableChange)="updateList($event)"
 >
   @if (result && result.length) {
     <table mg hoverRow>
       <thead mg>
         <tr mg>
-          <th mg class="title" [sort-rule]="{ type: 'string', attr: 'options.title' }">
+          <th mg class="title" [sortRule]="{ type: 'string', attr: 'options.title' }">
             {{ 'list.title.name' | transloco }}
           </th>
           <th
             mg
             class="mode"
-            [sort-rule]="{
+            [sortRule]="{
               type: 'translate',
               attr: 'options.mode',
               translate: translateSort,
@@ -52,7 +52,7 @@
           <th
             mg
             class="category"
-            [sort-rule]="{
+            [sortRule]="{
               type: 'translate',
               attr: 'options.category',
               translateId: 'category.%value%',
@@ -61,13 +61,13 @@
           >
             {{ 'list.category.name' | transloco }}
           </th>
-          <th mg class="date" [sort-rule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
+          <th mg class="date" [sortRule]="{ type: 'date', attr: 'dateChange,dateCreate,date', init: 'desc' }">
             {{ 'list.date' | transloco }}
           </th>
-          <th mg class="groups" [sort-rule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
+          <th mg class="groups" [sortRule]="{ type: 'number', attr: 'groupsLength,groupsLenght' }">
             {{ 'list.count.group' | transloco }}
           </th>
-          <th mg class="items" [sort-rule]="{ type: 'number', attr: 'listLength,listLenght' }">
+          <th mg class="items" [sortRule]="{ type: 'number', attr: 'listLength,listLenght' }">
             {{ 'list.count.item' | transloco }}
           </th>
           <th mg class="actions">{{ 'list.action.name' | transloco }}</th>

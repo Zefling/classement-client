@@ -1165,7 +1165,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 ? mixColor(this.groups[index].txtColor, this.groups[colorIndex].txtColor)
                 : this.groups[index].txtColor;
         this.groups.splice(nextIndex, 0, {
-            name: this.translate.translate('New'),
+            name: this.translate.translate('generator.ranking.new'),
             txtColor,
             bgColor,
             list: [],

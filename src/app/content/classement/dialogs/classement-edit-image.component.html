@@ -2,8 +2,8 @@
   #dialogInfo
   closeButton
   [closeButtonTitle]="'generic.dialog.close' | transloco"
-  (onClose)="_open = false"
-  stop-propagation
+  (closed)="_open = false"
+  stopPropagation
   stopKeydown
 >
   @let cTile = currentTile();

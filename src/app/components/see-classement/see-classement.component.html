@@ -266,9 +266,9 @@
                       <div
                         class="content-box clickable"
                         (click)="!editMode || checkChoice !== 'Z' ? bingoToggleCheck(indexGrp, index) : null"
-                        [contextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
-                        [contextMenuDisabled]="checkChoice !== 'Z'"
-                        contextMenuMode="bubble"
+                        [mgContextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
+                        [mgContextMenuDisabled]="checkChoice !== 'Z'"
+                        mgContextMenuMode="bubble"
                       >
                         @let value = bingoValue(indexGrp, index);
                         <div

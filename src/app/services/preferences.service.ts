@@ -62,7 +62,7 @@ export class PreferencesService {
                     .loadPreferences()
                     .then(preferences => {
                         if (preferences) {
-                            objectAssignNested(this.initPreferences, preferences);
+                            objectAssignNested(this.initPreferences, preferences as object);
 
                             // retro compatibility imdb → tmdb
                             const authApiKeys = this.initPreferences.authApiKeys;

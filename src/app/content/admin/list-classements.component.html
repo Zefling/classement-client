@@ -93,7 +93,7 @@
   #dialogSeeClassement
   closeButton
   [closeButtonTitle]="'generic.dialog.close' | transloco"
-  (onClose)="currentClassement = undefined"
+  (closed)="currentClassement = undefined"
 >
   @if (currentClassement) {
     <classement-infos [classementInfo]="currentClassement" readonly />

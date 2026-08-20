@@ -147,7 +147,7 @@ export class PreferencesMagmaDialog {
             if (this.preferencesForm) {
                 if (data) {
                     const userData = jsonCopy(this.preferencesService.defaultPreferences);
-                    objectAssignNested(userData, data);
+                    objectAssignNested(userData, data as object);
 
                     // emoji list
                     if (Array.isArray(data.emojiList)) {
@@ -171,7 +171,7 @@ export class PreferencesMagmaDialog {
                     this.preferencesForm.setValue(form);
                 } else if (this.preferencesFormBackup) {
                     const userData = jsonCopy(this.preferencesService.defaultPreferences);
-                    objectAssignNested(userData, this.preferencesFormBackup);
+                    objectAssignNested(userData, this.preferencesFormBackup as object);
 
                     const { selectedLang, lightDark } = this.initDataPref(userData);
 

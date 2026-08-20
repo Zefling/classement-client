@@ -14,7 +14,7 @@
           <h3 class="s-12">{{ 'preferences.interface.title' | transloco }}</h3>
           <div class="s-6">
             <div class="label label-ld">{{ 'preferences.interface.light-dark' | transloco }}</div>
-            <mg-light-dark (change)="changeLightDark($event)" />
+            <mg-light-dark (themeChange)="changeLightDark($event)" />
           </div>
 
           <mg-input id="language" class="s-6">
