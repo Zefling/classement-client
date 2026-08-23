@@ -20,6 +20,10 @@ import {
     LoggerLevel,
     MagmaClickEnterDirective,
     MagmaDialog,
+    MagmaInput,
+    MagmaInputElement,
+    MagmaInputSelect,
+    MagmaInputTextarea,
     MagmaLimitFocusDirective,
     MagmaLoader,
     MagmaLoaderMessage,
@@ -27,10 +31,12 @@ import {
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
+import { Select2Option } from 'ng-select2-component';
 import { filter } from 'rxjs';
 
 import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
-import { ModeNames } from './interface/interface';
+import { defaultOptions, defaultTheme } from './content/classement/classement-default';
+import { FileString, FormattedGroup, ModeNames } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { ModuleErrorHandler } from './services/module-error-handler';
@@ -57,6 +63,10 @@ import { environment } from '../environments/environment';
         MagmaDialog,
         MagmaClickEnterDirective,
         MagmaLimitFocusDirective,
+        MagmaInput,
+        MagmaInputElement,
+        MagmaInputSelect,
+        MagmaInputTextarea,
         PreferencesMagmaDialog,
     ],
     host: {
@@ -82,6 +92,7 @@ export class AppComponent {
     readonly warningExit = viewChild.required<MagmaDialog>('warningExit');
     readonly choice = viewChild.required<MagmaDialog>('choice');
     readonly reloadChoice = viewChild.required<MagmaDialog>('reloadDialog');
+    readonly textBingo = viewChild.required<MagmaDialog>('textBingo');
     readonly menu = viewChild.required<ElementRef<HTMLDivElement>>('menu');
     readonly main = viewChild.required<ElementRef<HTMLDivElement>>('main');
     readonly preferences = viewChild.required<PreferencesMagmaDialog>('pref');
@@ -100,6 +111,14 @@ export class AppComponent {
     _modeTemp?: string;
     _index = 0;
     _visibility = false;
+
+    bingoTextInput = '';
+    bingoTextSize = 5;
+    readonly bingoTextSizes: Select2Option[] = [
+        { value: 3, label: '3×3' },
+        { value: 5, label: '5×5' },
+        { value: 7, label: '7×7' },
+    ];
 
     readonly modes: { id: ModeNames; icon?: string }[] = [
         { id: 'default', icon: 'tierlist' },
@@ -252,6 +271,81 @@ export class AppComponent {
     beginNew(mode: ModeNames) {
         this.router.navigate(['edit', 'new', mode]);
         this.choice().close();
+    }
+
+    openTextBingo() {
+        this.choice().close();
+        this.bingoTextInput = '';
+        this.textBingo().open();
+    }
+
+    closeTextBingo() {
+        this.bingoTextInput = '';
+        this.textBingo().close();
+    }
+
+    beginTextBingo() {
+        const size = +this.bingoTextSize;
+        const total = size * size;
+        const centerIndex = size % 2 === 1 ? Math.floor(total / 2) : -1;
+
+        // Parse lines into text tiles
+        const lines = this.bingoTextInput
+            .split('\n')
+            .map(l => l.trim())
+            .filter(l => l !== '');
+
+        const makeTile = (title: string): FileString => ({
+            id: `tile-${Date.now()}-${Math.floor(Math.random() * 1_000_000)}`,
+            name: '',
+            size: title.length,
+            realSize: title.length,
+            type: 'plain/text',
+            date: Date.now(),
+            title,
+        });
+
+        // Build the flat grid (size×size):
+        // - center slot gets the next line, or 'FREE' if none provided (odd grids only)
+        // - other empty slots get a tile with empty title instead of null
+        const grid: FileString[] = new Array(total);
+        let lineIdx = 0;
+        for (let i = 0; i < total; i++) {
+            grid[i] =
+                i === centerIndex
+                    ? makeTile(lines[lineIdx] !== undefined ? lines[lineIdx++] : 'FREE')
+                    : makeTile(lineIdx < lines.length ? lines[lineIdx++] : '');
+        }
+
+        // Extra tiles beyond the grid go into the pool list
+        const list = lines.slice(lineIdx).map(makeTile);
+
+        // Distribute the flat grid into FormattedGroup rows
+        const groups: FormattedGroup[] = Array.from({ length: size }, (_, row) => ({
+            name: '',
+            bgColor: '#ffffff',
+            txtColor: '#000000',
+            list: grid.slice(row * size, (row + 1) * size),
+        }));
+
+        const baseOptions = defaultTheme('bingo-s')!.options;
+        this.globalService.jsonTmp = {
+            options: {
+                ...defaultOptions,
+                ...baseOptions,
+                sizeX: size,
+                sizeY: size,
+                itemTextPosition: 'bottom',
+                itemTextMinLine: 1,
+                itemWidthAuto: false,
+                itemHeightAuto: false,
+            },
+            groups,
+            list,
+        };
+
+        this.textBingo().close();
+        this.router.navigate(['edit', 'new', 'bingo']);
     }
 
     private moderatorUpdate() {

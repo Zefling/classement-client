@@ -258,16 +258,46 @@
           <span>{{ 'mode.name.' + (mode.id || 'default') | transloco }}</span>
         </li>
       }
+      <li
+        id="mode_bingo-text"
+        (clickEnter)="openTextBingo()"
+        (mouseenter)="_visibility = true; _modeTemp = 'bingo-text'; _index = modes.length"
+        (mouseleave)="_visibility = false"
+      >
+        <span class="icon-mode-bingo"></span>
+        <span>{{ 'mode.name.bingo-text' | transloco }}</span>
+      </li>
     </ul>
   </nav>
   <p class="info-block" [class.visible]="_visibility">
     <strong>{{ 'mode.name.' + (_modeTemp || 'default') | transloco }}</strong>
-    <span class="info" [style.--pos]="_index" [style.--size]="modes.length">
+    <span class="info" [style.--pos]="_index" [style.--size]="modes.length + 1">
       @for (mode of modes; track $index) {
         <span>{{ 'generator.actions.change.mode.' + mode.id | transloco }}</span>
       }
+      <span>{{ 'generator.actions.change.mode.bingo-text' | transloco }}</span>
     </span>
   </p>
+</mg-dialog>
+
+<mg-dialog #textBingo closeBackdrop closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  <h2 class="title">{{ 'mode.name.bingo-text' | transloco }}</h2>
+  <div class="add-text-dialog">
+    <mg-input>
+      <mg-input-label>{{ 'generator.bingo.text.size' | transloco }}</mg-input-label>
+      <mg-input-select overlay id="bingo-text-size" [data]="bingoTextSizes" [(ngModel)]="bingoTextSize" />
+    </mg-input>
+
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'generator.bingo.text.info' | transloco }}</mg-input-label>
+      <mg-input-textarea autosize maxlength="5000" [(ngModel)]="bingoTextInput" />
+    </mg-input>
+
+    <div class="buttons">
+      <button (click)="closeTextBingo()">{{ 'generator.actions.texts.cancel' | transloco }}</button>
+      <button class="primary" (click)="beginTextBingo()">{{ 'generator.actions.texts.ok' | transloco }}</button>
+    </div>
+  </div>
 </mg-dialog>
 
 <preferences-dialog #pref (mainMenuReduce)="mainMenuReduce.set($event)" />

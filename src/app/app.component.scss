@@ -217,10 +217,10 @@ header {
             transform: translateX(calc(-100% * var(--pos)));
         }
     }
-}
 
-.mode-dialog ::ng-deep > .content {
-    max-width: 780px;
+    & ::ng-deep > .content {
+        max-width: 780px;
+    }
 }
 
 .menu-mode {
@@ -243,6 +243,11 @@ header {
         }
     }
 }
+
+.add-text-dialog {
+    padding: 8px 8px 28px 0;
+}
+
 .zoom-mobile {
     position: relative;
 

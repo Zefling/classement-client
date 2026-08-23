@@ -378,7 +378,8 @@
       "columns": "Colonnes",
       "iceberg": "Iceberg",
       "axis": "Axes",
-      "bingo": "Bingo"
+      "bingo": "Bingo",
+      "bingo-text": "Bingo texte"
     }
   },
   "generator": {
@@ -703,7 +704,8 @@
         "columns": "Déplacer librement les tuiles dans chaque groupes verticaux.",
         "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
         "axis": "Déplacer librement dans l'espace défini suivant des axes.",
-        "bingo": "Repartissez des tuiles dans une grille."
+        "bingo": "Repartissez des tuiles dans une grille.",
+        "bingo-text": "Pré-remplir une grille de bingo avec des tuiles de texte."
       },
       "reset.groups": {
         "button": "Vider les groupes",
@@ -940,6 +942,12 @@
           "focus.change": "Déplacer le focus entre les tuiles.",
           "focus.main": "Déplacer le focus dans la liste."
         }
+      }
+    },
+    "bingo": {
+      "text": {
+        "size": "Taille de la grille :",
+        "info": "Entrez un texte de tuile par ligne, les lignes vides sont ignorées."
       }
     }
   },

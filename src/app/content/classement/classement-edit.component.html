@@ -374,11 +374,27 @@
                                   </div>
                                 }
                                 @if (
-                                  item.title ||
+                                  item.title !== undefined ||
+                                  !item.url ||
                                   (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
                                 ) {
                                   <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
-                                    <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                    @if (!item.url) {
+                                      <span
+                                        class="title-span"
+                                        contenteditable="true"
+                                        (ngInit)="detectChanges()"
+                                        (mousedown)="$event.stopPropagation()"
+                                        (click)="$event.stopPropagation()"
+                                        (keydown.enter)="$event.preventDefault(); $any($event.target).blur()"
+                                        (blur)="
+                                          item.title = $any($event.target).innerText.trim(); globalChange(); change()
+                                        "
+                                        >{{ item.title || '' }}</span
+                                      >
+                                    } @else {
+                                      <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                    }
                                   </div>
                                 }
                                 <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>

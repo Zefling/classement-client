@@ -378,7 +378,8 @@
       "columns": "Columns",
       "iceberg": "Iceberg",
       "axis": "Axis",
-      "bingo": "Bingo"
+      "bingo": "Bingo",
+      "bingo-text": "Text bingo"
     }
   },
   "generator": {
@@ -704,7 +705,8 @@
         "columns": "Freely move tiles in each vertical group.",
         "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
         "axis": "Move freely in the defined space along axes.",
-        "bingo": "Distribute tiles in a grid."
+        "bingo": "Distribute tiles in a grid.",
+        "bingo-text": "Pre-fill a bingo grid with text tiles."
       },
       "reset.groups": {
         "button": "Clear Groups",
@@ -941,6 +943,12 @@
           "focus.change": "Move focus between tiles.",
           "focus.main": "Move focus in the list."
         }
+      }
+    },
+    "bingo": {
+      "text": {
+        "size": "Grid size:",
+        "info": "Enter one tile text per line, empty lines are ignored."
       }
     }
   },

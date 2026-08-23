@@ -370,13 +370,13 @@ img {
 
     @supports (field-sizing: content) {
         textarea {
-            field-sizing: content;
             margin: 0;
             border: 1px solid var(--input-border-color);
             padding: 0;
             width: 100%;
             min-width: 1em;
             height: 100%;
+            field-sizing: content;
             resize: none;
             color: var(--text-color);
             font-size: var(--over-name-font-size, 120%);
@@ -507,6 +507,15 @@ span.color {
         -webkit-line-clamp: var(--over-item-text-max-line);
         line-clamp: var(--over-item-text-max-line);
         overflow: hidden;
+    }
+
+    & > span[contenteditable] {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    &:has(> span[contenteditable]):hover > span[contenteditable] {
+        background-color: var(--neutral050);
     }
 }
 
