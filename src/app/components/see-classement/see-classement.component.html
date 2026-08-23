@@ -46,6 +46,11 @@
       <div>
         <button (click)="bingoClear()">{{ 'action.validated.clear' | transloco }}</button>
       </div>
+      @if (bingoRoute()) {
+        <div>
+          <button (click)="openBingo()">{{ 'action.validated.bingo.shuffle' | transloco }}</button>
+        </div>
+      }
     </div>
   }
 
@@ -252,7 +257,7 @@
         }
         <tbody>
           @for (
-            group of groups();
+            group of effectiveGroups();
             track group || indexGrp;
             let indexGrp = $index;
             let first = $first;
@@ -332,7 +337,7 @@
         @if (link()) {
           <tfoot>
             <tr>
-              <td [attr.colspan]="groups()[0].list.length" class="link">{{ link() }}</td>
+              <td [attr.colspan]="effectiveGroups()[0].list.length" class="link">{{ link() }}</td>
             </tr>
           </tfoot>
         }

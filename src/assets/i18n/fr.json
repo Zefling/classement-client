@@ -1106,6 +1106,7 @@
     "count.derivatives": "Versions du classement :",
     "my.derivatives": "Mes versions du classement",
     "visualization": "Visualisation",
+    "bingo.back": "Retour au classement original",
     "password": {
       "required": "Mot de passe requis pour voir ce classement",
       "cancel": "Annuler",
@@ -1122,6 +1123,7 @@
     "validated": {
       "label": "Choisir un symbole :",
       "clear": "Réinitialiser",
+      "bingo.shuffle": "Bingo aléatoire",
       "info": "Cliquez sur une tuile pour cocher ou décocher une tuile",
       "info.bingo": "Cliquez sur une tuile pour placer ou supprimer un emoji d'une tuile. Clic droit pour sélectionner l'emoji.",
       "name": {

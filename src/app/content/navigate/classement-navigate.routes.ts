@@ -11,7 +11,13 @@ export const NAVIGATE_ROUTES: Routes = [
         canActivate: [DataChange, APIRequired],
     },
     {
-        path: 'view/:id/:history',
+        path: 'view/:id/history/:history',
+        pathMatch: 'full',
+        loadComponent: () => import('./classement-view.component').then(m => m.ClassementViewComponent),
+        canActivate: [DataChange, APIRequired],
+    },
+    {
+        path: 'view/:id/bingo/:seed',
         pathMatch: 'full',
         loadComponent: () => import('./classement-view.component').then(m => m.ClassementViewComponent),
         canActivate: [DataChange, APIRequired],

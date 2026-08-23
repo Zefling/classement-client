@@ -132,6 +132,9 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     altImage = '';
 
+    bingoSeed?: number;
+    bingoRoute?: string[];
+
     image = viewChild.required<ElementRef>('image');
     dialogImage = viewChild.required<MagmaDialog>('dialogImage');
     dialogDerivatives = viewChild.required<MagmaDialog>('dialogDerivatives');
@@ -151,6 +154,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                 if (params['id'] && params['id'] !== 'new') {
                     this.id = params['id'];
                     this.historyId = params['history'] ? +params['history'] : undefined;
+                    this.bingoSeed = params['seed'] != null ? +params['seed'] : undefined;
 
                     if (this.modeApi()) {
                         this.userService.loggedStatus().then(() => {
@@ -247,6 +251,9 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     loadClassement(classement: Classement) {
         this.classement = classement;
 
+        // Route segments for the bingo shuffle button
+        this.bingoRoute = ['navigate', 'view', Utils.getClassementId(classement), 'bingo'];
+
         this.emptyGroups = classement.data.groups.reduce<number>((val, group) => val + group.list.length, 0) === 0;
 
         Utils.formattedTilesByMode(classement.data.options, classement.data.groups, classement.data.list);
@@ -310,7 +317,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     getLink() {
         return `${location.protocol}//${location.host}/~${Utils.getClassementId(this.classement!)}${
-            this.historyId ? `/${this.historyId}` : ''
+            this.historyId ? `/history/${this.historyId}` : ''
         }`;
     }
 
@@ -355,7 +362,7 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
     loadHistoryClassement(history: ClassementHistory) {
         this.router.navigate(
             history.id
-                ? ['navigate', 'view', Utils.getClassementId(this.classement!), history.id]
+                ? ['navigate', 'view', Utils.getClassementId(this.classement!), 'history', history.id]
                 : ['navigate', 'view', Utils.getClassementId(this.classement!)],
         );
         this.dialogHistory().close();

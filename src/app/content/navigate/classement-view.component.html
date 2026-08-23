@@ -1,6 +1,10 @@
-<h2>{{ 'navigate.visualization' | transloco }}</h2>
+@if (!bingoSeed) {
+  <h2>{{ 'navigate.visualization' | transloco }}</h2>
+} @else {
+  <h2>{{ 'mode.name.bingo' | transloco }}</h2>
+}
 
-@if (classement) {
+@if (classement && !bingoSeed) {
   <div class="return">
     <a [routerLink]="['/navigate/template', classement.templateId]" class="icon-left">
       {{ 'navigate.see.derivatives' | transloco }}
@@ -9,78 +13,88 @@
 }
 
 @if (!loading && classement && classement.data) {
-  <classement-infos [classementInfo]="classement">
-    <div class="buttons">
-      @if (!currentUser) {
-        <button (click)="openClassementFork()" class="primary">
-          {{
-            (!modeApi()
-              ? 'generator.actions.edit.local.empty'
-              : !logged
-                ? 'generator.actions.make.my.derivative.empty'
-                : 'generator.actions.new.derivative.empty'
-            ) | transloco
-          }}
-        </button>
-      } @else if (!myClassement) {
-        <button (click)="openClassement()" class="primary">
-          {{ 'generator.actions.edit.my.derivative' | transloco }}
-        </button>
-      }
-
-      @if (history?.length) {
-        <button (click)="seeHistory()" class="primary">
-          {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory }})
-        </button>
-      }
-      @if (myClassement) {
+  @if (!bingoSeed) {
+    <classement-infos [classementInfo]="classement">
+      <div class="buttons">
         @if (!currentUser) {
-          <button (click)="seeMyClassement()" class="primary">
+          <button (click)="openClassementFork()" class="primary">
+            {{
+              (!modeApi()
+                ? 'generator.actions.edit.local.empty'
+                : !logged
+                  ? 'generator.actions.make.my.derivative.empty'
+                  : 'generator.actions.new.derivative.empty'
+              ) | transloco
+            }}
+          </button>
+        } @else if (!myClassement) {
+          <button (click)="openClassement()" class="primary">
+            {{ 'generator.actions.edit.my.derivative' | transloco }}
+          </button>
+        }
+
+        @if (history?.length) {
+          <button (click)="seeHistory()" class="primary">
+            {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory }})
+          </button>
+        }
+        @if (myClassement) {
+          @if (!currentUser) {
+            <button (click)="seeMyClassement()" class="primary">
+              {{
+                (myClassementCount > 1
+                  ? 'generator.actions.see.my.last.derivative'
+                  : 'generator.actions.see.my.derivative'
+                ) | transloco
+              }}
+            </button>
+          }
+          <button (click)="openMyClassement()" class="primary">
             {{
               (myClassementCount > 1
-                ? 'generator.actions.see.my.last.derivative'
-                : 'generator.actions.see.my.derivative'
+                ? 'generator.actions.edit.my.last.derivative'
+                : 'generator.actions.edit.my.derivative'
               ) | transloco
             }}
           </button>
         }
-        <button (click)="openMyClassement()" class="primary">
-          {{
-            (myClassementCount > 1
-              ? 'generator.actions.edit.my.last.derivative'
-              : 'generator.actions.edit.my.derivative'
-            ) | transloco
-          }}
-        </button>
-      }
-      @if (myClassementCount > 1) {
-        <button (click)="seeMyClassements()" class="primary">
-          {{ 'navigate.my.derivatives' | transloco }}
-        </button>
-        <div class="note">
-          {{ 'generator.actions.my.derivative.count' | transloco: { count: myClassementCount } }}
-        </div>
-      }
+        @if (myClassementCount > 1) {
+          <button (click)="seeMyClassements()" class="primary">
+            {{ 'navigate.my.derivatives' | transloco }}
+          </button>
+          <div class="note">
+            {{ 'generator.actions.my.derivative.count' | transloco: { count: myClassementCount } }}
+          </div>
+        }
+      </div>
+    </classement-infos>
+  } @else {
+    <div class="return">
+      <a [routerLink]="['/navigate/view', classement.linkId || classement.rankingId]" class="icon-left">
+        {{ 'navigate.bingo.back' | transloco }}
+      </a>
     </div>
-  </classement-infos>
-  <div class="save-actions buttons">
-    <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | transloco }}</button>
-    <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
-      @if (!exportImageDisabled) {
-        <span class="icon-share"></span>
-      } @else {
-        <mg-spinner size="22" tickWidth="2" />
-      }
-      {{ 'generator.actions.export.image' | transloco }}
-    </button>
-  </div>
-  <div class="link-option">
-    <mg-input>
-      <mg-input-checkbox mode="toggle" [(ngModel)]="showLink">{{
-        'generator.ranking.show.link' | transloco
-      }}</mg-input-checkbox>
-    </mg-input>
-  </div>
+  }
+  @if (!bingoSeed) {
+    <div class="save-actions buttons">
+      <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | transloco }}</button>
+      <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+        @if (!exportImageDisabled) {
+          <span class="icon-share"></span>
+        } @else {
+          <mg-spinner size="22" tickWidth="2" />
+        }
+        {{ 'generator.actions.export.image' | transloco }}
+      </button>
+    </div>
+    <div class="link-option">
+      <mg-input>
+        <mg-input-checkbox mode="toggle" [(ngModel)]="showLink">{{
+          'generator.ranking.show.link' | transloco
+        }}</mg-input-checkbox>
+      </mg-input>
+    </div>
+  }
   @if (!exportImageDisabled) {
     <see-classement
       class="render"
@@ -91,6 +105,7 @@
       [id]="classement.rankingId"
       [imagesCache]="imagesCache"
       [link]="showLink ? getLink() : ''"
+      [bingoSeed]="bingoSeed"
     />
   }
   <div [ngClass]="classScreenMode" #div>
@@ -119,6 +134,8 @@
       [list]="classement.data.list"
       [id]="classement.rankingId"
       withAnnotation
+      [bingoRoute]="bingoRoute"
+      [bingoSeed]="bingoSeed"
     />
   </div>
 

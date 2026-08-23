@@ -6,10 +6,12 @@ import {
     OnDestroy,
     OnInit,
     booleanAttribute,
+    computed,
     inject,
     input,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {
     ContextMenuItem,
@@ -76,6 +78,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     private readonly cd = inject(ChangeDetectorRef);
     private readonly prefs = inject(PreferencesService);
     private readonly translate = inject(TranslocoService);
+    private readonly router = inject(Router);
 
     // input
 
@@ -91,6 +94,30 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     readonly withAnnotation = input<boolean, any>(false, { transform: booleanAttribute });
     readonly render = input<boolean, any>(false, { transform: booleanAttribute });
     readonly demo = input<boolean, any>(false, { transform: booleanAttribute });
+
+    /** Route segments for the bingo shuffle button, without the seed: e.g. ['navigate','view','<id>','bingo'] */
+    readonly bingoRoute = input<string[]>();
+
+    /** When set, tiles in bingo mode are shuffled with this seed (center preserved on odd grids) */
+    readonly bingoSeed = input<number>();
+
+    // computed
+
+    /** Storage key: includes seed so each shuffled bingo has its own independent state */
+    readonly effectiveId = computed(() => {
+        const seed = this.bingoSeed();
+        return seed != null ? `${this.id()}:bingo:${seed}` : this.id();
+    });
+
+    /** Groups with bingo tiles re-ordered according to `bingoSeed`, if provided */
+    readonly effectiveGroups = computed(() => {
+        const seed = this.bingoSeed();
+        const grps = this.groups();
+        if (seed != null && this.options().mode === 'bingo') {
+            return Utils.applyBingoSeed(grps, seed);
+        }
+        return grps;
+    });
 
     // template
 
@@ -130,8 +157,8 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         const mode = this.options().mode;
 
         if (mode === 'bingo') {
-            await this.dataService.init(mode, this.id());
-            const options = this.dataService.getOptions(mode, this.id());
+            await this.dataService.init(mode, this.effectiveId());
+            const options = this.dataService.getOptions(mode, this.effectiveId());
             if (options) {
                 this.updateHelp(options);
             }
@@ -168,44 +195,51 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         this.detectChanges();
     }
 
+    openBingo() {
+        const route = this.bingoRoute();
+        if (!route?.length) return;
+        const seed = Math.floor(Math.random() * 2_147_483_647);
+        this.router.navigate([...route, seed]);
+    }
+
     updateIconStyle(type: unknown) {
-        this.dataService.saveOption('bingo', this.id(), { checkChoice: type as string });
+        this.dataService.saveOption('bingo', this.effectiveId(), { checkChoice: type as string });
     }
 
     bingoToggleCheck(group: number, item: number) {
         var toggle = this.bingoValue(group, item);
         toggle.visible = !toggle.visible;
         toggle.content ??= this.emojiDefault;
-        return this.dataService.change('bingo', this.id(), group, item, toggle);
+        return this.dataService.change('bingo', this.effectiveId(), group, item, toggle);
     }
 
     bingoRemoveCheck(group: number, item: number) {
         var falsy = this.bingoValue(group, item);
         falsy.visible = false;
-        return this.dataService.change('bingo', this.id(), group, item, falsy);
+        return this.dataService.change('bingo', this.effectiveId(), group, item, falsy);
     }
 
     bingoSetCheck(group: number, item: number, value: ItemSelection) {
-        return this.dataService.change('bingo', this.id(), group, item, value);
+        return this.dataService.change('bingo', this.effectiveId(), group, item, value);
     }
 
     bingoValue(group: number, item: number) {
-        let value = this.dataService.value('bingo', this.id(), group, item);
+        let value = this.dataService.value('bingo', this.effectiveId(), group, item);
         return (value as any) === true
             ? { visible: true, transform: defaultTransform, content: this.emojiDefault }
-            : (this.dataService.value('bingo', this.id(), group, item) ?? {
+            : (this.dataService.value('bingo', this.effectiveId(), group, item) ?? {
                   visible: false,
                   transform: defaultTransform,
               });
     }
 
     bingoClear() {
-        this.dataService.clear('bingo', this.id());
+        this.dataService.clear('bingo', this.effectiveId());
     }
 
     bingoTransform(group: number, item: number, value: ItemSelection, event: string) {
         value.transform = event;
-        this.dataService.change('bingo', this.id(), group, item, this.bingoValue(group, item));
+        this.dataService.change('bingo', this.effectiveId(), group, item, this.bingoValue(group, item));
     }
 
     async getContextMenu() {

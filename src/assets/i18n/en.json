@@ -1107,6 +1107,7 @@
     "count.derivatives": "Versions of the ranking:",
     "my.derivatives": "My ranking versions",
     "visualization": "Visualization",
+    "bingo.back": "Back to the original ranking",
     "password": {
       "required": "Password required to view this ranking",
       "cancel": "Cancel",
@@ -1123,6 +1124,7 @@
     "validated": {
       "label": "Choose a symbol:",
       "clear": "Reset",
+      "bingo.shuffle": "Random bingo",
       "info": "Click on a tile to check or uncheck it.",
       "info.bingo": "Click on a tile to place or remove an emoji from it. Right-click to select the emoji.",
       "name": {
