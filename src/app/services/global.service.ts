@@ -199,7 +199,7 @@ export class GlobalService {
     updateVarCss(o: Options, cache?: Record<string, string | ArrayBuffer | null>): void {
         this.logger.log('CCS var update', LoggerLevel.log, o);
         const body = document.body;
-        const r = this.renderer.setStyle;
+        const r = this.renderer.setStyle.bind(this.renderer);
         const dash = RendererStyleFlags2.DashCase;
         // title
         r(body, '--over-title-text-color', color(o.titleTextColor, o.titleTextOpacity), dash);
