@@ -16,6 +16,10 @@
         padding: var(--main-padding);
         max-width: calc(100% - (var(--main-padding-inline-start) + var(--main-padding-inline-end)));
     }
+
+    mg-loader {
+        position: fixed;
+    }
 }
 
 .classement-edit {
