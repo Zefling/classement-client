@@ -1,7 +1,7 @@
 {
   "name": "classement",
   "description": "This application aims to manage ranking list by groups of elements in the form of images or texts.",
-  "version": "5.0.5",
+  "version": "5.1.0",
   "license": "GPL-3.0-or-later",
   "author": {
     "name": "Zéfling",
@@ -60,7 +60,7 @@
     "@fontsource/sunflower": "^5.3.0",
     "@fontsource/train-one": "^5.3.0",
     "@fontsource/zen-maru-gothic": "^5.3.0",
-    "@html2canvas/html2canvas": "^1.9.0",
+    "@html2canvas/html2canvas": "^1.10.0",
     "@ikilote/magma": "^2.1.2",
     "@jsverse/transloco": "^8.4.0",
     "@jsverse/transloco-messageformat": "^8.4.0",

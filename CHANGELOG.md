@@ -1,5 +1,17 @@
 # Changelog - Standalone web app & API
 
+### 5.1.0 (2026-08-28)
+
+#### Standalone web app
+ 
+- **bingo**: 
+  - Add shareable randomized bingo via a seed
+  - Add "*Text bingo*" in create dialog
+ 
+> - Update to **Angular** `22.1`
+> - Update to **Magma** `2.1`
+> - Update to **html2canvas** `1.10`
+
 ### 5.0.5 (2026-07-26)
 
 #### Standalone web app
