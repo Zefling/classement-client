@@ -61,35 +61,39 @@ body.dark-mode {
 body {
     --input-mark-top: -4px;
 
+    --dialog-shadow-color: color-mix(in hsl, #000 10%, transparent);
+    --color-primary: var(--primary300);
+    --color-primary-hover: var(--primary400);
+
     /* global */
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
-    --header-background: var(--primary100);
-    --aside-background: var(--primary100);
+    --header-background: var(--primary050);
+    --aside-background: var(--primary050);
     --licence-color: var(--primary950);
 
     /* menu */
     --menu-border-color: var(--primary200);
     --menu-color: var(--primary950);
     --menu-separator: var(--primary400);
-    --menu-background: var(--primary200);
+    --menu-background: var(--primary100);
     --menu-hover-color: var(--primary950);
-    --menu-hover-background: var(--primary300);
+    --menu-hover-background: var(--primary200);
     --menu-active-color: var(--primary950);
-    --menu-active-background: var(--primary400);
-    --menu-cartouche-background: color-mix(in hsl, var(--primary200) 80%, transparent);
+    --menu-active-background: var(--primary100);
+    --menu-cartouche-background: color-mix(in hsl, var(--primary100) 80%, transparent);
 
     /* option block */
-    --options-border-color: var(--neutral300);
-    --options-background: var(--neutral200);
+    --options-border-color: var(--neutral200);
+    --options-background: var(--neutral100);
 
     /* avatar */
     --avatar-background: var(--primary050);
     --avatar-icon-opacity: 0.17;
 
     /* drop list */
-    --drop-list-border-color: var(--neutral400);
+    --drop-list-border-color: var(--neutral300);
     --drop-list-border-size: 1px;
-    --drop-list-background: var(--neutral300);
+    --drop-list-background: var(--neutral200);
     --drop-list-border-radius: 4px;
     --drop-list-border-spacing: 1px;
 
@@ -141,7 +145,7 @@ body {
     --box-border-color: var(--neutral500);
 
     /* tag */
-    --tag-background: var(--input-border-color);
+    --tag-background: var(--neutral100);
     --tag-background-hover: var(--primary900);
     --tag-background-link-color: var(--neutral000);
     --tag-input-background: var(--input-background);
