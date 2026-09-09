@@ -1260,7 +1260,9 @@
       "adult.success": "🫣 تم تصنيف التصنيف كمحتوى للبالغين بنجاح.",
       "for.all.success": "😊 تم جعل التصنيف للجميع بنجاح.",
       "update.password.success": "😊 تم تحديث كلمة مرورك بنجاح.",
-      "category.success": "😊 تم تحديث الفئة بنجاح."
+      "category.success": "😊 تم تحديث الفئة بنجاح.",
+      "preferences.save.success": "😊 Preferences have been successfully saved.",
+      "preferences.save.error": "⚠️ An error occurred while saving preferences."
     },
     "contact": {
       "sent.success": "😊 تم إرسال الرسالة إلى المدير بنجاح."

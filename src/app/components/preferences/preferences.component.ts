@@ -24,6 +24,9 @@ import {
     MagmaInputSelect,
     MagmaInputText,
     MagmaLightDark,
+    MagmaMessageType,
+    MagmaMessages,
+    MagmaSpinner,
     MagmaTabs,
     MagmaTabsModule,
     PreferenceInterfaceTheme,
@@ -78,6 +81,7 @@ export type LanguagesList = 'en' | 'fr' | 'ja' | 'ar';
         MagmaInputNumber,
         MagmaInputCheckbox,
         MagmaInputRadio,
+        MagmaSpinner,
     ],
 })
 export class PreferencesMagmaDialog {
@@ -90,6 +94,7 @@ export class PreferencesMagmaDialog {
     private readonly lightDark = inject(LightDark);
     private readonly globalService = inject(GlobalService);
     private readonly cd = inject(ChangeDetectorRef);
+    private readonly mgMessage = inject(MagmaMessages);
 
     // viewChild
 
@@ -103,6 +108,8 @@ export class PreferencesMagmaDialog {
     // template
 
     languages = languages;
+
+    saveLoading = false;
 
     themes = signal<string[] | undefined>(themes);
     themesList = computed(() => this.themes()?.map<Select2Option>(theme => ({ value: theme, label: theme })));
@@ -273,7 +280,22 @@ export class PreferencesMagmaDialog {
     save() {
         const data = this.preferencesForm!.value;
         data.emojiList = this.emojiSort;
-        this.userService.savePreferences(data);
+        this.saveLoading = true;
+        this.cd.markForCheck();
+        this.userService
+            .savePreferences(data)
+            .then(() => {
+                this.mgMessage.addMessage(this.translate.translate('message.server.preferences.save.success'));
+            })
+            .catch(() => {
+                this.mgMessage.addMessage(this.translate.translate('message.server.preferences.save.error'), {
+                    type: MagmaMessageType.error,
+                });
+            })
+            .finally(() => {
+                this.saveLoading = false;
+                this.cd.markForCheck();
+            });
     }
 
     private async initPrefs() {

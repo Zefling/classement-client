@@ -1259,7 +1259,9 @@
       "adult.success": "🫣 ランキングは成人向けに成功しました。",
       "for.all.success": "😊 ランキングは全年齢対象に成功しました。",
       "update.password.success": "😊 パスワードは正常に更新されました。",
-      "category.success": "😊 カテゴリが正常に更新されました。"
+      "category.success": "😊 カテゴリが正常に更新されました。",
+      "preferences.save.success": "😊 設定が正常に保存されました。",
+      "preferences.save.error": "⚠️ 設定の保存中にエラーが発生しました。"
     },
     "contact": {
       "sent.success": "😊 メッセージは管理者に正常に送信されました。"

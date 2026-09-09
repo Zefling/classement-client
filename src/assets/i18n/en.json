@@ -1260,7 +1260,9 @@
       "adult.success": "🫣 The ranking has been successfully made adult content.",
       "for.all.success": "😊 The ranking has been successfully made for all content.",
       "update.password.success": "😊 Your password has been successfully updated.",
-      "category.success": "😊 Category has been successfully updated."
+      "category.success": "😊 Category has been successfully updated.",
+      "preferences.save.success": "😊 Preferences have been successfully saved.",
+      "preferences.save.error": "⚠️ An error occurred while saving preferences."
     },
     "contact": {
       "sent.success": "😊 Message has been successfully sent to the administrator."
