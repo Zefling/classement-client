@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, booleanAttribute, inject, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
+import { MagmaTagList } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { MarkdownModule } from 'ngx-markdown';
@@ -9,7 +10,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { Classement, ClassementVotes } from '../../interface/interface';
 import { APIClassementService } from '../../services/api.classement.service';
 import { APIUserService } from '../../services/api.user.service';
-import { TagListComponent } from '../tag-list/tag-list.component';
 
 const emojiList = ['👍', '👎', '😂', '😍', '😎', ' 😱', '🤢', '🥵', '💩'];
 type VoteResult = { emoji: string; selected: boolean; total: number }[];
@@ -19,11 +19,12 @@ type VoteResult = { emoji: string; selected: boolean; total: number }[];
     templateUrl: './classement-infos.component.html',
     styleUrls: ['./classement-infos.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TranslocoPipe, MarkdownModule, RouterLink, TagListComponent, DatePipe],
+    imports: [TranslocoPipe, MarkdownModule, RouterLink, MagmaTagList, DatePipe],
 })
 export class ClassementInfosComponent implements OnInit {
     protected readonly userService = inject(APIUserService);
     protected readonly api = inject(APIClassementService);
+    private readonly router = inject(Router);
 
     classementInfo = input.required<Classement>();
     readonly = input(false, { transform: booleanAttribute });
@@ -59,6 +60,10 @@ export class ClassementInfosComponent implements OnInit {
         if (result.votes) {
             this.listVote(result);
         }
+    }
+
+    navigateTag(tag: string, isParent: boolean) {
+        this.router.navigate(['/navigate'], { queryParams: { tag, all: isParent ? 'parent' : 'children' } });
     }
 
     private listVote(votes: ClassementVotes) {

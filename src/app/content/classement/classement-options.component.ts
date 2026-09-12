@@ -1,4 +1,5 @@
 import { NgClass } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -31,6 +32,7 @@ import {
     MagmaInputSelect,
     MagmaInputText,
     MagmaInputTextarea,
+    MagmaTagList,
     MagmaTooltipDirective,
     Subscriptions,
     jsonCopy,
@@ -41,6 +43,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import Ajv, { DefinedError } from 'ajv';
 import { Buffer } from 'buffer';
 import { Select2Data, Select2HighlightPipe, Select2Option } from 'ng-select2-component';
+import { Subject, debounceTime } from 'rxjs';
 
 import {
     defaultGroup,
@@ -69,14 +72,15 @@ import { schemaTheme } from './classement-schemas';
 import { ClassementThemesManagerComponent } from './classement-themes-manager.component';
 import { ClassementThemesComponent } from './classement-themes.component';
 
+import { environment } from '../../../environments/environment';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import {
     Category,
     FileHandle,
     FormattedGroup,
     ImagesNames,
+    Message,
     ModeNames,
     Options,
     Theme,
@@ -97,7 +101,7 @@ import { palette } from '../../tools/function';
     imports: [
         FormsModule,
         NgClass,
-        TagListComponent,
+        MagmaTagList,
         ClassementThemesComponent,
         ClassementThemesManagerComponent,
         DropImageDirective,
@@ -128,6 +132,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     private readonly logger = inject(Logger);
     private readonly prefs = inject(PreferencesService);
     private readonly cd = inject(ChangeDetectorRef);
+    private readonly http = inject(HttpClient);
 
     // input
 
@@ -148,6 +153,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     // template
 
     modeApi = computed(() => this.globalService.withApi());
+
+    tagProposals: string[] = [];
 
     groupExample = signal<FormattedGroup[]>(groupExample);
 
@@ -180,6 +187,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     protected replacePattern = /default|teams/;
 
     private _sub = Subscriptions.instance();
+    private _tagSubject = new Subject<string>();
 
     constructor() {
         this.categoryUpdate();
@@ -194,6 +202,21 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             }),
             this.prefs.onChange.subscribe(() => {
                 this.updatePrefs();
+            }),
+            this._tagSubject.pipe(debounceTime(500)).subscribe(tag => {
+                if (tag && this.modeApi()) {
+                    this.http.get<Message<string[]>>(`${environment.api.path}api/tags/${tag}`).subscribe({
+                        next: proposals => {
+                            this.tagProposals = proposals.message;
+                        },
+                        error: (_result: HttpErrorResponse) => {
+                            this.tagProposals = [];
+                        },
+                        complete: () => {
+                            this.cd.markForCheck();
+                        },
+                    });
+                }
             }),
         );
         this.updatePrefs();
@@ -405,6 +428,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
         if (options) {
             options.tags = tags;
         }
+    }
+
+    onTagInput(value: string) {
+        this._tagSubject.next(value.trim());
     }
 
     themesOpen() {

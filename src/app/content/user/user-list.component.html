@@ -79,10 +79,10 @@
                     </div>
                     @if (classement.data.options.tags && classement.data.options.tags.length) {
                       <div class="tags">
-                        <tag-list
+                        <mg-tag-list
                           [tags]="classement.data.options.tags"
                           readOnly
-                          allowTagClick
+                          allowClick
                           (tagClick)="tagClick($event, inputFilter)"
                         />
                       </div>

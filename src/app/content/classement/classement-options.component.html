@@ -121,7 +121,12 @@
 
     <div class="tags">
       {{ 'generator.options.tags' | transloco }}
-      <tag-list [tags]="opts.tags" (update)="updateTags($event)" />
+      <mg-tag-list
+        [tags]="opts.tags"
+        [proposals]="tagProposals"
+        (tagsChange)="updateTags($event)"
+        (inputChange)="onTagInput($event)"
+      />
     </div>
   </div>
 }

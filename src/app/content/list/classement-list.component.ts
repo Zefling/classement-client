@@ -25,6 +25,7 @@ import {
     MagmaSortableDirective,
     MagmaSortableModule,
     MagmaTableModule,
+    MagmaTagList,
     MagmaTooltipDirective,
     Subscriptions,
     downloadFile,
@@ -34,7 +35,6 @@ import {
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { ImportJsonComponent, ImportJsonEvent } from '../../components/import-json/import-json.component';
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { FormattedInfos } from '../../interface/interface';
 import { FileSizePipe } from '../../pipes/file-size';
 import { APIUserService } from '../../services/api.user.service';
@@ -52,7 +52,7 @@ import { GlobalService } from '../../services/global.service';
     },
     imports: [
         FormsModule,
-        TagListComponent,
+        MagmaTagList,
         RouterLink,
         RouterLinkActive,
         ImportJsonComponent,

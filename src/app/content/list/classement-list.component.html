@@ -86,10 +86,10 @@
               </div>
               @if (item.options.tags && item.options.tags.length) {
                 <div class="tags">
-                  <tag-list
+                  <mg-tag-list
                     [tags]="item.options.tags"
                     readOnly
-                    allowTagClick
+                    allowClick
                     (tagClick)="tagClick($event, filterInput)"
                   />
                 </div>

@@ -145,9 +145,16 @@ body {
     --box-border-color: var(--neutral500);
 
     /* tag */
-    --tag-background: var(--neutral100);
-    --tag-background-hover: var(--primary900);
-    --tag-background-link-color: var(--neutral000);
+    --tag-list-gap: 5px;
+    --tag-item-radius: 15px;
+    --tag-item-background: var(--neutral200);
+    --tag-item-padding: 3px 0 3px 10px;
+    --tag-item-min-height: unset;
+    --tag-item-color: inherit;
+    --tag-item-font-size: inherit;
+    --tag-item-hover-background: var(--primary900);
+    --tag-item-remove-color: inherit;
+    --tag-item-remove-color-hover: var(--primary500);
     --tag-input-background: var(--input-background);
     --tag-input-border-color: var(--input-border-color);
     --tag-input-focus-border-color: var(--input-focus-border-color);

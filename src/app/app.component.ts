@@ -27,6 +27,7 @@ import {
     MagmaLimitFocusDirective,
     MagmaLoader,
     MagmaLoaderMessage,
+    MagmaPointerModeService,
     MagmaSpinner,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -86,6 +87,7 @@ export class AppComponent {
     protected readonly userService = inject(APIUserService);
     protected readonly cd = inject(ChangeDetectorRef);
     protected readonly moduleErrorHandler = inject(ModuleErrorHandler);
+    private readonly pointerMode = inject(MagmaPointerModeService);
 
     // viewChild
 
@@ -220,10 +222,12 @@ export class AppComponent {
     toggleMenu(target: 'none' | 'main' | 'menu' = 'main') {
         this.asideOpen.set(!this.asideOpen());
 
-        if (target === 'main') {
-            this.main().nativeElement.focus();
-        } else if (target === 'menu') {
-            this.menu().nativeElement.focus();
+        if (this.pointerMode.isKeyboard()) {
+            if (target === 'main') {
+                this.main().nativeElement.focus();
+            } else if (target === 'menu') {
+                this.menu().nativeElement.focus();
+            }
         }
     }
 

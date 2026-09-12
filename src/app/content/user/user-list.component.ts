@@ -22,13 +22,13 @@ import {
     MagmaTableModule,
     MagmaTabs,
     MagmaTabsModule,
+    MagmaTagList,
     MagmaTooltipDirective,
     Subscriptions,
     normalizeString,
 } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-import { TagListComponent } from '../../components/tag-list/tag-list.component';
 import { Classement, User } from '../../interface/interface';
 import { APIClassementService } from '../../services/api.classement.service';
 import { APIUserService } from '../../services/api.user.service';
@@ -45,7 +45,7 @@ import { ClassementListComponent } from '../list/classement-list.component';
     imports: [
         FormsModule,
         RouterLink,
-        TagListComponent,
+        MagmaTagList,
         RouterLinkActive,
         ClassementListComponent,
         DatePipe,
