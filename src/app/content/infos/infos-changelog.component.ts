@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 
-import { Subscriptions } from '@ikilote/magma';
+import { MagmaLoader, MagmaLoaderMessage, MagmaSpinner, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { MarkdownComponent } from 'ngx-markdown';
@@ -14,14 +14,16 @@ import { GlobalService } from '../../services/global.service';
     styleUrls: ['./infos-changelog.component.scss'],
 
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TranslocoPipe, MarkdownComponent],
+    imports: [TranslocoPipe, MarkdownComponent, MagmaLoader, MagmaLoaderMessage, MagmaSpinner],
 })
 export class InfoChangelogComponent {
     private readonly http = inject(HttpClient);
     private readonly global = inject(GlobalService);
     private readonly translate = inject(TranslocoService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     data!: string;
+    loading = false;
 
     private listener = Subscriptions.instance();
 
@@ -29,10 +31,13 @@ export class InfoChangelogComponent {
         if (this.global.changelog) {
             this.data = this.global.changelog;
         } else {
+            this.loading = true;
             this.http.get('./CHANGELOG.md', { responseType: 'text' }).subscribe(data => {
                 this.data = this.global.changelog = data
                     .replaceAll('### ', '#### ')
                     .replaceAll('# Changelog -', '### Changelog -');
+                this.loading = false;
+                this.cd.markForCheck();
             });
         }
         this.listener.push(

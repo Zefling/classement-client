@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 
-import { Subscriptions } from '@ikilote/magma';
+import { MagmaLoader, MagmaLoaderMessage, MagmaSpinner, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 import { GlobalService } from '../../services/global.service';
@@ -10,16 +10,17 @@ import { GlobalService } from '../../services/global.service';
     selector: 'infos-third-party-licenses',
     templateUrl: './infos-licenses.component.html',
     styleUrls: ['./infos-licenses.component.scss'],
-
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TranslocoPipe],
+    imports: [TranslocoPipe, MagmaLoader, MagmaLoaderMessage, MagmaSpinner],
 })
 export class InfosLicensesComponent {
     private readonly http = inject(HttpClient);
     private readonly global = inject(GlobalService);
     private readonly translate = inject(TranslocoService);
+    private readonly cd = inject(ChangeDetectorRef);
 
     data!: string;
+    loading = false;
 
     private listener = Subscriptions.instance();
 
@@ -27,6 +28,7 @@ export class InfosLicensesComponent {
         if (this.global.licenses) {
             this.data = this.global.licenses;
         } else {
+            this.loading = true;
             this.http.get('./3rdpartylicenses.txt', { responseType: 'text' }).subscribe(data => {
                 this.data = this.global.licenses = data
                     .replace(/Package: (.*)\n/g, '<h3>$1</h3>')
@@ -38,6 +40,8 @@ export class InfosLicensesComponent {
                     .replace(/--*-/g, '<hr />')
                     .replace(/<p>\s*<\/p>/g, '')
                     .replace(/^<\/p><\/div>|<div class="block">\s*$/g, '');
+                this.loading = false;
+                this.cd.markForCheck();
             });
         }
         this.listener.push(

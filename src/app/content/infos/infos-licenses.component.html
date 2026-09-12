@@ -1,3 +1,10 @@
 <h2>{{ 'licenses.title' | transloco }}</h2>
 
-<pre [innerHTML]="data"></pre>
+<mg-loader [loading]="loading">
+  <mg-spinner />
+  <mg-loader-message>{{ 'generator.loading' | transloco }}</mg-loader-message>
+</mg-loader>
+
+@if (!loading) {
+  <pre [innerHTML]="data"></pre>
+}

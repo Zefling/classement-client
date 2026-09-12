@@ -1,3 +1,10 @@
 <h2>{{ 'contributors.title' | transloco }}</h2>
 
-<markdown [data]="data" />
+<mg-loader [loading]="loading">
+  <mg-spinner />
+  <mg-loader-message>{{ 'generator.loading' | transloco }}</mg-loader-message>
+</mg-loader>
+
+@if (!loading) {
+  <markdown [data]="data" />
+}
