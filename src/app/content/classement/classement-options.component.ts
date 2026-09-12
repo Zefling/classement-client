@@ -241,10 +241,8 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     updatePrefs() {
-        this.prefs.init().then(pref => {
-            this.showAdvanceOptions = pref.advancedOptions;
-            this.cd.markForCheck();
-        });
+        this.showAdvanceOptions = this.prefs.preferences.advancedOptions;
+        this.cd.markForCheck();
     }
 
     updateCurrentTheme() {
