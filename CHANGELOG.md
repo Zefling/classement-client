@@ -1,13 +1,32 @@
 # Changelog - Standalone web app & API
 
+### 5.1.1 (2026-08-28)
+
+#### Standalone web app
+
+- Adjust light theme
+- Fix the ability to access advanced options when selected in the preferences
+- Fix infos pages
+- Remove `tag-list` and use **Magma** component
+
+> - Update to **Magma** `2.2`
+> - Update to **html2canvas** `1.12`
+
+#### With API activated only
+
+- Improve preferences button feedback
+- Fix the preference update for the logged-in user
+
+> Required: API `^3.1.1`
+
 ### 5.1.0 (2026-08-28)
 
 #### Standalone web app
- 
-- **bingo**: 
-  - Add shareable randomized bingo via a seed
-  - Add "*Text bingo*" in create dialog
- 
+
+- **bingo**:
+    - Add shareable randomized bingo via a seed
+    - Add "_Text bingo_" in create dialog
+
 > - Update to **Angular** `22.1`
 > - Update to **Magma** `2.1`
 > - Update to **html2canvas** `1.10`
@@ -15,9 +34,9 @@
 ### 5.0.5 (2026-07-26)
 
 #### Standalone web app
- 
+
 - Modernize `cdkDropZone`/`cdkDragElement`
- 
+
 > - Update to **Magma** `1.11`
 
 ### 5.0.4 (2026-06-29)
@@ -33,7 +52,6 @@
 #### With API activated only
 
 - Add a search bar to the homepage
-
 
 ### 5.0.3 (2026-05-28)
 
