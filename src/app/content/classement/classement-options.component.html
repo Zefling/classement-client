@@ -73,14 +73,14 @@
     <div class="width-auto">
       @if (opts.mode !== 'bingo') {
         <mg-input>
-          <mg-input-checkbox [(ngModel)]="opts.itemWidthAuto">{{
+          <mg-input-checkbox [(ngModel)]="opts.itemWidthAuto" (ngModelChange)="detectChange()">{{
             'generator.options.item.width.auto' | transloco
           }}</mg-input-checkbox>
         </mg-input>
       }
       @if (zoneMode.includes(opts.mode) || opts.mode === 'columns') {
         <mg-input>
-          <mg-input-checkbox [(ngModel)]="opts.itemHeightAuto">{{
+          <mg-input-checkbox [(ngModel)]="opts.itemHeightAuto" (ngModelChange)="detectChange()">{{
             'generator.options.item.height.auto' | transloco
           }}</mg-input-checkbox>
         </mg-input>
