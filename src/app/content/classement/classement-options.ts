@@ -213,3 +213,71 @@ export const groupExampleColumns: FormattedGroup[] = [
         ],
     },
 ];
+
+// Table mode: 2 rows × 3 columns (interleaved: i % 3 = col)
+// Row A: col0=test-1, col1=test-2, col2=test-3
+// Row B: col0=test-4, col1=text-1, col2=text-2
+export const groupExampleTable: FormattedGroup[] = [
+    {
+        name: 'A',
+        bgColor: '#dc8add',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-1',
+                url: './assets/images/tile_image_example1.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+            },
+            {
+                id: 'test-2',
+                url: './assets/images/tile_image_example2.webp',
+                name: 'tile_image_example',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+            },
+            {
+                id: 'test-3',
+                url: './assets/images/tile_image_example3.webp',
+                name: 'tile_image_example',
+                title: 'Example',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+            },
+        ],
+    },
+    {
+        name: 'B',
+        bgColor: '#f66151',
+        txtColor: '#000000',
+        list: [
+            {
+                id: 'test-4',
+                url: './assets/images/tile_image_example4.webp',
+                name: 'tile_image_example4',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+            },
+            {
+                id: 'text-1',
+                name: 'tile_text_example1',
+                title: 'Œuf de phénix',
+                size: 0,
+                realSize: 0,
+                type: '',
+                date: 0,
+            },
+            null,
+        ],
+    },
+];

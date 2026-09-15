@@ -1,3 +1,11 @@
+:host {
+    --grid: 'up suppr' 1fr 'down add' 1fr / auto 1fr;
+
+    &.mode-columns {
+        --grid: 'add suppr' 1fr 'up  down ' 1fr / auto 1fr;
+    }
+}
+
 .colors-options {
     display: grid;
     grid-template: 'a b' 'c b' / 70px 1fr;
@@ -28,7 +36,7 @@
 
 .button-actions {
     display: grid;
-    grid-template: 'up suppr' 1fr 'down add' 1fr / auto 1fr;
+    grid-template: var(--grid);
     gap: 3px;
     margin: auto;
     max-width: 150px;
@@ -81,18 +89,19 @@ span.color {
     align-items: center;
     vertical-align: middle;
     width: 100%;
+    height: 100%;
     font-weight: inherit;
     font-size: inherit;
 
     @supports (field-sizing: content) {
         textarea {
-            field-sizing: content;
             margin: 0;
             border: 1px solid var(--input-border-color);
             padding: 0;
             width: 100%;
             min-width: 1em;
             height: 100%;
+            field-sizing: content;
             resize: none;
             color: var(--text-color);
             font-size: var(--over-name-font-size, 120%);

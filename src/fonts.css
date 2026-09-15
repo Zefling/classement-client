@@ -18,17 +18,6 @@
 @import '../node_modules/@fontsource/noto-serif-jp/400.css';
 @import '../node_modules/@fontsource/noto-serif-kr/400.css';
 
-@font-face {
-    font-style: normal;
-    font-weight: normal;
-    src:
-        url('./assets/fonts/Classicone.ttf?la6til') format('truetype'),
-        url('./assets/fonts/Classicone.woff?la6til') format('woff'),
-        url('./assets/fonts/Classicone.svg?la6til#Classicone') format('svg');
-    font-family: 'Classicone';
-    font-display: block;
-}
-
 .icon-deleted:before {
     color: var(--color-icon-deleted);
 }

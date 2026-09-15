@@ -123,8 +123,6 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     color = color;
 
-    nameOpacity!: number;
-
     checkChoices: Select2Option[] = [
         { value: 'A', label: 'check.round' },
         { value: 'B', label: 'check' },
@@ -289,5 +287,10 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
         // hack for calcule de width of the image
         Utils.calcWidth(this.options(), item, element);
         return true;
+    }
+
+    /** Returns all items belonging to column colIdx for the given group (interleaved layout). */
+    tableColItems(group: FormattedGroup, colIdx: number, colCount: number): FileType[] {
+        return group.list.filter((_, i) => i % colCount === colIdx);
     }
 }

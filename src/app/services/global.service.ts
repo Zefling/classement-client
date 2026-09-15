@@ -245,6 +245,17 @@ export class GlobalService {
                 (o.columnMinHeight ?? defaultOptions.columnMinHeight) + 'px',
                 dash,
             );
+        } else if (o.mode === 'table') {
+            r(body, '--over-table-width', this.tableWidth(o), dash);
+            r(body, '--over-table-cell-direction', o.tableCellDirection || 'row', dash);
+            const cellAlignValue = this.cellAlign(o);
+            if ((o.tableCellDirection || 'row') === 'column') {
+                r(body, '--over-table-cell-align-items', cellAlignValue, dash);
+                r(body, '--over-table-cell-justify-content', 'flex-start', dash);
+            } else {
+                r(body, '--over-table-cell-align-items', 'flex-start', dash);
+                r(body, '--over-table-cell-justify-content', cellAlignValue, dash);
+            }
         }
         r(body, '--over-image-url', o.imageBackgroundImage !== 'none' ? this.customImage(o, cache) : null, dash);
         r(body, '--over-image-background-position', o.imagePosition, dash);
@@ -259,6 +270,26 @@ export class GlobalService {
             r(body, '--over-axis-line-size', (o.axisLineWidth ?? defaultOptions.axisLineWidth) + 'px', dash);
             r(body, '--over-axis-line-color', color(o.axisLineColor, o.axisLineOpacity), dash);
         }
+    }
+
+    private tableWidth(o: Options) {
+        let tableW: string;
+        switch (o.tableWidthMode) {
+            case 'auto':
+                tableW = 'min-content';
+                break;
+            case 'custom':
+                tableW = o.tableWidth || '100%';
+                break;
+            default:
+                tableW = '100%';
+                break;
+        }
+        return tableW;
+    }
+
+    private cellAlign(o: Options) {
+        return o.tableCellAlign !== 'center' ? 'flex-' + o.tableCellAlign : 'center';
     }
 
     private customImage(o: Options, cache?: Record<string, string | ArrayBuffer | null>): string | null {
@@ -394,11 +425,42 @@ export class GlobalService {
     altImage(options: Options, groups: FormattedGroup[]) {
         const colon = this.translate.translate('generic.punctuation.colon');
         const comma = this.translate.translate('generic.punctuation.comma');
+        const dot = this.translate.translate('generic.punctuation.dot');
+
+        const header = `${options.title} (${this.translate.translate(
+            'mode.name.' + (options.mode || 'default'),
+        )} - ${this.translate.translate('category.' + (options.category || 'undefined'))})`;
+
+        if (options.mode === 'table' && options.col?.length) {
+            const cols = options.col;
+            const colCount = cols.length;
+            const colsLabel = this.translate.translate('generator.actions.alt.table.columns');
+            const emptyLabel = this.translate.translate('generator.actions.alt.table.empty');
+
+            const colHeaders = `${colsLabel}${colon}${cols
+                .map(c => c.title ?? '')
+                .filter(t => t)
+                .join(comma)}${dot}`;
+
+            const rows = groups.map(group => {
+                const cells = cols
+                    .map((col, i) => {
+                        const items = group.list
+                            .filter((_, idx) => idx % colCount === i)
+                            .map(e => e?.title)
+                            .filter(e => e)
+                            .join(comma);
+                        return `${col.title}${colon}${items || emptyLabel}`;
+                    })
+                    .join(dot);
+                return `${group.name}${colon}${cells}${dot}`;
+            });
+
+            return `${header}\n\n${colHeaders}\n${rows.join('\n')}`;
+        }
 
         return (
-            `${options.title} (${this.translate.translate(
-                'mode.name.' + (options.mode || 'default'),
-            )} - ${this.translate.translate('category.' + (options.category || 'undefined'))})\n\n` +
+            `${header}\n\n` +
             groups
                 .map(group => {
                     const list = group.list

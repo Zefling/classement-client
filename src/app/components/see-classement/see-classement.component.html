@@ -82,7 +82,7 @@
             <tr>
               <td
                 class="names"
-                [style.--name-background]="color(group.bgColor, opts.nameBackgroundOpacity * 2.55)"
+                [style.--name-background]="color(group.bgColor, opts.nameBackgroundOpacity)"
                 [style.--text-color]="group.txtColor"
               >
                 @if (opts.nameMarkdown) {
@@ -159,7 +159,7 @@
             @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
               <td
                 class="names"
-                [style.--name-background]="color(group.bgColor, opts.nameBackgroundOpacity * 2.55)"
+                [style.--name-background]="color(group.bgColor, opts.nameBackgroundOpacity)"
                 [style.--text-color]="group.txtColor"
               >
                 @if (opts.nameMarkdown) {
@@ -271,7 +271,10 @@
                       <div
                         class="content-box clickable"
                         (click)="!editMode || checkChoice !== 'Z' ? bingoToggleCheck(indexGrp, index) : null"
-                        [mgContextMenu]="{ contextMenu: contextMenuBingo, data: { item, groupIndex: indexGrp, index } }"
+                        [mgContextMenu]="{
+                          contextMenu: contextMenuBingo,
+                          data: { item, groupIndex: indexGrp, index },
+                        }"
                         [mgContextMenuDisabled]="checkChoice !== 'Z'"
                         mgContextMenuMode="bubble"
                       >
@@ -338,6 +341,103 @@
           <tfoot>
             <tr>
               <td [attr.colspan]="effectiveGroups()[0].list.length" class="link">{{ link() }}</td>
+            </tr>
+          </tfoot>
+        }
+      </table>
+    } @else if (opts.mode === 'table') {
+      <!-- MARK: table -----------------
+       -->
+      @let colCount = opts.col?.length ?? 1;
+      <table
+        [id]="render() ? 'html2canvas-element' : 'preview-element'"
+        class="html2canvas-element mode-table"
+        [attr.dir]="opts.direction"
+        [class.line-fusion]="opts.borderSpacing < 0"
+      >
+        @if (opts.title || demo()) {
+          <caption>
+            {{
+              opts.title || (demo() ? 'Example' : '')
+            }}
+          </caption>
+        }
+        <tbody>
+          <!-- Column headers row -->
+          <tr>
+            <td class="names names-corner"></td>
+            @for (col of opts.col; track col) {
+              <td
+                class="names names-col"
+                [style.--name-background]="color(col.bgColor, opts.nameBackgroundOpacity)"
+                [style.--text-color]="col.txtColor"
+                [style.width]="col.width || null"
+              >
+                <pre>{{ col.title }}</pre>
+              </td>
+            }
+          </tr>
+          <!-- Data rows -->
+          @for (group of groups(); track group; let indexGrp = $index) {
+            <tr>
+              <td
+                class="names names-row"
+                [style.--name-background]="color(group.bgColor, opts.nameBackgroundOpacity)"
+                [style.--text-color]="group.txtColor"
+              >
+                @if (opts.nameMarkdown) {
+                  <markdown [data]="group.name" />
+                } @else {
+                  <pre>{{ group.name }}</pre>
+                }
+              </td>
+              @for (col of opts.col; track col; let colIdx = $index) {
+                <td class="elements drop-list" [style.width]="col.width || null">
+                  <div>
+                    @for (item of tableColItems(group, colIdx, colCount); track item) {
+                      @if (item) {
+                        <div
+                          class="content-item"
+                          [style.--over-item-background]="item.bgColor"
+                          [style.--over-item-text-color]="item.txtColor"
+                        >
+                          <div class="content-box">
+                            <div class="content content-render" [ngClass]="opts.itemTextPosition" #tile>
+                              @if (item.url) {
+                                <div [class.image]="calcWidth(item, tile)">
+                                  <img
+                                    (ngInit)="calcWidth(item, tile); detectChanges()"
+                                    (load)="calcWidth(item, tile); detectChanges()"
+                                    [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
+                                    [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
+                                    src="{{ imagesCache()[item.url] || item.url }}"
+                                    alt="{{ item.name }}"
+                                  />
+                                </div>
+                              }
+                              @if (withAnnotation() && item.annotation) {
+                                <div class="tile-info" [mgTooltip]="item.annotation"></div>
+                              }
+                              @if (item.title || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
+                                <div class="title" [class.title-item-width-auto]="opts.itemWidthAuto">
+                                  <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                </div>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    }
+                  </div>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+        @if (link()) {
+          <tfoot>
+            <tr>
+              <td [attr.colspan]="colCount + 1" class="link">{{ link() }}</td>
             </tr>
           </tfoot>
         }

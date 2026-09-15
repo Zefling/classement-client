@@ -20,7 +20,8 @@
     },
     "punctuation": {
       "colon": ": ",
-      "comma": ", "
+      "comma": ", ",
+      "dot": ". "
     },
     "view": {
       "total": "{VIEW, plural, =0 {No views} one {1 view} other {# views}}"
@@ -379,7 +380,8 @@
       "iceberg": "Iceberg",
       "axis": "Axis",
       "bingo": "Bingo",
-      "bingo-text": "Text bingo"
+      "bingo-text": "Text bingo",
+      "table": "Table"
     }
   },
   "generator": {
@@ -545,6 +547,21 @@
         "line.width": "Axis width:",
         "line.color": "Axis color:",
         "arrow.size": "Arrow size:"
+      },
+      "table": {
+        "title": "Table options",
+        "width": "Table width:",
+        "width.100": "100% (default)",
+        "width.auto": "Auto",
+        "width.custom": "Custom",
+        "width.customize": "Custom width:",
+        "cell.direction": "Cell layout:",
+        "cell.direction.column": "One column (stacked)",
+        "cell.direction.row": "Multiple per row",
+        "cell.align": "Cell alignment:",
+        "cell.align.start": "Start",
+        "cell.align.center": "Center",
+        "cell.align.end": "End"
       }
     },
     "screen": {
@@ -578,7 +595,8 @@
         "bingo-m": "Medium",
         "bingo-l": "Large",
         "grid": "Grid",
-        "classic": "Classic"
+        "classic": "Classic",
+        "table": "Table"
       },
       "import": {
         "button": "Import",
@@ -678,6 +696,19 @@
       "add": "Add",
       "delete": "Del."
     },
+    "item": {
+      "delete": "Remove tile"
+    },
+    "group": {
+      "up": "Move up",
+      "down": "Move down",
+      "left": "Move left",
+      "right": "Move right",
+      "full-edit": "Full edit",
+      "popover": "Quick options",
+      "bg-color": "Background color",
+      "txt-color": "Text color"
+    },
     "actions": {
       "export.image": "Image export",
       "export.image.loading": "Image generation in progress.",
@@ -706,7 +737,8 @@
         "iceberg": "Move freely in the space defined on the model of an iceberg (or another image).",
         "axis": "Move freely in the defined space along axes.",
         "bingo": "Distribute tiles in a grid.",
-        "bingo-text": "Pre-fill a bingo grid with text tiles."
+        "bingo-text": "Pre-fill a bingo grid with text tiles.",
+        "table": "Arrange tiles in a grid with named rows and columns."
       },
       "reset.groups": {
         "button": "Clear Groups",
@@ -725,7 +757,9 @@
         "cancel": "Cancel"
       },
       "alt": {
-        "detail": "Alternative description text"
+        "detail": "Alternative description text",
+        "table.columns": "Columns",
+        "table.empty": "empty"
       },
       "TMDB": "TMDB",
       "anilist": "AniList"
@@ -949,6 +983,18 @@
       "text": {
         "size": "Grid size:",
         "info": "Enter one tile text per line, empty lines are ignored."
+      }
+    },
+    "table": {
+      "col": {
+        "title": "Column options",
+        "width": {
+          "label": "Column width",
+          "auto": "Auto"
+        }
+      },
+      "row": {
+        "title": "Row options"
       }
     }
   },

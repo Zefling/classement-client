@@ -43,6 +43,7 @@ import {
     themesBingo,
     themesIceberg,
     themesLists,
+    themesTable,
 } from '../../content/classement/classement-default';
 import { ModeNames, PreferencesData } from '../../interface/interface';
 import { APIUserService } from '../../services/api.user.service';
@@ -132,6 +133,7 @@ export class PreferencesMagmaDialog {
         { value: 'iceberg', label: 'iceberg' },
         { value: 'axis', label: 'axis' },
         { value: 'bingo', label: 'bingo' },
+        { value: 'table', label: 'table' },
     ];
 
     resizeMode: Select2Data = [
@@ -233,6 +235,9 @@ export class PreferencesMagmaDialog {
                 break;
             case 'bingo':
                 this.themes.set(themesBingo);
+                break;
+            case 'table':
+                this.themes.set(themesTable);
                 break;
             default:
                 this.themes.set(themesLists);

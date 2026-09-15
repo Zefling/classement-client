@@ -42,6 +42,7 @@ import {
     MagmaEllipsisItemComponent,
     MagmaInput,
     MagmaInputCheckbox,
+    MagmaInputElement,
     MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
@@ -49,6 +50,7 @@ import {
     MagmaMessages,
     MagmaNgInitDirective,
     MagmaNgModelChangeDebouncedDirective,
+    MagmaPopoverDirective,
     MagmaSpinner,
     MagmaStopPropagationDirective,
     MagmaTooltipDirective,
@@ -68,15 +70,18 @@ import { first } from 'rxjs';
 import {
     defaultGroup,
     defaultOptions,
+    defaultTableColumns,
     defaultTheme,
     themesAxis,
     themesBingo,
     themesIceberg,
     themesLists,
+    themesTable,
 } from './classement-default';
 import { ClassementOptionsComponent } from './classement-options.component';
 import { ClassementSaveServerComponent } from './classement-save-server.component';
 import { ClassementClearComponent } from './dialogs/classement-clear.component';
+import { ClassementColOptionComponent } from './dialogs/classement-col-option.component';
 import { ClassementDerivativesComponent } from './dialogs/classement-derivatives.component';
 import { ClassementEditImageComponent } from './dialogs/classement-edit-image.component';
 import { ClassementGroupOptionComponent } from './dialogs/classement-group-option.component';
@@ -104,6 +109,8 @@ import { CdkDropZone } from '../../directives/dropzone.directive';
 import { RemoveTileDirective } from '../../directives/remove-tile.directive';
 import {
     Classement,
+    ColOption,
+    ColumnOption,
     Data,
     FileStream,
     FileString,
@@ -155,6 +162,7 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputTextarea,
+        MagmaInputElement,
         MagmaColorPicker,
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
@@ -164,6 +172,7 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         MagmaStopPropagationDirective,
         MagmaEllipsisButton,
         MagmaEllipsisItemComponent,
+        MagmaPopoverDirective,
         // internal
         RemoveTileDirective,
         DropImageDirective,
@@ -180,6 +189,7 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         ClassementClearComponent,
         ClassementDerivativesComponent,
         ClassementGroupOptionComponent,
+        ClassementColOptionComponent,
         ClassementRankingDiffComponent,
         ClassementTextsComponent,
         ExternalTmdbComponent,
@@ -227,8 +237,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     lockCategory = false;
 
     options!: Options;
-    nameOpacity!: number;
     currentGroup?: GroupOption;
+    currentCol?: ColOption;
 
     changeTimer: any[] = [];
 
@@ -286,6 +296,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     dialogOptimise = viewChild.required<MagmaDialog>('dialogOptimise');
     dialogSaveServer = viewChild.required<MagmaDialog>('dialogSaveServer');
     dialogGroupOption = viewChild.required<MagmaDialog>('dialogGroupOption');
+    dialogColOption = viewChild.required<MagmaDialog>('dialogColOption');
     editImage = viewChild.required(ClassementEditImageComponent);
     login = viewChild.required(ClassementLoginComponent);
     tmdb = viewChild.required(ExternalTmdbComponent);
@@ -309,6 +320,8 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     private _sub = Subscriptions.instance();
     private _optionsCache?: Options;
     private _inputFile!: HTMLInputElement;
+    /** Cache of cell sub-lists for the table mode: Map<group → FileType[][]> indexed by colIdx */
+    private _tableCellCache = new Map<FormattedGroup, FileType[][]>();
 
     constructor() {
         const global = this.global;
@@ -374,7 +387,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
         this.lineOption = this.preferencesService.preferences.lineOption;
         this.global.updateVarCss(this.options, this.imagesCache);
-        this.nameOpacity = Math.round(this.options.nameBackgroundOpacity * 2.55);
         this.options.category ??= '';
 
         if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
@@ -534,6 +546,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                     case 'bingo':
                         themes = themesBingo;
                         break;
+                    case 'table':
+                        themes = themesTable;
+                        break;
                     case 'default':
                     case 'teams':
                     case 'columns':
@@ -580,6 +595,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.groupsControl(this.groups, this.options);
             }
 
+            if (this.options.mode === 'table') {
+                this.tableInit(this.groups, this.options);
+            }
+
             this.detectChanges();
         }
     }
@@ -604,6 +623,195 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 }
             }
         }
+    }
+
+    /** Initialize table mode: ensure groups have sizeY rows and options.col defines columns. */
+    tableInit(groups: FormattedGroup[], options: Options) {
+        // ensure options.col is initialized
+        if (!options.col || options.col.length === 0) {
+            options.col = jsonCopy(defaultTableColumns);
+        }
+        const colCount = options.col!.length;
+
+        // sync sizeX with col count
+        options.sizeX = colCount;
+
+        // If groups already exist (loading saved data), keep them all and update sizeY.
+        // Only apply the sizeY limit when creating a fresh table (all lists empty).
+        const allEmpty = groups.every(g => g.list.length === 0);
+        if (allEmpty) {
+            const limitY = options.sizeY || 3;
+            if (groups.length > limitY) {
+                const removed = groups.splice(limitY);
+                this.list.push(...removed.flatMap(g => g.list.filter((i): i is NonNullable<FileType> => !!i)));
+            } else if (groups.length < limitY) {
+                for (let i = groups.length; i < limitY; i++) {
+                    groups.push({ name: `R${i + 1}`, bgColor: '#FFF', txtColor: '#000', list: [] });
+                }
+            }
+        }
+        // Always sync sizeY to the actual number of rows
+        options.sizeY = groups.length;
+
+        // rebuild cell cache from the (possibly loaded) group.list data
+        this._tableCellCache = new Map();
+        this._tableRebuildCellCache(groups, colCount);
+    }
+
+    /**
+     * Returns the live sub-list for cell (group, colIdx).
+     * The sub-list is a stable array reference used as cdkDropList data.
+     */
+    tableCellList(group: FormattedGroup, colIdx: number): FileType[] {
+        const colCount = this.options.col?.length ?? 1;
+        let rowCache = this._tableCellCache.get(group);
+        if (!rowCache) {
+            rowCache = [];
+            this._tableCellCache.set(group, rowCache);
+        }
+        if (!rowCache[colIdx]) {
+            rowCache[colIdx] = [];
+        }
+        return rowCache[colIdx];
+    }
+
+    /**
+     * Rebuilds the flat interleaved group.list from all cell sub-lists after a drop.
+     * Call after any mutation on a cell sub-list.
+     */
+    private _tableCommit(group: FormattedGroup) {
+        const colCount = this.options.col?.length ?? 1;
+        const rowCache = this._tableCellCache.get(group);
+        if (!rowCache) return;
+
+        // find max items in any column
+        const maxItems = Math.max(0, ...rowCache.map(col => col?.length ?? 0));
+
+        // rebuild interleaved: position (row * colCount + col) = rowCache[col][row]
+        const newList: FileType[] = [];
+        for (let row = 0; row < maxItems; row++) {
+            for (let col = 0; col < colCount; col++) {
+                newList.push(rowCache[col]?.[row] ?? null);
+            }
+        }
+        // strip only fully-null trailing rows (a row = colCount consecutive slots)
+        while (newList.length >= colCount) {
+            const lastRowStart = newList.length - colCount;
+            const lastRowAllNull = newList.slice(lastRowStart).every(item => item === null);
+            if (lastRowAllNull) {
+                newList.splice(lastRowStart, colCount);
+            } else {
+                break;
+            }
+        }
+        group.list = newList;
+    }
+
+    /** Rebuilds the cell cache from flat interleaved group.list for all groups. */
+    private _tableRebuildCellCache(groups: FormattedGroup[], colCount: number) {
+        for (const group of groups) {
+            const rowCache: FileType[][] = Array.from({ length: colCount }, () => []);
+            for (let i = 0; i < group.list.length; i++) {
+                const col = i % colCount;
+                const item = group.list[i];
+                if (item) {
+                    rowCache[col].push(item);
+                }
+            }
+            this._tableCellCache.set(group, rowCache);
+        }
+    }
+
+    /** Finds which group owns a cell sub-list reference and commits it. */
+    private _tableCommitByList(cellList: FileType[]) {
+        for (const [group, rowCache] of this._tableCellCache.entries()) {
+            if (rowCache.includes(cellList as FileString[])) {
+                this._tableCommit(group);
+                return;
+            }
+        }
+    }
+
+    tableColLeft(colIdx: number) {
+        if (!this.options.col || colIdx === 0) return;
+        const colCount = this.options.col.length;
+        // swap col header
+        const col = this.options.col.splice(colIdx, 1)[0];
+        this.options.col.splice(colIdx - 1, 0, col);
+        // swap cell sub-lists in cache
+        this.groups.forEach(group => {
+            const rowCache = this._tableCellCache.get(group);
+            if (rowCache) {
+                const cell = rowCache.splice(colIdx, 1)[0];
+                rowCache.splice(colIdx - 1, 0, cell);
+            }
+            this._tableCommit(group);
+        });
+        this._tableRebuildCellCache(this.groups, colCount);
+        this.globalChange();
+        this.change();
+    }
+
+    tableColRight(colIdx: number) {
+        if (!this.options.col || colIdx >= this.options.col.length - 1) return;
+        const colCount = this.options.col.length;
+        const col = this.options.col.splice(colIdx, 1)[0];
+        this.options.col.splice(colIdx + 1, 0, col);
+        this.groups.forEach(group => {
+            const rowCache = this._tableCellCache.get(group);
+            if (rowCache) {
+                const cell = rowCache.splice(colIdx, 1)[0];
+                rowCache.splice(colIdx + 1, 0, cell);
+            }
+            this._tableCommit(group);
+        });
+        this._tableRebuildCellCache(this.groups, colCount);
+        this.globalChange();
+        this.change();
+    }
+
+    tableColDelete(colIdx: number) {
+        if (!this.options.col || this.options.col.length <= 1) return;
+        this.options.col.splice(colIdx, 1);
+        const colCount = this.options.col.length;
+        this.groups.forEach(group => {
+            const rowCache = this._tableCellCache.get(group);
+            if (rowCache) {
+                const removed = rowCache.splice(colIdx, 1)[0] ?? [];
+                this.list.push(...removed.filter((i): i is NonNullable<FileType> => !!i));
+            }
+            this._tableCommit(group);
+        });
+        this._tableRebuildCellCache(this.groups, colCount);
+        this.options.sizeX = colCount;
+        this.globalChange();
+        this.change();
+        this.updateActiveActions();
+    }
+
+    tableColAdd(colIdx: number) {
+        if (!this.options.col) return;
+        const isBelow = this.preferencesService.preferences.newLine === 'below';
+        const insertIdx = isBelow ? colIdx + 1 : colIdx;
+        const refCol = this.options.col[colIdx];
+        const newCol: ColumnOption = {
+            title: this.translate.translate('generator.ranking.new'),
+            bgColor: refCol?.bgColor ?? '#FFF',
+            txtColor: refCol?.txtColor ?? '#000',
+        };
+        this.options.col.splice(insertIdx, 0, newCol);
+        const colCount = this.options.col.length;
+        this.groups.forEach(group => {
+            const rowCache = this._tableCellCache.get(group);
+            if (rowCache) {
+                rowCache.splice(insertIdx, 0, []);
+            }
+            this._tableCommit(group);
+        });
+        this._tableRebuildCellCache(this.groups, colCount);
+        this.options.sizeX = colCount;
+        this.globalChange();
+        this.change();
     }
 
     loadLocalClassement() {
@@ -658,6 +866,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.helpInit();
                 this.memory.addUndo(this);
                 this.preferencesUpdate();
+
+                if (this.options.mode === 'table') {
+                    this.tableInit(this.groups, this.options);
+                }
             })
             .catch(() => {
                 this.logger.log('local not found');
@@ -711,6 +923,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.helpInit();
         this.memory.addUndo(this);
         this.preferencesUpdate();
+
+        if (this.options.mode === 'table') {
+            this.tableInit(this.groups, this.options);
+        }
     }
 
     private resetByOptions(item: FileType, forkOptions: string[]) {
@@ -743,6 +959,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 break;
             case 'bingo':
                 this.global.changeHelpComponent(HelpBingoComponent);
+                break;
+            case 'table':
+                this.global.changeHelpComponent(HelpColumnsComponent);
                 break;
             default:
                 this.global.changeHelpComponent(HelpTierListComponent);
@@ -868,6 +1087,12 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                         }
                     }
                     break;
+                case 'table':
+                    // cell sub-list: reorder within the same cell
+                    moveItemInArray(targetList, indexFrom, indexTarget);
+                    // find which group owns this sub-list and commit
+                    this._tableCommitByList(targetList);
+                    break;
                 default:
                     moveItemInArray(targetList, indexFrom, indexTarget);
             }
@@ -942,6 +1167,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                     }
                     this.globalChange();
                     break;
+                case 'table':
+                    // transfer item into the target cell sub-list
+                    transferArrayItem(previousList, targetList, indexFrom, indexTarget);
+                    // commit both affected groups
+                    this._tableCommitByList(previousList);
+                    this._tableCommitByList(targetList);
+                    this.globalChange();
+                    break;
                 default:
                     transferArrayItem(previousList, targetList, indexFrom, indexTarget);
                     this.globalChange();
@@ -1012,6 +1245,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     deleteLine(index: number) {
         if (this.options.mode === 'teams') {
             this.groups.splice(index, 1);
+        } else if (this.options.mode === 'table') {
+            const removed = this.groups.splice(index, 1)[0];
+            this.list.push(...removed.list.filter((i): i is NonNullable<FileType> => !!i));
+            this._tableCellCache.delete(removed);
         } else {
             this.list.push(...this.groups.splice(index, 1)[0].list);
         }
@@ -1032,6 +1269,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 if (index !== -1) {
                     if (this.options.mode === 'bingo') {
                         group.list[index] = null;
+                    } else if (this.options.mode === 'table') {
+                        group.list.splice(index, 1);
+                        this._tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
                     } else {
                         group.list.splice(index, 1);
                     }
@@ -1046,6 +1286,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     removeFromGroup(group: FileType[], index: number) {
         const item = this.options.mode !== 'bingo' ? group.splice(index, 1)[0] : group.splice(index, 1, null)[0];
+
+        if (this.options.mode === 'table') {
+            // group here is a cell sub-list; commit the parent group
+            this._tableCommitByList(group);
+        }
 
         if (item) {
             item.x = 0;
@@ -1147,6 +1392,11 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.dialogGroupOption().open();
     }
 
+    updateColOption(col: ColOption) {
+        this.currentCol = col;
+        this.dialogColOption().open();
+    }
+
     updateSize() {
         this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
     }
@@ -1170,6 +1420,14 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             bgColor,
             list: [],
         });
+
+        if (this.options.mode === 'table') {
+            const newGroup = this.groups[nextIndex];
+            this._tableCellCache.set(
+                newGroup,
+                Array.from({ length: this.options.col?.length ?? 1 }, () => []),
+            );
+        }
 
         this.globalChange();
         this.change();
@@ -1248,13 +1506,17 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 }
             });
             if (this.options.mode !== 'teams') {
-                this.list.push(...line.list);
+                this.list.push(...line.list.filter((i): i is NonNullable<FileType> => !!i));
             }
             if (this.options.mode === 'bingo') {
                 line.list = line.list.map(_ => null);
             } else {
                 line.list = [];
             }
+        }
+
+        if (this.options.mode === 'table') {
+            this._tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
         }
 
         this.list = this.list.filter(e => e);
@@ -1326,6 +1588,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.options = classement.data.options;
         this.teamsModeUpdateTile();
         this.addIds();
+
+        if (this.options.mode === 'table') {
+            this.tableInit(this.groups, this.options);
+        }
 
         this.html2canvasImagesCacheUpdate();
 

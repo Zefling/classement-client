@@ -26,12 +26,18 @@
     </label>
   </div>
 
+  <hr />
+
   <div class="button-actions">
     @if (!currentGroup()!.first) {
-      <button class="button-up group-options" (click)="upLine.emit(currentGroup()!.indexGrp)">↑</button>
+      <button class="button-up group-options" (click)="upLine.emit(currentGroup()!.indexGrp)">
+        {{ mode() === 'columns' ? '←' : '↑' }}
+      </button>
     }
     @if (!currentGroup()!.last) {
-      <button class="button-down group-options" (click)="downLine.emit(currentGroup()!.indexGrp)">↓</button>
+      <button class="button-down group-options" (click)="downLine.emit(currentGroup()!.indexGrp)">
+        {{ mode() === 'columns' ? '→' : '↓' }}
+      </button>
     }
     @if (!(currentGroup()!.first && currentGroup()!.last)) {
       <button class="button-suppr group-options" (click)="deleteLine.emit(currentGroup()!.indexGrp); dialog()?.close()">
@@ -42,6 +48,9 @@
       {{ 'generator.line.add' | transloco }}
     </button>
   </div>
+
+  <hr />
+
   <div class="buttons">
     <button class="primary" (click)="dialog()?.close()">
       {{ 'generator.actions.reset.groups.ok' | transloco }}

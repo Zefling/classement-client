@@ -20,7 +20,8 @@
     },
     "punctuation": {
       "colon": ": ",
-      "comma": "، "
+      "comma": "، ",
+      "dot": ". "
     },
     "view": {
       "total": "{VIEW, plural, =0 {لا توجد مشاهدات} one {مشاهدة واحدة} two {مشاهدتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}"
@@ -379,7 +380,8 @@
       "iceberg": "جبل الجليد",
       "axis": "محاور",
       "bingo": "بينغو",
-      "bingo-text": "بينغو نصي"
+      "bingo-text": "بينغو نصي",
+      "table": "Table"
     }
   },
   "generator": {
@@ -545,6 +547,21 @@
         "line.width": "عرض المحور:",
         "line.color": "لون المحور:",
         "arrow.size": "حجم السهم:"
+      },
+      "table": {
+        "title": "Table options",
+        "width": "Table width:",
+        "width.100": "100% (default)",
+        "width.auto": "Auto",
+        "width.custom": "Custom",
+        "width.customize": "Custom width:",
+        "cell.direction": "Cell layout:",
+        "cell.direction.column": "One column (stacked)",
+        "cell.direction.row": "Multiple per row",
+        "cell.align": "Cell alignment:",
+        "cell.align.start": "Start",
+        "cell.align.center": "Center",
+        "cell.align.end": "End"
       }
     },
     "screen": {
@@ -578,7 +595,8 @@
         "bingo-m": "متوسط",
         "bingo-l": "كبير",
         "grid": "شبكة",
-        "classic": "كلاسيكي"
+        "classic": "كلاسيكي",
+        "table": "Table"
       },
       "import": {
         "button": "استيراد",
@@ -678,6 +696,19 @@
       "add": "إضافة",
       "delete": "حذف"
     },
+    "item": {
+      "delete": "Remove tile"
+    },
+    "group": {
+      "up": "Move up",
+      "down": "Move down",
+      "left": "Move left",
+      "right": "Move right",
+      "full-edit": "Full edit",
+      "popover": "Quick options",
+      "bg-color": "Background color",
+      "txt-color": "Text color"
+    },
     "actions": {
       "export.image": "تصدير كصورة",
       "export.image.loading": "Image generation in progress.",
@@ -706,7 +737,8 @@
         "iceberg": "التحرك بحرية في المساحة المحددة على نموذج جبل الجليد (أو صورة أخرى).",
         "axis": "التحرك بحرية في المساحة المحددة على طول المحاور.",
         "bingo": "توزيع البلاطات في شبكة.",
-        "bingo-text": "ملء شبكة البينغو مسبقًا بالبلاطات النصية."
+        "bingo-text": "ملء شبكة البينغو مسبقًا بالبلاطات النصية.",
+        "table": "Arrange tiles in a grid with named rows and columns."
       },
       "reset.groups": {
         "button": "مسح المجموعات",
@@ -725,7 +757,9 @@
         "cancel": "إلغاء"
       },
       "alt": {
-        "detail": "نص الوصف البديل"
+        "detail": "نص الوصف البديل",
+        "table.columns": "الأعمدة",
+        "table.empty": "فارغ"
       },
       "TMDB": "TMDB",
       "anilist": "AniList"
@@ -949,6 +983,18 @@
       "text": {
         "size": "حجم الشبكة:",
         "info": "أدخل نص بلاطة واحدة في كل سطر، الأسطر الفارغة تُتجاهل."
+      }
+    },
+    "table": {
+      "col": {
+        "title": "Column options",
+        "width": {
+          "label": "Column width",
+          "auto": "Auto"
+        }
+      },
+      "row": {
+        "title": "Row options"
       }
     }
   },

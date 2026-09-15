@@ -47,17 +47,22 @@ import { Subject, debounceTime } from 'rxjs';
 
 import {
     defaultGroup,
+    defaultTableColumns,
     imageInfos,
     imagesAxis,
     imagesBingo,
     imagesIceberg,
     imagesLists,
+    imagesTable,
     imagesThemes,
     listAlign,
     listCover,
     listDirection,
     listFonts,
     listModes,
+    listTableCellAlign,
+    listTableCellDirection,
+    listTableWidth,
     listTextPosition,
     themes,
     themesAxis,
@@ -65,9 +70,10 @@ import {
     themesIceberg,
     themesList,
     themesLists,
+    themesTable,
 } from './classement-default';
 import { ClassementEditComponent } from './classement-edit.component';
-import { groupExample, groupExampleColumns } from './classement-options';
+import { groupExample, groupExampleColumns, groupExampleTable } from './classement-options';
 import { schemaTheme } from './classement-schemas';
 import { ClassementThemesManagerComponent } from './classement-themes-manager.component';
 import { ClassementThemesComponent } from './classement-themes.component';
@@ -174,6 +180,9 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     directionList = listDirection;
     alignList = listAlign;
     listCover = listCover;
+    tableWidth = listTableWidth;
+    tableCellDirection = listTableCellDirection;
+    tableCellAlign = listTableCellAlign;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;
@@ -266,7 +275,13 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
 
             const mode = this._modeTemp ?? options.mode ?? 'default';
             // demo
-            this.groupExample.set(mode !== 'columns' ? groupExample : groupExampleColumns);
+            if (mode === 'columns') {
+                this.groupExample.set(groupExampleColumns);
+            } else if (mode === 'table') {
+                this.groupExample.set(groupExampleTable);
+            } else {
+                this.groupExample.set(groupExample);
+            }
 
             switch (mode) {
                 case 'iceberg':
@@ -280,6 +295,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 case 'bingo':
                     this.imagesList = imagesBingo;
                     this.themesList = themesBingo;
+                    break;
+                case 'table':
+                    this.imagesList = imagesTable;
+                    this.themesList = themesTable;
                     break;
                 default:
                     this.imagesList = imagesLists;
@@ -319,6 +338,10 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
                 case 'bingo':
                     this.updateAction('sizeX', options.sizeX ?? 5);
                     this.updateAction('sizeY', options.sizeY ?? 5);
+                    break;
+                case 'table':
+                    options.col = options.col?.length ? options.col : [...defaultTableColumns];
+                    this.updateAction('groups', defaultGroup);
                     break;
             }
 

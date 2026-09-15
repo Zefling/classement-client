@@ -1,0 +1,100 @@
+@if (currentCol()) {
+  <div class="colors-options">
+    <span
+      class="color txt-color icon-text-color group-options"
+      [colorPicker]="currentCol()!.col.txtColor"
+      colorPickerAlpha
+      (colorClose)="currentCol()!.col.txtColor = $event; globalChange.emit()"
+    ></span>
+    <span
+      class="color bg-color icon-background-color group-options"
+      [colorPicker]="currentCol()!.col.bgColor"
+      (colorClose)="currentCol()!.col.bgColor = $event; globalChange.emit()"
+    ></span>
+    <label class="name" [style.background-color]="currentCol()!.col.bgColor">
+      <div class="auto-resize">
+        <!-- not use magma -->
+        <textarea
+          rows="1"
+          [(ngModel)]="currentCol()!.col.title"
+          (ngModelChange)="globalChange.emit()"
+          maxlength="500"
+          [style.color]="currentCol()!.col.txtColor"
+        ></textarea>
+      </div>
+    </label>
+  </div>
+
+  <hr />
+
+  <div class="width-option">
+    <div class="width-option-row">
+      <mg-input>
+        <mg-input-label>{{ 'generator.table.col.width.label' | transloco }}</mg-input-label>
+        <mg-input-checkbox
+          [ngModel]="!currentCol()!.col.width"
+          (ngModelChange)="currentCol()!.col.width = $event ? undefined : ''; globalChange.emit()"
+          >{{ 'generator.table.col.width.auto' | transloco }}</mg-input-checkbox
+        >
+        <mg-input-suffix>
+          @if (currentCol()!.col.width !== undefined) {
+            <input
+              class="col-width-input"
+              type="text"
+              [value]="currentCol()!.col.width"
+              (change)="currentCol()!.col.width = $any($event.target).value.trim() || undefined; globalChange.emit()"
+              placeholder="200px / 30%"
+            />
+          }
+        </mg-input-suffix>
+      </mg-input>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="button-actions">
+    @if (!currentCol()!.first) {
+      <button
+        class="button-left group-options"
+        [title]="'generator.group.left' | transloco"
+        (click)="colLeft.emit(currentCol()!.colIdx)"
+      >
+        ←
+      </button>
+    }
+    @if (!currentCol()!.last) {
+      <button
+        class="button-right group-options"
+        [title]="'generator.group.right' | transloco"
+        (click)="colRight.emit(currentCol()!.colIdx)"
+      >
+        →
+      </button>
+    }
+    @if (!(currentCol()!.first && currentCol()!.last)) {
+      <button
+        class="button-suppr group-options"
+        [title]="'generator.line.delete' | transloco"
+        (click)="colDelete.emit(currentCol()!.colIdx); dialog()?.close()"
+      >
+        {{ 'generator.line.delete' | transloco }}
+      </button>
+    }
+    <button
+      class="button-add group-options"
+      [title]="'generator.line.add' | transloco"
+      (click)="colAdd.emit(currentCol()!.colIdx); dialog()?.close()"
+    >
+      {{ 'generator.line.add' | transloco }}
+    </button>
+  </div>
+
+  <hr />
+
+  <div class="buttons">
+    <button class="primary" (click)="dialog()?.close()">
+      {{ 'generator.actions.reset.groups.ok' | transloco }}
+    </button>
+  </div>
+}

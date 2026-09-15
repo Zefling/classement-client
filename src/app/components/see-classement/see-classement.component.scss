@@ -605,7 +605,59 @@ div:has(> .mode-bingo) {
     text-align: center;
 }
 
-.demo table {
-    /* background on caption preview */
-    display: block;
+/* table ----------------------------------------------------------- */
+
+.mode-table {
+    background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
+    background-color: var(--over-image-background, var(--background));
+
+    .render:has(> &),
+    :host:has(> .render > &) {
+        margin: auto;
+        width: var(--over-table-width, 100%);
+    }
+
+    tbody,
+    tr,
+    td {
+        height: 100%;
+    }
+
+    // label cells: fixed width, not 100%
+    .names-corner {
+        border: none;
+        background: transparent;
+        width: var(--over-name-width, 150px);
+        min-width: var(--over-name-width, 150px);
+    }
+
+    .names-col,
+    .names-row {
+        width: var(--over-name-width, 150px);
+        min-width: var(--over-name-width, 150px);
+        height: auto;
+
+        & > * {
+            align-content: center;
+            min-height: var(--over-name-min-height, 60px);
+        }
+    }
+
+    // data cells: auto, do NOT stretch to 100%
+    td.elements {
+        width: auto;
+    }
+
+    // inner drop-list layout: direction and alignment driven by CSS vars
+    .drop-list > div {
+        flex-direction: var(--over-table-cell-direction, row);
+        flex-wrap: wrap;
+        justify-content: var(--over-table-cell-justify-content, flex-start);
+        align-items: var(--over-table-cell-align-items, flex-start);
+        width: 100%;
+        height: 100%;
+    }
 }

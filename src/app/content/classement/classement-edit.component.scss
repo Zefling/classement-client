@@ -303,6 +303,14 @@ img {
     ::ng-deep * {
         font-family: var(--over-font), 'Roboto';
     }
+
+    .click-enter[tabindex]:not(button, a[href]):hover {
+        background: color-mix(
+            in hsl,
+            var(--over-drop-list-background, var(--drop-list-background)) 80%,
+            transparent 20%
+        );
+    }
 }
 
 .zone-classement {
@@ -437,7 +445,8 @@ span.group-options {
     grid-area: e;
 }
 
-span.color {
+span.color,
+.mini-edit-options {
     display: block;
     grid-area: b;
     cursor: pointer;
@@ -452,6 +461,7 @@ span.color {
 
     &:hover {
         --over-drop-list-background: #fff6;
+        color: #000;
     }
 
     .option-reduce & {
@@ -1230,5 +1240,124 @@ mg-spinner {
 
     .names {
         --group-option-height: 0;
+    }
+}
+
+/* table ----------------------------------------------------------- */
+
+.table-grid {
+    overflow-x: auto;
+    scrollbar-gutter: stable;
+
+    .table-classement {
+        margin: auto;
+        width: var(--over-table-width, 100%);
+        min-width: auto;
+
+        tbody,
+        tr,
+        td {
+            height: 100%;
+        }
+    }
+
+    .names-col,
+    .names-row {
+        & > div {
+            position: relative;
+            grid-template:
+                'a a' auto
+                '. b' 0 /
+                1fr auto;
+            min-height: var(--over-name-min-height, 60px);
+        }
+
+        // override the global hide rule: the pencil IS the popover trigger here
+        .mini-edit-options {
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            grid-area: b;
+            cursor: pointer;
+            width: 15px;
+            height: 20px;
+            font-size: 15px;
+        }
+    }
+
+    .names-corner {
+        border: none;
+        background: transparent;
+        width: var(--over-name-width, 150px);
+        min-width: var(--over-name-width, 150px);
+    }
+
+    .elements {
+        padding: 0;
+        width: calc(
+            var(--over-item-width) + (var(--over-item-border) + var(--over-item-padding) + var(--over-item-margin)) * 2
+        );
+    }
+
+    .drop-list {
+        flex-direction: var(--over-table-cell-direction, row);
+        justify-content: var(--over-table-cell-justify-content, flex-start);
+        align-items: var(--over-table-cell-align-items, flex-start);
+        height: 100%;
+    }
+
+    .selectable-group:focus:not(:has(.selection-item:focus)) {
+        outline: 2px solid var(--neutral950);
+    }
+
+    .selection-item {
+        outline: 3px solid var(--neutral950);
+        outline-offset: -1px;
+    }
+}
+
+.table-cell-popover {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: var(--block-border);
+    border-radius: var(--block-radius, 6px);
+    background: var(--background);
+    padding: 8px 10px;
+
+    .popover-icons-row {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 6px;
+
+        .popover-actions {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 4px;
+            margin-left: auto;
+
+            button {
+                margin: 0;
+                padding: 6px 8px;
+            }
+        }
+    }
+
+    .popover-col-width {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-top: 1px solid var(--neutral200);
+        padding-top: 6px;
+    }
+
+    .popover-icons-row,
+    .popover-col-width {
+        .click-enter:hover {
+            background-color: #fff4;
+        }
     }
 }

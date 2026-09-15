@@ -6,7 +6,7 @@ export interface Classement {
     banner: string;
     data: Data;
     category: string;
-    mode: 'default' | 'teams' | 'axis' | 'iceberg' | 'bingo';
+    mode: 'default' | 'teams' | 'axis' | 'iceberg' | 'bingo' | 'table';
     name: string;
     user: string;
     userAvatar: string;
@@ -99,6 +99,7 @@ export type FileString = {
     y?: number;
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
+export type ColOption = { col: ColumnOption; colIdx: number; first: boolean; last: boolean };
 export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileType[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
@@ -109,6 +110,7 @@ export type Options = ThemeOptions & {
     tags: string[];
     mode: ModeNames;
     groups?: OptionGroup[];
+    col?: ColumnOption[];
     themeName?: string;
 };
 export type ThemeOptions = {
@@ -160,6 +162,10 @@ export type ThemeOptions = {
     imageHeight?: number;
     imageSize?: 'auto' | 'cover';
     imagePosition?: 'auto' | 'center';
+    tableWidthMode?: '' | 'auto' | 'custom';
+    tableWidth?: string;
+    tableCellDirection?: 'column' | 'row';
+    tableCellAlign?: 'start' | 'center' | 'end';
     columnMinHeight?: number;
     axisLineWidth: number;
     axisLineColor: string;
@@ -313,10 +319,19 @@ export type ThemesNames =
     | 'bingo-m'
     | 'bingo-l'
     | 'grid'
+    | 'table'
     | 'custom';
 export type ImagesNames = 'none' | 'custom' | 'sakura' | 'etoile' | 'ciel' | 'iceberg' | 'axis';
 
-export type ModeNames = 'default' | 'teams' | 'columns' | 'iceberg' | 'axis' | 'bingo';
+export type ModeNames = 'default' | 'teams' | 'columns' | 'iceberg' | 'axis' | 'bingo' | 'table';
+export type ModeNamesExtra = 'bingo-text';
+
+export type ColumnOption = {
+    title: string;
+    bgColor: string;
+    txtColor: string;
+    width?: string;
+};
 
 // sort
 export type SortUserCol = 'username' | 'dateCreate';

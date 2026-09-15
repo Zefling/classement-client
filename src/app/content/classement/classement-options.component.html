@@ -568,7 +568,7 @@
               noDecimal
               noNegative
             />
-            <mg-input-suffix>%</mg-input-suffix>
+            <mg-input-suffix>px</mg-input-suffix>
           </mg-input>
 
           <mg-input class="group-direction">
@@ -770,7 +770,70 @@
           />
         </mg-input>
       }
-      <!-- ############################### MARK: other options ###############################  -->
+
+      @if (opts.mode === 'table') {
+        <!-- ############################### MARK: table options ############################### -->
+        <h4 class="title-table">{{ 'generator.options.table.title' | transloco }}</h4>
+
+        <mg-input class="table-cell-direction">
+          <mg-input-label>{{ 'generator.options.table.cell.direction' | transloco }}</mg-input-label>
+          <mg-input-select
+            [(ngModel)]="opts.tableCellDirection"
+            (ngModelChange)="detectChange()"
+            [data]="tableCellDirection"
+            [templates]="templatesCellDir"
+            displaySearchStatus="hidden"
+            overlay
+            nativeKeyboard
+          >
+            <ng-template #templatesCellDir let-label="label">
+              {{ 'generator.options.table.cell.direction.' + label | transloco }}
+            </ng-template>
+          </mg-input-select>
+        </mg-input>
+
+        <mg-input class="table-cell-align">
+          <mg-input-label>{{ 'generator.options.table.cell.align' | transloco }}</mg-input-label>
+          <mg-input-select
+            [(ngModel)]="opts.tableCellAlign"
+            (ngModelChange)="detectChange()"
+            [data]="tableCellAlign"
+            [templates]="templatesCellAlign"
+            displaySearchStatus="hidden"
+            overlay
+            nativeKeyboard
+          >
+            <ng-template #templatesCellAlign let-label="label">
+              {{ 'generator.options.table.cell.align.' + label | transloco }}
+            </ng-template>
+          </mg-input-select>
+        </mg-input>
+
+        <mg-input class="table-width-mode">
+          <mg-input-label>{{ 'generator.options.table.width' | transloco }}</mg-input-label>
+          <mg-input-select
+            [(ngModel)]="opts.tableWidthMode"
+            [data]="tableWidth"
+            [templates]="templatesTableWidth"
+            (ngModelChange)="detectChange()"
+            displaySearchStatus="hidden"
+            overlay
+            nativeKeyboard
+          >
+            <ng-template #templatesTableWidth let-label="label">
+              {{ 'generator.options.table.width.' + label | transloco }}
+            </ng-template>
+          </mg-input-select>
+        </mg-input>
+
+        @if (opts.tableWidthMode && opts.tableWidthMode === 'custom') {
+          <mg-input class="table-width">
+            <mg-input-label>{{ 'generator.options.table.width.customize' | transloco }}</mg-input-label>
+            <mg-input-text [(ngModel)]="opts.tableWidth" (ngModelChange)="detectChange()" placeholder="800px / 80%" />
+          </mg-input>
+        }
+      }
+      <!-- ############################### MARK: other options ############################### -->
       <h4 class="title-other">{{ 'generator.options.global.title' | transloco }}</h4>
 
       <mg-input class="colors-title-text">
@@ -784,7 +847,7 @@
         />
       </mg-input>
 
-      @if (opts.mode !== 'bingo' && opts.mode !== 'columns') {
+      @if (opts.mode !== 'bingo' && opts.mode !== 'columns' && opts.mode !== 'table') {
         <mg-input class="global-width">
           <mg-input-label>{{ 'generator.options.global.width' | transloco }}</mg-input-label>
           <mg-input-number

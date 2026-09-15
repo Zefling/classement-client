@@ -37,7 +37,7 @@ import { filter } from 'rxjs';
 
 import { PreferencesMagmaDialog } from './components/preferences/preferences.component';
 import { defaultOptions, defaultTheme } from './content/classement/classement-default';
-import { FileString, FormattedGroup, ModeNames } from './interface/interface';
+import { FileString, FormattedGroup, ModeNames, ModeNamesExtra } from './interface/interface';
 import { APIUserService } from './services/api.user.service';
 import { GlobalService } from './services/global.service';
 import { ModuleErrorHandler } from './services/module-error-handler';
@@ -122,13 +122,15 @@ export class AppComponent {
         { value: 7, label: '7×7' },
     ];
 
-    readonly modes: { id: ModeNames; icon?: string }[] = [
+    readonly modes: { id: ModeNames; icon?: string; extra?: ModeNamesExtra }[] = [
         { id: 'default', icon: 'tierlist' },
         { id: 'teams' },
-        { id: 'columns' },
+        { id: 'columns', icon: 'column' },
         { id: 'iceberg' },
         { id: 'axis' },
-        { id: 'bingo' },
+        { id: 'bingo', icon: 'grid' },
+        { id: 'bingo', icon: 'grid', extra: 'bingo-text' },
+        { id: 'table' },
     ];
 
     get routerUrl() {
@@ -272,9 +274,13 @@ export class AppComponent {
         }
     }
 
-    beginNew(mode: ModeNames) {
-        this.router.navigate(['edit', 'new', mode]);
-        this.choice().close();
+    beginNew(mode: ModeNames, extra?: ModeNamesExtra) {
+        if (extra === 'bingo-text') {
+            this.openTextBingo();
+        } else {
+            this.router.navigate(['edit', 'new', mode]);
+            this.choice().close();
+        }
     }
 
     openTextBingo() {

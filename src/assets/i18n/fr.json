@@ -20,7 +20,8 @@
     },
     "punctuation": {
       "colon": " : ",
-      "comma": ", "
+      "comma": ", ",
+      "dot": ". "
     },
     "view": {
       "total": "{VIEW, plural, =0 {Aucune vue} one {1 vue} other {# vues}}"
@@ -379,7 +380,8 @@
       "iceberg": "Iceberg",
       "axis": "Axes",
       "bingo": "Bingo",
-      "bingo-text": "Bingo texte"
+      "bingo-text": "Bingo texte",
+      "table": "Tableau"
     }
   },
   "generator": {
@@ -544,6 +546,21 @@
         "line.width": "Largeur des axes :",
         "line.color": "Couleur des axes :",
         "arrow.size": "Taille des flèches :"
+      },
+      "table": {
+        "title": "Options du tableau",
+        "width": "Largeur du tableau :",
+        "width.100": "100% (défaut)",
+        "width.auto": "Auto",
+        "width.custom": "Personnalisé",
+        "width.customize": "Largeur personnalisée :",
+        "cell.direction": "Disposition des cellules :",
+        "cell.direction.column": "Une colonne (empilé)",
+        "cell.direction.row": "Plusieurs par ligne",
+        "cell.align": "Alignement des cellules :",
+        "cell.align.start": "Début",
+        "cell.align.center": "Centre",
+        "cell.align.end": "Fin"
       }
     },
     "screen": {
@@ -577,7 +594,8 @@
         "bingo-m": "Moyen",
         "bingo-l": "Large",
         "grid": "Grille",
-        "classic": "Classique"
+        "classic": "Classique",
+        "table": "Tableau"
       },
       "import": {
         "button": "Importer",
@@ -677,6 +695,19 @@
       "add": "Ajout",
       "delete": "Suppr."
     },
+    "item": {
+      "delete": "Supprimer la tuile"
+    },
+    "group": {
+      "up": "Déplacer vers le haut",
+      "down": "Déplacer vers le bas",
+      "left": "Déplacer vers la gauche",
+      "right": "Déplacer vers la droite",
+      "full-edit": "Édition complète",
+      "popover": "Options rapides",
+      "bg-color": "Couleur du fond",
+      "txt-color": "Couleur du texte"
+    },
     "actions": {
       "export.image": "Export en image",
       "export.image.loading": "Génération de l'image en cours.",
@@ -705,7 +736,8 @@
         "iceberg": "Déplacer librement dans l'espace défini sur le model d'un iceberg (ou d'une autre image).",
         "axis": "Déplacer librement dans l'espace défini suivant des axes.",
         "bingo": "Repartissez des tuiles dans une grille.",
-        "bingo-text": "Pré-remplir une grille de bingo avec des tuiles de texte."
+        "bingo-text": "Pré-remplir une grille de bingo avec des tuiles de texte.",
+        "table": "Organiser les tuiles dans un tableau avec des lignes et colonnes nommées."
       },
       "reset.groups": {
         "button": "Vider les groupes",
@@ -724,7 +756,9 @@
         "cancel": "Annuler"
       },
       "alt": {
-        "detail": "Texte de description alternatif "
+        "detail": "Texte de description alternatif ",
+        "table.columns": "Colonnes",
+        "table.empty": "vide"
       },
       "TMDB": "TMDB",
       "anilist": "AniList"
@@ -948,6 +982,18 @@
       "text": {
         "size": "Taille de la grille :",
         "info": "Entrez un texte de tuile par ligne, les lignes vides sont ignorées."
+      }
+    },
+    "table": {
+      "col": {
+        "title": "Options de la colonne",
+        "width": {
+          "label": "Taille de la colonne",
+          "auto": "Auto"
+        }
+      },
+      "row": {
+        "title": "Options de la ligne"
       }
     }
   },

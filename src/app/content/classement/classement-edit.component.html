@@ -99,7 +99,7 @@
                 <tr [class.option-reduce]="options.itemHeight < 100">
                   <td
                     class="names"
-                    [style.--name-background]="color(group.bgColor, nameOpacity)"
+                    [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
                     [style.--text-color]="group.txtColor"
                   >
                     <div>
@@ -118,6 +118,7 @@
                       </label>
                       <span
                         class="color group-options icon-edit-2"
+                        [title]="'generator.group.full-edit' | transloco"
                         (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                       ></span>
                       <span
@@ -128,6 +129,7 @@
                           hsl: 'magma.color.piker.hsl' | transloco,
                           palette: 'magma.color.piker.palette' | transloco,
                         }"
+                        [title]="'generator.group.bg-color' | transloco"
                         tabindex="0"
                         type="button"
                       ></span>
@@ -140,6 +142,7 @@
                           palette: 'magma.color.piker.palette' | transloco,
                         }"
                         (colorClose)="group.txtColor = $event"
+                        [title]="'generator.group.txt-color' | transloco"
                         tabindex="0"
                         type="button"
                       ></span>
@@ -212,25 +215,34 @@
                   <td class="actions">
                     <div class="button-actions">
                       @if (!first) {
-                        <button class="button-up" (click)="upLine(indexGrp)">
+                        <button class="button-up" [title]="'generator.group.up' | transloco" (click)="upLine(indexGrp)">
                           <span class="icon-up"></span>
                         </button>
                       }
                       @if (!last) {
-                        <button class="button-down" (click)="downLine(indexGrp)">
+                        <button
+                          class="button-down"
+                          [title]="'generator.group.down' | transloco"
+                          (click)="downLine(indexGrp)"
+                        >
                           <span class="icon-down"></span>
                         </button>
                       }
                       @if (!(first && last)) {
-                        <button class="button-suppr" (click)="deleteLine(indexGrp)">
-                          <span [title]="'generator.line.delete' | transloco" class="icon-remove"></span>
+                        <button
+                          class="button-suppr"
+                          [title]="'generator.line.delete' | transloco"
+                          (click)="deleteLine(indexGrp)"
+                        >
+                          <span class="icon-remove"></span>
                         </button>
                       }
-                      <button class="button-add" (click)="addLine(indexGrp)">
-                        <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
+                      <button class="button-add" [title]="'generator.line.add' | transloco" (click)="addLine(indexGrp)">
+                        <span class="icon icon-add"></span>
                       </button>
                       <span
                         class="color group-options icon-edit-2"
+                        [title]="'generator.group.full-edit' | transloco"
                         (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                       ></span>
                     </div>
@@ -411,6 +423,341 @@
               </tbody>
             </table>
           </div>
+        } @else if (options.mode === 'table') {
+          <!-- !MARK: table -->
+
+          <div class="table-grid">
+            <table
+              class="table-classement"
+              [attr.dir]="options.direction"
+              [class.line-fusion]="options.borderSpacing < 0"
+            >
+              <tbody>
+                <!-- Row 0 : column headers -->
+                <tr class="table-col-headers">
+                  <!-- empty top-left cell (row labels column) -->
+                  <td class="names names-corner"></td>
+                  @for (
+                    col of options.col;
+                    track col;
+                    let colIdx = $index;
+                    let firstCol = $first;
+                    let lastCol = $last
+                  ) {
+                    <td
+                      class="names names-col"
+                      [style.--name-background]="color(col.bgColor, options.nameBackgroundOpacity)"
+                      [style.--text-color]="col.txtColor"
+                      [style.width]="col.width || null"
+                    >
+                      <div>
+                        <label class="name">
+                          <div class="auto-resize no-border" [attr.data-value]="colInput?.value">
+                            <textarea
+                              #colInput
+                              rows="1"
+                              [(ngModel)]="col.title"
+                              (ngModelChangeDebounced)="globalChange()"
+                              maxlength="500"
+                            ></textarea>
+                          </div>
+                        </label>
+                        <!-- pencil trigger for column popover -->
+                        <span
+                          class="mini-edit-options icon-edit-2"
+                          [title]="'generator.group.popover' | transloco"
+                          [mgPopover]="colPopTpl"
+                          mgPopoverPosition="bottom-start"
+                          tabindex="0"
+                          type="button"
+                        ></span>
+                        <!-- column popover template -->
+                        <ng-template #colPopTpl let-ctx>
+                          <div class="table-cell-popover">
+                            <div class="popover-icons-row">
+                              <span
+                                class="color bg-color icon-background-color"
+                                [colorPicker]="col.bgColor"
+                                (colorClose)="col.bgColor = $event"
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                [title]="'generator.group.bg-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <span
+                                class="color txt-color icon-text-color"
+                                [colorPicker]="col.txtColor"
+                                colorPickerAlpha
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                (colorClose)="col.txtColor = $event"
+                                [title]="'generator.group.txt-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <div class="popover-actions">
+                                @if (!firstCol) {
+                                  <button
+                                    class="button-left"
+                                    [title]="'generator.group.left' | transloco"
+                                    (click)="tableColLeft(colIdx); ctx.close()"
+                                  >
+                                    <span class="icon-left"></span>
+                                  </button>
+                                }
+                                @if (!lastCol) {
+                                  <button
+                                    class="button-right"
+                                    [title]="'generator.group.right' | transloco"
+                                    (click)="tableColRight(colIdx); ctx.close()"
+                                  >
+                                    <span class="icon-right"></span>
+                                  </button>
+                                }
+                                @if (!firstCol || !lastCol) {
+                                  <button
+                                    class="button-suppr"
+                                    [title]="'generator.line.delete' | transloco"
+                                    (click)="tableColDelete(colIdx); ctx.close()"
+                                  >
+                                    <span class="icon-remove"></span>
+                                  </button>
+                                }
+                                <button
+                                  class="button-add"
+                                  [title]="'generator.line.add' | transloco"
+                                  (click)="tableColAdd(colIdx); ctx.close()"
+                                >
+                                  <span class="icon icon-add"></span>
+                                </button>
+                                <span
+                                  class="color group-options icon-edit-2"
+                                  [title]="'generator.group.full-edit' | transloco"
+                                  (clickEnter)="
+                                    updateColOption({ col, colIdx, first: firstCol, last: lastCol }); ctx.close()
+                                  "
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="popover-col-width">
+                              <mg-input>
+                                <mg-input-label>
+                                  {{ 'generator.table.col.width.label' | transloco }}
+                                </mg-input-label>
+                                <mg-input-checkbox
+                                  [ngModel]="!col.width"
+                                  (ngModelChange)="col.width = $event ? undefined : ''; globalChange()"
+                                  >{{ 'generator.table.col.width.auto' | transloco }}</mg-input-checkbox
+                                >
+                                @if (col.width !== undefined) {
+                                  <mg-input-suffix>
+                                    <input
+                                      class="col-width-input"
+                                      type="text"
+                                      [value]="col.width"
+                                      (change)="
+                                        col.width = $any($event.target).value.trim() || undefined; globalChange()
+                                      "
+                                      placeholder="200px / 30%"
+                                    />
+                                  </mg-input-suffix>
+                                }
+                              </mg-input>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </td>
+                  }
+                </tr>
+                <!-- Data rows : one per group (= line) -->
+                @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
+                  <tr [class.option-reduce]="options.itemHeight < 100" (keydown)="selectMoveItem($event, group.list)">
+                    <!-- Row label cell -->
+                    <td
+                      class="names names-row"
+                      [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
+                      [style.--text-color]="group.txtColor"
+                    >
+                      <div>
+                        <label class="name">
+                          <div class="auto-resize no-border" [attr.data-value]="rowInput?.value">
+                            <textarea
+                              #rowInput
+                              id="name-{{ indexGrp }}"
+                              rows="1"
+                              [(ngModel)]="group.name"
+                              (ngModelChangeDebounced)="globalChange()"
+                              maxlength="500"
+                            ></textarea>
+                          </div>
+                        </label>
+                        <!-- pencil trigger for row popover -->
+                        <span
+                          class="mini-edit-options icon-edit-2"
+                          [title]="'generator.group.popover' | transloco"
+                          [mgPopover]="rowPopTpl"
+                          mgPopoverPosition="bottom-start"
+                          tabindex="0"
+                          type="button"
+                        ></span>
+                        <!-- row popover template -->
+                        <ng-template #rowPopTpl let-ctx>
+                          <div class="table-cell-popover">
+                            <div class="popover-icons-row">
+                              <span
+                                class="color bg-color icon-background-color"
+                                [colorPicker]="group.bgColor"
+                                (colorClose)="group.bgColor = $event"
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                [title]="'generator.group.bg-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <span
+                                class="color txt-color icon-text-color"
+                                [colorPicker]="group.txtColor"
+                                colorPickerAlpha
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                (colorClose)="group.txtColor = $event"
+                                [title]="'generator.group.txt-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <div class="popover-actions">
+                                @if (!first) {
+                                  <button
+                                    class="button-up"
+                                    [title]="'generator.group.up' | transloco"
+                                    (click)="upLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-up"></span>
+                                  </button>
+                                }
+                                @if (!last) {
+                                  <button
+                                    class="button-down"
+                                    [title]="'generator.group.down' | transloco"
+                                    (click)="downLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-down"></span>
+                                  </button>
+                                }
+                                @if (!(first && last)) {
+                                  <button
+                                    class="button-suppr"
+                                    [title]="'generator.line.delete' | transloco"
+                                    (click)="deleteLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-remove"></span>
+                                  </button>
+                                }
+                                <button
+                                  class="button-add"
+                                  [title]="'generator.line.add' | transloco"
+                                  (click)="addLine(indexGrp); ctx.close()"
+                                >
+                                  <span class="icon icon-add"></span>
+                                </button>
+                                <span
+                                  class="color group-options icon-edit-2"
+                                  [title]="'generator.group.full-edit' | transloco"
+                                  (clickEnter)="updateGroupOption({ group, indexGrp, first, last }); ctx.close()"
+                                ></span>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </td>
+                    <!-- One cell per column -->
+                    @for (col of options.col; track col; let colIdx = $index) {
+                      <td class="elements" [style.width]="col.width || null">
+                        <div
+                          class="drop-list"
+                          cdkDropList
+                          cdkDropListOrientation="mixed"
+                          [cdkDropListData]="{ list: tableCellList(group, colIdx), index: -1 }"
+                          (cdkDropListDropped)="drop($event)"
+                          [class.selectable-group]="group !== selectionGroup && selectionTile !== null"
+                          (clickEnter)="selectionGroupForItem(group)"
+                          (keydown)="selectMoveItem($event, tableCellList(group, colIdx))"
+                        >
+                          @for (
+                            item of tableCellList(group, colIdx);
+                            track trackByFnFileString(itemIdx, item);
+                            let itemIdx = $index
+                          ) {
+                            @if (item) {
+                              <div
+                                class="content-box"
+                                cdkDrag
+                                removeTile
+                                (removeElement)="removeFromGroup(tableCellList(group, colIdx), itemIdx)"
+                                [mgContextMenu]="{ contextMenu, data: { item, group, index: itemIdx } }"
+                                [style.--over-item-background]="item.bgColor"
+                                [style.--over-item-text-color]="item.txtColor"
+                                #itemDiv
+                                (clickEnter)="selectItem($event, group, item, itemIdx, itemDiv)"
+                                (clickOutside)="selectItem()"
+                                (keydown)="selectItemByKey($event, group, item, itemIdx)"
+                                (ngInit)="selectionDiv = itemDiv"
+                                [class.selection-item]="item === selectionTile && group === selectionGroup"
+                              >
+                                <div
+                                  class="content content-render"
+                                  [class.with-annotation]="item.annotation"
+                                  [ngClass]="options.itemTextPosition"
+                                  [id]="item.id"
+                                  #tile
+                                >
+                                  @if (item.url) {
+                                    <div [class.image]="calcWidth(item, tile)">
+                                      <img
+                                        (ngInit)="calcWidth(item, tile); detectChanges()"
+                                        (load)="calcWidth(item, tile); detectChanges()"
+                                        [class.cover]="!options.itemWidthAuto && options.itemImageCover === true"
+                                        [class.opti]="!options.itemWidthAuto && options.itemImageCover === 'opti'"
+                                        src="{{ item.url }}"
+                                        alt="{{ item.name }}"
+                                      />
+                                    </div>
+                                  }
+                                  @if (
+                                    item.title ||
+                                    (options.itemTextMinLine && !options.itemTextPosition.endsWith('bubble'))
+                                  ) {
+                                    <div #title class="title" [class.title-item-width-auto]="options.itemWidthAuto">
+                                      <span class="title-span" (ngInit)="detectChanges()">{{ item.title || '' }}</span>
+                                    </div>
+                                  }
+                                  <div class="tile-info" (clickEnter)="openTileInfo(item)"></div>
+                                </div>
+                              </div>
+                            }
+                          }
+                          @if (tableCellList(group, colIdx).length === 0) {
+                            <div class="drop-zone-empty-list"></div>
+                          }
+                        </div>
+                      </td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
         } @else if (options.mode === 'columns') {
           <!-- !MARK: columns -->
 
@@ -426,7 +773,7 @@
                   @for (group of groups; track group; let indexGrp = $index; let first = $first; let last = $last) {
                     <td
                       class="names"
-                      [style.--name-background]="color(group.bgColor, nameOpacity)"
+                      [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
                       [style.--text-color]="group.txtColor"
                     >
                       <div>
@@ -445,12 +792,14 @@
                         </label>
                         <span
                           class="color group-options icon-edit-2"
+                          [title]="'generator.group.full-edit' | transloco"
                           (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                         ></span>
                         <span
                           class="color bg-color icon-background-color"
                           [colorPicker]="group.bgColor"
                           (colorClose)="group.bgColor = $event"
+                          [title]="'generator.group.bg-color' | transloco"
                           tabindex="0"
                           type="button"
                         ></span>
@@ -459,6 +808,7 @@
                           [colorPicker]="group.txtColor"
                           colorPickerAlpha
                           (colorClose)="group.txtColor = $event"
+                          [title]="'generator.group.txt-color' | transloco"
                           tabindex="0"
                           type="button"
                         ></span>
@@ -540,25 +890,42 @@
                     <td class="actions">
                       <div class="button-actions">
                         @if (!first) {
-                          <button class="button-left" (click)="upLine(indexGrp)">
+                          <button
+                            class="button-left"
+                            [title]="'generator.group.left' | transloco"
+                            (click)="upLine(indexGrp)"
+                          >
                             <span class="icon-left"></span>
                           </button>
                         }
                         @if (!last) {
-                          <button class="button-right" (click)="downLine(indexGrp)">
+                          <button
+                            class="button-right"
+                            [title]="'generator.group.right' | transloco"
+                            (click)="downLine(indexGrp)"
+                          >
                             <span class="icon-right"></span>
                           </button>
                         }
                         @if (!(first && last)) {
-                          <button class="button-suppr" (click)="deleteLine(indexGrp)">
-                            <span [title]="'generator.line.delete' | transloco" class="icon-remove"></span>
+                          <button
+                            class="button-suppr"
+                            [title]="'generator.line.delete' | transloco"
+                            (click)="deleteLine(indexGrp)"
+                          >
+                            <span class="icon-remove"></span>
                           </button>
                         }
-                        <button class="button-add" (click)="addLine(indexGrp)">
-                          <span [title]="'generator.line.add' | transloco" class="icon icon-add"></span>
+                        <button
+                          class="button-add"
+                          [title]="'generator.line.add' | transloco"
+                          (click)="addLine(indexGrp)"
+                        >
+                          <span class="icon icon-add"></span>
                         </button>
                         <span
                           class="color group-options icon-edit-2"
+                          [title]="'generator.group.full-edit' | transloco"
                           (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
                         ></span>
                       </div>
@@ -622,7 +989,13 @@
                       [class.cover]="options.itemImageCover"
                       [style.width.px]="calcWidthEdit(item, tile)"
                     >
-                      <button class="btn-delete" (click)="removeItem(index)">×</button>
+                      <button
+                        class="btn-delete"
+                        [title]="'generator.item.delete' | transloco"
+                        (click)="removeItem(index)"
+                      >
+                        ×
+                      </button>
                       <img
                         [src]="item.url"
                         [alt]="item.name"
@@ -785,9 +1158,11 @@
   </div>
   <details class="alt">
     <summary>{{ 'generator.actions.alt.detail' | transloco }}</summary>
-    <mg-input>
-      <mg-input-textarea [value]="altImage" readonly />
-    </mg-input>
+    @defer {
+      <mg-input>
+        <mg-input-textarea [value]="altImage" readonly />
+      </mg-input>
+    }
   </details>
   <div #image></div>
 </mg-dialog>
@@ -810,15 +1185,31 @@
 
 <classement-clear #dialogClear (reset)="reset($event)" />
 
-<mg-dialog class="auto-format" #dialogGroupOption>
+<mg-dialog
+  #dialogGroupOption
+  [title]="(options.mode == 'columns' ? 'generator.table.col.title' : 'generator.table.row.title') | transloco"
+>
   <classement-group-option
     [currentGroup]="currentGroup"
     [dialog]="dialogGroupOption"
+    [mode]="options.mode"
     (globalChange)="globalChange()"
     (upLine)="upLine($event)"
     (downLine)="downLine($event)"
     (deleteLine)="deleteLine($event)"
     (addLine)="addLine($event)"
+  />
+</mg-dialog>
+
+<mg-dialog #dialogColOption [title]="'generator.table.col.title' | transloco">
+  <classement-col-option
+    [currentCol]="currentCol"
+    [dialog]="dialogColOption"
+    (globalChange)="globalChange()"
+    (colLeft)="tableColLeft($event)"
+    (colRight)="tableColRight($event)"
+    (colDelete)="tableColDelete($event)"
+    (colAdd)="tableColAdd($event)"
   />
 </mg-dialog>
 

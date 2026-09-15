@@ -261,3 +261,24 @@ mg-dialog.auto-format .main {
         display: none;
     }
 }
+
+/** icons **/
+
+.icon-deleted:before {
+    color: var(--color-icon-deleted);
+}
+.icon-admin:before {
+    color: var(--color-icon-admin);
+}
+.icon-moderator:before {
+    color: var(--color-icon-moderator);
+}
+.icon-banned:before {
+    color: var(--color-icon-banned);
+}
+.icon-validated:before {
+    color: var(--color-icon-validated);
+}
+.icon-user:before {
+    color: var(--color-icon-user);
+}

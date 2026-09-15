@@ -249,33 +249,23 @@
     <ul>
       @for (mode of modes; track $index; let index = $index) {
         <li
-          id="mode_{{ mode.id }}"
-          (clickEnter)="beginNew(mode.id)"
-          (mouseenter)="_visibility = true; _modeTemp = mode.id; _index = index"
+          id="mode_{{ mode.extra ?? mode.id }}"
+          (clickEnter)="beginNew(mode.id, mode.extra)"
+          (mouseenter)="_visibility = true; _modeTemp = mode.extra ?? mode.id; _index = index"
           (mouseleave)="_visibility = false"
         >
           <span class="icon-mode-{{ mode.icon ?? mode.id }}"></span>
-          <span>{{ 'mode.name.' + (mode.id || 'default') | transloco }}</span>
+          <span>{{ 'mode.name.' + ((mode.extra ?? mode.id) || 'default') | transloco }}</span>
         </li>
       }
-      <li
-        id="mode_bingo-text"
-        (clickEnter)="openTextBingo()"
-        (mouseenter)="_visibility = true; _modeTemp = 'bingo-text'; _index = modes.length"
-        (mouseleave)="_visibility = false"
-      >
-        <span class="icon-mode-bingo"></span>
-        <span>{{ 'mode.name.bingo-text' | transloco }}</span>
-      </li>
     </ul>
   </nav>
   <p class="info-block" [class.visible]="_visibility">
     <strong>{{ 'mode.name.' + (_modeTemp || 'default') | transloco }}</strong>
     <span class="info" [style.--pos]="_index" [style.--size]="modes.length + 1">
       @for (mode of modes; track $index) {
-        <span>{{ 'generator.actions.change.mode.' + mode.id | transloco }}</span>
+        <span>{{ 'generator.actions.change.mode.' + (mode.extra ?? mode.id) | transloco }}</span>
       }
-      <span>{{ 'generator.actions.change.mode.bingo-text' | transloco }}</span>
     </span>
   </p>
 </mg-dialog>

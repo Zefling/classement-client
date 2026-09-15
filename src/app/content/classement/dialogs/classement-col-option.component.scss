@@ -1,0 +1,5 @@
+@use './classement-group-option.component.scss';
+
+:host {
+    --grid: 'add  suppr' 1fr 'left  right' 1fr / auto 1fr;
+}

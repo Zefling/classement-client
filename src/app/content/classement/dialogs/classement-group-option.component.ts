@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MagmaColorPicker, MagmaDialog } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { GroupOption } from '../../../interface/interface';
+import { GroupOption, ModeNames } from '../../../interface/interface';
 
 @Component({
     selector: 'classement-group-option',
@@ -12,10 +12,14 @@ import { GroupOption } from '../../../interface/interface';
     styleUrls: ['./classement-group-option.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, TranslocoPipe, MagmaColorPicker],
+    host: {
+        '[class]': "'mode-' +mode()",
+    },
 })
 export class ClassementGroupOptionComponent {
     currentGroup = input<GroupOption>();
     dialog = input<MagmaDialog>();
+    mode = input<ModeNames>();
 
     globalChange = output<void>();
     upLine = output<number>();

@@ -22,6 +22,8 @@
     --groups: 'colors-line-back  colors-line-border  name-bg-opacity     font-size         name-width          '
         'group-direction   name-markdown       border-radius       border-spacing    border-size         '
         'name-min-height     .                 .                   .                 .                   ';
+    --other: 'global-width      global-image        global-color        global-font         colors-title-text   '
+        'global-height     image-custom        image-custom        image-custom        image-opacity       ';
 
     display: grid;
     grid-template:
@@ -34,8 +36,7 @@
         var(--groups)
         /* ---------------------------------------------------------------------------- */
         'title-other       title-other         title-other         title-other         title-other         '
-        'global-width      global-image        global-color        global-font         colors-title-text   '
-        'global-height     image-custom        image-custom        image-custom        image-opacity       '
+        var(--other)
         / 1fr 1fr 1fr 1fr 1fr;
 
     align-items: baseline;
@@ -60,6 +61,16 @@
     &.bingo {
         --groups: 'colors-line-back  colors-line-border  size-x-y            .                   .                   '
             'border-radius     border-spacing      border-size         .                   .                   ';
+    }
+
+    &.table {
+        --groups: 'colors-line-back     colors-line-border  name-bg-opacity      font-size         name-width          '
+            'group-direction      name-markdown       border-radius        border-spacing    border-size         '
+            'name-min-height      .                   .                    .                 .                   '
+            'title-table          title-table         title-table          title-table       title-table         '
+            'table-cell-direction table-cell-align    table-width-mode     table-width       .                   ';
+        --other: 'global-image        global-color        global-font         colors-title-text   image-opacity'
+            'image-custom        image-custom        image-custom        .                   .            ';
     }
 }
 
@@ -295,6 +306,26 @@ h4 {
 
 .edit-zone-field {
     grid-area: edit-zone-field;
+}
+
+.title-table {
+    grid-area: title-table;
+}
+
+.table-width-mode {
+    grid-area: table-width-mode;
+}
+
+.table-width {
+    grid-area: table-width;
+}
+
+.table-cell-direction {
+    grid-area: table-cell-direction;
+}
+
+.table-cell-align {
+    grid-area: table-cell-align;
 }
 
 .cover {

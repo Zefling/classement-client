@@ -20,7 +20,8 @@
     },
     "punctuation": {
       "colon": "：",
-      "comma": "、"
+      "comma": "、",
+      "dot": "。"
     },
     "view": {
       "total": "{VIEW, plural, =0 {視聴なし} other {# 回視聴}}"
@@ -379,7 +380,8 @@
       "iceberg": "氷山",
       "axis": "軸",
       "bingo": "ビンゴ",
-      "bingo-text": "テキストビンゴ"
+      "bingo-text": "テキストビンゴ",
+      "table": "テーブル"
     }
   },
   "generator": {
@@ -545,6 +547,21 @@
         "line.width": "軸の幅：",
         "line.color": "軸の色：",
         "arrow.size": "矢印のサイズ："
+      },
+      "table": {
+        "title": "テーブルオプション",
+        "width": "テーブルの幅：",
+        "width.100": "100%（デフォルト）",
+        "width.auto": "自動",
+        "width.custom": "カスタム",
+        "width.customize": "カスタム幅：",
+        "cell.direction": "セルレイアウト：",
+        "cell.direction.column": "1列（縦積み）",
+        "cell.direction.row": "複数行",
+        "cell.align": "セル配置：",
+        "cell.align.start": "先頭",
+        "cell.align.center": "中央",
+        "cell.align.end": "末尾"
       }
     },
     "screen": {
@@ -577,7 +594,8 @@
         "bingo-m": "中",
         "bingo-l": "高",
         "grid": "グリッド",
-        "classic": "クラシック"
+        "classic": "クラシック",
+        "table": "テーブル"
       },
       "import": {
         "button": "インポート",
@@ -677,6 +695,19 @@
       "add": "追加",
       "delete": "削除"
     },
+    "item": {
+      "delete": "タイルを削除"
+    },
+    "group": {
+      "up": "上に移動",
+      "down": "下に移動",
+      "left": "左に移動",
+      "right": "右に移動",
+      "full-edit": "詳細編集",
+      "popover": "クイックオプション",
+      "bg-color": "背景色",
+      "txt-color": "テキストの色"
+    },
     "actions": {
       "export.image": "画像のエクスポート",
       "export.image.loading": "画像生成処理中です。",
@@ -705,7 +736,8 @@
         "iceberg": "氷山 (または別の画像) のモデルで定義された空間内を自由に移動します。",
         "axis": "軸に沿って定義された空間内を自由に移動します。",
         "bingo": "グリルにタイルを分配します。",
-        "bingo-text": "テキストタイルでビンゴグリッドを事前に埋めます。"
+        "bingo-text": "テキストタイルでビンゴグリッドを事前に埋めます。",
+        "table": "名前付きの行と列を持つグリッドにタイルを配置します。"
       },
       "reset.groups": {
         "button": "クリアグループ",
@@ -724,7 +756,9 @@
         "cancel": "キャンセル"
       },
       "alt": {
-        "detail": "代替説明テキスト"
+        "detail": "代替説明テキスト",
+        "table.columns": "列",
+        "table.empty": "空"
       },
       "TMDB": "TMDB",
       "anilist": "AniList"
@@ -948,6 +982,18 @@
       "text": {
         "size": "グリッドサイズ：",
         "info": "1行に1つのタイルテキストを入力してください。空行は無視されます。"
+      }
+    },
+    "table": {
+      "col": {
+        "title": "列のオプション",
+        "width": {
+          "label": "列の幅",
+          "auto": "自動"
+        }
+      },
+      "row": {
+        "title": "行のオプション"
       }
     }
   },

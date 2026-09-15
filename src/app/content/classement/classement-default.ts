@@ -1,6 +1,6 @@
 import { Select2Data } from 'ng-select2-component';
 
-import { FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from '../../interface/interface';
+import { ColumnOption, FormattedGroup, ImagesNames, Options, Theme, ThemesNames } from '../../interface/interface';
 
 export const defaultGroup: FormattedGroup[] = [
     { name: 'S', bgColor: '#dc8add', txtColor: '#000000', list: [] },
@@ -9,6 +9,13 @@ export const defaultGroup: FormattedGroup[] = [
     { name: 'C', bgColor: '#f9f06b', txtColor: '#000000', list: [] },
     { name: 'D', bgColor: '#8ff0a4', txtColor: '#000000', list: [] },
     { name: 'E', bgColor: '#99c1f1', txtColor: '#000000', list: [] },
+];
+
+export const defaultTableColumns: ColumnOption[] = [
+    { title: '1', bgColor: '#dc8add', txtColor: '#000000' },
+    { title: '2', bgColor: '#f66151', txtColor: '#000000' },
+    { title: '3', bgColor: '#ffbe6f', txtColor: '#000000' },
+    { title: '4', bgColor: '#f9f06b', txtColor: '#000000' },
 ];
 
 export const defaultOptions: Options = {
@@ -44,6 +51,9 @@ export const defaultOptions: Options = {
     imageBackgroundColor: '',
     imageWidth: 1170,
     imageHeight: 600,
+    tableWidth: '',
+    tableCellDirection: 'row',
+    tableCellAlign: 'start',
     columnMinHeight: 250,
     axisLineWidth: 3,
     axisLineColor: '',
@@ -91,6 +101,7 @@ export const imagesLists: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', '
 export const imagesIceberg: ImagesNames[] = ['none', 'iceberg', 'custom'];
 export const imagesAxis: ImagesNames[] = ['none', 'custom'];
 export const imagesBingo: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
+export const imagesTable: ImagesNames[] = ['none', 'sakura', 'etoile', 'ciel', 'custom'];
 export const imagesThemes = imagesLists;
 export const imagesNames = [...new Set([...imagesLists, ...imagesIceberg, ...imagesAxis, ...imagesBingo])];
 
@@ -98,6 +109,7 @@ export const themesLists: ThemesNames[] = ['default', 'compact', 'square', 'clas
 export const themesIceberg: ThemesNames[] = ['iceberg', 'square'];
 export const themesAxis: ThemesNames[] = ['axis', 'square'];
 export const themesBingo: ThemesNames[] = ['bingo-s', 'bingo-m', 'bingo-l', 'grid'];
+export const themesTable: ThemesNames[] = ['table'];
 export const themes = themesLists;
 
 export const themesList: Theme[] = [
@@ -406,6 +418,26 @@ export const themesList: Theme[] = [
             borderSpacing: -1,
         },
     },
+    {
+        id: 'default',
+        source: 'default',
+        name: 'table',
+        options: {
+            ...defaultOptions,
+            mode: 'table',
+            sizeX: 4,
+            sizeY: 3,
+            col: defaultTableColumns,
+            itemWidth: 100,
+            itemHeight: 100,
+            itemWidthAuto: true,
+            itemHeightAuto: false,
+            imageWidth: 1170,
+            nameWidth: 150,
+            nameMinHeight: 60,
+            nameFontSize: 100,
+        },
+    },
 ];
 
 export const defaultTheme = (name: ThemesNames | null) =>
@@ -462,6 +494,7 @@ export const listModes: Select2Data = [
     { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
     { value: 'axis', label: 'axis', data: { icon: 'axis' } },
     { value: 'bingo', label: 'bingo', data: { icon: 'bingo' } },
+    { value: 'table', label: 'table', data: { icon: 'table' } },
 ];
 
 export const listFonts: Select2Data = [
@@ -509,4 +542,21 @@ export const listCover: Select2Data = [
     { label: 'default', value: false },
     { label: 'cover', value: true },
     { label: 'opti', value: 'opti' },
+];
+
+export const listTableWidth: Select2Data = [
+    { value: '', label: '100' },
+    { value: 'auto', label: 'auto' },
+    { value: 'custom', label: 'custom' },
+];
+
+export const listTableCellDirection: Select2Data = [
+    { value: 'column', label: 'column' },
+    { value: 'row', label: 'row' },
+];
+
+export const listTableCellAlign: Select2Data = [
+    { value: 'start', label: 'start' },
+    { value: 'center', label: 'center' },
+    { value: 'end', label: 'end' },
 ];
