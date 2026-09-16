@@ -617,11 +617,18 @@ div:has(> .mode-bingo) {
     background-size: var(--over-image-background-size);
     background-repeat: repeat;
     background-color: var(--over-image-background, var(--background));
+    table-layout: fixed;
 
     .render:has(> &),
     :host:has(> .render > &) {
         margin: auto;
         width: var(--over-table-width, 100%);
+    }
+
+    &.html2canvas-element {
+        width: var(--over-table-width, 100%);
+        min-width: auto;
+        table-layout: fixed;
     }
 
     tbody,
@@ -650,9 +657,31 @@ div:has(> .mode-bingo) {
         }
     }
 
-    // data cells: auto, do NOT stretch to 100%
-    td.elements {
-        width: auto;
+    .names {
+        width: unset;
+        min-width: unset;
+    }
+
+    .names-corner {
+        border: none;
+        background: transparent;
+    }
+
+    .elements {
+        width: unset;
+    }
+
+    col.names {
+        --size: var(--over-name-width, 150px);
+        width: var(--size);
+        min-width: var(--size);
+        max-width: var(--size);
+    }
+
+    col.elements {
+        --size: var(--width, unset);
+        width: var(--size);
+        min-width: 100px;
     }
 
     // inner drop-list layout: direction and alignment driven by CSS vars

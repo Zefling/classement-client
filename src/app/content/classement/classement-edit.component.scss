@@ -1256,6 +1256,7 @@ mg-spinner {
         margin: auto;
         width: var(--over-table-width, 100%);
         min-width: auto;
+        table-layout: fixed;
 
         tbody,
         tr,
@@ -1311,10 +1312,9 @@ mg-spinner {
     }
 
     col.elements {
-        --size: var(--width, calc(100% / (sibling-count() - 1)));
-        width: max(100px, var(--size));
-        min-width: max(100px, calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2));
-        max-width: max(100px, var(--size));
+        --size: var(--width, unset);
+        width: var(--size);
+        min-width: 100px;
     }
 
     .drop-list {
