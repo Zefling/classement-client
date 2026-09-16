@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { Params, Router, RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile, MagmaMessages, Subscriptions } from '@ikilote/magma';
@@ -19,7 +19,6 @@ import { PreferencesService } from '../../services/preferences.service';
     templateUrl: './classement-home.component.html',
     styleUrls: ['./classement-home.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgTemplateOutlet,
         RouterLink,

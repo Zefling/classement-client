@@ -1,14 +1,5 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    computed,
-    inject,
-    output,
-    signal,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, output, signal, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -64,7 +55,6 @@ export type LanguagesList = 'en' | 'fr' | 'ja' | 'ar';
     selector: 'preferences-dialog',
     templateUrl: './preferences.component.html',
     styleUrls: ['./preferences.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ReactiveFormsModule,

@@ -1,8 +1,6 @@
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
     OnChanges,
     SimpleChanges,
     inject,
@@ -14,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 
 import {
     Logger,
-    LoggerLevel,
     MagmaDialog,
     MagmaInput,
     MagmaInputColor,
@@ -22,25 +19,20 @@ import {
     MagmaInputText,
     MagmaInputTextarea,
     MagmaStopPropagationDirective,
-    blobToBase64,
 } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { Subject, debounceTime } from 'rxjs';
 
-import { DropImageDirective } from '../../../directives/drop-image.directive';
-import { FileHandle, FileString, Options } from '../../../interface/interface';
+import { ImagePickComponent } from '../../../components/image-pick/image-pick.component';
+import { FileString, Options } from '../../../interface/interface';
 import { GlobalService } from '../../../services/global.service';
 import { ClassementEditComponent } from '../classement-edit.component';
-
-const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
 
 @Component({
     selector: 'classement-edit-image',
     templateUrl: './classement-edit-image.component.html',
     styleUrls: ['./classement-edit-image.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MagmaDialog,
         MagmaInput,
@@ -50,8 +42,7 @@ const formula = /^\s*\d+(\.\d*)?\s*([/:]\s*\d+(\.\d*)?)?\s*$/;
         MagmaInputColor,
         MagmaStopPropagationDirective,
         FormsModule,
-        DropImageDirective,
-        ImageCropperComponent,
+        ImagePickComponent,
         TranslocoPipe,
     ],
 })
@@ -64,10 +55,6 @@ export class ClassementEditImageComponent implements OnChanges {
     // viewChild
 
     dialogInfo = viewChild.required<MagmaDialog>('dialogInfo');
-    dialogImageEdit = viewChild.required<MagmaDialog>('dialogImageEdit');
-    bannerInput = viewChild.required<ElementRef<HTMLInputElement>>('bannerInput');
-    ratioInput = viewChild.required<ElementRef<HTMLInputElement>>('ratioInput');
-    imageCropper = viewChild.required<ImageCropperComponent>('imageCropper');
 
     // input
 
@@ -77,16 +64,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     deleteCurrent = output<void>();
 
-    imageChangedEvent?: Event;
-    croppedImage?: string;
-
     _open = false;
-
-    data?: string;
-
-    maintainAspectRatio = false;
-    aspectRatio = 0;
-    mode = 0;
 
     colorListBg?: Set<string>;
     colorListTxt?: Set<string>;
@@ -129,15 +107,6 @@ export class ClassementEditImageComponent implements OnChanges {
         this._open = false;
     }
 
-    openEdit() {
-        this.dialogImageEdit().open();
-    }
-
-    closeEdit() {
-        this.dialogImageEdit().close();
-        this.resetBanner();
-    }
-
     delete() {
         this.deleteCurrent.emit();
         this.close();
@@ -149,6 +118,30 @@ export class ClassementEditImageComponent implements OnChanges {
 
     globalChange() {
         this.editor.globalChange();
+    }
+
+    /** Called when image-pick confirms a new cropped image for the tile */
+    async onTileImageChange(dataUrl: string | undefined): Promise<void> {
+        if (!dataUrl) {
+            const tile = this.currentTile()!;
+            tile.url = '';
+            this.globalChange();
+            return;
+        }
+        const tile = this.currentTile()!;
+        setTimeout(() => {
+            tile.url = dataUrl;
+        });
+        tile.realSize = dataUrl.length;
+        tile.size = dataUrl.length;
+        tile.type = 'image/webp';
+
+        const image = await this.global.imageDimensions(dataUrl);
+        tile.height = image.height;
+        tile.width = image.width;
+
+        this.global.onImageUpdate.next();
+        this.globalChange();
     }
 
     /**
@@ -173,92 +166,5 @@ export class ClassementEditImageComponent implements OnChanges {
                 list.unshift(item);
                 break;
         }
-    }
-
-    changeRatio(mode: number, aspectRatio: number | string = 0) {
-        this.mode = mode;
-        const aspectRatioValue =
-            typeof aspectRatio === 'string' && aspectRatio.match(formula)
-                ? this.evalRatio(aspectRatio.replace(':', '/'))
-                : aspectRatio;
-        this.aspectRatio = isNaN(aspectRatioValue as number)
-            ? 0
-            : parseFloat(`${aspectRatioValue}`.replace('-', '') || '0');
-        this.maintainAspectRatio = this.aspectRatio !== 0;
-
-        if (mode !== 99) {
-            this.ratioInput().nativeElement.value = `${aspectRatio}`;
-        }
-
-        this.imageLoaded();
-    }
-
-    private evalRatio(aspectRatio: string): number {
-        const [a, b] = aspectRatio.split('/');
-        return b.trim() ? +a.trim() / +b.trim() : 0;
-    }
-
-    resetBanner() {
-        this.bannerInput().nativeElement.value = '';
-        this.croppedImage = undefined;
-        this.imageChangedEvent = undefined;
-        this.data = '';
-    }
-
-    async fileChangeEvent(event: Event) {
-        this.imageChangedEvent = event;
-        this.data = await blobToBase64((event as any).target.files[0]);
-    }
-
-    fileChange(event: FileHandle | string) {
-        if ((event as FileHandle).target) {
-            this.data = (event as FileHandle).target?.result as string;
-        }
-    }
-
-    async imageCropped(event: ImageCroppedEvent) {
-        if (event.blob) {
-            this.croppedImage = await blobToBase64(event.blob);
-            this.cd.markForCheck();
-        }
-    }
-
-    async updateAndCloseEdit() {
-        if (this.croppedImage) {
-            const tile = this.currentTile()!;
-            setTimeout(() => {
-                tile.url = this.croppedImage;
-            });
-            tile.realSize = this.croppedImage.length;
-            tile.size = this.croppedImage.length;
-            tile.type = 'image/webp';
-
-            const image = await this.global.imageDimensions(this.croppedImage);
-            tile.height = image.height;
-            tile.width = image.width;
-
-            this.global.onImageUpdate.next();
-            this.globalChange();
-        }
-        this.closeEdit();
-    }
-
-    imageLoaded(_image?: LoadedImage) {
-        // show cropper
-
-        setTimeout(() => {
-            // fix init position for the cropper
-            window.dispatchEvent(new Event('resize'));
-        }, 500);
-    }
-
-    cropperReady() {
-        // cropper ready
-        this.logger.log('Cropper is ready', LoggerLevel.info);
-    }
-
-    loadImageFailed() {
-        // show message
-        this.logger.log('Cropper load image failed !!', LoggerLevel.warn);
     }
 }

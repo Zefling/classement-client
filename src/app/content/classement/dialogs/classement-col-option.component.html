@@ -27,6 +27,14 @@
 
   <hr />
 
+  <image-pick
+    [value]="currentCol()!.col.bgImage"
+    [label]="'generator.group.bg-image' | transloco"
+    (valueChange)="onBgImageChange($event)"
+  />
+
+  <hr />
+
   <div class="width-option">
     <div class="width-option-row">
       <mg-input>

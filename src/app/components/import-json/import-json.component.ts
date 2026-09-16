@@ -1,5 +1,4 @@
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -36,7 +35,6 @@ export type ImportJsonEvent = { action: 'replace' | 'new' | 'cancel'; data?: Dat
     selector: 'import-json',
     templateUrl: './import-json.component.html',
     styleUrls: ['./import-json.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, TranslocoPipe, MagmaInput, MagmaInputCheckbox, MagmaSpinner],
 })
 export class ImportJsonComponent implements OnDestroy {

@@ -1,0 +1,90 @@
+.image-pick {
+    padding: 4px 0;
+}
+
+/* reprise des classes de classement-edit-image */
+
+.image-preview-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.image-preview-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.image-preview {
+    flex: 1;
+    max-width: 100%;
+    max-height: 500px;
+
+    img {
+        max-width: inherit;
+        max-height: inherit;
+    }
+}
+
+.local {
+    padding: 10px;
+}
+
+.edit-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 830px) {
+        flex-wrap: wrap;
+    }
+
+    .image {
+        width: 320px;
+        min-width: 320px;
+        max-height: 300px;
+    }
+
+    image-cropper {
+        max-height: 600px;
+    }
+
+    & > * {
+        flex: 1 1 auto;
+    }
+
+    .selected {
+        border-color: var(--button-default-color);
+    }
+
+    .change {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .edit-ratio {
+        margin: 0;
+        max-width: 130px;
+    }
+
+    .sub-input {
+        opacity: 0.5;
+        margin: 0;
+        padding: 0;
+        font-size: 80%;
+        white-space: nowrap;
+    }
+}
+
+.image-render {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.hidden-file-input {
+    display: none;
+}

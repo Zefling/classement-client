@@ -607,6 +607,22 @@
               'generator.options.group.markdown' | transloco
             }}</mg-input-checkbox>
           </mg-input>
+          <mg-input class="name-bg-image-size">
+            <mg-input-label>{{ 'generator.options.name.bg.image.size.label' | transloco }}</mg-input-label>
+            <mg-input-select
+              [(ngModel)]="opts.nameBgImageSize"
+              (ngModelChange)="detectChange()"
+              [data]="listNameBgImageSize"
+              [templates]="templatesNameBgImageSize"
+              displaySearchStatus="hidden"
+              overlay
+              nativeKeyboard
+            >
+              <ng-template #templatesNameBgImageSize let-label="label" let-data="data">
+                {{ 'generator.options.name.bg.image.size.' + label | transloco: { value: data?.value } }}
+              </ng-template>
+            </mg-input-select>
+          </mg-input>
         } @else {
           <mg-input class="size-x-y">
             <mg-input-label>{{ 'generator.options.size' | transloco }}</mg-input-label>

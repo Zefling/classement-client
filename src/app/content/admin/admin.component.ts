@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -8,7 +8,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
     templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive, RouterOutlet, TranslocoPipe],
 })
 export class AdminComponent {}

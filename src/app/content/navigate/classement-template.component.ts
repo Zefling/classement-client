@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { MagmaLoaderBlock, MagmaLoaderTile, Subscriptions } from '@ikilote/magma';
@@ -15,7 +15,6 @@ import { categories } from '../classement/classement-default';
     templateUrl: './classement-template.component.html',
     styleUrls: ['./classement-template.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, NavigateResultComponent, TranslocoPipe, MagmaLoaderBlock, MagmaLoaderTile],
 })
 export class ClassementTemplateComponent {

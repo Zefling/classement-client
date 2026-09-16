@@ -1,6 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -49,8 +48,6 @@ import { environment } from '../environments/environment';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         RouterOutlet,

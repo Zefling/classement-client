@@ -1,7 +1,6 @@
 import { NgClass } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     OnChanges,
@@ -60,6 +59,7 @@ import {
     listDirection,
     listFonts,
     listModes,
+    listNameBgImageSize,
     listTableCellAlign,
     listTableCellDirection,
     listTableWidth,
@@ -103,7 +103,6 @@ import { palette } from '../../tools/function';
     selector: 'classement-options',
     templateUrl: './classement-options.component.html',
     styleUrls: ['./classement-options.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,
@@ -183,6 +182,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     tableWidth = listTableWidth;
     tableCellDirection = listTableCellDirection;
     tableCellAlign = listTableCellAlign;
+    listNameBgImageSize = listNameBgImageSize;
 
     _modeTemp?: ModeNames;
     _previousMode?: ModeNames;

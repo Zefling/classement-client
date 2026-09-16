@@ -504,7 +504,15 @@
         "width": "Largeur des noms de groupe :",
         "min.height": "Hauteur minimale des noms du groupe :",
         "font.size": "Taille du texte des noms de groupe :",
-        "opacity": "Opacité du fond des noms de groupe :"
+        "opacity": "Opacité du fond des noms de groupe :",
+        "bg.image.size": {
+          "label": "Taille de l'image de fond des noms :",
+          "auto": "Automatique",
+          "cover": "Couvrir",
+          "contain": "Contenir",
+          "auto.custom": "{value}%",
+          "spread.custom": "Étaler {value}%"
+        }
       },
       "group.direction": {
         "label": "Direction :",
@@ -706,7 +714,8 @@
       "full-edit": "Édition complète",
       "popover": "Options rapides",
       "bg-color": "Couleur du fond",
-      "txt-color": "Couleur du texte"
+      "txt-color": "Couleur du texte",
+      "bg-image": "Image de fond"
     },
     "actions": {
       "export.image": "Export en image",

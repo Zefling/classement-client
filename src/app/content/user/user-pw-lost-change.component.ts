@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -20,7 +20,6 @@ import { APIUserService } from '../../services/api.user.service';
     selector: 'user-pw-lost-change',
     templateUrl: './user-pw-lost-change.component.html',
     styleUrls: ['./user-pw-lost-change.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule, TranslocoPipe, MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaMessage],
 })
 export class UserPwLostChangeComponent extends UserPassword {

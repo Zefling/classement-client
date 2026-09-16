@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, output, viewChild } from '@angular/core';
+import { Component, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -34,7 +34,6 @@ import { categories } from '../classement/classement-default';
     templateUrl: './list-classements.component.html',
     styleUrls: ['./list-classements.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         SeeClassementComponent,
         ClassementInfosComponent,

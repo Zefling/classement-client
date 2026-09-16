@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,7 +25,6 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './admin-classements.component.html',
     styleUrls: ['./admin-classements.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ListClassementsComponent,

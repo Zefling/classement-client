@@ -173,7 +173,7 @@ export class GlobalService {
      * @returns cache image in base64 `[url : base64]`
      */
     async imagesCache(
-        options: ThemeOptions,
+        options: ThemeOptions | Options,
         groups: FormattedGroup[],
         list: FileType[] = [],
     ): Promise<Record<string, string | ArrayBuffer | null>> {
@@ -189,9 +189,22 @@ export class GlobalService {
                     cache[item.url] = await ulrToBase64(item.url);
                 }
             }
+            // bgImage of group label cells (set as data-URL, store for html2canvas)
+            if (group.bgImage) {
+                cache[group.bgImage] = group.bgImage;
+            }
         }
         if (options.imageBackgroundCustom) {
             cache[options.imageBackgroundCustom] = await ulrToBase64(options.imageBackgroundCustom);
+        }
+        // bgImage of column label cells (table mode)
+        const cols = (options as Options).col;
+        if (cols) {
+            for (const col of cols) {
+                if (col.bgImage) {
+                    cache[col.bgImage] = col.bgImage;
+                }
+            }
         }
         return cache;
     }
@@ -233,6 +246,7 @@ export class GlobalService {
         r(body, '--over-name-width', (o.nameWidth ?? defaultOptions.nameWidth) + 'px', dash);
         r(body, '--over-name-min-height', (o.nameMinHeight ?? defaultOptions.nameMinHeight) + 'px', dash);
         r(body, '--over-name-font-size', (o.nameFontSize ?? defaultOptions.nameFontSize) + '%', dash);
+        r(body, '--over-name-bg-image-size', o.nameBgImageSize ?? 'cover', dash);
         // image background
         r(body, '--over-image-background', o.imageBackgroundColor, dash);
         r(body, '--over-image-width', (o.imageWidth ?? defaultOptions.imageWidth) + 'px', dash);
@@ -276,7 +290,7 @@ export class GlobalService {
         let tableW: string;
         switch (o.tableWidthMode) {
             case 'auto':
-                tableW = 'min-content';
+                tableW = 'max-content';
                 break;
             case 'custom':
                 tableW = o.tableWidth || '100%';

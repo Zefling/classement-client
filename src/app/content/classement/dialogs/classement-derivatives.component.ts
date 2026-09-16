@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
+import { Component, inject, input, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MagmaClickEnterDirective, MagmaDialog, MagmaTableModule } from '@ikilote/magma';
@@ -12,7 +12,6 @@ import { Utils } from '../../../tools/utils';
     selector: 'classement-derivatives',
     templateUrl: './classement-derivatives.component.html',
     styleUrls: ['./classement-derivatives.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [DatePipe, TranslocoPipe, MagmaDialog, MagmaClickEnterDirective, MagmaTableModule],
 })
 export class ClassementDerivativesComponent {

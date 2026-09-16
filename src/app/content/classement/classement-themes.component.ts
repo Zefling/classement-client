@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    computed,
-    inject,
-    input,
-    output,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, input, output, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -35,7 +26,6 @@ import { PreferencesService } from '../../services/preferences.service';
     selector: 'classement-themes',
     templateUrl: './classement-themes.component.html',
     styleUrls: ['./classement-themes.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         TranslocoPipe,

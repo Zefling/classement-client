@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Logger, MagmaLoader, MagmaSpinner, Subscriptions } from '@ikilote/magma';
@@ -13,7 +13,6 @@ import { APIUserService } from '../../services/api.user.service';
     selector: 'user-view',
     templateUrl: './user-view.component.html',
     styleUrls: ['./user-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NavigateResultComponent, DatePipe, TranslocoPipe, MagmaLoader, MagmaSpinner],
 })
 export class UserViewComponent {

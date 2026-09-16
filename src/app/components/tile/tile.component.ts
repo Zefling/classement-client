@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input } from '@angular/core';
 
 import { MagmaTooltipDirective } from '@ikilote/magma';
 
@@ -14,7 +14,6 @@ import { Utils } from '../../tools/utils';
         '[style.--over-item-background]': 'item().bgColor',
         '[style.--over-item-text-color]': 'item().txtColor',
     },
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, MagmaTooltipDirective],
 })
 export class TileComponent {

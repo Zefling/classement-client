@@ -28,6 +28,14 @@
 
   <hr />
 
+  <image-pick
+    [value]="currentGroup()!.group.bgImage"
+    [label]="'generator.group.bg-image' | transloco"
+    (valueChange)="onBgImageChange($event)"
+  />
+
+  <hr />
+
   <div class="button-actions">
     @if (!currentGroup()!.first) {
       <button class="button-up group-options" (click)="upLine.emit(currentGroup()!.indexGrp)">

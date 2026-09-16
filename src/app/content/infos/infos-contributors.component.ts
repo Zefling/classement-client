@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 
 import { MagmaLoader, MagmaLoaderMessage, MagmaSpinner, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -13,7 +13,6 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './infos-contributors.component.html',
     styleUrls: ['./infos-contributors.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe, MarkdownComponent, MagmaLoader, MagmaLoaderMessage, MagmaSpinner],
 })
 export class InfoContributorsComponent {

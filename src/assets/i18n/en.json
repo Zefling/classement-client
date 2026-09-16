@@ -505,7 +505,15 @@
         "width": "Group name width:",
         "min.height": "Group name minimum height:",
         "font.size": "Group name text size:",
-        "opacity": "Group name background opacity:"
+        "opacity": "Group name background opacity:",
+        "bg.image.size": {
+          "label": "Group name background image size:",
+          "auto": "Automatic",
+          "cover": "Cover",
+          "contain": "Contain",
+          "auto.custom": "{value}%",
+          "spread.custom": "Spread {value}%"
+        }
       },
       "group.direction": {
         "label": "Direction:",
@@ -707,7 +715,8 @@
       "full-edit": "Full edit",
       "popover": "Quick options",
       "bg-color": "Background color",
-      "txt-color": "Text color"
+      "txt-color": "Text color",
+      "bg-image": "Background image"
     },
     "actions": {
       "export.image": "Image export",

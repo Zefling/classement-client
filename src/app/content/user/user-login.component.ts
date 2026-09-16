@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    OnDestroy,
-    OnInit,
-    booleanAttribute,
-    inject,
-    input,
-    signal,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, booleanAttribute, inject, input, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -33,7 +24,6 @@ import { GlobalService } from '../../services/global.service';
     selector: 'user-login',
     templateUrl: './user-login.component.html',
     styleUrls: ['./user-login.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterLink,
         TranslocoPipe,

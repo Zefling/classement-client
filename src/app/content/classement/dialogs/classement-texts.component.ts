@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MagmaDialog, MagmaInput, MagmaInputTextarea } from '@ikilote/magma';
@@ -10,7 +10,6 @@ import { GlobalService } from '../../../services/global.service';
     selector: 'classement-texts',
     templateUrl: './classement-texts.component.html',
     styleUrls: ['./classement-texts.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, TranslocoPipe, MagmaDialog, MagmaInput, MagmaInputTextarea],
 })
 export class ClassementTextsComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { LightDark, MagmaInput, MagmaInputSelect } from '@ikilote/magma';
@@ -48,7 +48,6 @@ echarts.use([
     templateUrl: './admin-stats.component.html',
     styleUrls: ['./admin-stats.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgxEchartsDirective, TranslocoPipe, FormsModule, MagmaInput, MagmaInputSelect],
     providers: [provideEchartsCore({ echarts })],
 })
@@ -84,9 +83,10 @@ export class AdminStatsComponent {
 
     getUserStats() {
         this.stats
-            .getStats<
-                StatsResultUserDate | StatsResultUserWeek | StatsResultUserMonth
-            >({ target: 'user', period: this.selectedPeriod })
+            .getStats<StatsResultUserDate | StatsResultUserWeek | StatsResultUserMonth>({
+                target: 'user',
+                period: this.selectedPeriod,
+            })
             .then(data => {
                 let stats = data.stats;
                 let dataX: any;
@@ -166,9 +166,10 @@ export class AdminStatsComponent {
 
     getClassementStats() {
         this.stats
-            .getStats<
-                StatsResultClassementDate | StatsResultClassementWeek | StatsResultClassementMonth
-            >({ target: 'classement', period: this.selectedPeriod })
+            .getStats<StatsResultClassementDate | StatsResultClassementWeek | StatsResultClassementMonth>({
+                target: 'classement',
+                period: this.selectedPeriod,
+            })
             .then(data => {
                 let stats = data.stats;
                 let dataX: any;

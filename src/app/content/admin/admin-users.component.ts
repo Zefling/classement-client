@@ -1,13 +1,5 @@
 import { DatePipe } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    OnDestroy,
-    effect,
-    inject,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, effect, inject, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -45,7 +37,6 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './admin-users.component.html',
     styleUrls: ['./admin-users.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         ListClassementsComponent,

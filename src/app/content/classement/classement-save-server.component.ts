@@ -1,5 +1,4 @@
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -52,7 +51,6 @@ import { boolean, inList, minMax } from '../../tools/function';
     selector: 'classement-save-server',
     templateUrl: './classement-save-server.component.html',
     styleUrls: ['./classement-save-server.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DropImageDirective,
         FormsModule,

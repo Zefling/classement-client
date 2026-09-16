@@ -342,7 +342,11 @@ img {
 .names {
     border: 1px solid var(--name-border-color);
     border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
-    background: var(--name-background);
+    background-image: var(--name-bg-image);
+    background-position: center;
+    background-size: var(--over-name-bg-image-size, cover);
+    background-repeat: no-repeat;
+    background-color: var(--name-background);
     width: var(--over-name-width, 150px);
     min-width: var(--over-name-width, 150px);
     height: 100%;
@@ -906,8 +910,7 @@ span.color,
         --border: var(--over-item-border) * 2 + var(--over-item-padding) * 2 + var(--over-item-margin) * 2;
         padding: 0;
         width: calc(var(--over-item-width) + var(--border));
-        max-width: calc(var(--over-item-width) + var(--border))
-            calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2);
+        max-width: calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2);
         height: calc(var(--over-item-height) + var(--border));
         max-height: calc(var(--over-item-height) + var(--border));
     }
@@ -1286,18 +1289,32 @@ mg-spinner {
         }
     }
 
+    .names {
+        width: unset;
+        min-width: unset;
+    }
+
     .names-corner {
         border: none;
         background: transparent;
-        width: var(--over-name-width, 150px);
-        min-width: var(--over-name-width, 150px);
     }
 
     .elements {
-        padding: 0;
-        width: calc(
-            var(--over-item-width) + (var(--over-item-border) + var(--over-item-padding) + var(--over-item-margin)) * 2
-        );
+        width: unset;
+    }
+
+    col.names {
+        --size: var(--over-name-width, 150px);
+        width: var(--size);
+        min-width: var(--size);
+        max-width: var(--size);
+    }
+
+    col.elements {
+        --size: var(--width, calc(100% / (sibling-count() - 1)));
+        width: max(100px, var(--size));
+        min-width: max(100px, calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2));
+        max-width: max(100px, var(--size));
     }
 
     .drop-list {

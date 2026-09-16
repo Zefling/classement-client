@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -25,7 +25,6 @@ import { PreferencesService } from '../../services/preferences.service';
     templateUrl: './classement-navigate.component.html',
     styleUrls: ['./classement-navigate.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         RouterLink,

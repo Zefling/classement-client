@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, input, signal } from '@angular/core';
+import { Component, OnInit, inject, input, signal } from '@angular/core';
 
 import { Logger, MagmaClickEnterDirective, MagmaDialog, MagmaSpinner, NumFormatPipe } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -11,7 +11,6 @@ import { OptimiseImageService } from '../../../services/optimise-image.service';
     selector: 'classement-optimise',
     templateUrl: './classement-optimise.component.html',
     styleUrls: ['./classement-optimise.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe, NumFormatPipe, MagmaClickEnterDirective, MagmaSpinner],
 })
 export class ClassementOptimiseComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input, output, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input, output, viewChild } from '@angular/core';
 
 import { MagmaClickEnterDirective, MagmaDialog, MagmaMessageType, MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -11,7 +11,6 @@ import { APIClassementService } from '../../../services/api.classement.service';
     selector: 'classement-ranking-diff',
     templateUrl: './classement-ranking-diff.component.html',
     styleUrls: ['./classement-ranking-diff.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, TranslocoPipe, MagmaDialog, MagmaClickEnterDirective],
 })
 export class ClassementRankingDiffComponent {

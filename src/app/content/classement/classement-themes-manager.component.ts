@@ -1,14 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    OnInit,
-    computed,
-    inject,
-    input,
-    model,
-    viewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, computed, inject, input, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -35,7 +25,6 @@ import { GlobalService } from '../../services/global.service';
     selector: 'classement-themes-manager',
     templateUrl: './classement-themes-manager.component.html',
     styleUrls: ['./classement-themes-manager.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         // modules
         FormsModule,
@@ -198,7 +187,10 @@ export class ClassementThemesManagerComponent implements OnInit {
 
     async removeServer() {
         await this.themeService.deleteTheme(this.selectedTheme!.id);
-        this.user!.themes!.splice(this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!, 1);
+        this.user!.themes!.splice(
+            this.user?.themes?.findIndex(e => e.themeId === this.selectedTheme!.id)!,
+            1,
+        );
         this.exportDialog().close();
         this.mgMessage.addMessage(this.translate.translate('generator.theme.browser.delete.success'));
     }

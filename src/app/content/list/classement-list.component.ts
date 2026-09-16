@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     OnDestroy,
@@ -46,7 +45,6 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './classement-list.component.html',
     styleUrls: ['./classement-list.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[class.page]': 'pageMode()',
     },

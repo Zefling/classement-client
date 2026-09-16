@@ -1,0 +1,97 @@
+<div class="image-pick">
+  @if (label()) {
+    <label>{{ label() }}</label>
+  }
+  @if (currentValue()) {
+    <div class="image-preview-content">
+      <div class="image-preview">
+        <img [src]="currentValue()" />
+      </div>
+      <div class="image-preview-button">
+        <button class="primary" (click)="openEdit()">
+          {{ 'generator.ranking.image.edit' | transloco }}
+        </button>
+        <button class="warn" (click)="removeImage()">
+          {{ 'generator.ranking.image.remove' | transloco }}
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div>
+      <button class="primary" (click)="openEdit()">
+        {{ 'generator.ranking.image.add' | transloco }}
+      </button>
+      <div>
+        {{ 'generator.ranking.image.empty' | transloco }}
+      </div>
+    </div>
+  }
+</div>
+
+<!-- crop dialog — même markup que classement-edit-image -->
+<mg-dialog #dialogImageEdit>
+  @if (dialogImageEdit.isOpen()) {
+    <div class="local" drop-image mode="local" (file)="fileChange($event)">
+      <div class="s-12">
+        <div class="drop-image-message">{{ 'generator.ranking.image.drop' | transloco }}</div>
+        <input type="file" accept="image/*" required (change)="fileChangeEvent($event)" #bannerInput />
+      </div>
+      @if (data?.startsWith('data') || imageChangedEvent) {
+        <div class="edit-image">
+          <div class="image">
+            <img class="image-render" [src]="croppedImage || data" />
+          </div>
+          <div class="image-edit">
+            <image-cropper
+              #imageCropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="maintainAspectRatio"
+              [aspectRatio]="aspectRatio"
+              [imageBase64]="data"
+              [cropperMinWidth]="16"
+              [cropperMinHeight]="16"
+              [resizeToWidth]="300"
+              [resizeToHeight]="300"
+              [onlyScaleDown]="true"
+              format="webp"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            />
+            <div class="change">
+              <button [class.selected]="mode === 0" (click)="changeRatio(0)">?</button>
+              <button [class.selected]="mode === 1" (click)="changeRatio(1, '1:1')">1:1</button>
+              <button [class.selected]="mode === 2" (click)="changeRatio(2, '4:3')">4:3</button>
+              <button [class.selected]="mode === 3" (click)="changeRatio(3, '16:9')">16:9</button>
+              <button [class.selected]="mode === 4" (click)="changeRatio(4, '9:16')">9:16</button>
+              <div class="edit-ratio">
+                <label for="ratio-image-pick">{{ 'generator.ranking.image.ratio' | transloco }}</label>
+                <input
+                  id="ratio-image-pick"
+                  #ratioInput
+                  value="0"
+                  (focus)="changeRatio(99, ratioInput.value)"
+                  (input)="changeRatio(99, ratioInput.value)"
+                />
+                <div class="sub-input">{{ 'generator.ranking.image.ratio.help' | transloco }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div>
+          <img [src]="data" />
+        </div>
+      }
+      <div class="buttons s-12">
+        <button (click)="closeEdit()">
+          {{ 'generator.ranking.image.edit.cancel' | transloco }}
+        </button>
+        <button class="primary" (click)="updateAndCloseEdit()">
+          {{ 'generator.ranking.image.edit.ok' | transloco }}
+        </button>
+      </div>
+    </div>
+  }
+</mg-dialog>

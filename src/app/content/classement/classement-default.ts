@@ -51,6 +51,7 @@ export const defaultOptions: Options = {
     imageBackgroundColor: '',
     imageWidth: 1170,
     imageHeight: 600,
+    tableWidthMode: '',
     tableWidth: '',
     tableCellDirection: 'row',
     tableCellAlign: 'start',
@@ -63,6 +64,7 @@ export const defaultOptions: Options = {
     nameFontSize: 120,
     nameBackgroundOpacity: 100,
     nameMarkdown: false,
+    nameBgImageSize: 'cover',
     borderRadius: 4,
     borderSpacing: 1,
     borderSize: 1,
@@ -559,4 +561,20 @@ export const listTableCellAlign: Select2Data = [
     { value: 'start', label: 'start' },
     { value: 'center', label: 'center' },
     { value: 'end', label: 'end' },
+];
+
+export const listNameBgImageSize: Select2Data = [
+    { value: 'auto', label: 'auto' },
+    { value: 'cover', label: 'cover' },
+    { value: 'contain', label: 'contain' },
+    { value: '50% auto', label: 'auto.custom', data: { value: 50 } },
+    { value: '75% auto', label: 'auto.custom', data: { value: 75 } },
+    { value: '100% auto', label: 'auto.custom', data: { value: 100 } },
+    { value: '125% auto', label: 'auto.custom', data: { value: 125 } },
+    { value: '150% auto', label: 'auto.custom', data: { value: 150 } },
+    { value: '50% 50%', label: 'spread.custom', data: { value: 50 } },
+    { value: '75% 75%', label: 'spread.custom', data: { value: 75 } },
+    { value: '100% 100%', label: 'spread.custom', data: { value: 100 } },
+    { value: '125% 125%', label: 'spread.custom', data: { value: 125 } },
+    { value: '150% 150%', label: 'spread.custom', data: { value: 150 } },
 ];

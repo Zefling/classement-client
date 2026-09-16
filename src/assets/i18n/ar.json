@@ -505,7 +505,15 @@
         "width": "عرض اسم المجموعة:",
         "min.height": "الحد الأدنى لارتفاع اسم المجموعة:",
         "font.size": "حجم نص اسم المجموعة:",
-        "opacity": "شفافية خلفية اسم المجموعة:"
+        "opacity": "شفافية خلفية اسم المجموعة:",
+        "bg.image.size": {
+          "label": "Group name background image size:",
+          "auto": "Automatic",
+          "cover": "Cover",
+          "contain": "Contain",
+          "auto.custom": "{value}%",
+          "spread.custom": "Spread {value}%"
+        }
       },
       "group.direction": {
         "label": "الاتجاه:",
@@ -707,7 +715,8 @@
       "full-edit": "Full edit",
       "popover": "Quick options",
       "bg-color": "Background color",
-      "txt-color": "Text color"
+      "txt-color": "Text color",
+      "bg-image": "صورة الخلفية"
     },
     "actions": {
       "export.image": "تصدير كصورة",

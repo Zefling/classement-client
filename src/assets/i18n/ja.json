@@ -505,7 +505,15 @@
         "width": "グループ名の幅：",
         "min.height": "グループ名の最小高さ：",
         "font.size": "グループ名のテキストサイズ：",
-        "opacity": "グループ名の背景の不透明度："
+        "opacity": "グループ名の背景の不透明度：",
+        "bg.image.size": {
+          "label": "グループ名の背景画像サイズ：",
+          "auto": "自動",
+          "cover": "カバー",
+          "contain": "含む",
+          "auto.custom": "{value}%",
+          "spread.custom": "{value}%のスプレッド"
+        }
       },
       "group.direction": {
         "label": "方向：",
@@ -706,7 +714,8 @@
       "full-edit": "詳細編集",
       "popover": "クイックオプション",
       "bg-color": "背景色",
-      "txt-color": "テキストの色"
+      "txt-color": "テキストの色",
+      "bg-image": "背景画像"
     },
     "actions": {
       "export.image": "画像のエクスポート",

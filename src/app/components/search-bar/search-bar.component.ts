@@ -1,14 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    OnChanges,
-    OnDestroy,
-    SimpleChanges,
-    inject,
-    input,
-    output,
-} from '@angular/core';
+import { Component, OnChanges, OnDestroy, SimpleChanges, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MagmaInput, MagmaInputElement, MagmaInputSelect, MagmaInputText, Subscriptions } from '@ikilote/magma';
@@ -25,7 +16,6 @@ export type SearchFormFields = { searchKey: string; category: string; mode: stri
     selector: 'search-bar',
     templateUrl: './search-bar.component.html',
     styleUrls: ['./search-bar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, FormsModule, TranslocoPipe, MagmaInput, MagmaInputElement, MagmaInputText, MagmaInputSelect],
 })
 export class SearchBarComponent implements OnChanges, OnDestroy {

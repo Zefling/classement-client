@@ -28,7 +28,7 @@
     display: grid;
     grid-template:
         'title-item        title-item          title-item          title-item          title-item          '
-        'sizes             colors-item-back    colors-item-border  colors-item-text    .                   '
+        'sizes             colors-item-back    colors-item-border  colors-item-text    name-bg-image-size  '
         'sizes             size-item-text      size-item-text-only min-line-text       max-line-text       '
         'sizes             cover               item-text-pos       item-text-back      .                   '
         /* ---------------------------------------------------------------------------- */
@@ -326,6 +326,10 @@ h4 {
 
 .table-cell-align {
     grid-area: table-cell-align;
+}
+
+.name-bg-image-size {
+    grid-area: name-bg-image-size;
 }
 
 .cover {

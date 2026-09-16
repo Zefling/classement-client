@@ -118,6 +118,10 @@ img {
     border: var(--over-drop-list-border-size, var(--drop-list-border-size)) solid var(--name-border-color);
     border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
     background: var(--name-background);
+    background-image: var(--name-bg-image);
+    background-position: center;
+    background-size: var(--over-name-bg-image-size, cover);
+    background-repeat: no-repeat;
     width: var(--over-name-width, 150px);
     min-width: var(--over-name-width, 150px);
     color: var(--text-color);

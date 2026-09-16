@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, booleanAttribute, input, output } from '@angular/core';
+import { Component, booleanAttribute, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { MagmaClickEnterDirective } from '@ikilote/magma';
@@ -15,7 +15,6 @@ import { Classement } from '../../interface/interface';
         '[class.categories]': 'isCategoryList()',
         '[class.list]': 'isHomeList()',
     },
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, DatePipe, TranslocoPipe, MagmaClickEnterDirective],
 })
 export class NavigateResultComponent {

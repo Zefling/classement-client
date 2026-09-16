@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 
 import { MagmaLoader, MagmaLoaderMessage, MagmaSpinner, Subscriptions } from '@ikilote/magma';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -10,7 +10,6 @@ import { GlobalService } from '../../services/global.service';
     selector: 'infos-third-party-licenses',
     templateUrl: './infos-licenses.component.html',
     styleUrls: ['./infos-licenses.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe, MagmaLoader, MagmaLoaderMessage, MagmaSpinner],
 })
 export class InfosLicensesComponent {

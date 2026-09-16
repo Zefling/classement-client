@@ -1,6 +1,5 @@
 import { NgClass } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     OnDestroy,
@@ -52,7 +51,6 @@ const defaultTransform = 'translate(15px, 12px) rotate(-5deg)';
     selector: 'see-classement',
     templateUrl: './see-classement.component.html',
     styleUrls: ['./see-classement.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FormsModule,
         NgClass,

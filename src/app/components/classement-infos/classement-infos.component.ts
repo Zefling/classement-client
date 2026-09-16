@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, booleanAttribute, inject, input, signal } from '@angular/core';
+import { Component, OnInit, booleanAttribute, inject, input, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 import { MagmaTagList } from '@ikilote/magma';
@@ -18,7 +18,6 @@ type VoteResult = { emoji: string; selected: boolean; total: number }[];
     selector: 'classement-infos',
     templateUrl: './classement-infos.component.html',
     styleUrls: ['./classement-infos.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoPipe, MarkdownModule, RouterLink, MagmaTagList, DatePipe],
 })
 export class ClassementInfosComponent implements OnInit {

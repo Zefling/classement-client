@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -9,7 +9,6 @@ import { MemoryService } from '../../../services/memory.service';
     selector: 'help.axis',
     templateUrl: './help.axis.component.html',
     styleUrls: ['./help.axis.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TranslocoModule],
 })
 export class HelpAxisComponent {

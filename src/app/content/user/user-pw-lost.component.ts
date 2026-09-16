@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -21,7 +21,6 @@ import { GlobalService } from '../../services/global.service';
     selector: 'user-pw-lost',
     templateUrl: './user-pw-lost.component.html',
     styleUrls: ['./user-pw-lost.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterLink,
         TranslocoPipe,

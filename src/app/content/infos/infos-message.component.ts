@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -22,7 +22,6 @@ import { GlobalService } from '../../services/global.service';
     templateUrl: './infos-message.component.html',
     styleUrls: ['./infos-message.component.scss'],
 
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule, TranslocoPipe, MagmaInput, MagmaInputElement, MagmaInputText, MagmaInputTextarea],
 })
 export class InfosMessageComponent {

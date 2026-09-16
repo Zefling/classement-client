@@ -100,7 +100,7 @@ export type FileString = {
 };
 export type GroupOption = { group: FormattedGroup; indexGrp: number; first: boolean; last: boolean };
 export type ColOption = { col: ColumnOption; colIdx: number; first: boolean; last: boolean };
-export type FormattedGroup = { name: string; bgColor: string; txtColor: string; list: FileType[] };
+export type FormattedGroup = { name: string; bgColor: string; txtColor: string; bgImage?: string; list: FileType[] };
 export type Group = { name: string; bgColor: string; txtColor: string; list: FileHandle[] };
 export type Category = { value: string; label: string };
 export type Options = ThemeOptions & {
@@ -177,6 +177,20 @@ export type ThemeOptions = {
     nameFontSize: number;
     nameBackgroundOpacity: number;
     nameMarkdown: boolean;
+    nameBgImageSize?:
+        | 'auto'
+        | 'cover'
+        | 'contain'
+        | '50% auto'
+        | '75% auto'
+        | '100% auto'
+        | '125% auto'
+        | '150% auto'
+        | '50% 50%'
+        | '75% 75%'
+        | '100% 100%'
+        | '125% 125%'
+        | '150% 150%';
     borderRadius: number;
     borderSpacing: number;
     borderSize: number;
@@ -331,6 +345,7 @@ export type ColumnOption = {
     bgColor: string;
     txtColor: string;
     width?: string;
+    bgImage?: string;
 };
 
 // sort

@@ -101,6 +101,7 @@
                     class="names"
                     [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
                     [style.--text-color]="group.txtColor"
+                    [style.--name-bg-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
                   >
                     <div>
                       <label class="name">
@@ -432,6 +433,12 @@
               [attr.dir]="options.direction"
               [class.line-fusion]="options.borderSpacing < 0"
             >
+              <colgroup>
+                <col class="names" />
+                @for (col of options.col; track col; let colIdx = $index; let firstCol = $first; let lastCol = $last) {
+                  <col class="elements" [style.--width]="col.width || null" />
+                }
+              </colgroup>
               <tbody>
                 <!-- Row 0 : column headers -->
                 <tr class="table-col-headers">
@@ -448,7 +455,7 @@
                       class="names names-col"
                       [style.--name-background]="color(col.bgColor, options.nameBackgroundOpacity)"
                       [style.--text-color]="col.txtColor"
-                      [style.width]="col.width || null"
+                      [style.--name-bg-image]="col.bgImage ? 'url(' + col.bgImage + ')' : null"
                     >
                       <div>
                         <label class="name">
@@ -583,6 +590,7 @@
                       class="names names-row"
                       [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
                       [style.--text-color]="group.txtColor"
+                      [style.--name-bg-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
                     >
                       <div>
                         <label class="name">
@@ -683,7 +691,7 @@
                     </td>
                     <!-- One cell per column -->
                     @for (col of options.col; track col; let colIdx = $index) {
-                      <td class="elements" [style.width]="col.width || null">
+                      <td class="elements">
                         <div
                           class="drop-list"
                           cdkDropList
@@ -775,6 +783,7 @@
                       class="names"
                       [style.--name-background]="color(group.bgColor, options.nameBackgroundOpacity)"
                       [style.--text-color]="group.txtColor"
+                      [style.--name-bg-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
                     >
                       <div>
                         <label class="name">

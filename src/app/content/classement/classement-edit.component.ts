@@ -11,7 +11,6 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Location, NgClass } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -142,7 +141,6 @@ const browser = Bowser.getParser(window.navigator.userAgent);
     selector: 'classement-edit',
     templateUrl: './classement-edit.component.html',
     styleUrls: ['./classement-edit.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         // libs
         NgClass,

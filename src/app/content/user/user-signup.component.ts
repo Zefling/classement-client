@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -25,7 +25,6 @@ import { GlobalService } from '../../services/global.service';
     selector: 'user-signup',
     templateUrl: './user-signup.component.html',
     styleUrls: ['./user-signup.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ReactiveFormsModule,
         RouterLink,
