@@ -95,6 +95,7 @@ import { HelpAxisComponent } from './help/help.axis.component';
 import { HelpBingoComponent } from './help/help.bingo.component';
 import { HelpColumnsComponent } from './help/help.columns.component';
 import { HelpIcebergComponent } from './help/help.iceberg.component';
+import { HelpTableComponent } from './help/help.table.component';
 import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
 
@@ -674,6 +675,30 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     /**
+     * Finds the (groupIdx, colIdx) of the cell sub-list that contains the given tile.
+     * Returns null if not found (e.g. tile is in the main list).
+     */
+    tableFindCell(tile: FileType): { groupIdx: number; colIdx: number } | null {
+        for (const [group, rowCache] of this._tableCellCache.entries()) {
+            for (let colIdx = 0; colIdx < rowCache.length; colIdx++) {
+                if (rowCache[colIdx]?.includes(tile as NonNullable<FileType>)) {
+                    const groupIdx = this.groups.indexOf(group);
+                    return { groupIdx, colIdx };
+                }
+            }
+        }
+        return null;
+    }
+
+    /** Commits a cell sub-list back to the flat group.list after a keyboard move. */
+    tableCommitGroup(groupIdx: number) {
+        const group = this.groups[groupIdx];
+        if (group) {
+            this._tableCommit(group);
+        }
+    }
+
+    /**
      * Rebuilds the flat interleaved group.list from all cell sub-lists after a drop.
      * Call after any mutation on a cell sub-list.
      */
@@ -959,7 +984,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.global.changeHelpComponent(HelpBingoComponent);
                 break;
             case 'table':
-                this.global.changeHelpComponent(HelpColumnsComponent);
+                this.global.changeHelpComponent(HelpTableComponent);
                 break;
             default:
                 this.global.changeHelpComponent(HelpTierListComponent);

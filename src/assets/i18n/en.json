@@ -975,6 +975,24 @@
           "focus.line.first.end": "Move focus to the first or last tile of the line."
         }
       },
+      "table": {
+        "text": "Move tiles by drag and drop into the table cells.",
+        "shortcut": {
+          "focus.in.cell": "Move focus left or right within the cell. At the end of a cell, moves to the next non-empty cell in the same row.",
+          "focus.in.cell.wrap": "Move focus left or right across all cells and rows (wrapping to the next/previous row at the end or beginning of a row).",
+          "focus.change.row": "Move focus to the upper or lower row in the same column.",
+          "focus.row.up": "Move focus to the last row.",
+          "focus.cell.first.end": "Move focus to the first or last tile in the cell.",
+          "focus.row.first.end": "Move focus to the first or last row.",
+          "move.in.cell": "Move the selected tile left or right within the cell.",
+          "move.row": "Move the selected tile to the cell in the upper or lower row.",
+          "move.col": "Move the selected tile to the cell in the left or right column.",
+          "move.col.first.end": "Move the selected tile to the first or last column in the same row.",
+          "move.row.first.end": "Move the selected tile to the first or last row in the same column.",
+          "home.end": "Move the tile to the beginning or end of the cell.",
+          "main.row.up": "Move the selected tile from the main list to the last row of the ranking."
+        }
+      },
       "zone": {
         "shortcut": {
           "move.normal": "Move the selected tile in the chosen direction (15px per step).",

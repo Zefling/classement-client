@@ -492,10 +492,10 @@ export const categories: string[] = [
 export const listModes: Select2Data = [
     { value: 'default', label: 'default', data: { icon: 'tierlist' } },
     { value: 'teams', label: 'teams', data: { icon: 'teams' } },
-    { value: 'columns', label: 'columns', data: { icon: 'columns' } },
+    { value: 'columns', label: 'columns', data: { icon: 'column' } },
     { value: 'iceberg', label: 'iceberg', data: { icon: 'iceberg' } },
     { value: 'axis', label: 'axis', data: { icon: 'axis' } },
-    { value: 'bingo', label: 'bingo', data: { icon: 'bingo' } },
+    { value: 'bingo', label: 'bingo', data: { icon: 'grid' } },
     { value: 'table', label: 'table', data: { icon: 'table' } },
 ];
 

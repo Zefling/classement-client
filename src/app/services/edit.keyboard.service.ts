@@ -4,6 +4,8 @@ import { ClassementEditComponent } from '../content/classement/classement-edit.c
 import { CdkDragElement } from '../directives/drag-element.directive';
 import { FileType, FormattedGroup } from '../interface/interface';
 
+const jumpKeys = ['Home', 'End', 'PageUp', 'PageDown'];
+
 @Injectable({ providedIn: 'root' })
 export abstract class EditKeyBoardService {
     readonly selectTile = signal(false);
@@ -13,9 +15,43 @@ export abstract class EditKeyBoardService {
         const index = group.indexOf(component.selectionTile);
         const indexGp = component.groups.findIndex(e => e.list === group);
 
+        // For table mode, indexGp is always -1 because group is a cell sub-list, not group.list.
+        // Use tableFindCell to resolve the actual position.
+        const isTable = component.options.mode === 'table';
+
+        // In table mode with RTL direction, columns are laid out right-to-left, so keys that move
+        // the tile horizontally across columns must be swapped. This only affects the arrow keys
+        // (Ctrl / Ctrl+Shift) and the Alt+Home/End column edges; the in-cell order stays logical.
+        const rtlTable = isTable && component.options.direction === 'rtl';
+        let key = event.key;
+        if (rtlTable) {
+            if (key === 'ArrowLeft') {
+                key = 'ArrowRight';
+            } else if (key === 'ArrowRight') {
+                key = 'ArrowLeft';
+            }
+        }
+
         if (index !== undefined && index !== -1) {
+            // Alt-based shortcuts are table-only edge moves (Ctrl+Shift variants are hijacked by
+            // the browser: first/last tab). Handle them before the Ctrl block.
+            if (isTable && event.altKey && !event.ctrlKey && jumpKeys.includes(event.key)) {
+                // For column edges, swap first/last when RTL.
+                const colFirst = rtlTable ? 'last' : 'first';
+                const colLast = rtlTable ? 'first' : 'last';
+                const edgeMap: Record<string, ['row' | 'col', 'first' | 'last']> = {
+                    Home: ['col', colFirst],
+                    End: ['col', colLast],
+                    PageUp: ['row', 'first'],
+                    PageDown: ['row', 'last'],
+                };
+                const [axis, edge] = edgeMap[event.key];
+                this.moveTableCellEdge(component, event, axis, edge);
+                return;
+            }
+
             if (event.ctrlKey) {
-                switch (event.key) {
+                switch (key) {
                     case 'ArrowLeft':
                         if (
                             (component.options.mode === 'axis' || component.options.mode === 'iceberg') &&
@@ -24,6 +60,10 @@ export abstract class EditKeyBoardService {
                             this.moveLeftZone(component, event, group, index, event.shiftKey ? 1 : 15);
                         } else if (component.options.mode === 'columns' && indexGp !== -1) {
                             this.moveUp(component, event, group, index, indexGp);
+                        } else if (isTable && event.shiftKey) {
+                            this.moveTableCell(component, event, 0, -1);
+                        } else if (isTable) {
+                            this.moveTableInCell(component, event, group, index, index - 1);
                         } else {
                             this.moveLeft(component, event, group, index, indexGp);
                         }
@@ -36,6 +76,10 @@ export abstract class EditKeyBoardService {
                             this.moveRightZone(component, event, group, index, event.shiftKey ? 1 : 15);
                         } else if (component.options.mode === 'columns' && indexGp !== -1) {
                             this.moveDown(component, event, group, index, indexGp);
+                        } else if (isTable && event.shiftKey) {
+                            this.moveTableCell(component, event, 0, +1);
+                        } else if (isTable) {
+                            this.moveTableInCell(component, event, group, index, index + 1);
                         } else {
                             this.moveRight(component, event, group, index, indexGp);
                         }
@@ -50,8 +94,13 @@ export abstract class EditKeyBoardService {
                             this.moveUpBingo(component, event, group, index, indexGp);
                         } else if (component.options.mode === 'columns' && indexGp !== -1) {
                             this.moveLeft(component, event, group, index, indexGp);
+                        } else if (isTable && event.shiftKey) {
+                            this.moveTableCell(component, event, -1, 0);
+                        } else if (isTable && indexGp === -1) {
+                            // from the main list, send the tile into the table
+                            this.moveTableFromMainList(component, event, group, index);
                         } else {
-                            this.moveUp(component, event, group, index, indexGp);
+                            this.stopEvent(event);
                         }
                         break;
                     case 'ArrowDown':
@@ -64,15 +113,25 @@ export abstract class EditKeyBoardService {
                             this.moveDownBingo(component, event, group, index, indexGp);
                         } else if (component.options.mode === 'columns' && indexGp !== -1) {
                             this.moveRight(component, event, group, index, indexGp);
+                        } else if (isTable && event.shiftKey) {
+                            this.moveTableCell(component, event, +1, 0);
                         } else {
-                            this.moveDown(component, event, group, index, indexGp);
+                            this.stopEvent(event);
                         }
                         break;
                     case 'Home':
-                        this.moveLeft(component, event, group, index, indexGp, true);
+                        if (isTable) {
+                            this.moveTableInCell(component, event, group, index, 0);
+                        } else {
+                            this.moveLeft(component, event, group, index, indexGp, true);
+                        }
                         break;
                     case 'End':
-                        this.moveRight(component, event, group, index, indexGp, true);
+                        if (isTable) {
+                            this.moveTableInCell(component, event, group, index, group.length - 1);
+                        } else {
+                            this.moveRight(component, event, group, index, indexGp, true);
+                        }
                         break;
                     case 'Delete':
                         if (group) {
@@ -84,6 +143,146 @@ export abstract class EditKeyBoardService {
                 }
             }
         }
+    }
+
+    /** Table mode: move the selected tile by a relative (row, col) offset between cells. */
+    private moveTableCell(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        rowDelta: number,
+        colDelta: number,
+    ) {
+        const cell = component.tableFindCell(component.selectionTile);
+        if (!cell) {
+            this.stopEvent(event);
+            return;
+        }
+        this.moveTableCellTo(component, event, cell, cell.groupIdx + rowDelta, cell.colIdx + colDelta);
+    }
+
+    /**
+     * Table mode: move the selected tile into the cell at absolute (targetGroupIdx, targetColIdx).
+     * `edge` values (first/last row or column) can be resolved with the helper constants below.
+     */
+    private moveTableCellTo(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        cell: { groupIdx: number; colIdx: number },
+        targetGroupIdx: number,
+        targetColIdx: number,
+    ) {
+        const colCount = component.options.col?.length ?? 1;
+
+        if (
+            targetGroupIdx < 0 ||
+            targetGroupIdx >= component.groups.length ||
+            targetColIdx < 0 ||
+            targetColIdx >= colCount ||
+            (targetGroupIdx === cell.groupIdx && targetColIdx === cell.colIdx)
+        ) {
+            this.stopEvent(event);
+            return;
+        }
+
+        const tile = component.selectionTile!;
+        // remove from current cell
+        const srcList = component.tableCellList(component.groups[cell.groupIdx], cell.colIdx);
+        const srcIndex = srcList.indexOf(tile);
+        if (srcIndex === -1) {
+            this.stopEvent(event);
+            return;
+        }
+        srcList.splice(srcIndex, 1);
+        component.tableCommitGroup(cell.groupIdx);
+
+        // add to target cell
+        const dstList = component.tableCellList(component.groups[targetGroupIdx], targetColIdx);
+        dstList.push(tile);
+        component.tableCommitGroup(targetGroupIdx);
+
+        this.selectMoveItemValidatedKey(component, event, tile);
+    }
+
+    /** Table mode: move the selected tile to the first/last row or column (keeping the other axis). */
+    private moveTableCellEdge(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        axis: 'row' | 'col',
+        edge: 'first' | 'last',
+    ) {
+        const cell = component.tableFindCell(component.selectionTile);
+        if (!cell) {
+            this.stopEvent(event);
+            return;
+        }
+        const colCount = component.options.col?.length ?? 1;
+        const rowCount = component.groups.length;
+
+        let targetGroupIdx = cell.groupIdx;
+        let targetColIdx = cell.colIdx;
+        if (axis === 'row') {
+            targetGroupIdx = edge === 'first' ? 0 : rowCount - 1;
+        } else {
+            targetColIdx = edge === 'first' ? 0 : colCount - 1;
+        }
+        this.moveTableCellTo(component, event, cell, targetGroupIdx, targetColIdx);
+    }
+
+    /** Table mode: move a tile from the main list into the last row, first column. */
+    private moveTableFromMainList(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        group: FileType[],
+        index: number,
+    ) {
+        const rowCount = component.groups.length;
+        if (rowCount === 0) {
+            this.stopEvent(event);
+            return;
+        }
+
+        const targetGroupIdx = rowCount - 1;
+        const targetColIdx = 0;
+
+        const tile = group.splice(index, 1)[0];
+        const dstList = component.tableCellList(component.groups[targetGroupIdx], targetColIdx);
+        dstList.push(tile);
+        component.tableCommitGroup(targetGroupIdx);
+
+        this.selectMoveItemValidatedKey(component, event, tile);
+    }
+
+    /**
+     * Table mode: move the selected tile within its cell to an absolute position.
+     * Stays bounded — does not overflow to adjacent cells.
+     * For relative moves (±1), pass index + direction as targetIndex.
+     */
+    private moveTableInCell(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        cellList: FileType[],
+        index: number,
+        targetIndex: number,
+    ) {
+        const clamped = Math.max(0, Math.min(targetIndex, cellList.length - 1));
+        if (clamped === index) {
+            this.stopEvent(event);
+            return;
+        }
+
+        const tile = cellList.splice(index, 1)[0];
+        cellList.splice(clamped, 0, tile);
+
+        const cell = component.tableFindCell(tile);
+        if (cell) {
+            component.tableCommitGroup(cell.groupIdx);
+        }
+
+        // After re-render, find the tile's focusable div by its id.
+        this.selectMoveItemValidatedKey(component, event, tile, () => {
+            const el = document.getElementById(tile!.id);
+            return el?.closest<HTMLDivElement>('.click-enter') ?? (el?.parentElement as HTMLDivElement | null);
+        });
     }
 
     private moveLeft(
@@ -374,16 +573,21 @@ export abstract class EditKeyBoardService {
         component: ClassementEditComponent,
         event: KeyboardEvent,
         tile: FileType,
-        target?: HTMLDivElement | string | null,
+        target?: HTMLDivElement | string | (() => HTMLDivElement | null) | null,
     ) {
         component.selectionTile = tile;
         component.stopEvent(event);
         component.detectChanges();
 
         setTimeout(() => {
-            const div =
-                (typeof target === 'string' ? document.querySelector<HTMLDivElement>(target) : target) ??
-                component.selectionDiv;
+            let div: HTMLDivElement | null;
+            if (typeof target === 'function') {
+                div = target();
+            } else {
+                div =
+                    (typeof target === 'string' ? document.querySelector<HTMLDivElement>(target) : target) ??
+                    component.selectionDiv;
+            }
             div?.focus();
             div?.scrollIntoView({ block: 'center' });
             component.globalChange();
@@ -432,15 +636,23 @@ export abstract class EditKeyBoardService {
             case 'End':
             case 'PageUp':
             case 'PageDown':
-                if (event.ctrlKey) {
+                if (
+                    event.ctrlKey ||
+                    // table edge moves use Alt (Ctrl+Shift is hijacked by the browser)
+                    (component.options.mode === 'table' && event.altKey && jumpKeys.includes(event.key))
+                ) {
                     component.selectionTile = item;
                     component.selectionGroup = group;
                     component.selectionIndex = index;
                     component.selectionDrag = drag;
                     this.update(component, group?.list);
+                    // preventDefault blocks the browser's native Ctrl+Arrow behavior (word jump,
+                    // focus move) without stopping propagation — selectMoveItem still fires on
+                    // the parent drop-list via bubbling.
+                    event.preventDefault();
                 } else {
                     // navigate between tile with keyboard
-                    this.navigateFocus(component, event, group, index);
+                    this.navigateFocus(component, event, group, index, item);
                 }
                 break;
             case 'Delete':
@@ -536,21 +748,14 @@ export abstract class EditKeyBoardService {
         event: KeyboardEvent,
         group: FormattedGroup | null,
         index: number | null,
+        item: FileType = null,
     ) {
         if (index === null) {
             return;
         }
 
-        const currentList = group ? group.list : component.list;
         const indexGp = group ? component.groups.indexOf(group) : -1;
-        const firstNonEmptyGp = component.groups.findIndex(g => g.list.some(t => t !== undefined));
-        const lastNonEmptyGp = component.groups.reduce(
-            (last, g, i) => (g.list.some(t => t !== undefined) ? i : last),
-            -1,
-        );
 
-        let targetList: FileType[] | null = null;
-        let targetIndex = index;
         let key = event.key;
 
         if (component.options.direction === 'rtl') {
@@ -563,6 +768,40 @@ export abstract class EditKeyBoardService {
                     break;
             }
         }
+
+        // Table mode uses cell-aware navigation with wrap-around between cells,
+        // which does not share the generic row/list logic below.
+        if (component.options.mode === 'table') {
+            const currentTile = item ?? component.selectionTile;
+            const cellFound = currentTile ? component.tableFindCell(currentTile) : null;
+            if (cellFound) {
+                // tile is inside a table cell → use cell-aware navigation
+                this.navigateFocusTable(component, event, key, currentTile!);
+                return;
+            }
+            // tile is in the main list → fall through to generic navigation
+        }
+
+        this.navigateFocusGeneric(component, event, key, group, index, indexGp);
+    }
+
+    private navigateFocusGeneric(
+        component: ClassementEditComponent,
+        event: KeyboardEvent,
+        key: string,
+        group: FormattedGroup | null,
+        index: number,
+        indexGp: number,
+    ) {
+        const currentList = group ? group.list : component.list;
+        const firstNonEmptyGp = component.groups.findIndex(g => g.list.some(t => t !== undefined));
+        const lastNonEmptyGp = component.groups.reduce(
+            (last, g, i) => (g.list.some(t => t !== undefined) ? i : last),
+            -1,
+        );
+
+        let targetList: FileType[] | null = null;
+        let targetIndex = index;
 
         if (indexGp !== -1) {
             switch (component.options.mode) {
@@ -695,6 +934,237 @@ export abstract class EditKeyBoardService {
         div?.focus();
         div?.scrollIntoView({ block: 'nearest' });
         this.stopEvent(event);
+    }
+
+    private navigateFocusTable(component: ClassementEditComponent, event: KeyboardEvent, key: string, tile: FileType) {
+        const cell = component.tableFindCell(tile);
+        if (!cell) {
+            this.stopEvent(event);
+            return;
+        }
+
+        const colCount = component.options.col?.length ?? 1;
+        const rowCount = component.groups.length;
+        const { groupIdx, colIdx } = cell;
+
+        const cellList = component.tableCellList(component.groups[groupIdx], colIdx);
+        const posInCell = cellList.indexOf(tile as NonNullable<FileType>);
+
+        let targetGroupIdx = groupIdx;
+        let targetColIdx = colIdx;
+        let targetPosInCell = posInCell;
+
+        switch (key) {
+            case 'ArrowRight': {
+                if (posInCell < cellList.length - 1) {
+                    targetPosInCell = posInCell + 1;
+                } else if (event.shiftKey) {
+                    // Shift+→ : linear wrap across cells and rows
+                    const next = this.findNextNonEmptyCell(component, groupIdx, colIdx, colCount, rowCount);
+                    if (!next) {
+                        this.stopEvent(event);
+                        return;
+                    }
+                    ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = next);
+                } else if (colIdx < colCount - 1) {
+                    const next = this.findNextNonEmptyCellInRow(component, groupIdx, colIdx, colCount);
+                    if (!next) {
+                        this.stopEvent(event);
+                        return;
+                    }
+                    ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = next);
+                } else {
+                    this.stopEvent(event);
+                    return;
+                }
+                break;
+            }
+            case 'ArrowLeft': {
+                if (posInCell > 0) {
+                    targetPosInCell = posInCell - 1;
+                } else if (event.shiftKey) {
+                    // Shift+← : linear wrap across cells and rows
+                    const prev = this.findPrevNonEmptyCell(component, groupIdx, colIdx, colCount);
+                    if (!prev) {
+                        this.stopEvent(event);
+                        return;
+                    }
+                    ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = prev);
+                } else if (colIdx > 0) {
+                    const prev = this.findPrevNonEmptyCellInRow(component, groupIdx, colIdx);
+                    if (!prev) {
+                        this.stopEvent(event);
+                        return;
+                    }
+                    ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = prev);
+                } else {
+                    this.stopEvent(event);
+                    return;
+                }
+                break;
+            }
+            case 'ArrowDown': {
+                // next non-empty cell in the same column, searching downward
+                const next = this.findNextNonEmptyCellInCol(component, groupIdx, colIdx, rowCount);
+                if (!next) {
+                    this.stopEvent(event);
+                    return;
+                }
+                ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = next);
+                break;
+            }
+            case 'ArrowUp': {
+                // previous non-empty cell in the same column, searching upward
+                const prev = this.findPrevNonEmptyCellInCol(component, groupIdx, colIdx);
+                if (!prev) {
+                    this.stopEvent(event);
+                    return;
+                }
+                ({ groupIdx: targetGroupIdx, colIdx: targetColIdx, posInCell: targetPosInCell } = prev);
+                break;
+            }
+            case 'Home':
+                targetPosInCell = 0;
+                break;
+            case 'End':
+                targetPosInCell = Math.max(0, cellList.length - 1);
+                break;
+            case 'PageUp':
+                targetGroupIdx = 0;
+                targetPosInCell = 0;
+                break;
+            case 'PageDown':
+                targetGroupIdx = rowCount - 1;
+                targetPosInCell = 0;
+                break;
+            default:
+                this.stopEvent(event);
+                return;
+        }
+
+        const targetCellList = component.tableCellList(component.groups[targetGroupIdx], targetColIdx);
+        const clampedPos = Math.max(0, Math.min(targetPosInCell, targetCellList.length - 1));
+        const targetTile = targetCellList[clampedPos];
+
+        if (!targetTile) {
+            this.stopEvent(event);
+            return;
+        }
+
+        const el = document.getElementById(targetTile.id);
+        const div = el?.closest<HTMLDivElement>('.click-enter') ?? (el?.parentElement as HTMLDivElement | null);
+        div?.focus();
+        div?.scrollIntoView({ block: 'nearest' });
+        this.stopEvent(event);
+    }
+
+    /** Next non-empty cell in linear order (left-to-right, top-to-bottom), skipping empty ones. */
+    private findNextNonEmptyCell(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+        colCount: number,
+        rowCount: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        let g = groupIdx;
+        let c = colIdx + 1;
+        while (g < rowCount) {
+            while (c < colCount) {
+                const list = component.tableCellList(component.groups[g], c);
+                if (list.length > 0) {
+                    return { groupIdx: g, colIdx: c, posInCell: 0 };
+                }
+                c++;
+            }
+            g++;
+            c = 0;
+        }
+        return null;
+    }
+
+    /** Previous non-empty cell in linear order (right-to-left, bottom-to-top), skipping empty ones. */
+    private findPrevNonEmptyCell(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+        colCount: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        let g = groupIdx;
+        let c = colIdx - 1;
+        while (g >= 0) {
+            while (c >= 0) {
+                const list = component.tableCellList(component.groups[g], c);
+                if (list.length > 0) {
+                    return { groupIdx: g, colIdx: c, posInCell: list.length - 1 };
+                }
+                c--;
+            }
+            g--;
+            c = colCount - 1;
+        }
+        return null;
+    }
+
+    /** Next non-empty cell in the same row, searching rightward. */
+    private findNextNonEmptyCellInRow(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+        colCount: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        for (let c = colIdx + 1; c < colCount; c++) {
+            const list = component.tableCellList(component.groups[groupIdx], c);
+            if (list.length > 0) {
+                return { groupIdx, colIdx: c, posInCell: 0 };
+            }
+        }
+        return null;
+    }
+
+    /** Previous non-empty cell in the same row, searching leftward. */
+    private findPrevNonEmptyCellInRow(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        for (let c = colIdx - 1; c >= 0; c--) {
+            const list = component.tableCellList(component.groups[groupIdx], c);
+            if (list.length > 0) {
+                return { groupIdx, colIdx: c, posInCell: list.length - 1 };
+            }
+        }
+        return null;
+    }
+
+    /** Next non-empty cell in the same column, searching downward. */
+    private findNextNonEmptyCellInCol(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+        rowCount: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        for (let g = groupIdx + 1; g < rowCount; g++) {
+            const list = component.tableCellList(component.groups[g], colIdx);
+            if (list.length > 0) {
+                return { groupIdx: g, colIdx, posInCell: 0 };
+            }
+        }
+        return null;
+    }
+
+    /** Previous non-empty cell in the same column, searching upward. */
+    private findPrevNonEmptyCellInCol(
+        component: ClassementEditComponent,
+        groupIdx: number,
+        colIdx: number,
+    ): { groupIdx: number; colIdx: number; posInCell: number } | null {
+        for (let g = groupIdx - 1; g >= 0; g--) {
+            const list = component.tableCellList(component.groups[g], colIdx);
+            if (list.length > 0) {
+                return { groupIdx: g, colIdx, posInCell: 0 };
+            }
+        }
+        return null;
     }
 
     private focusListPrev(currentList: FileType[], index: number) {

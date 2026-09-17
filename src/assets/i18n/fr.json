@@ -974,6 +974,24 @@
           "focus.line.first.end": "Déplacer le focus dans la première ou la dernière tuile de la ligne."
         }
       },
+      "table": {
+        "text": "Déplacer les tuiles par glissé-déposé dans les cellules du tableau.",
+        "shortcut": {
+          "focus.in.cell": "Déplacer le focus à gauche ou à droite dans la cellule. En bout de cellule, passe à la colonne adjacente non vide d'une même ligne.",
+          "focus.in.cell.wrap": "Déplacer le focus à gauche ou à droite en traversant toutes les cellules et lignes (avec changement de ligne en début ou fin de ligne).",
+          "focus.change.row": "Déplacer le focus dans la ligne supérieure ou inférieure d'une même colonne.",
+          "focus.row.up": "Déplacer le focus dans la dernière ligne.",
+          "focus.cell.first.end": "Déplacer le focus sur la première ou la dernière tuile de la cellule.",
+          "focus.row.first.end": "Déplacer le focus dans la première ou la dernière ligne.",
+          "move.in.cell": "Déplacer la tuile sélectionnée à gauche ou à droite à l'intérieur de la cellule.",
+          "move.row": "Déplacer la tuile sélectionnée dans la cellule de la ligne supérieure ou inférieure.",
+          "move.col": "Déplacer la tuile sélectionnée dans la cellule de la colonne gauche ou droite.",
+          "move.col.first.end": "Déplacer la tuile sélectionnée dans la première ou la dernière colonne d'une même ligne.",
+          "move.row.first.end": "Déplacer la tuile sélectionnée dans la première ou la dernière ligne d'une même colonne.",
+          "home.end": "Déplacer la tuile au début ou à la fin de la cellule.",
+          "main.row.up": "Déplacer la tuile sélectionnée depuis la liste principale dans la dernière ligne du classement."
+        }
+      },
       "zone": {
         "shortcut": {
           "move.normal": "Déplacer la tuile sélectionnée dans la direction choisie (de 15px par pas).",
