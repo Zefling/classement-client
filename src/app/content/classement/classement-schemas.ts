@@ -1,7 +1,14 @@
 import { Schema } from 'ajv';
 import { Select2Option } from 'ng-select2-component';
 
-import { imagesNames, listTextPosition } from './classement-default';
+import {
+    imagesNames,
+    listNameBgImageSize,
+    listTableCellAlign,
+    listTableCellDirection,
+    listTableWidth,
+    listTextPosition,
+} from './classement-default';
 
 export const schemaTheme: Schema = {
     type: 'object',
@@ -66,8 +73,11 @@ export const schemaTheme: Schema = {
                 imageWidth: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
                 imageHeight: { type: 'number', minimum: 100, maximum: 4000, multipleOf: 1 },
                 columnMinHeight: { type: 'number', minimum: 0, maximum: 4000, multipleOf: 1 },
-                imageSize: { enum: ['', 'cover'] },
-                imagePosition: { enum: ['', 'center'] },
+                imageSize: { enum: ['', 'auto', 'cover'] },
+                imagePosition: { enum: ['', 'auto', 'center'] },
+                tableWidthMode: { enum: (listTableWidth as Select2Option[]).map(v => v.value) },
+                tableCellDirection: { enum: (listTableCellDirection as Select2Option[]).map(v => v.value) },
+                tableCellAlign: { enum: (listTableCellAlign as Select2Option[]).map(v => v.value) },
                 axisLineWidth: { type: 'number', minimum: 0, maximum: 12, multipleOf: 1 },
                 axisLineColor: { type: 'string', pattern: '|#[0-9a-fA-F]{6}' },
                 axisLineOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
@@ -77,6 +87,7 @@ export const schemaTheme: Schema = {
                 nameFontSize: { type: 'number' },
                 nameBackgroundOpacity: { type: 'number', minimum: 0, maximum: 100, multipleOf: 1 },
                 nameMarkdown: { type: 'boolean' },
+                nameBgImageSize: { enum: (listNameBgImageSize as Select2Option[]).map(v => v.value) },
                 borderRadius: { type: 'number', minimum: 0, maximum: 50, multipleOf: 1 },
                 borderSpacing: { type: 'number', minimum: -1, maximum: 20, multipleOf: 1 },
                 borderSize: { type: 'number', minimum: 0, maximum: 20, multipleOf: 1 },

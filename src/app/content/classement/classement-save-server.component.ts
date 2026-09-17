@@ -37,7 +37,14 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { Select2Option } from 'ng-select2-component';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
-import { imagesNames, listTextPosition } from './classement-default';
+import {
+    imagesNames,
+    listNameBgImageSize,
+    listTableCellAlign,
+    listTableCellDirection,
+    listTableWidth,
+    listTextPosition,
+} from './classement-default';
 
 import { DropImageDirective } from '../../directives/drop-image.directive';
 import { Category, Classement, FileHandle, FileType, FormattedGroup, Options } from '../../interface/interface';
@@ -250,6 +257,7 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         options.itemWidth = minMax(options.itemWidth ?? 100, 16, 300, 1);
         options.itemWidthAuto = boolean(options.itemWidthAuto ?? true);
         options.itemImageCover = inList(options.itemImageCover ?? true, [true, false, 'opti']);
+        options.itemBorder = minMax(options.itemBorder ?? 1, 0, 20, 1);
         options.itemMinWidth = minMax(options.itemMinWidth ?? 0, 0, 300, 1);
         options.itemMaxWidth = minMax(options.itemMaxWidth ?? 300, 16, 300, 1);
         options.itemHeight = minMax(options.itemHeight ?? 100, 16, 300, 1);
@@ -275,8 +283,20 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         options.imageBackgroundImage = inList(options.imageBackgroundImage ?? 'none', imagesNames);
         options.imageWidth = minMax(options.imageWidth ?? 1170, 100, 4000, 1);
         options.imageHeight = minMax(options.imageHeight ?? 1000, 100, 4000, 1);
-        options.imageSize = inList(options.imageSize ?? 'center', ['', 'cover']);
-        options.imagePosition = inList(options.imagePosition, ['', 'center']);
+        options.imageSize = inList(options.imageSize ?? 'auto', ['auto', 'cover']);
+        options.imagePosition = inList(options.imagePosition ?? 'auto', ['auto', 'center']);
+        options.tableWidthMode = inList(
+            options.tableWidthMode ?? '',
+            (listTableWidth as Select2Option[]).map(v => v.value),
+        );
+        options.tableCellDirection = inList(
+            options.tableCellDirection ?? 'row',
+            (listTableCellDirection as Select2Option[]).map(v => v.value),
+        );
+        options.tableCellAlign = inList(
+            options.tableCellAlign ?? 'start',
+            (listTableCellAlign as Select2Option[]).map(v => v.value),
+        );
         options.columnMinHeight = minMax(options.columnMinHeight ?? 250, 0, 4000, 1);
         options.axisLineWidth = minMax(options.axisLineWidth ?? 3, 0, 12, 1);
         options.axisArrowWidth = minMax(options.axisArrowWidth ?? 15, 0, 50, 1);
@@ -285,6 +305,10 @@ export class ClassementSaveServerComponent implements OnChanges, OnDestroy {
         options.nameFontSize = minMax(options.nameFontSize ?? 120, 50, 300, 1);
         options.nameBackgroundOpacity = minMax(options.nameBackgroundOpacity ?? 100, 0, 100, 1);
         options.nameMarkdown = boolean(options.nameMarkdown);
+        options.nameBgImageSize = inList(
+            options.nameBgImageSize ?? 'cover',
+            (listNameBgImageSize as Select2Option[]).map(v => v.value),
+        );
         options.borderRadius = minMax(options.borderRadius ?? 4, 0, 50, 1);
         options.borderSpacing = minMax(options.borderSpacing ?? 1, -1, 20, 1);
         options.borderSize = minMax(options.borderSize ?? 1, 0, 20, 1);
