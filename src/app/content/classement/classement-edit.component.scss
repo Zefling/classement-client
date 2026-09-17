@@ -68,13 +68,6 @@
     }
 }
 
-mg-dialog .colors-options textarea {
-    outline: none;
-    border: none !important;
-    background: transparent;
-    text-align: center;
-}
-
 /* drag'n drop -------------------------------------------------------------- */
 
 .drop-list {
@@ -354,15 +347,12 @@ img {
 
     & > div {
         display: grid;
+        position: relative;
         grid-template:
-            'a a a a a' auto
-            '. b e c .' var(--group-option-height, var(--group-option-height-reduce, 35px))
-            / 1fr auto 1fr auto 1fr;
+            'a a' auto
+            '. b' 0 /
+            1fr auto;
         height: 100%;
-
-        .option-reduce & {
-            --group-option-height-reduce: 30px;
-        }
 
         & > div {
             width: 100%;
@@ -445,14 +435,8 @@ img {
     }
 }
 
-span.group-options {
-    grid-area: e;
-}
-
-span.color,
-.mini-edit-options {
+span.color {
     display: block;
-    grid-area: b;
     cursor: pointer;
     border: 1px solid #888;
     border-radius: 5px;
@@ -467,14 +451,33 @@ span.color,
         --over-drop-list-background: #fff6;
         color: #000;
     }
+}
+
+// The pencil that triggers the color/actions popover (default/teams/columns/table).
+// Shared pastille look; each mode only overrides its positioning below.
+.mini-edit-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #fff8;
+    width: 25px;
+    height: 25px;
+    color: #000;
+    font-size: 20px;
+
+    &:hover {
+        --over-drop-list-background: #fff6;
+        background-color: #fff;
+        color: #000;
+    }
 
     .option-reduce & {
         width: 24px;
         height: 24px;
-    }
-
-    &.txt-color {
-        grid-area: c;
+        font-size: 16px;
     }
 }
 
@@ -743,6 +746,26 @@ span.color,
     // fix background
     .click-enter[tabindex]:not(button, a[href]):hover {
         background: var(--over-drop-list-background, var(--drop-list-background));
+    }
+}
+
+// position the popover trigger in the name cell (base look defined on .mini-edit-options)
+:where(.mode-default, .mode-teams, .mode-columns, .mode-grid) {
+    .names .mini-edit-options {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        grid-area: b;
+        justify-self: end;
+    }
+
+    :host.option-reduce & .names .mini-edit-options {
+        display: none;
+    }
+    @media screen and (width <= 769px) {
+        :host.option-reduce & .names .mini-edit-options {
+            display: block;
+        }
     }
 }
 
@@ -1105,37 +1128,9 @@ mg-spinner {
         .button-right,
         .button-suppr,
         .button-add,
-        .txt-color,
-        .bg-color,
-        .actions,
-        .colors {
+        .actions {
             display: none;
         }
-    }
-
-    .colors-options {
-        display: grid;
-        grid-template: 'a b' 'c b' / 70px 1fr;
-        gap: 5px;
-        width: 100%;
-
-        .txt-color {
-            grid-area: a;
-            padding: 5px;
-        }
-
-        .bg-color {
-            grid-area: c;
-            padding: 5px;
-        }
-
-        .name {
-            grid-area: b;
-        }
-    }
-
-    .auto-format .colors {
-        padding: 0;
     }
 
     span.group-options {
@@ -1165,8 +1160,6 @@ mg-spinner {
 @media screen and (width > 769px) {
     :host.option-reduce,
     :host.stream-mode {
-        --group-option-height: 0;
-
         .table-classement {
             .button-up,
             .button-down,
@@ -1174,37 +1167,9 @@ mg-spinner {
             .button-right,
             .button-suppr,
             .button-add,
-            .txt-color,
-            .bg-color,
-            .colors,
             .names .group-options {
                 display: none;
             }
-        }
-
-        .colors-options {
-            display: grid;
-            grid-template: 'a b' 'c b' / 70px 1fr;
-            gap: 5px;
-            width: 100%;
-
-            .txt-color {
-                grid-area: a;
-                padding: 5px;
-            }
-
-            .bg-color {
-                grid-area: c;
-                padding: 5px;
-            }
-
-            .name {
-                grid-area: b;
-            }
-        }
-
-        .auto-format .colors {
-            padding: 0;
         }
 
         span.group-options {
@@ -1233,16 +1198,9 @@ mg-spinner {
         .button-right,
         .button-suppr,
         .button-add,
-        .txt-color,
-        .bg-color,
-        .colors,
         .names .group-options {
             display: none;
         }
-    }
-
-    .names {
-        --group-option-height: 0;
     }
 }
 
@@ -1268,25 +1226,15 @@ mg-spinner {
     .names-col,
     .names-row {
         & > div {
-            position: relative;
-            grid-template:
-                'a a' auto
-                '. b' 0 /
-                1fr auto;
             min-height: var(--over-name-min-height, 60px);
         }
 
-        // override the global hide rule: the pencil IS the popover trigger here
+        // position the popover trigger (base look defined on .mini-edit-options)
         .mini-edit-options {
-            display: block;
             position: absolute;
             right: 0;
             bottom: 0;
             grid-area: b;
-            cursor: pointer;
-            width: 15px;
-            height: 20px;
-            font-size: 15px;
         }
     }
 
@@ -1334,7 +1282,7 @@ mg-spinner {
     }
 }
 
-.table-cell-popover {
+.options-popover {
     display: flex;
     flex-direction: column;
     gap: 6px;

@@ -117,36 +117,88 @@
                           ></textarea>
                         </div>
                       </label>
+                      <!-- pencil trigger for group popover -->
                       <span
-                        class="color group-options icon-edit-2"
-                        [title]="'generator.group.full-edit' | transloco"
-                        (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
-                      ></span>
-                      <span
-                        class="color bg-color icon-background-color"
-                        [colorPicker]="group.bgColor"
-                        (colorClose)="group.bgColor = $event"
-                        [colorPickerTexts]="{
-                          hsl: 'magma.color.piker.hsl' | transloco,
-                          palette: 'magma.color.piker.palette' | transloco,
-                        }"
-                        [title]="'generator.group.bg-color' | transloco"
+                        class="mini-edit-options icon-edit-2"
+                        [title]="'generator.group.popover' | transloco"
+                        [mgPopover]="groupPopTpl"
+                        mgPopoverPosition="bottom-start"
                         tabindex="0"
                         type="button"
                       ></span>
-                      <span
-                        class="color txt-color icon-text-color"
-                        [colorPicker]="group.txtColor"
-                        colorPickerAlpha
-                        [colorPickerTexts]="{
-                          hsl: 'magma.color.piker.hsl' | transloco,
-                          palette: 'magma.color.piker.palette' | transloco,
-                        }"
-                        (colorClose)="group.txtColor = $event"
-                        [title]="'generator.group.txt-color' | transloco"
-                        tabindex="0"
-                        type="button"
-                      ></span>
+                      <!-- group popover template -->
+                      <ng-template #groupPopTpl let-ctx>
+                        <div class="options-popover">
+                          <div class="popover-icons-row">
+                            <span
+                              class="color bg-color icon-background-color"
+                              [colorPicker]="group.bgColor"
+                              (colorClose)="group.bgColor = $event"
+                              [colorPickerTexts]="{
+                                hsl: 'magma.color.piker.hsl' | transloco,
+                                palette: 'magma.color.piker.palette' | transloco,
+                              }"
+                              [title]="'generator.group.bg-color' | transloco"
+                              tabindex="0"
+                              type="button"
+                            ></span>
+                            <span
+                              class="color txt-color icon-text-color"
+                              [colorPicker]="group.txtColor"
+                              colorPickerAlpha
+                              [colorPickerTexts]="{
+                                hsl: 'magma.color.piker.hsl' | transloco,
+                                palette: 'magma.color.piker.palette' | transloco,
+                              }"
+                              (colorClose)="group.txtColor = $event"
+                              [title]="'generator.group.txt-color' | transloco"
+                              tabindex="0"
+                              type="button"
+                            ></span>
+                            <div class="popover-actions">
+                              @if (!first) {
+                                <button
+                                  class="button-up"
+                                  [title]="'generator.group.up' | transloco"
+                                  (click)="upLine(indexGrp); ctx.close()"
+                                >
+                                  <span class="icon-up"></span>
+                                </button>
+                              }
+                              @if (!last) {
+                                <button
+                                  class="button-down"
+                                  [title]="'generator.group.down' | transloco"
+                                  (click)="downLine(indexGrp); ctx.close()"
+                                >
+                                  <span class="icon-down"></span>
+                                </button>
+                              }
+                              @if (!(first && last)) {
+                                <button
+                                  class="button-suppr"
+                                  [title]="'generator.line.delete' | transloco"
+                                  (click)="deleteLine(indexGrp); ctx.close()"
+                                >
+                                  <span class="icon-remove"></span>
+                                </button>
+                              }
+                              <button
+                                class="button-add"
+                                [title]="'generator.line.add' | transloco"
+                                (click)="addLine(indexGrp); ctx.close()"
+                              >
+                                <span class="icon icon-add"></span>
+                              </button>
+                              <span
+                                class="color group-options icon-edit-2"
+                                [title]="'generator.group.full-edit' | transloco"
+                                (clickEnter)="updateGroupOption({ group, indexGrp, first, last }); ctx.close()"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
                     </div>
                   </td>
                   <td class="elements">
@@ -480,7 +532,7 @@
                         ></span>
                         <!-- column popover template -->
                         <ng-template #colPopTpl let-ctx>
-                          <div class="table-cell-popover">
+                          <div class="options-popover">
                             <div class="popover-icons-row">
                               <span
                                 class="color bg-color icon-background-color"
@@ -616,7 +668,7 @@
                         ></span>
                         <!-- row popover template -->
                         <ng-template #rowPopTpl let-ctx>
-                          <div class="table-cell-popover">
+                          <div class="options-popover">
                             <div class="popover-icons-row">
                               <span
                                 class="color bg-color icon-background-color"
@@ -799,28 +851,88 @@
                             ></textarea>
                           </div>
                         </label>
+                        <!-- pencil trigger for column popover -->
                         <span
-                          class="color group-options icon-edit-2"
-                          [title]="'generator.group.full-edit' | transloco"
-                          (clickEnter)="updateGroupOption({ group, indexGrp, first, last })"
-                        ></span>
-                        <span
-                          class="color bg-color icon-background-color"
-                          [colorPicker]="group.bgColor"
-                          (colorClose)="group.bgColor = $event"
-                          [title]="'generator.group.bg-color' | transloco"
+                          class="mini-edit-options icon-edit-2"
+                          [title]="'generator.group.popover' | transloco"
+                          [mgPopover]="colGroupPopTpl"
+                          mgPopoverPosition="bottom-start"
                           tabindex="0"
                           type="button"
                         ></span>
-                        <span
-                          class="color txt-color icon-text-color"
-                          [colorPicker]="group.txtColor"
-                          colorPickerAlpha
-                          (colorClose)="group.txtColor = $event"
-                          [title]="'generator.group.txt-color' | transloco"
-                          tabindex="0"
-                          type="button"
-                        ></span>
+                        <!-- column popover template -->
+                        <ng-template #colGroupPopTpl let-ctx>
+                          <div class="options-popover">
+                            <div class="popover-icons-row">
+                              <span
+                                class="color bg-color icon-background-color"
+                                [colorPicker]="group.bgColor"
+                                (colorClose)="group.bgColor = $event"
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                [title]="'generator.group.bg-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <span
+                                class="color txt-color icon-text-color"
+                                [colorPicker]="group.txtColor"
+                                colorPickerAlpha
+                                [colorPickerTexts]="{
+                                  hsl: 'magma.color.piker.hsl' | transloco,
+                                  palette: 'magma.color.piker.palette' | transloco,
+                                }"
+                                (colorClose)="group.txtColor = $event"
+                                [title]="'generator.group.txt-color' | transloco"
+                                tabindex="0"
+                                type="button"
+                              ></span>
+                              <div class="popover-actions">
+                                @if (!first) {
+                                  <button
+                                    class="button-left"
+                                    [title]="'generator.group.left' | transloco"
+                                    (click)="upLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-left"></span>
+                                  </button>
+                                }
+                                @if (!last) {
+                                  <button
+                                    class="button-right"
+                                    [title]="'generator.group.right' | transloco"
+                                    (click)="downLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-right"></span>
+                                  </button>
+                                }
+                                @if (!(first && last)) {
+                                  <button
+                                    class="button-suppr"
+                                    [title]="'generator.line.delete' | transloco"
+                                    (click)="deleteLine(indexGrp); ctx.close()"
+                                  >
+                                    <span class="icon-remove"></span>
+                                  </button>
+                                }
+                                <button
+                                  class="button-add"
+                                  [title]="'generator.line.add' | transloco"
+                                  (click)="addLine(indexGrp); ctx.close()"
+                                >
+                                  <span class="icon icon-add"></span>
+                                </button>
+                                <span
+                                  class="color group-options icon-edit-2"
+                                  [title]="'generator.group.full-edit' | transloco"
+                                  (clickEnter)="updateGroupOption({ group, indexGrp, first, last }); ctx.close()"
+                                ></span>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-template>
                       </div>
                     </td>
                   }
