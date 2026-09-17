@@ -654,7 +654,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
         // rebuild cell cache from the (possibly loaded) group.list data
         this._tableCellCache = new Map();
-        this._tableRebuildCellCache(groups, colCount);
+        this.tableRebuildCellCache(groups, colCount);
     }
 
     /**
@@ -694,7 +694,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     tableCommitGroup(groupIdx: number) {
         const group = this.groups[groupIdx];
         if (group) {
-            this._tableCommit(group);
+            this.tableCommit(group);
         }
     }
 
@@ -702,7 +702,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
      * Rebuilds the flat interleaved group.list from all cell sub-lists after a drop.
      * Call after any mutation on a cell sub-list.
      */
-    private _tableCommit(group: FormattedGroup) {
+    private tableCommit(group: FormattedGroup) {
         const colCount = this.options.col?.length ?? 1;
         const rowCache = this._tableCellCache.get(group);
         if (!rowCache) return;
@@ -731,7 +731,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     /** Rebuilds the cell cache from flat interleaved group.list for all groups. */
-    private _tableRebuildCellCache(groups: FormattedGroup[], colCount: number) {
+    private tableRebuildCellCache(groups: FormattedGroup[], colCount: number) {
         for (const group of groups) {
             const rowCache: FileType[][] = Array.from({ length: colCount }, () => []);
             for (let i = 0; i < group.list.length; i++) {
@@ -749,7 +749,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     private _tableCommitByList(cellList: FileType[]) {
         for (const [group, rowCache] of this._tableCellCache.entries()) {
             if (rowCache.includes(cellList as FileString[])) {
-                this._tableCommit(group);
+                this.tableCommit(group);
                 return;
             }
         }
@@ -768,9 +768,10 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 const cell = rowCache.splice(colIdx, 1)[0];
                 rowCache.splice(colIdx - 1, 0, cell);
             }
-            this._tableCommit(group);
+            this.tableCommit(group);
         });
-        this._tableRebuildCellCache(this.groups, colCount);
+        this.tableRebuildCellCache(this.groups, colCount);
+        this.syncCurrentCol(col);
         this.globalChange();
         this.change();
     }
@@ -786,15 +787,38 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 const cell = rowCache.splice(colIdx, 1)[0];
                 rowCache.splice(colIdx + 1, 0, cell);
             }
-            this._tableCommit(group);
+            this.tableCommit(group);
         });
-        this._tableRebuildCellCache(this.groups, colCount);
+        this.tableRebuildCellCache(this.groups, colCount);
+        this.syncCurrentCol(col);
         this.globalChange();
         this.change();
     }
 
+    /**
+     * Keep `currentCol` (bound to the column-option dialog) in sync after a column
+     * is reordered, so the dialog's left/right arrows keep acting on the same column.
+     */
+    private syncCurrentCol(col: ColumnOption) {
+        if (!this.currentCol || this.currentCol.col !== col || !this.options.col) {
+            return;
+        }
+        const colIdx = this.options.col.indexOf(col);
+
+        if (colIdx !== -1) {
+            this.currentCol = {
+                col,
+                colIdx,
+                first: colIdx === 0,
+                last: colIdx === this.options.col.length - 1,
+            };
+        }
+    }
+
     tableColDelete(colIdx: number) {
-        if (!this.options.col || this.options.col.length <= 1) return;
+        if (!this.options.col || this.options.col.length <= 1) {
+            return;
+        }
         this.options.col.splice(colIdx, 1);
         const colCount = this.options.col.length;
         this.groups.forEach(group => {
@@ -803,9 +827,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 const removed = rowCache.splice(colIdx, 1)[0] ?? [];
                 this.list.push(...removed.filter((i): i is NonNullable<FileType> => !!i));
             }
-            this._tableCommit(group);
+            this.tableCommit(group);
         });
-        this._tableRebuildCellCache(this.groups, colCount);
+        this.tableRebuildCellCache(this.groups, colCount);
         this.options.sizeX = colCount;
         this.globalChange();
         this.change();
@@ -813,7 +837,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     }
 
     tableColAdd(colIdx: number) {
-        if (!this.options.col) return;
+        if (!this.options.col) {
+            return;
+        }
         const isBelow = this.preferencesService.preferences.newLine === 'below';
         const insertIdx = isBelow ? colIdx + 1 : colIdx;
         const refCol = this.options.col[colIdx];
@@ -829,9 +855,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             if (rowCache) {
                 rowCache.splice(insertIdx, 0, []);
             }
-            this._tableCommit(group);
+            this.tableCommit(group);
         });
-        this._tableRebuildCellCache(this.groups, colCount);
+        this.tableRebuildCellCache(this.groups, colCount);
         this.options.sizeX = colCount;
         this.globalChange();
         this.change();
@@ -1294,7 +1320,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                         group.list[index] = null;
                     } else if (this.options.mode === 'table') {
                         group.list.splice(index, 1);
-                        this._tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
+                        this.tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
                     } else {
                         group.list.splice(index, 1);
                     }
@@ -1539,7 +1565,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         }
 
         if (this.options.mode === 'table') {
-            this._tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
+            this.tableRebuildCellCache(this.groups, this.options.col?.length ?? 1);
         }
 
         this.list = this.list.filter(e => e);
