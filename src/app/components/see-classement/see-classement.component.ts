@@ -178,14 +178,18 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub.clear();
-        this.globalService.changeHelpComponent();
+        if (!this.demo()) {
+            this.globalService.changeHelpComponent();
+        }
     }
 
     updateHelp(options: { checkChoice: string }) {
         this.checkChoice = options.checkChoice;
         if (options.checkChoice === 'Z') {
-            this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
-        } else {
+            if (!this.demo()) {
+                this.globalService.changeHelpComponent(HelpBingoEmojiComponent);
+            }
+        } else if (!this.demo()) {
             this.globalService.changeHelpComponent();
         }
         this.detectChanges();
