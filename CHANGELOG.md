@@ -1,5 +1,34 @@
 # Changelog - Standalone web app & API
 
+### 5.2.0 (2026-09-18)
+
+#### Standalone web app
+
+- Add mode: **Table** (Drag'n drop into table grid)
+    - Specific table options
+    - Image render with alt text support
+    - Add column update on dialog edit
+    - Add help panel
+- Add background image for group/column names
+    - Add background image size and position options
+- Change to popover options panel for tierlist, teams and columns
+- Fix the tile calculation when changing the width mode
+- Fix the help panel when the advanced options panel is closed
+- Fix background name opacity
+- Fix altImage bug (`@defer`)
+
+> Update to **Magma** `2.3`
+
+#### With API activated only
+
+- Update schemas to support Table mode
+- Fix schema for group/column background images (`bgImage`, `imageSize`, `imagePosition`)
+- Fix missing schema properties: `nameBgImageSize`, `zoneFieldEdit`, `themeName`
+
+> Required: API `^3.2.0`
+
+---
+
 ### 5.1.1 (2026-08-28)
 
 #### Standalone web app
@@ -30,6 +59,8 @@
 > - Update to **Angular** `22.1`
 > - Update to **Magma** `2.1`
 > - Update to **html2canvas** `1.10`
+
+---
 
 ### 5.0.5 (2026-07-26)
 

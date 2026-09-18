@@ -2,3 +2,19 @@
     display: block;
     margin: var(--main-padding);
 }
+
+markdown ::ng-deep {
+    blockquote {
+        margin: 0px;
+        border-left: 6px solid var(--primary500);
+        border-radius: 0 4px 4px 0;
+        background: var(--primary050);
+        padding: 0.1px; // force ul/ol margin
+        color: inherit;
+        font-size: 90%;
+    }
+
+    p {
+        padding-left: 16px;
+    }
+}
