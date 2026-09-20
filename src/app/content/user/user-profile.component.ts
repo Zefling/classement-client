@@ -11,13 +11,12 @@ import {
     MagmaInputText,
     MagmaMessage,
     MagmaMessageType,
-    MagmaMessages,
     MagmaTabsModule,
     Subscriptions,
     blobToBase64,
     testEmail,
 } from '@ikilote/magma';
-import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { debounceTime } from 'rxjs';
@@ -27,8 +26,7 @@ import { UserPassword } from './user-password';
 import { NavigateResultComponent } from '../../components/navigate-result/navigate-result.component';
 import { ThemeIconComponent } from '../../components/theme-icon/theme-icon.component';
 import { DropImageDirective } from '../../directives/drop-image.directive';
-import { FileHandle, Theme, User } from '../../interface/interface';
-import { APIUserService } from '../../services/api.user.service';
+import { Classement, FileHandle, Theme, ThemeData, User } from '../../interface/interface';
 import { DBService } from '../../services/db.service';
 import { GlobalService } from '../../services/global.service';
 
@@ -67,6 +65,43 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     localSizeClassements = 0;
     localThemes?: Theme[];
 
+    filterClassements = '';
+    filterThemes = '';
+
+    get filteredClassements(): Classement[] {
+        if (!this.user?.classements) {
+            return [];
+        }
+        const filter = this.filterClassements.trim().toLowerCase();
+
+        return !filter
+            ? this.user.classements
+            : this.user.classements.filter(
+                  classement =>
+                      classement.name?.toLowerCase().includes(filter) ||
+                      this.translate
+                          .translate('category.' + (classement.category || 'undefined'))
+                          .toLowerCase()
+                          .includes(filter),
+              );
+    }
+
+    get filteredLocalThemes(): Theme[] | undefined {
+        if (!this.localThemes?.length) {
+            return this.localThemes;
+        }
+        const filter = this.filterThemes.trim().toLowerCase();
+        return !filter ? this.localThemes : this.localThemes.filter(t => t.name?.toLowerCase().includes(filter));
+    }
+
+    get filteredServerThemes(): ThemeData[] | undefined {
+        if (!this.user?.themes?.length) {
+            return this.user?.themes;
+        }
+        const filter = this.filterThemes.trim().toLowerCase();
+        return !filter ? this.user.themes : this.user.themes.filter(t => t.name?.toLowerCase().includes(filter));
+    }
+
     listener = Subscriptions.instance();
 
     avatarDialog = viewChild.required<MagmaDialog>('avatarDialog');
@@ -89,11 +124,7 @@ export class UserProfileComponent extends UserPassword implements OnDestroy {
     croppedImage?: string;
 
     constructor() {
-        const userService = inject(APIUserService);
-        const mgMessage = inject(MagmaMessages);
-        const translate = inject(TranslocoService);
-
-        super(userService, mgMessage, translate);
+        super();
 
         this.updateTitle();
 

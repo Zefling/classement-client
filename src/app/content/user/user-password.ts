@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { MagmaMessages } from '@ikilote/magma';
@@ -8,17 +9,17 @@ import oWasp from 'owasp-password-strength-test';
 import { APIUserService } from '../../services/api.user.service';
 
 export abstract class UserPassword {
+    protected userService = inject(APIUserService);
+    protected mgMessage = inject(MagmaMessages);
+    protected translate = inject(TranslocoService);
+
     showError: string[] = [];
     changePasswordForm: FormGroup;
     strong = false;
     confirm = false;
     passedTests: number[] = [];
 
-    constructor(
-        protected userService: APIUserService,
-        protected mgMessage: MagmaMessages,
-        protected translate: TranslocoService,
-    ) {
+    constructor() {
         this.changePasswordForm = new FormGroup(this.formGroupPasswordForm());
 
         this.changePasswordForm.get('password')?.valueChanges.subscribe(value => {

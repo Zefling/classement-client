@@ -2,19 +2,10 @@ import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import {
-    MagmaInput,
-    MagmaInputElement,
-    MagmaInputPassword,
-    MagmaMessage,
-    MagmaMessageType,
-    MagmaMessages,
-} from '@ikilote/magma';
-import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+import { MagmaInput, MagmaInputElement, MagmaInputPassword, MagmaMessage, MagmaMessageType } from '@ikilote/magma';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { UserPassword } from './user-password';
-
-import { APIUserService } from '../../services/api.user.service';
 
 @Component({
     selector: 'user-pw-lost-change',
@@ -30,11 +21,7 @@ export class UserPwLostChangeComponent extends UserPassword {
     token?: string;
 
     constructor() {
-        const userService = inject(APIUserService);
-        const mgMessage = inject(MagmaMessages);
-        const translate = inject(TranslocoService);
-
-        super(userService, mgMessage, translate);
+        super();
 
         this.activatedRoute.paramMap.subscribe(params => {
             const token = params.get('token');

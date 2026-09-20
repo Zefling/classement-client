@@ -53,7 +53,13 @@
             }
           </div>
           @if (user.classements) {
-            <navigate-result [classements]="user.classements" hideDerivatives hideUser onlyRanking />
+            <div class="filter-bar">
+              <mg-input>
+                <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
+                <mg-input-text [(ngModel)]="filterClassements" />
+              </mg-input>
+            </div>
+            <navigate-result [classements]="filteredClassements" hideDerivatives hideUser onlyRanking />
           }
         </mg-tab-content>
       }
@@ -64,19 +70,25 @@
       }
       @if (user.themes?.length || localThemes?.length) {
         <mg-tab-content id="themes">
+          <div class="filter-bar">
+            <mg-input>
+              <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
+              <mg-input-text [(ngModel)]="filterThemes" />
+            </mg-input>
+          </div>
           @if (localThemes?.length) {
-            <h3>{{ 'user.profile.list.browser.tab' | transloco }} ({{ localThemes!.length }})</h3>
+            <h3>{{ 'user.profile.list.browser.tab' | transloco }} ({{ filteredLocalThemes!.length }})</h3>
             <div class="theme-list">
-              @for (theme of localThemes; track theme) {
+              @for (theme of filteredLocalThemes; track theme) {
                 <theme-icon [theme]="theme" custom />
               }
             </div>
           }
           @if (user.themes?.length) {
-            <h3>{{ 'user.profile.list.server.tab' | transloco }} ({{ user.themes!.length }})</h3>
+            <h3>{{ 'user.profile.list.server.tab' | transloco }} ({{ filteredServerThemes!.length }})</h3>
 
             <div class="theme-list">
-              @for (theme of user.themes; track theme) {
+              @for (theme of filteredServerThemes; track theme) {
                 <theme-icon
                   [theme]="{
                     id: theme.themeId!,
