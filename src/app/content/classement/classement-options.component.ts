@@ -487,7 +487,6 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     changeCustomBackground(event: string | FileHandle) {
         if (this.dialogAdvancedOptions().isOpen() && (event as FileHandle).target) {
             this.updateImageBackgroundCustom((event as FileHandle).target?.result as string);
-            this.updateMode();
         }
     }
 
@@ -633,7 +632,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
             )
             .then(file => {
                 this.options()!.imageBackgroundCustom = file.reduceFile?.url || file.sourceFile.type;
-                this.updateList();
+                this.limitBackgroundImage();
                 this.detectChange();
             });
     }
