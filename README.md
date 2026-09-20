@@ -55,11 +55,15 @@ Current installation in this [website](https://classement.org/).
             - ✅ Bingo selection
                 - ✅ Symbol
                 - ✅ Emoji (with transformation)
+                - ✅ Randomize tile with seed
+            - ✅ Bingo text
+        - ✅ Table
     - ✅ Advanced customization of tiles, lines, background, etc.
-        - ✅ Background image
         - ✅ Direction
         - ✅ Color
         - ✅ Font
+        - ✅ Background image
+        - ✅ Background image for group names
     - ✅ Image tile
         - ✅ Reduce size
         - ✅ Change size
@@ -80,7 +84,7 @@ Current installation in this [website](https://classement.org/).
         - ✅ Emoji
     - ✅ External API
         - ✅ TMDB (server API if connected or API key required)
-        - ✅ anilist
+        - ✅ AniList
     - ✅ Keyboard navigation for edit rankings
         - ✅ Tierlist
         - ✅ Teams
@@ -88,6 +92,7 @@ Current installation in this [website](https://classement.org/).
         - ✅ Iceberg
         - ✅ Axis
         - ✅ Bingo
+        - ✅ Table
 - ✅ [With server](https://git.ikilote.net/classement/serveur) (in progress)
     - ✅ Create user
         - ✅ Simple create

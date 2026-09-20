@@ -1,5 +1,16 @@
 # Changelog - Standalone web app & API
 
+### 5.2.1 (2026-09-20)
+
+#### Standalone web app
+
+- Fix when change custom background
+
+#### With API activated only
+
+- Add filter on user page
+- Add filter on user page
+
 ### 5.2.0 (2026-09-18)
 
 #### Standalone web app

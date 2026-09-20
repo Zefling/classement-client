@@ -128,9 +128,7 @@
 
 <div>
   {{ 'home.app.name' | transloco }}
-  <a href="https://git.ikilote.net/classement/classement/-/blob/master/CHANGELOG.md" target="_blank">{{
-    'home.app.version' | transloco: { version: version }
-  }}</a>
+  <a routerLink="/infos/changelog">{{ 'home.app.version' | transloco: { version: version } }}</a>
 </div>
 
 <ng-template #discord>
