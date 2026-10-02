@@ -1,0 +1,91 @@
+<div class="bingo-container">
+  <table class="table-classement" [class.line-fusion]="options().borderSpacing < 0">
+    <tbody>
+      @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+        <tr (keydown)="selectMoveItem.emit({ event: $event, list: group.list })">
+          @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+            <td class="elements">
+              <div
+                class="drop-list"
+                cdkDropList
+                [cdkDropListData]="{ list: group.list, index }"
+                (cdkDropListDropped)="drop.emit($event)"
+                [class.selectable-group]="selectionTile() && item !== selectionTile()"
+                [class.selection-item]="item && item === selectionTile() && group === selectionGroup()"
+                #itemDiv
+                (clickEnter)="
+                  !selectionTile()
+                    ? selectItem.emit({ event: $event, group, item, index, div: itemDiv })
+                    : selectionGroupForItem.emit({ group, index })
+                "
+                (clickOutside)="selectItemClear.emit()"
+                (keydown)="selectItemByKey.emit({ event: $event, group, item, index })"
+              >
+                @if (item) {
+                  <div
+                    class="content-box"
+                    cdkDrag
+                    removeTile
+                    (removeElement)="removeFromGroup.emit({ list: group.list, index })"
+                    [mgContextMenu]="{ contextMenu: contextMenu(), data: { item, group, index } }"
+                    [style.--over-item-background]="item.bgColor"
+                    [style.--over-item-text-color]="item.txtColor"
+                    (ngInit)="selectionDivChange.emit(itemDiv)"
+                  >
+                    <div
+                      class="content content-render"
+                      [class.with-annotation]="item.annotation"
+                      [ngClass]="options().itemTextPosition"
+                      [id]="item.id"
+                      #tile
+                    >
+                      @if (item.url) {
+                        <div [class.image]="calcWidth(item, tile)">
+                          <img
+                            (ngInit)="calcWidth(item, tile); detectChanges.emit()"
+                            (load)="calcWidth(item, tile); detectChanges.emit()"
+                            [class.cover]="!options().itemWidthAuto && options().itemImageCover === true"
+                            [class.opti]="!options().itemWidthAuto && options().itemImageCover === 'opti'"
+                            src="{{ item.url }}"
+                            alt="{{ item.name }}"
+                          />
+                        </div>
+                      }
+                      @if (
+                        item.title !== undefined ||
+                        !item.url ||
+                        (options().itemTextMinLine && !options().itemTextPosition.endsWith('bubble'))
+                      ) {
+                        <div #title class="title" [class.title-item-width-auto]="options().itemWidthAuto">
+                          @if (!item.url) {
+                            <span
+                              class="title-span"
+                              contenteditable="true"
+                              (ngInit)="detectChanges.emit()"
+                              (mousedown)="$event.stopPropagation()"
+                              (click)="$event.stopPropagation()"
+                              (keydown.enter)="$event.preventDefault(); $any($event.target).blur()"
+                              (blur)="
+                                item.title = $any($event.target).innerText.trim(); globalChange.emit(); change.emit()
+                              "
+                              >{{ item.title || '' }}</span
+                            >
+                          } @else {
+                            <span class="title-span" (ngInit)="detectChanges.emit()">{{ item.title || '' }}</span>
+                          }
+                        </div>
+                      }
+                      <div class="tile-info" (clickEnter)="openTileInfo.emit(item)"></div>
+                    </div>
+                  </div>
+                } @else {
+                  <div class="drop-zone-empty-list"></div>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

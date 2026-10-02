@@ -1,0 +1,75 @@
+<div class="zone-classement-container">
+  <div
+    id="zone"
+    class="zone-classement"
+    cdkDropZone
+    [cdkDropListData]="{ list: groups()[0].list }"
+    (cdkDropListDropped)="drop.emit($event)"
+    (clickEnter)="clickZone.emit($event); selectionGroupForItem.emit(groups()[0])"
+    (dblclick)="createTile.emit($event)"
+    (auxclick)="stopEvent.emit($event)"
+    (keydown)="selectMoveItem.emit({ event: $event, list: groups()[0].list })"
+  >
+    @if (options().groups?.length) {
+      @switch (options().mode) {
+        @case ('iceberg') {
+          <zone-area [options]="options()" />
+        }
+        @case ('axis') {
+          <zone-axis [options]="options()" />
+        }
+      }
+    }
+    @for (item of groups()[0].list; track trackByFnFileString(index, item); let index = $index) {
+      @if (item) {
+        <div
+          class="content-box"
+          cdkDragElement
+          cdkDragBoundary=".zone-classement"
+          #element="cdkDragElement"
+          (ngInit)="initItem.emit({ element, pos: { x: item.x || 0, y: item.y || 0 } })"
+          (cdkDragMoved)="moveItem.emit({ event: $event, item, element })"
+          (cdkDragEnded)="moveItemEnd.emit()"
+          [cdkDragData]="{ x: item.x || 0, y: item.y || 0 }"
+          removeTile
+          (removeElement)="removeFromGroup.emit({ list: groups()[0].list, index })"
+          [mgContextMenu]="{ contextMenu: contextMenu(), data: { item, group: groups()[0], index } }"
+          [style.--over-item-background]="item.bgColor"
+          [style.--over-item-text-color]="item.txtColor"
+          #itemDiv
+          (clickEnter)="selectItem.emit({ event: $event, group: groups()[0], item, index, div: itemDiv })"
+          (clickOutside)="selectItemClear.emit()"
+          (keydown)="selectItemByKey.emit({ event: $event, group: groups()[0], item, index, drag: element })"
+          (ngInit)="selectionDivChange.emit(itemDiv); selectionDragChange.emit(element)"
+        >
+          <div
+            class="content content-render"
+            [ngClass]="options().itemTextPosition"
+            [class.with-annotation]="item.annotation"
+            [id]="item.id"
+            #tile
+          >
+            @if (item.url) {
+              <div [class.image]="calcWidth(item, tile)">
+                <img
+                  (ngInit)="calcWidth(item, tile); detectChanges.emit()"
+                  (load)="calcWidth(item, tile); detectChanges.emit()"
+                  [class.cover]="!options().itemWidthAuto && options().itemImageCover === true"
+                  [class.opti]="!options().itemWidthAuto && options().itemImageCover === 'opti'"
+                  src="{{ item.url }}"
+                  alt="{{ item.name }}"
+                />
+              </div>
+            }
+            @if (item.title || (options().itemTextMinLine && !options().itemTextPosition.endsWith('bubble'))) {
+              <div #title class="title" [class.title-item-width-auto]="options().itemWidthAuto">
+                <span class="title-span" (ngInit)="detectChanges.emit()">{{ item.title || '' }}</span>
+              </div>
+            }
+            <div class="tile-info" (clickEnter)="openTileInfo.emit(item)"></div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

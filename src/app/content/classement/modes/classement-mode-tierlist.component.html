@@ -1,0 +1,214 @@
+<table class="table-classement" [attr.dir]="options().direction" [class.line-fusion]="options().borderSpacing < 0">
+  <colgroup>
+    <col class="names" />
+    <col class="elements" />
+    <col class="actions" />
+  </colgroup>
+  <tbody>
+    @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+      <tr [class.option-reduce]="options().itemHeight < 100">
+        <td
+          class="names"
+          [style.--name-background]="color(group.bgColor, options().nameBackgroundOpacity)"
+          [style.--text-color]="group.txtColor"
+          [style.--name-bg-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
+        >
+          <div>
+            <label class="name">
+              <div class="auto-resize no-border" [attr.data-value]="input?.value">
+                <!-- not use magma -->
+                <textarea
+                  #input
+                  id="name-{{ indexGrp }}"
+                  rows="1"
+                  [(ngModel)]="group.name"
+                  (ngModelChangeDebounced)="globalChange.emit()"
+                  maxlength="500"
+                ></textarea>
+              </div>
+            </label>
+            <!-- pencil trigger for group popover -->
+            <span
+              class="mini-edit-options icon-edit-2"
+              [title]="'generator.group.popover' | transloco"
+              [mgPopover]="groupPopTpl"
+              mgPopoverPosition="bottom-start"
+              tabindex="0"
+              type="button"
+            ></span>
+            <!-- group popover template -->
+            <ng-template #groupPopTpl let-ctx>
+              <div class="options-popover">
+                <div class="popover-icons-row">
+                  <span
+                    class="color bg-color icon-background-color"
+                    [colorPicker]="group.bgColor"
+                    (colorClose)="group.bgColor = $event"
+                    [colorPickerTexts]="{
+                      hsl: 'magma.color.piker.hsl' | transloco,
+                      palette: 'magma.color.piker.palette' | transloco,
+                    }"
+                    [title]="'generator.group.bg-color' | transloco"
+                    tabindex="0"
+                    type="button"
+                  ></span>
+                  <span
+                    class="color txt-color icon-text-color"
+                    [colorPicker]="group.txtColor"
+                    colorPickerAlpha
+                    [colorPickerTexts]="{
+                      hsl: 'magma.color.piker.hsl' | transloco,
+                      palette: 'magma.color.piker.palette' | transloco,
+                    }"
+                    (colorClose)="group.txtColor = $event"
+                    [title]="'generator.group.txt-color' | transloco"
+                    tabindex="0"
+                    type="button"
+                  ></span>
+                  <div class="popover-actions">
+                    @if (!first) {
+                      <button
+                        class="button-up"
+                        [title]="'generator.group.up' | transloco"
+                        (click)="upLine.emit(indexGrp); ctx.close()"
+                      >
+                        <span class="icon-up"></span>
+                      </button>
+                    }
+                    @if (!last) {
+                      <button
+                        class="button-down"
+                        [title]="'generator.group.down' | transloco"
+                        (click)="downLine.emit(indexGrp); ctx.close()"
+                      >
+                        <span class="icon-down"></span>
+                      </button>
+                    }
+                    @if (!(first && last)) {
+                      <button
+                        class="button-suppr"
+                        [title]="'generator.line.delete' | transloco"
+                        (click)="deleteLine.emit(indexGrp); ctx.close()"
+                      >
+                        <span class="icon-remove"></span>
+                      </button>
+                    }
+                    <button
+                      class="button-add"
+                      [title]="'generator.line.add' | transloco"
+                      (click)="addLine.emit(indexGrp); ctx.close()"
+                    >
+                      <span class="icon icon-add"></span>
+                    </button>
+                    <span
+                      class="color group-options icon-edit-2"
+                      [title]="'generator.group.full-edit' | transloco"
+                      (clickEnter)="updateGroupOption.emit({ group, indexGrp, first, last }); ctx.close()"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </td>
+        <td class="elements">
+          <div
+            class="drop-list"
+            cdkDropList
+            cdkDropListOrientation="mixed"
+            [cdkDropListData]="{ list: group.list, index: -1 }"
+            (cdkDropListDropped)="drop.emit($event)"
+            [class.selectable-group]="group !== selectionGroup() && selectionTile() !== null"
+            (clickEnter)="selectionGroupForItem.emit(group)"
+            (keydown)="selectMoveItem.emit({ event: $event, list: group.list })"
+          >
+            @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+              @if (item) {
+                <div
+                  class="content-box"
+                  cdkDrag
+                  removeTile
+                  (removeElement)="removeFromGroup.emit({ list: group.list, index })"
+                  #itemDiv
+                  (clickEnter)="selectItem.emit({ event: $event, group, item, index, div: itemDiv })"
+                  (clickOutside)="selectItemClear.emit()"
+                  (keydown)="selectItemByKey.emit({ event: $event, group, item, index })"
+                  (ngInit)="selectionDivChange.emit(itemDiv)"
+                  [mgContextMenu]="{ contextMenu: contextMenu(), data: { item, group, index } }"
+                  [style.--over-item-background]="item.bgColor"
+                  [style.--over-item-text-color]="item.txtColor"
+                  [class.selection-item]="item === selectionTile() && group === selectionGroup()"
+                >
+                  <div
+                    class="content content-render"
+                    [class.with-annotation]="item.annotation"
+                    [ngClass]="options().itemTextPosition"
+                    [id]="item.id"
+                    #tile
+                  >
+                    @if (item.url) {
+                      <div [class.image]="calcWidth(item, tile)">
+                        <img
+                          (ngInit)="detectChanges.emit()"
+                          (load)="detectChanges.emit()"
+                          [class.cover]="!options().itemWidthAuto && options().itemImageCover === true"
+                          [class.opti]="!options().itemWidthAuto && options().itemImageCover === 'opti'"
+                          src="{{ item.url }}"
+                          alt="{{ item.name }}"
+                        />
+                      </div>
+                    }
+                    @if (item.title || (options().itemTextMinLine && !options().itemTextPosition.endsWith('bubble'))) {
+                      <div #title class="title" [class.title-item-width-auto]="options().itemWidthAuto">
+                        <span class="title-span" (ngInit)="detectChanges.emit()">{{ item.title || '' }}</span>
+                      </div>
+                    }
+                    <div class="tile-info" (clickEnter)="openTileInfo.emit(item)"></div>
+                  </div>
+                </div>
+              }
+            }
+            @if (group.list.length === 0) {
+              <div class="drop-zone-empty-list"></div>
+            }
+          </div>
+        </td>
+        <td class="actions">
+          <div class="button-actions">
+            @if (!first) {
+              <button class="button-up" [title]="'generator.group.up' | transloco" (click)="upLine.emit(indexGrp)">
+                <span class="icon-up"></span>
+              </button>
+            }
+            @if (!last) {
+              <button
+                class="button-down"
+                [title]="'generator.group.down' | transloco"
+                (click)="downLine.emit(indexGrp)"
+              >
+                <span class="icon-down"></span>
+              </button>
+            }
+            @if (!(first && last)) {
+              <button
+                class="button-suppr"
+                [title]="'generator.line.delete' | transloco"
+                (click)="deleteLine.emit(indexGrp)"
+              >
+                <span class="icon-remove"></span>
+              </button>
+            }
+            <button class="button-add" [title]="'generator.line.add' | transloco" (click)="addLine.emit(indexGrp)">
+              <span class="icon icon-add"></span>
+            </button>
+            <span
+              class="color group-options icon-edit-2"
+              [title]="'generator.group.full-edit' | transloco"
+              (clickEnter)="updateGroupOption.emit({ group, indexGrp, first, last })"
+            ></span>
+          </div>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

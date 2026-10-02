@@ -99,8 +99,12 @@ export abstract class EditKeyBoardService {
                         } else if (isTable && indexGp === -1) {
                             // from the main list, send the tile into the table
                             this.moveTableFromMainList(component, event, group, index);
-                        } else {
+                        } else if (isTable) {
                             this.stopEvent(event);
+                        } else {
+                            // default / teams : move the tile to the group above (or the last
+                            // group when coming from the main list).
+                            this.moveUp(component, event, group, index, indexGp);
                         }
                         break;
                     case 'ArrowDown':
@@ -115,8 +119,12 @@ export abstract class EditKeyBoardService {
                             this.moveRight(component, event, group, index, indexGp);
                         } else if (isTable && event.shiftKey) {
                             this.moveTableCell(component, event, +1, 0);
-                        } else {
+                        } else if (isTable) {
                             this.stopEvent(event);
+                        } else {
+                            // default / teams : move the tile to the group below (or the main
+                            // list when coming from the last group).
+                            this.moveDown(component, event, group, index, indexGp);
                         }
                         break;
                     case 'Home':

@@ -34,22 +34,18 @@ import {
     LoggerLevel,
     MagmaClickEnterDirective,
     MagmaClickOutsideDirective,
-    MagmaColorPicker,
     MagmaContextMenu,
     MagmaDialog,
     MagmaEllipsisButton,
     MagmaEllipsisItemComponent,
     MagmaInput,
     MagmaInputCheckbox,
-    MagmaInputElement,
     MagmaInputTextarea,
     MagmaLoader,
     MagmaLoaderMessage,
     MagmaMessageType,
     MagmaMessages,
     MagmaNgInitDirective,
-    MagmaNgModelChangeDebouncedDirective,
-    MagmaPopoverDirective,
     MagmaSpinner,
     MagmaStopPropagationDirective,
     MagmaTooltipDirective,
@@ -98,15 +94,16 @@ import { HelpIcebergComponent } from './help/help.iceberg.component';
 import { HelpTableComponent } from './help/help.table.component';
 import { HelpTeamsComponent } from './help/help.teams.component';
 import { HelpTierListComponent } from './help/help.tierlist.component';
+import { ClassementModeBingoComponent } from './modes/classement-mode-bingo.component';
+import { ClassementModeColumnsComponent } from './modes/classement-mode-columns.component';
+import { ClassementModeTableComponent } from './modes/classement-mode-table.component';
+import { ClassementModeTierlistComponent } from './modes/classement-mode-tierlist.component';
+import { ClassementModeZoneComponent } from './modes/classement-mode-zone.component';
 
 import { ImportJsonComponent, ImportJsonEvent } from '../../components/import-json/import-json.component';
 import { SeeClassementComponent } from '../../components/see-classement/see-classement.component';
-import { ZoneAreaComponent } from '../../components/zone-area/zone-area.component';
-import { ZoneAxisComponent } from '../../components/zone-axis/zone-axis.component';
 import { CdkDragElement } from '../../directives/drag-element.directive';
 import { DropImageDirective } from '../../directives/drop-image.directive';
-import { CdkDropZone } from '../../directives/dropzone.directive';
-import { RemoveTileDirective } from '../../directives/remove-tile.directive';
 import {
     Classement,
     ColOption,
@@ -148,21 +145,16 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         FormsModule,
         TranslocoPipe,
         CdkDropListGroup,
-        CdkDragElement,
         CdkDropList,
         CdkDrag,
-        CdkDropZone,
         // magma
         MagmaContextMenu,
         MagmaNgInitDirective,
         MagmaTooltipDirective,
         MagmaDialog,
-        MagmaNgModelChangeDebouncedDirective,
         MagmaInput,
         MagmaInputCheckbox,
         MagmaInputTextarea,
-        MagmaInputElement,
-        MagmaColorPicker,
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
         MagmaLoader,
@@ -171,12 +163,8 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         MagmaStopPropagationDirective,
         MagmaEllipsisButton,
         MagmaEllipsisItemComponent,
-        MagmaPopoverDirective,
         // internal
-        RemoveTileDirective,
         DropImageDirective,
-        ZoneAreaComponent,
-        ZoneAxisComponent,
         SeeClassementComponent,
         ImportJsonComponent,
         ClassementOptionsComponent,
@@ -194,6 +182,12 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         ExternalTmdbComponent,
         ExternalAnilistComponent,
         FileSizePipe,
+        // modes
+        ClassementModeTierlistComponent,
+        ClassementModeZoneComponent,
+        ClassementModeBingoComponent,
+        ClassementModeTableComponent,
+        ClassementModeColumnsComponent,
     ],
     host: {
         '[class.option-reduce]': 'optionReduce',
@@ -306,11 +300,44 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     contextMenu: ContextMenuItem<{ item: FileType; group: FormattedGroup; index: number }>[] = [];
     contextMenuList: ContextMenuItem<{ item: FileType; index: number }>[] = [];
 
-    selectionTile: FileType = null;
-    selectionGroup: FormattedGroup | null = null;
+    // Selection state is exposed to the mode sub-components through signal inputs.
+    // We keep the historical property-style API (get/set) so the keyboard service can
+    // keep reading/writing `component.selectionTile = ...` unchanged, while the backing
+    // signals make the sub-components react reliably in zoneless mode.
+    readonly selectionTileSig = signal<FileType>(null);
+    readonly selectionGroupSig = signal<FormattedGroup | null>(null);
+    readonly selectionDivSig = signal<HTMLDivElement | null>(null);
+    readonly selectionDragSig = signal<CdkDragElement | null>(null);
+
+    get selectionTile(): FileType {
+        return this.selectionTileSig();
+    }
+    set selectionTile(value: FileType) {
+        this.selectionTileSig.set(value);
+    }
+
+    get selectionGroup(): FormattedGroup | null {
+        return this.selectionGroupSig();
+    }
+    set selectionGroup(value: FormattedGroup | null) {
+        this.selectionGroupSig.set(value);
+    }
+
+    get selectionDiv(): HTMLDivElement | null {
+        return this.selectionDivSig();
+    }
+    set selectionDiv(value: HTMLDivElement | null) {
+        this.selectionDivSig.set(value);
+    }
+
+    get selectionDrag(): CdkDragElement | null {
+        return this.selectionDragSig();
+    }
+    set selectionDrag(value: CdkDragElement | null) {
+        this.selectionDragSig.set(value);
+    }
+
     selectionIndex: number | null = null;
-    selectionDiv: HTMLDivElement | null = null;
-    selectionDrag: CdkDragElement | null = null;
 
     // export
     webp = browser.isEngine('blink') || browser.isEngine('gecko');

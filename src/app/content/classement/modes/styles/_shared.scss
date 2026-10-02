@@ -1,0 +1,712 @@
+/* drag'n drop -------------------------------------------------------------- */
+
+.drop-list {
+    display: flex;
+    flex-wrap: wrap;
+    border: var(--over-drop-list-border-size, var(--drop-list-border-size)) solid
+        var(--over-drop-list-border-color, var(--drop-list-border-color));
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
+    background: var(--over-drop-list-background, var(--drop-list-background));
+    min-height: calc(
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
+    );
+    overflow: hidden;
+}
+
+.height-auto {
+    align-items: center;
+}
+
+.drop-zone-empty-list {
+    flex: 1;
+    order: 2;
+    height: calc(
+        var(--over-item-height, 150px) +
+            (var(--over-item-padding, 10px) + var(--over-item-border, 1px) + var(--over-item-margin, 2px)) * 2
+    );
+}
+
+.content-box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: move;
+    box-sizing: content-box;
+    margin: var(--over-item-margin, 2px);
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
+    background: var(--over-item-background, var(--content-box-background));
+    padding: var(--over-item-padding, 10px);
+    width: var(--over-item-width, 150px);
+    min-width: var(--over-item-min-width, 0px);
+    max-width: var(--over-item-max-width, 300px);
+    height: var(--over-item-height, 150px);
+    min-height: var(--over-item-min-height, 0px);
+    max-height: var(--over-item-max-height, 300px);
+    color: var(--over-item-color, var(--content-box-color));
+    font-size: 14px;
+
+    &.selection-item {
+        z-index: 1;
+        outline: 2px solid var(--neutral950);
+        outline-offset: -2px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    &.cover {
+        width: max-content;
+    }
+
+    .image {
+        display: flex;
+        flex: 1 1 100%;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .tile-info {
+        display: none;
+    }
+
+    &:hover .tile-info,
+    &.with-annotation .tile-info {
+        display: block;
+    }
+}
+
+.add-file,
+.add-text {
+    align-self: stretch;
+    cursor: pointer;
+    background: var(--tile-add-file-background);
+    width: max-content;
+    min-width: 100px;
+    max-width: 200px;
+    height: auto;
+    color: var(--tile-add-file-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+.drop-zone-empty-list + .add-file {
+    width: calc(var(--over-item-width, var(--item-width, 150px)) * 2);
+}
+
+.cdk-drag-preview {
+    box-sizing: content-box;
+    box-shadow:
+        0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
+    /* fix size */
+    padding: var(--over-item-padding, 10px) !important;
+    width: var(--over-item-width, 150px) !important;
+    min-width: 40px;
+    height: var(--over-item-height, 150px) !important;
+    min-height: 40px;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0.3;
+}
+
+.cdk-drag-animating {
+    transition: var(--cdk-drag-animating-transition);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.cdk-drop-list {
+    display: flex;
+}
+
+.cdk-drop-list:last-child {
+    flex: 1;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* buttons ----------------------------------------------------------------- */
+
+.button-actions {
+    display: grid;
+    grid-template:
+        'up suppr' 1fr
+        'down add' 1fr /
+        auto 1fr;
+    gap: 3px;
+
+    button {
+        margin: 0;
+        padding: 10px;
+        white-space: nowrap;
+
+        .option-reduce & {
+            padding: 6px;
+        }
+    }
+}
+
+.button-up {
+    grid-area: up;
+}
+
+.button-down {
+    grid-area: down;
+}
+
+.button-right {
+    grid-area: right;
+}
+
+.button-left {
+    grid-area: left;
+}
+
+.button-suppr {
+    grid-area: suppr;
+}
+
+.button-add {
+    grid-area: add;
+}
+
+.icon-share {
+    vertical-align: -5px;
+    font-size: 28px;
+    line-height: 0;
+}
+
+/* images */
+
+img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+
+    &.cover,
+    &.opti {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &.opti {
+        object-fit: contain;
+    }
+}
+
+/* table -------------------------------------------------------------------- */
+
+.table-classement {
+    border-spacing: var(--over-drop-border-spacing, var(--drop-list-border-spacing));
+    background-image: var(--over-image-url);
+    background-repeat: repeat;
+    background-color: var(--over-image-background, var(--background));
+    min-width: 100%;
+    height: 100%; /* fix for Chromium */
+
+    ::ng-deep * {
+        font-family: var(--over-font), 'Roboto';
+    }
+
+    .click-enter[tabindex]:not(button, a[href]):hover {
+        background: color-mix(
+            in hsl,
+            var(--over-drop-list-background, var(--drop-list-background)) 80%,
+            transparent 20%
+        );
+    }
+}
+
+.zone-classement {
+    border: 1px solid var(--over-drop-list-border-color, var(--drop-list-border-radius));
+    background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
+    background-color: var(--over-image-background, var(--drop-list-background));
+    width: var(--over-image-width, var(--image-width));
+    height: var(--over-image-height, var(--image-height));
+
+    ::ng-deep * {
+        font-family: var(--over-font), 'Roboto';
+    }
+
+    &.cdk-drop-list-dragging,
+    &.cdk-drop-list-receiving {
+        ::ng-deep * {
+            pointer-events: none;
+        }
+    }
+}
+
+.elements {
+    width: 100%;
+}
+
+.names {
+    border: 1px solid var(--name-border-color);
+    border-radius: var(--over-drop-border-radius, var(--drop-list-border-radius));
+    background-image: var(--name-bg-image);
+    background-position: center;
+    background-size: var(--over-name-bg-image-size, cover);
+    background-repeat: no-repeat;
+    background-color: var(--name-background);
+    width: var(--over-name-width, 150px);
+    min-width: var(--over-name-width, 150px);
+    height: 100%;
+    text-align: center;
+
+    & > div {
+        display: grid;
+        position: relative;
+        grid-template:
+            'a a' auto
+            '. b' 0 /
+            1fr auto;
+        height: 100%;
+
+        & > div {
+            width: 100%;
+        }
+    }
+
+    .name {
+        display: flex;
+        grid-area: a;
+        align-items: center;
+    }
+}
+
+.auto-resize {
+    display: inline-grid;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    font-weight: inherit;
+    font-size: inherit;
+
+    @supports (field-sizing: content) {
+        textarea {
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            field-sizing: content;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
+        }
+    }
+
+    @supports not (field-sizing: content) {
+        &::after,
+        textarea {
+            grid-area: 1 / 1;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid var(--input-border-color);
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+            height: 100%;
+            resize: none;
+            color: var(--text-color);
+            font-size: var(--over-name-font-size, 120%);
+            line-height: 1em;
+        }
+
+        &::after {
+            visibility: hidden;
+            border-color: transparent;
+            content: attr(data-value) ' ';
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }
+
+    &.no-border {
+        &::after,
+        textarea {
+            appearance: none;
+            outline: 0;
+            border: 0;
+            background: none;
+            text-align: center;
+        }
+    }
+}
+
+.classement-edit {
+    .group-options,
+    span.group-options {
+        display: none;
+    }
+}
+
+span.color {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #fff8;
+    padding: 2px 5px;
+    width: 30px;
+    height: 30px;
+    color: #000;
+    font-size: 24px;
+
+    &:hover {
+        --over-drop-list-background: #fff6;
+        color: #000;
+    }
+}
+
+// The pencil that triggers the color/actions popover (default/teams/columns/table).
+// Shared pastille look; each mode only overrides its positioning below.
+.mini-edit-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #fff8;
+    width: 25px;
+    height: 25px;
+    color: #000;
+    font-size: 20px;
+
+    &:hover {
+        --over-drop-list-background: #fff6;
+        background-color: #fff;
+        color: #000;
+    }
+
+    .option-reduce & {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+    }
+}
+
+[drop-image] .content-box {
+    position: relative;
+}
+
+.btn-delete {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 2px;
+    color: var(--alert-color);
+}
+
+.auto-save {
+    text-align: center;
+}
+
+/* text only */
+.title:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    --over-item-text-size: var(--over-item-text-only-size, 24px);
+}
+
+/* image, text only */
+.title:not(:first-child),
+.title:first-child span {
+    font-size: var(--over-item-text-size, 12px);
+    text-align: center;
+    word-wrap: break-word;
+    max-width: min(100%, var(--over-item-max-width, 300px));
+    overflow: visible;
+    white-space: collapse;
+    word-break: keep-all;
+}
+
+.title {
+    color: var(--over-item-text-color, var(--content-box-text));
+
+    &:not(.title-item-width-auto) span {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        min-height: calc(1.25em * var(--over-item-text-min-line));
+        -webkit-line-clamp: var(--over-item-text-max-line);
+        line-clamp: var(--over-item-text-max-line);
+        overflow: hidden;
+    }
+
+    & > span[contenteditable] {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    &:has(> span[contenteditable]):hover > span[contenteditable] {
+        background-color: var(--neutral050);
+    }
+}
+
+.title-item-width-auto {
+    text-align: center;
+
+    span {
+        display: inline-block;
+        margin-bottom: -2px;
+        min-width: var(--over-item-min-width, 0px);
+        max-width: var(--over-item-max-width, 300px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.content-render {
+    position: relative;
+
+    &.top {
+        flex-direction: column-reverse;
+    }
+
+    &.bottom-over .title,
+    &.bottom-over-hover .title,
+    &.bottom-bubble .title,
+    &.top-over .title,
+    &.top-over-hover .title,
+    &.top-bubble .title {
+        width: 100%;
+        color: var(--over-item-text-color, var(--content-box-over-text));
+        text-align: center;
+
+        &:not(:first-child) {
+            position: absolute;
+            background: var(--over-item-text-background, var(--content-box-text-background));
+        }
+    }
+
+    &.bottom-over .title {
+        bottom: 0;
+    }
+
+    &.bottom-over-hover {
+        overflow: hidden;
+
+        .title:not(:first-child) {
+            bottom: -100%;
+            transition: all 0.15s;
+        }
+
+        &:hover .title {
+            bottom: 0px;
+        }
+    }
+
+    &.bottom-bubble .title:not(:first-child),
+    &.top-bubble .title:not(:first-child) {
+        bottom: 5px;
+        align-self: center;
+        box-sizing: border-box;
+        margin: auto;
+        border-radius: 1em;
+        padding: 3px 7px;
+        width: auto;
+        max-width: calc(100% - 10px);
+    }
+
+    &.top-over .title {
+        top: 0;
+    }
+
+    &.top-over-hover {
+        overflow: hidden;
+
+        .title:not(:first-child) {
+            top: -100%;
+            transition: all 0.15s;
+        }
+
+        &:hover .title {
+            top: 0px;
+        }
+    }
+
+    &.top-bubble .title:not(:first-child) {
+        top: 10px;
+        bottom: auto;
+    }
+
+    &.hidden .title:not(:first-child) {
+        display: none;
+    }
+}
+
+.input-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 0;
+    background: var(--input-background-transparent);
+    width: calc(100% - 30px);
+    font-size: 75%;
+    text-align: center;
+    --ics: var(--input-color-shadow);
+    padding: 0;
+    text-shadow:
+        0 -1px var(--ics),
+        0 1px var(--ics),
+        -1px -1px var(--ics),
+        1px 1px var(--ics),
+        0 -1px 2px var(--ics),
+        0 1px 2px var(--ics),
+        -1px -1px 2px var(--ics),
+        1px 1px 2px var(--ics);
+}
+
+.tile-info {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    border-radius: 50%;
+
+    &::before {
+        display: block;
+        cursor: default;
+        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
+        border: 1px solid var(--tile-info-border-color);
+        border-radius: 50%;
+        background: var(--tile-info-background);
+        width: 16px;
+        height: 16px;
+        content: 'i';
+        color: var(--tile-info-text-color);
+        line-height: 16px;
+        text-align: center;
+        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
+    }
+}
+
+.classement-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+
+    :first-child {
+        flex: 1;
+    }
+}
+
+@media (hover: none) and (device-width: 100vw) and (device-height: 100vh) {
+    #fullscreen-view {
+        display: none;
+    }
+}
+
+.enlarge,
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: var(--background);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    & h3 {
+        margin: 15px;
+    }
+}
+
+.current-list {
+    width: 100%;
+
+    .cdk-drop-list,
+    .cdk-drop-list .content-box {
+        min-width: 80px;
+        min-height: 40px;
+
+        &.add-file,
+        &.add-text {
+            box-sizing: border-box;
+            padding: 5px;
+        }
+    }
+}
+
+.options-popover {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: var(--block-border);
+    border-radius: var(--block-radius, 6px);
+    background: var(--background);
+    padding: 8px 10px;
+
+    .popover-icons-row {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 6px;
+
+        .popover-actions {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 4px;
+            margin-left: auto;
+
+            button {
+                margin: 0;
+                padding: 6px 8px;
+            }
+        }
+    }
+
+    .popover-col-width {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-top: 1px solid var(--neutral200);
+        padding-top: 6px;
+    }
+
+    .popover-icons-row,
+    .popover-col-width {
+        .click-enter:hover {
+            background-color: #fff4;
+        }
+    }
+}
+
+/* stream mode : hide tile edit affordances inside the mode sub-components.
+   The parent (classement-edit) owns the .stream-mode host class, so we reach it
+   via :host-context. .tile-info lives inside each mode's tile markup. */
+:host-context(.stream-mode) {
+    :where(.tile-info, .btn-delete, .input-title) {
+        visibility: hidden;
+    }
+}

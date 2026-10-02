@@ -1,0 +1,69 @@
+// fix background (was in :where(.mode-default, .mode-teams, .mode-columns, .mode-bingo))
+.click-enter[tabindex]:not(button, a[href]):hover {
+    background: var(--over-drop-list-background, var(--drop-list-background));
+}
+
+// position the popover trigger in the name cell
+.names .mini-edit-options {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    grid-area: b;
+    justify-self: end;
+}
+
+:host-context(.option-reduce) .names .mini-edit-options {
+    display: none;
+}
+
+@media screen and (width <= 769px) {
+    :host-context(.option-reduce) .names .mini-edit-options {
+        display: block;
+    }
+}
+
+// tierlist / teams specifics
+.drop-list {
+    margin-bottom: -2px;
+}
+
+.selectable-group:focus:not(:has(.selection-item:focus)) {
+    outline: 2px solid var(--neutral950);
+}
+
+.selection-item {
+    outline: 3px solid var(--neutral950);
+    outline-offset: -1px;
+}
+
+.line-fusion {
+    td.names {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    td .drop-list {
+        border-right-width: var(--over-drop-list-border-size);
+        border-left-width: calc(var(--over-drop-list-border-size) / 2);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    tr:not(:last-child) td {
+        &.names,
+        .drop-list {
+            border-bottom-width: calc(var(--over-drop-list-border-size) / 2);
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    tr:not(:first-child) td {
+        &.names,
+        .drop-list {
+            border-top-width: calc(var(--over-drop-list-border-size) / 2);
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+}
