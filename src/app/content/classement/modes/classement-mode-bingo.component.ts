@@ -1,5 +1,4 @@
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
-import { NgClass } from '@angular/common';
 import { Component, output } from '@angular/core';
 
 import {
@@ -11,6 +10,7 @@ import {
 
 import { ClassementModeBase } from './classement-mode-base';
 
+import { TileContentComponent } from '../../../components/tile-content/tile-content.component';
 import { RemoveTileDirective } from '../../../directives/remove-tile.directive';
 import { FormattedGroup } from '../../../interface/interface';
 
@@ -19,7 +19,6 @@ import { FormattedGroup } from '../../../interface/interface';
     templateUrl: './classement-mode-bingo.component.html',
     styleUrl: './classement-mode-bingo.component.scss',
     imports: [
-        NgClass,
         CdkDropList,
         CdkDrag,
         MagmaContextMenu,
@@ -27,6 +26,7 @@ import { FormattedGroup } from '../../../interface/interface';
         MagmaClickEnterDirective,
         MagmaClickOutsideDirective,
         RemoveTileDirective,
+        TileContentComponent,
     ],
 })
 export class ClassementModeBingoComponent extends ClassementModeBase {

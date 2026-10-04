@@ -139,32 +139,12 @@
                   [style.--over-item-text-color]="item.txtColor"
                   [class.selection-item]="item === selectionTile() && group === selectionGroup()"
                 >
-                  <div
-                    class="content content-render"
-                    [class.with-annotation]="item.annotation"
-                    [ngClass]="options().itemTextPosition"
-                    [id]="item.id"
-                    #tile
-                  >
-                    @if (item.url) {
-                      <div [class.image]="calcWidth(item, tile)">
-                        <img
-                          (ngInit)="detectChanges.emit()"
-                          (load)="detectChanges.emit()"
-                          [class.cover]="!options().itemWidthAuto && options().itemImageCover === true"
-                          [class.opti]="!options().itemWidthAuto && options().itemImageCover === 'opti'"
-                          src="{{ item.url }}"
-                          alt="{{ item.name }}"
-                        />
-                      </div>
-                    }
-                    @if (item.title || (options().itemTextMinLine && !options().itemTextPosition.endsWith('bubble'))) {
-                      <div #title class="title" [class.title-item-width-auto]="options().itemWidthAuto">
-                        <span class="title-span" (ngInit)="detectChanges.emit()">{{ item.title || '' }}</span>
-                      </div>
-                    }
-                    <div class="tile-info" (clickEnter)="openTileInfo.emit(item)"></div>
-                  </div>
+                  <tile-content
+                    [item]="item"
+                    [options]="options()"
+                    (detectChanges)="detectChanges.emit()"
+                    (openTileInfo)="openTileInfo.emit($event)"
+                  />
                 </div>
               }
             }

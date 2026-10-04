@@ -144,6 +144,9 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
             this.prefs.onChange.subscribe(() => {
                 this.getContextMenu();
             }),
+            this.globalService.onInfoImmediatChange.subscribe(() => {
+                this.detectChanges();
+            }),
         );
     }
 

@@ -53,38 +53,6 @@
     }
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
-
-    &.cover {
-        width: max-content;
-    }
-
-    .image {
-        display: flex;
-        flex: 1 1 100%;
-        justify-content: center;
-        align-items: center;
-        min-width: 0;
-        min-height: 0;
-    }
-
-    .tile-info {
-        display: none;
-    }
-
-    &:hover .tile-info,
-    &.with-annotation .tile-info {
-        display: block;
-    }
-}
-
 .add-file,
 .add-text {
     align-self: stretch;
@@ -191,26 +159,6 @@
     vertical-align: -5px;
     font-size: 28px;
     line-height: 0;
-}
-
-/* images */
-
-img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-
-    &.cover,
-    &.opti {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    &.opti {
-        object-fit: contain;
-    }
 }
 
 /* table -------------------------------------------------------------------- */
@@ -427,142 +375,6 @@ span.color {
     text-align: center;
 }
 
-/* text only */
-.title:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    --over-item-text-size: var(--over-item-text-only-size, 24px);
-}
-
-/* image, text only */
-.title:not(:first-child),
-.title:first-child span {
-    font-size: var(--over-item-text-size, 12px);
-    text-align: center;
-    word-wrap: break-word;
-    max-width: min(100%, var(--over-item-max-width, 300px));
-    overflow: visible;
-    white-space: collapse;
-    word-break: keep-all;
-}
-
-.title {
-    color: var(--over-item-text-color, var(--content-box-text));
-
-    &:not(.title-item-width-auto) span {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        min-height: calc(1.25em * var(--over-item-text-min-line));
-        -webkit-line-clamp: var(--over-item-text-max-line);
-        line-clamp: var(--over-item-text-max-line);
-        overflow: hidden;
-    }
-
-    & > span[contenteditable] {
-        min-width: 100%;
-        text-align: center;
-    }
-
-    &:has(> span[contenteditable]):hover > span[contenteditable] {
-        background-color: var(--neutral050);
-    }
-}
-
-.title-item-width-auto {
-    text-align: center;
-
-    span {
-        display: inline-block;
-        margin-bottom: -2px;
-        min-width: var(--over-item-min-width, 0px);
-        max-width: var(--over-item-max-width, 300px);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
-.content-render {
-    position: relative;
-
-    &.top {
-        flex-direction: column-reverse;
-    }
-
-    &.bottom-over .title,
-    &.bottom-over-hover .title,
-    &.bottom-bubble .title,
-    &.top-over .title,
-    &.top-over-hover .title,
-    &.top-bubble .title {
-        width: 100%;
-        color: var(--over-item-text-color, var(--content-box-over-text));
-        text-align: center;
-
-        &:not(:first-child) {
-            position: absolute;
-            background: var(--over-item-text-background, var(--content-box-text-background));
-        }
-    }
-
-    &.bottom-over .title {
-        bottom: 0;
-    }
-
-    &.bottom-over-hover {
-        overflow: hidden;
-
-        .title:not(:first-child) {
-            bottom: -100%;
-            transition: all 0.15s;
-        }
-
-        &:hover .title {
-            bottom: 0px;
-        }
-    }
-
-    &.bottom-bubble .title:not(:first-child),
-    &.top-bubble .title:not(:first-child) {
-        bottom: 5px;
-        align-self: center;
-        box-sizing: border-box;
-        margin: auto;
-        border-radius: 1em;
-        padding: 3px 7px;
-        width: auto;
-        max-width: calc(100% - 10px);
-    }
-
-    &.top-over .title {
-        top: 0;
-    }
-
-    &.top-over-hover {
-        overflow: hidden;
-
-        .title:not(:first-child) {
-            top: -100%;
-            transition: all 0.15s;
-        }
-
-        &:hover .title {
-            top: 0px;
-        }
-    }
-
-    &.top-bubble .title:not(:first-child) {
-        top: 10px;
-        bottom: auto;
-    }
-
-    &.hidden .title:not(:first-child) {
-        display: none;
-    }
-}
-
 .input-title {
     position: absolute;
     bottom: 0;
@@ -583,29 +395,6 @@ span.color {
         0 1px 2px var(--ics),
         -1px -1px 2px var(--ics),
         1px 1px 2px var(--ics);
-}
-
-.tile-info {
-    position: absolute;
-    top: 3px;
-    right: 5px;
-    border-radius: 50%;
-
-    &::before {
-        display: block;
-        cursor: default;
-        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
-        border: 1px solid var(--tile-info-border-color);
-        border-radius: 50%;
-        background: var(--tile-info-background);
-        width: 16px;
-        height: 16px;
-        content: 'i';
-        color: var(--tile-info-text-color);
-        line-height: 16px;
-        text-align: center;
-        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
-    }
 }
 
 .classement-top {
@@ -704,9 +493,9 @@ span.color {
 
 /* stream mode : hide tile edit affordances inside the mode sub-components.
    The parent (classement-edit) owns the .stream-mode host class, so we reach it
-   via :host-context. .tile-info lives inside each mode's tile markup. */
+   via :host-context. .btn-delete and .input-title live in the modes' own markup. */
 :host-context(.stream-mode) {
-    :where(.tile-info, .btn-delete, .input-title) {
+    :where(.btn-delete, .input-title) {
         visibility: hidden;
     }
 }

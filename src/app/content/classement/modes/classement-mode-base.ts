@@ -1,11 +1,12 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Directive, input, output } from '@angular/core';
+import { ChangeDetectorRef, DestroyRef, Directive, inject, input, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { ContextMenuItem } from '@ikilote/magma';
 
 import { CdkDragElement } from '../../../directives/drag-element.directive';
 import { FileString, FileType, FormattedGroup, GroupOption, Options } from '../../../interface/interface';
-import { Utils } from '../../../tools/utils';
+import { GlobalService } from '../../../services/global.service';
 
 /** Payload emitted when a tile is (de)selected via mouse/keyboard. */
 export interface SelectItemEvent {
@@ -34,6 +35,9 @@ export interface SelectItemByKeyEvent {
  */
 @Directive()
 export abstract class ClassementModeBase {
+    private readonly global = inject(GlobalService);
+    private readonly cd = inject(ChangeDetectorRef);
+
     // shared inputs
     readonly options = input.required<Options>();
     readonly groups = input.required<FormattedGroup[]>();
@@ -52,10 +56,10 @@ export abstract class ClassementModeBase {
     readonly detectChanges = output<void>();
     readonly selectionDivChange = output<HTMLDivElement | null>();
 
-    /** Real width computation for the width-auto tile mode. */
-    calcWidth(item: FileString, tile: HTMLElement | null): boolean {
-        Utils.calcWidth(this.options(), item, tile);
-        return true;
+    constructor() {
+        this.global.onInfoImmediatChange.pipe(takeUntilDestroyed(inject(DestroyRef))).subscribe(() => {
+            this.cd.detectChanges();
+        });
     }
 
     trackByFnFileString(_index: number, item: FileType) {

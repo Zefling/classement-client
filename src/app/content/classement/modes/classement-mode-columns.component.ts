@@ -1,5 +1,4 @@
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -16,6 +15,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { ClassementModeGroupBase } from './classement-mode-base';
 
+import { TileContentComponent } from '../../../components/tile-content/tile-content.component';
 import { RemoveTileDirective } from '../../../directives/remove-tile.directive';
 import { color } from '../../../tools/function';
 
@@ -24,7 +24,6 @@ import { color } from '../../../tools/function';
     templateUrl: './classement-mode-columns.component.html',
     styleUrl: './classement-mode-columns.component.scss',
     imports: [
-        NgClass,
         FormsModule,
         TranslocoPipe,
         CdkDropList,
@@ -37,6 +36,7 @@ import { color } from '../../../tools/function';
         MagmaClickOutsideDirective,
         MagmaPopoverDirective,
         RemoveTileDirective,
+        TileContentComponent,
     ],
 })
 export class ClassementModeColumnsComponent extends ClassementModeGroupBase {

@@ -1,5 +1,4 @@
 import { CdkDragMove } from '@angular/cdk/drag-drop';
-import { NgClass } from '@angular/common';
 import { Component, output } from '@angular/core';
 
 import {
@@ -11,6 +10,7 @@ import {
 
 import { ClassementModeBase } from './classement-mode-base';
 
+import { TileContentComponent } from '../../../components/tile-content/tile-content.component';
 import { ZoneAreaComponent } from '../../../components/zone-area/zone-area.component';
 import { ZoneAxisComponent } from '../../../components/zone-axis/zone-axis.component';
 import { CdkDragElement } from '../../../directives/drag-element.directive';
@@ -23,7 +23,6 @@ import { FileString, FormattedGroup } from '../../../interface/interface';
     templateUrl: './classement-mode-zone.component.html',
     styleUrl: './classement-mode-zone.component.scss',
     imports: [
-        NgClass,
         CdkDragElement,
         CdkDropZone,
         MagmaContextMenu,
@@ -33,6 +32,7 @@ import { FileString, FormattedGroup } from '../../../interface/interface';
         RemoveTileDirective,
         ZoneAreaComponent,
         ZoneAxisComponent,
+        TileContentComponent,
     ],
 })
 export class ClassementModeZoneComponent extends ClassementModeBase {

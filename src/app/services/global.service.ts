@@ -51,6 +51,7 @@ export class GlobalService {
     readonly onUpdateList = new Subject<void>();
     readonly onImageUpdate = new Subject<void>();
     readonly onOpenChoice = new Subject<void>();
+    readonly onInfoImmediatChange = new Subject<void | string>();
     readonly onOptionChange = new Subject<void>();
     readonly helpComponent = new Subject<Type<any> | undefined>();
 

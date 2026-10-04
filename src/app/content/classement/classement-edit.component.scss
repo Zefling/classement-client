@@ -3,6 +3,7 @@
 // same shared partial. Mode-only selectors in it (.table-classement, .names, …)
 // simply match nothing here, which is harmless.
 @use 'modes/styles/shared' as *;
+@use 'modes/styles/tile-content' as *;
 
 :host {
     display: flex;
