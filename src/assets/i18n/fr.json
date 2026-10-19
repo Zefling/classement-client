@@ -1009,6 +1009,14 @@
       "text": {
         "size": "Taille de la grille :",
         "info": "Entrez un texte de tuile par ligne, les lignes vides sont ignorées."
+      },
+      "size": {
+        "title": "Taille du bingo",
+        "label": "Taille de la grille",
+        "custom": "Personnalisé",
+        "columns": "Colonnes",
+        "rows": "Lignes",
+        "free": "Ajouter une case « Free » au centre"
       }
     },
     "table": {

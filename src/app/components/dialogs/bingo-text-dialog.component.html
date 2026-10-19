@@ -1,0 +1,19 @@
+<mg-dialog #dialog closeBackdrop closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  <h2 class="title">{{ 'mode.name.bingo-text' | transloco }}</h2>
+  <div class="add-text-dialog">
+    <mg-input>
+      <mg-input-label>{{ 'generator.bingo.text.size' | transloco }}</mg-input-label>
+      <mg-input-select overlay id="bingo-text-size" [data]="bingoTextSizes" [(ngModel)]="bingoTextSize" />
+    </mg-input>
+
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'generator.bingo.text.info' | transloco }}</mg-input-label>
+      <mg-input-textarea autosize maxlength="5000" [(ngModel)]="bingoTextInput" />
+    </mg-input>
+
+    <div class="buttons">
+      <button (click)="close()">{{ 'generator.actions.texts.cancel' | transloco }}</button>
+      <button class="primary" (click)="begin()">{{ 'generator.actions.texts.ok' | transloco }}</button>
+    </div>
+  </div>
+</mg-dialog>

@@ -1,0 +1,37 @@
+<mg-dialog #dialog closeBackdrop closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
+  <h2 class="title">{{ 'generator.bingo.size.title' | transloco }}</h2>
+  <div class="add-text-dialog">
+    <mg-input class="s-12">
+      <mg-input-label>{{ 'generator.bingo.size.label' | transloco }}</mg-input-label>
+      <mg-input-select overlay id="bingo-size" [data]="bingoSizes" [templates]="templatesBingoSizes" [(ngModel)]="bingoSize">
+        <ng-template #templatesBingoSizes let-label="label" let-value="value">
+          {{ value === 'custom' ? ('generator.bingo.size.custom' | transloco) : label }}
+        </ng-template>
+      </mg-input-select>
+    </mg-input>
+
+    @if (bingoSize === 'custom') {
+      <mg-input class="s-6">
+        <mg-input-label>{{ 'generator.bingo.size.columns' | transloco }}</mg-input-label>
+        <mg-input-number [(ngModel)]="bingoCustomX" min="1" max="20" noDecimal noNegative forceMinMax />
+      </mg-input>
+      <mg-input class="s-6">
+        <mg-input-label>{{ 'generator.bingo.size.rows' | transloco }}</mg-input-label>
+        <mg-input-number [(ngModel)]="bingoCustomY" min="1" max="20" noDecimal noNegative forceMinMax />
+      </mg-input>
+    }
+
+    @if (bingoFreeCellAvailable) {
+      <mg-input class="s-12">
+        <mg-input-checkbox [(ngModel)]="bingoFreeCell" mode="toggle">{{
+          'generator.bingo.size.free' | transloco
+        }}</mg-input-checkbox>
+      </mg-input>
+    }
+
+    <div class="buttons">
+      <button (click)="close()">{{ 'generator.actions.texts.cancel' | transloco }}</button>
+      <button class="primary" (click)="begin()">{{ 'generator.actions.texts.ok' | transloco }}</button>
+    </div>
+  </div>
+</mg-dialog>

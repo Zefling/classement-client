@@ -1010,6 +1010,14 @@
       "text": {
         "size": "حجم الشبكة:",
         "info": "أدخل نص بلاطة واحدة في كل سطر، الأسطر الفارغة تُتجاهل."
+      },
+      "size": {
+        "title": "Bingo size",
+        "label": "Grid size",
+        "custom": "Custom",
+        "columns": "Columns",
+        "rows": "Rows",
+        "free": "Add a “Free” cell at the center"
       }
     },
     "table": {
