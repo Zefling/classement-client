@@ -21,7 +21,6 @@ export class TileComponent {
 
     readonly item = input.required<FileString>();
     readonly options = input.required<Options>();
-    readonly imagesCache = input<Record<string, string | ArrayBuffer | null> | undefined>();
 
     markForCheck() {
         this.cd.markForCheck();

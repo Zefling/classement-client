@@ -2,7 +2,7 @@ import { Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, Type, inj
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 
-import { LightDark, Logger, LoggerLevel, downloadFile, randomNumber, ulrToBase64 } from '@ikilote/magma';
+import { LightDark, Logger, LoggerLevel, downloadFile, randomNumber } from '@ikilote/magma';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { Subject } from 'rxjs';
@@ -10,16 +10,7 @@ import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { LanguagesList } from '../components/preferences/preferences.component';
 import { defaultOptions, imageInfos } from '../content/classement/classement-default';
-import {
-    Data,
-    FileHandle,
-    FileStream,
-    FileString,
-    FileType,
-    FormattedGroup,
-    Options,
-    ThemeOptions,
-} from '../interface/interface';
+import { Data, FileHandle, FileStream, FileString, FileType, FormattedGroup, Options } from '../interface/interface';
 import { alphaColor, color } from '../tools/function';
 
 export enum TypeFile {
@@ -167,50 +158,7 @@ export class GlobalService {
         );
     }
 
-    /**
-     * fix for html2canvas (not work with https? images)
-     * @param groups groups
-     * @param list list
-     * @returns cache image in base64 `[url : base64]`
-     */
-    async imagesCache(
-        options: ThemeOptions | Options,
-        groups: FormattedGroup[],
-        list: FileType[] = [],
-    ): Promise<Record<string, string | ArrayBuffer | null>> {
-        const cache: Record<string, string | ArrayBuffer | null> = {};
-        for (const item of list) {
-            if (item?.url && item.url.endsWith('.webp')) {
-                cache[item.url] = await ulrToBase64(item.url);
-            }
-        }
-        for (const group of groups) {
-            for (const item of group.list) {
-                if (item?.url && item.url.endsWith('.webp')) {
-                    cache[item.url] = await ulrToBase64(item.url);
-                }
-            }
-            // bgImage of group label cells (set as data-URL, store for html2canvas)
-            if (group.bgImage) {
-                cache[group.bgImage] = group.bgImage;
-            }
-        }
-        if (options.imageBackgroundCustom) {
-            cache[options.imageBackgroundCustom] = await ulrToBase64(options.imageBackgroundCustom);
-        }
-        // bgImage of column label cells (table mode)
-        const cols = (options as Options).col;
-        if (cols) {
-            for (const col of cols) {
-                if (col.bgImage) {
-                    cache[col.bgImage] = col.bgImage;
-                }
-            }
-        }
-        return cache;
-    }
-
-    updateVarCss(o: Options, cache?: Record<string, string | ArrayBuffer | null>): void {
+    updateVarCss(o: Options): void {
         this.logger.log('CCS var update', LoggerLevel.log, o);
         const body = document.body;
         const r = this.renderer.setStyle.bind(this.renderer);
@@ -272,7 +220,7 @@ export class GlobalService {
                 r(body, '--over-table-cell-justify-content', cellAlignValue, dash);
             }
         }
-        r(body, '--over-image-url', o.imageBackgroundImage !== 'none' ? this.customImage(o, cache) : null, dash);
+        r(body, '--over-image-url', o.imageBackgroundImage !== 'none' ? this.customImage(o) : null, dash);
         r(body, '--over-image-background-position', o.imagePosition, dash);
         r(body, '--over-image-background-size', o.imageSize, dash);
         r(body, '--over-font', o.font, dash);
@@ -307,7 +255,7 @@ export class GlobalService {
         return o.tableCellAlign !== 'center' ? 'flex-' + o.tableCellAlign : 'center';
     }
 
-    private customImage(o: Options, cache?: Record<string, string | ArrayBuffer | null>): string | null {
+    private customImage(o: Options): string | null {
         const color = o.imageBackgroundOpacity
             ? alphaColor(
                   o.imageBackgroundColor || (this.lightDark.isLight() ? '#FFF' : '#000'),
@@ -318,7 +266,7 @@ export class GlobalService {
             ? null
             : `linear-gradient(to left, ${color},  ${color}), ` +
                   (o.imageBackgroundImage === 'custom'
-                      ? `url(${cache?.[o.imageBackgroundCustom] || o.imageBackgroundCustom})`
+                      ? `url(${o.imageBackgroundCustom})`
                       : `url(./assets/themes/${imageInfos[o.imageBackgroundImage]!.normal})`);
     }
 

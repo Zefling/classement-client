@@ -46,6 +46,7 @@ import {
     MagmaMessageType,
     MagmaMessages,
     MagmaNgInitDirective,
+    MagmaProgress,
     MagmaSpinner,
     MagmaStopPropagationDirective,
     MagmaTooltipDirective,
@@ -114,7 +115,6 @@ import {
     FileType,
     FormattedGroup,
     GroupOption,
-    ImageCache,
     Options,
     PreferenceLineOption,
     ScreenMode,
@@ -188,6 +188,7 @@ const browser = Bowser.getParser(window.navigator.userAgent);
         ClassementModeBingoComponent,
         ClassementModeTableComponent,
         ClassementModeColumnsComponent,
+        MagmaProgress,
     ],
     host: {
         '[class.option-reduce]': 'optionReduce',
@@ -241,6 +242,9 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     exportImageLoading = false;
     exportImageDisabled = false;
+    // Progression de la génération d'image (html2canvas onProgress) : 0 → 100
+    exportProgressLoaded = 0;
+    exportProgressTotal = 100;
     loading = signal('');
 
     size = 0;
@@ -248,8 +252,6 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
     shareUrl = '';
 
     scrollArrows = false;
-
-    imagesCache: ImageCache = {};
 
     classScreenMode: ScreenMode = 'default';
     lineOption: PreferenceLineOption = 'auto';
@@ -412,7 +414,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             return;
         }
         this.lineOption = this.preferencesService.preferences.lineOption;
-        this.global.updateVarCss(this.options, this.imagesCache);
+        this.global.updateVarCss(this.options);
         this.options.category ??= '';
 
         if (this.options && !objectsAreSame(this._optionsCache, this.options, ['autoSave', 'showAdvancedOptions'])) {
@@ -935,7 +937,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.list = data.data.list;
                 this.addIds();
                 this.global.fixImageSize(this.groups, this.list);
-                this.html2canvasImagesCacheUpdate();
+                this.enableImageExport();
                 this.size = this.optimiseImage.size(this.list, this.groups, this.options.mode).size;
                 this.memory.reset();
                 this.resetCache();
@@ -969,7 +971,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         this.teamsModeUpdateTile();
         this.addIds();
         this.lockCategory = !classement.parent || classement.user !== this.userService.user?.username;
-        this.html2canvasImagesCacheUpdate();
+        this.enableImageExport();
 
         if (this.logged) {
             this.classementService
@@ -1534,19 +1536,53 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
 
     exportImage() {
         this.loading.set('generator.actions.export.image.loading');
+        this.exportImageLoading = true;
+        this.exportImageDisabled = true;
+        this.exportProgressLoaded = 0;
+        this.exportProgressTotal = 100;
+        this.cd.detectChanges();
+
         setTimeout(async () => {
             this.altImage = this.global.altImage(this.options, this.groups);
-            const canvas = await html2canvas(document.getElementById('html2canvas-element')!, {
-                logging: false,
-                allowTaint: true,
-                scale: 2,
-            });
-            this.dialogImage().open();
-            const element = this.image().nativeElement;
-            element.innerHTML = '';
-            element.appendChild(canvas);
-            this._canvas = canvas;
-            this.loading.set('');
+            try {
+                const target = document.getElementById('html2canvas-element')!;
+                const canvas = await html2canvas(target, {
+                    logging: false,
+                    useCORS: true,
+                    scale: this.preferencesService.preferences.exportScale,
+                    // Clone optimization: html2canvas clones the whole <html> to
+                    // preserve the CSS cascade, which is very costly on this page
+                    // (menus, edit lists, dialogs...). We only skip subtrees INSIDE
+                    // the <body> that are neither the target, nor an ancestor, nor a
+                    // descendant. We never touch the <head> (nor the global
+                    // <style>/<link> that the ranking background image relies on),
+                    // nor the ancestors needed for the cascade and layout.
+                    ignoreElements: (element: Element) => {
+                        // Never ignore anything outside the <body> (head, html, body itself).
+                        if (!document.body.contains(element) || element === document.body) {
+                            return false;
+                        }
+                        // Keep the target, its descendants and its ancestors.
+                        return !target.contains(element) && !element.contains(target);
+                    },
+                    onProgress: event => {
+                        // event.percentage: 0 -> 100 (start / progress / end)
+                        this.exportProgressLoaded = event.percentage;
+                        this.exportProgressTotal = 100;
+                        this.cd.detectChanges();
+                    },
+                });
+                this.dialogImage().open();
+                const element = this.image().nativeElement;
+                element.innerHTML = '';
+                element.appendChild(canvas);
+                this._canvas = canvas;
+            } finally {
+                this.loading.set('');
+                this.exportImageLoading = false;
+                this.exportImageDisabled = false;
+                this.cd.detectChanges();
+            }
         });
     }
 
@@ -1669,7 +1705,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
             this.tableInit(this.groups, this.options);
         }
 
-        this.html2canvasImagesCacheUpdate();
+        this.enableImageExport();
 
         if (classement.localId) {
             if (action.type === 'save') {
@@ -1750,7 +1786,7 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                 this.addIds();
                 this.options = { ...defaultOptions, ...event.data?.options! };
                 this.mgMessage.addMessage(this.translate.translate('message.json.read.replace'));
-                this.html2canvasImagesCacheUpdate();
+                this.enableImageExport();
                 break;
             }
             case 'new': {
@@ -1794,18 +1830,15 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
         Utils.formattedTilesByMode(this.options, this.groups, this.list);
     }
 
-    private html2canvasImagesCacheUpdate() {
-        this.exportImageDisabled = true;
-        setTimeout(() => {
-            this.global
-                .imagesCache(this.options, this.groups, this.list)
-                .then(cache => Object.assign(this.imagesCache, cache))
-                .finally(() => {
-                    this.exportImageDisabled = false;
-                    this.exportImageLoading = false;
-                    this.cd.detectChanges();
-                });
-        });
+    /**
+     * Re-enable the image export once a classement has finished loading.
+     * (Images are captured directly by html2canvas via useCORS + crossorigin,
+     * so there is no longer any base64 pre-processing to wait for.)
+     */
+    private enableImageExport() {
+        this.exportImageDisabled = false;
+        this.exportImageLoading = false;
+        this.cd.detectChanges();
     }
 
     private getData(): Data {

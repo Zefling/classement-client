@@ -3,6 +3,9 @@
   <mg-loader-message>
     {{ loading() || 'generator.loading' | transloco }}
   </mg-loader-message>
+  @if (loading() === 'generator.actions.export.image.loading') {
+    <mg-progress [loaded]="exportProgressLoaded" [total]="exportProgressTotal" displayFormat="percent" />
+  }
 </mg-loader>
 
 <!-- !MARK: options -->
@@ -353,7 +356,6 @@
         [groups]="groups"
         [list]="list"
         [withAnnotation]="false"
-        [imagesCache]="imagesCache"
         [id]="classement?.rankingId || 'new'"
       />
     </div>
@@ -458,7 +460,6 @@
   [list]="list"
   [groups]="groups"
   [options]="options"
-  [imagesCache]="imagesCache"
   (addTile)="addTile($event)"
 />
 
@@ -466,18 +467,22 @@
 
 <mg-dialog
   #dialogGroupOption
-  [title]="(options.mode == 'columns' ? 'generator.table.col.title' : 'generator.table.row.title') | transloco"
+  [title]="
+    (options && options.mode == 'columns' ? 'generator.table.col.title' : 'generator.table.row.title') | transloco
+  "
 >
-  <classement-group-option
-    [currentGroup]="currentGroup"
-    [dialog]="dialogGroupOption"
-    [mode]="options.mode"
-    (globalChange)="globalChange()"
-    (upLine)="upLine($event)"
-    (downLine)="downLine($event)"
-    (deleteLine)="deleteLine($event)"
-    (addLine)="addLine($event)"
-  />
+  @if (options) {
+    <classement-group-option
+      [currentGroup]="currentGroup"
+      [dialog]="dialogGroupOption"
+      [mode]="options.mode"
+      (globalChange)="globalChange()"
+      (upLine)="upLine($event)"
+      (downLine)="downLine($event)"
+      (deleteLine)="deleteLine($event)"
+      (addLine)="addLine($event)"
+    />
+  }
 </mg-dialog>
 
 <mg-dialog #dialogColOption [title]="'generator.table.col.title' | transloco">
@@ -513,7 +518,7 @@
 
 <mg-dialog class="auto-format" #dialogOptimise closeButton [closeButtonTitle]="'generic.dialog.close' | transloco">
   @if (dialogOptimise.isOpen()) {
-    <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options.mode" />
+    <classement-optimise [list]="list" [groups]="groups" [dialog]="dialogOptimise" [mode]="options?.mode" />
   }
 </mg-dialog>
 

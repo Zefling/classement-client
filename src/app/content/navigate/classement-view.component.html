@@ -103,7 +103,6 @@
       [groups]="classement.data.groups"
       [list]="classement.data.list"
       [id]="classement.rankingId"
-      [imagesCache]="imagesCache"
       [link]="showLink ? getLink() : ''"
       [bingoSeed]="bingoSeed"
     />
@@ -163,6 +162,9 @@
     <mg-loader-message>
       {{ loadingMessage() | transloco }}
     </mg-loader-message>
+    @if (loadingMessage() === 'generator.actions.export.image.loading') {
+      <mg-progress [loaded]="exportProgressLoaded" [total]="exportProgressTotal" displayFormat="percent" />
+    }
   </mg-loader>
 }
 

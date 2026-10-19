@@ -82,7 +82,6 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
 
     readonly groups = input.required<FormattedGroup[]>();
     readonly list = input.required<FileType[]>();
-    readonly imagesCache = input<Record<string, string | ArrayBuffer | null>>({});
     readonly id = input.required<string>();
 
     readonly options = input.required<Options>();
@@ -151,7 +150,7 @@ export class SeeClassementComponent implements OnInit, OnDestroy {
     }
 
     async ngOnInit() {
-        this.globalService.updateVarCss(this.options(), this.imagesCache());
+        this.globalService.updateVarCss(this.options());
 
         const mode = this.options().mode;
 

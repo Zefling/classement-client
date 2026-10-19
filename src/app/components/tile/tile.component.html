@@ -10,7 +10,8 @@
           (load)="calcWidth(tile); markForCheck()"
           [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
           [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-          src="{{ imagesCache()?.[itm.url] || itm.url }}"
+          crossorigin="anonymous"
+          src="{{ itm.url }}"
           alt="{{ itm.name }}"
         />
       </div>

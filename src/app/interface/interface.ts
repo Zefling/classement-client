@@ -355,8 +355,6 @@ export type SortUserCol = 'username' | 'dateCreate';
 export type SortClassementCol = 'name' | 'category' | 'dateCreate';
 export type SortDirection = 'ASC' | 'DESC';
 
-export type ImageCache = Record<string, string | ArrayBuffer | null>;
-
 // message / API
 
 export interface Message<T> {
