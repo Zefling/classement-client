@@ -150,6 +150,13 @@
         "info": "قد تكون الصور ثقيلة؛ إذا استهلكت ذاكرة كبيرة، قد يتأثر الأداء بشكل ملحوظ. يمكن لتغيير الحجم التلقائي إصلاح ذلك."
       }
     },
+    "export.title": "Image export",
+    "export": {
+      "scale": {
+        "label": "Export resolution",
+        "info": "Higher values produce a sharper image but take longer to generate and use more memory."
+      }
+    },
     "color": {
       "title": "اللون",
       "new.color": {

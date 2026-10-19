@@ -29,6 +29,7 @@ export class PreferencesService {
         newLine: 'below',
         mode: 'choice',
         autoResize: 'origin',
+        exportScale: 2,
         theme: themes[0],
         lineOption: 'auto',
         pageSize: 24,

@@ -150,6 +150,13 @@
         "info": "Les images peuvent être lourdes ; si elles prennent trop de place en mémoire, les performances peuvent être fortement dégradées. Le redimensionnement automatique peut corriger cela."
       }
     },
+    "export.title": "Export de l'image",
+    "export": {
+      "scale": {
+        "label": "Résolution de l'export",
+        "info": "Des valeurs plus élevées produisent une image plus nette, mais la génération est plus longue et consomme plus de mémoire."
+      }
+    },
     "color": {
       "title": "Couleur",
       "new.color": {

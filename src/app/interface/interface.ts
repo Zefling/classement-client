@@ -301,6 +301,8 @@ export interface PreferencesData {
     lineOption: PreferenceLineOption;
     mode: ModeNames | 'choice';
     autoResize: '300×300' | '500×500' | 'origin';
+    /** Scale (resolution multiplier) used by html2canvas when exporting the ranking as an image. */
+    exportScale: number;
     theme: ThemesNames | null;
     pageSize: number;
     mainMenuReduce: boolean;
