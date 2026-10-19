@@ -1,0 +1,92 @@
+// Shared action/button visibility rules for modes that render per-group action
+// buttons and a name column (tierlist, columns, table).
+//
+// These rules originally lived on the parent `classement-edit` host (keyed on
+// :host.option-reduce / :host.stream-mode / :host.option-hidden and on viewport
+// media queries). Since the mode markup now lives in sub-components, the parent
+// host classes are reached through :host-context(...) and the viewport rules are
+// duplicated here so they still target the buttons/name cells inside the mode.
+
+/* responsive: tablet / mobile */
+@media screen and (width < 768px) {
+    .names {
+        width: calc(var(--over-name-width, 150px) / 2);
+        min-width: calc(var(--over-name-width, 150px) / 2);
+    }
+
+    .table-classement {
+        .button-up,
+        .button-down,
+        .button-left,
+        .button-right,
+        .button-suppr,
+        .button-add,
+        .actions {
+            display: none;
+        }
+    }
+
+    span.group-options {
+        display: inline-block;
+    }
+
+    .button-actions {
+        margin: auto;
+        max-width: 150px;
+
+        button {
+            display: inline;
+        }
+    }
+
+    .table-classement thead {
+        display: none;
+    }
+}
+
+/* force reduce options (option-reduce / stream-mode host classes on the parent) */
+@media screen and (width > 769px) {
+    :host-context(.option-reduce),
+    :host-context(.stream-mode) {
+        .table-classement {
+            .button-up,
+            .button-down,
+            .button-left,
+            .button-right,
+            .button-suppr,
+            .button-add,
+            .names .group-options {
+                display: none;
+            }
+        }
+
+        span.group-options {
+            display: inline-block;
+            width: 24px;
+        }
+
+        .button-actions {
+            margin: auto;
+            max-width: 150px;
+
+            button {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+/* mode no options (option-hidden host class on the parent) */
+:host-context(.option-hidden) {
+    .table-classement {
+        .button-up,
+        .button-down,
+        .button-left,
+        .button-right,
+        .button-suppr,
+        .button-add,
+        .names .group-options {
+            display: none;
+        }
+    }
+}

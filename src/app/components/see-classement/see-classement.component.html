@@ -105,7 +105,8 @@
                                 (load)="calcWidth(item, tile); detectChanges()"
                                 [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                 [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                src="{{ imagesCache()[item.url] || item.url }}"
+                                crossorigin="anonymous"
+                                src="{{ item.url }}"
                                 alt="{{ item.name }}"
                               />
                             </div>
@@ -192,7 +193,8 @@
                                   (load)="calcWidth(item, tile); detectChanges()"
                                   [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                   [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                  src="{{ imagesCache()[item.url] || item.url }}"
+                                  crossorigin="anonymous"
+                                  src="{{ item.url }}"
                                   alt="{{ item.name }}"
                                 />
                               </div>
@@ -295,7 +297,8 @@
                                 (load)="calcWidth(item, tile); detectChanges()"
                                 [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                 [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                src="{{ imagesCache()[item.url] || item.url }}"
+                                crossorigin="anonymous"
+                                src="{{ item.url }}"
                                 alt="{{ item.name }}"
                               />
                             </div>
@@ -419,7 +422,8 @@
                                     (load)="calcWidth(item, tile); detectChanges()"
                                     [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                     [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                    src="{{ imagesCache()[item.url] || item.url }}"
+                                    crossorigin="anonymous"
+                                    src="{{ item.url }}"
                                     alt="{{ item.name }}"
                                   />
                                 </div>
@@ -490,7 +494,8 @@
                               (load)="calcWidth(item, tile); detectChanges()"
                               [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                               [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                              src="{{ imagesCache()[item.url] || item.url }}"
+                              crossorigin="anonymous"
+                              src="{{ item.url }}"
                               alt="{{ item.name }}"
                             />
                           </div>

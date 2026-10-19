@@ -31,6 +31,7 @@ import {
     MagmaMessage,
     MagmaMessageType,
     MagmaMessages,
+    MagmaProgress,
     MagmaSpinner,
     Subscriptions,
     clipboardWrite,
@@ -83,6 +84,7 @@ const metaTags = ['twitter:card', 'og:url', 'og:title', 'og:description', 'og:im
         MagmaBlockMessage,
         MagmaLoader,
         MagmaLoaderMessage,
+        MagmaProgress,
     ],
 })
 export class ClassementViewComponent implements OnInit, OnDestroy {
@@ -108,14 +110,15 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     loading = false;
     loadingMessage = signal('');
+    // Image export progress (html2canvas onProgress): 0 → 100
+    exportProgressLoaded = 0;
+    exportProgressTotal = 100;
 
     currentUser = false;
     logged? = false;
     exportImageDisabled = true;
 
     modeApi = computed(() => this.global.withApi());
-
-    imagesCache: Record<string, string | ArrayBuffer | null> = {};
 
     showError: string = '';
 
@@ -285,15 +288,10 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
                 });
         }
 
-        setTimeout(() => {
-            this.global
-                .imagesCache(this.classement!.data.options, this.classement!.data.groups!)
-                .then(cache => Object.assign(this.imagesCache, cache))
-                .finally(() => {
-                    this.exportImageDisabled = false;
-                    this.markForCheck();
-                });
-        });
+        // Images are captured directly by html2canvas (useCORS + crossorigin), so
+        // there is no base64 pre-processing to wait for: just re-enable the export.
+        this.exportImageDisabled = false;
+        this.markForCheck();
 
         // load history
         if (classement.withHistory) {
@@ -421,12 +419,20 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
 
     exportImage() {
         this.loadingMessage.set('generator.actions.export.image.loading');
+        this.exportProgressLoaded = 0;
+        this.exportProgressTotal = 100;
         setTimeout(async () => {
             this.altImage = this.global.altImage(this.classement!.data.options, this.classement!.data.groups);
             const canvas = await html2canvas(document.getElementById('html2canvas-element')!, {
                 logging: false,
-                allowTaint: true,
+                useCORS: true,
                 scale: 2,
+                onProgress: event => {
+                    // event.percentage: 0 -> 100 (start / progress / end)
+                    this.exportProgressLoaded = event.percentage;
+                    this.exportProgressTotal = 100;
+                    this.markForCheck();
+                },
             });
             this.dialogImage().open();
             const element = this.image().nativeElement;

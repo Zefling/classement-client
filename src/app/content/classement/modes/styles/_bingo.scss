@@ -1,0 +1,67 @@
+// fix background (shared with tierlist/columns)
+.click-enter[tabindex]:not(button, a[href]):hover {
+    background: var(--over-drop-list-background, var(--drop-list-background));
+}
+
+.bingo-container {
+    max-width: 100%;
+    overflow: auto;
+}
+
+.table-classement {
+    margin: auto;
+    width: auto;
+    min-width: auto;
+}
+
+.selectable-group:focus:not(:has(.selection-item:focus)) {
+    outline: 2px solid var(--neutral950);
+}
+
+.selection-item {
+    outline: 3px solid var(--neutral950);
+    outline-offset: -1px;
+}
+
+.elements,
+.elements > div {
+    --border: var(--over-item-border) * 2 + var(--over-item-padding) * 2 + var(--over-item-margin) * 2;
+    padding: 0;
+    width: calc(var(--over-item-width) + var(--border));
+    max-width: calc(var(--over-item-width) + var(--border) + var(--over-drop-list-border-size) * 2);
+    height: calc(var(--over-item-height) + var(--border));
+    max-height: calc(var(--over-item-height) + var(--border));
+}
+
+.content-box {
+    width: var(--over-item-width);
+    height: var(--over-item-height);
+}
+
+.line-fusion {
+    .elements:not(:last-child) > div {
+        border-right-width: calc(var(--border) / 2);
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .elements:not(:first-child) > div {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    tr:not(:last-child) .elements > div {
+        border-bottom-width: calc(var(--border) / 2);
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    tr:not(:first-child) .elements > div {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
+
+.mode-bingo .cdk-drop-list {
+    display: inline-flex;
+}

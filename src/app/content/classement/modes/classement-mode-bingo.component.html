@@ -1,0 +1,54 @@
+<div class="bingo-container">
+  <table class="table-classement" [class.line-fusion]="options().borderSpacing < 0">
+    <tbody>
+      @for (group of groups(); track group; let indexGrp = $index; let first = $first; let last = $last) {
+        <tr (keydown)="selectMoveItem.emit({ event: $event, list: group.list })">
+          @for (item of group.list; track trackByFnFileString(index, item); let index = $index) {
+            <td class="elements">
+              <div
+                class="drop-list"
+                cdkDropList
+                [cdkDropListData]="{ list: group.list, index }"
+                (cdkDropListDropped)="drop.emit($event)"
+                [class.selectable-group]="selectionTile() && item !== selectionTile()"
+                [class.selection-item]="item && item === selectionTile() && group === selectionGroup()"
+                #itemDiv
+                (clickEnter)="
+                  !selectionTile()
+                    ? selectItem.emit({ event: $event, group, item, index, div: itemDiv })
+                    : selectionGroupForItem.emit({ group, index })
+                "
+                (clickOutside)="selectItemClear.emit()"
+                (keydown)="selectItemByKey.emit({ event: $event, group, item, index })"
+              >
+                @if (item) {
+                  <div
+                    class="content-box"
+                    cdkDrag
+                    removeTile
+                    (removeElement)="removeFromGroup.emit({ list: group.list, index })"
+                    [mgContextMenu]="{ contextMenu: contextMenu(), data: { item, group, index } }"
+                    [style.--over-item-background]="item.bgColor"
+                    [style.--over-item-text-color]="item.txtColor"
+                    (ngInit)="selectionDivChange.emit(itemDiv)"
+                  >
+                    <tile-content
+                      [item]="item"
+                      [options]="options()"
+                      [editableTitle]="true"
+                      (detectChanges)="detectChanges.emit()"
+                      (openTileInfo)="openTileInfo.emit($event)"
+                      (titleChange)="item.title = $event; globalChange.emit(); change.emit()"
+                    />
+                  </div>
+                } @else {
+                  <div class="drop-zone-empty-list"></div>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

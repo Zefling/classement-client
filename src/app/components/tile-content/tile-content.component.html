@@ -1,0 +1,35 @@
+@let itm = item();
+@let opts = options();
+@let auto = opts.itemWidthAuto;
+
+@if (itm.url) {
+  <div [class.image]="calcWidth()">
+    <img
+      (ngInit)="calcWidth(); detectChanges.emit()"
+      (load)="calcWidth(); detectChanges.emit()"
+      [class.cover]="!auto && opts.itemImageCover === true"
+      [class.opti]="!auto && opts.itemImageCover === 'opti'"
+      src="{{ itm.url }}"
+      alt="{{ itm.name }}"
+    />
+  </div>
+}
+@if (itm.title !== undefined || !itm.url || (opts.itemTextMinLine && !opts.itemTextPosition.endsWith('bubble'))) {
+  <div class="title" [class.title-item-width-auto]="auto">
+    @if (editableTitle() && !itm.url) {
+      <span
+        class="title-span"
+        contenteditable="true"
+        (ngInit)="detectChanges.emit()"
+        (mousedown)="$event.stopPropagation()"
+        (click)="$event.stopPropagation()"
+        (keydown.enter)="$event.preventDefault(); $any($event.target).blur()"
+        (blur)="titleChange.emit($any($event.target).innerText.trim())"
+        >{{ itm.title || '' }}</span
+      >
+    } @else {
+      <span class="title-span" (ngInit)="detectChanges.emit()">{{ itm.title || '' }}</span>
+    }
+  </div>
+}
+<div class="tile-info" (clickEnter)="openTileInfo.emit(itm)"></div>

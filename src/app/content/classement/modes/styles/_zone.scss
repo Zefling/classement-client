@@ -1,0 +1,38 @@
+.cdk-drop-zone {
+    position: relative;
+    overflow: hidden;
+    overflow-anchor: none;
+    overscroll-behavior: none;
+    scroll-padding-block: 0;
+
+    .cdk-drag {
+        position: absolute;
+    }
+
+    .cdk-drag-placeholder {
+        opacity: 0;
+    }
+}
+
+.zone-classement-container {
+    overflow: auto;
+}
+
+// wrapper for iceberg/axis (replaces .mode-iceberg, .mode-axis parent selector)
+:host {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.zone-classement.click-enter {
+    --click-enter-hover-filter: none;
+    background-image: var(--over-image-url);
+    background-position: var(--over-image-background-position);
+    background-size: var(--over-image-background-size);
+    background-repeat: repeat;
+    background-color: var(--over-image-background, var(--drop-list-background));
+}
+
+.content-box {
+    --click-enter-hover-background: var(--over-item-background, var(--content-box-background));
+}

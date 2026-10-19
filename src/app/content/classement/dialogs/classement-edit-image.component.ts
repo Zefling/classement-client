@@ -11,7 +11,6 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import {
-    Logger,
     MagmaDialog,
     MagmaInput,
     MagmaInputColor,
@@ -49,7 +48,6 @@ import { ClassementEditComponent } from '../classement-edit.component';
 export class ClassementEditImageComponent implements OnChanges {
     private readonly cd = inject(ChangeDetectorRef);
     private readonly global = inject(GlobalService);
-    private readonly logger = inject(Logger);
     private readonly editor = inject(ClassementEditComponent, { host: true });
 
     // viewChild
@@ -114,6 +112,7 @@ export class ClassementEditImageComponent implements OnChanges {
 
     detectChanges() {
         this._detectChange.next();
+        this.global.onInfoImmediatChange.next(this.currentTile()?.id);
     }
 
     globalChange() {

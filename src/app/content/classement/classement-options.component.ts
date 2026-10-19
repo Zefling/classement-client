@@ -638,6 +638,7 @@ export class ClassementOptionsComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     detectChange() {
+        this.globalService.onInfoImmediatChange.next();
         this.classementExample()?.[0]?.detectChanges();
         this.editor.effect();
     }

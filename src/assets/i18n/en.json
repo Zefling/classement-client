@@ -150,6 +150,13 @@
         "info": "Images can be heavy; if they take up too much memory space, performance can be significantly degraded. Automatic resizing can fix this."
       }
     },
+    "export.title": "Image export",
+    "export": {
+      "scale": {
+        "label": "Export resolution",
+        "info": "Higher values produce a sharper image but take longer to generate and use more memory."
+      }
+    },
     "color": {
       "title": "Color",
       "new.color": {
@@ -1010,6 +1017,14 @@
       "text": {
         "size": "Grid size:",
         "info": "Enter one tile text per line, empty lines are ignored."
+      },
+      "size": {
+        "title": "Bingo size",
+        "label": "Grid size",
+        "custom": "Custom",
+        "columns": "Columns",
+        "rows": "Rows",
+        "free": "Add a “Free” cell at the center"
       }
     },
     "table": {

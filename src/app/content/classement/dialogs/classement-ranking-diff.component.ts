@@ -4,7 +4,7 @@ import { ChangeDetectorRef, Component, inject, input, output, viewChild } from '
 import { MagmaClickEnterDirective, MagmaDialog, MagmaMessageType, MagmaMessages } from '@ikilote/magma';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-import { Classement, FileString, FileType, FormattedGroup, ImageCache, Options } from '../../../interface/interface';
+import { Classement, FileString, FileType, FormattedGroup, Options } from '../../../interface/interface';
 import { APIClassementService } from '../../../services/api.classement.service';
 
 @Component({
@@ -24,7 +24,6 @@ export class ClassementRankingDiffComponent {
     list = input<FileType[]>();
     groups = input<FormattedGroup[]>();
     options = input<Options>();
-    imagesCache = input<ImageCache>();
 
     addTile = output<FileString>();
 

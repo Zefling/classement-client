@@ -1,0 +1,78 @@
+/* table ----------------------------------------------------------- */
+
+.table-grid {
+    overflow-x: auto;
+    scrollbar-gutter: stable;
+
+    .table-classement {
+        margin: auto;
+        width: var(--over-table-width, 100%);
+        min-width: auto;
+        table-layout: fixed;
+
+        tbody,
+        tr,
+        td {
+            height: 100%;
+        }
+    }
+
+    .names-col,
+    .names-row {
+        & > div {
+            min-height: var(--over-name-min-height, 60px);
+        }
+
+        // position the popover trigger (base look defined on .mini-edit-options)
+        .mini-edit-options {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            grid-area: b;
+        }
+    }
+
+    .names {
+        width: unset;
+        min-width: unset;
+    }
+
+    .names-corner {
+        border: none;
+        background: transparent;
+    }
+
+    .elements {
+        width: unset;
+    }
+
+    col.names {
+        --size: var(--over-name-width, 150px);
+        width: var(--size);
+        min-width: var(--size);
+        max-width: var(--size);
+    }
+
+    col.elements {
+        --size: var(--width, unset);
+        width: var(--size);
+        min-width: 100px;
+    }
+
+    .drop-list {
+        flex-direction: var(--over-table-cell-direction, row);
+        justify-content: var(--over-table-cell-justify-content, flex-start);
+        align-items: var(--over-table-cell-align-items, flex-start);
+        height: 100%;
+    }
+
+    .selectable-group:focus:not(:has(.selection-item:focus)) {
+        outline: 2px solid var(--neutral950);
+    }
+
+    .selection-item {
+        outline: 3px solid var(--neutral950);
+        outline-offset: -1px;
+    }
+}
+

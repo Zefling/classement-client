@@ -132,6 +132,13 @@ export class PreferencesMagmaDialog {
         { value: '500×500', label: '500' },
     ];
 
+    exportScales: Select2Data = [
+        { value: 1, label: '1' },
+        { value: 2, label: '2' },
+        { value: 3, label: '3' },
+        { value: 4, label: '4' },
+    ];
+
     constructor() {
         // preferences
         this.initPrefs().then(() => {
@@ -309,6 +316,7 @@ export class PreferencesMagmaDialog {
             lineOption: new FormControl(initPreferences.lineOption),
             mode: new FormControl(initPreferences.mode),
             autoResize: new FormControl(initPreferences.autoResize),
+            exportScale: new FormControl(initPreferences.exportScale),
             theme: new FormControl(initPreferences.theme),
             pageSize: new FormControl(initPreferences.pageSize),
             mainMenuReduce: new FormControl(initPreferences.mainMenuReduce),
