@@ -46,15 +46,15 @@
           {{ 'generator.theme.cancel' | transloco }}
         </button>
         @if (saveMode === 'browser') {
-          <button class="primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
+          <button class="mg-primary" [disabled]="!themeName.trim()" (click)="saveBrowser()">
             {{ 'generator.theme.browser.new' | transloco }}
           </button>
         } @else {
-          <button class="primary" [disabled]="!themeName.trim()" (click)="saveServer()">
+          <button class="mg-primary" [disabled]="!themeName.trim()" (click)="saveServer()">
             {{ 'generator.theme.account.new' | transloco }}
           </button>
         }
-        <button class="primary" [disabled]="!themeName.trim()" (click)="export()">
+        <button class="mg-primary" [disabled]="!themeName.trim()" (click)="export()">
           {{ 'generator.theme.export' | transloco }}
         </button>
       </p>
@@ -95,10 +95,10 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="warn" [disabled]="!selectedTheme" (click)="deleteMode = 'browser'; deleteConfirm.open()">
+          <button class="mg-warn" [disabled]="!selectedTheme" (click)="deleteMode = 'browser'; deleteConfirm.open()">
             {{ 'generator.theme.remove.browser' | transloco }}
           </button>
-          <button class="primary" [disabled]="!selectedTheme" (click)="updateBrowser()">
+          <button class="mg-primary" [disabled]="!selectedTheme" (click)="updateBrowser()">
             {{ 'generator.theme.update.browser' | transloco }}
           </button>
         </p>
@@ -150,10 +150,10 @@
           <button class="default" (click)="exportCancel()">
             {{ 'generator.theme.cancel' | transloco }}
           </button>
-          <button class="warn" [disabled]="!selectedTheme" (click)="deleteMode = 'server'; deleteConfirm.open()">
+          <button class="mg-warn" [disabled]="!selectedTheme" (click)="deleteMode = 'server'; deleteConfirm.open()">
             {{ 'generator.theme.remove.server' | transloco }}
           </button>
-          <button class="primary" [disabled]="!selectedTheme" (click)="updateServer()">
+          <button class="mg-primary" [disabled]="!selectedTheme" (click)="updateServer()">
             {{ 'generator.theme.update.server' | transloco }}
           </button>
         </p>
@@ -171,7 +171,7 @@
       {{ 'generator.theme.cancel' | transloco }}
     </button>
     <button
-      class="warn"
+      class="mg-warn"
       [disabled]="!selectedTheme"
       (click)="deleteMode === 'server' ? removeServer() : removeBrowser(); deleteConfirm.close()"
     >

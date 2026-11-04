@@ -5,20 +5,20 @@ dt {
 
 dd {
     margin: 3px 2px 10px;
-    border: 1px solid var(--primary300);
-    background-color: var(--primary200);
+    border: 1px solid var(--mg-primary300);
+    background-color: var(--mg-primary200);
     padding: 5px;
 }
 
 kbd {
     box-shadow:
-        0 1px 1px var(--neutral050),
-        0 2px 0 var(--neutral950) inset;
-    border: 1px solid var(--neutral500);
+        0 1px 1px var(--mg-neutral050),
+        0 2px 0 var(--mg-neutral950) inset;
+    border: 1px solid var(--mg-neutral500);
     border-radius: 3px;
-    background-color: var(--neutral800);
+    background-color: var(--mg-neutral800);
     padding: 2px 5px;
-    color: var(--neutral050);
+    color: var(--mg-neutral050);
     font-weight: 700;
     font-size: 0.9em;
     line-height: 1;

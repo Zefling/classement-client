@@ -66,22 +66,22 @@
       <button (click)="changeStatusCancel()">{{ 'list.delete.cancel' | transloco }}</button>
       <button
         (click)="changeStatusCurrentClassement(!currentClassement!.hidden, 'hide')"
-        [class.warn]="!currentClassement!.hidden"
-        [class.primary]="currentClassement!.hidden"
+        [class.mg-warn]="!currentClassement!.hidden"
+        [class.mg-primary]="currentClassement!.hidden"
       >
         {{ (!currentClassement!.hidden ? 'list.hide.private' : 'list.show.public') | transloco }}
       </button>
       <button
         (click)="changeStatusCurrentClassement(!currentClassement!.adult, 'adult')"
-        [class.warn]="!currentClassement!.adult"
-        [class.primary]="currentClassement!.adult"
+        [class.mg-warn]="!currentClassement!.adult"
+        [class.mg-primary]="currentClassement!.adult"
       >
         {{ (!currentClassement!.hidden ? 'list.adult.content' : 'list.for.all.content') | transloco }}
       </button>
       <button
         (click)="changeStatusCurrentClassement(!currentClassement!.deleted, 'delete')"
-        [class.warn]="!currentClassement!.deleted"
-        [class.primary]="currentClassement!.deleted"
+        [class.mg-warn]="!currentClassement!.deleted"
+        [class.mg-primary]="currentClassement!.deleted"
       >
         {{ (!currentClassement!.deleted ? 'list.delete.delete' : 'list.delete.restore') | transloco }}
       </button>
@@ -142,7 +142,7 @@
     </div>
     <div class="buttons">
       <button (click)="changeCategoryCancel()">{{ 'list.category.cancel' | transloco }}</button>
-      <button class="primary" (click)="changeStatusCurrentClassement(newCategory!, 'category')">
+      <button class="mg-primary" (click)="changeStatusCurrentClassement(newCategory!, 'category')">
         {{ 'list.category.edit' | transloco }}
       </button>
     </div>

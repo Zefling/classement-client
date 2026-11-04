@@ -28,7 +28,7 @@
       <button (click)="changeUsername()">{{ 'user.profile.change.username' | transloco }}</button>
       <button (click)="changeEmail()">{{ 'user.profile.change.email' | transloco }}</button>
       <button (click)="changePassword()">{{ 'user.profile.change.password' | transloco }}</button>
-      <button (click)="removeProfile()" class="warn">{{ 'user.profile.remove.profile' | transloco }}</button>
+      <button (click)="removeProfile()" class="mg-warn">{{ 'user.profile.remove.profile' | transloco }}</button>
     </p>
     <mg-tabs [returnTabsLabel]="'generic.tabs.return' | transloco">
       <!-- classements -->
@@ -136,7 +136,7 @@
 
   <div class="buttons">
     <button (click)="dialogChangeUsername.close()">{{ 'user.username.change.cancel' | transloco }}</button>
-    <button (click)="valideChangeUsername()" class="primary" [disabled]="!usernameValidity">
+    <button (click)="valideChangeUsername()" class="mg-primary" [disabled]="!usernameValidity">
       {{ 'user.username.change.ok' | transloco }}
     </button>
   </div>
@@ -186,7 +186,7 @@
 
   <div class="buttons">
     <button (click)="dialogChangePassword.close()">{{ 'user.password.change.cancel' | transloco }}</button>
-    <button (click)="valideChangePassword()" class="primary">{{ 'user.password.change.ok' | transloco }}</button>
+    <button (click)="valideChangePassword()" class="mg-primary">{{ 'user.password.change.ok' | transloco }}</button>
   </div>
 </mg-dialog>
 
@@ -228,7 +228,7 @@
 
   <div class="buttons">
     <button (click)="dialogChangeEmail.close()">{{ 'user.email.change.cancel' | transloco }}</button>
-    <button (click)="valideChangeEmail()" class="primary">{{ 'user.email.change.ok' | transloco }}</button>
+    <button (click)="valideChangeEmail()" class="mg-primary">{{ 'user.email.change.ok' | transloco }}</button>
   </div>
 </mg-dialog>
 
@@ -240,7 +240,7 @@
   </p>
   <div class="buttons">
     <button (click)="dialogRemoveProfile.close()">{{ 'user.profile.remove.cancel' | transloco }}</button>
-    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
+    <button (click)="valideRemoveProfile()" class="mg-warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
 </mg-dialog>
 
@@ -293,11 +293,11 @@
   <div class="buttons">
     <button (click)="avatarDialog.close()">{{ 'user.profile.avatar.cancel' | transloco }}</button>
     @if (croppedImage) {
-      <button (click)="updateAvatar()" class="primary">
+      <button (click)="updateAvatar()" class="mg-primary">
         {{ 'user.profile.avatar.update' | transloco }}
       </button>
     } @else if (!croppedImage && user?.avatar) {
-      <button (click)="updateAvatar()" class="warn">
+      <button (click)="updateAvatar()" class="mg-warn">
         {{ 'user.profile.avatar.remove' | transloco }}
       </button>
     }

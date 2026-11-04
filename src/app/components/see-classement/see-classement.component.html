@@ -83,7 +83,7 @@
               <td
                 class="names"
                 [style.background-color]="color(group.bgColor, opts.nameBackgroundOpacity)"
-                [style.--text-color]="group.txtColor"
+                [style.--mg-text-color]="group.txtColor"
                 [style.background-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
               >
                 @if (opts.nameMarkdown) {
@@ -105,7 +105,7 @@
                                 (load)="calcWidth(item, tile); detectChanges()"
                                 [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                 [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                crossorigin="anonymous"
+                                [attr.crossorigin]="render() ? 'anonymous' : null"
                                 src="{{ item.url }}"
                                 alt="{{ item.name }}"
                               />
@@ -162,7 +162,7 @@
               <td
                 class="names"
                 [style.background-color]="color(group.bgColor, opts.nameBackgroundOpacity)"
-                [style.--text-color]="group.txtColor"
+                [style.--mg-text-color]="group.txtColor"
                 [style.background-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
               >
                 @if (opts.nameMarkdown) {
@@ -193,7 +193,7 @@
                                   (load)="calcWidth(item, tile); detectChanges()"
                                   [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                   [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                  crossorigin="anonymous"
+                                  [attr.crossorigin]="render() ? 'anonymous' : null"
                                   src="{{ item.url }}"
                                   alt="{{ item.name }}"
                                 />
@@ -297,7 +297,7 @@
                                 (load)="calcWidth(item, tile); detectChanges()"
                                 [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                 [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                crossorigin="anonymous"
+                                [attr.crossorigin]="render() ? 'anonymous' : null"
                                 src="{{ item.url }}"
                                 alt="{{ item.name }}"
                               />
@@ -381,7 +381,7 @@
               <td
                 class="names names-col"
                 [style.background-color]="color(col.bgColor, opts.nameBackgroundOpacity)"
-                [style.--text-color]="col.txtColor"
+                [style.--mg-text-color]="col.txtColor"
                 [style.background-image]="col.bgImage ? 'url(' + col.bgImage + ')' : null"
               >
                 <pre>{{ col.title }}</pre>
@@ -394,7 +394,7 @@
               <td
                 class="names names-row"
                 [style.background-color]="color(group.bgColor, opts.nameBackgroundOpacity)"
-                [style.--text-color]="group.txtColor"
+                [style.--mg-text-color]="group.txtColor"
                 [style.background-image]="group.bgImage ? 'url(' + group.bgImage + ')' : null"
               >
                 @if (opts.nameMarkdown) {
@@ -422,7 +422,7 @@
                                     (load)="calcWidth(item, tile); detectChanges()"
                                     [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                                     [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                                    crossorigin="anonymous"
+                                    [attr.crossorigin]="render() ? 'anonymous' : null"
                                     src="{{ item.url }}"
                                     alt="{{ item.name }}"
                                   />
@@ -494,7 +494,7 @@
                               (load)="calcWidth(item, tile); detectChanges()"
                               [class.cover]="!opts.itemWidthAuto && opts.itemImageCover === true"
                               [class.opti]="!opts.itemWidthAuto && opts.itemImageCover === 'opti'"
-                              crossorigin="anonymous"
+                              [attr.crossorigin]="render() ? 'anonymous' : null"
                               src="{{ item.url }}"
                               alt="{{ item.name }}"
                             />

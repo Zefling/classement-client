@@ -59,111 +59,111 @@ body.dark-mode {
 }
 
 body {
-    --input-mark-top: -4px;
+    --mg-input-mark-top: -4px;
 
-    --dialog-shadow-color: color-mix(in hsl, #000 10%, transparent);
-    --color-primary: var(--primary300);
-    --color-primary-hover: var(--primary400);
+    --mg-dialog-shadow-color: color-mix(in hsl, #000 10%, transparent);
+    --mg-color-primary: var(--mg-primary300);
+    --mg-color-primary-hover: var(--mg-primary400);
 
     /* global */
     --menu-box-shadow-color: color-mix(in hsl, var(--box-shadow), transparent);
-    --header-background: var(--primary050);
-    --aside-background: var(--primary050);
-    --licence-color: var(--primary950);
+    --header-background: var(--mg-primary050);
+    --aside-background: var(--mg-primary050);
+    --licence-color: var(--mg-primary950);
 
     /* menu */
-    --menu-border-color: var(--primary200);
-    --menu-color: var(--primary950);
-    --menu-separator: var(--primary400);
-    --menu-background: var(--primary100);
-    --menu-hover-color: var(--primary950);
-    --menu-hover-background: var(--primary200);
-    --menu-active-color: var(--primary950);
-    --menu-active-background: var(--primary100);
-    --menu-cartouche-background: color-mix(in hsl, var(--primary100) 80%, transparent);
+    --menu-border-color: var(--mg-primary200);
+    --menu-color: var(--mg-primary950);
+    --menu-separator: var(--mg-primary400);
+    --menu-background: var(--mg-primary100);
+    --menu-hover-color: var(--mg-primary950);
+    --menu-hover-background: var(--mg-primary200);
+    --menu-active-color: var(--mg-primary950);
+    --menu-active-background: var(--mg-primary100);
+    --menu-cartouche-background: color-mix(in hsl, var(--mg-primary100) 80%, transparent);
 
     /* option block */
-    --options-border-color: var(--neutral200);
-    --options-background: var(--neutral100);
+    --options-border-color: var(--mg-neutral200);
+    --options-background: var(--mg-neutral100);
 
     /* avatar */
-    --avatar-background: var(--primary050);
+    --avatar-background: var(--mg-primary050);
     --avatar-icon-opacity: 0.17;
 
     /* drop list */
-    --drop-list-border-color: var(--neutral300);
+    --drop-list-border-color: var(--mg-neutral300);
     --drop-list-border-size: 1px;
-    --drop-list-background: var(--neutral200);
+    --drop-list-background: var(--mg-neutral200);
     --drop-list-border-radius: 4px;
     --drop-list-border-spacing: 1px;
 
     /* drop list (add image) */
-    --drop-image-zone-background: var(--success100);
+    --drop-image-zone-background: var(--mg-success100);
 
     /* item content-box */
-    --content-title-text-color: var(--neutral990);
-    --content-box-border: var(--neutral300);
-    --content-box-background: var(--neutral200);
-    --content-box-color: var(--neutral100);
-    --content-box-text-background: #000000bf;
-    --content-box-over-text: #fff;
-    --tile-add-file-background: var(--neutral200);
-    --tile-add-file-color: var(--neutral700);
-    --tile-info-text-color: #fff;
-    --tile-info-border-color: #fff;
-    --tile-info-border-color2: #000;
-    --tile-info-background: #fff5;
+    --mg-content-title-text-color: var(--mg-neutral990);
+    --mg-content-box-border: var(--mg-neutral300);
+    --mg-content-box-background: var(--mg-neutral200);
+    --mg-content-box-color: var(--mg-neutral100);
+    --mg-content-box-text-background: #000000bf;
+    --mg-content-box-over-text: #fff;
+    --mg-tile-add-file-background: var(--mg-neutral200);
+    --mg-tile-add-file-color: var(--mg-neutral700);
+    --mg-tile-info-text-color: #fff;
+    --mg-tile-info-border-color: #fff;
+    --mg-tile-info-border-color2: #000;
+    --mg-tile-info-background: #fff5;
 
     /* zone */
     --group-line-size: 1px;
-    --group-line-color: var(--neutral400);
-    --axis-line-color: var(--neutral900);
+    --group-line-color: var(--mg-neutral400);
+    --axis-line-color: var(--mg-neutral900);
     --image-width: 1170px;
     --image-height: 600px;
 
     /* info */
-    --alert-color: var(--alert600);
-    --alert-background: color-mix(in hsl, var(--alert200) 8%, transparent);
+    --alert-color: var(--mg-alert600);
+    --alert-background: color-mix(in hsl, var(--mg-alert200) 8%, transparent);
 
     /* loading */
-    --loading-color: var(--neutral950);
-    --loading-tile-color: var(--primary200);
-    --loading-background: color-mix(in hsl, var(--neutral050) 23%, transparent);
-    --loading-text-color: var(--neutral950);
-    --loading-text-shadow-color: var(--neutral000);
+    --loading-color: var(--mg-neutral950);
+    --loading-tile-color: var(--mg-primary200);
+    --loading-background: color-mix(in hsl, var(--mg-neutral050) 23%, transparent);
+    --loading-text-color: var(--mg-neutral950);
+    --loading-text-shadow-color: var(--mg-neutral000);
 
     /* cropper */
-    --cropper-overlay-color: var(--neutral000);
-    --cropper-outline-color: color-mix(in hsl, var(--neutral000) 30%, transparent);
+    --cropper-overlay-color: var(--mg-neutral000);
+    --cropper-outline-color: color-mix(in hsl, var(--mg-neutral000) 30%, transparent);
 
     /* theme */
-    --theme-selection: var(--primary600);
-    --theme-shadow-color: color-mix(in hsl, var(--primary050) 40%, transparent);
+    --theme-selection: var(--mg-primary600);
+    --theme-shadow-color: color-mix(in hsl, var(--mg-primary050) 40%, transparent);
 
     /* box */
-    --box-background: var(--neutral300);
-    --box-border-color: var(--neutral500);
+    --box-background: var(--mg-neutral300);
+    --box-border-color: var(--mg-neutral500);
 
     /* tag */
-    --tag-list-gap: 5px;
-    --tag-item-radius: 15px;
-    --tag-item-background: var(--neutral200);
-    --tag-item-padding: 3px 0 3px 10px;
-    --tag-item-min-height: unset;
-    --tag-item-color: inherit;
-    --tag-item-font-size: inherit;
-    --tag-item-hover-background: var(--primary900);
-    --tag-item-remove-color: inherit;
-    --tag-item-remove-color-hover: var(--primary500);
-    --tag-input-background: var(--input-background);
-    --tag-input-border-color: var(--input-border-color);
-    --tag-input-focus-border-color: var(--input-focus-border-color);
+    --mg-tag-list-gap: 5px;
+    --mg-tag-item-radius: 15px;
+    --mg-tag-item-background: var(--mg-neutral200);
+    --mg-tag-item-padding: 3px 0 3px 10px;
+    --mg-tag-item-min-height: unset;
+    --mg-tag-item-color: inherit;
+    --mg-tag-item-font-size: inherit;
+    --mg-tag-item-hover-background: var(--mg-primary900);
+    --mg-tag-item-remove-color: inherit;
+    --mg-tag-item-remove-color-hover: var(--mg-primary500);
+    --mg-tag-input-background: var(--mg-input-background);
+    --mg-tag-input-border-color: var(--mg-input-border-color);
+    --mg-tag-input-focus-border-color: var(--mg-input-focus-border-color);
 
     /* symbol */
     --symbol-color: #c90f0f;
 
     /* list */
-    --list-selected-text: var(--success700);
+    --list-selected-text: var(--mg-success700);
 }
 
 * {

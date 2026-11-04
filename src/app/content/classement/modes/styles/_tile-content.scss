@@ -97,7 +97,7 @@ img {
     }
 
     &:has(> span[contenteditable]):hover > span[contenteditable] {
-        background-color: var(--neutral050);
+        background-color: var(--mg-neutral050);
     }
 }
 
@@ -131,12 +131,12 @@ img {
     &.top-over-hover .title,
     &.top-bubble .title {
         width: 100%;
-        color: var(--over-item-text-color, var(--content-box-over-text));
+        color: var(--over-item-text-color, var(--mg-content-box-over-text));
         text-align: center;
 
         &:not(:first-child) {
             position: absolute;
-            background: var(--over-item-text-background, var(--content-box-text-background));
+            background: var(--over-item-text-background, var(--mg-content-box-text-background));
         }
     }
 
@@ -207,16 +207,16 @@ img {
     &::before {
         display: block;
         cursor: default;
-        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
-        border: 1px solid var(--tile-info-border-color);
+        box-shadow: 0 0 0 1px var(--mg-tile-info-border-color2);
+        border: 1px solid var(--mg-tile-info-border-color);
         border-radius: 50%;
-        background: var(--tile-info-background);
+        background: var(--mg-tile-info-background);
         width: 16px;
         height: 16px;
         content: 'i';
-        color: var(--tile-info-text-color);
+        color: var(--mg-tile-info-text-color);
         line-height: 16px;
         text-align: center;
-        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
+        text-shadow: 1px 1px 0 var(--mg-tile-info-border-color2);
     }
 }

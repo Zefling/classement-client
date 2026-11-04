@@ -138,7 +138,7 @@ mg-spinner {
 .pin.current-list {
     position: sticky;
     bottom: 0;
-    background: var(--background);
+    background: var(--mg-background);
     max-width: 100%;
     max-height: 300px;
     overflow: auto;
@@ -195,7 +195,7 @@ mg-spinner {
     .current-list {
         position: sticky;
         bottom: 0;
-        background: var(--background);
+        background: var(--mg-background);
         max-width: 100%;
         overflow: auto;
     }

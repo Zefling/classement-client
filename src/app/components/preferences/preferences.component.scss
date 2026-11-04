@@ -58,7 +58,7 @@
 
             &:hover {
                 cursor: pointer;
-                background-color: var(--primary500);
+                background-color: var(--mg-primary500);
             }
 
             &.disabled {
@@ -73,7 +73,7 @@
     }
 
     .multiple > div {
-        background: linear-gradient(135deg, transparent 91%, var(--neutral950) 90%);
+        background: linear-gradient(135deg, transparent 91%, var(--mg-neutral950) 90%);
     }
 
     .sub-list {
@@ -85,9 +85,9 @@
         box-sizing: border-box;
         margin: 0;
         margin-top: 5px;
-        box-shadow: 2px 2px 10px var(--neutral000);
-        border: 2px solid var(--neutral500);
-        background: var(--neutral300);
+        box-shadow: 2px 2px 10px var(--mg-neutral000);
+        border: 2px solid var(--mg-neutral500);
+        background: var(--mg-neutral300);
         padding: 0;
         padding: 10px;
         width: 100%;
@@ -98,7 +98,7 @@
         position: sticky;
         top: 0px;
         z-index: 1;
-        background: var(--dialog-background);
+        background: var(--mg-dialog-background);
         padding-bottom: 5px;
     }
 
@@ -114,7 +114,7 @@
         0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
-    background: var(--dialog-backdrop-background);
+    background: var(--mg-dialog-backdrop-background);
     padding: 2px;
     font-size: 25px;
     line-height: 35px;

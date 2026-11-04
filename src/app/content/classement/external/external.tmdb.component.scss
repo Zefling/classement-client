@@ -45,8 +45,8 @@ form {
     cursor: pointer;
     box-sizing: content-box;
     margin: var(--over-item-margin, 2px);
-    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
-    background: var(--over-item-background, var(--content-box-background));
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--mg-content-box-border));
+    background: var(--over-item-background, var(--mg-content-box-background));
     padding: var(--over-item-padding, 10px);
     font-size: 14px;
     text-align: center;

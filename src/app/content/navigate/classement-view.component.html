@@ -17,7 +17,7 @@
     <classement-infos [classementInfo]="classement">
       <div class="buttons">
         @if (!currentUser) {
-          <button (click)="openClassementFork()" class="primary">
+          <button (click)="openClassementFork()" class="mg-primary">
             {{
               (!modeApi()
                 ? 'generator.actions.edit.local.empty'
@@ -28,19 +28,19 @@
             }}
           </button>
         } @else if (!myClassement) {
-          <button (click)="openClassement()" class="primary">
+          <button (click)="openClassement()" class="mg-primary">
             {{ 'generator.actions.edit.my.derivative' | transloco }}
           </button>
         }
 
         @if (history?.length) {
-          <button (click)="seeHistory()" class="primary">
+          <button (click)="seeHistory()" class="mg-primary">
             {{ 'generator.actions.history.show' | transloco }} ({{ classement.withHistory }})
           </button>
         }
         @if (myClassement) {
           @if (!currentUser) {
-            <button (click)="seeMyClassement()" class="primary">
+            <button (click)="seeMyClassement()" class="mg-primary">
               {{
                 (myClassementCount > 1
                   ? 'generator.actions.see.my.last.derivative'
@@ -49,7 +49,7 @@
               }}
             </button>
           }
-          <button (click)="openMyClassement()" class="primary">
+          <button (click)="openMyClassement()" class="mg-primary">
             {{
               (myClassementCount > 1
                 ? 'generator.actions.edit.my.last.derivative'
@@ -59,7 +59,7 @@
           </button>
         }
         @if (myClassementCount > 1) {
-          <button (click)="seeMyClassements()" class="primary">
+          <button (click)="seeMyClassements()" class="mg-primary">
             {{ 'navigate.my.derivatives' | transloco }}
           </button>
           <div class="note">
@@ -77,8 +77,8 @@
   }
   @if (!bingoSeed) {
     <div class="save-actions buttons">
-      <button class="primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | transloco }}</button>
-      <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+      <button class="mg-primary" (click)="copyLink()">🔗 {{ 'generator.ranking.share.link' | transloco }}</button>
+      <button class="mg-primary" (click)="exportImage()" [disabled]="exportImageDisabled">
         @if (!exportImageDisabled) {
           <span class="icon-share"></span>
         } @else {
@@ -172,9 +172,9 @@
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
-      <button class="button-add primary png" (click)="saveImage('PNG')">PNG</button>
-      <button class="button-add primary jpg" (click)="saveImage('JPG')">Jpeg</button>
-      <button class="button-add primary webp" (click)="saveImage('WEBP')">WebP</button>
+      <button class="button-add mg-primary png" (click)="saveImage('PNG')">PNG</button>
+      <button class="button-add mg-primary jpg" (click)="saveImage('JPG')">Jpeg</button>
+      <button class="button-add mg-primary webp" (click)="saveImage('WEBP')">WebP</button>
     </span>
   </div>
   <details class="alt">
@@ -212,7 +212,7 @@
             <td class="items">{{ derivative.totalItems }}</td>
             <td class="actions">
               @if (derivative.rankingId !== classement?.rankingId) {
-                <button class="primary" (click)="loadDerivativeClassement(derivative)">
+                <button class="mg-primary" (click)="loadDerivativeClassement(derivative)">
                   {{ 'generator.actions.see.this.derivative' | transloco }}
                 </button>
               } @else {
@@ -243,7 +243,7 @@
 
     <p>
       <button class="button-add" (click)="cancelPassword()">{{ 'navigate.password.cancel' | transloco }}</button>
-      <button class="button-add primary" (click)="openClassementWithPassword(password.getValue()!)">
+      <button class="button-add mg-primary" (click)="openClassementWithPassword(password.getValue()!)">
         {{ 'navigate.password.ok' | transloco }}
       </button>
     </p>
@@ -272,7 +272,7 @@
             </td>
             <td class="actions">
               @if (item.id !== classement.historyId) {
-                <button class="primary" (click)="loadHistoryClassement(item)">
+                <button class="mg-primary" (click)="loadHistoryClassement(item)">
                   {{ 'generator.actions.see.this.derivative' | transloco }}
                 </button>
               } @else {
@@ -309,7 +309,7 @@
   </mg-input>
   <p>
     <button class="button-add" (click)="cancelCopy()">{{ 'generator.fork.cancel' | transloco }}</button>
-    <button class="button-add primary" (click)="openClassementForkWithOptions()">
+    <button class="button-add mg-primary" (click)="openClassementForkWithOptions()">
       {{ 'generator.fork.ok' | transloco }}
     </button>
   </p>

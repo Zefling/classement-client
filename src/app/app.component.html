@@ -224,16 +224,16 @@
   <p>{{ 'generator.change.question' | transloco }}</p>
   <div>
     <button (click)="exit(false)">{{ 'list.delete.cancel' | transloco }}</button>
-    <button class="primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | transloco }}</button>
-    <button class="warn" (click)="exit(true)">{{ 'list.delete.exit' | transloco }}</button>
+    <button class="mg-primary" (click)="exit(true, true)">{{ 'list.delete.exit.save' | transloco }}</button>
+    <button class="mg-warn" (click)="exit(true)">{{ 'list.delete.exit' | transloco }}</button>
   </div>
 </mg-dialog>
 
 <mg-dialog class="auto-format" #reloadDialog>
   <p class="title">{{ 'update.message' | transloco }}</p>
   <div>
-    <button class="warn" (click)="reloadDialog.close()">{{ 'update.stay' | transloco }}</button>
-    <button class="primary" (click)="reload()">{{ 'update.reload' | transloco }}</button>
+    <button class="mg-warn" (click)="reloadDialog.close()">{{ 'update.stay' | transloco }}</button>
+    <button class="mg-primary" (click)="reload()">{{ 'update.reload' | transloco }}</button>
   </div>
 </mg-dialog>
 

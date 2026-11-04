@@ -48,12 +48,12 @@
       }
       <div class="client-api">
         @if (tmdbActive()) {
-          <button class="button-add primary" (click)="tmdb().open()">
+          <button class="button-add mg-primary" (click)="tmdb().open()">
             {{ 'generator.actions.TMDB' | transloco }}
           </button>
         }
         @if (anilistActive()) {
-          <button class="button-add primary" (click)="anilist().open()">
+          <button class="button-add mg-primary" (click)="anilist().open()">
             {{ 'generator.actions.anilist' | transloco }}
           </button>
         }
@@ -364,7 +364,7 @@
 
     <div class="actions">
       <div class="save-actions buttons">
-        <button class="primary" (click)="exportImage()" [disabled]="exportImageDisabled">
+        <button class="mg-primary" (click)="exportImage()" [disabled]="exportImageDisabled">
           @if (!exportImageLoading) {
             <span class="icon-share"></span>
           }
@@ -376,17 +376,17 @@
       </div>
 
       <div class="save-actions buttons">
-        <button class="primary" (click)="saveLocal()" [disabled]="!hasItems()">
+        <button class="mg-primary" (click)="saveLocal()" [disabled]="!hasItems()">
           {{ 'generator.actions.save.local' | transloco }}
           <span [mgTooltip]="'generator.actions.save.local.info' | transloco" class="icon-info"></span>
         </button>
-        <button class="primary" (click)="saveJson()" [disabled]="!hasItems()">
+        <button class="mg-primary" (click)="saveJson()" [disabled]="!hasItems()">
           {{ 'generator.actions.export.json' | transloco }}
         </button>
-        <button class="primary" (click)="dialogImport.open()">
+        <button class="mg-primary" (click)="dialogImport.open()">
           {{ 'generator.actions.import.json' | transloco }}
         </button>
-        <button class="primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
+        <button class="mg-primary" (click)="dialogOptimise.open()" [disabled]="size === 0">
           {{ 'generator.optimise.button.optimise' | transloco }} ({{ size | fileSize }})
         </button>
       </div>
@@ -402,21 +402,21 @@
       @if (modeApi()) {
         <div class="save-actions buttons">
           @if (logged) {
-            <button [disabled]="!id" class="primary" (click)="copyLink()">
+            <button [disabled]="!id" class="mg-primary" (click)="copyLink()">
               🔗 {{ 'generator.ranking.share.link' | transloco }}
             </button>
-            <button [disabled]="!id" class="primary" (click)="show()">
+            <button [disabled]="!id" class="mg-primary" (click)="show()">
               {{ 'generator.ranking.see' | transloco }}
             </button>
           }
-          <button class="primary" (click)="saveServer()" [disabled]="!hasItems()">
+          <button class="mg-primary" (click)="saveServer()" [disabled]="!hasItems()">
             {{ 'generator.actions.save.server' | transloco }}
           </button>
         </div>
       }
 
       <div class="save-actions buttons">
-        <button class="primary" (click)="dialogClear.open()" [disabled]="!hasItems()">
+        <button class="mg-primary" (click)="dialogClear.open()" [disabled]="!hasItems()">
           {{ 'generator.actions.reset.groups.button' | transloco }}
         </button>
       </div>
@@ -430,10 +430,10 @@
   <div class="button-image-save">
     {{ 'generator.actions.save.image' | transloco }}
     <span>
-      <button class="button-add primary png" (click)="saveImage('PNG')">PNG</button>
-      <button class="button-add primary jpg" (click)="saveImage('JPG')">Jpeg</button>
+      <button class="button-add mg-primary png" (click)="saveImage('PNG')">PNG</button>
+      <button class="button-add mg-primary jpg" (click)="saveImage('JPG')">Jpeg</button>
       @if (webp) {
-        <button class="button-add primary webp" (click)="saveImage('WEBP')">WebP</button>
+        <button class="button-add mg-primary webp" (click)="saveImage('WEBP')">WebP</button>
       }
     </span>
   </div>

@@ -13,11 +13,11 @@
 @if (jsonTmp) {
   @if (jsonTmp.length > 1) {
     <div class="buttons-list button-image-save">
-      <button class="button-add primary" (click)="selectAll(true)">
+      <button class="button-add mg-primary" (click)="selectAll(true)">
         {{ 'generator.json.select.all' | transloco }}
       </button>
 
-      <button class="button-add primary" (click)="selectAll(false)">
+      <button class="button-add mg-primary" (click)="selectAll(false)">
         {{ 'generator.json.unselect.all' | transloco }}
       </button>
     </div>
@@ -51,23 +51,23 @@
   @if (jsonTmp?.length) {
     @if (!multi()) {
       @if (actions() === 'all') {
-        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'replace')">
+        <button class="button-add mg-primary" (click)="importJson(jsonTmp![0], 'replace')">
           {{ 'generator.json.import.replace' | transloco }}
         </button>
 
-        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'new')">
+        <button class="button-add mg-primary" (click)="importJson(jsonTmp![0], 'new')">
           {{ 'generator.json.import.new' | transloco }}
         </button>
       } @else if (actions() === 'importOnly') {
-        <button class="button-add primary" (click)="importJson(jsonTmp![0], 'new')">
+        <button class="button-add mg-primary" (click)="importJson(jsonTmp![0], 'new')">
           {{ 'generator.json.import.add' | transloco }}
         </button>
       }
     } @else {
-      <button class="button-add primary" (click)="importMultiJson('replace')">
+      <button class="button-add mg-primary" (click)="importMultiJson('replace')">
         {{ 'generator.json.import.multi.replace' | transloco }}
       </button>
-      <button class="button-add primary" (click)="importMultiJson('new')">
+      <button class="button-add mg-primary" (click)="importMultiJson('new')">
         {{ 'generator.json.import.multi.add' | transloco }}
       </button>
     }

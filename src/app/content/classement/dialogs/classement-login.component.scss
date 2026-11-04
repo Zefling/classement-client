@@ -1,8 +1,8 @@
 :host mg-dialog .info {
     margin: 15px 0;
-    box-shadow: 0 0 10px var(--info-message-box-shadow-color);
-    border: 1px solid var(--content-box-border);
-    background-color: var(--content-box-background);
+    box-shadow: 0 0 10px var(--mg-info-message-box-shadow-color);
+    border: 1px solid var(--mg-content-box-border);
+    background-color: var(--mg-content-box-background);
     padding: 15px;
     text-align: left;
 }

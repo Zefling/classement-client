@@ -93,12 +93,12 @@
     text-align: center;
 
     .selected {
-        background-color: var(--primary300);
+        background-color: var(--mg-primary300);
     }
 
     .readonly {
         opacity: 1;
-        background-color: var(--neutral050);
+        background-color: var(--mg-neutral050);
     }
 }
 

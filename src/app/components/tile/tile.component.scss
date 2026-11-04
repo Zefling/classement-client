@@ -12,8 +12,8 @@
     align-items: center;
     box-sizing: content-box;
     margin: var(--over-item-margin, 2px);
-    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
-    background: var(--over-item-background, var(--content-box-background));
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--mg-content-box-border));
+    background: var(--over-item-background, var(--mg-content-box-background));
     padding: var(--over-item-padding, 10px);
     width: var(--over-item-width, 150px);
     min-width: var(--over-item-min-width, 0px);
@@ -22,7 +22,7 @@
     min-height: var(--over-item-min-height, 0px);
     max-height: var(--over-item-max-height, 300px);
     overflow: hidden;
-    color: var(--over-item-color, var(--content-box-color));
+    color: var(--over-item-color, var(--mg-content-box-color));
     font-size: 14px;
 }
 
@@ -101,7 +101,7 @@
     position: relative;
 
     .title {
-        color: var(--over-item-text-color, var(--content-box-over-text));
+        color: var(--over-item-text-color, var(--mg-content-box-over-text));
     }
 
     &:not(.only-text) {
@@ -116,7 +116,7 @@
         &.top-over-hover .title:last-child:not(:first-child),
         &.top-bubble .title:last-child:not(:first-child) {
             position: absolute;
-            background: var(--over-item-text-background, var(--content-box-text-background));
+            background: var(--over-item-text-background, var(--mg-content-box-text-background));
             width: 100%;
             text-align: center;
         }

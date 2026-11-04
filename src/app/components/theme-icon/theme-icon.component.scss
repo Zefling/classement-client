@@ -17,8 +17,8 @@
         --n-item-padding: var(--o-item-padding, var(--item-padding));
         --n-item-border: var(--o-item-border, var(--item-border));
         --n-item-margin: var(--o-item-margin, var(--item-margin));
-        --n-content-box-background: var(--o-content-box-background, var(--content-box-background));
-        --n-content-box-border: var(--o-content-box-border, var(--content-box-border));
+        --n-content-box-background: var(--o-content-box-background, var(--mg-content-box-background));
+        --n-content-box-border: var(--o-content-box-border, var(--mg-content-box-border));
         --n-drop-list-background: var(--o-drop-list-background, var(--drop-list-background));
         --n-drop-list-border-color: var(--o-drop-list-border-color, var(--drop-list-border-color));
         --n-image-background: var(--o-image-background, var(--image-background));
@@ -32,7 +32,7 @@
         box-shadow: 0 0 10px var(--theme-shadow-color);
         background-image: var(--n-image-url);
         background-repeat: repeat;
-        background-color: var(--n-image-background, var(--background));
+        background-color: var(--n-image-background, var(--mg-background));
         padding: 10px;
         overflow: hidden;
     }

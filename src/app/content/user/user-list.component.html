@@ -123,7 +123,7 @@
                   <td mg class="items">{{ classement.totalItems }}</td>
                   <td mg class="actions">
                     <button
-                      class="primary"
+                      class="mg-primary"
                       [routerLink]="'/edit/' + classement.rankingId"
                       title="{{ 'list.action.edit' | transloco }}"
                     >
@@ -136,7 +136,7 @@
                       <span class=" {{ !classement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
                     </button>
                     <button
-                      class="warn"
+                      class="mg-warn"
                       (click)="action(classement, 'delete')"
                       title="{{ 'list.action.remove' | transloco }}"
                     >
@@ -177,8 +177,8 @@
       <div class="buttons">
         <button
           (click)="actionForCurrentClassement('hide', !currentClassement?.hidden)"
-          [class.warn]="!currentClassement?.hidden"
-          [class.primary]="currentClassement?.hidden"
+          [class.mg-warn]="!currentClassement?.hidden"
+          [class.mg-primary]="currentClassement?.hidden"
         >
           <span class=" {{ !currentClassement?.hidden ? 'icon-private-search' : 'icon-public-search' }}"></span>
           <span>{{ (!currentClassement?.hidden ? 'list.hide.private' : 'list.show.public') | transloco }}</span>
@@ -192,7 +192,7 @@
     @case ('delete') {
       <h3>{{ 'list.delete.question' | transloco }}</h3>
       <div>
-        <button (click)="actionForCurrentClassement('delete')" class="warn">
+        <button (click)="actionForCurrentClassement('delete')" class="mg-warn">
           {{ 'list.delete.delete' | transloco }}
         </button>
       </div>

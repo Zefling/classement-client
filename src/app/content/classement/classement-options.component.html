@@ -150,7 +150,7 @@
     <button (click)="modeChangeValid(false)">
       {{ 'generator.actions.reset.groups.cancel' | transloco }}
     </button>
-    <button class="primary" (click)="modeChangeValid(true)">
+    <button class="mg-primary" (click)="modeChangeValid(true)">
       {{ 'generator.actions.reset.groups.ok' | transloco }}
     </button>
   </div>
@@ -996,13 +996,13 @@
     </div>
 
     <div class="buttons">
-      <button class="primary" (click)="themesManager().exportDialogOpen()">
+      <button class="mg-primary" (click)="themesManager().exportDialogOpen()">
         {{ 'generator.theme.manage.my.themes' | transloco }}
       </button>
-      <button class="primary" (click)="themeTmp = undefined; importDialog.open()">
+      <button class="mg-primary" (click)="themeTmp = undefined; importDialog.open()">
         {{ 'generator.theme.import.button' | transloco }}
       </button>
-      <button class="primary" (click)="dialogAdvancedOptions.close()">
+      <button class="mg-primary" (click)="dialogAdvancedOptions.close()">
         {{ 'generator.options.close' | transloco }}
       </button>
     </div>
@@ -1044,7 +1044,7 @@
       <button class="default" (click)="importCancel()">
         {{ 'generator.theme.cancel' | transloco }}
       </button>
-      <button class="primary" (click)="importValidation()">
+      <button class="mg-primary" (click)="importValidation()">
         {{ 'generator.theme.import.button' | transloco }}
       </button>
     </div>

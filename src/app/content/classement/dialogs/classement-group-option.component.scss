@@ -96,14 +96,14 @@ span.color {
     @supports (field-sizing: content) {
         textarea {
             margin: 0;
-            border: 1px solid var(--input-border-color);
+            border: 1px solid var(--mg-input-border-color);
             padding: 0;
             width: 100%;
             min-width: 1em;
             height: 100%;
             field-sizing: content;
             resize: none;
-            color: var(--text-color);
+            color: var(--mg-text-color);
             font-size: var(--over-name-font-size, 120%);
             line-height: 1em;
         }
@@ -115,13 +115,13 @@ span.color {
             grid-area: 1 / 1;
             box-sizing: border-box;
             margin: 0;
-            border: 1px solid var(--input-border-color);
+            border: 1px solid var(--mg-input-border-color);
             padding: 0;
             width: 100%;
             min-width: 1em;
             height: 100%;
             resize: none;
-            color: var(--text-color);
+            color: var(--mg-text-color);
             font-size: var(--over-name-font-size, 120%);
             line-height: 1em;
         }

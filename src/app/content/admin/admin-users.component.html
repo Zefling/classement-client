@@ -163,7 +163,7 @@
 
       <div class="s-12 buttons">
         <button (click)="changeStatusCancel()">{{ 'user.status.change.cancel' | transloco }}</button>
-        <button (click)="changeStatus()" class="warn">{{ 'user.status.change.edit' | transloco }}</button>
+        <button (click)="changeStatus()" class="mg-warn">{{ 'user.status.change.edit' | transloco }}</button>
       </div>
     </form>
   }
@@ -180,6 +180,6 @@
   </p>
   <div>
     <button (click)="cancelRemoveProfile()">{{ 'user.profile.remove.cancel' | transloco }}</button>
-    <button (click)="valideRemoveProfile()" class="warn">{{ 'user.profile.remove.ok' | transloco }}</button>
+    <button (click)="valideRemoveProfile()" class="mg-warn">{{ 'user.profile.remove.ok' | transloco }}</button>
   </div>
 </mg-dialog>

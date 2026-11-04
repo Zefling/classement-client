@@ -273,7 +273,7 @@
       </mg-tabs>
       <div class="buttons">
         @if (modeApi() && loggedUInUser) {
-          <button class="primary" (click)="save()" [disabled]="saveLoading">
+          <button class="mg-primary" (click)="save()" [disabled]="saveLoading">
             @if (saveLoading) {
               <mg-spinner size="22" tickWidth="2" />
             }

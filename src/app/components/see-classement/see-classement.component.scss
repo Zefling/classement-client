@@ -15,8 +15,8 @@
     align-items: center;
     box-sizing: content-box;
     margin: var(--over-item-margin, 2px);
-    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--content-box-border));
-    background: var(--over-item-background, var(--content-box-background));
+    border: var(--over-item-border, 1px) solid var(--over-item-border-color, var(--mg-content-box-border));
+    background: var(--over-item-background, var(--mg-content-box-background));
     padding: var(--over-item-padding, 10px);
     width: var(--over-item-width, 150px);
     min-width: var(--over-item-min-width, 0px);
@@ -24,7 +24,7 @@
     height: var(--over-item-height, 150px);
     min-height: var(--over-item-min-height, 0px);
     max-height: var(--over-item-max-height, 300px);
-    color: var(--over-item-color, var(--content-box-color));
+    color: var(--over-item-color, var(--mg-content-box-color));
     font-size: 14px;
 }
 
@@ -75,7 +75,7 @@ img {
 }
 
 .html2canvas-element {
-    background-color: var(--over-image-background, var(--background));
+    background-color: var(--over-image-background, var(--mg-background));
     min-width: 100%;
 
     &:not(.with-zone) {
@@ -103,7 +103,7 @@ img {
     background-position: var(--over-image-background-position);
     background-size: var(--over-image-background-size);
     background-repeat: repeat;
-    background-color: var(--over-image-background, var(--background));
+    background-color: var(--over-image-background, var(--mg-background));
 
     table {
         background: none;
@@ -124,7 +124,7 @@ img {
     background-repeat: no-repeat;
     width: var(--over-name-width, 150px);
     min-width: var(--over-name-width, 150px);
-    color: var(--text-color);
+    color: var(--mg-text-color);
     font-size: var(--over-name-font-size, 120%);
     text-align: center;
 
@@ -145,7 +145,7 @@ img {
         * {
             margin: 0;
             padding: 0;
-            color: var(--text-color);
+            color: var(--mg-text-color);
             list-style: none;
 
             &:not(strong) {
@@ -210,7 +210,7 @@ img {
     position: relative;
 
     .title {
-        color: var(--over-item-text-color, var(--content-box-over-text));
+        color: var(--over-item-text-color, var(--mg-content-box-over-text));
     }
 
     &:not(.only-text) {
@@ -225,7 +225,7 @@ img {
         &.top-over-hover .title:last-child:not(:first-child),
         &.top-bubble .title:last-child:not(:first-child) {
             position: absolute;
-            background: var(--over-item-text-background, var(--content-box-text-background));
+            background: var(--over-item-text-background, var(--mg-content-box-text-background));
             width: 100%;
             text-align: center;
         }
@@ -323,7 +323,7 @@ img {
 caption,
 .global-title {
     padding: 10px;
-    color: var(--over-title-text-color, var(--content-title-text-color));
+    color: var(--over-title-text-color, var(--mg-content-title-text-color));
     font-size: 120%;
     text-align: center;
 }
@@ -345,17 +345,17 @@ img {
     &::before {
         display: block;
         cursor: default;
-        box-shadow: 0 0 0 1px var(--tile-info-border-color2);
-        border: 1px solid var(--tile-info-border-color);
+        box-shadow: 0 0 0 1px var(--mg-tile-info-border-color2);
+        border: 1px solid var(--mg-tile-info-border-color);
         border-radius: 50%;
-        background: var(--tile-info-background);
+        background: var(--mg-tile-info-background);
         width: 16px;
         height: 16px;
         content: 'i';
-        color: var(--tile-info-text-color);
+        color: var(--mg-tile-info-text-color);
         line-height: 16px;
         text-align: center;
-        text-shadow: 1px 1px 0 var(--tile-info-border-color2);
+        text-shadow: 1px 1px 0 var(--mg-tile-info-border-color2);
     }
 }
 
@@ -616,7 +616,7 @@ div:has(> .mode-bingo) {
     background-position: var(--over-image-background-position);
     background-size: var(--over-image-background-size);
     background-repeat: repeat;
-    background-color: var(--over-image-background, var(--background));
+    background-color: var(--over-image-background, var(--mg-background));
     table-layout: fixed;
 
     .render:has(> &),

@@ -1,7 +1,7 @@
 <div>{{ 'generator.optimise.info' | transloco }}</div>
 
 <div>
-  <button class="primary" (click)="optimise()" [disabled]="start">
+  <button class="mg-primary" (click)="optimise()" [disabled]="start">
     {{ 'generator.optimise.button.optimise' | transloco }}
   </button>
 </div>
@@ -39,7 +39,7 @@
     </div>
     <div>
       @if (progress() === total) {
-        <button class="primary" (click)="optimiseAccept()">
+        <button class="mg-primary" (click)="optimiseAccept()">
           {{ 'generator.optimise.validate' | transloco }}
         </button>
       }

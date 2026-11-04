@@ -12,7 +12,7 @@
         grid-template-columns: 1fr 1fr;
         flex: 1;
         gap: 0 10px;
-        border: 1px solid var(--input-border-color);
+        border: 1px solid var(--mg-input-border-color);
         text-align: left;
 
         :nth-child(2n-1) {
@@ -23,7 +23,7 @@
 
     &:hover {
         cursor: pointer;
-        background-color: var(--primary400);
+        background-color: var(--mg-primary400);
     }
 }
 

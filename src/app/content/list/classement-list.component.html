@@ -14,10 +14,10 @@
       <mg-input-label>{{ 'list.filter' | transloco }}</mg-input-label>
       <mg-input-text clearCross maxlength="150" [(ngModel)]="filter" #filterInput />
     </mg-input>
-    <button class="primary" (click)="exportAll()">
+    <button class="mg-primary" (click)="exportAll()">
       {{ 'generator.actions.export.all.json' | transloco }}
     </button>
-    <button class="primary" (click)="dialogImport.open()">
+    <button class="mg-primary" (click)="dialogImport.open()">
       {{ 'generator.actions.import.json' | transloco }}
     </button>
   </div>
@@ -114,13 +114,13 @@
             <td mg class="groups">{{ item.groupsLength || item.groupsLenght }}</td>
             <td mg class="items">{{ item.listLength || item.listLenght }}</td>
             <td mg class="actions">
-              <button class="primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | transloco }}">
+              <button class="mg-primary" [routerLink]="'/edit/' + item.id" title="{{ 'list.action.edit' | transloco }}">
                 <span class="icon-edit"></span>
               </button>
               <button (click)="clone(item)" title="{{ 'list.action.clone' | transloco }}">
                 <span class="icon-clone"></span>
               </button>
-              <button class="warn" (click)="delete(item)" title="{{ 'list.action.remove' | transloco }}">
+              <button class="mg-warn" (click)="delete(item)" title="{{ 'list.action.remove' | transloco }}">
                 <span class="icon-remove"></span>
               </button>
             </td>
@@ -145,7 +145,7 @@
   <p class="title">{{ itemCurrent?.options?.title || ('list.title.undefined' | transloco) }}</p>
   <div class="buttons">
     <button (click)="deleteCurrent(false)">{{ 'list.delete.cancel' | transloco }}</button>
-    <button class="warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | transloco }}</button>
+    <button class="mg-warn" (click)="deleteCurrent(true)">{{ 'list.delete.delete' | transloco }}</button>
   </div>
 </mg-dialog>
 
@@ -168,10 +168,10 @@
 
   <div class="buttons">
     <button (click)="cloneCurrent(false)">{{ 'list.clone.cancel' | transloco }}</button>
-    <button class="primary" (click)="cloneCurrent(true, title.getValue())">
+    <button class="mg-primary" (click)="cloneCurrent(true, title.getValue())">
       {{ 'list.clone.validate' | transloco }}
     </button>
-    <button class="primary" (click)="cloneCurrent(true, title.getValue(), true)">
+    <button class="mg-primary" (click)="cloneCurrent(true, title.getValue(), true)">
       {{ 'list.clone.edit' | transloco }}
     </button>
   </div>
