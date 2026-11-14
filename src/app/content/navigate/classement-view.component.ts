@@ -426,7 +426,27 @@ export class ClassementViewComponent implements OnInit, OnDestroy {
             const canvas = await html2canvas(document.getElementById('html2canvas-element')!, {
                 logging: false,
                 useCORS: true,
-                scale: 2,
+                allowTaint: true,
+                scale: this.prefs.preferences.exportScale,
+                imageResolver: (src: string): Promise<string | undefined> | undefined => {
+                    // For cross-origin URLs, fetch as blob and convert to data URI so
+                    // html2canvas can draw them onto the canvas without tainting it.
+                    if (/^https?:\/\//.test(src) && !src.startsWith(location.origin)) {
+                        return fetch(src, { mode: 'cors' })
+                            .then(r => r.blob())
+                            .then(
+                                blob =>
+                                    new Promise<string>((resolve, reject) => {
+                                        const reader = new FileReader();
+                                        reader.onload = () => resolve(reader.result as string);
+                                        reader.onerror = reject;
+                                        reader.readAsDataURL(blob);
+                                    }),
+                            )
+                            .catch(() => undefined); // let html2canvas fall back on failure
+                    }
+                    return undefined; // same-origin: default behaviour
+                },
                 onProgress: event => {
                     // event.percentage: 0 -> 100 (start / progress / end)
                     this.exportProgressLoaded = event.percentage;

@@ -1550,6 +1550,23 @@ export class ClassementEditComponent implements OnDestroy, OnInit {
                     logging: false,
                     useCORS: true,
                     scale: this.preferencesService.preferences.exportScale,
+                    imageResolver: (src: string): Promise<string | undefined> | undefined => {
+                        if (/^https?:\/\//.test(src) && !src.startsWith(location.origin)) {
+                            return fetch(src, { mode: 'cors' })
+                                .then(r => r.blob())
+                                .then(
+                                    blob =>
+                                        new Promise<string>((resolve, reject) => {
+                                            const reader = new FileReader();
+                                            reader.onload = () => resolve(reader.result as string);
+                                            reader.onerror = reject;
+                                            reader.readAsDataURL(blob);
+                                        }),
+                                )
+                                .catch(() => undefined);
+                        }
+                        return undefined;
+                    },
                     // Clone optimization: html2canvas clones the whole <html> to
                     // preserve the CSS cascade, which is very costly on this page
                     // (menus, edit lists, dialogs...). We only skip subtrees INSIDE
