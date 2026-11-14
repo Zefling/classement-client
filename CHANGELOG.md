@@ -1,5 +1,31 @@
 # Changelog - Standalone web app & API
 
+### 5.3.0 (2026-11-14)
+
+#### Standalone web app
+
+- Add an options dialog box for creating a Bingo game
+- Add scale preference
+- Move tiles in a common component
+- Move edit-modes to sub components
+- Fix keaybord `ctrl` + `↑` / `↓`
+- **Magma**
+    - update CSS
+- **html2canvas**
+    - improved performance for image generation
+    - added a progress bar
+
+> - Update to **Angular** `22.2`
+> - Update to **Magma** `3.0`
+> - Update to **html2canvas** `1.14`
+
+#### With API activated only
+
+- Fix buttons alignment in view
+- **html2canvas**
+    - added imageResolver
+    - removed image caching
+
 ### 5.2.1 (2026-09-20)
 
 #### Standalone web app
@@ -9,7 +35,7 @@
 #### With API activated only
 
 - Add filter on user page
-- Add filter on user page
+- Add loading lazy for banner list
 
 ### 5.2.0 (2026-09-18)
 
